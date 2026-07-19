@@ -1,0 +1,306 @@
+{
+ "metadata": {
+  "title": "Web Application Testing",
+  "slug": "claude-liam-webapp-testing",
+  "topic": "WEB APPLICATION TESTING · ANTHROPIC SKILL",
+  "register": "Pragmatist",
+  "audience": "Claude",
+  "brand": "claude-liam",
+  "persona": "Liam (in for Bear)",
+  "voice": "am_onyx",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Merhaba, Liam",
+  "folderLabel": "@NikBearBrown",
+  "in_for_bear": true,
+  "playlist": "Claude Taught",
+  "modifier": "skill-teardown",
+  "source_skill": "../anthropics/skills/skills/webapp-testing/SKILL.md",
+  "build": {
+   "at": "2026-07-18T15:42:41",
+   "cut": "master",
+   "filled": 7,
+   "of": 7,
+   "slates": [],
+   "skin_warnings": []
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Namaste, Humanitarians",
+      "topic": "Web Application Testing",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Merhaba — this is Liam, in for Bear. Ask Claude to test a local web application — verify a button click, check a form submission, capture a screenshot of a UI state. The Web Application Testing skill fires. It is not a CI testing framework and it does not write test suites. It is a Playwright-based reconnaissance-and-action toolkit: decide first whether your app is static HTML or a dynamic server; follow the decision tree; run scripts through with_server.py if a server is involved; wait for networkidle before touching the DOM. Let me walk you through the decision tree, the Playwright pattern, and what this skill gets right and where it bites.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 22,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Merhaba, Liam",
+      "topic": "WEB APPLICATION TESTING · ANTHROPIC SKILL",
+      "segment": "TESTING",
+      "command": "Test my local React app on port 3000 — verify the Submit button shows a success message after clicking it.",
+      "runningText": "reading webapp-testing SKILL.md…",
+      "output": [
+       "Dynamic webapp → with_server.py manages server lifecycle",
+       "Playwright: networkidle → screenshot → selectors → act",
+       "Reconnaissance-then-action: screenshot first, execute second"
+      ],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 33.81,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T15:42:41"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Web Application Testing belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "anatomy — decision tree + testing pipeline",
+   "narration_text": "The skill is a two-branch decision tree. Branch one: static HTML. Read the file directly to identify selectors, then write a Playwright script against a file-colon-slash-slash URL. Branch two: dynamic webapp. Sub-branch one: server not yet running — run python scripts/with_server.py dash-dash-help, then start the server through the helper and write a simplified Playwright script alongside it. Sub-branch two: server already running — go straight to reconnaissance-then-action. Reconnaissance-then-action is a three-step loop: first, navigate to the URL and wait for networkidle. Second, take a screenshot or inspect the rendered DOM. Third, identify selectors from what the browser actually rendered — then execute your actions using those discovered selectors. The critical rule in the skill: never inspect the DOM before waiting for networkidle on a dynamic app. Inspect before networkidle and you see placeholder elements instead of real content.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "WebappTestingAnatomy",
+     "props": {
+      "sparkLine": "Static: read → script. Dynamic: server → recon → act."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 50.65,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T15:42:41"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "patterns — with_server.py + Playwright best practices",
+   "narration_text": "with_server.py manages the server lifecycle so your automation script contains only Playwright logic — no startup, no teardown, no port-wait code in your script. Single server: pass dash-dash-server with the start command and dash-dash-port with the port. Multiple servers — backend plus frontend — pass dash-dash-server twice. The helper starts both, waits for readiness, runs your script, and tears down. Always run dash-dash-help first to see current options before writing any command. The Playwright script itself always uses sync_playwright, always launches Chromium in headless mode, always calls wait_for_load_state networkidle before any DOM operation, and always closes the browser when done. Selectors should be descriptive: prefer text-equals, role-equals, CSS selectors, or IDs over absolute XPath. Three example scripts ship in the examples directory: element_discovery for discovering buttons, links, and inputs; static_html_automation for file-colon-slash-slash URLs; and console_logging for capturing browser console output during automation.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "WebappTestingPatterns",
+     "props": {
+      "sparkLine": "Server managed. Recon first. networkidle always."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 59.24,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T15:42:41"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "teardown — what it gets right / where it bites",
+   "narration_text": "Here is the teardown. The Web Application Testing skill gets the framing exactly right: it is a reconnaissance-and-action tool, not a test framework. The decision tree — static HTML versus dynamic webapp versus server-already-running — is precise and covers the real cases. The networkidle warning is the most important piece: that one pitfall causes the majority of Playwright failures on dynamic apps. with_server.py eliminates server-lifecycle boilerplate entirely from automation scripts. The three example scripts ship with the skill. Where it bites: there is no error recovery guidance — if with_server.py times out or a Playwright locator throws, the skill provides no fallback patterns. The examples directory is referenced but never described in the skill itself. The dash-dash-help instruction appears without sample output to compare against. No authentication or session handling guidance — cookies and login flows are common in real-world testing targets. And there are no notes on CI or headless environment differences — the skill assumes a local development machine.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "WebappTestingTell",
+     "props": {
+      "sparkLine": "Decision tree solid. Error recovery missing."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 57.43,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T15:42:41"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "narration_text": "Verdict. The Web Application Testing skill is a Playwright reconnaissance-and-action toolkit — not a test suite generator. Two branches: static HTML reads the file directly and scripts against a file URL; dynamic webapps use with_server.py to isolate server lifecycle from automation logic. Critical rule: always wait for networkidle before DOM inspection. Three example scripts: element_discovery, static_html_automation, console_logging. Gaps: no error recovery, no auth guidance, no CI notes. Pattern: navigate, screenshot, identify selectors, execute.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 20,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Web Application Testing",
+      "artifactLines": [
+       "Playwright recon-and-action toolkit — NOT a test suite generator",
+       "Static HTML: read file → selectors → file:// Playwright script",
+       "Dynamic webapp: with_server.py manages lifecycle; script is pure Playwright",
+       "Critical: wait for networkidle before ANY DOM inspection",
+       "3 example scripts: element_discovery · static_html_automation · console_logging",
+       "Gaps: no error recovery · no auth/session guidance · no CI environment notes"
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 32.85,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T15:42:41"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "handoff",
+   "narration_text": "Your turn. Open a Claude Code session. Paste this: I have a local React app running on port 3000. Use the Web Application Testing skill to verify that clicking the Submit button on the login form shows a success message. Then watch four things: first, does Claude reach for with_server.py — or does it skip straight to a raw Playwright script without a server helper? Second, does it call wait_for_load_state networkidle before locating any element? Third, does it take a screenshot or inspect the DOM for reconnaissance before interacting — or does it hardcode a selector and hope? And fourth, if a locator fails, does Claude run a second reconnaissance pass to discover the actual rendered DOM — or does it retry the same broken selector? If Claude skips networkidle, the DOM inspection will read empty containers. If it hardcodes selectors without reconnaissance, any layout change breaks the script. Those are your gates.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 34,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your Turn",
+      "topic": "WEB APPLICATION TESTING · HANDOFF",
+      "segment": "TESTING",
+      "command": "Test my local React app on port 3000. Verify clicking Submit on the login form shows a success message. Use the Web Application Testing skill.",
+      "runningText": "Watch: with_server.py used? networkidle waited? screenshot recon before acting? second pass on locator fail?",
+      "output": [
+       "Expected: with_server.py manages server lifecycle",
+       "Expected: networkidle wait before any selector lookup",
+       "Red flag: hardcoded selectors without recon, or no networkidle wait"
+      ],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 46.68,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T15:42:41"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "Web Application Testing. Liam, in for Bear.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 5,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Web Application Testing",
+      "handle": "@NikBearBrown",
+      "subline": "webapp-testing · Anthropic Skills"
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 3.48,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T15:42:41"
+   }
+  }
+ ]
+}
