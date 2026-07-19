@@ -1,0 +1,201 @@
+{
+ "metadata": {
+  "title": "Leverage Scorecard: Inside View vs. Outside View",
+  "slug": "leverage-scorecard",
+  "topic": "CORPORATE FINANCE",
+  "source": "corporate-finance-with-ai/chapters/",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video. Leverage scorecard with coverage ratios and MM trade-off curve.",
+  "total_estimated_duration_seconds": 115
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CORPORATE FINANCE",
+      "lines": [
+       "Leverage Scorecard",
+       "Inside view: stable cash flows justify leverage.",
+       "Outside view: base rates say 1% distress probability.",
+       "Follow @NikBearBrown"
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "Inside view: our stable cash flows justify higher leverage. Outside view: industrial manufacturers at 1.25 times D to EBITDA have 1 percent distress probability. Which view do you use?",
+   "visual_intent": "SLATE -- Inside view: narrative. Outside view: base rates. Scorecard reconciles both.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 16
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "Ask Claude to build a leverage scorecard: compute coverage ratios, traffic-light them against thresholds, and show position on the MM trade-off curve.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Leverage scorecard: EBITDA=$320M, Interest=$28M, Debt=$400M, Equity=$850M. Compute interest coverage (>6=green), D/EBITDA (<2=green), D/E (<0.5=green). Compute tax shield and distress cost. Net benefit at current D.\"",
+      "topic": "CORPORATE FINANCE",
+      "segment": "LEVERAGE SCORECARD",
+      "runningText": "computing..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "The script computes three coverage ratios, applies traffic-light thresholds, and estimates the tax shield net of distress cost at current leverage.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "leverage_scorecard.py",
+      "topic": "CORPORATE FINANCE",
+      "segment": "LEVERAGE SCORECARD",
+      "code": "EBITDA=320; Int=28\nDebt=400; Equity=850\ncov=EBITDA/Int\nde=Debt/EBITDA\nde2=Debt/Equity\nT_c=0.25\ntax_shield=T_c*Debt\ndistress=0.0003*Debt**2\nnet=tax_shield-distress\nfor name,val,lo,hi in [\n  (\"Int Cov\",cov,3,6),\n  (\"D/EBITDA\",de,2,3),\n  (\"D/E\",de2,0.5,1.0)\n]:\n    s=\"GREEN\" if (val>hi if name==\"Int Cov\"\n       else val<lo) else \"AMBER\"\n    print(f\"{name}: {val:.2f}x {s}\")\nprint(f\"Tax shield: ${tax_shield}M\")\nprint(f\"Distress: ${distress:.1f}M\")\nprint(f\"Net benefit: +${net:.1f}M\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "Left panel: three green gauge bars showing Halverson is conservatively leveraged. Right panel: the MM trade-off curve with Halverson's position marked at D-to-V of 32 percent, left of the optimal hump.",
+   "visual_intent": "Manim B04_LeverageScorecard: gauge bars left panel + MM trade-off curve right panel.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade"
+   },
+   "estimated_duration_s": 16
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "All three ratios are green. Net tax benefit is 96 million at current leverage. The outside view confirms the inside view here.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Compute: what Debt level maximizes the trade-off value (T_c*D - 0.0003*D^2)? What is D/V at the optimum? How far is Halverson from the optimum?\"",
+      "topic": "CORPORATE FINANCE",
+      "segment": "LEVERAGE SCORECARD",
+      "runningText": "optimizing..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 11
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT2",
+   "narration_text": "Optimal D is 417 million. Halverson is at 400. They are near the optimal. 17 million in additional debt would maximize value without material distress risk.",
+   "visual_intent": "SLATE -- Halverson D=$400M vs. optimal $417M. Gap = $17M. Near optimal. Confirmed from outside view.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "The teardown: the scorecard reconciles inside and outside views. Here, both agree. Conservatively leveraged, near optimal, green on every ratio.",
+   "visual_intent": "SLATE -- inside view and outside view agree. Conservatively leveraged, near optimal.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT",
+   "narration_text": "Next: run the scorecard on a company with conflicting inside and outside views. See which view is right. Follow for more corporate finance teardowns.",
+   "visual_intent": "SLATE -- next steps: scorecard on a conflicted firm where inside and outside views diverge.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  }
+ ]
+}

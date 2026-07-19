@@ -1,0 +1,86 @@
+{
+ "metadata": {
+  "title": "VaR and CVaR — Risk Metrics from Return Distributions with Claude",
+  "slug": "risk-metrics-var-cvar",
+  "topic": "COMPUTATIONAL FINANCE — VAR AND CVAR",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro",
+  "total_estimated_duration_seconds": 120
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOpen", "props": {"topic": "NIK BEAR BROWN",
+       "lines": ["Nik Bear Brown", "Computational Finance, taken apart."]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM — why care", "role_note": "the stakes",
+   "narration_text": "After the 2008 financial crisis, regulators asked banks a simple question: how much can you lose on a bad day? Value at Risk — VaR — became the standard answer. The 95 percent one-day VaR is the loss level such that only 5 percent of days are worse. But VaR has a flaw: it says nothing about what happens in those 5 percent of days. CVaR — Conditional Value at Risk — answers that question: the expected loss given that you are already in the tail.",
+   "visual_intent": "title card: return distribution, VaR threshold, tail region highlighted",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 16},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "terminal (Onda)",
+   "narration_text": "Type the prompt. Generate 10,000 daily returns from GBM, mu 3 basis points per day, sigma 1 percent per day. Compute historical VaR at 95 and 99 percent, parametric VaR under the normal assumption, CVaR at both levels. Print a two-row comparison table.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"Write risk_metrics.py: generate 10,000 daily returns from GBM\n(mu=0.0003/day, sigma=0.01/day). Compute historical VaR at\n95%%/99%%, parametric VaR assuming normality, CVaR at both\nlevels. Print 2-row comparison table: Historical vs Parametric\nfor VaR95, VaR99, CVaR95, CVaR99.\"",
+       "topic": "COMPUTATIONAL FINANCE — VAR AND CVAR", "segment": "RISK METRICS", "runningText": "generating risk model…"}}},
+   "estimated_duration_s": 14},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "terminal (Onda)",
+   "narration_text": "Read it. Historical VaR at 95 percent is just the negative 5th percentile of the return distribution — no model, just the data. Parametric VaR assumes normality: negative mu plus 1.645 sigma. CVaR is the conditional mean: average all returns below the VaR threshold. The difference between the two methods exposes fat tails.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {
+       "filename": "risk_metrics.py", "topic": "COMPUTATIONAL FINANCE — VAR AND CVAR", "segment": "RISK METRICS",
+       "code": "# risk_metrics.py  —  Claude Code output\nimport numpy as np\nrng = np.random.default_rng(123)\nreturns = rng.normal(0.0003, 0.01, 10_000)\n\n# Historical VaR (no model assumption)\nvar_95 = -np.percentile(returns, 5)   # 95%% VaR\nvar_99 = -np.percentile(returns, 1)   # 99%% VaR\n\n# CVaR (expected loss in the tail)\ncvar_95 = -returns[returns < -var_95].mean()\ncvar_99 = -returns[returns < -var_99].mean()"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B04", "act": "OUTPUT — run", "role_note": "Manim animation",
+   "narration_text": "Run it. The histogram shows the return distribution — nearly normal, centered near zero. The crimson bars are the 5 percent left tail — the worst days. The first dashed line is the 95 percent VaR threshold; the second, darker line is the 99 percent VaR. CVaR is the expected value of the returns to the left of each threshold — the average bad day, given that it is a bad day.",
+   "visual_intent": "Manim: return histogram with tail bars in crimson, VaR95 and VaR99 dashed lines, tail region labeled",
+   "shot": {"type": "GRAPHIC", "source": "manim", "motion": "fade",
+     "manim": {"scene_class": "B04_ReturnHistogram", "file": "vox_scenes.py"}},
+   "estimated_duration_s": 17},
+
+  {"beat_id": "B05", "act": "CHANGE — check and revise", "role_note": "terminal (Onda) — required revision",
+   "narration_text": "What if the returns are fat-tailed? Historical VaR from a normal distribution is too optimistic. Ask Claude to replace the normal with a Student t-distribution with 4 degrees of freedom and recompute the comparison table.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"update risk_metrics.py:\n  -> replace normal distribution with Student t (df=4)\n  -> recompute historical and parametric VaR/CVaR\n  -> show how fat tails inflate the 99%% CVaR\"",
+       "topic": "COMPUTATIONAL FINANCE — VAR AND CVAR", "segment": "RISK METRICS", "runningText": "updating distribution…"}}},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B06", "act": "SUMMARY", "role_note": "the lesson",
+   "narration_text": "With t-distributed returns, the 99 percent CVaR is roughly 60 percent larger than the normal estimate. The 95 percent VaR is similar — but the 99 percent CVaR tells the real story: on the worst 1 percent of days, the average loss is nearly twice what a Gaussian model predicts. That gap was the model risk in 2008.",
+   "visual_intent": "summary card: VaR/CVaR comparison table, normal vs fat-tailed; gap at 99% CVaR highlighted",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B07", "act": "NEXT STEPS", "role_note": "what to do next",
+   "narration_text": "Your move: replace simulated returns with real historical data. Pull daily S&P 500 returns from yfinance and compute VaR and CVaR historically. Compare the 2008 realized losses to the model prediction from 2007 data.",
+   "visual_intent": "next-steps card: real S&P 500 returns, 2008 crisis tail, model vs realized",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B08", "act": "NEXT STEPS 2", "role_note": "extension",
+   "narration_text": "Then compute portfolio VaR with correlated assets. Multivariate normal VaR has a closed form; multivariate t requires Monte Carlo. The correlation structure matters — crisis correlations spike, and that is what breaks the normal VaR model.",
+   "visual_intent": "code snippet: multivariate normal VaR with Cholesky; note on correlation spike",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 10},
+
+  {"beat_id": "B09", "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOutro", "props": {
+       "brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI",
+       "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}},
+   "estimated_duration_s": 8}
+ ]
+}

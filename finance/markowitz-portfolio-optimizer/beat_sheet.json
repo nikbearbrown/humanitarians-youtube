@@ -1,0 +1,86 @@
+{
+ "metadata": {
+  "title": "Markowitz Portfolio Optimizer — Efficient Frontier with Claude",
+  "slug": "markowitz-portfolio-optimizer",
+  "topic": "COMPUTATIONAL FINANCE — MARKOWITZ OPTIMIZATION",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro",
+  "total_estimated_duration_seconds": 120
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOpen", "props": {"topic": "NIK BEAR BROWN",
+       "lines": ["Nik Bear Brown", "Computational Finance, taken apart."]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM — why care", "role_note": "the stakes",
+   "narration_text": "Harry Markowitz asked: given a set of risky assets, what is the optimal blend? His 1952 paper gave the answer — and won the Nobel prize. The efficient frontier is the set of portfolios that give maximum return for a given level of risk. Below it, you are leaving return on the table. On it, you are optimal. Today we build the optimizer with Claude, find the minimum-variance and maximum-Sharpe portfolios, and draw the frontier.",
+   "visual_intent": "title card: risk-return space with frontier curve, individual assets as dots",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 16},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "terminal (Onda)",
+   "narration_text": "Type the prompt. We ask Claude to write the optimizer: four assets with given expected returns and a covariance matrix with off-diagonal correlations of 0.3. Find minimum-variance and maximum-Sharpe portfolios using scipy.optimize.minimize. Generate 500 random feasible portfolios to fill out the opportunity set.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"Write markowitz_optimizer.py: given expected_returns=[0.08,0.10,0.12,0.06]\nand cov_matrix (4x4 with off-diagonal correlations ~0.3), use\nscipy.optimize.minimize to find (a) minimum variance portfolio,\n(b) max Sharpe ratio portfolio (rf=0.03). Print weights,\nexpected return, volatility, Sharpe. Generate 500 random portfolios.\"",
+       "topic": "COMPUTATIONAL FINANCE — MARKOWITZ OPTIMIZATION", "segment": "EFFICIENT FRONTIER", "runningText": "generating optimizer…"}}},
+   "estimated_duration_s": 14},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "terminal (Onda)",
+   "narration_text": "Read it. Minimum variance: minimize w transpose times cov times w, subject to weights summing to one. Max Sharpe: minimize minus the Sharpe ratio — portfolio return minus risk-free, divided by portfolio volatility. Both are constrained quadratic programs solved by SLSQP. The covariance matrix does the heavy lifting.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {
+       "filename": "markowitz_optimizer.py", "topic": "COMPUTATIONAL FINANCE — MARKOWITZ OPTIMIZATION", "segment": "EFFICIENT FRONTIER",
+       "code": "# markowitz_optimizer.py  —  Claude Code output\nfrom scipy.optimize import minimize\nimport numpy as np\n\n# Min-variance portfolio\nmin_var = minimize(\n    lambda w: w @ cov @ w,\n    w0,\n    constraints=[{'type':'eq','fun':lambda w:sum(w)-1}],\n    bounds=[(0,1)]*4,\n    method='SLSQP'\n)\n# Max-Sharpe: minimize negative Sharpe\nmax_sharpe = minimize(\n    lambda w: -(w@mu - rf) / np.sqrt(w@cov@w),\n    w0, constraints=..., bounds=...\n)"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B04", "act": "OUTPUT — run", "role_note": "Manim animation",
+   "narration_text": "Run it. The grey dots are 500 random feasible portfolios — they fill the interior of the opportunity set. The crimson curve is the efficient frontier — the upper edge. The four individual assets are black dots. The blue star is the minimum-variance portfolio; the green star is the maximum-Sharpe ratio portfolio. Every point below the frontier is suboptimal.",
+   "visual_intent": "Manim: efficient frontier curve (crimson), feasible dots (grey), asset dots (black), min-var (blue), max-Sharpe (green) in risk-return space",
+   "shot": {"type": "GRAPHIC", "source": "manim", "motion": "fade",
+     "manim": {"scene_class": "B04_EfficientFrontier", "file": "vox_scenes.py"}},
+   "estimated_duration_s": 17},
+
+  {"beat_id": "B05", "act": "CHANGE — check and revise", "role_note": "terminal (Onda) — required revision",
+   "narration_text": "What if you add a short-selling constraint and also require each weight to be at most 40 percent? The efficient frontier shifts — tighter constraints shrink the opportunity set. Ask Claude to rerun with the box constraints and compare the Sharpe ratios.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"update markowitz_optimizer.py:\n  -> bounds: each weight in [0, 0.4] (max 40% per asset)\n  -> compare max-Sharpe before vs after constraint\n  -> print the weight change and Sharpe ratio change\"",
+       "topic": "COMPUTATIONAL FINANCE — MARKOWITZ OPTIMIZATION", "segment": "EFFICIENT FRONTIER", "runningText": "updating constraints…"}}},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B06", "act": "SUMMARY", "role_note": "the lesson",
+   "narration_text": "The constrained frontier is inside the unconstrained one — constraints always hurt. The Sharpe ratio drops from 0.47 to 0.41. That is the cost of the constraint: 6 basis points of risk-adjusted return. Every real portfolio pays this cost — no fund manager can hold the mathematical optimum.",
+   "visual_intent": "summary card: two frontiers overlaid, Sharpe ratio comparison",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B07", "act": "NEXT STEPS", "role_note": "what to do next",
+   "narration_text": "Your move: extend to real assets. Pull historical returns from yfinance for a 10-asset portfolio and run the optimizer. The estimated covariance matrix will be noisy — try the Ledoit-Wolf shrinkage estimator from sklearn to stabilize it.",
+   "visual_intent": "next-steps card: real assets, Ledoit-Wolf shrinkage, sklearn covariance",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B08", "act": "NEXT STEPS 2", "role_note": "extension",
+   "narration_text": "Then add factor exposure constraints. Require the portfolio to be beta-neutral versus the market — add a linear constraint that the weighted-average beta equals zero. The frontier shifts again, and the constrained optimum is now factor-clean.",
+   "visual_intent": "code snippet: beta-neutral constraint added to minimize() call",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 10},
+
+  {"beat_id": "B09", "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOutro", "props": {
+       "brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI",
+       "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}},
+   "estimated_duration_s": 8}
+ ]
+}

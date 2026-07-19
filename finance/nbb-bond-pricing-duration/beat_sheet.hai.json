@@ -1,0 +1,403 @@
+{
+ "metadata": {
+  "slug": "bond-pricing-duration",
+  "variant": "nbb",
+  "title": "Bond Pricing and Duration — Price-Yield Curve with Claude",
+  "topic": "COMPUTATIONAL FINANCE — BOND PRICING AND DURATION",
+  "audience": "NikBearBrown",
+  "engine": "kokoro",
+  "voice": "am_onyx",
+  "palette": "teardown",
+  "register": "Pragmatist",
+  "derived_from": "beat_sheet.json",
+  "source_reel": "../bond-pricing-duration",
+  "source_video": "../bond-pricing-duration/bond-pricing-duration-cut.mp4",
+  "body_beats": [
+   "B00",
+   "B01",
+   "B02",
+   "B03",
+   "B04",
+   "B05",
+   "B06",
+   "B07",
+   "B08"
+  ],
+  "body_duration_s": 111,
+  "old_outro_beats": [
+   "B09"
+  ],
+  "built_at": "2026-07-16T20:43:50.649063",
+  "voice_kokoro": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Habari, Humanitarians",
+      "topic": "Bond Pricing and Duration — Price-Yield Curve with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "NBB00",
+   "act": "COLD OPEN",
+   "title": "Liam cold open — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Seeing the price-yield curve fall convexly from 1404 to 692, with the tangent at 5 percent showing slope negative 7.7, made duration and convexity finally tangible for me. I want to sharpen the approximation. Help me dig in: (1) explain exactly why the linear duration estimate overstates the loss on a yield rise because the curve is convex; (2) walk me through computing a convexity term and adding it as the second-order correction; (3) show me how duration and convexity change if the coupon drops from 5 percent to 2 percent.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "Seeing the price-yield curve fall convexly from 1404 to 692, with the tangent at 5 percent showing slope negative 7.7, made duration and convexity finally tangible for me. I want to sharpen the approximation. Help me dig in: (1) explain exactly why the linear duration estimate overstates the loss on a yield rise because the curve is convex; (2) walk me through computing a convexity term and adding it as the second-order correction; (3) show me how duration and convexity change if the coupon drops from 5 percent to 2 percent.",
+      "topic": "COMPUTATIONAL FINANCE — BOND PRICING AND DURATION",
+      "segment": "Bond Pricing and Duration — Price-Yield",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 9.0,
+   "audio_file": "mp3/beat-NBB00.mp3",
+   "actual_duration_s": 5.952
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Computational Finance, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B00.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B00.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B00.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the stakes",
+   "narration_text": "A bond is a loan with a fixed schedule of payments. Its price is just the present value of those payments, discounted at the yield to maturity. But as yields change, prices move — inversely, and nonlinearly. Duration measures how much: a bond with a Macaulay duration of 7.7 years loses about 7.7 percent when yields rise by 1 percent. Today we build the pricer with Claude, verify par pricing, compute duration, and draw the price-yield curve.",
+   "visual_intent": "title card: bond price vs yield curve, convex shape, par value line",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 16,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B01.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B01.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B01.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Type the prompt. Five percent annual coupon bond, face value 1000, maturity 10 years. Compute price, Macaulay duration, and modified duration for yields from 2 to 10 percent. Verify par pricing at 5 percent. Check the duration approximation for a 1 percent yield move.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write bond_pricer.py: face=1000, coupon_rate=0.05,\nmaturity=10 years, YTM=range(0.02,0.11,0.01). Compute price,\nMacaulay duration, modified duration. Verify: price=1000\nat YTM=5%%; delta_Price = -ModDur*delta_Y*Price for delta_Y=0.01.\nPrint table: YTM | Price | Mac Duration | Mod Duration.\"",
+      "topic": "COMPUTATIONAL FINANCE — BOND PRICING AND DURATION",
+      "segment": "BOND PRICER",
+      "runningText": "generating pricer…"
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B02.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B02.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B02.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it. The price is the sum of discounted coupons plus the discounted face value. Macaulay duration is the weighted average time to each cash flow — weights proportional to present value. Modified duration is Macaulay divided by one plus YTM. The tangent to the price-yield curve at any point has slope equal to minus modified duration times price.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "bond_pricer.py",
+      "topic": "COMPUTATIONAL FINANCE — BOND PRICING AND DURATION",
+      "segment": "BOND PRICER",
+      "code": "# bond_pricer.py  —  Claude Code output\ndef bond_price(face, coupon, ytm, T):\n    cf = [coupon/(1+ytm)**t for t in range(1, T+1)]\n    cf[-1] += face/(1+ytm)**T\n    return sum(cf)\n\ndef macaulay_duration(face, coupon, ytm, T, price):\n    pv = [coupon*(t)/(1+ytm)**t for t in range(1, T+1)]\n    pv[-1] += T*face/(1+ytm)**T\n    return sum(pv) / price\n\n# At YTM=5%: price = 1000.00 (par) -- verified\n# ModDur = MacDur / (1+ytm) = 7.72/(1.05) = 7.35"
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B03.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B03.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B03.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "Manim animation",
+   "narration_text": "Run it. The crimson curve is bond price versus yield — convex, falling from 1404 at 2 percent to 692 at 10 percent. The horizontal dashed line is par at 1000 — the price when yield equals coupon rate. The tangent at 5 percent shows the duration approximation: slope negative 7.7, meaning a 1 percent yield rise costs 7.7 percent in price. Convexity makes the actual loss slightly less.",
+   "visual_intent": "Manim: price-yield curve (crimson), par line (dashed), tangent line at YTM=5%, ATM dot and label",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_PriceYieldCurve",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B04.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B04.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B04.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — required revision",
+   "narration_text": "The duration approximation is linear. But the price-yield curve is convex — the actual price loss is always less than the duration estimate. Ask Claude to add a convexity adjustment column and quantify the error for a 2 percent yield shock.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"update bond_pricer.py:\n  -> add convexity measure\n  -> compare duration-only vs duration+convexity approximation\n  -> for YTM shock of +2%%, show the approximation error\"",
+      "topic": "COMPUTATIONAL FINANCE — BOND PRICING AND DURATION",
+      "segment": "BOND PRICER",
+      "runningText": "adding convexity…"
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B05.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B05.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B05.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "SUMMARY",
+   "role_note": "the lesson",
+   "narration_text": "At a 2 percent yield shock, duration alone underestimates the price gain by about 1.5 percent. The convexity correction captures most of the gap. Convexity is always positive for a plain vanilla bond — which means bondholders benefit from large yield moves in both directions. That is not accidental: it is priced in.",
+   "visual_intent": "summary card: approximation error table for different yield shocks; convexity benefit illustrated",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B06.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B06.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B06.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: build a portfolio of bonds with different maturities. Compute the portfolio duration and convexity. Then implement a duration hedge — find the position in a 10-year Treasury future that neutralizes the duration of your bond portfolio.",
+   "visual_intent": "next-steps card: bond portfolio, duration hedge, futures position",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B07.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B07.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B07.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS 2",
+   "role_note": "extension",
+   "narration_text": "Then extend to callable bonds. A call option on a bond is short convexity — the issuer calls when rates fall, capping the bondholder's upside. Negative convexity shows up as the price flattening above par for callable bonds.",
+   "visual_intent": "code snippet: callable bond price vs yield, negative convexity region",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10,
+   "locked": true,
+   "source_clip": "../bond-pricing-duration/clips/B08.mp4",
+   "source_audio": "../bond-pricing-duration/mp3/beat-B08.mp3",
+   "audio_file": "../bond-pricing-duration/mp3/beat-B08.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "NBB01",
+   "act": "VERDICT",
+   "title": "Liam verdict — ClaudeVerdictArtifact",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Let's recap with Claude. Here's what the body just demonstrated. Your move: build a portfolio of bonds with different maturities. Compute the portfolio duration and convexity. Then implement a duration hedge — find the position in a 10-year Treasury future that neutralizes the duration of your bond portfolio. Then extend to callable bonds. A call option on a bond is short convexity — the issuer calls when rates fall, capping the bondholder's upside. Negative convexity shows up as the price flattening above par for callable bonds.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "provenance": "proven-core/ClaudeVerdictArtifact",
+     "version": "1",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Bond Pricing and Duration — Price-Yield Curve with",
+      "artifactLines": [
+       "At a 2 percent yield shock, duration alone underestimates the price gain by about 1.5 p…",
+       "Your move: build a portfolio of bonds with different maturities.",
+       "Then extend to callable bonds."
+      ]
+     },
+     "rendered": {
+      "out": "media/NBB01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 30.0,
+   "audio_file": "mp3/beat-NBB01.mp3",
+   "actual_duration_s": 27.2,
+   "lead_silence_s": 0.5
+  },
+  {
+   "beat_id": "NBB02",
+   "act": "YOUR TURN",
+   "title": "Your turn handoff — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "Explain how [Bond Pricing and Duration — Price-Yield Curve with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+      "topic": "COMPUTATIONAL FINANCE — BOND PRICING AND DURATION",
+      "segment": "Bond Pricing and Duration — Price-Yield",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8.0,
+   "audio_file": "mp3/beat-NBB02.mp3",
+   "actual_duration_s": 7.765
+  },
+  {
+   "beat_id": "NBB03",
+   "act": "OUTRO",
+   "title": "Claude title outro — ClaudeTitleOutro",
+   "silent": true,
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "provenance": "proven-core/ClaudeTitleOutro",
+     "version": "1",
+     "props": {
+      "title": "Bond Pricing and Duration — Price-Yield Curve with Claude",
+      "handle": "@NikBearBrown",
+      "subline": "negative convexity shows up as the price flattening above par for callable bonds"
+     },
+     "rendered": {
+      "out": "media/NBB03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 6.0,
+   "audio_file": "mp3/beat-NBB03.mp3",
+   "silence_s": 6.0,
+   "actual_duration_s": 6.03,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Bond Pricing and Duration — Price-Yield Curve with Claude"
+  }
+ ]
+}

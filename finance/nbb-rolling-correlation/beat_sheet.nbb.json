@@ -1,0 +1,358 @@
+{
+  "metadata": {
+    "slug": "rolling-correlation",
+    "variant": "nbb",
+    "title": "Rolling Correlations \u2014 Normal vs Crisis Regimes with Claude",
+    "topic": "COMPUTATIONAL FINANCE \u2014 ROLLING CORRELATIONS",
+    "audience": "NikBearBrown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "palette": "teardown",
+    "register": "Teardown",
+    "derived_from": "beat_sheet.json",
+    "source_reel": "../rolling-correlation",
+    "source_video": "../rolling-correlation/rolling-correlation-cut.mp4",
+    "body_beats": [
+      "B00",
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08"
+    ],
+    "body_duration_s": 111,
+    "old_outro_beats": [
+      "B09"
+    ],
+    "built_at": "2026-07-16T20:48:56.913366"
+  },
+  "beats": [
+    {
+      "beat_id": "NBB00",
+      "act": "COLD OPEN",
+      "title": "Liam cold open \u2014 ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Jambo, Liam \u2014 in for Bear. Build it with a CLI, then take it apart? Can you explain it, Bear?",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Build it with a CLI, then take it apart?",
+            "topic": "COMPUTATIONAL FINANCE \u2014 ROLLING CORRELATIONS",
+            "segment": "Rolling Correlations \u2014 Normal vs Crisis",
+            "greeting": "Jambo, Liam",
+            "runningText": "explaining the mechanism\u2026",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.0,
+      "audio_file": "mp3/beat-NBB00.mp3",
+      "actual_duration_s": 5.973
+    },
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOpen",
+          "props": {
+            "topic": "NIK BEAR BROWN",
+            "lines": [
+              "Nik Bear Brown",
+              "Computational Finance, taken apart."
+            ]
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B00.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B00.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM \u2014 why care",
+      "role_note": "the stakes",
+      "narration_text": "Diversification rests on one assumption: that assets do not all move together. In normal markets, correlations between stocks are modest \u2014 perhaps 0.3. But in a crisis, correlations spike toward 1. Diversification fails exactly when you need it most. Today we build rolling correlation analysis with Claude, inject a simulated crisis period, and visualize the regime shift in a correlation heatmap.",
+      "visual_intent": "title card: correlation matrix morphing from low-corr (golden) to high-corr (crimson)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 16,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B01.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B01.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "role_note": "terminal (Onda)",
+      "narration_text": "Type the prompt. Generate 5 years of synthetic daily returns for 5 assets with off-diagonal correlations of 0.3. Inject 30 crisis days where correlations spike to 0.85. Compute 60-day rolling correlations for all 10 pairs. Print average correlation in normal versus crisis periods.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Write rolling_correlation.py: generate 5 years synthetic daily\nreturns for 5 assets with off-diagonal correlations ~0.3; inject\n30-day crisis where correlations spike to 0.85; compute 60-day\nrolling correlations for all 10 pairs; print average correlation:\nnormal vs crisis periods.\"",
+            "topic": "COMPUTATIONAL FINANCE \u2014 ROLLING CORRELATIONS",
+            "segment": "CORRELATION HEATMAP",
+            "runningText": "generating correlation model\u2026"
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B02.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B02.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "terminal (Onda)",
+      "narration_text": "Read it. The correlated returns are generated by Cholesky decomposition: start with a correlation matrix, take its Cholesky factor L, multiply L by a vector of independent standard normals. The result is a multivariate normal vector with the target correlation structure. During the crisis window, swap in a different correlation matrix with off-diagonal correlations of 0.85.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "rolling_correlation.py",
+            "topic": "COMPUTATIONAL FINANCE \u2014 ROLLING CORRELATIONS",
+            "segment": "CORRELATION HEATMAP",
+            "code": "# rolling_correlation.py  \u2014  Claude Code output\nimport numpy as np, pandas as pd\nrng = np.random.default_rng(42)\n# Normal correlation matrix (rho=0.3)\ndef make_cov(rho, n=5):\n    C = np.full((n,n), rho)\n    np.fill_diagonal(C, 1.0)\n    return C\nL_norm = np.linalg.cholesky(make_cov(0.30))\nL_crisis = np.linalg.cholesky(make_cov(0.85))\n# Generate returns: Cholesky trick\nZ = rng.normal(0, 1, (1260, 5))  # 5 years\nR = (Z @ L_norm.T) * 0.01        # sigma=1%%"
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B03.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B03.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT \u2014 run",
+      "role_note": "Manim animation",
+      "narration_text": "Run it. The heatmap shows the 5-by-5 correlation matrix \u2014 diagonal always 1.0 in crimson, off-diagonal in gold at 0.30 in the normal regime. The transition shows what happens during the crisis: the off-diagonal cells turn crimson as correlations spike to 0.85. The message is stark: every asset pair moves together.",
+      "visual_intent": "Manim: 5x5 correlation heatmap morphing from golden (normal, 0.30) to crimson (crisis, 0.85)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_CorrelationHeatmap",
+          "file": "vox_scenes.py"
+        }
+      },
+      "estimated_duration_s": 17,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B04.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B04.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE \u2014 check and revise",
+      "role_note": "terminal (Onda) \u2014 required revision",
+      "narration_text": "Rolling correlations are noisy on a 60-day window. What if you use a longer 120-day window? The signal persists but the crisis spike is less sharp. Ask Claude to compare 60-day and 120-day rolling correlations and show which window better detects the crisis onset.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"update rolling_correlation.py:\n  -> compare 60-day and 120-day rolling correlation windows\n  -> plot both rolling series for one asset pair\n  -> measure: days to detect crisis onset at rho > 0.6\"",
+            "topic": "COMPUTATIONAL FINANCE \u2014 ROLLING CORRELATIONS",
+            "segment": "CORRELATION HEATMAP",
+            "runningText": "comparing windows\u2026"
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B05.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B05.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "act": "SUMMARY",
+      "role_note": "the lesson",
+      "narration_text": "The 60-day window detects the crisis 8 days faster than the 120-day window. But it generates 30 percent more false alarms in normal periods. There is no free lunch: a shorter window is more reactive but noisier. In practice, risk managers use EWMA \u2014 exponentially weighted moving average \u2014 as a compromise: more weight on recent observations without the hard cutoff.",
+      "visual_intent": "summary card: 60d vs 120d rolling correlation time series; crisis detection lag",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 11,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B06.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B06.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "act": "NEXT STEPS",
+      "role_note": "what to do next",
+      "narration_text": "Your move: implement EWMA correlations. The RiskMetrics model uses a decay factor of 0.94 for daily data \u2014 each day's observation is 94 percent as important as the previous one. Compute the EWMA covariance matrix and compare it to the 60-day rolling version.",
+      "visual_intent": "next-steps card: EWMA formula, decay factor 0.94, RiskMetrics reference",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 11,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B07.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B07.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B07.mp3"
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS 2",
+      "role_note": "extension",
+      "narration_text": "Then use the crisis-period correlation matrix as a stress scenario. If the real portfolio had 5 assets at 0.3 average correlation and you stress to 0.85, by how much does portfolio VaR increase? That is a standard regulatory stress test.",
+      "visual_intent": "code snippet: stress test portfolio VaR with crisis correlation matrix",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 10,
+      "locked": true,
+      "source_clip": "../rolling-correlation/clips/B08.mp4",
+      "source_audio": "../rolling-correlation/mp3/beat-B08.mp3",
+      "audio_file": "../rolling-correlation/mp3/beat-B08.mp3"
+    },
+    {
+      "beat_id": "NBB01",
+      "act": "VERDICT",
+      "title": "Liam verdict \u2014 ClaudeVerdictArtifact",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Here's what the body just demonstrated. Your move: implement EWMA correlations. The RiskMetrics model uses a decay factor of 0.94 for daily data \u2014 each day's observation is 94 percent as important as the previous one. Compute the EWMA covariance matrix and compare it to the 60-day rolling version. Then use the crisis-period correlation matrix as a stress scenario. If the real portfolio had 5 assets at 0.3 average correlation and you stress to 0.85, by how much does portfolio VaR increase? That is a standard regulatory stress test.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "provenance": "proven-core/ClaudeVerdictArtifact",
+          "version": "1",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Rolling Correlations \u2014 Normal vs Crisis Regimes with",
+            "artifactLines": [
+              "The 60-day window detects the crisis 8 days faster than the 120-day window.",
+              "Your move: implement EWMA correlations.",
+              "Then use the crisis-period correlation matrix as a stress scenario."
+            ]
+          },
+          "rendered": {
+            "out": "media/NBB01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30.0,
+      "audio_file": "mp3/beat-NBB01.mp3",
+      "actual_duration_s": 32.021
+    },
+    {
+      "beat_id": "NBB02",
+      "act": "YOUR TURN",
+      "title": "Your turn handoff \u2014 ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Take this prompt, run it on your own \u2014 pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Explain how [Rolling Correlations \u2014 Normal vs Crisis Regimes with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+            "topic": "COMPUTATIONAL FINANCE \u2014 ROLLING CORRELATIONS",
+            "segment": "Rolling Correlations \u2014 Normal vs Crisis",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude\u2026",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.0,
+      "audio_file": "mp3/beat-NBB02.mp3",
+      "actual_duration_s": 7.765
+    },
+    {
+      "beat_id": "NBB03",
+      "act": "OUTRO",
+      "title": "Claude title outro \u2014 ClaudeTitleOutro",
+      "silent": true,
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "provenance": "proven-core/ClaudeTitleOutro",
+          "version": "1",
+          "props": {
+            "title": "Rolling Correlations \u2014 Normal vs Crisis Regimes with Claude",
+            "handle": "@NikBearBrown",
+            "subline": "that is a standard regulatory stress test"
+          },
+          "rendered": {
+            "out": "media/NBB03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6.0,
+      "audio_file": "mp3/beat-NBB03.mp3",
+      "silence_s": 6.0,
+      "actual_duration_s": 6.03
+    }
+  ]
+}
