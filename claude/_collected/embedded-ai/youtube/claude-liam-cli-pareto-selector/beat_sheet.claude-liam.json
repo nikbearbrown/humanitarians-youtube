@@ -1,0 +1,264 @@
+{
+ "metadata": {
+  "title": "Build a Pareto Model-Selector with Claude Code",
+  "slug": "cli-pareto-selector",
+  "topic": "CLAUDE CODE · PARETO SELECTION",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "ground": "#FFFFFF",
+  "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
+  "note": "CLI video REQUIRED spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 OUTPUT(manim) · B07 SUMMARY · B08 NEXT STEPS · B09 outro. B04 and B06 use illustrative data.",
+  "total_estimated_duration_seconds": 174.21,
+  "chapter_number": 11,
+  "tags": [
+   "Claude Code",
+   "Claude",
+   "Embedded AI",
+   "Edge AI",
+   "TinyML",
+   "Model Compression",
+   "Manim",
+   "Nik Bear Brown",
+   "Machine Learning",
+   "Microcontroller AI",
+   "STM32",
+   "Quantization"
+  ],
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Pareto selection, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM -- why care",
+   "role_note": "the problem, the context, the stakes -- BEFORE the CLI",
+   "narration_text": "The benchmark accuracy lies to you. The leaderboard winner has ninety-four percent and tops every chart. Put it on your device -- it runs in four hundred milliseconds and misses the deadline. A model at ninety percent fits in sixty milliseconds. You would have picked it, if you had plotted the whole field. The leaderboard optimizes for the leaderboard's constraints, not yours. The Pareto frontier is what model selection actually is.",
+   "visual_intent": "title card: leaderboard winner fails on device; Pareto frontier as the correct shortlist tool",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_Problem",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask for the experiment. In the terminal: claude -- write pareto.py, given N models with accuracy, latency in milliseconds, and flash in kilobytes, compute the Pareto frontier and mark it, then grey out the dominated models.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"write pareto.py: given N models with\n  (accuracy, latency_ms, flash_kb),\n  compute the Pareto frontier and mark it;\n  grey out dominated models.\"",
+      "topic": "CLAUDE CODE · PARETO SELECTION",
+      "segment": "PARETO SELECTOR",
+      "runningText": "generating selector..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before trusting it. A model is dominated if another candidate beats it on every axis simultaneously -- higher accuracy, lower latency, smaller flash. The frontier is the set no other model dominates. The leaderboard winner often falls off the frontier once latency and flash enter the comparison.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "pareto.py",
+      "topic": "CLAUDE CODE · PARETO SELECTION",
+      "segment": "PARETO SELECTOR",
+      "code": "# pareto.py  --  Claude Code output\nimport numpy as np\n\ndef is_dominated(model, candidates):\n    # dominated if another beats it on ALL axes\n    acc, lat, flash = model\n    for c in candidates:\n        if c is model: continue\n        if (c[0] >= acc and c[1] <= lat\n                and c[2] <= flash\n                and c != model):\n            return True\n    return False\n\ndef pareto_frontier(models):\n    # models: list of (accuracy, latency_ms, flash_kb)\n    frontier = [m for m in models\n                if not is_dominated(m, models)]\n    dominated = [m for m in models if m not in frontier]\n    return frontier, dominated"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT -- run",
+   "role_note": "OPEN vox slot -- Manim video (illustrative data)",
+   "narration_text": "Run it. Eight models appear on the accuracy versus latency plane. One by one, the dominated models transform to grey -- F, G, and H each lose because another model beats them on every axis. The Pareto frontier draws itself through the survivors: C, B, A, D, and E. The leaderboard winner -- Model E at ninety-four percent -- survives, but only because nothing else beats it on all three axes.",
+   "visual_intent": "Manim: scatter plot, 8 model dots appear (GrowFromCenter), dominated ones transform to SLATE, Pareto frontier line draws through survivors.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_Pareto",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE -- check & revise",
+   "role_note": "terminal (Onda) -- the REQUIRED revision",
+   "narration_text": "The frontier with no constraints still includes models you can't use. Apply a deadline. Iterate: claude -- add a constraint mask, grey out anything over two hundred and fifty milliseconds before computing the frontier.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"add a constraint mask --\n  grey out anything over 250ms or 2MB\n  before computing the frontier\"",
+      "topic": "CLAUDE CODE · PARETO SELECTION",
+      "segment": "PARETO SELECTOR",
+      "runningText": "updating selector..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT -- revised",
+   "role_note": "OPEN vox slot -- Manim video (illustrative data)",
+   "narration_text": "Re-run with the two-fifty millisecond cap. Model E at four hundred milliseconds transforms to grey -- constraint violation. The new frontier recomputes from the remaining models. The leaderboard winner is now off the shortlist. The frontier you actually use is smaller, and every model on it fits your deadline.",
+   "visual_intent": "Manim: same plane, 250ms vertical constraint line appears, Model E greys out, frontier redraws through remaining survivors. Chip: CONSTRAINT: 250ms CAP.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_ParetoCap",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson",
+   "narration_text": "A single-number benchmark optimizes for the benchmark's constraints. The Pareto frontier optimizes for yours. Dominated models are eliminated before you spend time evaluating them. Constraint masks cut the frontier to what can actually ship. This is what model selection is.",
+   "visual_intent": "recap card: two rows -- single benchmark: wrong constraints; Pareto frontier: your constraints",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B07_Summary",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: collect the real accuracy, latency, and flash numbers for your candidate models -- accuracy from your eval set, latency and flash measured on the target hardware -- and run pareto.py on them. The output beats in this video use illustrative numbers. Swap in your measurements to get the frontier that actually applies to your device.",
+   "visual_intent": "next-steps card: 1) eval accuracy, 2) measure on-target latency + flash, 3) run pareto.py",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B08_NextSteps",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3"
+  }
+ ]
+}

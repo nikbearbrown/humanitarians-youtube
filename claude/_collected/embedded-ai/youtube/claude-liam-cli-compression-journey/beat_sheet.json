@@ -1,0 +1,260 @@
+{
+  "metadata": {
+    "title": "The MobileNetV2-0.5 That Almost Fit",
+    "slug": "claude-liam-cli-compression-journey",
+    "topic": "EMBEDDED AI — COMPRESSION",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "audience": "Claude",
+    "channel": "NikBearBrown",
+    "build": {
+      "at": "2026-07-17T16:09:19",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Hello. This is Liam, in for Bear. The best model came out of selection, compiled for the STM32H7 — and missed by 100 KB of flash and 70 ms of latency. Watch three knobs close a gap nobody could close by picking a different chip.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write compression_journey.py: MobileNetV2-0.5 on STM32H7 (2MB flash, 1MB SRAM, 250ms). Steps: fp32 → int8 PTQ → +25% prune → +distill. Track flash/SRAM/latency/accuracy vs ceilings.\"",
+            "topic": "EMBEDDED AI — COMPRESSION",
+            "segment": "The MobileNetV2-0.5 That Almost Fit",
+            "greeting": "Hello, Liam",
+            "runningText": "running…",
+            "output": [
+              "flash: 1.125 MB  SRAM: 0.6 MB  latency: 240 ms  acc: 90.6%  SHIPS: True"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "BREF",
+      "act": "TEXTBOOK FIGURE",
+      "narration_text": "The book's MobileNetV2-0.5 case study — this is the exact model we're compressing. Flash, SRAM, latency, and accuracy tracked across four optimization steps.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "media",
+        "motion": "fade",
+        "file": "BREF.png"
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-BREF.mp3",
+      "actual_duration_s": 11.14,
+      "build": {
+        "status": "STILL",
+        "src": "media/BREF.png",
+        "filled_by": "still",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "MANIM — FP32 state: all over ceiling",
+      "narration_text": "Start at FP32. Four metrics, four budget bars — flash, SRAM, latency, accuracy. The ceilings: 2 MB flash, 1 MB SRAM, 250 ms, 88 percent. FP32 hits 6 MB flash, 1.2 MB SRAM, 320 ms. Every bar crashes through its ceiling.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_FP32State",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.11,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_FP32State",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MANIM — INT8 step: flash drops, latency unchanged",
+      "narration_text": "Quantize to INT8. Flash drops from 6 to 1.5 MB — well under the 2 MB ceiling. SRAM falls to 0.8 MB. But latency stays at 320 ms. Quantization cuts weight bytes, not compute. The latency ceiling is still being missed.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_INT8Step",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.57,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_INT8Step",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MANIM — Prune step: all under ceiling",
+      "narration_text": "Add 25 percent structured pruning. Flash falls to 1.125 MB, SRAM to 0.6 MB, and latency finally drops to 240 ms — under the 250 ms ceiling. Accuracy dips to 89.0 percent, still above the 88 percent floor. All four bars are under their ceilings.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_PruneStep",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 19.03,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_PruneStep",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MANIM — Distill step: accuracy climbs, ship state",
+      "narration_text": "Add distillation. Size and latency stay the same — 1.125 MB, 240 ms. But accuracy climbs from 89.0 to 90.6 percent. Above where we started. That is the ship state. Pruning earned the fit, distillation earned the margin, quantization made it possible. Order matters.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_DistillShip",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.07,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_DistillShip",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "MANIM — Honesty: what Claude cannot do",
+      "narration_text": "Honesty beat. These are the chapter's illustrative figures. Real numbers need a trained MobileNetV2-0.5 and a defect-detection dataset. Claude can generate the analysis framework, but cannot train or fine-tune a model.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_HonestyBeat",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 13.76,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_HonestyBeat",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Ask Claude: write compression_journey.py — MobileNetV2-0.5 on STM32H7, 2 MB flash, 1 MB SRAM, 250 ms. Steps: FP32 to INT8 PTQ, then 25 percent structured prune, then distill. Track flash, SRAM, latency, and accuracy versus ceilings, and print a four-state table. This will show you which compression state meets each ceiling. Then run the order-matters check: what happens if you quantize before pruning instead of after?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write compression_journey.py: MobileNetV2-0.5 on STM32H7 (2MB flash, 1MB SRAM, 250ms). Steps: fp32 → int8 PTQ (75% weight cut) → +25% structured prune → +distill. Track flash/SRAM/latency/accuracy vs ceilings, print a 4-state table.\"",
+            "topic": "EMBEDDED AI — COMPRESSION",
+            "segment": "Your Turn",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 28.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:09:19"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "The MobileNetV2-0.5 That Almost Fit",
+            "handle": "@NikBearBrown",
+            "subline": "embedded ai · liam, in for bear"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 1.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:09:19"
+      }
+    }
+  ]
+}

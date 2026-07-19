@@ -1,0 +1,263 @@
+{
+ "metadata": {
+  "title": "A Battery Can Be Full and Still Crash Your Device",
+  "slug": "cli-brownout",
+  "topic": "CLAUDE CODE \u00b7 BROWNOUT",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "ground": "#FFFFFF",
+  "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
+  "note": "CLI video REQUIRED spine: B00 intro \u00b7 B01 PROBLEM \u00b7 B02 ASK \u00b7 B03 CODE \u00b7 B04 OUTPUT(manim) \u00b7 B05 CHANGE \u00b7 B06 OUTPUT(manim) \u00b7 B07 SUMMARY \u00b7 B08 NEXT STEPS \u00b7 B09 outro.",
+  "total_estimated_duration_seconds": 168.35,
+  "chapter_number": 4,
+  "tags": [
+   "Claude Code",
+   "Claude",
+   "Embedded AI",
+   "Edge AI",
+   "TinyML",
+   "Model Compression",
+   "Manim",
+   "Nik Bear Brown",
+   "Machine Learning",
+   "Microcontroller AI",
+   "STM32",
+   "Quantization"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Brownout, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 3.34
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM \u2014 why care",
+   "role_note": "the problem, the context, the stakes \u2014 BEFORE the CLI",
+   "narration_text": "The coin cell had most of its charge left, and the device rebooted anyway. Not a dead battery \u2014 a brownout. A CR2032 has a nominal three volts but an internal resistance that effectively limits sustained current to around three milliamps. An inference burst can demand eight milliamps for fifty milliseconds, and the supply sags below the reset threshold. The battery was full; the reset line saw the sag and pulled the device down.",
+   "visual_intent": "title card: CR2032 internal resistance caps current; inference burst sags supply below reset threshold; chip: RESET TRIGGERED",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_Problem",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 26.98
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask for the experiment. In the terminal: claude -- write brownout dot py, CR2032 with nominal three volts and internal resistance limiting to roughly three milliamps sustained, given an inference current pulse model V equals V-oc minus I times R over time and the brown-out reset line.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"write brownout.py: CR2032 (3V nominal,\n  R_internal limiting ~3mA). Given an inference\n  current pulse, model V = V_oc - I*R over time\n  and the brown-out reset line.\"",
+      "topic": "CLAUDE CODE \u00b7 BROWNOUT",
+      "segment": "BROWNOUT SIMULATION",
+      "runningText": "generating scene..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 18.99
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before trusting it. The model is a single line: V equals V-oc minus I times R-internal. During the inference pulse the current jumps to eight milliamps; R-internal is about one thousand ohms for a fresh CR2032 at high-rate draw, so the sag is eight volts -- which crosses below the reset threshold at two volts. The cell is not dead; the internal resistance is the floor.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "brownout.py",
+      "topic": "CLAUDE CODE \u00b7 BROWNOUT",
+      "segment": "BROWNOUT SIMULATION",
+      "code": "# brownout.py  --  Claude Code output\nimport numpy as np\n\nV_OC      = 3.0    # open-circuit voltage (V)\nR_INT     = 1000   # internal resistance (ohm, high-rate CR2032)\nI_PULSE   = 0.008  # inference current pulse (A) = 8 mA\nV_RESET   = 2.0    # brownout reset threshold (V)\nDT        = 0.001  # time step (s)\n\nt_vals = np.arange(0.0, 0.200, DT)\n\ndef v_cell(t):\n    i = I_PULSE if 0.06 <= t <= 0.110 else 0.001\n    return V_OC - i * R_INT  # Ohm's law sag\n\nvoltage = [v_cell(t) for t in t_vals]\nprint(f\"min V = {min(voltage):.3f} V  reset={'YES' if min(voltage)<V_RESET else 'NO'}\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 26.57
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT \u2014 run",
+   "role_note": "Manim video",
+   "narration_text": "Run it. The supply voltage trace holds at three volts in idle. At sixty milliseconds the inference pulse fires, current jumps to eight milliamps, and the supply sags sharply below two volts -- the crimson section crossing the reset line. The battery still has charge; the internal resistance is what pulled it down.",
+   "visual_intent": "Manim: voltage vs time trace, INK for nominal, CRIMSON for sag below reset, SLATE dashed reset line at 2V, chip RESET TRIGGERED",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_Brownout",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 20.43
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE \u2014 check & revise",
+   "role_note": "terminal (Onda) \u2014 the REQUIRED revision",
+   "narration_text": "That's a brownout. The fix is a bulk capacitor to absorb the surge. Iterate: claude -- add a 100 microfarad bulk cap and re-run -- show the sag flatten.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"add a 100uF bulk cap and re-run --\n  show the sag flatten\"",
+      "topic": "CLAUDE CODE \u00b7 BROWNOUT",
+      "segment": "BROWNOUT SIMULATION",
+      "runningText": "updating script..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 10.34
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT \u2014 revised",
+   "role_note": "Manim video",
+   "narration_text": "Re-run. The original trace (grey) still sags below reset. The capped trace (INK) shows a gentle RC decay that never reaches the threshold -- the cap absorbs the current spike, the supply barely dips. Same battery; same pulse; different outcome.",
+   "visual_intent": "Manim: original trace (SLATE, faint, sags below reset) and capped trace (INK, gentle dip stays above reset), chip SAG BLUNTED",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_BrownoutCap",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 18.83
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson",
+   "narration_text": "Two power questions hide under one word. Energy: how long does the battery last. Instantaneous delivery: whether the device survives the current burst at all. Datasheets quote the first. The field punishes the second. A bulk cap separates those two questions.",
+   "visual_intent": "recap card: ENERGY (how long) vs INSTANTANEOUS DELIVERY (whether it runs at all); bulk cap as the fix",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B07_Summary",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 18.81
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: find your target's brownout reset threshold in the datasheet, then measure or estimate your inference burst current. If the sag crosses the threshold, size a bulk cap before the device ships. The simulation runs today; the oscilloscope confirms it on hardware.",
+   "visual_intent": "next-steps card: 1) find brownout threshold in datasheet, 2) estimate or measure burst current, 3) size a bulk cap",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B08_NextSteps",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 16.95
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 7.11
+  }
+ ]
+}

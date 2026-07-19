@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "title": "Deploy a Keyword Spotter: Find the Layer That Leaked Accuracy",
+    "slug": "claude-liam-cli-deploy-runner",
+    "topic": "EMBEDDED AI — DEPLOYMENT",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "audience": "Claude",
+    "channel": "NikBearBrown",
+    "build": {
+      "at": "2026-07-17T16:24:27",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Hello. This is Liam, in for Bear. The model was 94 percent accurate in Python. After the toolchain got done with it, it was 91 percent — and the 3 percent vanished in a step nobody watched.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write deploy_runner.py: convert a keras model to TFLite int8, run the TFLite interpreter on a val set, compare to the float model, and bisect which layer/op introduced the largest output divergence.\"",
+            "topic": "EMBEDDED AI — DEPLOYMENT",
+            "segment": "Deploy a Keyword Spotter: Find the Layer That Leaked Accuracy",
+            "greeting": "Hello, Liam",
+            "runningText": "running…",
+            "output": [
+              "Source: 94.0%  TFLite float: 93.5%  TFLite int8: 91.0%",
+              "Divergence peak: layer conv2d_3 (unsupported op fusion)"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 11.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:24:27"
+      }
+    },
+    {
+      "beat_id": "BREF",
+      "act": "TEXTBOOK FIGURE",
+      "narration_text": "The book's six-step deployment pipeline. Our deploy runner automates steps three through five — optimize, compile, verify — and flags the dominant failure mode at each gate.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "media",
+        "motion": "fade",
+        "file": "BREF.png"
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-BREF.mp3",
+      "actual_duration_s": 10.13,
+      "build": {
+        "status": "STILL",
+        "src": "media/BREF.png",
+        "filled_by": "still",
+        "at": "2026-07-17T16:24:27"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "MANIM — Pipeline: accuracy dropping at each stage",
+      "narration_text": "Six stages in the deployment pipeline. Keras float source: 94 percent. Export to SavedModel: 94 percent. Convert to TFLite float: 93.5 percent — half a percent already gone. Convert to TFLite INT8: 91 percent. The 3 percent gap lives inside the conversion. Nobody checked at each hop.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_PipelineAccuracy",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.22,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_PipelineAccuracy",
+        "at": "2026-07-17T16:24:27"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MANIM — Bisection: divergence bars spike at failing op",
+      "narration_text": "Run the bisection. Feed the same input through the float model and the INT8 model. At each layer, measure divergence — the L2 distance between outputs. The first few layers are clean. Then one bar shoots up. That is the leaking operation — an unsupported op fusion that falls back to a non-quantized CPU kernel.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_DivergenceBisect",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.54,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_DivergenceBisect",
+        "at": "2026-07-17T16:24:27"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MANIM — Lesson: check at every hop",
+      "narration_text": "The lesson: check at every hop. A green end-to-end test hides silent failures. The bisection finds them. Any unsupported op that falls back to the CPU is a candidate for the divergence — it mixes precision, introducing error that accumulates downstream.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_CheckEveryHop",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 15.27,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_CheckEveryHop",
+        "at": "2026-07-17T16:24:27"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Ask Claude: write deploy_runner.py — convert a Keras model to TFLite INT8, run the TFLite interpreter on a validation set, compare to the float model, and bisect which layer or op introduced the largest output divergence. This is the bisection test that finds silent failures. Add a per-op CMSIS-NN support check — any unsupported op that falls back to CPU is a candidate for the divergence.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write deploy_runner.py: convert a keras model to TFLite int8, run the TFLite interpreter on a val set, compare to the float model, and bisect which layer/op introduced the largest output divergence.\"",
+            "topic": "EMBEDDED AI — DEPLOYMENT",
+            "segment": "Your Turn",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 23.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:24:27"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Deploy a Keyword Spotter: Find the Layer That Leaked Accuracy",
+            "handle": "@NikBearBrown",
+            "subline": "embedded ai · liam, in for bear"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 1.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:24:27"
+      }
+    }
+  ]
+}

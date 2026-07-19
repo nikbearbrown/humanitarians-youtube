@@ -1,0 +1,212 @@
+{
+ "metadata": {
+  "title": "Terminal Value Is Driven by g, Not WACC",
+  "slug": "dcf-terminal-value-sensitivity",
+  "topic": "CORPORATE FINANCE",
+  "source": "corporate-finance-with-ai/chapters/",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video. DCF terminal value sensitivity to g vs WACC.",
+  "total_estimated_duration_seconds": 115,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CORPORATE FINANCE",
+      "lines": [
+       "DCF Terminal Value Sensitivity",
+       "TV = 60-80% of enterprise value.",
+       "g drives it. WACC does not.",
+       "Follow @NikBearBrown"
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "A typical DCF assigns 60 to 80 percent of enterprise value to the terminal value. The terminal value is determined almost entirely by one number: g, the perpetual growth rate.",
+   "visual_intent": "SLATE -- terminal value = 60-80% of DCF. g is the dominant driver.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 15
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "Can you see this sensitivity before you trust a single point estimate?",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Build a DCF sensitivity grid: FCFF=[120,135,148,160,170]M, terminal value = 170*(1+g)/(WACC-g). Compute EV for WACC in [7%,8%,9%,10%] and g in [1.5%,2.5%,3.5%,4.5%]. Print a 4x4 table.\"",
+      "topic": "CORPORATE FINANCE",
+      "segment": "DCF SENSITIVITY",
+      "runningText": "generating..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "The script builds a WACC-versus-g grid, computing enterprise value for each pair and printing a sensitivity table.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "dcf_sensitivity.py",
+      "topic": "CORPORATE FINANCE",
+      "segment": "DCF SENSITIVITY",
+      "code": "FCFF=[120,135,148,160,170]\nWACC_vals=[0.07,0.08,0.09,0.10]\ng_vals=[0.015,0.025,0.035,0.045]\nTV_FCFF=170\nfor wacc in WACC_vals:\n    row=[]\n    for g in g_vals:\n        TV=TV_FCFF*(1+g)/(wacc-g)\n        PV_FCFF=sum(f/(1+wacc)**(i+1)\n            for i,f in enumerate(FCFF))\n        EV=PV_FCFF+TV/(1+wacc)**5\n        row.append(int(EV))\n    print(f\"WACC={wacc*100:.0f}%: {row}\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "The heat map fills in. Notice the rightmost column: EV nearly triples as g moves from 1.5 to 4.5 percent. Moving down a WACC row shrinks EV by at most half. g is the dominant driver.",
+   "visual_intent": "Manim B04_DCFSensitivity: 4x4 heat-map grid of EV values colored by tier.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade"
+   },
+   "estimated_duration_s": 16
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "Notice the rightmost column — EV nearly triples as g moves from 1.5 to 4.5 percent. Moving down a WACC row shrinks EV by at most half. g is the dominant driver.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Now highlight: which input moves EV more? Compute EV range across g (fix WACC=8%) vs. EV range across WACC (fix g=2.5%). Print the ranges and the ratio.\"",
+      "topic": "CORPORATE FINANCE",
+      "segment": "DCF SENSITIVITY",
+      "runningText": "analyzing..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 11
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT2",
+   "narration_text": "Every CFO presenting one DCF number without this grid is hiding the real source of uncertainty.",
+   "visual_intent": "SLATE -- g-axis range 3.1x larger than WACC-axis range. The grid is the honest answer.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "The teardown: this is not pessimism. It is honesty about which assumption drives value.",
+   "visual_intent": "SLATE -- recap: g is the dominant driver. Showing sensitivity is the discipline, not a flaw.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT",
+   "narration_text": "Re-run with bull g=4% vs. bear g=1.5%. One analyst's g assumption can justify undervalued or overvalued for the same firm.",
+   "visual_intent": "SLATE -- next steps: bull vs. bear g assumption. Same WACC, same firm, opposite conclusions.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  }
+ ]
+}
