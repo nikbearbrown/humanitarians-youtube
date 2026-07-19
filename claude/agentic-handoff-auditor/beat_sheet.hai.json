@@ -1,0 +1,230 @@
+{
+ "metadata": {
+  "slug": "agentic-handoff-auditor",
+  "title": "Build an Agentic Prompt Handoff Auditor with Claude",
+  "topic": "PROMPT ENGINEERING",
+  "voice": "af_kore",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-prompt-engineering/chapters/11-prompts-as-handoffs-to-claude-code-and-cowork.md",
+  "segment": "AGENTIC HANDOFFS",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 113.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Shalom, Humanitarians",
+      "topic": "Build an Agentic Prompt Handoff Auditor with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "label": "Open",
+   "estimated_duration_s": 10,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOpen",
+     "props": {
+      "topic": "PROMPT ENGINEERING",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Agentic Handoff Auditor",
+       "Where chains break.",
+       "CLI Build"
+      ]
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Build an Agentic Prompt Handoff Auditor with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "label": "Hook — handoff failures",
+   "estimated_duration_s": 12,
+   "narration": "Multi-step agentic prompts fail at handoffs — the boundary between what one step produces and what the next step expects. That's where the chain breaks. And it's almost never the handoff you thought was obvious.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Flow diagram: Step 1 -> HANDOFF -> Step 2. HANDOFF box highlighted in CRIMSON with label 'format mismatch: numbered list vs JSON array'. Step 2 box has CRIMSON X — 'fails here'. Teardown palette."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "label": "Claude command",
+   "estimated_duration_s": 15,
+   "narration": "The audit command reads a multi-step agentic chain and classifies each handoff as compatible, incompatible, or ambiguous — and flags all incompatible and ambiguous transitions.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Audit the handoffs in this multi-step agentic prompt chain. For each handoff N->N+1: Step N output format, Step N+1 input expectation, classify: compatible/incompatible/ambiguous. Flag all incompatible and ambiguous.\" < prompt_chain.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "AGENTIC HANDOFFS",
+      "runningText": "auditing handoff chain…"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "label": "Python code",
+   "estimated_duration_s": 15,
+   "narration": "The script reads the prompt chain, runs the handoff audit through Claude, and outputs a compatibility matrix showing each handoff's status.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "handoff_auditor.py",
+      "segment": "AGENTIC HANDOFFS",
+      "topic": "PROMPT ENGINEERING",
+      "code": "import subprocess, sys\nchain = open(sys.argv[1]).read()\naudit_cmd = (\n  \"Audit handoffs in this multi-step agentic chain. \"\n  \"For each N->N+1: output format, input expectation, \"\n  \"classify: compatible/incompatible/ambiguous. \"\n  \"Flag all incompatible and ambiguous handoffs.\"\n)\nresult = subprocess.run(\n  [\"claude\", audit_cmd],\n  input=chain, capture_output=True, text=True\n)\nprint(result.stdout)"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "label": "Handoff compatibility matrix",
+   "estimated_duration_s": 14,
+   "narration": "The audit shows three handoffs: Step 1 to 2 is compatible. Step 2 to 3 is incompatible — numbered list output into a JSON array expectation. Step 3 to 4 is ambiguous.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Three-row matrix. Columns: HANDOFF | OUTPUT FORMAT | INPUT EXPECTED | STATUS. Row 1: 1->2 | markdown paragraphs | text block | COMPATIBLE (green). Row 2: 2->3 | numbered list | JSON array | INCOMPATIBLE (crimson). Row 3: 3->4 | unstructured text | structured fields | AMBIGUOUS (gold). Teardown palette."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "label": "The change — fix incompatible handoff",
+   "estimated_duration_s": 15,
+   "narration": "Fix the incompatible handoff by adding an explicit output format specification to Step 2 — 'output as JSON array with keys: title, summary, confidence.' Re-run the audit.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Audit handoffs again after Step 2 now specifies: output as JSON array with keys title/summary/confidence.\" < prompt_chain_fixed.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "AGENTIC HANDOFFS",
+      "runningText": "re-auditing after format fix…"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "label": "Changed output",
+   "estimated_duration_s": 10,
+   "narration": "Handoff 2 to 3: incompatible turns compatible. The arrow turns green. One format specification fixed the chain's weakest link.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "BEFORE: row 2->3 — INCOMPATIBLE, crimson arrow, 'numbered list vs JSON array.' AFTER: row 2->3 — COMPATIBLE, green arrow, 'JSON array matches expectation.' Single row before/after comparison. Caption: 'One format spec closes the gap.'"
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "label": "Teardown angle",
+   "estimated_duration_s": 12,
+   "narration": "Agentic chains are only as reliable as their weakest handoff — and the weakest handoff is never the one you think is obvious. It's the one where format was left to interpretation.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Large text: 'Weakest handoff = format left to interpretation.' Below: 'Spec the output contract at every step.' CRIMSON on 'left to interpretation.' Teardown palette, CRIMSON rule."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "label": "Next reel teaser",
+   "estimated_duration_s": 6,
+   "narration": "Next: a GIGO detector for data prompts — make the invisible assumptions visible.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Clean: 'NEXT: Data GIGO Detector →' Minimal teardown style."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "label": "Outro",
+   "estimated_duration_s": 8,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}
