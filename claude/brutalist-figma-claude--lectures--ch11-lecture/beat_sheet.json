@@ -1,0 +1,344 @@
+{
+  "slug": "brutalist-figma-claude-ch11-chapter-11-brand-compliance-monitoring",
+  "title": "Chapter 11 — Brand Compliance Monitoring",
+  "series": "Brutalist Figma + Claude",
+  "source": "chapters/11-brand-compliance-monitoring.md",
+  "voice_id": "",
+  "accent": "#ea580c",
+  "fps": 24,
+  "clock": "real",
+  "metadata": {
+    "chapter": 11,
+    "total_chapters": 14,
+    "playlist": "Brutalist Figma + Claude",
+    "palette": "brutalist",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx"
+  },
+  "segments": [
+    {
+      "section": "HOOK",
+      "dark": false,
+      "title": [
+        [
+          "CHAPTER 11 — ",
+          false
+        ],
+        [
+          "BRAND COMPLIANCE MONITORING",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">Before building anything, it is worth understanding what the detection mechanism actually is — because it is simpler tha</p><div class=\"callout\"><b>Chapter 11 — Brand Compliance Monitoring</b> — The Figma API distinguishes between two ways a fill can be applied to a node. A fill applied via a color style has a sty</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Before building anything, it is worth understanding what the detection mechanism actually is , because it is simpler than it sounds. The Figma API distinguishes between two ways a fill can be applied to a node. A fill applied via a color style has a styles.fill property on the node, referencing the style's key. The raw color value is also present for rendering, but the style reference signals that the fill came from the library.",
+          "audio_file": "audio/S01.mp3",
+          "actual_duration_s": 22.19
+        }
+      ],
+      "id": "S01",
+      "num": 1,
+      "total": 12,
+      "label": "01 / 12 · HOOK"
+    },
+    {
+      "section": "DEFINING THE RULES",
+      "dark": false,
+      "title": [
+        [
+          "DEFINING THE ",
+          false
+        ],
+        [
+          "RULES.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"grid2\"><div class=\"cell-part\"><span>approvedColors — Array of { name, hex, rgba }</span></div><div class=\"cell-part hot\"><span>approvedTypeSizes — Array of numbers (px)</span></div><div class=\"cell-part\"><span>approvedFontWeights — Array of numbers</span></div><div class=\"cell-part\"><span>approvedFontFamilies — Array of strings</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The rules belong in a configuration file committed to the repository, not hardcoded in the script. The configuration is the contract between the design system and the compliance tool. When the design system adds a new approved color, the rules file is updated. When the spacing scale changes, the rules file changes. The compliance tool adapts automatically.",
+          "audio_file": "audio/S02.mp3",
+          "actual_duration_s": 19.16
+        }
+      ],
+      "id": "S02",
+      "num": 2,
+      "total": 12,
+      "label": "02 / 12 · DEFINING THE RULES"
+    },
+    {
+      "section": "THE CONTRAST CALCULATION",
+      "dark": false,
+      "title": [
+        [
+          "THE CONTRAST ",
+          false
+        ],
+        [
+          "CALCULATION.",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">The WCAG 2.1 contrast ratio formula is simple enough to implement correctly without reaching for a library. It is worth </p><div class=\"callout\"><b>The Contrast Calculation</b> — Relative luminance is computed from sRGB values by first linearizing each channel — removing the gamma encoding that dis</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The WCAG 2.1 contrast ratio formula is simple enough to implement correctly without reaching for a library. It is worth understanding the formula rather than treating it as a black box, because the formula determines which failures the tool catches and which it does not. Relative luminance is computed from sRGB values by first linearizing each channel , removing the gamma encoding that display hardware applies , and then weighting the three channels by their contribution to human brightness perception:",
+          "audio_file": "audio/S03.mp3",
+          "actual_duration_s": 27.75
+        }
+      ],
+      "id": "S03",
+      "num": 3,
+      "total": 12,
+      "label": "03 / 12 · THE CONTRAST CALCULATION"
+    },
+    {
+      "section": "MONITOR-BRAND.MJS",
+      "dark": false,
+      "title": [
+        [
+          "MONITOR-BRAND.MJS",
+          false
+        ],
+        [
+          "",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"grid2\"><div class=\"cell-part\"><span>const OUT_DIR = process.argv.find(a =&gt; a.startsWith('--out='))?.split('=') — 'brand-compliance-output';</span></div><div class=\"cell-part hot\"><span>const BASELINE = process.argv.find(a =&gt; a.startsWith('--baseline='))?.split('=') — null;</span></div><div class=\"cell-part\"><span>if (!TOKEN — !FILE_KEY) {</span></div><div class=\"cell-part\"><span>const retry = parseInt(res.headers.get('Retry-After') — '30', 10);</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "monitor-brand.mjs Usage: node monitor-brand.mjs Requires: FIGMA_TOKEN, FIGMA_FILE_KEY in environment Illustrative , adapt brand-rules.json to your design system import { readFileSync, writeFileSync, mkdirSync } from 'fs'; import { join } from 'path'; import 'dotenv/config';",
+          "audio_file": "audio/S04.mp3",
+          "actual_duration_s": 18.88
+        }
+      ],
+      "id": "S04",
+      "num": 4,
+      "total": 12,
+      "label": "04 / 12 · MONITOR-BRAND.MJS"
+    },
+    {
+      "section": "SUBSEQUENT RUNS — COMPARE AGAI",
+      "dark": false,
+      "title": [
+        [
+          "SUBSEQUENT RUNS — ",
+          false
+        ],
+        [
+          "COMPARE AGAINST BASELINE",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">node monitor-brand.mjs --rules=brand-rules.json --out=compliance-run-2 \\ --baseline=compliance-run-1/compliance-report.j</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "node monitor-brand.mjs --rules=brand-rules.json --out=compliance-run-2 \\ --baseline=compliance-run-1/compliance-report.json",
+          "audio_file": "audio/S05.mp3",
+          "actual_duration_s": 10.77
+        }
+      ],
+      "id": "S05",
+      "num": 5,
+      "total": 12,
+      "label": "05 / 12 · SUBSEQUENT RUNS — COMPARE AGAI"
+    },
+    {
+      "section": "THE DIFF IS THE POINT",
+      "dark": false,
+      "title": [
+        [
+          "THE DIFF IS ",
+          false
+        ],
+        [
+          "THE POINT.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"stack\"><div class=\"wire\"><b>cron</b><span>'0 9 1' Weekly Monday morning</span></div><div class=\"wire\"><b>uses</b><span>actions/checkout@v4</span></div><div class=\"wire\"><b>uses</b><span>actions/setup-node@v4</span></div><div class=\"wire\"><b>run</b><span>npm ci</span></div><div class=\"wire\"><b>name</b><span>Run compliance check</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "A single compliance report shows the current state. A diff between two reports , before and after a design sprint, before and after a library update, before and after a batch fix , shows whether the file is getting better or worse. That directional signal is what makes the tool useful in CI rather than just useful on demand. The computeDiff function identifies findings by a composite key: nodeId + category + issue. A finding is resolved when that key disappears between runs.",
+          "audio_file": "audio/S06.mp3",
+          "actual_duration_s": 26.13
+        }
+      ],
+      "id": "S06",
+      "num": 6,
+      "total": 12,
+      "label": "06 / 12 · THE DIFF IS THE POINT"
+    },
+    {
+      "section": "WHAT THE TOOL CANNOT CATCH",
+      "dark": false,
+      "title": [
+        [
+          "WHAT THE TOOL ",
+          false
+        ],
+        [
+          "CANNOT CATCH.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"grid2\"><div class=\"cell-part\"><span>Semi-transparent, gradient, or image backgrounds — parentBg propagation only tracks the nearest solid fill ancestor; opa</span></div><div class=\"cell-part hot\"><span>Decorative elements exempt from WCAG 1.4.3 — The API does not mark elements as decorative; all text nodes are checked re</span></div><div class=\"cell-part\"><span>Styles applied correctly but misnamed — The checker confirms styles.fill is present, not that the style name is accurate</span></div><div class=\"cell-part\"><span>Deeply nested nodes in very large files — The full file response may truncate deeply nested nodes; the walker only sees </span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Understanding the tool's limits prevents false confidence. Background color propagation is approximate. The parentBg color passed down the tree is the nearest ancestor's solid fill. This misses semi-transparent fills, gradient fills, image fills, and layered opacity. Treat contrast findings as conservative: the tool catches obvious failures, not all failures. A dedicated accessibility audit tool that renders the file will catch more.",
+          "audio_file": "audio/S07.mp3",
+          "actual_duration_s": 23.38
+        }
+      ],
+      "id": "S07",
+      "num": 7,
+      "total": 12,
+      "label": "07 / 12 · WHAT THE TOOL CANNOT CATCH"
+    },
+    {
+      "section": "THE LINT REPORT",
+      "dark": false,
+      "title": [
+        [
+          "THE LINT ",
+          false
+        ],
+        [
+          "REPORT.",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">Long before design files existed in a form that programs could read, code compliance was monitored by linters — static a</p><div class=\"callout\"><b>The Lint Report</b> — The canonical early linter was lint, written by Stephen Johnson at Bell Labs in 1978 for C code. Its job was to detect c</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Long before design files existed in a form that programs could read, code compliance was monitored by linters , static analysis tools that walked source code and reported deviations from a defined style or correctness standard. The canonical early linter was lint, written by Stephen Johnson at Bell Labs in 1978 for C code. Its job was to detect constructs that, while syntactically valid, were likely mistakes: unused variables, type mismatches, pointer errors. It did not fix anything. It reported.",
+          "audio_file": "audio/S08.mp3",
+          "actual_duration_s": 28.03
+        }
+      ],
+      "id": "S08",
+      "num": 8,
+      "total": 12,
+      "label": "08 / 12 · THE LINT REPORT"
+    },
+    {
+      "section": "WHAT COMES NEXT",
+      "dark": false,
+      "title": [
+        [
+          "WHAT COMES ",
+          false
+        ],
+        [
+          "NEXT.",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">Chapter 12 handles the consumer that is not a human at all — structuring the Figma file's data as a machine-readable spe</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Chapter 12 handles the consumer that is not a human at all , structuring the Figma file's data as a machine-readable specification that a CLI or code generator can build from. The compliance report is input to that process: a file with known-passing compliance is a file the code generator can trust.",
+          "audio_file": "audio/S09.mp3",
+          "actual_duration_s": 17.41
+        }
+      ],
+      "id": "S09",
+      "num": 9,
+      "total": 12,
+      "label": "09 / 12 · WHAT COMES NEXT"
+    },
+    {
+      "section": "COMPLIANCE TRIAGE —",
+      "dark": false,
+      "title": [
+        [
+          "COMPLIANCE TRIAGE ",
+          false
+        ],
+        [
+          "—.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"stack\"><div class=\"wire\"><b>Total errors</b><span></span></div><div class=\"wire\"><b>Contrast failures</b><span>— these are accessibility violations. WCAG 2.1 AA requires 4.5:1 for normal text and 3:1 for large text. List each uniqu</span></div><div class=\"wire\"><b>Unapproved font families</b><span>— list each unique font family name found.</span></div><div class=\"wire\"><b>Hardcoded approved colors</b><span>— colors that are on-palette but not applied via a style reference. List the top 3 most frequently occurring node names.</span></div><div class=\"wire\"><b>Off-scale spacing</b><span>— list the off-scale values found, sorted from most common to least.</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Important constraints: Use only the contrast ratios as computed in the report. Do not recalculate them. Do not adjust the WCAG thresholds. Do not recommend exempting any finding , that decision belongs to the design team.",
+          "audio_file": "audio/S10.mp3",
+          "actual_duration_s": 12.93
+        }
+      ],
+      "id": "S10",
+      "num": 10,
+      "total": 12,
+      "label": "10 / 12 · COMPLIANCE TRIAGE —"
+    },
+    {
+      "section": "THESIS",
+      "dark": false,
+      "title": [
+        [
+          "THE DIFF IS ",
+          false
+        ],
+        [
+          "THE POINT.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"thesis\">A single compliance report shows the current state. A diff between two reports — before and after a design sprint, befor</div><p class=\"lead\">The computeDiff function identifies findings by a composite key: nodeId + category + issue. A finding is resolved when t</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "A single compliance report shows the current state. A diff between two reports , before and after a design sprint, before and after a library update, before and after a batch fix , shows whether the file is getting better or worse. That directional signal is what makes the tool useful in CI rather than just useful on demand. The computeDiff function identifies findings by a composite key: nodeId + category + issue. A finding is resolved when that key disappears between runs.",
+          "audio_file": "audio/S11.mp3",
+          "actual_duration_s": 26.13
+        }
+      ],
+      "id": "S11",
+      "num": 11,
+      "total": 12,
+      "label": "11 / 12 · THESIS"
+    },
+    {
+      "section": "CLOSE",
+      "dark": true,
+      "title": [
+        [
+          "ASK THE QUESTION. ",
+          false
+        ],
+        [
+          "APPLY THE FRAMEWORK.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"close\"><div class=\"close-tags\"><span>DEFINING THE RULES</span><span>//</span><span>THE CONTRAST CALCULATION</span><span>//</span><span>MONITOR-BRAND.MJS</span></div><p class=\"sig\">Brutalist Figma + Claude · Ch.11 · Chapter 11 — Brand Compliance Monitoring</p></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "That is the framework. Brutalist Figma + Claude, chapter 11: Chapter 11 , Brand Compliance Monitoring. The patterns are now in place. Apply them.",
+          "audio_file": "audio/S12.mp3",
+          "actual_duration_s": 8.9
+        }
+      ],
+      "id": "S12",
+      "num": 12,
+      "total": 12,
+      "label": "12 / 12 · CLOSE"
+    }
+  ]
+}
