@@ -1,0 +1,230 @@
+{
+ "metadata": {
+  "title": "Build a Volatility Drag Simulator with Claude Code",
+  "slug": "volatility-drag-simulator",
+  "topic": "COMPUTATIONAL FINANCE",
+  "source": "computational-finance-with-ai/chapters/02-returns-and-risk-measurement.md",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video. Exclusions: path-dependent rebalancing, Kelly criterion, detailed Monte Carlo theory.",
+  "total_estimated_duration_seconds": 108,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "COMPUTATIONAL FINANCE",
+      "lines": [
+       "Volatility Drag Simulator",
+       "Up 50%, down 50%. Average return: 0%. Actual result: -25%.",
+       "Build it. Verify it. Break it.",
+       "Follow @NikBearBrown"
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM -- why care",
+   "role_note": "the problem, context, stakes -- BEFORE the CLI opens",
+   "narration_text": "A stock goes up 50% then down 50%. The arithmetic average return is 0%. The actual result is minus 25%. That gap — volatility drag — grows with every leveraged ETF, every rebalancing decision, every long holding period. Arithmetic mean and geometric mean diverge proportionally to variance.",
+   "visual_intent": "SLATE -- title card: UP 50%, DOWN 50%. AVERAGE = 0%. ACTUAL = -25%. The drag is real.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 18,
+   "audio_file": "mp3/beat-B01.mp3"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda) -- the command typed",
+   "narration_text": "Ask Claude to simulate two portfolios: one deterministic at the arithmetic mean, one stochastic with 500 Monte Carlo paths drawing from a normal distribution.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write a Python script that simulates two portfolios over 252 trading days: Portfolio A compounds at a fixed daily return equal to the arithmetic mean of Portfolio B's distribution. Portfolio B draws daily log returns from N(mu, sigma^2) with mu=0.10/252 and sigma=0.20/sqrt(252). Run 500 Monte Carlo paths for B. Plot all B paths in light grey and the single A path in bold. Annotate the median gap at day 252 as the volatility drag: approximately sigma^2/2 per year.\"",
+      "topic": "COMPUTATIONAL FINANCE",
+      "segment": "VOLATILITY DRAG",
+      "runningText": "generating..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B02.mp3"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda) -- reading the generated code",
+   "narration_text": "The script draws log returns from a normal distribution, cumulates them, and tracks the arithmetic reference path. The drag annotation is sigma-squared over two — about 2 percentage points per year for 20% volatility.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "vol_drag.py",
+      "topic": "COMPUTATIONAL FINANCE",
+      "segment": "VOLATILITY DRAG",
+      "code": "import numpy as np\nN=252; MU=0.10/252; SIGMA=0.20/np.sqrt(252)\nrng=np.random.RandomState(42)\npaths=[]\nfor _ in range(500):\n    steps=rng.normal(MU,SIGMA,N)\n    paths.append(np.exp(np.cumsum(steps)))\npaths=np.array(paths)\n# Arithmetic reference: compounds at mu each day\narith=np.exp(np.arange(1,N+1)*MU)\n# Drag = sigma^2/2 * T (annualized)\ndrag=SIGMA**2/2*252\nprint(f\"Drag ≈ sigma^2/2 = {drag*100:.2f}% per year\")\nprint(f\"Median path end: {np.median(paths[:,-1]):.3f}\")\nprint(f\"Arith path end:  {arith[-1]:.3f}\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B03.mp3"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT -- run",
+   "role_note": "first output -- Manim animated volatility paths",
+   "narration_text": "Fourteen stochastic paths fan out in grey. The deterministic arithmetic path draws bold above the median fan. The annotated drag gap shows sigma-squared over two — about 10 percentage points for sigma equals 20% and a 60-day window.",
+   "visual_intent": "Manim B04_VolatilityPaths: fan of grey Monte Carlo paths, bold deterministic path above, drag annotation between arithmetic end and geometric median.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B04.mp3"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE -- check and revise",
+   "role_note": "terminal (Onda) -- THE REQUIRED revision",
+   "narration_text": "Double sigma to 40 percent — a leveraged ETF proxy. Show how the drag quadruples, making the leveraged version underperform even a lower-return unleveraged position.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Modify the script: double sigma to 0.40/sqrt(252). Re-run the 500-path simulation. Print the new drag (sigma^2/2), the new median path end, and compare to the original 20% sigma version. Show that the 2x leveraged version underperforms despite higher daily return.\"",
+      "topic": "COMPUTATIONAL FINANCE",
+      "segment": "VOLATILITY DRAG",
+      "runningText": "updating..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B05.mp3"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT -- revised",
+   "role_note": "revised output -- OPEN vox slot",
+   "narration_text": "The drag quadruples: from 2 percentage points to 8 percentage points per year. The leveraged ETF median path ends below the unleveraged one despite twice the daily return. The geometric penalty swamps the return premium.",
+   "visual_intent": "SLATE -- screen-recording: terminal output comparing sigma=20% vs sigma=40% — drag, median path end, and comparison table. Drag column shows 2pp vs 8pp.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B06.mp3"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson -- one beat",
+   "narration_text": "Arithmetic mean and geometric mean diverge proportionally to variance. A leveraged ETF with twice the daily return and twice the volatility does not double the long-run compounded return — it roughly halves it. The drag is sigma-squared over two, and it compounds.",
+   "visual_intent": "SLATE -- recap card: DRAG = SIGMA^2/2. Doubles the vol, quadruples the penalty.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B07.mp3"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Next: try doubling sigma to 40% as a leveraged ETF proxy and see how the drag quadruples. Follow for more computational finance builds.",
+   "visual_intent": "SLATE -- next-steps card: Double sigma to 40%. Watch the drag eat the return premium.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3"
+  }
+ ]
+}

@@ -1,0 +1,327 @@
+{
+  "metadata": {
+    "title": "Build Maya's Three-Beat Verification Log with Claude Code",
+    "slug": "verification-log-demo",
+    "topic": "COMPUTATIONAL FINANCE",
+    "source": "computational-finance-with-ai/chapters/01-introduction-the-three-beat-method.md",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "palette": "claude",
+    "style_preset": "nikbearbrown",
+    "style": "cli",
+    "note": "CLI video. Full SLATE — B04 is screen-recording output. Exclusions: full memo generation, multi-model orchestration beyond three calls, production error handling.",
+    "total_estimated_duration_seconds": 108,
+    "audience": "Claude",
+    "derived_from": "beat_sheet.json",
+    "outro_source": "AUTHOR.MD :: NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "_variant_todo": [
+      "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+      "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+      "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+      "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+    ],
+    "build": {
+      "at": "2026-07-16T08:23:34",
+      "cut": "master",
+      "filled": 5,
+      "of": 10,
+      "slates": [
+        "B01",
+        "B04",
+        "B06",
+        "B07",
+        "B08"
+      ],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "This is Liam, in for Bear. Nik Bear Brown. Build it with a CLI, then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOpen",
+          "props": {
+            "topic": "COMPUTATIONAL FINANCE",
+            "lines": [
+              "Verification Log Demo",
+              "Three models, three Sharpes, one 15% spread.",
+              "Build it. Verify it. Break it.",
+              "Follow @NikBearBrown"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 5.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T08:23:34"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM -- why care",
+      "role_note": "the problem, context, stakes -- BEFORE the CLI opens",
+      "narration_text": "Three models return NVDA Sharpes of 1.38, 1.41, and 1.62. The 15% spread could flip a memo — but there is a disciplined way to classify whether that is cosmetic or substantive. The three-beat method replaces the disciplines that spreadsheets enforced automatically: specification, editorial read, verification log.",
+      "visual_intent": "SLATE -- title card: 1.38 | 1.41 | 1.62. Same ticker, same prompt. 15% spread. Which one is right?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.88,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T08:23:34",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
+        "suggested": "suggested prompt: Three models return NVDA Sharpes of 1.38, 1.41, and 1.62. The 15% spread could flip a memo — but there is a disciplined way to classify whether that is cosmetic"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "role_note": "terminal (Onda) -- the command typed",
+      "narration_text": "Ask Claude to write the verification pipeline: three identical API calls to claude-3-5-haiku, parse each Sharpe as a float, print the spread, flag if greater than 10%.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Write a Python script using the Anthropic SDK that sends three identical prompts to claude-3-5-haiku asking for NVDA vs SPY Sharpe ratio (36-month daily, √252 annualization, 4.5% risk-free rate). Parse each response to extract the Sharpe ratio as a float. Print a verification log table showing all three values and the spread. Flag the row if spread > 10%.\"",
+            "topic": "COMPUTATIONAL FINANCE",
+            "segment": "VERIFICATION LOG",
+            "runningText": "generating..."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 10.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T08:23:34"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "terminal (Onda) -- reading the generated code",
+      "narration_text": "The script sends the same prompt three times, extracts the Sharpe ratio from each response, computes the spread as max minus min, and flags the row if spread exceeds 10%.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "verification_log.py",
+            "topic": "COMPUTATIONAL FINANCE",
+            "segment": "VERIFICATION LOG",
+            "code": "import anthropic, re\nclient=anthropic.Anthropic()\nprompt=\"What is the Sharpe ratio for NVDA vs SPY over 36 months using daily returns, √252 annualization, 4.5% risk-free rate? Return only the NVDA Sharpe ratio as a number.\"\nvalues=[]\nfor i in range(3):\n    msg=client.messages.create(model=\"claude-haiku-4-5\",max_tokens=128,\n        messages=[{\"role\":\"user\",\"content\":prompt}])\n    text=msg.content[0].text\n    m=re.search(r\"[0-9]+\\.[0-9]+\",text)\n    v=float(m.group()) if m else None\n    values.append(v)\n    print(f\"Run {i+1}: {v}\")\nspread=max(v for v in values if v)-min(v for v in values if v)\nflag=\"FLAG\" if spread>0.1 else \"OK\"\nprint(f\"Spread: {spread:.2f} [{flag}]\")"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 10.56,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T08:23:34"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT -- run",
+      "role_note": "first output -- screen-recording of terminal run",
+      "narration_text": "Three API responses stream in. The Sharpe values print line by line. The spread computes — 0.24 — and the FLAG appears. The verification log has named a substantive disagreement: 24% spread on the same ticker from the same model.",
+      "visual_intent": "SLATE -- screen-recording mp4 of the terminal: three API responses appearing, Sharpe values printed, SPREAD: 0.24 [FLAG] appearing on the final line.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.02,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T08:23:34",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B04.mp4)",
+        "suggested": "suggested prompt: Three API responses stream in. The Sharpe values print line by line. The spread computes — 0.24 — and the FLAG appears. The verification log has named a substan"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE -- check and revise",
+      "role_note": "terminal (Onda) -- THE REQUIRED revision",
+      "narration_text": "Add a fourth primary-source row: compute the NVDA Sharpe from yfinance directly and compare it to the three API responses. Show whether the primary source closes the disagreement or reveals a systematic bias.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Modify the script: add a fourth row to the verification log populated by a manual yfinance computation of NVDA Sharpe (36-month daily, √252, 4.5% risk-free). Print all four rows as a table: run, value, spread from primary source. Flag rows where model value deviates from primary by more than 10%.\"",
+            "topic": "COMPUTATIONAL FINANCE",
+            "segment": "VERIFICATION LOG",
+            "runningText": "updating..."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 13.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T08:23:34"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT -- revised",
+      "role_note": "revised output -- OPEN vox slot",
+      "narration_text": "The primary source shows a Sharpe of 1.52. Two of three model responses are flagged: one is 9% below primary, one is 7% above. The spread across models reflects convention drift — not factual disagreement.",
+      "visual_intent": "SLATE -- screen-recording: four-row verification log table; primary source row shows 1.52; model rows flagged with deviations; convention drift hypothesis visible.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 13.01,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T08:23:34",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
+        "suggested": "suggested prompt: The primary source shows a Sharpe of 1.52. Two of three model responses are flagged: one is 9% below primary, one is 7% above. The spread across models reflects"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "role_note": "the lesson -- one beat",
+      "narration_text": "The three-beat method replaces the disciplines that spreadsheets enforced automatically: named ranges become specification, formula trace becomes editorial read, scenario tab becomes verification log. The pipeline makes the convention explicit so you argue about the assumption, not the number.",
+      "visual_intent": "SLATE -- recap card: SPECIFICATION. EDITORIAL READ. VERIFICATION LOG. The three beats that replace the spreadsheet disciplines.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 17.41,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T08:23:34",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
+        "suggested": "suggested prompt: The three-beat method replaces the disciplines that spreadsheets enforced automatically: named ranges become specification, formula trace becomes editorial read"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS",
+      "role_note": "what to do next",
+      "narration_text": "Next: try adding a fourth primary-source row from yfinance and see if the model spread reflects convention drift or factual error. Follow for more computational finance builds.",
+      "visual_intent": "SLATE -- next-steps card: Add a primary source row. Is the spread convention drift or factual error?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 10.69,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T08:23:34",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)",
+        "suggested": "suggested prompt: Next: try adding a fourth primary-source row from yfinance and see if the model spread reflects convention drift or factual error. Follow for more computational"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 6.51,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T08:23:34"
+      }
+    }
+  ]
+}
