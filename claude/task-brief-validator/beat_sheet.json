@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "slug": "task-brief-validator",
+    "title": "Build a Task-Brief Validator with Claude",
+    "topic": "CLAUDE COWORK",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "claude-cowork/chapters/04-the-cowork-task-brief.md",
+    "segment": "TASK-BRIEF VALIDATOR",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 118.0
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "t_start": 0.0,
+      "estimated_duration_s": 8.0,
+      "narration_text": "A task brief with a missing Exclusions field is an implicit permission slip for the AI to decide something the human thought was decided.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "t_start": 8.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "The 7-field CoWork template exists because delegation requires an interface contract — Objective, Allowed Sources, Exclusions, Output Artifact, Decision Rules, Review Checkpoints, Stop Conditions. Missing any one field creates an ambiguity that surfaces only when the output is wrong.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "t_start": 20.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "Score this task brief against the 7-field CoWork template. Flag each missing or underspecified field with an explanation of why that gap will cause problems.",
+      "shot": {
+        "type": "SLATE",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Read this task brief and score it against the 7-field CoWork template. Flag each missing or underspecified field with an explanation of why that gap will cause problems.\" < brief.md",
+            "topic": "CLAUDE COWORK",
+            "segment": "TASK-BRIEF VALIDATOR",
+            "runningText": "scoring brief…"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "t_start": 32.0,
+      "estimated_duration_s": 14.0,
+      "narration_text": "The scoring script loops over all 7 fields, checks presence and specificity, and produces a scored report with a delegation-readiness rating.",
+      "shot": {
+        "type": "SLATE",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "validator.py",
+            "code": "FIELDS = [\n    \"Objective\", \"Allowed Sources\", \"Exclusions\",\n    \"Output Artifact\", \"Decision Rules\",\n    \"Review Checkpoints\", \"Stop Conditions\"\n]\n\ndef score_brief(brief: dict) -> dict:\n    present, specific = [], []\n    for field in FIELDS:\n        val = brief.get(field, \"\").strip()\n        if val:\n            present.append(field)\n            if len(val) > 20 and val.lower() not in (\"tbd\", \"n/a\", \"use judgment\"):\n                specific.append(field)\n    missing = [f for f in FIELDS if f not in present]\n    completeness = len(present) / len(FIELDS)\n    specificity = len(specific) / max(len(present), 1)\n    rating = \"READY\" if completeness == 1.0 and specificity >= 0.8 else \"NOT READY\"\n    return {\"completeness\": f\"{completeness:.0%}\", \"specificity\": f\"{specificity:.0%}\",\n            \"missing\": missing, \"rating\": rating}",
+            "topic": "CLAUDE COWORK",
+            "segment": "TASK-BRIEF VALIDATOR"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "t_start": 46.0,
+      "estimated_duration_s": 20.0,
+      "narration_text": "Validator scores a 4-field brief: 3 fields flagged missing — Exclusions, Stop Conditions, Review Checkpoints. Delegation readiness: 57 percent — NOT READY. Each missing field gets a one-line explanation of what the AI will decide in its absence.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "t_start": 66.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "Add a second brief with all 7 fields but vague Decision Rules: use judgment.",
+      "shot": {
+        "type": "SLATE",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Score this revised brief. Decision Rules field says: use judgment.\" < brief_v2.md",
+            "topic": "CLAUDE COWORK",
+            "segment": "TASK-BRIEF VALIDATOR",
+            "runningText": "testing specificity…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "t_start": 76.0,
+      "estimated_duration_s": 14.0,
+      "narration_text": "All 7 fields present — completeness 100 percent. But specificity score: 71 percent. Decision Rules flagged: use judgment is not a decision rule; it's a delegation of judgment itself. Completeness does not equal quality.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "t_start": 90.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "The 7-field template is an interface contract. Every missing field is an implicit permission slip — the AI decides something the human assumed was decided. Completeness checks presence; specificity checks whether the field actually constrains the AI.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B07.mp3"
+    },
+    {
+      "beat_id": "B08",
+      "t_start": 102.0,
+      "estimated_duration_s": 8.0,
+      "narration_text": "Next: measure which tasks belong to Claude versus human with a routing matrix.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B08.mp3"
+    },
+    {
+      "beat_id": "B09",
+      "t_start": 110.0,
+      "estimated_duration_s": 8.0,
+      "narration_text": "Nik Bear Brown. Brutalist and Educational AI. nikbearbrown.com.",
+      "shot": {
+        "type": "SLATE",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3"
+    }
+  ]
+}
