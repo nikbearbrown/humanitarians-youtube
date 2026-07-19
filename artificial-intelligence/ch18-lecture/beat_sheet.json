@@ -1,0 +1,370 @@
+{
+  "slug": "ai-1-ch18-react-site",
+  "title": "Chapter 18 — The React Site: .mdx + .tsx",
+  "series": "AI 1",
+  "source": "chapters/18-react-site.md",
+  "accent": "#ea580c",
+  "fps": 24,
+  "clock": "real",
+  "metadata": {
+    "chapter": 18,
+    "total_chapters": 39,
+    "playlist": "AI 1",
+    "palette": "brutalist",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx"
+  },
+  "segments": [
+    {
+      "id": "S01",
+      "num": 1,
+      "total": 13,
+      "section": "HOOK",
+      "label": "01 / 13 · HOOK",
+      "dark": false,
+      "title": [
+        [
+          "ONE COMMAND GENERATES ",
+          false
+        ],
+        [
+          "89 FILES.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"stat-row\"><div class=\"stat\"><div class=\"big\">41</div><div class=\"cap\">CHAPTERS</div></div><div class=\"eq\">→</div><div class=\"stat\"><div class=\"big on\">89</div><div class=\"cap\">FILES</div></div></div><p class=\"lead\">One Python command converts markdown to a complete Next.js scaffold.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "On Thursday morning you have forty-one finished chapters and a collaborator who wants to put your book online. You assume it will be complicated. It turns out the answer is one command: python3 build-react-site.py. You run it from your book's root directory. It takes a few seconds. When the terminal settles, a new folder called site exists alongside your chapters folder. Inside it: eighty-nine files. Forty-one MDX files, one per chapter. Forty-one TypeScript React route components. A table of contents home page. A shared layout. A component called AskAI that is not wired to a model yet but knows exactly where it needs to go. Valid JSON configs for Next.js and TypeScript. You compress the site folder and send it to your developer. She unpacks it, types npm install and next build, and the book is on the web.",
+          "audio_file": "audio/S01.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "num": 2,
+      "total": 13,
+      "section": "THE STAKES",
+      "label": "02 / 13 · THE STAKES",
+      "dark": false,
+      "title": [
+        [
+          "THE REAL PROBLEM IS ",
+          false
+        ],
+        [
+          "THE BOUNDARY.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"grid2\"><div class=\"cell-part\"><b>Author</b><span>Write chapters, run one command</span></div><div class=\"cell-part hot\"><b>Developer</b><span>Deploy the generated site</span></div></div><p class=\"lead\">The boundary between what you finish alone and what requires a developer is the point of this chapter.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The web surface is the most flexible and most public output your pipeline produces. It is also the only one you cannot fully ship alone. This is the most honest chapter in Part 2 about hand-offs. Every other output—EPUB, PDF, Canvas, Anki—you can finish yourself. The React site forces a boundary: you cannot deploy to the web without a developer. Being clear about this boundary is the entire point of the chapter. It is not a limitation to hide. It is a design principle. You maintain one source of truth: your chapters as Markdown files. The build pipeline converts them to many output formats. For the web, the conversion produces two new file types. On the content side: MDX—Markdown with JSX. On the app side: TypeScript React components. You run one command. Everything after that is someone else's job.",
+          "audio_file": "audio/S02.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "num": 3,
+      "total": 13,
+      "section": "THE CONTRACT",
+      "label": "03 / 13 · THE CONTRACT",
+      "dark": false,
+      "title": [
+        [
+          "SOURCE STAYS MARKDOWN BUILD ",
+          false
+        ],
+        [
+          "OUTPUTS SCALE.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"flow\"><span class=\"chip\">.md</span><span class=\"arw\">→</span><span class=\"chip on\">.mdx</span><span class=\"arw\">→</span><span class=\"chip on\">.tsx</span></div><p class=\"lead\">Source stays Markdown. The script produces MDX (Markdown with JSX) and TypeScript React components.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The React site build introduces one new file type on each side of the boundary. On the content side: MDX. MDX is Markdown with a JSX superset—it can contain React component tags inline with prose. Your chapters are plain Markdown. The script converts them to MDX. The result is a file your developer can enhance with interactive components without you ever touching the syntax. You wrote Markdown. The script produced MDX. The distinction matters to the build toolchain. It does not require a new writing practice. On the app side: TypeScript with JSX—what React developers write when they want type safety. Each TypeScript file is a page component: a small module that imports the corresponding MDX file and renders it as a route. The script generates them from a template. They have valid types, valid exports, valid metadata. A developer can open any of them and immediately understand the structure. You did not write any of them. This is the contract: source stays Markdown. Build outputs are MDX and TypeScript. The author runs one command and never hand-writes either format.",
+          "audio_file": "audio/S03.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "num": 4,
+      "total": 13,
+      "section": "WHAT IS MDX",
+      "label": "04 / 13 · WHAT IS MDX",
+      "dark": false,
+      "title": [
+        [
+          "MARKDOWN WITH JAVASCRIPT ",
+          false
+        ],
+        [
+          "INLINE.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"callout\"><b>MDX:</b> Markdown files that can contain React component tags inline with prose.</div><p class=\"lead\">The script handles MDX-unsafe characters automatically—braces in prose become HTML entities, code examples stay untouched.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "MDX parses curly braces as JSX template expressions. Prose that contains a literal opening brace or closing brace would break the build. The script walks each line outside of code fences and replaces bare braces with their HTML entities. Your code examples are left alone. Your prose is made safe. This is critical: the transformation is automatic. You do not need to learn a new syntax. You write Markdown. The script handles the conversion to MDX. The developer then works with the result. They can add interactive components—forms, visualizations, quizzes—inside the MDX files without ever touching your original prose. The boundary is clean. You write content. The developer adds interactivity. The script is the bridge.",
+          "audio_file": "audio/S04.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "num": 5,
+      "total": 13,
+      "section": "WHAT IS TSX",
+      "label": "05 / 13 · WHAT IS TSX",
+      "dark": false,
+      "title": [
+        [
+          "TYPESCRIPT REACT ",
+          false
+        ],
+        [
+          "COMPONENTS.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"stack\"><div class=\"wire\"><b>Page Component</b><span>Small module that imports the corresponding MDX file</span></div><div class=\"wire\"><b>Type Safe</b><span>Valid TypeScript types and default exports</span></div><div class=\"wire\"><b>Route Ready</b><span>Renders chapter as a Next.js route</span></div></div><p class=\"lead\">Generated from a template—developers understand the structure immediately.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Each TypeScript React file is a page component. It is a small module that imports the corresponding MDX file. It sets the TypeScript metadata export with the chapter title and slug. It renders the chapter inside an article tag with the prose class—a Next.js convention—with the AskAI panel below it. The script generates all of them from a template. They have valid TypeScript types. They have valid default exports. They have valid metadata. A developer can open any of the forty-one generated files and immediately understand the structure. There are no surprises. No custom logic. No hidden state. The module does one thing: import the content, render it, provide a hook for interactivity. You did not write any of these files. The script generated every one. This is the point: the developer never has to reverse-engineer your intent. The structure is transparent.",
+          "audio_file": "audio/S05.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S06",
+      "num": 6,
+      "total": 13,
+      "section": "HOW THE SCRIPT WORKS",
+      "label": "06 / 13 · HOW THE SCRIPT WORKS",
+      "dark": false,
+      "title": [
+        [
+          "THE SCRIPT READS ",
+          false
+        ],
+        [
+          "THEN WRITES.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"flow\"><span class=\"chip\">Read</span><span class=\"arw\">→</span><span class=\"chip\">Escape</span><span class=\"arw\">→</span><span class=\"chip on\">Write</span></div><p class=\"lead\">The script extracts titles and slugs, escapes MDX-unsafe braces in prose, then writes .mdx and .tsx files.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The script reads every Markdown file in chapters, sorted alphabetically, and skips empty files. For each chapter it extracts the slug from the filename. It scrapes the first heading as the display title. Then it runs an MDX-escape pass. It walks each line outside of code fences and replaces bare braces with HTML entities. Your code examples are untouched. Your prose is made safe. For each chapter it writes two files: the MDX content file and the TypeScript page component. Then it writes the shared files: the home page, the root layout, the AskAI placeholder, the MDX component bridge, and all the configuration files. The script does not run npm. It does not start a dev server. It does not deploy anything. When it finishes it prints a summary and a next-steps reminder. That last line is the boundary. Everything before it is yours. Everything after it is your developer's.",
+          "audio_file": "audio/S06.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "num": 7,
+      "total": 13,
+      "section": "THE FILE STRUCTURE",
+      "label": "07 / 13 · THE FILE STRUCTURE",
+      "dark": false,
+      "title": [
+        [
+          "41 CHAPTERS PRODUCE ",
+          false
+        ],
+        [
+          "89 FILES.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"stat-row\"><div class=\"stat\"><div class=\"big\">41</div><div class=\"cap\">CONTENT</div></div><div class=\"eq\">+</div><div class=\"stat\"><div class=\"big\">41</div><div class=\"cap\">ROUTES</div></div><div class=\"eq\">+</div><div class=\"stat\"><div class=\"big on\">7</div><div class=\"cap\">SHARED</div></div></div><p class=\"lead\">Content files and route components for each chapter, plus layout, home page, config, and placeholder components.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The tested run was against forty-one chapter and appendix files in the AI 1 source. The script produced eighty-nine files. The breakdown is exact: forty-one content files—one per chapter—forty-one route components—one per chapter—and then seven shared files. The seven shared files are: the table of contents home page, the shared HTML shell, the AskAI placeholder component, the MDX component bridge required by the Next.js MDX integration, the Next.js configuration file, the TypeScript configuration file, and the package.json with build scripts and dependencies. Eighty-nine files total. All valid. All syntactically complete. None require hand-editing. The developer unpacks the folder, runs npm install, runs npm run dev, and the book is running locally. That is what the scaffold provides.",
+          "audio_file": "audio/S07.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "num": 8,
+      "total": 13,
+      "section": "SHARED FILES",
+      "label": "08 / 13 · SHARED FILES",
+      "dark": false,
+      "title": [
+        [
+          "HOME PAGE LAYOUT AND ",
+          false
+        ],
+        [
+          "CONFIG.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"stack\"><div class=\"wire\"><b>app/page.tsx</b><span>Table of contents home page</span></div><div class=\"wire\"><b>app/layout.tsx</b><span>Shared HTML shell and navigation</span></div><div class=\"wire\"><b>components/AskAI.tsx</b><span>Placeholder for interactivity—not wired yet</span></div><div class=\"wire\"><b>Config Files</b><span>next.config.mjs, tsconfig.json, package.json</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The shared files are the developer's starting point. The home page is a linked table of contents—they can customize the styling, add breadcrumbs, change the layout. The root layout is the HTML shell—they control the navigation bar, the footer, the global styles. The AskAI placeholder is where the developer wires an AI model. The placeholder knows exactly where it needs to go. It is not speculative. It is not generic. It is ready for the specific use case: ask a question about the chapter. The configuration files are all valid. They have sensible defaults. The developer can build immediately or adjust the configuration to their platform—Vercel, a custom server, Docker. Everything is valid TypeScript. Everything is valid Next.js. Everything is ready for the next step.",
+          "audio_file": "audio/S08.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S09",
+      "num": 9,
+      "total": 13,
+      "section": "NO DEPENDENCIES",
+      "label": "09 / 13 · NO DEPENDENCIES",
+      "dark": false,
+      "title": [
+        [
+          "PURE PYTHON NO SETUP ",
+          false
+        ],
+        [
+          "NEEDED.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"callout\"><b>Key fact:</b> The script uses only Python standard library—no virtual environment, no pip install.</div><p class=\"lead\">Run it from your book's root directory. Everything it needs is built into Python 3.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The script is pure Python standard library. It has no dependencies. You do not need to install anything. You do not need to create a virtual environment. You do not need to run pip. You do not need any external tools. Run it with Python 3 from your book's root directory. That is all. It reads chapters, writes the scaffold, prints a summary, and exits. The script is in Appendix 95. It is about two hundred lines of Python. It demonstrates a principle: a build tool does not need to be complex. It reads the source, transforms the content, writes valid output. No magic. No hidden state. No external dependencies. This is what makes it possible to hand it to a developer and say: this is the complete scaffold. There is nothing missing. There is nothing to configure. Just install the npm packages and deploy.",
+          "audio_file": "audio/S09.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "num": 10,
+      "total": 13,
+      "section": "THE BOUNDARY",
+      "label": "10 / 13 · THE BOUNDARY",
+      "dark": false,
+      "title": [
+        [
+          "YOUR JOB ENDS ",
+          false
+        ],
+        [
+          "HERE.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"balance\"><div class=\"pan surv\"><b>Author</b><span>Write chapters · Run one command</span></div><div class=\"fulcrum\">↔</div><div class=\"pan die\"><b>Developer</b><span>npm install · Deploy</span></div></div><p class=\"lead\">This chapter is about being honest: the web surface is the only output you cannot fully ship alone.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "This is the boundary. The author writes chapters in Markdown. The author runs one Python command. Everything up to that point is the author's job. The developer unpacks the generated site folder. The developer runs npm install. The developer runs npm run dev to start a local dev server. The developer can then customize the styling, wire the AskAI component to a model, add analytics, deploy to Vercel or a custom server. Everything after the one command is the developer's job. The web surface is the only output of the pipeline that requires this hand-off. EPUB and PDF you can generate and ship yourself. Canvas and Anki you can generate and ship yourself. The React site forces collaboration. Being honest about this boundary is what separates this chapter from the illusion that a single tool can do everything. It cannot. And that is fine.",
+          "audio_file": "audio/S10.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S11",
+      "num": 11,
+      "total": 13,
+      "section": "SYNTHESIS",
+      "label": "11 / 13 · SYNTHESIS",
+      "dark": false,
+      "title": [
+        [
+          "HONEST HANDOFFS THROUGH CLEAR ",
+          false
+        ],
+        [
+          "CONTRACTS.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"callout\"><b>Pattern:</b> Single source of truth (.md), many build artifacts (.mdx, .tsx, EPUB, PDF, Canvas, Anki).</div><p class=\"lead\">The pipeline succeeds by being clear about boundaries: it does one thing and hands off completely.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The pipeline succeeds because it is clear about boundaries. It does one thing and hands off completely. The single source of truth is the Markdown files in chapters. The build outputs are many: EPUB, PDF, Canvas, Anki, and React. Each output is a build artifact. You do not maintain seven parallel versions of your book. You maintain one source and run scripts. For the React site, the transformation is transparent. Markdown becomes MDX with one pass. MDX becomes TypeScript React components with a template. The developer receives complete, valid, type-safe code. They do not need to reverse-engineer your intent. They do not need to fill in missing files. They do not need to guess at configuration. Everything is there. This is what makes honest hand-offs possible: clarity about what each person does, and complete output at the boundary.",
+          "audio_file": "audio/S11.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S12",
+      "num": 12,
+      "total": 13,
+      "section": "THESIS",
+      "label": "12 / 13 · THESIS",
+      "dark": false,
+      "title": [
+        [
+          "ONE COMMAND MAKES ",
+          false
+        ],
+        [
+          "THE SCAFFOLD.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"thesis\">One command makes the scaffold.<b> Everything after that is someone else's job.</b></div><p class=\"lead\">This is the most honest chapter in Part 2 about hand-offs. Being clear about the boundary is the point.</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "One command makes the scaffold. Everything after that is someone else's job. This is the most honest chapter in Part 2 about hand-offs. The web surface is the most flexible and most public output the pipeline produces. It is also the only one you cannot fully ship alone. That is not a weakness. That is a design principle. If you try to own the entire pipeline—writing, designing, deploying to the web—you will either fail or burn out. The pipeline succeeds by being clear about boundaries. You finish your book. You run one command. The developer takes it from there. This is not a limitation. This is clarity. This is how you scale the pipeline to reach more readers through more channels without trying to be an expert in every channel. The boundary is the point.",
+          "audio_file": "audio/S12.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    },
+    {
+      "id": "S13",
+      "num": 13,
+      "total": 13,
+      "section": "CLOSE",
+      "label": "13 / 13 · CLOSE",
+      "dark": true,
+      "title": [
+        [
+          "",
+          false
+        ],
+        [
+          "",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"close\"><div class=\"close-tags\"><span>REACT</span><span>//</span><span>HANDOFF</span><span>//</span><span>ONE COMMAND</span></div><p class=\"sig\">AI 1 · Chapter 18 · The React Site: .mdx + .tsx</p></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "That is this chapter. What the script does. What the scaffold gives you. Where the boundary is. Being honest about the hand-off.",
+          "audio_file": "audio/S13.mp3",
+          "actual_duration_s": null
+        }
+      ]
+    }
+  ]
+}
