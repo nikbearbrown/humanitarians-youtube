@@ -1,0 +1,234 @@
+{
+ "metadata": {
+  "title": "Propensity Score Weighting: Balancing the Groups",
+  "slug": "propensity-score-weighting",
+  "topic": "CAUSAL MACHINE LEARNING — PROPENSITY SCORE WEIGHTING",
+  "register": "Pragmatist",
+  "voice": "af_kore",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro.",
+  "total_estimated_duration_seconds": 120,
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Aloha, Humanitarians",
+      "topic": "Propensity Score Weighting: Balancing the Groups",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Causal Machine Learning, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "Treated users are younger and wealthier. Controls are older and poorer. Naive comparison is useless. Propensity weighting re-balances the groups.",
+   "visual_intent": "title card: 'propensity weighting — make the groups look alike'; treatment imbalance vs causal estimate",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask Claude. Generate observational data with severe treatment/control imbalance, estimate propensity scores, compute IPW-weighted ATE, and print SMD before and after weighting.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write a Python IPW demo: observational n=3000, age~N(40,10), income~N(50k,15k). P(T=1|X) = sigmoid(-2 + 0.05*age + 0.00003*income). True ATE=3.0. Y = 3*T + 0.1*age + 0.00002*income + noise. Fit logistic regression for propensity. Compute: naive ATE, IPW ATE. Print SMD for age and income before/after weighting.\"",
+      "topic": "CAUSAL MACHINE LEARNING — PROPENSITY WEIGHTING",
+      "segment": "PROPENSITY SCORE WEIGHTING",
+      "runningText": "generating IPW…"
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it. IPW works by down-weighting controls who look nothing like the treated and up-weighting those who do. The propensity score is the balancing score — conditioning on it is equivalent to conditioning on all confounders.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "ipw_demo.py",
+      "topic": "CAUSAL MACHINE LEARNING — PROPENSITY WEIGHTING",
+      "segment": "PROPENSITY SCORE WEIGHTING",
+      "code": "# ipw_demo.py — Claude Code output\n\n# Estimate propensity scores\nprop_model = LogisticRegression().fit(X, T)\nps = prop_model.predict_proba(X)[:,1]\n\n# IPW weights: 1/p(T|X) for treated, 1/(1-p(T|X)) for control\nw = np.where(T==1, 1/ps, 1/(1-ps))\n\n# IPW-weighted ATE\nipw_ate = (np.sum(w * T * Y) / np.sum(w * T)) \\\n        - (np.sum(w * (1-T) * Y) / np.sum(w * (1-T)))\n\n# SMD = |mu_T - mu_C| / sqrt((sd_T^2 + sd_C^2) / 2)"
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Left panel: SMD balance plot. Age SMD drops from 0.45 to 0.06. Income SMD drops from 0.52 to 0.08 — both below the 0.1 threshold. Right panel: naive ATE at 3.72, IPW ATE at 3.05, truth at 3.00. IPW bias is 0.05. Naive bias is 0.72.",
+   "visual_intent": "Manim: SMD balance bars left + ATE number line right",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_IPWBalance",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Now ask Claude to add overlap trimming — drop units with extreme propensity scores below 0.05 or above 0.95. Extreme weights amplify noise. Trimming trades a little coverage for a lot of variance reduction.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"update ipw_demo.py:\n  -> add overlap trimming: drop units with ps < 0.05 or ps > 0.95\n  -> compare trimmed IPW ATE vs untrimmed\n  -> show how trimming affects effective sample size and SE\"",
+      "topic": "CAUSAL MACHINE LEARNING — PROPENSITY WEIGHTING",
+      "segment": "PROPENSITY SCORE WEIGHTING",
+      "runningText": "adding overlap trimming…"
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "role_note": "slate placeholder",
+   "narration_text": "Trimming drops 8 percent of units but cuts the IPW standard error by 35 percent. Trimmed ATE is 3.03 — closer to truth and more stable across seeds. The overlap condition is not a technicality — it determines whether causal estimation is possible.",
+   "visual_intent": "slate: trimmed vs untrimmed IPW ATE comparison; propensity score histogram with trimming thresholds",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "IPW is a reweighting trick that makes your observational data look like an experiment. The propensity score collapses all confounders into one number. The SMD below 0.1 on all covariates is your evidence that it worked.",
+   "visual_intent": "recap card: IPW formula, SMD threshold 0.1, overlap condition",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: check the SMD table on your observational dataset before and after any propensity adjustment. If any covariate has SMD above 0.2 after weighting, your propensity model is misspecified. The next reel covers doubly robust estimation — AIPW — which protects against that misspecification.",
+   "visual_intent": "next-steps card: run SMD check, identify misspecified propensity, proceed to AIPW reel",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}

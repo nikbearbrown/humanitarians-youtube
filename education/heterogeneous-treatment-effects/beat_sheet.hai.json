@@ -1,0 +1,234 @@
+{
+ "metadata": {
+  "title": "HTE: The Average Effect Hides the Subgroup Story",
+  "slug": "heterogeneous-treatment-effects",
+  "topic": "CAUSAL MACHINE LEARNING — HETEROGENEOUS TREATMENT EFFECTS",
+  "register": "Pragmatist",
+  "voice": "af_kore",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro.",
+  "total_estimated_duration_seconds": 120,
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Annyeong, Humanitarians",
+      "topic": "HTE: The Average Effect Hides the Subgroup Story",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Causal Machine Learning, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "Average treatment effect = 2 percentage points. But for one biomarker segment it is 15. For another it is negative. The average is hiding the story.",
+   "visual_intent": "title card: 'HTE — the average is a lie'; subgroup heterogeneity hiding under ATE",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask Claude. Fit a T-learner on synthetic RCT data, compute individual CATEs, split into quartiles by biomarker, and identify which feature best separates high-benefit from low-benefit patients.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write a Python HTE analysis: synthetic RCT n=2000, features: age (30-80), biomarker (0-1), comorbidity (binary). True CATE = 0.2*biomarker - 0.003*age + 0.1. Treatment T~Bernoulli(0.5). Fit T-learner (GradientBoosting). Compute individual CATEs. Split top/bottom quartile by predicted CATE. Print mean CATE, mean Y|T=1, mean Y|T=0 for each quartile.\"",
+      "topic": "CAUSAL MACHINE LEARNING — HTE",
+      "segment": "HETEROGENEOUS TREATMENT EFFECTS",
+      "runningText": "fitting HTE model…"
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it. The HTE analysis bridges population-level evidence to individual-level decisions. The causal forest estimates heterogeneity; the subgroup analysis makes it actionable.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "hte_analysis.py",
+      "topic": "CAUSAL MACHINE LEARNING — HTE",
+      "segment": "HETEROGENEOUS TREATMENT EFFECTS",
+      "code": "# hte_analysis.py — Claude Code output\n\n# True CATE varies by biomarker\n# CATE(x) = 0.2 * biomarker - 0.003 * age + 0.1\n\n# T-learner: two separate GBM models\nm1 = GBM().fit(X[T==1], Y[T==1])\nm0 = GBM().fit(X[T==0], Y[T==0])\ncate_pred = m1.predict(X) - m0.predict(X)\n\n# Quartile split by predicted CATE\nq_labels = pd.qcut(cate_pred, q=4, labels=['Q1','Q2','Q3','Q4'])\n# Top quartile: biomarker dominant predictor of benefit"
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "The scatter plot reveals the story: biomarker score drives CATE. Top quartile mean CATE is 0.23 — nearly four times the bottom quartile mean of 0.06. The average effect of 0.12 hides both.",
+   "visual_intent": "Manim: scatter plot biomarker vs predicted CATE colored by benefit quartile",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_HTEScatter",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Now ask Claude to add a CATE forest permutation test — does the heterogeneity survive a placebo shuffle? If the top-bottom quartile gap vanishes under permuted treatment, the HTE is real.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"update hte_analysis.py:\n  -> add permutation test: shuffle treatment label 200 times\n  -> recompute top-bottom CATE quartile gap each time\n  -> report p-value: fraction of permutations exceeding observed gap\"",
+      "topic": "CAUSAL MACHINE LEARNING — HTE",
+      "segment": "HETEROGENEOUS TREATMENT EFFECTS",
+      "runningText": "adding permutation test…"
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "role_note": "slate placeholder",
+   "narration_text": "Permutation p-value of 0.002 — the top-bottom quartile gap occurs in fewer than 0.2 percent of placebo shuffles. The heterogeneity is not noise. The biomarker is a genuine treatment effect modifier.",
+   "visual_intent": "slate: permutation test histogram; observed gap vs null distribution",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "HTE analysis is three steps: estimate individual CATEs, sort by predicted CATE, validate with permutation or calibration. The ATE is just the mean of the distribution. The distribution is the story.",
+   "visual_intent": "recap card: three-step HTE workflow; ATE vs CATE distribution",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: take your last RCT and compute individual CATEs. Find the feature with the highest interaction with treatment. That is your subgroup moderator. The next reel covers policy learning — how to turn those CATEs into optimal treatment rules.",
+   "visual_intent": "next-steps card: run HTE, find moderator, proceed to policy learning reel",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}
