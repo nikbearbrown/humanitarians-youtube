@@ -1,0 +1,317 @@
+{
+  "slug": "brutalist-figma-claude-ch05-chapter-5-the-figma-audit",
+  "title": "Chapter 5 — The Figma Audit",
+  "series": "Brutalist Figma + Claude",
+  "source": "chapters/05-the-figma-audit.md",
+  "voice_id": "",
+  "accent": "#ea580c",
+  "fps": 24,
+  "clock": "real",
+  "metadata": {
+    "chapter": 5,
+    "total_chapters": 14,
+    "playlist": "Brutalist Figma + Claude",
+    "palette": "brutalist",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx"
+  },
+  "segments": [
+    {
+      "section": "HOOK",
+      "dark": false,
+      "title": [
+        [
+          "CHAPTER 5 — ",
+          false
+        ],
+        [
+          "THE FIGMA AUDIT",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">Before writing any code, it helps to understand the structure of what you are building. The audit has three stages: fetc</p><div class=\"callout\"><b>Chapter 5 — The Figma Audit</b> — The severity levels matter and they are not decorative. An error breaks or corrupts the pipeline — an orphaned alias, a </div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Before writing any code, it helps to understand the structure of what you are building. The audit has three stages: fetch the file data, apply a rule set to it, and emit findings. Each finding has a category, a severity, a reference to the Figma object that triggered it, and a suggestion for what to do. The severity levels matter and they are not decorative.",
+          "audio_file": "audio/S01.mp3",
+          "actual_duration_s": 18.56
+        }
+      ],
+      "id": "S01",
+      "num": 1,
+      "total": 11,
+      "label": "01 / 11 · HOOK"
+    },
+    {
+      "section": "BUILDING FIGMA-AUDIT.JS",
+      "dark": false,
+      "title": [
+        [
+          "BUILDING FIGMA-AUDIT.JS",
+          false
+        ],
+        [
+          "",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"grid2\"><div class=\"cell-part\"><b>category</b><span>'naming' — 'token-hygiene'</span></div><div class=\"cell-part hot\"><b>severity</b><span>'error' — 'warning'</span></div><div class=\"cell-part\"><span>const isPrimitive = v.name.includes('/palette/') — v.name.includes('/scale/');</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The architecture follows directly from the three-stage model. A main script fetches data and wires together check functions. Each check function receives the full data and returns an array of findings. A renderer emits the findings as both a human-readable markdown report and a machine-readable JSON file.",
+          "audio_file": "audio/S02.mp3",
+          "actual_duration_s": 17.79
+        }
+      ],
+      "id": "S02",
+      "num": 2,
+      "total": 11,
+      "label": "02 / 11 · BUILDING FIGMA-AUDIT.JS"
+    },
+    {
+      "section": "THE REPORT",
+      "dark": false,
+      "title": [
+        [
+          "THE REPORT",
+          false
+        ],
+        [
+          "",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">The report serves two audiences simultaneously: a human reading a markdown file in a browser or Slack, and a machine par</p><div class=\"callout\"><b>The Report</b> — The markdown report exists so a designer can open it, find the specific node, click the deep link into Figma, and fix th</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The report serves two audiences simultaneously: a human reading a markdown file in a browser or Slack, and a machine parsing JSON in CI. Both outputs are written on every run. The markdown report exists so a designer can open it, find the specific node, click the deep link into Figma, and fix the problem. The JSON report exists so CI can count errors, run the diff against the baseline, and decide whether to block the build.",
+          "audio_file": "audio/S03.mp3",
+          "actual_duration_s": 23.06
+        }
+      ],
+      "id": "S03",
+      "num": 3,
+      "total": 11,
+      "label": "03 / 11 · THE REPORT"
+    },
+    {
+      "section": "THE RATCHET: BASELINES AND CI",
+      "dark": false,
+      "title": [
+        [
+          "THE RATCHET: ",
+          false
+        ],
+        [
+          "BASELINES AND CI",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">There is a name for the discipline this audit enforces: it comes from database refactoring tools like Flyway and Liquiba</p><div class=\"callout\"><b>The Ratchet: Baselines and CI</b> — On day one, a large legacy file may have hundreds of warnings. You cannot block CI on all of them — you would never merg</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "There is a name for the discipline this audit enforces: it comes from database refactoring tools like Flyway and Liquibase, which established the idea that schema changes must be forward-only, tracked in a version log, and applied idempotently. The audit baseline is the same concept applied to design quality. You commit where you are. You can only improve. Regressions are visible immediately. On day one, a large legacy file may have hundreds of warnings.",
+          "audio_file": "audio/S04.mp3",
+          "actual_duration_s": 23.23
+        }
+      ],
+      "id": "S04",
+      "num": 4,
+      "total": 11,
+      "label": "04 / 11 · THE RATCHET: BASELINES AND CI"
+    },
+    {
+      "section": ".GITHUB/WORKFLOWS/FIGMA-PIPELI",
+      "dark": false,
+      "title": [
+        [
+          ".GITHUB/WORKFLOWS/FIGMA-PIPELINE.YML (EXCERPT)",
+          false
+        ],
+        [
+          "",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">steps: name: Audit Figma file run: npm run figma:audit:ci env: FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }} FIGMA_FILE_KEY: $</p><div class=\"callout\"><b>.github/workflows/figma-pipeline.yml (ex</b> — name: Extract tokens (only if audit passes) if: success() run: npm run figma:tokens</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "steps: name: Audit Figma file run: npm run figma:audit:ci env: FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }} FIGMA_FILE_KEY: ${{ secrets.FIGMA_FILE_KEY }} name: Extract tokens (only if audit passes) if: success() run: npm run figma:tokens",
+          "audio_file": "audio/S05.mp3",
+          "actual_duration_s": 15.83
+        }
+      ],
+      "id": "S05",
+      "num": 5,
+      "total": 11,
+      "label": "05 / 11 · .GITHUB/WORKFLOWS/FIGMA-PIPELI"
+    },
+    {
+      "section": "WHAT THE AUDIT CANNOT CATCH",
+      "dark": false,
+      "title": [
+        [
+          "WHAT THE AUDIT ",
+          false
+        ],
+        [
+          "CANNOT CATCH.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"grid2\"><div class=\"cell-part\"><span>Variable naming violations — Yes</span></div><div class=\"cell-part hot\"><span>Orphaned alias references — Yes</span></div><div class=\"cell-part\"><span>Static text/background contrast — Yes (single-frame pairs)</span></div><div class=\"cell-part\"><span>Semantic correctness of a name — No</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The audit validates structure. It cannot validate intent. A variable named color/brand/primary that actually holds a secondary color passes every naming check. The audit did its job. The designer made a mistake. These are different problems and only one of them is machine-checkable. Accessibility beyond static contrast is not expressible in static Figma data. Hover states, focus rings, animation timing, motion sensitivity, keyboard navigation, focus management , none of this exists in the REST API response.",
+          "audio_file": "audio/S06.mp3",
+          "actual_duration_s": 28.52
+        }
+      ],
+      "id": "S06",
+      "num": 6,
+      "total": 11,
+      "label": "06 / 11 · WHAT THE AUDIT CANNOT CATCH"
+    },
+    {
+      "section": "LINTERS AND THE AUTOMATED QUAL",
+      "dark": false,
+      "title": [
+        [
+          "LINTERS AND ",
+          false
+        ],
+        [
+          "THE AUTOMATED QUALITY GATE",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">The Figma audit is structurally identical to a code linter, and that is not a coincidence — it is the application of for</p><div class=\"callout\"><b>Linters and the Automated Quality Gate</b> — JSLint appeared in 2002. ESLint followed in 2013. Both made the same argument: code quality is checkable by machine, and</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "The Figma audit is structurally identical to a code linter, and that is not a coincidence , it is the application of forty years of automated quality gate thinking to a new artifact type. JSLint appeared in 2002. ESLint followed in 2013. Both made the same argument: code quality is checkable by machine, and the machine should check it before a human wastes time on review.",
+          "audio_file": "audio/S07.mp3",
+          "actual_duration_s": 20.8
+        }
+      ],
+      "id": "S07",
+      "num": 7,
+      "total": 11,
+      "label": "07 / 11 · LINTERS AND THE AUTOMATED QUAL"
+    },
+    {
+      "section": "WHAT COMES NEXT",
+      "dark": false,
+      "title": [
+        [
+          "WHAT COMES ",
+          false
+        ],
+        [
+          "NEXT.",
+          true
+        ]
+      ],
+      "body_html": "<p class=\"lead\">Chapter 6 builds figma-fix-plugin/ — the Plugin API complement to the audit. The audit identifies what is broken. The fi</p><div class=\"callout\"><b>What Comes Next</b> — You have a report. Now let's fix what it found.</div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "Chapter 6 builds figma-fix-plugin/ , the Plugin API complement to the audit. The audit identifies what is broken. The fix plugin repairs it in bulk from inside Figma: renaming naming violations, resolving orphaned aliases, adding missing descriptions to components. The audit's JSON output is the fix plugin's input. The two tools are designed to be used together. You have a report. Now let's fix what it found.",
+          "audio_file": "audio/S08.mp3",
+          "actual_duration_s": 22.36
+        }
+      ],
+      "id": "S08",
+      "num": 8,
+      "total": 11,
+      "label": "08 / 11 · WHAT COMES NEXT"
+    },
+    {
+      "section": "FIGMA-TOOLS: AUDIT PIPELINE",
+      "dark": false,
+      "title": [
+        [
+          "FIGMA-TOOLS: ",
+          false
+        ],
+        [
+          "AUDIT PIPELINE",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"stack\"><div class=\"wire\"><b>·</b><span>Any true false positive (intentional design flagged as a violation) = add a suppression pattern to check-component-hygie</span></div><div class=\"wire\"><b>·</b><span>Any false negative (real problem not caught) = add a new rule or extend the check function.</span></div><div class=\"wire\"><b>If TOK001 errors are absent but your fixture has aliased variables, confirm the alias structure in the fixture is { type</b><span>'VARIABLE_ALIAS', id: '&lt;id&gt;' } — a different shape will cause the orphan check to miss them.</span></div></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "figma-audit.js reads from fixtures/, writes to reports/. Never modify reports/audit-baseline.json directly , only update it via npm run figma:audit:baseline after a deliberate, reviewed reduction in findings. The baseline is a team contract; changing it requires explicit sign-off. What you're validating: The audit-report.json produced by figma-audit.js in Exercise 4, plus one of the check functions Claude Code generated.",
+          "audio_file": "audio/S09.mp3",
+          "actual_duration_s": 26.24
+        }
+      ],
+      "id": "S09",
+      "num": 9,
+      "total": 11,
+      "label": "09 / 11 · FIGMA-TOOLS: AUDIT PIPELINE"
+    },
+    {
+      "section": "THESIS",
+      "dark": false,
+      "title": [
+        [
+          "THE CORE ",
+          false
+        ],
+        [
+          "CLAIM.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"thesis\">figma-audit.js reads from fixtures/, writes to reports/. Never modify reports/audit-baseline.json directly — only update</div><p class=\"lead\">Exercise 5 — AI Validation Exercise</p>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "figma-audit.js reads from fixtures/, writes to reports/. Never modify reports/audit-baseline.json directly , only update it via npm run figma:audit:baseline after a deliberate, reviewed reduction in findings. The baseline is a team contract; changing it requires explicit sign-off. What you're validating: The audit-report.json produced by figma-audit.js in Exercise 4, plus one of the check functions Claude Code generated.",
+          "audio_file": "audio/S10.mp3",
+          "actual_duration_s": 26.24
+        }
+      ],
+      "id": "S10",
+      "num": 10,
+      "total": 11,
+      "label": "10 / 11 · THESIS"
+    },
+    {
+      "section": "CLOSE",
+      "dark": true,
+      "title": [
+        [
+          "ASK THE QUESTION. ",
+          false
+        ],
+        [
+          "APPLY THE FRAMEWORK.",
+          true
+        ]
+      ],
+      "body_html": "<div class=\"close\"><div class=\"close-tags\"><span>BUILDING FIGMA-AUDIT.JS</span><span>//</span><span>THE REPORT</span><span>//</span><span>THE RATCHET: BASELINES AN</span></div><p class=\"sig\">Brutalist Figma + Claude · Ch.5 · Chapter 5 — The Figma Audit</p></div>",
+      "beats": [
+        {
+          "type": "analytic",
+          "text": "That is the framework. Brutalist Figma + Claude, chapter 5: Chapter 5 , The Figma Audit. The patterns are now in place. Apply them.",
+          "audio_file": "audio/S11.mp3",
+          "actual_duration_s": 8.21
+        }
+      ],
+      "id": "S11",
+      "num": 11,
+      "total": 11,
+      "label": "11 / 11 · CLOSE"
+    }
+  ]
+}
