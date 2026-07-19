@@ -1,0 +1,86 @@
+{
+ "metadata": {
+  "title": "Causal Inference — GhostTrack Spotify DAG",
+  "slug": "ghosttrack-spotify-dag",
+  "topic": "CAUSAL INFERENCE — GHOSTTRACK SPOTIFY DAG",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 NEXT STEPS · B09 outro. Back-door criterion on latent promotion confounder for Spotify virality.",
+  "total_estimated_duration_seconds": 118
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOpen", "props": {"topic": "CAUSAL INFERENCE",
+       "lines": ["Nik Bear Brown", "GhostTrack Spotify DAG."]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM — why care", "role_note": "the problem, the context, the stakes — BEFORE the CLI",
+   "narration_text": "A record label runs a regression: organic features predict virality with r-squared of point seven. They conclude: great organic music goes viral. But there is a ghost in the DAG — latent promotion. Labels that promote heavily also happen to release music with strong organic features. The effect is not identified. You are measuring the label's budget, not the music.",
+   "visual_intent": "title card: 'organic features -> viral' claim vs latent promotion confounder; the ghost track problem stated plainly",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 14},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "terminal (Onda)",
+   "narration_text": "Into the terminal: claude — build a Python causal analysis of Spotify virality: generate N equals five thousand synthetic tracks with a latent promotion confounder; call Claude to propose a DAG as an edge list; run the back-door criterion; identify whether the organic-features to viral-flag effect is identified.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"Build a Python causal analysis of Spotify virality:\n  generate N=5000 synthetic tracks with latent_promotion confounder;\n  call Claude to propose a DAG as edge list;\n  run back-door criterion;\n  identify whether organic_features -> viral_flag effect is identified\"",
+       "topic": "CAUSAL INFERENCE — GHOSTTRACK SPOTIFY DAG", "segment": "BACK-DOOR CRITERION", "runningText": "generating analysis…"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "terminal (Onda)",
+   "narration_text": "Read it. The back-door criterion check is one test: can we find a set of observed variables that blocks all back-door paths from organic features to viral flag without opening any front-door paths? With latent promotion unmeasured, the answer is no — and the function returns false.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {
+       "filename": "spotify_dag.py", "topic": "CAUSAL INFERENCE — GHOSTTRACK SPOTIFY DAG", "segment": "BACK-DOOR CRITERION",
+       "code": "# spotify_dag.py — Claude Code output\nimport networkx as nx\n\ndag = nx.DiGraph()\ndag.add_edges_from([\n    ('latent_promotion', 'organic_features'),\n    ('latent_promotion', 'play_count'),\n    ('organic_features', 'viral_flag'),\n    ('play_count', 'viral_flag'),\n])\n\nobserved_vars = ['organic_features', 'play_count', 'viral_flag']\n# latent_promotion is NOT in observed_vars\n\nidentified = backdoor_criterion(dag, 'organic_features',\n                                'viral_flag', observed_vars)"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B04", "act": "OUTPUT — run", "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it. The DAG appears. The green arrow is the causal path — organic features to viral flag. The red arrows trace the back-door path: latent promotion flows into organic features and into play count, which flows into viral flag. With promotion unmeasured, the back-door is open. Effect not identified.",
+   "visual_intent": "Manim: DAG with organic_features (left), viral_flag (right), latent_promotion (top, CRIMSON/dashed), play_count (lower right); green causal arrow vs red back-door arrows; 'Effect NOT identified' verdict",
+   "shot": {"type": "GRAPHIC", "source": "manim", "motion": "fade",
+     "manim": {"scene_class": "B04_GhostTrackDAG", "file": "vox_scenes.py"}},
+   "estimated_duration_s": 17},
+
+  {"beat_id": "B05", "act": "CHANGE — check & revise", "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Can we recover the effect? If we can proxy latent promotion — say, using playlist placement as an instrument — iterate: add playlist placement as a proxy instrument and test whether front-door adjustment identifies the effect instead.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"update spotify_dag.py:\n  -> add playlist_placement as proxy instrument\n  -> test front-door adjustment\n  -> does organic_features -> viral_flag become identified?\"",
+       "topic": "CAUSAL INFERENCE — GHOSTTRACK SPOTIFY DAG", "segment": "BACK-DOOR CRITERION", "runningText": "updating DAG…"}}},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B06", "act": "OUTPUT — revised", "role_note": "slate — fill with screen-recording",
+   "narration_text": "Re-run. With playlist placement as a front-door mediator, the effect becomes identified: organic features to playlist placement to viral flag, with latent promotion affecting only the organic side. The front-door criterion closes the ghost path.",
+   "visual_intent": "screen-recording or slate: terminal output showing identified=True after adding playlist_placement front-door path",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B07", "act": "SUMMARY", "role_note": "the lesson — one beat",
+   "narration_text": "The ghost was never in the music. It was in the unmeasured promotion budget that simultaneously shaped what organic features looked like and what went viral. Back-door blocked means your estimate is real. Back-door open means you are measuring the label's budget.",
+   "visual_intent": "recap card: 'back-door open -> measuring promotion budget' vs 'front-door criterion -> measuring organic effect'; the ghost track lesson stated plainly",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B08", "act": "NEXT STEPS", "role_note": "what to do next",
+   "narration_text": "Your move: draw the DAG for your own model before you regress. Ask: what unmeasured variable could simultaneously affect my treatment and my outcome? If you find one, your estimate is biased. Find the proxy — the front-door mediator — and the effect becomes recoverable.",
+   "visual_intent": "next-steps card: 1) draw your DAG before regressing, 2) identify unmeasured confounders, 3) find front-door proxy mediators",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 10},
+
+  {"beat_id": "B09", "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOutro", "props": {
+       "brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI",
+       "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}},
+   "estimated_duration_s": 8}
+ ]
+}
