@@ -1,0 +1,256 @@
+{
+ "metadata": {
+  "slug": "cognitive-labor-audit",
+  "title": "Audit a Prompt for Cognitive Labor Transfer with Claude",
+  "topic": "CLAUDE FOR EDUCATION",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-for-education-a-practitioners-guide/chapters/04-lesson-planning-and-activity-design.md",
+  "segment": "COGNITIVE LABOR",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 113.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Namaste, Humanitarians",
+      "topic": "Audit a Prompt for Cognitive Labor Transfer with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Brutalist and Educational AI. Build it with Claude — then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE FOR EDUCATION",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Cognitive Labor Audit",
+       "Who Does the Thinking?",
+       "Build with Claude CLI"
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 10.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Audit a Prompt for Cognitive Labor Transfer with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE FOR EDUCATION",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Cognitive Labor Audit",
+       "Who Does the Thinking?",
+       "Build with Claude CLI"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "Most instructional prompts don't ask students to think — they ask Claude to think and students to observe. The difference is invisible in the output. The output looks the same whether the student did the reasoning or the AI did. That is the diagnostic problem this tool solves.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: hook statement. 'Ask Claude to explain X and summarize' — who is doing the thinking? No CLI yet.",
+   "estimated_duration_s": 12.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "Pipe the instructional prompt into Claude. For each learning objective implied, classify the cognitive operation: student-performed, AI-performed, or shared. Return a cognitive labor ratio — percentage of operations that are genuinely student-performed.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Audit this instructional prompt for cognitive labor distribution. For each learning objective implied by the prompt, classify the cognitive operation as: (a) student-performed, (b) AI-performed, or (c) shared. Return a labor ratio: % of cognitive operations that are student-performed.\" < prompt.txt",
+      "topic": "CLAUDE FOR EDUCATION",
+      "segment": "COGNITIVE LABOR",
+      "runningText": "running cognitive audit…"
+     }
+    }
+   },
+   "estimated_duration_s": 15.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Read the script before trusting it. It reads prompt.txt, sends it to Claude with the audit instruction, parses the classification for each objective, and computes the ratio. The ratio is calculated on substantive cognitive operations only — not mechanical steps like 'copy the output.'",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "cognitive_audit.py",
+      "segment": "COGNITIVE LABOR",
+      "topic": "CLAUDE FOR EDUCATION",
+      "code": "import subprocess, re\nfrom pathlib import Path\n\ndef audit_cognitive_labor(prompt_file):\n    text = Path(prompt_file).read_text()\n    instruction = (\n        \"Audit for cognitive labor distribution.\\n\"\n        \"For each learning objective, classify:\\n\"\n        \"(a) student-performed (b) AI-performed (c) shared.\\n\"\n        \"Return: ratio of student-performed operations.\"\n    )\n    result = subprocess.run(\n        [\"claude\", instruction],\n        input=text, capture_output=True, text=True\n    )\n    output = result.stdout\n    ratios = re.findall(r'(\\d+)%.*student', output, re.I)\n    ratio = ratios[0] if ratios else 'unknown'\n    print(f\"Cognitive labor ratio: {ratio}% student-performed\")\n    print(output)"
+     }
+    }
+   },
+   "estimated_duration_s": 15.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "The bar chart shows four learning objectives: summarize Claude output, compare AI responses, evaluate source credibility, form a claim with evidence. The bars show student, shared, and AI portions for each. The overall ratio: forty percent student-performed. Sixty percent of the cognitive work is being done by the AI — and the output looks the same to the grader.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_CognitiveLaborChart",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "The change: rewrite the prompt to shift cognitive labor back to the student. Predict the answer before asking Claude, then compare. Run the audit again and show the ratio change.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Rewrite this instructional prompt to shift cognitive labor to the student — for example, require them to predict the answer before asking Claude, then compare. Re-audit and show the new labor ratio.\" < prompt.txt",
+      "topic": "CLAUDE FOR EDUCATION",
+      "segment": "COGNITIVE LABOR",
+      "runningText": "shifting labor to student…"
+     }
+    }
+   },
+   "estimated_duration_s": 15.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT",
+   "narration_text": "The revised prompt shifts the ratio from forty to seventy-five percent student-performed. The task is the same topic. The AI is still in the loop. But the student is doing the thinking — predicting, comparing, evaluating the gap between their prediction and Claude's response. That gap is where the learning happens.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: ratio comparison. Before: 40% student. After: 75% student. Same topic, different prompt structure. The shift highlighted.",
+   "estimated_duration_s": 10.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "Cognitive labor is zero-sum in the moment. Every operation the AI performs is one the student doesn't. The ratio isn't a judgment about AI use — it's a diagnostic for whether the assignment is still doing what it was designed to do.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: teardown summary. 'AI-performed cognitive work = student learning foregone.' The ratio as a diagnostic, not a verdict.",
+   "estimated_duration_s": 12.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "narration_text": "Next: Build an Assessment Vulnerability Map — score each of your assessments on AI-completability, detectability, and learning-validity-at-risk.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: next reel teaser. 'assessment-vulnerability-map' slug.",
+   "estimated_duration_s": 6.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Brutalist and Educational AI. At NikBearBrown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8.0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
+}
