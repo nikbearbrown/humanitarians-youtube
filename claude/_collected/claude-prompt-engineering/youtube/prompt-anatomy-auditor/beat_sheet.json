@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "slug": "prompt-anatomy-auditor",
+    "title": "Build a Prompt Anatomy Auditor with Claude",
+    "topic": "PROMPT ENGINEERING",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "claude-prompt-engineering/chapters/01-anatomy-of-a-claude-prompt.md",
+    "segment": "PROMPT ANATOMY",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 113.0
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "label": "Open",
+      "estimated_duration_s": 10,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOpen",
+          "props": {
+            "topic": "PROMPT ENGINEERING",
+            "lines": [
+              "Nik Bear Brown",
+              "Brutalist + Educational AI",
+              "Prompt Anatomy Auditor",
+              "Six Components. One Diagnostic.",
+              "CLI Build"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B01",
+      "label": "Hook — the spec gap",
+      "estimated_duration_s": 12,
+      "narration": "Most prompts fail not because you don't know what you want — but because you've assembled the right information in a structure Claude can't parse. Six components. Most prompts fill two.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Terminal-style text: 'PROMPT ANATOMY AUDIT' header, then two columns: COMPONENT / STATUS. Task: present. Context: missing. Constraints: missing. Format: missing. Examples: missing. Eval Criteria: missing. Crimson Xs on missing rows."
+        }
+      ]
+    },
+    {
+      "beat_id": "B02",
+      "label": "Claude command",
+      "estimated_duration_s": 15,
+      "narration": "Here's the seed command. Pipe any prompt into Claude and ask it to map the six anatomy components — present, implied, or missing — with a specificity score for each filled slot.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Analyze this prompt against the six-component anatomy: Task, Context, Constraints, Output Format, Examples, Evaluation Criteria. For each: present/implied/missing, specificity score 1-5, one-sentence improvement suggestion.\" < prompt.txt",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "PROMPT ANATOMY",
+            "runningText": "running analysis…"
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B03",
+      "label": "Python code",
+      "estimated_duration_s": 15,
+      "narration": "The Python script reads your prompt, sends it through Claude with the anatomy instruction, then parses the six-component report into a structured output you can inspect.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "prompt_auditor.py",
+            "segment": "PROMPT ANATOMY",
+            "topic": "PROMPT ENGINEERING",
+            "code": "import subprocess, sys\nprompt = open(sys.argv[1]).read()\ninstruction = (\n  \"Analyze this prompt against the six-component \"\n  \"anatomy: Task, Context, Constraints, Output \"\n  \"Format, Examples, Evaluation Criteria. For each:\"\n  \" present/implied/missing, score 1-5, one-line fix.\"\n)\nresult = subprocess.run(\n  [\"claude\", instruction],\n  input=prompt, capture_output=True, text=True\n)\nprint(result.stdout)"
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B04",
+      "label": "Component map",
+      "estimated_duration_s": 14,
+      "narration": "The audit distinguishes implied from missing. Implied means the information is inferable from context. Missing means there is no basis for inference at all. That distinction changes the fix.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Two-column table: COMPONENT / VERDICT. Task: Present (score 4). Context: Implied (score 2). Constraints: Missing (score 0). Format: Missing (score 0). Examples: Missing (score 0). Eval Criteria: Missing (score 0). Color: green=present, gold=implied, crimson=missing."
+        }
+      ]
+    },
+    {
+      "beat_id": "B05",
+      "label": "The change — improved prompt",
+      "estimated_duration_s": 15,
+      "narration": "Now run the same auditor on an improved prompt — one that fills the missing slots. Watch the specificity scores move.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Analyze this prompt against the six-component anatomy...\" < prompt_improved.txt",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "PROMPT ANATOMY",
+            "runningText": "re-running audit on improved prompt…"
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B06",
+      "label": "Score delta",
+      "estimated_duration_s": 10,
+      "narration": "Before: two components present, average score 1.3. After: six components present, average score 4.1. The bars move. The audit makes the improvement visible.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Side-by-side: BEFORE column (sparse, mostly crimson) vs AFTER column (all six filled, mostly green). Score deltas shown per row. Total score: 8 -> 24 out of 30."
+        }
+      ]
+    },
+    {
+      "beat_id": "B07",
+      "label": "Teardown angle",
+      "estimated_duration_s": 12,
+      "narration": "The anatomy is not a template to fill — it's a diagnostic. A prompt missing Evaluation Criteria isn't failing because it's incomplete. It's failing because without criteria, Claude can't know when it's done.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Large text: 'The anatomy is a diagnostic, not a template.' Below: 'Missing: Evaluation Criteria = Claude decides when done. You don't.' Teardown palette — cream background, crimson accent line."
+        }
+      ]
+    },
+    {
+      "beat_id": "B08",
+      "label": "Next reel teaser",
+      "estimated_duration_s": 6,
+      "narration": "Next: put the evaluation criteria first — before the task — and watch what changes.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Clean slate: 'NEXT: Criteria-First Generator' with arrow. Minimal teardown style."
+        }
+      ]
+    },
+    {
+      "beat_id": "B09",
+      "label": "Outro",
+      "estimated_duration_s": 8,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      ]
+    }
+  ]
+}

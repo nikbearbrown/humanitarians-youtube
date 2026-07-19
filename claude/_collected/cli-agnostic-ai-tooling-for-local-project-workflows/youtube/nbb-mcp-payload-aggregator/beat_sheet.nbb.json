@@ -1,0 +1,323 @@
+{
+  "metadata": {
+    "slug": "mcp-payload-aggregator",
+    "variant": "nbb",
+    "title": "Build a MCP Payload Aggregator: Raw Dump vs. Aggregated Response",
+    "topic": "AGENTIC CLI",
+    "audience": "NikBearBrown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "palette": "teardown",
+    "register": "Teardown",
+    "derived_from": "beat_sheet.json",
+    "source_reel": "../mcp-payload-aggregator",
+    "source_video": "../mcp-payload-aggregator/mcp-payload-aggregator-cut.mp4",
+    "body_beats": [
+      "B00",
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08"
+    ],
+    "body_duration_s": 109,
+    "old_outro_beats": [
+      "B09"
+    ],
+    "built_at": "2026-07-16T20:37:30.536565"
+  },
+  "beats": [
+    {
+      "beat_id": "NBB00",
+      "act": "COLD OPEN",
+      "title": "Liam cold open \u2014 ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Merhaba, Liam \u2014 in for Bear. Agentic CLI \u2014 build it, measure it, take it apart? Can you explain it, Bear?",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Agentic CLI \u2014 build it, measure it, take it apart?",
+            "topic": "AGENTIC CLI",
+            "segment": "Build a MCP Payload Aggregator: Raw",
+            "greeting": "Merhaba, Liam",
+            "runningText": "explaining the mechanism\u2026",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.0,
+      "audio_file": "mp3/beat-NBB00.mp3",
+      "actual_duration_s": 6.891
+    },
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "Nik Bear Brown. Agentic CLI \u2014 build it, measure it, take it apart.",
+      "shot": {
+        "source": "remotion",
+        "composition": "NikBearBrownOpen",
+        "props": {
+          "topic": "AGENTIC CLI",
+          "lines": [
+            "Nik Bear Brown",
+            "Brutalist + Educational AI",
+            "MCP Payload Aggregator",
+            "Raw Dump vs Aggregated",
+            "Tool Does the Math"
+          ]
+        }
+      },
+      "estimated_duration_s": 10,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B00.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B00.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "narration_text": "A database query that returns eighteen hundred forty-two objects when you need six numbers is not a data retrieval problem \u2014 it's a tool design problem that gets worse every time you call it. The tool does no computation. The agent does all of it. And eighteen hundred rows in context is eighteen hundred rows the model has to reason through before getting to the answer.",
+      "shot": {
+        "source": "slate",
+        "notes": "diagram: database returns 1842-row CSV, all rows flow into context window; agent icon surrounded by data; caption: '1842 rows when you need 6 numbers = tool design problem'"
+      },
+      "estimated_duration_s": 12,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B01.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B01.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "narration_text": "Ask for the aggregator. In the terminal: claude \u2014 summarize monthly spend from this data. Return only: query description, date range, record count, monthly totals, source table name. Do not include individual records. Format as JSON.",
+      "shot": {
+        "source": "remotion",
+        "composition": "NikBearBrownTerminalAsk",
+        "props": {
+          "command": "claude \"Summarize monthly spend from this data.\n  Return only: query description, date range,\n  record count, monthly totals (month + total),\n  source table name.\n  No individual records. Format as JSON.\" < aggregated_payload.json",
+          "topic": "AGENTIC CLI",
+          "segment": "MCP PAYLOAD",
+          "runningText": "aggregating payload\u2026"
+        }
+      },
+      "estimated_duration_s": 15,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B02.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B02.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "narration_text": "Read the aggregator. It takes a raw CSV dump of transaction records, computes monthly totals in pandas \u2014 sum, group by month \u2014 and packages the result as a provenance-enriched JSON payload: query description, date range, record count, monthly totals array, source table name. The raw rows never enter the context window.",
+      "shot": {
+        "source": "remotion",
+        "composition": "NikBearBrownCodeBlock",
+        "props": {
+          "filename": "payload_aggregator.py",
+          "segment": "MCP PAYLOAD",
+          "topic": "AGENTIC CLI",
+          "code": "# payload_aggregator.py \u2014 Claude Code output\nimport pandas as pd, json, sys\n\ndef aggregate(csv_path, table_name):\n    df = pd.read_csv(csv_path, parse_dates=['date'])\n    monthly = (df.groupby(df['date'].dt.to_period('M'))['amount']\n                 .sum().reset_index())\n    monthly.columns = ['month', 'total']\n    return {\n        'query': 'monthly spend summary',\n        'date_range': [str(df['date'].min()), str(df['date'].max())],\n        'record_count': len(df),\n        'monthly_totals': monthly.to_dict('records'),\n        'source_table': table_name\n    }\n\nresult = aggregate(sys.argv[1], sys.argv[2])\nprint(json.dumps(result, indent=2, default=str))"
+        }
+      },
+      "estimated_duration_s": 15,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B03.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B03.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "narration_text": "The token comparison chart appears. Raw dump bar fills to fourteen thousand tokens \u2014 the full CSV. Aggregated payload bar fills to one hundred forty tokens. Both bars then show the same analytical output alongside them: March was the peak month. The finding is identical. The cost is one percent.",
+      "shot": {
+        "source": "slate",
+        "notes": "horizontal bar chart: RAW DUMP bar fills to 14000 tokens (crimson); AGGREGATED bar fills to 140 tokens (green); both bars show same output text: 'peak: March \u2014 $42,310'; annotation: '1% of the cost, same finding'"
+      },
+      "estimated_duration_s": 14,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B04.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B04.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE",
+      "narration_text": "Now add a verify step. In the terminal: claude \u2014 update the aggregator to add a verify-one-month endpoint that queries March only and returns just the March total and row count. Show that provenance makes re-verification cheap.",
+      "shot": {
+        "source": "remotion",
+        "composition": "NikBearBrownTerminalAsk",
+        "props": {
+          "command": "claude \"update payload_aggregator.py:\n  -> add verify_month(month) endpoint\n  -> queries only that month\n  -> returns total + row count\n  -> show re-verification is cheap\"",
+          "topic": "AGENTIC CLI",
+          "segment": "MCP PAYLOAD",
+          "runningText": "adding verify endpoint\u2026"
+        }
+      },
+      "estimated_duration_s": 15,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B05.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B05.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT REVISED",
+      "narration_text": "The verify-March call returns: total forty-two thousand three hundred ten, row count one hundred twelve, source table transactions underscore 2026. Thirty tokens. The provenance metadata in the aggregated payload told us exactly how to re-verify without reloading all eighteen hundred rows.",
+      "shot": {
+        "source": "slate",
+        "notes": "verify endpoint output: JSON with month: March-2026 / total: 42310 / row_count: 112 / source: transactions_2026; annotation: '30 tokens to re-verify'; vs '14000 tokens to reload raw data'"
+      },
+      "estimated_duration_s": 10,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B06.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B06.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "act": "TEARDOWN",
+      "narration_text": "Returning everything is not more honest \u2014 it is more expensive and less useful. Returning the computed result plus provenance is the design principle: the tool does the aggregation, the agent does the reasoning. Provenance makes the result verifiable without a full reload. That is the contract.",
+      "shot": {
+        "source": "slate",
+        "notes": "teardown card: 'tool does aggregation / agent does reasoning'; two bullets: 'raw dump: honest but expensive and re-read every time' / 'aggregated + provenance: verifiable without reload'; 'that is the contract'"
+      },
+      "estimated_duration_s": 12,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B07.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B07.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B07.mp3"
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS",
+      "narration_text": "Your move: find one MCP tool that returns a full table when a summary would do. Add the aggregation in the tool layer. Next reel: the diff-first change auditor \u2014 because the same principle applies to code changes.",
+      "shot": {
+        "source": "slate",
+        "notes": "next steps: '1) identify raw-dump tool  2) add aggregation in tool layer  3) include provenance fields  4) add spot-verify endpoint'; teaser: 'next: diff-first change auditor'"
+      },
+      "estimated_duration_s": 6,
+      "locked": true,
+      "source_clip": "../mcp-payload-aggregator/clips/B08.mp4",
+      "source_audio": "../mcp-payload-aggregator/mp3/beat-B08.mp3",
+      "audio_file": "../mcp-payload-aggregator/mp3/beat-B08.mp3"
+    },
+    {
+      "beat_id": "NBB01",
+      "act": "VERDICT",
+      "title": "Liam verdict \u2014 ClaudeVerdictArtifact",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Here's what the body just demonstrated. Returning everything is not more honest \u2014 it is more expensive and less useful. Returning the computed result plus provenance is the design principle: the tool does the aggregation, the agent does the reasoning. Provenance makes the result verifiable without a full reload. That is the contract. Your move: find one MCP tool that returns a full table when a summary would do. Add the aggregation in the tool layer. Next reel: the diff-first change auditor \u2014 because the same principle applies to code changes.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "provenance": "proven-core/ClaudeVerdictArtifact",
+          "version": "1",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Build a MCP Payload Aggregator: Raw Dump vs.",
+            "artifactLines": [
+              "The verify-March call returns: total forty-two thousand three hundred ten, row count on\u2026",
+              "Returning everything is not more honest \u2014 it is more expensive and less useful.",
+              "Your move: find one MCP tool that returns a full table when a summary would do."
+            ]
+          },
+          "rendered": {
+            "out": "media/NBB01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30.0,
+      "audio_file": "mp3/beat-NBB01.mp3",
+      "actual_duration_s": 28.181
+    },
+    {
+      "beat_id": "NBB02",
+      "act": "YOUR TURN",
+      "title": "Your turn handoff \u2014 ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Take this prompt, run it on your own \u2014 pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Explain how [Build a MCP Payload Aggregator: Raw Dump vs. Aggregated Response] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+            "topic": "AGENTIC CLI",
+            "segment": "Build a MCP Payload Aggregator: Raw",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude\u2026",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.0,
+      "audio_file": "mp3/beat-NBB02.mp3",
+      "actual_duration_s": 7.765
+    },
+    {
+      "beat_id": "NBB03",
+      "act": "OUTRO",
+      "title": "Claude title outro \u2014 ClaudeTitleOutro",
+      "silent": true,
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "provenance": "proven-core/ClaudeTitleOutro",
+          "version": "1",
+          "props": {
+            "title": "Build a MCP Payload Aggregator: Raw Dump vs. Aggregated Response",
+            "handle": "@NikBearBrown",
+            "subline": "next reel: the diff-first change auditor \u2014 because the same principle applies to"
+          },
+          "rendered": {
+            "out": "media/NBB03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6.0,
+      "audio_file": "mp3/beat-NBB03.mp3",
+      "silence_s": 6.0,
+      "actual_duration_s": 6.03
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "metadata": {
+    "slug": "criteria-first-generator",
+    "variant": "nbb",
+    "title": "Build a Criteria-First Prompt Generator with Claude",
+    "topic": "PROMPT ENGINEERING",
+    "audience": "NikBearBrown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "palette": "teardown",
+    "register": "Teardown",
+    "derived_from": "beat_sheet.json",
+    "source_reel": "../criteria-first-generator",
+    "source_video": "../criteria-first-generator/criteria-first-generator-cut.mp4",
+    "body_beats": [
+      "B00",
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09"
+    ],
+    "body_duration_s": 117,
+    "old_outro_beats": [],
+    "built_at": "2026-07-17T01:00:17.927985"
+  },
+  "beats": [
+    {
+      "beat_id": "NBB00",
+      "act": "COLD OPEN",
+      "title": "Liam cold open — ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "I like the idea of a generator that pins down criteria before it writes anything, because I usually discover what 'good' means only after seeing a bad draft. I want a reusable meta-prompt that interviews me for standards first. Help me: (1) design the opening questions it should ask to extract my success criteria before drafting; (2) show how it should echo those criteria back as a checklist I confirm; (3) make it refuse to generate until at least three measurable criteria are locked.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "I like the idea of a generator that pins down criteria before it writes anything, because I usually discover what 'good' means only after seeing a bad draft. I want a reusable meta-prompt that interviews me for standards first. Help me: (1) design the opening questions it should ask to extract my success criteria before drafting; (2) show how it should echo those criteria back as a checklist I confirm; (3) make it refuse to generate until at least three measurable criteria are locked.",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "Build a Criteria-First Prompt Generator with",
+            "greeting": "Your turn.",
+            "runningText": "explaining the mechanism…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.0,
+      "audio_file": "mp3/beat-NBB00.mp3",
+      "actual_duration_s": 7.061
+    },
+    {
+      "beat_id": "B00",
+      "label": "Open",
+      "estimated_duration_s": 10,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOpen",
+          "props": {
+            "topic": "PROMPT ENGINEERING",
+            "lines": [
+              "Nik Bear Brown",
+              "Brutalist + Educational AI",
+              "Criteria-First Generator",
+              "Put the test before the task.",
+              "CLI Build"
+            ]
+          }
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B00.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B00.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "label": "Hook — criteria last",
+      "estimated_duration_s": 12,
+      "narration": "The single highest-leverage change to most prompts is putting the evaluation criteria first. Not after the task — before it. Most people have never tried it.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Two-panel split: LEFT = Standard prompt order: Task -> Context -> Output. RIGHT = Criteria-first order: Criteria -> Task -> Context -> Output. Arrow pointing right labeled 'higher leverage'. Teardown palette."
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B01.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B01.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "label": "Claude command",
+      "estimated_duration_s": 15,
+      "narration": "The seed command takes any natural-language request and asks Claude to rewrite it criteria-first — leading with testable evaluation criteria before stating the task.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Rewrite this request as a criteria-first prompt: lead with evaluation criteria (how to judge the output), then state what to produce. Criteria must be specific and testable — 'under 100 words' yes, 'good' no.\" < request.txt",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "CRITERIA-FIRST",
+            "runningText": "running analysis…"
+          }
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B02.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B02.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "label": "Python code",
+      "estimated_duration_s": 15,
+      "narration": "The script runs both versions — standard and criteria-first — through Claude, then shows the outputs side by side so you can see what moved.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "criteria_first.py",
+            "segment": "CRITERIA-FIRST",
+            "topic": "PROMPT ENGINEERING",
+            "code": "import subprocess, sys\nrequest = open(sys.argv[1]).read()\nrewrite_cmd = (\n  \"Rewrite as criteria-first prompt: lead with \"\n  \"testable evaluation criteria, then the task.\"\n)\nstandard_out = subprocess.run(\n  [\"claude\", request], capture_output=True, text=True\n).stdout\ncriteria_out = subprocess.run(\n  [\"claude\", rewrite_cmd], input=request,\n  capture_output=True, text=True\n).stdout\nprint(\"STANDARD:\\n\", standard_out)\nprint(\"CRITERIA-FIRST:\\n\", criteria_out)"
+          }
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B03.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B03.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "label": "Side-by-side comparison",
+      "estimated_duration_s": 14,
+      "narration": "The criteria-first version shifts Claude's attention from 'what is this task typically like' to 'what does this specific output need to be.' That's the difference between generating and targeting.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Two-column output comparison. LEFT: Standard prompt output — generic, vague structure. RIGHT: Criteria-first output — tight, criteria-driven. Highlight differences with CRIMSON underlines on the right column where structure tightened."
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B04.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B04.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "label": "The change — add one criterion",
+      "estimated_duration_s": 15,
+      "narration": "Now add one more criterion to the criteria-first prompt. Watch the output tighten in exactly that dimension — demonstrating that criteria are directly controlling, not just advisory.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Rewrite with added criterion: no hedging language (no 'might', 'could', 'perhaps').\" < criteria_first_prompt.txt",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "CRITERIA-FIRST",
+            "runningText": "adding criterion, re-running…"
+          }
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B05.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B05.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "label": "Changed output",
+      "estimated_duration_s": 10,
+      "narration": "The hedging language disappears. Not because Claude guessed — because the criterion specified the exact failure mode to avoid.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Before/after output fragment. BEFORE: sentence with 'might suggest that...' AFTER: same sentence rewritten without hedging — direct claim. CRIMSON strikethrough on 'might suggest'. Green checkmark on revised version."
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B06.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B06.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "label": "Teardown angle",
+      "estimated_duration_s": 12,
+      "narration": "Criteria-first shifts Claude's attention from 'what does this task typically look like' to 'what does this specific output need to be.' That is the difference between generating and targeting.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Large text: 'Criteria-first: from generating to targeting.' Below two rows: GENERATING = 'what is this task usually like?'. TARGETING = 'what must this output be?' Cream background, CRIMSON rule, INK text."
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B07.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B07.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B07.mp3"
+    },
+    {
+      "beat_id": "B08",
+      "label": "Next reel teaser",
+      "estimated_duration_s": 6,
+      "narration": "Next: generate a failure criterion checklist — ask what would make this wrong before it's produced.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Clean: 'NEXT: Failure Criterion Generator →' Minimal teardown style."
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B08.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B08.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B08.mp3"
+    },
+    {
+      "beat_id": "B09",
+      "label": "Outro",
+      "estimated_duration_s": 8,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      ],
+      "locked": true,
+      "source_clip": "../criteria-first-generator/clips/B09.mp4",
+      "source_audio": "../criteria-first-generator/mp3/beat-B09.mp3",
+      "audio_file": "../criteria-first-generator/mp3/beat-B09.mp3"
+    },
+    {
+      "beat_id": "NBB01",
+      "act": "VERDICT",
+      "title": "Liam verdict — ClaudeVerdictArtifact",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Let's recap with Claude. Here's what the body just demonstrated.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "provenance": "proven-core/ClaudeVerdictArtifact",
+          "version": "1",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Build a Criteria-First Prompt Generator with Claude",
+            "artifactLines": [
+              "Key mechanism established.",
+              "Key mechanism established.",
+              "Key mechanism established."
+            ]
+          },
+          "rendered": {
+            "out": "media/NBB01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30.0,
+      "audio_file": "mp3/beat-NBB01.mp3",
+      "actual_duration_s": 2.88,
+      "lead_silence_s": 0.5
+    },
+    {
+      "beat_id": "NBB02",
+      "act": "YOUR TURN",
+      "title": "Your turn handoff — ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Explain how [Build a Criteria-First Prompt Generator with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "Build a Criteria-First Prompt Generator with",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.0,
+      "audio_file": "mp3/beat-NBB02.mp3",
+      "actual_duration_s": 7.765
+    },
+    {
+      "beat_id": "NBB03",
+      "act": "OUTRO",
+      "title": "Claude title outro — ClaudeTitleOutro",
+      "silent": true,
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "provenance": "proven-core/ClaudeTitleOutro",
+          "version": "1",
+          "props": {
+            "title": "Build a Criteria-First Prompt Generator with Claude",
+            "handle": "@NikBearBrown",
+            "subline": "cancer biology, one mechanism at a time"
+          },
+          "rendered": {
+            "out": "media/NBB03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6.0,
+      "audio_file": "mp3/beat-NBB03.mp3",
+      "silence_s": 6.0,
+      "actual_duration_s": 6.03,
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Build a Criteria-First Prompt Generator with Claude"
+    }
+  ]
+}

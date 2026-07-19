@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "slug": "feedback-type-classifier",
+    "title": "Build a Feedback Type Classifier with Claude",
+    "topic": "CLAUDE FOR EDUCATION",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "claude-for-education-a-practitioners-guide/chapters/05-feedback-that-teaches.md",
+    "segment": "FEEDBACK TYPES",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 113.0
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "Nik Bear Brown. Brutalist and Educational AI. Build it with Claude — then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOpen",
+          "props": {
+            "topic": "CLAUDE FOR EDUCATION",
+            "lines": [
+              "Nik Bear Brown",
+              "Brutalist + Educational AI",
+              "Feedback Type Classifier",
+              "Hattie-Timperley Framework",
+              "Build with Claude CLI"
+            ]
+          }
+        }
+      },
+      "estimated_duration_s": 10.0
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "narration_text": "Feedback from AI is abundant and fast — but most of it is the wrong type for learning, and educators can't easily tell the difference without a framework. The Hattie-Timperley model identifies three distinct components: feed-up, feed-back, and feed-forward. Most AI feedback provides only one. The missing components are invisible unless you classify explicitly.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "visual_intent": "Slate: problem hook. 'AI feedback is abundant and fast — but is it the right type?' Three components named but not yet explained.",
+      "estimated_duration_s": 12.0
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "narration_text": "Pipe the feedback samples to Claude. For each, classify along three Hattie-Timperley dimensions: feed-up — does it clarify the goal? Feed-back — does it assess progress toward the goal? Feed-forward — does it specify next actions? Score each zero to three. Then rewrite the feedback to include any missing component.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Classify this feedback along three Hattie-Timperley dimensions: (1) feed-up — does it clarify the goal? (2) feed-back — does it assess progress toward the goal? (3) feed-forward — does it specify next actions? Score each dimension 0-3. Then rewrite the feedback to include any missing component.\" < feedback_samples.md",
+            "topic": "CLAUDE FOR EDUCATION",
+            "segment": "FEEDBACK TYPES",
+            "runningText": "classifying feedback types…"
+          }
+        }
+      },
+      "estimated_duration_s": 15.0
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "narration_text": "Read the script. It reads feedback samples from a markdown file, sends each to Claude with the three-dimension classification instruction, parses the scores, and formats the output as an annotated table — original feedback, three dimension scores, and the rewritten version with the missing component added.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "feedback_classifier.py",
+            "segment": "FEEDBACK TYPES",
+            "topic": "CLAUDE FOR EDUCATION",
+            "code": "import subprocess, re\nfrom pathlib import Path\n\ndef classify_feedback(samples_file):\n    samples = Path(samples_file).read_text().split('---')\n    instruction = (\n        \"Classify along Hattie-Timperley dimensions:\\n\"\n        \"feed-up (0-3): clarifies the goal?\\n\"\n        \"feed-back (0-3): assesses progress?\\n\"\n        \"feed-forward (0-3): specifies next actions?\\n\"\n        \"Then rewrite to include any missing component.\"\n    )\n    for sample in samples:\n        sample = sample.strip()\n        if not sample:\n            continue\n        result = subprocess.run(\n            [\"claude\", instruction],\n            input=sample, capture_output=True, text=True\n        )\n        print(f\"--- ORIGINAL ---\\n{sample}\")\n        print(f\"--- ANALYSIS ---\\n{result.stdout}\\n\")"
+          }
+        }
+      },
+      "estimated_duration_s": 15.0
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "narration_text": "A feedback sample: 'Good work on your draft. Your argument is developing but needs more evidence.' Feed-up: zero — the goal is never stated. Feed-back: one — 'developing' is a verdict, not an assessment. Feed-forward: zero — 'needs more evidence' is not actionable. The rewrite: 'The assignment asks for a claim supported by three scholarly sources. Your current draft has a claim but one source. Add two more sources that directly address your claim, citing page numbers where the evidence appears.' That is feed-forward.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "visual_intent": "Slate: original feedback with three dimension scores (0, 1, 0). Rewrite below with the feed-forward component highlighted. 'That is feed-forward: specific, actionable, tied to the work.'",
+      "estimated_duration_s": 14.0
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE",
+      "narration_text": "The change: generate the same feedback in three modes — diagnose only, diagnose plus coach question, diagnose plus directive correction — and show which students would benefit most from each based on proficiency context.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Generate feedback on this student work in three modes: (1) diagnose-only: identify what's missing, (2) diagnose + coaching question: ask the student to locate the gap themselves, (3) diagnose + directive: tell the student exactly what to add. For each mode, state which student proficiency context it fits best.\" < student_work.md",
+            "topic": "CLAUDE FOR EDUCATION",
+            "segment": "FEEDBACK TYPES",
+            "runningText": "generating three feedback modes…"
+          }
+        }
+      },
+      "estimated_duration_s": 15.0
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT",
+      "narration_text": "Three feedback modes appear for the same student work. Diagnose-only fits experts who can act on gap identification alone. The coaching question fits intermediate students who need to develop self-assessment. The directive fits novices who don't yet know what 'add evidence' means in practice. Same diagnosis — different mode — different learning response.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "visual_intent": "Slate: three feedback modes side by side. Each labeled with the proficiency context it fits. The same gap identified three different ways.",
+      "estimated_duration_s": 10.0
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "narration_text": "Feedback type mismatch is the most common reason AI feedback doesn't improve learning — not because it's wrong, but because it's answering the wrong question for where the student is. The classifier reveals which component is missing. The three-mode generation reveals how to fill it appropriately.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "visual_intent": "Slate: teardown summary. 'Not wrong feedback — wrong type. Classify first. Then generate the mode that fits the student's level.'",
+      "estimated_duration_s": 12.0
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS",
+      "narration_text": "Next: Build a Student AI Policy Classifier — map each assignment to a policy mode and generate syllabus-ready language for each.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "visual_intent": "Slate: next reel teaser. 'ai-policy-classifier' slug.",
+      "estimated_duration_s": 6.0
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "narration_text": "Nik Bear Brown. Brutalist and Educational AI. At NikBearBrown, nikbearbrown dot com.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      },
+      "estimated_duration_s": 8.0
+    }
+  ]
+}

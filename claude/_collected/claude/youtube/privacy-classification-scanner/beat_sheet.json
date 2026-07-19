@@ -1,0 +1,178 @@
+{
+ "metadata": {
+  "slug": "privacy-classification-scanner",
+  "title": "Build a Privacy Classification Scanner for Cowork Folders",
+  "topic": "CLAUDE",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude/chapters/08-privacy-permissions-and-sensitive-work.md",
+  "segment": "PRIVACY SCAN",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 113.0,
+  "note": "CLI video: 10-beat spine B00–B09. B04 is slate. No audio."
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "estimated_duration_s": 10.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Privacy Classification Scanner",
+       "Folder You Think Is Safe",
+       "Three Files You Forgot to Redact"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "You think your working folder is safe — the scanner finds patient identifiers in three files you forgot to redact. 'I can access this file' and 'I should give Claude access to this file' are different questions. The scanner makes the difference visible before the session begins.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "slate",
+    "notes": "hook card: 'I can access this file ≠ I should give Claude access to this file' — CRIMSON on the gap, teal on 'scanner makes difference visible'"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "Build privacy_scanner.py: takes a directory path, lists all files, and classifies each by the book's six-tier sensitivity taxonomy — Public, Internal, Confidential, Personal, Regulated, Credentials.",
+   "estimated_duration_s": 15.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write privacy_scanner.py:\n  takes a directory path\n  classifies each file by sensitivity:\n    Public (no PII, no credentials)\n    Internal (draft/memo/notes)\n    Confidential (contract/nda/client)\n    Personal (names/emails/SSN)\n    Regulated (HIPAA/FERPA keywords)\n    Credentials (password/api_key/token)\n  print grouped summary table\"",
+      "topic": "CLAUDE",
+      "segment": "PRIVACY SCAN",
+      "runningText": "running analysis…"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Check the code. Classification is filename-only — the tool never reads file contents for Personal or Regulated detection. Privacy in, privacy preserved. Each category has explicit regex patterns: tax records match Regulated, API key files match Credentials, client contracts match Confidential.",
+   "estimated_duration_s": 15.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "privacy_scanner.py",
+      "segment": "PRIVACY SCAN",
+      "topic": "CLAUDE",
+      "code": "# privacy_scanner.py — Claude Code output\nimport re, pathlib\n\nTAXONOMY = {\n  'Credentials': r'password|api.?key|token|secret',\n  'Regulated':   r'hipaa|ferpa|phi|tax|ssn|patient',\n  'Personal':    r'resume|name|email|dob|address',\n  'Confidential':r'contract|nda|client|agreement',\n  'Internal':    r'draft|memo|notes|internal',\n  'Public':      r'.*'   # fallthrough\n}\n\ndef classify(name):\n    n = name.lower()\n    for category, pat in TAXONOMY.items():\n        if re.search(pat, n):\n            return category\n    return 'Public'\n# filename-only — never reads file contents"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "Scan a test directory with dummy filenames. The table groups by category: two Credentials files, one Regulated, three Confidential, five Internal, four Public. The working folder you thought was safe has two credential files the agent must never see.",
+   "estimated_duration_s": 14.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "slate",
+    "notes": "terminal: privacy_scanner.py output — grouped summary table with category counts — Credentials and Regulated rows in CRIMSON, Public in teal"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "Add a Cowork-ready flag that outputs only files safe for a Cowork session. Any file above Internal is excluded automatically.",
+   "estimated_duration_s": 15.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"update privacy_scanner.py:\n  add --cowork-ready flag\n  output only files classified Public or Internal\n  exclude Personal/Regulated/Confidential/Credentials\n  print count: 'N of M files safe for Cowork'\"",
+      "topic": "CLAUDE",
+      "segment": "PRIVACY SCAN",
+      "runningText": "updating scanner…"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "narration_text": "Run with the Cowork-ready flag. Nine of fifteen files are safe — the six sensitive files are excluded automatically. That is the working folder the agent sees. The other six never entered the session.",
+   "estimated_duration_s": 10.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "slate",
+    "notes": "terminal: --cowork-ready output — '9 of 15 files safe for Cowork' — list of safe filenames, excluded count in CRIMSON badge"
+   }
+  },
+  {
+   "beat_id": "B07",
+   "act": "TEARDOWN",
+   "narration_text": "Access and appropriate access are different. The scanner makes that gap visible before any session begins — so the agent sees only what it should, and the audit starts from a clean scope.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "slate",
+    "notes": "teardown card: 'Can access ≠ should access' (CRIMSON) vs 'Scanner runs → clean scope → auditable session' (teal)"
+   }
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "narration_text": "Your move: run privacy_scanner.py on your working folder before your next Cowork session. Next reel: the personal workflow canvas — fifteen tasks, four buckets, two surprises.",
+   "estimated_duration_s": 6.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "slate",
+    "notes": "next-reel teaser: 'Next: Workflow Canvas' — segment 08 of the CLAUDE series"
+   }
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   }
+  }
+ ]
+}

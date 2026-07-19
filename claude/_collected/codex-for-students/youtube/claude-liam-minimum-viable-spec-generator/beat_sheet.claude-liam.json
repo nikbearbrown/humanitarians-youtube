@@ -1,0 +1,170 @@
+{
+ "metadata": {
+  "slug": "minimum-viable-spec-generator",
+  "title": "Build a Minimum Viable Spec Generator with Codex",
+  "topic": "CODEX FOR STUDENTS",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "source": "codex-for-students/chapters/08-problem-formulation.md",
+  "segment": "MINIMUM VIABLE SPEC",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "register": "Teardown",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "t_start": 0.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Every vague user need is an unconstrained degree of freedom — Codex fills unconstrained degrees of freedom with its defaults.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "t_start": 8.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "The minimum viable spec has five sections: Problem, Architecture, User flows, User needs, Out of scope. The User needs section is the most important and the most commonly broken — 'responsive' is not a user need; 'loads in under 2 seconds on a 5MB input file on a throttled 3G connection' is. The spec is the constraint set that keeps the build from drifting.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "t_start": 20.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "claude \"Generate a minimum viable spec for this build. Five sections: Problem, Architecture (three principles max), User flows, User needs (testable outcomes only — each must name what to measure and what threshold counts as passing), Out of scope. Validate User needs: flag any aesthetic description and rewrite as measurable outcome.\" < build_description.txt",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold",
+    "remotion": {
+     "component": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Generate a minimum viable spec. Five sections: Problem, Architecture, User flows, User needs (testable only — flag and rewrite vague items), Out of scope.\" < build_description.txt",
+      "runningText": "generating spec…"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B03",
+   "t_start": 32.0,
+   "estimated_duration_s": 14.0,
+   "narration_text": "spec_generator.py — runs Ask Mode interrogation with 5 questions, generates draft spec, validates User needs section, rewrites vague items as measurable outcomes.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold",
+    "remotion": {
+     "component": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "spec_generator.py",
+      "code": "# generates minimum viable spec with interrogation\nimport spec_engine, interrogator, validator\n\ndesc = open('build_description.txt').read()\nanswers = interrogator.ask(desc, questions=5)\nspec = spec_engine.generate(desc, answers)\nspec.user_needs = validator.rewrite_vague(spec.user_needs)\nprint(spec.to_markdown())"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B04",
+   "t_start": 46.0,
+   "estimated_duration_s": 20.0,
+   "narration_text": "Spec generated with interrogation. User needs: 4 items — 2 already testable, 2 flagged and rewritten. 'Fast' becomes 'completes in under 2 seconds on a 5MB input file.' 'Easy to read' becomes 'renders correctly at 120% browser zoom with no text truncation.' Out of scope: 3 items each with a brief reason. The interrogation added one item to User flows not in the original description.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "t_start": 66.0,
+   "estimated_duration_s": 10.0,
+   "narration_text": "Generate spec without the Ask Mode interrogation; compare what's missing.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold",
+    "remotion": {
+     "component": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "python3 spec_generator.py --no-interrogation < build_description.txt",
+      "runningText": "generating without interrogation…"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B06",
+   "t_start": 76.0,
+   "estimated_duration_s": 14.0,
+   "narration_text": "Without interrogation: the delta-versus-last-build view is absent from User flows — it was only surfaced by the question 'what would a returning user need that a first-time user wouldn't?' User needs section: 4 items, same as before. The interrogation added one critical flow and zero new user needs — but that one flow represented 30% of the eventual build's scope.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B07",
+   "t_start": 90.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "The interrogation is not a formality — it's a tool for discovering scope you didn't know you had. The Ask Mode questions target the aspects most likely to be unconsidered: returning users vs. first-time, failure states, outputs you didn't think to name. Each question is a potential spec item that would otherwise appear as a correction after Code Mode runs.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B08",
+   "t_start": 102.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "That's the full Codex for Students series — ten tools for building skill, not just software.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B09",
+   "t_start": 110.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Nik Bear Brown. Brutalist plus Educational AI. nikbearbrown.com.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold",
+    "remotion": {
+     "component": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   }
+  }
+ ]
+}

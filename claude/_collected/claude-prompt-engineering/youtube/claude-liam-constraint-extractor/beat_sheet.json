@@ -1,0 +1,281 @@
+{
+  "metadata": {
+    "slug": "constraint-extractor",
+    "title": "Build a Constraint Extractor with Claude",
+    "topic": "PROMPT ENGINEERING",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "claude",
+    "style_preset": "nikbearbrown",
+    "source": "claude-prompt-engineering/chapters/03-constraints-and-boundaries.md",
+    "segment": "CONSTRAINT TYPES",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 113.0,
+    "audience": "Claude",
+    "derived_from": "beat_sheet.json",
+    "register": "Teardown",
+    "outro_source": "AUTHOR.MD :: NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "_variant_todo": [
+      "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+      "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+      "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+      "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+    ],
+    "build": {
+      "at": "2026-07-16T07:19:54",
+      "cut": "master",
+      "filled": 0,
+      "of": 10,
+      "slates": [
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "skin_warnings": [
+        "NO RENDERABLE BEATS: no beat carries a shot.remotion.pattern or Manim annotation — the pipeline will render NOTHING and every slot becomes a YOU-slate. The sheet was authored without the scene contract.",
+        "B00: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B09: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "label": "Open",
+      "estimated_duration_s": 10,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOpen",
+          "props": {
+            "topic": "PROMPT ENGINEERING",
+            "lines": [
+              "Nik Bear Brown",
+              "Brutalist + Educational AI",
+              "Constraint Extractor",
+              "Five types. Different failures.",
+              "CLI Build"
+            ]
+          }
+        }
+      ],
+      "narration_text": "This is Liam, in for Bear. ",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 2.41,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B00.mp4)",
+        "suggested": "suggested prompt: This is Liam, in for Bear."
+      }
+    },
+    {
+      "beat_id": "B01",
+      "label": "Hook — five types",
+      "estimated_duration_s": 12,
+      "narration": "The five types of constraints in a prompt serve completely different functions. Conflating them is why prompts fail in ways that are hard to diagnose — because the failure looks different depending on which type is missing.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Five labeled tiles in a row: SCOPE | EVIDENCE | UNCERTAINTY | PRIVACY | TONE. Each with a one-line failure mode below it in CRIMSON. Layout: horizontal band across center of frame. Teardown palette."
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "label": "Claude command",
+      "estimated_duration_s": 15,
+      "narration": "The seed command pipes a prompt into Claude and asks it to classify every constraint into one of five types, name the failure mode if that constraint were removed, and flag any type with zero entries.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Parse this prompt and classify every constraint into one of five types: scope, evidence, uncertainty, privacy, tone. For each: type, failure mode if removed. Flag any type with zero entries.\" < prompt.txt",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "CONSTRAINT TYPES",
+            "runningText": "extracting constraints…"
+          }
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B02.mp4)"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "label": "Python code",
+      "estimated_duration_s": 15,
+      "narration": "The script reads the prompt, extracts the constraint inventory from Claude, and generates a constraint map showing which types are populated and which are missing.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "constraint_extractor.py",
+            "segment": "CONSTRAINT TYPES",
+            "topic": "PROMPT ENGINEERING",
+            "code": "import subprocess, sys\nprompt = open(sys.argv[1]).read()\nextract_cmd = (\n  \"Classify every constraint into: scope, evidence, \"\n  \"uncertainty, privacy, tone. For each: type + \"\n  \"failure mode if removed. Flag empty types.\"\n)\nresult = subprocess.run(\n  [\"claude\", extract_cmd],\n  input=prompt, capture_output=True, text=True\n)\nprint(result.stdout)"
+          }
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B03.mp4)"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "label": "Constraint inventory",
+      "estimated_duration_s": 14,
+      "narration": "The inventory shows scope and evidence constraints populated, tone partially filled, and uncertainty and privacy empty. Each empty slot shows the specific failure mode its absence enables.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Five-row constraint inventory table. Columns: TYPE | COUNT | FAILURE MODE IF MISSING. SCOPE: 2 (green). EVIDENCE: 1 (gold). UNCERTAINTY: 0 (crimson) — 'will state speculative claims as fact'. PRIVACY: 0 (crimson) — 'may include identifiers in output'. TONE: 1 (gold). CRIMSON rows glow for empty types."
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B04.mp4)"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "label": "The change — add missing type",
+      "estimated_duration_s": 15,
+      "narration": "Add one uncertainty constraint to the prompt — 'if you are uncertain, say so rather than speculating' — and re-run. Watch the uncertainty row fill and its failure mode disappear.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Classify constraints again after adding: 'If uncertain, state it rather than speculating.'\" < prompt_updated.txt",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "CONSTRAINT TYPES",
+            "runningText": "re-extracting with added constraint…"
+          }
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B05.mp4)"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "label": "Changed output",
+      "estimated_duration_s": 10,
+      "narration": "Uncertainty type: 0 to 1. Failure mode row: gone. The constraint map completes and the specific failure disappears.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "BEFORE: UNCERTAINTY row — 0 constraints, CRIMSON glowing failure mode. AFTER: UNCERTAINTY row — 1 constraint, green, failure mode removed. Arrow between BEFORE and AFTER states. Caption: 'One constraint closes one failure mode.'"
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "label": "Teardown angle",
+      "estimated_duration_s": 12,
+      "narration": "Constraint types are not interchangeable. A prompt with strong scope and weak uncertainty handling will confidently state things it doesn't know. Knowing which type is missing tells you exactly what failure to expect.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Large text: 'Know the type. Know the failure.' Below: 'Strong scope + weak uncertainty = confident hallucination.' CRIMSON on the failure consequence. Teardown palette, CRIMSON rule."
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "label": "Next reel teaser",
+      "estimated_duration_s": 6,
+      "narration": "Next: audit agentic handoffs — where multi-step prompt chains break.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Clean: 'NEXT: Agentic Handoff Auditor →' Minimal teardown style."
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "label": "Outro",
+      "estimated_duration_s": 8,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      ],
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T07:19:54",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B09.mp4)"
+      }
+    }
+  ]
+}

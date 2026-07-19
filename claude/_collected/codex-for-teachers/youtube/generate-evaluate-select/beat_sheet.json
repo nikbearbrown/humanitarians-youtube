@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "slug": "generate-evaluate-select",
+    "title": "Generate-Evaluate-Select with Claude: Three Responses, One Real Decision",
+    "topic": "CODEX FOR TEACHERS",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "codex-for-teachers/chapters/07-best-of-n.md",
+    "segment": "GENERATE-EVALUATE-SELECT",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 118.0
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "One Claude response is a default. Three responses are a choice. The selection judgment is the part you can never delegate.",
+      "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+      "estimated_duration_s": 8.0
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "narration_text": "Generate-evaluate-select is not a workaround for Claude being inconsistent — it is a technique for converting a default into a deliberate choice. The same prompt, three separate sessions, produces three pedagogically different responses. The selection and documented reasoning are the supervisory work. The comparison is what makes the selection defensible.",
+      "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+      "estimated_duration_s": 12.0
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "narration_text": "Generate a first-draft feedback paragraph: 80 words, second person, two rubric criteria, no numeric grade. Run three times.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Generate a first-draft feedback paragraph (~80 words, second person) for a student submission missing the Methodology section and with functions without docstrings. No numeric grade. Reference at least two specific rubric criteria. Plain markdown.\" # run 3 times",
+            "topic": "CODEX FOR TEACHERS",
+            "segment": "GENERATE-EVALUATE-SELECT",
+            "runningText": "generating 3 candidates…"
+          }
+        }
+      },
+      "estimated_duration_s": 12.0
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "narration_text": "Build a comparison script: reads three response files, formats side-by-side table — word count, rubric criteria referenced, framing, equity flags.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "compare_responses.py",
+            "topic": "CODEX FOR TEACHERS",
+            "segment": "GENERATE-EVALUATE-SELECT",
+            "code": "import re, sys\nfrom pathlib import Path\n\ndef analyze(text):\n    words = len(text.split())\n    criteria = len(re.findall(\n        r'(Methodology|docstring|rubric|criterion)',\n        text, re.I))\n    framing = ('strength' if re.search(\n        r'(strong|effective|well)', text, re.I)\n        else 'deficit')\n    equity_flag = bool(re.search(\n        r'(unconventional|unusual|non-standard)',\n        text, re.I))\n    return words, criteria, framing, equity_flag\n\nfor i, f in enumerate(['A','B','C']):\n    t = Path(f'response_{f}.md').read_text()\n    w, c, fr, eq = analyze(t)\n    print(f'Response {f}: {w}w | {c} criteria | '\n          f'{fr}-first | equity_flag={eq}')"
+          }
+        }
+      },
+      "estimated_duration_s": 14.0
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "narration_text": "Three candidates: Response A deficit-first, 2 criteria, no equity flags. Response B strength-first, 3 criteria, no flags. Response C deficit-first, 2 criteria, one equity flag — flagged 'unconventional naming.' Selection: Response B. Reasoning logged: strength-first framing, 3 criteria, no equity issues.",
+      "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+      "estimated_duration_s": 20.0
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE",
+      "narration_text": "Generate a fourth response explicitly leading with a strength. Compare to all three.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Generate a 4th feedback paragraph for the same submission. REQUIRED: lead with a strength before addressing gaps. Same rubric criteria, ~80 words, second person, no grade.\"",
+            "topic": "CODEX FOR TEACHERS",
+            "segment": "GENERATE-EVALUATE-SELECT",
+            "runningText": "forcing strength-first framing…"
+          }
+        }
+      },
+      "estimated_duration_s": 10.0
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT",
+      "narration_text": "Response D strength-first, 2 criteria, no equity flags: similar to Response B but one fewer rubric criterion referenced. Selection still Response B — forced framing did not improve the output. When all three original candidates share a framing problem, the problem is in the specification.",
+      "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+      "estimated_duration_s": 14.0
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "narration_text": "Generate-evaluate-select is a dangerous-middle detector: when all three candidates share the same problematic pattern, the pattern is in the specification. The selection judgment — which candidate, and why — is the supervisory work the chapter names Interpretive Judgment. The documented rationale is what makes the selection auditable.",
+      "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+      "estimated_duration_s": 12.0
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT",
+      "narration_text": "Next: build the three-file system — AGENTS.md, DESIGN.md, and PROJECT.md together.",
+      "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+      "estimated_duration_s": 8.0
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "narration_text": "Nik Bear Brown. Brutalist and Educational AI. At NikBearBrown, nikbearbrown dot com.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      },
+      "estimated_duration_s": 8.0
+    }
+  ]
+}

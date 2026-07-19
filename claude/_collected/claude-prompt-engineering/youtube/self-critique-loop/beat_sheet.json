@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "slug": "self-critique-loop",
+    "title": "Build a Self-Critique Prompt Checker with Claude",
+    "topic": "PROMPT ENGINEERING",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "claude-prompt-engineering/chapters/09-prompts-for-data-and-analysis-support.md",
+    "segment": "SELF-CRITIQUE",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 113.0
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "label": "Open",
+      "estimated_duration_s": 10,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOpen",
+          "props": {
+            "topic": "PROMPT ENGINEERING",
+            "lines": [
+              "Nik Bear Brown",
+              "Brutalist + Educational AI",
+              "Self-Critique Loop",
+              "Structured critique. Not vague feedback.",
+              "CLI Build"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B01",
+      "label": "Hook — vague vs structured critique",
+      "estimated_duration_s": 12,
+      "narration": "Claude is reasonably good at critiquing outputs when given specific criteria. But critique quality degrades dramatically without structured guidance — and most people use the vague version.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Two critique prompts side by side. LEFT: 'How could this be better?' -> generic output: 'Could be clearer, more concise...' CRIMSON label: VAGUE. RIGHT: 'Critique against: [3 specific criteria]. Pass/fail + evidence per criterion.' -> structured output with pass/fail rows. GREEN label: STRUCTURED."
+        }
+      ]
+    },
+    {
+      "beat_id": "B02",
+      "label": "Claude command",
+      "estimated_duration_s": 15,
+      "narration": "The structured critique command cites the specific criteria from the original prompt, requires pass/fail with one-sentence evidence, and lists the top 3 changes needed — without making the changes yet.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Critique this output against these specific criteria: [list from original prompt]. For each criterion: pass/fail with one-sentence evidence. Then list top 3 changes. Do not make changes yet — only critique.\" < output.md",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "SELF-CRITIQUE",
+            "runningText": "running structured critique…"
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B03",
+      "label": "Python code",
+      "estimated_duration_s": 15,
+      "narration": "The script runs three stages: generate initial output, structured critique against criteria, then revised output incorporating the top-3 changes. All three appear in the terminal.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "self_critique.py",
+            "segment": "SELF-CRITIQUE",
+            "topic": "PROMPT ENGINEERING",
+            "code": "import subprocess, sys\nprompt = open(sys.argv[1]).read()\ncriteria = open(sys.argv[2]).read()\ninitial = subprocess.run(\n  [\"claude\", prompt], capture_output=True, text=True\n).stdout\ncritique_cmd = (\n  f\"Critique against: {criteria}. \"\n  \"Pass/fail + evidence per criterion. \"\n  \"Top 3 changes. Do not revise yet.\"\n)\ncritique = subprocess.run(\n  [\"claude\", critique_cmd], input=initial,\n  capture_output=True, text=True\n).stdout\nprint(\"CRITIQUE:\\n\", critique)"
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B04",
+      "label": "Critique pass/fail",
+      "estimated_duration_s": 14,
+      "narration": "The critique shows three criteria with pass/fail verdicts and one-sentence evidence from the output — not generic feedback, but specific cites from the text.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Three-row critique table. Column headers: CRITERION | VERDICT | EVIDENCE. Row 1: Word count under 100 | PASS (green) | 'Output is 87 words.' Row 2: No hedging language | FAIL (crimson) | 'Sentence 3: could potentially...' Row 3: Three bullet points | FAIL (crimson) | 'Output uses prose, not bullets.' Bottom: 'Top 3 changes: 1. Remove hedge in S3. 2. Convert to bullets. 3. ...' "
+        }
+      ]
+    },
+    {
+      "beat_id": "B05",
+      "label": "The change — vague critique",
+      "estimated_duration_s": 15,
+      "narration": "Now run the same loop with a vague self-critique prompt. Watch the critique quality degrade — no criteria, no evidence, generic suggestions.",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"How could this be better?\" < output.md",
+            "topic": "PROMPT ENGINEERING",
+            "segment": "SELF-CRITIQUE",
+            "runningText": "running vague critique…"
+          }
+        }
+      ]
+    },
+    {
+      "beat_id": "B06",
+      "label": "Vague critique output",
+      "estimated_duration_s": 10,
+      "narration": "The vague critique output: 'Could be clearer. More concise might help. Consider adding examples.' No criteria. No evidence. No specific change target. Unusable for revision.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "VAGUE CRITIQUE output block: 'Could be clearer. More concise might help. Consider adding examples.' CRIMSON annotation: 'No criteria. No evidence. No change target.' Teardown palette, CRIMSON border."
+        }
+      ]
+    },
+    {
+      "beat_id": "B07",
+      "label": "Teardown angle",
+      "estimated_duration_s": 12,
+      "narration": "Self-critique is only useful when the critique criteria are as specific as the original task criteria. Otherwise you're asking Claude to evaluate against its own taste — which is just more of the same.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Large text: 'Specific criteria → inspectable critique.' Below: 'Vague prompt → Claude evaluates against its own taste.' CRIMSON rule. Two-line contrast. Cream background."
+        }
+      ]
+    },
+    {
+      "beat_id": "B08",
+      "label": "Next reel teaser",
+      "estimated_duration_s": 6,
+      "narration": "Next: a constraint extractor — classify every constraint in your prompt into its five types.",
+      "shots": [
+        {
+          "source": "slate",
+          "notes": "Clean: 'NEXT: Constraint Extractor →' Minimal teardown style."
+        }
+      ]
+    },
+    {
+      "beat_id": "B09",
+      "label": "Outro",
+      "estimated_duration_s": 8,
+      "narration": "",
+      "shots": [
+        {
+          "source": "remotion",
+          "composition": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      ]
+    }
+  ]
+}
