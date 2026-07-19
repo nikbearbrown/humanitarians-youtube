@@ -1,0 +1,242 @@
+{
+ "metadata": {
+  "slug": "package-hallucination-scanner",
+  "title": "Catch a Package Hallucination Before It Becomes a Slopsquatting Attack",
+  "topic": "CLAUDE CODE FOR STUDENTS",
+  "voice": "af_kore",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-code-for-students/chapters/05-five-supervisory-capacities.md",
+  "segment": "PACKAGE AUDIT",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Sawubona, Humanitarians",
+      "topic": "Catch a Package Hallucination Before It Becomes a Slopsquatting Attack",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Claude imports requests_oauth_helper — a name that doesn't exist on PyPI today but might be squatted tomorrow with malicious code inside.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "lines": [
+       "Nik Bear Brown",
+       "Package Hallucination Scanner, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Catch a Package Hallucination Before It Becomes a Slopsquatting Attack belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "lines": [
+       "Nik Bear Brown",
+       "Package Hallucination Scanner, taken apart."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "Hallucinated package names appear across thousands of model outputs. Slopsquatting works by registering those names with malicious payloads. The scanner catches the risk at the import line before pip install runs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "We ask Claude to write a package auditor that reads import statements from a file and checks each against the PyPI JSON API.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write package_auditor.py:\\n  read Python file -> extract imports\\n  query PyPI JSON API per package\\n  report EXISTS / HALLUCINATED\\n  flag 404 as slopsquatting risk\"",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "PACKAGE AUDIT",
+      "runningText": "generating auditor…"
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Claude writes the auditor using requests and the PyPI API. It extracts top-level package names only, handles both 'import X' and 'from X import Y', and prints a color-coded verdict per package.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "package_auditor.py",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "PACKAGE AUDIT",
+      "code": "# package_auditor.py — Claude Code output\nimport ast, sys, requests\n\ndef extract_imports(path):\n    tree = ast.parse(open(path).read())\n    pkgs = set()\n    for node in ast.walk(tree):\n        if isinstance(node, ast.Import):\n            for a in node.names: pkgs.add(a.name.split('.')[0])\n        elif isinstance(node, ast.ImportFrom):\n            if node.module: pkgs.add(node.module.split('.')[0])\n    return pkgs\n\ndef audit(path):\n    for pkg in extract_imports(path):\n        r = requests.get(f'https://pypi.org/pypi/{pkg}/json', timeout=5)\n        verdict = 'EXISTS' if r.status_code == 200 else 'HALLUCINATED'\n        risk = ' <- SLOPSQUATTING RISK' if r.status_code == 404 else ''\n        print(f'{pkg}: {verdict}{risk}')"
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "Scanner run: requests — EXISTS. numpy — EXISTS. requests_oauth_helper — HALLUCINATED — 404. Slopsquatting risk flagged. The malicious payload would install on pip install without any warning.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 20,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "We extend the scanner with a --npm flag for JavaScript imports using the npm registry API.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Add --npm flag:\\n  check npm registry API\\n  registry.npmjs.org/-/v1/search?text=<pkg>\\n  same EXISTS/HALLUCINATED output\"",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "PACKAGE AUDIT",
+      "runningText": "extending auditor…"
+     }
+    }
+   },
+   "estimated_duration_s": 10,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT",
+   "narration_text": "npm scan: react — EXISTS. lodash — EXISTS. react-query-optimizer-v3 — HALLUCINATED. The pattern is identical across ecosystems — any package name a model invents is a potential squatting target.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "The hallucination rate is low but the recurrence rate is high — the same fake names appear across thousands of outputs. Scan imports before pip install, not after.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "narration_text": "Next: write a five-artifact Software Design Document with Claude Code.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At nikbearbrown.com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}
