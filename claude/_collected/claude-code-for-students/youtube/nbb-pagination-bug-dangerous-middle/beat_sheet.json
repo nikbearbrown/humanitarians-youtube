@@ -1,0 +1,356 @@
+{
+  "metadata": {
+    "slug": "pagination-bug-dangerous-middle",
+    "variant": "nbb",
+    "title": "Why the Most Dangerous Claude Output Is the One That Passes Every Test",
+    "topic": "CLAUDE CODE",
+    "audience": "NikBearBrown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "palette": "teardown",
+    "register": "Teardown",
+    "derived_from": "beat_sheet.json",
+    "source_reel": "../pagination-bug-dangerous-middle",
+    "source_video": "../pagination-bug-dangerous-middle/pagination-bug-dangerous-middle-cut.mp4",
+    "body_beats": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10"
+    ],
+    "body_duration_s": 247.59,
+    "old_outro_beats": [],
+    "built_at": "2026-07-16T22:10:57.765240"
+  },
+  "beats": [
+    {
+      "beat_id": "NBB00",
+      "act": "COLD OPEN",
+      "title": "Liam cold open — ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "The part that unsettles me is that the bug lived at exactly total equals page-size times n plus one, and every test Seth wrote was a multiple of fifty - so the loop's stop-when-a-page-returns-exactly-fifty rule silently ate the 251st item. I want to hunt this whole class of failure deliberately. Help me: (1) rewrite the termination condition so a full final page can never end the loop early, (2) generate the boundary test cases that would have exposed the off-by-one at 50, 51, 100, and 101, and (3) explain why the fault sat at the function-loop handoff and not inside the function itself.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "The part that unsettles me is that the bug lived at exactly total equals page-size times n plus one, and every test Seth wrote was a multiple of fifty - so the loop's stop-when-a-page-returns-exactly-fifty rule silently ate the 251st item. I want to hunt this whole class of failure deliberately. Help me: (1) rewrite the termination condition so a full final page can never end the loop early, (2) generate the boundary test cases that would have exposed the off-by-one at 50, 51, 100, and 101, and (3) explain why the fault sat at the function-loop handoff and not inside the function itself.",
+            "topic": "CLAUDE CODE",
+            "segment": "Why the Most Dangerous Claude Output",
+            "greeting": "Your turn.",
+            "runningText": "explaining the mechanism…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.0,
+      "audio_file": "mp3/beat-NBB00.mp3",
+      "actual_duration_s": 7.467
+    },
+    {
+      "beat_id": "B01",
+      "act": "COLD OPEN",
+      "shot_type": "CARD",
+      "shot_source": "own",
+      "shot_motion": "hold",
+      "on_screen": [
+        "Compiles. Passes all tests.",
+        "Six days later: Avery's flashlight",
+        "doesn't exist."
+      ],
+      "narration_text": "Seth writes a pagination function for the networked inventory. Page 1 of 50 items: correct. Page 2 of 100 items: correct. 247 items across 5 pages: correct. He commits. Six days later, a player named Avery joins a session with 251 items. Page 5 returns 50 items. Page 6 returns an empty array. The 251st item — a flashlight someone dropped just before Avery joined — is on no page. From Avery's client, that flashlight does not exist.",
+      "estimated_duration": 20,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B01.mp3",
+      "actual_duration_s": 34.3,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B01.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "act": "THE QUESTION",
+      "shot_type": "CARD",
+      "shot_source": "own",
+      "shot_motion": "hold",
+      "on_screen": [
+        "All tests passed.",
+        "Why did 251 items fail in production?"
+      ],
+      "narration_text": "Every test Seth wrote passed. The function compiled. The code was clean. Why did it fail the moment the inventory had 251 items?",
+      "estimated_duration": 10,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B02.mp3",
+      "actual_duration_s": 8.86,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B02.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "act": "THE PROBLEM",
+      "shot_type": "GRAPHIC",
+      "shot_source": "own",
+      "shot_motion": "drawon",
+      "on_screen": [
+        "Every test Seth wrote",
+        "was a multiple of 50."
+      ],
+      "narration_text": "The function itself is fine. The calling loop used a termination condition: stop when the page returns exactly 50 items. For 247 items, page 5 comes back with 47 — the loop stops correctly. For 250 items, the loop stops at page 5 and is correct. For 251 items, page 5 returns 50 — the loop stops one page too early. The 251st item is never fetched. Every test Seth thought to write was sized to a multiple of 50. He didn't know to write the other case.",
+      "estimated_duration": 22,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B03.mp3",
+      "actual_duration_s": 32.13,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B03.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE PROBLEM",
+      "shot_type": "GRAPHIC",
+      "shot_source": "own",
+      "shot_motion": "accumulate",
+      "on_screen": [
+        "250 items: passes.",
+        "251 items: bug fires.",
+        "The gap is one item."
+      ],
+      "narration_text": "The bug lives in exactly one place on the number line: any inventory whose size is a multiple of 50 plus one. Everything else works. The test set covered the obvious cases. The non-obvious case — total equals page size times n plus one — was never written. The dangerous middle is the region where code compiles, passes, looks right, and is wrong in a way you weren't equipped to see.",
+      "estimated_duration": 20,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B04.mp3",
+      "actual_duration_s": 26.36,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B04.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "act": "THE MECHANISM",
+      "shot_type": "STILL",
+      "shot_source": "ai",
+      "shot_motion": "kenburns",
+      "on_screen": [],
+      "narration_text": "The failure was not in the function. The function was fine. The failure was at the joint between the function and the calling loop — the handoff. The function's contract said: given a start and a size, return that slice. It said nothing about what the caller should do when the last slice is exactly full. The calling loop assumed that a full last slice meant there was nothing more. That assumption was not in the contract. It was in the caller's head.",
+      "estimated_duration": 22,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B05.mp3",
+      "actual_duration_s": 26.93,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B05.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE MECHANISM",
+      "shot_type": "GRAPHIC",
+      "shot_source": "own",
+      "shot_motion": "drawon",
+      "on_screen": [
+        "The handoff condition",
+        "that would have caught it:",
+        "was never written."
+      ],
+      "narration_text": "A handoff condition is a falsifiable claim, written before the next step begins, about what must be true once the current step ends. It is specific, testable, and binary. The condition Seth needed: given total items equals page size times three plus one, the calling loop terminates after the final one-item page is returned. That is the non-obvious case. It takes one sentence to write. It was never written.",
+      "estimated_duration": 22,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B06.mp3",
+      "actual_duration_s": 28.26,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B06.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "act": "THE MECHANISM",
+      "shot_type": "CARD",
+      "shot_source": "own",
+      "shot_motion": "hold",
+      "on_screen": [
+        "Write the handoff condition",
+        "before Claude runs the step.",
+        "Not after."
+      ],
+      "narration_text": "The handoff condition lives in the prompt, before Claude runs the step. Not in the code review afterward. The condition you write before is the condition that constrains what Claude builds. The condition you write after documents what Claude already built. Those are not the same thing. Pre-condition shapes the artifact. Post-hoc condition rationalizes it.",
+      "estimated_duration": 18,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B07.mp3",
+      "actual_duration_s": 20.74,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B07.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B07.mp3"
+    },
+    {
+      "beat_id": "B08",
+      "act": "THE EXAMPLE",
+      "shot_type": "GRAPHIC",
+      "shot_source": "own",
+      "shot_motion": "drawon",
+      "on_screen": [
+        "Priya's leaderboard",
+        "41 players.",
+        "41st never appears."
+      ],
+      "narration_text": "Priya builds a paginated leaderboard for her school's quiz app. She tests page 1 of 20, page 2 of 40. All pass. She deploys. A tournament ends with 41 players. The 41st player — ranked last — never appears on any page. Her test set was all multiples of 20. The handoff condition she needed: given total equals page size times two plus one, the final page returns exactly one entry and the loop terminates.",
+      "estimated_duration": 20,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B08.mp3",
+      "actual_duration_s": 26.88,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B08.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B08.mp3"
+    },
+    {
+      "beat_id": "B09",
+      "act": "THE PRACTICE",
+      "shot_type": "GRAPHIC",
+      "shot_source": "own",
+      "shot_motion": "drawon",
+      "on_screen": [
+        "Before shipping:",
+        "write the non-obvious case.",
+        "page_size × n + 1"
+      ],
+      "narration_text": "Before you ship any paginated output — or any function with a termination condition — write the non-obvious case. Not the round number. The round number plus one. Ask: what is the smallest input where this could be wrong in a way that doesn't show up at the obvious test? Write the handoff condition for that input. Run it. If it fails, you found the dangerous middle before it shipped.",
+      "estimated_duration": 20,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B09.mp3",
+      "actual_duration_s": 25.08,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B09.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B09.mp3"
+    },
+    {
+      "beat_id": "B10",
+      "act": "RECAP",
+      "shot_type": "CARD",
+      "shot_source": "own",
+      "shot_motion": "hold",
+      "on_screen": [
+        "The most dangerous output",
+        "is the one that passes every test",
+        "you thought to write."
+      ],
+      "narration_text": "The dangerous middle is not the easy bug that fails on first run, and not the impossible bug nobody would think of. It is the bug that lives inside what looks like correct work — the one you could have caught with one more test, written before the step ran. The handoff condition is the sentence that makes that test mandatory.",
+      "estimated_duration": 16,
+      "audio_file": "../pagination-bug-dangerous-middle/mp3/beat-B10.mp3",
+      "actual_duration_s": 18.05,
+      "locked": true,
+      "source_clip": "../pagination-bug-dangerous-middle/clips/B10.mp4",
+      "source_audio": "../pagination-bug-dangerous-middle/mp3/beat-B10.mp3"
+    },
+    {
+      "beat_id": "NBB01",
+      "act": "VERDICT",
+      "title": "Liam verdict — ClaudeVerdictArtifact",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Let's recap with Claude. Here's what the body just demonstrated. Priya builds a paginated leaderboard for her school's quiz app. She tests page 1 of 20, page 2 of 40. All pass. She deploys. A tournament ends with 41 players. The 41st player — ranked last — never appears on any page. Her test set was all multiples of 20. The handoff condition she needed: given total equals page size times two plus one, the final page returns exactly one entry and the loop terminates. The dangerous middle is not the easy bug that fails on first run, and not the impossible bug nobody would think of. It is the bug that lives inside what looks like correct work — the one you could have caught with one more test, written before the step ran. The handoff condition is the sentence that makes that test mandatory.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "provenance": "proven-core/ClaudeVerdictArtifact",
+          "version": "1",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Why the Most Dangerous Claude Output Is the",
+            "artifactLines": [
+              "The failure was not in the function.",
+              "A handoff condition is a falsifiable claim, written before the next step begins, about …",
+              "The dangerous middle is not the easy bug that fails on first run, and not the impossibl…"
+            ]
+          },
+          "rendered": {
+            "out": "media/NBB01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30.0,
+      "audio_file": "mp3/beat-NBB01.mp3",
+      "actual_duration_s": 41.259,
+      "lead_silence_s": 0.5
+    },
+    {
+      "beat_id": "NBB02",
+      "act": "YOUR TURN",
+      "title": "Your turn handoff — ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Explain how [Why the Most Dangerous Claude Output Is the One That Passes Every Test] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+            "topic": "CLAUDE CODE",
+            "segment": "Why the Most Dangerous Claude Output",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.0,
+      "audio_file": "mp3/beat-NBB02.mp3",
+      "actual_duration_s": 7.765
+    },
+    {
+      "beat_id": "NBB03",
+      "act": "OUTRO",
+      "title": "Claude title outro — ClaudeTitleOutro",
+      "silent": true,
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "provenance": "proven-core/ClaudeTitleOutro",
+          "version": "1",
+          "props": {
+            "title": "Why the Most Dangerous Claude Output Is the One That Passes Every Test",
+            "handle": "@NikBearBrown",
+            "subline": "the handoff condition is the sentence that makes that test mandatory"
+          },
+          "rendered": {
+            "out": "media/NBB03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6.0,
+      "audio_file": "mp3/beat-NBB03.mp3",
+      "silence_s": 6.0,
+      "actual_duration_s": 6.03,
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Why the Most Dangerous Claude Output Is the One That Passes Every Test"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+ "metadata": {
+  "slug": "pretooluse-grade-blocker",
+  "title": "Build a PreToolUse Hook That Blocks Grade Generation with Claude Code",
+  "topic": "CLAUDE CODE FOR TEACHERS",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-code-for-teachers/chapters/08-hooks.md",
+  "segment": "PRETOOLUSE HOOKS",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "role": "INTRO",
+   "type": "SLATE",
+   "narration": "NEVER generate a final grade in CLAUDE.md lasts two sessions. A PreToolUse hook lasts forever. Here is the twenty-line script that turns do not into cannot.",
+   "estimated_duration_s": 8.0,
+   "shot": {"source": null, "motion": "hold"}
+  },
+  {
+   "beat_id": "B01",
+   "role": "PROBLEM",
+   "type": "SLATE",
+   "narration": "A CLAUDE.md instruction is probabilistic — Claude weights it and sometimes overrides it. A hook is deterministic — it executes mechanically regardless of prompt phrasing. The teacher gets reliability, not compliance.",
+   "estimated_duration_s": 12.0,
+   "shot": {"source": null, "motion": "hold"}
+  },
+  {
+   "beat_id": "B02",
+   "role": "ASK",
+   "type": "SLATE",
+   "narration": "Ask Claude to write the PreToolUse hook script and the settings.json configuration.",
+   "estimated_duration_s": 12.0,
+   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {"command": "claude \"Write PreToolUse hook block-grades.sh:\\n  read Write tool input from stdin as JSON\\n  extract 'content' field\\n  grep -qE for grade patterns:\\n    [0-9]{1,3}%, [A-F][+-]?,\\n    [0-9]+/[0-9]+\\n  exit 1 + 'BLOCKED: contains final grade'\\n  Also write settings.json config.\"", "topic": "CLAUDE CODE FOR TEACHERS", "segment": "PRETOOLUSE HOOKS", "runningText": "writing hook script…"}}}
+  },
+  {
+   "beat_id": "B03",
+   "role": "CODE",
+   "type": "SLATE",
+   "narration": "The hook reads the Write tool input from stdin as JSON, extracts the content field, and runs a regex against grade patterns — percentages, letter grades, and fraction scores.",
+   "estimated_duration_s": 14.0,
+   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {"filename": "block-grades.sh", "segment": "PRETOOLUSE HOOKS", "topic": "CLAUDE CODE FOR TEACHERS", "code": "#!/bin/bash\n# block-grades.sh — PreToolUse hook\ninput=$(cat)  # JSON from stdin\ncontent=$(echo \"$input\" | python3 -c \\\n  \"import json,sys; print(json.load(sys.stdin).get('content',''))\")\n\nif echo \"$content\" | grep -qE \\\n  '[0-9]{1,3}%|[A-F][+-]?[[:space:]]|[0-9]+/[0-9]+|[0-9]+ out of [0-9]+';\nthen\n  echo \"BLOCKED: content contains a final grade\" >&2\n  exit 1\nfi\nexit 0"}}}
+  },
+  {
+   "beat_id": "B04",
+   "role": "OUTPUT",
+   "type": "SLATE",
+   "narration": "Hook test: ask Claude to summarize student performance. Claude generates Overall performance: B+. The hook reads the proposed Write input, detects B+, exits 1. Claude receives the block message and regenerates without the grade. The grade never reached the file.",
+   "estimated_duration_s": 20.0,
+   "shot": {"source": null, "motion": "hold"}
+  },
+  {
+   "beat_id": "B05",
+   "role": "CHANGE",
+   "type": "SLATE",
+   "narration": "Extend the hook to distinguish grade percentages from quantity percentages.",
+   "estimated_duration_s": 10.0,
+   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {"command": "claude \"Extend hook to also detect\\n  grade patterns in percentile ranges:\\n  'in the top 15%' vs '85%'\\n  distinguish quantity from grade.\\nUpdate grep pattern.\"", "topic": "CLAUDE CODE FOR TEACHERS", "segment": "PRETOOLUSE HOOKS", "runningText": "extending pattern…"}}}
+  },
+  {
+   "beat_id": "B06",
+   "role": "OUTPUT",
+   "type": "SLATE",
+   "narration": "Extended hook: the student scored in the top 15% of the class — not blocked, it is a quantity. The student earned 85% — blocked, it is a grade. The pattern correctly distinguishes context by checking for grade-adjacent language rather than bare percentages.",
+   "estimated_duration_s": 14.0,
+   "shot": {"source": null, "motion": "hold"}
+  },
+  {
+   "beat_id": "B07",
+   "role": "SUMMARY",
+   "type": "SLATE",
+   "narration": "The PreToolUse hook is the enforcement layer below the instruction layer. Write the instruction in CLAUDE.md for transparency — wire the hook in settings.json for reliability. The two layers serve different purposes and both are needed.",
+   "estimated_duration_s": 12.0,
+   "shot": {"source": null, "motion": "hold"}
+  },
+  {
+   "beat_id": "B08",
+   "role": "NEXT",
+   "type": "SLATE",
+   "narration": "Next: deploy a pattern-analysis subagent that keeps the main session context clean.",
+   "estimated_duration_s": 8.0,
+   "shot": {"source": null, "motion": "hold"}
+  },
+  {
+   "beat_id": "B09",
+   "role": "OUTRO",
+   "type": "SLATE",
+   "narration": "Like and subscribe for more Claude Code for Teachers.",
+   "estimated_duration_s": 8.0,
+   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownOutro", "props": {"brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI", "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}}
+  }
+ ]
+}

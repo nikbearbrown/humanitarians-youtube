@@ -1,0 +1,194 @@
+{
+ "metadata": {
+  "slug": "solve-verify-asymmetry",
+  "title": "Demonstrate the Solve-Verify Asymmetry with Claude Code",
+  "topic": "CLAUDE CODE FOR STUDENTS",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "source": "claude-code-for-students/chapters/02-division-of-labor.md",
+  "segment": "SOLVE-VERIFY GAP",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "register": "Teardown",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Claude's solve speed doubles roughly every eighteen months. Your verification speed is approximately constant. The gap is widening — and the only defense is to get better at the verify side.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "lines": [
+       "Nik Bear Brown",
+       "Solve-Verify Asymmetry, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "Your job is not to solve faster — Claude has that side. Your job is to verify better. If you compete on solve speed you lose, and you should. If you abandon verify, the build ships with whatever Claude got wrong.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "We ask Claude to write a top-three GPA ranking function with tie-breaking by last name.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write top_three_by_gpa(students) -> list:\\n  sort by GPA descending\\n  tie-breaking: alphabetical by last_name ascending\\n  return top 3 students\"",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "SOLVE-VERIFY GAP",
+      "runningText": "generating function…"
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Claude writes the function in 8 seconds. It looks correct. The sort key is clean, the code is readable. The tie-breaking bug is invisible — until the probe.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "gpa_sort.py",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "SOLVE-VERIFY GAP",
+      "code": "# gpa_sort.py — Claude Code output (8 seconds)\ndef top_three_by_gpa(students):\n    \"\"\"Return top 3 students by GPA.\n    Tie-breaking: alphabetical by last_name ascending.\n    \"\"\"\n    sorted_students = sorted(\n        students,\n        key=lambda s: (-s['gpa'], s['last_name'])\n    )\n    return sorted_students[:3]\n\n# Looks correct. Clean sort key.\n# Bug: last_name tie-breaking only applies when GPAs are equal.\n# Test case needed: two students with identical GPA."
+     }
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "Solve time: 8 seconds. Verify time: 4 minutes. Same task — the gap is 30x. And verify catches the bug that 8 seconds of solve couldn't self-identify.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_SolveVerifyBars",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 20
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "We ask Claude to audit its own function for tie-breaking correctness.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Audit top_three_by_gpa for tie-breaking correctness.\\nDoes it correctly break ties alphabetically by last_name ascending?\"",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "SOLVE-VERIFY GAP",
+      "runningText": "auditing tie-breaking…"
+     }
+    }
+   },
+   "estimated_duration_s": 10
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT",
+   "narration_text": "The gap is widening every model generation. Solve speed grows; verify speed doesn't. The ratio is the risk.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_AsymmetryTrend",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "The solve-verify asymmetry is structural: Claude solves by pattern completion, which is fast and fluency-optimized. Verification requires deliberate judgment, which scales with human effort. The gap widens every model generation.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "narration_text": "Next: label the five supervisory capacities in a real build session.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 8
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At nikbearbrown.com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  }
+ ]
+}
