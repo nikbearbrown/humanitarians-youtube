@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "chapter": "07-fairness-metrics-choosing-a-definition-and-defending-it",
+    "chapter_number": "07",
+    "title": "Fairness metrics: choosing a definition and defending it",
+    "course_eyebrow": "AI Engineering · Chapter 07",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "runtime_from": "/Users/nik/Documents/Cowork/unreal-reels/lectures/fairness-metrics-and-impossible-choices",
+    "ds_css": null,
+    "note": "Regression subset — every archetype exercised with real Ch.7 content; charts use the two extracted drawers."
+  },
+  "slides": [
+    {
+      "archetype": "title",
+      "label": "Title",
+      "eyebrow": "AI Engineering · Chapter 07",
+      "headline": "Fairness metrics: choosing a definition and defending it",
+      "subtitle": "Three reasonable definitions. One dataset. Pick one — and learn why you cannot keep all three.",
+      "speaker_notes": "Chapter 7. Three reasonable definitions of fairness. One dataset. You must pick one — and the theorem says you cannot have all three."
+    },
+    {
+      "archetype": "concept",
+      "label": "The problem",
+      "eyebrow": "The problem",
+      "headline": "You built a classifier. You sit down to write &ldquo;make it fair.&rdquo;",
+      "bullets": [
+        "A yes/no model — loan approval, recidivism, a hiring screen — applied to a population with two groups, <b>A</b> and <b>B</b>. The model predicts; the world produces outcomes; you compare the two.",
+        "You write down three requirements. Each one, on its own, sounds exactly like what fairness should mean.",
+        "I have to tell you: <b>you cannot satisfy all three at once</b> when the groups have different base rates — and on real data, they almost always do."
+      ],
+      "speaker_notes": "You build a binary classifier on a population with two groups. You want it to be fair, so you write down requirements. Each sounds like fairness."
+    },
+    {
+      "archetype": "statement",
+      "label": "The impossibility",
+      "eyebrow": "The impossibility theorem · 2016",
+      "headline": "Demographic parity, equalized odds, and calibration parity cannot all hold on the same dataset when base rates differ.",
+      "body": "Not a tooling limit. Not a data problem. A structural fact — proved independently by Kleinberg, Mullainathan &amp; Raghavan, and by Chouldechova. It <b style=\"color:var(--nu-white);\">forces a choice</b> — and choices in engineering have to be defended.",
+      "speaker_notes": "This is a theorem, proved independently in 2016 by Kleinberg, Mullainathan and Raghavan, and by Chouldechova. It is the structural fact of the chapter."
+    },
+    {
+      "archetype": "section",
+      "label": "Three definitions",
+      "part": "Part one",
+      "headline": "Three definitions",
+      "subtitle": "Each captures something fairness intuitively requires. Each is a different statement about the model.",
+      "speaker_notes": "Section divider."
+    },
+    {
+      "archetype": "equation",
+      "label": "Demographic parity — equation",
+      "eyebrow": "Metric 01 · Equation",
+      "headline": "Demographic parity",
+      "subhead": "also called statistical parity — a statement about the model&rsquo;s <b>outputs</b>",
+      "tex": "P(\\hat{Y}=1 \\mid A=a) = P(\\hat{Y}=1 \\mid A=b)",
+      "plain": "The model says &ldquo;yes&rdquo; to the <b>same fraction</b> of group A and group B. Equal treatment in the prediction itself — measured before anyone checks who was actually right.",
+      "values_claim": "Outcomes should be proportional regardless of base rates. Structural redress over conditional accuracy.",
+      "tangent": {
+        "eyebrow": "Metric 01 · equation · tangent",
+        "title": "Demographic parity",
+        "lhs": "How often the model says “yes” to group A.",
+        "rhs": "How often it says “yes” to group B.",
+        "claim": "These two rates must be equal — not close, equal.",
+        "glossary": [
+          {"sym": "Ŷ", "role": "random variable", "mean": "the model's prediction", "dom": "{0, 1}"},
+          {"sym": "A", "role": "random variable", "mean": "group membership", "dom": "{a, b}"},
+          {"sym": "a, b", "role": "fixed values", "mean": "the two specific groups", "dom": "categorical"},
+          {"sym": "P(·)", "role": "operator", "mean": "probability of", "dom": "[0, 1]"}
+        ],
+        "example": {"scenario": "A bank approves loans at 40% in neighborhood A, 22% in B.", "lhs_val": "40%", "rhs_val": "22%", "verdict": "40% ≠ 22% — violated", "cost": "Group B is handed loans far less often, regardless of who would repay."},
+        "values_claim": "Outcomes should be equal regardless of base rates — redress over accuracy.",
+        "reentry": "That's demographic parity. Back to the three definitions."
+      },
+      "speaker_notes": "Demographic parity, a.k.a. statistical parity. A statement about the model's OUTPUTS, before comparing to ground truth."
+    },
+    {
+      "archetype": "example",
+      "label": "Demographic parity — example",
+      "eyebrow": "Real-world example",
+      "headline": "A bank approves loans at 40% in one neighborhood and 18% in another.",
+      "paragraphs": [
+        "Demographic parity says: the <b>loan</b> — the thing with real consequences, a house, a business — should be handed out at the same rate to both groups, full stop. It does not care whether default rates differ underneath.",
+        "When you reach for parity, you are betting that the prediction&rsquo;s payoff matters more than its conditional accuracy. That is a defensible bet — in some deployments. Not all."
+      ],
+      "speaker_notes": "Real-world example: loan approvals. The prediction itself carries the consequence."
+    },
+    {
+      "archetype": "equation",
+      "label": "Equalized odds — equation",
+      "eyebrow": "Metric 02 · Equation",
+      "headline": "Equalized odds",
+      "subhead": "a statement about the model&rsquo;s <b>errors</b>, conditional on the truth",
+      "texs": [
+        "P(\\hat{Y}=1 \\mid Y=1, A=a) = P(\\hat{Y}=1 \\mid Y=1, A=b)",
+        "P(\\hat{Y}=1 \\mid Y=0, A=a) = P(\\hat{Y}=1 \\mid Y=0, A=b)"
+      ],
+      "tex_labels": ["True-positive rate equal", "False-positive rate equal"],
+      "plain": "The model makes its <b>mistakes evenly</b>. Among people who truly are positive, it catches the same share in both groups; among the truly negative, it falsely flags the same share.",
+      "values_claim": "The cost of being wronged should be borne equally. Group membership should not change your risk of error.",
+      "speaker_notes": "Equalized odds: equal TPR and equal FPR across groups. A statement about the model's ERRORS, conditional on the truth."
+    },
+    {
+      "archetype": "chart",
+      "label": "The triangle",
+      "eyebrow": "The theorem, drawn",
+      "headline": "Satisfy any two. The third breaks.",
+      "chart": "triangle",
+      "chart_w": 1000,
+      "chart_h": 600,
+      "center": true,
+      "speaker_notes": "The theorem as a triangle: you can satisfy any two. The third breaks. Watch the cycle rotate through which two you keep and which one breaks."
+    },
+    {
+      "archetype": "chart",
+      "label": "Arithmetic made visible",
+      "eyebrow": "The trade-off, in bars",
+      "headline": "Same model. Different threshold. You choose what breaks.",
+      "chart": "arithmetic",
+      "chart_w": 1480,
+      "chart_h": 600,
+      "center": false,
+      "speaker_notes": "Same model, two threshold choices. Toggle between the calibration-satisfying and equalized-odds-satisfying versions. Calibration and equalized odds cannot both hold while base rates differ."
+    },
+    {
+      "archetype": "figure",
+      "label": "Counterfactual fairness — procedure",
+      "eyebrow": "Figure 7.3",
+      "headline": "What would have happened under a different group, holding background fixed?",
+      "src": "assets/book/counterfactual-procedure.svg",
+      "asset_ref": "ch07-counterfactual-procedure",
+      "caption": "The three-step abduction → action → prediction procedure for counterfactual fairness.",
+      "alt": "Three-step counterfactual fairness procedure: abduction, action, prediction.",
+      "speaker_notes": "Counterfactual fairness asks what would have happened to this individual under a different sensitive-attribute value, holding their background fixed. Computing it takes three steps: abduction, action, prediction."
+    },
+    {
+      "archetype": "close",
+      "label": "Close",
+      "eyebrow": "The supervisory move",
+      "headline": "Understand the math. Choose the values. Defend the integration.",
+      "body": "Three formally distinct metrics can be incompatible on one dataset when base rates differ. The impossibility is structural. The defense — connecting the chosen metric to the deployment, the cost-bearers, and the construct — is the work.",
+      "next": "Next — Chapter 8: adversarial robustness. Can a perturbation invisible to a human flip the model entirely?",
+      "speaker_notes": "Understand the math, choose the values, defend the integration. Next chapter: adversarial robustness."
+    }
+  ]
+}
