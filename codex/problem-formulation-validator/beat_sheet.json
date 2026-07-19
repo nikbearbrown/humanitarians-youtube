@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "slug": "problem-formulation-validator",
+    "title": "Validate Your Build Problem Formulation Before Running Codex",
+    "topic": "CODEX FOR STUDENTS",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "codex-for-students/chapters/08-problem-formulation.md",
+    "segment": "PROBLEM FORMULATION VALIDATOR",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 118.0
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "t_start": 0.0,
+      "estimated_duration_s": 8.0,
+      "narration_text": "If you can't describe what the build does in one sentence, you haven't decided yet — and Codex will decide for you.",
+      "shot": { "type": "SLATE", "source": "own", "motion": "hold" }
+    },
+    {
+      "beat_id": "B01",
+      "t_start": 8.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "The one-sentence formulation test has three questions: What does this build do? What does it touch — read-only vs. write access to specific paths and APIs? What does it never touch — explicit out-of-scope items? If any answer requires more than one sentence, the formulation isn't done.",
+      "shot": { "type": "SLATE", "source": "own", "motion": "hold" }
+    },
+    {
+      "beat_id": "B02",
+      "t_start": 20.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "claude \"Apply the three-question formulation test to this build description. Answer each in exactly one sentence. If any answer requires more than one sentence, flag that question as 'formulation not complete'.\" < build_description.txt",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold",
+        "remotion": {
+          "component": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Apply the three-question formulation test: (1) What does this build do? (2) What does it touch? (3) What does it never touch? Flag any answer that needs more than one sentence.\" < build_description.txt",
+            "runningText": "testing formulation…"
+          }
+        }
+      }
+    },
+    {
+      "beat_id": "B03",
+      "t_start": 32.0,
+      "estimated_duration_s": 14.0,
+      "narration_text": "formulation_validator.py — applies three-question test, validates each answer for one-sentence constraint, produces traffic light per question: green for pass, red for fail with annotation.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold",
+        "remotion": {
+          "component": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "formulation_validator.py",
+            "code": "# applies three-question formulation test and produces traffic-light result\nimport formulation_engine\n\ndesc = open('build_description.txt').read()\nresult = formulation_engine.test(desc)\nfor q, answer, passed in result:\n    status = 'GREEN' if passed else 'RED'\n    print(f'Q{q}: [{status}] {answer[:60]}...')\n    if not passed:\n        print(f'  Missing: {formulation_engine.missing(q, answer)}')"
+          }
+        }
+      }
+    },
+    {
+      "beat_id": "B04",
+      "t_start": 46.0,
+      "estimated_duration_s": 20.0,
+      "narration_text": "Three question cards animate in. Q1 red — vague: build a feedback notifier needs more than one sentence. Q2 green — specific: reads JSON from playtests folder, writes one dot-md to playtests. Q3 green — never writes to src or modifies game code. Below Q1's red light: annotation — Missing: what trigger, what input format, what output location.",
+      "shot": {
+        "type": "MANIM",
+        "source": "own",
+        "motion": "drawon",
+        "manim": "B04_FormulationTrafficLight"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "t_start": 66.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "Fix the Q1 formulation: give a precise one-sentence description.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold",
+        "remotion": {
+          "component": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Rewrite: 'A script that reads JSON feedback exports from beta testers, filters to current build version, groups by game system, and writes one markdown summary to playtests/v{build}.md.'\" < q1_vague.txt",
+            "runningText": "tightening formulation…"
+          }
+        }
+      }
+    },
+    {
+      "beat_id": "B06",
+      "t_start": 76.0,
+      "estimated_duration_s": 14.0,
+      "narration_text": "Same three cards from B04, but Q1 answer now reads: 'A script that reads JSON feedback exports from beta testers, filters to current build version, groups by game system, and writes one markdown summary to playtests/v-build.md.' Q1 traffic light turns from red to green. FORMULATION READY appears below all three cards.",
+      "shot": {
+        "type": "MANIM",
+        "source": "own",
+        "motion": "drawon",
+        "manim": "B06_FormulationAllGreen"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "t_start": 90.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "The one-sentence constraint is a forcing function: it requires you to have decided. 'Build a feedback notifier' is a category. 'A script that reads JSON feedback exports, filters to current build version, groups by system, and writes one markdown summary to playtests/v-build.md' is a decision — it names the input, the filter, the grouping, and the output.",
+      "shot": { "type": "SLATE", "source": "own", "motion": "hold" }
+    },
+    {
+      "beat_id": "B08",
+      "t_start": 102.0,
+      "estimated_duration_s": 8.0,
+      "narration_text": "Next: write a handoff condition that catches what tests miss.",
+      "shot": { "type": "SLATE", "source": "own", "motion": "hold" }
+    },
+    {
+      "beat_id": "B09",
+      "t_start": 110.0,
+      "estimated_duration_s": 8.0,
+      "narration_text": "Nik Bear Brown. Brutalist plus Educational AI. nikbearbrown.com.",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "motion": "hold",
+        "remotion": {
+          "component": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      }
+    }
+  ]
+}
