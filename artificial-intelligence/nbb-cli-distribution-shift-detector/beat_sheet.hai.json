@@ -1,0 +1,403 @@
+{
+ "metadata": {
+  "slug": "cli-distribution-shift-detector",
+  "variant": "nbb",
+  "title": "Distribution Shift Detector: PSI Before Your Model Goes Stale",
+  "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+  "audience": "NikBearBrown",
+  "engine": "kokoro",
+  "voice": "am_onyx",
+  "palette": "teardown",
+  "register": "Pragmatist",
+  "derived_from": "beat_sheet.json",
+  "source_reel": "../cli-distribution-shift-detector",
+  "source_video": "../cli-distribution-shift-detector/cli-distribution-shift-detector-cut.mp4",
+  "body_beats": [
+   "B00",
+   "B01",
+   "B02",
+   "B03",
+   "B04",
+   "B05",
+   "B06",
+   "B07",
+   "B08"
+  ],
+  "body_duration_s": 101,
+  "old_outro_beats": [
+   "B09"
+  ],
+  "built_at": "2026-07-17T01:35:49.953750",
+  "voice_kokoro": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Annyeong, Humanitarians",
+      "topic": "Distribution Shift Detector: PSI Before Your Model Goes Stale",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "NBB00",
+   "act": "COLD OPEN",
+   "title": "Liam cold open — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "I followed the PSI build with equal-width buckets on the training normal and the three test scenarios, and the point-two retrain threshold. Now I want to stress the bucketing choice itself. Help me (1) rerun the same three shifts using quantile buckets instead of equal-width and compare the PSI values, (2) test how adding an empty bucket or a near-zero expected fraction blows up the log term, and (3) decompose PSI into its per-bucket contributions so I can see which feature region is driving the drift.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "I followed the PSI build with equal-width buckets on the training normal and the three test scenarios, and the point-two retrain threshold. Now I want to stress the bucketing choice itself. Help me (1) rerun the same three shifts using quantile buckets instead of equal-width and compare the PSI values, (2) test how adding an empty bucket or a near-zero expected fraction blows up the log term, and (3) decompose PSI into its per-bucket contributions so I can see which feature region is driving the drift.",
+      "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+      "segment": "Distribution Shift Detector: PSI Before Your",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 9.0,
+   "audio_file": "mp3/beat-NBB00.mp3",
+   "actual_duration_s": 5.845
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "COMPUTATIONAL SKEPTICISM",
+      "lines": [
+       "Nik Bear Brown",
+       "Distribution Shift, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B00.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B00.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B00.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "A credit scoring model trained in Q1 is deployed in Q4. The input distribution has shifted — customer age profiles changed, income distributions moved, a macroeconomic shock altered the feature correlations. The model's accuracy on the new population is down twelve points. No one noticed because no one was monitoring the inputs. Population Stability Index is the standard signal: it measures how much the input distribution has drifted from what the model was trained on, bucket by bucket. A PSI above point-two triggers a retrain. This video builds the monitor.",
+   "visual_intent": "title card: 'input distribution shifted — model did not know'; PROBLEM beat, no terminal",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 16,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B01.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B01.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B01.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda) — the command typed",
+   "narration_text": "In the terminal: ask Claude to write a PSI function using equal-width bucketing on the training distribution. Then generate a training set from a standard normal and test it against three scenarios: no shift, moderate shift at mean point-five, and a major shift at mean one-point-five with increased variance. Print PSI for each and flag anything above point-two.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write psi(expected, actual, buckets=10)\ncomputing Population Stability Index.\nPSI = sum((actual_pct - expected_pct) * ln(actual_pct / expected_pct))\nGenerate:\n  training: N(0,1) 5000 samples\n  test: no-shift N(0,1), moderate N(0.5,1), major N(1.5,1.2)\nPrint PSI for each. Flag >0.2 as major drift.\"",
+      "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+      "segment": "DISTRIBUTION SHIFT DETECTOR",
+      "runningText": "generating PSI distribution monitor…"
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B02.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B02.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B02.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda) — read the code before running",
+   "narration_text": "Read the PSI formula. PSI equals the sum over all buckets of actual percent minus expected percent, times the log of actual percent over expected percent. It is a symmetrized KL divergence. The log term penalizes large ratio changes; the difference term penalizes large absolute shifts. Below point-one: stable. Point-one to point-two: monitor. Above point-two: retrain.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "psi_monitor.py",
+      "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+      "segment": "DISTRIBUTION SHIFT DETECTOR",
+      "code": "# psi_monitor.py  —  Claude Code output\nimport numpy as np\n\ndef psi(expected, actual, buckets=10):\n    \"\"\"Population Stability Index — symmetric KL divergence.\"\"\"\n    # Build bucket edges from TRAINING (expected) distribution\n    lo, hi = expected.min(), expected.max()\n    edges = np.linspace(lo, hi, buckets + 1)\n    \n    e_counts, _ = np.histogram(expected, bins=edges)\n    a_counts, _ = np.histogram(actual,   bins=edges)\n    \n    # Percentages (add epsilon to avoid log(0))\n    e_pct = (e_counts + 1e-6) / len(expected)\n    a_pct = (a_counts + 1e-6) / len(actual)\n    \n    psi_val = np.sum((a_pct - e_pct) * np.log(a_pct / e_pct))\n    return psi_val\n\n# Thresholds: <0.1 stable  |  0.1-0.2 monitor  |  >0.2 RETRAIN"
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B03.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B03.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B03.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "Manim animation: B04_PSIBars",
+   "narration_text": "Run it. Three horizontal bars. No shift: PSI point-zero-zero-one, almost invisible — the training and test distributions are identical. Moderate shift: PSI point-zero-eight, a medium bar, still in the monitoring zone. Major drift: PSI point-three-zero, a long crimson bar crossing the point-two threshold line. Retrain alert. The model cannot see this — it has no input monitor. You built one.",
+   "visual_intent": "Manim B04_PSIBars: three horizontal bars growing from left — no-shift green (tiny), moderate gold (medium), major-drift crimson (long) crossing PSI=0.20 threshold dashed line with RETRAIN ALERT annotation",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_PSIBars",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B04.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B04.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B04.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Add the feature monitor. Ask Claude to update the script to run PSI across all twenty features of a synthetic dataset, rank features by PSI descending, and flag the top three as priority retrain drivers.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Update psi_monitor.py:\n-> generate synthetic 20-feature dataset\n-> apply N(0.5,1) shift to features 3,7,12\n-> compute PSI for all 20 features\n-> rank by PSI descending\n-> flag top 3 as 'priority retrain drivers'\"",
+      "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+      "segment": "DISTRIBUTION SHIFT DETECTOR",
+      "runningText": "running per-feature PSI sweep…"
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B05.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B05.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B05.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "The per-feature PSI sweep identifies features three, seven, and twelve as the drift drivers — the ones you artificially shifted. The model degraded on those features and had no way to report it. The lesson: PSI is not a model metric — it is an input health metric. You run it on the data, not on the predictions. Predictions can look stable while inputs are already broken.",
+   "visual_intent": "recap card: per-feature PSI ranked table; 'monitor inputs, not just predictions'",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B06.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B06.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B06.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: add this PSI monitor to your model's production pipeline. Run it daily on a rolling window of live inputs against your training distribution. Set an alert at PSI point-one-five — before the hard threshold — so you have time to investigate before retraining is forced. Log which features are driving the drift.",
+   "visual_intent": "next-steps card: 1) add PSI monitor to production pipeline, 2) set PSI=0.15 alert, 3) log per-feature drift drivers",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B07.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B07.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B07.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "EXTRA",
+   "role_note": "slate — optional b-roll",
+   "narration_text": "",
+   "visual_intent": "slate placeholder",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 0,
+   "locked": true,
+   "source_clip": "../cli-distribution-shift-detector/clips/B08.mp4",
+   "source_audio": "../cli-distribution-shift-detector/mp3/beat-B08.mp3",
+   "audio_file": "../cli-distribution-shift-detector/mp3/beat-B08.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "NBB01",
+   "act": "VERDICT",
+   "title": "Liam verdict — ClaudeVerdictArtifact",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Let's recap with Claude. Here's what the body just demonstrated. Your move: add this PSI monitor to your model's production pipeline. Run it daily on a rolling window of live inputs against your training distribution. Set an alert at PSI point-one-five — before the hard threshold — so you have time to investigate before retraining is forced. Log which features are driving the drift.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "provenance": "proven-core/ClaudeVerdictArtifact",
+     "version": "1",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Distribution Shift Detector: PSI Before Your Model Goes",
+      "artifactLines": [
+       "The per-feature PSI sweep identifies features three, seven, and twelve as the drift dri…",
+       "Your move: add this PSI monitor to your model's production pipeline.",
+       "Key mechanism established."
+      ]
+     },
+     "rendered": {
+      "out": "media/NBB01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 30.0,
+   "audio_file": "mp3/beat-NBB01.mp3",
+   "actual_duration_s": 19.115,
+   "lead_silence_s": 0.5
+  },
+  {
+   "beat_id": "NBB02",
+   "act": "YOUR TURN",
+   "title": "Your turn handoff — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "Explain how [Distribution Shift Detector: PSI Before Your Model Goes Stale] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+      "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+      "segment": "Distribution Shift Detector: PSI Before Your",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8.0,
+   "audio_file": "mp3/beat-NBB02.mp3",
+   "actual_duration_s": 7.765
+  },
+  {
+   "beat_id": "NBB03",
+   "act": "OUTRO",
+   "title": "Claude title outro — ClaudeTitleOutro",
+   "silent": true,
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "provenance": "proven-core/ClaudeTitleOutro",
+     "version": "1",
+     "props": {
+      "title": "Distribution Shift Detector: PSI Before Your Model Goes Stale",
+      "handle": "@NikBearBrown",
+      "subline": "cancer biology, one mechanism at a time"
+     },
+     "rendered": {
+      "out": "media/NBB03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 6.0,
+   "audio_file": "mp3/beat-NBB03.mp3",
+   "silence_s": 6.0,
+   "actual_duration_s": 6.03,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Distribution Shift Detector: PSI Before Your Model Goes Stale"
+  }
+ ]
+}
