@@ -1,0 +1,96 @@
+{
+ "metadata": {
+  "title": "Build a PRD Scope Decision Record with Claude",
+  "slug": "prd-scope-decision-record",
+  "topic": "CLAUDE CODE · BRAND STRATEGY",
+  "register": "Teardown",
+  "voice": "claude-liam",
+  "voice_id": "am_onyx",
+  "engine": "kokoro",
+  "palette": "claude",
+  "style_preset": "claude",
+  "style": "claude-cli",
+  "channel": "claude-liam",
+  "note": "cli-ideas Card 13 — Ch 20 (Shipit: Product Requirements and Scope). IN-FOR-BEAR: 'this is Liam, in for Bear' in B00 and outro. Required spine: B00 cold open · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT · B05 CHANGE · B06 OUTPUT · B07 SUMMARY · B08 NEXT STEPS · B09 OUTRO. DOUBLE-CHECK: Linear hit $35M ARR by 2023; scope_discipline_score = NOT-LIST count / total feature count; flag below 0.25.",
+  "total_estimated_duration_seconds": 118
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO", "role_note": "COLD OPEN LAW — Claude UI, ask shown answered; IN-FOR-BEAR: 'this is Liam, in for Bear'",
+   "narration_text": "This is Liam, in for Bear. Build it with Claude, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"write your-brand/prd.md — WILL-BUILD list, WILL-NOT-BUILD list with scope_discipline_score\"",
+       "topic": "CLAUDE CODE · BRAND STRATEGY", "segment": "PRD Scope Decision Record",
+       "greeting": "Bonjour,", "runningText": "generating prd.md…",
+       "output": ["your-brand/prd.md written", "WILL-BUILD: 5 features", "WILL-NOT-BUILD: 2 entries", "scope_discipline_score: 0.29 — WARNING below 0.25 threshold"]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM", "role_note": "the stakes — BEFORE the CLI loop; SHOW-DON'T-TELL: animate 8-item out-list growing vs. flat in-list",
+   "narration_text": "Here is the problem. Every team writes the in-list — what the product will do. Almost no team writes the out-list — what it will explicitly refuse. Without a named refusal list, scope creep decides the product. Linear built its brand on this discipline: the team declined enterprise customization requests that carried significant contract value, because accepting them would have changed what the product was. They hit 35 million in annual recurring revenue in 2023 with a lean team and a product that, by design, does fewer things than its competitors. The discipline of refusal was the brand. This video: build the tool that makes your out-list visible before the pressure arrives.",
+   "visual_intent": "Title card: two columns — WILL-BUILD (animating to 5 items) vs WILL-NOT-BUILD (starts empty, stays empty) — '$100,000 no goes here' placeholder in the right column; Linear logo visible as supporting example; no composer yet",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 18},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "ClaudeComposerAsk — show and discuss the prompt",
+   "narration_text": "Into Claude. Write your-brand/prd.md with four sections: Problem, Gap, Tool, MVP Boundary. The MVP Boundary must have two columns — in-scope with at most five features, and out-of-scope with at least three refusals, each with a one-line archetype reason. Put the dollar-sign hundred-thousand no first in the out column. Do not use marketing language. Compute scope underscore discipline underscore score equals NOT-LIST count divided by total feature count, and if it is below 0.25, fire a WARNING.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"write your-brand/prd.md:\n  Sections: Problem · Gap · Tool · MVP Boundary\n  MVP Boundary:\n    in-scope: ≤5 features, each with user-facing rationale\n    out-of-scope: ≥3 refusals — '$100,000 no' first,\n      each with archetype reason + reconsidered-if condition\n  Compute scope_discipline_score = NOT-LIST / total features\n  If score < 0.25: print WARNING\"",
+       "topic": "CLAUDE CODE · BRAND STRATEGY", "segment": "PRD Scope Decision Record",
+       "greeting": "The ask,", "runningText": "generating prd.md…"}}},
+   "estimated_duration_s": 16},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "ClaudeCodeBeat — actual generated Python script; trimmed to the lines that teach",
+   "narration_text": "Read it before trusting it. The score computation is one expression: NOT-LIST count over total. The warning threshold is 0.25 — fewer than one refusal for every three features. That number is not arbitrary. It is the point at which the out-list stops functioning as a constraint and starts looking like a wish list with two items crossed out. Everything upstream is prompt engineering; the warning is the logic that enforces the discipline.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeCodeBeat", "props": {
+       "title": "prd_generator.py",
+       "code": "# prd_generator.py  —  Claude Code output\nimport anthropic, sys\n\nPROMPT = \"\"\"\nWrite your-brand/prd.md with sections:\n  Problem, Gap, Tool, MVP Boundary.\nMVP Boundary:\n  WILL-BUILD  (≤5, user-facing rationale + done-when criterion)\n  WILL-NOT-BUILD  (≥3, '$100,000 no' first, archetype reason,\n                  reconsidered-if condition)\n\nAfter the file, print:\n  scope_discipline_score = WILL-NOT-BUILD count / total features\n  If score < 0.25: WARNING — PRD lacks explicit refusals\n\"\"\"\n\nclient = anthropic.Anthropic()\nresult = client.messages.create(\n    model=\"claude-opus-4-7\",\n    max_tokens=2048,\n    messages=[{\"role\": \"user\", \"content\": PROMPT + sys.stdin.read()}]\n)\nprint(result.content[0].text)",
+       "sparkLine": "One score, one warning."}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B04", "act": "OUTPUT — first run", "role_note": "screen-rec or animated slot — CLI output with prd.md printed and score flagged",
+   "narration_text": "Run it on a product with ten features and no out-list. The score prints 0.0 — the WARNING fires. WILL-BUILD has five entries. WILL-NOT-BUILD has zero. The tool has generated candidate refusals: multi-user accounts, custom dashboards, real-time triggering. Each one is a door the team had not documented as closed. Each one is a scope-creep entry waiting for the first customer who asks.",
+   "visual_intent": "screen-rec mp4: prd.md printing in terminal — WILL-BUILD list appears, then WILL-NOT-BUILD (empty), then 'scope_discipline_score: 0.0', then red WARNING line 'PRD lacks explicit refusals — add NOT-LIST entries before approving.' Candidate refusals shown as suggested additions.",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 16},
+
+  {"beat_id": "B05", "act": "CHANGE — check & revise", "role_note": "ClaudeComposerAsk — REVISION; SPARK-LINE: 'The change,'",
+   "narration_text": "That score is not a failure — it is the tool working. Revise: take those suggested refusals, decide which are real, and push the NOT-LIST to at least four entries. The $100,000 no goes first. Each entry needs a one-line archetype reason and a reconsidered-if condition, because a refusal without a revision condition is a wall, not a decision.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"revise your-brand/prd.md:\n  Add 4 entries to WILL-NOT-BUILD:\n    1. Multi-user accounts (Sage archetype: changes product\n       from personal tool to team platform)\n    2. Custom dashboards (Creator shadow: scope creep via\n       output-format proliferation)\n    3. Real-time triggering (Sage: daily batch tests the\n       core hypothesis first)\n    4. Slack integration (reconsidered-if: team tool pivot)\n  Re-compute score. Print updated WARNING status.\"",
+       "topic": "CLAUDE CODE · BRAND STRATEGY", "segment": "PRD Scope Decision Record",
+       "greeting": "The change,", "runningText": "updating prd.md…"}}},
+   "estimated_duration_s": 13},
+
+  {"beat_id": "B06", "act": "OUTPUT — revised", "role_note": "screen-rec or animated slot — revised prd.md with score crossing 0.25",
+   "narration_text": "Re-run. WILL-BUILD: five features. WILL-NOT-BUILD: four entries, each with an archetype reason and a reconsidered-if condition. Score: 0.44 — no warning. The $100,000 no is at the top of the out column: multi-user accounts declined because adding them changes the product from a personal tool to a team platform, and every subsequent decision then becomes a team-platform decision. That is the logic the product now runs on.",
+   "visual_intent": "screen-rec or Manim gauge animation: scope_discipline_score gauge rising from 0.0 to 0.44, crossing the 0.25 threshold line — green above, red below; WILL-NOT-BUILD list shown beside gauge with 4 entries including '$100,000 NO: multi-user accounts' at top.",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 14},
+
+  {"beat_id": "B07", "act": "SUMMARY", "role_note": "lesson in one beat; SHOW-DON'T-TELL: animate the two-column comparison",
+   "narration_text": "A PRD without a WILL-NOT-BUILD is a deferred in-list. The scope discipline score is the mechanism that catches it before the pressure arrives. The $100,000 no — the refusal that costs something real — is not in scope of what AI decides. That is the human decision, and it belongs at the top of the out-column, written down before anyone asks for the feature.",
+   "visual_intent": "Summary card: left column 'WILL-BUILD: 5 features'; right column 'WILL-NOT-BUILD: $100,000 no first'; score gauge at 0.44 — PASS; bottom line: 'the refusal is the brand statement'",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B08", "act": "NEXT STEPS", "role_note": "HANDOFF LAW — prompt READ aloud AND discussed; greeting 'Your turn.'",
+   "narration_text": "Your turn. Take this prompt and run it on your actual product. Pull up the feature list you have already committed to, paste it in, and see whether the scope discipline score fires the warning. Then look at the candidate refusals the tool generates — every one that resonates is a scope-creep vector you had not documented. The WILL-NOT-BUILD list is the document you return to when someone asks for a feature. The question is not whether it is a good feature. The question is whether it belongs in v1, given the hypothesis you are testing.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"run prd_generator.py on this feature list:\n  [PASTE YOUR FEATURE LIST]\n  archetype: [YOUR ARCHETYPE]\n  flag any feature whose only rationale is\n  'AI makes it easy' or 'a user asked for it'\"",
+       "topic": "CLAUDE CODE · BRAND STRATEGY", "segment": "PRD Scope Decision Record",
+       "greeting": "Your turn.", "runningText": "paste this into Claude…"}}},
+   "estimated_duration_s": 13},
+
+  {"beat_id": "B09", "act": "OUTRO", "role_note": "OUTRO LAW — title restate; IN-FOR-BEAR: 'this is Liam, in for Bear'",
+   "narration_text": "Build a PRD Scope Decision Record with Claude. This is Liam, in for Bear — build it with Claude, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeTitleOutro", "props": {
+       "title": "Build a PRD Scope Decision Record.",
+       "handle": "@NikBearBrown", "subline": "built with Claude, taken apart"}}},
+   "estimated_duration_s": 6}
+ ]
+}
