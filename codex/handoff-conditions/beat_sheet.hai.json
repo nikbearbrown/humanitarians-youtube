@@ -1,0 +1,231 @@
+{
+ "metadata": {
+  "slug": "handoff-conditions",
+  "title": "Build Handoff Conditions with Claude: Why 'Looks Good' Fails Every Time",
+  "topic": "CODEX FOR TEACHERS",
+  "voice": "af_kore",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "codex-for-teachers/chapters/05-handoff-conditions.md",
+  "segment": "HANDOFF CONDITIONS",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Bula, Humanitarians",
+      "topic": "Build Handoff Conditions with Claude: Why 'Looks Good' Fails Every Time",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Looks good is a feeling. Feelings don't catch broken links that appear three days after the build.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 8.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Build Handoff Conditions with Claude: Why 'Looks Good' Fails Every Time belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write 3 strong handoff conditions for this build step: adding src/syllabus.html to a class website and linking it from nav. Each must be specific, testable, and binary. Show weak version vs. strong version. Then write a bash one-liner that checks all 3 automatically.\"",
+      "topic": "CODEX FOR TEACHERS",
+      "segment": "HANDOFF CONDITIONS",
+      "runningText": "generating handoff conditions…"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "A handoff condition must be specific, testable, and binary. The weak versions all fail the binary test. The strong versions all have a bash one-liner that checks them.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "Ask for three strong handoff conditions: specific, testable, binary. Weak version versus strong version. Then a bash one-liner that checks all three.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write 3 strong handoff conditions for this build step: adding src/syllabus.html to a class website and linking it from nav. Each must be specific, testable, and binary. Show weak version vs. strong version. Then write a bash one-liner that checks all 3 automatically.\"",
+      "topic": "CODEX FOR TEACHERS",
+      "segment": "HANDOFF CONDITIONS",
+      "runningText": "generating handoff conditions…"
+     }
+    }
+   },
+   "estimated_duration_s": 12.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Read it before trusting it. Three conditions: HTTP 200, git diff shows only expected files, html-validate exits zero.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "check_handoff.sh",
+      "topic": "CODEX FOR TEACHERS",
+      "segment": "HANDOFF CONDITIONS",
+      "code": "#!/usr/bin/env bash\n# Handoff check: syllabus.html added to class website\nset -e\n\n# Condition 1: file exists and returns HTTP 200\ncurl -s -o /dev/null -w '%{http_code}' ./src/syllabus.html \\\n  | grep -q 200 && echo 'C1 PASS' || echo 'C1 FAIL'\n\n# Condition 2: only expected files modified\ngit diff --name-only HEAD | sort | \\\n  diff - <(printf 'src/index.html\\nsrc/syllabus.html\\n') \\\n  && echo 'C2 PASS' || echo 'C2 FAIL'\n\n# Condition 3: html-validate passes\nhtml-validate src/syllabus.html \\\n  && echo 'C3 PASS' || echo 'C3 FAIL'"
+     }
+    }
+   },
+   "estimated_duration_s": 14.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "Three conditions generated: weak versus strong for each. Bash check script runs green on the correct build: all three PASS. The script is the handoff — not the subjective review.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 20.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "Deliberately introduce a broken nav link. Run the check script.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "# introduce broken nav link\nsed -i 's/syllabus.html/syllabus-broken.html/' src/index.html\nbash check_handoff.sh",
+      "topic": "CODEX FOR TEACHERS",
+      "segment": "HANDOFF CONDITIONS",
+      "runningText": "testing broken link detection…"
+     }
+    }
+   },
+   "estimated_duration_s": 10.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT",
+   "narration_text": "With deliberate broken link in nav: check script exits 1. Condition 2 — git diff shows only expected files — FAIL: an unexpected file was modified. The script caught what a visual review would not have caught in three days of normal use.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "Handoff conditions catch what you know to specify. The bash check script is the artifact — it makes the condition executable, not just declarative. The three properties — specific, testable, binary — are the rubric for evaluating any condition you write or that Claude generates for you.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT",
+   "narration_text": "Next: build the first phase of a grading tool — survey before you grade.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 8.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Brutalist and Educational AI. At NikBearBrown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8.0,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}
