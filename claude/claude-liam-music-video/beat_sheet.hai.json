@@ -1,0 +1,476 @@
+{
+ "metadata": {
+  "slug": "claude-liam-music-video",
+  "title": "Claude, Synced.",
+  "series": "Brutalist META-SERIES",
+  "channel": "claude-liam",
+  "voice_kokoro": "af_kore",
+  "engine": "kokoro",
+  "aspect": "16:9",
+  "hello": "Kumusta",
+  "skill": "music-video",
+  "old_skill_name": "muzak",
+  "skill_md": "skills/make/music-video/SKILL.md",
+  "modifier": "skill-teardown",
+  "build": {
+   "at": "2026-07-18T18:29:22",
+   "cut": "master",
+   "filled": 11,
+   "of": 11,
+   "slates": [],
+   "skin_warnings": []
+  },
+  "register": "Pragmatist",
+  "voice": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Yassou, Humanitarians",
+      "topic": "Claude, Synced.",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Kumusta — this is Liam, in for Bear. Today: music-video, the skill that turns a WAV and lyrics into a beat-synced Remotion motion-graphics film. Audio analyzed first. Every cut lands on the beat.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 16,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "MUSIC-VIDEO · SKILL TEARDOWN",
+      "segment": "Liam, in for Bear.",
+      "greeting": "Kumusta, Liam",
+      "command": "./art music-video <track.wav>",
+      "runningText": "analyze → design → plan → build...",
+      "output": [
+       "Phase 1: librosa beat analysis → beat_data.json",
+       "Phase 2: lyrics forced alignment → lyrics.json",
+       "Phase 3: design inferred from audio features → design.json",
+       "Phase 4: plan + build → Remotion project"
+      ],
+      "folderLabel": "claude-liam-music-video/"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 12.22,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Claude, Synced. belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "anatomy",
+   "narration_text": "The skill has a librosa analysis script that produces beat data — beats, downbeats, per-frame energy, sections, and a timbre features block. The design script reads those features and produces a constrained design brief and a theme dot ts file. The build phase generates Remotion components from templates: a visualizer, a beat layer, a lyric layer, and a background. The beat data json is the timing ground truth every downstream phase reads.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownAnatomy",
+     "props": {
+      "skillName": "music-video",
+      "oldName": "muzak",
+      "eyebrow": "ANATOMY",
+      "title": "Analyze → design → plan → build.",
+      "files": [
+       "SKILL.md — pipeline + phase gates + core rules",
+       "scripts/analyze_audio.py — librosa → beat_data.json",
+       "scripts/infer_design.py — features → design.json + theme.ts",
+       "assets/templates/ — AudioVisualizer, BeatLayer, LyricLayer, MusicVideo"
+      ],
+      "calloutText": "beat_data.json",
+      "calloutSub": "timing ground truth — never hand-edit"
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 23.81,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "pipeline",
+   "narration_text": "Seven phase-gated steps: scaffold the song folder; analyze the WAV with librosa — this is the audio-first gate; align lyrics with forced Whisper alignment or beat-grid seed; infer the design from features; plan the section map and media asks — this is the human approval gate; build the Remotion components; hand off the render command. The skill produces a runnable project, not the mp4 — rendering needs headless Chromium and the user runs the command.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownPipeline",
+     "props": {
+      "eyebrow": "PIPELINE",
+      "title": "New → analyze → lyrics → design → plan → build → render.",
+      "inputLabel": "WAV file + plain-text lyrics",
+      "outputLabel": "runnable Remotion project (user renders the MP4)",
+      "phases": [
+       {
+        "label": "ANALYZE",
+        "note": "librosa → beat_data.json: BPM, beats, energy, sections, features — AUDIO-FIRST GATE"
+       },
+       {
+        "label": "LYRICS",
+        "note": "forced alignment (faster-whisper) or beat-grid seed → lyrics.json + density"
+       },
+       {
+        "label": "DESIGN",
+        "note": "infer_design.py: features → caps, palette bucket, visualizer form, theme.ts"
+       },
+       {
+        "label": "PLAN",
+        "note": "section map + visualizer per section + sparing media ask — HUMAN GATE"
+       },
+       {
+        "label": "BUILD",
+        "note": "AudioVisualizer + BeatLayer + LyricLayer + MusicVideo from templates"
+       }
+      ],
+      "footerNote": "The skill stops at a runnable Remotion project. The MP4 render is a command the user runs — it needs headless Chromium and minutes of compute."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 23.38,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "self-demo ask",
+   "narration_text": "Self-demo: Phase four plan for a 128 BPM C-major dance track — four sections, one visualizer per section, beat-sync moves, and the media ask.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 10,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "MUSIC-VIDEO DEMO",
+      "segment": "Phase 4 plan",
+      "greeting": "Kumusta, Liam",
+      "command": "./art music-video dance-track.wav --plan",
+      "runningText": "128 BPM · C major · high dynamic range · bright...",
+      "output": [
+       "features: bpm=128, key=C major, bright, high DR",
+       "density: fast (hook section), medium (verse)",
+       "Phase 1-3 already run — planning now"
+      ],
+      "folderLabel": "dance-track/"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 9.81,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "B04",
+   "act": "self-demo result",
+   "narration_text": "Four sections. Intro: energy gradient background, minimal waveform — sparse, no lyrics. Verse: smooth waveform visualizer, medium lyrics, line-by-line pop-in. Chorus — drop: spectrum bars, large hook type, beat flash on downbeats, spring thud per beat. Outro: energy gradient fades, waveform trails to silence. Beat-sync: every chorus downbeat fires a cut and a flash; lyric style shifts to larger type on the hook. Media ask: two beats only — a hero image at the first drop for the opening frame, and the artist logo SVG on the final hit. Everything else is code-generated. Render once the user approves the plan.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "title": "PLAN — 128 BPM Dance Track",
+      "code": "INTRO  (0–8s)    minimal waveform · energy gradient\n         no lyrics · builds energy\n\nVERSE  (8–64s)   smooth waveform · line-by-line lyrics\n         medium type · medium spring ease (128bpm)\n\nCHORUS (64–96s)  spectrum bars · large hook type\n         beat-flash on downbeats · spring thud per beat\n         lyric: outline on current word\n\nOUTRO  (96–120s) waveform trails · energy fades\n         lyrics dissolve · silence lands clean\n\nBEAT-SYNC: cuts on downbeat ×4 per chorus\nMEDIA ASK: 2 beats only\n  B13 (first drop): hero image — 1920×1080 JPEG\n  B24 (final hit):  artist logo — SVG transparent\n  all other slots: fully code-generated"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 35.11,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "mechanism 1",
+   "narration_text": "Mechanism one: the audio is ground truth. Every animation length, cut, flash, and lyric hit is derived from an offline librosa analysis of the actual WAV — not from a guessed tempo, not from a word count, not from eyeballing the lyrics. Analyze runs first and writes beat data json. Nothing downstream invents timing. If the beat data and the music ever disagree, the music wins and the data gets regenerated. A music video whose cuts don't land on the beat is not a music video.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 1",
+      "heading": "Analyze first. Every cut comes from the data.",
+      "body": "librosa runs on the actual WAV and writes beat_data.json: BPM, beat timestamps, downbeat timestamps, per-frame onset energy, sections, duration, and a features block (brightness, dynamic_range_db, key, mode). Every downstream phase reads this file — no phase invents timing. If the data and the music disagree, regenerate the data. Lyric hits that drift from the vocal aren't sync — they're decoration.",
+      "quote": "The audio is ground truth.",
+      "cite": "skills/make/music-video/SKILL.md — the one rule",
+      "verdictLabel": "ANALYZE FIRST"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 26.67,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "B06",
+   "act": "mechanism 2",
+   "narration_text": "Mechanism two: the design is derived from the song, not from a preferred aesthetic. Bright timbre signals cool color. High dynamic range limits the flash cap — no strobing. Dense lyrics restrict which animation styles are safe. Quiet sparse passages call for a smooth waveform, not spectrum bars. The design script reads the features block and produces a constrained brief. A synthwave palette on a sparse acoustic track doesn't match what the ear hears. Design is a response to the audio.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 2",
+      "heading": "Design from the song. Not from defaults.",
+      "body": "infer_design.py reads beat_data.json's features block and produces a constrained design brief: beat-hit caps (from dynamic_range_db), spring easing (from BPM), allowed lyric styles (from density class), visualizer form (from brightness), a curated starting palette (from brightness + mode bias). Every choice must trace to a feature value or a lyric line. Never default to a synthwave/lo-fi look the features don't support.",
+      "quote": "muzak doesn't wait for a human to specify a palette: it derives a design from the audio and lyrics",
+      "cite": "skills/make/music-video/SKILL.md — the design seam",
+      "verdictLabel": "FEATURES → DESIGN"
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 26.56,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B06.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "B07",
+   "act": "mechanism 3",
+   "narration_text": "Mechanism three: mostly code, media sparingly. Remotion can draw a spectrum visualizer, a waveform, beat flashes, kinetic lyrics, and an energy-reactive background — all in code, no media files. The skill asks for custom images or clips only for the beats where hand-made media genuinely beats anything code can draw: a hero image on the first drop, an artist logo on the final hit. If nothing truly needs custom media, build it all in code and say so. Padding the media ask to seem thorough wastes the user's Higgsfield budget.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 3",
+      "heading": "Code first. Media only where it earns its place.",
+      "body": "Remotion generates: spectrum bars, waveform paths, beat-reactive springs, energy→color gradients, kinetic lyrics. These are not placeholders — they are the video. Custom media (Higgsfield images/clips) is asked for only where the plan shows a beat that genuinely needs it: a specific figure's face, an artist logo, a piece of real footage. Every media ask must include the exact filename, target timestamp/section, and aspect ratio.",
+      "quote": "Mostly code, media sparingly.",
+      "cite": "skills/make/music-video/SKILL.md — core rules",
+      "verdictLabel": "CODE IS THE VIDEO"
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 29.29,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B07.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "narration_text": "Music-video: audio analyzed first, design derived from the song, and media earned beat by beat. The librosa analysis is the clock. The features are the palette. The Remotion components are the film.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 10,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Claude, Synced.",
+      "artifactHeading": "MUSIC-VIDEO: WHAT IT DELIVERS",
+      "artifactLines": [
+       "beat_data.json: BPM + beats + energy + features (librosa)",
+       "design.json + theme.ts: look derived from audio, not defaults",
+       "plan gate: section map + visualizer + sparing media ask",
+       "Remotion project: code-generated film; user renders the MP4"
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 11.8,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "handoff",
+   "narration_text": "Your turn. Run music-video on a WAV and lyrics. Before you start: does the WAV exist — analyze needs the actual audio file, not a guessed tempo? And is the look you have in mind something the song's features actually support, or are you defaulting to a palette the audio doesn't earn? Run analyze first. Let the features decide the design.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 20,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "YOUR TURN",
+      "segment": "in for Bear",
+      "greeting": "Kumusta, Liam",
+      "command": "./art music-video <track.wav>",
+      "runningText": "does the WAV exist? does the design match the features?",
+      "output": [
+       "does the WAV exist? (analyze needs the actual file)",
+       "does the look match the song's features?",
+       "run analyze first — let librosa write the timing",
+       "plan gate: get approval before building components"
+      ],
+      "folderLabel": "your-track-here/"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 17.81,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "Claude, Synced. I'm Liam, in for Bear.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 6,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Claude, Synced.",
+      "handle": "@NikBearBrown",
+      "subline": "Liam, in for Bear."
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 2.75,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:29:22"
+   }
+  }
+ ]
+}
