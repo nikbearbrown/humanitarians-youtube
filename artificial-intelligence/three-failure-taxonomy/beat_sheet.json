@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "slug": "three-failure-taxonomy",
+    "title": "Run a Three-Failure Taxonomy on Two LLM DAGs with Claude",
+    "topic": "CAUSAL REASONING",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "causal-reasoning/chapters/04-the-identification-layer.md",
+    "segment": "DAG FAILURE TAXONOMY",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 118.0
+  },
+  "beats": [
+    {"beat_id":"B00","role":"INTRO","type":"SLATE","narration":"Two different LLMs propose two different DAGs for the same marketing problem. Run the three-failure taxonomy — watch them fail differently.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B01","role":"PROBLEM","type":"SLATE","narration":"Three ways a DAG can be wrong: wrong variables, wrong arrows, wrong conditioning. One taxonomy, applied to any model's causal proposal.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B02","role":"ASK","type":"SLATE","narration":"We give Claude two DAG edge lists for a B2B SaaS email-to-conversion problem and ask it to apply the three-failure taxonomy to each.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"Here are two DAGs for email → conversion:\\n  DAG-A: [email, open, click, demo, convert]\\n  DAG-B: [email, open, intent, demo, convert]\\nFor each: apply three-failure taxonomy:\\n  (1) wrong variables\\n  (2) wrong arrows\\n  (3) wrong conditioning\"","topic":"CAUSAL REASONING","segment":"DAG FAILURE TAXONOMY","runningText":"applying taxonomy…"}}}},
+    {"beat_id":"B03","role":"CODE","type":"SLATE","narration":"Claude returns the taxonomy table. DAG-A: wrong variables — misses intent signal. Wrong arrows — open causes demo directly, skipping click. DAG-B: wrong conditioning — intent is a mediator, conditioning on it blocks the email-to-convert path.","estimated_duration_s":14.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownCodeBlock","props":{"filename":"three_failure.md","segment":"DAG FAILURE TAXONOMY","topic":"CAUSAL REASONING","code":"# three_failure.md — Claude output\n\n           DAG-A          DAG-B\nWrong var: missing intent  missing click\nWrong arr: open→demo      demo→intent (rev)\nWrong cond: none          conditions on\n                          mediator 'intent'\n\n# DAG-B worst failure: conditioning on\n# intent blocks the causal path\n# email → intent → demo → convert"}}}},
+    {"beat_id":"B04","role":"OUTPUT","type":"SLATE","narration":"The taxonomy reveals DAG-B has the more dangerous failure: conditioning on a mediator blocks the causal path we are trying to estimate. DAG-A's wrong arrow is a structural error but does not bias the estimate if we condition correctly.","estimated_duration_s":20.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B05","role":"CHANGE","type":"SLATE","narration":"For the worst-performing DAG — DAG-B — we ask Claude to propose a corrected version and apply the taxonomy again.","estimated_duration_s":10.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"DAG-B failed on wrong conditioning.\\nPropose corrected DAG-B.\\nApply three-failure taxonomy again.\\nVerify intent is no longer a mediator.\"","topic":"CAUSAL REASONING","segment":"DAG FAILURE TAXONOMY","runningText":"correcting DAG-B…"}}}},
+    {"beat_id":"B06","role":"OUTPUT","type":"SLATE","narration":"Corrected DAG-B moves intent upstream as a confounder affecting both email open rate and demo likelihood. The taxonomy now shows no wrong-conditioning failures. Structural errors corrected.","estimated_duration_s":14.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B07","role":"SUMMARY","type":"SLATE","narration":"The three-failure taxonomy is a structured audit tool: wrong variables, wrong arrows, wrong conditioning. Applying it to two models on the same task reveals systematic weaknesses in how language models represent causal structure.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B08","role":"NEXT","type":"SLATE","narration":"Next: draft and stress-test a professional DAG defense — and find the fabricated citation in paragraph two.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B09","role":"OUTRO","type":"SLATE","narration":"Like and subscribe for more causal reasoning with Claude.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownOutro","props":{"brand":"Nik Bear Brown","tagline":"Brutalist + Educational AI","handle":"@NikBearBrown","url":"nikbearbrown.com"}}}}
+  ]
+}

@@ -1,0 +1,183 @@
+{
+ "metadata": {
+  "title": "LLM Prompt Sensitivity Tester: 10 Phrasings, How Many Answers?",
+  "slug": "cli-llm-prompt-sensitivity-tester",
+  "topic": "COMPUTATIONAL SKEPTICISM — PROMPT SENSITIVITY",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(slate — screen-recording terminal output, human fill) · B05 CHANGE · B06 SUMMARY · B07 NEXT STEPS · B08 extra-slate · B09 outro. B04 is a slate requiring human fill with live API run.",
+  "total_estimated_duration_seconds": 118
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "COMPUTATIONAL SKEPTICISM",
+      "lines": ["Nik Bear Brown", "Prompt Sensitivity, taken apart."]
+     }
+    }
+   },
+   "estimated_duration_s": 5
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "A legal team uses an LLM to answer questions about statutes of limitation. They test one phrasing, get a correct answer, and deploy. But the same question, asked ten different ways by different users, generates different time periods. Some are wrong. The model's answer depends on how the question is framed — not just what it asks. This is prompt sensitivity: semantic equivalence does not guarantee output stability. If your application depends on consistent answers to consistent questions, you need to measure this before you ship.",
+   "visual_intent": "title card: '10 phrasings — how many answers?'; PROBLEM beat, no terminal",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 16
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda) — the command typed",
+   "narration_text": "In the terminal: ask Claude to write a Python script using the Anthropic SDK. Send ten semantic variants of a statute-of-limitations question to claude-three-five-haiku. Extract the stated time period from each response. Build a ten-by-ten agreement matrix showing which pairs agree. Print the overall agreement rate.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write a Python script using Anthropic SDK:\nsend 10 semantic variants of:\n  'What is the statute of limitations for a\n   personal injury claim in the US?'\nto claude-3-5-haiku.\nExtract stated time period from each.\nPrint a 10x10 agreement matrix.\nPrint agreement rate.\"",
+      "topic": "COMPUTATIONAL SKEPTICISM — PROMPT SENSITIVITY",
+      "segment": "LLM PROMPT SENSITIVITY TESTER",
+      "runningText": "generating prompt sensitivity tester…"
+     }
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda) — read the code before running",
+   "narration_text": "Read the key line. Agreement index i j equals one if extract underscore years of response i equals extract underscore years of response j, else zero. The agreement matrix is a ten-by-ten grid of those comparisons. The diagonal is always one — a response agrees with itself. Everything off the diagonal is the measurement of semantic stability.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "prompt_sensitivity.py",
+      "topic": "COMPUTATIONAL SKEPTICISM — PROMPT SENSITIVITY",
+      "segment": "LLM PROMPT SENSITIVITY TESTER",
+      "code": "# prompt_sensitivity.py  —  Claude Code output\nimport re, anthropic\n\ndef extract_years(text):\n    \"\"\"Extract first digit-year mention from response.\"\"\"\n    match = re.search(r'(\\d+)\\s*(?:year|yr)', text, re.I)\n    return match.group(1) if match else None\n\n# Build 10x10 agreement matrix\nagreement = [[0]*10 for _ in range(10)]\nfor i in range(10):\n    for j in range(10):\n        # 1 if responses i and j state the same time period\n        agreement[i][j] = 1 if (\n            extract_years(responses[i]) ==\n            extract_years(responses[j])\n        ) else 0\n\n# Agreement rate = off-diagonal 1s / (10*9)\noff_diag = sum(agreement[i][j] for i in range(10)\n               for j in range(10) if i != j)\nagreement_rate = off_diag / 90"
+     }
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "SLATE — screen-recording terminal output — human fill with live API run",
+   "narration_text": "Run it against the live API. You will see the agreement matrix and the rate. If the rate is below ninety percent for a legally consequential question, the model is not reliable as deployed — its answer depends on phrasing, not just content.",
+   "visual_intent": "HUMAN FILL: screen-recording of prompt_sensitivity.py running — show 10x10 agreement matrix (1s and 0s), extracted time periods per variant, and final agreement rate; highlight disagreeing cells in red",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 17
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "The agreement matrix shows disagreement. Now measure sensitivity to temperature and system-prompt framing. Ask Claude to update the script: add a system prompt that anchors the model to US federal law, re-run the ten variants, and show whether the agreement rate improves.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Update prompt_sensitivity.py:\n-> add system prompt:\n   'You are a legal reference tool. Answer based\n    on US federal and majority-state law only.\n    State the specific time period in years.'\n-> re-run all 10 variants with this system prompt\n-> compare agreement rate: with vs without prompt\"",
+      "topic": "COMPUTATIONAL SKEPTICISM — PROMPT SENSITIVITY",
+      "segment": "LLM PROMPT SENSITIVITY TESTER",
+      "runningText": "adding system prompt anchor…"
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B06",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "A well-anchored system prompt reduces variance. The agreement rate rises. But it does not go to one hundred percent — because the model is a probability distribution, not a lookup table. The lesson: prompt sensitivity is not a prompt engineering problem — it is a deployment risk measurement. For any high-stakes application, measure the agreement rate before shipping and set a minimum threshold it must clear.",
+   "visual_intent": "recap card: agreement rate before and after system prompt; 'LLM = probability distribution, not lookup table'",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B07",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: for any LLM application where consistency matters, build a semantic variant set for your top ten most important queries. Run this agreement matrix. Set a minimum agreement rate threshold — ninety percent for advisory use, ninety-five for consequential decisions. If you cannot meet it, add a human review step or constrain the output format to a structured field.",
+   "visual_intent": "next-steps card: 1) build semantic variant set for key queries, 2) measure agreement rate, 3) set threshold per risk level",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11
+  },
+  {
+   "beat_id": "B08",
+   "act": "EXTRA",
+   "role_note": "slate — optional b-roll",
+   "narration_text": "",
+   "visual_intent": "slate placeholder",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 0
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  }
+ ]
+}

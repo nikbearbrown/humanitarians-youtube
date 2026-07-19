@@ -1,0 +1,86 @@
+{
+ "metadata": {
+  "title": "Causal Inference — Confounding Audit for ML Models",
+  "slug": "confounding-audit-ml-models",
+  "topic": "CAUSAL INFERENCE — CONFOUNDING AUDIT FOR ML MODELS",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 NEXT STEPS · B09 outro. SHAP audit: spurious confounder gets highest SHAP score; causal plausibility classification exposes it.",
+  "total_estimated_duration_seconds": 118
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOpen", "props": {"topic": "CAUSAL INFERENCE",
+       "lines": ["Nik Bear Brown", "Confounding Audit for ML Models."]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM — why care", "role_note": "the problem, the context, the stakes — BEFORE the CLI",
+   "narration_text": "Your SHAP bar chart shows the top feature with an importance score of point four five. You optimize for it. But what if that feature is a spurious confounder — correlated with the label through data-collection bias, not through any causal mechanism? High SHAP importance does not mean causal relevance. The confounding audit classifies each feature as causally plausible, spurious, or unknown before you trust the importances.",
+   "visual_intent": "title card: high SHAP score vs causal plausibility — 'importance is not causation'; the risk of optimizing on spurious features",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 14},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "terminal (Onda)",
+   "narration_text": "Into the terminal: claude — build a Python confounding audit for an ML classifier: generate N equals five thousand examples with a spurious confounder correlated at point seven with the label via data-collection bias and a true signal; train logistic regression; compute SHAP values; call Claude to classify each feature as causally plausible, spurious, or unknown; output a color-coded SHAP bar chart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"Build a Python confounding audit for ML classifier:\n  generate N=5000 examples with spurious_confounder\n  (corr 0.7 with label via data-collection bias) and true_signal;\n  train LogisticRegression;\n  compute SHAP values;\n  call Claude to classify each feature as\n  causally plausible/spurious/unknown;\n  output color-coded SHAP bar chart\"",
+       "topic": "CAUSAL INFERENCE — CONFOUNDING AUDIT FOR ML MODELS", "segment": "SHAP AUDIT", "runningText": "generating audit…"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "terminal (Onda)",
+   "narration_text": "Read it. The audit call passes the SHAP values and feature names to Claude with a domain description: what is the data, what is the label, what is the collection process? Claude returns a causal classification for each feature. The classification drives the color coding — not the SHAP score.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {
+       "filename": "confound_audit.py", "topic": "CAUSAL INFERENCE — CONFOUNDING AUDIT FOR ML MODELS", "segment": "SHAP AUDIT",
+       "code": "# confound_audit.py — Claude Code output\nimport shap, numpy as np\nfrom sklearn.linear_model import LogisticRegression\n\n# SHAP values\nexplainer   = shap.LinearExplainer(clf, X_train)\nshap_values = explainer.shap_values(X_test)\nmean_shap   = np.abs(shap_values).mean(axis=0)\n\n# Causal audit via Claude\nclaude_audit = classify_features_causally(\n    shap_values, feature_names, domain_description)\n# -> {'spurious_confounder': 'SPURIOUS',\n#     'true_signal':         'CAUSAL',\n#     'noise_feat_1':        'unknown',\n#     'noise_feat_2':        'unknown'}"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B04", "act": "OUTPUT — run", "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it. The SHAP bar chart builds out. The spurious confounder has the highest score — point four five — but it is colored crimson and labeled SPURIOUS. The true signal is second at point three eight, colored green, labeled CAUSAL. Two noise features round it out at point one two and point zero eight. The highest bar is the one you should trust least.",
+   "visual_intent": "Manim: vertical SHAP bar chart — spurious_confounder tallest (CRIMSON, SPURIOUS), true_signal second (PASS_CLR, CAUSAL), two noise features (SLATE); annotation 'High SHAP != Causal feature'",
+   "shot": {"type": "GRAPHIC", "source": "manim", "motion": "fade",
+     "manim": {"scene_class": "B04_SHAPAudit", "file": "vox_scenes.py"}},
+   "estimated_duration_s": 17},
+
+  {"beat_id": "B05", "act": "CHANGE — check & revise", "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "The spurious confounder is dominant because data collection happened during a biased period — specific demographics were over-sampled. Iterate: re-generate the data with stratified sampling to correct the collection bias, retrain, and re-run the SHAP audit.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"update confound_audit.py:\n  -> re-generate data with stratified sampling\n     to correct collection bias\n  -> retrain LogisticRegression\n  -> re-run SHAP + causal audit\n  -> does spurious_confounder SHAP drop?\"",
+       "topic": "CAUSAL INFERENCE — CONFOUNDING AUDIT FOR ML MODELS", "segment": "SHAP AUDIT", "runningText": "updating audit…"}}},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B06", "act": "OUTPUT — revised", "role_note": "slate — fill with screen-recording",
+   "narration_text": "Re-run. After stratified resampling, the spurious confounder's SHAP score drops to point one five — now below the true signal at point three eight. The bias is gone from the data, and the model's importances realign with causation.",
+   "visual_intent": "screen-recording or slate: terminal showing re-run SHAP values — spurious_confounder drops, true_signal becomes dominant; confound audit confirms SPURIOUS still but with low importance",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B07", "act": "SUMMARY", "role_note": "the lesson — one beat",
+   "narration_text": "High SHAP importance is not a causal certificate. A spurious confounder can dominate the importance chart through data-collection bias alone, with no causal link to the outcome. The audit classifies before you act — so you do not optimize a model on a phantom.",
+   "visual_intent": "recap card: spurious_confounder vs true_signal; 'classification before optimization' as the principle; SHAP score vs causal plausibility",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B08", "act": "NEXT STEPS", "role_note": "what to do next",
+   "narration_text": "Your move: run the causal audit on your top ten SHAP features. For each one, ask: could this feature be correlated with the label through a data-collection mechanism rather than a causal one? If yes, test what happens when you drop it from training — if performance holds, it was a confounder.",
+   "visual_intent": "next-steps card: 1) audit your top 10 SHAP features causally, 2) ask data-collection mechanism question for each, 3) drop and retrain to test",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 10},
+
+  {"beat_id": "B09", "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOutro", "props": {
+       "brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI",
+       "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}},
+   "estimated_duration_s": 8}
+ ]
+}
