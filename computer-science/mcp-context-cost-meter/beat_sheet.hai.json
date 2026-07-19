@@ -1,0 +1,219 @@
+{
+ "metadata": {
+  "slug": "mcp-context-cost-meter",
+  "title": "Measure the Context Cost of Your MCP Server Stack with Claude",
+  "topic": "AGENTIC CLI",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "cli-agnostic-ai-tooling-for-local-project-workflows/chapters/09-mcp-servers-and-context-the-silent-tax-youre-probably-paying.md",
+  "segment": "MCP CONTEXT COST",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 113.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Ahoj, Humanitarians",
+      "topic": "Measure the Context Cost of Your MCP Server Stack with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Agentic CLI — build it, measure it, take it apart.",
+   "shot": {
+    "source": "remotion",
+    "composition": "NikBearBrownOpen",
+    "props": {
+     "topic": "AGENTIC CLI",
+     "lines": [
+      "Nik Bear Brown",
+      "Brutalist + Educational AI",
+      "MCP Context Cost",
+      "Schema Tax Ledger",
+      "Before Your First Message"
+     ]
+    }
+   },
+   "estimated_duration_s": 10,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Measure the Context Cost of Your MCP Server Stack with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "source": "remotion",
+    "composition": "NikBearBrownOpen",
+    "props": {
+     "topic": "AGENTIC CLI",
+     "lines": [
+      "Nik Bear Brown",
+      "Brutalist + Educational AI",
+      "MCP Context Cost",
+      "Schema Tax Ledger",
+      "Before Your First Message"
+     ]
+    }
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "Every MCP server you leave connected adds a schema cost before your first message — and you're probably paying it on servers you haven't used in weeks. Eight servers connected: GitHub, Slack, Drive, database, web search, calendar, Jira, email. Your starting context is already loaded with tool descriptions you didn't ask for.",
+   "shot": {
+    "source": "slate",
+    "notes": "title card: MCP server icons in a row, each with a small token cost badge; running total at top reads 'schema tax: X tokens before message 1'"
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "Ask for the cost meter. In the terminal: claude — read these MCP server tool descriptions, estimate the schema token cost per server, classify each as always-needed, project-needed, or one-off, and flag servers safe to disable.",
+   "shot": {
+    "source": "remotion",
+    "composition": "NikBearBrownTerminalAsk",
+    "props": {
+     "command": "claude \"Read these MCP server tool descriptions and\n  estimate the schema token cost for each.\n  Classify: always-needed / project-needed / one-off.\n  Flag servers safe to disable.\" < mcp_config.json",
+     "topic": "AGENTIC CLI",
+     "segment": "MCP CONTEXT COST",
+     "runningText": "running analysis…"
+    }
+   },
+   "estimated_duration_s": 15,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Read the script before trusting it. It reads the MCP configuration JSON, extracts tool descriptions, uses a word-count proxy for token cost, sorts servers by schema weight, and classifies each by the pattern of tools — database connectors are project-needed, email is almost always one-off.",
+   "shot": {
+    "source": "remotion",
+    "composition": "NikBearBrownCodeBlock",
+    "props": {
+     "filename": "mcp_cost_meter.py",
+     "segment": "MCP CONTEXT COST",
+     "topic": "AGENTIC CLI",
+     "code": "# mcp_cost_meter.py — Claude Code output\nimport json, sys\n\ndef word_tokens(text):\n    return int(len(text.split()) * 1.33)\n\nconfig = json.load(open('mcp_config.json'))\nservers = config.get('mcpServers', {})\nledger = []\nfor name, cfg in servers.items():\n    desc = cfg.get('description', '') + ' '.join(\n        str(t) for t in cfg.get('tools', []))\n    cost = word_tokens(desc)\n    ledger.append({'name': name, 'tokens': cost})\nledger.sort(key=lambda x: -x['tokens'])\nfor row in ledger:\n    print(f\"{row['name']:20s}  {row['tokens']:5d} tokens\")"
+    }
+   },
+   "estimated_duration_s": 15,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "The ledger appears: Jira tops the list at twelve hundred tokens — it ships with forty-two tool descriptions. Email and calendar follow. GitHub, the tool you actually use every day, is mid-table. Web search: eighty tokens. Always-needed. Jira: flagged as one-off.",
+   "shot": {
+    "source": "slate",
+    "notes": "ranked cost ledger: server names left column, token cost bar right column, classification badge (green=always-needed, yellow=project-needed, red=one-off); running total token counter at top"
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "Now remove the one-off servers and re-run. In the terminal: claude — update mcp_cost_meter.py, filter out one-off servers from the config, and show me the new starting token total.",
+   "shot": {
+    "source": "remotion",
+    "composition": "NikBearBrownTerminalAsk",
+    "props": {
+     "command": "claude \"update mcp_cost_meter.py:\n  -> remove all one-off servers from config\n  -> show new starting token total\n  -> compare before vs after\"",
+     "topic": "AGENTIC CLI",
+     "segment": "MCP CONTEXT COST",
+     "runningText": "updating script…"
+    }
+   },
+   "estimated_duration_s": 15,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT REVISED",
+   "narration_text": "The total drops from four thousand two hundred tokens to one thousand eight hundred. Sixty percent of your starting context weight, gone. The remaining servers are the minimum viable surface — the tools that are on the field for this project type.",
+   "shot": {
+    "source": "slate",
+    "notes": "before/after comparison: two stacked bars — 4200 tokens (red, 8 servers) above, 1800 tokens (green, 3 servers) below; 'starting context weight -60%' annotation"
+   },
+   "estimated_duration_s": 10,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "TEARDOWN",
+   "narration_text": "Schema cost is a tax you pay before the work begins. Disabling a server you haven't used this month costs nothing and immediately reduces the reasoning overhead on every prompt you send. The schema is not free because the server is idle — it is there in the context window whether you call it or not.",
+   "shot": {
+    "source": "slate",
+    "notes": "teardown card: 'schema cost = tax before work begins'; bullet: 'idle server still loads its schema'; bullet: 'disabling costs zero, saves on every prompt'"
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "narration_text": "Your move: export your actual MCP config and run this meter. Sort by cost and review anything classified as one-off. Next reel: we build the folder structure auditor — because what the agent reads before it starts is the other half of the problem.",
+   "shot": {
+    "source": "slate",
+    "notes": "next steps card: '1) export your mcp_config.json  2) run cost meter  3) disable one-off servers'; teaser: 'next: folder structure auditor'"
+   },
+   "estimated_duration_s": 6,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Agentic CLI. Brutalist and Educational AI. At nikbearbrown.com.",
+   "shot": {
+    "source": "remotion",
+    "composition": "NikBearBrownOutro",
+    "props": {
+     "brand": "Nik Bear Brown",
+     "tagline": "Brutalist + Educational AI",
+     "handle": "@NikBearBrown",
+     "url": "nikbearbrown.com"
+    }
+   },
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
+}

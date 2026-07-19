@@ -1,0 +1,282 @@
+{
+ "metadata": {
+  "title": "Same Math, Ten Times Slower",
+  "slug": "claude-liam-memory-vs-speed",
+  "topic": "EMBEDDED AI — MEMORY HIERARCHY",
+  "register": "Pragmatist",
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore",
+  "palette": "claude",
+  "audience": "Claude",
+  "channel": "NikBearBrown",
+  "build": {
+   "at": "2026-07-17T16:14:54",
+   "cut": "master",
+   "filled": 7,
+   "of": 7,
+   "slates": [],
+   "skin_warnings": []
+  },
+  "voice": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hola, Humanitarians",
+      "topic": "Same Math, Ten Times Slower",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "narration_text": "Merhaba, Liam. This is Liam, in for Bear. Two runs of the exact same multiply count — one takes ten times longer, and the arithmetic is not the reason.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Why does the same matrix multiply take 10× longer when the data doesn't fit in cache?",
+      "topic": "EMBEDDED AI — MEMORY HIERARCHY",
+      "segment": "Memory Hierarchy",
+      "greeting": "Merhaba, Liam",
+      "runningText": "computing…",
+      "output": [
+       "DRAM fetch: ~200 cycles vs L1 cache: ~4 cycles — tiling reuses data in cache"
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 9.39,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:14:54"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Same Math, Ten Times Slower belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Why does the same matrix multiply take 10× longer when the data doesn't fit in cache?",
+      "topic": "EMBEDDED AI — MEMORY HIERARCHY",
+      "segment": "Memory Hierarchy",
+      "greeting": "Merhaba, Liam",
+      "runningText": "computing…",
+      "output": [
+       "DRAM fetch: ~200 cycles vs L1 cache: ~4 cycles — tiling reuses data in cache"
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "BREF",
+   "act": "TEXTBOOK FIGURE",
+   "narration_text": "This is the embedded memory hierarchy from the book — registers, SRAM, flash, external storage. Speed drops at every level; capacity climbs. Weights live in flash; activations fight for SRAM.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "media",
+    "motion": "fade",
+    "file": "BREF.png"
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-BREF.mp3",
+   "actual_duration_s": 12.18,
+   "build": {
+    "status": "STILL",
+    "src": "media/BREF.png",
+    "filled_by": "still",
+    "at": "2026-07-17T16:14:54"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01",
+   "act": "NAIVE — STREAMING FROM DRAM",
+   "narration_text": "Naive matrix multiply: for every output element, stream a full row from DRAM and a full column from DRAM. DRAM latency is around 200 cycles per fetch. The arithmetic unit sits idle waiting. The multiply count is correct; the memory access pattern is broken.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "compare",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B01_NaiveStream"
+    }
+   },
+   "estimated_duration_s": 18,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 15.87,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B01.mp4",
+    "filled_by": "manim:B01_NaiveStream",
+    "at": "2026-07-17T16:14:54"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "act": "TILED — RESIDENT IN CACHE",
+   "narration_text": "Tiled multiply: load a block that fits in L1 cache. Reuse every element in that tile across many dot products before evicting it. Cache latency is 4 cycles. The same arithmetic now runs at near-peak speed because the data is always close.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "compare",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B02_TiledCache"
+    }
+   },
+   "estimated_duration_s": 18,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 14.89,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B02.mp4",
+    "filled_by": "manim:B02_TiledCache",
+    "at": "2026-07-17T16:14:54"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "act": "TIMING COMPARISON — 10X GAP",
+   "narration_text": "The result: ten times faster, zero extra arithmetic. The gap is the memory wall — and tiling is how every high-performance inference engine crosses it.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "scan",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B03_TimingGap"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 9.34,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B03.mp4",
+    "filled_by": "manim:B03_TimingGap",
+    "at": "2026-07-17T16:14:54"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "act": "YOUR TURN",
+   "narration_text": "Your turn. Paste this into Claude: I am computing a matrix multiply — M by K times K by N — on a processor with cache-kb kilobytes of L1 cache. Walk me through: one — naive memory access pattern and why it is slow; two — tiled version with tile size T; three — arithmetic intensity for each; and four — speedup I can expect. Fill in your matrix dimensions and cache size and let Claude show you where the bottleneck lives.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "I'm computing a matrix multiply: [M]×[K] times [K]×[N] on a processor with [cache_kb] KB of L1 cache. Walk me through: (1) naive memory access pattern and why it's slow, (2) tiled version with tile size [T], (3) arithmetic intensity for each, and (4) speedup I can expect.",
+      "topic": "EMBEDDED AI — MEMORY HIERARCHY",
+      "segment": "Your Turn",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 22.34,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:14:54"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "act": "OUTRO",
+   "narration_text": "Liam, in for Bear.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Same Math, Ten Times Slower",
+      "handle": "@NikBearBrown",
+      "subline": "embedded ai · liam, in for bear"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 1.94,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:14:54"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}

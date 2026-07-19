@@ -1,0 +1,307 @@
+{
+ "metadata": {
+  "title": "Structured vs Unstructured Pruning: Measure the Lie",
+  "slug": "cli-prune-benchmark",
+  "topic": "CLAUDE CODE · PRUNING",
+  "register": "Pragmatist",
+  "voice": "af_kore",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "ground": "#FFFFFF",
+  "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
+  "note": "CLI video REQUIRED spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 OUTPUT(manim) · B07 SUMMARY · B08 NEXT STEPS · B09 outro. B04 and B06 use illustrative data.",
+  "total_estimated_duration_seconds": 203.08,
+  "chapter_number": 9,
+  "tags": [
+   "Claude Code",
+   "Claude",
+   "Embedded AI",
+   "Edge AI",
+   "TinyML",
+   "Model Compression",
+   "Manim",
+   "Nik Bear Brown",
+   "Machine Learning",
+   "Microcontroller AI",
+   "STM32",
+   "Quantization"
+  ],
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Sawadee, Humanitarians",
+      "topic": "Structured vs Unstructured Pruning: Measure the Lie",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Pruning, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 3.34,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM -- why care",
+   "role_note": "the problem, the context, the stakes -- BEFORE the CLI",
+   "narration_text": "Eighty percent of the weights are zero. The benchmark says the model is sparse. The MCU says it runs at exactly the same speed. Sparse on paper, dense in silicon. The problem is that unstructured pruning scatters zeros through the weight matrix, but the embedded kernel -- TFLite Micro, CMSIS-NN -- still runs dense GEMM. No skip logic, no sparse path. Storage drops because you can compress a bitfield; SRAM and latency do not move at all. Structured pruning removes entire channels, so the matrix shrinks, and every metric drops together.",
+   "visual_intent": "title card: unstructured pruning lie -- storage drops, SRAM and latency stay; structured pruning -- all three drop",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_Problem",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 37.09,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask for the experiment. In the terminal: claude -- write prune_benchmark.py, dense baseline versus fifty percent unstructured pruning with scattered zeros and a dense kernel, versus fifty percent structured pruning with channels removed. Report storage, activation SRAM, and MAC count for each.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"write prune_benchmark.py:\n  dense baseline vs 50% unstructured\n  (scattered zeros, dense kernel)\n  vs 50% structured (channels removed).\n  Report storage, SRAM, latency for each.\"",
+      "topic": "CLAUDE CODE · PRUNING",
+      "segment": "PRUNE BENCHMARK",
+      "runningText": "generating benchmark..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 19.88,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before trusting it. The benchmark models three cases analytically. Unstructured pruning at fifty percent halves the nonzero weight count for storage, but the convolution kernel still iterates over the full weight matrix -- every multiply, including the zeros. Storage shrinks because a CSR format compresses zeros. SRAM and latency are functions of the kernel shape, not the sparsity pattern.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "prune_benchmark.py",
+      "topic": "CLAUDE CODE · PRUNING",
+      "segment": "PRUNE BENCHMARK",
+      "code": "# prune_benchmark.py  --  Claude Code output\n# Dense baseline: 64 filters x 3x3 kernel x 32 channels\nPARAMS = 64 * 3 * 3 * 32           # 18432 params\nSTORAGE_MB  = PARAMS * 4 / 1e6    # fp32 = 4 bytes\nSRAM_MB     = 0.5                  # largest activation\nLATENCY_MS  = 100.0               # dense GEMM baseline\n\n# Unstructured 50%: zeros scattered, kernel unchanged\nu_storage = STORAGE_MB * 0.5      # compressed bitfield\nu_sram    = SRAM_MB               # unchanged -- dense kernel\nu_latency = LATENCY_MS            # unchanged -- no skip\n\n# Structured 50%: 32 channels removed -> smaller kernel\ns_params  = 32 * 3 * 3 * 16       # half the channels\ns_storage = s_params * 4 / 1e6 * 0.25  # int8 + compress\ns_sram    = SRAM_MB * 0.5         # smaller activation map\ns_latency = LATENCY_MS * 0.52    # 52ms -- kernel shrinks"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 24.61,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT -- run",
+   "role_note": "OPEN vox slot -- Manim video (illustrative data)",
+   "narration_text": "Run it. Three metric columns: storage, SRAM, latency. Three bars each. The dense baseline in slate. Unstructured in crimson -- watch storage drop by half, but the SRAM and latency bars stay exactly as tall as the dense baseline. That is the lie. Structured in ink -- all three bars drop. Storage, SRAM, and latency all shrink because the kernel itself is smaller.",
+   "visual_intent": "Manim: 3 columns x 3 bar groups. Dense (SLATE), Unstructured (CRIMSON -- storage drops, SRAM+latency stay), Structured (INK -- all three drop). Key punchline: LATENCY column, Unstructured bar same height as Dense.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_PruneBenchmark",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 27.3,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE -- check & revise",
+   "role_note": "terminal (Onda) -- the REQUIRED revision",
+   "narration_text": "That is the honest picture for today's embedded kernels. But sparse compute exists -- it just doesn't ship on most MCUs yet. Iterate: claude -- add a hypothetical sparse kernel column showing what unstructured pruning would buy if the kernel supported sparse paths.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"add a hypothetical sparse-kernel column --\n  show what unstructured WOULD buy\n  if the kernel existed\"",
+      "topic": "CLAUDE CODE · PRUNING",
+      "segment": "PRUNE BENCHMARK",
+      "runningText": "updating benchmark..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 15.88,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT -- revised",
+   "role_note": "OPEN vox slot -- Manim video (illustrative data)",
+   "narration_text": "Re-run. A fourth bar appears in each column: hypothetical sparse, dashed border. Storage matches structured. SRAM matches structured. And latency -- the punchline -- drops to match structured too. The sparse kernel would make unstructured pruning real. The reason you don't use it is that it doesn't ship in TFLite Micro or CMSIS-NN today.",
+   "visual_intent": "Manim: same 3-column layout, 4th bar added per column -- IF SPARSE KERNEL chip, dashed-style bar, latency matching Structured.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_PruneSparse",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 23.85,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson",
+   "narration_text": "The compression a benchmark rewards and the compression your MCU rewards are different metrics. Unstructured pruning scores well on parameter count and storage. Structured pruning scores well on latency and SRAM -- the things embedded inference actually runs against. Optimize for the kernel you ship, not the benchmark you read.",
+   "visual_intent": "recap card: two rows -- Unstructured: storage only; Structured: storage + SRAM + latency",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B07_Summary",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 20.48,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: run prune_benchmark.py on your model's actual layer shapes and verify which metrics move. The output beats in this video use illustrative numbers -- swap in a real on-target latency capture once you have the MCU measurement. And if you want the unstructured path to actually work, watch for sparse-kernel support in your toolchain; it's coming, just not here yet.",
+   "visual_intent": "next-steps card: 1) run on real layer shapes, 2) measure on-target latency, 3) watch for sparse kernel support",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B08_NextSteps",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 23.54,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 7.11,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}

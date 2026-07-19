@@ -1,0 +1,307 @@
+{
+ "metadata": {
+  "title": "Build a Battery-Life Predictor with Claude Code",
+  "slug": "cli-battery-life",
+  "topic": "CLAUDE CODE · POWER",
+  "register": "Pragmatist",
+  "voice": "af_kore",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "ground": "#FFFFFF",
+  "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
+  "note": "CLI video REQUIRED spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 OUTPUT(manim) · B07 SUMMARY · B08 NEXT STEPS · B09 outro.",
+  "total_estimated_duration_seconds": 184.68,
+  "chapter_number": 3,
+  "tags": [
+   "Claude Code",
+   "Claude",
+   "Embedded AI",
+   "Edge AI",
+   "TinyML",
+   "Model Compression",
+   "Manim",
+   "Nik Bear Brown",
+   "Machine Learning",
+   "Microcontroller AI",
+   "STM32",
+   "Quantization"
+  ],
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Merhaba, Humanitarians",
+      "topic": "Build a Battery-Life Predictor with Claude Code",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Battery life, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 3.37,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM -- why care",
+   "role_note": "the problem, the context, the stakes -- BEFORE the CLI",
+   "narration_text": "The model was accurate. The hardware worked. The firmware shipped. And the product died in the field after 33 days instead of 333. The engineer had run inference at 10 hertz when 1 hertz would have done the job. The duty cycle was 1.0 -- the device never slept. Average current was 30 milliamps, not 3. Nobody multiplied two numbers before launch. The predictor computes that before the prototype is built.",
+   "visual_intent": "title card: inference frequency multiplies duty cycle; nobody did the math before launch; the two-number product that kills products",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_Problem",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 26.51,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask for the experiment. In the terminal: claude -- write battery_life dot py, inputs inference_ms, freq_hz, active_mA, sleep_uA, battery_mAh. Compute duty cycle, average current, days of life. Sweep frequency.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"write battery_life.py:\n  inputs inference_ms, freq_hz,\n  active_mA, sleep_uA, battery_mAh.\n  Compute duty cycle, average current,\n  days of life. Sweep frequency.\"",
+      "topic": "CLAUDE CODE · POWER",
+      "segment": "BATTERY LIFE",
+      "runningText": "generating scene..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 17.58,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before trusting it. Duty cycle is inference_ms times freq_hz divided by 1000 -- the fraction of time the processor is active. Average current is the time-weighted mix: duty cycle times active milliamps plus the complement times sleep milliamps. Days is capacity divided by average current. Three multiplications.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "battery_life.py",
+      "topic": "CLAUDE CODE · POWER",
+      "segment": "BATTERY LIFE",
+      "code": "# battery_life.py  --  Claude Code output\ndef battery_life(inf_ms, freq_hz, act_mA, slp_uA, cap_mAh):\n    duty   = (inf_ms * freq_hz) / 1000.0   # fraction\n    duty   = min(duty, 1.0)                # cap at 100%\n    slp_mA = slp_uA / 1000.0\n    avg_mA = duty * act_mA + (1 - duty) * slp_mA\n    days   = cap_mAh / (avg_mA * 24)\n    return duty, avg_mA, days\n\n# Sweep freq: act=30mA, sleep=50uA, cap=1000mAh, inf=100ms\nfor hz in [0.5, 1, 2, 5, 10]:\n    d, avg, days = battery_life(100, hz, 30, 50, 1000)\n    print(f\"freq={hz:4.1f}Hz duty={d:.2f}\"\n          f\" avg={avg:.2f}mA  days={days:.0f}\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 23.64,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT -- run",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it. A current strip appears -- the inference pulse at 30 milliamps, then the sleep floor at 0.05 milliamps. At 0.5 hertz: sparse pulses, average current 1.5 milliamps, 333 days. Increase to 2 hertz: period shrinks, pulses crowd together, average climbs to 6 milliamps, 105 days. At 10 hertz: duty cycle hits 1.0, continuous active, 30 milliamps, 33 days. One decade of frequency, one decade of life.",
+   "visual_intent": "Manim: current-vs-time strip with inference pulses at 3 frequencies; average current line rising; days counter ticking down",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_BatteryLife",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 33.1,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE -- check & revise",
+   "role_note": "terminal (Onda) -- the REQUIRED revision",
+   "narration_text": "The baseline assumes a fixed clock. The faster optimization is race-to-sleep: run at higher clock to finish inference in fewer milliseconds, then idle longer. Iterate: claude -- add race-to-sleep, finish faster at higher clock then idle, show when it wins.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"add race-to-sleep: finish faster at\n  higher clock, then idle -- show when it wins\"",
+      "topic": "CLAUDE CODE · POWER",
+      "segment": "BATTERY LIFE",
+      "runningText": "updating script..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 17.68,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT -- revised",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Re-run. Two traces side by side. Run slow: long inference at low clock, lower peak but longer active window. Race-to-sleep: higher peak but duty cycle drops because the pulse is shorter and idle is longer. The area under the curve -- the energy -- is lower for race-to-sleep. Higher peak, lower average, more days.",
+   "visual_intent": "Manim: two current traces -- run slow (SLATE) and race-to-sleep (INK); area under curve visible; RACE-TO-SLEEP WINS chip",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_RaceToSleep",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 22.6,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson -- one beat",
+   "narration_text": "So: what kills embedded-AI products is almost never accuracy. It's a duty-cycle number you can compute before writing firmware. Duty cycle times active current plus the sleep floor equals average current. Divide capacity by that. Run the numbers before the prototype.",
+   "visual_intent": "recap card: the three-multiplication formula; duty cycle as the key variable; pre-prototype check",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B07_Summary",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 17.79,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: pull the active current and sleep current from your target's datasheet -- or measure them with a power monitor. Run the sweep at your actual inference frequency. If duty cycle is above 10%, race-to-sleep or a lower frequency is the first lever.",
+   "visual_intent": "next-steps card: 1) pull active/sleep current from datasheet, 2) sweep inference frequency, 3) check duty cycle",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B08_NextSteps",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 15.7,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 6.71,
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}
