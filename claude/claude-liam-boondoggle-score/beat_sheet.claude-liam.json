@@ -1,0 +1,194 @@
+{
+ "metadata": {
+  "slug": "boondoggle-score",
+  "title": "Score a Build Plan Using the Boondoggle Score with Claude Code",
+  "topic": "CLAUDE CODE FOR STUDENTS",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "source": "claude-code-for-students/chapters/11-planning-first-build.md",
+  "segment": "BOONDOGGLE SCORE",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "register": "Teardown",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Before Claude sees a single prompt, you know which step is highest-risk, which handoff is weakest, and which supervisory capacity you're most likely to skip.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "lines": [
+       "Nik Bear Brown",
+       "Boondoggle Score, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "A handoff condition must be machine-checkable — it names a test file, a count, or an artifact. Not: Claude finishes. Not: looks good. A specific assertion that exits zero or doesn't.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "We ask Claude to generate a Boondoggle Score table for Phase 1 of an application tracker.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Generate Boondoggle Score table for app tracker Phase 1:\\n  columns: step#, phase, labor, supervisory capacity, handoff condition\\n  flag: critical path and highest-risk handoff\\n  rule: every handoff condition must be machine-checkable\"",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "BOONDOGGLE SCORE",
+      "runningText": "generating score table…"
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Claude returns five steps. Every handoff condition names a pytest file or artifact count. The critical path connects the data model to the UI to the state persistence. The highest-risk handoff is step 3 — state persistence is the hardest to test without running the full app.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "boondoggle.md",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "BOONDOGGLE SCORE",
+      "code": "# Boondoggle Score — App Tracker Phase 1\n\n| # | Phase        | Labor  | Capacity | Handoff Condition                        |\n|---|--------------|--------|----------|------------------------------------------|\n| 1 | Data model   | Claude | —        | pytest tests/test_models.py exits 0      |\n| 2 | Add form     | Claude | PA       | pytest tests/test_add.py -k happy        |\n| 3 | State pers.  | Claude | PA+IJ    | all 3 apps survive reload in browser     | <- HIGH RISK\n| 4 | Delete       | Human  | PF       | pytest tests/test_delete.py exits 0      |\n| 5 | UI polish    | Human  | IJ       | screenshot matches wireframe.png         |\n\nCritical path: step 1 -> 2 -> 3 (state persistence blocks all others)"
+     }
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "The Boondoggle Score table — five steps, critical path highlighted, highest-risk row at step 3. State persistence is the step every other step inherits from.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_BoondoggleTable",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 20
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "We deliberately set row 1's handoff condition to 'Claude completes the data model' and re-run the scorer.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Set row 1 handoff condition to: 'Claude completes the data model'.\\nRe-run scorer. Does it flag this condition as invalid?\\nExplain why it fails the machine-checkable rule.\"",
+      "topic": "CLAUDE CODE FOR STUDENTS",
+      "segment": "BOONDOGGLE SCORE",
+      "runningText": "validating handoff condition…"
+     }
+    }
+   },
+   "estimated_duration_s": 10
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT",
+   "narration_text": "The validator flags it: not machine-checkable. Then shows the corrected version with pytest.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_InvalidHandoff",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "The Boondoggle Score is a diagnostic before a single line of code is written. The highest-risk row is always the one that every other row inherits from.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "narration_text": "Next: run the three-pass verification protocol.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 8
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At nikbearbrown.com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  }
+ ]
+}

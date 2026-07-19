@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Cash Conversion Cycle: $323M Locked in Transit",
+    "slug": "cash-conversion-cycle",
+    "topic": "CORPORATE FINANCE",
+    "source": "corporate-finance-with-ai/chapters/",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "palette": "claude",
+    "style_preset": "nikbearbrown",
+    "style": "cli",
+    "note": "CLI video. CCC analysis for Halverson Manufacturing.",
+    "total_estimated_duration_seconds": 113,
+    "audience": "Claude",
+    "derived_from": "beat_sheet.json",
+    "outro_source": "AUTHOR.MD :: NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "_variant_todo": [
+      "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+      "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+      "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+      "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+    ],
+    "build": {
+      "at": "2026-07-16T09:19:23",
+      "cut": "master",
+      "filled": 5,
+      "of": 10,
+      "slates": [
+        "B01",
+        "B04",
+        "B06",
+        "B07",
+        "B08"
+      ],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "This is Liam, in for Bear. Nik Bear Brown. Build it with a CLI, then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOpen",
+          "props": {
+            "topic": "CORPORATE FINANCE",
+            "lines": [
+              "Cash Conversion Cycle",
+              "$323M locked in the operating cycle.",
+              "More than total debt.",
+              "Follow @NikBearBrown"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 5.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:19:23"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "narration_text": "Halverson Manufacturing has 323 million dollars locked in the operating cycle. That is more than its total debt. A 10-day improvement in the cash conversion cycle releases 38 million dollars in cash.",
+      "visual_intent": "SLATE -- CCC = DSO + DIO - DPO. 323M locked. 10-day improvement = 38M released.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 13.42,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:19:23",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
+        "suggested": "suggested prompt: Halverson Manufacturing has 323 million dollars locked in the operating cycle. That is more than its total debt. A 10-day improvement in the cash conversion cyc"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "narration_text": "Ask Claude to compute the cash conversion cycle from DSO, DIO, and DPO for three years and estimate capital locked.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Compute cash conversion cycle: DSO=[60,58,62], DIO=[90,92,88], DPO=[45,47,43] for years 2021-2023. COGS=$1.1B. Compute CCC, capital locked (CCC*COGS/365), and cash released by a 10-day CCC improvement.\"",
+            "topic": "CORPORATE FINANCE",
+            "segment": "CASH CONVERSION",
+            "runningText": "computing..."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 7.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:19:23"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "narration_text": "The script computes DSO plus DIO minus DPO for each year, multiplies by COGS per day to get capital locked, and estimates the release from a 10-day CCC improvement.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "ccc_analysis.py",
+            "topic": "CORPORATE FINANCE",
+            "segment": "CASH CONVERSION",
+            "code": "COGS=1.1e9; d=COGS/365\ndata=[\n  (2021,60,90,45),\n  (2022,58,92,47),\n  (2023,62,88,43),\n]\nfor yr,dso,dio,dpo in data:\n    ccc=dso+dio-dpo\n    locked=ccc*d/1e6\n    release=10*d/1e6\n    print(f\"{yr}: CCC={ccc}d  \"\n          f\"Locked=${locked:.0f}M  \"\n          f\"10d-release=${release:.0f}M\")"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 10.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:19:23"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "narration_text": "Three horizontal timeline bars show DSO in teal, DIO in amber, and DPO clawing back in green. Each bar ends at the CCC endpoint with the capital locked labeled.",
+      "visual_intent": "Manim B04_CCCTimeline: 3-year horizontal bar chart showing DSO/DIO/DPO composition and CCC endpoint.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade"
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 11.2,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:19:23",
+        "needs": "PIPELINE → render animated_graphics.py scene B04_*"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE",
+      "narration_text": "10-day CCC improvement equals 38 million released. No banker required.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Which component is worst: DSO or DIO? Benchmarks: industrial DSO=45d, DIO=65d. Compute the gap vs. benchmark and the dollar value of closing each gap.\"",
+            "topic": "CORPORATE FINANCE",
+            "segment": "CASH CONVERSION",
+            "runningText": "benchmarking..."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 5.65,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:19:23"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT2",
+      "narration_text": "DIO is 25 days above the industrial benchmark. Closing that gap alone releases 82 million dollars. The CCC is an operational balance sheet hiding in plain sight.",
+      "visual_intent": "SLATE -- DIO 25d above benchmark. Closing DIO gap = $82M released. CCC is the hidden balance sheet.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 11.35,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:19:23",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
+        "suggested": "suggested prompt: DIO is 25 days above the industrial benchmark. Closing that gap alone releases 82 million dollars. The CCC is an operational balance sheet hiding in plain sight"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "narration_text": "Every day of CCC improvement is 3 million dollars. The cash is already earned. It is just sitting in the pipeline.",
+      "visual_intent": "SLATE -- every day = $3M. Cash is earned. It is in the pipeline.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 7.04,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:19:23",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
+        "suggested": "suggested prompt: Every day of CCC improvement is 3 million dollars. The cash is already earned. It is just sitting in the pipeline."
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT",
+      "narration_text": "Next: compare CCC to industry peers. Find the benchmark and compute the value of closing the gap. Follow for more corporate finance teardowns.",
+      "visual_intent": "SLATE -- next steps: peer benchmarking of CCC. Close the gap, release the cash.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 8.7,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:19:23",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)",
+        "suggested": "suggested prompt: Next: compare CCC to industry peers. Find the benchmark and compute the value of closing the gap. Follow for more corporate finance teardowns."
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 6.51,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:19:23"
+      }
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "Build MCP App",
+    "slug": "claude-liam-build-mcp-app",
+    "topic": "BUILD MCP APP · CLAUDE PLUGIN",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Salve, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "source_skill": "../anthropics/claude-plugins-official/plugins/mcp-server-dev/skills/build-mcp-app/SKILL.md",
+    "build": {
+      "at": "2026-07-18T18:28:08",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Salve — this is Liam, in for Bear. Ask Claude to build an MCP app, add interactive UI to an MCP server, make a form or picker that renders in chat, or use the apps SDK — the Build MCP App skill fires. An MCP app is a standard MCP server that also serves UI resources — interactive components rendered inline in the chat surface as iframes. The UI layer is additive: under the hood it's still tools and resources and the same wire protocol. Two things make this work: a two-part registration pattern — tool plus resource — and a mandatory bundle-inlining step that CSP requires. Let me walk you through when to add UI at all, how the two parts connect, and where this skill gets it right and where it leaves traps.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Salve, Liam",
+            "topic": "BUILD MCP APP · CLAUDE PLUGIN",
+            "segment": "PLUGIN DEV",
+            "command": "Add an interactive contact picker widget to my MCP server.",
+            "runningText": "reading build-mcp-app SKILL.md…",
+            "output": [
+              "MCP app = MCP server + UI resources rendered as iframes",
+              "Two-part registration: tool (declares resourceUri) + resource (serves HTML)",
+              "Bundle inlining mandatory: CSP blocks CDN fetches — use __EXT_APPS_BUNDLE__"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 40.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:28:08"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy — two-part registration + App class",
+      "narration_text": "The two-part registration is the core pattern. Part one: the tool. It declares a UI resource via underscore-meta dot ui dot resourceUri and its handler returns plain data — not the HTML. Part two: the resource. It's registered separately and serves the widget HTML with the exact MIME type text/html;profile=mcp-app. When Claude calls the tool, the host sees the resource URI, fetches that resource, renders it in an iframe, and pipes the tool's return value into the iframe via the ontoolresult event. Inside the iframe, the App class from at-modelcontextprotocol-slash-ext-apps is the bridge. Set handlers before calling connect. Key methods: ontoolresult to receive the tool's data, sendMessage to inject a user message into the conversation, updateModelContext to update Claude's state silently, callServerTool to call another tool on your server, and openLink for outbound navigation — sandbox blocks window.open. The bundle inlining step: the iframe's CSP blocks CDN script fetches. The ext-apps browser bundle must be inlined into the HTML at startup by replacing the comment placeholder slash-star-star-__EXT_APPS_BUNDLE__-star-star with the bundle contents rewritten as a globalThis assignment.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 34,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BuildMcpAppAnatomy",
+          "props": {
+            "sparkLine": "Tool returns data. Resource serves HTML. App bridges them. Bundle must be inlined."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 68.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:28:08"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design — when to add UI + decision routing",
+      "narration_text": "Before building a widget, route correctly. Elicitation is spec-native, zero UI code, works in any compliant host — use it for yes-no confirmation, short enum picks, and flat forms. Build a widget only when the need can't be met by elicitation: large or searchable lists that need scrolling, visual previews before choosing, charts and maps, and live-updating progress. If none of those apply, skip the widget entirely — text is faster to build and faster for the user. Five design rules that save rewrites. One: one widget per tool — a picker picks, a chart displays, don't build a sub-app inside an iframe. Two: tool description must mention the widget — Claude only sees the description when deciding what to call; 'opens an interactive picker' is what makes Claude reach for it. Three: graceful degradation is automatic — hosts that don't support the apps surface ignore underscore-meta-dot-ui and render the tool's text content directly. Four: don't block on widget results for display-only tools — return a text summary alongside the widget so Claude can continue reasoning without waiting. Five: follow host theme — getHostContext returns the theme after connect; toggle a dark class and use CSS custom props.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 34,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BuildMcpAppDecision",
+          "props": {
+            "sparkLine": "Elicitation first. Widget for searchable lists, visuals, live progress. Text if none apply."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 64.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:28:08"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "teardown — what it gets right / where it bites",
+      "narration_text": "Here is the teardown. Build MCP App gets five things right. The widget-versus-elicitation routing table is explicit before any widget code — with clear signal-to-widget-type mapping and explicit elicitation-coverage cases with checkmarks and X marks. The two-part registration is documented with working TypeScript: tool declares resource URI, resource serves HTML with the exact MIME type constant. The bundle-inlining requirement is called out as mandatory with the rewrite snippet — CSP blocks CDN, inline is the only option. The App class API is complete: eight methods with direction, what each does, and which to use when. And the design rules are concrete: one widget per tool, description must mention widget, degradation is automatic. Where it bites. The Claude Desktop cache flush — you must fully quit with Command-Q, not window close — is buried in the testing section and easy to miss; widgets silently serve stale HTML otherwise. The CSP failure mode is blank rectangle with no error in the main console — documented in a reference file, not inline where you build. The frameDomains restriction in Claude is mentioned in a footnote-sized table cell. The MIME type must be exactly RESOURCE_MIME_TYPE — wrong mime means the host doesn't render the widget, no explicit error path documented. And the sendMessage versus updateModelContext distinction — when to inject a visible message versus update silently — is documented after the method list rather than at the decision point.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 40,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BuildMcpAppTell",
+          "props": {
+            "sparkLine": "Two-part reg and bundle-inlining documented. Cache flush and CSP blank: surface them earlier."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 80.66,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:28:08"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict. Build MCP App: MCP server plus UI resources as iframes. Two-part registration: tool declares resourceUri, resource serves HTML with RESOURCE_MIME_TYPE. Bundle inlining mandatory: CSP blocks CDN, replace __EXT_APPS_BUNDLE__ placeholder. App class: ontoolresult, sendMessage, updateModelContext, callServerTool, openLink. Route first: elicitation for simple inputs, widget for searchable lists and visuals. Design: one widget per tool, description mentions widget, degradation automatic. Gaps: Desktop cache flush (full quit not window-close), CSP blank rectangle in reference not inline, frameDomains restricted, wrong MIME silent failure.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Build MCP App",
+            "artifactLines": [
+              "MCP app: MCP server + UI resources (iframes) with RESOURCE_MIME_TYPE",
+              "Two-part: tool declares resourceUri · resource serves HTML",
+              "Bundle inlining: replace __EXT_APPS_BUNDLE__ — CSP blocks all CDN fetches",
+              "App class: ontoolresult · sendMessage · updateModelContext · callServerTool · openLink",
+              "Route: elicitation for simple inputs · widget for large lists/visuals/progress",
+              "Gaps: Desktop cache flush · CSP blank silent · frameDomains restricted · wrong MIME silent"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 39.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:28:08"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Open a Claude Code session. Paste this: Build an MCP app with a file picker widget that lets users select a file from a list returned by a directory scan tool. Watch four things. First: does it use the two-part registration — tool with _meta.ui.resourceUri and a separate resource registration? Second: does the resource MIME type use the RESOURCE_MIME_TYPE constant — not a hand-typed string? Third: does the widget HTML replace the __EXT_APPS_BUNDLE__ placeholder at server startup — not import from a CDN? Fourth: does the tool handler return meaningful text content alongside the widget data, so hosts without the apps surface see something useful? If the MIME type is wrong, the widget renders blank. If the bundle isn't inlined, the widget renders blank. Two ways to get the same silent failure.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your Turn",
+            "topic": "BUILD MCP APP · HANDOFF",
+            "segment": "PLUGIN DEV",
+            "command": "Build an MCP app with a file picker widget that lets users select from a directory scan.",
+            "runningText": "Watch: two-part reg? RESOURCE_MIME_TYPE? bundle inlined? text fallback?",
+            "output": [
+              "Expected: tool _meta.ui.resourceUri + separate resource registration",
+              "Expected: RESOURCE_MIME_TYPE constant · __EXT_APPS_BUNDLE__ replaced at startup",
+              "Red flag: hand-typed MIME string · CDN import · no text content fallback"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 42.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:28:08"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Build MCP App. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Build MCP App",
+            "handle": "@NikBearBrown",
+            "subline": "build-mcp-app · Plugin Dev"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:28:08"
+      }
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "Build MCPB",
+    "slug": "claude-liam-build-mcpb",
+    "topic": "BUILD MCPB · CLAUDE PLUGIN",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "source_skill": "../anthropics/claude-plugins-official/plugins/mcp-server-dev/skills/build-mcpb/SKILL.md",
+    "build": {
+      "at": "2026-07-18T18:49:49",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. Ask Claude to package an MCP server, bundle an MCP, make an MCPB, or ship a local MCP server — the Build MCPB skill fires. MCPB is a local MCP server packaged with its runtime: the user installs one file and it runs without needing Node, Python, or any toolchain on their machine. It is the sanctioned way to distribute local servers — and it comes with two traps that cause silent failures at runtime. Let me walk you through the bundle structure, the manifest, the build pipeline, and where this skill gets the security model right and where the config trap hides.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "BUILD MCPB · CLAUDE PLUGIN",
+            "segment": "PLUGIN DEV",
+            "command": "Package my local filesystem MCP server as an MCPB for distribution.",
+            "runningText": "reading build-mcpb SKILL.md…",
+            "output": [
+              "MCPB = zip archive: manifest.json + server/ + icon.png",
+              "manifest.json: server.mcp_config is the launch command — no auto-prefix on env vars",
+              "No sandbox: full user privileges — path validation and allowlists are on you"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 34.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:49:49"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy — bundle structure + manifest fields",
+      "narration_text": "An MCPB bundle is a zip archive with three parts: manifest.json, the server directory with your code and bundled dependencies, and an icon dot png. The host reads manifest.json, launches the command in server-dot-mcp-config, and pipes stdio messages. From your code's perspective it's identical to a local stdio server — the only difference is packaging. The manifest has four key sections. server.type is informational — node, python, or binary. server.mcp-config is the actual launch: command, args, and an env block. Use dollar-brace-underscore-underscore-dirname-underscore-underscore for bundle-relative paths, and dollar-brace-user-config-dot-key for install-time config values. user-config defines install-time settings surfaced in the host UI — type directory renders a native folder picker, sensitive-true stores in the OS keychain. compatibility declares the minimum Claude Desktop version and target platforms. The env var names your server reads are exactly what you put in the env block: there is no auto-prefix. If you write ROOT-DIR in the env block, your server must read ROOT-DIR. This is the most common silent failure.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 36,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BuildMcpbAnatomy",
+          "props": {
+            "sparkLine": "Zip archive. mcp_config is the launch. No auto-prefix on env vars."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 63.66,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:49:49"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design — use-correctly rule + build pipeline + security",
+      "narration_text": "The use-correctly rule comes first. MCPB is for servers that must run on the user's machine: local filesystem, desktop apps, localhost services, OS APIs. If your server only hits cloud APIs, stop — that's a remote server wearing an MCPB costume. You gain nothing from running it locally and you take on local security burden for no reason. The build pipeline for Node: npm install, then esbuild to bundle your TypeScript into a single server-slash-index-dot-js, then npx at-sign-anthropic-ai-slash-mcpb pack to zip and validate. For Python: pip install into server-slash-vendor, then mcpb pack. Native extensions — numpy and the like — must be built for each target platform; avoid them if you can. Security model: MCPB has no sandbox. There is no permissions block in the manifest. The server runs with full user privileges. Path validation, root escapes, and spawn allowlisting are entirely your responsibility. Before hardcoding the root directory from your config env var, check if the host supports roots-slash-list — the spec-native way to get user-approved directories. Test on a machine without your dev toolchain before shipping: works-on-my-machine failures in MCPB almost always trace to a dependency that was not actually bundled.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 36,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BuildMcpbPipeline",
+          "props": {
+            "sparkLine": "Local machine only. No sandbox. Test without your toolchain before shipping."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 68.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:49:49"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "teardown — what it gets right / where it bites",
+      "narration_text": "Here is the teardown. Build MCPB gets five things right. The MCPB-versus-remote gate is upfront and explicit: if your server only hits cloud APIs, use remote HTTP — don't pay the packaging tax for something that could be a URL. The manifest anatomy is complete with a working JSON example covering all four key sections. The dollar-brace-underscore-underscore-dirname and dollar-brace-user-config tokens are documented with concrete examples in the manifest block. The no-sandbox warning is prominent and unambiguous — it says mandatory reading, not optional, which is the right framing. The testing pipeline is complete from init through inspector through validate, pack, sign, and install. Where it bites. The no-auto-prefix rule for env vars is buried in a code comment rather than called out at the manifest level where you write the env block: wrong prefix is a silent nil at runtime with no error. The type-directory user config rendering a native folder picker is documented only in passing — it's a powerful UX feature that most developers will miss. Native extension builds must target each platform — the skill says avoid native deps if you can, but that buries a blocking constraint for anyone wrapping a scientific Python library. The roots-slash-list check before hardcoding config is mentioned as before hardcoding — a passive aside rather than a decision point. And the test-without-toolchain requirement is the last line of the testing section, not a gate at the top.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 42,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BuildMcpbTell",
+          "props": {
+            "sparkLine": "MCPB gate and no-sandbox warning solid. Env var no-prefix trap: surface it at the manifest."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 80.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:49:49"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict. Build MCPB: zip archive, manifest.json plus server directory plus icon. mcp-config is the launch command — use dollar-dirname for bundle paths, dollar-user-config for install-time values. No auto-prefix on env vars: wrong name is a silent nil. No sandbox: full user privileges — validate paths, allowlist spawns, check roots-slash-list. Build: esbuild for Node, vendor for Python — no native extensions if you can help it. Test without your dev toolchain. Gaps: no-prefix trap buried in comment, type-directory UX underpromoted, native extension platform constraint buried, roots-slash-list framed passively, test-without-toolchain at end not top.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Build MCPB",
+            "artifactLines": [
+              "MCPB: zip archive — manifest.json · server/ · icon.png",
+              "mcp_config is the launch: ${__dirname} for paths · ${user_config.*} for settings",
+              "No auto-prefix: env var names are exactly what you write — wrong name = silent nil",
+              "No sandbox: full user privileges — validate paths · allowlist spawns · check roots/list",
+              "Build: esbuild (Node) or vendor (Python) → mcpb pack — no native deps if avoidable",
+              "Gaps: no-prefix trap buried · type:directory underpromoted · test without toolchain last"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 37.95,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:49:49"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Open a Claude Code session. Paste this: Build an MCPB that reads and searches files in a user-selected directory — the user should be able to configure the root directory at install time. Watch four things. First: does it create a user-config block with type-directory and a reasonable default — or does it hardcode a path? Second: does the mcp-config env block use a name that exactly matches what the server code reads — no auto-prefix, no transformation? Third: does the server validate that requested paths stay within the configured root — or does it allow arbitrary reads? Fourth: does the build script use esbuild to bundle into a single file — or does it assume node-modules will be present on the user's machine? If the env var name in the manifest doesn't match the process.env read in server code, the config is silently ignored.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your Turn",
+            "topic": "BUILD MCPB · HANDOFF",
+            "segment": "PLUGIN DEV",
+            "command": "Build an MCPB that reads files in a user-configured root directory.",
+            "runningText": "Watch: user_config type:directory? env var name matches? path validation? esbuild?",
+            "output": [
+              "Expected: user_config.rootDir type:directory · env ROOT_DIR = process.env.ROOT_DIR",
+              "Expected: path.join(ROOT, userPath) with bounds check · esbuild bundle",
+              "Red flag: hardcoded path · env name mismatch · no bounds check · assumes node_modules"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 43.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:49:49"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Build MCPB. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Build MCPB",
+            "handle": "@NikBearBrown",
+            "subline": "build-mcpb · Plugin Dev"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-18T18:49:49"
+      }
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+ "metadata": {
+  "slug": "backward-design-lesson",
+  "title": "Backward-Design a Lesson Outcome with Claude",
+  "topic": "CLAUDE FOR EDUCATION",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "source": "claude-for-education-a-practitioners-guide/chapters/02-learning-outcomes-before-prompts.md",
+  "segment": "BACKWARD DESIGN",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 113.0,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "register": "Teardown",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Brutalist and Educational AI. Build it with Claude — then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "CLAUDE FOR EDUCATION",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Backward-Design a Lesson",
+       "Outcome Before Prompt",
+       "Build with Claude CLI"
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 10.0
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM",
+   "narration_text": "Most AI-assisted lesson design starts with the prompt and then figures out what students were supposed to learn — which is exactly backward from how learning design works. Claude, left to itself, plans forward: topic, activities, then assessment. The output feels complete because it mirrors lesson plans teachers have seen. Completeness is not alignment.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: problem hook. Forward planning vs. backward design. 'A complete forward-planned lesson can have no logical connection between its activities and its assessment.'",
+   "estimated_duration_s": 12.0
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "narration_text": "Pass the lesson parameters to Claude. Start with the desired learning outcome in Bloom's taxonomy terms, specifying the cognitive level. Then the assessment evidence. Then the AI-integrated activity that produces that evidence. Make the design logic explicit at each step.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Design a backward-designed lesson on [topic] for [grade level] that integrates [AI tool]. Start with: (1) the desired learning outcome in Bloom's taxonomy terms — specify the cognitive level, (2) the assessment evidence that would demonstrate the outcome, (3) the AI-integrated activity that produces that evidence. Make the design logic explicit at each step.\" < lesson_params.txt",
+      "topic": "CLAUDE FOR EDUCATION",
+      "segment": "BACKWARD DESIGN",
+      "runningText": "designing backward…"
+     }
+    }
+   },
+   "estimated_duration_s": 15.0
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "narration_text": "Read the script. It reads lesson parameters from a file, sends them to Claude with the backward-design instruction, and formats the output as three stacked cards — outcome first, then assessment evidence, then the activity — with arrows showing how each layer serves the one above.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "backward_design.py",
+      "segment": "BACKWARD DESIGN",
+      "topic": "CLAUDE FOR EDUCATION",
+      "code": "import subprocess\nfrom pathlib import Path\n\ndef backward_design(params_file):\n    params = Path(params_file).read_text()\n    instruction = (\n        \"Design a backward-designed lesson.\\n\"\n        \"Step 1: Learning outcome (Bloom's level required).\\n\"\n        \"Step 2: Assessment evidence for that outcome.\\n\"\n        \"Step 3: AI-integrated activity producing the evidence.\\n\"\n        \"Format each step as a labeled card.\\n\"\n        \"Show the logic: how step 3 serves step 2 serves step 1.\"\n    )\n    result = subprocess.run(\n        [\"claude\", instruction],\n        input=params, capture_output=True, text=True\n    )\n    print(result.stdout)"
+     }
+    }
+   },
+   "estimated_duration_s": 15.0
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT",
+   "narration_text": "The three-card output appears. Outcome card: 'Students will evaluate the credibility of two AI-generated explanations using the course's source-quality criteria — Bloom's evaluate.' Evidence card: 'A written comparison with at least two specific criteria applied to each source.' Activity card: 'Claude generates two competing explanations; students apply the criteria and write the comparison.' The logic is explicit: the activity produces the evidence; the evidence demonstrates the outcome.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: three stacked cards. Outcome at top (evaluate, Bloom's level stated). Evidence card in middle. Activity card at bottom. Arrows connecting them upward.",
+   "estimated_duration_s": 14.0
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE",
+   "narration_text": "The change: run the same topic through two Bloom's levels — remember versus evaluate — and show how the entire lesson design changes downstream. Different assessment, different activity, different AI role.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Run the same lesson topic twice: first at Bloom's 'remember' level, then at Bloom's 'evaluate' level. Show how the outcome, assessment evidence, and AI-integrated activity change at each level. Make the differences explicit.\" < lesson_params.txt",
+      "topic": "CLAUDE FOR EDUCATION",
+      "segment": "BACKWARD DESIGN",
+      "runningText": "comparing Bloom's levels…"
+     }
+    }
+   },
+   "estimated_duration_s": 15.0
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT",
+   "narration_text": "At 'remember': outcome is recalling definitions, evidence is a matching quiz, AI role is generating the quiz. At 'evaluate': outcome is judging source credibility, evidence is a written comparison, AI role is generating sources to compare. Same topic. The Bloom's level is the decision that changes everything downstream — including what the AI is doing and whether it is serving the learning.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: side-by-side. Left: 'remember' — matching quiz, AI generates the quiz. Right: 'evaluate' — written comparison, AI generates sources to compare. The AI role is different in each.",
+   "estimated_duration_s": 10.0
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "narration_text": "Backward design forces you to commit to what learning looks like before you commit to how the AI will help — which is the only order that keeps the AI in service of the learning rather than in place of it. The Bloom's level is not a label you add at the end. It is the decision that determines the entire downstream design.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: teardown summary. 'Outcome first. Then evidence. Then activity. Then AI role.' The order is the discipline.",
+   "estimated_duration_s": 12.0
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "narration_text": "Next: Build a Feedback Type Classifier — classify AI-generated feedback along the Hattie-Timperley feed-up, feed-back, and feed-forward dimensions.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "visual_intent": "Slate: next reel teaser. 'feedback-type-classifier' slug.",
+   "estimated_duration_s": 6.0
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Brutalist and Educational AI. At NikBearBrown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8.0
+  }
+ ]
+}

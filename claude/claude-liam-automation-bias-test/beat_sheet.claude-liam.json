@@ -1,0 +1,228 @@
+{
+ "metadata": {
+  "title": "Test Automation Bias by Running the Same Output With and Without Review with Claude",
+  "slug": "automation-bias-test",
+  "topic": "AGENTIC AI",
+  "source": "claude-agentic-ai/chapters/09-failure-modes-of-agentic-work.md",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video. Exclusions: full Stanford SCALE review, formal HCI automation bias studies, eye-tracking evidence.",
+  "total_estimated_duration_seconds": 95.92,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Test Automation Bias Before You Trust the Output."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM -- why care",
+   "role_note": "the problem, context, stakes -- BEFORE the CLI opens",
+   "narration_text": "When a policy analyst reads the agent's brief before forming her own opinion, she accepts a wrong summary forty percent more often. The Stanford SCALE finding: reading the agent output first anchors your judgment before you see the source. The fix is a structured review protocol that forces independent engagement.",
+   "visual_intent": "SLATE -- title card: READ THE AGENT OUTPUT FIRST = 40% MORE WRONG ACCEPTANCES. Structured review breaks the anchor.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B01.mp3"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda) -- the command typed",
+   "narration_text": "Ask Claude to produce a correct summary and a deliberately wrong version -- one with a reversed key finding -- for an automation bias demonstration.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Summarize five regulatory framework descriptions into a one-page brief with one recommendation. Then in a second code block, produce a second version with a deliberately wrong recommendation -- reverse one key finding. I will use both for an automation bias demonstration.\"",
+      "topic": "AGENTIC AI",
+      "segment": "AUTOMATION BIAS",
+      "runningText": "generating..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B02.mp3"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda) -- reading the generated code",
+   "narration_text": "The automation bias experiment script displays both summaries and prompts the reviewer to rate confidence in condition A -- agent output first -- versus condition B -- source first.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "bias_experiment.py",
+      "topic": "AGENTIC AI",
+      "segment": "AUTOMATION BIAS",
+      "code": "CONDITION_A = \"\"\"Agent summary first:\n{summary}\n\nNow read the source paragraphs.\nDo you accept this recommendation? (y/n): \"\"\"\nCONDITION_B = \"\"\"Read the source paragraphs first.\n{source}\n\nNow read the agent summary:\n{summary}\nDo you accept this recommendation? (y/n): \"\"\"\ndef run_experiment(summary, wrong_summary, source):\n    print(\"--- CONDITION A (agent first) ---\")\n    verdict_a = input(CONDITION_A.format(summary=wrong_summary))\n    print(\"--- CONDITION B (source first) ---\")\n    verdict_b = input(CONDITION_B.format(summary=wrong_summary,\n                                         source=source))\n    print(f\"A: {verdict_a}  B: {verdict_b}\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B03.mp3"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT -- run",
+   "role_note": "first output -- OPEN vox slot",
+   "narration_text": "Both summaries print. The wrong one reverses a key finding but reads fluently -- plausible enough to pass a quick scan in condition A.",
+   "visual_intent": "SLATE -- screen-recording: terminal showing both summaries side by side -- correct version and wrong version with reversed finding -- wrong version reads fluently and is not obviously wrong",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B04.mp3"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE -- check and revise",
+   "role_note": "terminal (Onda) -- THE REQUIRED revision",
+   "narration_text": "Add a five-claim checklist to the experiment -- force the reviewer to verify each claim against the source paragraphs before accepting the summary.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Add a five-claim checklist to the experiment to force the reviewer to check each claim against the source paragraphs before accepting the summary.\"",
+      "topic": "AGENTIC AI",
+      "segment": "AUTOMATION BIAS",
+      "runningText": "updating..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B05.mp3"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT -- revised",
+   "role_note": "revised output -- OPEN vox slot",
+   "narration_text": "Protocol-guided review: the wrong finding is caught by the checklist in condition A. Claim three fails the source check -- the reversal is visible once you look at the original.",
+   "visual_intent": "SLATE -- screen-recording: terminal showing five-claim checklist with claim 3 marked FAIL -- source does NOT support the reversed finding -- verdict changes from accept to reject",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson -- one beat",
+   "narration_text": "Automation bias worsens under time pressure and expertise trust. The mitigation is a structured review protocol that forces independent engagement with source evidence -- not faster reading.",
+   "visual_intent": "SLATE -- recap card: AUTOMATION BIAS IS AN ANCHORING EFFECT. Structured review forces independent evidence engagement.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B07.mp3"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "For any consequential agent output, apply a named checklist before accepting it. The checklist must require checking against the original source -- not asking the agent to confirm.",
+   "visual_intent": "SLATE -- next-steps card: Apply a named checklist to every consequential output. Check against the original source, not the agent's confirmation.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B08.mp3"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3"
+  }
+ ]
+}
