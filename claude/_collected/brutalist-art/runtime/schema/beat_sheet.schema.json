@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://brutalist-art/runtime/schema/beat_sheet.schema.json",
+  "title": "beat_sheet",
+  "description": "The heart of every reel. Audio-first: narration (or a music bed) is the master clock; each beat is one moment with one visual slot. shot.type × shot.source annotate WHAT the beat is; the fill plan (see runtime/scripts/beat_plan.py) is derived from these fields. Edit the beat sheet, never the derived todo.json / STATUS.md.",
+  "type": "object",
+  "required": ["beats"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "Reel-level facts.",
+      "properties": {
+        "slug": {"type": "string"},
+        "title": {"type": "string"},
+        "topic": {"type": "string"},
+        "purpose": {"type": "string"},
+        "voice_id": {"type": "string", "description": "ElevenLabs voice ID; resolved from ELEVENLABS_VOICE_* in .env"},
+        "clock": {"type": "string", "description": "what times the reel (narration | music bed)"},
+        "style_preset": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "beats": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/definitions/beat"}
+    }
+  },
+  "definitions": {
+    "beat": {
+      "type": "object",
+      "required": ["beat_id", "narration_text", "shot"],
+      "properties": {
+        "beat_id": {"type": "string", "pattern": "^B[0-9A-Z]+$", "description": "e.g. B06"},
+        "act": {"type": "string"},
+        "t_start": {"type": "number"},
+        "estimated_duration_s": {"type": "number"},
+        "actual_duration_s": {"type": ["number", "null"], "description": "measured from the rendered audio; the real clock"},
+        "narration_text": {"type": "string"},
+        "audio_file": {"type": ["string", "null"]},
+        "new_visual_element": {"type": "string", "description": "one-line label; used on slate/request cards and STATUS.md"},
+        "shot": {"$ref": "#/definitions/shot"},
+        "graphic": {"$ref": "#/definitions/graphic"},
+        "prompt": {"type": "string", "description": "explicit generation prompt / search terms; overrides the derived seed"},
+        "remotion": {"type": ["string", "object"], "description": "a Remotion scene/pattern name for this beat"}
+      },
+      "additionalProperties": true
+    },
+    "shot": {
+      "type": "object",
+      "description": "The two-axis annotation. type = what kind of shot; source = who/what produces it. Together they drive the fill plan.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "GRAPHIC (drawable) | AI-VIDEO | HISTORICAL-IMAGE | USER-CAPTURE | REMOTION | STILL | SLATE",
+          "enum": ["GRAPHIC", "AI-VIDEO", "T2V", "I2V", "GEN-VIDEO", "HISTORICAL-IMAGE", "ARCHIVAL", "ARCHIVE", "USER-CAPTURE", "CAPTURE", "SCREEN", "REMOTION", "MOTION-GRAPHIC", "STILL", "SLATE"]
+        },
+        "source": {
+          "type": "string",
+          "description": "own (pipeline animates) | archive/historical (human finds a real image) | capture/user (human records) | gen/ai (gen-AI clip)",
+          "enum": ["own", "archive", "archival", "historical", "capture", "screen", "user", "live", "gen", "genai", "ai", "t2v", "i2v"]
+        },
+        "motion": {"type": "string", "description": "drawon | kenburns | pan | static | ..."}
+      },
+      "additionalProperties": true
+    },
+    "graphic": {
+      "type": "object",
+      "description": "For drawable beats: the named scene and/or a production_viz spec animated_graphics.py can render.",
+      "properties": {
+        "manim": {"type": "string", "description": "named Manim scene, e.g. B06_TotalMassBars"},
+        "engine": {"type": "string", "enum": ["manim", "remotion"], "description": "which tool animates this beat; if absent, animated_graphics.py decides"},
+        "production_viz": {
+          "type": "object",
+          "properties": {
+            "label": {"type": "string"},
+            "mechanic": {"type": "string", "description": "what to draw; also the seed for a gen-AI prompt if the beat is re-planned as ai-video"},
+            "colors": {"type": "array", "items": {"type": "string"}},
+            "note": {"type": "string"}
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

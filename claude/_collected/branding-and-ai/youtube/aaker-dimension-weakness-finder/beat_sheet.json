@@ -1,0 +1,96 @@
+{
+ "metadata": {
+  "title": "Build an Aaker Dimension Weakness Finder with Claude",
+  "slug": "aaker-dimension-weakness-finder",
+  "topic": "CLAUDE CODE · BRAND EQUITY",
+  "register": "Teardown",
+  "voice": "claude-liam",
+  "voice_id": "am_onyx",
+  "engine": "kokoro",
+  "palette": "claude",
+  "style_preset": "claude",
+  "style": "claude-cli",
+  "channel": "claude-liam",
+  "note": "cli-ideas Card 17 — Ch 2 (What a Brand Is: Equity and Assets). DOUBLE-CHECK: Aaker four dimensions: Awareness (unaided recall > aided recognition, top-of-mind most valuable), Perceived Quality (diverges from objective quality — behavioral test), Associations (coherent network vs. fractured), Loyalty (behavioral vs. attitudinal — cable/telecom example: high behavioral, low attitudinal). Keller pyramid: salience → performance/imagery → judgments/feelings → resonance. '[YOUR CALL]' on Keller level — human judgment only. Tag every claim [CONFIRMED-SOURCE] or [UNVERIFIED]. No valuation numbers.",
+  "total_estimated_duration_seconds": 118
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO", "role_note": "COLD OPEN LAW — Claude UI, ask shown answered; IN-FOR-BEAR",
+   "narration_text": "This is Liam, in for Bear. Build it with Claude, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"assemble a brand equity baseline across Aaker's four dimensions — find the weakest lever\"",
+       "topic": "CLAUDE CODE · BRAND EQUITY", "segment": "Aaker Weakness Finder",
+       "greeting": "Olá,", "runningText": "auditing brand equity…",
+       "output": ["Awareness: HIGH — top-of-mind in category [CONFIRMED-SOURCE]", "Perceived Quality: MEDIUM [UNVERIFIED]", "Associations: MEDIUM — coherent but crowded [CONFIRMED-SOURCE]", "Loyalty: LOW — behavioral high, attitudinal fragile [CONFIRMED-SOURCE]", "Weakest dimension: Loyalty", "Keller level: [YOUR CALL]"]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM", "role_note": "stakes — BEFORE CLI loop; SHOW-DON'T-TELL: animate the four dimensions as a dashboard with one gap",
+   "narration_text": "David Aaker's diagnostic move: map your brand on all four dimensions and find the weakest one. Intervening on a strong dimension produces little lift. Intervening on the weak one produces the most. Most brand audits gather sentiment and stop there — which is the equivalent of checking one instrument when four are running. A cable or telecom brand might have extremely high awareness and very high behavioral loyalty — customers repurchase because switching costs are high — but near-zero attitudinal loyalty, meaning they would leave the moment a better alternative appeared. That is the Loyalty dimension, and it is the one worth intervening on. This tool finds it.",
+   "visual_intent": "Animated dashboard: four quadrants for Awareness, Perceived Quality, Associations, Loyalty — three filled with solid bars, Loyalty quadrant shows split bar (behavioral HIGH / attitudinal LOW) highlighted in amber; Keller pyramid shown alongside with question mark at resonance level; no composer yet",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 17},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "ClaudeComposerAsk — show and discuss the prompt",
+   "narration_text": "Into Claude. Using public sources, assemble a brand equity baseline across all four Aaker dimensions: Awareness — unaided recall, top-of-mind evidence; Perceived Quality — the gap between functional quality from reviews and perceived quality from pricing power; Associations — coherence of the association network in public discourse; Loyalty — behavioral repurchase versus attitudinal commitment. Tag every evidence item confirmed-source or unverified. Do not assign an overall equity score. Leave the Keller pyramid level column blank — mark it your call. End with a weakest-dimension paragraph and one specific intervention recommendation.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"assemble brand equity baseline for [BRAND NAME]:\n  Aaker dimensions:\n  1. Awareness — unaided recall, top-of-mind evidence\n  2. Perceived Quality — functional quality (reviews/tests)\n     vs perceived (pricing power, premium paid)\n  3. Associations — coherence of network in public discourse\n  4. Loyalty — behavioral (repurchase) vs attitudinal\n     (commitment when alternatives improve)\n  Tag each item [CONFIRMED-SOURCE] or [UNVERIFIED]\n  Do NOT assign overall equity score\n  Leave Keller level column blank → '[YOUR CALL]'\n  End: weakest-dimension + one intervention recommendation\"",
+       "topic": "CLAUDE CODE · BRAND EQUITY", "segment": "Aaker Weakness Finder",
+       "greeting": "The ask,", "runningText": "auditing equity dimensions…"}}},
+   "estimated_duration_s": 16},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "ClaudeCodeBeat — actual audit script; trimmed to what teaches",
+   "narration_text": "Read it. The confirmed-source versus unverified tags are the discipline that prevents hallucination from becoming strategy. The Keller level column is intentionally blank — that grading is the human judgment the tool cannot make. Aaker finds the weakest lever. Keller grades what level of equity the brand has achieved. Those are two different questions, and the second one requires knowing what each level actually requires in this specific category.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeCodeBeat", "props": {
+       "title": "equity_audit.py",
+       "code": "# equity_audit.py  —  Claude Code output\nimport anthropic, sys\n\nSYSTEM = \"\"\"You are a brand equity analyst (Aaker framework).\nFor [BRAND]: assemble public-signal evidence per dimension:\n  Awareness: unaided recall + top-of-mind evidence\n  Perceived Quality: functional vs perceived gap\n  Associations: coherence of association network\n  Loyalty: behavioral (repurchase) vs attitudinal\n             (commitment when alternatives improve)\nTag every evidence item:\n  [CONFIRMED-SOURCE] — verifiable public data\n  [UNVERIFIED]       — inference from pattern\nDo NOT:\n  - Assign an overall equity score\n  - Include any valuation numbers\n  - Populate the Keller pyramid level column\nKeller level column → '[YOUR CALL]' for every row.\nEnd with: weakest-dimension paragraph +\n  one specific, actionable intervention recommendation.\"\"\"\n\nclient = anthropic.Anthropic()\nresult = client.messages.create(\n    model=\"claude-opus-4-7\", max_tokens=2048,\n    system=SYSTEM,\n    messages=[{\"role\": \"user\", \"content\": sys.stdin.read()}]\n)\nprint(result.content[0].text)",
+       "sparkLine": "Find the weakest lever."}}},
+   "estimated_duration_s": 16},
+
+  {"beat_id": "B04", "act": "OUTPUT — first run", "role_note": "screen-rec or animated slot — audit table with Loyalty flagged as weakest",
+   "narration_text": "Run it on a cable or telecom brand with strong behavioral loyalty but known attitudinal fragility. Four-dimension table prints. Awareness: high, confirmed sources. Perceived Quality: medium, unverified gap between functional scores and premium pricing power. Associations: medium-coherent. Loyalty: the split the tool finds — behavioral repurchase high, attitudinal commitment flagged low because switching costs are the driver, not commitment. Weakest dimension prints: Loyalty — specifically the attitudinal gap. Keller level column: four rows of YOUR CALL.",
+   "visual_intent": "screen-rec mp4: four-dimension table printing — source tags visible; Loyalty row highlighted with behavioral/attitudinal split visible; weakest dimension paragraph prints below; Keller column shows '[YOUR CALL]' in all four rows — no equity grade generated; intervention recommendation at bottom.",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 16},
+
+  {"beat_id": "B05", "act": "CHANGE — check & revise", "role_note": "ClaudeComposerAsk — REVISION; SPARK-LINE: 'The change,'",
+   "narration_text": "Now check the Associations dimension more carefully. Ask the audit to surface any contradictions in the association network — nodes that cancel each other. A telecom brand might simultaneously hold associations for reliability and for frustration — two nodes that co-exist and undermine each other. The coherence question is whether the network reinforces or fractures.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"deepen the Associations analysis:\n  For [BRAND]: identify the top-5 associations in\n  public discourse [CONFIRMED-SOURCE only]\n  Flag any contradictory nodes that cancel each other.\n  Rate coherence: HIGH (nodes reinforce) /\n    MEDIUM (some contradiction) /\n    LOW (nodes fractured — brand tries to be two things)\n  Does fixing Associations or Loyalty produce more\n  equity lift at this brand's current stage?\"",
+       "topic": "CLAUDE CODE · BRAND EQUITY", "segment": "Aaker Weakness Finder",
+       "greeting": "The change,", "runningText": "deepening association analysis…"}}},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B06", "act": "OUTPUT — revised", "role_note": "screen-rec or animated slot — association network with contradictory nodes flagged",
+   "narration_text": "The association analysis prints five nodes: reliability, national coverage, customer service frustration, legacy infrastructure, price value. Reliability and frustration co-exist — flagged as contradictory. Coherence: MEDIUM. The tool then compares: fixing Associations requires brand experience changes that are slow and expensive; fixing Loyalty, specifically the attitudinal gap, requires a program that gives customers a reason to stay that is not switching costs. The lift comparison points to Loyalty.",
+   "visual_intent": "Animated network diagram: five association nodes — two (reliability + frustration) shown as opposing arrows canceling each other; coherence rating 'MEDIUM'; then comparison card: 'Associations fix: slow, experience-dependent' vs 'Loyalty attitudinal fix: high-ROI, faster signal' — lift arrow pointing to Loyalty.",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 13},
+
+  {"beat_id": "B07", "act": "SUMMARY", "role_note": "lesson in one beat",
+   "narration_text": "The Aaker audit finds the weakest lever. Keller grades the level. Both questions are necessary and neither substitutes for the other. The tool handles the first one — surfaces evidence, tags certainty, names the gap. The Keller grade is the human call, because it requires knowing what awareness, quality, associations, and loyalty actually look like at each pyramid level in this specific category.",
+   "visual_intent": "Summary: Aaker 4-dimension grid on left; Keller pyramid on right with '[YOUR CALL]' at each level; bottom: 'tool finds the lever — you grade the level'",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B08", "act": "NEXT STEPS", "role_note": "HANDOFF LAW — prompt READ aloud AND discussed; greeting 'Your turn.'",
+   "narration_text": "Your turn. Pick a brand you are working with or analyzing and paste the brand name into the prompt. Read the confirmed-source tags carefully — any claim tagged unverified is a hypothesis, not a data point. Then do the Keller grade yourself: read the audit's weakest-dimension paragraph and decide which level of the pyramid it corresponds to for this brand in this category. That grading is the piece the tool cannot make for you, and it is the piece that determines whether the intervention recommendation is worth pursuing.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeComposerAsk", "props": {
+       "command": "claude \"run brand equity audit for [BRAND NAME]:\n  Find weakest Aaker dimension.\n  Tag all claims [CONFIRMED-SOURCE] or [UNVERIFIED].\n  Leave Keller level → '[YOUR CALL]'.\n  End with one specific intervention recommendation\n  for the weakest dimension only.\"",
+       "topic": "CLAUDE CODE · BRAND EQUITY", "segment": "Aaker Weakness Finder",
+       "greeting": "Your turn.", "runningText": "paste this into Claude…"}}},
+   "estimated_duration_s": 13},
+
+  {"beat_id": "B09", "act": "OUTRO", "role_note": "OUTRO LAW — title restate; IN-FOR-BEAR",
+   "narration_text": "Build an Aaker Dimension Weakness Finder with Claude. This is Liam, in for Bear — build it with Claude, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "ClaudeTitleOutro", "props": {
+       "title": "Build an Aaker Dimension Weakness Finder.",
+       "handle": "@NikBearBrown", "subline": "built with Claude, taken apart"}}},
+   "estimated_duration_s": 6}
+ ]
+}
