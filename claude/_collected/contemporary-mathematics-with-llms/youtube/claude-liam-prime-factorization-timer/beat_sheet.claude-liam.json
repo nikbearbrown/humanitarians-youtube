@@ -1,0 +1,201 @@
+{
+ "metadata": {
+  "title": "Prime Factorization — The RSA Asymmetry",
+  "slug": "prime-factorization-timer",
+  "topic": "CONTEMPORARY MATH — PRIME FACTORIZATION",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06–B08 slates · B09 outro",
+  "total_estimated_duration_seconds": 120,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Prime Factorization, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 5
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the context, the stakes — BEFORE the CLI",
+   "narration_text": "Your HTTPS padlock exists because of one arithmetic asymmetry: multiplying two large primes takes microseconds, but factoring their product takes longer than the age of the universe. That is RSA encryption. This video times both operations as the numbers grow, so you can see the gap open in front of you.",
+   "visual_intent": "title card: 'Multiply two primes: microseconds. Factor the product: centuries. This asymmetry is your HTTPS padlock.'; no terminal yet",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask Claude to measure the gap. Use sympy's isprime to generate prime pairs of three, five, seven, and nine digits. For each pair, time the multiplication with perf underscore counter. Run trial division factorization — loop from two to the integer square root of the product — and time that. Print a table: prime sizes, product first twenty digits, multiply time in microseconds, factor time in milliseconds or seconds, ratio.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write a Python script: use sympy.isprime() to generate prime pairs of 3, 5, 7, 9 digits. For each pair, time the multiplication with perf_counter(). Run trial division factorization (loop from 2 to sqrt(product)) and time it. Print table: prime sizes, product (first 20 digits), multiply time (us), factor time (ms/s), ratio.\"",
+      "topic": "CONTEMPORARY MATH — PRIME FACTORIZATION",
+      "segment": "PRIME FACTORIZATION TIMER",
+      "runningText": "generating timings…"
+     }
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read the factorization loop — factor underscore time equals next of p for p in range two to isqrt of n plus one if n mod p equals zero. That is trial division: try every integer up to the square root. For three-digit primes the square root is about thirty — done instantly. For nine-digit primes the square root is ninety thousand — that's the wall.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "prime_timer.py",
+      "topic": "CONTEMPORARY MATH — PRIME FACTORIZATION",
+      "segment": "PRIME FACTORIZATION TIMER",
+      "code": "# prime_timer.py  —  Claude Code output\nfrom math import isqrt\nfrom time import perf_counter\nfrom sympy import isprime, nextprime\n\ndef trial_factor(n):\n    # trial division — O(sqrt(n))\n    factor_time = next(\n        (p for p in range(2, isqrt(n)+1)\n         if n % p == 0), None)\n    return factor_time\n\n# Times: 3-digit ~1ms, 5-digit ~50ms,\n#        7-digit ~5s, 9-digit ~300s\n# Multiply: always <15 microseconds\n# Ratio 9-digit: ~20 BILLION to 1"
+     }
+    }
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "OPEN vox slot → Manim video",
+   "narration_text": "Plot it on a log scale. Four groups of bars — three-digit, five-digit, seven-digit, nine-digit. Green bars for multiply time, tiny across the board. Crimson bars for factor time, growing dramatically: one millisecond, fifty milliseconds, five seconds, three hundred seconds. The ratio labels above each: two hundred times, six thousand times, four hundred thousand times, twenty billion times.",
+   "visual_intent": "Manim: log-scale bar chart with 4 groups; tiny green multiply bars; growing crimson factor bars; ratio labels above each factor bar; legend; y-axis ticks at 1us/1ms/1s/5min",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_PrimeFactorTimer",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check & revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Trial division is naive. Iterate: update the script — swap the factorization for Pollard's rho algorithm and re-time the same prime products. Show how much faster rho is on nine-digit products, and where the wall still stands.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"update prime_timer.py: implement Pollard's rho algorithm as an alternative factorizer. Time both trial division and Pollard's rho on the same prime products. Print comparison: which is faster at each digit size, and by how much.\"",
+      "topic": "CONTEMPORARY MATH — PRIME FACTORIZATION",
+      "segment": "PRIME FACTORIZATION TIMER",
+      "runningText": "adding Pollard rho…"
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "role_note": "slate — fill with screen recording or Manim",
+   "narration_text": "Pollard's rho runs in O of n to the one-quarter power instead of O of square root of n. On nine-digit numbers it's about three hundred times faster than trial division. On fifty-digit numbers — real RSA keys — it's still astronomically slower than multiplication. The asymmetry survives every algorithmic improvement.",
+   "visual_intent": "Comparison table: trial division vs Pollard rho times for each digit size; ratio column; note that both remain exponential compared to multiplication",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "The RSA asymmetry is not a hack or a trick. It's a mathematical fact: multiplication is polynomial time, factorization is sub-exponential at best. The gap between those two complexity classes is your encryption. As long as that gap exists, RSA holds.",
+   "visual_intent": "recap card: 'Multiply: O(n^2) — microseconds · Factor: sub-exponential — centuries · The gap = your HTTPS lock'",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: extend the timer to fifteen-digit primes and estimate how long trial division would take — in years. Then look up Shor's algorithm and note: on a quantum computer, that estimate collapses to polynomial time. That is why post-quantum cryptography exists.",
+   "visual_intent": "next-steps card: 1) extrapolate to 15-digit primes — time in years, 2) look up Shor's algorithm, 3) research post-quantum cryptography",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  }
+ ]
+}
