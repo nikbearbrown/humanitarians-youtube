@@ -1,0 +1,86 @@
+{
+ "metadata": {
+  "title": "Solve the Back-Door Criterion with Claude",
+  "slug": "backdoor-criterion-solver",
+  "topic": "CAUSAL INFERENCE — BACK-DOOR CRITERION",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro.",
+  "total_estimated_duration_seconds": 118
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOpen", "props": {"topic": "NIK BEAR BROWN",
+       "lines": ["Nik Bear Brown", "Causal Inference, taken apart."]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM — why care", "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "The back-door criterion is the formal test for whether your adjustment set is valid. Not every set of variables you control for is safe. Controlling for a collider on a back-door path actually opens that path and introduces bias. And M-bias — where a collider sits between two independent causes — is the canonical trap. The question this video answers: how do you algorithmically check whether an adjustment set is valid or harmful.",
+   "visual_intent": "title card: 'the back-door criterion — not every control variable is safe'; M-bias trap; no terminal yet",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 14},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "terminal (Onda)",
+   "narration_text": "Ask Claude. Build a Python script using NetworkX that takes a DAG as an edge list plus treatment and outcome, finds all back-door paths, checks each candidate variable against the back-door criterion — it must block all back-door paths and contain no descendants of treatment — finds the minimal valid adjustment set, and calls Claude to explain any violations.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"Build a Python script using NetworkX: (1) takes DAG as edge list + treatment/outcome; (2) finds all back-door paths; (3) checks each candidate variable against back-door criterion (blocks all back-door paths AND no descendants of treatment); (4) finds minimal valid adjustment set; (5) calls Claude to explain violations\"",
+       "topic": "CAUSAL INFERENCE — BACK-DOOR CRITERION", "segment": "BACK-DOOR CRITERION SOLVER", "runningText": "generating script…"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "terminal (Onda)",
+   "narration_text": "Read it. The validity check is two conditions joined by AND. First: the set blocks all back-door paths — every path from treatment to outcome that contains an arrow into treatment must be blocked by some variable in the adjustment set. Second: no variable in the set is a descendant of treatment — adjusting for a descendant re-introduces collider bias through the back door.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {
+       "filename": "backdoor_solver.py", "topic": "CAUSAL INFERENCE — BACK-DOOR CRITERION", "segment": "BACK-DOOR CRITERION SOLVER",
+       "code": "# backdoor_solver.py — Claude Code output\n\ndef check_adjustment_set(G, Z, X, Y):\n    valid = (\n        blocks_all_backdoor(G, Z, X, Y)\n        and not contains_descendant(G, Z, X)\n    )\n    return valid\n\n# M-bias DAG: A->X, A->M, B->M, B->Y, X->Y\n# Z={M}: INVALID — M is a collider, conditioning opens A-B path\n# Z={A}: VALID — blocks A->X back-door without touching descendants\n# Z={B}: VALID — blocks B->Y back-door without touching descendants"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B04", "act": "OUTPUT — run", "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it on the M-bias DAG. Five nodes: X treatment, Y outcome, A on the left, B on the right, M in the middle as a collider. Conditioning on M turns gold — invalid, because M is a collider between A and B, and conditioning on it opens the A-to-B path, which flows through to X and Y. Conditioning on A alone or B alone turns green — valid adjustment sets. Either one blocks a back-door path without opening a collider.",
+   "visual_intent": "Manim: M-bias DAG animated, M node highlighted as invalid collider in gold, A and B highlighted as valid adjustment sets in green",
+   "shot": {"type": "GRAPHIC", "source": "manim", "motion": "fade",
+     "manim": {"scene_class": "B04_BackdoorDAG", "file": "vox_scenes.py"}},
+   "estimated_duration_s": 17},
+
+  {"beat_id": "B05", "act": "CHANGE — check and revise", "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Now ask Claude to extend the solver to find the minimal adjustment set — the smallest valid set — and to handle the case where no valid set exists. Some DAGs have no valid back-door adjustment; in those cases you need the front-door criterion or instrumental variables.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"update backdoor_solver.py:\n  -> find minimal valid adjustment set\n  -> handle case where no valid set exists\n  -> suggest front-door or IV alternative\"",
+       "topic": "CAUSAL INFERENCE — BACK-DOOR CRITERION", "segment": "BACK-DOOR CRITERION SOLVER", "runningText": "updating script…"}}},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B06", "act": "OUTPUT — revised", "role_note": "slate placeholder",
+   "narration_text": "The updated solver now searches all subsets of observed variables, returns the minimal valid adjustment set, and when no back-door adjustment exists, prints which criterion to try next. For the M-bias DAG it returns A or B — both minimal and valid — and notes that M is never admissible.",
+   "visual_intent": "slate: terminal output showing minimal adjustment set search results and alternative suggestions",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B07", "act": "SUMMARY", "role_note": "the lesson — one beat",
+   "narration_text": "So the back-door criterion is a two-part test. Block all back-door paths. Touch no descendants. A variable that satisfies both is admissible. A variable that is a collider on a back-door path violates the first condition in the worst possible way — it unblocks a path that was already closed.",
+   "visual_intent": "recap card: two conditions for back-door validity; M-bias as the canonical counterexample",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B08", "act": "NEXT STEPS", "role_note": "what to do next",
+   "narration_text": "Your move: draw the DAG for your study domain and run the back-door solver. Check every variable you were planning to control for. If any of them are colliders on a back-door path, conditioning on them will hurt, not help. The next reel covers randomization — the one intervention that eliminates all back-door paths at once.",
+   "visual_intent": "next-steps card: 1) run solver on your study DAG, 2) check for colliders in your adjustment set, 3) proceed to randomization reel",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 10},
+
+  {"beat_id": "B09", "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOutro", "props": {
+       "brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI",
+       "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}},
+   "estimated_duration_s": 8}
+ ]
+}

@@ -1,0 +1,362 @@
+{
+  "metadata": {
+    "title": "Bridging the Pixel Gap in Browser Automation.",
+    "slug": "browser-coordinate-scaling",
+    "topic": "BROWSER AUTOMATION · COMPUTER USE",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "source": "browser-use-demo/browser_use_demo/tools/coordinate_scaling.py",
+    "playlist": "Claude for Developers",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "build": {
+      "at": "2026-07-17T20:02:41",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "scene": "ClaudeComposerAsk",
+      "narration_text": "This is Liam, in for Bear. Claude clicks a button — coordinates returned for a 1456 by 819 screenshot. But your browser viewport is 1920 by 1080. How do you scale that click so it lands exactly on the button?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "BROWSER AUTOMATION · COMPUTER USE",
+            "segment": "Bridging the Pixel Gap in Browser Automation.",
+            "command": "My model clicks at (700, 410) on a 1456x819 screenshot but my screen is 1920x1080 — write the scaling and land the click exactly.",
+            "runningText": "scaling coordinates…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High",
+            "outputLines": [
+              "scale_x = 1920 / 1456 = 1.318",
+              "scale_y = 1080 / 819 = 1.318",
+              "real_x = int(700 * 1.318) = 923",
+              "real_y = int(410 * 1.318) = 541"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T20:02:41"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "the problem — two coordinate spaces",
+      "narration_text": "The browser tool takes a screenshot and sends it to Claude. Claude's vision encoder resizes 16:9 images to exactly 1456 by 819. But your actual browser viewport is 1920 by 1080. Two coordinate spaces. Same button, different pixels.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Two spaces.",
+            "topic": "BROWSER AUTOMATION · COMPUTER USE",
+            "segment": "Bridging the Pixel Gap in Browser Automation.",
+            "command": "Claude sees 1456×819. Your desktop is 1920×1080. Same button — different pixels.",
+            "runningText": "two coordinate spaces…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "viz": {
+        "description": "Two labeled viewport rectangles side by side on cream stage. Left: '1456×819 — Claude sees this' in INK_SOFT. Right: '1920×1080 — Desktop is this' in INK. Both show a terracotta dot for the button position — at different (x,y). An arrow bridges them with a question mark.",
+        "colors": {
+          "left_label": "#73705F",
+          "right_label": "#3D3929",
+          "button_dot": "#D97757",
+          "bridge_arrow": "#3D3929"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.81,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-07-17T20:02:41"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "the fix — inverse resize ratio",
+      "narration_text": "The fix is the inverse of the resize ratio. Claude returned x equals 728, y equals 409. Multiply by 2560 over 1456 on x, and 1440 over 819 on y. You land at exactly 1280 comma 720. A perfect hit — because the ratio is the only transform that happened.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The ratio.",
+            "topic": "BROWSER AUTOMATION · COMPUTER USE",
+            "segment": "Bridging the Pixel Gap in Browser Automation.",
+            "command": "real_x = int(claude_x * viewport_w / 1456)\nreal_y = int(claude_y * viewport_h / 819)",
+            "runningText": "applying inverse ratio…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "viz": {
+        "description": "Formula animation on cream stage. Two lines appear in ink mono: 'real_x = claude_x × (viewport_w / 1456)' and 'real_y = claude_y × (viewport_h / 819)'. Then the example values fill in sequentially: claude_x=728, viewport_w=2560, result=1280 in terracotta. Then claude_y=409, viewport_h=1440, result=720 in terracotta. Source: Claude Quickstarts (Anthropic).",
+        "example": {
+          "claude_x": 728,
+          "claude_y": 409,
+          "viewport_w": 2560,
+          "viewport_h": 1440,
+          "api_w": 1456,
+          "api_h": 819,
+          "real_x": 1280,
+          "real_y": 720
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 22.4,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-07-17T20:02:41"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "the centerpiece — two viewports, the formula, the hit",
+      "narration_text": "The source code in coordinate underscore scaling dot py is twenty lines. Two class methods: get scale factors, and scale coordinates. The viewport width divided by 1456 is x scale. Viewport height divided by 819 is y scale. Multiply. Clamp to bounds. Done. The click lands.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The code.",
+            "topic": "BROWSER AUTOMATION · COMPUTER USE",
+            "segment": "Bridging the Pixel Gap in Browser Automation.",
+            "command": "scale_x = viewport_w / CLAUDE_ACTUAL_WIDTH   # 1456\nscale_y = viewport_h / CLAUDE_ACTUAL_HEIGHT  # 819\nscaled_x = min(int(x * scale_x), viewport_w - 1)\nscaled_y = min(int(y * scale_y), viewport_h - 1)",
+            "runningText": "running coordinate_scaling.py…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "viz": {
+        "description": "Split-screen infographic. Left panel labeled 'Claude sees 1456×819' — a browser viewport outline with a terracotta dot at (728, 409). Right panel labeled 'Desktop 1920×1080' — same viewport outline larger, terracotta dot at the correctly scaled (923, 541). Scaling formula floats between them with an animated arrow tracing the path. Both panels have coordinate chips in INK_SOFT. Source: Claude Quickstarts (Anthropic).",
+        "source_file": "browser-use-demo/browser_use_demo/tools/coordinate_scaling.py",
+        "constants": {
+          "CLAUDE_ACTUAL_WIDTH": 1456,
+          "CLAUDE_ACTUAL_HEIGHT": 819
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.28,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-07-17T20:02:41"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "honesty beat — what this does NOT cover",
+      "narration_text": "What this does not cover: DOM navigation, clicking by CSS selector, or coordinate scaling for non-16-by-9 aspect ratios. The code supports those via the match underscore aspect underscore ratio flag — but that is a different lookup table. This video is the 16:9 browser case only.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Scope.",
+            "topic": "BROWSER AUTOMATION · COMPUTER USE",
+            "segment": "Bridging the Pixel Gap in Browser Automation.",
+            "command": "Exclusions: DOM navigation, CSS-selector clicking, non-16:9 aspect ratios (use match_aspect_ratio=True for those — different lookup table).",
+            "runningText": "noting exclusions…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 18.01,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-07-17T20:02:41"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "verdict",
+      "narration_text": "Let's recap with Claude. Claude's vision encoder normalizes 16:9 screenshots to 1456 by 819. Your viewport is different. The coordinate scaler applies the inverse ratio — viewport width over 1456 times Claude's x, viewport height over 819 times Claude's y — and the click lands. Twenty lines of math, not magic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.0,
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Bridging the pixel gap",
+            "artifactHeading": "What the body demonstrated",
+            "artifactLines": [
+              "Claude's vision encoder normalizes 16:9 screenshots to 1456×819 before the model sees them.",
+              "Your browser viewport is different — the same button is at different pixel coordinates in each space.",
+              "The fix is the inverse resize ratio: real_x = claude_x × (viewport_w / 1456), real_y = claude_y × (viewport_h / 819).",
+              "The example: Claude returns (728, 409) on a 2560×1440 viewport. Scaled: (1280, 720). A perfect hit."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 20.86,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T20:02:41"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "your turn",
+      "scene": "ClaudeComposerAsk",
+      "narration_text": "Your turn. The prompt is: 'My model clicks at (700, 410) on a 1456 by 819 screenshot but my screen is 1920 by 1080 — write the scaling and land the click exactly.' That prompt runs the whole mechanism. What does Claude write? Does it clamp to bounds? Does it handle a non-16:9 viewport? Run it and find out. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "BROWSER AUTOMATION · COMPUTER USE",
+            "segment": "Bridging the Pixel Gap in Browser Automation.",
+            "command": "My model clicks at (700, 410) on a 1456x819 screenshot but my screen is 1920x1080 — write the scaling and land the click exactly.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T20:02:41"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "outro",
+      "scene": "ClaudeTitleOutro",
+      "narration_text": "Bridging the Pixel Gap in Browser Automation.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5.5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Bridging the Pixel Gap in Browser Automation.",
+            "handle": "@NikBearBrown",
+            "subline": "Liam, in for Bear."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 3.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T20:02:41"
+      }
+    }
+  ]
+}

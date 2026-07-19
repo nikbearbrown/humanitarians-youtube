@@ -1,0 +1,201 @@
+{
+ "metadata": {
+  "title": "Randomization Deletes Confounding — Built with Claude",
+  "slug": "randomization-logic",
+  "topic": "CAUSAL INFERENCE — RANDOMIZATION",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro.",
+  "total_estimated_duration_seconds": 118,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Causal Inference, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 5
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "Randomization is the gold standard of causal inference for one mechanical reason: when you assign treatment at random, you sever every arrow pointing INTO the treatment node. Age, income, health status, prior behavior — every factor that might predict who gets treated and who does not — gets cut. The back-door paths vanish. The question this video answers: can you simulate that surgery in code and count the back-door paths before and after.",
+   "visual_intent": "title card: 'RCT = delete all arrows into treatment'; before and after the surgery; no terminal yet",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask Claude. Build a Python script using NetworkX that takes an observational DAG, shows all incoming edges to the treatment node which are the confounders, simulates an RCT by deleting all incoming treatment edges, counts the back-door paths before and after, and calls Claude to explain what randomization eliminated and what remains.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Build a Python script using NetworkX: (1) takes an observational DAG; (2) shows all incoming edges to treatment node (confounders); (3) simulates RCT by deleting all incoming treatment edges; (4) counts back-door paths before/after; (5) calls Claude to explain what randomization eliminated and what remains\"",
+      "topic": "CAUSAL INFERENCE — RANDOMIZATION",
+      "segment": "RANDOMIZATION LOGIC",
+      "runningText": "generating script…"
+     }
+    }
+   },
+   "estimated_duration_s": 15
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it. The RCT simulation is one line in NetworkX: remove all edges where the destination is the treatment node. That is the do-operator applied to the graph. After the surgery, count the remaining back-door paths. In a perfect RCT with no interference, no unobserved common causes post-surgery, and no partial compliance, the count goes to zero.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "randomization_sim.py",
+      "topic": "CAUSAL INFERENCE — RANDOMIZATION",
+      "segment": "RANDOMIZATION LOGIC",
+      "code": "# randomization_sim.py — Claude Code output\nimport networkx as nx\n\ndef simulate_rct(dag, treatment):\n    rct_dag = dag.copy()\n    rct_dag.remove_edges_from(\n        [(u,v) for u,v in dag.edges()\n         if v == treatment]\n    )\n    return rct_dag\n\n# Before RCT: Age->T, Income->T, SES->T, Health->T\n# back-door paths: 4\n# After RCT: all confounders cut\n# back-door paths: 0"
+     }
+    }
+   },
+   "estimated_duration_s": 15
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it. The treatment node sits at center. Four confounders — Age, Income, SES, and Health — all send orange arrows into it. The counter reads four back-door paths. The script deletes the first two arrows: counter drops to two. Then the last two: counter drops to zero in green. The treatment-to-outcome arrow stays intact. That is the causal path. Randomization cleared the back door without touching the front.",
+   "visual_intent": "Manim: treatment node with 4 orange confounder arrows disappearing pair by pair, back-door counter counting down to 0 in green",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_RandomizationDAG",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Now ask Claude to add a partial compliance scenario. In real trials, some subjects assigned to treatment do not take it, and some assigned to control do. That is the non-compliance problem, and it reintroduces a connection between treatment intent and actual treatment that the randomization does not fully cut.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"update randomization_sim.py:\n  -> add partial compliance: some subjects cross over\n  -> show residual confounding from non-compliance\n  -> compute ITT vs LATE estimates\"",
+      "topic": "CAUSAL INFERENCE — RANDOMIZATION",
+      "segment": "RANDOMIZATION LOGIC",
+      "runningText": "updating script…"
+     }
+    }
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "role_note": "slate placeholder",
+   "narration_text": "The updated script models non-compliance as a compliance rate parameter. It computes the intent-to-treat estimate — what randomization gives you — and the local average treatment effect using instrumental variables, which recovers the effect for the complier subpopulation. These are different quantities and both are correct answers to different questions.",
+   "visual_intent": "slate: terminal output showing ITT vs LATE estimates with compliance rate sensitivity",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "So randomization works by deleting all confounding arrows into the treatment node. In graph terms that is the do-operator: intervene on treatment to remove all its causes. What remains is only the causal path from treatment to outcome. Non-compliance weakens that surgery but does not eliminate it — you still have a valid instrument.",
+   "visual_intent": "recap card: do-operator = delete incoming treatment arrows; RCT = back-door paths: 0; non-compliance = need IV",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: take the observational DAG from your domain, list every variable that predicts treatment assignment, run the RCT simulation, and see how many back-door paths it removes. Then check your compliance rate. If it is below eighty percent, the LATE and ITT estimates will diverge meaningfully and you need to report both.",
+   "visual_intent": "next-steps card: 1) run RCT simulation on your DAG, 2) check compliance rate, 3) compute ITT and LATE if needed",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8
+  }
+ ]
+}
