@@ -1,0 +1,368 @@
+{
+ "metadata": {
+  "title": "Compute NVDA's DCF Sensitivity with Claude Code",
+  "slug": "dcf-sensitivity-surface",
+  "topic": "COMPUTATIONAL FINANCE",
+  "source": "computational-finance-with-ai/chapters/03-equity-and-fixed-income.md",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video. Exclusions: full DCF projection, FCFE vs. FCFF distinction, multi-stage models beyond two stages.",
+  "total_estimated_duration_seconds": 108,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ],
+  "build": {
+   "at": "2026-07-16T08:18:40",
+   "cut": "master",
+   "filled": 5,
+   "of": 10,
+   "slates": [
+    "B01",
+    "B04",
+    "B06",
+    "B07",
+    "B08"
+   ],
+   "skin_warnings": [
+    "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
+    "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
+   ]
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Selam, Humanitarians",
+      "topic": "Compute NVDA's DCF Sensitivity with Claude Code",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "This is Liam, in for Bear. Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "COMPUTATIONAL FINANCE",
+      "lines": [
+       "DCF Sensitivity Surface",
+       "P = D1/(r-g). One pp change in growth moves fair value 33%.",
+       "Build it. Verify it. Break it.",
+       "Follow @NikBearBrown"
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 5.48,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T08:18:40"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM -- why care",
+   "role_note": "the problem, context, stakes -- BEFORE the CLI opens",
+   "narration_text": "The Gordon Growth Model says P equals D1 over r minus g. A 1-percentage-point change in perpetual growth rate moves a stock's fair value by 33%. The formula is brutally sensitive — and most analysts hide that sensitivity. The sensitivity is not a flaw in the model. It is the model honestly telling you that perpetual growth rate is the dominant assumption.",
+   "visual_intent": "SLATE -- title card: P = D1/(r-g). A 1pp change in g = 33% swing in price.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 18,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 20.67,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T08:18:40",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
+    "suggested": "suggested prompt: The Gordon Growth Model says P equals D1 over r minus g. A 1-percentage-point change in perpetual growth rate moves a stock's fair value by 33%. The formula is "
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda) -- the command typed",
+   "narration_text": "Ask Claude to compute the Gordon Growth Model price across a grid of r and g values, flag undefined cells where g is greater than or equal to r, and output a pandas DataFrame.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Write a Python script that computes Gordon Growth Model stock price P = D1/(r-g) for D1=4.00 across a grid: r from 6% to 12% (step 0.5%) and g from 1% to 5.5% (step 0.5%). Flag cells where g >= r as undefined. Output a pandas DataFrame. Also print the % change in P when g moves from 4% to 5% holding r=8%.\"",
+      "topic": "COMPUTATIONAL FINANCE",
+      "segment": "DCF SENSITIVITY",
+      "runningText": "generating..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 10.9,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T08:18:40"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda) -- reading the generated code",
+   "narration_text": "The script builds a grid of r and g pairs, computes P equals D1 over r minus g for each, flags cells where g is greater than or equal to r as undefined, and prints the 33% jump at r equals 8%.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "gordon_growth.py",
+      "topic": "COMPUTATIONAL FINANCE",
+      "segment": "DCF SENSITIVITY",
+      "code": "import pandas as pd\nimport numpy as np\n\nD1=4.0\nr_vals=np.arange(6,12.5,0.5)/100\ng_vals=np.arange(1,6.0,0.5)/100\nrows=[]\nfor g in g_vals:\n    row={}\n    for r in r_vals:\n        if g>=r: row[f'r={r*100:.0f}%']='---'\n        else: row[f'r={r*100:.0f}%']=round(D1/(r-g),0)\n    rows.append({'g':f'{g*100:.1f}%',**row})\ndf=pd.DataFrame(rows).set_index('g')\nprint(df.to_string())\np4=D1/(0.08-0.04); p5=D1/(0.08-0.05)\nprint(f\"r=8%: g=4%->{p4:.0f} g=5%->{p5:.0f} change={(p5-p4)/p4*100:.0f}%\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 13.74,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T08:18:40"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT -- run",
+   "role_note": "first output -- Manim animated DCF heatmap",
+   "narration_text": "The heatmap grid fills in: low prices in slate at high r, high prices in gold as g approaches r, the cliff in crimson where the denominator blows up. At r equals 8%, g equals 4%, the price is exactly $100. Move g to 5% and it jumps to $133 — the 33% cliff, visible.",
+   "visual_intent": "Manim B04_DCFHeatmap: 7x5 grid of colored rectangles showing price surface. Cliff visible where g approaches r. Annotation for r=8%,g=4% showing P=$100.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 19.07,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T08:18:40",
+    "needs": "PIPELINE → render animated_graphics.py scene B04_*"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE -- check and revise",
+   "role_note": "terminal (Onda) -- THE REQUIRED revision",
+   "narration_text": "Apply a two-stage DDM: high growth at 10% for five years, then perpetual growth at 3%. Show that the two-stage value is more conservative and less sensitive to the terminal assumption.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Modify the script: implement a two-stage DDM. Stage 1: high growth g1=10% for 5 years on D1=$4.00. Stage 2: perpetual growth g2=3% at r=8%. Compute the two-stage fair value and compare it to the single-stage Gordon Growth value at r=8%, g=3%. Show the sensitivity reduction.\"",
+      "topic": "COMPUTATIONAL FINANCE",
+      "segment": "DCF SENSITIVITY",
+      "runningText": "updating..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 12.18,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T08:18:40"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT -- revised",
+   "role_note": "revised output -- OPEN vox slot",
+   "narration_text": "The two-stage DDM value comes in lower and less sensitive to the perpetual growth assumption. The first five years of explicit projections absorb most of the growth premium — the terminal value matters less when near-term cash flows are explicit.",
+   "visual_intent": "SLATE -- screen-recording: terminal output showing single-stage vs two-stage fair value; sensitivity table showing percentage change per 1pp g shift; two-stage is more conservative.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 14.68,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T08:18:40",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
+    "suggested": "suggested prompt: The two-stage DDM value comes in lower and less sensitive to the perpetual growth assumption. The first five years of explicit projections absorb most of the gr"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson -- one beat",
+   "narration_text": "The sensitivity is not a flaw in the model. It is the model honestly telling you that perpetual growth rate is the dominant assumption. Making it visible is the discipline. The two-stage DDM makes the near-term cash flows explicit and reduces the tyranny of the terminal value.",
+   "visual_intent": "SLATE -- recap card: THE CLIFF IS THE MODEL TALKING. g→r means P→infinity. Making it visible is the discipline.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 16.19,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T08:18:40",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
+    "suggested": "suggested prompt: The sensitivity is not a flaw in the model. It is the model honestly telling you that perpetual growth rate is the dominant assumption. Making it visible is the"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Next: try applying a two-stage DDM with 10% near-term growth and a 3% terminal rate. Follow for more computational finance builds.",
+   "visual_intent": "SLATE -- next-steps card: Two-stage DDM: explicit 5-year growth + perpetual terminal. Watch the sensitivity compress.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 9.47,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T08:18:40",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)",
+    "suggested": "suggested prompt: Next: try applying a two-stage DDM with 10% near-term growth and a 3% terminal rate. Follow for more computational finance builds."
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 6.51,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B09.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T08:18:40"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
+}

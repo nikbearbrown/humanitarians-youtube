@@ -1,0 +1,263 @@
+{
+ "metadata": {
+  "title": "Firmware Is Where Software Meets Accountability",
+  "slug": "claude-liam-firmware-accountability",
+  "topic": "EMBEDDED SYSTEMS · FIRMWARE SAFETY",
+  "register": "Pragmatist",
+  "audience": "HAI",
+  "brand": "claude-liam",
+  "persona": "Liam (in for Bear)",
+  "voice": "af_kore",
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore",
+  "palette": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Habari, Liam",
+  "folderLabel": "@HumanitariansAI",
+  "in_for_bear": true,
+  "channel": "humanitariansai",
+  "playlist": "NortheasternISE Explainers",
+  "build": {
+   "at": "2026-07-18T03:07:52",
+   "cut": "master",
+   "filled": 4,
+   "of": 6,
+   "slates": [
+    "B01",
+    "B02"
+   ],
+   "skin_warnings": []
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Kumusta, Humanitarians",
+      "topic": "Firmware Is Where Software Meets Accountability",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Habari — this is Liam, in for Bear. Based on the essay 'The Part of Embedded Systems Nobody Talks About' by Aditi Shinde, for NortheasternISE / Humanitarians AI. Why don't they just rewrite everything in a safe language? Because 400,000 pacemakers run C firmware from 2008. Because the airplane does not warn you when firmware fails — it just fails. The answer is not rewrite. The answer is wrap. The extern C Foreign Function Interface pattern is a theory of institutional change disguised as a software architecture.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Habari, Liam",
+      "topic": "EMBEDDED SYSTEMS · FIRMWARE SAFETY",
+      "segment": "Firmware Is Where Software Meets Accountability",
+      "command": "Why don't they just rewrite everything in a safe language?",
+      "runningText": "reading firmware safety and FFI pattern analysis…",
+      "output": [
+       "400,000 pacemakers run C firmware from 2008 — rewriting is impossible.",
+       "At firmware level: no graceful failure. The airplane does not warn you.",
+       "NSA recommendation: move to memory-safe languages for NEW development, not rewrites."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "claude-sonnet-4",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 30.23,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:07:52"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Firmware Is Where Software Meets Accountability belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "C vs Rust trust models",
+   "narration_text": "Two trust models, side by side. In C, trust is extended without verification. A pointer is a number. You can compute a pointer, dereference it, write to the address. The compiler does not verify that the address is valid. The programmer is trusted to get it right. When they do not, the failure is silent and catastrophic — a buffer overwrite, a use-after-free, a null dereference. In Rust, trust is enforced at compile time. The borrow checker verifies ownership, lifetime, and aliasing rules before the program runs. Invalid memory access is a compile error, not a runtime crash. The program cannot be compiled if it contains a class of memory safety violations. No runtime overhead. No trust extended without verification.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "shot": {
+    "type": "MANIM",
+    "manim": {
+     "description": "Side-by-side comparison: Left 'C model' — pointer flows freely, no check, crash silhouette at end. Right 'Rust model' — borrow checker blocks invalid pointer at compile time, program runs safely. Labels: 'trust extended without verification' vs 'trust enforced at compile time'.",
+     "sparkLine": "Compile-time vs. crash-time."
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 38.76,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-18T03:07:52",
+    "needs": "PIPELINE → render animated_graphics.py scene B01_*"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "wrap-not-replace — FFI boundary",
+   "narration_text": "The NSA recommendation is not to rewrite everything. It is to move to memory-safe languages for new development. The existing C firmware — the pacemakers, the avionics, the industrial controllers — stays. What changes is the boundary layer. The extern C FFI pattern: you write a new Rust interface at the new API boundary. The Rust code validates inputs before they reach the C code. External callers interact with the Rust interface, which enforces safety rules before any call reaches the unsafe region. The vulnerable C code is wrapped, not replaced. Wrap, not replace. The same rule applies to institutions: you cannot rewrite the legacy; you can add a safety boundary at the new interface.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "shot": {
+    "type": "ANIMATED_DECK",
+    "animated_deck": {
+     "pattern": "branch",
+     "description": "Architecture diagram: external callers → Rust FFI boundary (safety enforced here) → C legacy code (unsafe region, stays unchanged). Arrows show flow. Safety rules annotated at Rust boundary. 'Wrap, not replace' label. Vulnerable C region shaded but intact inside the wrapper.",
+     "sparkLine": "Wrap. Not replace."
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 37.57,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-18T03:07:52",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B02.mp4)",
+    "suggested": "suggested prompt: The NSA recommendation is not to rewrite everything. It is to move to memory-safe languages for new development. The existing C firmware — the pacemakers, the a"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "narration_text": "Let's recap with Claude. At the firmware level, software does not fail gracefully — the airplane does not warn you. Four hundred thousand pacemakers run C firmware from 2008; rewriting them is impossible. The FFI pattern adds a Rust safety wrapper at the new API boundary, preventing external code from reaching the vulnerable region. Wrap, not replace. The NSA recommends moving to memory-safe languages for new development — not rewriting everything that already runs the world. The same logic applies to institutions.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Firmware Is Where Software Meets Accountability",
+      "artifactHeading": "Wrap, not replace",
+      "artifactLines": [
+       "At firmware level: no graceful failure — the airplane just fails.",
+       "400,000 pacemakers run C from 2008 — rewriting is impossible.",
+       "FFI pattern: Rust safety wrapper at the new API boundary — prevents external access to C.",
+       "NSA: new development in memory-safe languages. Legacy stays. Boundary changes."
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 28.63,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:07:52"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "your turn handoff",
+   "narration_text": "Your turn. Here is the prompt — read it with me. 'Find a safety-critical C codebase with a known vulnerability class. Design the Rust wrapper that would isolate the vulnerable region. What does the FFI boundary look like?' The design question is precise: where exactly does the Rust boundary sit? What inputs does it validate before passing to C? What outputs does it sanitize on the way back? That boundary design is the engineering judgment the pattern requires. Run this in your own Claude session. Liam, in for Bear.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "EMBEDDED SYSTEMS · FIRMWARE SAFETY",
+      "segment": "Firmware Is Where Software Meets Accountability",
+      "command": "Find a safety-critical C codebase with a known vulnerability class. Design the Rust wrapper that would isolate the vulnerable region. What does the FFI boundary look like?",
+      "runningText": "paste this into Claude…",
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "claude-sonnet-4",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 26.2,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:07:52"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "Firmware Is Where Software Meets Accountability. Liam, in for Bear.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 6,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Firmware Is Where Software Meets Accountability",
+      "handle": "@HumanitariansAI",
+      "subline": "Liam, in for Bear."
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 4.5,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:07:52"
+   }
+  }
+ ]
+}
