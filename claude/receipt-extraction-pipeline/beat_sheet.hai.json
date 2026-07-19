@@ -1,0 +1,248 @@
+{
+ "metadata": {
+  "slug": "receipt-extraction-pipeline",
+  "title": "Receipt Extraction Pipeline: Schema-First vs. No-Schema",
+  "topic": "CLAUDE COWORK",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-cowork/chapters/06-extracting-data-from-documents.md",
+  "segment": "RECEIPT EXTRACTION",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Privet, Humanitarians",
+      "topic": "Receipt Extraction Pipeline: Schema-First vs. No-Schema",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "t_start": 0.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Without a schema, you're not extracting data — you're hoping for consistency.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Receipt Extraction Pipeline: Schema-First vs. No-Schema belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "t_start": 8.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "Receipt extraction without a schema produces output — but field names vary, dates come in mixed formats, totals and subtotals get confused, and ambiguous cases get resolved silently with no indication a decision was made. The schema is not a constraint; it's a contract that makes the output auditable.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "t_start": 20.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "Extract from this receipt: vendor as string, date in ISO 8601, total amount as float, line items as a list, currency as 3-letter code. If any field is ambiguous or missing, set it to null and add to exception flags.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Extract from this receipt: vendor (string), date (ISO 8601), total_amount (float), line_items (list of {description, quantity, unit_price}), currency (3-letter code). If any field is ambiguous or missing, set it to null and add to exception_flags list.\" < receipt.txt",
+      "topic": "CLAUDE COWORK",
+      "segment": "RECEIPT EXTRACTION",
+      "runningText": "extracting with schema…"
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "t_start": 32.0,
+   "estimated_duration_s": 14.0,
+   "narration_text": "The extraction script runs two passes: no-schema then schema-driven, and produces a side-by-side comparison highlighting divergent cells.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "extract_receipts.py",
+      "code": "import json\n\nSCHEMA = {\n    \"vendor\": str,\n    \"date\": \"ISO 8601\",\n    \"total_amount\": float,\n    \"line_items\": list,\n    \"currency\": \"3-letter code\"\n}\n\ndef extract_with_schema(receipt_text: str) -> dict:\n    \"\"\"Schema-driven extraction with exception flagging.\"\"\"\n    result = {field: None for field in SCHEMA}\n    exception_flags = []\n    # Claude extraction call would populate result here\n    # Validate types and flag ambiguities\n    for field, expected_type in SCHEMA.items():\n        val = result.get(field)\n        if val is None:\n            exception_flags.append({\"field\": field, \"reason\": \"missing or ambiguous\"})\n    result[\"exception_flags\"] = exception_flags\n    return result\n\ndef compare_passes(no_schema: dict, with_schema: dict) -> list:\n    \"\"\"Return list of fields where outputs diverge.\"\"\"\n    return [k for k in with_schema if with_schema.get(k) != no_schema.get(k)]",
+      "topic": "CLAUDE COWORK",
+      "segment": "RECEIPT EXTRACTION"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "t_start": 46.0,
+   "estimated_duration_s": 20.0,
+   "narration_text": "5 receipts processed. No-schema: 3 date format inconsistencies, 2 total/subtotal confusions, 0 exception flags raised. Schema-driven: dates all ISO 8601, totals correctly separated, 3 exception flags raised — one foreign currency, one handwritten total, one ambiguous line item. The schema did not just improve the output — it made the uncertainty visible.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "t_start": 66.0,
+   "estimated_duration_s": 10.0,
+   "narration_text": "Add exception rule: if total is over 500 dollars, flag for human review.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Re-extract with this additional rule: if total_amount > 500, add high_value_flag: true to the output.\" < receipts_batch.txt",
+      "topic": "CLAUDE COWORK",
+      "segment": "RECEIPT EXTRACTION",
+      "runningText": "adding threshold rule…"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "t_start": 76.0,
+   "estimated_duration_s": 14.0,
+   "narration_text": "Two receipts above the 500-dollar threshold: both get high_value_flag true in structured output. Downstream automation routes them to human approval queue. The AI does not approve high-value receipts — it flags them and stops. The exception rule moved the accountability where it belongs.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B06.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "t_start": 90.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "The schema is an interface contract for extraction. Without it, ambiguities are silently resolved by the model. With it, ambiguities surface as exception flags — which is the only outcome that preserves human accountability for the decisions.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B07.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "t_start": 102.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Next: audit your workspace permissions — which access does each task actually need?",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B08.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "t_start": 110.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Nik Bear Brown. Brutalist and Educational AI. nikbearbrown.com.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B09.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
+}

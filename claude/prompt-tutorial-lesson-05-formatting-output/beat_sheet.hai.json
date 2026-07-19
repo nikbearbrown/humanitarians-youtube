@@ -1,0 +1,329 @@
+{
+ "metadata": {
+  "slug": "prompt-tutorial-lesson-05-formatting-output",
+  "title": "Prefill: Control Claude's Output Format",
+  "topic": "PROMPT ENGINEERING · LESSON 5",
+  "voice_kokoro": "am_onyx",
+  "engine": "kokoro",
+  "style_preset": "teardown",
+  "palette": "claude",
+  "register": "Pragmatist",
+  "aspect_ratio": "16:9",
+  "channel": "NikBearBrown",
+  "folderLabel": "@NikBearBrown",
+  "audience": "claude-liam",
+  "sources": [
+   "Anthropic Prompt Engineering Interactive Tutorial — Chapter 5: Formatting Output and Speaking for Claude"
+  ],
+  "build": {
+   "at": "2026-07-17T00:03:32",
+   "cut": "master",
+   "filled": 7,
+   "of": 7,
+   "slates": [],
+   "skin_warnings": []
+  },
+  "voice": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Vanakkam, Humanitarians",
+      "topic": "Prefill: Control Claude's Output Format",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "beat_type": "cold_open",
+   "narration_text": "Prefilling Claude's response to lock its output format is a trick I want to actually master, not just admire. Help me: (1) explain how starting the assistant turn with an opening brace or a tag forces structured output and suppresses preamble; (2) write a prompt-plus-prefill pair that guarantees valid JSON with three named keys; (3) show me one case where a prefill backfires — the model breaks format anyway or the prefill contradicts the instruction — and how I'd repair it.",
+   "estimated_duration_s": 22,
+   "shot": {
+    "scene_type": "ClaudeComposerAsk",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "command": "Prefilling Claude's response to lock its output format is a trick I want to actually master, not just admire. Help me: (1) explain how starting the assistant turn with an opening brace or a tag forces structured output and suppresses preamble; (2) write a prompt-plus-prefill pair that guarantees valid JSON with three named keys; (3) show me one case where a prefill backfires — the model breaks format anyway or the prefill contradicts the instruction — and how I'd repair it.",
+      "topic": "PREFILL OUTPUT CONTROL",
+      "segment": "Cold Open",
+      "runningText": "Analyzing: Anthropic Prompt Tutorial Ch. 5",
+      "output": [
+       "Prefill the assistant turn with partial output to lock format",
+       "Opening '{' forces JSON — Claude continues the structure",
+       "Opening '<haiku>' forces the XML tag wrapper every time",
+       "stop_sequences cuts output at a closing tag — saves tokens"
+      ],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High",
+      "placeholder": "Type / for skills"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 17.9,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T00:03:32"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Prefill: Control Claude's Output Format belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "beat_type": "body",
+   "narration_text": "Let's recap with Claude. The messages array has three roles: system, user, and assistant. Most developers only write to user. Prefilling means you add one more entry — role assistant, content your partial output — before sending the request. Claude picks up from wherever you stopped. It's not a prompt hack. It's a documented feature of the Messages API.",
+   "estimated_duration_s": 24,
+   "shot": {
+    "scene_type": "ClaudeVerdictArtifact",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "How Prefilling Works",
+      "artifactHeading": "Add a partial assistant turn — Claude continues from there.",
+      "artifactLines": [
+       "messages: [{role: 'user', content: prompt}, {role: 'assistant', content: '<haiku>'}]",
+       "Claude sees '<haiku>' already written and must continue it",
+       "Output starts mid-tag — no preamble, no 'Sure, here's a haiku:'",
+       "Documented feature of the Anthropic Messages API",
+       "Works in Python SDK, TypeScript SDK, and raw API calls"
+      ]
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 17.77,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T00:03:32"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "lead_silence_s": 0.5
+  },
+  {
+   "beat_id": "B02",
+   "beat_type": "body",
+   "narration_text": "Format forcing in practice. Prefill with open curly brace — you get JSON, every time. Prefill with 'one period' — you get a numbered list. Prefill with the opening XML tag — you get that tag wrapping the output, no extra text. The preamble problem that trips up beginners — 'Sure! Here's your haiku' before the actual haiku — simply disappears.",
+   "estimated_duration_s": 26,
+   "shot": {
+    "scene_type": "ClaudeVerdictArtifact",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Three Format-Forcing Patterns",
+      "artifactHeading": "Prefill character determines output structure.",
+      "artifactLines": [
+       "Prefill '{' → JSON object, keys and structure guaranteed",
+       "Prefill '1.' → numbered list, no preamble",
+       "Prefill '<haiku>' → XML-wrapped output only",
+       "Eliminates 'Sure! Here's your answer:' opener entirely",
+       "No regex cleanup needed — format is locked at generation time"
+      ]
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 17.77,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T00:03:32"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "beat_type": "body",
+   "narration_text": "Important caveat: this behavior changed in Claude 4 models. The Anthropic tutorial flags it explicitly. Newer Claude models handle prefill differently than older ones — the mechanism still works but you should test against your target model version. If you're on Claude 4.6 or later, verify behavior before deploying a pipeline that depends on strict prefill output.",
+   "estimated_duration_s": 26,
+   "shot": {
+    "scene_type": "ClaudeVerdictArtifact",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Claude 4+ Prefill Change",
+      "artifactHeading": "Prefill behavior shifted — test against your target version.",
+      "artifactLines": [
+       "Anthropic tutorial flags this change explicitly in the notebook",
+       "Older Claude 3 models: prefill strictly deterministic",
+       "Claude 4+ models: prefill still works but behavior differs",
+       "Always test prefill output on your target model before shipping",
+       "Use structured output or tool_use for strict JSON in production"
+      ]
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 19.52,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T00:03:32"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "beat_type": "body",
+   "narration_text": "The complementary technique: stop sequences. You pass a closing tag — say, closing haiku tag — to the stop_sequences parameter. Claude generates until it hits that string and then stops. No concluding remarks. No 'I hope you enjoyed this poem.' You save tokens and time-to-last-token, and your parser gets a clean end marker. Prefill opens the format; stop sequences close it.",
+   "estimated_duration_s": 27,
+   "shot": {
+    "scene_type": "ClaudeVerdictArtifact",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "stop_sequences: Close the Format",
+      "artifactHeading": "Prefill opens. stop_sequences closes. Parser gets clean output.",
+      "artifactLines": [
+       "stop_sequences=['</haiku>'] — Claude halts at that marker",
+       "Eliminates 'I hope you enjoyed this poem!' closing remarks",
+       "Saves tokens: billing stops when generation stops",
+       "Reduces time-to-last-token in streaming pipelines",
+       "Combine with prefill: locked open + locked close = exact output"
+      ]
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 19.48,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T00:03:32"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "beat_type": "handoff",
+   "narration_text": "Your turn. Ask Claude: 'Write a JSON object with keys title, summary, and tags for this article: [paste any article text]. Prefill with open brace.' The point is to watch what happens when you add that prefill versus when you don't. Without it, you get a sentence first. With it, Claude opens with the brace and the JSON starts immediately. That delta — no preamble, machine-parseable output — is worth understanding before you build any pipeline that processes Claude responses programmatically. Liam, in for Bear.",
+   "estimated_duration_s": 38,
+   "shot": {
+    "scene_type": "ClaudeComposerAsk",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "command": "Write a JSON object with keys title, summary, and tags for this article: [paste text]. Prefill with {",
+      "topic": "TRY THIS NOW",
+      "segment": "Prefill: Control Claude's Output Format",
+      "runningText": "paste this into Claude…",
+      "output": [
+       "Output begins immediately with the JSON object — no preamble",
+       "Compare with and without prefill to see the delta clearly",
+       "Add stop_sequences to cut trailing remarks after closing brace"
+      ],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High",
+      "placeholder": "Type / for skills"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 27.58,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T00:03:32"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "beat_type": "outro",
+   "narration_text": "Prefill: Control Claude's Output Format",
+   "estimated_duration_s": 6,
+   "shot": {
+    "scene_type": "ClaudeTitleOutro",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Prefill: Control Claude's Output Format",
+      "handle": "@NikBearBrown",
+      "subline": "Anthropic Prompt Tutorial · Lesson 5"
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B06.mp3",
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B06.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T00:03:32"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
+}
