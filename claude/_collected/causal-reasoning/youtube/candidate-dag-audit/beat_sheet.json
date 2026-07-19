@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "slug": "candidate-dag-audit",
+    "title": "Build a Candidate DAG and Audit It with Claude",
+    "topic": "CAUSAL REASONING",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "causal-reasoning/chapters/03-the-map-before-the-territory.md",
+    "segment": "DAG CONSTRUCTION",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 118.0
+  },
+  "beats": [
+    {"beat_id":"B00","role":"INTRO","type":"SLATE","narration":"You describe four variables in plain English. Claude draws the DAG — and you immediately find the edge it invented.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B01","role":"PROBLEM","type":"SLATE","narration":"A DAG is a falsifiable hypothesis about causal structure, not a fact. The auditing step — finding the invented edge — is the whole point of having Claude propose it.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B02","role":"ASK","type":"SLATE","narration":"We describe a five-variable marketing funnel: ad spend, website traffic, product quality, customer satisfaction, and repeat purchase. Claude proposes the DAG.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"For this system:\\n  ad_spend, traffic, quality,\\n  satisfaction, repeat_purchase\\npropose a DAG as directed edges.\\nFor each edge: one-sentence justification.\\nFlag plausible omitted confounders.\"","topic":"CAUSAL REASONING","segment":"DAG CONSTRUCTION","runningText":"proposing DAG…"}}}},
+    {"beat_id":"B03","role":"CODE","type":"SLATE","narration":"Claude proposes eight edges. One is suspicious: quality directly causes traffic. That is plausible for SEO in the long run, but not in the short run — it is likely an invented shortcut confusing reputation effects with direct traffic causation.","estimated_duration_s":14.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownCodeBlock","props":{"filename":"dag_proposal.py","segment":"DAG CONSTRUCTION","topic":"CAUSAL REASONING","code":"# dag_proposal.py — Claude output\nedges = [\n    ('ad_spend',    'traffic'),       # paid traffic\n    ('ad_spend',    'satisfaction'),  # <- suspicious\n    ('quality',     'traffic'),       # <- invented?\n    ('quality',     'satisfaction'),  # direct mechanism\n    ('traffic',     'satisfaction'),  # engagement\n    ('satisfaction','repeat_purchase'),# loyalty\n    ('quality',     'repeat_purchase'),# direct\n    ('ad_spend',    'repeat_purchase'),# retargeting\n]\n# Flagged confounders: brand_strength\n# (affects both ad_spend and quality)"}}}},
+    {"beat_id":"B04","role":"OUTPUT","type":"SLATE","narration":"The DAG has eight proposed edges. The student critique log names one invented edge — quality causes traffic — one missing edge: brand strength affects both quality investment and ad spend. One plausible confounder: brand strength, flagged by Claude itself.","estimated_duration_s":20.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B05","role":"CHANGE","type":"SLATE","narration":"We add brand strength as an explicit confounder to the variable list and ask Claude to revise the DAG. Are its edges structural or just correlational?","estimated_duration_s":10.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"Add variable: brand_strength.\\nRevise DAG. For each new edge involving\\nbrand_strength: is it a structural\\nmechanism or just correlation?\"","topic":"CAUSAL REASONING","segment":"DAG CONSTRUCTION","runningText":"revising DAG…"}}}},
+    {"beat_id":"B06","role":"OUTPUT","type":"SLATE","narration":"Claude adds brand-strength-to-quality and brand-strength-to-ad-spend with structural justifications — brand equity enables higher quality investment, and high-brand firms spend more on ads. The student verifies both are mechanistic, not merely correlational.","estimated_duration_s":14.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B07","role":"SUMMARY","type":"SLATE","narration":"A Claude-proposed DAG is a starting point for critique, not a final answer. The value is in what you disagree with — every rejected edge is a testable claim about what does not cause what.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B08","role":"NEXT","type":"SLATE","narration":"Next: apply the three-failure taxonomy to two LLM-generated DAGs for the same marketing problem.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B09","role":"OUTRO","type":"SLATE","narration":"Like and subscribe for more causal reasoning with Claude.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownOutro","props":{"brand":"Nik Bear Brown","tagline":"Brutalist + Educational AI","handle":"@NikBearBrown","url":"nikbearbrown.com"}}}}
+  ]
+}

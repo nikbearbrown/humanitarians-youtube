@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "slug": "causal-claims-diagnosis",
+    "title": "Diagnose a Model's Causal Claims with Claude",
+    "topic": "CAUSAL REASONING",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "style": "cli",
+    "palette": "teardown",
+    "style_preset": "nikbearbrown",
+    "source": "causal-reasoning/chapters/01-the-decision-that-looked-right.md",
+    "segment": "CAUSAL DIAGNOSIS",
+    "ground": "#FFFFFF",
+    "total_estimated_duration_seconds": 118.0
+  },
+  "beats": [
+    {"beat_id":"B00","role":"INTRO","type":"SLATE","narration":"A churn model confidently predicts — but is it measuring association or causation? Claude runs a do-operator diagnosis and finds the overreach.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B01","role":"PROBLEM","type":"SLATE","narration":"P of Y given X is what the model learned. P of Y given do of X is what you need to intervene. Most features give you the first — not the second.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B02","role":"ASK","type":"SLATE","narration":"We ask Claude to diagnose each feature: does the observational training give us leverage over the causal claim?","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"For this churn model [feature list],\\n  for each feature write:\\n    P(churn|feature=high) — observational\\n    P(churn|do(feature=high)) — causal\\n    verdict: safe / causal overreach / confound\"","topic":"CAUSAL REASONING","segment":"CAUSAL DIAGNOSIS","runningText":"diagnosing features…"}}}},
+    {"beat_id":"B03","role":"CODE","type":"SLATE","narration":"Claude outputs the diagnosis table. Login frequency and last-login days are flagged as potential confounds — plan type likely drives both. NPS is flagged as causal overreach.","estimated_duration_s":14.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownCodeBlock","props":{"filename":"causal_diagnosis.py","segment":"CAUSAL DIAGNOSIS","topic":"CAUSAL REASONING","code":"# causal_diagnosis.py — Claude Code output\nfeatures = [\n  # (name, P_obs, verdict)\n  ('login_freq',    0.42, 'potential confound'),\n  ('support_tickets',0.58,'safe'),\n  ('plan_price',    0.31, 'causal overreach'),\n  ('last_login_days',0.71,'potential confound'),\n  ('nps_score',     0.65, 'causal overreach'),\n]\nfor name, p_obs, verdict in features:\n    flag = '⚠' if verdict != 'safe' else '✓'\n    print(f'{flag} {name}: P(churn|obs)={p_obs}  → {verdict}')"}}}},
+    {"beat_id":"B04","role":"OUTPUT","type":"MANIM","narration":"The diagnosis table. Five features, three columns: observational probability, causal claim status, and verdict. Two safe, two confounds, one overreach.","estimated_duration_s":20.0,"shot":{"source":"manim/B04.mp4","motion":"play","manim":{"class":"B04_CausalDiagnosis","scene_file":"vox_scenes.py"}}},
+    {"beat_id":"B05","role":"CHANGE","type":"SLATE","narration":"We ask Claude to add a fourth column: what intervention would actually test the causal claim for each feature?","estimated_duration_s":10.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"Add column 4: for each feature,\\n  what intervention would test\\n  the causal claim?\\n  Be specific and plausible.\"","topic":"CAUSAL REASONING","segment":"CAUSAL DIAGNOSIS","runningText":"proposing interventions…"}}}},
+    {"beat_id":"B06","role":"OUTPUT","type":"MANIM","narration":"The intervention column. Support tickets: randomize contact rate. Plan price: run a price experiment. NPS: send a satisfaction survey intervention. Each one is a testable do-operation.","estimated_duration_s":14.0,"shot":{"source":"manim/B06.mp4","motion":"play","manim":{"class":"B06_InterventionColumn","scene_file":"vox_scenes.py"}}},
+    {"beat_id":"B07","role":"SUMMARY","type":"SLATE","narration":"Most ML features are observational proxies. The do-operator exposes which features would survive an intervention — and which would collapse the moment you tried to act on them.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B08","role":"NEXT","type":"SLATE","narration":"Next: enumerate all backdoor paths in a pricing DAG and find the adjustment set that blocks them all.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
+    {"beat_id":"B09","role":"OUTRO","type":"SLATE","narration":"Like and subscribe for more causal reasoning with Claude.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownOutro","props":{"brand":"Nik Bear Brown","tagline":"Brutalist + Educational AI","handle":"@NikBearBrown","url":"nikbearbrown.com"}}}}
+  ]
+}

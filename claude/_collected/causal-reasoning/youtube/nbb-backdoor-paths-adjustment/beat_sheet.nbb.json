@@ -1,0 +1,362 @@
+{
+  "metadata": {
+    "slug": "backdoor-paths-adjustment",
+    "variant": "nbb",
+    "title": "Enumerate Backdoor Paths and Find an Adjustment Set with Claude",
+    "topic": "CAUSAL REASONING",
+    "audience": "NikBearBrown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "palette": "teardown",
+    "register": "Teardown",
+    "derived_from": "beat_sheet.json",
+    "source_reel": "../backdoor-paths-adjustment",
+    "source_video": "../backdoor-paths-adjustment/backdoor-paths-adjustment-cut.mp4",
+    "body_beats": [
+      "B00",
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09"
+    ],
+    "body_duration_s": 118.0,
+    "old_outro_beats": [],
+    "built_at": "2026-07-16T18:09:26.933220"
+  },
+  "beats": [
+    {
+      "beat_id": "NBB00",
+      "act": "COLD OPEN",
+      "title": "Liam cold open \u2014 ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Bonjour, Liam \u2014 in for Bear. How does enumerate backdoor paths and find an adjustment set with claude? Can you explain it, Bear?",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Enumerate Backdoor Paths and Find an Adjustment Set with Claude?",
+            "topic": "CAUSAL REASONING",
+            "segment": "Enumerate Backdoor Paths and Find an",
+            "greeting": "Bonjour, Liam",
+            "runningText": "explaining the mechanism\u2026",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.0,
+      "audio_file": "mp3/beat-NBB00.mp3",
+      "actual_duration_s": 7.467
+    },
+    {
+      "beat_id": "B00",
+      "role": "INTRO",
+      "type": "SLATE",
+      "narration": "Six backdoor paths hide in a pricing DAG. Claude finds them all in seconds, then proves one adjustment set closes every path.",
+      "estimated_duration_s": 8.0,
+      "shot": {
+        "source": null,
+        "motion": "hold"
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B00.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B00.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "role": "PROBLEM",
+      "type": "SLATE",
+      "narration": "The backdoor criterion: block every non-causal path from Treatment to Outcome that enters T through a back-arrow. Find the right set to condition on \u2014 and only that set.",
+      "estimated_duration_s": 12.0,
+      "shot": {
+        "source": null,
+        "motion": "hold"
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B01.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B01.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "role": "ASK",
+      "type": "SLATE",
+      "narration": "We give Claude a six-node pricing DAG as an edge list and ask it to enumerate every backdoor path from ad-spend to sales.",
+      "estimated_duration_s": 12.0,
+      "shot": {
+        "source": null,
+        "motion": "hold",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Given this DAG:\\n  Brand\u2192T, Brand\u2192Y\\n  Comp\u2192T, Comp\u2192Y\\n  Quality\u2192T, Quality\u2192Y\\n  T\u2192Y\\nenumerate every backdoor path T\u2192Y,\\nthen propose a valid adjustment set.\"",
+            "topic": "CAUSAL REASONING",
+            "segment": "BACKDOOR CRITERION",
+            "runningText": "enumerating paths\u2026"
+          }
+        }
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B02.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B02.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "role": "CODE",
+      "type": "SLATE",
+      "narration": "Claude finds three backdoor paths: T-back-Brand-Y, T-back-Comp-Y, and T-back-Quality-Y. The adjustment set is Brand, Comp, Quality \u2014 conditioning on all three closes every path.",
+      "estimated_duration_s": 14.0,
+      "shot": {
+        "source": null,
+        "motion": "hold",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "backdoor_paths.py",
+            "segment": "BACKDOOR CRITERION",
+            "topic": "CAUSAL REASONING",
+            "code": "# backdoor_paths.py \u2014 Claude Code output\nedges = [('Brand','T'),('Brand','Y'),\n         ('Comp','T'), ('Comp','Y'),\n         ('Quality','T'),('Quality','Y'),\n         ('T','Y')]\n\n# Backdoor paths from T to Y:\n# 1. T \u2190 Brand \u2192 Y\n# 2. T \u2190 Comp  \u2192 Y\n# 3. T \u2190 Quality \u2192 Y\n\n# Adjustment set: {Brand, Comp, Quality}\n# Verify: each path has a node in the set\nfor path, blocker in [\n    ('T\u2190Brand\u2192Y','Brand'),\n    ('T\u2190Comp\u2192Y', 'Comp'),\n    ('T\u2190Quality\u2192Y','Quality')]:\n    print(f'{path}  blocked by {blocker} \u2713')"
+          }
+        }
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B03.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B03.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "role": "OUTPUT",
+      "type": "MANIM",
+      "narration": "The three backdoor paths listed, each with its structure. Below: the adjustment set in a gold box. Each path has exactly one node from the set \u2014 and that node blocks it.",
+      "estimated_duration_s": 20.0,
+      "shot": {
+        "source": "manim/B04.mp4",
+        "motion": "play",
+        "manim": {
+          "class": "B04_BackdoorPaths",
+          "scene_file": "vox_scenes.py"
+        }
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B04.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B04.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "role": "CHANGE",
+      "type": "SLATE",
+      "narration": "We add an edge to the DAG \u2014 Comp now also influences Brand \u2014 and ask Claude to re-enumerate. Does the adjustment set need to grow?",
+      "estimated_duration_s": 10.0,
+      "shot": {
+        "source": null,
+        "motion": "hold",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Add edge: Comp\u2192Brand.\\nRe-enumerate backdoor paths.\\nDoes the adjustment set change?\"",
+            "topic": "CAUSAL REASONING",
+            "segment": "BACKDOOR CRITERION",
+            "runningText": "re-enumerating\u2026"
+          }
+        }
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B05.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B05.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "role": "OUTPUT",
+      "type": "MANIM",
+      "narration": "The new path appears: T-back-Brand-back-Comp-Y. The adjustment set already contained both Brand and Comp, so it still blocks all paths \u2014 no change needed.",
+      "estimated_duration_s": 14.0,
+      "shot": {
+        "source": "manim/B06.mp4",
+        "motion": "play",
+        "manim": {
+          "class": "B06_AdjustmentVerify",
+          "scene_file": "vox_scenes.py"
+        }
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B06.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B06.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "role": "SUMMARY",
+      "type": "SLATE",
+      "narration": "The backdoor criterion turns causal identification into a graph-theory problem. Find every non-causal path from T to Y, then choose a set of nodes that blocks them all without conditioning on a collider.",
+      "estimated_duration_s": 12.0,
+      "shot": {
+        "source": null,
+        "motion": "hold"
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B07.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B07.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B07.mp3"
+    },
+    {
+      "beat_id": "B08",
+      "role": "NEXT",
+      "type": "SLATE",
+      "narration": "Next: the E-value \u2014 how weak does an unmeasured confounder need to be to explain away your result?",
+      "estimated_duration_s": 8.0,
+      "shot": {
+        "source": null,
+        "motion": "hold"
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B08.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B08.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B08.mp3"
+    },
+    {
+      "beat_id": "B09",
+      "role": "OUTRO",
+      "type": "SLATE",
+      "narration": "Like and subscribe for more causal reasoning with Claude.",
+      "estimated_duration_s": 8.0,
+      "shot": {
+        "source": null,
+        "motion": "hold",
+        "remotion": {
+          "pattern": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          }
+        }
+      },
+      "locked": true,
+      "source_clip": "../backdoor-paths-adjustment/clips/B09.mp4",
+      "source_audio": "../backdoor-paths-adjustment/mp3/beat-B09.mp3",
+      "audio_file": "../backdoor-paths-adjustment/mp3/beat-B09.mp3"
+    },
+    {
+      "beat_id": "NBB01",
+      "act": "VERDICT",
+      "title": "Liam verdict \u2014 ClaudeVerdictArtifact",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Here's what the body just demonstrated. ",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "provenance": "proven-core/ClaudeVerdictArtifact",
+          "version": "1",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Enumerate Backdoor Paths and Find an Adjustment Set",
+            "artifactLines": [
+              "Key mechanism established.",
+              "Key mechanism established.",
+              "Key mechanism established."
+            ]
+          },
+          "rendered": {
+            "out": "media/NBB01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30.0,
+      "audio_file": "mp3/beat-NBB01.mp3",
+      "actual_duration_s": 2.88
+    },
+    {
+      "beat_id": "NBB02",
+      "act": "YOUR TURN",
+      "title": "Your turn handoff \u2014 ClaudeComposerAsk",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Take this prompt, run it on your own \u2014 pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "version": "1",
+          "props": {
+            "command": "Explain how [Enumerate Backdoor Paths and Find an Adjustment Set with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+            "topic": "CAUSAL REASONING",
+            "segment": "Enumerate Backdoor Paths and Find an",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude\u2026",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/NBB02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.0,
+      "audio_file": "mp3/beat-NBB02.mp3",
+      "actual_duration_s": 7.765
+    },
+    {
+      "beat_id": "NBB03",
+      "act": "OUTRO",
+      "title": "Claude title outro \u2014 ClaudeTitleOutro",
+      "silent": true,
+      "shot": {
+        "type": "CARD",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "provenance": "proven-core/ClaudeTitleOutro",
+          "version": "1",
+          "props": {
+            "title": "Enumerate Backdoor Paths and Find an Adjustment Set with Claude",
+            "handle": "@NikBearBrown",
+            "subline": "cancer biology, one mechanism at a time"
+          },
+          "rendered": {
+            "out": "media/NBB03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6.0,
+      "audio_file": "mp3/beat-NBB03.mp3",
+      "silence_s": 6.0,
+      "actual_duration_s": 6.03
+    }
+  ]
+}
