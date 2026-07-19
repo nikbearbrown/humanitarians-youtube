@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "title": "A Battery Can Be Full and Still Crash Your Device",
+    "slug": "claude-liam-cli-brownout",
+    "topic": "EMBEDDED AI — POWER",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "audience": "Claude",
+    "channel": "NikBearBrown",
+    "build": {
+      "at": "2026-07-17T16:19:58",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Hello. This is Liam, in for Bear. The coin cell had most of its charge left, and the device browned out and rebooted anyway.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write brownout.py: CR2032 (3V nominal, R_internal limiting ~3mA). Given an inference current pulse, model V = V_oc - I*R over time and the brown-out reset line.\"",
+            "topic": "EMBEDDED AI — POWER",
+            "segment": "A Battery Can Be Full and Still Crash Your Device",
+            "greeting": "Hello, Liam",
+            "runningText": "running…",
+            "output": [
+              "V_terminal at peak: 2.65V (below 2.7V reset)",
+              "Add 100uF cap: sag flattens → no brownout"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 7.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:19:58"
+      }
+    },
+    {
+      "beat_id": "BREF",
+      "act": "TEXTBOOK FIGURE",
+      "narration_text": "From the textbook: the annotated current trace. Our brownout detector looks for exactly the pattern in this figure — a peak current spike that dips the rail below the reset threshold.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "media",
+        "motion": "fade",
+        "file": "BREF.png"
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-BREF.mp3",
+      "actual_duration_s": 10.05,
+      "build": {
+        "status": "STILL",
+        "src": "media/BREF.png",
+        "filled_by": "still",
+        "at": "2026-07-17T16:19:58"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "MANIM — Voltage trace: sag below reset threshold",
+      "narration_text": "The CR2032 sits at 3 volts open-circuit, but its internal resistance is about 35 ohms. Peak inference current: 10 milliamps. Terminal voltage equals 3 volts minus 10 milliamps times 35 ohms: 2.65 volts. The processor's brownout reset fires at 2.7 volts. The trace dips below the line. Reboot.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_VoltageSag",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_VoltageSag",
+        "at": "2026-07-17T16:19:58"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MANIM — Bulk cap added: sag flattens",
+      "narration_text": "Add a 100 microfarad bulk capacitor in parallel. The voltage sag during a 20-millisecond inference pulse: delta-V equals current times time divided by capacitance — 10 milliamps times 20 milliseconds divided by 100 microfarads — 2 volts absorbed. The terminal voltage stays above 2.7. No reboot.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_BulkCap",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.69,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_BulkCap",
+        "at": "2026-07-17T16:19:58"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MANIM — Energy vs peak: two different questions",
+      "narration_text": "Two different questions. How long will it run? That is an energy question — multiply capacity times voltage times efficiency. Will it run at all? That is a peak question — multiply peak current times internal resistance and check the sag against the reset threshold. A full battery can fail the second question.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_EnergyVsPeak",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.9,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_EnergyVsPeak",
+        "at": "2026-07-17T16:19:58"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Ask Claude: write brownout.py — model a CR2032 with 3 volt open-circuit voltage and internal resistance limiting to about 3 milliamps. Given an inference current pulse, model V equals V open-circuit minus I times R over time, and overlay the brownout reset line. Run it to simulate the sag without any hardware. Then add a second run with a 100 microfarad bulk cap and show the sag flatten — that is what prevents the brownout.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write brownout.py: CR2032 (3V nominal, R_internal limiting ~3mA). Given an inference current pulse, model V = V_oc - I*R over time and the brown-out reset line.\"",
+            "topic": "EMBEDDED AI — POWER",
+            "segment": "Your Turn",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 25.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:19:58"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "A Battery Can Be Full and Still Crash Your Device",
+            "handle": "@NikBearBrown",
+            "subline": "embedded ai · liam, in for bear"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 1.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:19:58"
+      }
+    }
+  ]
+}

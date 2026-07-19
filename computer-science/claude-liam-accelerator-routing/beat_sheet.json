@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "title": "Why Your 10x Accelerator Only Made It 3x Faster",
+    "slug": "claude-liam-accelerator-routing",
+    "topic": "EMBEDDED AI — COMPUTE",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "audience": "Claude",
+    "channel": "NikBearBrown",
+    "build": {
+      "at": "2026-07-17T16:23:57",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Konnichiwa, Liam. This is Liam, in for Bear. The NPU really is ten times faster than the CPU — and your model only got three times faster.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "My NPU is 10× faster than CPU but my model only ran 3× faster. What happened?",
+            "topic": "EMBEDDED AI — COMPUTE",
+            "segment": "Accelerator Routing",
+            "greeting": "Konnichiwa, Liam",
+            "runningText": "computing…",
+            "output": [
+              "The 20% of ops that can't run on the NPU fall back to CPU and dominate total time. Amdahl's law in hardware."
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:23:57"
+      }
+    },
+    {
+      "beat_id": "BREF",
+      "act": "TEXTBOOK FIGURE",
+      "narration_text": "From the textbook: a Cortex-M55 host and an Ethos-U55 NPU sharing an SRAM pool. The supported ops route to the NPU. Everything else falls back to the CPU. That handoff is the routing problem.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "media",
+        "motion": "fade",
+        "file": "BREF.png"
+      },
+      "estimated_duration_s": 5,
+      "build": {
+        "status": "STILL",
+        "src": "media/BREF.png",
+        "filled_by": "still",
+        "at": "2026-07-17T16:23:57"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "OP STREAM — FAST NPU LANE",
+      "narration_text": "Watch an op stream routing into your accelerator. Eighty percent of ops — convolutions, matrix multiplies — hit the NPU and fly through. Ten times faster than CPU. Each op: milliseconds. Throughput looks great. The accelerator really works.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "split",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B01_OpStreamFast"
+        }
+      },
+      "estimated_duration_s": 17,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_OpStreamFast",
+        "at": "2026-07-17T16:23:57"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "FALLBACK QUEUE — SLOW CPU LANE",
+      "narration_text": "The other twenty percent — softmax, reshape, custom activations — aren't supported. They route to CPU. Each one is ten times slower. And they queue. Ops pile up waiting for CPU to clear. That bottleneck is now the whole pipeline. The NPU sits idle while the queue drains.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "split",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B02_FallbackQueue"
+        }
+      },
+      "estimated_duration_s": 19,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_FallbackQueue",
+        "at": "2026-07-17T16:23:57"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SPEEDUP WATERFALL",
+      "narration_text": "The math: eighty percent on NPU at ten-times speedup — contributes zero-point-zero-eight of your budget. Twenty percent on CPU at baseline — contributes zero-point-two. Total speedup: one over zero-point-two-eight — about three-point-six times. Not ten. Three-point-six. That's Amdahl's law: the unaccelerated fraction owns your latency ceiling.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "compare",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B03_SpeedupWaterfall"
+        }
+      },
+      "estimated_duration_s": 20,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_SpeedupWaterfall",
+        "at": "2026-07-17T16:23:57"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Ask Claude: My model has open bracket total ops close bracket MACs. My NPU supports open bracket pct NPU close bracket percent of them, runs open bracket npu speed close bracket times faster; the rest fall back to CPU. One — compute total speedup. Two — identify which op types are the fallback bottleneck. Three — what architectural change would raise NPU coverage from open bracket pct NPU close bracket to open bracket pct target close bracket percent. Four — at what NPU coverage does the remaining CPU fallback become negligible.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "My model has [total_ops] MACs. My NPU supports [pct_npu]% of them (runs [npu_speed]× faster); the rest fall back to CPU. (1) Compute total speedup, (2) identify which op types are the fallback bottleneck, (3) what architectural change would raise NPU coverage from [pct_npu]% to [pct_target]%, and (4) at what NPU coverage does the remaining CPU fallback become negligible?",
+            "topic": "EMBEDDED AI — COMPUTE",
+            "segment": "Accelerator Routing",
+            "greeting": "Your turn.",
+            "runningText": "analyzing…",
+            "output": [
+              "Speedup = 1/(npu_frac/npu_speedup + cpu_frac/1). At 80% NPU coverage with 10× speedup: 3.57×. The fallback 20% is the ceiling."
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:23:57"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTRO",
+      "narration_text": "",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Why Your 10x Accelerator Only Made It 3x Faster",
+            "handle": "@NikBearBrown",
+            "subline": "embedded ai · liam, in for bear"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:23:57"
+      }
+    }
+  ]
+}

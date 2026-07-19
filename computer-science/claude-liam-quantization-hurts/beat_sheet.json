@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "title": "Where Quantization Hurts",
+    "slug": "claude-liam-quantization-hurts",
+    "topic": "EMBEDDED AI — COMPRESSION",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "audience": "Claude",
+    "channel": "NikBearBrown",
+    "build": {
+      "at": "2026-07-17T16:19:00",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Privet, Liam. This is Liam, in for Bear. Shrinking every number from 32 bits to 8 is nearly free — until one tensor quietly loses everything it knew.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "My model quantized fine overall but one layer's accuracy tanked. What causes quantization damage in a specific layer?",
+            "topic": "EMBEDDED AI — COMPRESSION",
+            "segment": "Quantization Damage",
+            "greeting": "Privet, Liam",
+            "runningText": "computing…",
+            "output": [
+              "int8 maps a float range onto 256 bins. Narrow-range tensors collapse many distinct values into the same bin — information destroyed."
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:19:00"
+      }
+    },
+    {
+      "beat_id": "BREF",
+      "act": "TEXTBOOK FIGURE",
+      "narration_text": "From the book: two number lines. Top — weights spread across the full int8 range, clean mapping. Bottom — activations crammed into a tiny range, dozens of float values collapsing onto the same integer bin.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "media",
+        "motion": "fade",
+        "file": "BREF.png"
+      },
+      "estimated_duration_s": 5,
+      "build": {
+        "status": "STILL",
+        "src": "media/BREF.png",
+        "filled_by": "still",
+        "at": "2026-07-17T16:19:00"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "WIDE RANGE — HARMLESS",
+      "narration_text": "Wide range tensor: values spread from negative 1.5 to positive 1.5. Quantization maps this onto 256 integer bins. Scale factor: about 0.012. Each bin covers about 12 millivolts of range. Distinct float values land in different bins. Quantization error: about 5 millivolts — half a bin. Harmless. Information survives the mapping.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "collapse",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B01_WideRange"
+        }
+      },
+      "estimated_duration_s": 18,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_WideRange",
+        "at": "2026-07-17T16:19:00"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "NARROW RANGE — HARMFUL",
+      "narration_text": "Narrow range tensor: the actual signal lives between 0.001 and 0.01. Same 256 bins, but the range is tiny. Scale: 0.000039. Each bin covers 39 millionths of a unit. Values that were meaningfully different in float-32 collapse into 2, maybe 3 bins. The subtle differences that encode what the layer learned — gone. All mapped to the same integer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "collapse",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B02_NarrowRange"
+        }
+      },
+      "estimated_duration_s": 19,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_NarrowRange",
+        "at": "2026-07-17T16:19:00"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "HARMLESS VS HARMFUL",
+      "narration_text": "Side by side. Wide range: floats snap to distinct bins across the whole number line. Narrow range: everything collapses to the same two or three bins at the center. The terracotta zone is the mash — where distinct values become identical. One case loses nothing. The other loses everything the layer learned to distinguish.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "collapse",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B03_Comparison"
+        }
+      },
+      "estimated_duration_s": 17,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_Comparison",
+        "at": "2026-07-17T16:19:00"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Ask Claude: I'm quantizing a model with these activation ranges by layer — list them. Walk me through: one — how to compute the scale and zero point for each. Two — which layers are at risk of quantization damage based on their range, looking for narrow ranges with informative small-magnitude values. Three — whether per-channel or per-tensor quantization is safer. Four — how QAT would protect the at-risk layers.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "I'm quantizing a model with these activation ranges by layer: [list]. Walk me through: (1) how to compute the scale and zero_point for each, (2) which layers are at risk of quantization damage based on their range (looking for narrow ranges with informative small-magnitude values), (3) whether per-channel or per-tensor quantization is safer, (4) how QAT would protect the at-risk layers.",
+            "topic": "EMBEDDED AI — COMPRESSION",
+            "segment": "Quantization Damage",
+            "greeting": "Your turn.",
+            "runningText": "analyzing…",
+            "output": [
+              "Wide range [-1.5,1.5]: scale≈0.012, error≈0.005 — harmless. Narrow [0.001,0.01]: scale≈0.000039 — values collapse to 2-3 bins."
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:19:00"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTRO",
+      "narration_text": "",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Where Quantization Hurts",
+            "handle": "@NikBearBrown",
+            "subline": "embedded ai · liam, in for bear"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:19:00"
+      }
+    }
+  ]
+}

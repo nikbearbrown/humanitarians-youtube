@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "title": "Predicted 367 ms. Measured 1,200.",
+    "slug": "claude-liam-latency-gap",
+    "topic": "EMBEDDED AI — LATENCY",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "audience": "Claude",
+    "channel": "NikBearBrown",
+    "build": {
+      "at": "2026-07-17T16:15:02",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Shalom, Liam. This is Liam, in for Bear. The spec-sheet math promised 367 milliseconds. The first run on real hardware took 1,200 — and both numbers were right.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Why did my model predict 367 ms latency but measure 1,200 ms on real hardware — and how do I close that gap?",
+            "topic": "EMBEDDED AI — LATENCY",
+            "segment": "Latency Gap",
+            "greeting": "Shalom, Liam",
+            "runningText": "computing…",
+            "output": [
+              "SIMD kernels + memory spill + int8 → 1,200 ms → 45 ms"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:15:02"
+      }
+    },
+    {
+      "beat_id": "BREF",
+      "act": "TEXTBOOK FIGURE",
+      "narration_text": "The book's latency waterfall: three hundred sixty-seven milliseconds predicted, twelve hundred on first deployment, forty-five after profiling. The gap between prediction and reality is the story.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "media",
+        "motion": "fade",
+        "file": "BREF.png"
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-BREF.mp3",
+      "actual_duration_s": 11.48,
+      "build": {
+        "status": "STILL",
+        "src": "media/BREF.png",
+        "filled_by": "still",
+        "at": "2026-07-17T16:15:02"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "THE INITIAL GAP",
+      "narration_text": "The spec-sheet calculation used ideal kernel throughput — 367 milliseconds. The first hardware run measured 1,200. The 100-millisecond target line sits far below both. Three named causes put you there, and you can fix them one at a time.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "trace",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B01_InitialGap"
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 15.32,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_InitialGap",
+        "at": "2026-07-17T16:15:02"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "FIX 1 — SIMD KERNELS",
+      "narration_text": "First fix: swap reference kernels for SIMD-optimized kernels. Reference C code calls one multiply per instruction. SIMD packs four int8 values into one register and runs them in a single clock. The bar drops from 1,200 to roughly 400 milliseconds.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "trace",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B02_SimdFix"
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 16.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_SimdFix",
+        "at": "2026-07-17T16:15:02"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FIX 2 — MEMORY SPILL",
+      "narration_text": "Second fix: stop spilling activations to external flash. When intermediate tensors overflow SRAM, the model fetches them from slow external memory on every access. Move those activations onto-chip and the bar falls from 400 to roughly 200 milliseconds.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "trace",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B03_MemorySpillFix"
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.15,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_MemorySpillFix",
+        "at": "2026-07-17T16:15:02"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "FIX 3 — INT8",
+      "narration_text": "Third fix: quantize weights and activations to int8. Float32 inference uses four bytes per value; int8 uses one. Compute narrows, memory bandwidth narrows, and the bar drops from 200 to 45 milliseconds — landing well under the 100-millisecond target line.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "trace",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B04_Int8Fix"
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 16.38,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_Int8Fix",
+        "at": "2026-07-17T16:15:02"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Paste this into Claude: My model's profiler shows total-ms milliseconds inference time. The main bottleneck is layer-type at bottleneck-ms milliseconds. Walk me through: one, how to tell if it's memory-bound versus compute-bound; two, what reference versus SIMD kernels means and how to switch; three, what activation spilling is; four, expected speedup from int8 on my processor chip. Swap in your real profiler numbers — model, layer type, chip — and get a targeted optimization plan.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "My model's profiler shows [total_ms] ms inference time. The main bottleneck is [layer_type] at [bottleneck_ms] ms. Walk me through: (1) how to tell if it's memory-bound vs compute-bound, (2) what reference vs SIMD kernels means and how to switch, (3) what activation spilling is, (4) expected speedup from int8 on my [processor] chip.",
+            "topic": "EMBEDDED AI — LATENCY",
+            "segment": "Your Turn",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 26.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:15:02"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Predicted 367 ms. Measured 1,200.",
+            "handle": "@NikBearBrown",
+            "subline": "embedded ai · liam, in for bear"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 1.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:15:02"
+      }
+    }
+  ]
+}

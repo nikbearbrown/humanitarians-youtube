@@ -1,0 +1,263 @@
+{
+ "metadata": {
+  "title": "The Roofline: Is Your Model Compute- or Memory-Bound?",
+  "slug": "cli-roofline",
+  "topic": "CLAUDE CODE \u00b7 ROOFLINE",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "ground": "#FFFFFF",
+  "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
+  "note": "CLI video REQUIRED spine: B00 intro \u00b7 B01 PROBLEM \u00b7 B02 ASK \u00b7 B03 CODE \u00b7 B04 OUTPUT(manim) \u00b7 B05 CHANGE \u00b7 B06 OUTPUT(manim) \u00b7 B07 SUMMARY \u00b7 B08 NEXT STEPS \u00b7 B09 outro.",
+  "total_estimated_duration_seconds": 152.35,
+  "chapter_number": 1,
+  "tags": [
+   "Claude Code",
+   "Claude",
+   "Embedded AI",
+   "Edge AI",
+   "TinyML",
+   "Model Compression",
+   "Manim",
+   "Nik Bear Brown",
+   "Machine Learning",
+   "Microcontroller AI",
+   "STM32",
+   "Quantization"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Roofline, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 3.34
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM \u2014 why care",
+   "role_note": "the problem, the context, the stakes \u2014 BEFORE the CLI",
+   "narration_text": "Two models with the same FLOP count. Same chip. One runs in forty milliseconds; the other takes two hundred. The gap isn't compute \u2014 it's the memory bus. Every time a layer reads weights or writes activations, it stalls waiting for bytes that trickle through a narrow pipe. The roofline plot tells you which bottleneck you're actually fighting before you spend a week tuning the wrong thing.",
+   "visual_intent": "title card: same FLOPs, wildly different speed; the memory bus as the hidden variable; the roofline as the diagnostic tool",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_Problem",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 24.37
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask for the experiment. In the terminal: claude -- write roofline dot py, given a target's peak GFLOP/s and memory bandwidth, draw the roofline, place a model at its arithmetic intensity in MACs per bytes moved, and label whether it's compute-bound or memory-bound.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"write roofline.py: given a target's peak GFLOP/s\n  and memory bandwidth, draw the roofline.\n  Place a model at its arithmetic intensity\n  (MACs/bytes moved) and label compute-bound\n  vs memory-bound.\"",
+      "topic": "CLAUDE CODE \u00b7 ROOFLINE",
+      "segment": "ROOFLINE PLOT",
+      "runningText": "generating scene..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 17.32
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before trusting it. The ridge point is peak FLOPS divided by bandwidth -- that is the arithmetic intensity where the two ceilings meet. Left of the ridge the memory slope caps you; right of it the compute ceiling caps you. The model's MAC-to-byte ratio places it on one side or the other.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "roofline.py",
+      "topic": "CLAUDE CODE \u00b7 ROOFLINE",
+      "segment": "ROOFLINE PLOT",
+      "code": "# roofline.py  --  Claude Code output\nimport numpy as np\n\nPEAK_GFLOPS = 1.0   # target peak compute (GFLOP/s)\nBANDWIDTH   = 2.0   # memory bandwidth (GB/s)\nRIDGE_AI    = PEAK_GFLOPS / BANDWIDTH  # 0.5 FLOP/byte\n\ndef attainable(ai):\n    # min of memory-bandwidth slope and compute ceiling\n    mem_roof   = BANDWIDTH * ai   # GFLOP/s\n    comp_roof  = PEAK_GFLOPS\n    return min(mem_roof, comp_roof)\n\n# FP32 model: AI = 0.2 FLOP/byte  -> memory-bound\n# INT8 model: AI = 0.8 FLOP/byte  -> compute-bound\nfor name, ai in [(\"FP32\", 0.2), (\"INT8\", 0.8)]:\n    perf = attainable(ai)\n    region = \"memory-bound\" if ai < RIDGE_AI else \"compute-bound\"\n    print(f\"{name}: {perf:.2f} GFLOP/s  ({region})\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 17.92
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT \u2014 run",
+   "role_note": "Manim video",
+   "narration_text": "Run it. The roofline appears: the memory-bandwidth slope rising from the left, the compute ceiling flat on top, and the ridge where they meet at 0.5 FLOP per byte. The FP32 operating point sits at arithmetic intensity 0.2, deep in the memory-bound region. More compute won't move it.",
+   "visual_intent": "Manim: roofline plot with memory-bandwidth slope (SLATE), compute ceiling (INK), ridge point (INK dot), FP32 operating point (CRIMSON dot) labeled MEMORY-BOUND",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_Roofline",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 20.32
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE \u2014 check & revise",
+   "role_note": "terminal (Onda) \u2014 the REQUIRED revision",
+   "narration_text": "That's the FP32 picture. The fix is quantization. Iterate: claude -- add a second point for the int8 version -- show how arithmetic intensity shifts right after quantization.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"add a second point for the int8 version --\n  show intensity shift after quantization\"",
+      "topic": "CLAUDE CODE \u00b7 ROOFLINE",
+      "segment": "ROOFLINE PLOT",
+      "runningText": "updating script..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 11.52
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT \u2014 revised",
+   "role_note": "Manim video",
+   "narration_text": "Re-run. The INT8 point appears at arithmetic intensity 0.8, right of the ridge -- compute-bound now. Int8 shrunk the bytes moved by four while keeping the MACs roughly constant, so the ratio shifted. The memory bus is no longer the bottleneck.",
+   "visual_intent": "Manim: same roofline, FP32 dot (SLATE, before), INT8 dot (INK, after) at AI=0.8 in compute-bound region, chip COMPUTE-BOUND",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_RooflineInt8",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 18.1
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson",
+   "narration_text": "The roofline tells you which knob will actually move latency. Memory-bound: faster memory or fewer bytes moved. Compute-bound: more MACs per second, or prune the network. Optimizing the ceiling you're not under is wasted work.",
+   "visual_intent": "recap card: memory-bound -> fix bandwidth, compute-bound -> fix compute; the roofline as a decision tool",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B07_Summary",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 15.46
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: pull the peak GFLOP/s and memory bandwidth from your target's datasheet and the MAC plus byte counts from your model profiler, then plot where your model actually lands. If it's memory-bound, int8 is your first lever. If it's compute-bound, pruning is next.",
+   "visual_intent": "next-steps card: 1) get peak GFLOP/s + bandwidth from datasheet, 2) get MACs + bytes from profiler, 3) plot the operating point",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B08_NextSteps",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 17.5
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 6.5
+  }
+ ]
+}

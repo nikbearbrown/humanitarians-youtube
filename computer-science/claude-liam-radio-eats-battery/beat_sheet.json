@@ -1,0 +1,169 @@
+{
+ "metadata": {
+  "title": "It's Not the AI Draining the Battery. It's the Radio.",
+  "slug": "claude-liam-radio-eats-battery",
+  "topic": "EMBEDDED AI — POWER",
+  "register": "Teardown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "audience": "Claude",
+  "channel": "NikBearBrown"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "narration_text": "Halo, Liam. This is Liam, in for Bear. The team optimized the neural network for weeks and the battery life barely moved — because inference was never what was eating it.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Why did optimizing my embedded neural network for weeks not improve battery life on my IoT sensor?",
+      "topic": "EMBEDDED AI — POWER",
+      "segment": "Radio Dominates",
+      "greeting": "Halo, Liam",
+      "runningText": "computing…",
+      "output": [
+       "LoRa TX: 35 mA × 100 ms = 3.5 mA·s. Inference: 15 mA × 22 ms = 0.33 mA·s. Radio is 10×."
+      ],
+      "folderLabel": "@NikBearBrown"
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 9.54
+  },
+  {
+   "beat_id": "BREF",
+   "act": "TEXTBOOK FIGURE",
+   "narration_text": "This is the book's battery-life curve — inference period on the x-axis, months on the y-axis. See where the curve flattens? That's where the radio becomes the ceiling, not inference.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "media",
+    "motion": "fade",
+    "file": "BREF.png"
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-BREF.mp3",
+   "actual_duration_s": 10.41
+  },
+  {
+   "beat_id": "B01",
+   "act": "SLEEP FLOOR",
+   "narration_text": "Start with the baseline: sleep current. The microcontroller in deep sleep draws about 5 microamps — essentially zero on the trace. This is the floor the device returns to between events. Every other activity is a spike above this line.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "trace",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B01_SleepFloor"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 13.27
+  },
+  {
+   "beat_id": "B02",
+   "act": "INFERENCE BURST",
+   "narration_text": "Inference: the model runs. Current spikes to 15 milliamps for 22 milliseconds, then returns to sleep. Energy: 0.33 milliamp-seconds per inference. Even 1,000 inferences a day is 330 milliamp-seconds. The spike is real — but narrow. It looks dramatic on the trace and is small in the energy budget.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "trace",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B02_InferenceBurst"
+    }
+   },
+   "estimated_duration_s": 16,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 18.56
+  },
+  {
+   "beat_id": "B03",
+   "act": "RADIO ENVELOPE",
+   "narration_text": "Now the radio. A single LoRa transmission: 35 to 40 milliamps for 100 milliseconds. Energy: 3.5 milliamp-seconds. That is ten times the cost of one inference, from a single transmit event. On the trace, the radio envelope dominates — tall and wide, dwarfing everything that came before. Ten transmissions a day: 35 milliamp-seconds. One thousand inferences: 330 milliamp-seconds. At that ratio, the radio wins the budget.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "trace",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B03_RadioEnvelope"
+    }
+   },
+   "estimated_duration_s": 20,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 24.96
+  },
+  {
+   "beat_id": "B04",
+   "act": "ENERGY COMPARISON",
+   "narration_text": "The comparison bar. Inference energy per day — even at 1,000 runs: 330 milliamp-seconds. Radio energy per day at 10 transmissions: 350 milliamp-seconds, already larger. At 100 transmissions: 3,500 milliamp-seconds. The model is not the bottleneck. The transmit schedule is. Optimize that first.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "trace",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B04_EnergyComparison"
+    }
+   },
+   "estimated_duration_s": 16,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 19.43
+  },
+  {
+   "beat_id": "B05",
+   "act": "YOUR TURN",
+   "narration_text": "Your turn. Paste this into Claude: My IoT device runs inference n-inferences times per day — inference-mA milliamps, inference-ms milliseconds each — and transmits n-tx times per day — tx-mA milliamps, tx-ms milliseconds each. Sleep current is sleep-uA microamps, battery is mAh milliamp-hours. Walk me through: one, inference energy budget per day; two, radio energy budget per day; three, which dominates; four, how to re-optimize my transmit schedule to double battery life. Plug in your real sensor numbers.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "My IoT device runs inference [n_inferences] times per day ([inference_mA] mA, [inference_ms] ms each) and transmits [n_tx] times per day ([tx_mA] mA, [tx_ms] ms each). Sleep current is [sleep_uA] µA, battery is [mAh] mAh. Walk me through: (1) inference energy budget per day, (2) radio energy budget per day, (3) which dominates, (4) how to re-optimize transmit schedule to double battery life.",
+      "topic": "EMBEDDED AI — POWER",
+      "segment": "Your Turn",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "folderLabel": "@NikBearBrown"
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 28.69
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTRO",
+   "narration_text": "Liam, in for Bear.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "It's Not the AI Draining the Battery. It's the Radio.",
+      "handle": "@NikBearBrown",
+      "subline": "embedded ai · liam, in for bear"
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 1.94
+  }
+ ]
+}

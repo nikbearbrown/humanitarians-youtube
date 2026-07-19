@@ -1,0 +1,214 @@
+{
+  "metadata": {
+    "title": "A Battery Can Be Full and Still Crash Your Device",
+    "slug": "claude-liam-brownout-coin-cell",
+    "topic": "EMBEDDED AI — BROWNOUT",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "audience": "Claude",
+    "channel": "NikBearBrown",
+    "build": {
+      "at": "2026-07-17T16:14:33",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Bonjour, Liam. This is Liam, in for Bear. The coin cell had most of its charge left, and the device browned out and rebooted anyway.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Why would a device crash mid-inference if the battery is still mostly full?",
+            "topic": "EMBEDDED AI — BROWNOUT",
+            "segment": "Brownout",
+            "greeting": "Bonjour, Liam",
+            "runningText": "computing…",
+            "output": [
+              "Internal resistance caps current; inference burst drags voltage below reset threshold"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 8.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:14:33"
+      }
+    },
+    {
+      "beat_id": "BREF",
+      "act": "TEXTBOOK FIGURE",
+      "narration_text": "This annotated current trace is from the book — every phase of one duty cycle: sleep floor, wake-up spike, inference peak, settle, back to sleep.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "media",
+        "motion": "fade",
+        "file": "BREF.png"
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-BREF.mp3",
+      "actual_duration_s": 8.28,
+      "build": {
+        "status": "STILL",
+        "src": "media/BREF.png",
+        "filled_by": "still",
+        "at": "2026-07-17T16:14:33"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "COIN CELL CHARGE AND RESET",
+      "narration_text": "The coin cell reads 80 percent charge. The battery meter looks fine. Then the device runs an inference, draws a burst of current, and resets. The charge level had nothing to do with it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "trace",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B01_CoinCellCharge"
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 10.28,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_CoinCellCharge",
+        "at": "2026-07-17T16:14:33"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "VOLTAGE TRACE — BROWNOUT DIP",
+      "narration_text": "The problem is internal resistance. A CR2032 has roughly 35 ohms internal resistance. At 10 milliamps inference burst: 3 volts minus 10 milliamps times 35 ohms equals 2.65 volts — below the 2.7-volt reset threshold. Voltage sags, triggers reset. The battery was fine. The instantaneous voltage was not.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "trace",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B02_VoltageTrace"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 20.52,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_VoltageTrace",
+        "at": "2026-07-17T16:14:33"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "TWO QUESTIONS — AVERAGE VS PEAK",
+      "narration_text": "Power analysis has two completely different questions. How long will it run — that is energy, and you use average current. Will it run at all — that is peak instantaneous current against the supply's ability to deliver it. Average told you six months. Peak told you it would crash.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "scan",
+        "manim": {
+          "scene_file": "scenes.py",
+          "scene_class": "B03_TwoQuestions"
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 14.74,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_TwoQuestions",
+        "at": "2026-07-17T16:14:33"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Paste this into Claude: I have a CR2032 coin cell — 3 volts nominal, 35 ohms internal resistance. My MCU draws peak-mA milliamps during inference bursts and sleep-µA microamps otherwise. Compute: one — terminal voltage during a burst; two — whether it crosses my 2.7-volt reset threshold; three — what bulk capacitance would keep voltage above reset during a duration-ms millisecond burst. Plug in your peak current and burst duration and let Claude flag whether your design survives.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "I have a CR2032 coin cell (3V nominal, ~35 Ω internal resistance). My MCU draws [peak_mA] mA during inference bursts and [sleep_uA] µA otherwise. Compute: (1) terminal voltage during a burst, (2) whether it crosses my 2.7V reset threshold, (3) what bulk capacitance would keep voltage above reset during a [duration_ms] ms burst.",
+            "topic": "EMBEDDED AI — BROWNOUT",
+            "segment": "Your Turn",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 29.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:14:33"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "A Battery Can Be Full and Still Crash Your Device",
+            "handle": "@NikBearBrown",
+            "subline": "embedded ai · liam, in for bear"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 1.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-17T16:14:33"
+      }
+    }
+  ]
+}

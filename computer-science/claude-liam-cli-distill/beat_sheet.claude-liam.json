@@ -1,0 +1,264 @@
+{
+ "metadata": {
+  "title": "Distillation: See the Soft Label's Extra Signal",
+  "slug": "cli-distill",
+  "topic": "CLAUDE CODE · DISTILLATION",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "ground": "#FFFFFF",
+  "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
+  "note": "CLI video REQUIRED spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 OUTPUT(manim) · B07 SUMMARY · B08 NEXT STEPS · B09 outro.",
+  "total_estimated_duration_seconds": 162.04,
+  "chapter_number": 10,
+  "tags": [
+   "Claude Code",
+   "Claude",
+   "Embedded AI",
+   "Edge AI",
+   "TinyML",
+   "Model Compression",
+   "Manim",
+   "Nik Bear Brown",
+   "Machine Learning",
+   "Microcontroller AI",
+   "STM32",
+   "Quantization"
+  ],
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Distillation, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the context, the stakes — BEFORE the CLI",
+   "narration_text": "A one-hot label says cat. The teacher says eighty-five percent cat, five percent dog, nothing else -- and that five percent is the part that trains a better student. The hard label discards everything except which box to tick. The teacher's soft probabilities carry the relative mistakes -- how much the model confused cat with dog, but never with airplane -- and that structure is exactly what a small student model most needs to learn from.",
+   "visual_intent": "title card: one-hot label vs teacher soft distribution; the teacher's reasonable mistakes as signal; chip: SOFT LABELS WIN",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_Problem",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask for the experiment. In the terminal: claude -- write distill_demo dot py, teacher logits for a ten-class cat image, compare the one-hot label versus softmax of logits over T for T equals one, three, and six, show the mixed loss and how temperature controls what transfers.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"write distill_demo.py: teacher logits for a\n  10-class 'cat' image. Compare one-hot label\n  vs softmax(logits/T) for T=1,3,6. Show\n  mixed loss L = a*hard + (1-a)*soft and\n  how T controls what transfers.\"",
+      "topic": "CLAUDE CODE · DISTILLATION",
+      "segment": "DISTILLATION DEMO",
+      "runningText": "generating scene..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before trusting it. Temperature divides the logits before softmax -- at T equals one you get the peaked distribution; at T equals six the distribution flattens and the wrong-class probabilities become visible. The mixed loss alpha controls the trade-off: hard label for accuracy, soft label for the teacher's dark knowledge.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "distill_demo.py",
+      "topic": "CLAUDE CODE · DISTILLATION",
+      "segment": "DISTILLATION DEMO",
+      "code": "# distill_demo.py  --  Claude Code output\nimport numpy as np\n\nLOGITS = np.array([5.0,0.3,0.1,0.2,0.1,0.1,0.1,0.1,0.1,0.1])\n# index 0 = cat (correct class)\n\ndef softmax(z, T=1.0):\n    z = np.array(z) / T\n    e = np.exp(z - z.max())\n    return e / e.sum()\n\nONE_HOT = np.array([1,0,0,0,0,0,0,0,0,0])\nALPHA   = 0.5  # mix: a*hard + (1-a)*soft\n\nfor T in [1, 3, 6]:\n    soft = softmax(LOGITS, T)\n    loss = ALPHA * (-np.log(soft[0])) + (1-ALPHA) * (-ONE_HOT @ np.log(soft+1e-9))\n    print(f\"T={T}: cat={soft[0]:.3f} dog={soft[1]:.3f}  loss={loss:.3f}\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "Manim video",
+   "narration_text": "Run it. Ten class bars, cat in crimson on the left. At T equals one the cat bar towers and the nine wrong classes are nearly invisible. The one-hot label stands rigid and flat beside it. The soft distribution has signal in it; the hard label has none.",
+   "visual_intent": "Manim: 10 class bars, CRIMSON for cat (index 0), SLATE for wrong classes; at T=1 cat bar tall, others near zero; one-hot rigid beside it",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_DistillTemp",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check & revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "That's the T equals one picture. The signal is still hidden. Iterate: claude -- pair it with pruning, distill the pruned student against the float teacher, show accuracy clawed back.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"pair it with pruning: distill the pruned\n  student against the float teacher,\n  show accuracy clawed back\"",
+      "topic": "CLAUDE CODE · DISTILLATION",
+      "segment": "DISTILLATION DEMO",
+      "runningText": "updating script..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "role_note": "Manim video",
+   "narration_text": "Re-run. Two accuracy bars: hard label baseline on the left, distilled student on the right. The distilled student gains three percent over hard-label training alone. The pruned network recovered the accuracy that pruning took away -- not by adding parameters, but by training with the teacher's signal.",
+   "visual_intent": "Manim: two vertical accuracy bars, HARD LABEL (shorter, CRIMSON) vs DISTILLED (taller, INK), chip DISTILLED STUDENT +3%",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_DistillPruned",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson",
+   "narration_text": "The teacher's reasonable mistakes are the signal. Hard labels discard exactly the information a small model most needs -- the relative distances between classes. Temperature exposes it; the mixed loss transfers it. That is why a distilled student beats a student trained on the same data with hard labels alone.",
+   "visual_intent": "recap card: HARD LABEL discards dark knowledge; SOFT LABEL transfers it; temperature as the exposure knob",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B07_Summary",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: run the temperature sweep on your own teacher's logits and watch where the wrong-class probabilities become visible. The two to five percent accuracy gain is only real if you actually run distillation -- that training run is yours. The demo today shows the mechanism; your dataset confirms the gain.",
+   "visual_intent": "next-steps card: 1) sweep temperature on your teacher logits, 2) run distillation training against float teacher, 3) measure accuracy recovery",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B08_NextSteps",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3"
+  }
+ ]
+}
