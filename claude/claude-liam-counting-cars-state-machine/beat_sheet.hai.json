@@ -1,0 +1,263 @@
+{
+ "metadata": {
+  "title": "Why Counting Cars Is Harder Than It Looks (State Machine Design)",
+  "slug": "claude-liam-counting-cars-state-machine",
+  "topic": "EMBEDDED SYSTEMS · STATE MACHINE DESIGN",
+  "register": "Pragmatist",
+  "audience": "HAI",
+  "brand": "claude-liam",
+  "persona": "Liam (in for Bear)",
+  "voice": "af_kore",
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore",
+  "palette": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Halo, Liam",
+  "folderLabel": "@HumanitariansAI",
+  "in_for_bear": true,
+  "channel": "humanitariansai",
+  "playlist": "NortheasternISE Explainers",
+  "build": {
+   "at": "2026-07-18T03:22:37",
+   "cut": "master",
+   "filled": 4,
+   "of": 6,
+   "slates": [
+    "B01",
+    "B02"
+   ],
+   "skin_warnings": []
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Bula, Humanitarians",
+      "topic": "Why Counting Cars Is Harder Than It Looks (State Machine Design)",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Halo — this is Liam, in for Bear. Based on the essay 'Why Counting Cars Is Harder Than It Looks' by Aditi Shinde, for NortheasternISE / Humanitarians AI. Why is counting cars harder than it sounds? One sensor detects a car. It cannot tell you which way the car is going. A compound event — entry or exit — is a sequence of detections with specific ordering, not an isolated reading. The state machine encodes this. Instead of asking 'did the sensor fire?' it asks 'what am I waiting for next?'",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Halo, Liam",
+      "topic": "EMBEDDED SYSTEMS · STATE MACHINE DESIGN",
+      "segment": "Why Counting Cars Is Harder Than It Looks (State Machine Design)",
+      "command": "Why is counting cars harder than it sounds?",
+      "runningText": "reading parking sensor state machine design analysis…",
+      "output": [
+       "One sensor: detects car, cannot determine direction.",
+       "Compound event: entry/exit = sequence with required ordering, not isolated reading.",
+       "State machine: asks 'what am I waiting for next?' not 'did the sensor fire?'"
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "claude-sonnet-4",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 25.73,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:22:37"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Why Counting Cars Is Harder Than It Looks (State Machine Design) belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "state machine through valid and invalid sequences",
+   "narration_text": "The state machine for a two-sensor parking entry system. Idle: waiting. Sensor A fires: transition to 'pending entry, waiting for B.' Sensor B fires within the timeout: transition to 'entry confirmed,' increment count, return to idle. What about a car that approaches and turns back? Sensor A fires. The car reverses. Sensor A fires again, but sensor B never fires. The pending state has an expiry timeout — if B does not fire within, say, five seconds, the state machine returns to idle. No count change. No false positive. Without the state machine, a simple event counter would record the A-then-A sequence as two separate events. The state machine knows it is waiting for something and expires when what it is waiting for does not arrive.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 34,
+   "shot": {
+    "type": "MANIM",
+    "manim": {
+     "description": "State machine diagram animating through two scenarios. Scenario 1 (valid entry): IDLE → sensor A fires → 'pending, waiting B' → sensor B fires → 'entry confirmed' → count+1 → IDLE. Scenario 2 (car turns back): IDLE → A fires → 'pending' → timeout expires (B never fires) → IDLE, no count change. Both paths labeled.",
+     "sparkLine": "Valid sequence vs. expired pending."
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 39.02,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-18T03:22:37",
+    "needs": "PIPELINE → render animated_graphics.py scene B01_*"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "one-sensor failure vs two-sensor state machine",
+   "narration_text": "Compare the failure rates. One-sensor system: any object crossing the sensor registers as an event. Pedestrians, cyclists, a car approaching and backing out — all increment the counter. The count diverges from reality within hours in a busy parking structure. Two-sensor system without a state machine: you know the sequence of sensor firings but not what they mean. A-then-B means entry or exit, depending on which direction the sensors face. Ambiguous. Two-sensor system with a state machine: the ordering is encoded. A-then-B is entry. B-then-A is exit. Expired pending is a non-event. The failure mode is architectural — you need the state machine to give the sequence meaning.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "shot": {
+    "type": "ANIMATED_DECK",
+    "animated_deck": {
+     "pattern": "scale",
+     "description": "Three-column comparison: One sensor, Two sensors (no state machine), Two sensors + state machine. Error rate bars for each: one sensor high, two without state machine medium, two with state machine low. Labels show what each fails at. State machine column shows zero for direction ambiguity.",
+     "sparkLine": "Sequence without meaning is noise."
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 35.5,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-18T03:22:37",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B02.mp4)",
+    "suggested": "suggested prompt: Compare the failure rates. One-sensor system: any object crossing the sensor registers as an event. Pedestrians, cyclists, a car approaching and backing out — a"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "narration_text": "Let's recap with Claude. One sensor detects a car — it cannot tell you which way the car is going. A compound event is a sequence, not an event; the state machine encodes the required ordering. Pending states with expiry timeouts prevent false positives from cars that approach and turn back. The failure in a naive implementation is architectural — you can have all the sensors you need and still produce wrong counts if the state machine is missing. The system asks what it is waiting for next, not just whether something happened.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Why Counting Cars Is Harder Than It Looks (State Machine Design)",
+      "artifactHeading": "The state machine encodes sequence",
+      "artifactLines": [
+       "One sensor: detects car, cannot determine direction.",
+       "Compound event: A-then-B = entry. B-then-A = exit. Sequence requires state.",
+       "Expiry timeout: car approaches, backs out → pending expires → no false positive.",
+       "The failure is architectural: sensors without a state machine produce noise."
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 27.48,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:22:37"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "your turn handoff",
+   "narration_text": "Your turn. Here is the prompt — read it with me. 'Implement a two-sensor state machine for vehicle counting. Add a third sensor inside the parking structure. How does the state machine change? What new failure modes appear?' Adding a third sensor inside adds a new state: the vehicle is confirmed inside the structure. But it also adds new ambiguity: what does sensor C firing without A or B mean? The state machine grows. The new failure modes are the gaps you find when you draw out all the possible sequences. Liam, in for Bear.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "EMBEDDED SYSTEMS · STATE MACHINE DESIGN",
+      "segment": "Why Counting Cars Is Harder Than It Looks (State Machine Design)",
+      "command": "Implement a two-sensor state machine for vehicle counting. Add a third sensor inside the parking structure. How does the state machine change? What new failure modes appear?",
+      "runningText": "paste this into Claude…",
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "claude-sonnet-4",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 26.82,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:22:37"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "Why Counting Cars Is Harder Than It Looks — State Machine Design. Liam, in for Bear.",
+   "voice": "af_kore",
+   "engine": "kokoro",
+   "estimated_duration_s": 6,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Why Counting Cars Is Harder Than It Looks (State Machine Design)",
+      "handle": "@HumanitariansAI",
+      "subline": "Liam, in for Bear."
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 5.38,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T03:22:37"
+   }
+  }
+ ]
+}
