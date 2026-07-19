@@ -1,5 +1,0 @@
-# FACTCHECK — nbb-vox-p53-circuit
-
-NBB wrapper reuses locked body. All factual claims inherited from source reel.
-
-VERDICT: PASS
