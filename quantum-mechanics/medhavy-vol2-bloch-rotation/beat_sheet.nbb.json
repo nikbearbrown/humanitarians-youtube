@@ -1,0 +1,175 @@
+{
+ "metadata": {
+  "title": "Build a Bloch Sphere Sim with Claude Code",
+  "slug": "medhavy-vol2-bloch-rotation",
+  "topic": "CLAUDE CODE · MANIM",
+  "audience": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "voice": "MEDHAVY",
+  "register": "Teardown",
+  "palette": "teardown",
+  "style_preset": "medhavy",
+  "ground": "#F0EAD6",
+  "accents": {
+   "data": [
+    "#009E73",
+    "#D55E00"
+   ],
+   "annotation": "#009E73",
+   "highlighter": "#F0E442"
+  },
+  "color_semantics": "TEAL = sphere and |up> state. CRIMSON = |+> equatorial state. INK for all Text.",
+  "source_chapter": "quantum-mechanics-vol2/chapters/07-spin-and-the-bloch-sphere.md",
+  "note": "B00=MedhavyOpen; B01-B04=BLOCH ROTATION sim; B05=MedhavyOutro.",
+  "total_estimated_duration_seconds": 107.28,
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "MEDHAVY INTRO",
+   "narration_text": "Medhavy A-I. From Sanskrit — meaning intelligent, or intellectually brilliant. The perfect name for our A-I-powered intelligent learning systems.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "provenance": "proven-core/NikBearBrownOpen",
+     "version": "1",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Build something. Take it apart.",
+       "Explain how it actually works.",
+       "Judge the design. Build better."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 10.0
+  },
+  {
+   "beat_id": "B01",
+   "act": "BLOCH ROTATION — PROMPT",
+   "narration_text": "The prompt. Claude Code terminal: claude — draw a Bloch sphere cross-section in the x-z plane. Place three states: spin-up at the north pole, spin-down at the south pole, and the plus state at the equator. Mark each with its theta angle. The parameterization uses theta over two — not theta. Specify: the half-angle formula and the three states.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "MedhavyTerminalAsk",
+     "provenance": "reel-local",
+     "version": "1",
+     "props": {
+      "command": "claude \"draw Bloch sphere cross-section (x-z plane):\n  |ψ⟩ = cos(θ/2)|↑⟩ + sin(θ/2)|↓⟩\n  |↑⟩ at θ=0  (north pole)\n  |+⟩ at θ=π/2 (equator)\n  |↓⟩ at θ=π  (south pole)\"",
+      "topic": "CLAUDE CODE · MANIM",
+      "segment": "BLOCH SPHERE",
+      "runningText": "generating sphere…"
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 17.0,
+   "audio_file": "mp3/beat-B01.mp3"
+  },
+  {
+   "beat_id": "B02",
+   "act": "BLOCH ROTATION — SCRIPT",
+   "narration_text": "The CLI writes it. Read before running. Find the parameterization line. It should read: cosine of theta over two — theta divided by two — for the spin-up amplitude. If it reads cosine of theta, the states land in the wrong positions. Spin-up at the north pole is theta equals zero, so cosine of zero over two equals one. That is the only amplitude that puts probability one at the north pole. Thirty seconds. Catch it before the render.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "MedhavyCodeBlock",
+     "provenance": "reel-local",
+     "version": "1",
+     "props": {
+      "filename": "bloch.py",
+      "segment": "BLOCH SPHERE",
+      "topic": "CLAUDE CODE · MANIM",
+      "code": "# bloch.py  —  Claude Code output\nimport numpy as np\n\ndef bloch_vector(theta, phi=0):\n    # ← half-angle: θ/2 (not θ)\n    x = np.sin(theta) * np.cos(phi)\n    z = np.cos(theta)\n    return x, z\n\n# |↑⟩: theta=0   → (x=0, z=1) north pole\n# |+⟩: theta=π/2 → (x=1, z=0) equator\n# |↓⟩: theta=π   → (x=0, z=-1) south pole"
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 17.0,
+   "audio_file": "mp3/beat-B02.mp3"
+  },
+  {
+   "beat_id": "B03",
+   "act": "BLOCH ROTATION — RUN",
+   "narration_text": "Run it. Two checks. First: the teal arrow at the north pole. It points straight up — theta equals zero. Measuring spin along z gives spin-up with probability cosine-squared of zero equals one. One hundred percent. Second: the crimson arrow at the equator. It points along x. Measuring along z now gives expectation value cosine of pi over two — which is zero. Equal odds of up and down. Two different arrows, two testable numbers.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B03_BlochRun",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 18.0,
+   "audio_file": "mp3/beat-B03.mp3"
+  },
+  {
+   "beat_id": "B04",
+   "act": "BLOCH ROTATION — CHANGE",
+   "narration_text": "Iterate: claude — update bloch dot py — add the minus state at theta equals pi over two, phi equals pi, on the opposite side of the equator. Label it vertical bar minus right-angle-bracket. One diff, one re-run. Prompt, read, run, check, change. The Bloch sphere was the vehicle. The loop is the takeaway.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "MedhavyTerminalAsk",
+     "provenance": "reel-local",
+     "version": "1",
+     "props": {
+      "command": "claude \"update bloch.py:\n  → add |−⟩ at θ=π/2, φ=π  (opposite equator)\n  → label it |−⟩\"",
+      "topic": "CLAUDE CODE · MANIM",
+      "segment": "BLOCH SPHERE",
+      "runningText": "updating sphere…"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 14.0,
+   "audio_file": "mp3/beat-B04.mp3"
+  },
+  {
+   "beat_id": "B05",
+   "act": "MEDHAVY OUTRO",
+   "narration_text": "Nik Bear Brown. Brutalist and Educational A-I. On YouTube, at Nik Bear Brown. Nik Bear Brown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "provenance": "proven-core/NikBearBrownOutro",
+     "version": "1",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8.0
+  }
+ ]
+}
