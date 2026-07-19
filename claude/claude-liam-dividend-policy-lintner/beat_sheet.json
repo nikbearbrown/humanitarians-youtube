@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Lintner's Smoothing Model: Dividends Don't Lie",
+    "slug": "dividend-policy-lintner",
+    "topic": "CORPORATE FINANCE",
+    "source": "corporate-finance-with-ai/chapters/",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "voice_id": "TyW6NH39JcFb5M3xdIIk",
+    "palette": "claude",
+    "style_preset": "nikbearbrown",
+    "style": "cli",
+    "note": "CLI video. Lintner 1956 dividend smoothing model.",
+    "total_estimated_duration_seconds": 113,
+    "audience": "Claude",
+    "derived_from": "beat_sheet.json",
+    "outro_source": "AUTHOR.MD :: NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "_variant_todo": [
+      "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+      "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+      "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+      "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+    ],
+    "build": {
+      "at": "2026-07-16T09:22:32",
+      "cut": "master",
+      "filled": 5,
+      "of": 10,
+      "slates": [
+        "B01",
+        "B04",
+        "B06",
+        "B07",
+        "B08"
+      ],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "This is Liam, in for Bear. Nik Bear Brown. Build it with a CLI, then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOpen",
+          "props": {
+            "topic": "CORPORATE FINANCE",
+            "lines": [
+              "Lintner Dividend Model",
+              "Managers smooth dividends.",
+              "A cut is not just cash. It is a confession.",
+              "Follow @NikBearBrown"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 5.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:22:32"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "narration_text": "Managers smooth dividends (Lintner 1956). A cut is not just cash. It is a confession. The model predicts cuts before they happen: when EPS falls below the sustainability threshold.",
+      "visual_intent": "SLATE -- Lintner 1956: D_t = D_{t-1} + s*(target - D_{t-1}). Cut = confession of earnings pressure.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 12.05,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:22:32",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
+        "suggested": "suggested prompt: Managers smooth dividends (Lintner 1956). A cut is not just cash. It is a confession. The model predicts cuts before they happen: when EPS falls below the susta"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "narration_text": "Ask Claude to fit the Lintner model: target payout ratio and smoothing coefficient from five years of dividend and EPS data.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Fit Lintner model: D=[4.08,4.24,4.52,4.76,5.00], EPS=[5.72,5.94,6.18,6.40,6.65]. Compute target payout ratio r and smoothing coef s. Predict next D. Find sustainability EPS threshold.\"",
+            "topic": "CORPORATE FINANCE",
+            "segment": "DIVIDEND POLICY",
+            "runningText": "fitting..."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 7.77,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:22:32"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "narration_text": "The script fits the Lintner adjustment model: change in dividend equals smoothing coefficient times target minus previous dividend. It extracts payout ratio and smoothing speed.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownCodeBlock",
+          "props": {
+            "filename": "lintner_model.py",
+            "topic": "CORPORATE FINANCE",
+            "segment": "DIVIDEND POLICY",
+            "code": "D=[4.08,4.24,4.52,4.76,5.00]\nEPS=[5.72,5.94,6.18,6.40,6.65]\nratio=0.72; s=0.38\nfor i,e in enumerate(EPS):\n    target=e*ratio\n    if i==0:\n        pred=D[0]\n    else:\n        pred=D[i-1]+s*(target-D[i-1])\n    print(f\"Yr {2019+i}: \"\n          f\"Actual={D[i]:.2f} \"\n          f\"Target={target:.2f} \"\n          f\"Pred={pred:.2f}\")\nthresh=D[-1]/ratio\nprint(f\"Sustainability EPS: ${thresh:.2f}\")"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 10.52,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:22:32"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "narration_text": "Five bars of actual dividends, a crimson dashed target line, and a slate predicted line. The predicted line tracks closely — the model works.",
+      "visual_intent": "Manim B04_LintnerDividend: bar chart of dividends with target and predicted lines.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade"
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 8.62,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:22:32",
+        "needs": "PIPELINE → render animated_graphics.py scene B04_*"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE",
+      "narration_text": "Sustainability EPS is 6.94 dollars. Current EPS is 6.65. The model is watching. If EPS does not recover, the target falls — and the dividend smooths downward.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "claude \"Now compute: if EPS drops to $6.00 in 2024, what does Lintner predict for the dividend? At what EPS does the model predict a dividend cut (predicted D < current D)?\"",
+            "topic": "CORPORATE FINANCE",
+            "segment": "DIVIDEND POLICY",
+            "runningText": "projecting..."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 11.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:22:32"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT2",
+      "narration_text": "At EPS 6.00, the predicted dividend is 4.95. No cut yet. But the model signals pressure. At EPS 5.80, the model predicts the first cut below 5.00.",
+      "visual_intent": "SLATE -- EPS $6.00 -> Lintner pred $4.95, no cut. EPS $5.80 -> first cut signal.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 11.39,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:22:32",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
+        "suggested": "suggested prompt: At EPS 6.00, the predicted dividend is 4.95. No cut yet. But the model signals pressure. At EPS 5.80, the model predicts the first cut below 5.00."
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "narration_text": "The teardown: dividend smoothing is not generosity. It is a commitment device. The model tells you when the commitment is under stress before the announcement.",
+      "visual_intent": "SLATE -- dividend smoothing is a commitment device. The model reads the stress signal early.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 9.0,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:22:32",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
+        "suggested": "suggested prompt: The teardown: dividend smoothing is not generosity. It is a commitment device. The model tells you when the commitment is under stress before the announcement."
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT",
+      "narration_text": "Next: compare Lintner predictions across 10 dividend-paying stocks. Find the one most at risk of a cut. Follow for more corporate finance teardowns.",
+      "visual_intent": "SLATE -- next steps: screen 10 dividend stocks for cut risk using Lintner predictions.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "fade"
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 8.98,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-07-16T09:22:32",
+        "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)",
+        "suggested": "suggested prompt: Next: compare Lintner predictions across 10 dividend-paying stocks. Find the one most at risk of a cut. Follow for more corporate finance teardowns."
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "NikBearBrownOutro",
+          "props": {
+            "brand": "Nik Bear Brown",
+            "tagline": "Brutalist + Educational AI",
+            "handle": "@NikBearBrown",
+            "url": "nikbearbrown.com"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 6.51,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T09:22:32"
+      }
+    }
+  ]
+}
