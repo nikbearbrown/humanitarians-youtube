@@ -1,0 +1,307 @@
+{
+ "metadata": {
+  "title": "The MobileNetV2-0.5 That Almost Fit",
+  "slug": "cli-compression-journey",
+  "topic": "CLAUDE CODE · COMPRESSION",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "ground": "#FFFFFF",
+  "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
+  "note": "CLI video REQUIRED spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 OUTPUT(manim) · B07 SUMMARY · B08 NEXT STEPS · B09 outro.",
+  "total_estimated_duration_seconds": 198.9,
+  "chapter_number": 7,
+  "tags": [
+   "Claude Code",
+   "Claude",
+   "Embedded AI",
+   "Edge AI",
+   "TinyML",
+   "Model Compression",
+   "Manim",
+   "Nik Bear Brown",
+   "Machine Learning",
+   "Microcontroller AI",
+   "STM32",
+   "Quantization"
+  ],
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hallo, Humanitarians",
+      "topic": "The MobileNetV2-0.5 That Almost Fit",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Compression, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 3.24,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM -- why care",
+   "role_note": "the problem, the context, the stakes -- BEFORE the CLI",
+   "narration_text": "The model selection passed. MobileNetV2-0.5, 89.8% accuracy on the defect-detection task, compiled for the STM32H7. Then the numbers came back: 4 megabytes of flash, 1.2 megabytes of SRAM, 320 milliseconds per inference. The ceilings were 2 megabytes, 1 megabyte, 250 milliseconds. It missed on every axis. Three knobs can close that gap -- quantization, pruning, distillation. The question is in what order, and whether the combination ships.",
+   "visual_intent": "title card: STM32H7 target with 3 ceilings; FP32 misses all three; the three-knob problem",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_Problem",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 33.75,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask for the experiment. In the terminal: claude -- write compression_journey dot py, MobileNetV2-0.5 on STM32H7 with 2 MB flash, 1 MB SRAM, 250 ms. Steps: FP32 to int8 PTQ, then add 25% structured prune, then add distillation. Track flash, SRAM, latency, and accuracy against ceilings. Print a four-state table.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"write compression_journey.py:\n  MobileNetV2-0.5 on STM32H7\n  (2MB flash, 1MB SRAM, 250ms)\n  Steps: fp32 -> int8 PTQ -> +25% prune\n  -> +distill. Track flash/SRAM/latency/\n  accuracy vs ceilings, print 4-state table.\"",
+      "topic": "CLAUDE CODE · COMPRESSION",
+      "segment": "COMPRESSION JOURNEY",
+      "runningText": "generating scene..."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 24.37,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before trusting it. INT8 cuts weights from 4 bytes to 1, so flash drops from 4 MB to 1 MB. Pruning removes 25% of channels, shrinking flash further to 0.75 MB and latency to 240 ms. Distillation adds back 0.8% accuracy with no size change. The order matters: quantize first, then prune the quantized network.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "compression_journey.py",
+      "topic": "CLAUDE CODE · COMPRESSION",
+      "segment": "COMPRESSION JOURNEY",
+      "code": "# compression_journey.py  --  Claude Code output\nSTATES = [\n  {\"name\": \"FP32\",\n   \"flash_mb\": 4.0, \"sram_mb\": 1.2,\n   \"latency_ms\": 320, \"acc\": 89.8},\n  {\"name\": \"INT8 PTQ\",\n   \"flash_mb\": 1.0, \"sram_mb\": 0.8,\n   \"latency_ms\": 320, \"acc\": 89.8},\n  {\"name\": \"+PRUNE 25%\",\n   \"flash_mb\": 0.75, \"sram_mb\": 0.6,\n   \"latency_ms\": 240, \"acc\": 89.0},\n  {\"name\": \"+DISTILL\",\n   \"flash_mb\": 0.75, \"sram_mb\": 0.6,\n   \"latency_ms\": 240, \"acc\": 90.6},\n]\nCEILS = {\"flash\": 2.0, \"sram\": 1.0, \"lat\": 250, \"acc\": 88.0}\nfor s in STATES:\n    fits = (s[\"flash_mb\"] <= CEILS[\"flash\"] and\n            s[\"sram_mb\"]  <= CEILS[\"sram\"]  and\n            s[\"latency_ms\"] <= CEILS[\"lat\"])\n    print(f\"{s['name']:12} flash={s['flash_mb']}MB SRAM={s['sram_mb']}MB \"\n          f\"lat={s['latency_ms']}ms acc={s['acc']}%  SHIP={fits}\")"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 24.84,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT -- run",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it. Four states, four metric columns. FP32 blows all three ceilings -- flash in red, SRAM in red, latency in red. INT8 drops flash from 4 to 1 megabyte and SRAM to 0.8. Latency stays at 320 -- quantization doesn't move the compute bottleneck. Add pruning: flash falls to 0.75, latency finally drops to 240, under the ceiling. Add distillation: accuracy climbs 1.6 points, from 89.0 to 90.6, above where we started. That's the ship state.",
+   "visual_intent": "Manim: 4 grouped bars per metric (FLASH, SRAM, LATENCY, ACCURACY) across 4 states; ceiling lines; FP32 bars in CRIMSON (over), subsequent states in INK (under)",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_CompressionJourney",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 36.39,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE -- check & revise",
+   "role_note": "terminal (Onda) -- the REQUIRED revision",
+   "narration_text": "Now check what happens if you do it in the wrong order. Iterate: claude -- add a fifth column showing quantize-before-prune -- the order-matters accuracy penalty.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"add a 5th column: what happens if you\n  quantize BEFORE pruning -- show the\n  order-matters accuracy penalty\"",
+      "topic": "CLAUDE CODE · COMPRESSION",
+      "segment": "COMPRESSION JOURNEY",
+      "runningText": "updating script..."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 9.93,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT -- revised",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Re-run. Two bars now: quantize then prune versus prune then quantize. Quantize-before-prune accuracy in crimson -- 88.1%, barely above the ceiling. Prune-before-quantize in ink -- 90.6%, a 2.5 point spread from sequencing alone. Same operations, same model, different order.",
+   "visual_intent": "Manim: two-bar comparison showing quantize->prune (CRIMSON, lower acc 88.1%) vs prune->quantize (INK, higher acc 90.6%); order-matters label",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B06_CompressionOrder",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 22.05,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson -- one beat",
+   "narration_text": "So: pruning earned the fit, distillation earned the margin, quantization made it possible -- and doing them out of order compounds error. The ship state is 0.75 MB flash, 0.6 MB SRAM, 240 ms, 90.6% accuracy. Three knobs, applied in the right sequence.",
+   "visual_intent": "recap card: three-knob sequence (quantize -> prune -> distill) with ship state metrics; order matters warning",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B07_Summary",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 20.79,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: take your own model's parameter count and run the four-state table against your target's ceilings. If pruning alone doesn't close the gap, add distillation against the float teacher. And check the order before you run -- 2.5 accuracy points is not a rounding error.",
+   "visual_intent": "next-steps card: 1) run your own param count through the table, 2) add distillation if pruning falls short, 3) always prune before quantize",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B08_NextSteps",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 16.43,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 7.11,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
+}
