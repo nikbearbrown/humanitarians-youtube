@@ -1,0 +1,192 @@
+{
+  "slug": "medhavy-vox-karatsuba-three-calls",
+  "title": "Why Saving One Recursive Call Changes the Exponent",
+  "topic": "ALGORITHM ANALYSIS",
+  "metadata": {
+    "engine": "kokoro",
+    "voice": "af_heart",
+    "palette": "medhavy"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "estimated_duration_s": 7.0,
+      "narration_text": "med davy A-I. From Sanskrit — meaning intelligent, or intellectually brilliant. The perfect name for our A-I-powered intelligent learning systems.",
+      "shot": {"type": "REMOTION", "source": "own", "motion": "fade"},
+      "remotion": {
+        "pattern": "MedhavyOpen",
+        "provenance": "proven-core/MedhavyOpen",
+        "version": "1",
+        "props": {
+          "headline": "Medhavy AI",
+          "subhead": "Also known as Medhavi",
+          "body": "मेधावी (Medhavy): From Sanskrit, meaning\n\"intelligent\" or \"intellectually brilliant\"\n— the perfect name for our AI-powered\nintelligent learning systems.",
+          "palette": "medhavy"
+        }
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "COLD OPEN",
+      "t_start": 0.0,
+      "estimated_duration_s": 9.0,
+      "narration_text": "Two recipes for multiplying huge numbers — one makes four recursive calls, the other three. They look nearly identical. One runs in n-squared time; the other in n to the 1.58. A single missing call is the entire difference.",
+      "shot": {"type": "CARD", "source": "own", "motion": "hold"},
+      "card": {
+        "kind": "title",
+        "copy": "Why Saving One Recursive Call Changes the Exponent",
+        "sub": "ALGORITHM ANALYSIS"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "COLD OPEN",
+      "t_start": 9.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "Multiply 1234 × 5678. Split each number in half: 1234 = 12 times 100 plus 34, 5678 = 56 times 100 plus 78. The naive approach: compute 12×56, 12×78, 34×56, 34×78 — four multiplications. Then combine. Recurrence: T(n) = 4T(n/2) + O(n).",
+      "shot": {"type": "GRAPHIC", "source": "own", "motion": "scan"},
+      "graphic": {
+        "manim": "B02_NaiveSplit",
+        "production_viz": {
+          "label": "Four sub-multiplications: ac, ad, bc, bd → T(n)=4T(n/2)+O(n)",
+          "colors": ["#D55E00", "#009E73"]
+        }
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "THE QUESTION",
+      "t_start": 19.0,
+      "estimated_duration_s": 9.0,
+      "narration_text": "The master theorem gives T(n) = 4T(n/2) + O(n) → O(n-squared). That's as slow as the grade-school algorithm. What if you could get the same answer with only three multiplications? Why would one fewer call change the exponent from 2 to something smaller?",
+      "shot": {"type": "CARD", "source": "own", "motion": "hold"},
+      "card": {
+        "kind": "question",
+        "copy": "4 calls → O(n²). 3 calls → O(n^1.58). One fewer self-call — why does it change the exponent, not just the constant?",
+        "sub": "ALGORITHM ANALYSIS"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE MECHANISM",
+      "t_start": 28.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "Gauss's trick: you need four products a·c, a·d, b·c, b·d. But compute just three: a·c, b·d, and (a+b)·(c+d). Then (a+b)(c+d) minus a·c minus b·d = a·d + b·c — the two cross terms, recovered from the three computations. Same result, three multiplications.",
+      "shot": {"type": "GRAPHIC", "source": "own", "motion": "scan"},
+      "graphic": {
+        "manim": "B04_GaussTrick",
+        "production_viz": {
+          "label": "(a+b)(c+d) - ac - bd = ad+bc: 3 multiplies recover 4 products",
+          "colors": ["#009E73", "#D55E00"]
+        }
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "THE MECHANISM",
+      "t_start": 38.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "Recurrence: T(n) = 3T(n/2) + O(n). The master theorem gives T(n) = O(n to the log-base-2 of 3) ≈ O(n to the 1.585). Why? The exponent is log-base-2 of a, where a = number of recursive calls. log₂(4) = 2; log₂(3) ≈ 1.585.",
+      "shot": {"type": "GRAPHIC", "source": "own", "motion": "scan"},
+      "graphic": {
+        "manim": "B05_RecurrenceResult",
+        "production_viz": {
+          "label": "T(n)=3T(n/2)+O(n) → O(n^log₂3) ≈ O(n^1.585); exponent = log₂(calls)",
+          "colors": ["#009E73", "#D55E00"]
+        }
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE MECHANISM",
+      "t_start": 48.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "Why does the number of recursive calls set the exponent? At each level of recursion, the tree has a-to-the-j nodes at depth j, and each node does O(n divided by 2-to-the-j) work. Total work at depth j: a-to-the-j times O(n over 2-to-the-j) = O(n times (a over 2)-to-the-j). Summing over all depths: geometric series converging to O(n to the log-base-2 of a).",
+      "shot": {"type": "GRAPHIC", "source": "own", "motion": "scan"},
+      "graphic": {
+        "manim": "B06_RecursionTree",
+        "production_viz": {
+          "label": "Tree depth j: a^j nodes × O(n/2^j) work → sum = O(n^log₂a)",
+          "colors": ["#D55E00", "#009E73"]
+        }
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "THE IMPLICATION",
+      "t_start": 58.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "At n=1024 — 10 recursion levels: 4-call algorithm: 4 to the 10 ≈ 1,000,000 leaf multiplications. 3-call: 3 to the 10 ≈ 59,000. Ratio: 17 times. At n=2 to the 20: ratio grows to roughly 286 times. The gap is not fixed — it widens with every doubling.",
+      "shot": {"type": "GRAPHIC", "source": "own", "motion": "scan"},
+      "graphic": {
+        "manim": "B07_LeafComparison",
+        "production_viz": {
+          "label": "n=1024: 4-call=1M leaves vs 3-call=59K. Gap widens as n grows.",
+          "colors": ["#D55E00", "#009E73"]
+        }
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "THE EXAMPLE",
+      "t_start": 68.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "This is the Karatsuba algorithm, published in 1960. It was the first to prove that O(n-squared) multiplication is not optimal. Today's fastest algorithms — Schönhage-Strassen, Harvey-Hoeven — achieve nearly O(n log n), each saving more hidden recursive-call structure.",
+      "shot": {"type": "GRAPHIC", "source": "own", "motion": "scan"},
+      "graphic": {
+        "manim": "B08_KaratsubaHistory",
+        "production_viz": {
+          "label": "Karatsuba 1960: O(n²) not optimal. Progress: n^1.585 → n log n",
+          "colors": ["#009E73", "#D55E00"]
+        }
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "THE IMPLICATION",
+      "t_start": 78.0,
+      "estimated_duration_s": 9.0,
+      "narration_text": "The lesson generalizes. Matrix multiplication: Strassen's algorithm does 7 recursive calls instead of 8 per block → O(n to the log-base-2 of 7) ≈ O(n to the 2.81) instead of O(n-cubed). The exponent log₂(a) is the bottleneck — invisible in the code, visible in the complexity.",
+      "shot": {"type": "GRAPHIC", "source": "own", "motion": "scan"},
+      "graphic": {
+        "manim": "B09_StrassenAnalogy",
+        "production_viz": {
+          "label": "Strassen: 7 calls → n^2.81. Same principle: exponent = log₂(calls)",
+          "colors": ["#009E73", "#D55E00"]
+        }
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "RECAP",
+      "t_start": 87.0,
+      "estimated_duration_s": 9.0,
+      "narration_text": "Exponent = log₂ of number of recursive calls. 4 calls → log₂(4) = 2 → O(n-squared). 3 calls → log₂(3) ≈ 1.585 → O(n to the 1.585). One call saved, exponent drops by 0.415. At n=10 to the 9: a factor of millions.",
+      "shot": {"type": "CARD", "source": "own", "motion": "hold"},
+      "card": {
+        "kind": "endcard",
+        "copy": "Exponent = log₂(calls). 4→2. 3→1.585. Karatsuba: 3 multiplications recover 4 products. One call is everything.",
+        "sub": "ALGORITHM ANALYSIS"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "estimated_duration_s": 7.0,
+      "narration_text": "med davy. A-I-powered intelligent learning systems. On YouTube, at med davy A-I. med davy dot com.",
+      "shot": {"type": "REMOTION", "source": "own", "motion": "fade"},
+      "remotion": {
+        "pattern": "MedhavyOutro",
+        "provenance": "proven-core/MedhavyOutro",
+        "version": "1",
+        "props": {
+          "headline": "Medhavy — AI-powered intelligent learning systems",
+          "handle": "@MedhavyAI",
+          "url": "medhavy.com",
+          "palette": "medhavy"
+        }
+      }
+    }
+  ]
+}
