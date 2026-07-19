@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/neu-019e1937-ed62-7aa9-95a9-0998a91179fc/colors_and_type.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<style>
+  html,body{{margin:0;padding:0;background:#000;}}
+  .katex{{font-size:1em;}}
+  @keyframes nu-rise{{from{{opacity:0;transform:translateY(22px);}}to{{opacity:1;transform:none;}}}}
+  @media (prefers-reduced-motion:no-preference){{
+    [data-deck-active] .rise{{animation:nu-rise .55s var(--ease-default) both;}}
+    [data-deck-active] .rise2{{animation:nu-rise .55s var(--ease-default) .12s both;}}
+    [data-deck-active] .rise3{{animation:nu-rise .55s var(--ease-default) .24s both;}}
+  }}
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="Title" data-speaker-notes="Chapter 7. Three reasonable definitions of fairness. One dataset. You must pick one — and the theorem says you cannot have all three." style="background:var(--nu-black);color:var(--nu-white);font-family:var(--font-sans);padding:120px 130px;display:flex;flex-direction:column;justify-content:center;">
+  <div style="position:absolute;top:0;left:0;right:0;height:10px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">AI Engineering · Chapter 07</div>
+  <h1 class="rise2" style="font-size:104px;line-height:1.0;font-weight:400;margin:34px 0 0;letter-spacing:-0.02em;max-width:1560px;">Fairness metrics: choosing a definition and defending it</h1>
+  <div class="rise2" style="width:120px;height:8px;background:var(--nu-red);margin:46px 0 0;"></div>
+  <div class="rise3" style="font-size:38px;line-height:1.3;color:var(--nu-neutral-2);margin-top:40px;max-width:1300px;font-weight:400;">Three reasonable definitions. One dataset. Pick one — and learn why you cannot keep all three.</div>
+</section>
+
+<section data-label="The problem" data-speaker-notes="You build a binary classifier on a population with two groups. You want it to be fair, so you write down requirements. Each sounds like fairness." style="background:var(--nu-white);color:var(--nu-black);font-family:var(--font-sans);padding:96px 130px;display:flex;flex-direction:column;">
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">The problem</div>
+  <h2 class="rise" style="font-size:66px;line-height:1.04;font-weight:400;margin:16px 0 0;letter-spacing:-0.01em;max-width:1500px;">You built a classifier. You sit down to write &ldquo;make it fair.&rdquo;</h2>
+  <div class="rise" style="width:88px;height:6px;background:var(--nu-red);margin:28px 0 0;"></div>
+  <div class="rise2" style="display:flex;flex-direction:column;gap:26px;margin-top:48px;max-width:1480px;"><div style="display:flex;align-items:flex-start;gap:22px;"><div style="width:14px;height:14px;background:var(--nu-red);margin-top:15px;flex:0 0 auto;"></div><div style="font-size:31px;line-height:1.42;color:var(--nu-neutral-7);">A yes/no model — loan approval, recidivism, a hiring screen — applied to a population with two groups, <b>A</b> and <b>B</b>. The model predicts; the world produces outcomes; you compare the two.</div></div><div style="display:flex;align-items:flex-start;gap:22px;"><div style="width:14px;height:14px;background:var(--nu-red);margin-top:15px;flex:0 0 auto;"></div><div style="font-size:31px;line-height:1.42;color:var(--nu-neutral-7);">You write down three requirements. Each one, on its own, sounds exactly like what fairness should mean.</div></div><div style="display:flex;align-items:flex-start;gap:22px;"><div style="width:14px;height:14px;background:var(--nu-red);margin-top:15px;flex:0 0 auto;"></div><div style="font-size:31px;line-height:1.42;color:var(--nu-neutral-7);">I have to tell you: <b>you cannot satisfy all three at once</b> when the groups have different base rates — and on real data, they almost always do.</div></div></div>
+</section>
+
+<section data-label="The impossibility" data-speaker-notes="This is a theorem, proved independently in 2016 by Kleinberg, Mullainathan and Raghavan, and by Chouldechova. It is the structural fact of the chapter." style="background:var(--nu-black);color:var(--nu-white);font-family:var(--font-sans);padding:110px 130px;display:flex;flex-direction:column;justify-content:center;">
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:24px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--nu-red);">The impossibility theorem · 2016</div>
+  <h2 class="rise2" style="font-size:72px;line-height:1.1;font-weight:400;margin:30px 0 0;letter-spacing:-0.01em;max-width:1560px;">Demographic parity, equalized odds, and calibration parity cannot all hold on the same dataset when base rates differ.</h2>
+  <div class="rise3" style="font-size:30px;line-height:1.4;color:var(--nu-neutral-2);margin-top:44px;max-width:1380px;">Not a tooling limit. Not a data problem. A structural fact — proved independently by Kleinberg, Mullainathan &amp; Raghavan, and by Chouldechova. It <b style="color:var(--nu-white);">forces a choice</b> — and choices in engineering have to be defended.</div>
+</section>
+
+<section data-label="Three definitions" data-speaker-notes="Section divider." style="background:var(--nu-red);color:var(--nu-white);font-family:var(--font-sans);padding:110px 130px;display:flex;flex-direction:column;justify-content:center;">
+  <div class="rise" style="font-size:26px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.78);">Part one</div>
+  <h2 class="rise2" style="font-size:108px;line-height:1.0;font-weight:400;margin:26px 0 0;letter-spacing:-0.02em;">Three definitions</h2>
+  <div class="rise3" style="font-size:34px;line-height:1.3;color:rgba(255,255,255,0.92);margin-top:36px;max-width:1280px;">Each captures something fairness intuitively requires. Each is a different statement about the model.</div>
+</section>
+
+<section data-label="Demographic parity — equation" data-speaker-notes="Demographic parity, a.k.a. statistical parity. A statement about the model's OUTPUTS, before comparing to ground truth." style="background:var(--nu-white);color:var(--nu-black);font-family:var(--font-sans);padding:84px 130px;display:flex;flex-direction:column;">
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">Metric 01 · Equation</div>
+  <h2 class="rise" style="font-size:58px;line-height:1.05;font-weight:400;margin:14px 0 0;letter-spacing:-0.01em;">Demographic parity</h2>
+  <div class="rise" style="font-size:27px;color:var(--nu-neutral-5);margin-top:8px;">also called statistical parity — a statement about the model&rsquo;s <b>outputs</b></div>
+  <div class="rise2" style="background:var(--nu-neutral-7);color:#fff;padding:54px 40px;margin-top:34px;display:flex;align-items:center;justify-content:center;"><div data-tex data-display style="font-size:42px;color:#fff;">P(\hat{Y}=1 \mid A=a) = P(\hat{Y}=1 \mid A=b)</div></div>
+  <div class="rise3" style="display:flex;gap:28px;margin-top:34px;align-items:stretch;"><div style="flex:1;border:1px solid var(--nu-neutral-1);padding:30px 34px;"><div style="font-size:18px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--nu-red);">In plain terms</div><div style="font-size:29px;line-height:1.4;color:var(--nu-neutral-7);margin-top:14px;">The model says &ldquo;yes&rdquo; to the <b>same fraction</b> of group A and group B. Equal treatment in the prediction itself — measured before anyone checks who was actually right.</div></div><div style="flex:0 0 360px;border:1px solid var(--nu-neutral-1);padding:30px 34px;background:var(--nu-red-tint);"><div style="font-size:18px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--nu-red);">Values claim</div><div style="font-size:25px;line-height:1.4;color:var(--nu-neutral-7);margin-top:14px;">Outcomes should be proportional regardless of base rates. Structural redress over conditional accuracy.</div></div></div>
+</section>
+
+<section data-label="Demographic parity — example" data-speaker-notes="Real-world example: loan approvals. The prediction itself carries the consequence." style="background:var(--nu-white);color:var(--nu-black);font-family:var(--font-sans);padding:96px 130px;display:flex;flex-direction:column;justify-content:center;">
+  <div style="position:absolute;top:0;left:0;bottom:0;width:10px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">Real-world example</div>
+  <h2 class="rise" style="font-size:62px;line-height:1.06;font-weight:400;margin:16px 0 0;letter-spacing:-0.01em;max-width:1500px;">A bank approves loans at 40% in one neighborhood and 18% in another.</h2>
+  <div class="rise2" style="font-size:32px;line-height:1.45;color:var(--nu-neutral-7);margin-top:38px;max-width:1480px;">Demographic parity says: the <b>loan</b> — the thing with real consequences, a house, a business — should be handed out at the same rate to both groups, full stop. It does not care whether default rates differ underneath.</div><div class="rise3" style="font-size:28px;line-height:1.4;color:var(--nu-neutral-5);margin-top:30px;max-width:1480px;border-top:1px solid var(--nu-neutral-1);padding-top:26px;">When you reach for parity, you are betting that the prediction&rsquo;s payoff matters more than its conditional accuracy. That is a defensible bet — in some deployments. Not all.</div>
+</section>
+
+<section data-label="Equalized odds — equation" data-speaker-notes="Equalized odds: equal TPR and equal FPR across groups. A statement about the model's ERRORS, conditional on the truth." style="background:var(--nu-white);color:var(--nu-black);font-family:var(--font-sans);padding:84px 130px;display:flex;flex-direction:column;">
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">Metric 02 · Equation</div>
+  <h2 class="rise" style="font-size:58px;line-height:1.05;font-weight:400;margin:14px 0 0;letter-spacing:-0.01em;">Equalized odds</h2>
+  <div class="rise" style="font-size:27px;color:var(--nu-neutral-5);margin-top:8px;">a statement about the model&rsquo;s <b>errors</b>, conditional on the truth</div>
+  <div class="rise2" style="background:var(--nu-neutral-7);color:#fff;padding:40px 40px;margin-top:28px;display:flex;flex-direction:column;gap:22px;align-items:center;justify-content:center;"><div style="font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:var(--nu-red);font-weight:700;">True-positive rate equal</div><div data-tex data-display style="font-size:34px;color:#fff;">P(\hat{Y}=1 \mid Y=1, A=a) = P(\hat{Y}=1 \mid Y=1, A=b)</div><div style="font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:var(--nu-red);font-weight:700;margin-top:6px;">False-positive rate equal</div><div data-tex data-display style="font-size:34px;color:#fff;">P(\hat{Y}=1 \mid Y=0, A=a) = P(\hat{Y}=1 \mid Y=0, A=b)</div></div>
+  <div class="rise3" style="display:flex;gap:28px;margin-top:34px;align-items:stretch;"><div style="flex:1;border:1px solid var(--nu-neutral-1);padding:30px 34px;"><div style="font-size:18px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--nu-red);">In plain terms</div><div style="font-size:29px;line-height:1.4;color:var(--nu-neutral-7);margin-top:14px;">The model makes its <b>mistakes evenly</b>. Among people who truly are positive, it catches the same share in both groups; among the truly negative, it falsely flags the same share.</div></div><div style="flex:0 0 360px;border:1px solid var(--nu-neutral-1);padding:30px 34px;background:var(--nu-red-tint);"><div style="font-size:18px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--nu-red);">Values claim</div><div style="font-size:25px;line-height:1.4;color:var(--nu-neutral-7);margin-top:14px;">The cost of being wronged should be borne equally. Group membership should not change your risk of error.</div></div></div>
+</section>
+
+<section data-label="The triangle" data-speaker-notes="The theorem as a triangle: you can satisfy any two. The third breaks. Watch the cycle rotate through which two you keep and which one breaks." style="background:var(--nu-white);color:var(--nu-black);font-family:var(--font-sans);padding:64px 110px 56px;display:flex;flex-direction:column;align-items:center;">
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:var(--nu-red);"></div>
+  <div class="rise" style="align-self:flex-start;font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">The theorem, drawn</div>
+  <h2 class="rise" style="align-self:flex-start;font-size:50px;line-height:1.04;font-weight:400;margin:12px 0 0;letter-spacing:-0.01em;">Satisfy any two. The third breaks.</h2>
+  <div data-chart="triangle" style="width:1000px;height:600px;margin-top:10px;"></div>
+</section>
+
+<section data-label="Arithmetic made visible" data-speaker-notes="Same model, two threshold choices. Toggle between the calibration-satisfying and equalized-odds-satisfying versions. Calibration and equalized odds cannot both hold while base rates differ." style="background:var(--nu-white);color:var(--nu-black);font-family:var(--font-sans);padding:64px 110px 56px;display:flex;flex-direction:column;">
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">The trade-off, in bars</div>
+  <h2 class="rise" style="font-size:50px;line-height:1.04;font-weight:400;margin:12px 0 0;letter-spacing:-0.01em;">Same model. Different threshold. You choose what breaks.</h2>
+  <div data-chart="arithmetic" style="width:1480px;height:600px;margin-top:10px;"></div>
+</section>
+
+<section data-label="Counterfactual fairness — procedure" data-speaker-notes="Counterfactual fairness asks what would have happened to this individual under a different sensitive-attribute value, holding their background fixed. Computing it takes three steps: abduction, action, prediction." style="background:var(--nu-white);color:var(--nu-black);font-family:var(--font-sans);padding:72px 110px 56px;display:flex;flex-direction:column;align-items:center;">
+  <div style="position:absolute;top:0;left:0;right:0;height:8px;background:var(--nu-red);"></div>
+  <div class="rise" style="align-self:flex-start;font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">Figure 7.3</div>
+  <h2 class="rise" style="align-self:flex-start;font-size:50px;line-height:1.04;font-weight:400;margin:12px 0 0;letter-spacing:-0.01em;">What would have happened under a different group, holding background fixed?</h2>
+  <img class="rise2" src="assets/book/counterfactual-procedure.svg" alt="Three-step counterfactual fairness procedure: abduction, action, prediction." style="max-width:1400px;max-height:720px;margin-top:18px;object-fit:contain;" />
+  <div class="rise3" style="font-size:24px;line-height:1.36;color:var(--nu-neutral-5);margin-top:20px;max-width:1400px;text-align:center;">The three-step abduction → action → prediction procedure for counterfactual fairness.</div>
+</section>
+
+<section data-label="Close" data-speaker-notes="Understand the math, choose the values, defend the integration. Next chapter: adversarial robustness." style="background:var(--nu-black);color:var(--nu-white);font-family:var(--font-sans);padding:120px 130px;display:flex;flex-direction:column;justify-content:center;">
+  <div style="position:absolute;top:0;left:0;right:0;height:10px;background:var(--nu-red);"></div>
+  <div class="rise" style="font-size:22px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--nu-red);">The supervisory move</div>
+  <h2 class="rise2" style="font-size:84px;line-height:1.04;font-weight:400;margin:28px 0 0;letter-spacing:-0.02em;max-width:1560px;">Understand the math. Choose the values. Defend the integration.</h2>
+  <div class="rise3" style="width:120px;height:8px;background:var(--nu-red);margin:42px 0 0;"></div>
+  <div class="rise3" style="font-size:30px;line-height:1.4;color:var(--nu-neutral-2);margin-top:38px;max-width:1440px;">Three formally distinct metrics can be incompatible on one dataset when base rates differ. The impossibility is structural. The defense — connecting the chosen metric to the deployment, the cost-bearers, and the construct — is the work.</div>
+  <div class="rise3" style="font-size:24px;color:var(--nu-neutral-4);margin-top:40px;">Next — Chapter 8: adversarial robustness. Can a perturbation invisible to a human flip the model entirely?</div>
+</section>
+
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._ready = false;
+    this._timer = null;
+    this._drawers = {};
+    this._onSlide = (e) => this._activate(e && e.detail && e.detail.slide);
+    document.addEventListener('slidechange', this._onSlide);
+    this._wait();
+  }
+  componentWillUnmount() {
+    document.removeEventListener('slidechange', this._onSlide);
+    if (this._timer) clearInterval(this._timer);
+  }
+  _wait() {
+    const have = window.d3 && window.katex && document.querySelector('[data-tex],[data-chart]');
+    if (!have) { setTimeout(() => this._wait(), 70); return; }
+    this._renderMath();
+    this._define();
+    this._ready = true;
+    const active = document.querySelector('section[data-deck-active]') || document.querySelector('section');
+    this._activate(active);
+  }
+  _renderMath() {
+    document.querySelectorAll('[data-tex]').forEach((el) => {
+      if (el._k) return;
+      try {
+        window.katex.render(el.textContent.trim(), el, {
+          displayMode: el.hasAttribute('data-display'),
+          throwOnError: false,
+        });
+        el._k = true;
+      } catch (err) { /* leave raw */ }
+    });
+  }
+  _activate(slide) {
+    if (!this._ready || !slide || !slide.querySelector) return;
+    this._renderMath();
+    if (this._timer) { clearInterval(this._timer); this._timer = null; }
+    const c = slide.querySelector('[data-chart]');
+    if (!c) return;
+    const fn = this._drawers[c.getAttribute('data-chart')];
+    if (fn) try { fn(c); } catch (err) { console.warn('chart', err); }
+  }
+  _define() {
+    const d3 = window.d3;
+    const RED = '#C8102E', BLACK = '#111111', N7 = '#2D2926', N5 = '#545454',
+      N4 = '#787878', N3 = '#909090', N2 = '#C4C4C4', N1 = '#E3E3E3', GOLD = '#A4804A';
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const D = RM ? 0 : 850;
+    const FONT = '"Lato", system-ui, sans-serif';
+    const clear = (c) => { c.innerHTML = ''; };
+    const svgIn = (c, w, h) => d3.select(c).append('svg')
+      .attr('width', w).attr('height', h).attr('viewBox', `0 0 ${w} ${h}`)
+      .style('overflow', 'visible').style('display', 'block');
+    this._drawers['triangle'] = (c) => {
+      clear(c);
+      const W = 1000, H = 600;
+      const svg = svgIn(c, W, H);
+      const nodes = [
+        { id: 'cal', t: 'Calibration parity', s: 'honest probabilities', x: W / 2, y: 130 },
+        { id: 'eo', t: 'Equalized odds', s: 'equal error rates', x: 180, y: 470 },
+        { id: 'dp', t: 'Demographic parity', s: 'equal positive rate', x: W - 180, y: 470 },
+      ];
+      const by = Object.fromEntries(nodes.map((n) => [n.id, n]));
+      const edges = [['cal', 'eo'], ['eo', 'dp'], ['cal', 'dp']];
+      const eKey = (a, b) => [a, b].sort().join('-');
+
+      const eg = svg.append('g');
+      const lines = {};
+      edges.forEach(([a, b]) => {
+        const p = by[a], q = by[b];
+        const L = eg.append('line').attr('x1', p.x).attr('y1', p.y).attr('x2', q.x).attr('y2', q.y)
+          .attr('stroke', N2).attr('stroke-width', 5).attr('stroke-linecap', 'round')
+          .attr('opacity', 0);
+        const len = Math.hypot(q.x - p.x, q.y - p.y);
+        L.attr('stroke-dasharray', len).attr('stroke-dashoffset', len)
+          .transition().duration(D).attr('opacity', 1).attr('stroke-dashoffset', 0);
+        lines[eKey(a, b)] = L;
+      });
+
+      const ng = svg.append('g');
+      const groups = {};
+      nodes.forEach((n, i) => {
+        const g = ng.append('g').attr('transform', `translate(${n.x},${n.y})`).attr('opacity', 0);
+        g.append('circle').attr('r', 19).attr('fill', BLACK);
+        g.append('text').attr('text-anchor', 'middle').attr('y', -34)
+          .attr('font-family', FONT).attr('font-weight', 700).attr('font-size', 27).attr('fill', BLACK)
+          .text(n.t);
+        g.append('text').attr('text-anchor', 'middle').attr('y', -8)
+          .attr('font-family', FONT).attr('font-size', 19).attr('fill', N4)
+          .text(n.s);
+        const badge = g.append('text').attr('text-anchor', 'middle').attr('y', 50)
+          .attr('font-family', FONT).attr('font-weight', 700).attr('font-size', 21).attr('fill', RED)
+          .attr('opacity', 0).text('breaks');
+        g.transition().delay(D * 0.5 + i * 120).duration(D * 0.6).attr('opacity', 1);
+        groups[n.id] = { g, badge, circle: g.select('circle') };
+      });
+
+      const caption = svg.append('text').attr('x', W / 2).attr('y', H - 6)
+        .attr('text-anchor', 'middle').attr('font-family', FONT).attr('font-size', 24).attr('fill', N5);
+
+      const order = ['cal', 'dp', 'eo']; // which one breaks
+      let k = 0;
+      const tick = () => {
+        const broken = order[k];
+        const kept = nodes.map((n) => n.id).filter((id) => id !== broken);
+        nodes.forEach((n) => {
+          const o = groups[n.id];
+          const isBroken = n.id === broken;
+          o.circle.transition().duration(420)
+            .attr('fill', isBroken ? '#fff' : BLACK)
+            .attr('stroke', isBroken ? RED : 'none')
+            .attr('stroke-width', isBroken ? 4 : 0)
+            .attr('stroke-dasharray', isBroken ? '4 4' : 'none');
+          o.badge.transition().duration(420).attr('opacity', isBroken ? 1 : 0);
+          o.g.transition().duration(420).attr('opacity', isBroken ? 0.55 : 1);
+        });
+        edges.forEach(([a, b]) => {
+          const L = lines[eKey(a, b)];
+          const satisfied = a !== broken && b !== broken;
+          L.transition().duration(420)
+            .attr('stroke', satisfied ? RED : N1)
+            .attr('stroke-width', satisfied ? 7 : 4)
+            .attr('stroke-dasharray', satisfied ? 'none' : '6 8');
+        });
+        const nm = { cal: 'calibration', eo: 'equalized odds', dp: 'demographic parity' };
+        caption.text(`Keep ${nm[kept[0]]} + ${nm[kept[1]]}  →  ${nm[broken]} must give`);
+        k = (k + 1) % order.length;
+      };
+      setTimeout(tick, D + 200);
+      if (!RM) this._timer = setInterval(tick, 2600);
+    };
+    this._drawers['arithmetic'] = (c) => {
+      clear(c);
+      const wrap = d3.select(c);
+      const data = {
+        calib: { rows: [['TPR', 0.83, 0.50], ['FPR', 0.20, 0.10], ['PPV', 0.86, 0.83]], note: 'Calibration holds · equalized odds breaks — TPR differs sharply between groups.' },
+        eo: { rows: [['TPR', 0.70, 0.70], ['FPR', 0.15, 0.15], ['PPV', 0.88, 0.67]], note: 'Equalized odds holds · calibration breaks — PPV (precision) diverges.' },
+      };
+      let cur = 'calib';
+      const btnRow = wrap.append('div').style('display', 'flex').style('gap', '12px').style('margin', '4px 0 8px');
+      const note = wrap.append('div').style('font', `600 25px ${FONT}`).style('color', N7).style('min-height', '34px').style('margin-bottom', '6px');
+      const W = 1480, H = 500, m = { t: 30, r: 30, b: 60, l: 70 };
+      const svg = svgIn(wrap.node(), W, H);
+      const x0 = d3.scaleBand().domain(['TPR', 'FPR', 'PPV']).range([m.l, W - m.r]).padding(0.34);
+      const x1 = d3.scaleBand().domain(['a', 'b']).range([0, x0.bandwidth()]).padding(0.18);
+      const y = d3.scaleLinear().domain([0, 1]).range([H - m.b, m.t]);
+      // gridlines + axis
+      svg.append('g').selectAll('line').data(y.ticks(5)).join('line')
+        .attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y)
+        .attr('stroke', N1).attr('stroke-width', 1);
+      svg.append('g').selectAll('text').data(y.ticks(5)).join('text')
+        .attr('x', m.l - 14).attr('y', (d) => y(d) + 5).attr('text-anchor', 'end')
+        .attr('font-family', FONT).attr('font-size', 18).attr('fill', N4)
+        .text(d3.format('.0%'));
+      svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', BLACK).attr('stroke-width', 2);
+      svg.selectAll('text.mx').data(['TPR', 'FPR', 'PPV']).join('text').attr('class', 'mx')
+        .attr('x', (d) => x0(d) + x0.bandwidth() / 2).attr('y', H - m.b + 34).attr('text-anchor', 'middle')
+        .attr('font-family', FONT).attr('font-weight', 700).attr('font-size', 24).attr('fill', BLACK).text((d) => d);
+      // legend
+      const leg = svg.append('g').attr('transform', `translate(${W - m.r - 290},${m.t - 4})`);
+      [['Group A · base rate 0.6', RED], ['Group B · base rate 0.3', N4]].forEach((d, i) => {
+        const g = leg.append('g').attr('transform', `translate(0,${i * 26})`);
+        g.append('rect').attr('width', 18).attr('height', 18).attr('fill', d[1]);
+        g.append('text').attr('x', 26).attr('y', 14).attr('font-family', FONT).attr('font-size', 18).attr('fill', N5).text(d[0]);
+      });
+      const barG = svg.append('g');
+      const lblG = svg.append('g');
+      const draw = () => {
+        note.text(data[cur].note);
+        const flat = [];
+        data[cur].rows.forEach((r) => { flat.push({ m: r[0], g: 'a', v: r[1] }); flat.push({ m: r[0], g: 'b', v: r[2] }); });
+        const bars = barG.selectAll('rect').data(flat, (d) => d.m + d.g);
+        bars.join(
+          (en) => en.append('rect')
+            .attr('x', (d) => x0(d.m) + x1(d.g)).attr('width', x1.bandwidth())
+            .attr('y', y(0)).attr('height', 0)
+            .attr('fill', (d) => d.g === 'a' ? RED : N4),
+          (up) => up,
+        ).transition().duration(D)
+          .attr('x', (d) => x0(d.m) + x1(d.g)).attr('width', x1.bandwidth())
+          .attr('y', (d) => y(d.v)).attr('height', (d) => y(0) - y(d.v))
+          .attr('fill', (d) => d.g === 'a' ? RED : N4);
+        const labs = lblG.selectAll('text').data(flat, (d) => d.m + d.g);
+        labs.join(
+          (en) => en.append('text').attr('text-anchor', 'middle')
+            .attr('font-family', FONT).attr('font-weight', 700).attr('font-size', 19).attr('fill', BLACK)
+            .attr('opacity', 0),
+          (up) => up,
+        ).attr('x', (d) => x0(d.m) + x1(d.g) + x1.bandwidth() / 2)
+          .text((d) => d3.format('.2f')(d.v))
+          .transition().duration(D)
+          .attr('y', (d) => y(d.v) - 10).attr('opacity', 1);
+      };
+      const mkBtn = (id, label) => {
+        const b = btnRow.append('button').text(label)
+          .style('font', `700 21px ${FONT}`).style('padding', '11px 22px')
+          .style('border', `2px solid ${BLACK}`).style('cursor', 'pointer')
+          .style('border-radius', '0').style('transition', 'all .2s');
+        const paint = () => {
+          const on = cur === id;
+          b.style('background', on ? RED : '#fff').style('color', on ? '#fff' : BLACK)
+            .style('border-color', on ? RED : BLACK);
+        };
+        b.on('click', () => { cur = id; btns.forEach((p) => p()); draw(); });
+        const paintRef = paint; paint();
+        return paintRef;
+      };
+      const btns = [];
+      btns.push(mkBtn('calib', 'Calibration holds'));
+      btns.push(mkBtn('eo', 'Equalized odds holds'));
+      draw();
+    };
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

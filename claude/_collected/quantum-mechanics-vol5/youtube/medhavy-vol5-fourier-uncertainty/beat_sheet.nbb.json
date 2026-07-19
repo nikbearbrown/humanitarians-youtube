@@ -1,0 +1,175 @@
+{
+ "metadata": {
+  "title": "Build a Fourier Bandwidth-Duration Uncertainty Demo with Claude Code + Manim",
+  "slug": "medhavy-vol5-fourier-uncertainty",
+  "topic": "CLAUDE CODE · MANIM",
+  "audience": "NikBearBrown",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "voice": "MEDHAVY",
+  "register": "Teardown",
+  "palette": "teardown",
+  "style_preset": "medhavy",
+  "ground": "#F0EAD6",
+  "accents": {
+   "data": [
+    "#009E73",
+    "#D55E00"
+   ],
+   "annotation": "#009E73",
+   "highlighter": "#F0E442"
+  },
+  "color_semantics": "TEAL = time-domain Gaussian; CRIMSON = frequency-domain FT. INK for all text.",
+  "source_chapter": "quantum-mechanics-vol5/chapters/06-the-fourier-transform.md",
+  "note": "Medhavy register. B00=brand intro; B01-B04=Fourier uncertainty; B05=brand outro.",
+  "total_estimated_duration_seconds": 105.27,
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "MEDHAVY INTRO",
+   "narration_text": "Medhavy A-I. From Sanskrit — meaning intelligent, or intellectually brilliant. The perfect name for our A-I-powered intelligent learning systems.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOpen",
+     "provenance": "proven-core/NikBearBrownOpen",
+     "version": "1",
+     "props": {
+      "topic": "NIK BEAR BROWN",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Build something. Take it apart.",
+       "Explain how it actually works.",
+       "Judge the design. Build better."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 10.0
+  },
+  {
+   "beat_id": "B01",
+   "act": "FOURIER UNCERTAINTY — PROMPT",
+   "narration_text": "The prompt. Claude Code terminal: claude — write a Manim scene, Fourier uncertainty. Gaussian pulse in time with sigma-t equals one picosecond. Show the pulse and its Fourier transform side by side. Label sigma-omega equals one over two-sigma-t equals five times ten-to-the-eleven radians per second. Three things: the rule, the numbers, what to render.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "MedhavyTerminalAsk",
+     "provenance": "reel-local",
+     "version": "1",
+     "props": {
+      "command": "claude \"write a Manim scene:\n  Gaussian pulse: f(t)=e^(−t²/2σ²), σ_t=1ps\n  show FT: F(ω)∝e^(−ω²σ_t²/2)\n  label σ_ω=5×10¹¹ rad/s\n  two panels: time domain / frequency domain\"",
+      "topic": "CLAUDE CODE · MANIM",
+      "segment": "FOURIER UNCERTAINTY",
+      "runningText": "generating scene…"
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 17.0,
+   "audio_file": "mp3/beat-B01.mp3"
+  },
+  {
+   "beat_id": "B02",
+   "act": "FOURIER UNCERTAINTY — SCRIPT",
+   "narration_text": "The CLI writes the file. Before running — read it. Find this line: sigma-omega equals one over two times sigma-t. That is the entire time-frequency uncertainty. Check: sigma-t equals one picosecond gives sigma-omega equals five times ten-to-the-eleven radians per second. That is about eighty gigahertz of bandwidth. The product sigma-t times sigma-omega equals exactly zero-point-five — the minimum. Thirty seconds.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "MedhavyCodeBlock",
+     "provenance": "reel-local",
+     "version": "1",
+     "props": {
+      "filename": "fourier_unc.py",
+      "segment": "FOURIER UNCERTAINTY",
+      "topic": "CLAUDE CODE · MANIM",
+      "code": "# fourier_unc.py  —  Claude Code output\nimport numpy as np\n\nsigma_t = 1e-12   # s  (1 picosecond)\n\n# ← the physics: time-frequency uncertainty\nsigma_w = 1 / (2 * sigma_t)  # 5e11 rad/s\n\nt = np.linspace(-5*sigma_t, 5*sigma_t, 300)\nf_t = np.exp(-t**2 / (2*sigma_t**2))\n\nomega = np.linspace(-3*sigma_w, 3*sigma_w, 300)\nF_w = np.exp(-omega**2 * sigma_t**2 / 2)\n\n# product: sigma_t * sigma_w = 0.500 (minimum)"
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 16.0,
+   "audio_file": "mp3/beat-B02.mp3"
+  },
+  {
+   "beat_id": "B03",
+   "act": "FOURIER UNCERTAINTY — RUN",
+   "narration_text": "Run it. Two things to verify. First: the product. Sigma-t times sigma-omega equals zero-point-five — exactly the minimum uncertainty. The Gaussian is the unique pulse that achieves the lower bound. Second: the shapes. Both pulse and its transform are Gaussian — a Gaussian in time gives a Gaussian in frequency. No other shape has a smaller product. Both checks pass.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B03_FourierUncertaintyRun",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 20.0,
+   "audio_file": "mp3/beat-B03.mp3"
+  },
+  {
+   "beat_id": "B04",
+   "act": "FOURIER UNCERTAINTY — CHANGE",
+   "narration_text": "Iterate: claude — update fourier-unc dot py — halve sigma-t to zero-point-five picoseconds. Watch sigma-omega double to ten-to-the-twelve. The time panel narrows; the frequency panel widens. One parameter. The product stays at zero-point-five. The loop closes.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "MedhavyTerminalAsk",
+     "provenance": "reel-local",
+     "version": "1",
+     "props": {
+      "command": "claude \"update fourier_unc.py:\n  → halve σ_t: 1 ps → 0.5 ps\n  → show σ_ω doubles to 1e12 rad/s\n  → product σ_t·σ_ω stays at 0.5\"",
+      "topic": "CLAUDE CODE · MANIM",
+      "segment": "FOURIER UNCERTAINTY",
+      "runningText": "updating script…"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 14.0,
+   "audio_file": "mp3/beat-B04.mp3"
+  },
+  {
+   "beat_id": "B05",
+   "act": "MEDHAVY OUTRO",
+   "narration_text": "Nik Bear Brown. Brutalist and Educational A-I. On YouTube, at Nik Bear Brown. Nik Bear Brown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "provenance": "proven-core/NikBearBrownOutro",
+     "version": "1",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8.0
+  }
+ ]
+}
