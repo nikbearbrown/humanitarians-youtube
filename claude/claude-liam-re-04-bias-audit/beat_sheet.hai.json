@@ -1,0 +1,282 @@
+{
+ "metadata": {
+  "title": "The Bias Audit: Who Gets Starved by This Engine?",
+  "slug": "claude-liam-re-04-bias-audit",
+  "topic": "COMPUTATIONAL SKEPTICISM — BIAS AUDIT (E4/9)",
+  "register": "Pragmatist",
+  "audience": "claude-liam",
+  "brand": "claude-liam",
+  "persona": "Liam (in for Bear)",
+  "voice": "am_onyx",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Hola, Liam",
+  "folderLabel": "@NikBearBrown",
+  "in_for_bear": true,
+  "playlist": "Build It, Then Doubt It — The Skeptical Reallocation Tool",
+  "series": "claude-liam-re",
+  "episode": 4,
+  "source": "INFO 7375 Computational Skepticism for AI — Reallocation Engine (100 pts)"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Sawubona, Humanitarians",
+      "topic": "The Bias Audit: Who Gets Starved by This Engine?",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Hola — this is Liam. Episode 4 of 9. A reallocation engine does not distribute resources equally — that is the point. But there is a difference between intentional inequality and structural bias. This episode traces where bias enters the pipeline, names the population it starves, and makes you choose the fairness tradeoff explicitly — because you cannot avoid it, and pretending you can is the mistake.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hola, Liam",
+      "topic": "COMPUTATIONAL SKEPTICISM — BIAS AUDIT (E4/9)",
+      "segment": "The Bias Audit: Who Gets Starved by This Engine?",
+      "command": "Trace 4 bias entry points → quantitative fairness metric (fairlearn/aif360) → two fairness definitions in tension → named tradeoff → highest-leverage intervention point.",
+      "runningText": "intentional inequality vs structural bias — trace the entry point, name the tradeoff, choose explicitly…",
+      "output": [
+       "Bias entry point named (sampling / labels / objective / feedback loop)",
+       "Quantitative fairness metric across 2+ subgroups",
+       "Two competing fairness definitions — tradeoff sentence naming the cost"
+      ],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": null
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why The Bias Audit: Who Gets Starved by This Engine? belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "the four bias entry points",
+   "narration_text": "Bias in a reallocation pipeline enters at four points. Sampling bias: the data overrepresents or underrepresents certain units, locations, or populations — so the model learns to optimize for the well-represented ones. Label bias: the outcome variable was assigned by humans whose prior decisions already reflected a bias — the model learns to replicate those decisions. Objective bias: the metric the model maximizes has a different effect on different subgroups — optimizing for average return, for example, can systematically starve high-variance locations even when they have the highest upside. Feedback loop bias: if the engine's past recommendations influence what data is collected about the future, the model trains on the outcome of its own prior decisions, which amplifies any bias that was already there. A reallocation engine running in production almost always develops a feedback loop. Name which of these four is the most likely entry point for bias in your specific pipeline. That is where the fairness metric should focus.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 60,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "Four bias entry points",
+      "artifactHeading": "Sampling · Labels · Objective · Feedback loop",
+      "artifactLines": [
+       "Sampling: data over/underrepresents subgroups → model optimizes for the over-represented.",
+       "Labels: outcome assigned by humans whose prior decisions encoded bias → model replicates it.",
+       "Objective: the metric optimized has different effects on different subgroups.",
+       "Feedback loop: engine's past recommendations become future training data → bias amplifies.",
+       "Production engines almost always develop a feedback loop. Name your primary entry point."
+      ],
+      "sparkLine": "One fairness metric won't catch all four. Name the entry point first, then choose the metric."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": null
+  },
+  {
+   "beat_id": "B02",
+   "act": "quantitative fairness metric + the tradeoff",
+   "narration_text": "The fairness metric. Fairness for a reallocation engine is not a single number — it is a choice between competing definitions, and you must show you understand the tension. Two common definitions in conflict: demographic parity — the engine's output allocation is proportional to the population or need of each group. Individual fairness — similar inputs produce similar outputs, regardless of group membership. These two definitions frequently conflict: you cannot always satisfy both simultaneously. Apply a quantitative fairness metric using a library — Fairlearn or AI Fairness 360 are the standard tools for Python. Compute the disparity in allocations across two or more subgroups. Then name the tradeoff. Not the computation — the sentence that says what one fairness choice costs the other: 'To achieve demographic parity across these groups, the allocation to high-variance locations would decrease by fifteen percent. That is the cost of this fairness choice.' That sentence is the graded deliverable for this component, not the metric output.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 62,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "Fairness metric + the tradeoff",
+      "artifactHeading": "Two definitions in tension — state which you chose and what it costs",
+      "artifactLines": [
+       "Demographic parity: allocation proportional to population/need per group.",
+       "Individual fairness: similar inputs → similar outputs, regardless of group.",
+       "These conflict. You can't always satisfy both. That's the point.",
+       "Tool: Fairlearn or AI Fairness 360 — compute disparity across 2+ subgroups.",
+       "Graded sentence: 'To achieve [fairness A], [cost to group B]. That is the cost I chose.'"
+      ],
+      "sparkLine": "The metric is the computation. The tradeoff sentence is the graded work."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": null
+  },
+  {
+   "beat_id": "B03",
+   "act": "the highest-leverage intervention point",
+   "narration_text": "The intervention point. After the tradeoff is named, find the highest-leverage point in the pipeline where a human could change the outcome. Not the model — the pipeline. Where in the data collection, the objective setting, or the output processing would a deliberate change produce the most improvement in fairness with the least disruption to the engine's primary function? 'Reweighting the training sample to match the known population distribution corrects the sampling bias without changing the objective.' That is a specific intervention at a specific leverage point with a specific mechanism. The delegation map in Episode 8 will assign a human reviewer to this point. Name it now — before the adversarial testing and the causal analysis — because naming it proves you understand the system, not just the model. One intervention point, specifically named, with a specific mechanism and the cost of making that intervention.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 54,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "Highest-leverage intervention point",
+      "artifactHeading": "Where in the pipeline — mechanism + cost",
+      "artifactLines": [
+       "Intervention point: where in the pipeline a deliberate change improves fairness most.",
+       "Not the model — the pipeline (data collection / objective / output processing).",
+       "Example: 'reweight training sample to population distribution → corrects sampling bias, no objective change.'",
+       "Named mechanism + named cost of making the intervention.",
+       "Episode 8 delegation map assigns a human reviewer here. Name it first."
+      ],
+      "sparkLine": "Naming the leverage point proves you understand the system, not just the model."
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": null
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "lead_silence_s": 0.5,
+   "narration_text": "Verdict for the Bias Audit. Trace the primary bias entry point: sampling, labels, objective, or feedback loop — name which one is primary in your pipeline. Apply a quantitative fairness metric across two or more subgroups using Fairlearn or AI Fairness 360. Put two competing fairness definitions in tension and name the tradeoff — that is the graded deliverable. Find the highest-leverage intervention point in the pipeline and name the specific mechanism and its cost. Episode 5 produces an explanation of the engine's decisions — and then catches it lying by omission.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 40,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "The Bias Audit: Who Gets Starved by This Engine?",
+      "artifactHeading": "Audit rules — Component 3 (10 pts)",
+      "artifactLines": [
+       "Name primary entry point: sampling / labels / objective / feedback loop.",
+       "Fairness metric: Fairlearn or AIF360, 2+ subgroups, quantitative disparity.",
+       "Two definitions in tension: name which you chose + the cost to the other.",
+       "Intervention point: specific pipeline location + mechanism + cost.",
+       "Ep 5: SHAP/LIME explanation — then find where it misleads."
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": null
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "your turn handoff",
+   "narration_text": "Your turn. The bias audit prompt. Paste this into Claude and fill in the brackets. The prompt reads: I am running a bias audit on my reallocation engine. My domain is: [describe]. The protected or meaningful subgroups in my dataset are: [list them — demographic groups, geographic regions, resource types, etc.]. My engine's objective is: [paste the one-sentence statement]. Draft three things. First: trace the four bias entry points — sampling, labels, objective, feedback loop — for my specific domain, with one sentence each on which is most likely to be the primary entry point and why. Second: contrast two fairness definitions for my domain — demographic parity and individual fairness — and describe one concrete case where satisfying one makes the other worse in my specific context. Third: name one highest-leverage intervention point in my pipeline — a specific place where a deliberate change would improve fairness, with the specific mechanism and the cost of making that change. After you get the draft, find the tradeoff sentence. Not the metric output — the sentence that says what one fairness choice costs in terms of the other. That sentence is what goes in the report. If it is missing or vague, the audit is not complete.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 62,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "COMPUTATIONAL SKEPTICISM — BIAS AUDIT (E4/9)",
+      "segment": "The Bias Audit: Who Gets Starved by This Engine?",
+      "command": "Domain: [describe]. Subgroups: [list]. Objective: [one sentence]. → Trace 4 entry points (1 sentence each, name primary) + contrast 2 fairness definitions (concrete conflict in your domain) + 1 intervention point (mechanism + cost).",
+      "runningText": "the tradeoff sentence — what one fairness choice costs in terms of the other — that's the graded work…",
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": null
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "The Bias Audit: Who Gets Starved by This Engine? Liam, in for Bear.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 5,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "The Bias Audit: Who Gets Starved by This Engine?",
+      "handle": "@NikBearBrown",
+      "subline": "Liam, in for Bear."
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": null
+  }
+ ]
+}
