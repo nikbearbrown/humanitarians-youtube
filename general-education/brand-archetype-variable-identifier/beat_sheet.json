@@ -1,0 +1,86 @@
+{
+ "metadata": {
+  "title": "Causal Inference — Brand Archetype Causal Audit",
+  "slug": "brand-archetype-variable-identifier",
+  "topic": "CAUSAL INFERENCE — BRAND ARCHETYPE CAUSAL AUDIT",
+  "register": "Teardown",
+  "voice": "NikBearBrown",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 NEXT STEPS · B09 outro. Variable classification: confounder/mediator/collider + back-door criterion for brand_archetype -> revenue_growth.",
+  "total_estimated_duration_seconds": 118
+ },
+ "beats": [
+  {"beat_id": "B00", "act": "INTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOpen", "props": {"topic": "CAUSAL INFERENCE",
+       "lines": ["Nik Bear Brown", "Brand Archetype Causal Audit."]}}},
+   "estimated_duration_s": 5},
+
+  {"beat_id": "B01", "act": "PROBLEM — why care", "role_note": "the problem, the context, the stakes — BEFORE the CLI",
+   "narration_text": "A brand consultant claims: switching brand archetype drives revenue growth. They run a regression and control for everything — advertising spend, brand awareness, pricing strategy. But controlling for everything is wrong. A mediator on the causal path blocks the signal. A collider opens a back-door that was closed. The causal audit classifies each variable before you decide what to adjust for.",
+   "visual_intent": "title card: brand_archetype -> revenue_growth claim; three variable types — confounder (adjust), mediator (do NOT adjust), collider (do NOT adjust)",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 14},
+
+  {"beat_id": "B02", "act": "ASK", "role_note": "terminal (Onda)",
+   "narration_text": "Into the terminal: claude — build a Python brand causal variable identifier: input the brand-archetype-switch to revenue-growth claim; call Claude to enumerate eight candidate variables; classify each as confounder, mediator, collider, or uncertain; propose a DAG edge list; run the back-door criterion.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"Build a Python brand causal variable identifier:\n  input: brand_archetype_switch -> revenue_growth claim;\n  call Claude to enumerate 8 candidate variables;\n  classify as confounder/mediator/collider/uncertain;\n  propose DAG edge list;\n  run back-door criterion\"",
+       "topic": "CAUSAL INFERENCE — BRAND ARCHETYPE CAUSAL AUDIT", "segment": "VARIABLE CLASSIFICATION", "runningText": "generating audit…"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B03", "act": "CODE", "role_note": "terminal (Onda)",
+   "narration_text": "Read it. The classification logic calls Claude for each candidate variable: given the treatment, outcome, and domain, is this variable a confounder, a mediator, a collider, or uncertain? The result is a dictionary that drives the adjustment rule — adjust only confounders, never mediators or colliders.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {
+       "filename": "brand_audit.py", "topic": "CAUSAL INFERENCE — BRAND ARCHETYPE CAUSAL AUDIT", "segment": "VARIABLE CLASSIFICATION",
+       "code": "# brand_audit.py — Claude Code output\ncandidates = [\n    'advertising_spend', 'pricing_strategy', 'brand_awareness',\n    'market_share', 'customer_lifetime_value', 'product_quality',\n    'competitor_spend', 'economic_conditions'\n]\n\n# Claude classifies each variable\nclassified = {var: claude_classify(var, treatment, outcome, domain)\n              for var in candidates}\n# -> {'advertising_spend': 'confounder',\n#     'pricing_strategy': 'mediator',\n#     'brand_awareness':  'collider', ...}\n\nadjust_for = [v for v, cls in classified.items() if cls == 'confounder']"}}},
+   "estimated_duration_s": 15},
+
+  {"beat_id": "B04", "act": "OUTPUT — run", "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it. The DAG builds out: brand archetype on the left, revenue growth on the right. Advertising spend at the top — a confounder, shown in gold, arrows pointing into both sides. Pricing strategy below — a mediator in blue, on the causal path. Brand awareness on the upper right — a collider in pink, caused by both treatment and outcome. Adjust only for advertising spend.",
+   "visual_intent": "Manim: DAG color-coded by variable type — GOLD confounder (ad_spend), blue mediator (pricing), pink collider (brand_awareness); arrows show causal structure; verdict: 'Adjust for ad_spend only'",
+   "shot": {"type": "GRAPHIC", "source": "manim", "motion": "fade",
+     "manim": {"scene_class": "B04_BrandArchetypeDAG", "file": "vox_scenes.py"}},
+   "estimated_duration_s": 17},
+
+  {"beat_id": "B05", "act": "CHANGE — check & revise", "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "The original regression controlled for brand awareness — a collider. That opened a spurious back-door path and biased the estimate. Iterate: re-run the back-door criterion after removing brand awareness from the adjustment set and confirm the effect is now identified.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
+       "command": "claude \"update brand_audit.py:\n  -> remove brand_awareness from adjustment set\n  -> re-run back-door criterion\n  -> confirm: does ad_spend alone identify the effect?\"",
+       "topic": "CAUSAL INFERENCE — BRAND ARCHETYPE CAUSAL AUDIT", "segment": "VARIABLE CLASSIFICATION", "runningText": "updating audit…"}}},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B06", "act": "OUTPUT — revised", "role_note": "slate — fill with screen-recording",
+   "narration_text": "Re-run. Back-door criterion with adjustment set containing only advertising spend: identified equals true. Removing the collider from the adjustment set restored the identification. The original regression, controlling for everything, was overcorrecting.",
+   "visual_intent": "screen-recording or slate: terminal showing identified=True after removing brand_awareness from adjustment set",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 12},
+
+  {"beat_id": "B07", "act": "SUMMARY", "role_note": "the lesson — one beat",
+   "narration_text": "More controls is not better causal inference. Adjusting for a mediator blocks the path you are trying to measure. Adjusting for a collider opens a path that was closed. The causal audit classifies variables first — then you decide what to adjust for. Adjust only confounders.",
+   "visual_intent": "recap card: three variable types and their adjustment rules — confounder: adjust; mediator: do NOT adjust; collider: do NOT adjust",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 11},
+
+  {"beat_id": "B08", "act": "NEXT STEPS", "role_note": "what to do next",
+   "narration_text": "Your move: take your current regression and classify every control variable using this audit. You will likely find at least one mediator or collider in your adjustment set. Remove it and re-run — if your estimate changes substantially, that variable was doing causal damage.",
+   "visual_intent": "next-steps card: 1) classify every control variable in your regression, 2) remove mediators and colliders from adjustment set, 3) compare estimates",
+   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
+   "estimated_duration_s": 10},
+
+  {"beat_id": "B09", "act": "OUTRO",
+   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
+     "remotion": {"pattern": "NikBearBrownOutro", "props": {
+       "brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI",
+       "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}},
+   "estimated_duration_s": 8}
+ ]
+}

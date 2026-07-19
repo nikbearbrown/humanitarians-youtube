@@ -1,0 +1,230 @@
+{
+ "metadata": {
+  "slug": "collider-bias-simulation",
+  "title": "Detect Collider Bias in a Hiring Pipeline with Claude",
+  "topic": "CAUSAL REASONING",
+  "voice": "af_kore",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "causal-reasoning/chapters/07-colliders-part-1.md",
+  "segment": "COLLIDER BIAS",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "af_kore"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Yassou, Humanitarians",
+      "topic": "Detect Collider Bias in a Hiring Pipeline with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "role": "INTRO",
+   "type": "SLATE",
+   "narration": "Among hired candidates, skill and personality are negatively correlated. That correlation does not exist in the general population. Conditioning on a collider created it.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "narration_text": "Here is why Detect Collider Bias in a Hiring Pipeline with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "role": "PROBLEM",
+   "type": "SLATE",
+   "narration": "A collider is a node that receives arrows from two causes. Conditioning on it opens a path that was closed — creating a spurious correlation between the two causes.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B02",
+   "role": "ASK",
+   "type": "SLATE",
+   "narration": "We ask Claude to simulate five thousand candidates with independent skill and personality scores, hire anyone where their sum exceeds one, and compute the correlation before and after selection.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Simulate 5000 candidates:\\n  skill ~ N(0,1), personality ~ N(0,1)\\n  hire if skill+personality > 1\\n  compute Pearson r:\\n    full population vs hired subset\"",
+      "topic": "CAUSAL REASONING",
+      "segment": "COLLIDER BIAS",
+      "runningText": "simulating candidates…"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B03",
+   "role": "CODE",
+   "type": "SLATE",
+   "narration": "Claude writes the simulation. Population r is near zero — the variables are independent by construction. Hired subset r is approximately negative 0.65 — the collider opened a spurious path.",
+   "estimated_duration_s": 14.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "collider_sim.py",
+      "segment": "COLLIDER BIAS",
+      "topic": "CAUSAL REASONING",
+      "code": "# collider_sim.py — Claude Code output\nimport numpy as np\nfrom scipy import stats\nnp.random.seed(42)\nN = 5000\nskill = np.random.randn(N)\npersonality = np.random.randn(N)\n\n# hire = collider node\nhired = (skill + personality) > 1.0\n\nr_pop, _ = stats.pearsonr(skill, personality)\nr_sub, _ = stats.pearsonr(skill[hired], personality[hired])\n\nprint(f'Population r = {r_pop:.3f}')  # ≈ 0.00\nprint(f'Hired subset r = {r_sub:.3f}') # ≈ -0.65"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B04",
+   "role": "OUTPUT",
+   "type": "MANIM",
+   "narration": "Two panels: full population, correlation near zero. Hired subset, correlation minus 0.65. The hiring threshold is the collider. Conditioning on it opened a path between two independent variables.",
+   "estimated_duration_s": 20.0,
+   "shot": {
+    "source": "manim/B04.mp4",
+    "motion": "play",
+    "manim": {
+     "class": "B04_ColliderSim",
+     "scene_file": "vox_scenes.py"
+    }
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B05",
+   "role": "CHANGE",
+   "type": "SLATE",
+   "narration": "Now we vary the hiring threshold from strict top ten percent to lenient top sixty percent and observe how collider bias strength changes.",
+   "estimated_duration_s": 10.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Vary hiring threshold:\\n  strict (top 10%), moderate (top 30%),\\n  lenient (top 60%), no filter.\\n  Report hired subset r for each.\"",
+      "topic": "CAUSAL REASONING",
+      "segment": "COLLIDER BIAS",
+      "runningText": "varying threshold…"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B06",
+   "role": "OUTPUT",
+   "type": "MANIM",
+   "narration": "Stricter selection creates stronger collider bias. Top ten percent: r equals negative 0.82. Top sixty percent: r equals negative 0.35. No filter: r equals zero. The collider bias is strongest where selection is most restrictive.",
+   "estimated_duration_s": 14.0,
+   "shot": {
+    "source": "manim/B06.mp4",
+    "motion": "play",
+    "manim": {
+     "class": "B06_ThresholdEffect",
+     "scene_file": "vox_scenes.py"
+    }
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B07",
+   "role": "SUMMARY",
+   "type": "SLATE",
+   "narration": "The hiring paradox is not an illusion — it is a structural consequence of conditioning on a collider. The correlation only appears in the selected subset because selection created the path.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B08",
+   "role": "NEXT",
+   "type": "SLATE",
+   "narration": "Next: translating a causal claim across three registers — statistical, causal, and clinical.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  },
+  {
+   "beat_id": "B09",
+   "role": "OUTRO",
+   "type": "SLATE",
+   "narration": "Like and subscribe for more causal reasoning with Claude.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "af_kore"
+  }
+ ]
+}
