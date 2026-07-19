@@ -1,81 +1,117 @@
-# Humanitarians AI YouTube Production Library
+# Humanitarians YouTube Production Library
 
-This repository contains the non-MP3, non-MP4 materials used to research, script, assemble, and quality-check Humanitarians AI video projects. It mirrors the YouTube production tree maintained at `books/humanitarians_html/youtube` in the Bear Textbooks workspace.
+This repository contains course, educational, and public-interest YouTube production materials maintained under `books/humanitarians_html/youtube` in the Bear Textbooks workspace. It preserves the files needed to inspect, edit, fact-check, and rebuild videos without storing final MP3 or MP4 renders.
 
-The repository is intended to preserve production provenance and make projects inspectable without storing final MP3 or MP4 renders.
+## Organization
 
-## Main collection
+Every beat-sheet video project lives exactly two levels below the repository root:
 
-### `claude/`
+```text
+<topic>/<video-project>/
+```
 
-The consolidated Claude and AI video archive. It contains approximately 155,000 files and more than 5,600 beat-sheet variants.
+For example:
 
-The directory has two broad forms of content:
+```text
+education/example-course-video/
+cancer-biology/apoptosis-vs-necrosis/
+quantum-mechanics/example-quantum-video/
+claude/example-claude-video/
+```
 
-- `claude/_collected/` preserves projects imported from other books and production workspaces using their original relative paths.
-- Direct children of `claude/` are Humanitarians AI production folders maintained as first-class projects, including profiles, explainers, and topic-driven videos.
+There are no `_collected` source trees. A project belongs directly under its best-fit topic, regardless of the book or workspace from which it originated. Names are expanded with source context only when necessary to prevent collisions.
 
-The preserved hierarchy prevents naming collisions and records where each collected project originated.
+## Topic routing
+
+The primary routing source is [`books/YouTube.json`](../../YouTube.json), which maps source folders to topics and YouTube playlists. Folder matching is case-insensitive. When a source is absent from that file, its topic is inferred conservatively from the source and project names.
+
+Courses and educational video projects belong in this Humanitarians library. Musinique is reserved for independent music and Claude-specific creative work; Medhavy is reserved for its science collections.
+
+The current library contains 3,747 beat-sheet project folders across 21 topics:
+
+| Topic | Projects |
+|---|---:|
+| Artificial Intelligence | 219 |
+| Branding | 34 |
+| Business | 1 |
+| Cancer | 55 |
+| Cancer Biology | 226 |
+| Claude | 1,536 |
+| Codex | 40 |
+| Computer Science | 91 |
+| Design | 465 |
+| Economics | 41 |
+| Education | 81 |
+| Finance | 52 |
+| General Education | 52 |
+| Marketing | 36 |
+| Mathematics | 22 |
+| Music | 28 |
+| Nanomedicine | 119 |
+| Physics | 6 |
+| Quantum Mechanics | 538 |
+| Video Production | 74 |
+| Writing | 31 |
+
+These counts describe folders containing beat-sheet files. A topic can also contain course documentation or other supporting material without a beat sheet.
 
 ## Root production documents
 
-The repository root may also contain batch manifests, build logs, project-idea documents, and production scripts. These files describe work across multiple video folders and should be read before rebuilding or reorganizing a batch.
+The repository root also contains batch manifests, build logs, project-idea documents, and production scripts that apply across multiple projects. Read these before rebuilding or reorganizing a batch.
 
-## Typical project anatomy
+## Typical project contents
 
-A production folder may include:
+A project may contain:
 
-- `beat_sheet.json` plus voice, brand, short-form, or alternate-cut variants
-- `FACTCHECK.md`, `PEDAGOGY.md`, `PROMPTS.md`, `SHOTLIST.md`, `SOURCES.md`, or related editorial documents
+- `beat_sheet.json` and alternate voice, brand, format, or cut variants
+- `FACTCHECK.md`, `PEDAGOGY.md`, `PROMPTS.md`, `SHOTLIST.md`, and `SOURCES.md`
 - Python or JavaScript scene and rendering code
-- `clips/manifest.json`, timing data, and concatenation files
-- image, diagram, SVG, typography, and supporting assets under `media/`
-- `_qc/` frames, overview sheets, layout audits, and final QC reports
-- build prompts, status notes, receipts, citations, and publication metadata
+- clip manifests, timing metadata, and concatenation instructions
+- images, diagrams, SVGs, typography, and other assets under `media/`
+- QC frames, overview sheets, layout audits, and final reports
+- build prompts, status notes, citations, receipts, and publication metadata
 
-The exact contents vary by project and production generation. Some directories are complete builds; others are source packages, alternates, or retained QC snapshots.
+Some folders are complete builds; others are source packages, alternates, or retained quality-control snapshots.
 
-## Finding a project
+## Finding projects
+
+Run these commands from `books/humanitarians_html/youtube`:
 
 ```bash
-# Find profile projects
-find claude -type d -iname '*profile*'
+# Show all topic directories
+find . -mindepth 1 -maxdepth 1 -type d ! -name .git | sort
 
-# Find a person or topic across all production text
-rg -i 'Aditi Deodhar|Aravind Balaji|responsible AI' claude
+# Find projects by folder-name fragment
+find . -mindepth 2 -maxdepth 2 -type d -iname '*profile*'
+
+# Search all production text
+rg -i 'Aditi Deodhar|Aravind Balaji|responsible AI'
 
 # List primary beat sheets
-find claude -name 'beat_sheet.json'
+find . -mindepth 3 -maxdepth 3 -name 'beat_sheet.json'
 
 # Find source and fact-check documents
-find claude -type f \( -name 'SOURCES.md' -o -name 'FACTCHECK.md' \)
+find . -type f \( -name 'SOURCES.md' -o -name 'FACTCHECK.md' \)
 
 # Locate quality-control artifacts
-find claude -type f \( -iname '*qc*' -o -iname '*audit*' \)
+find . -type f \( -iname '*qc*' -o -iname '*audit*' \)
 ```
+
+## Adding or moving a project
+
+1. Look up the source folder in `books/YouTube.json`.
+2. Convert its topic to lowercase kebab case.
+3. Put the complete project at `<topic>/<video-project>/`.
+4. If the same project name already exists, add concise source context instead of overwriting it.
+5. Do not introduce another source, course, `youtube`, or `_collected` layer.
+6. Keep final MP3 and MP4 renders outside this repository.
+
+The reusable organizer is `SCRIPTS/flatten_humanitarians_youtube.py` at the Bear Textbooks repository root.
 
 ## Media policy
 
-The root `.gitignore` excludes:
-
-```gitignore
-*.mp3
-*.mp4
-```
-
-Directories named `mp3/` may contain tracked JSON timing files; these are metadata, not audio. Other supporting formats—including PNG, JPEG, SVG, M4A, Markdown, JSON, and source code—may be included when they are part of the production package.
-
-## Working safely
-
-1. Read the beat sheet and editorial notes before changing a project.
-2. Check source, fact-check, and pedagogy documents for claims and intent.
-3. Use timing and manifest files to understand beat-to-asset relationships.
-4. Inspect QC frames and layout reports before accepting visual changes.
-5. Preserve the collected source hierarchy when adding projects from elsewhere.
-6. Keep final MP3 and MP4 renders outside this repository.
-7. Avoid assuming that generated files are canonical when hand-authored source files are available.
+The root `.gitignore` excludes all `*.mp3` and `*.mp4` files. A directory named `mp3/` may still contain tracked JSON timing metadata. Supporting formats such as PNG, JPEG, SVG, M4A, Markdown, JSON, HTML, and source code may be retained when required to reconstruct or inspect a production.
 
 ## Repository scope
 
-This is a production archive for Humanitarians AI YouTube work. It is not the Humanitarians AI website, not a deployment repository, and not a storage location for finished video distribution files.
-
+This is a production archive for Humanitarians YouTube courses and educational videos. It is not the Humanitarians website, a deployment repository, or storage for finished distribution media.
