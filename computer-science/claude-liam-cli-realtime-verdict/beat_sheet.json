@@ -1,215 +1,284 @@
 {
-  "metadata": {
-    "title": "Build a Real-Time Verdict Module with Claude Code",
-    "slug": "claude-liam-cli-realtime-verdict",
-    "topic": "EMBEDDED AI — REAL-TIME",
-    "register": "Teardown",
-    "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
-    "palette": "claude",
-    "audience": "Claude",
-    "channel": "NikBearBrown",
-    "build": {
-      "at": "2026-07-17T16:27:59",
-      "cut": "master",
-      "filled": 7,
-      "of": 7,
-      "slates": [],
-      "skin_warnings": []
-    }
+ "metadata": {
+  "title": "Build a Real-Time Verdict Module with Claude Code",
+  "slug": "claude-liam-cli-realtime-verdict",
+  "topic": "EMBEDDED AI — REAL-TIME",
+  "register": "Pragmatist",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "audience": "Claude",
+  "channel": "hai",
+  "build": {
+   "at": "2026-07-17T16:27:59",
+   "cut": "master",
+   "filled": 7,
+   "of": 7,
+   "slates": [],
+   "skin_warnings": []
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "COLD OPEN",
-      "narration_text": "Hello. This is Liam, in for Bear. Fast enough on average is how safety-critical AI fails. The deadline you must never miss isn't the mean — it's the worst case.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "command": "claude \"write realtime.py: inputs deadline_ms, deadline_class, measured_latencies[]. Compute WCET (tail, not mean), classify soft/firm/hard, emit verdict + pattern if in a hard loop.\"",
-            "topic": "EMBEDDED AI — REAL-TIME",
-            "segment": "Build a Real-Time Verdict Module with Claude Code",
-            "greeting": "Hello, Liam",
-            "runningText": "running…",
-            "output": [
-              "mean: 38ms  95th: 55ms  99th: 80ms  deadline: 50ms",
-              "VERDICT: FAILS (WCET exceeds deadline)"
-            ],
-            "folderLabel": "@NikBearBrown"
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 10,
-      "audio_file": "mp3/beat-B00.mp3",
-      "actual_duration_s": 9.34,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:27:59"
-      }
-    },
-    {
-      "beat_id": "BREF",
-      "act": "TEXTBOOK FIGURE",
-      "narration_text": "From the book: hard, firm, and soft real-time compared on deadline tolerance and consequence of miss. Our verdict script classifies your system and checks whether the AI fits the timing envelope.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "media",
-        "motion": "fade",
-        "file": "BREF.png"
-      },
-      "estimated_duration_s": 5,
-      "audio_file": "mp3/beat-BREF.mp3",
-      "actual_duration_s": 11.52,
-      "build": {
-        "status": "STILL",
-        "src": "media/BREF.png",
-        "filled_by": "still",
-        "at": "2026-07-17T16:27:59"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "MANIM — Histogram building: mean at 38 ms",
-      "narration_text": "Build the latency histogram from measured samples. Bars pile up around the mean — 38 milliseconds. The distribution looks good. Mean is well under the 50-millisecond deadline. Ship it? Not yet. The mean is not the metric that matters.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "fade",
-        "manim": {
-          "scene_class": "B01_HistogramBuild",
-          "file": "scenes.py"
-        }
-      },
-      "estimated_duration_s": 12,
-      "audio_file": "mp3/beat-B01.mp3",
-      "actual_duration_s": 12.93,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B01.mp4",
-        "filled_by": "manim:B01_HistogramBuild",
-        "at": "2026-07-17T16:27:59"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "MANIM — WCET tail extends past 50 ms deadline",
-      "narration_text": "Extend the histogram to its tail. The 95th percentile: 55 milliseconds — over the 50-millisecond deadline. The 99th percentile: 80 milliseconds. WCET — worst-case execution time — is the tail of the real distribution. One in a hundred inferences already misses the deadline. For a soft deadline, that might be acceptable. For a hard deadline, the device fails its safety case.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "fade",
-        "manim": {
-          "scene_class": "B02_WCETTail",
-          "file": "scenes.py"
-        }
-      },
-      "estimated_duration_s": 15,
-      "audio_file": "mp3/beat-B02.mp3",
-      "actual_duration_s": 21.23,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B02.mp4",
-        "filled_by": "manim:B02_WCETTail",
-        "at": "2026-07-17T16:27:59"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "MANIM — Jitter stall pushes tail to 120 ms",
-      "narration_text": "Add jitter. A garbage-collection pause or DMA interrupt introduces a stall. The worst-case tail extends to 120 milliseconds — 70 milliseconds past the deadline. This is the safety case everyone misses: the nominal distribution passes, but the jitter distribution fails. The real-time verdict must include jitter sources.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "fade",
-        "manim": {
-          "scene_class": "B03_JitterStall",
-          "file": "scenes.py"
-        }
-      },
-      "estimated_duration_s": 14,
-      "audio_file": "mp3/beat-B03.mp3",
-      "actual_duration_s": 18.5,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B03.mp4",
-        "filled_by": "manim:B03_JitterStall",
-        "at": "2026-07-17T16:27:59"
-      }
-    },
-    {
-      "beat_id": "B04",
-      "act": "YOUR TURN",
-      "narration_text": "Your turn. Ask Claude: write realtime.py — inputs: deadline in milliseconds, deadline class, and a list of measured latencies. Compute WCET as the tail of the distribution, not the mean. Classify soft, firm, or hard deadline. Emit a verdict plus a pattern recommendation if running in a hard loop. WCET is the tail of the real distribution, not the mean. Add jitter from a GC stall or DMA interrupt and show the tail blow past the deadline — that is the safety case everyone misses.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "command": "claude \"write realtime.py: inputs deadline_ms, deadline_class, measured_latencies[]. Compute WCET (tail, not mean), classify soft/firm/hard, emit verdict + pattern if in a hard loop.\"",
-            "topic": "EMBEDDED AI — REAL-TIME",
-            "segment": "Your Turn",
-            "greeting": "Your turn.",
-            "runningText": "paste this into Claude…",
-            "folderLabel": "@NikBearBrown"
-          },
-          "rendered": {
-            "out": "media/B04.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 15,
-      "audio_file": "mp3/beat-B04.mp3",
-      "actual_duration_s": 26.35,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B04.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:27:59"
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "OUTRO",
-      "narration_text": "Liam, in for Bear.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "props": {
-            "title": "Build a Real-Time Verdict Module with Claude Code",
-            "handle": "@NikBearBrown",
-            "subline": "embedded ai · liam, in for bear"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 5,
-      "audio_file": "mp3/beat-B05.mp3",
-      "actual_duration_s": 1.94,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:27:59"
-      }
+  "voice": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Bula, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build a Real-Time Verdict Module with Claude Code",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "narration_text": "Hello. This is Liam, in for Bear. Fast enough on average is how safety-critical AI fails. The deadline you must never miss isn't the mean — it's the worst case.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"write realtime.py: inputs deadline_ms, deadline_class, measured_latencies[]. Compute WCET (tail, not mean), classify soft/firm/hard, emit verdict + pattern if in a hard loop.\"",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — REAL-TIME",
+      "segment": "Build a Real-Time Verdict Module with Claude Code",
+      "greeting": "Hello, Liam",
+      "runningText": "running…",
+      "output": [
+       "mean: 38ms  95th: 55ms  99th: 80ms  deadline: 50ms",
+       "VERDICT: FAILS (WCET exceeds deadline)"
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 9.34,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:27:59"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Build a Real-Time Verdict Module with Claude Code belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"write realtime.py: inputs deadline_ms, deadline_class, measured_latencies[]. Compute WCET (tail, not mean), classify soft/firm/hard, emit verdict + pattern if in a hard loop.\"",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — REAL-TIME",
+      "segment": "Build a Real-Time Verdict Module with Claude Code",
+      "greeting": "Hello, Liam",
+      "runningText": "running…",
+      "output": [
+       "mean: 38ms  95th: 55ms  99th: 80ms  deadline: 50ms",
+       "VERDICT: FAILS (WCET exceeds deadline)"
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "BREF",
+   "act": "TEXTBOOK FIGURE",
+   "narration_text": "From the book: hard, firm, and soft real-time compared on deadline tolerance and consequence of miss. Our verdict script classifies your system and checks whether the AI fits the timing envelope.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "media",
+    "motion": "fade",
+    "file": "BREF.png"
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-BREF.mp3",
+   "actual_duration_s": 11.52,
+   "build": {
+    "status": "STILL",
+    "src": "media/BREF.png",
+    "filled_by": "still",
+    "at": "2026-07-17T16:27:59"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "MANIM — Histogram building: mean at 38 ms",
+   "narration_text": "Build the latency histogram from measured samples. Bars pile up around the mean — 38 milliseconds. The distribution looks good. Mean is well under the 50-millisecond deadline. Ship it? Not yet. The mean is not the metric that matters.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B01_HistogramBuild",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 12.93,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B01.mp4",
+    "filled_by": "manim:B01_HistogramBuild",
+    "at": "2026-07-17T16:27:59"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "MANIM — WCET tail extends past 50 ms deadline",
+   "narration_text": "Extend the histogram to its tail. The 95th percentile: 55 milliseconds — over the 50-millisecond deadline. The 99th percentile: 80 milliseconds. WCET — worst-case execution time — is the tail of the real distribution. One in a hundred inferences already misses the deadline. For a soft deadline, that might be acceptable. For a hard deadline, the device fails its safety case.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B02_WCETTail",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 21.23,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B02.mp4",
+    "filled_by": "manim:B02_WCETTail",
+    "at": "2026-07-17T16:27:59"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "MANIM — Jitter stall pushes tail to 120 ms",
+   "narration_text": "Add jitter. A garbage-collection pause or DMA interrupt introduces a stall. The worst-case tail extends to 120 milliseconds — 70 milliseconds past the deadline. This is the safety case everyone misses: the nominal distribution passes, but the jitter distribution fails. The real-time verdict must include jitter sources.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B03_JitterStall",
+     "file": "scenes.py"
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 18.5,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B03.mp4",
+    "filled_by": "manim:B03_JitterStall",
+    "at": "2026-07-17T16:27:59"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "YOUR TURN",
+   "narration_text": "Your turn. Ask Claude: write realtime.py — inputs: deadline in milliseconds, deadline class, and a list of measured latencies. Compute WCET as the tail of the distribution, not the mean. Classify soft, firm, or hard deadline. Emit a verdict plus a pattern recommendation if running in a hard loop. WCET is the tail of the real distribution, not the mean. Add jitter from a GC stall or DMA interrupt and show the tail blow past the deadline — that is the safety case everyone misses.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"write realtime.py: inputs deadline_ms, deadline_class, measured_latencies[]. Compute WCET (tail, not mean), classify soft/firm/hard, emit verdict + pattern if in a hard loop.\"",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — REAL-TIME",
+      "segment": "Your Turn",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 26.35,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:27:59"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "OUTRO",
+   "narration_text": "Liam, in for Bear. From Humanitarians AI.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Build a Real-Time Verdict Module with Claude Code",
+      "handle": "@HumanitariansAI",
+      "subline": "embedded ai · liam, in for bear"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 1.94,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:27:59"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }

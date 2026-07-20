@@ -1,203 +1,271 @@
 {
-  "metadata": {
-    "title": "Your CPU Spends Two-Thirds of Its Time Not Computing",
-    "slug": "claude-liam-cpu-overhead-gap",
-    "topic": "EMBEDDED AI — COMPUTE",
-    "register": "Teardown",
-    "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
-    "palette": "claude",
-    "audience": "Claude",
-    "channel": "NikBearBrown",
-    "build": {
-      "at": "2026-07-17T16:14:07",
-      "cut": "master",
-      "filled": 7,
-      "of": 7,
-      "slates": [],
-      "skin_warnings": []
-    }
+ "metadata": {
+  "title": "Your CPU Spends Two-Thirds of Its Time Not Computing",
+  "slug": "claude-liam-cpu-overhead-gap",
+  "topic": "EMBEDDED AI — COMPUTE",
+  "register": "Pragmatist",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "audience": "Claude",
+  "channel": "hai",
+  "build": {
+   "at": "2026-07-17T16:14:07",
+   "cut": "master",
+   "filled": 7,
+   "of": 7,
+   "slates": [],
+   "skin_warnings": []
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "COLD OPEN",
-      "narration_text": "Kumusta, Liam. This is Liam, in for Bear. On a matrix multiply — the thing processors supposedly do — only thirty percent of the CPU's cycles are arithmetic.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "command": "Why does my NPU outperform my CPU by 3× on the same matrix multiply?",
-            "topic": "EMBEDDED AI — COMPUTE",
-            "segment": "CPU Overhead Gap",
-            "greeting": "Kumusta, Liam",
-            "runningText": "computing…",
-            "output": [
-              "Only 30% of CPU cycles do arithmetic. The other 70% is overhead. An NPU hard-wires the pattern — over 90% of its time is useful work."
-            ],
-            "folderLabel": "@NikBearBrown"
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 9,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:14:07"
-      }
-    },
-    {
-      "beat_id": "BREF",
-      "act": "TEXTBOOK FIGURE",
-      "narration_text": "The book's side-by-side: a Cortex-M7 CPU versus a dedicated NPU on the same hundred-twenty-eight by one-twenty-eight matmul. The CPU spends most cycles on overhead. The NPU almost none.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "media",
-        "motion": "fade",
-        "file": "BREF.png"
-      },
-      "estimated_duration_s": 5,
-      "build": {
-        "status": "STILL",
-        "src": "media/BREF.png",
-        "filled_by": "still",
-        "at": "2026-07-17T16:14:07"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "CPU CYCLE BAR",
-      "narration_text": "Here's a CPU on matrix multiply. Thirty percent arithmetic — multiply, accumulate. Seventy percent overhead: instruction fetch, cache misses, pipeline hazards, branch prediction. That's a general-purpose machine being general-purpose. It can run anything, so it's not optimized for the one thing you asked it to do.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "accumulate",
-        "manim": {
-          "scene_file": "scenes.py",
-          "scene_class": "B01_CpuBar"
-        }
-      },
-      "estimated_duration_s": 18,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B01.mp4",
-        "filled_by": "manim:B01_CpuBar",
-        "at": "2026-07-17T16:14:07"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "NPU CYCLE BAR",
-      "narration_text": "The NPU running the same operation. Ninety percent arithmetic. Ten percent overhead — just enough control circuitry to feed the MAC array. The inference pattern is hard-wired. There's no instruction fetch because there's one instruction. There are no cache misses because the data path is fixed.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "accumulate",
-        "manim": {
-          "scene_file": "scenes.py",
-          "scene_class": "B02_NpuBar"
-        }
-      },
-      "estimated_duration_s": 17,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B02.mp4",
-        "filled_by": "manim:B02_NpuBar",
-        "at": "2026-07-17T16:14:07"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "UTILIZATION COMPARISON",
-      "narration_text": "Same MACs, same arithmetic operations. CPU: thirty percent utilization. NPU: ninety percent. That's a three-times difference in how efficiently each processor spends its cycles. The NPU doesn't compute faster — it wastes less. That gap is the whole story.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "compare",
-        "manim": {
-          "scene_file": "scenes.py",
-          "scene_class": "B03_Comparison"
-        }
-      },
-      "estimated_duration_s": 16,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B03.mp4",
-        "filled_by": "manim:B03_Comparison",
-        "at": "2026-07-17T16:14:07"
-      }
-    },
-    {
-      "beat_id": "B04",
-      "act": "YOUR TURN",
-      "narration_text": "Your turn. Drop this into Claude: My MCU runs inference at open bracket latency milliseconds close bracket ms. I'm considering adding a Cortex-M55 with Helium SIMD vs an external NPU. Walk me through: one — what overhead vs arithmetic cycles means, two — how to estimate NPU utilization for my model, three — what utilization percentage means for my effective TOPS, four — whether the NPU is worth the cost for open bracket n inferences close bracket inferences per day.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "command": "My MCU runs inference at [latency_ms] ms. I'm considering adding a Cortex-M55 with Helium SIMD vs an external NPU. Walk me through: (1) what overhead vs arithmetic cycles means, (2) how to estimate NPU utilization for my model, (3) what utilization percentage means for my effective TOPS, (4) whether the NPU is worth the cost for [n_inferences] inferences/day.",
-            "topic": "EMBEDDED AI — COMPUTE",
-            "segment": "CPU Overhead Gap",
-            "greeting": "Your turn.",
-            "runningText": "analyzing…",
-            "output": [
-              "Utilization = arithmetic cycles / total cycles. NPU: ~90%. CPU: ~30%. Same MACs, 3× more useful work per second."
-            ],
-            "folderLabel": "@NikBearBrown"
-          },
-          "rendered": {
-            "out": "media/B04.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 22,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B04.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:14:07"
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "OUTRO",
-      "narration_text": "",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "props": {
-            "title": "Your CPU Spends Two-Thirds of Its Time Not Computing",
-            "handle": "@NikBearBrown",
-            "subline": "embedded ai · liam, in for bear"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 6,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:14:07"
-      }
+  "voice": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Bonjour, Humanitarians",
+      "topic": "HUMANITARIANS AI · Your CPU Spends Two-Thirds of Its Time Not Computing",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "narration_text": "Kumusta, Liam. This is Liam, in for Bear. On a matrix multiply — the thing processors supposedly do — only thirty percent of the CPU's cycles are arithmetic.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Why does my NPU outperform my CPU by 3× on the same matrix multiply?",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — COMPUTE",
+      "segment": "CPU Overhead Gap",
+      "greeting": "Kumusta, Liam",
+      "runningText": "computing…",
+      "output": [
+       "Only 30% of CPU cycles do arithmetic. The other 70% is overhead. An NPU hard-wires the pattern — over 90% of its time is useful work."
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 9,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:14:07"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Your CPU Spends Two-Thirds of Its Time Not Computing belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Why does my NPU outperform my CPU by 3× on the same matrix multiply?",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — COMPUTE",
+      "segment": "CPU Overhead Gap",
+      "greeting": "Kumusta, Liam",
+      "runningText": "computing…",
+      "output": [
+       "Only 30% of CPU cycles do arithmetic. The other 70% is overhead. An NPU hard-wires the pattern — over 90% of its time is useful work."
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "BREF",
+   "act": "TEXTBOOK FIGURE",
+   "narration_text": "The book's side-by-side: a Cortex-M7 CPU versus a dedicated NPU on the same hundred-twenty-eight by one-twenty-eight matmul. The CPU spends most cycles on overhead. The NPU almost none.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "media",
+    "motion": "fade",
+    "file": "BREF.png"
+   },
+   "estimated_duration_s": 5,
+   "build": {
+    "status": "STILL",
+    "src": "media/BREF.png",
+    "filled_by": "still",
+    "at": "2026-07-17T16:14:07"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "CPU CYCLE BAR",
+   "narration_text": "Here's a CPU on matrix multiply. Thirty percent arithmetic — multiply, accumulate. Seventy percent overhead: instruction fetch, cache misses, pipeline hazards, branch prediction. That's a general-purpose machine being general-purpose. It can run anything, so it's not optimized for the one thing you asked it to do.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "accumulate",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B01_CpuBar"
+    }
+   },
+   "estimated_duration_s": 18,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B01.mp4",
+    "filled_by": "manim:B01_CpuBar",
+    "at": "2026-07-17T16:14:07"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "NPU CYCLE BAR",
+   "narration_text": "The NPU running the same operation. Ninety percent arithmetic. Ten percent overhead — just enough control circuitry to feed the MAC array. The inference pattern is hard-wired. There's no instruction fetch because there's one instruction. There are no cache misses because the data path is fixed.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "accumulate",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B02_NpuBar"
+    }
+   },
+   "estimated_duration_s": 17,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B02.mp4",
+    "filled_by": "manim:B02_NpuBar",
+    "at": "2026-07-17T16:14:07"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "UTILIZATION COMPARISON",
+   "narration_text": "Same MACs, same arithmetic operations. CPU: thirty percent utilization. NPU: ninety percent. That's a three-times difference in how efficiently each processor spends its cycles. The NPU doesn't compute faster — it wastes less. That gap is the whole story.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "compare",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B03_Comparison"
+    }
+   },
+   "estimated_duration_s": 16,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B03.mp4",
+    "filled_by": "manim:B03_Comparison",
+    "at": "2026-07-17T16:14:07"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "YOUR TURN",
+   "narration_text": "Your turn. Drop this into Claude: My MCU runs inference at open bracket latency milliseconds close bracket ms. I'm considering adding a Cortex-M55 with Helium SIMD vs an external NPU. Walk me through: one — what overhead vs arithmetic cycles means, two — how to estimate NPU utilization for my model, three — what utilization percentage means for my effective TOPS, four — whether the NPU is worth the cost for open bracket n inferences close bracket inferences per day.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "My MCU runs inference at [latency_ms] ms. I'm considering adding a Cortex-M55 with Helium SIMD vs an external NPU. Walk me through: (1) what overhead vs arithmetic cycles means, (2) how to estimate NPU utilization for my model, (3) what utilization percentage means for my effective TOPS, (4) whether the NPU is worth the cost for [n_inferences] inferences/day.",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — COMPUTE",
+      "segment": "CPU Overhead Gap",
+      "greeting": "Your turn.",
+      "runningText": "analyzing…",
+      "output": [
+       "Utilization = arithmetic cycles / total cycles. NPU: ~90%. CPU: ~30%. Same MACs, 3× more useful work per second."
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 22,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:14:07"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "OUTRO",
+   "narration_text": "From Humanitarians AI.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Your CPU Spends Two-Thirds of Its Time Not Computing",
+      "handle": "@HumanitariansAI",
+      "subline": "embedded ai · liam, in for bear"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 6,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:14:07"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }

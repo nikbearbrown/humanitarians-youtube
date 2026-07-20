@@ -2,16 +2,16 @@
  "metadata": {
   "title": "Build a Battery-Life Predictor with Claude Code",
   "slug": "cli-battery-life",
-  "topic": "CLAUDE CODE \u00b7 POWER",
-  "register": "Teardown",
-  "voice": "NikBearBrown",
+  "topic": "CLAUDE CODE · POWER",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
   "voice_id": "TyW6NH39JcFb5M3xdIIk",
   "palette": "teardown",
   "style_preset": "nikbearbrown",
   "style": "cli",
   "ground": "#FFFFFF",
   "color_semantics": "teardown: INK #2A1A0E originals/axes/all text; CRIMSON #C8102E quantized/error/mash; SLATE #545454 structure/neutral",
-  "note": "CLI video REQUIRED spine: B00 intro \u00b7 B01 PROBLEM \u00b7 B02 ASK \u00b7 B03 CODE \u00b7 B04 OUTPUT(manim) \u00b7 B05 CHANGE \u00b7 B06 OUTPUT(manim) \u00b7 B07 SUMMARY \u00b7 B08 NEXT STEPS \u00b7 B09 outro.",
+  "note": "CLI video REQUIRED spine: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 OUTPUT(manim) · B07 SUMMARY · B08 NEXT STEPS · B09 outro.",
   "total_estimated_duration_seconds": 184.68,
   "chapter_number": 3,
   "tags": [
@@ -27,23 +27,51 @@
    "Microcontroller AI",
    "STM32",
    "Quantization"
-  ]
+  ],
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
  },
  "beats": [
   {
    "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Merhaba, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build a Battery-Life Predictor with Claude Code",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
    "act": "INTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "narration_text": "Humanitarians AI. Build it with a CLI, then take it apart.",
    "shot": {
     "type": "GRAPHIC",
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownOpen",
+     "pattern": "ClaudeComposerAsk",
      "props": {
-      "topic": "NIK BEAR BROWN",
-      "lines": [
-       "Nik Bear Brown",
+      "command": "Build a Battery-Life Predictor with Claude Code",
+      "topic": "HUMANITARIANS AI · NIK BEAR BROWN",
+      "segment": "Build a Battery-Life Predictor with Claude Code",
+      "greeting": "This is Humanitarians AI.",
+      "runningText": "working…",
+      "output": [
        "Battery life, taken apart."
       ]
      },
@@ -55,7 +83,9 @@
    },
    "estimated_duration_s": 5,
    "audio_file": "mp3/beat-B00.mp3",
-   "actual_duration_s": 3.37
+   "actual_duration_s": 3.37,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B01",
@@ -74,7 +104,9 @@
    },
    "estimated_duration_s": 14,
    "audio_file": "mp3/beat-B01.mp3",
-   "actual_duration_s": 26.51
+   "actual_duration_s": 26.51,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B02",
@@ -86,10 +118,10 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownTerminalAsk",
+     "pattern": "ClaudeComposerAsk",
      "props": {
       "command": "claude \"write battery_life.py:\n  inputs inference_ms, freq_hz,\n  active_mA, sleep_uA, battery_mAh.\n  Compute duty cycle, average current,\n  days of life. Sweep frequency.\"",
-      "topic": "CLAUDE CODE \u00b7 POWER",
+      "topic": "HUMANITARIANS AI · CLAUDE CODE · POWER",
       "segment": "BATTERY LIFE",
       "runningText": "generating scene..."
      },
@@ -101,7 +133,9 @@
    },
    "estimated_duration_s": 15,
    "audio_file": "mp3/beat-B02.mp3",
-   "actual_duration_s": 17.58
+   "actual_duration_s": 17.58,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B03",
@@ -113,12 +147,12 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownCodeBlock",
+     "pattern": "ClaudeCodeBeat",
      "props": {
-      "filename": "battery_life.py",
-      "topic": "CLAUDE CODE \u00b7 POWER",
+      "topic": "CLAUDE CODE · POWER",
       "segment": "BATTERY LIFE",
-      "code": "# battery_life.py  --  Claude Code output\ndef battery_life(inf_ms, freq_hz, act_mA, slp_uA, cap_mAh):\n    duty   = (inf_ms * freq_hz) / 1000.0   # fraction\n    duty   = min(duty, 1.0)                # cap at 100%\n    slp_mA = slp_uA / 1000.0\n    avg_mA = duty * act_mA + (1 - duty) * slp_mA\n    days   = cap_mAh / (avg_mA * 24)\n    return duty, avg_mA, days\n\n# Sweep freq: act=30mA, sleep=50uA, cap=1000mAh, inf=100ms\nfor hz in [0.5, 1, 2, 5, 10]:\n    d, avg, days = battery_life(100, hz, 30, 50, 1000)\n    print(f\"freq={hz:4.1f}Hz duty={d:.2f}\"\n          f\" avg={avg:.2f}mA  days={days:.0f}\")"
+      "code": "# battery_life.py  --  Claude Code output\ndef battery_life(inf_ms, freq_hz, act_mA, slp_uA, cap_mAh):\n    duty   = (inf_ms * freq_hz) / 1000.0   # fraction\n    duty   = min(duty, 1.0)                # cap at 100%\n    slp_mA = slp_uA / 1000.0\n    avg_mA = duty * act_mA + (1 - duty) * slp_mA\n    days   = cap_mAh / (avg_mA * 24)\n    return duty, avg_mA, days\n\n# Sweep freq: act=30mA, sleep=50uA, cap=1000mAh, inf=100ms\nfor hz in [0.5, 1, 2, 5, 10]:\n    d, avg, days = battery_life(100, hz, 30, 50, 1000)\n    print(f\"freq={hz:4.1f}Hz duty={d:.2f}\"\n          f\" avg={avg:.2f}mA  days={days:.0f}\")",
+      "title": "battery_life.py"
      },
      "rendered": {
       "out": "media/B03.mp4",
@@ -128,7 +162,9 @@
    },
    "estimated_duration_s": 15,
    "audio_file": "mp3/beat-B03.mp3",
-   "actual_duration_s": 23.64
+   "actual_duration_s": 23.64,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B04",
@@ -147,7 +183,9 @@
    },
    "estimated_duration_s": 17,
    "audio_file": "mp3/beat-B04.mp3",
-   "actual_duration_s": 33.1
+   "actual_duration_s": 33.1,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B05",
@@ -159,10 +197,10 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownTerminalAsk",
+     "pattern": "ClaudeComposerAsk",
      "props": {
       "command": "claude \"add race-to-sleep: finish faster at\n  higher clock, then idle -- show when it wins\"",
-      "topic": "CLAUDE CODE \u00b7 POWER",
+      "topic": "HUMANITARIANS AI · CLAUDE CODE · POWER",
       "segment": "BATTERY LIFE",
       "runningText": "updating script..."
      },
@@ -174,7 +212,9 @@
    },
    "estimated_duration_s": 12,
    "audio_file": "mp3/beat-B05.mp3",
-   "actual_duration_s": 17.68
+   "actual_duration_s": 17.68,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B06",
@@ -193,7 +233,9 @@
    },
    "estimated_duration_s": 12,
    "audio_file": "mp3/beat-B06.mp3",
-   "actual_duration_s": 22.6
+   "actual_duration_s": 22.6,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B07",
@@ -212,7 +254,9 @@
    },
    "estimated_duration_s": 11,
    "audio_file": "mp3/beat-B07.mp3",
-   "actual_duration_s": 17.79
+   "actual_duration_s": 17.79,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B08",
@@ -231,22 +275,24 @@
    },
    "estimated_duration_s": 10,
    "audio_file": "mp3/beat-B08.mp3",
-   "actual_duration_s": 15.7
+   "actual_duration_s": 15.7,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B09",
    "act": "OUTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "narration_text": "Humanitarians AI. Build it with a CLI. Then take it apart. At Humanitarians AI, nikbearbrown dot com.",
    "shot": {
     "type": "GRAPHIC",
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownOutro",
+     "pattern": "ClaudeTitleOutro",
      "props": {
       "brand": "Nik Bear Brown",
       "tagline": "Brutalist + Educational AI",
-      "handle": "@NikBearBrown",
+      "handle": "@HumanitariansAI",
       "url": "nikbearbrown.com"
      },
      "rendered": {
@@ -257,7 +303,9 @@
    },
    "estimated_duration_s": 8,
    "audio_file": "mp3/beat-B09.mp3",
-   "actual_duration_s": 6.71
+   "actual_duration_s": 6.71,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   }
  ]
 }

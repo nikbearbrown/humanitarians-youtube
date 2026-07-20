@@ -1,203 +1,271 @@
 {
-  "metadata": {
-    "title": "Don't Ship the Most Accurate Model",
-    "slug": "claude-liam-pareto-model-select",
-    "topic": "EMBEDDED AI — DEPLOYMENT",
-    "register": "Teardown",
-    "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
-    "palette": "claude",
-    "audience": "Claude",
-    "channel": "NikBearBrown",
-    "build": {
-      "at": "2026-07-17T16:16:31",
-      "cut": "master",
-      "filled": 7,
-      "of": 7,
-      "slates": [],
-      "skin_warnings": []
-    }
+ "metadata": {
+  "title": "Don't Ship the Most Accurate Model",
+  "slug": "claude-liam-pareto-model-select",
+  "topic": "EMBEDDED AI — DEPLOYMENT",
+  "register": "Pragmatist",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "audience": "Claude",
+  "channel": "hai",
+  "build": {
+   "at": "2026-07-17T16:16:31",
+   "cut": "master",
+   "filled": 7,
+   "of": 7,
+   "slates": [],
+   "skin_warnings": []
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "COLD OPEN",
-      "narration_text": "Aloha, Liam. This is Liam, in for Bear. The best model on the leaderboard failed on the device by four kilobytes; the one that shipped was worse on every benchmark.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "command": "Which model should I ship? The leaderboard winner doesn't fit my flash budget by 40 KB.",
-            "topic": "EMBEDDED AI — DEPLOYMENT",
-            "segment": "Pareto Model Selection",
-            "greeting": "Aloha, Liam",
-            "runningText": "computing…",
-            "output": [
-              "Strike infeasible candidates. Eliminate dominated ones. Ship the surviving Pareto-optimal point with margin."
-            ],
-            "folderLabel": "@NikBearBrown"
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 9,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:16:31"
-      }
-    },
-    {
-      "beat_id": "BREF",
-      "act": "TEXTBOOK FIGURE",
-      "narration_text": "The book's Pareto scatter: six face-detection candidates on latency versus accuracy. Two are dominated — strictly worse on both axes. The frontier is the only honest shortlist.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "media",
-        "motion": "fade",
-        "file": "BREF.png"
-      },
-      "estimated_duration_s": 5,
-      "build": {
-        "status": "STILL",
-        "src": "media/BREF.png",
-        "filled_by": "still",
-        "at": "2026-07-17T16:16:31"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "SCATTER PLOT — LEADERBOARD WINNER INFEASIBLE",
-      "narration_text": "A scatter of model candidates: accuracy on the vertical axis, flash size on the horizontal. The leaderboard winner: 94% accuracy, 2.04 megabytes. It's a terracotta dot past the flash ceiling. 2 megabytes is your limit. The winner is 40 kilobytes over. It doesn't matter that it's the best — it can't ship.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "trace",
-        "manim": {
-          "scene_file": "scenes.py",
-          "scene_class": "B01_ScatterPlot"
-        }
-      },
-      "estimated_duration_s": 18,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B01.mp4",
-        "filled_by": "manim:B01_ScatterPlot",
-        "at": "2026-07-17T16:16:31"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "CONSTRAINT LINES CLOSE IN",
-      "narration_text": "The constraints: flash ceiling at 2 megabytes, latency budget at 50 milliseconds. Lines close in. Every dot above the flash ceiling is out. Every dot past the latency budget is out. A cluster of candidates survives — not the most accurate, but feasible. These are the only models that can actually deploy.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "trace",
-        "manim": {
-          "scene_file": "scenes.py",
-          "scene_class": "B02_ConstraintLines"
-        }
-      },
-      "estimated_duration_s": 17,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B02.mp4",
-        "filled_by": "manim:B02_ConstraintLines",
-        "at": "2026-07-17T16:16:31"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "PARETO FRONTIER TRACES",
-      "narration_text": "Among feasible candidates: the Pareto frontier. Each point on it is not dominated — no other candidate is better on both accuracy and flash simultaneously. Dominated models grey out. The frontier traces itself. The shipped model: 91% accuracy, 1.8 megabytes — 200 kilobytes of margin inside the 2-megabyte ceiling. Three percent less accurate than the leaderboard winner. Ships every time.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "trace",
-        "manim": {
-          "scene_file": "scenes.py",
-          "scene_class": "B03_ParetoFrontier"
-        }
-      },
-      "estimated_duration_s": 19,
-      "build": {
-        "status": "MANIM",
-        "src": "manim/B03.mp4",
-        "filled_by": "manim:B03_ParetoFrontier",
-        "at": "2026-07-17T16:16:31"
-      }
-    },
-    {
-      "beat_id": "B04",
-      "act": "YOUR TURN",
-      "narration_text": "Your turn. Ask Claude: I have these model candidates with accuracy, latency in milliseconds, and flash in kilobytes — and list them. My constraints are open bracket max latency close bracket ms and open bracket max flash close bracket KB. Walk me through: one — which candidates are infeasible. Two — which feasible ones are dominated. Three — the Pareto frontier among feasible candidates. Four — how to choose among Pareto-optimal candidates with appropriate margin.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "command": "I have these model candidates with (accuracy, latency_ms, flash_kb): [list]. My constraints are [max_latency] ms and [max_flash] KB. Walk me through: (1) which candidates are infeasible, (2) which feasible ones are dominated, (3) the Pareto frontier among feasible candidates, (4) how to choose among Pareto-optimal candidates with appropriate margin.",
-            "topic": "EMBEDDED AI — DEPLOYMENT",
-            "segment": "Pareto Model Selection",
-            "greeting": "Your turn.",
-            "runningText": "analyzing…",
-            "output": [
-              "Best model: 94% accuracy, 2.04 MB — 40 KB over limit. Shipped model: 91%, 1.8 MB — 200 KB margin. Worse benchmark, ships reliably."
-            ],
-            "folderLabel": "@NikBearBrown"
-          },
-          "rendered": {
-            "out": "media/B04.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 23,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B04.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:16:31"
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "OUTRO",
-      "narration_text": "",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "props": {
-            "title": "Don't Ship the Most Accurate Model",
-            "handle": "@NikBearBrown",
-            "subline": "embedded ai · liam, in for bear"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 6,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-17T16:16:31"
-      }
+  "voice": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Yassou, Humanitarians",
+      "topic": "HUMANITARIANS AI · Don't Ship the Most Accurate Model",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "narration_text": "Aloha, Liam. This is Liam, in for Bear. The best model on the leaderboard failed on the device by four kilobytes; the one that shipped was worse on every benchmark.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Which model should I ship? The leaderboard winner doesn't fit my flash budget by 40 KB.",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — DEPLOYMENT",
+      "segment": "Pareto Model Selection",
+      "greeting": "Aloha, Liam",
+      "runningText": "computing…",
+      "output": [
+       "Strike infeasible candidates. Eliminate dominated ones. Ship the surviving Pareto-optimal point with margin."
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 9,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:16:31"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Don't Ship the Most Accurate Model belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Which model should I ship? The leaderboard winner doesn't fit my flash budget by 40 KB.",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — DEPLOYMENT",
+      "segment": "Pareto Model Selection",
+      "greeting": "Aloha, Liam",
+      "runningText": "computing…",
+      "output": [
+       "Strike infeasible candidates. Eliminate dominated ones. Ship the surviving Pareto-optimal point with margin."
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "BREF",
+   "act": "TEXTBOOK FIGURE",
+   "narration_text": "The book's Pareto scatter: six face-detection candidates on latency versus accuracy. Two are dominated — strictly worse on both axes. The frontier is the only honest shortlist.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "media",
+    "motion": "fade",
+    "file": "BREF.png"
+   },
+   "estimated_duration_s": 5,
+   "build": {
+    "status": "STILL",
+    "src": "media/BREF.png",
+    "filled_by": "still",
+    "at": "2026-07-17T16:16:31"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "SCATTER PLOT — LEADERBOARD WINNER INFEASIBLE",
+   "narration_text": "A scatter of model candidates: accuracy on the vertical axis, flash size on the horizontal. The leaderboard winner: 94% accuracy, 2.04 megabytes. It's a terracotta dot past the flash ceiling. 2 megabytes is your limit. The winner is 40 kilobytes over. It doesn't matter that it's the best — it can't ship.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "trace",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B01_ScatterPlot"
+    }
+   },
+   "estimated_duration_s": 18,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B01.mp4",
+    "filled_by": "manim:B01_ScatterPlot",
+    "at": "2026-07-17T16:16:31"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "CONSTRAINT LINES CLOSE IN",
+   "narration_text": "The constraints: flash ceiling at 2 megabytes, latency budget at 50 milliseconds. Lines close in. Every dot above the flash ceiling is out. Every dot past the latency budget is out. A cluster of candidates survives — not the most accurate, but feasible. These are the only models that can actually deploy.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "trace",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B02_ConstraintLines"
+    }
+   },
+   "estimated_duration_s": 17,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B02.mp4",
+    "filled_by": "manim:B02_ConstraintLines",
+    "at": "2026-07-17T16:16:31"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "PARETO FRONTIER TRACES",
+   "narration_text": "Among feasible candidates: the Pareto frontier. Each point on it is not dominated — no other candidate is better on both accuracy and flash simultaneously. Dominated models grey out. The frontier traces itself. The shipped model: 91% accuracy, 1.8 megabytes — 200 kilobytes of margin inside the 2-megabyte ceiling. Three percent less accurate than the leaderboard winner. Ships every time.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "trace",
+    "manim": {
+     "scene_file": "scenes.py",
+     "scene_class": "B03_ParetoFrontier"
+    }
+   },
+   "estimated_duration_s": 19,
+   "build": {
+    "status": "MANIM",
+    "src": "manim/B03.mp4",
+    "filled_by": "manim:B03_ParetoFrontier",
+    "at": "2026-07-17T16:16:31"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "YOUR TURN",
+   "narration_text": "Your turn. Ask Claude: I have these model candidates with accuracy, latency in milliseconds, and flash in kilobytes — and list them. My constraints are open bracket max latency close bracket ms and open bracket max flash close bracket KB. Walk me through: one — which candidates are infeasible. Two — which feasible ones are dominated. Three — the Pareto frontier among feasible candidates. Four — how to choose among Pareto-optimal candidates with appropriate margin.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "I have these model candidates with (accuracy, latency_ms, flash_kb): [list]. My constraints are [max_latency] ms and [max_flash] KB. Walk me through: (1) which candidates are infeasible, (2) which feasible ones are dominated, (3) the Pareto frontier among feasible candidates, (4) how to choose among Pareto-optimal candidates with appropriate margin.",
+      "topic": "HUMANITARIANS AI · EMBEDDED AI — DEPLOYMENT",
+      "segment": "Pareto Model Selection",
+      "greeting": "Your turn.",
+      "runningText": "analyzing…",
+      "output": [
+       "Best model: 94% accuracy, 2.04 MB — 40 KB over limit. Shipped model: 91%, 1.8 MB — 200 KB margin. Worse benchmark, ships reliably."
+      ],
+      "folderLabel": "@NikBearBrown"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 23,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:16:31"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "OUTRO",
+   "narration_text": "From Humanitarians AI.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Don't Ship the Most Accurate Model",
+      "handle": "@HumanitariansAI",
+      "subline": "embedded ai · liam, in for bear"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 6,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-17T16:16:31"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }
