@@ -1,264 +1,299 @@
 {
-  "metadata": {
-    "title": "The Chasm Between Training a Model and Running It on Hardware",
-    "slug": "claude-liam-tinyml-chasm",
-    "topic": "TINYML · EMBEDDED AI · DEPLOYMENT",
-    "register": "Teardown",
-    "audience": "HAI",
-    "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
-    "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
-    "palette": "claude",
-    "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@HumanitariansAI",
-    "in_for_bear": true,
-    "channel": "humanitariansai",
-    "playlist": "NortheasternISE Explainers",
-    "build": {
-      "at": "2026-07-18T02:59:54",
-      "cut": "master",
-      "filled": 5,
-      "of": 7,
-      "slates": [
-        "B01",
-        "B02"
-      ],
-      "skin_warnings": []
+ "metadata": {
+  "title": "The Chasm Between Training a Model and Running It on Hardware",
+  "slug": "claude-liam-tinyml-chasm",
+  "topic": "TINYML · EMBEDDED AI · DEPLOYMENT",
+  "register": "Pragmatist",
+  "audience": "HAI",
+  "brand": "claude-liam",
+  "persona": "Liam (in for Bear)",
+  "voice": "am_onyx",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Merhaba, Liam",
+  "folderLabel": "@HumanitariansAI",
+  "in_for_bear": true,
+  "channel": "hai",
+  "playlist": "NortheasternISE Explainers",
+  "build": {
+   "at": "2026-07-18T02:59:54",
+   "cut": "master",
+   "filled": 5,
+   "of": 7,
+   "slates": [
+    "B01",
+    "B02"
+   ],
+   "skin_warnings": []
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Sawadee, Humanitarians",
+      "topic": "HUMANITARIANS AI · The Chasm Between Training a Model and Running It on Hardware",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
+   }
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. Based on the essay 'The Chasm Between Training a Model and Deploying It on Hardware' by Aditi Shinde, for NortheasternISE / Humanitarians AI. Why can't engineers deploy the models they train? A 10-megabyte TensorFlow model cannot load onto a 256-kilobyte Flash microcontroller. That is the first wall. Then there is activation memory on top of it. The curriculum does not teach what to do next. That missing knowledge has a name: the missing stack.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 24,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "greeting": "Merhaba, Liam",
-            "topic": "TINYML · EMBEDDED AI · DEPLOYMENT",
-            "segment": "The Chasm Between Training a Model and Running It on Hardware",
-            "command": "Why can't engineers deploy the models they train?",
-            "runningText": "reading TinyML deployment gap analysis…",
-            "output": [
-              "10MB TensorFlow model vs. 256KB Flash: the ratio that breaks beginners.",
-              "Activation memory is the second wall after quantization.",
-              "The missing stack: quantization, pruning, static tensor arena, power-aware duty cycling."
-            ],
-            "folderLabel": "@HumanitariansAI",
-            "modelLabel": "claude-sonnet-4",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B00.mp3",
-      "actual_duration_s": 26.09,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T02:59:54"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "10MB vs 256KB — the ratio",
-      "narration_text": "The model is 10 megabytes. The Flash storage on a Cortex-M4 microcontroller is 256 kilobytes. That is a 40-to-1 ratio. You cannot load the model — you cannot even fit it in storage. Quantization compresses the weights: 32-bit floats become 8-bit integers, shrinking the model by roughly 4x. Now it fits in storage. But model weights are not the only thing in memory during inference. Activation memory — the intermediate layer outputs that exist while the forward pass is running — adds a second requirement. A model that fits in Flash may still not fit when activations are counted. The second wall is not obvious from the training side.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 32,
-      "shot": {
-        "type": "MANIM",
-        "manim": {
-          "description": "Left: 10MB model block. Right: 256KB Flash block — much smaller. '40x ratio' label. Quantization arrow: 10MB shrinks to ~2.5MB. Then activation memory block appears on top of the model block inside Flash — still exceeds 256KB. Two walls labeled: 'Wall 1: weights', 'Wall 2: activations'.",
-          "sparkLine": "40-to-1. Then the second wall."
-        }
-      },
-      "audio_file": "mp3/beat-B01.mp3",
-      "actual_duration_s": 35.8,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-18T02:59:54",
-        "needs": "PIPELINE → render animated_graphics.py scene B01_*"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "the missing stack",
-      "narration_text": "The curriculum teaches model architecture. It teaches gradient descent and loss functions. It does not teach quantization, model pruning, the static tensor arena, or power-aware duty cycling. These are the five techniques that bridge the chasm. Quantization converts weights to int8. Pruning removes redundant parameters below a threshold. The static tensor arena pre-allocates all activation memory at compile time — no heap allocation at runtime. Power-aware duty cycling wakes the processor for inference and sleeps it between events. The Oura Ring — 2.5 grams, one-week battery — is the existence proof that crossing the chasm is possible. It is not taught in the course that designed the model.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 32,
-      "shot": {
-        "type": "ANIMATED_DECK",
-        "animated_deck": {
-          "pattern": "branch",
-          "description": "Gap-bridge visual: 'Training' on left, 'Hardware deployment' on right, chasm between. Five bridge sections appear: quantization, pruning, static tensor arena, power-aware duty cycling. Each labeled with one-line description. Bridge completes, Oura Ring cited as existence proof.",
-          "sparkLine": "Five techniques. One chasm."
-        }
-      },
-      "audio_file": "mp3/beat-B02.mp3",
-      "actual_duration_s": 37.99,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-18T02:59:54",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B02.mp4)",
-        "suggested": "suggested prompt: The curriculum teaches model architecture. It teaches gradient descent and loss functions. It does not teach quantization, model pruning, the static tensor aren"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "zero value when constraints not met",
-      "narration_text": "The industry rule, stated plainly: a model's value is zero if it cannot meet real-time latency and power constraints of the target device. You can have a 98% accurate model. If it takes 500 milliseconds to run inference on a device that needs a 50-millisecond response, the model ships nothing. If it drains the battery in three hours on a device that needs a one-week runtime, the model ships nothing. The accuracy number is measured on a server. The value is measured on the device. The gap between those two environments is the chasm, and the missing stack is what crosses it.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 26,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "props": {
-            "artifactTitle": "A Model's Value Is Zero",
-            "artifactHeading": "When hardware constraints are not met",
-            "artifactLines": [
-              "98% accurate model + 500ms inference on a 50ms-budget device = ships nothing.",
-              "Drains battery in 3 hours on a 1-week-budget device = ships nothing.",
-              "Accuracy measured on a server. Value measured on the device.",
-              "The gap between those two environments is the chasm."
-            ]
-          },
-          "rendered": {
-            "out": "media/B03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B03.mp3",
-      "actual_duration_s": 30.98,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B03.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T02:59:54"
-      }
-    },
-    {
-      "beat_id": "BVDT",
-      "act": "verdict",
-      "narration_text": "Let's recap with Claude. A 10-megabyte TensorFlow model cannot load onto a 256-kilobyte Flash microcontroller — that is the first wall. Quantization gets the weights in; activation memory is the second wall. The missing stack is the five techniques that bridge the chasm: quantization, pruning, static tensor arena, power-aware duty cycling — and the fifth is understanding the constraints before building the model. The Oura Ring is the existence proof of what crossing the chasm requires. A model's value is zero if it cannot meet the device's constraints.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 28,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "props": {
-            "artifactTitle": "The Chasm Between Training a Model and Running It on Hardware",
-            "artifactHeading": "The missing stack",
-            "artifactLines": [
-              "10MB model vs. 256KB Flash: 40-to-1 ratio that breaks beginners.",
-              "Quantization clears wall 1; activation memory is wall 2.",
-              "Missing stack: quantization, pruning, static tensor arena, power-aware duty cycling.",
-              "A model's value is zero if it cannot meet hardware constraints."
-            ]
-          },
-          "rendered": {
-            "out": "media/BVDT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BVDT.mp3",
-      "actual_duration_s": 31.49,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BVDT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T02:59:54"
-      }
-    },
-    {
-      "beat_id": "BHTF",
-      "act": "your turn handoff",
-      "narration_text": "Your turn. Here is the prompt — read it with me. 'Take a trained CNN. Quantize it to int8. Measure the activation memory at each layer. Does it fit on a Cortex-M4? What do you have to prune to make it fit?' That sequence is the chasm-crossing workflow. Start with a model you have already trained on any image classification task. Quantize it and measure what happens to per-layer activation memory. Then decide what to prune. The answer to the last question is the missing stack in practice. Liam, in for Bear.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 28,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "greeting": "Your turn.",
-            "topic": "TINYML · EMBEDDED AI · DEPLOYMENT",
-            "segment": "The Chasm Between Training a Model and Running It on Hardware",
-            "command": "Take a trained CNN. Quantize it to int8. Measure the activation memory at each layer. Does it fit on a Cortex-M4? What do you have to prune to make it fit?",
-            "runningText": "paste this into Claude…",
-            "folderLabel": "@HumanitariansAI",
-            "modelLabel": "claude-sonnet-4",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/BHTF.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BHTF.mp3",
-      "actual_duration_s": 26.15,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BHTF.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T02:59:54"
-      }
-    },
-    {
-      "beat_id": "BOUT",
-      "act": "outro",
-      "narration_text": "The Chasm Between Training a Model and Running It on Hardware. Liam, in for Bear.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 6,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "props": {
-            "title": "The Chasm Between Training a Model and Running It on Hardware",
-            "handle": "@HumanitariansAI",
-            "subline": "Liam, in for Bear."
-          },
-          "rendered": {
-            "out": "media/BOUT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BOUT.mp3",
-      "actual_duration_s": 5.14,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BOUT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T02:59:54"
-      }
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Merhaba — this is Liam, in for Bear. Based on the essay 'The Chasm Between Training a Model and Deploying It on Hardware' by Aditi Shinde, for NortheasternISE / Humanitarians AI. Why can't engineers deploy the models they train? A 10-megabyte TensorFlow model cannot load onto a 256-kilobyte Flash microcontroller. That is the first wall. Then there is activation memory on top of it. The curriculum does not teach what to do next. That missing knowledge has a name: the missing stack.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Merhaba, Liam",
+      "topic": "HUMANITARIANS AI · TINYML · EMBEDDED AI · DEPLOYMENT",
+      "segment": "The Chasm Between Training a Model and Running It on Hardware",
+      "command": "Why can't engineers deploy the models they train?",
+      "runningText": "reading TinyML deployment gap analysis…",
+      "output": [
+       "10MB TensorFlow model vs. 256KB Flash: the ratio that breaks beginners.",
+       "Activation memory is the second wall after quantization.",
+       "The missing stack: quantization, pruning, static tensor arena, power-aware duty cycling."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "claude-sonnet-4",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
     }
-  ]
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 26.09,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T02:59:54"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why The Chasm Between Training a Model and Running It on Hardware belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "10MB vs 256KB — the ratio",
+   "narration_text": "The model is 10 megabytes. The Flash storage on a Cortex-M4 microcontroller is 256 kilobytes. That is a 40-to-1 ratio. You cannot load the model — you cannot even fit it in storage. Quantization compresses the weights: 32-bit floats become 8-bit integers, shrinking the model by roughly 4x. Now it fits in storage. But model weights are not the only thing in memory during inference. Activation memory — the intermediate layer outputs that exist while the forward pass is running — adds a second requirement. A model that fits in Flash may still not fit when activations are counted. The second wall is not obvious from the training side.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "shot": {
+    "type": "MANIM",
+    "manim": {
+     "description": "Left: 10MB model block. Right: 256KB Flash block — much smaller. '40x ratio' label. Quantization arrow: 10MB shrinks to ~2.5MB. Then activation memory block appears on top of the model block inside Flash — still exceeds 256KB. Two walls labeled: 'Wall 1: weights', 'Wall 2: activations'.",
+     "sparkLine": "40-to-1. Then the second wall."
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 35.8,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-18T02:59:54",
+    "needs": "PIPELINE → render animated_graphics.py scene B01_*"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "the missing stack",
+   "narration_text": "The curriculum teaches model architecture. It teaches gradient descent and loss functions. It does not teach quantization, model pruning, the static tensor arena, or power-aware duty cycling. These are the five techniques that bridge the chasm. Quantization converts weights to int8. Pruning removes redundant parameters below a threshold. The static tensor arena pre-allocates all activation memory at compile time — no heap allocation at runtime. Power-aware duty cycling wakes the processor for inference and sleeps it between events. The Oura Ring — 2.5 grams, one-week battery — is the existence proof that crossing the chasm is possible. It is not taught in the course that designed the model.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "shot": {
+    "type": "ANIMATED_DECK",
+    "animated_deck": {
+     "pattern": "branch",
+     "description": "Gap-bridge visual: 'Training' on left, 'Hardware deployment' on right, chasm between. Five bridge sections appear: quantization, pruning, static tensor arena, power-aware duty cycling. Each labeled with one-line description. Bridge completes, Oura Ring cited as existence proof.",
+     "sparkLine": "Five techniques. One chasm."
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 37.99,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-18T02:59:54",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B02.mp4)",
+    "suggested": "suggested prompt: The curriculum teaches model architecture. It teaches gradient descent and loss functions. It does not teach quantization, model pruning, the static tensor aren"
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "zero value when constraints not met",
+   "narration_text": "The industry rule, stated plainly: a model's value is zero if it cannot meet real-time latency and power constraints of the target device. You can have a 98% accurate model. If it takes 500 milliseconds to run inference on a device that needs a 50-millisecond response, the model ships nothing. If it drains the battery in three hours on a device that needs a one-week runtime, the model ships nothing. The accuracy number is measured on a server. The value is measured on the device. The gap between those two environments is the chasm, and the missing stack is what crosses it.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "A Model's Value Is Zero",
+      "artifactHeading": "When hardware constraints are not met",
+      "artifactLines": [
+       "98% accurate model + 500ms inference on a 50ms-budget device = ships nothing.",
+       "Drains battery in 3 hours on a 1-week-budget device = ships nothing.",
+       "Accuracy measured on a server. Value measured on the device.",
+       "The gap between those two environments is the chasm."
+      ]
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 30.98,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T02:59:54"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "narration_text": "Let's recap with Claude. A 10-megabyte TensorFlow model cannot load onto a 256-kilobyte Flash microcontroller — that is the first wall. Quantization gets the weights in; activation memory is the second wall. The missing stack is the five techniques that bridge the chasm: quantization, pruning, static tensor arena, power-aware duty cycling — and the fifth is understanding the constraints before building the model. The Oura Ring is the existence proof of what crossing the chasm requires. A model's value is zero if it cannot meet the device's constraints.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "The Chasm Between Training a Model and Running It on Hardware",
+      "artifactHeading": "The missing stack",
+      "artifactLines": [
+       "10MB model vs. 256KB Flash: 40-to-1 ratio that breaks beginners.",
+       "Quantization clears wall 1; activation memory is wall 2.",
+       "Missing stack: quantization, pruning, static tensor arena, power-aware duty cycling.",
+       "A model's value is zero if it cannot meet hardware constraints."
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 31.49,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T02:59:54"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "your turn handoff",
+   "narration_text": "Your turn. Here is the prompt — read it with me. 'Take a trained CNN. Quantize it to int8. Measure the activation memory at each layer. Does it fit on a Cortex-M4? What do you have to prune to make it fit?' That sequence is the chasm-crossing workflow. Start with a model you have already trained on any image classification task. Quantize it and measure what happens to per-layer activation memory. Then decide what to prune. The answer to the last question is the missing stack in practice. Liam, in for Bear.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "HUMANITARIANS AI · TINYML · EMBEDDED AI · DEPLOYMENT",
+      "segment": "The Chasm Between Training a Model and Running It on Hardware",
+      "command": "Take a trained CNN. Quantize it to int8. Measure the activation memory at each layer. Does it fit on a Cortex-M4? What do you have to prune to make it fit?",
+      "runningText": "paste this into Claude…",
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "claude-sonnet-4",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 26.15,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T02:59:54"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "The Chasm Between Training a Model and Running It on Hardware. Liam, in for Bear. From Humanitarians AI.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 6,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "The Chasm Between Training a Model and Running It on Hardware",
+      "handle": "@HumanitariansAI",
+      "subline": "Liam, in for Bear."
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 5.14,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T02:59:54"
+   }
+  }
+ ]
 }

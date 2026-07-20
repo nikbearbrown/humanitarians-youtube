@@ -1,271 +1,307 @@
 {
-  "metadata": {
-    "title": "Hook Development",
-    "slug": "claude-liam-hook-development",
-    "topic": "HOOK DEVELOPMENT · CLAUDE CODE SKILL",
-    "register": "Teardown",
-    "audience": "Claude",
-    "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
-    "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
-    "palette": "claude",
-    "style_preset": "claude",
-    "ground": "#FAF9F5",
-    "greeting": "Bonjour, Liam",
-    "folderLabel": "@NikBearBrown",
-    "in_for_bear": true,
-    "playlist": "Claude Taught",
-    "modifier": "skill-teardown",
-    "source_skill": "../anthropics/claude-code/plugins/plugin-dev/skills/hook-development/SKILL.md",
-    "build": {
-      "at": "2026-07-18T16:29:27",
-      "cut": "master",
-      "filled": 7,
-      "of": 7,
-      "slates": [],
-      "skin_warnings": []
-    }
+ "metadata": {
+  "title": "Hook Development",
+  "slug": "claude-liam-hook-development",
+  "topic": "HOOK DEVELOPMENT · CLAUDE CODE SKILL",
+  "register": "Pragmatist",
+  "audience": "Claude",
+  "brand": "claude-liam",
+  "persona": "Liam (in for Bear)",
+  "voice": "am_onyx",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "palette": "claude",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Bonjour, Liam",
+  "folderLabel": "@NikBearBrown",
+  "in_for_bear": true,
+  "playlist": "Claude Taught",
+  "modifier": "skill-teardown",
+  "source_skill": "../anthropics/claude-code/plugins/plugin-dev/skills/hook-development/SKILL.md",
+  "build": {
+   "at": "2026-07-18T16:29:27",
+   "cut": "master",
+   "filled": 7,
+   "of": 7,
+   "slates": [],
+   "skin_warnings": []
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "cold open",
-      "narration_text": "Bonjour — this is Liam, in for Bear. Ask Claude to create a hook, add a PreToolUse or Stop hook, validate tool use, block dangerous commands, or implement event-driven automation — the Hook Development skill fires. Hooks are event-driven automation scripts that execute in response to Claude Code events. Nine hook event types: PreToolUse, PostToolUse, UserPromptSubmit, Stop, SubagentStop, SessionStart, SessionEnd, PreCompact, and Notification. Two hook types: prompt-based for context-aware decisions using LLM reasoning, command for deterministic bash checks. Let me walk you through the event model, the configuration formats, and where this skill gets it right and where it bites.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 22,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "greeting": "Bonjour, Liam",
-            "topic": "HOOK DEVELOPMENT · CLAUDE CODE SKILL",
-            "segment": "PLUGIN DEV",
-            "command": "Create a PreToolUse hook for my plugin that blocks writes to .env files and system paths.",
-            "runningText": "reading hook-development SKILL.md…",
-            "output": [
-              "9 hook events: PreToolUse · PostToolUse · Stop · SessionStart + 5 more",
-              "2 types: prompt-based (LLM reasoning) vs command (deterministic bash)",
-              "Hooks run in parallel — design for independence"
-            ],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Opus 4.8",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B00.mp3",
-      "actual_duration_s": 37.06,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T16:29:27"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "anatomy — nine events + two hook types",
-      "narration_text": "Nine hook events, each with a distinct lifecycle position. PreToolUse: fires before any tool runs — approve, deny, or modify tool calls. The permissionDecision field can return allow, deny, or ask, and updatedInput can modify the tool call. PostToolUse: fires after a tool completes — react to results, provide feedback, log. UserPromptSubmit: fires when the user submits a prompt — add context, validate, or block. Stop: fires when the main agent considers stopping — validate completeness and return approve or block with a reason. SubagentStop: same timing as Stop but for subagents. SessionStart: fires when a session begins — use to load context and persist environment variables using the special $CLAUDE_ENV_FILE variable — changes persist for the session. SessionEnd: cleanup and logging when the session ends. PreCompact: fires before context compaction — preserve critical information that would otherwise be lost. Notification: fires when Claude sends a notification. Two hook types. Prompt-based hooks use LLM reasoning — supported on Stop, SubagentStop, UserPromptSubmit, and PreToolUse — best for context-aware decisions that require judgment. Command hooks execute bash scripts and support all nine events — best for deterministic validation, file system operations, and performance-critical checks.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 30,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "HookDevAnatomy",
-          "props": {
-            "sparkLine": "Nine events. Two types. Prompt for judgment, command for speed."
-          },
-          "rendered": {
-            "out": "media/B01.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B01.mp3",
-      "actual_duration_s": 72.23,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B01.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T16:29:27"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "design — config formats + matchers + parallel",
-      "narration_text": "Two configuration formats that are not interchangeable. Plugin format in hooks/hooks.json: a wrapper object with a required hooks key containing the event map, plus an optional description field. Settings format in .claude/settings.json: events placed directly at the top level, no wrapper, no description field. Using the plugin format in settings or vice versa is a silent failure — hooks simply do not register, with no error message. Matchers control which tools fire the hook. Exact match: the tool name exactly, like Write. Pipe-separated multiples: Read|Write|Edit. Wildcard asterisk fires for all tools. Regex patterns work for MCP tool namespaces — mcp__.*__delete.* matches all MCP delete tools. Matchers are case-sensitive. Hooks matching the same event run in parallel — they do not see each other's output, ordering is non-deterministic. Design for independence: never have one hook depend on the output of another. Output format: exit code zero means success and stdout shows in the transcript. Exit code two is a blocking error and stderr feeds back to Claude. The standard JSON output carries continue, suppressOutput, and systemMessage. PreToolUse additionally supports hookSpecificOutput with permissionDecision — allow, deny, or ask — and updatedInput to modify the tool call before it executes.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 28,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "HookDevConfig",
-          "props": {
-            "sparkLine": "Format mismatch is silent. Parallel hooks cannot coordinate."
-          },
-          "rendered": {
-            "out": "media/B02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B02.mp3",
-      "actual_duration_s": 74.24,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B02.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T16:29:27"
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "teardown — what it gets right / where it bites",
-      "narration_text": "Here is the teardown. Hook Development gets the event lifecycle right: nine events are fully documented with when they fire, what input they receive, and what output they should return — the reference table is complete. The prompt-based versus command distinction is clearly motivated: LLM reasoning for context-aware decisions, bash for deterministic checks — the recommendation to default to prompt-based is explicit. Matcher patterns are comprehensive: exact, pipe-separated, wildcard, and regex — all four covered. Security guidance is explicit: quote all variables, validate path traversal, check sensitive files, set timeouts. Parallel execution is stated. Where it bites: the two configuration formats — plugin hooks.json with its wrapper key versus settings.json direct format — differ in a way that silently breaks hooks when mixed up. The skill documents both formats but does not lead with the warning. Hot-swap is impossible — hooks load at session start and changing hooks.json requires restarting Claude Code — but this constraint is mentioned once and not emphasized. Parallel design implications — hooks cannot coordinate, cannot depend on each other's output — are stated but not stressed as an architectural constraint. The temporary hooks pattern is useful but placed deep in the document where readers often do not reach.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 32,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "HookDevTell",
-          "props": {
-            "sparkLine": "Event model complete. Format mismatch: silent failure."
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B05.mp3",
-      "actual_duration_s": 68.18,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T16:29:27"
-      }
-    },
-    {
-      "beat_id": "BVDT",
-      "act": "verdict",
-      "narration_text": "Verdict. Hook Development fires for hooks, event automation, PreToolUse, Stop validation, and session lifecycle in Claude Code plugins. Nine events: PreToolUse, PostToolUse, UserPromptSubmit, Stop, SubagentStop, SessionStart, SessionEnd, PreCompact, Notification. Two types: prompt-based for LLM judgment, command for bash. Two formats: plugin wrapper with hooks key vs settings direct top-level. Matchers: exact, pipe, asterisk, regex. Hooks run in parallel — design for independence. Session restart required for changes. Gaps: format mismatch is silent, no-hot-swap understated, parallel coordination gap not emphasized.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 20,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "props": {
-            "artifactTitle": "Verdict",
-            "artifactHeading": "Hook Development",
-            "artifactLines": [
-              "9 events: PreToolUse · PostToolUse · UserPromptSubmit · Stop · SubagentStop + 4 more",
-              "2 types: prompt-based (LLM judgment) · command (deterministic bash, all events)",
-              "2 formats: plugin wrapper {hooks:{...}} vs settings direct top-level (NOT interchangeable)",
-              "Matchers: exact · pipe · * wildcard · regex — case-sensitive",
-              "Hooks run in parallel · exit 0 = transcript · exit 2 = feeds back to Claude",
-              "Gaps: format mismatch silent · no hot-swap · parallel coordination unstated"
-            ]
-          },
-          "rendered": {
-            "out": "media/BVDT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BVDT.mp3",
-      "actual_duration_s": 36.46,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BVDT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T16:29:27"
-      }
-    },
-    {
-      "beat_id": "BHTF",
-      "act": "handoff",
-      "narration_text": "Your turn. Open a Claude Code session. Paste this: Create a PreToolUse hook for my plugin that blocks writes to .env files and system paths. Watch four things: first, does Claude use the plugin format — wrapping events in a hooks key inside an object — rather than putting events directly at the top level as in the settings format? Second, does it use prompt-based for the .env check rather than a bash script with a hardcoded regex? Third, is ${CLAUDE_PLUGIN_ROOT} used for any script path rather than an absolute path or a relative path? And fourth, is there a timeout field set — something reasonable like ten seconds — rather than relying on the sixty-second default? If the hooks.json has events at the top level with no wrapper, the format is wrong. If the .env check uses a hardcoded path, the portability principle was missed. Those are your gates.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 34,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "greeting": "Your Turn",
-            "topic": "HOOK DEVELOPMENT · HANDOFF",
-            "segment": "PLUGIN DEV",
-            "command": "Create a PreToolUse hook for my plugin that blocks writes to .env files and system paths.",
-            "runningText": "Watch: plugin format? prompt-based? CLAUDE_PLUGIN_ROOT? timeout set?",
-            "output": [
-              "Expected: hooks.json has {\"hooks\": {\"PreToolUse\": [...]}} wrapper",
-              "Expected: prompt-based hook for .env check · ${CLAUDE_PLUGIN_ROOT} for paths",
-              "Red flag: events at top level (no wrapper), or hardcoded absolute path"
-            ],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Opus 4.8",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/BHTF.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BHTF.mp3",
-      "actual_duration_s": 42.43,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BHTF.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T16:29:27"
-      }
-    },
-    {
-      "beat_id": "BOUT",
-      "act": "outro",
-      "narration_text": "Hook Development. Liam, in for Bear.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 5,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "props": {
-            "title": "Hook Development",
-            "handle": "@NikBearBrown",
-            "subline": "hook-development · Claude Code Skills"
-          },
-          "rendered": {
-            "out": "media/BOUT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BOUT.mp3",
-      "actual_duration_s": 2.82,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BOUT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T16:29:27"
-      }
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Shalom, Humanitarians",
+      "topic": "HUMANITARIANS AI · Hook Development",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Bonjour — this is Liam, in for Bear. Ask Claude to create a hook, add a PreToolUse or Stop hook, validate tool use, block dangerous commands, or implement event-driven automation — the Hook Development skill fires. Hooks are event-driven automation scripts that execute in response to Claude Code events. Nine hook event types: PreToolUse, PostToolUse, UserPromptSubmit, Stop, SubagentStop, SessionStart, SessionEnd, PreCompact, and Notification. Two hook types: prompt-based for context-aware decisions using LLM reasoning, command for deterministic bash checks. Let me walk you through the event model, the configuration formats, and where this skill gets it right and where it bites.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 22,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Bonjour, Liam",
+      "topic": "HUMANITARIANS AI · HOOK DEVELOPMENT · CLAUDE CODE SKILL",
+      "segment": "PLUGIN DEV",
+      "command": "Create a PreToolUse hook for my plugin that blocks writes to .env files and system paths.",
+      "runningText": "reading hook-development SKILL.md…",
+      "output": [
+       "9 hook events: PreToolUse · PostToolUse · Stop · SessionStart + 5 more",
+       "2 types: prompt-based (LLM reasoning) vs command (deterministic bash)",
+       "Hooks run in parallel — design for independence"
+      ],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 37.06,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T16:29:27"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Hook Development belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "anatomy — nine events + two hook types",
+   "narration_text": "Nine hook events, each with a distinct lifecycle position. PreToolUse: fires before any tool runs — approve, deny, or modify tool calls. The permissionDecision field can return allow, deny, or ask, and updatedInput can modify the tool call. PostToolUse: fires after a tool completes — react to results, provide feedback, log. UserPromptSubmit: fires when the user submits a prompt — add context, validate, or block. Stop: fires when the main agent considers stopping — validate completeness and return approve or block with a reason. SubagentStop: same timing as Stop but for subagents. SessionStart: fires when a session begins — use to load context and persist environment variables using the special $CLAUDE_ENV_FILE variable — changes persist for the session. SessionEnd: cleanup and logging when the session ends. PreCompact: fires before context compaction — preserve critical information that would otherwise be lost. Notification: fires when Claude sends a notification. Two hook types. Prompt-based hooks use LLM reasoning — supported on Stop, SubagentStop, UserPromptSubmit, and PreToolUse — best for context-aware decisions that require judgment. Command hooks execute bash scripts and support all nine events — best for deterministic validation, file system operations, and performance-critical checks.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "HookDevAnatomy",
+     "props": {
+      "sparkLine": "Nine events. Two types. Prompt for judgment, command for speed."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 72.23,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T16:29:27"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "design — config formats + matchers + parallel",
+   "narration_text": "Two configuration formats that are not interchangeable. Plugin format in hooks/hooks.json: a wrapper object with a required hooks key containing the event map, plus an optional description field. Settings format in .claude/settings.json: events placed directly at the top level, no wrapper, no description field. Using the plugin format in settings or vice versa is a silent failure — hooks simply do not register, with no error message. Matchers control which tools fire the hook. Exact match: the tool name exactly, like Write. Pipe-separated multiples: Read|Write|Edit. Wildcard asterisk fires for all tools. Regex patterns work for MCP tool namespaces — mcp__.*__delete.* matches all MCP delete tools. Matchers are case-sensitive. Hooks matching the same event run in parallel — they do not see each other's output, ordering is non-deterministic. Design for independence: never have one hook depend on the output of another. Output format: exit code zero means success and stdout shows in the transcript. Exit code two is a blocking error and stderr feeds back to Claude. The standard JSON output carries continue, suppressOutput, and systemMessage. PreToolUse additionally supports hookSpecificOutput with permissionDecision — allow, deny, or ask — and updatedInput to modify the tool call before it executes.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "HookDevConfig",
+     "props": {
+      "sparkLine": "Format mismatch is silent. Parallel hooks cannot coordinate."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 74.24,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T16:29:27"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "teardown — what it gets right / where it bites",
+   "narration_text": "Here is the teardown. Hook Development gets the event lifecycle right: nine events are fully documented with when they fire, what input they receive, and what output they should return — the reference table is complete. The prompt-based versus command distinction is clearly motivated: LLM reasoning for context-aware decisions, bash for deterministic checks — the recommendation to default to prompt-based is explicit. Matcher patterns are comprehensive: exact, pipe-separated, wildcard, and regex — all four covered. Security guidance is explicit: quote all variables, validate path traversal, check sensitive files, set timeouts. Parallel execution is stated. Where it bites: the two configuration formats — plugin hooks.json with its wrapper key versus settings.json direct format — differ in a way that silently breaks hooks when mixed up. The skill documents both formats but does not lead with the warning. Hot-swap is impossible — hooks load at session start and changing hooks.json requires restarting Claude Code — but this constraint is mentioned once and not emphasized. Parallel design implications — hooks cannot coordinate, cannot depend on each other's output — are stated but not stressed as an architectural constraint. The temporary hooks pattern is useful but placed deep in the document where readers often do not reach.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "HookDevTell",
+     "props": {
+      "sparkLine": "Event model complete. Format mismatch: silent failure."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 68.18,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T16:29:27"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "narration_text": "Verdict. Hook Development fires for hooks, event automation, PreToolUse, Stop validation, and session lifecycle in Claude Code plugins. Nine events: PreToolUse, PostToolUse, UserPromptSubmit, Stop, SubagentStop, SessionStart, SessionEnd, PreCompact, Notification. Two types: prompt-based for LLM judgment, command for bash. Two formats: plugin wrapper with hooks key vs settings direct top-level. Matchers: exact, pipe, asterisk, regex. Hooks run in parallel — design for independence. Session restart required for changes. Gaps: format mismatch is silent, no-hot-swap understated, parallel coordination gap not emphasized.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 20,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Hook Development",
+      "artifactLines": [
+       "9 events: PreToolUse · PostToolUse · UserPromptSubmit · Stop · SubagentStop + 4 more",
+       "2 types: prompt-based (LLM judgment) · command (deterministic bash, all events)",
+       "2 formats: plugin wrapper {hooks:{...}} vs settings direct top-level (NOT interchangeable)",
+       "Matchers: exact · pipe · * wildcard · regex — case-sensitive",
+       "Hooks run in parallel · exit 0 = transcript · exit 2 = feeds back to Claude",
+       "Gaps: format mismatch silent · no hot-swap · parallel coordination unstated"
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 36.46,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T16:29:27"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "handoff",
+   "narration_text": "Your turn. Open a Claude Code session. Paste this: Create a PreToolUse hook for my plugin that blocks writes to .env files and system paths. Watch four things: first, does Claude use the plugin format — wrapping events in a hooks key inside an object — rather than putting events directly at the top level as in the settings format? Second, does it use prompt-based for the .env check rather than a bash script with a hardcoded regex? Third, is ${CLAUDE_PLUGIN_ROOT} used for any script path rather than an absolute path or a relative path? And fourth, is there a timeout field set — something reasonable like ten seconds — rather than relying on the sixty-second default? If the hooks.json has events at the top level with no wrapper, the format is wrong. If the .env check uses a hardcoded path, the portability principle was missed. Those are your gates.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 34,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your Turn",
+      "topic": "HUMANITARIANS AI · HOOK DEVELOPMENT · HANDOFF",
+      "segment": "PLUGIN DEV",
+      "command": "Create a PreToolUse hook for my plugin that blocks writes to .env files and system paths.",
+      "runningText": "Watch: plugin format? prompt-based? CLAUDE_PLUGIN_ROOT? timeout set?",
+      "output": [
+       "Expected: hooks.json has {\"hooks\": {\"PreToolUse\": [...]}} wrapper",
+       "Expected: prompt-based hook for .env check · ${CLAUDE_PLUGIN_ROOT} for paths",
+       "Red flag: events at top level (no wrapper), or hardcoded absolute path"
+      ],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 42.43,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T16:29:27"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "Hook Development. Liam, in for Bear. From Humanitarians AI.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 5,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Hook Development",
+      "handle": "@HumanitariansAI",
+      "subline": "hook-development · Claude Code Skills"
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 2.82,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T16:29:27"
+   }
+  }
+ ]
 }

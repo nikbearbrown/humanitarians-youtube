@@ -1,190 +1,249 @@
 {
-  "metadata": {
-    "slug": "routing-matrix",
-    "title": "Measure the Routing Matrix: Which Tasks Belong to Claude vs. Human",
-    "topic": "CLAUDE COWORK",
-    "voice": "NikBearBrown",
-    "voice_id": "TyW6NH39JcFb5M3xdIIk",
-    "style": "cli",
-    "palette": "teardown",
-    "style_preset": "nikbearbrown",
-    "source": "claude-cowork/chapters/01-what-cowork-is-for.md",
-    "segment": "ROUTING MATRIX",
-    "ground": "#FFFFFF",
-    "total_estimated_duration_seconds": 118.0
-  },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "t_start": 0.0,
-      "estimated_duration_s": 8.0,
-      "narration_text": "Five tasks straddling CoWork and Claude Code — adding one signal, has side effects on production systems, reclassifies three of them.",
-      "shot": {
-        "type": "SLATE",
-        "source": "own",
-        "motion": "hold"
-      },
-      "audio_file": "mp3/beat-B00.mp3"
-    },
-    {
-      "beat_id": "B01",
-      "t_start": 8.0,
-      "estimated_duration_s": 12.0,
-      "narration_text": "Four routing tiers: Chat for quick one-offs, CoWork for multi-step delegated tasks, Claude Code for autonomous builds, Human-only for regulated or irreversible actions. The routing decision is not about capability — Claude can attempt most tasks. It is about accountability: who owns the outcome when something goes wrong?",
-      "shot": {
-        "type": "SLATE",
-        "source": "own",
-        "motion": "hold"
-      },
-      "audio_file": "mp3/beat-B01.mp3"
-    },
-    {
-      "beat_id": "B02",
-      "t_start": 20.0,
-      "estimated_duration_s": 12.0,
-      "narration_text": "Classify each of these tasks into Chat, CoWork, Claude Code, or Human-only. For each, state the key signal that determined the classification.",
-      "shot": {
-        "type": "SLATE",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Classify each of these tasks into: Chat, CoWork, Claude Code, or Human-only. For each, state the key signal that determined the classification.\" < tasks.txt",
-            "topic": "CLAUDE COWORK",
-            "segment": "ROUTING MATRIX",
-            "runningText": "classifying tasks…"
-          },
-          "rendered": {
-            "out": "media/B02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B02.mp3"
-    },
-    {
-      "beat_id": "B03",
-      "t_start": 32.0,
-      "estimated_duration_s": 14.0,
-      "narration_text": "The routing matrix script classifies tasks, producing a routing tier, key signal, and confidence score for each.",
-      "shot": {
-        "type": "SLATE",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "routing_matrix.py",
-            "code": "TIERS = [\"Chat\", \"CoWork\", \"Claude Code\", \"Human-only\"]\n\ndef classify_task(task: str, signals: list[str]) -> dict:\n    \"\"\"Classify a task using the routing signal set.\"\"\"\n    has_production = any(\"production\" in s.lower() for s in signals)\n    has_regulated = any(\"regulated\" in s.lower() or \"hipaa\" in s.lower() for s in signals)\n    has_irreversible = any(\"irreversible\" in s.lower() for s in signals)\n    is_multistep = any(\"multi-step\" in s.lower() for s in signals)\n\n    if has_regulated or has_irreversible:\n        tier = \"Human-only\"\n    elif has_production or is_multistep:\n        tier = \"CoWork\"\n    elif any(\"autonomous\" in s.lower() for s in signals):\n        tier = \"Claude Code\"\n    else:\n        tier = \"Chat\"\n\n    key_signal = signals[0] if signals else \"none\"\n    confidence = 0.9 if len(signals) >= 2 else 0.7\n    return {\"task\": task, \"tier\": tier, \"key_signal\": key_signal,\n            \"confidence\": confidence}",
-            "topic": "CLAUDE COWORK",
-            "segment": "ROUTING MATRIX"
-          },
-          "rendered": {
-            "out": "media/B03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B03.mp3"
-    },
-    {
-      "beat_id": "B04",
-      "t_start": 46.0,
-      "estimated_duration_s": 20.0,
-      "narration_text": "20 tasks classified: 8 Chat, 7 CoWork, 3 Claude Code, 2 Human-only. Two tasks flagged as boundary cases — schedule a meeting, Chat vs CoWork; run the monthly report, CoWork vs Claude Code. The model flags these as ambiguous rather than forcing a classification.",
-      "shot": {
-        "type": "SLATE",
-        "source": "own",
-        "motion": "hold"
-      },
-      "audio_file": "mp3/beat-B04.mp3"
-    },
-    {
-      "beat_id": "B05",
-      "t_start": 66.0,
-      "estimated_duration_s": 10.0,
-      "narration_text": "Feed 5 tasks straddling CoWork and Claude Code boundary. Add signal: has side effects on production systems.",
-      "shot": {
-        "type": "SLATE",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Re-classify these 5 tasks. Additional signal for all: has side effects on production systems.\" < boundary_tasks.txt",
-            "topic": "CLAUDE COWORK",
-            "segment": "ROUTING MATRIX",
-            "runningText": "adding production signal…"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B05.mp3"
-    },
-    {
-      "beat_id": "B06",
-      "t_start": 76.0,
-      "estimated_duration_s": 14.0,
-      "narration_text": "With the production-side-effects signal, 3 of the 5 reclassify from Claude Code to CoWork — they now require a human checkpoint before execution. The signal did not change Claude's capability; it changed the accountability requirement.",
-      "shot": {
-        "type": "SLATE",
-        "source": "own",
-        "motion": "hold"
-      },
-      "audio_file": "mp3/beat-B06.mp3"
-    },
-    {
-      "beat_id": "B07",
-      "t_start": 90.0,
-      "estimated_duration_s": 12.0,
-      "narration_text": "The routing matrix gives every task a tier, a signal, and an accountability assignment. The production-systems signal is the most important one — if the AI's mistake is irreversible, the tier must require a human checkpoint.",
-      "shot": {
-        "type": "SLATE",
-        "source": "own",
-        "motion": "hold"
-      },
-      "audio_file": "mp3/beat-B07.mp3"
-    },
-    {
-      "beat_id": "B08",
-      "t_start": 102.0,
-      "estimated_duration_s": 8.0,
-      "narration_text": "Next: build a file-rename tool with a mandatory dry-run before anything changes.",
-      "shot": {
-        "type": "SLATE",
-        "source": "own",
-        "motion": "hold"
-      },
-      "audio_file": "mp3/beat-B08.mp3"
-    },
-    {
-      "beat_id": "B09",
-      "t_start": 110.0,
-      "estimated_duration_s": 8.0,
-      "narration_text": "Nik Bear Brown. Brutalist and Educational AI. nikbearbrown.com.",
-      "shot": {
-        "type": "SLATE",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          },
-          "rendered": {
-            "out": "media/B09.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B09.mp3"
+ "metadata": {
+  "slug": "routing-matrix",
+  "title": "Measure the Routing Matrix: Which Tasks Belong to Claude vs. Human",
+  "topic": "CLAUDE COWORK",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-cowork/chapters/01-what-cowork-is-for.md",
+  "segment": "ROUTING MATRIX",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Merhaba, Humanitarians",
+      "topic": "HUMANITARIANS AI · Measure the Routing Matrix: Which Tasks Belong to Claude vs. Human",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "t_start": 0.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Five tasks straddling CoWork and Claude Code — adding one signal, has side effects on production systems, reclassifies three of them.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Measure the Routing Matrix: Which Tasks Belong to Claude vs. Human belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "t_start": 8.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "Four routing tiers: Chat for quick one-offs, CoWork for multi-step delegated tasks, Claude Code for autonomous builds, Human-only for regulated or irreversible actions. The routing decision is not about capability — Claude can attempt most tasks. It is about accountability: who owns the outcome when something goes wrong?",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "t_start": 20.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "Classify each of these tasks into Chat, CoWork, Claude Code, or Human-only. For each, state the key signal that determined the classification.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Classify each of these tasks into: Chat, CoWork, Claude Code, or Human-only. For each, state the key signal that determined the classification.\" < tasks.txt",
+      "topic": "HUMANITARIANS AI · CLAUDE COWORK",
+      "segment": "ROUTING MATRIX",
+      "runningText": "classifying tasks…"
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "t_start": 32.0,
+   "estimated_duration_s": 14.0,
+   "narration_text": "The routing matrix script classifies tasks, producing a routing tier, key signal, and confidence score for each.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "code": "TIERS = [\"Chat\", \"CoWork\", \"Claude Code\", \"Human-only\"]\n\ndef classify_task(task: str, signals: list[str]) -> dict:\n    \"\"\"Classify a task using the routing signal set.\"\"\"\n    has_production = any(\"production\" in s.lower() for s in signals)\n    has_regulated = any(\"regulated\" in s.lower() or \"hipaa\" in s.lower() for s in signals)\n    has_irreversible = any(\"irreversible\" in s.lower() for s in signals)\n    is_multistep = any(\"multi-step\" in s.lower() for s in signals)\n\n    if has_regulated or has_irreversible:\n        tier = \"Human-only\"\n    elif has_production or is_multistep:\n        tier = \"CoWork\"\n    elif any(\"autonomous\" in s.lower() for s in signals):\n        tier = \"Claude Code\"\n    else:\n        tier = \"Chat\"\n\n    key_signal = signals[0] if signals else \"none\"\n    confidence = 0.9 if len(signals) >= 2 else 0.7\n    return {\"task\": task, \"tier\": tier, \"key_signal\": key_signal,\n            \"confidence\": confidence}",
+      "topic": "CLAUDE COWORK",
+      "segment": "ROUTING MATRIX",
+      "title": "routing_matrix.py"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "t_start": 46.0,
+   "estimated_duration_s": 20.0,
+   "narration_text": "20 tasks classified: 8 Chat, 7 CoWork, 3 Claude Code, 2 Human-only. Two tasks flagged as boundary cases — schedule a meeting, Chat vs CoWork; run the monthly report, CoWork vs Claude Code. The model flags these as ambiguous rather than forcing a classification.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "t_start": 66.0,
+   "estimated_duration_s": 10.0,
+   "narration_text": "Feed 5 tasks straddling CoWork and Claude Code boundary. Add signal: has side effects on production systems.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Re-classify these 5 tasks. Additional signal for all: has side effects on production systems.\" < boundary_tasks.txt",
+      "topic": "HUMANITARIANS AI · CLAUDE COWORK",
+      "segment": "ROUTING MATRIX",
+      "runningText": "adding production signal…"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "t_start": 76.0,
+   "estimated_duration_s": 14.0,
+   "narration_text": "With the production-side-effects signal, 3 of the 5 reclassify from Claude Code to CoWork — they now require a human checkpoint before execution. The signal did not change Claude's capability; it changed the accountability requirement.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B06.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "t_start": 90.0,
+   "estimated_duration_s": 12.0,
+   "narration_text": "The routing matrix gives every task a tier, a signal, and an accountability assignment. The production-systems signal is the most important one — if the AI's mistake is irreversible, the tier must require a human checkpoint.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B07.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "t_start": 102.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Next: build a file-rename tool with a mandatory dry-run before anything changes.",
+   "shot": {
+    "type": "SLATE",
+    "source": "own",
+    "motion": "hold"
+   },
+   "audio_file": "mp3/beat-B08.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "t_start": 110.0,
+   "estimated_duration_s": 8.0,
+   "narration_text": "Humanitarians AI. Brutalist and Educational AI. nikbearbrown.com.",
+   "shot": {
+    "type": "SLATE",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@HumanitariansAI",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B09.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }

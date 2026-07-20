@@ -1,327 +1,373 @@
 {
-  "metadata": {
-    "title": "Detect Simpson's Paradox with Claude",
-    "slug": "simpson-paradox-detector",
-    "topic": "CAUSAL INFERENCE — SIMPSON'S PARADOX",
-    "register": "Teardown",
-    "voice": "NikBearBrown",
-    "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
-    "palette": "claude",
-    "style_preset": "nikbearbrown",
-    "style": "cli",
-    "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro.",
-    "total_estimated_duration_seconds": 118,
-    "audience": "Claude",
-    "derived_from": "beat_sheet.json",
-    "outro_source": "AUTHOR.MD :: NikBearBrown",
-    "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
-    "_variant_todo": [
-      "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
-      "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
-      "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
-      "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
-    ],
-    "build": {
-      "at": "2026-07-16T04:47:54",
-      "cut": "master",
-      "filled": 5,
-      "of": 10,
-      "slates": [
-        "B01",
-        "B04",
-        "B06",
-        "B07",
-        "B08"
-      ],
-      "skin_warnings": [
-        "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
-        "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
-      ]
-    }
+ "metadata": {
+  "title": "Detect Simpson's Paradox with Claude",
+  "slug": "simpson-paradox-detector",
+  "topic": "CAUSAL INFERENCE — SIMPSON'S PARADOX",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro.",
+  "total_estimated_duration_seconds": 118,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ],
+  "build": {
+   "at": "2026-07-16T04:47:54",
+   "cut": "master",
+   "filled": 5,
+   "of": 10,
+   "slates": [
+    "B01",
+    "B04",
+    "B06",
+    "B07",
+    "B08"
+   ],
+   "skin_warnings": [
+    "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
+    "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
+   ]
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "INTRO",
-      "narration_text": "This is Liam, in for Bear. Nik Bear Brown. Build it with a CLI, then take it apart.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownOpen",
-          "props": {
-            "topic": "NIK BEAR BROWN",
-            "lines": [
-              "Nik Bear Brown",
-              "Causal Inference, taken apart."
-            ]
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 5,
-      "audio_file": "mp3/beat-B00.mp3",
-      "actual_duration_s": 5.48,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T04:47:54"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "PROBLEM — why care",
-      "role_note": "the problem, the stakes — BEFORE the CLI",
-      "narration_text": "Simpson's paradox is the reason observational studies get retracted. You run a clinical trial, pool the data, drug looks great. Then you stratify by gender and every stratum reverses. The pooled result was backwards. This is not a corner case — it happens any time a confounder is unevenly distributed. The question this video answers: how do you detect it and what does Claude do with it when it finds it.",
-      "visual_intent": "title card: 'pooled says yes, strata say no — Simpson's paradox'; the stakes for clinical trials; no terminal yet",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 14,
-      "audio_file": "mp3/beat-B01.mp3",
-      "actual_duration_s": 20.86,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T04:47:54",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
-        "suggested": "suggested prompt: Simpson's paradox is the reason observational studies get retracted. You run a clinical trial, pool the data, drug looks great. Then you stratify by gender and "
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "ASK",
-      "role_note": "terminal (Onda)",
-      "narration_text": "Ask Claude. In the terminal: write a Python script that takes a two-by-two-by-two contingency table, computes marginal and stratum-specific effects, flags a Simpson's paradox if signs flip, calls Claude to classify confounder versus mediator, and then computes an adjusted average treatment effect using backdoor stratification.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Write a Python script: (1) takes a 2x2x2 contingency table; (2) computes marginal and stratum-specific effects; (3) flags Simpson's paradox if signs flip; (4) calls Claude to classify confounder vs mediator; (5) computes adjusted ATE using backdoor stratification\"",
-            "topic": "CAUSAL INFERENCE — SIMPSON'S PARADOX",
-            "segment": "SIMPSON'S PARADOX DETECTOR",
-            "runningText": "generating script…"
-          },
-          "rendered": {
-            "out": "media/B02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 15,
-      "audio_file": "mp3/beat-B02.mp3",
-      "actual_duration_s": 18.41,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B02.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T04:47:54"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "CODE",
-      "role_note": "terminal (Onda)",
-      "narration_text": "Read it before running it. The adjusted average treatment effect is one line of weighted expectations — the backdoor formula. Sum over strata: expected outcome under treatment times stratum probability, minus expected outcome under control times stratum probability. The confounder is in the denominator of every weight.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "simpson_detector.py",
-            "topic": "CAUSAL INFERENCE — SIMPSON'S PARADOX",
-            "segment": "SIMPSON'S PARADOX DETECTOR",
-            "code": "# simpson_detector.py — Claude Code output\n\ndef adjusted_ate(table, strata_probs):\n    ATE = sum(\n        E(Y|X=1,Z=z)*P(Z=z) - E(Y|X=0,Z=z)*P(Z=z)\n        for z, P_z in zip(strata, strata_probs)\n    )\n    return ATE\n\n# Marginal: 78% vs 72% -> drug looks good\n# Stratified men:  60% vs 70% -> drug WORSE\n# Stratified women: 40% vs 50% -> drug WORSE\n# Simpson's flag: sign flip detected"
-          },
-          "rendered": {
-            "out": "media/B03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 15,
-      "audio_file": "mp3/beat-B03.mp3",
-      "actual_duration_s": 17.94,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B03.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T04:47:54"
-      }
-    },
-    {
-      "beat_id": "B04",
-      "act": "OUTPUT — run",
-      "role_note": "OPEN vox slot -> Manim video",
-      "narration_text": "Run it. The top panel shows the pooled data: drug group seventy-eight percent, control group seventy-two. Drug looks good. The bottom panel stratifies by gender. Men: drug sixty, control seventy. Women: drug forty, control fifty. Every stratum reverses. The reversal flag fires. The confounder — gender — is unevenly distributed across treatment arms and that asymmetry flips the pooled result.",
-      "visual_intent": "Manim: two-panel table showing pooled 78% vs 72% looks good, then stratified men 60/70 and women 40/50 both reverse — REVERSAL annotation in crimson",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "manim",
-        "motion": "fade",
-        "manim": {
-          "scene_class": "B04_SimpsonTable",
-          "file": "vox_scenes.py"
-        }
-      },
-      "estimated_duration_s": 17,
-      "audio_file": "mp3/beat-B04.mp3",
-      "actual_duration_s": 21.12,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T04:47:54",
-        "needs": "PIPELINE → render animated_graphics.py scene B04_*"
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "CHANGE — check and revise",
-      "role_note": "terminal (Onda) — the REQUIRED revision",
-      "narration_text": "The backdoor stratification gives you the adjusted estimate. Now ask Claude to add a sensitivity check — what if the confounder classification is wrong and the variable is a mediator, not a confounder? Adjusting for a mediator blocks the causal path and introduces a different kind of bias.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"update simpson_detector.py:\n  -> add mediator check: warn if adjusting for mediator\n  -> add frontdoor formula as alternative\n  -> print both ATE estimates with warnings\"",
-            "topic": "CAUSAL INFERENCE — SIMPSON'S PARADOX",
-            "segment": "SIMPSON'S PARADOX DETECTOR",
-            "runningText": "updating script…"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 12,
-      "audio_file": "mp3/beat-B05.mp3",
-      "actual_duration_s": 15.66,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T04:47:54"
-      }
-    },
-    {
-      "beat_id": "B06",
-      "act": "OUTPUT — revised",
-      "role_note": "slate placeholder",
-      "narration_text": "The updated script now flags when a candidate adjustment variable is on the causal path — adjusting for it would block the effect you are trying to measure. Two estimates print: the backdoor adjusted ATE and the frontdoor estimate, so you can compare when the mediator path is the only clean route.",
-      "visual_intent": "slate: show updated output with mediator warning and two ATE estimates printed side by side",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 12,
-      "audio_file": "mp3/beat-B06.mp3",
-      "actual_duration_s": 15.81,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T04:47:54",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
-        "suggested": "suggested prompt: The updated script now flags when a candidate adjustment variable is on the causal path — adjusting for it would block the effect you are trying to measure. Two"
-      }
-    },
-    {
-      "beat_id": "B07",
-      "act": "SUMMARY",
-      "role_note": "the lesson — one beat",
-      "narration_text": "So Simpson's paradox is not a data error — it is a structural one. The pooled estimate mixes two populations with different baseline rates. Stratification by the confounder breaks that mix. The backdoor formula weights the stratum-specific effects by how often each stratum appears in the population, not the sample.",
-      "visual_intent": "recap card: 'pooled = mixing populations; stratified = seeing the structure; backdoor = weighting by the world'",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 11,
-      "audio_file": "mp3/beat-B07.mp3",
-      "actual_duration_s": 17.51,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T04:47:54",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
-        "suggested": "suggested prompt: So Simpson's paradox is not a data error — it is a structural one. The pooled estimate mixes two populations with different baseline rates. Stratification by th"
-      }
-    },
-    {
-      "beat_id": "B08",
-      "act": "NEXT STEPS",
-      "role_note": "what to do next",
-      "narration_text": "Your move: take any observational dataset with a treatment and outcome and a candidate confounder. Run this script. If the paradox flag fires, your marginal estimate is wrong and you now have the adjusted one. The next reel covers the back-door criterion — how to prove that your adjustment set is valid.",
-      "visual_intent": "next-steps card: 1) run on your own data, 2) check for sign flip, 3) use backdoor ATE; pointer to back-door criterion reel",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 10,
-      "audio_file": "mp3/beat-B08.mp3",
-      "actual_duration_s": 16.7,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T04:47:54",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)",
-        "suggested": "suggested prompt: Your move: take any observational dataset with a treatment and outcome and a candidate confounder. Run this script. If the paradox flag fires, your marginal est"
-      }
-    },
-    {
-      "beat_id": "B09",
-      "act": "OUTRO",
-      "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          },
-          "rendered": {
-            "out": "media/B09.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 8,
-      "audio_file": "mp3/beat-B09.mp3",
-      "actual_duration_s": 6.51,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B09.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T04:47:54"
-      }
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Privet, Humanitarians",
+      "topic": "HUMANITARIANS AI · Detect Simpson's Paradox with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "This is Liam, in for Bear. Humanitarians AI. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Detect Simpson's Paradox with Claude",
+      "topic": "HUMANITARIANS AI · NIK BEAR BROWN",
+      "segment": "Detect Simpson's Paradox with Claude",
+      "greeting": "This is Humanitarians AI.",
+      "runningText": "working…",
+      "output": [
+       "Causal Inference, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 5.48,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T04:47:54"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "Simpson's paradox is the reason observational studies get retracted. You run a clinical trial, pool the data, drug looks great. Then you stratify by gender and every stratum reverses. The pooled result was backwards. This is not a corner case — it happens any time a confounder is unevenly distributed. The question this video answers: how do you detect it and what does Claude do with it when it finds it.",
+   "visual_intent": "title card: 'pooled says yes, strata say no — Simpson's paradox'; the stakes for clinical trials; no terminal yet",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 20.86,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T04:47:54",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
+    "suggested": "suggested prompt: Simpson's paradox is the reason observational studies get retracted. You run a clinical trial, pool the data, drug looks great. Then you stratify by gender and "
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Ask Claude. In the terminal: write a Python script that takes a two-by-two-by-two contingency table, computes marginal and stratum-specific effects, flags a Simpson's paradox if signs flip, calls Claude to classify confounder versus mediator, and then computes an adjusted average treatment effect using backdoor stratification.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Write a Python script: (1) takes a 2x2x2 contingency table; (2) computes marginal and stratum-specific effects; (3) flags Simpson's paradox if signs flip; (4) calls Claude to classify confounder vs mediator; (5) computes adjusted ATE using backdoor stratification\"",
+      "topic": "HUMANITARIANS AI · CAUSAL INFERENCE — SIMPSON'S PARADOX",
+      "segment": "SIMPSON'S PARADOX DETECTOR",
+      "runningText": "generating script…"
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 18.41,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T04:47:54"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
+   "narration_text": "Read it before running it. The adjusted average treatment effect is one line of weighted expectations — the backdoor formula. Sum over strata: expected outcome under treatment times stratum probability, minus expected outcome under control times stratum probability. The confounder is in the denominator of every weight.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "topic": "CAUSAL INFERENCE — SIMPSON'S PARADOX",
+      "segment": "SIMPSON'S PARADOX DETECTOR",
+      "code": "# simpson_detector.py — Claude Code output\n\ndef adjusted_ate(table, strata_probs):\n    ATE = sum(\n        E(Y|X=1,Z=z)*P(Z=z) - E(Y|X=0,Z=z)*P(Z=z)\n        for z, P_z in zip(strata, strata_probs)\n    )\n    return ATE\n\n# Marginal: 78% vs 72% -> drug looks good\n# Stratified men:  60% vs 70% -> drug WORSE\n# Stratified women: 40% vs 50% -> drug WORSE\n# Simpson's flag: sign flip detected",
+      "title": "simpson_detector.py"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 17.94,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T04:47:54"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "OPEN vox slot -> Manim video",
+   "narration_text": "Run it. The top panel shows the pooled data: drug group seventy-eight percent, control group seventy-two. Drug looks good. The bottom panel stratifies by gender. Men: drug sixty, control seventy. Women: drug forty, control fifty. Every stratum reverses. The reversal flag fires. The confounder — gender — is unevenly distributed across treatment arms and that asymmetry flips the pooled result.",
+   "visual_intent": "Manim: two-panel table showing pooled 78% vs 72% looks good, then stratified men 60/70 and women 40/50 both reverse — REVERSAL annotation in crimson",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_SimpsonTable",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 21.12,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T04:47:54",
+    "needs": "PIPELINE → render animated_graphics.py scene B04_*"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "The backdoor stratification gives you the adjusted estimate. Now ask Claude to add a sensitivity check — what if the confounder classification is wrong and the variable is a mediator, not a confounder? Adjusting for a mediator blocks the causal path and introduces a different kind of bias.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"update simpson_detector.py:\n  -> add mediator check: warn if adjusting for mediator\n  -> add frontdoor formula as alternative\n  -> print both ATE estimates with warnings\"",
+      "topic": "HUMANITARIANS AI · CAUSAL INFERENCE — SIMPSON'S PARADOX",
+      "segment": "SIMPSON'S PARADOX DETECTOR",
+      "runningText": "updating script…"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 15.66,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T04:47:54"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "role_note": "slate placeholder",
+   "narration_text": "The updated script now flags when a candidate adjustment variable is on the causal path — adjusting for it would block the effect you are trying to measure. Two estimates print: the backdoor adjusted ATE and the frontdoor estimate, so you can compare when the mediator path is the only clean route.",
+   "visual_intent": "slate: show updated output with mediator warning and two ATE estimates printed side by side",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 15.81,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T04:47:54",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
+    "suggested": "suggested prompt: The updated script now flags when a candidate adjustment variable is on the causal path — adjusting for it would block the effect you are trying to measure. Two"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "So Simpson's paradox is not a data error — it is a structural one. The pooled estimate mixes two populations with different baseline rates. Stratification by the confounder breaks that mix. The backdoor formula weights the stratum-specific effects by how often each stratum appears in the population, not the sample.",
+   "visual_intent": "recap card: 'pooled = mixing populations; stratified = seeing the structure; backdoor = weighting by the world'",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 17.51,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T04:47:54",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
+    "suggested": "suggested prompt: So Simpson's paradox is not a data error — it is a structural one. The pooled estimate mixes two populations with different baseline rates. Stratification by th"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: take any observational dataset with a treatment and outcome and a candidate confounder. Run this script. If the paradox flag fires, your marginal estimate is wrong and you now have the adjusted one. The next reel covers the back-door criterion — how to prove that your adjustment set is valid.",
+   "visual_intent": "next-steps card: 1) run on your own data, 2) check for sign flip, 3) use backdoor ATE; pointer to back-door criterion reel",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 16.7,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T04:47:54",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)",
+    "suggested": "suggested prompt: Your move: take any observational dataset with a treatment and outcome and a candidate confounder. Run this script. If the paradox flag fires, your marginal est"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Humanitarians AI. Build it with a CLI. Then take it apart. At Humanitarians AI, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@HumanitariansAI",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 6.51,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B09.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T04:47:54"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }

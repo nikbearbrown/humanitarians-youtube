@@ -1,366 +1,443 @@
 {
-  "metadata": {
-    "slug": "agentic-handoff-auditor",
-    "variant": "nbb",
-    "title": "Build an Agentic Prompt Handoff Auditor with Claude",
-    "topic": "PROMPT ENGINEERING",
-    "audience": "NikBearBrown",
-    "engine": "kokoro",
-    "voice": "am_onyx",
-    "palette": "teardown",
-    "register": "Teardown",
-    "derived_from": "beat_sheet.json",
-    "source_reel": "../agentic-handoff-auditor",
-    "source_video": "../agentic-handoff-auditor/agentic-handoff-auditor-cut.mp4",
-    "body_beats": [
-      "B00",
-      "B01",
-      "B02",
-      "B03",
-      "B04",
-      "B05",
-      "B06",
-      "B07",
-      "B08",
-      "B09"
-    ],
-    "body_duration_s": 117,
-    "old_outro_beats": [],
-    "built_at": "2026-07-17T00:55:05.208275"
-  },
-  "beats": [
-    {
-      "beat_id": "NBB00",
-      "act": "COLD OPEN",
-      "title": "Liam cold open — ClaudeComposerAsk",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "I'm chaining prompts where one step's output feeds the next, and things quietly break at the seams. I want to build a handoff auditor. Help me: (1) define what the auditor should check when output from step one becomes input to step two — missing context, dropped constraints, ambiguous references; (2) write the auditor prompt that flags each broken handoff before the chain runs; (3) suggest how it should report a failure so I know exactly which slot to repair.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "provenance": "proven-core/ClaudeComposerAsk",
-          "version": "1",
-          "props": {
-            "command": "I'm chaining prompts where one step's output feeds the next, and things quietly break at the seams. I want to build a handoff auditor. Help me: (1) define what the auditor should check when output from step one becomes input to step two — missing context, dropped constraints, ambiguous references; (2) write the auditor prompt that flags each broken handoff before the chain runs; (3) suggest how it should report a failure so I know exactly which slot to repair.",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "Build an Agentic Prompt Handoff Auditor",
-            "greeting": "Your turn.",
-            "runningText": "explaining the mechanism…",
-            "output": [],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Fable 5",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/NBB00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 9.0,
-      "audio_file": "mp3/beat-NBB00.mp3",
-      "actual_duration_s": 7.125
-    },
-    {
-      "beat_id": "B00",
-      "label": "Open",
-      "estimated_duration_s": 10,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOpen",
-          "props": {
-            "topic": "PROMPT ENGINEERING",
-            "lines": [
-              "Nik Bear Brown",
-              "Brutalist + Educational AI",
-              "Agentic Handoff Auditor",
-              "Where chains break.",
-              "CLI Build"
-            ]
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B00.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B00.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B00.mp3"
-    },
-    {
-      "beat_id": "B01",
-      "label": "Hook — handoff failures",
-      "estimated_duration_s": 12,
-      "narration": "Multi-step agentic prompts fail at handoffs — the boundary between what one step produces and what the next step expects. That's where the chain breaks. And it's almost never the handoff you thought was obvious.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Flow diagram: Step 1 -> HANDOFF -> Step 2. HANDOFF box highlighted in CRIMSON with label 'format mismatch: numbered list vs JSON array'. Step 2 box has CRIMSON X — 'fails here'. Teardown palette."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B01.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B01.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B01.mp3"
-    },
-    {
-      "beat_id": "B02",
-      "label": "Claude command",
-      "estimated_duration_s": 15,
-      "narration": "The audit command reads a multi-step agentic chain and classifies each handoff as compatible, incompatible, or ambiguous — and flags all incompatible and ambiguous transitions.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Audit the handoffs in this multi-step agentic prompt chain. For each handoff N->N+1: Step N output format, Step N+1 input expectation, classify: compatible/incompatible/ambiguous. Flag all incompatible and ambiguous.\" < prompt_chain.md",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "AGENTIC HANDOFFS",
-            "runningText": "auditing handoff chain…"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B02.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B02.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B02.mp3"
-    },
-    {
-      "beat_id": "B03",
-      "label": "Python code",
-      "estimated_duration_s": 15,
-      "narration": "The script reads the prompt chain, runs the handoff audit through Claude, and outputs a compatibility matrix showing each handoff's status.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "handoff_auditor.py",
-            "segment": "AGENTIC HANDOFFS",
-            "topic": "PROMPT ENGINEERING",
-            "code": "import subprocess, sys\nchain = open(sys.argv[1]).read()\naudit_cmd = (\n  \"Audit handoffs in this multi-step agentic chain. \"\n  \"For each N->N+1: output format, input expectation, \"\n  \"classify: compatible/incompatible/ambiguous. \"\n  \"Flag all incompatible and ambiguous handoffs.\"\n)\nresult = subprocess.run(\n  [\"claude\", audit_cmd],\n  input=chain, capture_output=True, text=True\n)\nprint(result.stdout)"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B03.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B03.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B03.mp3"
-    },
-    {
-      "beat_id": "B04",
-      "label": "Handoff compatibility matrix",
-      "estimated_duration_s": 14,
-      "narration": "The audit shows three handoffs: Step 1 to 2 is compatible. Step 2 to 3 is incompatible — numbered list output into a JSON array expectation. Step 3 to 4 is ambiguous.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Three-row matrix. Columns: HANDOFF | OUTPUT FORMAT | INPUT EXPECTED | STATUS. Row 1: 1->2 | markdown paragraphs | text block | COMPATIBLE (green). Row 2: 2->3 | numbered list | JSON array | INCOMPATIBLE (crimson). Row 3: 3->4 | unstructured text | structured fields | AMBIGUOUS (gold). Teardown palette."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B04.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B04.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B04.mp3"
-    },
-    {
-      "beat_id": "B05",
-      "label": "The change — fix incompatible handoff",
-      "estimated_duration_s": 15,
-      "narration": "Fix the incompatible handoff by adding an explicit output format specification to Step 2 — 'output as JSON array with keys: title, summary, confidence.' Re-run the audit.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Audit handoffs again after Step 2 now specifies: output as JSON array with keys title/summary/confidence.\" < prompt_chain_fixed.md",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "AGENTIC HANDOFFS",
-            "runningText": "re-auditing after format fix…"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B05.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B05.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B05.mp3"
-    },
-    {
-      "beat_id": "B06",
-      "label": "Changed output",
-      "estimated_duration_s": 10,
-      "narration": "Handoff 2 to 3: incompatible turns compatible. The arrow turns green. One format specification fixed the chain's weakest link.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "BEFORE: row 2->3 — INCOMPATIBLE, crimson arrow, 'numbered list vs JSON array.' AFTER: row 2->3 — COMPATIBLE, green arrow, 'JSON array matches expectation.' Single row before/after comparison. Caption: 'One format spec closes the gap.'"
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B06.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B06.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B06.mp3"
-    },
-    {
-      "beat_id": "B07",
-      "label": "Teardown angle",
-      "estimated_duration_s": 12,
-      "narration": "Agentic chains are only as reliable as their weakest handoff — and the weakest handoff is never the one you think is obvious. It's the one where format was left to interpretation.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Large text: 'Weakest handoff = format left to interpretation.' Below: 'Spec the output contract at every step.' CRIMSON on 'left to interpretation.' Teardown palette, CRIMSON rule."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B07.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B07.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B07.mp3"
-    },
-    {
-      "beat_id": "B08",
-      "label": "Next reel teaser",
-      "estimated_duration_s": 6,
-      "narration": "Next: a GIGO detector for data prompts — make the invisible assumptions visible.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Clean: 'NEXT: Data GIGO Detector →' Minimal teardown style."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B08.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B08.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B08.mp3"
-    },
-    {
-      "beat_id": "B09",
-      "label": "Outro",
-      "estimated_duration_s": 8,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../agentic-handoff-auditor/clips/B09.mp4",
-      "source_audio": "../agentic-handoff-auditor/mp3/beat-B09.mp3",
-      "audio_file": "../agentic-handoff-auditor/mp3/beat-B09.mp3"
-    },
-    {
-      "beat_id": "NBB01",
-      "act": "VERDICT",
-      "title": "Liam verdict — ClaudeVerdictArtifact",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Let's recap with Claude. Here's what the body just demonstrated.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "provenance": "proven-core/ClaudeVerdictArtifact",
-          "version": "1",
-          "props": {
-            "artifactTitle": "Verdict",
-            "artifactHeading": "Build an Agentic Prompt Handoff Auditor with Claude",
-            "artifactLines": [
-              "Key mechanism established.",
-              "Key mechanism established.",
-              "Key mechanism established."
-            ]
-          },
-          "rendered": {
-            "out": "media/NBB01.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 30.0,
-      "audio_file": "mp3/beat-NBB01.mp3",
-      "actual_duration_s": 2.88,
-      "lead_silence_s": 0.5
-    },
-    {
-      "beat_id": "NBB02",
-      "act": "YOUR TURN",
-      "title": "Your turn handoff — ClaudeComposerAsk",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "provenance": "proven-core/ClaudeComposerAsk",
-          "version": "1",
-          "props": {
-            "command": "Explain how [Build an Agentic Prompt Handoff Auditor with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "Build an Agentic Prompt Handoff Auditor",
-            "greeting": "Your turn.",
-            "runningText": "paste this into Claude…",
-            "output": [],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Fable 5",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/NBB02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 8.0,
-      "audio_file": "mp3/beat-NBB02.mp3",
-      "actual_duration_s": 7.765
-    },
-    {
-      "beat_id": "NBB03",
-      "act": "OUTRO",
-      "title": "Claude title outro — ClaudeTitleOutro",
-      "silent": true,
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "provenance": "proven-core/ClaudeTitleOutro",
-          "version": "1",
-          "props": {
-            "title": "Build an Agentic Prompt Handoff Auditor with Claude",
-            "handle": "@NikBearBrown",
-            "subline": "cancer biology, one mechanism at a time"
-          },
-          "rendered": {
-            "out": "media/NBB03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 6.0,
-      "audio_file": "mp3/beat-NBB03.mp3",
-      "silence_s": 6.0,
-      "actual_duration_s": 6.03,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Build an Agentic Prompt Handoff Auditor with Claude"
+ "metadata": {
+  "slug": "agentic-handoff-auditor",
+  "variant": "nbb",
+  "title": "Build an Agentic Prompt Handoff Auditor with Claude",
+  "topic": "PROMPT ENGINEERING",
+  "audience": "NikBearBrown",
+  "engine": "kokoro",
+  "voice": "am_onyx",
+  "palette": "teardown",
+  "register": "Pragmatist",
+  "derived_from": "beat_sheet.json",
+  "source_reel": "../agentic-handoff-auditor",
+  "source_video": "../agentic-handoff-auditor/agentic-handoff-auditor-cut.mp4",
+  "body_beats": [
+   "B00",
+   "B01",
+   "B02",
+   "B03",
+   "B04",
+   "B05",
+   "B06",
+   "B07",
+   "B08",
+   "B09"
+  ],
+  "body_duration_s": 117,
+  "old_outro_beats": [],
+  "built_at": "2026-07-17T00:55:05.208275",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Shalom, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build an Agentic Prompt Handoff Auditor with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "NBB00",
+   "act": "COLD OPEN",
+   "title": "Liam cold open — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "I'm chaining prompts where one step's output feeds the next, and things quietly break at the seams. I want to build a handoff auditor. Help me: (1) define what the auditor should check when output from step one becomes input to step two — missing context, dropped constraints, ambiguous references; (2) write the auditor prompt that flags each broken handoff before the chain runs; (3) suggest how it should report a failure so I know exactly which slot to repair.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "I'm chaining prompts where one step's output feeds the next, and things quietly break at the seams. I want to build a handoff auditor. Help me: (1) define what the auditor should check when output from step one becomes input to step two — missing context, dropped constraints, ambiguous references; (2) write the auditor prompt that flags each broken handoff before the chain runs; (3) suggest how it should report a failure so I know exactly which slot to repair.",
+      "topic": "HUMANITARIANS AI · PROMPT ENGINEERING",
+      "segment": "Build an Agentic Prompt Handoff Auditor",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 9.0,
+   "audio_file": "mp3/beat-NBB00.mp3",
+   "actual_duration_s": 7.125
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Build an Agentic Prompt Handoff Auditor with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "I'm chaining prompts where one step's output feeds the next, and things quietly break at the seams. I want to build a handoff auditor. Help me: (1) define what the auditor should check when output from step one becomes input to step two — missing context, dropped constraints, ambiguous references; (2) write the auditor prompt that flags each broken handoff before the chain runs; (3) suggest how it should report a failure so I know exactly which slot to repair.",
+      "topic": "HUMANITARIANS AI · PROMPT ENGINEERING",
+      "segment": "Build an Agentic Prompt Handoff Auditor",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "label": "Open",
+   "estimated_duration_s": 10,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOpen",
+     "props": {
+      "topic": "PROMPT ENGINEERING",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Agentic Handoff Auditor",
+       "Where chains break.",
+       "CLI Build"
+      ]
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B00.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B00.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B00.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "label": "Hook — handoff failures",
+   "estimated_duration_s": 12,
+   "narration": "Multi-step agentic prompts fail at handoffs — the boundary between what one step produces and what the next step expects. That's where the chain breaks. And it's almost never the handoff you thought was obvious.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Flow diagram: Step 1 -> HANDOFF -> Step 2. HANDOFF box highlighted in CRIMSON with label 'format mismatch: numbered list vs JSON array'. Step 2 box has CRIMSON X — 'fails here'. Teardown palette."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B01.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B01.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B01.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "label": "Claude command",
+   "estimated_duration_s": 15,
+   "narration": "The audit command reads a multi-step agentic chain and classifies each handoff as compatible, incompatible, or ambiguous — and flags all incompatible and ambiguous transitions.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Audit the handoffs in this multi-step agentic prompt chain. For each handoff N->N+1: Step N output format, Step N+1 input expectation, classify: compatible/incompatible/ambiguous. Flag all incompatible and ambiguous.\" < prompt_chain.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "AGENTIC HANDOFFS",
+      "runningText": "auditing handoff chain…"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B02.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B02.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B02.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "label": "Python code",
+   "estimated_duration_s": 15,
+   "narration": "The script reads the prompt chain, runs the handoff audit through Claude, and outputs a compatibility matrix showing each handoff's status.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "handoff_auditor.py",
+      "segment": "AGENTIC HANDOFFS",
+      "topic": "PROMPT ENGINEERING",
+      "code": "import subprocess, sys\nchain = open(sys.argv[1]).read()\naudit_cmd = (\n  \"Audit handoffs in this multi-step agentic chain. \"\n  \"For each N->N+1: output format, input expectation, \"\n  \"classify: compatible/incompatible/ambiguous. \"\n  \"Flag all incompatible and ambiguous handoffs.\"\n)\nresult = subprocess.run(\n  [\"claude\", audit_cmd],\n  input=chain, capture_output=True, text=True\n)\nprint(result.stdout)"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B03.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B03.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B03.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "label": "Handoff compatibility matrix",
+   "estimated_duration_s": 14,
+   "narration": "The audit shows three handoffs: Step 1 to 2 is compatible. Step 2 to 3 is incompatible — numbered list output into a JSON array expectation. Step 3 to 4 is ambiguous.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Three-row matrix. Columns: HANDOFF | OUTPUT FORMAT | INPUT EXPECTED | STATUS. Row 1: 1->2 | markdown paragraphs | text block | COMPATIBLE (green). Row 2: 2->3 | numbered list | JSON array | INCOMPATIBLE (crimson). Row 3: 3->4 | unstructured text | structured fields | AMBIGUOUS (gold). Teardown palette."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B04.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B04.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B04.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "label": "The change — fix incompatible handoff",
+   "estimated_duration_s": 15,
+   "narration": "Fix the incompatible handoff by adding an explicit output format specification to Step 2 — 'output as JSON array with keys: title, summary, confidence.' Re-run the audit.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Audit handoffs again after Step 2 now specifies: output as JSON array with keys title/summary/confidence.\" < prompt_chain_fixed.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "AGENTIC HANDOFFS",
+      "runningText": "re-auditing after format fix…"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B05.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B05.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B05.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "label": "Changed output",
+   "estimated_duration_s": 10,
+   "narration": "Handoff 2 to 3: incompatible turns compatible. The arrow turns green. One format specification fixed the chain's weakest link.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "BEFORE: row 2->3 — INCOMPATIBLE, crimson arrow, 'numbered list vs JSON array.' AFTER: row 2->3 — COMPATIBLE, green arrow, 'JSON array matches expectation.' Single row before/after comparison. Caption: 'One format spec closes the gap.'"
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B06.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B06.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B06.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "label": "Teardown angle",
+   "estimated_duration_s": 12,
+   "narration": "Agentic chains are only as reliable as their weakest handoff — and the weakest handoff is never the one you think is obvious. It's the one where format was left to interpretation.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Large text: 'Weakest handoff = format left to interpretation.' Below: 'Spec the output contract at every step.' CRIMSON on 'left to interpretation.' Teardown palette, CRIMSON rule."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B07.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B07.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B07.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "label": "Next reel teaser",
+   "estimated_duration_s": 6,
+   "narration": "Next: a GIGO detector for data prompts — make the invisible assumptions visible.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Clean: 'NEXT: Data GIGO Detector →' Minimal teardown style."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B08.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B08.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B08.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "label": "Outro",
+   "estimated_duration_s": 8,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../agentic-handoff-auditor/clips/B09.mp4",
+   "source_audio": "../agentic-handoff-auditor/mp3/beat-B09.mp3",
+   "audio_file": "../agentic-handoff-auditor/mp3/beat-B09.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "NBB01",
+   "act": "VERDICT",
+   "title": "Liam verdict — ClaudeVerdictArtifact",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Let's recap with Claude. Here's what the body just demonstrated.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "provenance": "proven-core/ClaudeVerdictArtifact",
+     "version": "1",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Build an Agentic Prompt Handoff Auditor with Claude",
+      "artifactLines": [
+       "Key mechanism established.",
+       "Key mechanism established.",
+       "Key mechanism established."
+      ]
+     },
+     "rendered": {
+      "out": "media/NBB01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 30.0,
+   "audio_file": "mp3/beat-NBB01.mp3",
+   "actual_duration_s": 2.88,
+   "lead_silence_s": 0.5
+  },
+  {
+   "beat_id": "NBB02",
+   "act": "YOUR TURN",
+   "title": "Your turn handoff — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "Explain how [Build an Agentic Prompt Handoff Auditor with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+      "topic": "HUMANITARIANS AI · PROMPT ENGINEERING",
+      "segment": "Build an Agentic Prompt Handoff Auditor",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8.0,
+   "audio_file": "mp3/beat-NBB02.mp3",
+   "actual_duration_s": 7.765
+  },
+  {
+   "beat_id": "NBB03",
+   "act": "OUTRO",
+   "title": "Claude title outro — ClaudeTitleOutro",
+   "silent": true,
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "provenance": "proven-core/ClaudeTitleOutro",
+     "version": "1",
+     "props": {
+      "title": "Build an Agentic Prompt Handoff Auditor with Claude",
+      "handle": "@HumanitariansAI",
+      "subline": "cancer biology, one mechanism at a time"
+     },
+     "rendered": {
+      "out": "media/NBB03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 6.0,
+   "audio_file": "mp3/beat-NBB03.mp3",
+   "silence_s": 6.0,
+   "actual_duration_s": 6.03,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Build an Agentic Prompt Handoff Auditor with Claude. From Humanitarians AI."
+  }
+ ]
 }

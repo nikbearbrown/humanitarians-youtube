@@ -3,7 +3,7 @@
   "slug": "spec-prompt-template",
   "title": "Build a Specification Prompt Template for Student Assignments with Claude Code",
   "topic": "CLAUDE CODE FOR TEACHERS",
-  "voice": "NikBearBrown",
+  "voice": "am_onyx",
   "voice_id": "TyW6NH39JcFb5M3xdIIk",
   "style": "cli",
   "palette": "teardown",
@@ -11,16 +11,60 @@
   "source": "claude-code-for-teachers/chapters/04-prompts-to-specifications.md",
   "segment": "SPECIFICATION TEMPLATE",
   "ground": "#FFFFFF",
-  "total_estimated_duration_seconds": 118.0
+  "total_estimated_duration_seconds": 118.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
  },
  "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Namaste, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build a Specification Prompt Template for Student Assignments with Claude Code",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
   {
    "beat_id": "B00",
    "role": "INTRO",
    "type": "SLATE",
    "narration": "The student's weak prompt produces three different wrong functions. The specification template produces one correct function every time — because there's nothing left for Claude to guess.",
    "estimated_duration_s": 8.0,
-   "shot": {"source": null, "motion": "hold"}
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Build a Specification Prompt Template for Student Assignments with Claude Code belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
   },
   {
    "beat_id": "B01",
@@ -28,7 +72,12 @@
    "type": "SLATE",
    "narration": "The specification template is the bridge between the assignment rubric and the Claude prompt. Students who fill in all five slots are doing the planning work that prevents the three-wrong-draft loop.",
    "estimated_duration_s": 12.0,
-   "shot": {"source": null, "motion": "hold"}
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B02",
@@ -36,7 +85,21 @@
    "type": "SLATE",
    "narration": "Ask Claude to write spec_template.py — a script that generates a five-element specification template from an assignment description.",
    "estimated_duration_s": 12.0,
-   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {"command": "claude \"Write spec_template.py:\\n  takes assignment description from stdin\\n  generates five-element specification template:\\n  (1) specific_task: function signature + types\\n  (2) invariants: constraints that must not change\\n  (3) context: file paths / SDD sections\\n  (4) output_format: what Claude produces then runs\\n  (5) negative_constraints: must NOT do or touch\\n  Output as markdown with fill-in placeholders.\"", "topic": "CLAUDE CODE FOR TEACHERS", "segment": "SPECIFICATION TEMPLATE", "runningText": "building template…"}}}
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Write spec_template.py:\\n  takes assignment description from stdin\\n  generates five-element specification template:\\n  (1) specific_task: function signature + types\\n  (2) invariants: constraints that must not change\\n  (3) context: file paths / SDD sections\\n  (4) output_format: what Claude produces then runs\\n  (5) negative_constraints: must NOT do or touch\\n  Output as markdown with fill-in placeholders.\"",
+      "topic": "HUMANITARIANS AI · CLAUDE CODE FOR TEACHERS",
+      "segment": "SPECIFICATION TEMPLATE",
+      "runningText": "building template…"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B03",
@@ -44,7 +107,21 @@
    "type": "SLATE",
    "narration": "The script generates five sections: specific task with function signature, invariants listing stdlib-only and empty-input behavior, context naming file paths and SDD sections, output format with a then-run oracle command, and negative constraints listing what Claude must not touch.",
    "estimated_duration_s": 14.0,
-   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {"filename": "spec_template.py", "segment": "SPECIFICATION TEMPLATE", "topic": "CLAUDE CODE FOR TEACHERS", "code": "# spec_template.py — Claude Code output\nimport sys\n\nassignment = sys.stdin.read().strip()\n\ntemplate = f\"\"\"\n# Specification Prompt\n\n## specific_task\n[Function signature: def <name>(<params>: <types>) -> <type>]\nAssignment context: {assignment[:80]}...\n\n## invariants\n[List constraints that must hold regardless of implementation]\n- Example: stdlib only, no pandas\n- Example: empty input must return [], not raise\n\n## context\n[File paths / section references]\n- models.py defines the dataclasses\n- See SDD §1.4 for format spec\n\n## output_format\n[What Claude produces AND then runs]\n- Write to: parsers/<name>.py\n- Then run: python -m pytest tests/ -q\n\n## negative_constraints\n[What Claude must NOT do]\n- Do NOT modify models.py\n- Do NOT add new dependencies\n\"\"\"\nprint(template)"}}}
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "segment": "SPECIFICATION TEMPLATE",
+      "topic": "CLAUDE CODE FOR TEACHERS",
+      "code": "# spec_template.py — Claude Code output\nimport sys\n\nassignment = sys.stdin.read().strip()\n\ntemplate = f\"\"\"\n# Specification Prompt\n\n## specific_task\n[Function signature: def <name>(<params>: <types>) -> <type>]\nAssignment context: {assignment[:80]}...\n\n## invariants\n[List constraints that must hold regardless of implementation]\n- Example: stdlib only, no pandas\n- Example: empty input must return [], not raise\n\n## context\n[File paths / section references]\n- models.py defines the dataclasses\n- See SDD §1.4 for format spec\n\n## output_format\n[What Claude produces AND then runs]\n- Write to: parsers/<name>.py\n- Then run: python -m pytest tests/ -q\n\n## negative_constraints\n[What Claude must NOT do]\n- Do NOT modify models.py\n- Do NOT add new dependencies\n\"\"\"\nprint(template)",
+      "title": "spec_template.py"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B04",
@@ -52,7 +129,12 @@
    "type": "SLATE",
    "narration": "The template generates five sections from the assignment description. Each section has an explicit placeholder. The output_format section has a then-run slot — the oracle command that verifies the output. The negative_constraints section is separate from invariants, preventing the common collapse into one vague list.",
    "estimated_duration_s": 20.0,
-   "shot": {"source": null, "motion": "hold"}
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B05",
@@ -60,7 +142,21 @@
    "type": "SLATE",
    "narration": "Add a validation step that refuses to generate the template if no specific function or artifact is named.",
    "estimated_duration_s": 10.0,
-   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {"command": "claude \"Add validation step:\\n  refuse template if description doesn't name\\n  a specific function or artifact.\\n  Test on: 'help me with the CSV stuff'\"", "topic": "CLAUDE CODE FOR TEACHERS", "segment": "SPECIFICATION TEMPLATE", "runningText": "adding validation…"}}}
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Add validation step:\\n  refuse template if description doesn't name\\n  a specific function or artifact.\\n  Test on: 'help me with the CSV stuff'\"",
+      "topic": "HUMANITARIANS AI · CLAUDE CODE FOR TEACHERS",
+      "segment": "SPECIFICATION TEMPLATE",
+      "runningText": "adding validation…"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B06",
@@ -68,7 +164,12 @@
    "type": "SLATE",
    "narration": "Validation added. Input help me with the CSV stuff — validator returns: REJECTED: no specific function or artifact named. Revise to: write parse_grades(path: str) -> list[Grade] in parsers/grades.py. The student is forced to complete the planning step before the template generates. The vague request is refused at the tool level.",
    "estimated_duration_s": 14.0,
-   "shot": {"source": null, "motion": "hold"}
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B07",
@@ -76,7 +177,12 @@
    "type": "SLATE",
    "narration": "The five-element specification template is the planning document that comes before the prompt. It works because it refuses to generate until the student has named a function signature, stated the invariants, and written the negative constraints. The planning is the prompt.",
    "estimated_duration_s": 12.0,
-   "shot": {"source": null, "motion": "hold"}
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B08",
@@ -84,15 +190,34 @@
    "type": "SLATE",
    "narration": "Next: define a reusable grading skill students can invoke by name.",
    "estimated_duration_s": 8.0,
-   "shot": {"source": null, "motion": "hold"}
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B09",
    "role": "OUTRO",
    "type": "SLATE",
-   "narration": "Like and subscribe for more Claude Code for Teachers.",
+   "narration": "Like and subscribe for more Claude Code for Teachers. From Humanitarians AI.",
    "estimated_duration_s": 8.0,
-   "shot": {"source": null, "motion": "hold", "remotion": {"pattern": "NikBearBrownOutro", "props": {"brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI", "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}}
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@HumanitariansAI",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
   }
  ]
 }

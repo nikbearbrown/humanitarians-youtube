@@ -1,172 +1,231 @@
 {
-  "metadata": {
-    "slug": "prompt-card-library",
-    "title": "Build a Prompt Card Library with Claude",
-    "topic": "PROMPT ENGINEERING",
-    "voice": "NikBearBrown",
-    "voice_id": "TyW6NH39JcFb5M3xdIIk",
-    "style": "cli",
-    "palette": "teardown",
-    "style_preset": "nikbearbrown",
-    "source": "claude-prompt-engineering/chapters/12-building-a-reusable-prompt-library.md",
-    "segment": "PROMPT LIBRARY",
-    "ground": "#FFFFFF",
-    "total_estimated_duration_seconds": 113.0
-  },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "label": "Open",
-      "estimated_duration_s": 10,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOpen",
-          "props": {
-            "topic": "PROMPT ENGINEERING",
-            "lines": [
-              "Nik Bear Brown",
-              "Brutalist + Educational AI",
-              "Prompt Card Library",
-              "Stop starting from scratch.",
-              "CLI Build"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B01",
-      "label": "Hook — prompts as disposable",
-      "estimated_duration_s": 12,
-      "narration": "Somewhere in your chat history is a prompt that worked. You spent twenty minutes refining it. You closed the tab. Three weeks later you need it again — and you start from scratch. That's the cost of treating prompts as disposable.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Conversation thread icon with 'The prompt that worked...' label, then a DELETE icon or fade-out. Below: clock icon '3 weeks later' -> blank prompt input. CRIMSON annotation: 'Starting from scratch. Again.' Teardown palette."
-        }
-      ]
-    },
-    {
-      "beat_id": "B02",
-      "label": "Claude command",
-      "estimated_duration_s": 15,
-      "narration": "The seed command takes any successful prompt plus its output and extracts it into the 8-field prompt card format — task, context, constraints, format, examples, criteria, failure modes, version notes.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Extract this prompt-output pair into an 8-field prompt card: Task, Context, Constraints, Output Format, Examples, Evaluation Criteria, Failure Modes, Version Notes. Be specific on every field.\" < prompt_and_output.md",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "PROMPT LIBRARY",
-            "runningText": "extracting prompt card…"
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B03",
-      "label": "Python code",
-      "estimated_duration_s": 15,
-      "narration": "The script reads the prompt and output, extracts the 8-field card via Claude, writes it to a markdown library file, and updates an index with the card ID, purpose, and status.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "prompt_library.py",
-            "segment": "PROMPT LIBRARY",
-            "topic": "PROMPT ENGINEERING",
-            "code": "import subprocess, sys, pathlib\npair = open(sys.argv[1]).read()\nextract_cmd = (\n  \"Extract into 8-field prompt card: Task, Context, \"\n  \"Constraints, Output Format, Examples, Eval Criteria,\"\n  \" Failure Modes, Version Notes. Specific on every field.\"\n)\ncard = subprocess.run(\n  [\"claude\", extract_cmd], input=pair,\n  capture_output=True, text=True\n).stdout\nlibrary = pathlib.Path(\"prompt_library.md\")\nlibrary.write_text(library.read_text() + card)"
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B04",
-      "label": "8-field card",
-      "estimated_duration_s": 14,
-      "narration": "The 8-field card captures everything a future user needs to reuse the prompt — including the failure modes and version notes that are almost always missing from saved prompts.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Formatted prompt card. Card ID: WRITE-01. Eight labeled fields stacked: Task / Context / Constraints / Output Format / Examples / Evaluation Criteria / Failure Modes / Version Notes. GOLD highlight on 'Failure Modes' and 'Version Notes' — labeled 'usually missing'. Teardown palette, CREAM background."
-        }
-      ]
-    },
-    {
-      "beat_id": "B05",
-      "label": "The change — merge two cards",
-      "estimated_duration_s": 15,
-      "narration": "Now extract two similar prompts into cards and ask Claude to merge them into a single canonical prompt card that covers both use cases.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Merge these two prompt cards into one canonical card covering both use cases. Preserve all constraints. Generalize the task statement. Note both use cases in Version Notes.\" < card_a.md card_b.md",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "PROMPT LIBRARY",
-            "runningText": "merging two cards into canonical card…"
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B06",
-      "label": "Merged card output",
-      "estimated_duration_s": 10,
-      "narration": "The merged card generalizes the task statement, preserves all constraints from both versions, and notes both use cases in the Version Notes field. One card replaces two.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Three cards: Card A + Card B -> MERGED CANONICAL CARD. Arrow diagram. Merged card shows 'Task: [generalized]', 'Constraints: [union of both]', 'Version Notes: covers use case A and B.' Green checkmark on merged card. Teardown palette."
-        }
-      ]
-    },
-    {
-      "beat_id": "B07",
-      "label": "Teardown angle",
-      "estimated_duration_s": 12,
-      "narration": "The prompt card is the difference between a prompt that works once and a prompt that's a shared asset. The 8 fields capture everything needed to reuse, adapt, and explain the prompt without re-deriving it.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Large text: 'From disposable to shared asset.' Below: 'Works once: prompt in chat history.' / 'Shared asset: prompt card with 8 fields.' CRIMSON on 'disposable.' Green on 'shared asset.' CRIMSON rule. Teardown palette."
-        }
-      ]
-    },
-    {
-      "beat_id": "B08",
-      "label": "Series close",
-      "estimated_duration_s": 6,
-      "narration": "That's the full Prompt Engineering series — 9 CLI tools, 9 teardown angles. The work order is the prompt. Make it count.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Clean: '9 of 9 — Prompt Engineering Series Complete.' Below list of 9 slug titles in small text. CRIMSON accent line. Teardown palette."
-        }
-      ]
-    },
-    {
-      "beat_id": "B09",
-      "label": "Outro",
-      "estimated_duration_s": 8,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          }
-        }
-      ]
+ "metadata": {
+  "slug": "prompt-card-library",
+  "title": "Build a Prompt Card Library with Claude",
+  "topic": "PROMPT ENGINEERING",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-prompt-engineering/chapters/12-building-a-reusable-prompt-library.md",
+  "segment": "PROMPT LIBRARY",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 113.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hej, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build a Prompt Card Library with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "label": "Open",
+   "estimated_duration_s": 10,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOpen",
+     "props": {
+      "topic": "PROMPT ENGINEERING",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Prompt Card Library",
+       "Stop starting from scratch.",
+       "CLI Build"
+      ]
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Build a Prompt Card Library with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "label": "Hook — prompts as disposable",
+   "estimated_duration_s": 12,
+   "narration": "Somewhere in your chat history is a prompt that worked. You spent twenty minutes refining it. You closed the tab. Three weeks later you need it again — and you start from scratch. That's the cost of treating prompts as disposable.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Conversation thread icon with 'The prompt that worked...' label, then a DELETE icon or fade-out. Below: clock icon '3 weeks later' -> blank prompt input. CRIMSON annotation: 'Starting from scratch. Again.' Teardown palette."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "label": "Claude command",
+   "estimated_duration_s": 15,
+   "narration": "The seed command takes any successful prompt plus its output and extracts it into the 8-field prompt card format — task, context, constraints, format, examples, criteria, failure modes, version notes.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Extract this prompt-output pair into an 8-field prompt card: Task, Context, Constraints, Output Format, Examples, Evaluation Criteria, Failure Modes, Version Notes. Be specific on every field.\" < prompt_and_output.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "PROMPT LIBRARY",
+      "runningText": "extracting prompt card…"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "label": "Python code",
+   "estimated_duration_s": 15,
+   "narration": "The script reads the prompt and output, extracts the 8-field card via Claude, writes it to a markdown library file, and updates an index with the card ID, purpose, and status.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "prompt_library.py",
+      "segment": "PROMPT LIBRARY",
+      "topic": "PROMPT ENGINEERING",
+      "code": "import subprocess, sys, pathlib\npair = open(sys.argv[1]).read()\nextract_cmd = (\n  \"Extract into 8-field prompt card: Task, Context, \"\n  \"Constraints, Output Format, Examples, Eval Criteria,\"\n  \" Failure Modes, Version Notes. Specific on every field.\"\n)\ncard = subprocess.run(\n  [\"claude\", extract_cmd], input=pair,\n  capture_output=True, text=True\n).stdout\nlibrary = pathlib.Path(\"prompt_library.md\")\nlibrary.write_text(library.read_text() + card)"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "label": "8-field card",
+   "estimated_duration_s": 14,
+   "narration": "The 8-field card captures everything a future user needs to reuse the prompt — including the failure modes and version notes that are almost always missing from saved prompts.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Formatted prompt card. Card ID: WRITE-01. Eight labeled fields stacked: Task / Context / Constraints / Output Format / Examples / Evaluation Criteria / Failure Modes / Version Notes. GOLD highlight on 'Failure Modes' and 'Version Notes' — labeled 'usually missing'. Teardown palette, CREAM background."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "label": "The change — merge two cards",
+   "estimated_duration_s": 15,
+   "narration": "Now extract two similar prompts into cards and ask Claude to merge them into a single canonical prompt card that covers both use cases.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Merge these two prompt cards into one canonical card covering both use cases. Preserve all constraints. Generalize the task statement. Note both use cases in Version Notes.\" < card_a.md card_b.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "PROMPT LIBRARY",
+      "runningText": "merging two cards into canonical card…"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "label": "Merged card output",
+   "estimated_duration_s": 10,
+   "narration": "The merged card generalizes the task statement, preserves all constraints from both versions, and notes both use cases in the Version Notes field. One card replaces two.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Three cards: Card A + Card B -> MERGED CANONICAL CARD. Arrow diagram. Merged card shows 'Task: [generalized]', 'Constraints: [union of both]', 'Version Notes: covers use case A and B.' Green checkmark on merged card. Teardown palette."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "label": "Teardown angle",
+   "estimated_duration_s": 12,
+   "narration": "The prompt card is the difference between a prompt that works once and a prompt that's a shared asset. The 8 fields capture everything needed to reuse, adapt, and explain the prompt without re-deriving it.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Large text: 'From disposable to shared asset.' Below: 'Works once: prompt in chat history.' / 'Shared asset: prompt card with 8 fields.' CRIMSON on 'disposable.' Green on 'shared asset.' CRIMSON rule. Teardown palette."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "label": "Series close",
+   "estimated_duration_s": 6,
+   "narration": "That's the full Prompt Engineering series — 9 CLI tools, 9 teardown angles. The work order is the prompt. Make it count.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Clean: '9 of 9 — Prompt Engineering Series Complete.' Below list of 9 slug titles in small text. CRIMSON accent line. Teardown palette."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "label": "Outro",
+   "estimated_duration_s": 8,
+   "narration": "From Humanitarians AI.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }

@@ -1,172 +1,231 @@
 {
-  "metadata": {
-    "slug": "constraint-extractor",
-    "title": "Build a Constraint Extractor with Claude",
-    "topic": "PROMPT ENGINEERING",
-    "voice": "NikBearBrown",
-    "voice_id": "TyW6NH39JcFb5M3xdIIk",
-    "style": "cli",
-    "palette": "teardown",
-    "style_preset": "nikbearbrown",
-    "source": "claude-prompt-engineering/chapters/03-constraints-and-boundaries.md",
-    "segment": "CONSTRAINT TYPES",
-    "ground": "#FFFFFF",
-    "total_estimated_duration_seconds": 113.0
-  },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "label": "Open",
-      "estimated_duration_s": 10,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOpen",
-          "props": {
-            "topic": "PROMPT ENGINEERING",
-            "lines": [
-              "Nik Bear Brown",
-              "Brutalist + Educational AI",
-              "Constraint Extractor",
-              "Five types. Different failures.",
-              "CLI Build"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B01",
-      "label": "Hook — five types",
-      "estimated_duration_s": 12,
-      "narration": "The five types of constraints in a prompt serve completely different functions. Conflating them is why prompts fail in ways that are hard to diagnose — because the failure looks different depending on which type is missing.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Five labeled tiles in a row: SCOPE | EVIDENCE | UNCERTAINTY | PRIVACY | TONE. Each with a one-line failure mode below it in CRIMSON. Layout: horizontal band across center of frame. Teardown palette."
-        }
-      ]
-    },
-    {
-      "beat_id": "B02",
-      "label": "Claude command",
-      "estimated_duration_s": 15,
-      "narration": "The seed command pipes a prompt into Claude and asks it to classify every constraint into one of five types, name the failure mode if that constraint were removed, and flag any type with zero entries.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Parse this prompt and classify every constraint into one of five types: scope, evidence, uncertainty, privacy, tone. For each: type, failure mode if removed. Flag any type with zero entries.\" < prompt.txt",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "CONSTRAINT TYPES",
-            "runningText": "extracting constraints…"
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B03",
-      "label": "Python code",
-      "estimated_duration_s": 15,
-      "narration": "The script reads the prompt, extracts the constraint inventory from Claude, and generates a constraint map showing which types are populated and which are missing.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "constraint_extractor.py",
-            "segment": "CONSTRAINT TYPES",
-            "topic": "PROMPT ENGINEERING",
-            "code": "import subprocess, sys\nprompt = open(sys.argv[1]).read()\nextract_cmd = (\n  \"Classify every constraint into: scope, evidence, \"\n  \"uncertainty, privacy, tone. For each: type + \"\n  \"failure mode if removed. Flag empty types.\"\n)\nresult = subprocess.run(\n  [\"claude\", extract_cmd],\n  input=prompt, capture_output=True, text=True\n)\nprint(result.stdout)"
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B04",
-      "label": "Constraint inventory",
-      "estimated_duration_s": 14,
-      "narration": "The inventory shows scope and evidence constraints populated, tone partially filled, and uncertainty and privacy empty. Each empty slot shows the specific failure mode its absence enables.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Five-row constraint inventory table. Columns: TYPE | COUNT | FAILURE MODE IF MISSING. SCOPE: 2 (green). EVIDENCE: 1 (gold). UNCERTAINTY: 0 (crimson) — 'will state speculative claims as fact'. PRIVACY: 0 (crimson) — 'may include identifiers in output'. TONE: 1 (gold). CRIMSON rows glow for empty types."
-        }
-      ]
-    },
-    {
-      "beat_id": "B05",
-      "label": "The change — add missing type",
-      "estimated_duration_s": 15,
-      "narration": "Add one uncertainty constraint to the prompt — 'if you are uncertain, say so rather than speculating' — and re-run. Watch the uncertainty row fill and its failure mode disappear.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Classify constraints again after adding: 'If uncertain, state it rather than speculating.'\" < prompt_updated.txt",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "CONSTRAINT TYPES",
-            "runningText": "re-extracting with added constraint…"
-          }
-        }
-      ]
-    },
-    {
-      "beat_id": "B06",
-      "label": "Changed output",
-      "estimated_duration_s": 10,
-      "narration": "Uncertainty type: 0 to 1. Failure mode row: gone. The constraint map completes and the specific failure disappears.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "BEFORE: UNCERTAINTY row — 0 constraints, CRIMSON glowing failure mode. AFTER: UNCERTAINTY row — 1 constraint, green, failure mode removed. Arrow between BEFORE and AFTER states. Caption: 'One constraint closes one failure mode.'"
-        }
-      ]
-    },
-    {
-      "beat_id": "B07",
-      "label": "Teardown angle",
-      "estimated_duration_s": 12,
-      "narration": "Constraint types are not interchangeable. A prompt with strong scope and weak uncertainty handling will confidently state things it doesn't know. Knowing which type is missing tells you exactly what failure to expect.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Large text: 'Know the type. Know the failure.' Below: 'Strong scope + weak uncertainty = confident hallucination.' CRIMSON on the failure consequence. Teardown palette, CRIMSON rule."
-        }
-      ]
-    },
-    {
-      "beat_id": "B08",
-      "label": "Next reel teaser",
-      "estimated_duration_s": 6,
-      "narration": "Next: audit agentic handoffs — where multi-step prompt chains break.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Clean: 'NEXT: Agentic Handoff Auditor →' Minimal teardown style."
-        }
-      ]
-    },
-    {
-      "beat_id": "B09",
-      "label": "Outro",
-      "estimated_duration_s": 8,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          }
-        }
-      ]
+ "metadata": {
+  "slug": "constraint-extractor",
+  "title": "Build a Constraint Extractor with Claude",
+  "topic": "PROMPT ENGINEERING",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "claude-prompt-engineering/chapters/03-constraints-and-boundaries.md",
+  "segment": "CONSTRAINT TYPES",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 113.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hallo, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build a Constraint Extractor with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "label": "Open",
+   "estimated_duration_s": 10,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOpen",
+     "props": {
+      "topic": "PROMPT ENGINEERING",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Constraint Extractor",
+       "Five types. Different failures.",
+       "CLI Build"
+      ]
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Build a Constraint Extractor with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "label": "Hook — five types",
+   "estimated_duration_s": 12,
+   "narration": "The five types of constraints in a prompt serve completely different functions. Conflating them is why prompts fail in ways that are hard to diagnose — because the failure looks different depending on which type is missing.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Five labeled tiles in a row: SCOPE | EVIDENCE | UNCERTAINTY | PRIVACY | TONE. Each with a one-line failure mode below it in CRIMSON. Layout: horizontal band across center of frame. Teardown palette."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "label": "Claude command",
+   "estimated_duration_s": 15,
+   "narration": "The seed command pipes a prompt into Claude and asks it to classify every constraint into one of five types, name the failure mode if that constraint were removed, and flag any type with zero entries.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Parse this prompt and classify every constraint into one of five types: scope, evidence, uncertainty, privacy, tone. For each: type, failure mode if removed. Flag any type with zero entries.\" < prompt.txt",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "CONSTRAINT TYPES",
+      "runningText": "extracting constraints…"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "label": "Python code",
+   "estimated_duration_s": 15,
+   "narration": "The script reads the prompt, extracts the constraint inventory from Claude, and generates a constraint map showing which types are populated and which are missing.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "constraint_extractor.py",
+      "segment": "CONSTRAINT TYPES",
+      "topic": "PROMPT ENGINEERING",
+      "code": "import subprocess, sys\nprompt = open(sys.argv[1]).read()\nextract_cmd = (\n  \"Classify every constraint into: scope, evidence, \"\n  \"uncertainty, privacy, tone. For each: type + \"\n  \"failure mode if removed. Flag empty types.\"\n)\nresult = subprocess.run(\n  [\"claude\", extract_cmd],\n  input=prompt, capture_output=True, text=True\n)\nprint(result.stdout)"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "label": "Constraint inventory",
+   "estimated_duration_s": 14,
+   "narration": "The inventory shows scope and evidence constraints populated, tone partially filled, and uncertainty and privacy empty. Each empty slot shows the specific failure mode its absence enables.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Five-row constraint inventory table. Columns: TYPE | COUNT | FAILURE MODE IF MISSING. SCOPE: 2 (green). EVIDENCE: 1 (gold). UNCERTAINTY: 0 (crimson) — 'will state speculative claims as fact'. PRIVACY: 0 (crimson) — 'may include identifiers in output'. TONE: 1 (gold). CRIMSON rows glow for empty types."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "label": "The change — add missing type",
+   "estimated_duration_s": 15,
+   "narration": "Add one uncertainty constraint to the prompt — 'if you are uncertain, say so rather than speculating' — and re-run. Watch the uncertainty row fill and its failure mode disappear.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Classify constraints again after adding: 'If uncertain, state it rather than speculating.'\" < prompt_updated.txt",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "CONSTRAINT TYPES",
+      "runningText": "re-extracting with added constraint…"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "label": "Changed output",
+   "estimated_duration_s": 10,
+   "narration": "Uncertainty type: 0 to 1. Failure mode row: gone. The constraint map completes and the specific failure disappears.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "BEFORE: UNCERTAINTY row — 0 constraints, CRIMSON glowing failure mode. AFTER: UNCERTAINTY row — 1 constraint, green, failure mode removed. Arrow between BEFORE and AFTER states. Caption: 'One constraint closes one failure mode.'"
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "label": "Teardown angle",
+   "estimated_duration_s": 12,
+   "narration": "Constraint types are not interchangeable. A prompt with strong scope and weak uncertainty handling will confidently state things it doesn't know. Knowing which type is missing tells you exactly what failure to expect.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Large text: 'Know the type. Know the failure.' Below: 'Strong scope + weak uncertainty = confident hallucination.' CRIMSON on the failure consequence. Teardown palette, CRIMSON rule."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "label": "Next reel teaser",
+   "estimated_duration_s": 6,
+   "narration": "Next: audit agentic handoffs — where multi-step prompt chains break.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Clean: 'NEXT: Agentic Handoff Auditor →' Minimal teardown style."
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "label": "Outro",
+   "estimated_duration_s": 8,
+   "narration": "From Humanitarians AI.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   ],
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }

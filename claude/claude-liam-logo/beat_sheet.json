@@ -1,433 +1,470 @@
 {
-  "metadata": {
-    "title": "Claude, Stung.",
-    "slug": "claude-liam-logo",
-    "channel": "claude-liam",
-    "skill": "logo",
-    "engine": "kokoro",
-    "voice": "am_onyx",
-    "greeting": "Kia ora",
-    "description": "Skill teardown: logo — the random-once brand sting appended after the last beat. MP3 is the clock, random-once pick locked per reel. Self-demo: LogoOutro beat JSON.",
-    "build": {
-      "at": "2026-07-18T20:41:04",
-      "cut": "master",
-      "filled": 11,
-      "of": 11,
-      "slates": [],
-      "skin_warnings": []
-    }
+ "metadata": {
+  "title": "Claude, Stung.",
+  "slug": "claude-liam-logo",
+  "channel": "hai",
+  "skill": "logo",
+  "engine": "kokoro",
+  "voice": "am_onyx",
+  "greeting": "Kia ora",
+  "description": "Skill teardown: logo — the random-once brand sting appended after the last beat. MP3 is the clock, random-once pick locked per reel. Self-demo: LogoOutro beat JSON.",
+  "build": {
+   "at": "2026-07-18T20:41:04",
+   "cut": "master",
+   "filled": 11,
+   "of": 11,
+   "slates": [],
+   "skin_warnings": []
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "OPEN",
-      "narration_text": "Kia ora, Liam. Liam, in for Bear. Today: logo — the brand sting. One command, one new beat appended after the last beat of any reel. It picks one animation technique from eight, pairs it with a brand SVG and a brand MP3, and the MP3 is the clock — the sting runs exactly as long as the jingle.",
-      "estimated_duration_s": 20,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "topic": "logo · SKILL TEARDOWN",
-            "segment": "Liam, in for Bear.",
-            "greeting": "Kia ora, Liam",
-            "command": "python3 skills/make/logo/scripts/logo.py <reel> [brand]",
-            "runningText": "* pick animation + SVG + MP3 → render LogoOutro → recompile...",
-            "output": [
-              "LogoOutro beat appended after last beat",
-              "MP3 is the clock — jingle never cut",
-              "Random-once pick locked per reel",
-              "No TTS — reuse_audio on the beat"
-            ],
-            "folderLabel": "claude-liam-logo/"
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B00.mp3",
-      "actual_duration_s": 17.11,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "ANATOMY",
-      "narration_text": "The logo skill has three components. The script: logo.py — this skill's one command; picks the animation, stages the SVG, copies and measures the MP3, appends the beat, renders, recompiles. The Remotion scene: LogoOutro.tsx — eight animation techniques, aspect-aware, duration from calculateMetadata. And the brand pools: logos/bear-brown/, logos/humanitarians/, logos/medhavy/, logos/musinique/ — each holding brand SVGs and MP3 jingles. Currently only bear-brown has jingles. A pool with no MP3s is a MISSING; the script logs exactly what to drop where.",
-      "estimated_duration_s": 30,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownAnatomy",
-          "props": {
-            "skillName": "logo",
-            "oldName": "—",
-            "eyebrow": "ANATOMY",
-            "title": "One script. One scene. Brand pool of SVGs + MP3s.",
-            "files": [
-              "skills/make/logo/scripts/logo.py",
-              "runtime/remotion/src/scenes/LogoOutro.tsx",
-              "logos/bear-brown/ (SVG + MP3 jingles)",
-              "logos/humanitarians|medhavy|musinique/"
-            ],
-            "calloutText": "One beat appended.",
-            "calloutSub": "MP3 is the clock."
-          },
-          "rendered": {
-            "out": "media/B01.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B01.mp3",
-      "actual_duration_s": 36.35,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B01.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "PIPELINE",
-      "narration_text": "Five steps, one command. Pick: script selects animation technique, SVG mark, and MP3 jingle from the brand pool — random if no lock exists, reused if locked. Stage: SVG copied to remotion/public for staticFile access. Measure: MP3 measured and padded with tail silence; durationS is the padded length. Append: LogoOutro beat written to beat_sheet.json after the last beat. Render and recompile: remotion_scenes.py foreground, then compile.py. One locked pick survives rebuilds unless you pass --reroll.",
-      "estimated_duration_s": 28,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownPipeline",
-          "props": {
-            "eyebrow": "PIPELINE",
-            "title": "5 steps: pick → stage → measure → append → render",
-            "inputLabel": "Any reel + brand (default: nbb)",
-            "outputLabel": "LogoOutro beat appended to beat_sheet.json",
-            "phases": [
-              {
-                "label": "Pick",
-                "note": "animation + SVG + MP3 — random or locked"
-              },
-              {
-                "label": "Stage",
-                "note": "SVG → remotion/public/logo-outro/<brand>/"
-              },
-              {
-                "label": "Measure",
-                "note": "MP3 padded with --tail silence; durationS set"
-              },
-              {
-                "label": "Append",
-                "note": "LogoOutro beat after last beat"
-              },
-              {
-                "label": "Render",
-                "note": "remotion_scenes.py foreground → compile.py"
-              }
-            ],
-            "footerNote": "One sting per reel. Re-run replaces, never stacks."
-          },
-          "rendered": {
-            "out": "media/B02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B02.mp3",
-      "actual_duration_s": 30.57,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B02.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "SELF-DEMO ASK",
-      "narration_text": "Before the mechanism, let me show you the beat JSON the logo script appends. When you run logo.py on a reel, it writes one new beat to beat_sheet.json after the last beat. Here is what that beat looks like.",
-      "estimated_duration_s": 13,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "topic": "logo · SELF-DEMO",
-            "segment": "LogoOutro beat JSON",
-            "greeting": "Self-demo",
-            "command": "python3 skills/make/logo/scripts/logo.py <reel> nbb",
-            "runningText": "Appending LogoOutro beat...",
-            "output": [
-              "beat_id: B_LOGO",
-              "shot.remotion.pattern: LogoOutro",
-              "durationS: measured from MP3 + tail"
-            ],
-            "folderLabel": "beat_sheet.json"
-          },
-          "rendered": {
-            "out": "media/B03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B03.mp3",
-      "actual_duration_s": 11.82,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B03.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "B04",
-      "act": "SELF-DEMO",
-      "narration_text": "Here is the LogoOutro beat entry the script writes. Beat id B-LOGO, act: LOGO OUTRO, no narration text — this beat has no TTS. Shot type REMOTION, pattern LogoOutro. The props contain durationS from the measured MP3 plus tail, brand from the pool selection, svg path staged under remotion/public, technique picked from the 8-technique catalog, and picked recorded as a lock. audio_file: mp3/beat-B-LOGO.mp3 — the jingle itself. reuse_audio: true — generate_audio.py measures and skips, never synthesizes over it. actual_duration_s: the padded MP3 length. This is the full contract between logo.py, remotion_scenes.py, and compile.py.",
-      "estimated_duration_s": 38,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeCodeBeat",
-          "props": {
-            "title": "LogoOutro beat — appended to beat_sheet.json",
-            "code": "{\n  \"beat_id\": \"B_LOGO\",\n  \"act\": \"LOGO OUTRO\",\n  \"narration_text\": \"\",\n  \"shot\": {\n    \"type\": \"REMOTION\",\n    \"remotion\": {\n      \"pattern\": \"LogoOutro\",\n      \"picked\": \"spring-entrance\",\n      \"props\": {\n        \"durationS\": 4.8,\n        \"brand\": \"bear-brown\",\n        \"svg\": \"bear-brown-mark.svg\",\n        \"technique\": \"spring-entrance\",\n        \"tail\": 1.0\n      }\n    }\n  },\n  \"audio_file\": \"mp3/beat-B_LOGO.mp3\",\n  \"reuse_audio\": true,\n  \"actual_duration_s\": 4.8\n}"
-          },
-          "rendered": {
-            "out": "media/B04.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B04.mp3",
-      "actual_duration_s": 38.89,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B04.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "MECHANISM ACT 1",
-      "narration_text": "The first mechanism: the MP3 is the clock, and the jingle is never cut. The logo skill derives the beat duration from the measured MP3 length plus a tail silence. The tail is part of the clock — it lives inside the beat so frame rounding, clip conform, and the mux can only trim silence, never sound. If you want a different duration, use a different MP3. Never hand-edit the durationS field. This is the same audio-first law that governs narration beats, applied to the jingle.",
-      "estimated_duration_s": 26,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownMechanism",
-          "props": {
-            "eyebrow": "MECHANISM · ACT 1",
-            "heading": "MP3 is the clock. Jingle never cut.",
-            "body": "durationS = measured MP3 length + tail silence. The tail lives inside the beat — frame rounding and mux can only trim silence, never sound. Want a different duration? Use a different MP3. Never hand-edit durationS. Audio-first law applied to jingles.",
-            "quote": "The MP3 is the clock — and the jingle is NEVER cut.",
-            "cite": "Source: skills/make/logo/SKILL.md — Law 1",
-            "verdictLabel": "MP3 = CLOCK"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B05.mp3",
-      "actual_duration_s": 27.18,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "B06",
-      "act": "MECHANISM ACT 2",
-      "narration_text": "The second mechanism: random once, then locked. The logo script picks the animation technique, the SVG, and the MP3 at random from the brand pool. That pick is recorded in the beat at shot.remotion.picked. Every subsequent rebuild reuses the same pick — the sting is stable. If the pick is wrong, pass --reroll: the lock is discarded, a new random pick is made, and the scene is force-re-rendered. This design means every reel gets a different sting across the series without drift on any one reel.",
-      "estimated_duration_s": 26,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownMechanism",
-          "props": {
-            "eyebrow": "MECHANISM · ACT 2",
-            "heading": "Random once. Locked per reel. --reroll to re-spin.",
-            "body": "The pick (technique + SVG + MP3) is recorded in shot.remotion.picked. Rebuilds reuse the lock — the sting is stable. Pass --reroll to discard the lock and pick fresh. Each reel gets a different sting across the series; no drift within one reel.",
-            "quote": "Random once, then locked.",
-            "cite": "Source: skills/make/logo/SKILL.md — Law 2",
-            "verdictLabel": "RANDOM ONCE"
-          },
-          "rendered": {
-            "out": "media/B06.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B06.mp3",
-      "actual_duration_s": 26.79,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B06.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "B07",
-      "act": "MECHANISM ACT 3",
-      "narration_text": "The third mechanism: no TTS ever touches the logo beat. The beat carries reuse_audio: true, which tells generate_audio.py to measure the existing MP3 instead of synthesizing narration over it. The jingle is always a pre-existing brand audio file. This is the constraint that keeps the logo beat outside the narration pipeline entirely — it is measured, not generated. Adding a narration_text to the beat and expecting TTS to run is a schema violation.",
-      "estimated_duration_s": 26,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownMechanism",
-          "props": {
-            "eyebrow": "MECHANISM · ACT 3",
-            "heading": "reuse_audio: true. TTS never runs on this beat.",
-            "body": "The beat carries reuse_audio: true — generate_audio.py measures the jingle MP3 and skips synthesis. The jingle is always a brand audio file, never generated. Adding narration_text and expecting TTS is a schema violation. The logo beat is measured, not generated.",
-            "quote": "No TTS ever touches it.",
-            "cite": "Source: skills/make/logo/SKILL.md — Law 5",
-            "verdictLabel": "MEASURED ≠ GENERATED"
-          },
-          "rendered": {
-            "out": "media/B07.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B07.mp3",
-      "actual_duration_s": 26.15,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B07.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "BVDT",
-      "act": "VERDICT",
-      "narration_text": "Claude, Stung. The logo skill delivers one beat appended after the last beat of any reel: the brand mark animated with one of eight techniques, timed to the jingle MP3, locked per reel for stability, and measured not generated. One sting per reel. Re-run replaces, never stacks.",
-      "estimated_duration_s": 18,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "props": {
-            "artifactTitle": "Claude, Stung.",
-            "artifactHeading": "LOGO: WHAT IT DELIVERS",
-            "artifactLines": [
-              "LogoOutro beat appended — brand mark + 1 of 8 animation techniques",
-              "MP3 is the clock — jingle never cut, tail silence inside the beat",
-              "Random-once pick locked per reel (--reroll to re-spin)",
-              "reuse_audio: true — measured not generated, TTS never runs"
-            ]
-          },
-          "rendered": {
-            "out": "media/BVDT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BVDT.mp3",
-      "actual_duration_s": 15.7,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BVDT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "BHTF",
-      "act": "HANDOFF",
-      "narration_text": "Two questions before you run logo. First: does the brand pool at logos/brand-name/ have at least one SVG mark and one MP3 jingle? A pool missing either is a MISSING — the script logs exactly what to add and stops. Second: does the beat_sheet.json already have a LogoOutro beat with a locked pick? If yes, re-run replaces it. Pass --reroll only if you want a new pick.",
-      "estimated_duration_s": 20,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "topic": "logo · HANDOFF",
-            "segment": "Before you run logo:",
-            "greeting": "Two questions",
-            "command": "python3 skills/make/logo/scripts/logo.py <reel> <brand>",
-            "runningText": "* brand pool has SVG + MP3? * existing lock?",
-            "output": [
-              "1. logos/<brand>/: at least 1 SVG + 1 MP3",
-              "2. Existing LogoOutro beat? Re-run replaces it."
-            ],
-            "folderLabel": "logos/<brand>/"
-          },
-          "rendered": {
-            "out": "media/BHTF.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BHTF.mp3",
-      "actual_duration_s": 20.74,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BHTF.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
-    },
-    {
-      "beat_id": "BOUT",
-      "act": "OUTRO",
-      "narration_text": "Claude, Stung. At NikBearBrown.",
-      "estimated_duration_s": 4,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "props": {
-            "title": "Claude, Stung.",
-            "handle": "@NikBearBrown",
-            "subline": "Liam, in for Bear."
-          },
-          "rendered": {
-            "out": "media/BOUT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BOUT.mp3",
-      "actual_duration_s": 2.67,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BOUT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T20:41:04"
-      }
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Salaam, Humanitarians",
+      "topic": "HUMANITARIANS AI · Claude, Stung.",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "OPEN",
+   "narration_text": "Kia ora, Liam. Liam, in for Bear. Today: logo — the brand sting. One command, one new beat appended after the last beat of any reel. It picks one animation technique from eight, pairs it with a brand SVG and a brand MP3, and the MP3 is the clock — the sting runs exactly as long as the jingle.",
+   "estimated_duration_s": 20,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "HUMANITARIANS AI · logo · SKILL TEARDOWN",
+      "segment": "Liam, in for Bear.",
+      "greeting": "Kia ora, Liam",
+      "command": "python3 skills/make/logo/scripts/logo.py <reel> [brand]",
+      "runningText": "* pick animation + SVG + MP3 → render LogoOutro → recompile...",
+      "output": [
+       "LogoOutro beat appended after last beat",
+       "MP3 is the clock — jingle never cut",
+       "Random-once pick locked per reel",
+       "No TTS — reuse_audio on the beat"
+      ],
+      "folderLabel": "claude-liam-logo/"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 17.11,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Claude, Stung. belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "ANATOMY",
+   "narration_text": "The logo skill has three components. The script: logo.py — this skill's one command; picks the animation, stages the SVG, copies and measures the MP3, appends the beat, renders, recompiles. The Remotion scene: LogoOutro.tsx — eight animation techniques, aspect-aware, duration from calculateMetadata. And the brand pools: logos/bear-brown/, logos/humanitarians/, logos/medhavy/, logos/musinique/ — each holding brand SVGs and MP3 jingles. Currently only bear-brown has jingles. A pool with no MP3s is a MISSING; the script logs exactly what to drop where.",
+   "estimated_duration_s": 30,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownAnatomy",
+     "props": {
+      "skillName": "logo",
+      "oldName": "—",
+      "eyebrow": "ANATOMY",
+      "title": "One script. One scene. Brand pool of SVGs + MP3s.",
+      "files": [
+       "skills/make/logo/scripts/logo.py",
+       "runtime/remotion/src/scenes/LogoOutro.tsx",
+       "logos/bear-brown/ (SVG + MP3 jingles)",
+       "logos/humanitarians|medhavy|musinique/"
+      ],
+      "calloutText": "One beat appended.",
+      "calloutSub": "MP3 is the clock."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 36.35,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "PIPELINE",
+   "narration_text": "Five steps, one command. Pick: script selects animation technique, SVG mark, and MP3 jingle from the brand pool — random if no lock exists, reused if locked. Stage: SVG copied to remotion/public for staticFile access. Measure: MP3 measured and padded with tail silence; durationS is the padded length. Append: LogoOutro beat written to beat_sheet.json after the last beat. Render and recompile: remotion_scenes.py foreground, then compile.py. One locked pick survives rebuilds unless you pass --reroll.",
+   "estimated_duration_s": 28,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownPipeline",
+     "props": {
+      "eyebrow": "PIPELINE",
+      "title": "5 steps: pick → stage → measure → append → render",
+      "inputLabel": "Any reel + brand (default: nbb)",
+      "outputLabel": "LogoOutro beat appended to beat_sheet.json",
+      "phases": [
+       {
+        "label": "Pick",
+        "note": "animation + SVG + MP3 — random or locked"
+       },
+       {
+        "label": "Stage",
+        "note": "SVG → remotion/public/logo-outro/<brand>/"
+       },
+       {
+        "label": "Measure",
+        "note": "MP3 padded with --tail silence; durationS set"
+       },
+       {
+        "label": "Append",
+        "note": "LogoOutro beat after last beat"
+       },
+       {
+        "label": "Render",
+        "note": "remotion_scenes.py foreground → compile.py"
+       }
+      ],
+      "footerNote": "One sting per reel. Re-run replaces, never stacks."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 30.57,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "SELF-DEMO ASK",
+   "narration_text": "Before the mechanism, let me show you the beat JSON the logo script appends. When you run logo.py on a reel, it writes one new beat to beat_sheet.json after the last beat. Here is what that beat looks like.",
+   "estimated_duration_s": 13,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "HUMANITARIANS AI · logo · SELF-DEMO",
+      "segment": "LogoOutro beat JSON",
+      "greeting": "Self-demo",
+      "command": "python3 skills/make/logo/scripts/logo.py <reel> nbb",
+      "runningText": "Appending LogoOutro beat...",
+      "output": [
+       "beat_id: B_LOGO",
+       "shot.remotion.pattern: LogoOutro",
+       "durationS: measured from MP3 + tail"
+      ],
+      "folderLabel": "beat_sheet.json"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 11.82,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "B04",
+   "act": "SELF-DEMO",
+   "narration_text": "Here is the LogoOutro beat entry the script writes. Beat id B-LOGO, act: LOGO OUTRO, no narration text — this beat has no TTS. Shot type REMOTION, pattern LogoOutro. The props contain durationS from the measured MP3 plus tail, brand from the pool selection, svg path staged under remotion/public, technique picked from the 8-technique catalog, and picked recorded as a lock. audio_file: mp3/beat-B-LOGO.mp3 — the jingle itself. reuse_audio: true — generate_audio.py measures and skips, never synthesizes over it. actual_duration_s: the padded MP3 length. This is the full contract between logo.py, remotion_scenes.py, and compile.py.",
+   "estimated_duration_s": 38,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "title": "LogoOutro beat — appended to beat_sheet.json",
+      "code": "{\n  \"beat_id\": \"B_LOGO\",\n  \"act\": \"LOGO OUTRO\",\n  \"narration_text\": \"\",\n  \"shot\": {\n    \"type\": \"REMOTION\",\n    \"remotion\": {\n      \"pattern\": \"LogoOutro\",\n      \"picked\": \"spring-entrance\",\n      \"props\": {\n        \"durationS\": 4.8,\n        \"brand\": \"bear-brown\",\n        \"svg\": \"bear-brown-mark.svg\",\n        \"technique\": \"spring-entrance\",\n        \"tail\": 1.0\n      }\n    }\n  },\n  \"audio_file\": \"mp3/beat-B_LOGO.mp3\",\n  \"reuse_audio\": true,\n  \"actual_duration_s\": 4.8\n}"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 38.89,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "MECHANISM ACT 1",
+   "narration_text": "The first mechanism: the MP3 is the clock, and the jingle is never cut. The logo skill derives the beat duration from the measured MP3 length plus a tail silence. The tail is part of the clock — it lives inside the beat so frame rounding, clip conform, and the mux can only trim silence, never sound. If you want a different duration, use a different MP3. Never hand-edit the durationS field. This is the same audio-first law that governs narration beats, applied to the jingle.",
+   "estimated_duration_s": 26,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 1",
+      "heading": "MP3 is the clock. Jingle never cut.",
+      "body": "durationS = measured MP3 length + tail silence. The tail lives inside the beat — frame rounding and mux can only trim silence, never sound. Want a different duration? Use a different MP3. Never hand-edit durationS. Audio-first law applied to jingles.",
+      "quote": "The MP3 is the clock — and the jingle is NEVER cut.",
+      "cite": "Source: skills/make/logo/SKILL.md — Law 1",
+      "verdictLabel": "MP3 = CLOCK"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 27.18,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "B06",
+   "act": "MECHANISM ACT 2",
+   "narration_text": "The second mechanism: random once, then locked. The logo script picks the animation technique, the SVG, and the MP3 at random from the brand pool. That pick is recorded in the beat at shot.remotion.picked. Every subsequent rebuild reuses the same pick — the sting is stable. If the pick is wrong, pass --reroll: the lock is discarded, a new random pick is made, and the scene is force-re-rendered. This design means every reel gets a different sting across the series without drift on any one reel.",
+   "estimated_duration_s": 26,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 2",
+      "heading": "Random once. Locked per reel. --reroll to re-spin.",
+      "body": "The pick (technique + SVG + MP3) is recorded in shot.remotion.picked. Rebuilds reuse the lock — the sting is stable. Pass --reroll to discard the lock and pick fresh. Each reel gets a different sting across the series; no drift within one reel.",
+      "quote": "Random once, then locked.",
+      "cite": "Source: skills/make/logo/SKILL.md — Law 2",
+      "verdictLabel": "RANDOM ONCE"
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 26.79,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B06.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "B07",
+   "act": "MECHANISM ACT 3",
+   "narration_text": "The third mechanism: no TTS ever touches the logo beat. The beat carries reuse_audio: true, which tells generate_audio.py to measure the existing MP3 instead of synthesizing narration over it. The jingle is always a pre-existing brand audio file. This is the constraint that keeps the logo beat outside the narration pipeline entirely — it is measured, not generated. Adding a narration_text to the beat and expecting TTS to run is a schema violation.",
+   "estimated_duration_s": 26,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 3",
+      "heading": "reuse_audio: true. TTS never runs on this beat.",
+      "body": "The beat carries reuse_audio: true — generate_audio.py measures the jingle MP3 and skips synthesis. The jingle is always a brand audio file, never generated. Adding narration_text and expecting TTS is a schema violation. The logo beat is measured, not generated.",
+      "quote": "No TTS ever touches it.",
+      "cite": "Source: skills/make/logo/SKILL.md — Law 5",
+      "verdictLabel": "MEASURED ≠ GENERATED"
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 26.15,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B07.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "VERDICT",
+   "narration_text": "Claude, Stung. The logo skill delivers one beat appended after the last beat of any reel: the brand mark animated with one of eight techniques, timed to the jingle MP3, locked per reel for stability, and measured not generated. One sting per reel. Re-run replaces, never stacks.",
+   "estimated_duration_s": 18,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Claude, Stung.",
+      "artifactHeading": "LOGO: WHAT IT DELIVERS",
+      "artifactLines": [
+       "LogoOutro beat appended — brand mark + 1 of 8 animation techniques",
+       "MP3 is the clock — jingle never cut, tail silence inside the beat",
+       "Random-once pick locked per reel (--reroll to re-spin)",
+       "reuse_audio: true — measured not generated, TTS never runs"
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 15.7,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "HANDOFF",
+   "narration_text": "Two questions before you run logo. First: does the brand pool at logos/brand-name/ have at least one SVG mark and one MP3 jingle? A pool missing either is a MISSING — the script logs exactly what to add and stops. Second: does the beat_sheet.json already have a LogoOutro beat with a locked pick? If yes, re-run replaces it. Pass --reroll only if you want a new pick.",
+   "estimated_duration_s": 20,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "HUMANITARIANS AI · logo · HANDOFF",
+      "segment": "Before you run logo:",
+      "greeting": "Two questions",
+      "command": "python3 skills/make/logo/scripts/logo.py <reel> <brand>",
+      "runningText": "* brand pool has SVG + MP3? * existing lock?",
+      "output": [
+       "1. logos/<brand>/: at least 1 SVG + 1 MP3",
+       "2. Existing LogoOutro beat? Re-run replaces it."
+      ],
+      "folderLabel": "logos/<brand>/"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 20.74,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "OUTRO",
+   "narration_text": "Claude, Stung. At NikBearBrown. From Humanitarians AI.",
+   "estimated_duration_s": 4,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Claude, Stung.",
+      "handle": "@HumanitariansAI",
+      "subline": "Liam, in for Bear."
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 2.67,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T20:41:04"
+   }
+  }
+ ]
 }

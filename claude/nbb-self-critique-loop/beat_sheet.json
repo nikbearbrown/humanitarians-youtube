@@ -1,366 +1,443 @@
 {
-  "metadata": {
-    "slug": "self-critique-loop",
-    "variant": "nbb",
-    "title": "Build a Self-Critique Prompt Checker with Claude",
-    "topic": "PROMPT ENGINEERING",
-    "audience": "NikBearBrown",
-    "engine": "kokoro",
-    "voice": "am_onyx",
-    "palette": "teardown",
-    "register": "Teardown",
-    "derived_from": "beat_sheet.json",
-    "source_reel": "../self-critique-loop",
-    "source_video": "../self-critique-loop/self-critique-loop-cut.mp4",
-    "body_beats": [
-      "B00",
-      "B01",
-      "B02",
-      "B03",
-      "B04",
-      "B05",
-      "B06",
-      "B07",
-      "B08",
-      "B09"
-    ],
-    "body_duration_s": 117,
-    "old_outro_beats": [],
-    "built_at": "2026-07-17T01:11:20.078120"
-  },
-  "beats": [
-    {
-      "beat_id": "NBB00",
-      "act": "COLD OPEN",
-      "title": "Liam cold open — ClaudeComposerAsk",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "I want to build a self-critique checker that grades my prompt before I ever run it, since I know an empty slot just becomes Claude's best guess. Help me: (1) design a checklist the checker runs against any prompt — testable verb, context present, format specified, evaluation criteria named; (2) write the prompt that makes Claude audit my draft prompt and report each missing piece; (3) have it rewrite my prompt into a stronger version and explain what each fix buys me.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "provenance": "proven-core/ClaudeComposerAsk",
-          "version": "1",
-          "props": {
-            "command": "I want to build a self-critique checker that grades my prompt before I ever run it, since I know an empty slot just becomes Claude's best guess. Help me: (1) design a checklist the checker runs against any prompt — testable verb, context present, format specified, evaluation criteria named; (2) write the prompt that makes Claude audit my draft prompt and report each missing piece; (3) have it rewrite my prompt into a stronger version and explain what each fix buys me.",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "Build a Self-Critique Prompt Checker with",
-            "greeting": "Your turn.",
-            "runningText": "explaining the mechanism…",
-            "output": [],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Fable 5",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/NBB00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 9.0,
-      "audio_file": "mp3/beat-NBB00.mp3",
-      "actual_duration_s": 6.421
-    },
-    {
-      "beat_id": "B00",
-      "label": "Open",
-      "estimated_duration_s": 10,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOpen",
-          "props": {
-            "topic": "PROMPT ENGINEERING",
-            "lines": [
-              "Nik Bear Brown",
-              "Brutalist + Educational AI",
-              "Self-Critique Loop",
-              "Structured critique. Not vague feedback.",
-              "CLI Build"
-            ]
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B00.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B00.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B00.mp3"
-    },
-    {
-      "beat_id": "B01",
-      "label": "Hook — vague vs structured critique",
-      "estimated_duration_s": 12,
-      "narration": "Claude is reasonably good at critiquing outputs when given specific criteria. But critique quality degrades dramatically without structured guidance — and most people use the vague version.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Two critique prompts side by side. LEFT: 'How could this be better?' -> generic output: 'Could be clearer, more concise...' CRIMSON label: VAGUE. RIGHT: 'Critique against: [3 specific criteria]. Pass/fail + evidence per criterion.' -> structured output with pass/fail rows. GREEN label: STRUCTURED."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B01.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B01.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B01.mp3"
-    },
-    {
-      "beat_id": "B02",
-      "label": "Claude command",
-      "estimated_duration_s": 15,
-      "narration": "The structured critique command cites the specific criteria from the original prompt, requires pass/fail with one-sentence evidence, and lists the top 3 changes needed — without making the changes yet.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Critique this output against these specific criteria: [list from original prompt]. For each criterion: pass/fail with one-sentence evidence. Then list top 3 changes. Do not make changes yet — only critique.\" < output.md",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "SELF-CRITIQUE",
-            "runningText": "running structured critique…"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B02.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B02.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B02.mp3"
-    },
-    {
-      "beat_id": "B03",
-      "label": "Python code",
-      "estimated_duration_s": 15,
-      "narration": "The script runs three stages: generate initial output, structured critique against criteria, then revised output incorporating the top-3 changes. All three appear in the terminal.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "self_critique.py",
-            "segment": "SELF-CRITIQUE",
-            "topic": "PROMPT ENGINEERING",
-            "code": "import subprocess, sys\nprompt = open(sys.argv[1]).read()\ncriteria = open(sys.argv[2]).read()\ninitial = subprocess.run(\n  [\"claude\", prompt], capture_output=True, text=True\n).stdout\ncritique_cmd = (\n  f\"Critique against: {criteria}. \"\n  \"Pass/fail + evidence per criterion. \"\n  \"Top 3 changes. Do not revise yet.\"\n)\ncritique = subprocess.run(\n  [\"claude\", critique_cmd], input=initial,\n  capture_output=True, text=True\n).stdout\nprint(\"CRITIQUE:\\n\", critique)"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B03.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B03.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B03.mp3"
-    },
-    {
-      "beat_id": "B04",
-      "label": "Critique pass/fail",
-      "estimated_duration_s": 14,
-      "narration": "The critique shows three criteria with pass/fail verdicts and one-sentence evidence from the output — not generic feedback, but specific cites from the text.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Three-row critique table. Column headers: CRITERION | VERDICT | EVIDENCE. Row 1: Word count under 100 | PASS (green) | 'Output is 87 words.' Row 2: No hedging language | FAIL (crimson) | 'Sentence 3: could potentially...' Row 3: Three bullet points | FAIL (crimson) | 'Output uses prose, not bullets.' Bottom: 'Top 3 changes: 1. Remove hedge in S3. 2. Convert to bullets. 3. ...' "
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B04.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B04.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B04.mp3"
-    },
-    {
-      "beat_id": "B05",
-      "label": "The change — vague critique",
-      "estimated_duration_s": 15,
-      "narration": "Now run the same loop with a vague self-critique prompt. Watch the critique quality degrade — no criteria, no evidence, generic suggestions.",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"How could this be better?\" < output.md",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "SELF-CRITIQUE",
-            "runningText": "running vague critique…"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B05.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B05.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B05.mp3"
-    },
-    {
-      "beat_id": "B06",
-      "label": "Vague critique output",
-      "estimated_duration_s": 10,
-      "narration": "The vague critique output: 'Could be clearer. More concise might help. Consider adding examples.' No criteria. No evidence. No specific change target. Unusable for revision.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "VAGUE CRITIQUE output block: 'Could be clearer. More concise might help. Consider adding examples.' CRIMSON annotation: 'No criteria. No evidence. No change target.' Teardown palette, CRIMSON border."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B06.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B06.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B06.mp3"
-    },
-    {
-      "beat_id": "B07",
-      "label": "Teardown angle",
-      "estimated_duration_s": 12,
-      "narration": "Self-critique is only useful when the critique criteria are as specific as the original task criteria. Otherwise you're asking Claude to evaluate against its own taste — which is just more of the same.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Large text: 'Specific criteria → inspectable critique.' Below: 'Vague prompt → Claude evaluates against its own taste.' CRIMSON rule. Two-line contrast. Cream background."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B07.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B07.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B07.mp3"
-    },
-    {
-      "beat_id": "B08",
-      "label": "Next reel teaser",
-      "estimated_duration_s": 6,
-      "narration": "Next: a constraint extractor — classify every constraint in your prompt into its five types.",
-      "shots": [
-        {
-          "source": "slate",
-          "notes": "Clean: 'NEXT: Constraint Extractor →' Minimal teardown style."
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B08.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B08.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B08.mp3"
-    },
-    {
-      "beat_id": "B09",
-      "label": "Outro",
-      "estimated_duration_s": 8,
-      "narration": "",
-      "shots": [
-        {
-          "source": "remotion",
-          "composition": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          }
-        }
-      ],
-      "locked": true,
-      "source_clip": "../self-critique-loop/clips/B09.mp4",
-      "source_audio": "../self-critique-loop/mp3/beat-B09.mp3",
-      "audio_file": "../self-critique-loop/mp3/beat-B09.mp3"
-    },
-    {
-      "beat_id": "NBB01",
-      "act": "VERDICT",
-      "title": "Liam verdict — ClaudeVerdictArtifact",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Let's recap with Claude. Here's what the body just demonstrated.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "provenance": "proven-core/ClaudeVerdictArtifact",
-          "version": "1",
-          "props": {
-            "artifactTitle": "Verdict",
-            "artifactHeading": "Build a Self-Critique Prompt Checker with Claude",
-            "artifactLines": [
-              "Key mechanism established.",
-              "Key mechanism established.",
-              "Key mechanism established."
-            ]
-          },
-          "rendered": {
-            "out": "media/NBB01.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 30.0,
-      "audio_file": "mp3/beat-NBB01.mp3",
-      "actual_duration_s": 2.88,
-      "lead_silence_s": 0.5
-    },
-    {
-      "beat_id": "NBB02",
-      "act": "YOUR TURN",
-      "title": "Your turn handoff — ClaudeComposerAsk",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "provenance": "proven-core/ClaudeComposerAsk",
-          "version": "1",
-          "props": {
-            "command": "Explain how [Build a Self-Critique Prompt Checker with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
-            "topic": "PROMPT ENGINEERING",
-            "segment": "Build a Self-Critique Prompt Checker with",
-            "greeting": "Your turn.",
-            "runningText": "paste this into Claude…",
-            "output": [],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Fable 5",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/NBB02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 8.0,
-      "audio_file": "mp3/beat-NBB02.mp3",
-      "actual_duration_s": 7.765
-    },
-    {
-      "beat_id": "NBB03",
-      "act": "OUTRO",
-      "title": "Claude title outro — ClaudeTitleOutro",
-      "silent": true,
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "provenance": "proven-core/ClaudeTitleOutro",
-          "version": "1",
-          "props": {
-            "title": "Build a Self-Critique Prompt Checker with Claude",
-            "handle": "@NikBearBrown",
-            "subline": "cancer biology, one mechanism at a time"
-          },
-          "rendered": {
-            "out": "media/NBB03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 6.0,
-      "audio_file": "mp3/beat-NBB03.mp3",
-      "silence_s": 6.0,
-      "actual_duration_s": 6.03,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Build a Self-Critique Prompt Checker with Claude"
+ "metadata": {
+  "slug": "self-critique-loop",
+  "variant": "nbb",
+  "title": "Build a Self-Critique Prompt Checker with Claude",
+  "topic": "PROMPT ENGINEERING",
+  "audience": "NikBearBrown",
+  "engine": "kokoro",
+  "voice": "am_onyx",
+  "palette": "teardown",
+  "register": "Pragmatist",
+  "derived_from": "beat_sheet.json",
+  "source_reel": "../self-critique-loop",
+  "source_video": "../self-critique-loop/self-critique-loop-cut.mp4",
+  "body_beats": [
+   "B00",
+   "B01",
+   "B02",
+   "B03",
+   "B04",
+   "B05",
+   "B06",
+   "B07",
+   "B08",
+   "B09"
+  ],
+  "body_duration_s": 117,
+  "old_outro_beats": [],
+  "built_at": "2026-07-17T01:11:20.078120",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Salaam, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build a Self-Critique Prompt Checker with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "NBB00",
+   "act": "COLD OPEN",
+   "title": "Liam cold open — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "I want to build a self-critique checker that grades my prompt before I ever run it, since I know an empty slot just becomes Claude's best guess. Help me: (1) design a checklist the checker runs against any prompt — testable verb, context present, format specified, evaluation criteria named; (2) write the prompt that makes Claude audit my draft prompt and report each missing piece; (3) have it rewrite my prompt into a stronger version and explain what each fix buys me.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "I want to build a self-critique checker that grades my prompt before I ever run it, since I know an empty slot just becomes Claude's best guess. Help me: (1) design a checklist the checker runs against any prompt — testable verb, context present, format specified, evaluation criteria named; (2) write the prompt that makes Claude audit my draft prompt and report each missing piece; (3) have it rewrite my prompt into a stronger version and explain what each fix buys me.",
+      "topic": "HUMANITARIANS AI · PROMPT ENGINEERING",
+      "segment": "Build a Self-Critique Prompt Checker with",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 9.0,
+   "audio_file": "mp3/beat-NBB00.mp3",
+   "actual_duration_s": 6.421
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Build a Self-Critique Prompt Checker with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "I want to build a self-critique checker that grades my prompt before I ever run it, since I know an empty slot just becomes Claude's best guess. Help me: (1) design a checklist the checker runs against any prompt — testable verb, context present, format specified, evaluation criteria named; (2) write the prompt that makes Claude audit my draft prompt and report each missing piece; (3) have it rewrite my prompt into a stronger version and explain what each fix buys me.",
+      "topic": "HUMANITARIANS AI · PROMPT ENGINEERING",
+      "segment": "Build a Self-Critique Prompt Checker with",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "label": "Open",
+   "estimated_duration_s": 10,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOpen",
+     "props": {
+      "topic": "PROMPT ENGINEERING",
+      "lines": [
+       "Nik Bear Brown",
+       "Brutalist + Educational AI",
+       "Self-Critique Loop",
+       "Structured critique. Not vague feedback.",
+       "CLI Build"
+      ]
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B00.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B00.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B00.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "label": "Hook — vague vs structured critique",
+   "estimated_duration_s": 12,
+   "narration": "Claude is reasonably good at critiquing outputs when given specific criteria. But critique quality degrades dramatically without structured guidance — and most people use the vague version.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Two critique prompts side by side. LEFT: 'How could this be better?' -> generic output: 'Could be clearer, more concise...' CRIMSON label: VAGUE. RIGHT: 'Critique against: [3 specific criteria]. Pass/fail + evidence per criterion.' -> structured output with pass/fail rows. GREEN label: STRUCTURED."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B01.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B01.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B01.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "label": "Claude command",
+   "estimated_duration_s": 15,
+   "narration": "The structured critique command cites the specific criteria from the original prompt, requires pass/fail with one-sentence evidence, and lists the top 3 changes needed — without making the changes yet.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"Critique this output against these specific criteria: [list from original prompt]. For each criterion: pass/fail with one-sentence evidence. Then list top 3 changes. Do not make changes yet — only critique.\" < output.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "SELF-CRITIQUE",
+      "runningText": "running structured critique…"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B02.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B02.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B02.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "label": "Python code",
+   "estimated_duration_s": 15,
+   "narration": "The script runs three stages: generate initial output, structured critique against criteria, then revised output incorporating the top-3 changes. All three appear in the terminal.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownCodeBlock",
+     "props": {
+      "filename": "self_critique.py",
+      "segment": "SELF-CRITIQUE",
+      "topic": "PROMPT ENGINEERING",
+      "code": "import subprocess, sys\nprompt = open(sys.argv[1]).read()\ncriteria = open(sys.argv[2]).read()\ninitial = subprocess.run(\n  [\"claude\", prompt], capture_output=True, text=True\n).stdout\ncritique_cmd = (\n  f\"Critique against: {criteria}. \"\n  \"Pass/fail + evidence per criterion. \"\n  \"Top 3 changes. Do not revise yet.\"\n)\ncritique = subprocess.run(\n  [\"claude\", critique_cmd], input=initial,\n  capture_output=True, text=True\n).stdout\nprint(\"CRITIQUE:\\n\", critique)"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B03.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B03.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B03.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "label": "Critique pass/fail",
+   "estimated_duration_s": 14,
+   "narration": "The critique shows three criteria with pass/fail verdicts and one-sentence evidence from the output — not generic feedback, but specific cites from the text.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Three-row critique table. Column headers: CRITERION | VERDICT | EVIDENCE. Row 1: Word count under 100 | PASS (green) | 'Output is 87 words.' Row 2: No hedging language | FAIL (crimson) | 'Sentence 3: could potentially...' Row 3: Three bullet points | FAIL (crimson) | 'Output uses prose, not bullets.' Bottom: 'Top 3 changes: 1. Remove hedge in S3. 2. Convert to bullets. 3. ...' "
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B04.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B04.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B04.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "label": "The change — vague critique",
+   "estimated_duration_s": 15,
+   "narration": "Now run the same loop with a vague self-critique prompt. Watch the critique quality degrade — no criteria, no evidence, generic suggestions.",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownTerminalAsk",
+     "props": {
+      "command": "claude \"How could this be better?\" < output.md",
+      "topic": "PROMPT ENGINEERING",
+      "segment": "SELF-CRITIQUE",
+      "runningText": "running vague critique…"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B05.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B05.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B05.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "label": "Vague critique output",
+   "estimated_duration_s": 10,
+   "narration": "The vague critique output: 'Could be clearer. More concise might help. Consider adding examples.' No criteria. No evidence. No specific change target. Unusable for revision.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "VAGUE CRITIQUE output block: 'Could be clearer. More concise might help. Consider adding examples.' CRIMSON annotation: 'No criteria. No evidence. No change target.' Teardown palette, CRIMSON border."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B06.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B06.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B06.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "label": "Teardown angle",
+   "estimated_duration_s": 12,
+   "narration": "Self-critique is only useful when the critique criteria are as specific as the original task criteria. Otherwise you're asking Claude to evaluate against its own taste — which is just more of the same.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Large text: 'Specific criteria → inspectable critique.' Below: 'Vague prompt → Claude evaluates against its own taste.' CRIMSON rule. Two-line contrast. Cream background."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B07.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B07.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B07.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "label": "Next reel teaser",
+   "estimated_duration_s": 6,
+   "narration": "Next: a constraint extractor — classify every constraint in your prompt into its five types.",
+   "shots": [
+    {
+     "source": "slate",
+     "notes": "Clean: 'NEXT: Constraint Extractor →' Minimal teardown style."
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B08.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B08.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B08.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "label": "Outro",
+   "estimated_duration_s": 8,
+   "narration": "",
+   "shots": [
+    {
+     "source": "remotion",
+     "composition": "NikBearBrownOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@NikBearBrown",
+      "url": "nikbearbrown.com"
+     }
+    }
+   ],
+   "locked": true,
+   "source_clip": "../self-critique-loop/clips/B09.mp4",
+   "source_audio": "../self-critique-loop/mp3/beat-B09.mp3",
+   "audio_file": "../self-critique-loop/mp3/beat-B09.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "NBB01",
+   "act": "VERDICT",
+   "title": "Liam verdict — ClaudeVerdictArtifact",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Let's recap with Claude. Here's what the body just demonstrated.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "provenance": "proven-core/ClaudeVerdictArtifact",
+     "version": "1",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Build a Self-Critique Prompt Checker with Claude",
+      "artifactLines": [
+       "Key mechanism established.",
+       "Key mechanism established.",
+       "Key mechanism established."
+      ]
+     },
+     "rendered": {
+      "out": "media/NBB01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 30.0,
+   "audio_file": "mp3/beat-NBB01.mp3",
+   "actual_duration_s": 2.88,
+   "lead_silence_s": 0.5
+  },
+  {
+   "beat_id": "NBB02",
+   "act": "YOUR TURN",
+   "title": "Your turn handoff — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "Explain how [Build a Self-Critique Prompt Checker with Claude] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+      "topic": "HUMANITARIANS AI · PROMPT ENGINEERING",
+      "segment": "Build a Self-Critique Prompt Checker with",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8.0,
+   "audio_file": "mp3/beat-NBB02.mp3",
+   "actual_duration_s": 7.765
+  },
+  {
+   "beat_id": "NBB03",
+   "act": "OUTRO",
+   "title": "Claude title outro — ClaudeTitleOutro",
+   "silent": true,
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "provenance": "proven-core/ClaudeTitleOutro",
+     "version": "1",
+     "props": {
+      "title": "Build a Self-Critique Prompt Checker with Claude",
+      "handle": "@HumanitariansAI",
+      "subline": "cancer biology, one mechanism at a time"
+     },
+     "rendered": {
+      "out": "media/NBB03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 6.0,
+   "audio_file": "mp3/beat-NBB03.mp3",
+   "silence_s": 6.0,
+   "actual_duration_s": 6.03,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Build a Self-Critique Prompt Checker with Claude. From Humanitarians AI."
+  }
+ ]
 }

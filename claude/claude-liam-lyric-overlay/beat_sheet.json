@@ -1,439 +1,476 @@
 {
-  "metadata": {
-    "slug": "claude-liam-lyric-overlay",
-    "title": "Claude, Overlaid.",
-    "series": "Brutalist META-SERIES",
-    "channel": "claude-liam",
-    "voice_kokoro": "am_onyx",
-    "engine": "kokoro",
-    "aspect": "16:9",
-    "hello": "Habari",
-    "skill": "lyric-overlay",
-    "old_skill_name": "muzak-overlay",
-    "skill_md": "skills/make/lyric-overlay/SKILL.md",
-    "modifier": "skill-teardown",
-    "build": {
-      "at": "2026-07-18T18:56:48",
-      "cut": "master",
-      "filled": 11,
-      "of": 11,
-      "slates": [],
-      "skin_warnings": []
-    }
+ "metadata": {
+  "slug": "claude-liam-lyric-overlay",
+  "title": "Claude, Overlaid.",
+  "series": "Brutalist META-SERIES",
+  "channel": "hai",
+  "voice_kokoro": "am_onyx",
+  "engine": "kokoro",
+  "aspect": "16:9",
+  "hello": "Habari",
+  "skill": "lyric-overlay",
+  "old_skill_name": "muzak-overlay",
+  "skill_md": "skills/make/lyric-overlay/SKILL.md",
+  "modifier": "skill-teardown",
+  "build": {
+   "at": "2026-07-18T18:56:48",
+   "cut": "master",
+   "filled": 11,
+   "of": 11,
+   "slates": [],
+   "skin_warnings": []
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "cold open",
-      "narration_text": "Habari — this is Liam, in for Bear. Today: lyric-overlay, the skill that adds synced karaoke lyrics and an audiogram waveform on top of an existing finished video. One command. No re-render of the original.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 14,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "topic": "LYRIC-OVERLAY · SKILL TEARDOWN",
-            "segment": "Liam, in for Bear.",
-            "greeting": "Habari, Liam",
-            "command": "./art lyric-overlay <video.mp4>",
-            "runningText": "extract → analyze → align lyrics → stamp → render...",
-            "output": [
-              "Layer 1 (bottom): source video, full-frame, muted",
-              "Layer 2: audiogram waveform (from extracted audio)",
-              "Layer 3: karaoke lyrics (current word brightest)",
-              "Layer 4 (audio): extracted WAV — single source of truth"
-            ],
-            "folderLabel": "claude-liam-lyric-overlay/"
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B00.mp3",
-      "actual_duration_s": 12.39,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "anatomy",
-      "narration_text": "The skill has one orchestration script — overlay new dot py — that calls the same audio analysis and lyric alignment scripts used by music-video. Its own templates provide four Remotion components: VideoBackground with the source footage and scrim, AudioVisualizer with the waveform, LyricLayer with the karaoke captions, and the single Audio source. The theme dot ts is the only place the look lives — palette, waveform position, scrim opacity, lyric style.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 22,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownAnatomy",
-          "props": {
-            "skillName": "lyric-overlay",
-            "oldName": "muzak-overlay",
-            "eyebrow": "ANATOMY",
-            "title": "One command. Four layers. One theme.",
-            "files": [
-              "SKILL.md — pipeline + layer order + theming knobs",
-              "scripts/overlay_new.py — orchestrator (extract→analyze→align→stamp)",
-              "templates/src/VideoBackground.tsx — source footage + scrim",
-              "templates/src/theme.ts — the only place the look lives"
-            ],
-            "calloutText": "theme.ts",
-            "calloutSub": "restyle without touching timing"
-          },
-          "rendered": {
-            "out": "media/B01.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B01.mp3",
-      "actual_duration_s": 24.83,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B01.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "pipeline",
-      "narration_text": "Five steps, one command: extract audio from the source video; match dimensions from ffprobe so the composition is sized to the source exactly; analyze with librosa for duration and per-frame energy; align lyrics with the beat-grid seed for the preview pass, or with forced whisper alignment for the final; stamp the Remotion project. Then locally: npm install, npm run studio to preview and nudge, npm run render. The skill stops at a runnable project — rendering needs headless Chromium.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 24,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownPipeline",
-          "props": {
-            "eyebrow": "PIPELINE",
-            "title": "Extract → analyze → align → stamp → render locally.",
-            "inputLabel": "finished .mp4 + lyrics .txt",
-            "outputLabel": "runnable Remotion project (user renders the MP4)",
-            "phases": [
-              {
-                "label": "EXTRACT",
-                "note": "ffmpeg pulls audio.wav from source .mp4 — the only valid audio source"
-              },
-              {
-                "label": "ANALYZE",
-                "note": "ffprobe matches dimensions; librosa → beat_data.json (energy, duration)"
-              },
-              {
-                "label": "ALIGN",
-                "note": "seed pass (beat-grid, no deps) for layout preview; --whisper for final"
-              },
-              {
-                "label": "STAMP",
-                "note": "templates/ → <slug>/; JSON + audio + video dropped where Remotion expects"
-              },
-              {
-                "label": "RENDER",
-                "note": "npm install → npm run studio (preview) → npm run render (headless Chromium)"
-              }
-            ],
-            "footerNote": "Approve the seed-pass layout before running --whisper. Forced alignment downloads a model on first run — run it locally where the Hugging Face host is reachable."
-          },
-          "rendered": {
-            "out": "media/B02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B02.mp3",
-      "actual_duration_s": 27.26,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B02.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "self-demo ask",
-      "narration_text": "Self-demo: theme dot ts configuration for a bright travel video overlay — waveform in the lower band, scrim tuned for bright sky, lyric style set to outline.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 10,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "topic": "LYRIC-OVERLAY DEMO",
-            "segment": "theme.ts configuration",
-            "greeting": "Habari, Liam",
-            "command": "./art lyric-overlay travel-video.mp4",
-            "runningText": "bright footage — tuning scrim + waveform position...",
-            "output": [
-              "footage: bright travel video, daytime exteriors",
-              "problem: white waveform disappears over bright sky",
-              "solution: waveformMid, scrimOpacity, lyricStyle"
-            ],
-            "folderLabel": "travel-video/"
-          },
-          "rendered": {
-            "out": "media/B03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B03.mp3",
-      "actual_duration_s": 9.88,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B03.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "B04",
-      "act": "self-demo result",
-      "narration_text": "For a bright travel video with daytime exteriors: waveformMid set to 0.78 — lower band, out of the sky. scrimOpacity set to 0.55 — enough darkness to read white text over bright footage without covering the visuals. scrimHeight set to 0.35. accent set to white. lyricStyle set to outline: the current word is outlined rather than filled, so the bright background shows through and the text reads as a graphic rather than a flat card. These four knobs are the full configuration. No code change — only theme dot ts.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 28,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeCodeBeat",
-          "props": {
-            "title": "THEME — Bright Travel Video Overlay",
-            "code": "// theme.ts — bright travel footage\nexport const theme = {\n  waveformMid:    0.78,   // lower band (out of sky)\n  scrimOpacity:   0.55,   // legible over bright ext.\n  scrimHeight:    0.35,   // band thickness\n  accent:         '#FFFFFF',\n  lyricStyle:     'outline', // current word outlined,\n                            //   not filled\n  waveformAmp:    80,\n  waveformStroke: 2,\n};\n\n// waveformMid 0.5 = center\n//             0.78 = lower band\n// scrimOpacity 0 = remove scrim entirely\n//              1 = full black band\n// lyricStyle: 'fill' | 'outline' | 'glow'"
-          },
-          "rendered": {
-            "out": "media/B04.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B04.mp3",
-      "actual_duration_s": 30.85,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B04.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "mechanism 1",
-      "narration_text": "Mechanism one: the audio comes from the video. Overlay new dot py extracts the audio out of the source mp4 with ffmpeg, analyzes that audio for beat timing, and uses that same extracted file as the composition's only audio source. If you brought in a separate WAV — even the original master — the waveform would analyze one recording and the video would play another. Even milliseconds of offset accumulate over a four-minute song. The extraction guarantees they are the same recording.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 24,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownMechanism",
-          "props": {
-            "eyebrow": "MECHANISM · ACT 1",
-            "heading": "Extract from the video. Never bring in a separate WAV.",
-            "body": "overlay_new.py runs ffmpeg -i source.mp4 -vn audio.wav — it pulls the audio embedded in the video, not a separate master. That extracted file is used for librosa analysis AND as the Remotion <Audio> source. The video is muted in the composition; only the extracted WAV plays. This guarantees the waveform and the video are time-locked: they are the same recording.",
-            "quote": "The audio is ground truth, and the audio comes from the video itself.",
-            "cite": "skills/make/lyric-overlay/SKILL.md — the one rule",
-            "verdictLabel": "EXTRACT FROM VIDEO"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B05.mp3",
-      "actual_duration_s": 26.75,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "B06",
-      "act": "mechanism 2",
-      "narration_text": "Mechanism two: the scrim is the legibility contract. The karaoke text and waveform are white and sit on top of whatever the source footage looks like. If the footage has a bright sky, blue water, or any pale background, white text disappears. The scrim is a vertical gradient that darkens a horizontal band around the waveform position. The knobs — waveform mid for position, scrim opacity for darkness, scrim height for band width — let the overlay adapt to any source video without touching the source or re-rendering it.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 24,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownMechanism",
-          "props": {
-            "eyebrow": "MECHANISM · ACT 2",
-            "heading": "The scrim is the legibility contract.",
-            "body": "VideoBackground.tsx renders the source footage full-frame (muted), then adds a soft scrim: a vertical gradient that darkens a horizontal band centered on theme.waveformMid. This makes white waveform + white karaoke text readable over bright or busy footage. Knobs: waveformMid (0..1, fraction of height), scrimOpacity (peak darkness), scrimHeight (band thickness). Set scrimOpacity=0 to remove entirely over dark footage.",
-            "quote": "Picture and waveform can never drift, because they are the same recording.",
-            "cite": "skills/make/lyric-overlay/SKILL.md — the one rule",
-            "verdictLabel": "SCRIM = LEGIBILITY"
-          },
-          "rendered": {
-            "out": "media/B06.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B06.mp3",
-      "actual_duration_s": 27.56,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B06.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "B07",
-      "act": "mechanism 3",
-      "narration_text": "Mechanism three: the two-pass lyric strategy. The beat-grid seed runs first, with no extra dependencies — it spreads lines evenly across the real beat grid. It does not know when each word is sung; it estimates. This is enough to approve the layout: is the text readable, is the position right, is the scrim working? Then forced alignment with faster-whisper runs on the final pass, locking every word to the frame it was actually sung. Seed first to see the look. Whisper last to lock the timing.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 24,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "SkillTeardownMechanism",
-          "props": {
-            "eyebrow": "MECHANISM · ACT 3",
-            "heading": "Seed pass to see. Whisper pass to lock.",
-            "body": "align_lyrics.py (beat-grid seed): no deps, runs anywhere, spaces lines evenly across the real beat grid. Output: good enough to approve the layout and the look. align_lyrics_audio.py (--whisper flag): faster-whisper word timestamps, sequence-aligned to known lyrics. Output: true per-word karaoke timing. Run in two passes: (1) seed → approve layout, (2) --whisper --force → final. The seed pass is the preview; forced alignment is the render.",
-            "quote": "Edit the theme to restyle without touching timing.",
-            "cite": "skills/make/lyric-overlay/SKILL.md — theming pattern",
-            "verdictLabel": "SEED → APPROVE → WHISPER"
-          },
-          "rendered": {
-            "out": "media/B07.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-B07.mp3",
-      "actual_duration_s": 25.37,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B07.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "BVDT",
-      "act": "verdict",
-      "narration_text": "Lyric-overlay: audio extracted from the video, scrim-based legibility, two-pass lyric timing. The extraction is the drift guarantee. The scrim is the readability contract. The seed sees; the whisper locks.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 10,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "props": {
-            "artifactTitle": "Claude, Overlaid.",
-            "artifactHeading": "LYRIC-OVERLAY: WHAT IT DELIVERS",
-            "artifactLines": [
-              "audio extracted from source .mp4 — never a separate WAV",
-              "scrim: waveformMid + scrimOpacity + scrimHeight knobs",
-              "seed pass (layout preview) → --whisper (word-level final)",
-              "theme.ts: restyle look without touching timing"
-            ]
-          },
-          "rendered": {
-            "out": "media/BVDT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BVDT.mp3",
-      "actual_duration_s": 11.97,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BVDT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "BHTF",
-      "act": "handoff",
-      "narration_text": "Your turn. Run lyric-overlay on a finished video. Before you start: is the audio being extracted from the video file — not brought in from a separate WAV? And have you run the seed pass and approved the layout before running forced whisper alignment?",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 18,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "props": {
-            "topic": "YOUR TURN",
-            "segment": "in for Bear",
-            "greeting": "Habari, Liam",
-            "command": "./art lyric-overlay <video.mp4>",
-            "runningText": "audio from the video? seed pass approved first?",
-            "output": [
-              "audio: extracted from .mp4 — never a separate WAV",
-              "seed pass first: approve layout before --whisper",
-              "theme.ts: tune waveformMid + scrimOpacity for your footage",
-              "render locally: npm run studio → npm run render"
-            ],
-            "folderLabel": "your-video-here/"
-          },
-          "rendered": {
-            "out": "media/BHTF.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BHTF.mp3",
-      "actual_duration_s": 13.55,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BHTF.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
-    },
-    {
-      "beat_id": "BOUT",
-      "act": "outro",
-      "narration_text": "Claude, Overlaid. I'm Liam, in for Bear.",
-      "voice": "am_onyx",
-      "engine": "kokoro",
-      "estimated_duration_s": 6,
-      "shot": {
-        "type": "REMOTION",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "props": {
-            "title": "Claude, Overlaid.",
-            "handle": "@NikBearBrown",
-            "subline": "Liam, in for Bear."
-          },
-          "rendered": {
-            "out": "media/BOUT.mp4",
-            "at": ""
-          }
-        }
-      },
-      "audio_file": "mp3/beat-BOUT.mp3",
-      "actual_duration_s": 3.01,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/BOUT.mp4",
-        "filled_by": "media",
-        "at": "2026-07-18T18:56:48"
-      }
+  "register": "Pragmatist",
+  "voice": "am_onyx"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Olá, Humanitarians",
+      "topic": "HUMANITARIANS AI · Claude, Overlaid.",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Habari — this is Liam, in for Bear. Today: lyric-overlay, the skill that adds synced karaoke lyrics and an audiogram waveform on top of an existing finished video. One command. No re-render of the original.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 14,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "HUMANITARIANS AI · LYRIC-OVERLAY · SKILL TEARDOWN",
+      "segment": "Liam, in for Bear.",
+      "greeting": "Habari, Liam",
+      "command": "./art lyric-overlay <video.mp4>",
+      "runningText": "extract → analyze → align lyrics → stamp → render...",
+      "output": [
+       "Layer 1 (bottom): source video, full-frame, muted",
+       "Layer 2: audiogram waveform (from extracted audio)",
+       "Layer 3: karaoke lyrics (current word brightest)",
+       "Layer 4 (audio): extracted WAV — single source of truth"
+      ],
+      "folderLabel": "claude-liam-lyric-overlay/"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 12.39,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Claude, Overlaid. belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "anatomy",
+   "narration_text": "The skill has one orchestration script — overlay new dot py — that calls the same audio analysis and lyric alignment scripts used by music-video. Its own templates provide four Remotion components: VideoBackground with the source footage and scrim, AudioVisualizer with the waveform, LyricLayer with the karaoke captions, and the single Audio source. The theme dot ts is the only place the look lives — palette, waveform position, scrim opacity, lyric style.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 22,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownAnatomy",
+     "props": {
+      "skillName": "lyric-overlay",
+      "oldName": "muzak-overlay",
+      "eyebrow": "ANATOMY",
+      "title": "One command. Four layers. One theme.",
+      "files": [
+       "SKILL.md — pipeline + layer order + theming knobs",
+       "scripts/overlay_new.py — orchestrator (extract→analyze→align→stamp)",
+       "templates/src/VideoBackground.tsx — source footage + scrim",
+       "templates/src/theme.ts — the only place the look lives"
+      ],
+      "calloutText": "theme.ts",
+      "calloutSub": "restyle without touching timing"
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 24.83,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "pipeline",
+   "narration_text": "Five steps, one command: extract audio from the source video; match dimensions from ffprobe so the composition is sized to the source exactly; analyze with librosa for duration and per-frame energy; align lyrics with the beat-grid seed for the preview pass, or with forced whisper alignment for the final; stamp the Remotion project. Then locally: npm install, npm run studio to preview and nudge, npm run render. The skill stops at a runnable project — rendering needs headless Chromium.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownPipeline",
+     "props": {
+      "eyebrow": "PIPELINE",
+      "title": "Extract → analyze → align → stamp → render locally.",
+      "inputLabel": "finished .mp4 + lyrics .txt",
+      "outputLabel": "runnable Remotion project (user renders the MP4)",
+      "phases": [
+       {
+        "label": "EXTRACT",
+        "note": "ffmpeg pulls audio.wav from source .mp4 — the only valid audio source"
+       },
+       {
+        "label": "ANALYZE",
+        "note": "ffprobe matches dimensions; librosa → beat_data.json (energy, duration)"
+       },
+       {
+        "label": "ALIGN",
+        "note": "seed pass (beat-grid, no deps) for layout preview; --whisper for final"
+       },
+       {
+        "label": "STAMP",
+        "note": "templates/ → <slug>/; JSON + audio + video dropped where Remotion expects"
+       },
+       {
+        "label": "RENDER",
+        "note": "npm install → npm run studio (preview) → npm run render (headless Chromium)"
+       }
+      ],
+      "footerNote": "Approve the seed-pass layout before running --whisper. Forced alignment downloads a model on first run — run it locally where the Hugging Face host is reachable."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 27.26,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "self-demo ask",
+   "narration_text": "Self-demo: theme dot ts configuration for a bright travel video overlay — waveform in the lower band, scrim tuned for bright sky, lyric style set to outline.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 10,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "HUMANITARIANS AI · LYRIC-OVERLAY DEMO",
+      "segment": "theme.ts configuration",
+      "greeting": "Habari, Liam",
+      "command": "./art lyric-overlay travel-video.mp4",
+      "runningText": "bright footage — tuning scrim + waveform position...",
+      "output": [
+       "footage: bright travel video, daytime exteriors",
+       "problem: white waveform disappears over bright sky",
+       "solution: waveformMid, scrimOpacity, lyricStyle"
+      ],
+      "folderLabel": "travel-video/"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 9.88,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "B04",
+   "act": "self-demo result",
+   "narration_text": "For a bright travel video with daytime exteriors: waveformMid set to 0.78 — lower band, out of the sky. scrimOpacity set to 0.55 — enough darkness to read white text over bright footage without covering the visuals. scrimHeight set to 0.35. accent set to white. lyricStyle set to outline: the current word is outlined rather than filled, so the bright background shows through and the text reads as a graphic rather than a flat card. These four knobs are the full configuration. No code change — only theme dot ts.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "title": "THEME — Bright Travel Video Overlay",
+      "code": "// theme.ts — bright travel footage\nexport const theme = {\n  waveformMid:    0.78,   // lower band (out of sky)\n  scrimOpacity:   0.55,   // legible over bright ext.\n  scrimHeight:    0.35,   // band thickness\n  accent:         '#FFFFFF',\n  lyricStyle:     'outline', // current word outlined,\n                            //   not filled\n  waveformAmp:    80,\n  waveformStroke: 2,\n};\n\n// waveformMid 0.5 = center\n//             0.78 = lower band\n// scrimOpacity 0 = remove scrim entirely\n//              1 = full black band\n// lyricStyle: 'fill' | 'outline' | 'glow'"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 30.85,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "mechanism 1",
+   "narration_text": "Mechanism one: the audio comes from the video. Overlay new dot py extracts the audio out of the source mp4 with ffmpeg, analyzes that audio for beat timing, and uses that same extracted file as the composition's only audio source. If you brought in a separate WAV — even the original master — the waveform would analyze one recording and the video would play another. Even milliseconds of offset accumulate over a four-minute song. The extraction guarantees they are the same recording.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 1",
+      "heading": "Extract from the video. Never bring in a separate WAV.",
+      "body": "overlay_new.py runs ffmpeg -i source.mp4 -vn audio.wav — it pulls the audio embedded in the video, not a separate master. That extracted file is used for librosa analysis AND as the Remotion <Audio> source. The video is muted in the composition; only the extracted WAV plays. This guarantees the waveform and the video are time-locked: they are the same recording.",
+      "quote": "The audio is ground truth, and the audio comes from the video itself.",
+      "cite": "skills/make/lyric-overlay/SKILL.md — the one rule",
+      "verdictLabel": "EXTRACT FROM VIDEO"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 26.75,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "B06",
+   "act": "mechanism 2",
+   "narration_text": "Mechanism two: the scrim is the legibility contract. The karaoke text and waveform are white and sit on top of whatever the source footage looks like. If the footage has a bright sky, blue water, or any pale background, white text disappears. The scrim is a vertical gradient that darkens a horizontal band around the waveform position. The knobs — waveform mid for position, scrim opacity for darkness, scrim height for band width — let the overlay adapt to any source video without touching the source or re-rendering it.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 2",
+      "heading": "The scrim is the legibility contract.",
+      "body": "VideoBackground.tsx renders the source footage full-frame (muted), then adds a soft scrim: a vertical gradient that darkens a horizontal band centered on theme.waveformMid. This makes white waveform + white karaoke text readable over bright or busy footage. Knobs: waveformMid (0..1, fraction of height), scrimOpacity (peak darkness), scrimHeight (band thickness). Set scrimOpacity=0 to remove entirely over dark footage.",
+      "quote": "Picture and waveform can never drift, because they are the same recording.",
+      "cite": "skills/make/lyric-overlay/SKILL.md — the one rule",
+      "verdictLabel": "SCRIM = LEGIBILITY"
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 27.56,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B06.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "B07",
+   "act": "mechanism 3",
+   "narration_text": "Mechanism three: the two-pass lyric strategy. The beat-grid seed runs first, with no extra dependencies — it spreads lines evenly across the real beat grid. It does not know when each word is sung; it estimates. This is enough to approve the layout: is the text readable, is the position right, is the scrim working? Then forced alignment with faster-whisper runs on the final pass, locking every word to the frame it was actually sung. Seed first to see the look. Whisper last to lock the timing.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "SkillTeardownMechanism",
+     "props": {
+      "eyebrow": "MECHANISM · ACT 3",
+      "heading": "Seed pass to see. Whisper pass to lock.",
+      "body": "align_lyrics.py (beat-grid seed): no deps, runs anywhere, spaces lines evenly across the real beat grid. Output: good enough to approve the layout and the look. align_lyrics_audio.py (--whisper flag): faster-whisper word timestamps, sequence-aligned to known lyrics. Output: true per-word karaoke timing. Run in two passes: (1) seed → approve layout, (2) --whisper --force → final. The seed pass is the preview; forced alignment is the render.",
+      "quote": "Edit the theme to restyle without touching timing.",
+      "cite": "skills/make/lyric-overlay/SKILL.md — theming pattern",
+      "verdictLabel": "SEED → APPROVE → WHISPER"
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 25.37,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B07.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "verdict",
+   "narration_text": "Lyric-overlay: audio extracted from the video, scrim-based legibility, two-pass lyric timing. The extraction is the drift guarantee. The scrim is the readability contract. The seed sees; the whisper locks.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 10,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Claude, Overlaid.",
+      "artifactHeading": "LYRIC-OVERLAY: WHAT IT DELIVERS",
+      "artifactLines": [
+       "audio extracted from source .mp4 — never a separate WAV",
+       "scrim: waveformMid + scrimOpacity + scrimHeight knobs",
+       "seed pass (layout preview) → --whisper (word-level final)",
+       "theme.ts: restyle look without touching timing"
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 11.97,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "handoff",
+   "narration_text": "Your turn. Run lyric-overlay on a finished video. Before you start: is the audio being extracted from the video file — not brought in from a separate WAV? And have you run the seed pass and approved the layout before running forced whisper alignment?",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 18,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "HUMANITARIANS AI · YOUR TURN",
+      "segment": "in for Bear",
+      "greeting": "Habari, Liam",
+      "command": "./art lyric-overlay <video.mp4>",
+      "runningText": "audio from the video? seed pass approved first?",
+      "output": [
+       "audio: extracted from .mp4 — never a separate WAV",
+       "seed pass first: approve layout before --whisper",
+       "theme.ts: tune waveformMid + scrimOpacity for your footage",
+       "render locally: npm run studio → npm run render"
+      ],
+      "folderLabel": "your-video-here/"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 13.55,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "Claude, Overlaid. I'm Liam, in for Bear. From Humanitarians AI.",
+   "voice": "am_onyx",
+   "engine": "kokoro",
+   "estimated_duration_s": 6,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Claude, Overlaid.",
+      "handle": "@HumanitariansAI",
+      "subline": "Liam, in for Bear."
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 3.01,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-07-18T18:56:48"
+   }
+  }
+ ]
 }
