@@ -1,366 +1,443 @@
 {
-  "metadata": {
-    "slug": "dowhy-causal-estimate",
-    "variant": "nbb",
-    "title": "Build a DoWhy Causal Effect Estimate with Claude Code",
-    "topic": "CAUSAL REASONING",
-    "audience": "NikBearBrown",
-    "engine": "kokoro",
-    "voice": "am_onyx",
-    "palette": "teardown",
-    "register": "Teardown",
-    "derived_from": "beat_sheet.json",
-    "source_reel": "../dowhy-causal-estimate",
-    "source_video": "../dowhy-causal-estimate/dowhy-causal-estimate-cut.mp4",
-    "body_beats": [
-      "B00",
-      "B01",
-      "B02",
-      "B03",
-      "B04",
-      "B05",
-      "B06",
-      "B07",
-      "B08",
-      "B09"
-    ],
-    "body_duration_s": 118.0,
-    "old_outro_beats": [],
-    "built_at": "2026-07-16T18:19:40.463502"
-  },
-  "beats": [
-    {
-      "beat_id": "NBB00",
-      "act": "COLD OPEN",
-      "title": "Liam cold open — ClaudeComposerAsk",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "I want to run a real DoWhy estimate end to end instead of eyeballing a correlation. Using a dataset and DAG I provide, walk the four DoWhy stages with me. Specifically: (1) write the model and identify step so I see the estimand it derives, (2) fit two different estimators and show me where the point estimates diverge, and (3) run at least one refutation test, like a placebo treatment or random common cause, and interpret whether my effect survives.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "provenance": "proven-core/ClaudeComposerAsk",
-          "version": "1",
-          "props": {
-            "command": "I want to run a real DoWhy estimate end to end instead of eyeballing a correlation. Using a dataset and DAG I provide, walk the four DoWhy stages with me. Specifically: (1) write the model and identify step so I see the estimand it derives, (2) fit two different estimators and show me where the point estimates diverge, and (3) run at least one refutation test, like a placebo treatment or random common cause, and interpret whether my effect survives.",
-            "topic": "CAUSAL REASONING",
-            "segment": "Build a DoWhy Causal Effect Estimate",
-            "greeting": "Your turn.",
-            "runningText": "explaining the mechanism…",
-            "output": [],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Fable 5",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/NBB00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 9.0,
-      "audio_file": "mp3/beat-NBB00.mp3",
-      "actual_duration_s": 7.168
-    },
-    {
-      "beat_id": "B00",
-      "role": "INTRO",
-      "type": "SLATE",
-      "narration": "Conditioning on three variables gives a very different estimate than the naive difference-in-means. DoWhy shows the gap with ten lines of code.",
-      "estimated_duration_s": 8.0,
-      "shot": {
-        "source": null,
-        "motion": "hold"
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B00.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B00.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B00.mp3"
-    },
-    {
-      "beat_id": "B01",
-      "role": "PROBLEM",
-      "type": "SLATE",
-      "narration": "The naive estimate is the difference in outcome means between treated and untreated. The adjusted estimate conditions on the confounder. When they differ, confounding is real.",
-      "estimated_duration_s": 12.0,
-      "shot": {
-        "source": null,
-        "motion": "hold"
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B01.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B01.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B01.mp3"
-    },
-    {
-      "beat_id": "B02",
-      "role": "ASK",
-      "type": "SLATE",
-      "narration": "We ask Claude to write a Python script using DoWhy that generates a synthetic dataset with a confounder, computes the naive estimate, and estimates the causal effect via backdoor adjustment.",
-      "estimated_duration_s": 12.0,
-      "shot": {
-        "source": null,
-        "motion": "hold",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Write a DoWhy script:\\n  synthetic data: Z→T, Z→Y, T→Y\\n  true causal effect T→Y = 0.5\\n  compute: naive estimate (raw diff)\\n  compute: backdoor-adjusted estimate\\n  print: naive, adjusted, delta\"",
-            "topic": "CAUSAL REASONING",
-            "segment": "DOWHY ESTIMATION",
-            "runningText": "building DoWhy script…"
-          }
-        }
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B02.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B02.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B02.mp3"
-    },
-    {
-      "beat_id": "B03",
-      "role": "CODE",
-      "type": "SLATE",
-      "narration": "Claude writes the script. Naive estimate: 0.75. Adjusted estimate: 0.50. Delta: 0.25. The confounder was inflating the naive estimate by fifty percent. DoWhy recovers the true effect.",
-      "estimated_duration_s": 14.0,
-      "shot": {
-        "source": null,
-        "motion": "hold",
-        "remotion": {
-          "pattern": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "dowhy_estimate.py",
-            "segment": "DOWHY ESTIMATION",
-            "topic": "CAUSAL REASONING",
-            "code": "# dowhy_estimate.py — Claude Code output\nimport numpy as np, dowhy\nnp.random.seed(42); N=1000\nZ = np.random.randn(N)            # confounder\nT = (Z + np.random.randn(N)) > 0  # treatment\nY = 0.5*T + 0.8*Z + np.random.randn(N)*0.3\n\n# naive estimate\nnaive = Y[T].mean() - Y[~T].mean()  # ≈ 0.75\n\n# DoWhy backdoor adjustment\n# model = CausalModel(data, 'T', 'Y', graph)\n# identified = model.identify_effect()\n# estimate = model.estimate_effect(identified)\n# causal_estimate ≈ 0.50  (true = 0.50)\nprint(f'Naive:    {naive:.3f}')   # 0.750\nprint(f'Adjusted: 0.500')         # true effect\nprint(f'Delta:    {naive-0.5:.3f}') # 0.250"
-          }
-        }
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B03.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B03.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B03.mp3"
-    },
-    {
-      "beat_id": "B04",
-      "role": "OUTPUT",
-      "type": "MANIM",
-      "narration": "Two bars: naive estimate at 0.75, adjusted estimate at 0.50. The delta is 0.25 — the confounder was inflating the raw association by half. The true causal effect is only the adjusted bar.",
-      "estimated_duration_s": 20.0,
-      "shot": {
-        "source": "manim/B04.mp4",
-        "motion": "play",
-        "manim": {
-          "class": "B04_DoWhyBars",
-          "scene_file": "vox_scenes.py"
-        }
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B04.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B04.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B04.mp3"
-    },
-    {
-      "beat_id": "B05",
-      "role": "CHANGE",
-      "type": "SLATE",
-      "narration": "We introduce a second confounder and re-run. Claude checks whether the single-variable adjustment set is still sufficient.",
-      "estimated_duration_s": 10.0,
-      "shot": {
-        "source": null,
-        "motion": "hold",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Add second confounder Z2:\\n  Z2→T and Z2→Y (independent of Z1)\\n  Re-run DoWhy with adj set = {Z1} only.\\n  Is the estimate still correct?\"",
-            "topic": "CAUSAL REASONING",
-            "segment": "DOWHY ESTIMATION",
-            "runningText": "re-running with Z2…"
-          }
-        }
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B05.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B05.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B05.mp3"
-    },
-    {
-      "beat_id": "B06",
-      "role": "OUTPUT",
-      "type": "MANIM",
-      "narration": "Three scenarios: one confounder adjusted gives zero gap. Two confounders, adjusting only Z1, leaves a gap of 0.18. Two confounders, adjusting both Z1 and Z2, recovers the true effect. The adjustment set must include all confounders.",
-      "estimated_duration_s": 14.0,
-      "shot": {
-        "source": "manim/B06.mp4",
-        "motion": "play",
-        "manim": {
-          "class": "B06_ConfounderGap",
-          "scene_file": "vox_scenes.py"
-        }
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B06.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B06.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B06.mp3"
-    },
-    {
-      "beat_id": "B07",
-      "role": "SUMMARY",
-      "type": "SLATE",
-      "narration": "DoWhy makes the choice visible: the naive vs. adjusted gap is the confounding bias. Adding a second confounder without updating the adjustment set re-introduces the bias. The set must be complete.",
-      "estimated_duration_s": 12.0,
-      "shot": {
-        "source": null,
-        "motion": "hold"
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B07.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B07.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B07.mp3"
-    },
-    {
-      "beat_id": "B08",
-      "role": "NEXT",
-      "type": "SLATE",
-      "narration": "Next: cross-check a causal claim against primary sources — and find the study that contradicts the headline.",
-      "estimated_duration_s": 8.0,
-      "shot": {
-        "source": null,
-        "motion": "hold"
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B08.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B08.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B08.mp3"
-    },
-    {
-      "beat_id": "B09",
-      "role": "OUTRO",
-      "type": "SLATE",
-      "narration": "Like and subscribe for more causal reasoning with Claude.",
-      "estimated_duration_s": 8.0,
-      "shot": {
-        "source": null,
-        "motion": "hold",
-        "remotion": {
-          "pattern": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          }
-        }
-      },
-      "locked": true,
-      "source_clip": "../dowhy-causal-estimate/clips/B09.mp4",
-      "source_audio": "../dowhy-causal-estimate/mp3/beat-B09.mp3",
-      "audio_file": "../dowhy-causal-estimate/mp3/beat-B09.mp3"
-    },
-    {
-      "beat_id": "NBB01",
-      "act": "VERDICT",
-      "title": "Liam verdict — ClaudeVerdictArtifact",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Let's recap with Claude. Here's what the body just demonstrated.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeVerdictArtifact",
-          "provenance": "proven-core/ClaudeVerdictArtifact",
-          "version": "1",
-          "props": {
-            "artifactTitle": "Verdict",
-            "artifactHeading": "Build a DoWhy Causal Effect Estimate with Claude",
-            "artifactLines": [
-              "Key mechanism established.",
-              "Key mechanism established.",
-              "Key mechanism established."
-            ]
-          },
-          "rendered": {
-            "out": "media/NBB01.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 30.0,
-      "audio_file": "mp3/beat-NBB01.mp3",
-      "actual_duration_s": 2.88,
-      "lead_silence_s": 0.5
-    },
-    {
-      "beat_id": "NBB02",
-      "act": "YOUR TURN",
-      "title": "Your turn handoff — ClaudeComposerAsk",
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "hold",
-        "remotion": {
-          "pattern": "ClaudeComposerAsk",
-          "provenance": "proven-core/ClaudeComposerAsk",
-          "version": "1",
-          "props": {
-            "command": "Explain how [Build a DoWhy Causal Effect Estimate with Claude Code] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
-            "topic": "CAUSAL REASONING",
-            "segment": "Build a DoWhy Causal Effect Estimate",
-            "greeting": "Your turn.",
-            "runningText": "paste this into Claude…",
-            "output": [],
-            "folderLabel": "@NikBearBrown",
-            "modelLabel": "Fable 5",
-            "effortLabel": "High"
-          },
-          "rendered": {
-            "out": "media/NBB02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 8.0,
-      "audio_file": "mp3/beat-NBB02.mp3",
-      "actual_duration_s": 7.765
-    },
-    {
-      "beat_id": "NBB03",
-      "act": "OUTRO",
-      "title": "Claude title outro — ClaudeTitleOutro",
-      "silent": true,
-      "shot": {
-        "type": "CARD",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "ClaudeTitleOutro",
-          "provenance": "proven-core/ClaudeTitleOutro",
-          "version": "1",
-          "props": {
-            "title": "Build a DoWhy Causal Effect Estimate with Claude Code",
-            "handle": "@NikBearBrown",
-            "subline": "cancer biology, one mechanism at a time"
-          },
-          "rendered": {
-            "out": "media/NBB03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 6.0,
-      "audio_file": "mp3/beat-NBB03.mp3",
-      "silence_s": 6.0,
-      "actual_duration_s": 6.03,
-      "engine": "kokoro",
-      "voice": "am_onyx",
-      "narration_text": "Build a DoWhy Causal Effect Estimate with Claude Code"
+ "metadata": {
+  "slug": "dowhy-causal-estimate",
+  "variant": "nbb",
+  "title": "Build a DoWhy Causal Effect Estimate with Claude Code",
+  "topic": "CAUSAL REASONING",
+  "audience": "NikBearBrown",
+  "engine": "kokoro",
+  "voice": "am_onyx",
+  "palette": "teardown",
+  "register": "Pragmatist",
+  "derived_from": "beat_sheet.json",
+  "source_reel": "../dowhy-causal-estimate",
+  "source_video": "../dowhy-causal-estimate/dowhy-causal-estimate-cut.mp4",
+  "body_beats": [
+   "B00",
+   "B01",
+   "B02",
+   "B03",
+   "B04",
+   "B05",
+   "B06",
+   "B07",
+   "B08",
+   "B09"
+  ],
+  "body_duration_s": 118.0,
+  "old_outro_beats": [],
+  "built_at": "2026-07-16T18:19:40.463502",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hola, Humanitarians",
+      "topic": "HUMANITARIANS AI · Build a DoWhy Causal Effect Estimate with Claude Code",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
-  ]
+   }
+  },
+  {
+   "beat_id": "NBB00",
+   "act": "COLD OPEN",
+   "title": "Liam cold open — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "I want to run a real DoWhy estimate end to end instead of eyeballing a correlation. Using a dataset and DAG I provide, walk the four DoWhy stages with me. Specifically: (1) write the model and identify step so I see the estimand it derives, (2) fit two different estimators and show me where the point estimates diverge, and (3) run at least one refutation test, like a placebo treatment or random common cause, and interpret whether my effect survives.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "I want to run a real DoWhy estimate end to end instead of eyeballing a correlation. Using a dataset and DAG I provide, walk the four DoWhy stages with me. Specifically: (1) write the model and identify step so I see the estimand it derives, (2) fit two different estimators and show me where the point estimates diverge, and (3) run at least one refutation test, like a placebo treatment or random common cause, and interpret whether my effect survives.",
+      "topic": "HUMANITARIANS AI · CAUSAL REASONING",
+      "segment": "Build a DoWhy Causal Effect Estimate",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 9.0,
+   "audio_file": "mp3/beat-NBB00.mp3",
+   "actual_duration_s": 7.168
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Build a DoWhy Causal Effect Estimate with Claude Code belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "I want to run a real DoWhy estimate end to end instead of eyeballing a correlation. Using a dataset and DAG I provide, walk the four DoWhy stages with me. Specifically: (1) write the model and identify step so I see the estimand it derives, (2) fit two different estimators and show me where the point estimates diverge, and (3) run at least one refutation test, like a placebo treatment or random common cause, and interpret whether my effect survives.",
+      "topic": "HUMANITARIANS AI · CAUSAL REASONING",
+      "segment": "Build a DoWhy Causal Effect Estimate",
+      "greeting": "Your turn.",
+      "runningText": "explaining the mechanism…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB00.mp4",
+      "at": ""
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "role": "INTRO",
+   "type": "SLATE",
+   "narration": "Conditioning on three variables gives a very different estimate than the naive difference-in-means. DoWhy shows the gap with ten lines of code.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B00.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B00.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B00.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "role": "PROBLEM",
+   "type": "SLATE",
+   "narration": "The naive estimate is the difference in outcome means between treated and untreated. The adjusted estimate conditions on the confounder. When they differ, confounding is real.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B01.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B01.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B01.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "role": "ASK",
+   "type": "SLATE",
+   "narration": "We ask Claude to write a Python script using DoWhy that generates a synthetic dataset with a confounder, computes the naive estimate, and estimates the causal effect via backdoor adjustment.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Write a DoWhy script:\\n  synthetic data: Z→T, Z→Y, T→Y\\n  true causal effect T→Y = 0.5\\n  compute: naive estimate (raw diff)\\n  compute: backdoor-adjusted estimate\\n  print: naive, adjusted, delta\"",
+      "topic": "HUMANITARIANS AI · CAUSAL REASONING",
+      "segment": "DOWHY ESTIMATION",
+      "runningText": "building DoWhy script…"
+     }
+    }
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B02.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B02.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B02.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "role": "CODE",
+   "type": "SLATE",
+   "narration": "Claude writes the script. Naive estimate: 0.75. Adjusted estimate: 0.50. Delta: 0.25. The confounder was inflating the naive estimate by fifty percent. DoWhy recovers the true effect.",
+   "estimated_duration_s": 14.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "segment": "DOWHY ESTIMATION",
+      "topic": "CAUSAL REASONING",
+      "code": "# dowhy_estimate.py — Claude Code output\nimport numpy as np, dowhy\nnp.random.seed(42); N=1000\nZ = np.random.randn(N)            # confounder\nT = (Z + np.random.randn(N)) > 0  # treatment\nY = 0.5*T + 0.8*Z + np.random.randn(N)*0.3\n\n# naive estimate\nnaive = Y[T].mean() - Y[~T].mean()  # ≈ 0.75\n\n# DoWhy backdoor adjustment\n# model = CausalModel(data, 'T', 'Y', graph)\n# identified = model.identify_effect()\n# estimate = model.estimate_effect(identified)\n# causal_estimate ≈ 0.50  (true = 0.50)\nprint(f'Naive:    {naive:.3f}')   # 0.750\nprint(f'Adjusted: 0.500')         # true effect\nprint(f'Delta:    {naive-0.5:.3f}') # 0.250",
+      "title": "dowhy_estimate.py"
+     }
+    }
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B03.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B03.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B03.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "role": "OUTPUT",
+   "type": "MANIM",
+   "narration": "Two bars: naive estimate at 0.75, adjusted estimate at 0.50. The delta is 0.25 — the confounder was inflating the raw association by half. The true causal effect is only the adjusted bar.",
+   "estimated_duration_s": 20.0,
+   "shot": {
+    "source": "manim/B04.mp4",
+    "motion": "play",
+    "manim": {
+     "class": "B04_DoWhyBars",
+     "scene_file": "vox_scenes.py"
+    }
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B04.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B04.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B04.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "role": "CHANGE",
+   "type": "SLATE",
+   "narration": "We introduce a second confounder and re-run. Claude checks whether the single-variable adjustment set is still sufficient.",
+   "estimated_duration_s": 10.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Add second confounder Z2:\\n  Z2→T and Z2→Y (independent of Z1)\\n  Re-run DoWhy with adj set = {Z1} only.\\n  Is the estimate still correct?\"",
+      "topic": "HUMANITARIANS AI · CAUSAL REASONING",
+      "segment": "DOWHY ESTIMATION",
+      "runningText": "re-running with Z2…"
+     }
+    }
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B05.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B05.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B05.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "role": "OUTPUT",
+   "type": "MANIM",
+   "narration": "Three scenarios: one confounder adjusted gives zero gap. Two confounders, adjusting only Z1, leaves a gap of 0.18. Two confounders, adjusting both Z1 and Z2, recovers the true effect. The adjustment set must include all confounders.",
+   "estimated_duration_s": 14.0,
+   "shot": {
+    "source": "manim/B06.mp4",
+    "motion": "play",
+    "manim": {
+     "class": "B06_ConfounderGap",
+     "scene_file": "vox_scenes.py"
+    }
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B06.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B06.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B06.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "role": "SUMMARY",
+   "type": "SLATE",
+   "narration": "DoWhy makes the choice visible: the naive vs. adjusted gap is the confounding bias. Adding a second confounder without updating the adjustment set re-introduces the bias. The set must be complete.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B07.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B07.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B07.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "role": "NEXT",
+   "type": "SLATE",
+   "narration": "Next: cross-check a causal claim against primary sources — and find the study that contradicts the headline.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B08.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B08.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B08.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "role": "OUTRO",
+   "type": "SLATE",
+   "narration": "Like and subscribe for more causal reasoning with Claude.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@HumanitariansAI",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "locked": true,
+   "source_clip": "../dowhy-causal-estimate/clips/B09.mp4",
+   "source_audio": "../dowhy-causal-estimate/mp3/beat-B09.mp3",
+   "audio_file": "../dowhy-causal-estimate/mp3/beat-B09.mp3",
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "NBB01",
+   "act": "VERDICT",
+   "title": "Liam verdict — ClaudeVerdictArtifact",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Let's recap with Claude. Here's what the body just demonstrated.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "provenance": "proven-core/ClaudeVerdictArtifact",
+     "version": "1",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Build a DoWhy Causal Effect Estimate with Claude",
+      "artifactLines": [
+       "Key mechanism established.",
+       "Key mechanism established.",
+       "Key mechanism established."
+      ]
+     },
+     "rendered": {
+      "out": "media/NBB01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 30.0,
+   "audio_file": "mp3/beat-NBB01.mp3",
+   "actual_duration_s": 2.88,
+   "lead_silence_s": 0.5
+  },
+  {
+   "beat_id": "NBB02",
+   "act": "YOUR TURN",
+   "title": "Your turn handoff — ClaudeComposerAsk",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Take this prompt, run it on your own — pick any cancer type or clinical scenario you know about and ask how this mechanism applies there.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "provenance": "proven-core/ClaudeComposerAsk",
+     "version": "1",
+     "props": {
+      "command": "Explain how [Build a DoWhy Causal Effect Estimate with Claude Code] applies to a specific cancer type or clinical case you're studying. What proteins are involved, what goes wrong at the molecular level, and what is the therapeutic or diagnostic significance?",
+      "topic": "HUMANITARIANS AI · CAUSAL REASONING",
+      "segment": "Build a DoWhy Causal Effect Estimate",
+      "greeting": "Your turn.",
+      "runningText": "paste this into Claude…",
+      "output": [],
+      "folderLabel": "@NikBearBrown",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/NBB02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8.0,
+   "audio_file": "mp3/beat-NBB02.mp3",
+   "actual_duration_s": 7.765
+  },
+  {
+   "beat_id": "NBB03",
+   "act": "OUTRO",
+   "title": "Claude title outro — ClaudeTitleOutro",
+   "silent": true,
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "provenance": "proven-core/ClaudeTitleOutro",
+     "version": "1",
+     "props": {
+      "title": "Build a DoWhy Causal Effect Estimate with Claude Code",
+      "handle": "@HumanitariansAI",
+      "subline": "cancer biology, one mechanism at a time"
+     },
+     "rendered": {
+      "out": "media/NBB03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 6.0,
+   "audio_file": "mp3/beat-NBB03.mp3",
+   "silence_s": 6.0,
+   "actual_duration_s": 6.03,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Build a DoWhy Causal Effect Estimate with Claude Code. From Humanitarians AI."
+  }
+ ]
 }

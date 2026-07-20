@@ -3,84 +3,236 @@
   "title": "LLM-Assisted DAG Construction with Claude",
   "slug": "causal-variable-identifier",
   "topic": "CAUSAL INFERENCE — LLM-ASSISTED DAG CONSTRUCTION",
-  "register": "Teardown",
-  "voice": "NikBearBrown",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
   "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
   "palette": "teardown",
   "style_preset": "nikbearbrown",
   "style": "cli",
   "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim) · B05 CHANGE · B06 slate · B07 slate · B08 slate · B09 outro.",
-  "total_estimated_duration_seconds": 118
+  "total_estimated_duration_seconds": 118,
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
  },
  "beats": [
-  {"beat_id": "B00", "act": "INTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
-   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
-     "remotion": {"pattern": "NikBearBrownOpen", "props": {"topic": "NIK BEAR BROWN",
-       "lines": ["Nik Bear Brown", "Causal Inference, taken apart."]}}},
-   "estimated_duration_s": 5},
-
-  {"beat_id": "B01", "act": "PROBLEM — why care", "role_note": "the problem, the stakes — BEFORE the CLI",
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Vanakkam, Humanitarians",
+      "topic": "HUMANITARIANS AI · LLM-Assisted DAG Construction with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Humanitarians AI. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "LLM-Assisted DAG Construction with Claude",
+      "topic": "HUMANITARIANS AI · NIK BEAR BROWN",
+      "segment": "LLM-Assisted DAG Construction with Claude",
+      "greeting": "This is Humanitarians AI.",
+      "runningText": "working…",
+      "output": [
+       "Causal Inference, taken apart."
+      ]
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
    "narration_text": "Drawing a causal DAG is the hardest step in causal inference — and the most consequential. The adjustment set you compute is only as good as the causal graph you drew. If you missed a confounder or misclassified a mediator as a confounder, your estimate is wrong before you run a single regression. The question this video answers: can an LLM propose the DAG structure from a domain description and can you verify that proposal programmatically.",
    "visual_intent": "title card: 'DAG construction = the hardest step; LLM as domain expert assistant'; stakes for identification; no terminal yet",
-   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
-   "estimated_duration_s": 14},
-
-  {"beat_id": "B02", "act": "ASK", "role_note": "terminal (Onda)",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda)",
    "narration_text": "Ask Claude. Build a Python script: input treatment, outcome, and domain description. Call Claude to list six to ten candidate confounders, classify each as confounder, mediator, collider, or unclear, propose a DAG as an edge list, load into NetworkX, run the back-door criterion, and report the identification result.",
-   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
-     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
-       "command": "claude \"Build a Python script: input treatment/outcome/domain description; call Claude to (1) list 6-10 candidate confounders; (2) classify each as confounder/mediator/collider/unclear; (3) propose DAG as edge list; load into NetworkX; run back-door criterion; report identification result\"",
-       "topic": "CAUSAL INFERENCE — LLM-ASSISTED DAG CONSTRUCTION", "segment": "CAUSAL VARIABLE IDENTIFIER", "runningText": "generating script…"}}},
-   "estimated_duration_s": 15},
-
-  {"beat_id": "B03", "act": "CODE", "role_note": "terminal (Onda)",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Build a Python script: input treatment/outcome/domain description; call Claude to (1) list 6-10 candidate confounders; (2) classify each as confounder/mediator/collider/unclear; (3) propose DAG as edge list; load into NetworkX; run back-door criterion; report identification result\"",
+      "topic": "HUMANITARIANS AI · CAUSAL INFERENCE — LLM-ASSISTED DAG CONSTRUCTION",
+      "segment": "CAUSAL VARIABLE IDENTIFIER",
+      "runningText": "generating script…"
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda)",
    "narration_text": "Read it. The pipeline is three steps. Claude proposes the DAG structure as a list of directed edges in plain text, which the script parses into a NetworkX DiGraph. The back-door criterion checker then runs on that graph. The key design choice is that Claude's structural proposal is not trusted blindly — it is verified by the criterion before any adjustment is accepted.",
-   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
-     "remotion": {"pattern": "NikBearBrownCodeBlock", "props": {
-       "filename": "dag_constructor.py", "topic": "CAUSAL INFERENCE — LLM-ASSISTED DAG CONSTRUCTION", "segment": "CAUSAL VARIABLE IDENTIFIER",
-       "code": "# dag_constructor.py — Claude Code output\n\n# Step 1: Claude proposes structure\nproposed_dag = parse_edge_list(claude_response)\n# Claude proposes the structure\n\n# Step 2: Load into NetworkX\nG = nx.DiGraph(proposed_dag)\n\n# Step 3: Verify with back-door criterion\nadjustment_set = find_valid_adjustment(G, X, Y)\nif adjustment_set:\n    print(f'Identified. Adjust for: {adjustment_set}')\nelse:\n    print('Not identified by back-door')"}}},
-   "estimated_duration_s": 15},
-
-  {"beat_id": "B04", "act": "OUTPUT — run", "role_note": "OPEN vox slot -> Manim video",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "topic": "CAUSAL INFERENCE — LLM-ASSISTED DAG CONSTRUCTION",
+      "segment": "CAUSAL VARIABLE IDENTIFIER",
+      "code": "# dag_constructor.py — Claude Code output\n\n# Step 1: Claude proposes structure\nproposed_dag = parse_edge_list(claude_response)\n# Claude proposes the structure\n\n# Step 2: Load into NetworkX\nG = nx.DiGraph(proposed_dag)\n\n# Step 3: Verify with back-door criterion\nadjustment_set = find_valid_adjustment(G, X, Y)\nif adjustment_set:\n    print(f'Identified. Adjust for: {adjustment_set}')\nelse:\n    print('Not identified by back-door')",
+      "title": "dag_constructor.py"
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "OPEN vox slot -> Manim video",
    "narration_text": "Run it on the HRT and heart disease example. Claude proposes five variables: Health Consciousness and Income as confounders in gold, Diet as a mediator in blue. The DAG builds node by node. Then all six edges appear. The verdict: adjustment set of Health Consciousness and Income identifies the effect. Diet is on the causal path — adjusting for it would block the mechanism.",
    "visual_intent": "Manim: DAG builds node by node — HRT, HeartDisease, then confounders in gold, mediator in blue; edges appear; identification verdict in green",
-   "shot": {"type": "GRAPHIC", "source": "manim", "motion": "fade",
-     "manim": {"scene_class": "B04_VariableDAG", "file": "vox_scenes.py"}},
-   "estimated_duration_s": 17},
-
-  {"beat_id": "B05", "act": "CHANGE — check and revise", "role_note": "terminal (Onda) — the REQUIRED revision",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "manim",
+    "motion": "fade",
+    "manim": {
+     "scene_class": "B04_VariableDAG",
+     "file": "vox_scenes.py"
+    }
+   },
+   "estimated_duration_s": 17,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
    "narration_text": "Now ask Claude to add a second domain: smoking and lung cancer, where tar is a mediator and genotype is a confounder. Check whether the script correctly identifies genotype as the adjustment variable and flags tar as a mediator not to control for.",
-   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
-     "remotion": {"pattern": "NikBearBrownTerminalAsk", "props": {
-       "command": "claude \"update dag_constructor.py:\n  -> test on smoking/lung-cancer domain\n  -> verify: genotype=confounder, tar=mediator\n  -> confirm tar NOT in adjustment set\"",
-       "topic": "CAUSAL INFERENCE — LLM-ASSISTED DAG CONSTRUCTION", "segment": "CAUSAL VARIABLE IDENTIFIER", "runningText": "updating script…"}}},
-   "estimated_duration_s": 12},
-
-  {"beat_id": "B06", "act": "OUTPUT — revised", "role_note": "slate placeholder",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"update dag_constructor.py:\n  -> test on smoking/lung-cancer domain\n  -> verify: genotype=confounder, tar=mediator\n  -> confirm tar NOT in adjustment set\"",
+      "topic": "HUMANITARIANS AI · CAUSAL INFERENCE — LLM-ASSISTED DAG CONSTRUCTION",
+      "segment": "CAUSAL VARIABLE IDENTIFIER",
+      "runningText": "updating script…"
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "OUTPUT — revised",
+   "role_note": "slate placeholder",
    "narration_text": "The smoking domain test passes. Claude correctly classifies tar as a mediator and genotype as a confounder. The adjustment set is genotype only. Tar is flagged as causal-path variable — do not control. The identification result matches what the manual DAG analysis would give.",
    "visual_intent": "slate: terminal output for smoking domain — genotype as valid adjustment, tar flagged as mediator not to control",
-   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
-   "estimated_duration_s": 12},
-
-  {"beat_id": "B07", "act": "SUMMARY", "role_note": "the lesson — one beat",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
    "narration_text": "So LLM-assisted DAG construction is a three-step pipeline: propose, parse, verify. Claude does the domain knowledge work — listing variables and proposing structure. The code does the causal work — checking the proposal against the criterion. Neither alone is sufficient. The LLM can hallucinate edges. The criterion check catches structural errors that the LLM does not flag.",
    "visual_intent": "recap card: propose (LLM) + parse (NetworkX) + verify (back-door criterion) = robust DAG workflow",
-   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
-   "estimated_duration_s": 11},
-
-  {"beat_id": "B08", "act": "NEXT STEPS", "role_note": "what to do next",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
    "narration_text": "Your move: take a domain you know, give the script a treatment and outcome, and let Claude propose the DAG. Then verify every edge it proposed against your domain knowledge. The criterion check will tell you whether the proposed adjustment set is valid — but it cannot tell you whether the proposed edges are real. That is still on you.",
    "visual_intent": "next-steps card: 1) run on your domain, 2) verify proposed edges against domain knowledge, 3) use criterion check as structural auditor",
-   "shot": {"type": "GRAPHIC", "source": null, "motion": "fade"},
-   "estimated_duration_s": 10},
-
-  {"beat_id": "B09", "act": "OUTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
-   "shot": {"type": "GRAPHIC", "source": "remotion", "motion": "fade",
-     "remotion": {"pattern": "NikBearBrownOutro", "props": {
-       "brand": "Nik Bear Brown", "tagline": "Brutalist + Educational AI",
-       "handle": "@NikBearBrown", "url": "nikbearbrown.com"}}},
-   "estimated_duration_s": 8}
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 10,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Humanitarians AI. Build it with a CLI. Then take it apart. At Humanitarians AI, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@HumanitariansAI",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
  ]
 }

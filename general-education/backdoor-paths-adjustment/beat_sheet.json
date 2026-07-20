@@ -1,28 +1,231 @@
 {
-  "metadata": {
-    "slug": "backdoor-paths-adjustment",
-    "title": "Enumerate Backdoor Paths and Find an Adjustment Set with Claude",
-    "topic": "CAUSAL REASONING",
-    "voice": "NikBearBrown",
-    "voice_id": "TyW6NH39JcFb5M3xdIIk",
-    "style": "cli",
-    "palette": "teardown",
-    "style_preset": "nikbearbrown",
-    "source": "causal-reasoning/chapters/09-backdoor-criterion-part-1.md",
-    "segment": "BACKDOOR CRITERION",
-    "ground": "#FFFFFF",
-    "total_estimated_duration_seconds": 118.0
+ "metadata": {
+  "slug": "backdoor-paths-adjustment",
+  "title": "Enumerate Backdoor Paths and Find an Adjustment Set with Claude",
+  "topic": "CAUSAL REASONING",
+  "voice": "am_onyx",
+  "voice_id": "TyW6NH39JcFb5M3xdIIk",
+  "style": "cli",
+  "palette": "teardown",
+  "style_preset": "nikbearbrown",
+  "source": "causal-reasoning/chapters/09-backdoor-criterion-part-1.md",
+  "segment": "BACKDOOR CRITERION",
+  "ground": "#FFFFFF",
+  "total_estimated_duration_seconds": 118.0,
+  "engine": "kokoro",
+  "register": "Pragmatist",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Bonjour, Humanitarians",
+      "topic": "HUMANITARIANS AI · Enumerate Backdoor Paths and Find an Adjustment Set with Claude",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
   },
-  "beats": [
-    {"beat_id":"B00","role":"INTRO","type":"SLATE","narration":"Six backdoor paths hide in a pricing DAG. Claude finds them all in seconds, then proves one adjustment set closes every path.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
-    {"beat_id":"B01","role":"PROBLEM","type":"SLATE","narration":"The backdoor criterion: block every non-causal path from Treatment to Outcome that enters T through a back-arrow. Find the right set to condition on — and only that set.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
-    {"beat_id":"B02","role":"ASK","type":"SLATE","narration":"We give Claude a six-node pricing DAG as an edge list and ask it to enumerate every backdoor path from ad-spend to sales.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"Given this DAG:\\n  Brand→T, Brand→Y\\n  Comp→T, Comp→Y\\n  Quality→T, Quality→Y\\n  T→Y\\nenumerate every backdoor path T→Y,\\nthen propose a valid adjustment set.\"","topic":"CAUSAL REASONING","segment":"BACKDOOR CRITERION","runningText":"enumerating paths…"}}}},
-    {"beat_id":"B03","role":"CODE","type":"SLATE","narration":"Claude finds three backdoor paths: T-back-Brand-Y, T-back-Comp-Y, and T-back-Quality-Y. The adjustment set is Brand, Comp, Quality — conditioning on all three closes every path.","estimated_duration_s":14.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownCodeBlock","props":{"filename":"backdoor_paths.py","segment":"BACKDOOR CRITERION","topic":"CAUSAL REASONING","code":"# backdoor_paths.py — Claude Code output\nedges = [('Brand','T'),('Brand','Y'),\n         ('Comp','T'), ('Comp','Y'),\n         ('Quality','T'),('Quality','Y'),\n         ('T','Y')]\n\n# Backdoor paths from T to Y:\n# 1. T ← Brand → Y\n# 2. T ← Comp  → Y\n# 3. T ← Quality → Y\n\n# Adjustment set: {Brand, Comp, Quality}\n# Verify: each path has a node in the set\nfor path, blocker in [\n    ('T←Brand→Y','Brand'),\n    ('T←Comp→Y', 'Comp'),\n    ('T←Quality→Y','Quality')]:\n    print(f'{path}  blocked by {blocker} ✓')"}}}},
-    {"beat_id":"B04","role":"OUTPUT","type":"MANIM","narration":"The three backdoor paths listed, each with its structure. Below: the adjustment set in a gold box. Each path has exactly one node from the set — and that node blocks it.","estimated_duration_s":20.0,"shot":{"source":"manim/B04.mp4","motion":"play","manim":{"class":"B04_BackdoorPaths","scene_file":"vox_scenes.py"}}},
-    {"beat_id":"B05","role":"CHANGE","type":"SLATE","narration":"We add an edge to the DAG — Comp now also influences Brand — and ask Claude to re-enumerate. Does the adjustment set need to grow?","estimated_duration_s":10.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownTerminalAsk","props":{"command":"claude \"Add edge: Comp→Brand.\\nRe-enumerate backdoor paths.\\nDoes the adjustment set change?\"","topic":"CAUSAL REASONING","segment":"BACKDOOR CRITERION","runningText":"re-enumerating…"}}}},
-    {"beat_id":"B06","role":"OUTPUT","type":"MANIM","narration":"The new path appears: T-back-Brand-back-Comp-Y. The adjustment set already contained both Brand and Comp, so it still blocks all paths — no change needed.","estimated_duration_s":14.0,"shot":{"source":"manim/B06.mp4","motion":"play","manim":{"class":"B06_AdjustmentVerify","scene_file":"vox_scenes.py"}}},
-    {"beat_id":"B07","role":"SUMMARY","type":"SLATE","narration":"The backdoor criterion turns causal identification into a graph-theory problem. Find every non-causal path from T to Y, then choose a set of nodes that blocks them all without conditioning on a collider.","estimated_duration_s":12.0,"shot":{"source":null,"motion":"hold"}},
-    {"beat_id":"B08","role":"NEXT","type":"SLATE","narration":"Next: the E-value — how weak does an unmeasured confounder need to be to explain away your result?","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold"}},
-    {"beat_id":"B09","role":"OUTRO","type":"SLATE","narration":"Like and subscribe for more causal reasoning with Claude.","estimated_duration_s":8.0,"shot":{"source":null,"motion":"hold","remotion":{"pattern":"NikBearBrownOutro","props":{"brand":"Nik Bear Brown","tagline":"Brutalist + Educational AI","handle":"@NikBearBrown","url":"nikbearbrown.com"}}}}
-  ]
+  {
+   "beat_id": "B00",
+   "role": "INTRO",
+   "type": "SLATE",
+   "narration": "Six backdoor paths hide in a pricing DAG. Claude finds them all in seconds, then proves one adjustment set closes every path.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "tangent": true,
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Here is why Enumerate Backdoor Paths and Find an Adjustment Set with Claude belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "role": "PROBLEM",
+   "type": "SLATE",
+   "narration": "The backdoor criterion: block every non-causal path from Treatment to Outcome that enters T through a back-arrow. Find the right set to condition on — and only that set.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "role": "ASK",
+   "type": "SLATE",
+   "narration": "We give Claude a six-node pricing DAG as an edge list and ask it to enumerate every backdoor path from ad-spend to sales.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Given this DAG:\\n  Brand→T, Brand→Y\\n  Comp→T, Comp→Y\\n  Quality→T, Quality→Y\\n  T→Y\\nenumerate every backdoor path T→Y,\\nthen propose a valid adjustment set.\"",
+      "topic": "HUMANITARIANS AI · CAUSAL REASONING",
+      "segment": "BACKDOOR CRITERION",
+      "runningText": "enumerating paths…"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "role": "CODE",
+   "type": "SLATE",
+   "narration": "Claude finds three backdoor paths: T-back-Brand-Y, T-back-Comp-Y, and T-back-Quality-Y. The adjustment set is Brand, Comp, Quality — conditioning on all three closes every path.",
+   "estimated_duration_s": 14.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "segment": "BACKDOOR CRITERION",
+      "topic": "CAUSAL REASONING",
+      "code": "# backdoor_paths.py — Claude Code output\nedges = [('Brand','T'),('Brand','Y'),\n         ('Comp','T'), ('Comp','Y'),\n         ('Quality','T'),('Quality','Y'),\n         ('T','Y')]\n\n# Backdoor paths from T to Y:\n# 1. T ← Brand → Y\n# 2. T ← Comp  → Y\n# 3. T ← Quality → Y\n\n# Adjustment set: {Brand, Comp, Quality}\n# Verify: each path has a node in the set\nfor path, blocker in [\n    ('T←Brand→Y','Brand'),\n    ('T←Comp→Y', 'Comp'),\n    ('T←Quality→Y','Quality')]:\n    print(f'{path}  blocked by {blocker} ✓')",
+      "title": "backdoor_paths.py"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "role": "OUTPUT",
+   "type": "MANIM",
+   "narration": "The three backdoor paths listed, each with its structure. Below: the adjustment set in a gold box. Each path has exactly one node from the set — and that node blocks it.",
+   "estimated_duration_s": 20.0,
+   "shot": {
+    "source": "manim/B04.mp4",
+    "motion": "play",
+    "manim": {
+     "class": "B04_BackdoorPaths",
+     "scene_file": "vox_scenes.py"
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "role": "CHANGE",
+   "type": "SLATE",
+   "narration": "We add an edge to the DAG — Comp now also influences Brand — and ask Claude to re-enumerate. Does the adjustment set need to grow?",
+   "estimated_duration_s": 10.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Add edge: Comp→Brand.\\nRe-enumerate backdoor paths.\\nDoes the adjustment set change?\"",
+      "topic": "HUMANITARIANS AI · CAUSAL REASONING",
+      "segment": "BACKDOOR CRITERION",
+      "runningText": "re-enumerating…"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "role": "OUTPUT",
+   "type": "MANIM",
+   "narration": "The new path appears: T-back-Brand-back-Comp-Y. The adjustment set already contained both Brand and Comp, so it still blocks all paths — no change needed.",
+   "estimated_duration_s": 14.0,
+   "shot": {
+    "source": "manim/B06.mp4",
+    "motion": "play",
+    "manim": {
+     "class": "B06_AdjustmentVerify",
+     "scene_file": "vox_scenes.py"
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "role": "SUMMARY",
+   "type": "SLATE",
+   "narration": "The backdoor criterion turns causal identification into a graph-theory problem. Find every non-causal path from T to Y, then choose a set of nodes that blocks them all without conditioning on a collider.",
+   "estimated_duration_s": 12.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "role": "NEXT",
+   "type": "SLATE",
+   "narration": "Next: the E-value — how weak does an unmeasured confounder need to be to explain away your result?",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "role": "OUTRO",
+   "type": "SLATE",
+   "narration": "Like and subscribe for more causal reasoning with Claude. From Humanitarians AI.",
+   "estimated_duration_s": 8.0,
+   "shot": {
+    "source": null,
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@HumanitariansAI",
+      "url": "nikbearbrown.com"
+     }
+    }
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }
