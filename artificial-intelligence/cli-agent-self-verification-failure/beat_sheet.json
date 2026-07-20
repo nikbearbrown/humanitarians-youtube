@@ -3,33 +3,66 @@
   "title": "Agent Self-Verification Failure: When LLMs Confirm Wrong Answers",
   "slug": "cli-agent-self-verification-failure",
   "topic": "COMPUTATIONAL SKEPTICISM — SELF-VERIFICATION FAILURE",
-  "register": "Teardown",
-  "voice": "NikBearBrown",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
   "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
   "palette": "teardown",
   "style_preset": "nikbearbrown",
   "style": "cli",
   "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(slate — screen-recording terminal output, human fill) · B05 CHANGE · B06 SUMMARY · B07 NEXT STEPS · B08 extra-slate · B09 outro. B04 is a slate requiring human fill with live API run.",
-  "total_estimated_duration_seconds": 118
+  "total_estimated_duration_seconds": 118,
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
  },
  "beats": [
   {
    "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Ciao, Humanitarians",
+      "topic": "HUMANITARIANS AI · Agent Self-Verification Failure: When LLMs Confirm Wrong Answers",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
    "act": "INTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "narration_text": "Humanitarians AI. Build it with a CLI, then take it apart.",
    "shot": {
     "type": "GRAPHIC",
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownOpen",
+     "pattern": "ClaudeComposerAsk",
      "props": {
-      "topic": "COMPUTATIONAL SKEPTICISM",
-      "lines": ["Nik Bear Brown", "Self-Verification Failure, taken apart."]
+      "command": "Agent Self-Verification Failure: When LLMs Confirm Wrong Answers",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM",
+      "segment": "Agent Self-Verification Failure: When LLMs Confirm Wrong Answers",
+      "greeting": "This is Humanitarians AI.",
+      "runningText": "working…",
+      "output": [
+       "Self-Verification Failure, taken apart."
+      ]
      }
     }
    },
-   "estimated_duration_s": 5
+   "estimated_duration_s": 5,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B01",
@@ -42,7 +75,9 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 16
+   "estimated_duration_s": 16,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B02",
@@ -54,16 +89,18 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownTerminalAsk",
+     "pattern": "ClaudeComposerAsk",
      "props": {
       "command": "claude \"Write a Python script using Anthropic SDK:\n(1) ASK claude-3-5-haiku:\n    'Using 3,3,8,8 with each exactly once, make 24'\n(2) VERIFY: 'You previously answered [X].\n    Verify by checking arithmetic step by step.'\nRun 5 times. Print both responses each time.\nTally: caught error vs confirmed wrong answer.\"",
-      "topic": "COMPUTATIONAL SKEPTICISM — SELF-VERIFICATION FAILURE",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM — SELF-VERIFICATION FAILURE",
       "segment": "AGENT SELF-VERIFICATION FAILURE",
       "runningText": "generating verification loop script…"
      }
     }
    },
-   "estimated_duration_s": 14
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B03",
@@ -75,16 +112,18 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownCodeBlock",
+     "pattern": "ClaudeCodeBeat",
      "props": {
-      "filename": "self_verify.py",
       "topic": "COMPUTATIONAL SKEPTICISM — SELF-VERIFICATION FAILURE",
       "segment": "AGENT SELF-VERIFICATION FAILURE",
-      "code": "# self_verify.py  —  Claude Code output\nimport anthropic\n\nclient = anthropic.Anthropic()\n\ndef run_trial():\n    # Step 1: Ask the puzzle\n    ask_response = client.messages.create(\n        model=\"claude-3-5-haiku-20241022\",\n        max_tokens=256,\n        messages=[{\"role\": \"user\",\n          \"content\": \"Using 3, 3, 8, 8 with each exactly once, make 24.\"}]\n    )\n    answer = ask_response.content[0].text\n\n    # Step 2: Verify the answer (same model, same answer)\n    verify_prompt = f\"You previously answered: {answer}\\n\"\\\n                   \"Verify this by checking arithmetic step by step.\"\n    verify_response = client.messages.create(\n        model=\"claude-3-5-haiku-20241022\",\n        max_tokens=256,\n        messages=[{\"role\": \"user\", \"content\": verify_prompt}]\n    )\n    return answer, verify_response.content[0].text"
+      "code": "# self_verify.py  —  Claude Code output\nimport anthropic\n\nclient = anthropic.Anthropic()\n\ndef run_trial():\n    # Step 1: Ask the puzzle\n    ask_response = client.messages.create(\n        model=\"claude-3-5-haiku-20241022\",\n        max_tokens=256,\n        messages=[{\"role\": \"user\",\n          \"content\": \"Using 3, 3, 8, 8 with each exactly once, make 24.\"}]\n    )\n    answer = ask_response.content[0].text\n\n    # Step 2: Verify the answer (same model, same answer)\n    verify_prompt = f\"You previously answered: {answer}\\n\"\\\n                   \"Verify this by checking arithmetic step by step.\"\n    verify_response = client.messages.create(\n        model=\"claude-3-5-haiku-20241022\",\n        max_tokens=256,\n        messages=[{\"role\": \"user\", \"content\": verify_prompt}]\n    )\n    return answer, verify_response.content[0].text",
+      "title": "self_verify.py"
      }
     }
    },
-   "estimated_duration_s": 14
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B04",
@@ -97,7 +136,9 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 17
+   "estimated_duration_s": 17,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B05",
@@ -109,16 +150,18 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownTerminalAsk",
+     "pattern": "ClaudeComposerAsk",
      "props": {
       "command": "claude \"Update self_verify.py:\n-> extract the arithmetic expression from the answer\n-> evaluate it using Python's eval() (safe subset)\n-> check if result equals 24\n-> compare: LLM verify rate vs Python verify rate\n-> print both tallies across 5 trials\"",
-      "topic": "COMPUTATIONAL SKEPTICISM — SELF-VERIFICATION FAILURE",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM — SELF-VERIFICATION FAILURE",
       "segment": "AGENT SELF-VERIFICATION FAILURE",
       "runningText": "adding external arithmetic verifier…"
      }
     }
    },
-   "estimated_duration_s": 12
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B06",
@@ -131,7 +174,9 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 12
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B07",
@@ -144,7 +189,9 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 11
+   "estimated_duration_s": 11,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B08",
@@ -157,27 +204,31 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 0
+   "estimated_duration_s": 0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B09",
    "act": "OUTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "narration_text": "Humanitarians AI. Build it with a CLI. Then take it apart. At Humanitarians AI, nikbearbrown dot com.",
    "shot": {
     "type": "GRAPHIC",
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownOutro",
+     "pattern": "ClaudeTitleOutro",
      "props": {
       "brand": "Nik Bear Brown",
       "tagline": "Brutalist + Educational AI",
-      "handle": "@NikBearBrown",
+      "handle": "@HumanitariansAI",
       "url": "nikbearbrown.com"
      }
     }
    },
-   "estimated_duration_s": 8
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   }
  ]
 }

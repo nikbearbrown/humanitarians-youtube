@@ -1,322 +1,367 @@
 {
-  "metadata": {
-    "title": "Adversarial Perturbation Detector: FGSM in One Epsilon",
-    "slug": "claude-liam-cli-adversarial-perturbation-detector",
-    "topic": "COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
-    "register": "Teardown",
-    "voice": "NikBearBrown",
-    "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
-    "palette": "claude",
-    "style_preset": "nikbearbrown",
-    "style": "cli",
-    "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(slate — PyTorch + real image, human fill) · B05 CHANGE · B06 SUMMARY · B07 NEXT STEPS · B08 extra-slate · B09 outro. B04 is a slate requiring human fill with PyTorch screen-recording.",
-    "total_estimated_duration_seconds": 118,
-    "audience": "Claude",
-    "derived_from": "beat_sheet.json",
-    "outro_source": "AUTHOR.MD :: NikBearBrown",
-    "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
-    "_variant_todo": [
-      "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
-      "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
-      "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
-      "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
-    ],
-    "channel": "NikBearBrown",
-    "build": {
-      "at": "2026-07-16T03:22:56",
-      "cut": "master",
-      "filled": 5,
-      "of": 10,
-      "slates": [
-        "B01",
-        "B04",
-        "B06",
-        "B07",
-        "B08"
-      ],
-      "skin_warnings": [
-        "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
-        "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
-      ]
+ "metadata": {
+  "title": "Adversarial Perturbation Detector: FGSM in One Epsilon",
+  "slug": "claude-liam-cli-adversarial-perturbation-detector",
+  "topic": "COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
+  "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
+  "palette": "claude",
+  "style_preset": "nikbearbrown",
+  "style": "cli",
+  "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(slate — PyTorch + real image, human fill) · B05 CHANGE · B06 SUMMARY · B07 NEXT STEPS · B08 extra-slate · B09 outro. B04 is a slate requiring human fill with PyTorch screen-recording.",
+  "total_estimated_duration_seconds": 118,
+  "audience": "Claude",
+  "derived_from": "beat_sheet.json",
+  "outro_source": "AUTHOR.MD :: NikBearBrown",
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "_variant_todo": [
+   "rewrite every beat narration_text in the Teardown register (voices/teardown/VOICE.md + CLAUDE-BRAND.md) — voice only, facts unchanged",
+   "signature tangent 0-1 per video, ONLY on a clear opportunity (see SKILL)",
+   "swap the outro to the Claude outro from AUTHOR.MD :: NikBearBrown",
+   "then build audience-namespaced (audio in the new voice, scenes in the new palette)"
+  ],
+  "channel": "hai",
+  "build": {
+   "at": "2026-07-16T03:22:56",
+   "cut": "master",
+   "filled": 5,
+   "of": 10,
+   "slates": [
+    "B01",
+    "B04",
+    "B06",
+    "B07",
+    "B08"
+   ],
+   "skin_warnings": [
+    "B00: palette=claude but the cold open is 'NikBearBrownOpen' — COLD OPEN LAW wants ClaudeComposerAsk",
+    "B09: palette=claude but the outro is 'NikBearBrownOutro' — OUTRO LAW wants ClaudeTitleOutro"
+   ]
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hei, Humanitarians",
+      "topic": "HUMANITARIANS AI · Adversarial Perturbation Detector: FGSM in One Epsilon",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
     }
+   }
   },
-  "beats": [
-    {
-      "beat_id": "B00",
-      "act": "INTRO",
-      "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownOpen",
-          "props": {
-            "topic": "COMPUTATIONAL SKEPTICISM",
-            "lines": [
-              "Nik Bear Brown",
-              "Adversarial Robustness, taken apart."
-            ]
-          },
-          "rendered": {
-            "out": "media/B00.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 5,
-      "audio_file": "mp3/beat-B00.mp3",
-      "actual_duration_s": 3.97,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B00.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T03:22:56"
-      }
-    },
-    {
-      "beat_id": "B01",
-      "act": "PROBLEM — why care",
-      "role_note": "the problem, the stakes — BEFORE the CLI",
-      "narration_text": "A ResNet-50 trained on ImageNet classifies a golden retriever at ninety-eight percent confidence. Add a perturbation no human eye can detect — pixel noise bounded by epsilon equals point-zero-one — and the same model outputs ostrich at ninety-four percent. The image is unchanged to you. The gradient changed the model's decision surface. Goodfellow's Fast Gradient Sign Method from twenty-fourteen takes one forward pass and one backward pass and breaks any undefended classifier. This video builds the attack and measures what it costs.",
-      "visual_intent": "title card: 'epsilon=0.01 — invisible to humans, lethal to classifiers'; PROBLEM beat, no terminal",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 16,
-      "audio_file": "mp3/beat-B01.mp3",
-      "actual_duration_s": 31.0,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T03:22:56",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
-        "suggested": "suggested prompt: A ResNet-50 trained on ImageNet classifies a golden retriever at ninety-eight percent confidence. Add a perturbation no human eye can detect — pixel noise bound"
-      }
-    },
-    {
-      "beat_id": "B02",
-      "act": "ASK",
-      "role_note": "terminal (Onda) — the command typed",
-      "narration_text": "In the terminal: ask Claude to write a PyTorch script that loads a pretrained ResNet-50, runs FGSM with epsilon point-zero-one on a sample image, prints the top-three classes and confidence for both original and adversarial, and saves the amplified perturbation as a PNG.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Write a Python script using PyTorch + torchvision:\n(1) load pretrained ResNet-50\n(2) run FGSM with epsilon=0.01 on a sample image\n(3) print top-3 classes + confidence:\n    original vs adversarial\n(4) save perturbation amplified 50x as PNG\nFormula: x_adv = x + epsilon * sign(grad_x Loss)\"",
-            "topic": "COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
-            "segment": "ADVERSARIAL PERTURBATION DETECTOR",
-            "runningText": "generating FGSM attack script…"
-          },
-          "rendered": {
-            "out": "media/B02.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 14,
-      "audio_file": "mp3/beat-B02.mp3",
-      "actual_duration_s": 16.34,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B02.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T03:22:56"
-      }
-    },
-    {
-      "beat_id": "B03",
-      "act": "CODE",
-      "role_note": "terminal (Onda) — read the code before running",
-      "narration_text": "Read the attack line. x underscore adv equals x plus epsilon times x dot grad dot sign. That sign function is the key: it does not use the full gradient — it uses only which direction to push each pixel. Clipped to the image range. The entire attack is one line, and one backward pass through the loss is all the information it needs.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownCodeBlock",
-          "props": {
-            "filename": "fgsm_attack.py",
-            "topic": "COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
-            "segment": "ADVERSARIAL PERTURBATION DETECTOR",
-            "code": "# fgsm_attack.py  —  Claude Code output\nimport torch\n\ndef fgsm_attack(image, epsilon, data_grad):\n    \"\"\"Fast Gradient Sign Method (Goodfellow et al. 2014)\"\"\"\n    # Collect the sign of the data gradient\n    sign_data_grad = data_grad.sign()\n    # Create the adversarial image: one step in gradient direction\n    perturbed = image + epsilon * sign_data_grad\n    # Clip to valid image range [0, 1]\n    perturbed = torch.clamp(perturbed, 0, 1)\n    return perturbed\n\n# One forward pass + one backward pass = broken classifier\n# x_adv = x + epsilon * sign(grad_x Loss)"
-          },
-          "rendered": {
-            "out": "media/B03.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 14,
-      "audio_file": "mp3/beat-B03.mp3",
-      "actual_duration_s": 18.35,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B03.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T03:22:56"
-      }
-    },
-    {
-      "beat_id": "B04",
-      "act": "OUTPUT — run",
-      "role_note": "SLATE — PyTorch + real image required — human fill with screen-recording",
-      "narration_text": "Run it against a real image. You will see the top-three classifications before and after the perturbation, and the amplified noise map that the model responded to. The confidence flip happens at epsilon point-zero-one — invisible to the naked eye.",
-      "visual_intent": "HUMAN FILL: screen-recording of fgsm_attack.py running — show original image classification, adversarial classification confidence flip, and the amplified perturbation PNG side by side",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 17,
-      "audio_file": "mp3/beat-B04.mp3",
-      "actual_duration_s": 14.42,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T03:22:56",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B04.mp4)",
-        "suggested": "suggested prompt: Run it against a real image. You will see the top-three classifications before and after the perturbation, and the amplified noise map that the model responded "
-      }
-    },
-    {
-      "beat_id": "B05",
-      "act": "CHANGE — check and revise",
-      "role_note": "terminal (Onda) — the REQUIRED revision",
-      "narration_text": "Raise the stakes. Ask Claude to run an epsilon sweep from point-zero-zero-one to point-zero-five, record the top-one confidence on the adversarial class at each epsilon, and print a table showing where the attack crosses fifty percent confidence.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownTerminalAsk",
-          "props": {
-            "command": "claude \"Update fgsm_attack.py:\n-> sweep epsilon from 0.001 to 0.05 (10 steps)\n-> at each epsilon: record adversarial top-1 confidence\n-> print table: epsilon | adversarial_class | confidence\n-> mark where confidence crosses 50%\"",
-            "topic": "COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
-            "segment": "ADVERSARIAL PERTURBATION DETECTOR",
-            "runningText": "sweeping epsilon range…"
-          },
-          "rendered": {
-            "out": "media/B05.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 12,
-      "audio_file": "mp3/beat-B05.mp3",
-      "actual_duration_s": 14.36,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B05.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T03:22:56"
-      }
-    },
-    {
-      "beat_id": "B06",
-      "act": "SUMMARY",
-      "role_note": "the lesson — one beat",
-      "narration_text": "At epsilon equals point-zero-zero-five — noise bounded to half a percent of pixel range — the attack crosses fifty percent on an incorrect class. The model is not seeing the image you are seeing. It is seeing a mathematical structure in pixel space that you cannot perceive. Adversarial robustness is not a hardening question — it is a deployment context question. If your model is in a domain where inputs can be controlled by an adversary, the epsilon budget is your attack surface.",
-      "visual_intent": "recap card: epsilon sweep result — attack crossing 50% confidence; 'gradient sees what eyes do not'",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 12,
-      "audio_file": "mp3/beat-B06.mp3",
-      "actual_duration_s": 26.01,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T03:22:56",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
-        "suggested": "suggested prompt: At epsilon equals point-zero-zero-five — noise bounded to half a percent of pixel range — the attack crosses fifty percent on an incorrect class. The model is n"
-      }
-    },
-    {
-      "beat_id": "B07",
-      "act": "NEXT STEPS",
-      "role_note": "what to do next",
-      "narration_text": "Your move: run this script on your own model with your own images. Find the epsilon where the top-one class flips. Then ask: can an adversary control inputs to your system? If yes, that epsilon is your attack surface and you need adversarial training or input preprocessing before deployment.",
-      "visual_intent": "next-steps card: 1) find your model's flip epsilon, 2) assess adversarial input access, 3) add adversarial training if needed",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 11,
-      "audio_file": "mp3/beat-B07.mp3",
-      "actual_duration_s": 15.55,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T03:22:56",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
-        "suggested": "suggested prompt: Your move: run this script on your own model with your own images. Find the epsilon where the top-one class flips. Then ask: can an adversary control inputs to "
-      }
-    },
-    {
-      "beat_id": "B08",
-      "act": "EXTRA",
-      "role_note": "slate — optional b-roll",
-      "narration_text": "",
-      "visual_intent": "slate placeholder",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": null,
-        "motion": "fade"
-      },
-      "estimated_duration_s": 0,
-      "build": {
-        "status": "SLATE",
-        "src": null,
-        "filled_by": null,
-        "at": "2026-07-16T03:22:56",
-        "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)"
-      }
-    },
-    {
-      "beat_id": "B09",
-      "act": "OUTRO",
-      "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
-      "shot": {
-        "type": "GRAPHIC",
-        "source": "remotion",
-        "motion": "fade",
-        "remotion": {
-          "pattern": "NikBearBrownOutro",
-          "props": {
-            "brand": "Nik Bear Brown",
-            "tagline": "Brutalist + Educational AI",
-            "handle": "@NikBearBrown",
-            "url": "nikbearbrown.com"
-          },
-          "rendered": {
-            "out": "media/B09.mp4",
-            "at": ""
-          }
-        }
-      },
-      "estimated_duration_s": 8,
-      "audio_file": "mp3/beat-B09.mp3",
-      "actual_duration_s": 6.51,
-      "build": {
-        "status": "VIDEO",
-        "src": "media/B09.mp4",
-        "filled_by": "media",
-        "at": "2026-07-16T03:22:56"
-      }
+  {
+   "beat_id": "B00",
+   "act": "INTRO",
+   "narration_text": "Humanitarians AI. Build it with a CLI, then take it apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "Adversarial Perturbation Detector: FGSM in One Epsilon",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM",
+      "segment": "Adversarial Perturbation Detector: FGSM in One Epsilon",
+      "greeting": "This is Humanitarians AI.",
+      "runningText": "working…",
+      "output": [
+       "Adversarial Robustness, taken apart."
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
     }
-  ]
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 3.97,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T03:22:56"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B01",
+   "act": "PROBLEM — why care",
+   "role_note": "the problem, the stakes — BEFORE the CLI",
+   "narration_text": "A ResNet-50 trained on ImageNet classifies a golden retriever at ninety-eight percent confidence. Add a perturbation no human eye can detect — pixel noise bounded by epsilon equals point-zero-one — and the same model outputs ostrich at ninety-four percent. The image is unchanged to you. The gradient changed the model's decision surface. Goodfellow's Fast Gradient Sign Method from twenty-fourteen takes one forward pass and one backward pass and breaks any undefended classifier. This video builds the attack and measures what it costs.",
+   "visual_intent": "title card: 'epsilon=0.01 — invisible to humans, lethal to classifiers'; PROBLEM beat, no terminal",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 16,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 31.0,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T03:22:56",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B01.mp4)",
+    "suggested": "suggested prompt: A ResNet-50 trained on ImageNet classifies a golden retriever at ninety-eight percent confidence. Add a perturbation no human eye can detect — pixel noise bound"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B02",
+   "act": "ASK",
+   "role_note": "terminal (Onda) — the command typed",
+   "narration_text": "In the terminal: ask Claude to write a PyTorch script that loads a pretrained ResNet-50, runs FGSM with epsilon point-zero-one on a sample image, prints the top-three classes and confidence for both original and adversarial, and saves the amplified perturbation as a PNG.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Write a Python script using PyTorch + torchvision:\n(1) load pretrained ResNet-50\n(2) run FGSM with epsilon=0.01 on a sample image\n(3) print top-3 classes + confidence:\n    original vs adversarial\n(4) save perturbation amplified 50x as PNG\nFormula: x_adv = x + epsilon * sign(grad_x Loss)\"",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
+      "segment": "ADVERSARIAL PERTURBATION DETECTOR",
+      "runningText": "generating FGSM attack script…"
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 16.34,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T03:22:56"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B03",
+   "act": "CODE",
+   "role_note": "terminal (Onda) — read the code before running",
+   "narration_text": "Read the attack line. x underscore adv equals x plus epsilon times x dot grad dot sign. That sign function is the key: it does not use the full gradient — it uses only which direction to push each pixel. Clipped to the image range. The entire attack is one line, and one backward pass through the loss is all the information it needs.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "topic": "COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
+      "segment": "ADVERSARIAL PERTURBATION DETECTOR",
+      "code": "# fgsm_attack.py  —  Claude Code output\nimport torch\n\ndef fgsm_attack(image, epsilon, data_grad):\n    \"\"\"Fast Gradient Sign Method (Goodfellow et al. 2014)\"\"\"\n    # Collect the sign of the data gradient\n    sign_data_grad = data_grad.sign()\n    # Create the adversarial image: one step in gradient direction\n    perturbed = image + epsilon * sign_data_grad\n    # Clip to valid image range [0, 1]\n    perturbed = torch.clamp(perturbed, 0, 1)\n    return perturbed\n\n# One forward pass + one backward pass = broken classifier\n# x_adv = x + epsilon * sign(grad_x Loss)",
+      "title": "fgsm_attack.py"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 18.35,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T03:22:56"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B04",
+   "act": "OUTPUT — run",
+   "role_note": "SLATE — PyTorch + real image required — human fill with screen-recording",
+   "narration_text": "Run it against a real image. You will see the top-three classifications before and after the perturbation, and the amplified noise map that the model responded to. The confidence flip happens at epsilon point-zero-one — invisible to the naked eye.",
+   "visual_intent": "HUMAN FILL: screen-recording of fgsm_attack.py running — show original image classification, adversarial classification confidence flip, and the amplified perturbation PNG side by side",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 17,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 14.42,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T03:22:56",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B04.mp4)",
+    "suggested": "suggested prompt: Run it against a real image. You will see the top-three classifications before and after the perturbation, and the amplified noise map that the model responded "
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B05",
+   "act": "CHANGE — check and revise",
+   "role_note": "terminal (Onda) — the REQUIRED revision",
+   "narration_text": "Raise the stakes. Ask Claude to run an epsilon sweep from point-zero-zero-one to point-zero-five, record the top-one confidence on the adversarial class at each epsilon, and print a table showing where the attack crosses fifty percent confidence.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "claude \"Update fgsm_attack.py:\n-> sweep epsilon from 0.001 to 0.05 (10 steps)\n-> at each epsilon: record adversarial top-1 confidence\n-> print table: epsilon | adversarial_class | confidence\n-> mark where confidence crosses 50%\"",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM — ADVERSARIAL ROBUSTNESS",
+      "segment": "ADVERSARIAL PERTURBATION DETECTOR",
+      "runningText": "sweeping epsilon range…"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 14.36,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T03:22:56"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B06",
+   "act": "SUMMARY",
+   "role_note": "the lesson — one beat",
+   "narration_text": "At epsilon equals point-zero-zero-five — noise bounded to half a percent of pixel range — the attack crosses fifty percent on an incorrect class. The model is not seeing the image you are seeing. It is seeing a mathematical structure in pixel space that you cannot perceive. Adversarial robustness is not a hardening question — it is a deployment context question. If your model is in a domain where inputs can be controlled by an adversary, the epsilon budget is your attack surface.",
+   "visual_intent": "recap card: epsilon sweep result — attack crossing 50% confidence; 'gradient sees what eyes do not'",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 26.01,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T03:22:56",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B06.mp4)",
+    "suggested": "suggested prompt: At epsilon equals point-zero-zero-five — noise bounded to half a percent of pixel range — the attack crosses fifty percent on an incorrect class. The model is n"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B07",
+   "act": "NEXT STEPS",
+   "role_note": "what to do next",
+   "narration_text": "Your move: run this script on your own model with your own images. Find the epsilon where the top-one class flips. Then ask: can an adversary control inputs to your system? If yes, that epsilon is your attack surface and you need adversarial training or input preprocessing before deployment.",
+   "visual_intent": "next-steps card: 1) find your model's flip epsilon, 2) assess adversarial input access, 3) add adversarial training if needed",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 15.55,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T03:22:56",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B07.mp4)",
+    "suggested": "suggested prompt: Your move: run this script on your own model with your own images. Find the epsilon where the top-one class flips. Then ask: can an adversary control inputs to "
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B08",
+   "act": "EXTRA",
+   "role_note": "slate — optional b-roll",
+   "narration_text": "",
+   "visual_intent": "slate placeholder",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": null,
+    "motion": "fade"
+   },
+   "estimated_duration_s": 0,
+   "build": {
+    "status": "SLATE",
+    "src": null,
+    "filled_by": null,
+    "at": "2026-07-16T03:22:56",
+    "needs": "YOU → 5–10s gen-AI clip → pantry (as B08.mp4)"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  },
+  {
+   "beat_id": "B09",
+   "act": "OUTRO",
+   "narration_text": "Humanitarians AI. Build it with a CLI. Then take it apart. At Humanitarians AI, nikbearbrown dot com.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "brand": "Nik Bear Brown",
+      "tagline": "Brutalist + Educational AI",
+      "handle": "@HumanitariansAI",
+      "url": "nikbearbrown.com"
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 6.51,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B09.mp4",
+    "filled_by": "media",
+    "at": "2026-07-16T03:22:56"
+   },
+   "engine": "kokoro",
+   "voice": "am_onyx"
+  }
+ ]
 }

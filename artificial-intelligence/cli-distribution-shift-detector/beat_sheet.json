@@ -3,33 +3,66 @@
   "title": "Distribution Shift Detector: PSI Before Your Model Goes Stale",
   "slug": "cli-distribution-shift-detector",
   "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
-  "register": "Teardown",
-  "voice": "NikBearBrown",
+  "register": "Pragmatist",
+  "voice": "am_onyx",
   "voice_id": "${ELEVENLABS_VOICE_NIKBEARBROWN}",
   "palette": "teardown",
   "style_preset": "nikbearbrown",
   "style": "cli",
   "note": "CLI video: B00 intro · B01 PROBLEM · B02 ASK · B03 CODE · B04 OUTPUT(manim:B04_PSIBars) · B05 CHANGE · B06 SUMMARY · B07 NEXT STEPS · B08 extra-slate · B09 outro",
-  "total_estimated_duration_seconds": 118
+  "total_estimated_duration_seconds": 118,
+  "engine": "kokoro",
+  "voice_kokoro": "am_onyx",
+  "channel": "hai"
  },
  "beats": [
   {
    "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "This is Liam for Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "hold",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Annyeong, Humanitarians",
+      "topic": "HUMANITARIANS AI · Distribution Shift Detector: PSI Before Your Model Goes Stale",
+      "segment": "Humanitarians AI",
+      "command": "This is Humanitarians.",
+      "runningText": "opening..."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
    "act": "INTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI, then take it apart.",
+   "narration_text": "Humanitarians AI. Build it with a CLI, then take it apart.",
    "shot": {
     "type": "GRAPHIC",
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownOpen",
+     "pattern": "ClaudeComposerAsk",
      "props": {
-      "topic": "COMPUTATIONAL SKEPTICISM",
-      "lines": ["Nik Bear Brown", "Distribution Shift, taken apart."]
+      "command": "Distribution Shift Detector: PSI Before Your Model Goes Stale",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM",
+      "segment": "Distribution Shift Detector: PSI Before Your Model Goes Stale",
+      "greeting": "This is Humanitarians AI.",
+      "runningText": "working…",
+      "output": [
+       "Distribution Shift, taken apart."
+      ]
      }
     }
    },
-   "estimated_duration_s": 5
+   "estimated_duration_s": 5,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B01",
@@ -42,7 +75,9 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 16
+   "estimated_duration_s": 16,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B02",
@@ -54,16 +89,18 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownTerminalAsk",
+     "pattern": "ClaudeComposerAsk",
      "props": {
       "command": "claude \"Write psi(expected, actual, buckets=10)\ncomputing Population Stability Index.\nPSI = sum((actual_pct - expected_pct) * ln(actual_pct / expected_pct))\nGenerate:\n  training: N(0,1) 5000 samples\n  test: no-shift N(0,1), moderate N(0.5,1), major N(1.5,1.2)\nPrint PSI for each. Flag >0.2 as major drift.\"",
-      "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
       "segment": "DISTRIBUTION SHIFT DETECTOR",
       "runningText": "generating PSI distribution monitor…"
      }
     }
    },
-   "estimated_duration_s": 14
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B03",
@@ -75,16 +112,18 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownCodeBlock",
+     "pattern": "ClaudeCodeBeat",
      "props": {
-      "filename": "psi_monitor.py",
       "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
       "segment": "DISTRIBUTION SHIFT DETECTOR",
-      "code": "# psi_monitor.py  —  Claude Code output\nimport numpy as np\n\ndef psi(expected, actual, buckets=10):\n    \"\"\"Population Stability Index — symmetric KL divergence.\"\"\"\n    # Build bucket edges from TRAINING (expected) distribution\n    lo, hi = expected.min(), expected.max()\n    edges = np.linspace(lo, hi, buckets + 1)\n    \n    e_counts, _ = np.histogram(expected, bins=edges)\n    a_counts, _ = np.histogram(actual,   bins=edges)\n    \n    # Percentages (add epsilon to avoid log(0))\n    e_pct = (e_counts + 1e-6) / len(expected)\n    a_pct = (a_counts + 1e-6) / len(actual)\n    \n    psi_val = np.sum((a_pct - e_pct) * np.log(a_pct / e_pct))\n    return psi_val\n\n# Thresholds: <0.1 stable  |  0.1-0.2 monitor  |  >0.2 RETRAIN"
+      "code": "# psi_monitor.py  —  Claude Code output\nimport numpy as np\n\ndef psi(expected, actual, buckets=10):\n    \"\"\"Population Stability Index — symmetric KL divergence.\"\"\"\n    # Build bucket edges from TRAINING (expected) distribution\n    lo, hi = expected.min(), expected.max()\n    edges = np.linspace(lo, hi, buckets + 1)\n    \n    e_counts, _ = np.histogram(expected, bins=edges)\n    a_counts, _ = np.histogram(actual,   bins=edges)\n    \n    # Percentages (add epsilon to avoid log(0))\n    e_pct = (e_counts + 1e-6) / len(expected)\n    a_pct = (a_counts + 1e-6) / len(actual)\n    \n    psi_val = np.sum((a_pct - e_pct) * np.log(a_pct / e_pct))\n    return psi_val\n\n# Thresholds: <0.1 stable  |  0.1-0.2 monitor  |  >0.2 RETRAIN",
+      "title": "psi_monitor.py"
      }
     }
    },
-   "estimated_duration_s": 14
+   "estimated_duration_s": 14,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B04",
@@ -101,7 +140,9 @@
      "file": "vox_scenes.py"
     }
    },
-   "estimated_duration_s": 17
+   "estimated_duration_s": 17,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B05",
@@ -113,16 +154,18 @@
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownTerminalAsk",
+     "pattern": "ClaudeComposerAsk",
      "props": {
       "command": "claude \"Update psi_monitor.py:\n-> generate synthetic 20-feature dataset\n-> apply N(0.5,1) shift to features 3,7,12\n-> compute PSI for all 20 features\n-> rank by PSI descending\n-> flag top 3 as 'priority retrain drivers'\"",
-      "topic": "COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
+      "topic": "HUMANITARIANS AI · COMPUTATIONAL SKEPTICISM — DISTRIBUTION SHIFT (PSI)",
       "segment": "DISTRIBUTION SHIFT DETECTOR",
       "runningText": "running per-feature PSI sweep…"
      }
     }
    },
-   "estimated_duration_s": 12
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B06",
@@ -135,7 +178,9 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 12
+   "estimated_duration_s": 12,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B07",
@@ -148,7 +193,9 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 11
+   "estimated_duration_s": 11,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B08",
@@ -161,27 +208,31 @@
     "source": null,
     "motion": "fade"
    },
-   "estimated_duration_s": 0
+   "estimated_duration_s": 0,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   },
   {
    "beat_id": "B09",
    "act": "OUTRO",
-   "narration_text": "Nik Bear Brown. Build it with a CLI. Then take it apart. At Nik Bear Brown, nikbearbrown dot com.",
+   "narration_text": "Humanitarians AI. Build it with a CLI. Then take it apart. At Humanitarians AI, nikbearbrown dot com.",
    "shot": {
     "type": "GRAPHIC",
     "source": "remotion",
     "motion": "fade",
     "remotion": {
-     "pattern": "NikBearBrownOutro",
+     "pattern": "ClaudeTitleOutro",
      "props": {
       "brand": "Nik Bear Brown",
       "tagline": "Brutalist + Educational AI",
-      "handle": "@NikBearBrown",
+      "handle": "@HumanitariansAI",
       "url": "nikbearbrown.com"
      }
     }
    },
-   "estimated_duration_s": 8
+   "estimated_duration_s": 8,
+   "engine": "kokoro",
+   "voice": "am_onyx"
   }
  ]
 }
