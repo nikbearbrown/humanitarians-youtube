@@ -1,63 +1,64 @@
 # Humanitarians YouTube Production Library
 
-This repository contains course, educational, and public-interest YouTube production materials maintained under `books/humanitarians_html/youtube` in the Bear Textbooks workspace. It preserves the files needed to inspect, edit, fact-check, and rebuild videos without storing final MP3 or MP4 renders.
+This repository contains educational and public-interest YouTube production materials maintained under `books/humanitarians_html/youtube`. It preserves the source files needed to inspect, edit, fact-check, rebuild, review, and publish videos while keeping credentials and large distribution media out of Git.
 
 ## Organization
 
-Every beat-sheet video project lives exactly two levels below the repository root:
+Most subject collections use the naming convention:
 
 ```text
-<topic>/<video-project>/
+claude-for-<topic>/<video-project>/
 ```
 
-For example:
+The three intentional top-level exceptions are:
 
-```text
-education/example-course-video/
-cancer-biology/apoptosis-vs-necrosis/
-quantum-mechanics/example-quantum-video/
-claude/example-claude-video/
-```
+- `claude/` — Claude-specific productions
+- `codex/` — Codex-specific productions
+- `fellows/` — Humanitarians AI fellow profiles and showcases
 
-There are no `_collected` source trees. A project belongs directly under its best-fit topic, regardless of the book or workspace from which it originated. Names are expanded with source context only when necessary to prevent collisions.
+A video project is normally one directory containing its `beat_sheet.json` and supporting production artifacts. Source-course names are added only when necessary to prevent collisions.
 
-## Topic routing
+## Current collections
 
-The primary routing source is [`books/YouTube.json`](../../YouTube.json), which maps source folders to topics and YouTube playlists. Folder matching is case-insensitive. When a source is absent from that file, its topic is inferred conservatively from the source and project names.
+The current filesystem contains **3,740** primary `beat_sheet.json` files across **22** top-level collections. Each linked collection README inventories its videos and derives their present production state from the files on disk.
 
-Courses and educational video projects belong in this Humanitarians library. Musinique is reserved for independent music and Claude-specific creative work; Medhavy is reserved for its science collections.
+| Directory | Collection | Beat sheets |
+|---|---|---:|
+| [`claude-for-artificial-intelligence/`](claude-for-artificial-intelligence/) | Artificial Intelligence | 219 |
+| [`claude-for-branding/`](claude-for-branding/) | Branding | 34 |
+| [`claude-for-business/`](claude-for-business/) | Business | 1 |
+| [`claude-for-cancer/`](claude-for-cancer/) | Cancer | 54 |
+| [`claude-for-cancer-biology/`](claude-for-cancer-biology/) | Cancer Biology | 224 |
+| [`claude-for-computer-science/`](claude-for-computer-science/) | Computer Science | 91 |
+| [`claude-for-design/`](claude-for-design/) | Design | 462 |
+| [`claude-for-economics/`](claude-for-economics/) | Economics | 41 |
+| [`claude-for-education/`](claude-for-education/) | Education | 81 |
+| [`claude-for-finance/`](claude-for-finance/) | Finance | 52 |
+| [`claude-for-general-education/`](claude-for-general-education/) | General Education | 52 |
+| [`claude-for-marketing/`](claude-for-marketing/) | Marketing | 36 |
+| [`claude-for-mathematics/`](claude-for-mathematics/) | Mathematics | 22 |
+| [`claude-for-music/`](claude-for-music/) | Music | 28 |
+| [`claude-for-nanomedicine/`](claude-for-nanomedicine/) | Nanomedicine | 118 |
+| [`claude-for-physics/`](claude-for-physics/) | Physics | 6 |
+| [`claude-for-quantum-mechanics/`](claude-for-quantum-mechanics/) | Quantum Mechanics | 538 |
+| [`claude-for-video-production/`](claude-for-video-production/) | Video Production | 74 |
+| [`claude-for-writing/`](claude-for-writing/) | Writing | 31 |
+| [`claude/`](claude/) | Claude | 1,536 |
+| [`codex/`](codex/) | Codex | 40 |
+| [`fellows/`](fellows/) | Fellows | 0 |
 
-The current library contains 3,747 beat-sheet project folders across 21 topics:
+## Beat sheets are the source of truth
 
-| Topic | Projects |
-|---|---:|
-| Artificial Intelligence | 219 |
-| Branding | 34 |
-| Business | 1 |
-| Cancer | 55 |
-| Cancer Biology | 226 |
-| Claude | 1,536 |
-| Codex | 40 |
-| Computer Science | 91 |
-| Design | 465 |
-| Economics | 41 |
-| Education | 81 |
-| Finance | 52 |
-| General Education | 52 |
-| Marketing | 36 |
-| Mathematics | 22 |
-| Music | 28 |
-| Nanomedicine | 119 |
-| Physics | 6 |
-| Quantum Mechanics | 538 |
-| Video Production | 74 |
-| Writing | 31 |
+The primary beat sheet records narration, timing, persona, brand, scene routing, playlist metadata, and often the intended publication surface. A folder can contain alternate beat sheets for voices, aspect ratios, brands, or cuts; those remain siblings and must not overwrite the canonical source.
 
-These counts describe folders containing beat-sheet files. A topic can also contain course documentation or other supporting material without a beat sheet.
+Collection READMEs distinguish these states:
 
-## Root production documents
+- **master present** — a non-slate MP4 matching the project slug exists locally
+- **review cut present** — a slate/review MP4 exists
+- **audio present** — per-beat audio exists but no assembled cut was found
+- **beat sheet authored** — planning data exists without local rendered output
 
-The repository root also contains batch manifests, build logs, project-idea documents, and production scripts that apply across multiple projects. Read these before rebuilding or reorganizing a batch.
+These are filesystem observations, not approval or publication claims.
 
 ## Typical project contents
 
@@ -65,53 +66,56 @@ A project may contain:
 
 - `beat_sheet.json` and alternate voice, brand, format, or cut variants
 - `FACTCHECK.md`, `PEDAGOGY.md`, `PROMPTS.md`, `SHOTLIST.md`, and `SOURCES.md`
-- Python or JavaScript scene and rendering code
-- clip manifests, timing metadata, and concatenation instructions
-- images, diagrams, SVGs, typography, and other assets under `media/`
-- QC frames, overview sheets, layout audits, and final reports
-- build prompts, status notes, citations, receipts, and publication metadata
+- Manim, Remotion, Python, JavaScript, or other rendering sources
+- clip manifests, timings, captions, and concatenation instructions
+- images, diagrams, SVGs, fonts, and other reconstructable assets
+- `_qc/REPORT.md`, QC frames, contact sheets, and layout audits
+- build prompts, status notes, citations, receipts, and YouTube metadata
 
 Some folders are complete builds; others are source packages, alternates, or retained quality-control snapshots.
 
+## Publishing contract
+
+Publishing is an external state change. Before uploading:
+
+1. Resolve the exact upload master and reject slate/review cuts unless explicitly authorized.
+2. Validate the beat sheet, description, title, channel, privacy, and playlist.
+3. Run a dry-run against the channel upload ledger.
+4. Upload in small batches and verify each returned video ID.
+5. Record the ID and playlist result before starting the next batch.
+
+OAuth credentials and upload ledgers are channel-specific, gitignored assets. Never commit them. A local master does not by itself grant permission to publish; the explicit user request and publisher gates do.
+
 ## Finding projects
 
-Run these commands from `books/humanitarians_html/youtube`:
+Run from this repository root:
 
 ```bash
-# Show all topic directories
+# Show all collections
 find . -mindepth 1 -maxdepth 1 -type d ! -name .git | sort
 
-# Find projects by folder-name fragment
+# Find projects by folder fragment
 find . -mindepth 2 -maxdepth 2 -type d -iname '*profile*'
 
-# Search all production text
-rg -i 'Aditi Deodhar|Aravind Balaji|responsible AI'
+# Search production text
+rg -i 'responsible AI|fellow|quantum'
 
 # List primary beat sheets
-find . -mindepth 3 -maxdepth 3 -name 'beat_sheet.json'
+find . -mindepth 3 -maxdepth 3 -name beat_sheet.json
 
-# Find source and fact-check documents
-find . -type f \( -name 'SOURCES.md' -o -name 'FACTCHECK.md' \)
-
-# Locate quality-control artifacts
-find . -type f \( -iname '*qc*' -o -iname '*audit*' \)
+# Locate source, fact-check, and QC documents
+find . -type f \( -name SOURCES.md -o -name FACTCHECK.md -o -name REPORT.md \)
 ```
 
 ## Adding or moving a project
 
-1. Look up the source folder in `books/YouTube.json`.
-2. Convert its topic to lowercase kebab case.
-3. Put the complete project at `<topic>/<video-project>/`.
-4. If the same project name already exists, add concise source context instead of overwriting it.
-5. Do not introduce another source, course, `youtube`, or `_collected` layer.
-6. Keep final MP3 and MP4 renders outside this repository.
+1. Route subject material to `claude-for-<topic>/`.
+2. Route Claude-only, Codex-only, and fellow-profile work to their explicit exceptions.
+3. Put each project directly under the collection directory.
+4. If a project name collides, add concise source context instead of overwriting it.
+5. Add or refresh the collection README after substantial batch changes.
+6. Keep credentials, tokens, ledgers, and large generated media out of Git.
 
-The reusable organizer is `SCRIPTS/flatten_humanitarians_youtube.py` at the Bear Textbooks repository root.
+## Repository and media policy
 
-## Media policy
-
-The root `.gitignore` excludes all `*.mp3` and `*.mp4` files. A directory named `mp3/` may still contain tracked JSON timing metadata. Supporting formats such as PNG, JPEG, SVG, M4A, Markdown, JSON, HTML, and source code may be retained when required to reconstruct or inspect a production.
-
-## Repository scope
-
-This is a production archive for Humanitarians YouTube courses and educational videos. It is not the Humanitarians website, a deployment repository, or storage for finished distribution media.
+The Git remote is `nikbearbrown/humanitarians-youtube`. The root `.gitignore` excludes MP3 and MP4 distribution media; timing metadata and reconstructable source assets may remain tracked. This repository is a production archive, not the Humanitarians website deployment.
