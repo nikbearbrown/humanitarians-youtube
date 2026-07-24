@@ -63,3 +63,57 @@ This directory is the **Claude for Writing** collection in the Humanitarians You
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Writing
+
+This folder organizes **31 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Academic Register](./claude-liam-vox-academic-register/)
+- [Bronze Argument](./claude-liam-vox-bronze-argument/)
+- [King Four Appeals](./claude-liam-vox-king-four-appeals/)
+- [Proposal Problem Definition](./claude-liam-vox-proposal-problem-definition/)
+- [Review Not Reaction](./claude-liam-vox-review-not-reaction/)
+- [Script Extemporization](./claude-liam-vox-script-extemporization/)
+- [Steel Man](./claude-liam-vox-steel-man/)
+- [Summary Vs Synthesis](./claude-liam-vox-summary-vs-synthesis/)
+- [Three Distinctions](./claude-liam-vox-three-distinctions/)
+- [Truman Usefulness](./claude-liam-vox-truman-usefulness/)
+- [Vox Academic Register](./nbb-vox-academic-register/)
+- [Vox Bronze Argument](./nbb-vox-bronze-argument/)
+- [Vox King Four Appeals](./nbb-vox-king-four-appeals/)
+- [Vox Proposal Problem Definition](./nbb-vox-proposal-problem-definition/)
+- [Vox Review Not Reaction](./nbb-vox-review-not-reaction/)
+- [Vox Script Extemporization](./nbb-vox-script-extemporization/)
+- [Vox Steel Man](./nbb-vox-steel-man/)
+- [Vox Summary Vs Synthesis](./nbb-vox-summary-vs-synthesis/)
+- [Vox Three Distinctions](./nbb-vox-three-distinctions/)
+- [Vox Truman Usefulness](./nbb-vox-truman-usefulness/)
+- [Subby A Complete Substack Writing](./subby-a-complete-substack-writing/)
+- [Subby The Writing Tool You Didnt](./subby-the-writing-tool-you-didnt/)
+- [Academic Register](./vox-academic-register/)
+- [Bronze Argument](./vox-bronze-argument/)
+- [King Four Appeals](./vox-king-four-appeals/)
+- [Proposal Problem Definition](./vox-proposal-problem-definition/)
+- [Review Not Reaction](./vox-review-not-reaction/)
+- [Script Extemporization](./vox-script-extemporization/)
+- [Steel Man](./vox-steel-man/)
+- [Summary Vs Synthesis](./vox-summary-vs-synthesis/)
+- [Three Distinctions](./vox-three-distinctions/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

@@ -86,3 +86,81 @@ This directory is the **Claude for Cancer** collection in the Humanitarians YouT
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Cancer
+
+This folder organizes **55 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Adaptive Therapy Prostate](./adaptive-therapy-prostate/)
+- [Cancer Immunoediting](./cancer-immunoediting/)
+- [Cancer Medicine Nbb Lectures Ch01 Lecture](./cancer-medicine--nbb-lectures--ch01-lecture/)
+- [Cancer Stem Cell Debate](./cancer-stem-cell-debate/)
+- [Ch01 Lecture](./ch01-lecture/)
+- [Ch05 Lecture](./ch05-lecture/)
+- [Chronic Inflammation Cancer](./chronic-inflammation-cancer/)
+- [Adaptive Therapy Prostate](./claude-liam-adaptive-therapy-prostate/)
+- [Cancer Immunoediting](./claude-liam-cancer-immunoediting/)
+- [Cancer Stem Cell Debate](./claude-liam-cancer-stem-cell-debate/)
+- [Chronic Inflammation Cancer](./claude-liam-chronic-inflammation-cancer/)
+- [Combination Chemo Logic](./claude-liam-combination-chemo-logic/)
+- [Egfr Resistance Playbook](./claude-liam-egfr-resistance-playbook/)
+- [Hot Cold Excluded Tumors](./claude-liam-hot-cold-excluded-tumors/)
+- [Hpv Vaccination Elimination](./claude-liam-hpv-vaccination-elimination/)
+- [Kras Vs Egfr Response](./claude-liam-kras-vs-egfr-response/)
+- [Liquid Biopsy Validity](./claude-liam-liquid-biopsy-validity/)
+- [Matrix Signaling Reservoir](./claude-liam-matrix-signaling-reservoir/)
+- [Negative Biopsy Posterior](./claude-liam-negative-biopsy-posterior/)
+- [Ppv Screening Collapse](./claude-liam-ppv-screening-collapse/)
+- [Screening Three Biases](./claude-liam-screening-three-biases/)
+- [Staging Molecular Modifiers](./claude-liam-staging-molecular-modifiers/)
+- [Surrogate Endpoints](./claude-liam-surrogate-endpoints/)
+- [Tumor Microenvironment Puzzle](./claude-liam-tumor-microenvironment-puzzle/)
+- [Combination Chemo Logic](./combination-chemo-logic/)
+- [Egfr Resistance Playbook](./egfr-resistance-playbook/)
+- [Ch01 Lecture](./hai-ch01-lecture/)
+- [Hot Cold Excluded Tumors](./hot-cold-excluded-tumors/)
+- [Hpv Vaccination Elimination](./hpv-vaccination-elimination/)
+- [Kras Vs Egfr Response](./kras-vs-egfr-response/)
+- [Liquid Biopsy Validity](./liquid-biopsy-validity/)
+- [Matrix Signaling Reservoir](./matrix-signaling-reservoir/)
+- [Adaptive Therapy Prostate](./nbb-adaptive-therapy-prostate/)
+- [Cancer Immunoediting](./nbb-cancer-immunoediting/)
+- [Cancer Stem Cell Debate](./nbb-cancer-stem-cell-debate/)
+- [Chronic Inflammation Cancer](./nbb-chronic-inflammation-cancer/)
+- [Combination Chemo Logic](./nbb-combination-chemo-logic/)
+- [Egfr Resistance Playbook](./nbb-egfr-resistance-playbook/)
+- [Hot Cold Excluded Tumors](./nbb-hot-cold-excluded-tumors/)
+- [Hpv Vaccination Elimination](./nbb-hpv-vaccination-elimination/)
+- [Kras Vs Egfr Response](./nbb-kras-vs-egfr-response/)
+- [Liquid Biopsy Validity](./nbb-liquid-biopsy-validity/)
+- [Matrix Signaling Reservoir](./nbb-matrix-signaling-reservoir/)
+- [Negative Biopsy Posterior](./nbb-negative-biopsy-posterior/)
+- [Ppv Screening Collapse](./nbb-ppv-screening-collapse/)
+- [Screening Three Biases](./nbb-screening-three-biases/)
+- [Staging Molecular Modifiers](./nbb-staging-molecular-modifiers/)
+- [Surrogate Endpoints](./nbb-surrogate-endpoints/)
+- [Tumor Microenvironment Puzzle](./nbb-tumor-microenvironment-puzzle/)
+- [Negative Biopsy Posterior](./negative-biopsy-posterior/)
+- [Ppv Screening Collapse](./ppv-screening-collapse/)
+- [Screening Three Biases](./screening-three-biases/)
+- [Staging Molecular Modifiers](./staging-molecular-modifiers/)
+- [Surrogate Endpoints](./surrogate-endpoints/)
+- [Tumor Microenvironment Puzzle](./tumor-microenvironment-puzzle/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

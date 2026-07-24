@@ -54,3 +54,48 @@ This directory is the **Claude for Mathematics** collection in the Humanitarians
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Mathematics
+
+This folder organizes **22 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Arrows Impossibility](./arrows-impossibility/)
+- [Compound Interest Simulator](./compound-interest-simulator/)
+- [Konigsberg Bridge Solver](./konigsberg-bridge-solver/)
+- [Law Of Large Numbers](./law-of-large-numbers/)
+- [Vox Probability Density](./medhavy-vox-probability-density/)
+- [Metric Conversion Auditor](./metric-conversion-auditor/)
+- [Arrows Impossibility](./nbb-arrows-impossibility/)
+- [Compound Interest Simulator](./nbb-compound-interest-simulator/)
+- [Konigsberg Bridge Solver](./nbb-konigsberg-bridge-solver/)
+- [Law Of Large Numbers](./nbb-law-of-large-numbers/)
+- [Metric Conversion Auditor](./nbb-metric-conversion-auditor/)
+- [Number Base Converter](./nbb-number-base-converter/)
+- [Prime Factorization Timer](./nbb-prime-factorization-timer/)
+- [Sampling Bias Demonstrator](./nbb-sampling-bias-demonstrator/)
+- [Number Base Converter](./number-base-converter/)
+- [Prime Factorization Timer](./prime-factorization-timer/)
+- [Review Naked Statistics Stripping](./review-naked-statistics-stripping/)
+- [Riff Manim Math To Manim](./riff-manim-math-to-manim/)
+- [Sampling Bias Demonstrator](./sampling-bias-demonstrator/)
+- [The Art Of Statistics How To Learn](./the-art-of-statistics-how-to-learn/)
+- [The Math Of Being Afraid Together](./the-math-of-being-afraid-together/)
+- [Why 120 Bpm Works The Hidden Mathematics](./why-120-bpm-works-the-hidden-mathematics/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

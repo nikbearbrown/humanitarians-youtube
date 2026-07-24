@@ -256,3 +256,106 @@ This directory is the **Claude for Cancer Biology** collection in the Humanitari
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Cancer Biology
+
+This folder organizes **226 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Adaptive Therapy Revolution](./adaptive-therapy-revolution/)
+- [Apoptosis Vs Necrosis](./apoptosis-vs-necrosis/)
+- [Beta Carotene False Positive](./beta-carotene-false-positive/)
+- [Brca Parp Synthetic Lethality](./brca-parp-synthetic-lethality/)
+- [Cancer Biology All Youtube Cancer Dormancy Recurrence Claude Liam Liam](./cancer-biology-all--youtube--cancer-dormancy-recurrence--claude-liam-liam/)
+- [Cancer Biology All Youtube Cancer Dormancy Recurrence Liam](./cancer-biology-all--youtube--cancer-dormancy-recurrence--liam/)
+- [Cancer Biology All Youtube Car T Solid Tumor Barrier Claude Liam Liam](./cancer-biology-all--youtube--car-t-solid-tumor-barrier--claude-liam-liam/)
+- [Cancer Biology All Youtube Car T Solid Tumor Barrier Liam](./cancer-biology-all--youtube--car-t-solid-tumor-barrier--liam/)
+- [Cancer Biology All Youtube Clonal Resistance Prediction Claude Liam Liam](./cancer-biology-all--youtube--clonal-resistance-prediction--claude-liam-liam/)
+- [Cancer Biology All Youtube Clonal Resistance Prediction Liam](./cancer-biology-all--youtube--clonal-resistance-prediction--liam/)
+- [Cancer Biology All Youtube Ctdna Mrd Detection Claude Liam Liam](./cancer-biology-all--youtube--ctdna-mrd-detection--claude-liam-liam/)
+- [Cancer Biology All Youtube Ctdna Mrd Detection Liam](./cancer-biology-all--youtube--ctdna-mrd-detection--liam/)
+- [Cancer Biology All Youtube Metastatic Cascade Bottleneck Claude Liam Liam](./cancer-biology-all--youtube--metastatic-cascade-bottleneck--claude-liam-liam/)
+- [Cancer Biology All Youtube Metastatic Cascade Bottleneck Liam](./cancer-biology-all--youtube--metastatic-cascade-bottleneck--liam/)
+- [Cancer Biology All Youtube Neoantigen Vaccine Pipeline Claude Liam Liam](./cancer-biology-all--youtube--neoantigen-vaccine-pipeline--claude-liam-liam/)
+- [Cancer Biology All Youtube Neoantigen Vaccine Pipeline Liam](./cancer-biology-all--youtube--neoantigen-vaccine-pipeline--liam/)
+- [Cancer Biology All Youtube Oncolytic Virotherapy Claude Liam Liam](./cancer-biology-all--youtube--oncolytic-virotherapy--claude-liam-liam/)
+- [Cancer Biology All Youtube Oncolytic Virotherapy Liam](./cancer-biology-all--youtube--oncolytic-virotherapy--liam/)
+- [Cancer Biology All Youtube Pfs Surrogate Endpoint Claude Liam Liam](./cancer-biology-all--youtube--pfs-surrogate-endpoint--claude-liam-liam/)
+- [Cancer Biology All Youtube Pfs Surrogate Endpoint Liam](./cancer-biology-all--youtube--pfs-surrogate-endpoint--liam/)
+- [Cancer Biology All Youtube Pre Metastatic Niche Claude Liam Liam](./cancer-biology-all--youtube--pre-metastatic-niche--claude-liam-liam/)
+- [Cancer Biology All Youtube Pre Metastatic Niche Liam](./cancer-biology-all--youtube--pre-metastatic-niche--liam/)
+- [Cancer Biology All Youtube Tumor Heterogeneity Tracerx Claude Liam Liam](./cancer-biology-all--youtube--tumor-heterogeneity-tracerx--claude-liam-liam/)
+- [Cancer Biology All Youtube Tumor Heterogeneity Tracerx Liam](./cancer-biology-all--youtube--tumor-heterogeneity-tracerx--liam/)
+- [Cancer Disparities Zip Code](./cancer-disparities-zip-code/)
+- [Cancer Dormancy Recurrence](./cancer-dormancy-recurrence/)
+- [Cancer Microevolution](./cancer-microevolution/)
+- [Car T Solid Tumor Barrier](./car-t-solid-tumor-barrier/)
+- [Checkpoint Hot Cold Tumors](./checkpoint-hot-cold-tumors/)
+- [Adaptive Therapy Revolution](./claude-liam-adaptive-therapy-revolution/)
+- [Beta Carotene False Positive](./claude-liam-beta-carotene-false-positive/)
+- [Brca Parp Synthetic Lethality](./claude-liam-brca-parp-synthetic-lethality/)
+- [Cancer Disparities Zip Code](./claude-liam-cancer-disparities-zip-code/)
+- [Cancer Dormancy Recurrence](./claude-liam-cancer-dormancy-recurrence/)
+- [Car T Solid Tumor Barrier](./claude-liam-car-t-solid-tumor-barrier/)
+- [Checkpoint Hot Cold Tumors](./claude-liam-checkpoint-hot-cold-tumors/)
+- [Clonal Resistance Prediction](./claude-liam-clonal-resistance-prediction/)
+- [Ctdna Mrd Detection](./claude-liam-ctdna-mrd-detection/)
+- [Hallmarks 2022 Debate](./claude-liam-hallmarks-2022-debate/)
+- [Hpv Vaccination Elimination](./claude-liam-hpv-vaccination-elimination/)
+- [Idh Epigenetic Reversal](./claude-liam-idh-epigenetic-reversal/)
+- [Knudson Two Hit Math](./claude-liam-knudson-two-hit-math/)
+- [Kras Undruggability](./claude-liam-kras-undruggability/)
+- [Liam](./claude-liam-liam/)
+- [Metastatic Cascade Bottleneck](./claude-liam-metastatic-cascade-bottleneck/)
+- [Mgmt Methylation Glioblastoma](./claude-liam-mgmt-methylation-glioblastoma/)
+- [Mutational Signatures Exposure](./claude-liam-mutational-signatures-exposure/)
+- [Neoantigen Vaccine Pipeline](./claude-liam-neoantigen-vaccine-pipeline/)
+- [Oncolytic Virotherapy](./claude-liam-oncolytic-virotherapy/)
+- [Pfs Surrogate Endpoint](./claude-liam-pfs-surrogate-endpoint/)
+- [Pre Metastatic Niche](./claude-liam-pre-metastatic-niche/)
+- [Tumor Heterogeneity Tracerx](./claude-liam-tumor-heterogeneity-tracerx/)
+- [Venetoclax Bh3 Profiling](./claude-liam-venetoclax-bh3-profiling/)
+- [Apoptosis Resistance](./claude-liam-vox-apoptosis-resistance/)
+- [Bcl Selectivity](./claude-liam-vox-bcl-selectivity/)
+- [Bypass Track](./claude-liam-vox-bypass-track/)
+- [Cancer Evolution](./claude-liam-vox-cancer-evolution/)
+- [Differentiation Therapy](./claude-liam-vox-differentiation-therapy/)
+- [Fdg Hif1a](./claude-liam-vox-fdg-hif1a/)
+- [Hpv Dual Hit](./claude-liam-vox-hpv-dual-hit/)
+- [Hpylori Cancer](./claude-liam-vox-hpylori-cancer/)
+- [Idh 2hg](./claude-liam-vox-idh-2hg/)
+- [Immune Starvation](./claude-liam-vox-immune-starvation/)
+- [Mgmt Methylation](./claude-liam-vox-mgmt-methylation/)
+- [Mir Deletion](./claude-liam-vox-mir-deletion/)
+- [Mtap Passenger](./claude-liam-vox-mtap-passenger/)
+- [Mutational Signature](./claude-liam-vox-mutational-signature/)
+- [P53 Circuit](./claude-liam-vox-p53-circuit/)
+- [Protein Level Loss](./claude-liam-vox-protein-level-loss/)
+- [Rb Convergence](./claude-liam-vox-rb-convergence/)
+- [Restriction Point](./claude-liam-vox-restriction-point/)
+- [Spindle Checkpoint](./claude-liam-vox-spindle-checkpoint/)
+- [Synthetic Lethality](./claude-liam-vox-synthetic-lethality/)
+- [Telomere Crisis](./claude-liam-vox-telomere-crisis/)
+- [Two Hit](./claude-liam-vox-two-hit/)
+- [Venetoclax Priming](./claude-liam-vox-venetoclax-priming/)
+- [Vhl Hif](./claude-liam-vox-vhl-hif/)
+- [Warburg Carbon](./claude-liam-vox-warburg-carbon/)
+- [Warburg Therapeutic History](./claude-liam-warburg-therapeutic-history/)
+- [Clonal Resistance Prediction](./clonal-resistance-prediction/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

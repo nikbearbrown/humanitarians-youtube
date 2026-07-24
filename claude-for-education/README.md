@@ -113,3 +113,106 @@ This directory is the **Claude for Education** collection in the Humanitarians Y
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Education
+
+This folder organizes **81 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Academic Pathways Research](./academic-pathways-research/)
+- [Ai Skunkworks Learning Ai By Doing](./ai-skunkworks-learning-ai-by-doing/)
+- [Budget Stress Tester](./budget-stress-tester/)
+- [Cate Validation Qini](./cate-validation-qini/)
+- [Causal Discovery Pc Algorithm](./causal-discovery-pc-algorithm/)
+- [College Success Bundle With Llms Youtube Hidden Curriculum Translator](./college-success-bundle-with-llms--youtube--hidden-curriculum-translator/)
+- [College Success Bundle With Llms Youtube Nbb Hidden Curriculum Translator](./college-success-bundle-with-llms--youtube--nbb-hidden-curriculum-translator/)
+- [Communication Failure Modes](./communication-failure-modes/)
+- [Compound Interest Calculator](./compound-interest-calculator/)
+- [Critical Thinking Modes](./critical-thinking-modes/)
+- [Discriminant History](./discriminant-history/)
+- [Discriminant Three Stories](./discriminant-three-stories/)
+- [Domain Restrictions](./domain-restrictions/)
+- [Double Debiased Ml](./double-debiased-ml/)
+- [Exponent Rules](./exponent-rules/)
+- [Exponential Growth](./exponential-growth/)
+- [Five Whys Motivation](./five-whys-motivation/)
+- [Godel Unprovable Truths](./godel-unprovable-truths/)
+- [Hazard Carter Adjustment](./hazard-carter-adjustment/)
+- [Heterogeneous Treatment Effects](./heterogeneous-treatment-effects/)
+- [Hidden Curriculum Translator](./hidden-curriculum-translator/)
+- [Humanitarians Ai An Educational Sandbox](./humanitarians-ai-an-educational-sandbox/)
+- [Humanitarians Ai Learning Ai By Doing](./humanitarians-ai-learning-ai-by-doing/)
+- [Imposter Syndrome Research](./imposter-syndrome-research/)
+- [Learning Styles Research](./learning-styles-research/)
+- [Linear Slope Visualizer](./linear-slope-visualizer/)
+- [Meta Learner Showdown](./meta-learner-showdown/)
+- [Motivation Five Whys](./motivation-five-whys/)
+- [Academic Pathways Research](./nbb-academic-pathways-research/)
+- [Budget Stress Tester](./nbb-budget-stress-tester/)
+- [Cate Validation Qini](./nbb-cate-validation-qini/)
+- [Causal Discovery Pc Algorithm](./nbb-causal-discovery-pc-algorithm/)
+- [Communication Failure Modes](./nbb-communication-failure-modes/)
+- [Compound Interest Calculator](./nbb-compound-interest-calculator/)
+- [Critical Thinking Modes](./nbb-critical-thinking-modes/)
+- [Discriminant History](./nbb-discriminant-history/)
+- [Discriminant Three Stories](./nbb-discriminant-three-stories/)
+- [Domain Restrictions](./nbb-domain-restrictions/)
+- [Double Debiased Ml](./nbb-double-debiased-ml/)
+- [Exponent Rules](./nbb-exponent-rules/)
+- [Exponential Growth](./nbb-exponential-growth/)
+- [Five Whys Motivation](./nbb-five-whys-motivation/)
+- [Hazard Carter Adjustment](./nbb-hazard-carter-adjustment/)
+- [Heterogeneous Treatment Effects](./nbb-heterogeneous-treatment-effects/)
+- [Hidden Curriculum Translator](./nbb-hidden-curriculum-translator/)
+- [Imposter Syndrome Research](./nbb-imposter-syndrome-research/)
+- [Learning Styles Research](./nbb-learning-styles-research/)
+- [Linear Slope Visualizer](./nbb-linear-slope-visualizer/)
+- [Meta Learner Showdown](./nbb-meta-learner-showdown/)
+- [Motivation Five Whys](./nbb-motivation-five-whys/)
+- [Number Hierarchy](./nbb-number-hierarchy/)
+- [Pemdas Ambiguity](./nbb-pemdas-ambiguity/)
+- [Planning Process Research](./nbb-planning-process-research/)
+- [Policy Learning](./nbb-policy-learning/)
+- [Polynomial Factoring](./nbb-polynomial-factoring/)
+- [Propensity Score Weighting](./nbb-propensity-score-weighting/)
+- [Quadratic Inequality Garden](./nbb-quadratic-inequality-garden/)
+- [Spaced Practice Scheduling](./nbb-spaced-practice-scheduling/)
+- [Spaced Study Scheduler](./nbb-spaced-study-scheduler/)
+- [Student Debt Matching Principle](./nbb-student-debt-matching-principle/)
+- [Study Audit Tool](./nbb-study-audit-tool/)
+- [Study Technique Effectiveness](./nbb-study-technique-effectiveness/)
+- [Unit Circle Motion](./nbb-unit-circle-motion/)
+- [Uplift Modeling T Learner](./nbb-uplift-modeling-t-learner/)
+- [Zero Based Budget](./nbb-zero-based-budget/)
+- [Number Hierarchy](./number-hierarchy/)
+- [Pemdas Ambiguity](./pemdas-ambiguity/)
+- [Planning Process Research](./planning-process-research/)
+- [Policy Learning](./policy-learning/)
+- [Polynomial Factoring](./polynomial-factoring/)
+- [Propensity Score Weighting](./propensity-score-weighting/)
+- [Quadratic Inequality Garden](./quadratic-inequality-garden/)
+- [Reinforcement Learning An Introduction](./reinforcement-learning-an-introduction/)
+- [Spaced Practice Scheduling](./spaced-practice-scheduling/)
+- [Spaced Study Scheduler](./spaced-study-scheduler/)
+- [Student Debt Matching Principle](./student-debt-matching-principle/)
+- [Study Audit Tool](./study-audit-tool/)
+- [Study Technique Effectiveness](./study-technique-effectiveness/)
+- [Unit Circle Motion](./unit-circle-motion/)
+- [Uplift Modeling T Learner](./uplift-modeling-t-learner/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

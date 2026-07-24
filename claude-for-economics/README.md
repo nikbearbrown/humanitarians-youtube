@@ -73,3 +73,67 @@ This directory is the **Claude for Economics** collection in the Humanitarians Y
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Economics
+
+This folder organizes **41 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Base Rate Gap](./claude-liam-vox-base-rate-gap/)
+- [Cost Inversion](./claude-liam-vox-cost-inversion/)
+- [Effort Misallocation](./claude-liam-vox-effort-misallocation/)
+- [Fit Nonsponsor](./claude-liam-vox-fit-nonsponsor/)
+- [Fluency Learning](./claude-liam-vox-fluency-learning/)
+- [Fluency Seam](./claude-liam-vox-fluency-seam/)
+- [Ghost Signals](./claude-liam-vox-ghost-signals/)
+- [Name Match Gap](./claude-liam-vox-name-match-gap/)
+- [Ninety Day Gate](./claude-liam-vox-ninety-day-gate/)
+- [Recency Size](./claude-liam-vox-recency-size/)
+- [Resume Zero](./claude-liam-vox-resume-zero/)
+- [Skip Rate](./claude-liam-vox-skip-rate/)
+- [Soc Mismatch](./claude-liam-vox-soc-mismatch/)
+- [Sponsor Flip](./claude-liam-vox-sponsor-flip/)
+- [Vox Base Rate Gap](./nbb-vox-base-rate-gap/)
+- [Vox Cost Inversion](./nbb-vox-cost-inversion/)
+- [Vox Effort Misallocation](./nbb-vox-effort-misallocation/)
+- [Vox Fit Nonsponsor](./nbb-vox-fit-nonsponsor/)
+- [Vox Fluency Learning](./nbb-vox-fluency-learning/)
+- [Vox Fluency Seam](./nbb-vox-fluency-seam/)
+- [Vox Ghost Signals](./nbb-vox-ghost-signals/)
+- [Vox Name Match Gap](./nbb-vox-name-match-gap/)
+- [Vox Ninety Day Gate](./nbb-vox-ninety-day-gate/)
+- [Vox Recency Size](./nbb-vox-recency-size/)
+- [Vox Resume Zero](./nbb-vox-resume-zero/)
+- [Vox Skip Rate](./nbb-vox-skip-rate/)
+- [Vox Soc Mismatch](./nbb-vox-soc-mismatch/)
+- [Vox Sponsor Flip](./nbb-vox-sponsor-flip/)
+- [Base Rate Gap](./vox-base-rate-gap/)
+- [Effort Misallocation](./vox-effort-misallocation/)
+- [Fit Nonsponsor](./vox-fit-nonsponsor/)
+- [Fluency Learning](./vox-fluency-learning/)
+- [Fluency Seam](./vox-fluency-seam/)
+- [Ghost Signals](./vox-ghost-signals/)
+- [Name Match Gap](./vox-name-match-gap/)
+- [Ninety Day Gate](./vox-ninety-day-gate/)
+- [Recency Size](./vox-recency-size/)
+- [Resume Zero](./vox-resume-zero/)
+- [Skip Rate](./vox-skip-rate/)
+- [Soc Mismatch](./vox-soc-mismatch/)
+- [Sponsor Flip](./vox-sponsor-flip/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

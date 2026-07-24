@@ -494,3 +494,106 @@ This directory is the **Claude for Design** collection in the Humanitarians YouT
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Design
+
+This folder organizes **464 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [00 Wave Packet Spreading](./00-wave-packet-spreading/)
+- [0015](./0015/)
+- [0030](./0030/)
+- [0045](./0045/)
+- [0060](./0060/)
+- [0075](./0075/)
+- [0090](./0090/)
+- [01 Uncertainty Minimizer](./01-uncertainty-minimizer/)
+- [0105](./0105/)
+- [0120](./0120/)
+- [0180](./0180/)
+- [0195](./0195/)
+- [02 Infinite Well Superposition](./02-infinite-well-superposition/)
+- [0210](./0210/)
+- [0225](./0225/)
+- [0240](./0240/)
+- [0255](./0255/)
+- [0270](./0270/)
+- [0285](./0285/)
+- [03 Coherent State Oscillator](./03-coherent-state-oscillator/)
+- [0300](./0300/)
+- [0315](./0315/)
+- [0330](./0330/)
+- [0345](./0345/)
+- [0360](./0360/)
+- [0375](./0375/)
+- [0390](./0390/)
+- [04 Uncertainty Ensemble](./04-uncertainty-ensemble/)
+- [0405](./0405/)
+- [0420](./0420/)
+- [0435](./0435/)
+- [0450](./0450/)
+- [0465](./0465/)
+- [0480](./0480/)
+- [0495](./0495/)
+- [05 Spherical Harmonics Cone](./05-spherical-harmonics-cone/)
+- [0510](./0510/)
+- [0525](./0525/)
+- [0540](./0540/)
+- [0555](./0555/)
+- [0570](./0570/)
+- [0585](./0585/)
+- [06 Stern Gerlach Sequential](./06-stern-gerlach-sequential/)
+- [0600](./0600/)
+- [0615](./0615/)
+- [0630](./0630/)
+- [0645](./0645/)
+- [0675](./0675/)
+- [0690](./0690/)
+- [07 Hydrogen Radial Density](./07-hydrogen-radial-density/)
+- [0705](./0705/)
+- [0720](./0720/)
+- [0735](./0735/)
+- [0750](./0750/)
+- [0765](./0765/)
+- [0780](./0780/)
+- [0795](./0795/)
+- [08 Two Particle Symmetry](./08-two-particle-symmetry/)
+- [0810](./0810/)
+- [0825](./0825/)
+- [0840](./0840/)
+- [0855](./0855/)
+- [09 Asymptotic Perturbation](./09-asymptotic-perturbation/)
+- [09 Hydrogen Stark Effect](./09-hydrogen-stark-effect/)
+- [10 Rabi Vs Perturbation Theory](./10-rabi-vs-perturbation-theory/)
+- [11 Geiger Nuttall Alpha Decay](./11-geiger-nuttall-alpha-decay/)
+- [11 Tunneling Wave Packet](./11-tunneling-wave-packet/)
+- [11 Wkb Vs Exact Transmission](./11-wkb-vs-exact-transmission/)
+- [12 Chsh Bell Inequality](./12-chsh-bell-inequality/)
+- [13 Bloch Decoherence](./13-bloch-decoherence/)
+- [13 Nv Center Odmr](./13-nv-center-odmr/)
+- [80 Days Data February 13 2026 Full](./80-days-data-february-13-2026-full/)
+- [80 Days To Stay Building A Lifeline](./80-days-to-stay-building-a-lifeline/)
+- [80 Days To Stay Sayam Khatris Llm](./80-days-to-stay-sayam-khatris-llm/)
+- [8000 Languages And Counting Why Programming](./8000-languages-and-counting-why-programming/)
+- [Advanced Game Design A Systems Approach](./advanced-game-design-a-systems-approach/)
+- [Ai Driven Game Asset Creation A Logical](./ai-driven-game-asset-creation-a-logical/)
+- [Algorithms To Live By The Computer](./algorithms-to-live-by-the-computer/)
+- [Anshikas Algorithm That Stopped Shouting](./anshikas-algorithm-that-stopped-shouting/)
+- [Arthur Morgan Doesnt Save Himself](./arthur-morgan-doesnt-save-himself/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

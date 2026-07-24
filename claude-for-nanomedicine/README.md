@@ -150,3 +150,106 @@ This directory is the **Claude for Nanomedicine** collection in the Humanitarian
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Nanomedicine
+
+This folder organizes **119 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Epr Delivery Funnel](./claude-liam-epr-delivery-funnel/)
+- [Her2 Low Bystander](./claude-liam-her2-low-bystander/)
+- [Ifp Pressure Barrier](./claude-liam-ifp-pressure-barrier/)
+- [Lnp Endosomal Escape](./claude-liam-lnp-endosomal-escape/)
+- [Nanomedicine Translation Gap](./claude-liam-nanomedicine-translation-gap/)
+- [Nanoparticle Characterization](./claude-liam-nanoparticle-characterization/)
+- [Protein Corona Overwrites](./claude-liam-protein-corona-overwrites/)
+- [Psma Theranostic Loop](./claude-liam-psma-theranostic-loop/)
+- [Abraxane Solvent](./claude-liam-vox-abraxane-solvent/)
+- [Batch Distribution](./claude-liam-vox-batch-distribution/)
+- [Bystander Effect](./claude-liam-vox-bystander-effect/)
+- [Complexity Yield](./claude-liam-vox-complexity-yield/)
+- [Dar Optimum](./claude-liam-vox-dar-optimum/)
+- [Delivery Diagnosis](./claude-liam-vox-delivery-diagnosis/)
+- [Delivery Funnel](./claude-liam-vox-delivery-funnel/)
+- [Doxil Heart](./claude-liam-vox-doxil-heart/)
+- [Emitter Range](./claude-liam-vox-emitter-range/)
+- [Endosomal Escape](./claude-liam-vox-endosomal-escape/)
+- [Epr Gap](./claude-liam-vox-epr-gap/)
+- [Fdg Proxy](./claude-liam-vox-fdg-proxy/)
+- [Isotope Swap](./claude-liam-vox-isotope-swap/)
+- [Light Ceiling](./claude-liam-vox-light-ceiling/)
+- [Protein Corona](./claude-liam-vox-protein-corona/)
+- [Size Paradox](./claude-liam-vox-size-paradox/)
+- [Targeting Uptake](./claude-liam-vox-targeting-uptake/)
+- [Trial Failure Tree](./claude-liam-vox-trial-failure-tree/)
+- [Tumor Pressure](./claude-liam-vox-tumor-pressure/)
+- [Epr Delivery Funnel](./epr-delivery-funnel/)
+- [Vox Abraxane Solvent](./hai-vox-abraxane-solvent/)
+- [Vox Batch Distribution](./hai-vox-batch-distribution/)
+- [Vox Bystander Effect](./hai-vox-bystander-effect/)
+- [Vox Complexity Yield](./hai-vox-complexity-yield/)
+- [Vox Dar Optimum](./hai-vox-dar-optimum/)
+- [Vox Delivery Diagnosis](./hai-vox-delivery-diagnosis/)
+- [Vox Delivery Funnel](./hai-vox-delivery-funnel/)
+- [Vox Doxil Heart](./hai-vox-doxil-heart/)
+- [Vox Emitter Range](./hai-vox-emitter-range/)
+- [Vox Endosomal Escape](./hai-vox-endosomal-escape/)
+- [Vox Epr Gap](./hai-vox-epr-gap/)
+- [Vox Fdg Proxy](./hai-vox-fdg-proxy/)
+- [Vox Isotope Swap](./hai-vox-isotope-swap/)
+- [Vox Light Ceiling](./hai-vox-light-ceiling/)
+- [Vox Protein Corona](./hai-vox-protein-corona/)
+- [Vox Size Paradox](./hai-vox-size-paradox/)
+- [Vox Targeting Uptake](./hai-vox-targeting-uptake/)
+- [Vox Trial Failure Tree](./hai-vox-trial-failure-tree/)
+- [Vox Tumor Pressure](./hai-vox-tumor-pressure/)
+- [Her2 Low Bystander](./her2-low-bystander/)
+- [Ifp Pressure Barrier](./ifp-pressure-barrier/)
+- [Lnp Endosomal Escape](./lnp-endosomal-escape/)
+- [Vox Abraxane Solvent](./medhavy-vox-abraxane-solvent/)
+- [Vox Batch Distribution](./medhavy-vox-batch-distribution/)
+- [Vox Bystander Effect](./medhavy-vox-bystander-effect/)
+- [Vox Complexity Yield](./medhavy-vox-complexity-yield/)
+- [Vox Dar Optimum](./medhavy-vox-dar-optimum/)
+- [Vox Delivery Diagnosis](./medhavy-vox-delivery-diagnosis/)
+- [Vox Delivery Funnel](./medhavy-vox-delivery-funnel/)
+- [Vox Doxil Heart](./medhavy-vox-doxil-heart/)
+- [Vox Emitter Range](./medhavy-vox-emitter-range/)
+- [Vox Endosomal Escape](./medhavy-vox-endosomal-escape/)
+- [Vox Epr Gap](./medhavy-vox-epr-gap/)
+- [Vox Fdg Proxy](./medhavy-vox-fdg-proxy/)
+- [Vox Isotope Swap](./medhavy-vox-isotope-swap/)
+- [Vox Light Ceiling](./medhavy-vox-light-ceiling/)
+- [Vox Protein Corona](./medhavy-vox-protein-corona/)
+- [Vox Size Paradox](./medhavy-vox-size-paradox/)
+- [Vox Targeting Uptake](./medhavy-vox-targeting-uptake/)
+- [Vox Trial Failure Tree](./medhavy-vox-trial-failure-tree/)
+- [Vox Tumor Pressure](./medhavy-vox-tumor-pressure/)
+- [Nanomedicine Translation Gap](./nanomedicine-translation-gap/)
+- [Nanoparticle Characterization](./nanoparticle-characterization/)
+- [Epr Delivery Funnel](./nbb-epr-delivery-funnel/)
+- [Her2 Low Bystander](./nbb-her2-low-bystander/)
+- [Ifp Pressure Barrier](./nbb-ifp-pressure-barrier/)
+- [Lnp Endosomal Escape](./nbb-lnp-endosomal-escape/)
+- [Nanomedicine Translation Gap](./nbb-nanomedicine-translation-gap/)
+- [Nanoparticle Characterization](./nbb-nanoparticle-characterization/)
+- [Protein Corona Overwrites](./nbb-protein-corona-overwrites/)
+- [Psma Theranostic Loop](./nbb-psma-theranostic-loop/)
+- [Vox Abraxane Solvent](./nbb-vox-abraxane-solvent/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

@@ -66,3 +66,48 @@ This directory is the **Claude for Branding** collection in the Humanitarians Yo
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Branding
+
+This folder organizes **34 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Aaker Dimension Weakness Finder](./aaker-dimension-weakness-finder/)
+- [Ai Architecture Autonomy Classifier](./ai-architecture-autonomy-classifier/)
+- [Archetype Drift Case Studies](./archetype-drift-case-studies/)
+- [Boondoggle Score Calculator](./boondoggle-score-calculator/)
+- [Brand Archetype Classifier](./brand-archetype-classifier/)
+- [Brand Attribution Problem](./brand-attribution-problem/)
+- [Brand Metrics Performance Dashboard](./brand-metrics-performance-dashboard/)
+- [Brand Negative Space Mapper](./brand-negative-space-mapper/)
+- [Brand Palette Accessibility Auditor](./brand-palette-accessibility-auditor/)
+- [Brand Signal Collapse Detector](./brand-signal-collapse-detector/)
+- [Brand Voice Consistency Auditor](./brand-voice-consistency-auditor/)
+- [Creative Engineer Market Repricing](./creative-engineer-market-repricing/)
+- [Four Verb Career Signal Audit](./four-verb-career-signal-audit/)
+- [Greenwashing Claims Risk Checker](./greenwashing-claims-risk-checker/)
+- [Interface Brand Alignment Checker](./interface-brand-alignment-checker/)
+- [Jtbd Audience Segment Generator](./jtbd-audience-segment-generator/)
+- [Madison Multi Agent Architecture Mapper](./madison-multi-agent-architecture-mapper/)
+- [Pipeline Contract Resilience Audit](./pipeline-contract-resilience-audit/)
+- [Prd Scope Decision Record](./prd-scope-decision-record/)
+- [Scct Crisis Triage Tool](./scct-crisis-triage-tool/)
+- [Self As Project Brand Runner](./self-as-project-brand-runner/)
+- [Trademark Strength Screener](./trademark-strength-screener/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

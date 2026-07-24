@@ -106,3 +106,100 @@ This directory is the **Claude for Video Production** collection in the Humanita
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Video Production
+
+This folder organizes **74 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [07 Fairness Regen](./07-fairness-regen/)
+- [Godel Unprovable Truths](./claude-liam-godel-unprovable-truths/)
+- [99 Percent Test](./claude-liam-vox-99-percent-test/)
+- [Agent Said Done](./claude-liam-vox-agent-said-done/)
+- [Application Counter](./claude-liam-vox-application-counter/)
+- [Base Rate](./claude-liam-vox-base-rate/)
+- [Bottom Rung](./claude-liam-vox-bottom-rung/)
+- [Class Size Paradox](./claude-liam-vox-class-size-paradox/)
+- [Comma Orphan](./claude-liam-vox-comma-orphan/)
+- [Doorbell Battery](./claude-liam-vox-doorbell-battery/)
+- [Electoral College](./claude-liam-vox-electoral-college/)
+- [Fair Three Ways](./claude-liam-vox-fair-three-ways/)
+- [Fluency Trap](./claude-liam-vox-fluency-trap/)
+- [Ghost Jobs](./claude-liam-vox-ghost-jobs/)
+- [How To Vox](./claude-liam-vox-how-to-vox/)
+- [Infinite Square Well](./claude-liam-vox-infinite-square-well/)
+- [Invisible Flip](./claude-liam-vox-invisible-flip/)
+- [Invisible Resume](./claude-liam-vox-invisible-resume/)
+- [Matter Waves](./claude-liam-vox-matter-waves/)
+- [More Data More Confident](./claude-liam-vox-more-data-more-confident/)
+- [One Zero](./claude-liam-vox-one-zero/)
+- [Photoelectric Effect](./claude-liam-vox-photoelectric-effect/)
+- [Prufrock](./claude-liam-vox-prufrock/)
+- [Rap Mortality Graph](./claude-liam-vox-rap-mortality-graph/)
+- [Schrodinger Equation](./claude-liam-vox-schrodinger-equation/)
+- [Silent Join](./claude-liam-vox-silent-join/)
+- [The Struggle](./claude-liam-vox-the-struggle/)
+- [The Ultraviolet Catastrophe](./claude-liam-vox-the-ultraviolet-catastrophe/)
+- [Ultraviolet Catastrophe](./claude-liam-vox-ultraviolet-catastrophe/)
+- [Wave Function](./claude-liam-vox-wave-function/)
+- [Why Hot Ones Are Jerks](./claude-liam-vox-why-hot-ones-are-jerks/)
+- [Why Hot Ones Are Jerks](./claude-liam-why-hot-ones-are-jerks/)
+- [Fairness Metrics And Impossible Choices](./fairness-metrics-and-impossible-choices/)
+- [Godel Unprovable Truths](./godel-unprovable-truths/)
+- [Mon Homme](./mon-homme/)
+- [Short](./short/)
+- [Unreal Reels Reels Mon Homme](./unreal-reels--reels--mon-homme/)
+- [Unreal Reels Reels Vox Matter Waves Short](./unreal-reels--reels--vox-matter-waves--short/)
+- [Unreal Reels Reels Vox Photoelectric Effect Short](./unreal-reels--reels--vox-photoelectric-effect--short/)
+- [Unreal Reels Reels Vox Schrodinger Equation Short](./unreal-reels--reels--vox-schrodinger-equation--short/)
+- [Unreal Reels Reels Vox Ultraviolet Catastrophe Short](./unreal-reels--reels--vox-ultraviolet-catastrophe--short/)
+- [Unreal Reels Reels Vox Wave Function Short](./unreal-reels--reels--vox-wave-function--short/)
+- [99 Percent Test](./vox-99-percent-test/)
+- [Agent Said Done](./vox-agent-said-done/)
+- [Application Counter](./vox-application-counter/)
+- [Base Rate](./vox-base-rate/)
+- [Bottom Rung](./vox-bottom-rung/)
+- [Class Size Paradox](./vox-class-size-paradox/)
+- [Comma Orphan](./vox-comma-orphan/)
+- [Criminality Ai](./vox-criminality-ai/)
+- [Doorbell Battery](./vox-doorbell-battery/)
+- [Fair Three Ways](./vox-fair-three-ways/)
+- [Fluency Trap](./vox-fluency-trap/)
+- [Ghost Jobs](./vox-ghost-jobs/)
+- [How To Vox](./vox-how-to-vox/)
+- [Infinite Square Well](./vox-infinite-square-well/)
+- [Inverted Axis](./vox-inverted-axis/)
+- [Invisible Flip](./vox-invisible-flip/)
+- [Invisible Resume](./vox-invisible-resume/)
+- [Matter Waves](./vox-matter-waves/)
+- [More Data More Confident](./vox-more-data-more-confident/)
+- [One Zero](./vox-one-zero/)
+- [Photoelectric Effect](./vox-photoelectric-effect/)
+- [Prosecutors Fallacy](./vox-prosecutors-fallacy/)
+- [Prufrock](./vox-prufrock/)
+- [Rap Mortality Graph](./vox-rap-mortality-graph/)
+- [Rat Bounty](./vox-rat-bounty/)
+- [Schrodinger Equation](./vox-schrodinger-equation/)
+- [Silent Join](./vox-silent-join/)
+- [The Struggle](./vox-the-struggle/)
+- [Turkey Problem](./vox-turkey-problem/)
+- [Ultraviolet Catastrophe](./vox-ultraviolet-catastrophe/)
+- [Wave Function](./vox-wave-function/)
+- [Why Hot Ones Are Jerks](./vox-why-hot-ones-are-jerks/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

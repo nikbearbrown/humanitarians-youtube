@@ -68,3 +68,62 @@ This directory is the **Claude for Marketing** collection in the Humanitarians Y
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Marketing
+
+This folder organizes **36 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Aaker Dimension Weakness Finder](./aaker-dimension-weakness-finder/)
+- [Ai Architecture Autonomy Classifier](./ai-architecture-autonomy-classifier/)
+- [Archetype Drift Case Studies](./archetype-drift-case-studies/)
+- [Boondoggle Score Calculator](./boondoggle-score-calculator/)
+- [Brand Archetype Classifier](./brand-archetype-classifier/)
+- [Brand Attribution Problem](./brand-attribution-problem/)
+- [Brand Metrics Performance Dashboard](./brand-metrics-performance-dashboard/)
+- [Brand Negative Space Mapper](./brand-negative-space-mapper/)
+- [Brand Palette Accessibility Auditor](./brand-palette-accessibility-auditor/)
+- [Brand Signal Collapse Detector](./brand-signal-collapse-detector/)
+- [Brand Voice Consistency Auditor](./brand-voice-consistency-auditor/)
+- [Branding And Ai Youtube Boondoggle Score Calculator Short](./branding-and-ai--youtube--boondoggle-score-calculator--short/)
+- [Branding And Ai Youtube Brand Archetype Classifier Short](./branding-and-ai--youtube--brand-archetype-classifier--short/)
+- [Branding And Ai Youtube Brand Attribution Problem Short](./branding-and-ai--youtube--brand-attribution-problem--short/)
+- [Branding And Ai Youtube Brand Metrics Performance Dashboard Short](./branding-and-ai--youtube--brand-metrics-performance-dashboard--short/)
+- [Branding And Ai Youtube Brand Signal Collapse Detector Short](./branding-and-ai--youtube--brand-signal-collapse-detector--short/)
+- [Branding And Ai Youtube Brand Voice Consistency Auditor Short](./branding-and-ai--youtube--brand-voice-consistency-auditor--short/)
+- [Branding And Ai Youtube Creative Engineer Market Repricing Short](./branding-and-ai--youtube--creative-engineer-market-repricing--short/)
+- [Branding And Ai Youtube Four Verb Career Signal Audit Short](./branding-and-ai--youtube--four-verb-career-signal-audit--short/)
+- [Branding And Ai Youtube Madison Multi Agent Architecture Mapper Short](./branding-and-ai--youtube--madison-multi-agent-architecture-mapper--short/)
+- [Branding And Ai Youtube Pipeline Contract Resilience Audit Short](./branding-and-ai--youtube--pipeline-contract-resilience-audit--short/)
+- [Branding And Ai Youtube Self As Project Brand Runner Short](./branding-and-ai--youtube--self-as-project-brand-runner--short/)
+- [Ch01 Lecture](./ch01-lecture/)
+- [Ch02 Lecture](./ch02-lecture/)
+- [Creative Engineer Market Repricing](./creative-engineer-market-repricing/)
+- [Four Verb Career Signal Audit](./four-verb-career-signal-audit/)
+- [Greenwashing Claims Risk Checker](./greenwashing-claims-risk-checker/)
+- [Interface Brand Alignment Checker](./interface-brand-alignment-checker/)
+- [Jtbd Audience Segment Generator](./jtbd-audience-segment-generator/)
+- [Madison Multi Agent Architecture Mapper](./madison-multi-agent-architecture-mapper/)
+- [Pipeline Contract Resilience Audit](./pipeline-contract-resilience-audit/)
+- [Prd Scope Decision Record](./prd-scope-decision-record/)
+- [Scct Crisis Triage Tool](./scct-crisis-triage-tool/)
+- [Self As Project Brand Runner](./self-as-project-brand-runner/)
+- [Short](./short/)
+- [Trademark Strength Screener](./trademark-strength-screener/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

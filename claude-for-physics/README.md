@@ -38,3 +38,32 @@ This directory is the **Claude for Physics** collection in the Humanitarians You
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Physics
+
+This folder organizes **6 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Who Was Albert Einstein](./hai-who-was-albert-einstein/)
+- [Who Was Max Planck](./hai-who-was-max-planck/)
+- [Who Was Albert Einstein](./medhavy-who-was-albert-einstein/)
+- [Who Was Max Planck](./medhavy-who-was-max-planck/)
+- [Who Was Albert Einstein](./who-was-albert-einstein/)
+- [Who Was Max Planck](./who-was-max-planck/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

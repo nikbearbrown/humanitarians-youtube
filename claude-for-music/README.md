@@ -60,3 +60,54 @@ This directory is the **Claude for Music** collection in the Humanitarians YouTu
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Music
+
+This folder organizes **28 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Baby Language Window Neuroscience Music](./baby-language-window-neuroscience-music/)
+- [Born Bilingual Language Window Neuroscience Music](./born-bilingual-language-window-neuroscience-music/)
+- [Ch01 Lecture](./ch01-lecture/)
+- [Ch02 Lecture](./ch02-lecture/)
+- [Indie In Your Corner](./claude-liam-indie-in-your-corner/)
+- [Indie In Your Hands](./claude-liam-indie-in-your-hands/)
+- [Indie In Your Voice](./claude-liam-indie-in-your-voice/)
+- [Indie On Schedule](./claude-liam-indie-on-schedule/)
+- [Indie On The Pitch](./claude-liam-indie-on-the-pitch/)
+- [Indie On Your Catalog](./claude-liam-indie-on-your-catalog/)
+- [Indie Sourced](./claude-liam-indie-sourced/)
+- [Five Senses One Song](./five-senses-one-song/)
+- [Ghosttrack Spotify Dag](./ghosttrack-spotify-dag/)
+- [How Music Mutates A Logical History](./how-music-mutates-a-logical-history/)
+- [How Music Works Audible](./how-music-works-audible/)
+- [Indie In Your Corner](./indie-in-your-corner/)
+- [Indie In Your Hands](./indie-in-your-hands/)
+- [Indie In Your Voice](./indie-in-your-voice/)
+- [Indie On Schedule](./indie-on-schedule/)
+- [Indie On The Pitch](./indie-on-the-pitch/)
+- [Indie On Your Catalog](./indie-on-your-catalog/)
+- [Indie Sourced](./indie-sourced/)
+- [Ghosttrack Spotify Dag](./nbb-ghosttrack-spotify-dag/)
+- [River Mumma Calling How A Song Crosses](./river-mumma-calling-how-a-song-crosses/)
+- [Suno Vs 11 Labs Cost Test](./suno-vs-11-labs-cost-test/)
+- [Suno Vs 11 Labs Cost Test 11labs](./suno-vs-11-labs-cost-test-11labs/)
+- [The Song That Lied To You](./the-song-that-lied-to-you/)
+- [The Voice Before The Music Why Songs](./the-voice-before-the-music-why-songs/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

@@ -84,3 +84,78 @@ This directory is the **Claude for Finance** collection in the Humanitarians You
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Finance
+
+This folder organizes **52 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Behavioral Debiaser](./behavioral-debiaser/)
+- [Binomial Tree Option Pricer](./binomial-tree-option-pricer/)
+- [Black Scholes Option Pricer](./black-scholes-option-pricer/)
+- [Black Scholes Put Pricer](./black-scholes-put-pricer/)
+- [Bond Duration Pricer](./bond-duration-pricer/)
+- [Bond Pricing Duration](./bond-pricing-duration/)
+- [Capm Alpha Calculator](./capm-alpha-calculator/)
+- [Cash Conversion Cycle](./cash-conversion-cycle/)
+- [Computational Finance With Llms Mycroft](./computational-finance-with-llms-mycroft/)
+- [Corporate Finance With Llms Mycroft](./corporate-finance-with-llms-mycroft/)
+- [Correlation Stress Tester](./correlation-stress-tester/)
+- [Dcf Sensitivity Surface](./dcf-sensitivity-surface/)
+- [Dcf Terminal Value Sensitivity](./dcf-terminal-value-sensitivity/)
+- [Dividend Policy Lintner](./dividend-policy-lintner/)
+- [Efficient Frontier Builder](./efficient-frontier-builder/)
+- [Leverage Scorecard](./leverage-scorecard/)
+- [Ma Synergy Haircut](./ma-synergy-haircut/)
+- [Markowitz Portfolio Optimizer](./markowitz-portfolio-optimizer/)
+- [Mm Tax Shield](./mm-tax-shield/)
+- [Monte Carlo Portfolio](./monte-carlo-portfolio/)
+- [Behavioral Debiaser](./nbb-behavioral-debiaser/)
+- [Binomial Tree Option Pricer](./nbb-binomial-tree-option-pricer/)
+- [Black Scholes Option Pricer](./nbb-black-scholes-option-pricer/)
+- [Black Scholes Put Pricer](./nbb-black-scholes-put-pricer/)
+- [Bond Duration Pricer](./nbb-bond-duration-pricer/)
+- [Bond Pricing Duration](./nbb-bond-pricing-duration/)
+- [Capm Alpha Calculator](./nbb-capm-alpha-calculator/)
+- [Cash Conversion Cycle](./nbb-cash-conversion-cycle/)
+- [Correlation Stress Tester](./nbb-correlation-stress-tester/)
+- [Dcf Sensitivity Surface](./nbb-dcf-sensitivity-surface/)
+- [Dcf Terminal Value Sensitivity](./nbb-dcf-terminal-value-sensitivity/)
+- [Dividend Policy Lintner](./nbb-dividend-policy-lintner/)
+- [Efficient Frontier Builder](./nbb-efficient-frontier-builder/)
+- [Leverage Scorecard](./nbb-leverage-scorecard/)
+- [Ma Synergy Haircut](./nbb-ma-synergy-haircut/)
+- [Markowitz Portfolio Optimizer](./nbb-markowitz-portfolio-optimizer/)
+- [Mm Tax Shield](./nbb-mm-tax-shield/)
+- [Monte Carlo Portfolio](./nbb-monte-carlo-portfolio/)
+- [Risk Metrics Var Cvar](./nbb-risk-metrics-var-cvar/)
+- [Rolling Correlation](./nbb-rolling-correlation/)
+- [Sharpe Ratio Verifier](./nbb-sharpe-ratio-verifier/)
+- [Verification Log Demo](./nbb-verification-log-demo/)
+- [Volatility Drag Simulator](./nbb-volatility-drag-simulator/)
+- [Wacc Sensitivity Calculator](./nbb-wacc-sensitivity-calculator/)
+- [Yield Curve Bootstrap](./nbb-yield-curve-bootstrap/)
+- [Risk Metrics Var Cvar](./risk-metrics-var-cvar/)
+- [Rolling Correlation](./rolling-correlation/)
+- [Sharpe Ratio Verifier](./sharpe-ratio-verifier/)
+- [Verification Log Demo](./verification-log-demo/)
+- [Volatility Drag Simulator](./volatility-drag-simulator/)
+- [Wacc Sensitivity Calculator](./wacc-sensitivity-calculator/)
+- [Yield Curve Bootstrap](./yield-curve-bootstrap/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

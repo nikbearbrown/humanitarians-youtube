@@ -570,3 +570,106 @@ This directory is the **Claude for Quantum Mechanics** collection in the Humanit
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Quantum Mechanics
+
+This folder organizes **538 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Building The Physical Free Particle Superposition And Dispersi](./building-the-physical-free-particle-superposition-and-dispersi/)
+- [Building The Physical Free Particle Superposition And Dispersi](./claude-liam-building-the-physical-free-particle-superposition-and-dispersi/)
+- [Claude Liam Cli Band Gap Fourier Explorer](./claude-liam-claude-liam-cli-band-gap-fourier-explorer/)
+- [Claude Liam Cli Bloch Sphere Qubit Explorer](./claude-liam-claude-liam-cli-bloch-sphere-qubit-explorer/)
+- [Claude Liam Cli Hermitian Eigenvalue Explorer](./claude-liam-claude-liam-cli-hermitian-eigenvalue-explorer/)
+- [Claude Liam Cli Qm2 Centrifugal Barrier Explorer](./claude-liam-claude-liam-cli-qm2-centrifugal-barrier-explorer/)
+- [Claude Liam Cli Qm2 Exchange Pauli Node](./claude-liam-claude-liam-cli-qm2-exchange-pauli-node/)
+- [Claude Liam Cli Qm2 Hydrogen Radial Explorer](./claude-liam-claude-liam-cli-qm2-hydrogen-radial-explorer/)
+- [Claude Liam Cli Qm2 Hydrogen Transitions](./claude-liam-claude-liam-cli-qm2-hydrogen-transitions/)
+- [Claude Liam Cli Qm2 Madelung Exceptions](./claude-liam-claude-liam-cli-qm2-madelung-exceptions/)
+- [Claude Liam Cli Qm2 Rabi Oscillation](./claude-liam-claude-liam-cli-qm2-rabi-oscillation/)
+- [Claude Liam Cli Qm2 Robertson Bloch Heatmap](./claude-liam-claude-liam-cli-qm2-robertson-bloch-heatmap/)
+- [Claude Liam Cli Qmcg Chsh Explorer](./claude-liam-claude-liam-cli-qmcg-chsh-explorer/)
+- [Claude Liam Cli Qmcg Fermis Golden Rule](./claude-liam-claude-liam-cli-qmcg-fermis-golden-rule/)
+- [Claude Liam Cli Qmcg Finite Well Explorer](./claude-liam-claude-liam-cli-qmcg-finite-well-explorer/)
+- [Claude Liam Cli Qmcg Harmonic Oscillator Ladder](./claude-liam-claude-liam-cli-qmcg-harmonic-oscillator-ladder/)
+- [Claude Liam Cli Qmcg Kronig Penney Bands](./claude-liam-claude-liam-cli-qmcg-kronig-penney-bands/)
+- [Claude Liam Cli Qmcg Quantum Statistics Explorer](./claude-liam-claude-liam-cli-qmcg-quantum-statistics-explorer/)
+- [Claude Liam Cli Qmcg Uncertainty Explorer](./claude-liam-claude-liam-cli-qmcg-uncertainty-explorer/)
+- [Claude Liam Cli Qmcg Variational Helium](./claude-liam-claude-liam-cli-qmcg-variational-helium/)
+- [Claude Liam Cli Quantum Revival Box Explorer](./claude-liam-claude-liam-cli-quantum-revival-box-explorer/)
+- [Claude Liam Cli Sturm Liouville Orthogonality Gallery](./claude-liam-claude-liam-cli-sturm-liouville-orthogonality-gallery/)
+- [Claude Liam Cli Uncertainty Principle Sandbox](./claude-liam-claude-liam-cli-uncertainty-principle-sandbox/)
+- [Claude Liam Cli Variational Bound Optimizer](./claude-liam-claude-liam-cli-variational-bound-optimizer/)
+- [Claude Liam Cli Vol1 Barrier Explorer](./claude-liam-claude-liam-cli-vol1-barrier-explorer/)
+- [Claude Liam Cli Vol1 Bloch Sphere](./claude-liam-claude-liam-cli-vol1-bloch-sphere/)
+- [Claude Liam Cli Vol1 Debroglie Scale](./claude-liam-claude-liam-cli-vol1-debroglie-scale/)
+- [Claude Liam Cli Vol1 Finite Well Explorer](./claude-liam-claude-liam-cli-vol1-finite-well-explorer/)
+- [Claude Liam Cli Vol1 Planck Vs Rj](./claude-liam-claude-liam-cli-vol1-planck-vs-rj/)
+- [Claude Liam Cli Vol1 Uncertainty Hyperbola](./claude-liam-claude-liam-cli-vol1-uncertainty-hyperbola/)
+- [Claude Liam Cli Vol3 Born Validity Map](./claude-liam-claude-liam-cli-vol3-born-validity-map/)
+- [Claude Liam Cli Vol3 Hard Sphere Crosssection](./claude-liam-claude-liam-cli-vol3-hard-sphere-crosssection/)
+- [Claude Liam Cli Vol3 Kronig Penney Explorer](./claude-liam-claude-liam-cli-vol3-kronig-penney-explorer/)
+- [Claude Liam Cli Vol3 Quantum Dot Confinement](./claude-liam-claude-liam-cli-vol3-quantum-dot-confinement/)
+- [Claude Liam Cli Vol3 Rabi Detuning Landscape](./claude-liam-claude-liam-cli-vol3-rabi-detuning-landscape/)
+- [Claude Liam Cli Vol3 Sinc Squared To Golden Rule](./claude-liam-claude-liam-cli-vol3-sinc-squared-to-golden-rule/)
+- [Claude Liam Cli Vol3 Zeeman Crossover](./claude-liam-claude-liam-cli-vol3-zeeman-crossover/)
+- [Claude Liam Cli Vol4 Bloch Ball Purity](./claude-liam-claude-liam-cli-vol4-bloch-ball-purity/)
+- [Claude Liam Cli Vol4 Chsh Angle Explorer](./claude-liam-claude-liam-cli-vol4-chsh-angle-explorer/)
+- [Claude Liam Cli Vol4 Entanglement Entropy Slider](./claude-liam-claude-liam-cli-vol4-entanglement-entropy-slider/)
+- [Claude Liam Cli Vol4 Nv Odmr Field Map](./claude-liam-claude-liam-cli-vol4-nv-odmr-field-map/)
+- [Claude Liam Cli Vol4 Partial Trace Heatmap](./claude-liam-claude-liam-cli-vol4-partial-trace-heatmap/)
+- [Claude Liam Cli Vol4 Platform Ngates Compare](./claude-liam-claude-liam-cli-vol4-platform-ngates-compare/)
+- [Claude Liam Cli Vol4 Willow Threshold Reconstruction](./claude-liam-claude-liam-cli-vol4-willow-threshold-reconstruction/)
+- [Band Gap Fourier Explorer](./claude-liam-cli-band-gap-fourier-explorer/)
+- [Bloch Sphere Qubit Explorer](./claude-liam-cli-bloch-sphere-qubit-explorer/)
+- [Hermitian Eigenvalue Explorer](./claude-liam-cli-hermitian-eigenvalue-explorer/)
+- [Qm2 Centrifugal Barrier Explorer](./claude-liam-cli-qm2-centrifugal-barrier-explorer/)
+- [Qm2 Exchange Pauli Node](./claude-liam-cli-qm2-exchange-pauli-node/)
+- [Qm2 Hydrogen Radial Explorer](./claude-liam-cli-qm2-hydrogen-radial-explorer/)
+- [Qm2 Hydrogen Transitions](./claude-liam-cli-qm2-hydrogen-transitions/)
+- [Qm2 Madelung Exceptions](./claude-liam-cli-qm2-madelung-exceptions/)
+- [Qm2 Rabi Oscillation](./claude-liam-cli-qm2-rabi-oscillation/)
+- [Qm2 Robertson Bloch Heatmap](./claude-liam-cli-qm2-robertson-bloch-heatmap/)
+- [Qmcg Chsh Explorer](./claude-liam-cli-qmcg-chsh-explorer/)
+- [Qmcg Fermis Golden Rule](./claude-liam-cli-qmcg-fermis-golden-rule/)
+- [Qmcg Finite Well Explorer](./claude-liam-cli-qmcg-finite-well-explorer/)
+- [Qmcg Harmonic Oscillator Ladder](./claude-liam-cli-qmcg-harmonic-oscillator-ladder/)
+- [Qmcg Kronig Penney Bands](./claude-liam-cli-qmcg-kronig-penney-bands/)
+- [Qmcg Quantum Statistics Explorer](./claude-liam-cli-qmcg-quantum-statistics-explorer/)
+- [Qmcg Uncertainty Explorer](./claude-liam-cli-qmcg-uncertainty-explorer/)
+- [Qmcg Variational Helium](./claude-liam-cli-qmcg-variational-helium/)
+- [Quantum Revival Box Explorer](./claude-liam-cli-quantum-revival-box-explorer/)
+- [Sturm Liouville Orthogonality Gallery](./claude-liam-cli-sturm-liouville-orthogonality-gallery/)
+- [Uncertainty Principle Sandbox](./claude-liam-cli-uncertainty-principle-sandbox/)
+- [Variational Bound Optimizer](./claude-liam-cli-variational-bound-optimizer/)
+- [Vol1 Barrier Explorer](./claude-liam-cli-vol1-barrier-explorer/)
+- [Vol1 Bloch Sphere](./claude-liam-cli-vol1-bloch-sphere/)
+- [Vol1 Debroglie Scale](./claude-liam-cli-vol1-debroglie-scale/)
+- [Vol1 Finite Well Explorer](./claude-liam-cli-vol1-finite-well-explorer/)
+- [Vol1 Planck Vs Rj](./claude-liam-cli-vol1-planck-vs-rj/)
+- [Vol1 Uncertainty Hyperbola](./claude-liam-cli-vol1-uncertainty-hyperbola/)
+- [Vol3 Born Validity Map](./claude-liam-cli-vol3-born-validity-map/)
+- [Vol3 Hard Sphere Crosssection](./claude-liam-cli-vol3-hard-sphere-crosssection/)
+- [Vol3 Kronig Penney Explorer](./claude-liam-cli-vol3-kronig-penney-explorer/)
+- [Vol3 Quantum Dot Confinement](./claude-liam-cli-vol3-quantum-dot-confinement/)
+- [Vol3 Rabi Detuning Landscape](./claude-liam-cli-vol3-rabi-detuning-landscape/)
+- [Vol3 Sinc Squared To Golden Rule](./claude-liam-cli-vol3-sinc-squared-to-golden-rule/)
+- [Vol3 Zeeman Crossover](./claude-liam-cli-vol3-zeeman-crossover/)
+- [Vol4 Bloch Ball Purity](./claude-liam-cli-vol4-bloch-ball-purity/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

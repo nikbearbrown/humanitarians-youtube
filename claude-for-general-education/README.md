@@ -84,3 +84,78 @@ This directory is the **Claude for General Education** collection in the Humanit
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For General Education
+
+This folder organizes **52 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Backdoor Criterion Solver](./backdoor-criterion-solver/)
+- [Backdoor Paths Adjustment](./backdoor-paths-adjustment/)
+- [Balinski Young Impossibility](./balinski-young-impossibility/)
+- [Brand Archetype Variable Identifier](./brand-archetype-variable-identifier/)
+- [Candidate Dag Audit](./candidate-dag-audit/)
+- [Causal Variable Identifier](./causal-variable-identifier/)
+- [Ch09 Lecture](./ch09-lecture/)
+- [Ch14 Lecture](./ch14-lecture/)
+- [Ch25 Lecture](./ch25-lecture/)
+- [Collider Bias Simulation](./collider-bias-simulation/)
+- [Collider Bias Simulator](./collider-bias-simulator/)
+- [Confounder Set Critique](./confounder-set-critique/)
+- [Counterfactual Confound Tester](./counterfactual-confound-tester/)
+- [Dag Defense Stress Test](./dag-defense-stress-test/)
+- [Dag Path Analyzer](./dag-path-analyzer/)
+- [Dowhy Causal Estimate](./dowhy-causal-estimate/)
+- [E Value Calculator](./e-value-calculator/)
+- [Fluency Trap](./fluency-trap/)
+- [Four Moves Of Skepticism](./four-moves-of-skepticism/)
+- [How To Make Perfect Spreadsheets](./how-to-make-perfect-spreadsheets/)
+- [I Replaced Myself](./i-replaced-myself/)
+- [I Shook Hands With A Nobel Prize](./i-shook-hands-with-a-nobel-prize/)
+- [Its Not X Its Y](./its-not-x-its-y/)
+- [Backdoor Criterion Solver](./nbb-backdoor-criterion-solver/)
+- [Backdoor Paths Adjustment](./nbb-backdoor-paths-adjustment/)
+- [Balinski Young Impossibility](./nbb-balinski-young-impossibility/)
+- [Brand Archetype Variable Identifier](./nbb-brand-archetype-variable-identifier/)
+- [Candidate Dag Audit](./nbb-candidate-dag-audit/)
+- [Causal Variable Identifier](./nbb-causal-variable-identifier/)
+- [Collider Bias Simulation](./nbb-collider-bias-simulation/)
+- [Collider Bias Simulator](./nbb-collider-bias-simulator/)
+- [Confounder Set Critique](./nbb-confounder-set-critique/)
+- [Counterfactual Confound Tester](./nbb-counterfactual-confound-tester/)
+- [Dag Defense Stress Test](./nbb-dag-defense-stress-test/)
+- [Dag Path Analyzer](./nbb-dag-path-analyzer/)
+- [Dowhy Causal Estimate](./nbb-dowhy-causal-estimate/)
+- [E Value Calculator](./nbb-e-value-calculator/)
+- [Fluency Trap](./nbb-fluency-trap/)
+- [Four Moves Of Skepticism](./nbb-four-moves-of-skepticism/)
+- [Randomization Logic](./nbb-randomization-logic/)
+- [Sensitivity Analysis](./nbb-sensitivity-analysis/)
+- [Sensitivity Analysis Visamatch](./nbb-sensitivity-analysis-visamatch/)
+- [Simpson Paradox Detector](./nbb-simpson-paradox-detector/)
+- [Solve Verify Asymmetry](./nbb-solve-verify-asymmetry/)
+- [Prompt 47](./prompt-47/)
+- [Randomization Logic](./randomization-logic/)
+- [S](./s/)
+- [Sensitivity Analysis](./sensitivity-analysis/)
+- [Sensitivity Analysis Visamatch](./sensitivity-analysis-visamatch/)
+- [Simpson Paradox Detector](./simpson-paradox-detector/)
+- [Solve Verify Asymmetry](./solve-verify-asymmetry/)
+- [Youre Just A Text File](./youre-just-a-text-file/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->

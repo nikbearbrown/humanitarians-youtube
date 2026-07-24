@@ -123,3 +123,106 @@ This directory is the **Claude for Computer Science** collection in the Humanita
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
+
+
+<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+
+# Claude For Computer Science
+
+This folder organizes **91 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+
+## Rebuild toolkit
+
+```bash
+git clone https://github.com/nikbearbrown/brutalist.art.git
+cd brutalist.art
+./setup --install
+./setup
+```
+
+Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the clock, generated visual beats compile immediately, and unavailable media remains as labeled slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and decides whether anything is published.
+
+## Projects in this folder
+
+- [Agent Friendly Cli Checker](./agent-friendly-cli-checker/)
+- [Build This Vox Liam](./build-this-vox-liam/)
+- [Builder Validator Demo](./builder-validator-demo/)
+- [Chinese Room Explainer Vox](./chinese-room-explainer-vox/)
+- [Accelerator Routing](./claude-liam-accelerator-routing/)
+- [Activation Memory Crash](./claude-liam-activation-memory-crash/)
+- [Agent Friendly Cli Checker](./claude-liam-agent-friendly-cli-checker/)
+- [Architecture Physics](./claude-liam-architecture-physics/)
+- [Async Safety Loop](./claude-liam-async-safety-loop/)
+- [Brownout Coin Cell](./claude-liam-brownout-coin-cell/)
+- [Build This Vox Liam](./claude-liam-build-this-vox-liam/)
+- [Builder Validator Demo](./claude-liam-builder-validator-demo/)
+- [Battery Life](./claude-liam-cli-battery-life/)
+- [Brownout](./claude-liam-cli-brownout/)
+- [Compression Journey](./claude-liam-cli-compression-journey/)
+- [Deploy Runner](./claude-liam-cli-deploy-runner/)
+- [Distill](./claude-liam-cli-distill/)
+- [Int8 Mash](./claude-liam-cli-int8-mash/)
+- [Latency Predictor](./claude-liam-cli-latency-predictor/)
+- [Memory Verdict](./claude-liam-cli-memory-verdict/)
+- [Pareto Selector](./claude-liam-cli-pareto-selector/)
+- [Prune Benchmark](./claude-liam-cli-prune-benchmark/)
+- [Pruning Cliff](./claude-liam-cli-pruning-cliff/)
+- [Realtime Verdict](./claude-liam-cli-realtime-verdict/)
+- [Roofline](./claude-liam-cli-roofline/)
+- [Context Cost Breakdown](./claude-liam-context-cost-breakdown/)
+- [Cpu Overhead Gap](./claude-liam-cpu-overhead-gap/)
+- [Depthwise Split](./claude-liam-depthwise-split/)
+- [Diff First Change Auditor](./claude-liam-diff-first-change-auditor/)
+- [Doorbell Power Budget](./claude-liam-doorbell-power-budget/)
+- [Duty Cycle Battery](./claude-liam-duty-cycle-battery/)
+- [Folder Structure Auditor](./claude-liam-folder-structure-auditor/)
+- [Latency Gap](./claude-liam-latency-gap/)
+- [Lstm Ops](./claude-liam-lstm-ops/)
+- [Mcp Context Cost Meter](./claude-liam-mcp-context-cost-meter/)
+- [Mcp Payload Aggregator](./claude-liam-mcp-payload-aggregator/)
+- [Memory Vs Speed](./claude-liam-memory-vs-speed/)
+- [Nine Weights Convolution](./claude-liam-nine-weights-convolution/)
+- [Pareto Model Select](./claude-liam-pareto-model-select/)
+- [Quantization Hurts](./claude-liam-quantization-hurts/)
+- [Race To Sleep](./claude-liam-race-to-sleep/)
+- [Radio Eats Battery](./claude-liam-radio-eats-battery/)
+- [Session State Generator](./claude-liam-session-state-generator/)
+- [Simd Free Speedup](./claude-liam-simd-free-speedup/)
+- [Soft Label Lesson](./claude-liam-soft-label-lesson/)
+- [Split Inference](./claude-liam-split-inference/)
+- [Structured Pruning Wins](./claude-liam-structured-pruning-wins/)
+- [Subagent Summary Protocol](./claude-liam-subagent-summary-protocol/)
+- [Toolchain Silent Fail](./claude-liam-toolchain-silent-fail/)
+- [Battery Life](./cli-battery-life/)
+- [Brownout](./cli-brownout/)
+- [Compression Journey](./cli-compression-journey/)
+- [Deploy Runner](./cli-deploy-runner/)
+- [Distill](./cli-distill/)
+- [Int8 Mash](./cli-int8-mash/)
+- [Latency Predictor](./cli-latency-predictor/)
+- [Memory Verdict](./cli-memory-verdict/)
+- [Pareto Selector](./cli-pareto-selector/)
+- [Prune Benchmark](./cli-prune-benchmark/)
+- [Pruning Cliff](./cli-pruning-cliff/)
+- [Realtime Verdict](./cli-realtime-verdict/)
+- [Roofline](./cli-roofline/)
+- [Context Cost Breakdown](./context-cost-breakdown/)
+- [Diff First Change Auditor](./diff-first-change-auditor/)
+- [Folder Structure Auditor](./folder-structure-auditor/)
+- [Mcp Context Cost Meter](./mcp-context-cost-meter/)
+- [Mcp Payload Aggregator](./mcp-payload-aggregator/)
+- [Agent Friendly Cli Checker](./nbb-agent-friendly-cli-checker/)
+- [Builder Validator Demo](./nbb-builder-validator-demo/)
+- [Cli Battery Life](./nbb-cli-battery-life/)
+- [Cli Brownout](./nbb-cli-brownout/)
+- [Cli Compression Journey](./nbb-cli-compression-journey/)
+- [Cli Deploy Runner](./nbb-cli-deploy-runner/)
+- [Cli Distill](./nbb-cli-distill/)
+- [Cli Int8 Mash](./nbb-cli-int8-mash/)
+- [Cli Latency Predictor](./nbb-cli-latency-predictor/)
+- [Cli Memory Verdict](./nbb-cli-memory-verdict/)
+- [Cli Pareto Selector](./nbb-cli-pareto-selector/)
+- [Cli Prune Benchmark](./nbb-cli-prune-benchmark/)
+- [Cli Pruning Cliff](./nbb-cli-pruning-cliff/)
+
+<!-- END BRUTALIST REBUILD GUIDE -->
