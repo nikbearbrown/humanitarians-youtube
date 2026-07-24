@@ -3,18 +3,18 @@
     "title": "plugin-structure",
     "slug": "claude-liam-plugin-structure",
     "topic": "PLUGIN-STRUCTURE · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the plugin-structure skill. It documents how a Claude Code plugin is laid out — the directory tree, the manifest, the five component types, and the portable path system. Three rules govern everything. First: the manifest goes in dot-claude-plugin slash plugin dot json — not in the component directories. Second: the component directories — commands, agents, skills, hooks — go at plugin root, not nested inside dot-claude-plugin. Third: every intra-plugin path reference uses the CLAUDE underscore PLUGIN underscore ROOT environment variable — never a hardcoded absolute path, never a relative path from the working directory. Let me walk you through the structure, the components, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the plugin-structure skill. It documents how a Claude Code plugin is laid out — the directory tree, the manifest, the five component types, and the portable path system. Three rules govern everything. First: the manifest goes in dot-claude-plugin slash plugin dot json — not in the component directories. Second: the component directories — commands, agents, skills, hooks — go at plugin root, not nested inside dot-claude-plugin. Third: every intra-plugin path reference uses the CLAUDE underscore PLUGIN underscore ROOT environment variable — never a hardcoded absolute path, never a relative path from the working directory. Let me walk you through the structure, the components, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "PLUGIN-STRUCTURE · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Scaffold a full Claude Code plugin with commands, a skill, hooks, and an MCP server.",
@@ -51,7 +51,7 @@
               "${CLAUDE_PLUGIN_ROOT} for all intra-plugin paths — never hardcode absolute paths",
               "Auto-discovery: commands/*.md, agents/*.md, skills/*/SKILL.md, hooks/hooks.json"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — directory layout and manifest",
       "narration_text": "The plugin has one root, one manifest, and five component zones. The root holds the component directories at the top level — commands, agents, skills, hooks — and the dot-mcp-json file for MCP servers. The manifest lives inside dot-claude-plugin slash plugin dot json — the only directory that is not a component directory. The manifest requires only a name field in kebab-case. Everything else — version, description, author, keywords, custom component paths — is optional. Custom component paths supplement the auto-discovered defaults rather than replacing them. A component specified in both a custom path and a default directory loads from both. Five component types, each with its own discovery pattern. Commands are markdown files in commands slash — auto-discovered by extension, become slash commands. Agents are markdown files in agents slash — auto-discovered by extension, available to Claude Code for task routing. Skills are subdirectories under skills slash, each containing exactly a SKILL dot md file — auto-discovered by filename. Hooks are configured in hooks slash hooks dot json — loaded at plugin enable. MCP servers are defined in dot-mcp-json at plugin root — started automatically when the plugin enables. The CLAUDE underscore PLUGIN underscore ROOT variable resolves to the plugin's install directory regardless of where on the system the plugin is installed — use it in hook command paths, MCP server arguments, script references, and any path that must survive installation in a different location.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: start with the minimal manifest. Create dot-claude-plugin slash plugin dot json with only the name field. Add version, description, and author when the plugin is ready to share — not before. Rely on auto-discovery for the standard layout. Only add custom path entries to the manifest when a component lives outside the default directory. Second: component directory placement. Put commands, agents, skills, and hooks at plugin root — not inside dot-claude-plugin. A common mistake is nesting component directories inside the manifest directory; they are not discovered there. Third: portable paths with CLAUDE underscore PLUGIN underscore ROOT in every hook command, every MCP server argument, every script reference that crosses a directory boundary. Never use a hardcoded absolute path or a relative path from the working directory — those break when the plugin installs in a different location. Fourth: troubleshooting auto-discovery. If a component does not load, check four things: is the file in the correct directory, does it have the correct extension — dot md for commands and agents, SKILL dot md for skills — is the YAML frontmatter valid, and is the plugin enabled. Key gotchas. Skill files must be named exactly SKILL dot md — README dot md or SKILL dash detail dot md are not discovered. Custom paths supplement defaults, so a component in a custom path and the default directory loads twice if both point to the same file. MCP server changes require a Claude Code restart — unlike commands and agents which load on the next session.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. The directory layout is documented with clear placement rules: manifest in dot-claude-plugin, component directories at root, never nested. The auto-discovery contract is explicit: commands and agents discover by extension, skills discover by filename SKILL dot md, hooks load from hooks.json, MCP from dot-mcp-json. The CLAUDE underscore PLUGIN underscore ROOT variable is documented with a clear why — plugins install in different locations depending on installation method, OS, and user preference — and every path type that needs it is listed. The five component types are each documented with format, discovery mechanism, and example structure. The troubleshooting section covers the four most common failure modes — wrong directory, wrong extension, bad frontmatter, plugin disabled — in order. Where it bites. Skill files must be named exactly SKILL dot md — not README, not skill-name dot md, not anything else. The skill states this but does not call it out as the most common skill-loading failure, which it is. Custom paths supplement defaults — adding a custom path does not remove the default discovery; a file reachable from both paths loads twice. This surprises teams who add a custom path expecting it to replace the default scan. MCP server changes require a Claude Code restart — the skill says changes take effect on the next session but buries this in the discovery timing section rather than in the MCP server section where the reader expects it. The plugin.json name must be unique across all installed plugins — name collision with another plugin causes silent override or failure with no helpful error. Path references from within component files — commands, agents, skills — reference CLAUDE underscore PLUGIN underscore ROOT correctly in hook JSON, but command and agent markdown files must mention the variable for Claude to use it, which requires the author to know to include it.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. plugin-structure: manifest at dot-claude-plugin slash plugin dot json — name field only required. Components at plugin root: commands slash for slash commands, agents slash for subagents, skills slash for skills each with SKILL dot md, hooks slash hooks dot json for events, dot-mcp-json for MCP servers. Auto-discovery by extension or filename. CLAUDE underscore PLUGIN underscore ROOT for all intra-plugin paths. Gaps: skill files must be exactly SKILL dot md or they are skipped; custom paths supplement defaults and can cause double-loading; MCP changes need a restart; plugin name must be unique across all installed plugins.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Ask Claude to scaffold a plugin with a slash command, a skill, a pre-tool-use hook, and an MCP server. Watch five things. First: does it put the manifest at dot-claude-plugin slash plugin dot json, or does it put it somewhere else? Second: are the component directories — commands, agents, skills, hooks — at the plugin root, not nested inside dot-claude-plugin? Third: does every hook command path and MCP server argument use CLAUDE underscore PLUGIN underscore ROOT, or does it hardcode an absolute path? Fourth: is the skill file named exactly SKILL dot md, or does it use another name like README or the skill name directly? Fifth: does the plugin dot json name field use kebab-case, and is it descriptive enough to avoid conflicts with other plugins the user might install?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: skills/skill-name/SKILL.md (exactly) · kebab-case plugin name",
               "Red flag: components in .claude-plugin/ · hardcoded paths · wrong skill filename"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "plugin-structure. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "plugin-structure. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "plugin-structure",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "plugin-structure · Claude Plugins"
           },
           "rendered": {

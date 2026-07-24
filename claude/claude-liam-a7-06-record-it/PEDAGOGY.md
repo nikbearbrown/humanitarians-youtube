@@ -4,7 +4,7 @@
 Cold open (two valid paths) → fast path (Zoom) → quality path (Loom/Descript/Remotion) → Brutalist-art toolkit path → requirements either way + 8-minute rehearsal law → verdict → Your Turn (record one timed take, diagnostic) → outro.
 
 ## Cold open law
-Opens: "Hola — Liam, Episode 6 of 7." States both paths explicitly, names the choice criteria (time/skill/goal). ✓
+Opens: "Hola — Kore, Episode 6 of 7." States both paths explicitly, names the choice criteria (time/skill/goal). ✓
 
 ## Gap formula
 Gap: students either over-invest in production before the pitch is ready, or under-invest and miss the production quality signal. Fix: fast path described first (earns the 80%) and quality path second (top 25%), with the selection criteria made explicit.

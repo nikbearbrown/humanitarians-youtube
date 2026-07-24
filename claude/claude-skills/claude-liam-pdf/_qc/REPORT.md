@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-18  
 **Duration:** 225.3s (3:45) · 1280×720 · h264+aac  
-**Voice:** Kokoro am_onyx (7 beats, $0.00)
+**Voice:** Kokoro af_kore (7 beats, $0.00)
 
 ## 8-point rubric
 

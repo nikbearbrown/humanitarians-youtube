@@ -26,13 +26,13 @@ Auditor: automated visual QC
 ## 9-point rubric
 1. **Palette** — PASS: CLAUDE.PAGE cream, CLAUDE.INK dark, CLAUDE.SPARK terracotta throughout
 2. **Typography** — PASS: SERIF headings, MONO code, SANS UI labels
-3. **TRIGGER / greeting** — PASS: "Guten Tag, Liam" in B00, IN-FOR-BEAR law satisfied
+3. **TRIGGER / greeting** — PASS: "Guten Tag, Kore" in B00, IN-FOR-BEAR law satisfied
 4. **Content accuracy** — PASS: 3 stages, 5 meta questions, 6-step section loop, exit conditions from SKILL.md
 5. **SELF-DEMO** — PASS: B03 6-step loop verbatim from SKILL.md § Stage 2
 6. **Verbatim quotes** — PASS: exit conditions and quality gate text exact from SKILL.md
 7. **Verdict props** — PASS: `artifactTitle`/`artifactHeading`/`artifactLines` (not title/lines)
 8. **Canvas fill** — B03 fixed (STEP_H increased). B01/B02/B05 have lower canvas open (MINOR)
-9. **Audio sync** — PASS: 9 beats, Kokoro am_onyx, $0.00
+9. **Audio sync** — PASS: 9 beats, Kokoro af_kore, $0.00
 
 ## Fix applied
 - B03 (DocCoauthoringStage2): STEP_H increased from H*0.35 to H*0.52 to eliminate dead zone between step cards and quality boxes. Re-rendered before final compile.

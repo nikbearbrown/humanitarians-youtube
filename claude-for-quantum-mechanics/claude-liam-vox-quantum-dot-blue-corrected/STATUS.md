@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | The durable lesson is a scaling argument: confinement introduces a kinetic energy that ris |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. Ignore every correction and keep only the one-over-R-squared confinement term.  |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | The factor is three over two, squared: two-point-two-five. The confinement contribution be |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Why a Smaller Quantum Dot Glows Bluer. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Why a Smaller Quantum Dot Glows Bluer. Kore, in for Humanitarians AI. |

@@ -9,8 +9,8 @@ published. All gates pending.
   kept; nothing beat it)
 - Skill: deep-explainer, talk-analysis body (analyzes an external conference
   talk; not a skill teardown)
-- Channel: claude-liam · persona Liam · Kokoro am_onyx · register Teardown
-- Greeting: "Merhaba, Liam" (assigned)
+- Channel: claude-liam · persona Kore · Kokoro af_kore · register Teardown
+- Greeting: "Merhaba, Kore" (assigned)
 - Playlist: "Talks, Torn Down"
 - Source: Lamis Mukta, "Learning while you sleep: Beyond memory to dreaming",
   AI Native DevCon London, June 2026 — transcript on disk as SOURCE.md

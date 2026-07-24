@@ -2,7 +2,7 @@
 
 | Beat | Visual |
 |---|---|
-| B01 | Claude/Liam cold open |
+| B01 | Claude/Kore cold open |
 | B02 | Component waves combine into a localized packet |
 | B03 | Counterfactual rigidly translating envelope |
 | B04 | Parabolic ω(k) curve and changing slope |

@@ -14,7 +14,7 @@
 | B05 | 241s | PASS | PagerdutyApiTell — 5 GETS RIGHT / 5 WHERE IT BITES, callout with ! icon |
 | BVDT | 307s | PASS | ClaudeVerdictArtifact — 6-line verdict, all key content present |
 | BHTF | 347s | PASS | ClaudeComposerAsk handoff — Your Turn prompt, Watch/Expected/Red flag rows |
-| BOUT | 370s | PASS | ClaudeTitleOutro — pagerduty-api. @NikBearBrown pagerduty-api · Claude Plugins |
+| BOUT | 370s | PASS | ClaudeTitleOutro — pagerduty-api. @HumanitariansAI pagerduty-api · Claude Plugins |
 
 ## Warnings
 

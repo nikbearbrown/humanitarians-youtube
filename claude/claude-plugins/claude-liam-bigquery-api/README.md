@@ -1,3 +1,5 @@
+
+
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # BigQuery API
@@ -6,7 +8,7 @@
 
 **Topic:** BIGQUERY API · CLAUDE TAG PLUGIN
 
-Namaste — this is Liam, in for Bear. Ask Claude to run SQL against BigQuery, check a job's status, list datasets, or preview table rows — the BigQuery API skill fires. It covers bigquery.googleapis.com/bigquery/v2 with a bundled script that handles both execution modes. The central concept is a job. Every query runs as a job in a billing project — the project that pays is not necessarily where the data lives. Two mo…
+Namaste — this is Kore, in for Humanitarians AI. Ask Claude to run SQL against BigQuery, check a job's status, list datasets, or preview table rows — the BigQuery API skill fires. It covers bigquery.googleapis.com/bigquery/v2 with a bundled script that handles both execution modes. The central concept is a job. Every query runs as a job in a billing project — the project that pays is not necessarily where the data l…
 
 The current plan contains **7 beats**. Its runtime is derived from 7 beats. The source recorded by the project is: See the local source and fact-check files.
 
@@ -45,7 +47,7 @@ You are the conductor; the machine performs the build. Claude cannot judge wheth
 2. **Write or revise the beat sheet:** open with the unresolved case; show at least two concrete moving instances before abstraction; return to the opening object in the payoff; end with a boundary and one viewer exercise.
 3. **Fact-check:** create or update `FACTCHECK.md`. Mark unresolved claims with `[VERIFY: …]`; never fill gaps by guessing.
 4. **Gate P — narration review:** read every line aloud and review it on an animated slate. Record the human verdict in `PEDAGOGY.md`. Do not generate final audio until the narration passes.
-5. **Generate local audio:** use Kokoro voice `am_onyx` in the Teardown register. Measured audio durations become the master clock; never repair timing by hand.
+5. **Generate local audio:** use Kokoro voice `af_kore` in the Pragmatist register. Measured audio durations become the master clock; never repair timing by hand.
 6. **Compile the previz:** render what can be generated locally. Missing stills or footage should remain honest labeled slates.
 7. **Fill the pantry:** add rights-cleared images or footage to `pantry/`, include source/provenance sidecars, then rebuild only changed slots.
 8. **Watch, refine, and repeat:** check pacing, comprehension, joke timing, typography, captions, transitions, factual implications, and whether each visual teaches the spoken point.
@@ -81,10 +83,10 @@ python3 runtime/scripts/generate_audio_kokoro.py "/absolute/path/to/this/project
 
 ## Voice and persona options
 
-- **Onyx — `am_onyx`:** Liam / Nik Bear Brown teardown register; analytical, design-critical, concise.
+- **Kore — `af_kore`:** Humanitarians AI presenter register; analytical, design-critical, concise.
 - **Bella — `af_bella`:** Humanitarians AI pragmatist register; method, use cases, and explicit boundaries.
 
-When Liam narrates for Bear, the opening and closing should state that Liam is “in for Bear.” Persona variants belong in new `nbb-` or `hai-` folders and must not overwrite the source reel.
+For Humanitarians AI productions, Kore is the default presenter and the opening and closing should identify Kore as “in for Humanitarians AI.” Persona variants belong in new `nbb-` or `hai-` folders and must not overwrite the source reel.
 
 ## Useful project files
 

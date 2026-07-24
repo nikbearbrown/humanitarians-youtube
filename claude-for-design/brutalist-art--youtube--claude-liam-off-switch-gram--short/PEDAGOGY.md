@@ -9,7 +9,7 @@ the outro, which recaps the covered ideas and directs to the full video.
 - Concrete before abstract: yes (off-switch is grounded before the theory)
 - Prediction before reveal: yes (held in source structure, preserved)
 - Useful friction: yes (question posed at B00, answered across beats)
-- Readable pacing: yes (Kokoro am_onyx, measured pace)
+- Readable pacing: yes (Kokoro af_kore, measured pace)
 - Clear handoff: yes (B13 outro directs to the full 16:9)
 
 VERDICT: PASS

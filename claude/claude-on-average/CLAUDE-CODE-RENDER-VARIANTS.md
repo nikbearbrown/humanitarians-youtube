@@ -33,9 +33,9 @@ For each variant:
 3. Preserve the source facts: Claude generates token by token; responses are samples from a context-conditioned distribution; temperature zero narrows selection but does not guarantee a context-independent fixed answer. Do not add unsupported claims.
 4. Re-render all visual beats in the audience palette instead of copying stale Claude-colored frames.
 5. Medhavy: Wonder register, Kokoro af_kore, Okabe-Ito Medhavy palette, EB Garamond/Montserrat, Medhavy.com OutroCTA. No exercise beat.
-6. HAI: Pragmatist register, Kokoro am_onyx, Humanitarians palette, EB Garamond/Montserrat, Humanitarians AI OutroCTA. Preserve B08's runnable cli_exercise: five-run comparison, variance table, consequence controls, and concrete next step.
+6. HAI: Pragmatist register, Kokoro af_kore, Humanitarians palette, EB Garamond/Montserrat, Humanitarians AI OutroCTA. Preserve B08's runnable cli_exercise: five-run comparison, variance table, consequence controls, and concrete next step.
 7. Generate fresh Kokoro narration for every beat. Never reuse canonical Bear audio. Measure audio and write actual_duration_s only into the build copy.
-8. Render all Remotion beats, including the B08 sampling-boundary artifact and B09 audience outro. Rebuild and inspect a QC sheet for clipping, stale colors, stale @NikBearBrown branding, and unreadable text.
+8. Render all Remotion beats, including the B08 sampling-boundary artifact and B09 audience outro. Rebuild and inspect a QC sheet for clipping, stale colors, stale @HumanitariansAI branding, and unreadable text.
 9. Compile clean 1920×1080 outputs using narration as the master clock. No missing-media slates and no silent voiced beats.
 10. Verify each final with ffprobe: 1920×1080, audio stream present, non-trivial file size, and duration consistent with measured beats. Open both finals for human review.
 11. Report exact output path, duration, size, voice, palette, PEDAGOGY verdict, and remaining concerns. Do not publish or push.

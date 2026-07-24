@@ -4,7 +4,7 @@
 Cold open (7 gates, each yes/no) → pre-submission checklist (7 items) → export + naming → jargon test (non-technical person) → series verdict → Your Turn (jargon-audit prompt on full script) → outro.
 
 ## Cold open law
-Opens: "Hola — Liam, Episode 7 of 7." Names exactly what this episode covers (checklist, jargon test, naming, two-file submit) and the consequence of skipping (points lost post-submission). ✓
+Opens: "Hola — Kore, Episode 7 of 7." Names exactly what this episode covers (checklist, jargon test, naming, two-file submit) and the consequence of skipping (points lost post-submission). ✓
 
 ## Gap formula
 Gap: students submit after recording without running the checklist — lose points on timing, jargon, filename, or missing files. Fix: 7-item yes/no checklist + exact naming convention + confirmed upload procedure + non-technical jargon test.

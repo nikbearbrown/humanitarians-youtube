@@ -6,8 +6,8 @@ the "Claude, Seeded." reel end-to-end.
 ---
 
 Build the 16:9 claude-explainer video **"Claude, Seeded."** — a Teardown-register
-explainer about Anthropic's algorithmic-art skill, narrated by Liam (in for Bear),
-Kokoro am_onyx voice, @NikBearBrown channel.
+explainer about Anthropic's algorithmic-art skill, narrated by Kore (in for Humanitarians AI),
+Kokoro af_kore voice, @HumanitariansAI channel.
 
 Reel folder: `brutalist-art/youtube/claude-liam-algorithmic-art/`
 
@@ -73,7 +73,7 @@ aspect ratio. Log defects and fixes in `_qc/REPORT.md`.
 | B08 | AlgArtQualityDial | Quality phrases with tick counters |
 | BVDT | ClaudeVerdictArtifact | Verdict — 4 numbered points |
 | BHTF | ClaudeComposerAsk | Your turn — prompt read aloud |
-| BOUT | ClaudeTitleOutro | "Claude, Seeded." + @NikBearBrown |
+| BOUT | ClaudeTitleOutro | "Claude, Seeded." + @HumanitariansAI |
 
 ## Known issues / watch for
 
@@ -90,4 +90,4 @@ aspect ratio. Log defects and fixes in `_qc/REPORT.md`.
 
 ## Free pipeline — no paid spend
 
-Kokoro am_onyx (local, free). No ElevenLabs. No higgsfield. No publishing.
+Kokoro af_kore (local, free). No ElevenLabs. No higgsfield. No publishing.

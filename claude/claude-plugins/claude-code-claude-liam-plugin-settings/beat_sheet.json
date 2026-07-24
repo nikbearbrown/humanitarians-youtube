@@ -3,18 +3,18 @@
     "title": "Plugin Settings",
     "slug": "claude-liam-plugin-settings",
     "topic": "PLUGIN SETTINGS · CLAUDE CODE SKILL",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Shalom, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Shalom, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Shalom — this is Liam, in for Bear. Ask Claude to store plugin configuration, make plugin behavior configurable, use dot-local-dot-md files, save plugin state, or read YAML frontmatter from a settings file — the Plugin Settings skill fires. The pattern is a single file: .claude/plugin-name.local.md in the project root, with YAML frontmatter for structured config and a markdown body for prompts or context. Three consumers read it: bash hooks parse the frontmatter with sed, commands use the Read tool, and agents reference it in their instructions. Let me walk you through the file structure, the three usage patterns, and where the skill gets it right and where it bites.",
-      "voice": "am_onyx",
+      "narration_text": "Shalom — this is Kore, in for Humanitarians AI. Ask Claude to store plugin configuration, make plugin behavior configurable, use dot-local-dot-md files, save plugin state, or read YAML frontmatter from a settings file — the Plugin Settings skill fires. The pattern is a single file: .claude/plugin-name.local.md in the project root, with YAML frontmatter for structured config and a markdown body for prompts or context. Three consumers read it: bash hooks parse the frontmatter with sed, commands use the Read tool, and agents reference it in their instructions. Let me walk you through the file structure, the three usage patterns, and where the skill gets it right and where it bites.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 22,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Shalom, Liam",
+            "greeting": "Shalom, Kore",
             "topic": "PLUGIN SETTINGS · CLAUDE CODE SKILL",
             "segment": "PLUGIN DEV",
             "command": "Make this plugin's behavior configurable — store settings per project.",
@@ -51,7 +51,7 @@
               "3 consumers: hooks (bash sed), commands (Read), agents (instructions)",
               "Patterns: hook toggle · agent state · config-driven behavior"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — file structure + three consumers",
       "narration_text": "The file is .claude/plugin-name.local.md — always in the .claude directory at the project root, always ending in .local.md, always named to match the plugin. The structure is YAML frontmatter on top — key-value pairs between triple-dash markers: enabled, mode, max_retries, list settings, numeric settings. Below the closing triple-dash is a markdown body: task descriptions, additional instructions, prompts to feed back to Claude, documentation. The frontmatter is structured config; the body is free-form context. Three consumers read this file. Hooks use bash scripts: check if the file exists and exit zero if not, then parse the frontmatter with sed to extract individual fields. Commands use the Read tool: read the file, parse the frontmatter in Claude's context, apply settings to processing logic. Agents reference it in their instructions: check for the file, parse the frontmatter, adapt behavior according to the settings fields. Lifecycle: the file is user-managed, not git-committed — always add .claude/*.local.md to your gitignore. Configuration changes require Claude Code restart; they are not hot-swapped.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — three patterns + parsing techniques",
       "narration_text": "Three usage patterns. Pattern one: the hook toggle. The settings file acts as a switch — hooks check the enabled field and exit zero if it's not true. This lets you activate or deactivate a hook without editing hooks.json, which would require a restart. Toggle the enabled field in the local.md, save the file — though you still need a restart for hooks to re-read it. Pattern two: agent state management. The multi-agent-swarm plugin stores agent_name, task_number, pr_number, and coordinator_session in the frontmatter, with the task description in the markdown body. Hooks read the frontmatter to get the coordinator session and send notifications via tmux. The body becomes the prompt injected back into the agent on each iteration. Pattern three: configuration-driven behavior. Hooks read a validation_level field and branch behavior — strict, standard, or lenient — from a case statement. Parsing: frontmatter is extracted with sed between the triple-dash markers; individual fields are then grepped and stripped. The markdown body is extracted with awk, counting past the second triple-dash. The validate-settings.sh script in the skill's scripts directory can check file structure.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. Plugin Settings gets the file contract right: .claude/plugin-name.local.md is precisely defined — directory, naming, suffix — and the quick-exit pattern is explicit: check file exists, check enabled field, exit zero for no-op, giving hooks a clean skip path. YAML frontmatter plus markdown body covers both structured configuration and free-form prompts in one file. Three consumer types are all documented with working examples. The real-world examples — multi-agent-swarm and ralph-wiggum — ground the patterns in actual plugin code rather than toy examples. Where it bites: the restart requirement is buried under Best Practices, not stated in the overview — a developer adding settings for the first time will miss it. The bash sed frontmatter parser is fragile: multiline YAML values, quoted colons, or indented blocks silently corrupt the extracted fields with no error output. The gitignore requirement is stated but has no enforcement — no install or setup step creates the entry, so real credentials or session state get committed. The chmod 600 security recommendation is buried with no mechanism to enforce it. And the body-as-prompt pattern used in ralph-wiggum is shown but not explained — it's non-obvious that the markdown body content is intended to be fed back to Claude as a prompt on each iteration.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 32,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. Plugin Settings fires for storing plugin config, making behavior configurable, using dot-local-dot-md files, or reading YAML frontmatter in Claude Code plugins. File: .claude/plugin-name.local.md — YAML frontmatter for structured settings, markdown body for context or prompts. Three consumers: hooks parse with bash sed, commands use Read, agents reference in instructions. Quick-exit: check file, check enabled, exit zero. Patterns: toggle hooks without editing hooks.json, agent state management, config-driven behavior. Gaps: restart required for changes — buried; sed parser is fragile on complex YAML; gitignore not enforced; body-as-prompt pattern unexplained.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 20,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Open a Claude Code session. Paste this: Add a settings file to my plugin that controls validation level — strict, standard, or lenient — and allows hooks to be toggled without editing hooks.json. Watch four things: first, does Claude place the file at .claude/plugin-name.local.md, not in a different directory or with a different extension? Second, does the file use YAML frontmatter with at least an enabled field and a validation_level field? Third, does the hook implementation use the quick-exit pattern — check file exists, check enabled, exit zero if either is false? And fourth, does the hook read the validation_level field and branch behavior with a case statement or equivalent? If the settings are in a different file format like plain JSON or .env, the pattern is wrong. If the hook doesn't check enabled, any config file present will activate the hook regardless of intent. Those are your gates.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 34,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected hook: check file, check enabled, exit 0, then case $LEVEL",
               "Red flag: wrong path · no enabled check · JSON format · no case branch"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "Plugin Settings. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "Plugin Settings. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "Plugin Settings",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "plugin-settings · Claude Code Skills"
           },
           "rendered": {

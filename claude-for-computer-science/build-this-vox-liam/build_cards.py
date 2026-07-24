@@ -63,7 +63,7 @@ def build_B00():
     f_handle   = _font("Montserrat", 22) if True else _font("Garamond", 22)
 
     # greeting — top left
-    draw.text((72, 52), "Olá, Liam", font=f_greeting, fill=TEAL)
+    draw.text((72, 52), "Olá, Kore", font=f_greeting, fill=TEAL)
 
     # title "Build This" + terracotta period on same baseline
     title_str  = "Build This"
@@ -91,7 +91,7 @@ def build_B00():
     text_center(draw, "The FAANG window.", sub_y, f_sub, color=INK)
 
     # handle — bottom right
-    handle = "@NikBearBrown"
+    handle = "@HumanitariansAI"
     bb_h = draw.textbbox((0, 0), handle, font=f_handle)
     hw = bb_h[2] - bb_h[0]
     hh = bb_h[3] - bb_h[1]
@@ -107,8 +107,8 @@ def build_B00():
 
 # ══════════════════════════════════════════════════════════════════════════════
 # B05 — CTA card
-# "bearbrown.co" large serif, #BuildThis tag, @NikBearBrown handle,
-# "Liam, in for Bear." sign-off
+# "bearbrown.co" large serif, #BuildThis tag, @HumanitariansAI handle,
+# "Kore, in for Humanitarians AI." sign-off
 # ══════════════════════════════════════════════════════════════════════════════
 
 def build_B05():
@@ -143,8 +143,8 @@ def build_B05():
     tag_y = uy + uh + 38
     text_center(draw, "#BuildThis", tag_y, f_tag, color=TERRA)
 
-    # @NikBearBrown handle — bottom right
-    handle = "@NikBearBrown"
+    # @HumanitariansAI handle — bottom right
+    handle = "@HumanitariansAI"
     bb_h = draw.textbbox((0, 0), handle, font=f_handle)
     hw = bb_h[2] - bb_h[0]
     hh = bb_h[3] - bb_h[1]
@@ -155,7 +155,7 @@ def build_B05():
               fill=TERRA, width=2)
 
     # sign-off — bottom left
-    signoff = "Liam, in for Bear."
+    signoff = "Kore, in for Humanitarians AI."
     bb_s = draw.textbbox((0, 0), signoff, font=f_signoff)
     draw.text((72, hy), signoff, font=f_signoff, fill=INK)
 

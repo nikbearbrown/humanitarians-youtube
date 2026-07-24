@@ -29,7 +29,7 @@ Evidence:
 - Clip sum (B01–B13 = 271.124s, B14–B15 = 3.583s) matches source video duration (274.390s) within rounding.
 - Outro beats are B14 (OutroSeries, 2.125s) and B15 (OutroCTA, 1.458s) — identified as the beats to remove.
 
-The `claude-liam-vox-idh-2hg/` folder is a Kokoro/Liam audio variant, not the production reel that produced the supplied cut.
+The `claude-liam-vox-idh-2hg/` folder is a Kokoro/Kore audio variant, not the production reel that produced the supplied cut.
 
 ## Outro Identification
 

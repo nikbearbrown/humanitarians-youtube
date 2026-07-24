@@ -1,6 +1,6 @@
 # PLAN — Claude, Unstuck (Ch.14: Troubleshooting and Staying Current)
 
-**Slug:** `claude-liam-troubleshooting` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-troubleshooting` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch14-troubleshooting.txt` (short chapter, ~520 words) · **One idea:** *When something breaks or doesn't match the screen, don't chase the surface — return to the durable concept (what the plugin is for, what it can and can't do) and check the official docs for the current specifics; the interface dates, the mental model doesn't.*
 
 > **Episode thesis = the datable-strip doctrine.** This chapter is literally about things changing. The reel leans INTO that: you troubleshoot by returning to durable concepts and verifying current specifics against the official docs. The DOUBLE-CHECK LAW isn't just applied here — it is the subject.
@@ -8,14 +8,14 @@
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "My plugin isn't working and the fixes don't match my screen." → ask lands answered ("concept, not screen; then the docs"), Liam signs in "Salaam — this is Liam, in for Bear."
+B00  COLD OPEN  ClaudeComposerAsk — "My plugin isn't working and the fixes don't match my screen." → ask lands answered ("concept, not screen; then the docs"), Kore signs in "Salaam — this is Kore, in for Humanitarians AI."
 ACT I    When It Breaks        frustration→abandonment; drop to the durable layer   (B01 C3 illustration, B02 Manim layers surface-vs-bedrock)
 ACT II   The Common Failures   five recurring shapes → durable causes/fixes         (B03 ChipGrid, B04 reopen-reload, B05 VOX auth, B06 Manim threshold, B07 Manim scope, B08 Onda code-block)
 ACT III  The Four Steps        quick diagnostics + the diagnostic loop              (B09 /plugins toggle, B10 Manim four-step accumulate, B11 VOX isolate-by-shrinking)
 ACT IV   Staying Current       interface dates / concept persists / check the docs  (B12 VOX evolve, B13 Manim timeline, B14 SourceFlow, B15→B16 VOX run R1)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — diagnostic prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read + sign-off "Claude, Unstuck. Liam, in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read + sign-off "Claude, Unstuck. Kore, in for Humanitarians AI."
 ```
 
 ## Lane histogram (body beats only; bookends B00/V01/H01/O01 exempt)
@@ -44,5 +44,5 @@ Body beats: **20** · Est. runtime ≈ **4:00** (short chapter, short reel — n
 ## Gates
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel corrections + datable log in SOURCES.md.
-3. **GATE P** — full narration (B00→O01) reviewed on an animated slate before any audio spend. Kokoro `am_onyx`, free. No ElevenLabs.
+3. **GATE P** — full narration (B00→O01) reviewed on an animated slate before any audio spend. Kokoro `af_kore`, free. No ElevenLabs.
 4. Audio lock (Kokoro) → align (word clock) → **Gate D2 SHOPPING.md** (5 vox stills: B05, B11, B12, B15, B16 — all Tier 1; tier-0 `pantry_search.py` pass first) → **Gate D1 SLATE PREVIZ** (`./art run`, slates in vox slots) → pantry fill → review cut → VISUAL QC LAW → `./art final`.

@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | Three first-order energy values do not automatically mean three observed lines with a two- |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. If the field is cut in half, what happens to the plus-or-minus first-order Star |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | It is cut in half. The sign still distinguishes the two lopsided mixtures, while the m equ |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Four States, Three First-Order Energies. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Four States, Three First-Order Energies. Kore, in for Humanitarians AI. |

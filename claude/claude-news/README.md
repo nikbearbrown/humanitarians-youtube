@@ -2,7 +2,6 @@
 
 Short-form, fast-turnaround coverage of Claude releases, product changes, research announcements, and ecosystem news.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Claude News

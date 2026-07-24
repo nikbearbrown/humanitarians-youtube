@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Sawubona, Liam" in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Sawubona, Kore" in B00 cold open | PASS |
 | 8 | Self-demo shows real candidate card (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "CLAUDE-SCOUT · SKILL TEARDOWN" / "Sawubona, Liam" / "Liam, in for Bear." — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "CLAUDE-SCOUT · SKILL TEARDOWN" / "Sawubona, Kore" / "Kore, in for Humanitarians AI." — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "UI as the set." — 4 files, callout correct. PASS
 - **B02** SkillTeardownPipeline: "Read → detect → cap → card." — 5 phases, footer. PASS
 - **B03** ClaudeComposerAsk: claude scout command on real book. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "The scout never crosses the gate." — cards-only quote + verdictLabel "CARDS ONLY". PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Finding." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct scout command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Finding." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Finding." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

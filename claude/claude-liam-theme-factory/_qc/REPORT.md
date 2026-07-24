@@ -62,7 +62,7 @@ NOTE (non-blocking): Empty spark line — SKIN LINT warning. By design for mid-r
 1–9: ALL PASS — "Your turn." heading, full handoff prompt reads the question AND invites discussion (Your Turn Handoff Rule satisfied). "paste this into Claude…" cue. Correct title/eyebrow.
 
 ### BOUT — ClaudeTitleOutro (3.07s, 5:07–5:10)
-1–9: ALL PASS — minimalist title card, "Claude, Restrained." serif large with terracotta period, "@NikBearBrown", "Liam, in for Bear." No overflow, centered, cream canvas.
+1–9: ALL PASS — minimalist title card, "Claude, Restrained." serif large with terracotta period, "@HumanitariansAI", "Kore, in for Humanitarians AI." No overflow, centered, cream canvas.
 
 ## Summary
 

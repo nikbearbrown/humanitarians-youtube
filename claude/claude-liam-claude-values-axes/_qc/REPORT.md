@@ -16,7 +16,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 | 9. Canvas fill | PASS | Full 1920x1080 |
 
 ## Summary
-YTV01 moved after B08. B11 LogoOutro removed. B00 greeting Bonjour Liam. B09 handoff rewritten. All beats rendered. 12/12 compiled.
+YTV01 moved after B08. B11 LogoOutro removed. B00 greeting Bonjour Kore. B09 handoff rewritten. All beats rendered. 12/12 compiled.
 
 ## Status
 QC PASS

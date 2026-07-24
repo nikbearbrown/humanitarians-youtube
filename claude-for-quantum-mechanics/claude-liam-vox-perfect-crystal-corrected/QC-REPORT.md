@@ -3,7 +3,7 @@
 - Master: `vox-perfect-crystal-corrected.mp4`
 - Probe: 191.43 seconds, 1920×1080, 24 fps
 - Fill: 14/14 beats; no slates
-- Voice: Kokoro `am_onyx`; Liam explicitly in for Bear; cost $0.00
+- Voice: Kokoro `af_kore`; Kore explicitly in for Humanitarians AI; cost $0.00
 - Visual inspection: final contact sheet read after rebuild; zero blocker and zero major defects
 
 ## Fixes made during QC
@@ -22,4 +22,4 @@
 - Ideal undamped response explicitly separated from superconductivity and the Meissner effect.
 - Electron interactions, Umklapp, phonons, defects, boundaries, contacts, and DC-limit qualifications named.
 
-The native dark title outro is intentional and carries the correct episode title plus “Liam, in for Bear.” The automated Claude-outro skin warning is therefore non-blocking after visual inspection.
+The native dark title outro is intentional and carries the correct episode title plus “Kore, in for Humanitarians AI.” The automated Claude-outro skin warning is therefore non-blocking after visual inspection.

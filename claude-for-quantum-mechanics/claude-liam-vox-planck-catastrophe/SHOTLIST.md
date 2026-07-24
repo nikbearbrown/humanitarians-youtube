@@ -2,7 +2,7 @@
 
 | Beat | Type | Visual |
 |---|---|---|
-| B01 | Remotion | Claude/Liam cold open |
+| B01 | Remotion | Claude/Kore cold open |
 | B02 | Manim | Cavity modes, equal kT allocation, divergent sum |
 | B03 | Manim | Measured finite thermal spectrum |
 | B04 | Manim | Planck energy ladder and hν packets |

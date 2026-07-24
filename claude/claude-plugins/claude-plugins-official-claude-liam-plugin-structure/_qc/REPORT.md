@@ -14,7 +14,7 @@
 | B05 | 275s | PASS | PluginStructureTell — GETS RIGHT / WHERE IT BITES, callout box present |
 | BVDT | 313s | PASS | ClaudeVerdictArtifact — 6-line verdict, plugin-structure heading correct |
 | BHTF | 353s | PASS | ClaudeComposerAsk handoff — Your Turn, Watch/Expected/Red flag rows |
-| BOUT | 393s | PASS | ClaudeTitleOutro — plugin-structure. @NikBearBrown plugin-structure · Claude Plugins |
+| BOUT | 393s | PASS | ClaudeTitleOutro — plugin-structure. @HumanitariansAI plugin-structure · Claude Plugins |
 
 ## Notes
 

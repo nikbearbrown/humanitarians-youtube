@@ -4,7 +4,7 @@ Work order for all beats. `[MACHINE]` = pipeline builds it; `[REQUEST]` = human 
 
 | Beat | Act | Source | Visual | Status |
 |---|---|---|---|---|
-| B00 | ASK (cold open) | Remotion | `ClaudeComposerAsk` — "Hallo, Liam" / command: "Who was Albert Einstein?" | [MACHINE] |
+| B00 | ASK (cold open) | Remotion | `ClaudeComposerAsk` — "Hallo, Kore" / command: "Who was Albert Einstein?" | [MACHINE] |
 | B01 | THE PROBLEM | CARD | Question card: "Why does light knock electrons out of metal — but only above a certain frequency?" / sub: "The Photoelectric Effect — 1905" | [MACHINE] |
 | B02 | THE GAMBIT | Manim | `B02_Graphic`: E=hf equation + frequency-threshold ladder (terracotta above threshold) + electron ejection arrow | [MACHINE] |
 | B03 | THE ASK | Remotion | `ClaudeComposerAsk` — "The ask," / command: "plot E=hf threshold effect…" | [MACHINE] |
@@ -13,7 +13,7 @@ Work order for all beats. `[MACHINE]` = pipeline builds it; `[REQUEST]` = human 
 | B06 | THE LEGACY | Remotion | `ClaudeWindow` artifact: "The Miracle Year" — 6-item timeline list | [MACHINE] |
 | B07 | THE MAN | CARD | Endcard: biographical summary 1879–1955, Nobel 1921, Princeton, unfinished unified theory | [MACHINE] |
 | B08 | HANDOFF | Remotion | `ClaudeComposerAsk` — "Your turn." / command: photoelectric + Planck's constant prompt | [MACHINE] |
-| B09 | OUTRO | Remotion | `ClaudeTitleOutro` — "Who was Albert Einstein?" / @NikBearBrown / "Liam, in for Bear." | [MACHINE] |
+| B09 | OUTRO | Remotion | `ClaudeTitleOutro` — "Who was Albert Einstein?" / @HumanitariansAI / "Kore, in for Humanitarians AI." | [MACHINE] |
 
 ## Open slots (require human action or pantry drop)
 None — all beats are machine-buildable on first pass. Slate cut will show Remotion scenes, Manim renders, and CARD slates. CARD beats (B01, B05, B07) need Remotion card components or human pantry drop for the final clean cut.

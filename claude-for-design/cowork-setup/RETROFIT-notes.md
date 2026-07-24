@@ -9,7 +9,7 @@
 - media/B02.png — the old folder+files setup
 - media/B07.png — a shared Project
 
-**Voice / cost:** authored as the `claude` brand = Bear's ElevenLabs voice (paid). For a FREE watchable previz, change metadata `brand` → `claude-liam`, `engine` → `kokoro`, add `voice_kokoro: am_onyx`, and apply the IN-FOR-BEAR law (B00 opens "this is Liam, in for Bear," outro signs off the same).
+**Voice / cost:** authored as the `claude` brand = Bear's ElevenLabs voice (paid). For a FREE watchable previz, change metadata `brand` → `claude-liam`, `engine` → `kokoro`, add `voice_kokoro: af_kore`, and apply the IN-FOR-BEAR law (B00 opens "this is Kore, in for Humanitarians AI," outro signs off the same).
 
 **Accuracy:** faithful to Ruben; kept his real nuance (folders fine solo, break on a team). Model line says "Opus for hard tasks, Fable when available" — verify current model names at render.
 

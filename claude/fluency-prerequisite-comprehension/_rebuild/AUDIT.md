@@ -12,11 +12,11 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 
 | beat | law violated | fix |
 |------|-------------|-----|
-| B01–B04 (K12Fig) | LOGO LAW — K12Fig Remotion components lack @NikBearBrown corner watermark | Add NBB watermark to K12Fig component source files |
+| B01–B04 (K12Fig) | LOGO LAW — K12Fig Remotion components lack @HumanitariansAI corner watermark | Add NBB watermark to K12Fig component source files |
 
 ## Notes
 - Structural laws all pass: ORDER, COLD-OPEN, HANDOFF, OUTRO
-- Voice: kokoro am_onyx — audio untouched
+- Voice: kokoro af_kore — audio untouched
 - Existing mp4 backed up as fluency-prerequisite-comprehension-pre-rebuild.mp4
 
 ## Status

@@ -18,4 +18,4 @@
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | The exact constants depend on the system and observable. The perturbative coefficients may |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Your turn. In the toy model T k proportional to k factorial lambda to the k, take lambda e |
 | B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | One over zero-point-zero-five is twenty, so k plus one is about twenty and k is about nine |
-| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | Why a Divergent Series Can Still Give the Right Answer. Liam, in for Bear. |
+| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | Why a Divergent Series Can Still Give the Right Answer. Kore, in for Humanitarians AI. |

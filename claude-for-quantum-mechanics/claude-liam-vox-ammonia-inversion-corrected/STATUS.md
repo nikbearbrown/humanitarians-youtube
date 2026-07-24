@@ -18,4 +18,4 @@
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | The splitting is exponentially sensitive to barrier height, width, reduced mass, and molec |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Your turn. Use Planck's constant, four-point-one-three-six times ten to the minus fifteen  |
 | B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Multiplying gives delta E about nine-point-eight-seven times ten to the minus five electro |
-| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | Ammonia Inversion: The Molecule That Tunnels Through Itself. Liam, in for Bear. |
+| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | Ammonia Inversion: The Molecule That Tunnels Through Itself. Kore, in for Humanitarians AI. |

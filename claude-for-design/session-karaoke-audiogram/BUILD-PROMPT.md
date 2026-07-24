@@ -1,6 +1,6 @@
 # BUILD-PROMPT — Session, Karaoke & Audiogram
 
-Video for the "Brutalist — Claude for Video Production" playlist on @NikBearBrown.
+Video for the "Brutalist — Claude for Video Production" playlist on @HumanitariansAI.
 Teaches THREE voice-layer tools in one arc, with Lord Byron threaded through as
 the worked example — excerpts of the session-directed reading of *She Walks in
 Beauty* (1814, public domain; the performance is the channel's own Suno

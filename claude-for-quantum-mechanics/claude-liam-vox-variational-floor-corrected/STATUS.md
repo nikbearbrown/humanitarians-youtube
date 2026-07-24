@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | The guarantee has conditions: normalize the trial state, keep it in the operator or quadra |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. A normalized trial state has seventy percent weight on E zero and thirty percen |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Multiply the excitation gap by its weight: zero-point-three times two electron-volts is ze |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Why You Cannot Dig Below the Ground State. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Why You Cannot Dig Below the Ground State. Kore, in for Humanitarians AI. |

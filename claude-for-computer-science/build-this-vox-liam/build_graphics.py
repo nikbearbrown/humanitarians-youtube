@@ -1,4 +1,4 @@
-"""build_graphics.py — Manim scenes for build-this-vox-liam.
+"""build_graphics.py — Manim scenes for build-this-vox-kore.
 
 Render each scene and move the output to manim/<beat>.mp4:
 

@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_15_8s.png | B00 cold open | ClaudeComposerAsk: "Ciao, Liam", command visible, 3 output lines, @NikBearBrown |
+| frame_15_8s.png | B00 cold open | ClaudeComposerAsk: "Ciao, Kore", command visible, 3 output lines, @HumanitariansAI |
 | frame_57_3s.png | B01 deployment | BuildMcpServerDeployment: 3-column models (⭐ Remote HTTP green / MCPB terracotta / LOCAL STDIO ink), 7-row decision matrix with deployment color-coded, spark line |
 | frame_109_7s.png | B02 patterns | BuildMcpServerPatterns: Pattern A (green) + Pattern B (terracotta) two-column, 4 primitives rows (Elicitation highlighted), spark line |
 | frame_179_8s.png | B05 teardown | BuildMcpServerTell: 5+5 teardown columns, callout overlaps row 5 (accepted batch pattern), spark line |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Ciao, Liam" (rotation #31)
+- Greeting: "Ciao, Kore" (rotation #31)
 - New scenes: BuildMcpServerDeployment.tsx (B01), BuildMcpServerPatterns.tsx (B02), BuildMcpServerTell.tsx (B05)
 - B01 design: 3 deployment model cards (⭐ Remote HTTP / MCPB / Local stdio) + 7-row decision matrix with color-coded deployment column
 - B02 design: Pattern A (one-per-action, green) vs Pattern B (search+execute, terracotta) + 4 primitives table with Elicitation highlighted

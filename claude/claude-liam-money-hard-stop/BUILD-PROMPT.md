@@ -1,7 +1,7 @@
 # BUILD-PROMPT — claude-liam-money-hard-stop ("Claude, Paused.")
 
 Standalone rebuild prompt. State when written: beat_sheet.json authored
-(11 beats, standard ai-explainer — NOT skill-teardown), Kokoro am_onyx
+(11 beats, standard ai-explainer — NOT skill-teardown), Kokoro af_kore
 audio GENERATED and MEASURED (mp3/ + timings.json; actual_duration_s is
 ground truth), PEDAGOGY.md ends VERDICT: PASS, SOURCES.md logs the claims
 (reused from the verified Vercel reel). What remains: visuals → conform →
@@ -75,7 +75,7 @@ THE BEATS (narration + durations are in the sheet)
 - BVDT ClaudeVerdictArtifact — artifactLines in sheet; enlarged card.
 - BHTF ClaudeComposerAsk handoff — greeting "Your turn.", typing on,
   command = the audit-your-tools prompt in the sheet.
-- BOUT ClaudeTitleOutro — "Claude, Paused." · @NikBearBrown · "Liam, in for Bear."
+- BOUT ClaudeTitleOutro — "Claude, Paused." · @HumanitariansAI · "Kore, in for Humanitarians AI."
 
 LAWS THAT BITE HERE
 

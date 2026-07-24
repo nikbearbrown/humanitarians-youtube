@@ -25,7 +25,7 @@
 ## Beat-Level Findings
 
 ### B00 — ClaudeComposerAsk (cold open)
-PASS. Title "Claude, Seeded." and eyebrow visible. @NikBearBrown chip. Fade-in
+PASS. Title "Claude, Seeded." and eyebrow visible. @HumanitariansAI chip. Fade-in
 correct.
 
 ### B01 — AlgArtPipeline
@@ -74,12 +74,12 @@ BVDT runs at 2.96× slow rate (12s composition fills 35.7s audio) — notable;
 the card is static text so the slowdown is invisible.
 
 ### BHTF — ClaudeComposerAsk (your turn)
-PASS. "Your turn." greeting. Full prompt visible in composer box. "@NikBearBrown"
+PASS. "Your turn." greeting. Full prompt visible in composer box. "@HumanitariansAI"
 chip. "paste this into Claude…" running text. BHTF runs at 1.71× slow rate
 (15s composition fills 25.8s audio) — acceptable.
 
 ### BOUT — ClaudeTitleOutro
-PASS. "Claude, Seeded." title restate, "@NikBearBrown" handle, "Liam, in for Bear."
+PASS. "Claude, Seeded." title restate, "@HumanitariansAI" handle, "Kore, in for Humanitarians AI."
 subline. 2.75s — clips from 6.1s composition.
 
 ---

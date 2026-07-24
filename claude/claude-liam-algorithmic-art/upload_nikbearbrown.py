@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Upload Claude, Seeded. to @NikBearBrown / Claude research playlist."""
+"""Upload Claude, Seeded. to @HumanitariansAI / Claude research playlist."""
 import argparse, sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -13,7 +13,7 @@ TOKEN_FILE    = CREDS_DIR / "youtube_token.json"
 TITLE = "Claude, Seeded. — Inside Anthropic's Algorithmic-Art Skill"
 TAGS  = ["Claude", "Anthropic", "Algorithmic Art", "Generative Art", "Claude Skills",
          "AI Art", "p5.js", "Art Blocks", "Remotion", "NikBearBrown",
-         "Claude Code", "Teardown", "Liam in for Bear"]
+         "Claude Code", "Teardown", "Kore in for Humanitarians AI"]
 DESCRIPTION = """\
 Ask Claude for art, and the first thing it writes is a manifesto. Not the code. Not the artwork. A manifesto for a named generative art movement. Only then does it write the algorithm. That is not a metaphor — it is literally the instruction file.
 
@@ -34,12 +34,12 @@ Teardown of Anthropic's algorithmic-art skill: the two-phase pipeline (philosoph
 
 All generative visuals in this video are live Remotion renders — not screenshots, not stock art. Each is seeded and deterministic: seed 42 → identical output every render.
 
-Built with Remotion 4.x · Kokoro am_onyx voice · Claude fidelity skin.
-Liam, in for Bear.
+Built with Remotion 4.x · Kokoro af_kore voice · Claude fidelity skin.
+Kore, in for Humanitarians AI.
 
 Source: Anthropic, algorithmic-art SKILL.md
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI
 
 #Claude #AnthropicAI #GenerativeArt #AlgorithmicArt #AIArt #Remotion #NikBearBrown
 """
@@ -149,7 +149,7 @@ def main():
     size_mb = VIDEO.stat().st_size // 1024 // 1024
     print(f"Video : {VIDEO.name} ({size_mb} MB)")
     print(f"Title : {TITLE}")
-    print(f"Channel : @NikBearBrown")
+    print(f"Channel : @HumanitariansAI")
     print(f"Playlist: {PLAYLIST_NAME}")
     print(f"Captions: {SRT.name if SRT.exists() else 'MISSING'}")
 

@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-lyric-resync
 # "Claude, Recut." | lyric-resync skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 216.3s
+# Built: 2026-07-18 | Kokoro af_kore | 216.3s
 
 ## Standalone rebuild instructions
 

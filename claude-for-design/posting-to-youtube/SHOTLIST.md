@@ -16,4 +16,4 @@
 | B11 | GRAPHIC — Manim | pipeline | Three stacked cards (ch1/ch2/ch3 with real youtu.be IDs, "unlisted") inside "Brutalist" playlist frame |
 | B12 | GRAPHIC — Manim | pipeline | HERO: dark canvas, "THE MACHINE POSTS. / YOU OWN WHAT SHIPS." in EB Garamond; machine items (teal) LEFT; human PUBLIC switch (off) RIGHT; conductor baton coda |
 | B13 | REMOTION — NikBearBrownTerminalAsk | pipeline | `$ cat youtube/PUBLISH-LOG.md` — "3 uploaded · 1 bug found & fixed · unlisted. this video was built from this log." |
-| B99 | REMOTION — BrutalistCommentCTA | pipeline | CTA: `// the machine posts — you decide what goes public\n// @NikBearBrown · brutalist.art` |
+| B99 | REMOTION — BrutalistCommentCTA | pipeline | CTA: `// the machine posts — you decide what goes public\n// @HumanitariansAI · brutalist.art` |

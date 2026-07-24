@@ -6,6 +6,6 @@ VERDICT: PASS
 - Zero BLOCKER or MAJOR issues remain.
 - Native visuals cover state occupancy, fermion filling, the thermal Fermi edge, unlimited boson occupation, the low-energy Bose surge, a shared-axis comparison, the valid Bose domain, and the common classical tail.
 - Bose curves are restricted to x=(E−μ)/kBT>0 and never imply negative occupation across the pole.
-- Claude/Liam cold open, topic-specific Your Turn prompt, and Claude title outro are present and legible.
+- Claude/Kore cold open, topic-specific Your Turn prompt, and Claude title outro are present and legible.
 - Final runtime: 113.51 seconds; 13/13 slots filled.
-- Voice: Kokoro `am_onyx` (Liam); unpublished and free-only.
+- Voice: Kokoro `af_kore` (Kore); unpublished and free-only.

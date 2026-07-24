@@ -2,7 +2,7 @@
 
 ai-explainer (NOT skill-teardown — the source is a research prompt, not a
 SKILL.md; the standard vox-style explainer middle applies). claude-liam,
-Kokoro am_onyx. Audited against the ai-explainer house + frame laws.
+Kokoro af_kore. Audited against the ai-explainer house + frame laws.
 
 ## Act structure
 - Cold open (B00) → core problem (B01) → the three jobs (B02) → the
@@ -14,9 +14,9 @@ Kokoro am_onyx. Audited against the ai-explainer house + frame laws.
 
 ## Cold open (COLD OPEN LAW)
 - B00 is ClaudeComposerAsk, ask answered (output shows the three-way
-  split). Liam self-introduces in the first breath (IN-FOR-BEAR LAW).
-  Greeting "Hola, Liam" (one word, lexicon; distinct from the exemplars'
-  Bonjour/Ciao; Wagwan is Bear-only, N/A to Liam). PASS
+  split). Kore self-introduces in the first breath (IN-FOR-BEAR LAW).
+  Greeting "Hola, Kore" (one word, lexicon; distinct from the exemplars'
+  Bonjour/Ciao; Wagwan is Bear-only, N/A to Kore). PASS
 
 ## Gap formula / hook
 - Genuine tension: "sounds like one task; it's three — and one has no

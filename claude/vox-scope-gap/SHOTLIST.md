@@ -13,4 +13,4 @@
 | B09 | DOCUMENT | own | Quote: "The permission was read-only. The scope was the whole account. The leak was the gap between them." |
 | B10 | CARD | own | Endcard: "Read-only is not safe. It is safe for the right scope." / CLAUDE COWORK |
 | B15 | GRAPHIC | remotion | OutroSeries — Claude Cowork |
-| B16 | GRAPHIC | remotion | OutroCTA — @NikBearBrown |
+| B16 | GRAPHIC | remotion | OutroCTA — @HumanitariansAI |

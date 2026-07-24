@@ -5,13 +5,13 @@ Builds audio → Manim → Remotion → slate cut → final cut. Never publishes
 
 ```
 Read books/physics-modern-physics/youtube/claude-liam-who-was-max-planck/beat_sheet.json.
-Brand: claude-liam. Voice: Kokoro am_onyx. Palette: claude.
+Brand: claude-liam. Voice: Kokoro af_kore. Palette: claude.
 
 Build steps (run from books/):
 
 1. GATE P: narration already approved — proceed.
 
-2. Generate audio (Kokoro am_onyx):
+2. Generate audio (Kokoro af_kore):
    python3 brutalist-art/runtime/scripts/generate_audio_kokoro.py \
      physics-modern-physics/youtube/claude-liam-who-was-max-planck
 

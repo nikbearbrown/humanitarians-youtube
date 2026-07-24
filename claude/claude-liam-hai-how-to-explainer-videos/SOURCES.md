@@ -48,16 +48,16 @@ Full path: youtube.com/@humanitariansai → Fellows Research playlist
 ## Sign-In Line (spoken on B00 and B09)
 
 ```
-Liam, for Humanitarians AI.
+Kore, for Humanitarians AI.
 ```
 
 ## Your Turn Prompt (spoken and shown on B08)
 
 ```
 Here's my folder of this week's research — [one line on what you did].
-Create a claude-explainer in the Liam voice for every video idea in it,
-with animated visualizations and infographics, and have Liam say
-'Liam, for [my name] and Humanitarians AI.'
+Create a claude-explainer in the Kore voice for every video idea in it,
+with animated visualizations and infographics, and have Kore say
+'Kore, for [my name] and Humanitarians AI.'
 ```
 
 ## QC Checklist
@@ -66,7 +66,7 @@ with animated visualizations and infographics, and have Liam say
 - [x] `caffeinate claude --dangerously-skip-permissions` appears in B03 terminal block and B07 verdict card
 - [x] `youtube.com/@humanitariansai` appears in B06 channel node and B07 verdict card line 6
 - [x] `Fellows Research` appears in terracotta in B06 playlist node and B07 verdict card
-- [x] "Liam, for Humanitarians AI." spoken in B00 narration and B09 narration
+- [x] "Kore, for Humanitarians AI." spoken in B00 narration and B09 narration
 - [x] @HumanitariansAI folder chip on B00 and B08
 - [x] "Your turn." greeting on B08
 - [x] Title restated on B09: "How to Make Explainer Videos for Your Research"

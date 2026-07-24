@@ -7,6 +7,6 @@ VERDICT: PASS
 - Native visuals cover the g=0 crossing, coupled avoided branches, far/near mixing, minimum gap 2|g|, bare-versus-dressed curves, state-character exchange, inverse-gap influence, and symmetry-protected crossing exception.
 - Initial QC found edge-cropped B08 branch labels; they were moved into the safe area and rerendered.
 - The script consistently scopes repulsion to coupled levels and explicitly preserves exact crossings when g=0.
-- Claude/Liam cold open, topic-specific Your Turn prompt, and Claude title outro are present and legible.
+- Claude/Kore cold open, topic-specific Your Turn prompt, and Claude title outro are present and legible.
 - Final runtime: 109.74 seconds; 13/13 slots filled.
-- Voice: Kokoro `am_onyx` (Liam); unpublished and free-only.
+- Voice: Kokoro `af_kore` (Kore); unpublished and free-only.

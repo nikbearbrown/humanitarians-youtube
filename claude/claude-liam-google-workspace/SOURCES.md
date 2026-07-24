@@ -1,7 +1,7 @@
 # SOURCES — claude-liam-google-workspace ("Claude, Grounded.")
 
 Source: Bear Brown research prompt "Claude + Gmail / Google Workspace."
-ai-explainer (standard middle; NOT skill-teardown). Audio: Kokoro am_onyx
+ai-explainer (standard middle; NOT skill-teardown). Audio: Kokoro af_kore
 (free, local), generated 2026-07-18 in the Cowork cloud session; durations
 are ground truth.
 

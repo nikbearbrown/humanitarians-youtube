@@ -2,7 +2,7 @@
 
 | Beat | Visual |
 |---|---|
-| B01 | Claude/Liam cold open |
+| B01 | Claude/Kore cold open |
 | B02 | Parabolic potential and factorization pieces |
 | B03 | Hamiltonian identity card |
 | B04 | Raising arrows across equal rungs |

@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_018s.png | B00 cold open | ClaudeComposerAsk: "Bonjour, Liam", Datadog search query, 3 output lines, @NikBearBrown |
+| frame_018s.png | B00 cold open | ClaudeComposerAsk: "Bonjour, Kore", Datadog search query, 3 output lines, @HumanitariansAI |
 | frame_074s.png | B01 anatomy | DatadogApiAnatomy: v1 + v2 resource cards (green) + 4 setup requirement rows (DD-API-KEY, DD-APPLICATION-KEY, DD_SITE, curl -g) |
 | frame_155s.png | B02 design | DatadogApiDesign: 3 pagination rows left + 3 JSON:API gotcha rows right (all terracotta) |
 | frame_238s.png | B05 teardown | DatadogApiTell: callout + standard 5+5 two-column teardown, spark line with asterisk |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Bonjour, Liam" (rotation #41)
+- Greeting: "Bonjour, Kore" (rotation #41)
 - New scenes: DatadogApiAnatomy (B01), DatadogApiDesign (B02), DatadogApiTell (B05)
 - B01: v1/v2 both green (neither is "legacy"); setup rows warn terracotta for DD-API-KEY, DD_SITE, curl -g
 - B02: all JSON:API gotcha rows terracotta; offset/bracketed pagination row also terracotta for globoff

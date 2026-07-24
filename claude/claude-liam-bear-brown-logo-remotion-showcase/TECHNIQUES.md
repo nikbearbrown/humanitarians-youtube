@@ -5,7 +5,7 @@ Review pass: mark each technique keep / kill in the checkbox column.
 **File:** `claude-liam-bear-brown-logo-remotion-showcase.mp4`
 **Duration:** 2:43 (163.8s, 4914 frames @ 30fps)
 **Dimensions:** 1080 × 1920 (9:16 portrait)
-**Voice:** Kokoro am_onyx (Liam, in for Bear)
+**Voice:** Kokoro af_kore (Kore, in for Humanitarians AI)
 **Logo:** `logos/bear-brown-logo-black.svg` — viewBox 0 0 7500 5000, one complex path, ink #171717
 
 ---

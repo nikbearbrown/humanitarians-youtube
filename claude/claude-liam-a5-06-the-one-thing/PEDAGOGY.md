@@ -1,6 +1,6 @@
 # PEDAGOGY audit — claude-liam-a5-06-the-one-thing ("The One Thing")
 
-ai-explainer, claude-liam, Kokoro am_onyx. Pragmatist register.
+ai-explainer, claude-liam, Kokoro af_kore. Pragmatist register.
 Source: INFO 7375 Assignment 5 brief, Part 6 (16 pts).
 
 ## Act structure
@@ -9,7 +9,7 @@ Source: INFO 7375 Assignment 5 brief, Part 6 (16 pts).
   (BVDT) → handoff (BHTF) → outro (BOUT). 8 beats. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 is ClaudeComposerAsk. Liam introduces in first breath. "Hola, Liam."
+- B00 is ClaudeComposerAsk. Kore introduces in first breath. "Hola, Kore."
   Output previews 6A/6B split and weak-one-thing tells. PASS
 
 ## Gap formula / hook

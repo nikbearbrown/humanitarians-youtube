@@ -36,7 +36,7 @@ Before/after risk comparison: 3 HIGH + 1 MED → 1 HIGH + 1 MED.
 Next steps + teaser for session-state-generator.
 
 ## B09 — remotion NikBearBrownOutro · ~8s
-Brand: Nik Bear Brown / Brutalist + Educational AI / @NikBearBrown / nikbearbrown.com
+Brand: Nik Bear Brown / Brutalist + Educational AI / @HumanitariansAI / nikbearbrown.com
 
 ---
 

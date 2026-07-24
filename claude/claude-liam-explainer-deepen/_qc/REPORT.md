@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Yassou, Liam" in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Yassou, Kore" in B00 cold open | PASS |
 | 8 | Self-demo shows real audit output (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "EXPLAINER-DEEPEN · SKILL TEARDOWN" / "Yassou, Liam" / "Liam, in for Bear." — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "EXPLAINER-DEEPEN · SKILL TEARDOWN" / "Yassou, Kore" / "Kore, in for Humanitarians AI." — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Audit first. Convert second." — 4 files, callout "10-check rubric / 5 critical / 5 warnings". PASS
 - **B02** SkillTeardownPipeline: "Audit → lift → convert." — 5 phases, footer note. PASS
 - **B03** ClaudeComposerAsk: audit.py demo command correct. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "Instances earn the runtime." — depth law quote + verdictLabel "NO PADDING". PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Deepened." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct audit command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Deepened." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Deepened." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

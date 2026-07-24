@@ -3,20 +3,20 @@
 # Auditor: Claude Sonnet 4.6 | 2026-07-18
 
 ## Build facts
-- Runtime: 223.2s | Beats: 11/11 VIDEO | Audio: Kokoro am_onyx (free)
+- Runtime: 223.2s | Beats: 11/11 VIDEO | Audio: Kokoro af_kore (free)
 - Streams: video + audio confirmed (compile.py)
 
 ## Frame verification
 | Timestamp | Beat | Pattern | Result |
 |---|---|---|---|
-| 1s | B00 | ClaudeComposerAsk | PASS — "KIDS-VIDEO · SKILL TEARDOWN", "Liam, in for Bear.", "Konnichiwa, Liam", 4 output lines |
+| 1s | B00 | ClaudeComposerAsk | PASS — "KIDS-VIDEO · SKILL TEARDOWN", "Kore, in for Humanitarians AI.", "Konnichiwa, Kore", 4 output lines |
 | 135s | B05 | SkillTeardownMechanism | PASS — "MECHANISM · ACT 1", "Question → silence → confirm.", verbatim quote "The pause is the mechanism; never fill it." |
 | 194s | BVDT | ClaudeVerdictArtifact | PASS — "Claude, Cubs.", "KIDS-VIDEO: WHAT IT DELIVERS", 4 lines |
-| 221s | BOUT | ClaudeTitleOutro | PASS — "Claude, Cubs." / @NikBearBrown / "Liam, in for Bear." |
+| 221s | BOUT | ClaudeTitleOutro | PASS — "Claude, Cubs." / @HumanitariansAI / "Kore, in for Humanitarians AI." |
 
 ## 9-point rubric
-1. IN-FOR-BEAR: "Liam, in for Bear." visible at 1s — PASS
-2. HELLO: "Konnichiwa, Liam" (Japanese) in B00 — PASS
+1. IN-FOR-BEAR: "Kore, in for Humanitarians AI." visible at 1s — PASS
+2. HELLO: "Konnichiwa, Kore" (Japanese) in B00 — PASS
 3. ILLUSTRATE LAW: 5 UI (B00, B03, BVDT, BHTF, BOUT) + 6 illustration (B01, B02, B04, B05, B06, B07) — PASS
 4. SELF-DEMO: B03/B04 Phase 1 Gate K-valid beat sheet for "circle" episode (ages 1-3) — 13 beats, 4 exemplars (apple/sun/ball/clock), pause triad, contrast case (square), co-view close; all Gate K checks documented and PASS — genuine Phase 1, no audio, no video, no Higgsfield — PASS
 5. VERBATIM QUOTES: "The pause is the mechanism; never fill it." (B05), "silence is correct design, not a gap." (B06), "Never bypass Gate K. An episode that fails pedagogy does not get a voice." (B07) — all from SKILL.md — PASS

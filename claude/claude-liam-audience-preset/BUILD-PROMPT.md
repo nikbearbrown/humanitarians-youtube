@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-audience-preset
 # "Claude, Branded." | audience-preset skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 211.5s
+# Built: 2026-07-18 | Kokoro af_kore | 211.5s
 
 ## Standalone rebuild instructions
 

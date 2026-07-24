@@ -15,6 +15,6 @@ Report the two output paths:
   physics-modern-physics/youtube/claude-liam-who-was-albert-einstein/who-was-albert-einstein.mp4
 
 Never publish. Never delete any ElevenLabs mp3 (44.1kHz) or any human-supplied mp4.
-Voice: Kokoro am_onyx (free, local). Brand: claude-liam / @NikBearBrown.
+Voice: Kokoro af_kore (free, local). Brand: claude-liam / @HumanitariansAI.
 Outro title must preserve "?" — "Who was Albert Einstein?"
 ```

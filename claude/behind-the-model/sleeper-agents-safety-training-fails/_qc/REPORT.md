@@ -16,7 +16,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 | 9. Canvas fill | PASS | Full 1920x1080 |
 
 ## Summary
-B00 greeting fixed to Guten Abend Liam. IN-FOR-BEAR prepended to B00 narration. All beats rendered from scratch. 7/7 compiled.
+B00 greeting fixed to Guten Abend Kore. IN-FOR-BEAR prepended to B00 narration. All beats rendered from scratch. 7/7 compiled.
 
 ## Status
 QC PASS (LOGO LAW on body scenes: flagged, not blocking)

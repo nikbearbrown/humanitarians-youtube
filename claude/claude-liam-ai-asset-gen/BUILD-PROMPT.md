@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-ai-asset-gen
 # "Claude, Generated." | ai-asset-gen skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 190.7s
+# Built: 2026-07-18 | Kokoro af_kore | 190.7s
 
 ## Standalone rebuild instructions
 

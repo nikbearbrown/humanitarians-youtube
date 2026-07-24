@@ -2,7 +2,7 @@
 
 One logo (Musinique, 47 paths, viewBox 0 0 1698.01 1832.98), every motion
 technique Remotion can perform — 9:16 portrait, 1080×1920, 30fps.
-Narrated by Liam (am_onyx, Kokoro), in for Bear. @NikBearBrown.
+Narrated by Kore (af_kore, Kokoro), in for Humanitarians AI. @HumanitariansAI.
 
 **Review format:** for each beat, mark Keep or Kill based on whether the
 technique serves the brand. Two-column checkout at the bottom.
@@ -44,7 +44,7 @@ technique serves the brand. Two-column checkout at the bottom.
 ## Technique Notes
 
 **B00 — Cold Open** `ClaudeComposerAsk`
-  Liam introduces: one logo, 47 paths, every Remotion move.
+  Kore introduces: one logo, 47 paths, every Remotion move.
 
 **B01 — Spring Entrance** `spring({ damping: 22, stiffness: 180, mass: 0.9 })`
   Default spring. Mark enters as one unit. Nothing special — that's the point.
@@ -110,7 +110,7 @@ technique serves the brand. Two-column checkout at the bottom.
   Suggest: Per-Path Stagger, Kinetic Scatter, Draw-On, Elastic, Mask Reveal.
 
 **B22 — Outro** `ClaudeTitleOutro`
-  'One Logo, 47 Paths, Every Move Remotion Knows.' · @NikBearBrown · Liam, in for Bear.
+  'One Logo, 47 Paths, Every Move Remotion Knows.' · @HumanitariansAI · Kore, in for Humanitarians AI.
 
 ---
 

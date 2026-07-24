@@ -6,7 +6,7 @@ Standalone rebuild instructions for this reel.
 - Slug: `claude-liam-claude-api`
 - Skill: `claude-explainer` + `skill-teardown` modifier
 - Source skill: `anthropics/skills/skills/claude-api/SKILL.md`
-- Channel: claude-liam (Kokoro am_onyx, free pipeline)
+- Channel: claude-liam (Kokoro af_kore, free pipeline)
 - Format: 16:9, 1280×720 output
 
 ## Reel folder
@@ -41,7 +41,7 @@ ffmpeg -i ../anthropics/skills/youtube/claude-liam-claude-api/mp4/claude-liam-cl
 ```
 
 ## World-language greeting
-B00: "Bonjour" (French) — Liam cold open, in for Bear
+B00: "Bonjour" (French) — Kore cold open, in for Humanitarians AI
 
 ## Notes
 - TRIGGER fires BEFORE the target file opens — pre-scan gate, not post-request lookup

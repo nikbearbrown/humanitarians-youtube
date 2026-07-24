@@ -6,7 +6,7 @@
 - Final: `vox-stimulated-laser.mp4`
 - Runtime: 158.43 seconds
 - Slots: 15/15 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native replacement: B08 resonant-cavity photon-avalanche animation
 - QC: PASS after correcting B05 and B11 sampled-frame visibility
 - Publishing: none

@@ -1,7 +1,7 @@
 # CLAUDE-CLI Series Index — Branding and AI
 
-Channel: claude-liam (@NikBearBrown)
-Voice: Kokoro am_onyx
+Channel: claude-liam (@HumanitariansAI)
+Voice: Kokoro af_kore
 Style: claude-cli (ClaudeComposerAsk / ClaudeCodeBeat / ClaudeTitleOutro)
 Series: "Build it with Claude, then take it apart."
 Subline: Nina Harris' course Branding and AI.
@@ -150,5 +150,5 @@ for slug in \
 done
 ```
 
-Free pipeline only — Kokoro am_onyx, no ElevenLabs, no higgsfield, no publishing, no git commit/push.
+Free pipeline only — Kokoro af_kore, no ElevenLabs, no higgsfield, no publishing, no git commit/push.
 Leave every cut for review. Public is a manual Studio flip.

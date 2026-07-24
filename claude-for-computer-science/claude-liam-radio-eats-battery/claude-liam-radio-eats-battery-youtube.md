@@ -1,6 +1,6 @@
 It's Not the AI Draining the Battery. It's the Radio.
 
-This is Liam for Humanitarians AI. Halo, Liam. This is Liam, in for Bear. The team optimized the neural network for weeks and the battery life barely moved — because inference was never what was eating it.
+This is Kore for Humanitarians AI. Halo, Kore. This is Kore, in for Humanitarians AI. The team optimized the neural network for weeks and the battery life barely moved — because inference was never what was eating it.
 
 What you'll see:
 • Here is why It's Not the AI Draining the Battery. It's the Radio. belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.
@@ -11,7 +11,7 @@ What you'll see:
 
 Playlist: Claude for Computer Science
 
-Narrated by Liam for Humanitarians AI.
+Narrated by Kore for Humanitarians AI.
 @HumanitariansAI
 
 #ClaudeAI #HumanitariansAI #Education #ComputerScience

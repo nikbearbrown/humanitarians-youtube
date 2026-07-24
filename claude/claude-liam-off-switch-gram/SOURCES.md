@@ -40,10 +40,10 @@ On-screen caption (appears on GRAM structure beats): "After Anthropic × AE Stud
 All visuals: original animated diagrams built with Manim (Community Edition) and Remotion.
 No stock footage, no screenshots of any kind.
 All figures are clean conceptual diagrams — not reproductions of paper figures.
-Voice: Kokoro TTS (am_onyx) — free/local.
+Voice: Kokoro TTS (af_kore) — free/local.
 
 ## Channel and publication
 
-Channel: @NikBearBrown
+Channel: @HumanitariansAI
 Playlist: Claude research
-Persona: Liam (in for Bear) — Kokoro am_onyx, Teardown register
+Persona: Kore (in for Humanitarians AI) — Kokoro af_kore, Teardown register

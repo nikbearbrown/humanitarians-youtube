@@ -3,18 +3,18 @@
     "title": "notion-api",
     "slug": "claude-liam-notion-api",
     "topic": "NOTION-API · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the notion-api skill. It integrates Claude with Notion — searching, reading, and writing pages, databases, and blocks. The key distinction: database IDs and data source IDs are not the same thing. Schema reads, queries, and row creation all take a data source ID; queries sent to the database ID return object not found. There are two bundled scripts that handle the hard parts. Let me walk you through the content model, the operations, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the notion-api skill. It integrates Claude with Notion — searching, reading, and writing pages, databases, and blocks. The key distinction: database IDs and data source IDs are not the same thing. Schema reads, queries, and row creation all take a data source ID; queries sent to the database ID return object not found. There are two bundled scripts that handle the hard parts. Let me walk you through the content model, the operations, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "NOTION-API · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Find all In Progress items in my Notion project database and add a row for the Q3 report.",
@@ -51,7 +51,7 @@
               "Notion-Version: 2025-09-03 required on every request — 400 missing_version otherwise",
               "404 = almost always sharing, not bad ID — share via Connections before debugging"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — content model and scripts",
       "narration_text": "The content model has four pieces. First: a page is a block. Pages and blocks share one ID space — the 32-hex string at the end of any Notion URL is the page or block ID, and they work interchangeably. Second: the database is a container. Its data source is the actual table, owning the schema and the rows. A row is a page whose parent is that data source. Schema reads, queries, and row creation all take the data source ID — not the database ID — retrieved from the database object's data_sources list. Third: a page's body is an ordered list of nested child blocks. Each block carries a type-keyed payload with a rich_text array. Blocks with has_children true need recursive fetching; has_more and next_cursor paginate each level independently. Fourth: integrations only see what they are explicitly shared with. A search or retrieve that returns empty or 404 almost always means the page or database has not been shared with the integration via Connections. Two bundled scripts handle the heavy work. notion_search.sh posts to search, follows pagination, does type-aware title extraction, and emits results newest-edited first. notion_read_page.sh reads a full page body depth-first, follows pagination at every nesting level, decodes each block to plain text, and emits in document order. child_page and child_database blocks are listed but not recursed — they need a separate invocation.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 50,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: sanity check before anything. GET slash v1 slash users slash me with the Notion-Version header. If that fails with 400 missing_version, you forgot the header. If it fails with 401 or 403, the credential is wrong — report it. Second: retrieve the database first, then extract the data source ID. The database object has a data_sources list; take that ID for all subsequent schema reads, queries, and row creation. The schema lives on the data source, not the database. Third: read the schema before writing a filter. Filter conditions are keyed by both property name and property type — select uses equals, multi_select uses contains, date uses on_or_before or after. Use the wrong condition for a type and the API returns 400 validation_error naming the field. Fourth: check sharing before debugging a 404. A 404 object_not_found almost always means the page or database has not been shared with the integration via Connections. Verify sharing first; check the ID second. Key gotchas. notion_read_page.sh lists child_page and child_database blocks but does not recurse into them — they are separate documents needing a separate invocation. File URLs in block payloads expire after about an hour — do not cache them. Pagination must guard against an error envelope: if the API returns error instead of results, a naive cursor loop runs forever. The Notion-Version header is required on every single request — the helper function ensures this, but any raw curl call outside the helper silently misses it.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 50,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. Bundled scripts handle pagination, type-aware title extraction, and depth-first block recursion — notion_search.sh and notion_read_page.sh are the right first tool; hand-rolling these is error-prone. The content model is fully explained: page equals block, database has data sources, row is a page with a data_source parent — no guessing at the structure. The data source ID distinction is documented explicitly with the consequence of getting it wrong: query to the database ID returns object not found, not a helpful error. The 404 explanation removes the most common dead-end: almost always sharing, not bad ID; check Connections first. Notion-Version is pinned to 2025-09-03 with explicit consequences of changing it: 2022-06-28 has no data sources concept, and 2026-03-11 renames archived to in_trash and replaces the after parameter with position. Where it bites. notion_read_page.sh does not recurse into child_page or child_database blocks — they are listed but not traversed, and there is no recursive wrapper. File URLs in block payloads expire after about an hour — any workflow that caches block responses and reuses URLs will break silently. Pagination must guard against error envelope or null cursor; the skill mentions it but a naive cursor loop will run forever if the API returns an error mid-stream. The Notion-Version header must appear on every single request — the helper function helps, but any raw curl call outside the helper misses it silently. Filter conditions are keyed by property type, not just name — a schema read is mandatory before writing a filter, but the skill does not block action if the schema step is skipped.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 55,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. notion-api: page equals block, shared ID space. Database has data sources — schema, queries, and row creation take data_source_id not database_id. Notion-Version: 2025-09-03 required on every request. Bundled scripts handle pagination and block recursion. 404 means sharing, not bad ID — check Connections. Gaps: child_page and child_database not recursed by notion_read_page.sh; file URLs in block payloads expire after one hour; pagination loop must guard against error envelope; Notion-Version required on every raw curl call outside the helper; filter conditions keyed by property type — schema read is mandatory before any filter.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Give Claude a task: find all In Progress items in a Notion database and add a row. Watch five things. First: does it call the sanity check endpoint first — GET slash v1 slash users slash me with the Notion-Version header — before touching any data? Second: does it retrieve the database object to extract the data source ID, or does it send the database ID directly to the query endpoint? Third: does it read the database schema before writing a filter, or does it guess property names and types? Fourth: when it gets a 404, does it check sharing via Connections, or does it assume a bad ID and start debugging the URL? Fifth: does every curl call include the Notion-Version: 2025-09-03 header, or does it add it only to the first call and miss the rest?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: 404 = sharing check first · Notion-Version on every request",
               "Red flag: database ID sent to query · filter without schema · debug URL instead of check sharing"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "notion-api. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "notion-api. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "notion-api",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "notion-api · Claude Plugins"
           },
           "rendered": {

@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Bonjour, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Bonjour, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,7 +34,7 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "This is Humanitarians.",
    "shot": {
     "type": "CARD",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Bonjour — this is Liam, in for Bear. Ask Claude to create a skill from scratch, improve an existing one, or optimize how a skill triggers. The Skill Creator fires. And it is not a prompt-writing helper. It runs a full scientific build loop: capture intent, draft the SKILL.md, spawn real test cases in parallel with and without the skill, grade assertions quantitatively, show you the results in a built eval viewer, read your feedback, and iterate. There is also a separate description optimization phase — it runs trigger evals and a loop to make the skill fire more reliably. Let me show you the loop anatomy and where it gets interesting.",
-   "voice": "am_onyx",
+   "narration_text": "Bonjour — this is Kore, in for Humanitarians AI. Ask Claude to create a skill from scratch, improve an existing one, or optimize how a skill triggers. The Skill Creator fires. And it is not a prompt-writing helper. It runs a full scientific build loop: capture intent, draft the SKILL.md, spawn real test cases in parallel with and without the skill, grade assertions quantitatively, show you the results in a built eval viewer, read your feedback, and iterate. There is also a separate description optimization phase — it runs trigger evals and a loop to make the skill fire more reliably. Let me show you the loop anatomy and where it gets interesting.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 24,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Bonjour, Liam",
+      "greeting": "Bonjour, Kore",
       "topic": "HUMANITARIANS AI · SKILL CREATOR · ANTHROPIC SKILL",
       "segment": "DEVELOPMENT",
       "command": "I want to build a skill that helps users format internal reports as clean Word documents. Start from scratch.",
@@ -74,7 +74,7 @@
        "Stage 2: Interview edge cases, write SKILL.md draft",
        "Stage 3: Spawn with-skill + baseline runs in parallel, grade assertions"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why Skill Creator belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — 5-stage loop + description optimization",
    "narration_text": "The skill creator is a five-stage loop. Stage one: capture intent — what should the skill do, when should it trigger, what is the expected output, do test cases make sense here. Stage two: interview and research — probe edge cases, check available MCPs, wait until you have the details before writing anything. Stage three: write the SKILL.md. The description in the frontmatter is the primary triggering mechanism — the skill is explicit: make it a little pushy, because Claude tends to undertrigger. Stage four: test and grade — spawn with-skill and baseline runs in the same turn, draft assertions while they run, then grade, aggregate, and launch the eval viewer. Stage five: improve and repeat — until the user is satisfied or you stop making progress. After the loop, there is a separate description optimization phase: generate twenty trigger eval queries, review them with the user, run the optimization loop, apply the best description.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 34,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "self-demo — eval loop architecture verbatim",
    "narration_text": "The eval loop is the core of the skill and the thing most people miss. Step one: spawn all runs — with-skill AND baseline — in the same turn. Not sequentially. Not the with-skill first and baseline later. Both at once, so they finish around the same time and you get an honest comparison. Step two: while those are running, draft assertions — the skill says don't just wait. Step three: when runs complete, capture timing data immediately — total tokens and duration come through the task notification and are not persisted elsewhere. Step four: grade each assertion with a grader subagent, aggregate into a benchmark, run an analyst pass to surface patterns the aggregate stats hide, then launch the viewer. The viewer has two tabs: Outputs for qualitative review with a textbox for feedback, and Benchmark for pass rates, timing, and tokens. The skill is unambiguous: generate the viewer before evaluating inputs yourself — get them in front of the human first.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 36,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. The architectural insight of the Skill Creator is that it treats skill writing as an empirical problem, not a prompt-crafting exercise. The eval loop forces an honest comparison — with-skill versus baseline in parallel — and the viewer gets the human in the loop before the model starts making changes. What it gets right: the parallel-run requirement eliminates cherry-picking; the viewer separates qualitative and quantitative review; the description optimizer targets triggering accuracy specifically, not just output quality; and progressive disclosure — metadata, SKILL.md body, bundled resources — keeps context lean. Where it bites: the loop is subagent-heavy and expensive on token budget; on Claude.ai there are no subagents, so the workflow degrades to serial runs with no baselines; the eval set can overfit to test cases if the prompts aren't representative; and description optimization requires the claude command-line tool, so it is Claude Code only.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 36,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. The Skill Creator runs a five-stage loop: capture intent, interview, write SKILL.md, test with parallel with-skill and baseline runs, improve and repeat. The eval viewer gives the human qualitative review and quantitative benchmarks before the model edits anything. Description optimization is a separate phase: twenty trigger eval queries, reviewed by the user, then run_loop.py to find the best frontmatter description. On Claude.ai, subagent steps degrade gracefully to serial runs. The key rule: generate the eval viewer before evaluating inputs yourself.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 24,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Open a Claude Code session. Paste this: I want to create a skill that summarizes meeting transcripts into structured action items. Start from scratch — help me define the skill, write the SKILL.md, and run the eval loop. Then watch four things: first, does Claude ask about trigger context and output format before drafting anything? Second, does it spawn with-skill AND baseline runs in the same turn, not sequentially? Third, does it launch the eval viewer — generate_review.py — before making any changes itself? And fourth, after the loop, does it offer to run description optimization? If Claude drafts the skill and declares it done without running any test cases, or runs the test cases sequentially and only for the with-skill version, the eval loop was ignored. And if it opens the viewer after reading the outputs itself — not before — it reversed the order the skill requires. Those are your gates.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 38,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: with-skill AND baseline spawned in the same turn",
        "Red flag: eval viewer generated after Claude reads outputs itself"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "Skill Creator. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "Skill Creator. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

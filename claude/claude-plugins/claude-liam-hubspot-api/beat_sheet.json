@@ -3,18 +3,18 @@
     "title": "hubspot api",
     "slug": "claude-liam-hubspot-api",
     "topic": "HUBSPOT API · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with HubSpot CRM. The hubspot-api skill gives you one uniform path pattern for every object type — contacts, companies, deals, tickets, and custom objects — plus a bundled helper and search script. The philosophy: properties are opt-in on every read, associations are typed, and authentication is injected. Let me walk you through the model, the operations, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with HubSpot CRM. The hubspot-api skill gives you one uniform path pattern for every object type — contacts, companies, deals, tickets, and custom objects — plus a bundled helper and search script. The philosophy: properties are opt-in on every read, associations are typed, and authentication is injected. Let me walk you through the model, the operations, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 14,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "HUBSPOT API · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Find all contacts created in the last 30 days who are in the 'lead' stage.",
@@ -51,7 +51,7 @@
               "Properties opt-in: reads without properties= return near-empty records",
               "hs_search.sh handles filter/sort/pagination — search hard-capped at 10,000"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — CRM data model + query primitives",
       "narration_text": "The data model has four concepts. First, the uniform path: every object type — contacts, companies, deals, tickets, and custom objects — lives under slash crm slash v3 slash objects slash objectType. The same list, get, create, patch, archive, batch, and search endpoints work for all of them — just swap the type segment. Second, properties are opt-in. A list or get call without a properties parameter returns only a handful of defaults: hs_object_id, createdate, lastmodifieddate, and a few type-specific fields like email and firstname for contacts. Always pass properties= with the fields you actually need or your records will look empty. Third, each object type has its own primary dedup key. Contacts dedup on email — creating a contact that already exists by email returns a 409 conflict, not a new record. Companies dedup on domain. Deals and tickets have no dedup key. Know the key before you create. Fourth, associations are typed. The common pairs — contact to company, deal to contact — have built-in association type IDs. Use the v4 associations endpoints to discover labels and create links. The bundled hsapi helper handles the bearer header and content type on every request. hs_search.sh wraps the search endpoint with filter, sort, and pagination — it follows the paging.next.after cursor automatically and emits TSV or JSONL. Two things to watch: search is eventually consistent, so a record you just created may not appear yet. And search is hard-capped at ten thousand total results per query — narrow the filter if you need more.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 42,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — operations + key patterns",
       "narration_text": "Four patterns matter. First: sanity check before any real work. The skill includes a one-liner — GET contacts with limit one — to confirm the workspace is wired up. A 403 means the credential authenticated but lacks the scope for what you tried; report the missing scope rather than debugging auth. Second: discover the schema before you write. Property names are the most common source of 400 validation errors. Use GET /crm/v3/properties/{objectType} to read the catalog before creating or filtering — it shows field names, types, and the option values for enumerated fields like pipeline stages and lifecycle stages. Guess a property name and you get a VALIDATION_ERROR that names the offending field but not the correct value. Third: always pass properties= on reads. The default set is minimal — contacts get email and firstname but not phone or company. Without explicit properties, you get records that look empty. The complete default list per object type is in references/api.md, not in the main skill text. Fourth: use batch endpoints for bulk work. One batch call of up to 100 records counts as one request. Private app tokens get 100 requests per 10 seconds on Free/Starter and 190 on Professional/Enterprise. Search endpoints have their own stricter limit — 5 requests per second per account — and that limit is not reflected in the rate-limit headers on search responses.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 42,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. The uniform v3 URL model is the central insight: one path pattern for all object types means you learn the operations once and apply them everywhere — the skill makes this explicit up front. The properties opt-in contract is documented clearly with the instruction to always pass properties= — this prevents the most common beginner mistake of getting records that look empty. The bundled hsapi helper and hs_search.sh script remove boilerplate and handle pagination correctly — the script follows the cursor and respects the 200-row page size. Error handling is specific: each HTTP status code maps to a named category with a concrete action — check .status before projecting .results, read errors[] on a 400, switch to upsert on a 409. Rate limit headers are documented per endpoint, including the separate 5 requests per second limit for search. Where it bites. Search eventual consistency is mentioned — a record created or updated seconds ago may not appear — but the skill gives no guidance on how long to wait or when to give up. A developer relying on read-after-write through search will hit this silently. The default property set per object type is deferred to references/api.md. The main skill text says a handful of defaults, but you have to open a second file to know which fields come free without properties=. The v3 end-of-support date is not yet set — the skill says no migration required for now but gives no advice on when or how to check, leaving the developer to monitor HubSpot's changelog. The 18-filter total cap for search — 5 groups, 6 filters per group — is stated correctly but the workaround for exceeding it is just post the raw body, with no example of an OR-grouped query. Association type IDs are documented via a table in references/api.md and a live-discovery command, but the main skill text names only one example ID — 341 for deal to company — and you need the file or a live call for the rest.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 52,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. hubspot api: uniform v3 URL — slash crm slash v3 slash objects slash objectType — same ops for contacts, companies, deals, tickets, custom objects. Properties opt-in: always pass properties= or reads return near-empty records. Dedup keys: contacts on email, companies on domain, deals and tickets none. Associations: typed, v4 endpoints for labels. hsapi() helper + hs_search.sh for pagination. Rate limits: 100 or 190 req/10s; search 5 req/s separate, no headers on search responses. Error categories: VALIDATION_ERROR, MISSING_SCOPES, OBJECT_NOT_FOUND, CONFLICT, RATE_LIMITS. Gaps: search eventual consistency, no retry guidance; default property set in references/api.md not inline; v3 EOL date unset; 18-filter cap workaround thin; association type IDs mostly in external table.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Give Claude a task: find all HubSpot contacts whose lifecycle stage is lead and who were created in the last 30 days, then export them as a CSV. Watch five things. First: does it pass properties= with the fields it actually needs, or does it omit properties= and then wonder why the records look empty? Second: does it use hs_search.sh with the correct filter syntax — lifecyclestage colon EQ colon lead — or does it try to build the filter body by hand? Third: does it page through all results or stop at the first page? Fourth: does it know that search is eventually consistent and note that very recent records might be missing? Fifth: does it check the rate limit — five requests per second for search — or fire requests in a tight loop?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: paging cursor followed · eventual consistency caveat · 5 req/s search limit",
               "Red flag: missing properties= · manual filter body · first-page only · tight loop"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "hubspot api. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "hubspot api. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "hubspot api",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "hubspot api · Claude Plugins"
           },
           "rendered": {

@@ -1,7 +1,7 @@
 # BUILD-PROMPT — Claude on the Clock
 
 **Reel:** `claude-liam-economic-index-cadences`  
-**Channel:** claude-liam · Kokoro `am_onyx` · @NikBearBrown  
+**Channel:** claude-liam · Kokoro `af_kore` · @HumanitariansAI  
 **Built:** 2026-07-17
 
 ---
@@ -10,9 +10,9 @@ Build one 16:9 claude-explainer video titled **"Claude on the Clock"** covering
 Anthropic's Economic Index **Cadences** report (June 2026) by Massenkoff, Lyubich,
 Sacher, Hitzig, Zhang, Heller, McCrory.
 
-**Channel:** claude-liam — Kokoro `am_onyx`, @NikBearBrown folder chip, Teardown
-register (Feynman × MKBHD), Liam in for Bear (say so in B00 narration and outro,
-greet "Ciao, Liam").
+**Channel:** claude-liam — Kokoro `af_kore`, @HumanitariansAI folder chip, Teardown
+register (Feynman × MKBHD), Kore in for Humanitarians AI (say so in B00 narration and outro,
+greet "Ciao, Kore").
 
 **Free pipeline only:** Kokoro voice, no ElevenLabs, no higgsfield, no publishing,
 no git commit or push. Run without approval pauses.
@@ -108,8 +108,8 @@ Prompt: "What share of my work tasks could you do entirely on your own today —
 ones should I never hand over? Interview me, then give me your honest split."
 
 **B13 OUTRO** — `ClaudeTitleOutro`
-Title: "Claude on the Clock." Handle: @NikBearBrown  
-Subline: "Liam, in for Bear."
+Title: "Claude on the Clock." Handle: @HumanitariansAI  
+Subline: "Kore, in for Humanitarians AI."
 
 ---
 

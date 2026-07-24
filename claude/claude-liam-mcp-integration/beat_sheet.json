@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Olá, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Olá, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,8 +34,8 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
-   "narration_text": "This is Liam for Humanitarians AI.",
+   "voice": "af_kore",
+   "narration_text": "This is Kore for Humanitarians AI.",
    "shot": {
     "type": "CARD",
     "source": "remotion",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Olá — this is Liam, in for Bear. Ask Claude to add an MCP server, integrate MCP, configure .mcp.json, set up Model Context Protocol, or connect an external service to a plugin — the MCP Integration skill fires. MCP enables Claude Code plugins to integrate with external services by providing structured tool access. Two configuration methods: a dedicated .mcp.json at the plugin root, recommended, or an inline mcpServers field in plugin.json. Four server types: stdio for local processes, SSE for hosted services with OAuth, HTTP for REST APIs with token auth, and WebSocket for real-time streaming. Let me walk you through the configuration formats, the tool naming convention, and where this skill gets it right and where it bites.",
-   "voice": "am_onyx",
+   "narration_text": "Olá — this is Kore, in for Humanitarians AI. Ask Claude to add an MCP server, integrate MCP, configure .mcp.json, set up Model Context Protocol, or connect an external service to a plugin — the MCP Integration skill fires. MCP enables Claude Code plugins to integrate with external services by providing structured tool access. Two configuration methods: a dedicated .mcp.json at the plugin root, recommended, or an inline mcpServers field in plugin.json. Four server types: stdio for local processes, SSE for hosted services with OAuth, HTTP for REST APIs with token auth, and WebSocket for real-time streaming. Let me walk you through the configuration formats, the tool naming convention, and where this skill gets it right and where it bites.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 22,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Olá, Liam",
+      "greeting": "Olá, Kore",
       "topic": "HUMANITARIANS AI · MCP INTEGRATION · CLAUDE CODE SKILL",
       "segment": "PLUGIN DEV",
       "command": "Add an MCP server to my plugin that connects to Asana for task management.",
@@ -74,7 +74,7 @@
        "4 types: stdio (local) · SSE (OAuth) · HTTP (tokens) · ws (real-time)",
        "Tool naming: mcp__plugin_{name}_{server}__{tool} — precise, silent failure on typo"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why MCP Integration belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — two config methods + four server types",
    "narration_text": "Two configuration methods. Dedicated .mcp.json at the plugin root: recommended when you have multiple servers or want clear separation of concerns — each server is a key with command or URL, args, and env. Inline mcpServers field in plugin.json: good for simple single-server plugins that want one configuration file. Four server types. stdio: the local process model — Claude Code spawns the server as a child process, communicates via stdin and stdout, and terminates it when Claude Code exits; best for local tools and custom servers built with the MCP SDK. SSE — Server-Sent Events: connects to a hosted MCP server over HTTP with OAuth authentication handled automatically by Claude Code on first use; best for cloud services like Asana, GitHub, and similar. HTTP: connects to a REST API MCP server with token-based authentication passed in request headers; best for stateless backends. WebSocket: a persistent bidirectional connection for real-time data streaming and push notifications; best for low-latency scenarios. For all types: always use ${CLAUDE_PLUGIN_ROOT} for local file paths, always use HTTPS or WSS not HTTP, and never hardcode credentials in the configuration JSON.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 30,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "design — tool naming + integration patterns + lifecycle",
    "narration_text": "Tool naming is the most precise requirement. When an MCP server provides tools, Claude Code automatically prefixes them with this format: mcp double-underscore plugin underscore plugin-name underscore server-name double-underscore tool-name. Example: plugin asana, server asana, tool create_task becomes mcp__plugin_asana_asana__asana_create_task — that exact string, with two underscores between each section. Use this precise name in command frontmatter allowed-tools. Pre-allow specific tool names, not wildcards: mcp__plugin_asana_asana__asana_create_task is correct; mcp__plugin_asana_asana__star is the security risk. Three integration patterns. Simple tool wrapper: a command with specific allowed-tools calls MCP tools with user interaction for validation and preprocessing. Autonomous agent: an agent uses MCP tools across multi-step workflows without user intervention — the tool naming is baked into the agent's system prompt. Multi-server: a single plugin bundles multiple MCP servers, allowing commands to call tools from GitHub and Jira in the same workflow. Lifecycle: MCP servers start when the plugin enables — stdio servers spawn as child processes, SSE and HTTP connections are established on-demand on first tool use. Configuration changes require restarting Claude Code.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. MCP Integration gets the configuration structure right: .mcp.json versus inline mcpServers is clearly distinguished with the recommendation for .mcp.json for multiple servers. Four server types are fully documented with configuration examples, use cases, and authentication patterns for each. Tool naming format is explicit — the mcp__plugin_...__... pattern is stated precisely with a worked example. Security guidance is concrete: HTTPS not HTTP, no hardcoded tokens, specific tool pre-allow not wildcards. The lifecycle sequence — plugin loads, configuration parsed, server starts, tools discovered, tools available — is clearly ordered. Where it bites: the tool naming string is long and precise and one wrong underscore is a silent failure — Claude Code does not report that a tool call failed due to a name mismatch. No hot-swap: configuration changes require restarting Claude Code — same buried constraint as hooks. There is no validation tooling mentioned — no validate-mcp.sh equivalent. Multi-server pattern documentation lacks examples of how commands address tools from multiple servers in one workflow. And the wildcard pre-allow risk is stated but its failure mode — a compromised tool or escalated scope — is not explained.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 32,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. MCP Integration fires for adding MCP servers, configuring .mcp.json, SSE, HTTP, stdio, WebSocket types, and tool naming in Claude Code plugins. Two config methods: .mcp.json recommended for multiple servers, inline mcpServers for single-server simplicity. Four types: stdio local child process, SSE hosted OAuth, HTTP REST tokens, ws real-time. Tool naming: mcp__plugin_{name}_{server}__{tool} — precise, two underscores between sections. Always ${CLAUDE_PLUGIN_ROOT} for paths, HTTPS/WSS only, specific tool pre-allow. Config changes need restart. Gaps: tool name typo is silent, no validation tooling, wildcard risk understated, multi-server workflow examples thin.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 20,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Open a Claude Code session. Paste this: Add an MCP server to my plugin that connects to the Asana hosted service for task management. Watch four things: first, does Claude write the configuration in .mcp.json rather than inline in plugin.json? Second, does it use type SSE — not stdio or HTTP — for a hosted Asana endpoint with OAuth? Third, is the tool naming format correct in the command frontmatter — mcp__plugin_asana_asana__asana_create_task with two underscores between sections and not one? And fourth, does the command frontmatter pre-allow the specific tool names rather than using a wildcard asterisk pattern? If the configuration goes in plugin.json, the separation principle was missed. If the tool names use a wildcard, the security principle was missed. And if the type is stdio for a hosted endpoint, the transport model is wrong. Those are your gates.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 34,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: allowed-tools: [\"mcp__plugin_asana_asana__asana_create_task\"]",
        "Red flag: config in plugin.json · type stdio for hosted · wildcard tool allow"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "MCP Integration. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "MCP Integration. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

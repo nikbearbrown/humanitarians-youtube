@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_18_2s.png | B00 cold open | ClaudeComposerAsk: "Ciao, Liam", migrate Sonnet 4.5 → Opus 4.5 command, 3 output lines, @NikBearBrown |
+| frame_18_2s.png | B00 cold open | ClaudeComposerAsk: "Ciao, Kore", migrate Sonnet 4.5 → Opus 4.5 command, 3 output lines, @HumanitariansAI |
 | frame_72_7s.png | B01 matrix | Opus45MigrationMatrix: 4-row target platform table + source/exclusion side panel + 6-step workflow, spark line |
 | frame_140_4s.png | B02 triggers | Opus45MigrationTriggers: green opt-in banner + 5 behavioral trigger rows (when/fix columns), integration note, spark line |
 | frame_206_6s.png | B05 teardown | Opus45MigrationTell: 5+5 two-column teardown, callout overlaps row 5 (accepted batch pattern), spark line |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Ciao, Liam" (rotation #36)
+- Greeting: "Ciao, Kore" (rotation #36)
 - New scenes: Opus45MigrationMatrix.tsx (B01), Opus45MigrationTriggers.tsx (B02), Opus45MigrationTell.tsx (B05)
 - B01 design: 4-row target platform table (left, 60% wide) + source/exclusion/beta-header panel (right) + 6-step workflow below
 - B02 design: green opt-in rule banner above 5 trigger rows; each row has when (terracotta) and fix (green) sub-labels

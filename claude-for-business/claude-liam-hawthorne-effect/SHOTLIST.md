@@ -31,8 +31,8 @@ Required by run.sh Gate F before Manim renders.
 
 ## Shot notes
 
-- **B00**: ClaudeComposerAsk cold open. IN-FOR-BEAR LAW: "This is Liam, in for Bear." in first breath.
-  Greeting: "Merhaba, Liam".
+- **B00**: ClaudeComposerAsk cold open. IN-FOR-BEAR LAW: "This is Kore, in for Humanitarians AI." in first breath.
+  Greeting: "Merhaba, Kore".
 - **B01, B03, B05, B07, B10, B12**: Inner ask micro-beats. Greeting cue: "The ask," (SPARK-LINE LAW —
   non-empty greeting, never lonely asterisk).
 - **B02, B04**: Strictly qualitative — no numbers on axes. Only show direction (up/up/up for B02;
@@ -41,10 +41,10 @@ Required by run.sh Gate F before Manim renders.
 - **B11**: MBTI chip verbatim: "essentially no predictive validity for job performance". Big Five:
   "predicts modestly".
 - **B14**: CARD/SLATE — no UI chrome (ILLUSTRATE LAW). Cream page, centered serif text.
-  IN-FOR-BEAR sign-off: "Liam, in for Bear."
+  IN-FOR-BEAR sign-off: "Kore, in for Humanitarians AI."
 - **B15**: VERDICT — ClaudeVerdictArtifact. Narration: "Let's recap with Claude."
 - **B16**: YOUR TURN — "Your turn." greeting. Prompt read ALOUD verbatim (HANDOFF LAW).
-- **B17**: ClaudeTitleOutro — title "Claude, Observed", handle "@NikBearBrown".
+- **B17**: ClaudeTitleOutro — title "Claude, Observed", handle "@HumanitariansAI".
 
 ---
 

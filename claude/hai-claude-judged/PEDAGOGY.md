@@ -18,7 +18,7 @@
 |---|---|---|---|
 | audience | HAI | HAI | ✓ |
 | register | Pragmatist | Pragmatist | ✓ |
-| voice_kokoro | am_onyx | am_onyx | ✓ |
+| voice_kokoro | af_kore | af_kore | ✓ |
 | engine | kokoro | kokoro | ✓ |
 | palette | humanitarians | humanitarians | ✓ |
 | slug | claude-judged-hai | claude-judged-hai | ✓ |

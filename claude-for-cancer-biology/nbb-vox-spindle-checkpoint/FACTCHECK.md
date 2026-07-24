@@ -5,7 +5,7 @@
 
 ---
 
-## NBB00 — Liam cold open
+## NBB00 — Kore cold open
 
 | Claim | Verdict | Source/Derivation |
 |---|---|---|

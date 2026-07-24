@@ -6,7 +6,7 @@
 
 ### 1. DOES NOT PARAPHRASE
 The narration rewrites the skill's content in the Teardown register — it does not
-parrot the SKILL.md. Each mechanism is explained in Liam's voice, judged honestly,
+parrot the SKILL.md. Each mechanism is explained in Kore's voice, judged honestly,
 and given context the SKILL.md does not state explicitly (e.g., WHY the fidelity
 palette choice works, not just THAT it exists).
 **SCORE: PASS**

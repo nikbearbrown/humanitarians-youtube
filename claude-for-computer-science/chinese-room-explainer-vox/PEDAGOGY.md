@@ -1,6 +1,6 @@
 # PEDAGOGY.md — chinese-room-explainer-vox
 
-Pedagogy gate for The Chinese Room — Liam Vox explainer.
+Pedagogy gate for The Chinese Room — Kore Vox explainer.
 
 ---
 
@@ -18,9 +18,9 @@ Pedagogy gate for The Chinese Room — Liam Vox explainer.
 
 | Check | Status |
 |---|---|
-| B00 opens "this is Liam, in for Bear" | PASS |
-| B07 signs off "Liam, in for Bear." | PASS |
-| Wagwan not used | PASS — "Kia ora, Liam" greeting |
+| B00 opens "this is Kore, in for Humanitarians AI" | PASS |
+| B07 signs off "Kore, in for Humanitarians AI." | PASS |
+| Wagwan not used | PASS — "Kia ora, Kore" greeting |
 
 ## No new claims invented
 

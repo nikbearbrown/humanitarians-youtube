@@ -4,7 +4,7 @@ Every motion technique in this reel, with timestamps, scene file, and a keep/kil
 
 **Subject:** `logos/musinique-logo-2.svg` — Musinique brand mark, viewBox 0 0 2048 2048, 1 complex path (99k chars), fill="black".
 **Total runtime:** 2:58 (178.4s, 5350 frames @ 30fps)
-**Channel:** claude-liam · @NikBearBrown · Kokoro am_onyx
+**Channel:** claude-liam · @HumanitariansAI · Kokoro af_kore
 **Scene file:** `runtime/remotion/src/MusiniqueLogo2RemotionShowcase.tsx`
 
 ---
@@ -33,7 +33,7 @@ Every motion technique in this reel, with timestamps, scene file, and a keep/kil
 | B19 | Scale Breathe (very slow continuous oscillation) | 2:28 | 7.6s | `ScaleBreathe` | [ ] |
 | B20 | Exit Family (shrink-spin → blur-out → mask-close) | 2:36 | 8.9s | `ExitFamily` | [ ] |
 | B21 | Handoff (Your turn — ClaudeComposerAsk) | 2:45 | 11.1s | `ClaudeComposerAsk` | KEEP — required bookend |
-| B22 | ClaudeTitleOutro (@NikBearBrown) | 2:56 | 1.9s | `ClaudeTitleOutro` | KEEP — required bookend |
+| B22 | ClaudeTitleOutro (@HumanitariansAI) | 2:56 | 1.9s | `ClaudeTitleOutro` | KEEP — required bookend |
 
 ---
 
@@ -51,7 +51,7 @@ Every motion technique in this reel, with timestamps, scene file, and a keep/kil
 youtube/claude-liam-musinique-logo-2-remotion-showcase/
   beat_sheet.json                              — 23 beats, audio-measured durations
   claude-liam-musinique-logo-2-remotion-showcase.mp4  — master (1080×1920, 30fps, 178.4s, 22MB)
-  mp3/beat-B00.mp3 … beat-B22.mp3             — 23 Kokoro am_onyx audio files
+  mp3/beat-B00.mp3 … beat-B22.mp3             — 23 Kokoro af_kore audio files
   TECHNIQUES.md                                — this file
 
 runtime/remotion/src/

@@ -3,18 +3,18 @@
     "title": "grafana-api",
     "slug": "claude-liam-grafana-api",
     "topic": "GRAFANA API · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with a Grafana instance through the Grafana REST API. The same surface covers Grafana Cloud and self-hosted — only the base URL changes. The most important thing to know before any request: time units are not uniform. Three formats, three endpoints. Wrong format returns empty results, not an error. Let me walk you through the model and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with a Grafana instance through the Grafana REST API. The same surface covers Grafana Cloud and self-hosted — only the base URL changes. The most important thing to know before any request: time units are not uniform. Three formats, three endpoints. Wrong format returns empty results, not an error. Let me walk you through the model and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 18,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "GRAFANA API · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Check the API latency dashboard and silence the HighErrorRate alert for 2 hours.",
@@ -51,7 +51,7 @@
               "Two alert surfaces: live state (Prometheus API) · definitions (provisioning API)",
               "Datasource errors: check results.<refId>.error — not HTTP status"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — time units + request setup + role model",
       "narration_text": "The skill opens with a critical note before any operations: time units are not uniform. The datasource query endpoint and annotations take Unix milliseconds. Alert state-history takes Unix seconds. Alertmanager silences take RFC 3339. Wrong format returns empty results — no error, just nothing. Request setup: GRAFANA_URL is the instance base URL — no trailing slash, and it's part of every path. GRAFANA_TOKEN is injected by the runtime. A grafana helper function wraps the bearer header, but it's session-only — not a persisted script. The role model has three tiers: Viewer, Editor, and Admin. A 403 means the configured identity lacks the required role. Dashboard reads and datasource queries only need Viewer. Alert rule definitions and silence creation need Editor or higher. Datasource queries use the slash api slash ds slash query endpoint — it returns Grafana data frames, not raw Prometheus JSON. The response is results dot refId dot frames, with parallel column arrays and schema fields. A datasource-side failure produces an empty frames array and an error string in results dot refId dot error — the HTTP status may still be 200.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 40,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — alert surfaces + dashboard update + query batching",
       "narration_text": "Three design points. Alert rules have two separate surfaces and you must use the right one. The Prometheus API gives you live runtime state — firing, pending, inactive — read-only. The provisioning API gives you definitions — the query, condition, labels, and duration — full CRUD. They answer different questions. Using provisioning to check whether something is firing right now doesn't work. And resources written via the provisioning API are locked in the Grafana UI unless you send the X-Disable-Provenance header. Dashboard updates require a GET-then-full-replace. There is no partial PATCH. You GET the current dashboard, apply your change to the full JSON, and POST it back. Grafana returns 412 on a version mismatch — include the current version from the GET response or set overwrite to true. The third design point is query batching. The slash api slash ds slash query endpoint fans out to the underlying database on each call. Batch multiple queries in a single request instead of looping. Each datasource type has its own query shape: Prometheus uses expr and intervalMs, Loki uses expr and queryType range, SQL uses rawSql and format table.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 40,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. Time unit inconsistency is documented at the top, before the first operation — it's the silent-empty-result failure mode, not a 4xx, and putting it first is the right call. The two alert rule surfaces — live state via the Prometheus API and definitions via the provisioning API — are clearly separated with different endpoints and different verbs documented for each. Datasource query errors: the skill names the 200-status-on-failure case — the HTTP status is unreliable; check results dot refId dot error and check that frames is not empty. Dashboard update requires GET first and full JSON roundtrip — prevents partial-update data loss, and the 412 version conflict is documented with two fix options. Datasource query batching: multiple queries in one request instead of looping is stated explicitly — the right performance guidance for an endpoint that fans out to the database. Where it bites. The grafana helper function is session-only — the same issue as every other skill in this series. Defined once in a code block, referenced across all operations, gone after the terminal closes. The GNU versus BSD date discrepancy for silence creation: the skill shows a one-line comment with the BSD alternative, but macOS users without GNU date installed will silently get a wrong timestamp. The provisioning lock caveat — X-Disable-Provenance: true — appears at the end of the alert rules section, after the read examples, easy to miss if you stop reading early. The grafana literal in the Alertmanager alert rule URL path looks like a placeholder variable but it's literal text — there's no callout. And slash api slash annotations has no page parameter — time-window narrowing is the right approach but the constraint isn't surfaced before the recipes.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 52,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. grafana-api: same API surface for Cloud and self-hosted, base URL only differs. Three time formats: Unix milliseconds for ds/query and annotations, Unix seconds for state-history, RFC-3339 for silences. Wrong format returns empty results, not error. Two alert surfaces: live state via Prometheus API (read-only), definitions via provisioning API (full CRUD, UI-locked). Datasource errors: check results.<refId>.error — HTTP status unreliable on ds/query. Dashboard update: GET first, full JSON replace, 412 on version conflict. Batch queries. Gaps: grafana() helper session-only · GNU/BSD date for silences · provisioning lock caveat buried · grafana literal looks like placeholder · annotations pagination constraint not upfront.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Ask Claude to check whether the HighErrorRate alert is currently firing, silence it for 2 hours if it is, and post an annotation marking the silence. Watch five things. First: does it use the Prometheus API for live state, or does it query the provisioning API and get definitions instead of runtime state? Second: does it use RFC-3339 for the silence timestamps, or does it pass milliseconds from a date command? Third: does it handle the GNU versus BSD date difference on macOS when constructing the RFC-3339 timestamp? Fourth: does it post the annotation with Unix milliseconds for the time field, or does it reuse the RFC-3339 from the silence? Fifth: does it batch the alert-state check and the silence query into one logical flow, or does it make unnecessary sequential calls?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: logical batch — check, silence, annotate in sequence",
               "Red flag: provisioning API for state check · ms in silence · wrong date format"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "grafana-api. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "grafana-api. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "grafana-api",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "grafana-api · Claude Plugins"
           },
           "rendered": {

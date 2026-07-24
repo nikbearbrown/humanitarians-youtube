@@ -1,7 +1,7 @@
 # TECHNIQUES — Bear Brown Initials Remotion Showcase 16:9
 
 `claude-liam-bear-brown-initials-remotion-showcase-16x9`  
-1920×1080 · 30fps · Kokoro am_onyx · Liam, in for Bear · 4:05 total
+1920×1080 · 30fps · Kokoro af_kore · Kore, in for Humanitarians AI · 4:05 total
 
 Source mark: `logos/bear-brown-initials-black.svg` — viewBox 0 0 7500 5000 (3:2),
 one complex `<path>` (cls-2), one transparent `<rect>`. Filters dropped. Ink #3D3929 on cream #FAF9F5.
@@ -52,5 +52,5 @@ Composition ID: `BearBrownInitialsShowcase169`
 ## Output
 
 - `mp4/claude-liam-bear-brown-initials-remotion-showcase-16x9.mp4` — 1920×1080, 30fps, 245s, 33MB
-- `mp3/beat-B00.mp3` through `beat-B21.mp3` — Kokoro am_onyx narration
+- `mp3/beat-B00.mp3` through `beat-B21.mp3` — Kokoro af_kore narration
 - `beat_sheet.json` — full beat metadata with measured audio durations

@@ -6,7 +6,7 @@
 - Final: `vox-exchange-stats.mp4`
 - Runtime: 160.48 seconds
 - Slots: 16/16 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native replacement: B10 shell-structure animation
 - QC: PASS after correcting B06 and B12 sampled-frame visibility
 - Publishing: none

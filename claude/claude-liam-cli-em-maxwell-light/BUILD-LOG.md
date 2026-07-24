@@ -27,7 +27,7 @@ SPARK-LINE LAW compliant:
 - B02 ASK: greeting="The ask," ✓
 - B05 CHANGE: greeting="The change," ✓
 - B08 HANDOFF: greeting="Your turn." ✓
-- B00 COLD OPEN: greeting="Bonjour, Liam" ✓
+- B00 COLD OPEN: greeting="Bonjour, Kore" ✓
 
 Human-needed beats (slates):
 - B01 PROBLEM — graphic: Ampère→wave→c chain

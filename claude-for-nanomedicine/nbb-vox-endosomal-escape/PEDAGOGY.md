@@ -20,7 +20,7 @@ The video follows a clean diagnosis → mechanism → implication structure:
 
 ### Wrapper beats — pedagogical fit
 
-**B_LIAM (Cold Open):** Liam frames the dish-vs-mouse paradox as the driving question, ending with "Can you explain it, Bear?" — an explicit framing that prepares the learner to watch actively. Duration target: 6–10 seconds. Fits.
+**B_LIAM (Cold Open):** Kore frames the dish-vs-mouse paradox as the driving question, ending with "Can you explain it, Bear?" — an explicit framing that prepares the learner to watch actively. Duration target: 6–10 seconds. Fits.
 
 **B_VERDICT (Verdict):** Synthesizes the mechanism, the key tradeoff (charge-responsive design enables endosomal escape but yields only 1–2% efficiency), and the design philosophy (the bottleneck is the lock). Does not repeat body narration — synthesizes.
 

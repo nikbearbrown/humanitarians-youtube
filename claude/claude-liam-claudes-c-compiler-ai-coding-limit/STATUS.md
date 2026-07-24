@@ -4,7 +4,7 @@
 
 | beat | status | fill method | who | slot | suggested prompt / search |
 |---|---|---|---|---|---|
-| B00 | ⬜ slate | remotion | pipeline | `media/B00.mp4` | ClaudeComposerAsk cold open — Jambo, Liam greeting |
+| B00 | ⬜ slate | remotion | pipeline | `media/B00.mp4` | ClaudeComposerAsk cold open — Jambo, Kore greeting |
 | B00B | ⬜ slate | remotion | pipeline | `media/B00B.mp4` | ClaudeComposerAsk — Lay out the compiler pipeline |
 | B01 | ✅ filled | ai-video-prompt | human | `manim/B01.mp4` | A C compiler is not a single function. It is an eight-stage pipeline: Lexer, Parser, AST, SSA |
 | B01B | ⬜ slate | remotion | pipeline | `media/B01B.mp4` | ClaudeComposerAsk — Map the methodology |

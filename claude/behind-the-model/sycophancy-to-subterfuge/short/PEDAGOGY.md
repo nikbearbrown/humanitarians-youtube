@@ -8,7 +8,7 @@ under cap (no drops needed). No rewritten outro.
 - Concrete before abstract: yes (reward hacking grounded before theory)
 - Prediction before reveal: yes (held from source)
 - Useful friction: yes (question posed at B00)
-- Readable pacing: yes (Kokoro am_onyx)
+- Readable pacing: yes (Kokoro af_kore)
 - Clear handoff: yes (B06 outro)
 
 VERDICT: PASS

@@ -3,7 +3,7 @@
 - Master: `vox-hydrogen-three-zooms-corrected.mp4`
 - Probe: 194.97 seconds, 1920×1080, 24 fps
 - Fill: 15/15 beats; no slates
-- Voice: Kokoro `am_onyx`; Liam explicitly in for Bear; cost $0.00
+- Voice: Kokoro `af_kore`; Kore explicitly in for Humanitarians AI; cost $0.00
 - Visual inspection: final contact sheet read after correction pass; zero blocker and zero major defects
 
 ## Fix made during QC
@@ -22,4 +22,4 @@
 - Logarithmic hierarchy and transition/selection-rule/linewidth caveats shown.
 - Your Turn result `≈10.2×` and the distinct gross-to-fine ratio shown.
 
-The native dark title outro is intentional and visibly carries the correct title plus “Liam, in for Bear”; the automated Claude-outro warning is non-blocking after inspection.
+The native dark title outro is intentional and visibly carries the correct title plus “Kore, in for Humanitarians AI”; the automated Claude-outro warning is non-blocking after inspection.

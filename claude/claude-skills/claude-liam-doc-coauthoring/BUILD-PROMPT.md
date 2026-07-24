@@ -6,7 +6,7 @@ Standalone rebuild instructions for this reel.
 - Slug: `claude-liam-doc-coauthoring`
 - Skill: `claude-explainer` + `skill-teardown` modifier
 - Source skill: `anthropics/skills/skills/doc-coauthoring/SKILL.md`
-- Channel: claude-liam (Kokoro am_onyx, free pipeline)
+- Channel: claude-liam (Kokoro af_kore, free pipeline)
 - Format: 16:9, 1280×720 output
 
 ## Reel folder
@@ -29,7 +29,7 @@ ffmpeg -i ../anthropics/skills/youtube/claude-liam-doc-coauthoring/claude-liam-d
 ```
 
 ## World-language greeting
-B00: "Guten Tag" (German) — Liam cold open, in for Bear
+B00: "Guten Tag" (German) — Kore cold open, in for Humanitarians AI
 
 ## Notes
 - Three-stage workflow: Context Gathering → Refinement → Reader Testing

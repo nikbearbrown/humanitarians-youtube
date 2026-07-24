@@ -32,4 +32,4 @@
 - B01/B02/B05 slowdowns (2.13x–2.47x): animations complete in first ~15s, content fully readable throughout. Established PASS pattern.
 - B01 event table: PreToolUse and Stop highlighted in terracotta (key decision events), others in green.
 - B02 format boxes: upper portion of each box contains code; lower portion has empty space within the box. Overall canvas fill meets threshold. Known trade-off with tall format boxes vs short code content.
-- Greeting "Bonjour, Liam" displays correctly in B00.
+- Greeting "Bonjour, Kore" displays correctly in B00.

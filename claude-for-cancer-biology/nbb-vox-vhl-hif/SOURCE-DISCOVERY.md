@@ -1,7 +1,7 @@
 # SOURCE-DISCOVERY.md
 
 ## Task
-NBB-wrap `vox-vhl-hif-slate.mp4` — add Liam cold open, Bear verdict, Bear "Your turn" handoff, and Claude title outro.
+NBB-wrap `vox-vhl-hif-slate.mp4` — add Kore cold open, Bear verdict, Bear "Your turn" handoff, and Claude title outro.
 
 ## Input
 `SOURCE_VIDEO = /Users/bear/Documents/CoWork/bear-textbooks/books/cancer-biology/youtube/vox-vhl-hif/vox-vhl-hif-slate.mp4`

@@ -1,6 +1,6 @@
 Predicted 367 ms. Measured 1,200.
 
-This is Liam for Humanitarians AI. Shalom, Liam. This is Liam, in for Bear. The spec-sheet math promised 367 milliseconds. The first run on real hardware took 1,200 — and both numbers were right.
+This is Kore for Humanitarians AI. Shalom, Kore. This is Kore, in for Humanitarians AI. The spec-sheet math promised 367 milliseconds. The first run on real hardware took 1,200 — and both numbers were right.
 
 What you'll see:
 • Here is why Predicted 367 ms. Measured 1,200. belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.
@@ -11,7 +11,7 @@ What you'll see:
 
 Playlist: Claude for Computer Science
 
-Narrated by Liam for Humanitarians AI.
+Narrated by Kore for Humanitarians AI.
 @HumanitariansAI
 
 #ClaudeAI #HumanitariansAI #Education #ComputerScience

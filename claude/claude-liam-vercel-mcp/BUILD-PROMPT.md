@@ -1,7 +1,7 @@
 # BUILD-PROMPT — claude-liam-vercel-mcp ("Claude, Trusted.")
 
 Standalone rebuild prompt. State when written: beat_sheet.json authored
-(13 beats, standard ai-explainer — NOT skill-teardown), Kokoro am_onyx
+(13 beats, standard ai-explainer — NOT skill-teardown), Kokoro af_kore
 audio GENERATED and MEASURED (mp3/ + timings.json; actual_duration_s is
 ground truth), PEDAGOGY.md ends VERDICT: PASS, SOURCES.md logs every claim
 (all core facts verified against the live vercel.com docs + tools reference).
@@ -84,7 +84,7 @@ THE BEATS (narration + durations are in the sheet)
 - BVDT ClaudeVerdictArtifact — artifactLines in sheet; enlarged card.
 - BHTF ClaudeComposerAsk handoff — greeting "Your turn.", typing on,
   command = the verify-against-live-docs prompt in the sheet.
-- BOUT ClaudeTitleOutro — "Claude, Trusted." · @NikBearBrown · "Liam, in for Bear."
+- BOUT ClaudeTitleOutro — "Claude, Trusted." · @HumanitariansAI · "Kore, in for Humanitarians AI."
 
 LAWS THAT BITE HERE
 

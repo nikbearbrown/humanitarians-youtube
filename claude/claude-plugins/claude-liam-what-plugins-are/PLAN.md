@@ -1,12 +1,12 @@
 # PLAN — Claude, Equipped (Ch.1: What a Cowork Plugin Actually Is)
 
-**Slug:** `claude-liam-what-plugins-are` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-what-plugins-are` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch01-what-plugins-are.txt` · **One idea:** *A plugin turns the generalist into an equipped specialist — expertise plus tools plus autonomy — but it's still a tool, not the professional.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "What does a plugin do to Claude?" → ask lands answered, Liam signs in
+B00  COLD OPEN  ClaudeComposerAsk — "What does a plugin do to Claude?" → ask lands answered, Kore signs in
 ACT I    The Generalist        broad-but-shallow → one deep well              (B01 C3, B02 Manim scale)
 ACT II   The Four Components    Skills·Connectors·Commands·Subagents           (B03 ChipGrid, B04, B05 vox, B06 Onda code, B07 Manim branch, B08 spark)
 ACT III  General → Specific     abstract knowledge → capability on your data   (B09 Manim divergence, B10 SourceFlow, B11–B12 VOX run R1)

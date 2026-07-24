@@ -52,7 +52,7 @@ These beats are programmatically generated from code. They can be reused as-is i
 
 ## 3. REMOTION-GENERATED BEATS (source — replaced in variants)
 
-These are Remotion renders from the source reel. They carry NikBearBrown / Liam branding and must be regenerated in the variant with the correct brand props and new narration.
+These are Remotion renders from the source reel. They carry NikBearBrown / Kore branding and must be regenerated in the variant with the correct brand props and new narration.
 
 | Beat ID | File | Source Path | Bytes | SHA-256 | Duration | Pattern | Action in Variant |
 |---|---|---|---|---|---|---|---|

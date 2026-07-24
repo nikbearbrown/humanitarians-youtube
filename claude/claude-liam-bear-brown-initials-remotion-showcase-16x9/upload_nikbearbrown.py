@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Upload Bear Brown Initials Remotion Showcase (16:9) to @NikBearBrown / Brutalist."""
+"""Upload Bear Brown Initials Remotion Showcase (16:9) to @HumanitariansAI / Brutalist."""
 import argparse, sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -42,9 +42,9 @@ A technique-showcase reel animating the Bear Brown initials mark 20 different wa
 3:51 Your Turn
 3:59 Outro
 
-Built with Remotion 4.x · @remotion/paths · Kokoro am_onyx voice · Claude fidelity skin.
+Built with Remotion 4.x · @remotion/paths · Kokoro af_kore voice · Claude fidelity skin.
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI
 
 #Remotion #MotionDesign #LogoAnimation #NikBearBrown #Brutalist
 """
@@ -107,7 +107,7 @@ def add_to_playlist(yt, playlist_id, video_id):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--dry-run", action="store_true"); args = ap.parse_args()
     if not VIDEO.exists(): sys.exit(f"Video not found: {VIDEO}")
-    print(f"Video: {VIDEO.name} ({VIDEO.stat().st_size//1024//1024} MB)\nTitle: {TITLE}\nChannel: @NikBearBrown\nPlaylist: {PLAYLIST_NAME}")
+    print(f"Video: {VIDEO.name} ({VIDEO.stat().st_size//1024//1024} MB)\nTitle: {TITLE}\nChannel: @HumanitariansAI\nPlaylist: {PLAYLIST_NAME}")
     if args.dry_run: print("[dry-run] would upload now"); return
     publish_at = datetime.now(timezone.utc) + timedelta(minutes=15)
     print(f"Publish at: {publish_at.isoformat()}")

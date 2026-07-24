@@ -17,4 +17,4 @@
 | B11 | ✅ filled | remotion | pipeline | `manim/B11.mp4` |  |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. In this weak-potential model, suppose the relevant Fourier coefficient has magn |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Double the magnitude: two times zero-point-three is zero-point-six electron-volts. That an |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Where a Band Gap Comes From. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Where a Band Gap Comes From. Kore, in for Humanitarians AI. |

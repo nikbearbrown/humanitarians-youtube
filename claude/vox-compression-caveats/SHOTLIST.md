@@ -17,4 +17,4 @@
 | B13 | DOCUMENT | own | Quote: "Compression preserves the impressive. It does not preserve the accurate." |
 | B14 | CARD | own | Endcard: "The summary kept every claim. It dropped every caveat." / CLAUDE COWORK |
 | B15 | GRAPHIC | remotion | OutroSeries — Claude Cowork |
-| B16 | GRAPHIC | remotion | OutroCTA — @NikBearBrown |
+| B16 | GRAPHIC | remotion | OutroCTA — @HumanitariansAI |

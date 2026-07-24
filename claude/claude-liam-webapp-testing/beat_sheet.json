@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Merhaba, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Merhaba, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,8 +34,8 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
-   "narration_text": "This is Liam for Humanitarians AI.",
+   "voice": "af_kore",
+   "narration_text": "This is Kore for Humanitarians AI.",
    "shot": {
     "type": "CARD",
     "source": "remotion",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Merhaba — this is Liam, in for Bear. Ask Claude to test a local web application — verify a button click, check a form submission, capture a screenshot of a UI state. The Web Application Testing skill fires. It is not a CI testing framework and it does not write test suites. It is a Playwright-based reconnaissance-and-action toolkit: decide first whether your app is static HTML or a dynamic server; follow the decision tree; run scripts through with_server.py if a server is involved; wait for networkidle before touching the DOM. Let me walk you through the decision tree, the Playwright pattern, and what this skill gets right and where it bites.",
-   "voice": "am_onyx",
+   "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. Ask Claude to test a local web application — verify a button click, check a form submission, capture a screenshot of a UI state. The Web Application Testing skill fires. It is not a CI testing framework and it does not write test suites. It is a Playwright-based reconnaissance-and-action toolkit: decide first whether your app is static HTML or a dynamic server; follow the decision tree; run scripts through with_server.py if a server is involved; wait for networkidle before touching the DOM. Let me walk you through the decision tree, the Playwright pattern, and what this skill gets right and where it bites.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 22,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Merhaba, Liam",
+      "greeting": "Merhaba, Kore",
       "topic": "HUMANITARIANS AI · WEB APPLICATION TESTING · ANTHROPIC SKILL",
       "segment": "TESTING",
       "command": "Test my local React app on port 3000 — verify the Submit button shows a success message after clicking it.",
@@ -74,7 +74,7 @@
        "Playwright: networkidle → screenshot → selectors → act",
        "Reconnaissance-then-action: screenshot first, execute second"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why Web Application Testing belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — decision tree + testing pipeline",
    "narration_text": "The skill is a two-branch decision tree. Branch one: static HTML. Read the file directly to identify selectors, then write a Playwright script against a file-colon-slash-slash URL. Branch two: dynamic webapp. Sub-branch one: server not yet running — run python scripts/with_server.py dash-dash-help, then start the server through the helper and write a simplified Playwright script alongside it. Sub-branch two: server already running — go straight to reconnaissance-then-action. Reconnaissance-then-action is a three-step loop: first, navigate to the URL and wait for networkidle. Second, take a screenshot or inspect the rendered DOM. Third, identify selectors from what the browser actually rendered — then execute your actions using those discovered selectors. The critical rule in the skill: never inspect the DOM before waiting for networkidle on a dynamic app. Inspect before networkidle and you see placeholder elements instead of real content.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 30,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "patterns — with_server.py + Playwright best practices",
    "narration_text": "with_server.py manages the server lifecycle so your automation script contains only Playwright logic — no startup, no teardown, no port-wait code in your script. Single server: pass dash-dash-server with the start command and dash-dash-port with the port. Multiple servers — backend plus frontend — pass dash-dash-server twice. The helper starts both, waits for readiness, runs your script, and tears down. Always run dash-dash-help first to see current options before writing any command. The Playwright script itself always uses sync_playwright, always launches Chromium in headless mode, always calls wait_for_load_state networkidle before any DOM operation, and always closes the browser when done. Selectors should be descriptive: prefer text-equals, role-equals, CSS selectors, or IDs over absolute XPath. Three example scripts ship in the examples directory: element_discovery for discovering buttons, links, and inputs; static_html_automation for file-colon-slash-slash URLs; and console_logging for capturing browser console output during automation.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. The Web Application Testing skill gets the framing exactly right: it is a reconnaissance-and-action tool, not a test framework. The decision tree — static HTML versus dynamic webapp versus server-already-running — is precise and covers the real cases. The networkidle warning is the most important piece: that one pitfall causes the majority of Playwright failures on dynamic apps. with_server.py eliminates server-lifecycle boilerplate entirely from automation scripts. The three example scripts ship with the skill. Where it bites: there is no error recovery guidance — if with_server.py times out or a Playwright locator throws, the skill provides no fallback patterns. The examples directory is referenced but never described in the skill itself. The dash-dash-help instruction appears without sample output to compare against. No authentication or session handling guidance — cookies and login flows are common in real-world testing targets. And there are no notes on CI or headless environment differences — the skill assumes a local development machine.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 32,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. The Web Application Testing skill is a Playwright reconnaissance-and-action toolkit — not a test suite generator. Two branches: static HTML reads the file directly and scripts against a file URL; dynamic webapps use with_server.py to isolate server lifecycle from automation logic. Critical rule: always wait for networkidle before DOM inspection. Three example scripts: element_discovery, static_html_automation, console_logging. Gaps: no error recovery, no auth guidance, no CI notes. Pattern: navigate, screenshot, identify selectors, execute.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 20,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Open a Claude Code session. Paste this: I have a local React app running on port 3000. Use the Web Application Testing skill to verify that clicking the Submit button on the login form shows a success message. Then watch four things: first, does Claude reach for with_server.py — or does it skip straight to a raw Playwright script without a server helper? Second, does it call wait_for_load_state networkidle before locating any element? Third, does it take a screenshot or inspect the DOM for reconnaissance before interacting — or does it hardcode a selector and hope? And fourth, if a locator fails, does Claude run a second reconnaissance pass to discover the actual rendered DOM — or does it retry the same broken selector? If Claude skips networkidle, the DOM inspection will read empty containers. If it hardcodes selectors without reconnaissance, any layout change breaks the script. Those are your gates.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 34,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: networkidle wait before any selector lookup",
        "Red flag: hardcoded selectors without recon, or no networkidle wait"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "Web Application Testing. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "Web Application Testing. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

@@ -14,7 +14,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 | beat | law violated | fix |
 |------|-------------|-----|
 | YTV01 (pos 0) | ORDER LAW — YTV01 before B00 | Move YTV01 to after B06 |
-| B00 | IN-FOR-BEAR LAW — narration lacks "in for Bear" phrase | VISUAL-ONLY: cannot regen ElevenLabs audio; flag for human follow-up |
+| B00 | IN-FOR-BEAR LAW — narration lacks "in for Humanitarians AI" phrase | VISUAL-ONLY: cannot regen ElevenLabs audio; flag for human follow-up |
 | B07 | HANDOFF LAW — B07 is ClaudeWindow VERDICT, not a prompt-read handoff | VISUAL-ONLY: cannot add handoff without new audio; flag for human follow-up |
 
 ## ElevenLabs flag

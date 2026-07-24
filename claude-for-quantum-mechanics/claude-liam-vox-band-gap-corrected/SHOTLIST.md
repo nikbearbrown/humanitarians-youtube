@@ -15,4 +15,4 @@
 | B11 | Recap card |
 | B12 | Your Turn prompt |
 | B13 | Your Turn answer |
-| B14 | Dark title outro, Liam in for Bear |
+| B14 | Dark title outro, Kore in for Humanitarians AI |

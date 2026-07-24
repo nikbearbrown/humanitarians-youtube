@@ -1,6 +1,6 @@
 The Model Fit in Memory and Crashed Anyway
 
-This is Humanitarians. Salaam, Liam. This is Liam, in for Bear. 256 kilobytes of RAM, a 180-kilobyte model — simple subtraction says it fits, and it crashes 40 milliseconds into the first inference.
+This is Humanitarians. Salaam, Kore. This is Kore, in for Humanitarians AI. 256 kilobytes of RAM, a 180-kilobyte model — simple subtraction says it fits, and it crashes 40 milliseconds into the first inference.
 
 What you'll see:
 • Here is why The Model Fit in Memory and Crashed Anyway belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.
@@ -11,7 +11,7 @@ What you'll see:
 
 Playlist: Claude for Computer Science
 
-Narrated by Liam for Humanitarians AI.
+Narrated by Kore for Humanitarians AI.
 @HumanitariansAI
 
 #ClaudeAI #HumanitariansAI #Education #ComputerScience

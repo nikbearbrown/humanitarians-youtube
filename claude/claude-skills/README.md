@@ -2,7 +2,6 @@
 
 Videos about creating, using, combining, and maintaining reusable Claude skills.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Claude Skills

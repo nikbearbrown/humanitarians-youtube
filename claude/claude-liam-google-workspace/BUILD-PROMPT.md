@@ -1,7 +1,7 @@
 # BUILD-PROMPT — claude-liam-google-workspace ("Claude, Grounded.")
 
 Standalone rebuild prompt. State when written: beat_sheet.json authored
-(12 beats, standard ai-explainer — NOT skill-teardown), Kokoro am_onyx
+(12 beats, standard ai-explainer — NOT skill-teardown), Kokoro af_kore
 audio GENERATED and MEASURED (mp3/ + timings.json; actual_duration_s is
 ground truth), PEDAGOGY.md ends VERDICT: PASS, SOURCES.md logs every claim
 (core facts verified against the live support.claude.com article). What
@@ -84,7 +84,7 @@ THE BEATS (narration + durations are in the sheet)
 - BVDT ClaudeVerdictArtifact — artifactLines in sheet; enlarged card.
 - BHTF ClaudeComposerAsk handoff — greeting "Your turn.", typing on,
   command = the verify-against-the-docs prompt in the sheet.
-- BOUT ClaudeTitleOutro — "Claude, Grounded." · @NikBearBrown · "Liam, in for Bear."
+- BOUT ClaudeTitleOutro — "Claude, Grounded." · @HumanitariansAI · "Kore, in for Humanitarians AI."
 
 LAWS THAT BITE HERE
 

@@ -4,19 +4,19 @@
 
 ---
 
-## B_LIAM — Liam cold open
+## B_LIAM — Kore cold open
 
 **Checklist:**
-- [ x ] World-language hello: "Annyeong" (Korean) — one word, correct for Liam persona
-- [ x ] Identifies narrator: "this is Liam, in for Bear" — in-for-Bear law satisfied
+- [ x ] World-language hello: "Annyeong" (Korean) — one word, correct for Kore persona
+- [ x ] Identifies narrator: "this is Kore, in for Humanitarians AI" — in-for-Bear law satisfied
 - [ x ] Frames the central question WITHOUT answering it: asks what happens when the emergency hypoxic program runs permanently in a normoxic cell
 - [ x ] Cues the body: "Can you explain it, Bear?" — exact required sentence
-- [ x ] Duration target: ~20 s — within 6–10 s guideline for a cold open that must introduce Liam; given the in-for-Bear identification sentence is mandatory overhead, ~20 s is the minimum compliant length
+- [ x ] Duration target: ~20 s — within 6–10 s guideline for a cold open that must introduce Kore; given the in-for-Bear identification sentence is mandatory overhead, ~20 s is the minimum compliant length
 - [ x ] No fabrication: framing is accurate — constitutive HIF activity in normoxia is the body's subject
 - [ x ] No body spoilers: does not name VHL, does not state the mechanism
 - [ x ] Composer command in beat sheet matches the body's central question
 
-**Minor flag:** The cold open is ~20 s rather than the 6–10 s default because the in-for-Bear law requires naming the voice explicitly ("this is Liam, in for Bear"), which adds ~5 s of overhead. This is compliant per the claude-explainer SKILL.md which states the in-for-Bear introduction is mandatory in B00's first breath.
+**Minor flag:** The cold open is ~20 s rather than the 6–10 s default because the in-for-Bear law requires naming the voice explicitly ("this is Kore, in for Humanitarians AI"), which adds ~5 s of overhead. This is compliant per the claude-explainer SKILL.md which states the in-for-Bear introduction is mandatory in B00's first breath.
 
 **PEDAGOGY: PASS (B_LIAM)**
 
@@ -59,7 +59,7 @@
 
 **Checklist:**
 - [ x ] Title restated verbatim: "Why a Broken Oxygen Sensor Causes a Cancer to Act Permanently Starved"
-- [ x ] Handle: "@NikBearBrown"
+- [ x ] Handle: "@HumanitariansAI"
 - [ x ] Subline derived from verdict: "one missing protein — the whole program, permanently on"
 - [ x ] Silent beat — ClaudeTitleOutro component, no narration required
 - [ x ] Not a generic brand outro or OutroCTA

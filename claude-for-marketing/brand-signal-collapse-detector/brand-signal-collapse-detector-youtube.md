@@ -7,4 +7,4 @@ Every claim in this video was fact-checked against the source chapter and primar
 
 #physics #quantum #sciencehistory
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

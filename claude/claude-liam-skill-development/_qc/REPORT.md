@@ -9,13 +9,13 @@ Beats: 7 / 7 filled
 
 | Beat | Frame | Result | Notes |
 |------|-------|--------|-------|
-| B00 | 19s | PASS | ClaudeComposerAsk — "Aloha, Liam", topic/command/output correct |
+| B00 | 19s | PASS | ClaudeComposerAsk — "Aloha, Kore", topic/command/output correct |
 | B01 | 75s | PASS | SkillDevAnatomy — 3-level rows (metadata/body/resources) + 3 resource type rows, spark line visible |
 | B02 | 142s | PASS | SkillDevProcess — 6-step process + 4 writing rules with BAD/GOOD pairs, all readable |
 | B05 | 217s | PASS | SkillDevTell — 2-column teardown, 5 gets-right + 5 bites, callout + spark icon + spark line |
 | BVDT | 283s | PASS | ClaudeVerdictArtifact — 6 verdict lines, correct content |
 | BHTF | 334s | PASS | ClaudeComposerAsk — "Your Turn" handoff, expected/red-flag outputs visible |
-| BOUT | 364s | PASS | ClaudeTitleOutro — "Skill Development." @NikBearBrown, subline correct |
+| BOUT | 364s | PASS | ClaudeTitleOutro — "Skill Development." @HumanitariansAI, subline correct |
 
 ## 8-point rubric
 

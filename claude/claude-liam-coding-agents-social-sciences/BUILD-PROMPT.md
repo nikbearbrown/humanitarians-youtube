@@ -1,7 +1,7 @@
 # BUILD-PROMPT — Claude, Peer-Reviewed.
 
 **Reel:** `claude-liam-coding-agents-social-sciences`
-**Channel:** claude-liam · Kokoro `am_onyx` · @NikBearBrown
+**Channel:** claude-liam · Kokoro `af_kore` · @HumanitariansAI
 **Built:** 2026-07-17
 
 ---
@@ -10,8 +10,8 @@ Build one 16:9 claude-explainer video titled **"Claude, Peer-Reviewed."** coveri
 Anthropic's **"Coding agents in the social sciences"** (May 27, 2026) by Lyttelton,
 Massenkoff, Wilmers. Survey of 1,260 quantitative social scientists, Feb–Mar 2026.
 
-**Channel:** claude-liam — Kokoro `am_onyx`, @NikBearBrown folder chip, Teardown
-register (Feynman × MKBHD), Liam in for Bear. Greeting: "Hej, Liam" (Swedish).
+**Channel:** claude-liam — Kokoro `af_kore`, @HumanitariansAI folder chip, Teardown
+register (Feynman × MKBHD), Kore in for Humanitarians AI. Greeting: "Hej, Kore" (Swedish).
 
 **Free pipeline only:** Kokoro voice, no ElevenLabs, no higgsfield, no publishing,
 no git commit or push. Run without approval pauses.
@@ -73,7 +73,7 @@ Right panel (phase 2): paired bars non-agent / agent. Stat chips.
 Prompt: "Here's my research question and a description of my dataset. Plan the full
 analysis pipeline, then split it honestly: which steps could you run autonomously
 as a coding agent, and which decisions should stay mine?"
-**B09 OUTRO** — `ClaudeTitleOutro` — "Claude, Peer-Reviewed." / @NikBearBrown / Liam, in for Bear.
+**B09 OUTRO** — `ClaudeTitleOutro` — "Claude, Peer-Reviewed." / @HumanitariansAI / Kore, in for Humanitarians AI.
 
 ---
 

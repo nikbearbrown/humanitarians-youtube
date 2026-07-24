@@ -17,4 +17,4 @@
 | B13 | DOCUMENT | own | Quote: "The check that catches the mistake must come from outside the model." |
 | B14 | CARD | own | Endcard: "The model verified its own error. The check must come from outside." / CLAUDE COWORK |
 | B15 | GRAPHIC | remotion | OutroSeries — Claude Cowork |
-| B16 | GRAPHIC | remotion | OutroCTA — @NikBearBrown |
+| B16 | GRAPHIC | remotion | OutroCTA — @HumanitariansAI |

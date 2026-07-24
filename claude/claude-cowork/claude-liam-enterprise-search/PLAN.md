@@ -1,6 +1,6 @@
 # PLAN — Claude, Finding It (Ch.8: The Enterprise Search Plugin)
 
-**Slug:** `claude-liam-enterprise-search` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-enterprise-search` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch08-enterprise-search.txt` · **One idea:** *In a bigger org the answer usually already exists — buried in someone's doc, deck, or thread; enterprise search connects Claude across your sources so it retrieves what the company already knows, bounded strictly by your existing access permissions.*
 
 **Who it's FOR (framing).** The chapter opens by waving off the intimidating name — this is not a Fortune-500-only tool — but its value *compounds when knowledge is scattered across many tools and many people*. So the reel is pitched at teams and orgs where the answer lives in someone else's doc, a deck you weren't on, a thread three teams over. The mechanism is universal; the payoff scales with the org. Mechanism-then-judgment throughout: each Manim states the mechanism, the vox stills land the human feel, and the honest limit (bounded by your access) gets its own act.
@@ -8,7 +8,7 @@
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "My company already wrote this down. Can Claude find it?" → ask lands answered ("Yes — bounded by your own access"), Liam signs in "Merhaba… in for Bear."
+B00  COLD OPEN  ClaudeComposerAsk — "My company already wrote this down. Can Claude find it?" → ask lands answered ("Yes — bounded by your own access"), Kore signs in "Merhaba… in for Humanitarians AI."
 ACT I    The Buried Answer            it exists, you can't reach it; in a bigger org it isn't even your doc   (B01 PredictCard, B02 Manim scatter, B03 VOX office)
 ACT II   Content, Not Filename        search inside documents, across every source at once, in plain language (B04 Manim filename-vs-content, B05 illustration, B06 SourceFlow, B07 Onda code)
 ACT III  Graveyard to Living Memory   archive → living resource; context injection grounds Claude in your data (B08 Manim graveyard, B09 illustration inject, B10 Manim grounded-vs-generic)
@@ -17,7 +17,7 @@ ACT V    Bounded by Your Access       searches only what you can already see; co
 ACT VI   Build the Habit              name clearly, point it, synthesize, document; synthesis beats search    (B21 ChipGrid, B22 Manim synthesis, B23 VOX note)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (+0.5s lead silence)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Finding It. Liam, in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Finding It. Kore, in for Humanitarians AI."
 ```
 
 ## Lane histogram (body beats only; bookends B00/V01/H01/O01 exempt)
@@ -46,7 +46,7 @@ Body beats: **29** · No >2 consecutive same-lane run except inside the vox run 
 ## Gates
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel corrections in SOURCES.md.
-3. **GATE P** — narration reviewed on animated slate before any audio spend. Kokoro am_onyx, free. No ElevenLabs.
+3. **GATE P** — narration reviewed on animated slate before any audio spend. Kokoro af_kore, free. No ElevenLabs.
 4. Audio lock (Kokoro) → align (word clock).
 5. **Gate D2** — tier-0 library pass (`pantry_search.py` per vox still) → write SHOPPING.md from LOCKED durations (six Tier-1 entries: B03, B13, B14, B17, B20, B23).
 6. **Gate D1 previz** — full-length SLATE PREVIZ (`art run`), slates in vox slots, Manim/Remotion real, `--review` burn-in. Watch for pacing; source the stills.

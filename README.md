@@ -20,17 +20,17 @@ A video project is normally one directory containing its `beat_sheet.json` and s
 
 ## Current collections
 
-The current filesystem contains **3,740** primary `beat_sheet.json` files across **22** top-level collections. Each linked collection README inventories its videos and derives their present production state from the files on disk.
+As of **July 24, 2026**, the current filesystem contains **3,947** primary `beat_sheet.json` files, **3,955** beat-sheet JSON files including named variants, and **3,989** README files across **22** top-level collections. Each linked collection README inventories its videos and derives its present production state from the files on disk.
 
 | Directory | Collection | Beat sheets |
 |---|---|---:|
 | [`claude-for-artificial-intelligence/`](claude-for-artificial-intelligence/) | Artificial Intelligence | 219 |
 | [`claude-for-branding/`](claude-for-branding/) | Branding | 34 |
 | [`claude-for-business/`](claude-for-business/) | Business | 1 |
-| [`claude-for-cancer/`](claude-for-cancer/) | Cancer | 54 |
-| [`claude-for-cancer-biology/`](claude-for-cancer-biology/) | Cancer Biology | 224 |
+| [`claude-for-cancer/`](claude-for-cancer/) | Cancer | 55 |
+| [`claude-for-cancer-biology/`](claude-for-cancer-biology/) | Cancer Biology | 226 |
 | [`claude-for-computer-science/`](claude-for-computer-science/) | Computer Science | 91 |
-| [`claude-for-design/`](claude-for-design/) | Design | 462 |
+| [`claude-for-design/`](claude-for-design/) | Design | 464 |
 | [`claude-for-economics/`](claude-for-economics/) | Economics | 41 |
 | [`claude-for-education/`](claude-for-education/) | Education | 81 |
 | [`claude-for-finance/`](claude-for-finance/) | Finance | 52 |
@@ -38,12 +38,12 @@ The current filesystem contains **3,740** primary `beat_sheet.json` files across
 | [`claude-for-marketing/`](claude-for-marketing/) | Marketing | 36 |
 | [`claude-for-mathematics/`](claude-for-mathematics/) | Mathematics | 22 |
 | [`claude-for-music/`](claude-for-music/) | Music | 28 |
-| [`claude-for-nanomedicine/`](claude-for-nanomedicine/) | Nanomedicine | 118 |
+| [`claude-for-nanomedicine/`](claude-for-nanomedicine/) | Nanomedicine | 119 |
 | [`claude-for-physics/`](claude-for-physics/) | Physics | 6 |
 | [`claude-for-quantum-mechanics/`](claude-for-quantum-mechanics/) | Quantum Mechanics | 538 |
 | [`claude-for-video-production/`](claude-for-video-production/) | Video Production | 74 |
 | [`claude-for-writing/`](claude-for-writing/) | Writing | 31 |
-| [`claude/`](claude/) | Claude | 1,536 |
+| [`claude/`](claude/) | Claude | 1,737 |
 | [`codex/`](codex/) | Codex | 40 |
 | [`fellows/`](fellows/) | Fellows | 0 |
 
@@ -59,6 +59,10 @@ Collection READMEs distinguish these states:
 - **beat sheet authored** — planning data exists without local rendered output
 
 These are filesystem observations, not approval or publication claims.
+
+## Humanitarians AI voice and presenter
+
+The current HAI production default is **Kore**, using the Kokoro voice **`af_kore`**. Persona and audience copy should describe Kore as **“in for Humanitarians AI,”** and public channel references should use **`@HumanitariansAI`**. Historical directory identifiers such as `claude-liam-*` remain unchanged so existing paths, manifests, and links continue to resolve.
 
 ## Typical project contents
 
@@ -119,7 +123,6 @@ find . -type f \( -name SOURCES.md -o -name FACTCHECK.md -o -name REPORT.md \)
 ## Repository and media policy
 
 The Git remote is `nikbearbrown/humanitarians-youtube`. The root `.gitignore` excludes MP3 and MP4 distribution media; timing metadata and reconstructable source assets may remain tracked. This repository is a production archive, not the Humanitarians website deployment.
-
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 

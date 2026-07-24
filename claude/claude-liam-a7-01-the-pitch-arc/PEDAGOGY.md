@@ -4,7 +4,7 @@
 Cold open (E1/7 frame) → 10/20/30 rule → 80/20 philosophy → 10-slide arc with time budgets → who the audience is + madison-pitch intro → verdict → Your Turn (madison-pitch intake) → outro.
 
 ## Cold open law
-Opens: "Hola — Liam, Episode 1 of 7." States the assignment (100-pt midterm, video pitch, 8-min cap) and previews exactly what the episode covers. ✓
+Opens: "Hola — Kore, Episode 1 of 7." States the assignment (100-pt midterm, video pitch, 8-min cap) and previews exactly what the episode covers. ✓
 
 ## Gap formula
 Gap: students have never pitched to investors and treat it like a class demo. Fix: the Kawasaki framework + 80/20 split shows exactly what earns a B and what earns an A.

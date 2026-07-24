@@ -17,4 +17,4 @@
 | B12 | REMOTION — NikBearBrownTerminalAsk | pipeline | The fix: `pkill -f chrome-headless-shell` → `python3 runtime/scripts/remotion_scenes.py youtube/installs --force` → `./art run` → "15/15 filled" |
 | B13 | GRAPHIC — Manim | pipeline | Terminal green "ok ✓" (left) + arrow + wrong frame showing "PHOTOELECTRIC EFFECT" / "cancer-biology" text (right) + magnifier |
 | B14 | GRAPHIC — Manim | pipeline | HERO: "A SECOND SET OF EYES" in EB Garamond on dark canvas; three marks; conductor baton coda |
-| B99 | REMOTION — BrutalistCommentCTA | pipeline | CTA: `// when a session grinds and the effort stops fitting the task\n// get another set of eyes\n// @NikBearBrown · brutalist.art` |
+| B99 | REMOTION — BrutalistCommentCTA | pipeline | CTA: `// when a session grinds and the effort stops fitting the task\n// get another set of eyes\n// @HumanitariansAI · brutalist.art` |

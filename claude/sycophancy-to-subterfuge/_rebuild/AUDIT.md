@@ -11,13 +11,13 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 
 | beat | law violated | fix |
 |------|-------------|-----|
-| B00 | COLD-OPEN LAW — greeting prop is "Your turn." (reserved for handoff) | Change greeting prop to world-language hello, e.g. "Konnichiwa, Liam" |
-| B00 | IN-FOR-BEAR LAW — B00 narration does not introduce Liam "in for Bear" | Update narration_text to include "Liam, in for Bear" phrase; regen Kokoro audio |
+| B00 | COLD-OPEN LAW — greeting prop is "Your turn." (reserved for handoff) | Change greeting prop to world-language hello, e.g. "Konnichiwa, Kore" |
+| B00 | IN-FOR-BEAR LAW — B00 narration does not introduce Kore "in for Humanitarians AI" | Update narration_text to include "Kore, in for Humanitarians AI" phrase; regen Kokoro audio |
 
 ## Actions required
 1. Edit beat_sheet.json: B00 greeting → world-language hello
-2. Edit beat_sheet.json: B00 narration_text → integrate "in for Bear" phrase
-3. Regen Kokoro audio for B00 (free, am_onyx)
+2. Edit beat_sheet.json: B00 narration_text → integrate "in for Humanitarians AI" phrase
+3. Regen Kokoro audio for B00 (free, af_kore)
 4. Render ALL beats via remotion_scenes.py (media/ is empty)
 5. Compile master via compile.py
 

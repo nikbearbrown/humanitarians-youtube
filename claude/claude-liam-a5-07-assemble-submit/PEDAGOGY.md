@@ -1,6 +1,6 @@
 # PEDAGOGY audit — claude-liam-a5-07-assemble-submit ("Assemble & Ship")
 
-ai-explainer, claude-liam, Kokoro am_onyx. Pragmatist register.
+ai-explainer, claude-liam, Kokoro af_kore. Pragmatist register.
 Source: INFO 7375 Assignment 5 brief, full brief assembly and submission.
 
 ## Act structure
@@ -9,7 +9,7 @@ Source: INFO 7375 Assignment 5 brief, full brief assembly and submission.
   7 beats (closer episode, tighter runtime). PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 is ClaudeComposerAsk. Liam introduces in first breath. "Hola, Liam."
+- B00 is ClaudeComposerAsk. Kore introduces in first breath. "Hola, Kore."
   Output previews coherence → format → deductions + downstream. PASS
 
 ## Gap formula / hook

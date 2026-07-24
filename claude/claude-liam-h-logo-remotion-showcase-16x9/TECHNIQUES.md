@@ -5,7 +5,7 @@ Review pass: mark each technique keep / kill in the checkbox column.
 **File:** `claude-liam-h-logo-remotion-showcase-16x9.mp4`
 **Duration:** 2:49 (169.7s, 5089 frames @ 30fps)
 **Dimensions:** 1920 × 1080 (16:9 landscape)
-**Voice:** Kokoro am_onyx (Liam, in for Bear)
+**Voice:** Kokoro af_kore (Kore, in for Humanitarians AI)
 **Source component:** `runtime/remotion/src/HLogoRemotionShowcase169.tsx`
 **Audio source:** `runtime/remotion/public/h-logo-mp3/` (reused from 9:16 build — not regenerated)
 **Rendered:** 2026-07-16

@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-songbird
 # "Claude, Sequenced." | songbird skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 196.6s
+# Built: 2026-07-18 | Kokoro af_kore | 196.6s
 
 ## Standalone rebuild instructions
 

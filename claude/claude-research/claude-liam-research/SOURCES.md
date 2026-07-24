@@ -50,4 +50,4 @@ real Cowork capabilities**, but they are not a dedicated, named "Research plugin
 - No AI-generated real people. All 6 vox stills (B02, B08, B13, B16, B20, B21) are Tier 1 illustrative — no rights escalation, no real brands/places.
 
 ## Credits
-- Narration: Liam (in for Bear), Kokoro `am_onyx`. Channel: @NikBearBrown.
+- Narration: Kore (in for Humanitarians AI), Kokoro `af_kore`. Channel: @HumanitariansAI.

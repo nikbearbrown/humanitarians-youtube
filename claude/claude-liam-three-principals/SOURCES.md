@@ -30,7 +30,7 @@ Key passages drawn from:
 
 ## Audio
 
-All narration: Kokoro TTS, voice `am_onyx`. No ElevenLabs spend.
+All narration: Kokoro TTS, voice `af_kore`. No ElevenLabs spend.
 
 ## Build
 

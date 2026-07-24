@@ -1,10 +1,10 @@
 # Build Prompt — The Fluency Ceiling
 
-Build one 16:9 claude-explainer video (claude-liam, Kokoro am_onyx, free pipeline) on the fluency ceiling and working memory constraint from the k12-lesson-differentiation plugin (Anthropic).
+Build one 16:9 claude-explainer video (claude-liam, Kokoro af_kore, free pipeline) on the fluency ceiling and working memory constraint from the k12-lesson-differentiation plugin (Anthropic).
 
 **Title:** The Fluency Ceiling — Why Working Memory Limits Comprehension Scaffolds  
 **Duration:** ~125s  
-**Greeting:** Namaste, Liam.  
+**Greeting:** Namaste, Kore.  
 **Figures:** K12Fig04WorkingMemory (conserved working-memory bar sloshing from 78%/22% low-fluency to 12%/88% high-fluency)
 
 **Core argument:** When decoding is effortful, working memory is exhausted before comprehension can begin. Comprehension scaffolds cannot compensate for a fluency ceiling. Immediate bridge: read-aloud offloads decoding. Real fix: separate fluency intervention outside the lesson.

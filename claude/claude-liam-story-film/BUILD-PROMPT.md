@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-story-film
 # "Claude, Narrating." | story-film skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 165.7s
+# Built: 2026-07-18 | Kokoro af_kore | 165.7s
 
 ## Standalone rebuild instructions
 

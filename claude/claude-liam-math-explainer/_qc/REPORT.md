@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Hallo, Liam" in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Hallo, Kore" in B00 cold open | PASS |
 | 8 | Self-demo shows real beat_sheet.json output (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "MATH-EXPLAINER · SKILL TEARDOWN" / "Hallo, Liam" — correct. MINOR-COSMETIC: empty sparkLine (known issue all ClaudeComposerAsk beats)
+- **B00** ClaudeComposerAsk: "MATH-EXPLAINER · SKILL TEARDOWN" / "Hallo, Kore" — correct. MINOR-COSMETIC: empty sparkLine (known issue all ClaudeComposerAsk beats)
 - **B01** SkillTeardownAnatomy: "Three laws, one canvas." — file tree correct (SKILL.md/pedagogy.md/style.md/equations.md/scripts/), callout box renders. PASS
 - **B02** SkillTeardownPipeline: "Mystery earns abstraction." — 6 phases render cleanly (MYSTERY OPEN → CONCRETE → TRANSFORM → ABSTRACTION → EQ TANGENT → CLEAN MASTER), footer note visible, sparkLine "Abstraction is the reward." PASS
 - **B03** ClaudeComposerAsk: "MATH-EXPLAINER · SELF-DEMO · THE ASK" / "./art math-explainer 'Why is d/dx(x²) = 2x?'" — correct. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "The equation gets its 45 seconds." — body/quote/cite correct, verdictLabel "EXPLANATION OVER PROOF" visible. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Derived." / "What the skill actually does" — 4 items render correctly. PASS
 - **BHTF** ClaudeComposerAsk: "Your turn." / "./art math-explainer '<your why-does question>'" — correct. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Derived." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Derived." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

@@ -42,7 +42,7 @@ A technique-showcase reel animating the Musinique alternate mark 20 different wa
 3:33 Your Turn
 3:41 Outro
 
-Built with Remotion 4.x · @remotion/paths · Kokoro am_onyx voice · Claude fidelity skin.
+Built with Remotion 4.x · @remotion/paths · Kokoro af_kore voice · Claude fidelity skin.
 
 #Remotion #MotionDesign #LogoAnimation #Musinique #Brutalist
 """

@@ -37,7 +37,7 @@
 | B03 | SleeperAgentsResult916 | 57s | ✅ PASS* | Stacked bar groups; annotation inside Distilled zone after fix |
 | B04 | ClaudeVerdictArtifact916 | 75s | ✅ PASS | Centered card, 5 verdict lines, clean typography |
 | B05 | ClaudeComposerAsk916 | 98s | ✅ PASS | Handoff / "Your turn." beat, prompt wraps correctly |
-| B06 | ClaudeTitleOutro916 | 107s | ✅ PASS | Title card, @NikBearBrown, citation |
+| B06 | ClaudeTitleOutro916 | 107s | ✅ PASS | Title card, @HumanitariansAI, citation |
 | END | Static PNG | 112s | ✅ PASS | @nikbearbrown on dark bg |
 
 *B03: annotation badge (annotation offset reduced from `height*0.12` to `height*0.03` during authoring) partially overlaps the "After RLHF" bar label — both readable. Cosmetic only.

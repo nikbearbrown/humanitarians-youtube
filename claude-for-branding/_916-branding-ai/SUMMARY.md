@@ -49,4 +49,4 @@ branding-and-ai/youtube/<slug>/short/<slug>-short.mp4
 ## Next Step (human decision)
 
 Flip each short from Unlisted → Public in YouTube Studio.  
-Channel: @NikBearBrown · Playlist: "Branding and AI"
+Channel: @HumanitariansAI · Playlist: "Branding and AI"

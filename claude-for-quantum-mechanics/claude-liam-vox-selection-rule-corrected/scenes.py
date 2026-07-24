@@ -449,7 +449,7 @@ class B13_CorrectTitleOutro(Scene):
                      font_size=33, color="#F2EFE8")
         subtitle = Text("Hydrogen 2s and the E1 selection rule", font=SERIF,
                         font_size=21, color="#AAA49A").next_to(title, DOWN, buff=0.35)
-        credit = Text("Liam, in for Bear", font=SERIF, font_size=20,
+        credit = Text("Kore, in for Humanitarians AI", font=SERIF, font_size=20,
                       color="#D97757").next_to(subtitle, DOWN, buff=0.42)
         self.play(FadeIn(title), FadeIn(subtitle), FadeIn(credit), run_time=1.0)
         self.wait(max(0.1, total - 1.0))

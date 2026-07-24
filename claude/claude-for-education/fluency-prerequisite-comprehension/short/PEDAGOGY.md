@@ -8,7 +8,7 @@ ideas and directs to the full video.
 - Concrete before abstract: yes (K12 classroom context grounds the framework)
 - Prediction before reveal: yes (held from source)
 - Useful friction: yes (question posed at B00)
-- Readable pacing: yes (Kokoro am_onyx)
+- Readable pacing: yes (Kokoro af_kore)
 - Clear handoff: yes (outro directs to full 16:9)
 
 VERDICT: PASS

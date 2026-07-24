@@ -29,7 +29,7 @@
 
 | Beat | Pattern | Canvas Fill | Result | Notes |
 |---|---|---|---|---|
-| B00 | ClaudeComposerAsk | Good | PASS | "Hola, Liam" greeting; command + 3 output lines visible; @NikBearBrown label |
+| B00 | ClaudeComposerAsk | Good | PASS | "Hola, Kore" greeting; command + 3 output lines visible; @HumanitariansAI label |
 | B01 | BrandGuidelinesAnatomy | Good | PASS | Folder tree left, 3 spec cards right, quote box, spark line; content ~13–66% height |
 | B02 | BrandGuidelinesPipeline | Good | PASS | 3 nodes centered at H/2, orange+gray arcs, insight bar bottom, spark line |
 | B03 | BrandGuidelinesPalette | Good | PASS | SELF-DEMO: exact hex values from SKILL.md as live swatches; 4 main + 3 accents |
@@ -37,7 +37,7 @@
 | B05 | BrandGuidelinesDesignTell | Acceptable | PASS | Central callout + ✓/✗ columns; lower 40% open but spark line anchors |
 | BVDT | ClaudeVerdictArtifact | Acceptable | PASS | Correct props: "Claude, Branded." + 5 lines; card centered per component design |
 | BHTF | ClaudeComposerAsk | Good | PASS | "Your turn." + full handoff prompt readable in composer |
-| BOUT | ClaudeTitleOutro | Good | PASS | "Claude, Branded." · @NikBearBrown · brand-guidelines · Anthropic Skills |
+| BOUT | ClaudeTitleOutro | Good | PASS | "Claude, Branded." · @HumanitariansAI · brand-guidelines · Anthropic Skills |
 
 ---
 

@@ -3,11 +3,11 @@
 - Verdict: PASS
 - Final runtime: 188.8 seconds
 - Slots: 15/15 filled
-- Voice: Kokoro `am_onyx` (Liam), free/local
+- Voice: Kokoro `af_kore` (Kore), free/local
 - Opener: Claude UI bookend
 - Body: native concept visuals
 - Practice: Your Turn plus revealed answer
-- Outro: corrected dark title card, “Liam, in for Bear”
+- Outro: corrected dark title card, “Kore, in for Humanitarians AI”
 - Publication: local only; not published
 
 ## Visual review

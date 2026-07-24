@@ -4,7 +4,7 @@
 
 **Series:** Wrap It & Test It — INFO 7375 Assignment 5A  
 **Episode:** 1 of 6  
-**Register:** Pragmatist (Liam, in for Bear)  
+**Register:** Pragmatist (Kore, in for Humanitarians AI)  
 **Audience:** claude-liam (students in INFO 7375)
 
 ---

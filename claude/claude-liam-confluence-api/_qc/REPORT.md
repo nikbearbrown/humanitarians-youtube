@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_16s_B00.png | B00 cold open | ClaudeComposerAsk: "Hola, Liam", Confluence search query, 3 output lines, @NikBearBrown |
+| frame_16s_B00.png | B00 cold open | ClaudeComposerAsk: "Hola, Kore", Confluence search query, 3 output lines, @HumanitariansAI |
 | frame_73s_B01.png | B01 anatomy | ConfluenceApiAnatomy: v2 (green) + v1 (terracotta) version rows + 3 bundled scripts + 4 body format cards |
 | frame_126s_B02.png | B02 design | ConfluenceApiDesign: security note callout + pagination trap (v2 highlighted) + 6 error code rows |
 | frame_216s_B05.png | B05 teardown | ConfluenceApiTell: callout + standard 5+5 two-column teardown, spark line with asterisk |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Hola, Liam" (rotation #40)
+- Greeting: "Hola, Kore" (rotation #40)
 - New scenes: ConfluenceApiAnatomy (B01), ConfluenceApiDesign (B02), ConfluenceApiTell (B05)
 - B01: v1 row highlighted terracotta to mark exception-only use; atlas_doc_format card highlighted as warning
 - B02: v2 pagination row highlighted terracotta to mark the dangerous default trap; 404 error highlighted

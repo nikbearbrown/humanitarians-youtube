@@ -45,4 +45,4 @@ Mark keep/kill after watching the rendered cut.
 - Outlined SVG: `logos/HUMANITARIANS-AI-wordmark.outlined.svg` (converted from `logos/HUMANITARIANS-AI-wordmark.svg` via Inkscape 1.4.4 `--export-text-to-path`).
 - Full composition: `runtime/remotion/src/HaiWordmarkShowcase.tsx`
 - Timing JSON: `runtime/remotion/src/hai-wordmark-timing.json`
-- Audio: `runtime/remotion/public/hai-wordmark-mp3/` (Kokoro am_onyx, 21 beats)
+- Audio: `runtime/remotion/public/hai-wordmark-mp3/` (Kokoro af_kore, 21 beats)

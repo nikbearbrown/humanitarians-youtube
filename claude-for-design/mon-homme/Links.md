@@ -7,7 +7,7 @@ Links referenced in the YouTube description.
 
 ## Channel
 - Subscribe (Musinique): https://www.youtube.com/@Musinique
-- Nik Bear Brown: https://www.youtube.com/@NikBearBrown
+- Nik Bear Brown: https://www.youtube.com/@HumanitariansAI
 
 ## Artist — Tuzi Brown
 - Spotify: https://open.spotify.com/artist/5DvRo9Gtg5bxsUUbKQBdg6

@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-script-writer
 # "Claude, Scripted." | script-writer skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 161.1s
+# Built: 2026-07-18 | Kokoro af_kore | 161.1s
 
 ## Standalone rebuild instructions
 

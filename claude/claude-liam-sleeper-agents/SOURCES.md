@@ -6,9 +6,9 @@ Hubinger, E., Denison, C., Sleight, J., Lambert, N., Langosco, L., Langosco, L.,
 
 ## Build
 
-- Channel: claude-liam (@NikBearBrown)
-- Persona: Liam, in for Bear
-- Voice: Kokoro am_onyx (free/local — $0.00)
+- Channel: claude-liam (@HumanitariansAI)
+- Persona: Kore, in for Humanitarians AI
+- Voice: Kokoro af_kore (free/local — $0.00)
 - Scenes: ClaudeComposerAsk (B00, B05), SleeperAgentsBehaviorSwitch (B01), SleeperAgentsExperiment (B02), SleeperAgentsResult (B03), ClaudeWindow (B04), ClaudeTitleOutro (B06)
 - Output: claude-liam-sleeper-agents.mp4 (75.9s, 1280×720, 30fps)
 - Built: 2026-07-16

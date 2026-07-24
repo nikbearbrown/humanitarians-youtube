@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_20_5s.png | B00 cold open | ClaudeComposerAsk: "Salve, Liam", command visible, 3 output lines, @NikBearBrown |
+| frame_20_5s.png | B00 cold open | ClaudeComposerAsk: "Salve, Kore", command visible, 3 output lines, @HumanitariansAI |
 | frame_75_2s.png | B01 anatomy | BuildMcpAppAnatomy: Part 1 Tool (terracotta) + Part 2 Resource (green) side by side, bundle inlining callout, App class 5 methods direction-coded, spark line visible |
 | frame_141_4s.png | B02 routing | BuildMcpAppDecision: 3-column routing (ELICITATION green / WIDGET terracotta / TEXT ONLY), 5 design rules numbered in terracotta, spark line |
 | frame_213_9s.png | B05 teardown | BuildMcpAppTell: 5+5 teardown columns, callout overlaps row 5 (accepted batch pattern), spark line |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Salve, Liam" (rotation #30)
+- Greeting: "Salve, Kore" (rotation #30)
 - New scenes: BuildMcpAppAnatomy.tsx (B01), BuildMcpAppDecision.tsx (B02), BuildMcpAppTell.tsx (B05)
 - B01 design: Part 1 Tool (terracotta border) + Part 2 Resource (green border) + bundle callout + App class method table (direction color-coded: ← host = green, → host/server = terracotta)
 - B02 design: 3-column routing table (ELICITATION/WIDGET/TEXT ONLY) + 5 numbered design rules

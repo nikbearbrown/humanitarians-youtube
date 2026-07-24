@@ -16,7 +16,7 @@ Beat sheet:     mba-management/youtube/claude-liam-hawthorne-effect/beat_sheet.j
 Scenes file:    mba-management/youtube/claude-liam-hawthorne-effect/scenes.py
 Source chapter: mba-management/chapters/01-management-and-organizational-behavior.md
 
-Channel: claude-liam (am_onyx, @NikBearBrown, Teardown register)
+Channel: claude-liam (af_kore, @HumanitariansAI, Teardown register)
 Pipeline: FREE only — Kokoro TTS, no ElevenLabs, no Higgsfield, no git push.
 No approval pauses needed (no paid spend possible).
 
@@ -65,7 +65,7 @@ STEPS (run from books/):
 
 LAWS enforced in beat_sheet.json (do not alter beat order):
   COLD OPEN LAW: beats[0] = B00 ClaudeComposerAsk
-  IN-FOR-BEAR LAW: B00 opens "This is Liam, in for Bear."
+  IN-FOR-BEAR LAW: B00 opens "This is Kore, in for Humanitarians AI."
   ASK→RESULT LAW: ClaudeComposerAsk ask before every Manim figure
   ILLUSTRATE LAW: no UI chrome in body beats (B14 = CARD, no ClaudeComposerAsk)
   HANDOFF LAW: B16 = "Your turn." reads prompt verbatim

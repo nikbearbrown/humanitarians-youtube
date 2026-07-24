@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """make_audio_kokoro.py — regenerate Kokoro narration for this lecture.
-Free, local; no API key needed.  Voice: am_onyx (brutalist default).
+Free, local; no API key needed.  Voice: af_kore (brutalist default).
 
 Run from any directory:
     python3 make_audio_kokoro.py          # regenerate all missing/stale
@@ -69,7 +69,7 @@ def main():
         sys.exit(f"[err] beat_sheet.json not found in {HERE}")
 
     sheet = json.loads(sheet_path.read_text())
-    voice = sheet.get("metadata", {}).get("voice_kokoro", "am_onyx")
+    voice = sheet.get("metadata", {}).get("voice_kokoro", "af_kore")
     audio_dir = HERE / "audio"
     audio_dir.mkdir(exist_ok=True)
 

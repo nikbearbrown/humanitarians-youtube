@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-cli-scout
 # "Claude, Hunting." | cli-scout skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 135.3s
+# Built: 2026-07-18 | Kokoro af_kore | 135.3s
 
 ## Standalone rebuild instructions
 

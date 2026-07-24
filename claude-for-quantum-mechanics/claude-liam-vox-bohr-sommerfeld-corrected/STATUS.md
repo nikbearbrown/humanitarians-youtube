@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | For the oscillator, shrinking both position and momentum spreads to zero would violate the |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. If omega is ten to the fourteen radians per second, estimate one-half h-bar ome |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Half times six-point-five-eight times ten to the minus sixteen times ten to the fourteen i |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Zero-Point Energy as a Phase-Space Patch. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Zero-Point Energy as a Phase-Space Patch. Kore, in for Humanitarians AI. |

@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Privet, Liam" in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Privet, Kore" in B00 cold open | PASS |
 | 8 | Self-demo shows real LLM-exercise harvest (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "CLI-SCOUT · SKILL TEARDOWN" / "Privet, Liam" — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "CLI-SCOUT · SKILL TEARDOWN" / "Privet, Kore" — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Two sources. One classification." — 4 files listed. PASS
 - **B02** SkillTeardownPipeline: "Harvest → classify → card." — 5 phases, footer. PASS
 - **B03** ClaudeComposerAsk: harvest command, java-programming target. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "Output beats must move." — motion law quote. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Hunting." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct cli-scout command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Hunting." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Hunting." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

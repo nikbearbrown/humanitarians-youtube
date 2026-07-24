@@ -15,10 +15,10 @@ new modifier. Session-built (Cowork cloud); visuals build on the Mac.
 
 ## Cold open (COLD OPEN LAW)
 - B00 is ClaudeComposerAsk with the ask answered (output lines show the
-  4-step pipeline). Liam introduces himself in the first breath
-  ("this is Liam, in for Bear") per IN-FOR-BEAR LAW. Greeting "Ciao, Liam"
+  4-step pipeline). Kore introduces himself in the first breath
+  ("this is Kore, in for Humanitarians AI") per IN-FOR-BEAR LAW. Greeting "Ciao, Kore"
   (one word, lexicon; no Bonjour repeat vs algorithmic-art; Wagwan is
-  Bear-only and does not apply to Liam). PASS
+  Bear-only and does not apply to Kore). PASS
 
 ## Gap formula / hook
 - The hook is a genuine tension: a styling skill whose first instruction

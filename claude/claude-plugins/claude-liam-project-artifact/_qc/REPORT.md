@@ -14,7 +14,7 @@
 | B05 | 280s | PASS | ProjectArtifactTell — GETS RIGHT / WHERE IT BITES, callout box present |
 | BVDT | 360s | PASS | ClaudeVerdictArtifact — 6-line verdict, project-artifact heading correct |
 | BHTF | 395s | PASS | ClaudeComposerAsk handoff — Your Turn, Watch/Expected/Red flag rows |
-| BOUT | 421s | PASS | ClaudeTitleOutro — project-artifact. @NikBearBrown project-artifact · Claude Plugins |
+| BOUT | 421s | PASS | ClaudeTitleOutro — project-artifact. @HumanitariansAI project-artifact · Claude Plugins |
 
 ## Notes
 

@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-brutalist-medhavy
 # "Claude, Protected." | brutalist-medhavy skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 248.3s
+# Built: 2026-07-18 | Kokoro af_kore | 248.3s
 
 ## Standalone rebuild instructions
 

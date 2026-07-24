@@ -2,7 +2,6 @@
 
 Prompt-engineering techniques, XML structure, reasoning strategies, and before/after prompt comparisons.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Claude Prompting

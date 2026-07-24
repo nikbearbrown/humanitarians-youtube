@@ -23,7 +23,7 @@ This directory is the **Claude for Business** collection in the Humanitarians Yo
 
 | Project | Title | Series / genre | Persona / audience | Voice | Beats | Runtime | State | QC | Facts | Status |
 |---|---|---|---|---|---:|---:|---|:---:|:---:|:---:|
-| `claude-liam-hawthorne-effect` | Claude, Observed | Claude for Management | Claude | am_onyx | 20 | 5:05 | beat sheet authored | no | yes | yes |
+| `claude-liam-hawthorne-effect` | Claude, Observed | Claude for Management | Claude | af_kore | 20 | 5:05 | beat sheet authored | no | yes | yes |
 
 ## Repository conventions
 
@@ -33,7 +33,6 @@ This directory is the **Claude for Business** collection in the Humanitarians Yo
 - Publishing is an external state change: preview the exact upload set, privacy, channel, and playlist before committing quota.
 
 _This inventory is generated from the current filesystem and should be refreshed after substantial batch changes._
-
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 

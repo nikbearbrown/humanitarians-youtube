@@ -1,12 +1,12 @@
 # PLAN — Claude, Built (Ch.12: Building Your Own Plugins)
 
-**Slug:** `claude-liam-building-plugins` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-building-plugins` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch12-building-your-own.txt` · **One idea:** *The official plugins cover common functions, but when none fits your specific workflow you can build your own — bundling your skills, connectors, commands, and subagents into an installable package; a guided, low/no-code path whose discipline is scoping it to a real repeated workflow, not building for its own sake.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "None of the official plugins fit how I work. Can I build one?" → ask lands answered, Liam signs in ("Hej — this is Liam, in for Bear.")
+B00  COLD OPEN  ClaudeComposerAsk — "None of the official plugins fit how I work. Can I build one?" → ask lands answered, Kore signs in ("Hej — this is Kore, in for Humanitarians AI.")
 ACT I    Why Build Your Own    generic catalog → your specific process; the transfer   (B01 illustration, B02 Manim transfer, B03–B04 VOX run R1, B05 Manim converge)
 ACT II   What's Inside         four components; a plugin is a folder of text           (B06 ChipGrid, B07 Onda folder code-block, B08 VOX skills, B09 Onda commands code-block, B10 SourceFlow connectors, B11 Manim subagents fan-out)
 ACT III  How You Build It      conversation not code; the four steps                   (B12 illustration, B13 VOX describe, B14 Manim accumulate 4 steps, B15 LayerStack assemble, B16 Manim hours→minutes)
@@ -14,7 +14,7 @@ ACT IV   What to Build For     the four signals; leverage vs. judgment          
 ACT V    Share & Evolve        share out, adopt in, living document                    (B22 SourceFlow share, B23 VOX peers, B24 Manim evolve, B25 illustration check-first)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (+0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Built" (Liam, in for Bear)
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Built" (Kore, in for Humanitarians AI)
 ```
 
 Acts open on a segment card (Title Case serif); the viewer always knows the position in the film.
@@ -49,5 +49,5 @@ This chapter is about the four components *structurally*, so REMOTION carries th
 ## Gates
 1. Plan (this doc) — **approve**; lane histogram lints clean (VOX 20%).
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel corrections in SOURCES.md.
-3. **GATE P** — narration reviewed on animated slate before any audio spend (Kokoro `am_onyx`, free; no ElevenLabs).
+3. **GATE P** — narration reviewed on animated slate before any audio spend (Kokoro `af_kore`, free; no ElevenLabs).
 4. Audio lock (Kokoro) → align → **SHOPPING.md** (Gate D2, after lock; vox stills B03/B04/B08/B13/B18/B23) → **Gate D1 slate previz** → pantry fill → review cut → VISUAL QC → `art final`.

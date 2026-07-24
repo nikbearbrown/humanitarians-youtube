@@ -3,18 +3,18 @@
     "title": "mcp-integration",
     "slug": "claude-liam-mcp-integration",
     "topic": "MCP-INTEGRATION · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the mcp-integration skill. It connects Claude Code plugins to external services via Model Context Protocol — four transport types, two config methods, automatic OAuth, and a tool-naming convention that must match character for character. The key decisions: which transport type for the service, dot-mcp-dot-json versus inline mcpServers, and which tools to pre-allow in command frontmatter. Let me walk you through the architecture, the operations, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the mcp-integration skill. It connects Claude Code plugins to external services via Model Context Protocol — four transport types, two config methods, automatic OAuth, and a tool-naming convention that must match character for character. The key decisions: which transport type for the service, dot-mcp-dot-json versus inline mcpServers, and which tools to pre-allow in command frontmatter. Let me walk you through the architecture, the operations, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "MCP-INTEGRATION · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Add GitHub SSE MCP server and a local custom stdio server to my plugin.",
@@ -51,7 +51,7 @@
               "Tool name mcp__plugin_<name>_<server>__<tool> must match exactly — run /mcp before writing frontmatter",
               "OAuth automatic for SSE · ${CLAUDE_PLUGIN_ROOT} for all paths · .mcp.json over inline mcpServers"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — MCP transport types and lifecycle",
       "narration_text": "Four transport types. stdio spawns a local child process — Claude Code manages the lifecycle, communicates via stdin and stdout, and terminates it when done. Use stdio for custom MCP servers, local databases, and NPM-packaged MCP servers. SSE connects to hosted servers via Server-Sent Events — the primary advantage is that OAuth flows are handled automatically. The user authenticates in a browser on first use; Claude Code manages tokens thereafter. Use SSE for official hosted servers like Asana, GitHub, and Linear. HTTP connects to REST API backends with token-based authentication via request headers. Use HTTP for stateless interactions and API backends that do not need persistent connections. WebSocket connects to real-time servers with persistent bidirectional communication — use when low latency or push notifications are required. Lifecycle is the same for all four: plugin loads, configuration is parsed, the server starts or connects, tools are discovered and registered with the full prefix name, and tools become available. Lazy loading applies — not all servers connect at startup; the first tool use triggers connection. Config changes require a Claude Code restart; connection is not live-reloaded.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 50,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: use dot-mcp-dot-json at the plugin root rather than an inline mcpServers field in plugin.json. The separation of concerns pays off when you have multiple servers — MCP configuration stays isolated and easier to maintain. Second: use the CLAUDE_PLUGIN_ROOT variable for every file path reference. Absolute paths break when a plugin is installed on a different machine or in a different directory; the variable is always expanded to the plugin's installation directory. Third: pre-allow specific MCP tools in command frontmatter — not wildcards. The format is mcp double-underscore plugin-name underscore server-name double-underscore tool-name. Run slash-mcp to discover the exact names before writing the allow list. Fourth: document all required environment variables in the plugin README. Users of stdio and HTTP servers must set these before the plugin works; silent failure on first tool call is worse than explicit setup instructions. Key gotchas. The tool name format is verbose and fragile — one character difference between the pre-allow list and the actual tool name makes the tool invisible with no error. Wildcard pre-allow defeats the permission model — reach for it only when the full list is genuinely unmanageable, not because the list is long. stdio servers must be present at their path before first use: if the plugin bundles a compiled server, users need a build or install step. Config changes require a Claude Code restart — the edit-test loop is slower than for hooks or commands.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 48,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. Four transport types with documented trade-offs: stdio for local tools, SSE for OAuth cloud services, HTTP for token REST, WebSocket for real-time push — each with explicit use-case guidance rather than a generic list. The CLAUDE_PLUGIN_ROOT variable makes configs portable: no hardcoded path survives across installs, and the variable always expands correctly. OAuth flows are automatic for SSE servers — the user authenticates in a browser once; Claude Code handles tokens thereafter with no additional configuration. The dot-mcp-dot-json separation isolates MCP config from plugin.json, making multi-server plugins maintainable with a clear division of concerns. Pre-allow tool lists in command frontmatter scope permissions: the audit surface stays bounded to explicitly named tools. Where it bites. The tool name format mcp double-underscore plugin-name underscore server-name double-underscore tool-name is verbose and fragile — one typo makes the tool invisible with no error message. No live reload: every config change requires a Claude Code restart, making the edit-test cycle slower than hooks or commands. stdio MCP servers must be present at the expected path — if the plugin bundles a compiled binary, users need a build or install step that the skill does not automate. Wildcard pre-allow defeats the entire permission model; the skill warns against it, but the verbose tool names make it tempting. Authentication tokens in environment variables are documented but not validated at load time — the plugin appears healthy until the first tool call fails silently.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 54,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. mcp-integration: four transport types — stdio local process, SSE hosted OAuth, HTTP token REST, WebSocket real-time. Use dot-mcp-dot-json over inline mcpServers for multi-server separation. Use CLAUDE_PLUGIN_ROOT for all paths — never hardcode. Pre-allow specific tools in command frontmatter: run slash-mcp to discover exact names. Document all required environment variables in README. Gaps: tool name format verbose and fragile — one typo is invisible with no error; no live reload on config changes; stdio servers must pre-exist at their path; wildcard pre-allow defeats permission model; env var tokens not validated at load time.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Give Claude a task: add a GitHub SSE server and a local custom stdio server to a plugin. Watch five things. First: which config method does it choose — dot-mcp-dot-json or inline mcpServers in plugin.json, and does it prefer the separated file for a multi-server plugin? Second: does it use the CLAUDE_PLUGIN_ROOT variable for all path references, or does it hardcode an absolute path? Third: when pre-allowing tools in command frontmatter, does it run slash-mcp to get exact tool names, or does it guess and risk a silent mismatch? Fourth: for the hosted GitHub server, does it configure SSE type and let OAuth handle authentication automatically? Fifth: does it document the required environment variables for the local stdio server in the plugin README?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: document env vars in README · specific pre-allow list not wildcards",
               "Red flag: inline mcpServers · hardcoded paths · wildcard pre-allow · no env var documentation"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "mcp-integration. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "mcp-integration. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "mcp-integration",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "mcp-integration · Claude Plugins"
           },
           "rendered": {

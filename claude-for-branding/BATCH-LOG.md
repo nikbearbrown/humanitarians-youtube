@@ -3,7 +3,7 @@
 **Started:** 2026-07-17
 **Completed:** 2026-07-17
 **Batch:** 12 claude-liam videos for Nina Harris' Branding and AI course
-**Voice:** Kokoro am_onyx (free pipeline, no ElevenLabs)
+**Voice:** Kokoro af_kore (free pipeline, no ElevenLabs)
 **Format:** 16:9, 1920×1080, 30fps
 **Result:** 12/12 BUILT ✓
 
@@ -172,7 +172,7 @@
 
 - All 12 scenes built with custom Remotion components (Brand* prefix) registered in Root.tsx
 - TypeScript fix applied: BrandArchetypeWheel fill typed as `string` (literal type narrowing); BrandAgentMapper/BrandVerbScorecard got full defaultProps
-- Kokoro am_onyx voice, --no-gate flag used (no PEDAGOGY.md gate)
+- Kokoro af_kore voice, --no-gate flag used (no PEDAGOGY.md gate)
 - All beats 8/8 filled — no slate cards, no pantry gaps
 - motion histogram '?:8' warning is expected (compile.py uses '?' for Remotion-rendered beats)
 - Free pipeline: $0.00 audio cost, no ElevenLabs, no publishing

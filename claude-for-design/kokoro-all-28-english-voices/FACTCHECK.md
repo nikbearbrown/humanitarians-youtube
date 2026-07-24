@@ -25,7 +25,7 @@ Built: 2026-07-13 · kokoro-onnx 0.4.7 · model files v1.0
 | B15 | am_fenrir   | C+  | B+  | ✗ CORRECTED |
 | B16 | am_liam     | D   | C+  | ✗ CORRECTED |
 | B17 | am_michael  | C+  | C+  | ✓ MATCH |
-| B18 | am_onyx     | D   | C   | ✗ CORRECTED |
+| B18 | af_kore     | D   | C   | ✗ CORRECTED |
 | B19 | am_puck     | C+  | C+  | ✓ MATCH |
 | B20 | am_santa    | D-  | D-  | ✓ MATCH |
 | B21 | bf_alice    | D   | B   | ✗ CORRECTED |

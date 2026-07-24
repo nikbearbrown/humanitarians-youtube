@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-hai
 # "Claude, Pragmatic." | hai skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 240.0s
+# Built: 2026-07-18 | Kokoro af_kore | 240.0s
 
 ## Standalone rebuild instructions
 

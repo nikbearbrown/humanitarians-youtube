@@ -1,7 +1,7 @@
 # BUILD-PROMPT — claude-liam-theme-factory ("Claude, Restrained.")
 
 Standalone rebuild prompt for this reel. State when written: beat_sheet.json
-authored (12 beats, skill-teardown modifier), Kokoro am_onyx audio GENERATED
+authored (12 beats, skill-teardown modifier), Kokoro af_kore audio GENERATED
 and MEASURED (mp3/ + timings.json; actual_duration_s in the beat sheet is
 ground truth), PEDAGOGY.md ends VERDICT: PASS, SOURCES.md logs every quote,
 hex, and computed ratio. What remains: visuals → conform → render → QC.
@@ -90,7 +90,7 @@ THE BEATS (visual contract — narration and durations are in the sheet)
   card per the your-turn spec.
 - BHTF ClaudeComposerAsk handoff — greeting "Your turn.", typing on (one
   of the exactly-two typing beats), command per the beat sheet.
-- BOUT ClaudeTitleOutro — title · @NikBearBrown · "Liam, in for Bear."
+- BOUT ClaudeTitleOutro — title · @HumanitariansAI · "Kore, in for Humanitarians AI."
 
 LAWS THAT BITE HERE
 

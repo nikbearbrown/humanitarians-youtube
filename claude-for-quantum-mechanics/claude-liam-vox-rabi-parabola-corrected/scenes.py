@@ -300,6 +300,6 @@ class B14_CorrectTitleOutro(Scene):
     def construct(self):
         d=DUR.get("B14",8); bg=Rectangle(width=14.4,height=8.2,stroke_width=0).set_fill("#1E1D1A",1)
         title=Text("When the Approximation Predicts\na 247% Chance",font=DISPLAY,font_size=42,color="#F3EFE6",line_spacing=.9).move_to(UP*.45)
-        by=Text("Liam, in for Bear",font=SERIF,font_size=25,color="#D97757").move_to(DOWN*1.05)
+        by=Text("Kore, in for Humanitarians AI",font=SERIF,font_size=25,color="#D97757").move_to(DOWN*1.05)
         series=Text("QUANTUM MECHANICS · VOLUME THREE",font=MONO,font_size=19,color="#B8B1A5").move_to(DOWN*1.65)
         self.add(bg);self.play(FadeIn(title),FadeIn(by),FadeIn(series),run_time=d*.35);self.wait(d*.65)

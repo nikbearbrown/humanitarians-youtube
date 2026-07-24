@@ -10,7 +10,7 @@
 
 | Beat | Frame checked | Result | Notes |
 |------|---------------|--------|-------|
-| B00  | 2 (start)     | PASS   | Correct: "SKETCH-EXPLAINER · SKILL TEARDOWN", "Olá, Liam", correct command+output. Fixed from wrong props (D001 resolved). |
+| B00  | 2 (start)     | PASS   | Correct: "SKETCH-EXPLAINER · SKILL TEARDOWN", "Olá, Kore", correct command+output. Fixed from wrong props (D001 resolved). |
 | B01  | 48 (50%)      | PASS   | Anatomy tree; storyboard.md highlighted; "One sentence. One element. No exceptions." callout; "The rule is in the folder." spark |
 | B02  | 86 (50%)      | PASS   | Pipeline: MODE DETECT → BEATS (accent) → AUDIO (accent) → MANIM → ASSEMBLE; gate footer; "Audio sets the clock." spark |
 | B03  | 120 (50%)     | PASS   | Self-demo ask; correct command/output. Fixed from wrong props (D002 resolved). |
@@ -20,7 +20,7 @@
 | B07  | 252 (50%)     | PASS   | DESIGN TELL; FIDELITY quote; "WHAT IT TRUSTS" verdict pill; "Manim is the master." spark |
 | BVDT | 292 (50%)    | PASS   | Correct verdict; "Claude, Sketching." title; 4-point list. Fixed from wrong props (D005 resolved). |
 | BHTF | 330 (50%)    | PASS   | "Your turn." handoff; correct command+output. Fixed from wrong props (D001 class resolved). |
-| BOUT | 348 (50%)    | PASS   | "Claude, Sketching." centered; "@NikBearBrown"; "Liam, in for Bear." byline. Fixed from wrong props (D006 resolved). |
+| BOUT | 348 (50%)    | PASS   | "Claude, Sketching." centered; "@HumanitariansAI"; "Kore, in for Humanitarians AI." byline. Fixed from wrong props (D006 resolved). |
 
 ## Defect log
 
@@ -42,5 +42,5 @@ Prop name reference saved to memory: `feedback_remotion_prop_names.md`.
 - Final mp4: `claude-liam-sketch-explainer.mp4`
 - Duration: 175.4s (2m55s)
 - Beats: 11 (B00–BOUT)
-- Audio: Kokoro am_onyx, 10 beats with narration (BOUT is title-only, no audio)
+- Audio: Kokoro af_kore, 10 beats with narration (BOUT is title-only, no audio)
 - Video: h264 1920×1080

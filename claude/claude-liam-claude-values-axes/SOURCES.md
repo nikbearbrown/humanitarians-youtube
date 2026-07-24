@@ -35,7 +35,7 @@ Label is shown on screen: "Illustration — response shapes, not real transcript
 ## Build
 
 - Built: 2026-07-16
-- Voice: Kokoro am_onyx (Liam, in for Bear)
+- Voice: Kokoro af_kore (Kore, in for Humanitarians AI)
 - Total duration: ~172s (2:52)
 - 11 beats: B00–B10
 - All Remotion, no ElevenLabs spend

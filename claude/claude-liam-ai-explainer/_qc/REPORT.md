@@ -10,7 +10,7 @@
 
 | Beat | Frame checked | Result | Notes |
 |------|---------------|--------|-------|
-| B00  | 18 (50%)      | PASS   | Clean cold open; "Hola, Liam" spark visible; terracotta accent correct |
+| B00  | 18 (50%)      | PASS   | Clean cold open; "Hola, Kore" spark visible; terracotta accent correct |
 | B01  | 64 (50%)      | PASS   | Anatomy tree; SKILL.md highlighted; "The file is the instruction." spark |
 | B02  | 123 (50%)     | PASS   | Pipeline diagram; all 5 phases visible; arrows; "Audio is the clock." spark |
 | B03  | 176 (50%)     | MINOR  | Empty sparkLine prop → underline artifact bottom-left; prompt text clean; pre-existing pattern |
@@ -20,7 +20,7 @@
 | B07  | 385 (50%)     | PASS   | FIDELITY BRAND quote; "WHAT IT GETS RIGHT" verdict pill; "Same window, every time." spark |
 | BVDT | 444 (50%)    | PASS   | Verdict card; 4-point takeaway list; series title visible |
 | BHTF | 505 (50%)    | MINOR  | Empty sparkLine → underline artifact; "Your turn." and handoff prompt clean |
-| BOUT | 536 (50%)    | PASS   | "Claude, Self-Taught." centered; "@NikBearBrown"; "Liam, in for Bear." byline |
+| BOUT | 536 (50%)    | PASS   | "Claude, Self-Taught." centered; "@HumanitariansAI"; "Kore, in for Humanitarians AI." byline |
 
 ## Defect log
 
@@ -40,5 +40,5 @@ Not re-rendered per contract (re-render until zero BLOCKER/MAJOR).
 - Final mp4: `mp4/claude-liam-ai-explainer.mp4`
 - Duration: 268.6s (4m28s)
 - Beats: 11 (B00–BOUT)
-- Audio: Kokoro am_onyx, all 11 beats, durations measured
+- Audio: Kokoro af_kore, all 11 beats, durations measured
 - Video: h264 1920×1080 @ ~5.8 Mbps

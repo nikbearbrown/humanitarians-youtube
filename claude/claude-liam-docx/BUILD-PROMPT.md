@@ -3,20 +3,20 @@
 ## How this reel was built
 
 Skill: `claude-explainer` · Modifier: `skill-teardown`
-Brand: `claude-liam` · Voice: Kokoro `am_onyx` · Engine: free/local
+Brand: `claude-liam` · Voice: Kokoro `af_kore` · Engine: free/local
 
 ## Beat map
 
 | Beat | Pattern | Content |
 |---|---|---|
-| B00 | ClaudeComposerAsk | Cold open — Olá Liam, docx skill fires on Word doc request |
+| B00 | ClaudeComposerAsk | Cold open — Olá Kore, docx skill fires on Word doc request |
 | B01 | DocxAnatomy | Two paths + quick reference (5 task types) |
 | B02 | DocxCreate | 5 critical docx-js rules (all fatal, silent wrong output) |
 | B03 | DocxEdit | 3-step unpack→edit→repack + XML pitfalls |
 | B05 | DocxTell | Teardown — ZIP insight callout + gets right / bites columns |
 | BVDT | ClaudeVerdictArtifact | Verdict — 6 lines |
 | BHTF | ClaudeComposerAsk | Handoff — prompt read aloud + what to watch for |
-| BOUT | ClaudeTitleOutro | Outro — DOCX · Liam, in for Bear |
+| BOUT | ClaudeTitleOutro | Outro — DOCX · Kore, in for Humanitarians AI |
 
 ## Custom Remotion components
 

@@ -22,7 +22,7 @@
 
 | Beat | Scene | Finding | Severity |
 |---|---|---|---|
-| B00 | ClaudeComposerAsk | "Hei, Liam" greeting, correct. @HumanitariansAI chip visible. | PASS |
+| B00 | ClaudeComposerAsk | "Hei, Kore" greeting, correct. @HumanitariansAI chip visible. | PASS |
 | B01 | ProfileAditiFig1Pivot | Fork timeline renders cleanly — green stem → THE PIVOT badge → dashed grey arm + terracotta arm → FinFluent label. User question bubble animates in. | PASS |
 | B02 | ProfileAditiFig2Stack | Constraint chip + arrow + "Her Own Machine" boundary box + 4-layer stack assembly all correct. | PASS |
 | B03 | ProfileAditiFig3Builds | 4-card grid, FinFluent highlighted terracotta. Award badges (2nd·Confluent AI Day 2025, DreamAI 2025 finalist) visible. | PASS |

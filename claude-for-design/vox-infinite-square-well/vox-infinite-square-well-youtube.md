@@ -21,4 +21,4 @@ AI disclosure: the opening corral motion (B01) is an AI recreation of the STM da
 
 #physics #quantumMechanics #particleInABox #quantumCorral #scienceHistory
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

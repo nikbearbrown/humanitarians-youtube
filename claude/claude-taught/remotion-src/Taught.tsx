@@ -113,7 +113,7 @@ const OutroCard: React.FC = () => {
       <div style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 76, color: '#111', letterSpacing: '-0.02em', textAlign: 'center', lineHeight: 1.05 }}>
         Claude, taught<span style={{ color: CLAUDE.SEND }}>.</span>
       </div>
-      <div style={{ fontFamily: SERIF, fontSize: 40, color: CLAUDE.INK, marginTop: 30 }}>@NikBearBrown</div>
+      <div style={{ fontFamily: SERIF, fontSize: 40, color: CLAUDE.INK, marginTop: 30 }}>@HumanitariansAI</div>
       <div style={{ fontFamily: SANS, fontSize: 24, color: CLAUDE.INK_SOFT, marginTop: 12 }}>subscribe · judgment, written down</div>
     </AbsoluteFill>
   );

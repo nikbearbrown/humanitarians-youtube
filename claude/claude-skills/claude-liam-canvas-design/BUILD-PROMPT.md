@@ -22,7 +22,7 @@ Steps:
 7. If QC passes: open the mp4 for human review.
 8. Never publish — output stays in the reel folder.
 
-Free pipeline only: Kokoro am_onyx, no ElevenLabs, no higgsfield.
+Free pipeline only: Kokoro af_kore, no ElevenLabs, no higgsfield.
 ```
 
 ## Expected output

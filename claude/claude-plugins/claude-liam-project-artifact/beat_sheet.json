@@ -3,18 +3,18 @@
     "title": "project-artifact",
     "slug": "claude-liam-project-artifact",
     "topic": "PROJECT-ARTIFACT · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the project-artifact skill. It builds tabbed HTML status pages for projects and publishes them via Claude's built-in Artifact tool. Two distinctions up front. First: the config file lives at CLAUDE underscore PLUGIN underscore DATA slash artifacts slash slug slash config dot md — that is machine-local, not synced across machines. Second: the artifact publishes to claude dot ai slash code slash artifact slash uuid — private by default; you share the URL. The tab catalog has two permanent tabs — Overview and Workstreams — and five conditional tabs that earn their place when there is material to put in them: Attention, Background, Plan, Risks and open questions, and Decisions slash FAQ. Let me walk you through the anatomy, the workflow, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the project-artifact skill. It builds tabbed HTML status pages for projects and publishes them via Claude's built-in Artifact tool. Two distinctions up front. First: the config file lives at CLAUDE underscore PLUGIN underscore DATA slash artifacts slash slug slash config dot md — that is machine-local, not synced across machines. Second: the artifact publishes to claude dot ai slash code slash artifact slash uuid — private by default; you share the URL. The tab catalog has two permanent tabs — Overview and Workstreams — and five conditional tabs that earn their place when there is material to put in them: Attention, Background, Plan, Risks and open questions, and Decisions slash FAQ. Let me walk you through the anatomy, the workflow, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "PROJECT-ARTIFACT · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Build a live project status page for my API migration with workstreams, risks, and a decisions log.",
@@ -51,7 +51,7 @@
               "Config at ${CLAUDE_PLUGIN_DATA}/artifacts/<slug>/config.md · state block for delta refresh",
               "Published via Artifact tool → claude.ai/code/artifact/<uuid> · private by default"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — tab catalog and config structure",
       "narration_text": "The skill has two layers: the tab catalog and the config structure. The tab catalog has seven possible tabs. Overview is always present — it shows project name, status badge, last-updated timestamp, and a one-paragraph summary. Workstreams is always present — it shows the named work tracks, their status, owner, and key dates. Five tabs are conditional and only appear when the corresponding section in config dot md has content: Attention, for blockers and decisions needed now; Background, for context that readers need but that would bury the Overview; Plan, for upcoming milestones and timeline; Risks and open questions, for tracked uncertainties; Decisions and FAQ, for closed decisions and their rationale. The config file lives at CLAUDE underscore PLUGIN underscore DATA slash artifacts slash slug slash config dot md. Its four sections are Project — name, current-status, last-updated, summary; Artifact — a list of source files the skill reads before building; Sources — data files, API outputs, and documents to pull live at build time; People — names and roles shown in workstream ownership; and Notes — freeform guidance that shapes how Claude interprets ambiguous data. The state block is a JSON object embedded in the published HTML inside a script tag with type application slash json and id artifact-state. It stores the full rendered data so a subsequent refresh call can compute a delta — what changed — rather than re-narrating everything from scratch.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: gather live sources before building. The Artifact section of config dot md lists the files to read. The Sources section lists data files, API outputs, and any documents to pull at build time. Gather everything before writing a single tab — a status page built on stale data is worse than no status page. Second: pick tabs before generating HTML. Open config dot md, check which conditional sections have content, and decide the tab set. A five-tab page with half-empty tabs signals a misconfigured build; a two-tab page with dense content signals a well-configured one. Third: embed the state block in every publish. Every artifact HTML must include the state block — a JSON script tag with id artifact-state — even on the first publish. Without it, a refresh call has no prior state to diff against and must rebuild from template. Fourth: delta versus re-narrative on refresh. If a previous artifact is on disk, compute a delta: what workstreams changed status, what risks were added, what decisions closed since last publish. Surface the delta as a bulleted change summary at the top of the Overview tab before writing the full new content. Key gotchas. The Artifact tool requires claude dot ai login — a colleague without an account cannot open the URL. Config is machine-local — a config dot md on your laptop is not available on your colleague's machine. Delta requires the previous render on disk — if the HTML file was deleted or never written, the refresh call rebuilds from template with no change summary. Refresh rebuilds from template only on structure changes; for content-only updates, re-read sources and rewrite tab content in place.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. The opinionated tab catalog solves the blank-page problem — you never decide from scratch what sections a project page needs, and the two-always plus five-conditional structure prevents both thin pages and overcrowded ones. The state block for delta computation is the right architecture — embedding the prior state in the artifact itself means the refresh call is self-contained and does not depend on a separate store or database. Freshness conventions are explicit — last-updated timestamp in Overview, per-workstream key dates, and a required re-read of Sources on every build, so stale data is a config error not a mystery. Entity-encoding security is built in — all fetched text passes through entity encoding, and less-than signs in JSON strings use their unicode escape, preventing prompt injection via a malicious document title or status field. CSP self-contained enforcement is practical — no external CDN, all styles and scripts inline, so the artifact works without a network call and cannot be broken by a CDN outage. Where it bites. The Artifact tool requires a claude dot ai account. A stakeholder without an account gets a login wall, not a status page — the skill does not offer an export-to-HTML-file fallback. Config is machine-local and not synced. If you maintain config dot md on your laptop and hand off the project, your colleague cannot refresh the artifact without reconstructing the config from scratch. Delta requires the previous render on disk. If the artifact HTML was never written to disk, or if it was deleted, the refresh call rebuilds from template with no change summary and no indication that the delta was skipped. Refresh rebuilds from template only on structure changes — a tab added or removed triggers a full rebuild; content-only updates rewrite tab content in place, which can cause the HTML structure to drift from the template over time. Prompt injection flagging is pattern-based — the skill summarizes and flags suspicious content rather than refusing to include it, which means a carefully crafted document title or status field can still appear in the published artifact.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. project-artifact: tabbed HTML status pages published via Claude's Artifact tool to claude dot ai slash code slash artifact slash uuid — private by default. Tab catalog: Overview and Workstreams always; Attention, Background, Plan, Risks, Decisions conditional on config content. Config at CLAUDE underscore PLUGIN underscore DATA slash artifacts slash slug slash config dot md — four sections: Project, Artifact, Sources, People. State block embedded in every publish for delta refresh. Gaps: Artifact tool requires claude dot ai login — no HTML export fallback; config is machine-local, not synced; delta requires previous render on disk; refresh rebuilds from template on structure change only; prompt injection flagged but not blocked.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Ask Claude to build a project status page for a real project you are running — something with at least two active workstreams and one open risk. Watch five things. First: does it read the Sources listed in config before generating any tab content, or does it generate the page from memory? Second: does the published HTML include a state block — a script tag with type application slash json and id artifact-state — or is the state block missing? Third: does it pick tabs based on actual config content, or does it include all seven tabs regardless of whether they have anything to say? Fourth: if you ask it to refresh the page, does it compute a delta from the previous render on disk, or does it rebuild everything from scratch with no change summary? Fifth: does the Overview tab show a last-updated timestamp that matches the actual build time, not a placeholder or a date from a prior run?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: delta computes changes vs prior render · last-updated is build-time not placeholder",
               "Red flag: generates from memory · missing state block · all 7 tabs · no delta · stale timestamp"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "project-artifact. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "project-artifact. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "project-artifact",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "project-artifact · Claude Plugins"
           },
           "rendered": {

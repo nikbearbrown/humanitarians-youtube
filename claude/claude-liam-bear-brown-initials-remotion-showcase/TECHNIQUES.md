@@ -49,7 +49,7 @@ MP4: `youtube/claude-liam-bear-brown-initials-remotion-showcase/mp4/claude-liam-
 
 ## Build info
 
-- Voice: Kokoro am_onyx (free pipeline)
+- Voice: Kokoro af_kore (free pipeline)
 - Audio files: `mp3/beat-B00.mp3` … `beat-B22.mp3`
 - Total frames: 6603 (220.1s @ 30fps)
 - Rendered: 2026-07-16

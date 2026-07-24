@@ -8,7 +8,7 @@
 
 | Beat | Timestamp | Check |
 |------|-----------|-------|
-| B00 | 19s | ClaudeComposerAsk — "Guten Tag, Liam" greeting, plugin creation command, 3 output lines. Clean. |
+| B00 | 19s | ClaudeComposerAsk — "Guten Tag, Kore" greeting, plugin creation command, 3 output lines. Clean. |
 | B01 | 70s | PluginStructureAnatomy — directory tree (terracotta for .claude-plugin/, green for components) + Required/Recommended/Custom Paths manifest cards. Critical rule box visible. Spark line present. |
 | B02 | 132s | PluginStructureComponents — 5-row table (COMMANDS/AGENTS/HOOKS/MCP green, SKILLS terracotta with SKILL.md highlighted) + PORTABLE PATHS callout. Readable. |
 | B05 | 201s | PluginStructureTell — standard teardown, 5+5 cards, callout. Canvas fill adequate. |

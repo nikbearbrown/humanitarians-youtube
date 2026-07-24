@@ -5,7 +5,7 @@
 - Runtime: 142.71 seconds
 - Frame: 1920×1080, 16:9
 - Coverage: 16/16 beats in source master
-- Narration: Kokoro `am_onyx` (Liam), $0.00
+- Narration: Kokoro `af_kore` (Kore), $0.00
 - Publication: local only
 
 This candidate exactly matches companion-guide candidate 08. The QC-passed master was copied byte-for-byte, probed again, and its full-resolution contact sheet reinspected. It distinguishes preparation uncertainty from measurement disturbance and shows coupled position/momentum widths without relying on a photon kick.

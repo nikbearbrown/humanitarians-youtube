@@ -6,7 +6,7 @@
 - Final: `vox-planck-catastrophe.mp4`
 - Runtime: 169.71 seconds
 - Slots: 13/13 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B11 scratch-built Manim scene suite
 - QC: PASS
 - Publishing: none

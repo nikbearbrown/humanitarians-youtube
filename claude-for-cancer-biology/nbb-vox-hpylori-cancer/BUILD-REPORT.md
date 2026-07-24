@@ -65,7 +65,7 @@ Body clips reused: `../vox-hpylori-cancer/clips/B*.mp4` referenced in beat_sheet
 
 | Property | Value |
 |---|---|
-| Greeting | "Selam, Liam" (Amharic hello) |
+| Greeting | "Selam, Kore" (Amharic hello) |
 | Question | "Why does a stomach bacterium cause cancer after 30 to 50 years?" |
 | End sentence | "Can you explain it, Bear?" |
 | Audio path | `mp3/beat-NBB00.mp3` |
@@ -95,7 +95,7 @@ Body clips reused: `../vox-hpylori-cancer/clips/B*.mp4` referenced in beat_sheet
 | Property | Value |
 |---|---|
 | Title | "Why Ulcer Bacteria Also Cause Cancer" |
-| Handle | @NikBearBrown |
+| Handle | @HumanitariansAI |
 | Subline | "inflammation is the engine, antibiotics are the off switch" |
 | Duration | 6.0s (silence) |
 | Visual | ClaudeTitleOutro @ 1920x1080 → scaled to 1280x720 |

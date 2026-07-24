@@ -1,6 +1,6 @@
 The 4× Speedup Already in Your Chip
 
-This is Liam for Humanitarians AI. Sawadee, Liam. This is Liam, in for Bear. The same chip at the same clock runs the same model four times faster — if the code bothers to ask.
+This is Kore for Humanitarians AI. Sawadee, Kore. This is Kore, in for Humanitarians AI. The same chip at the same clock runs the same model four times faster — if the code bothers to ask.
 
 What you'll see:
 • Here is why The 4× Speedup Already in Your Chip belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.
@@ -11,7 +11,7 @@ What you'll see:
 
 Playlist: Claude for Computer Science
 
-Narrated by Liam for Humanitarians AI.
+Narrated by Kore for Humanitarians AI.
 @HumanitariansAI
 
 #ClaudeAI #HumanitariansAI #Education #ComputerScience

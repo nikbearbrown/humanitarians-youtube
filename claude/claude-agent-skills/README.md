@@ -2,7 +2,6 @@
 
 The `SKILL.md` system, skill design, reusable agent workflows, and how skills differ from plugins and MCP.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Claude Agent Skills

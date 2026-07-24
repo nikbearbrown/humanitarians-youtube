@@ -7,4 +7,4 @@ Every claim in this video was fact-checked against the source chapter and primar
 
 #AI #AIAlignment #Anthropic #Claude #MachineLearning #AIResearch #NikBearBrown #hallucinations #grounding #promptengineering
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

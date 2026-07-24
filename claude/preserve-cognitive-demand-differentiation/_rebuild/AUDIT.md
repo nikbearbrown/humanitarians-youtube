@@ -14,12 +14,12 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 
 | beat | law violated | fix |
 |------|-------------|-----|
-| B02–B05 (K12Fig) | LOGO LAW — K12Fig Remotion components lack @NikBearBrown corner watermark | Add NBB watermark to K12Fig component source files (K12Fig01–K12Fig12 in src/scenes/) |
+| B02–B05 (K12Fig) | LOGO LAW — K12Fig Remotion components lack @HumanitariansAI corner watermark | Add NBB watermark to K12Fig component source files (K12Fig01–K12Fig12 in src/scenes/) |
 | B01 (ClaudeWindow) | ILLUSTRATE LAW check — ClaudeWindow is appropriate only when UI is the subject | PASS: this beat narrates "giving Claude context" — UI is the subject ✓ |
 
 ## Notes
 - Structural laws all pass: ORDER, COLD-OPEN, HANDOFF, OUTRO
-- Voice: kokoro am_onyx — audio untouched
+- Voice: kokoro af_kore — audio untouched
 - Existing mp4 backed up as preserve-cognitive-demand-differentiation-pre-rebuild.mp4
 - K12Fig scenes are Remotion comps — fix by editing src/scenes/K12Fig*.tsx to add watermark
 

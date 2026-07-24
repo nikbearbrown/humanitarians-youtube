@@ -6,7 +6,7 @@
 - Final: `vox-wavepacket-spreading.mp4`
 - Runtime: 152.20 seconds
 - Slots: 13/13 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B11 scratch-built Manim scene suite
 - QC: PASS after correcting B07/B10 Gaussian plotting domains
 - Publishing: none

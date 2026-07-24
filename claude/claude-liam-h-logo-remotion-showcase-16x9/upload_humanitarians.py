@@ -50,7 +50,7 @@ A technique-showcase reel animating the Humanitarians AI H-mark 20 different way
 2:40 Your Turn
 2:47 Outro
 
-Built with Remotion 4.x · @remotion/paths · Kokoro am_onyx voice · Claude fidelity skin.
+Built with Remotion 4.x · @remotion/paths · Kokoro af_kore voice · Claude fidelity skin.
 
 youtube.com/@humanitariansai
 

@@ -14,7 +14,7 @@
 | B05 | 239.78s | PASS | MathOlympiadTell — 5 GETS RIGHT / 5 WHERE IT BITES, VERBATIM callout with ! icon |
 | BVDT | 329.57s | PASS | ClaudeVerdictArtifact — 6-line verdict, all key content present |
 | BHTF | 352.42s | PASS | ClaudeComposerAsk handoff — inequality prompt, Watch/Expected/Red flag rows |
-| BOUT | 389.52s | PASS | ClaudeTitleOutro — math-olympiad. @NikBearBrown math-olympiad · Claude Plugins |
+| BOUT | 389.52s | PASS | ClaudeTitleOutro — math-olympiad. @HumanitariansAI math-olympiad · Claude Plugins |
 
 ## Warnings
 

@@ -36,4 +36,4 @@ No "Cloud"→"Claude" instances occur in this chapter's text (the systematic STT
 - No AI-generated real people in this reel; all vox stills (B03, B07, B15, B16, B21, B23) are Tier 1 illustrative — no rights escalation, no real brands/logos.
 
 ## Credits
-- Narration: Liam (in for Bear), Kokoro `am_onyx`. Channel: @NikBearBrown.
+- Narration: Kore (in for Humanitarians AI), Kokoro `af_kore`. Channel: @HumanitariansAI.

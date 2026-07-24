@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Namaste, Liam" in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Namaste, Kore" in B00 cold open | PASS |
 | 8 | Self-demo shows real PROMPT act generation command (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "CODE-WALKTHROUGH · SKILL TEARDOWN" / "Namaste, Liam" — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "CODE-WALKTHROUGH · SKILL TEARDOWN" / "Namaste, Kore" — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Four acts, one loop." — file tree correct (SKILL.md, VISUAL-RULES.md, MEDHAVY.md, scenes/). PASS
 - **B02** SkillTeardownPipeline: "One loop. Four acts." — 5 phases, footer note, sparkLine. PASS
 - **B03** ClaudeComposerAsk: plan demo command correct, 5 output lines with sim assessment. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "The vehicle must be roadworthy." — physics-gate quote, verdictLabel. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Building." / 4 items render correctly. PASS
 - **BHTF** ClaudeComposerAsk: "Your turn." / correct command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Building." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Building." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

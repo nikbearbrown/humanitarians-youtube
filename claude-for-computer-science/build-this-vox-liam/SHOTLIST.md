@@ -1,4 +1,4 @@
-# SHOTLIST — build-this-vox-liam
+# SHOTLIST — build-this-vox-kore
 
 Typed work order for every slot. `archive` slots need a provenance sidecar (`<beat>.source.txt`).
 Drop filled media into `media/<beat>.png` or `media/<beat>.mp4`; rerun compile — only that slot rebuilds.
@@ -14,7 +14,7 @@ Drop filled media into `media/<beat>.png` or `media/<beat>.mp4`; rerun compile �
 | B02 | DOCUMENT | own | drawon | SLATE — Manim/Remotion | Three-column draw-on: MATCH → SPEC → SUPPORT with annotation arrows |
 | B03 | GRAPHIC | own | isotype | SLATE — Manim | Two-column bar: $35 (dusty navy) vs $200+/months (terracotta) + hand-off guarantee |
 | B04 | STILL | ai | kenburns | SLATE — needs AI still | Grad at laptop, campus workspace; newsprint treatment; focus [0.5, 0.4] |
-| B05 | CARD | own | kinetic | SLATE — Remotion CARD | CTA: bearbrown.co, #BuildThis, @NikBearBrown handle |
+| B05 | CARD | own | kinetic | SLATE — Remotion CARD | CTA: bearbrown.co, #BuildThis, @HumanitariansAI handle |
 
 ---
 
@@ -25,8 +25,8 @@ Drop filled media into `media/<beat>.png` or `media/<beat>.mp4`; rerun compile �
 - Title: "Build This" (large charcoal serif on newsprint ground `#F3EBDD`)
 - Period after: terracotta `#D35F43`
 - Subtitle: "The FAANG window."
-- Sign: "Olá, Liam" (vox greeting in upper left, smaller italic)
-- Bottom: "@NikBearBrown" hairline underline, terracotta
+- Sign: "Olá, Kore" (vox greeting in upper left, smaller italic)
+- Bottom: "@HumanitariansAI" hairline underline, terracotta
 **Reuse option:** Adapt the original `Scene-01-hook.tsx` typography — same heading, different sub.
 **Prompt (AI-generated PNG):** `minimalist editorial card, newsprint cream background, large serif text "Build This" with terracotta period, subtitle "The FAANG window", clean typography, no clutter`
 
@@ -77,8 +77,8 @@ Terracotta annotation arrows between columns animate beat-by-beat with narration
 - Large serif: "bearbrown.co" (charcoal `#2F2A26`)
 - Terracotta hairline beneath the URL
 - "#BuildThis" tag (terracotta, smaller)
-- "@NikBearBrown" handle (bottom right, small, hairline underline)
-- Sign-off: "Liam, in for Bear." (italic, small, ink)
+- "@HumanitariansAI" handle (bottom right, small, hairline underline)
+- Sign-off: "Kore, in for Humanitarians AI." (italic, small, ink)
 **Reuse option:** Adapt CTA block from `Scene-06-cta.tsx` — same URL, update typography.
 
 ---
@@ -99,4 +99,4 @@ Motion histogram: kinetic×2, isotype×2, drawon×1, kenburns×1 (no language > 
 | `src/scenes/Scene-06-cta.tsx` | CTA Remotion component | Adapt typography for B05 card |
 | `src/scenes/Scene-01-hook.tsx` | Hook title component | Adapt for B00 card |
 
-No original audio reused — all beats generated from Ogilvy copy via Kokoro am_onyx.
+No original audio reused — all beats generated from Ogilvy copy via Kokoro af_kore.

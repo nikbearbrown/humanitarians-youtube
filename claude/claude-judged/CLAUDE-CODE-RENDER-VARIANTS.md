@@ -34,9 +34,9 @@ For each variant:
 2. Run a PEDAGOGY.md pass before audio. It must explicitly check that B08 explains both when to use AI and when not to use AI. Stop if the verdict is not PASS.
 3. Preserve the canonical factual claims and the visual argument. Re-render visual beats in the target palette; do not merely copy Claude-colored frames when that would violate the audience palette.
 4. Medhavy: Wonder register, Kokoro af_kore, Medhavy palette, EB Garamond/Montserrat, Medhavy.com OutroCTA. Do not add an exercise beat.
-5. HAI: Pragmatist register, Kokoro am_onyx, Humanitarians palette, EB Garamond/Montserrat, Humanitarians AI OutroCTA. Preserve the runnable cli_exercise inside B08, including ASK, OUTPUT, CHANGE, OUTPUT 2, and next step.
+5. HAI: Pragmatist register, Kokoro af_kore, Humanitarians palette, EB Garamond/Montserrat, Humanitarians AI OutroCTA. Preserve the runnable cli_exercise inside B08, including ASK, OUTPUT, CHANGE, OUTPUT 2, and next step.
 6. Generate fresh per-beat Kokoro narration from the variant narration. Do not reuse the canonical Bear audio. Measure the real audio and write actual_duration_s back only to the build copy used by the renderer.
-7. Render every Remotion beat, including the new B08 artifact and B09 audience outro. Rebuild the QC sheet and inspect it for clipping, wrong palette, stale @NikBearBrown branding, and unreadable text.
+7. Render every Remotion beat, including the new B08 artifact and B09 audience outro. Rebuild the QC sheet and inspect it for clipping, wrong palette, stale @HumanitariansAI branding, and unreadable text.
 8. Compile a clean 1920×1080 MP4. The narration is the master clock. No missing-media slates, no silent voiced beats, and no canonical audio.
 9. Verify each final with ffprobe: 1920×1080, nonzero audio stream, duration consistent with summed measured beats. Open each final for human review.
 10. Report exact output paths, duration, file size, voice, palette, PEDAGOGY verdict, and any remaining concern. Do not publish or push.

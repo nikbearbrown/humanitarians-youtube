@@ -1,19 +1,19 @@
 # PLAN — Claude, By the Numbers (Ch.7: The Data Plugin)
 
-**Slug:** `claude-liam-data` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-data` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch07-data.txt` · **One idea:** *Without the data plugin your numbers sit in spreadsheets you never open; with it Claude does data exploration and the unglamorous-but-essential data cleaning, then answers real questions (which clients are declining?) — but the analysis is only as trustworthy as the data and the assumptions, so you still own the judgment.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "A year of revenue I never open — what's in it?" → ask lands answered, Liam signs in ("Olá — this is Liam, in for Bear.")
+B00  COLD OPEN  ClaudeComposerAsk — "A year of revenue I never open — what's in it?" → ask lands answered, Kore signs in ("Olá — this is Kore, in for Humanitarians AI.")
 ACT I    The Unopened Spreadsheet   fear of your own data → the export/stare/close loop   (B01 illustration, B02 Manim loop, B03 VOX)
 ACT II   Ask It Plainly             point-and-ask → natural-language querying → the gap    (B04 SourceFlow, B05 Onda code, B06 Manim divergence, B07 spark)
 ACT III  What It Actually Does      explore · clean · visualize · compare                 (B08 ChipGrid, B09 SourceFlow, B10 Manim threshold, B11 VOX, B12 illustration, B13 Manim divergence)
 ACT IV   The Monthly Habit          avoided question → monthly review → client concentration (B14 Onda code, B15–B16 VOX run R1, B17 Manim accumulate, B18 Onda code, B19 Manim threshold, B20 VOX)
 ACT V    You Own The Judgment       trust = data x assumptions → verify → keep the call    (B21 PredictCard, B22 Manim divergence, B23 VOX drawon, B24 Manim accumulate)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (0.5s lead of silence)
-H01  YOUR TURN ClaudeComposerAsk "Your turn." — data-review prompt read aloud + discussed; Liam signs off ("Liam, in for Bear.")
+H01  YOUR TURN ClaudeComposerAsk "Your turn." — data-review prompt read aloud + discussed; Kore signs off ("Kore, in for Humanitarians AI.")
 O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, By the Numbers"
 ```
 
@@ -50,4 +50,4 @@ Consecutive-lane check: longest same-lane run is 2 (B04–B05 REMOTION, B08–B0
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel corrections logged in SOURCES.md.
 3. **GATE P** — full narration (B00 → O01) reviewed on an animated slate before ANY audio spend.
-4. Audio lock (Kokoro am_onyx) → align (word clock) → **Gate D2** SHOPPING.md (Tier-0 `pantry_search.py` pass per vox still, then write from LOCKED durations) → **Gate D1** slate previz (`art run`) → pantry fill → review cut → VISUAL QC LAW → `art final`.
+4. Audio lock (Kokoro af_kore) → align (word clock) → **Gate D2** SHOPPING.md (Tier-0 `pantry_search.py` pass per vox still, then write from LOCKED durations) → **Gate D1** slate previz (`art run`) → pantry fill → review cut → VISUAL QC LAW → `art final`.

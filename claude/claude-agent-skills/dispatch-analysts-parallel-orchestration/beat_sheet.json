@@ -2,20 +2,20 @@
   "metadata": {
     "slug": "dispatch-analysts-parallel-orchestration",
     "title": "Fan Out: Coordinating Dozens of Agents in Parallel Without Blocking",
-    "channel": "claude-liam",
-    "persona": "Liam",
+    "channel": "hai",
+    "persona": "Kore",
     "brand": "claude-liam",
     "audience": "Claude",
     "engine": "kokoro",
-    "voice": "am_onyx",
-    "voice_kokoro": "am_onyx",
+    "voice": "af_kore",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "typography": {
       "serif": "Tiempos/EB Garamond",
       "ui": "system sans",
       "mono": "SF Mono"
     },
-    "register": "Teardown",
+    "register": "Pragmatist",
     "format": "16:9",
     "width": 1920,
     "height": 1080,
@@ -34,8 +34,8 @@
     {
       "beat_id": "B00",
       "act": "cold-open",
-      "narration_text": "One agent can't analyze 50 SEC filings in parallel. But dispatch them separately — and have the main agent wait for all three to finish at once. This is Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "One agent can't analyze 50 SEC filings in parallel. But dispatch them separately — and have the main agent wait for all three to finish at once. This is Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 10,
       "shot": {
@@ -44,7 +44,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Bonjour, Liam",
+            "greeting": "Bonjour, Kore",
             "topic": "CLAUDE MANAGED AGENTS · ORCHESTRATION",
             "segment": "Fan Out: Coordinating Dozens of Agents in Parallel Without Blocking",
             "command": "Sweep NVDA, AMD, and MU. Rank them by margin durability. Run the analysts in parallel — I don't want to wait for each one to finish before starting the next.",
@@ -54,7 +54,7 @@
               "✓ AMD analyst: score 6 — moderate risk",
               "✓ MU analyst: score 4 — inventory pressure"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Fable 5",
             "effortLabel": "High"
           },
@@ -77,7 +77,7 @@
       "beat_id": "B01",
       "act": "the-question",
       "narration_text": "The question: how does a single agent coordinate long-running parallel sub-agents — without resorting to multiple separate conversations, or blocking the whole flow?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 9,
       "shot": {
@@ -107,7 +107,7 @@
       "beat_id": "B02",
       "act": "core-idea",
       "narration_text": "A custom tool becomes the orchestration trigger. When the head agent calls dispatch underscore analysts with a list of tickers, the server intercepts that call. It doesn't run the analysis itself — it spawns three independent analyst sessions, each with its own full context window, each running in parallel. The head agent pauses. The server monitors the sessions. When all three finish, the server resumes the head with the accumulated results. Fan out, fan in.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -137,7 +137,7 @@
       "beat_id": "B03",
       "act": "visual-centerpiece",
       "narration_text": "Here is the flow. Head of research receives the prompt: sweep NVDA, AMD, and MU, rank by margin durability. It calls dispatch analysts with the three tickers. The server intercepts. Three analyst sessions spawn simultaneously. Each reads twenty pages of SEC filings independently, scores on a rubric, returns a grade. The head waits — it doesn't block your terminal, it doesn't lock the conversation. The server monitors all three in the background. When all three finish: NVDA scores nine, AMD scores six, MU scores four. The head resumes, reads the accumulated table, synthesizes a ranked report. One conversation. Three parallel analysts. One merged verdict.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 40,
       "shot": {
@@ -167,7 +167,7 @@
       "beat_id": "B04",
       "act": "spread-move",
       "narration_text": "The spread is the mechanism. One call fans out into N parallel sessions. Each session is fully isolated — its own context, its own tools, its own errors. They converge when they finish, not when the head decides to check. The server is the coordinator, not the agent.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 16,
       "shot": {
@@ -197,7 +197,7 @@
       "beat_id": "B05",
       "act": "fan-out-speed",
       "narration_text": "The timing difference is not incremental — it is categorical. Serial execution: fifty analysts, each taking thirty seconds, one after another. That is twenty-five minutes. You are not waiting for the analysis — you are waiting for the queue. Parallel fan-out: fifty analysts dispatched simultaneously. They all start at the same moment. All fifty finish in thirty seconds. The timeline collapses from twenty-five minutes to the duration of the slowest single analyst. Serial is a queue. Parallel is a wave. The wave does not wait.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 22,
       "shot": {
@@ -228,7 +228,7 @@
       "beat_id": "B06",
       "act": "result-aggregation",
       "narration_text": "When the analysts finish, their results don't merge themselves. The aggregator box is the other half of the fan-out pattern — the fan-in. Each analyst session returns its result as a chip: ticker, score, findings. The chips arrive at different times. The aggregator holds them until the last one lands. Then it runs three operations: deduplicate — remove any overlapping findings, rank — sort by score, merge — flatten everything into one structured report. The head agent reads that report and synthesizes the verdict. The aggregator is not smart — it is just a collector that waits for the full set before it hands anything back.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 20,
       "shot": {
@@ -259,7 +259,7 @@
       "beat_id": "B07",
       "act": "orchestration-contract",
       "narration_text": "What makes parallel agents safe is not clever engineering — it is a contract. The head sends a fixed schema: task ID, company ticker, query focus. The analyst returns a fixed schema: task ID, findings array, confidence score, sources. The contract in the center defines both sides. That standard schema is what the aggregator relies on. If an analyst returns something off-schema, the aggregator rejects it cleanly — one failed session does not corrupt the others. The contract is not overhead. It is the entire reason fan-out works at scale. Without it, parallel becomes chaos. With it, parallel becomes predictable.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 18,
       "shot": {
@@ -290,7 +290,7 @@
       "beat_id": "B08",
       "act": "verdict",
       "narration_text": "Let's recap with Claude. A custom tool becomes the orchestration trigger — when the head calls dispatch analysts, the server intercepts and spawns independent sessions. Each analyst runs in parallel with its own context window. The server fans them in when all finish. The head never blocked — it waited while the server did the coordination.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 18,
       "shot": {
@@ -326,8 +326,8 @@
     {
       "beat_id": "B09",
       "act": "your-turn",
-      "narration_text": "Your turn. Here is the prompt: 'Fan this workload out across parallel sub-agents, then merge their results into one ranked decision.' What you are building is the server-side intercept — the moment where a tool call leaves the agent's context and becomes the server's responsibility. Watch what happens when one analyst fails: does the head get a partial result, or does it wait for a retry? Watch what happens when all three finish at different times: does the merge happen immediately, or does the server collect the slowest one? The fan-out shape is simple. The failure modes are where the engineering lives. Take this prompt, run it on your own workload, and watch the parallel sessions appear. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "Your turn. Here is the prompt: 'Fan this workload out across parallel sub-agents, then merge their results into one ranked decision.' What you are building is the server-side intercept — the moment where a tool call leaves the agent's context and becomes the server's responsibility. Watch what happens when one analyst fails: does the head get a partial result, or does it wait for a retry? Watch what happens when all three finish at different times: does the merge happen immediately, or does the server collect the slowest one? The fan-out shape is simple. The failure modes are where the engineering lives. Take this prompt, run it on your own workload, and watch the parallel sessions appear. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 42,
       "shot": {
@@ -341,7 +341,7 @@
             "segment": "Fan Out: Coordinating Dozens of Agents in Parallel Without Blocking",
             "command": "Fan this workload out across parallel sub-agents, then merge their results into one ranked decision.",
             "runningText": "paste this into Claude…",
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Fable 5",
             "effortLabel": "High"
           },
@@ -364,7 +364,7 @@
       "beat_id": "B10",
       "act": "outro",
       "narration_text": "Fan Out: Coordinating Dozens of Agents in Parallel Without Blocking",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -374,8 +374,8 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "Fan Out: Coordinating Dozens of Agents in Parallel Without Blocking",
-            "handle": "@NikBearBrown",
-            "subline": "Liam, in for Bear."
+            "handle": "@HumanitariansAI",
+            "subline": "Kore, in for Humanitarians AI."
           },
           "rendered": {
             "out": "media/B10.mp4",

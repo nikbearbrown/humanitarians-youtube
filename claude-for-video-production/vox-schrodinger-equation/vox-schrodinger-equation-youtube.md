@@ -21,4 +21,4 @@ AI disclosure: the portrayals of Erwin Schrödinger (B01, B10) and the laser-cav
 
 #physics #quantumMechanics #SchrodingerEquation #waveFunction #scienceHistory
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

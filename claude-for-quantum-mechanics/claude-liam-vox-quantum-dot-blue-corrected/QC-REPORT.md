@@ -3,7 +3,7 @@
 - Master: `vox-quantum-dot-blue-corrected.mp4`
 - Probe: 180.64 seconds, 1920×1080, 24 fps
 - Fill: 14/14 beats; no slates
-- Voice: Kokoro `am_onyx`; Liam explicitly in for Bear; cost $0.00
+- Voice: Kokoro `af_kore`; Kore explicitly in for Humanitarians AI; cost $0.00
 - Visual inspection: final contact sheet read after two correction passes; zero blocker and zero major defects
 
 ## Fixes made during build and QC
@@ -25,4 +25,4 @@
 - Absorption, relaxation/Stokes shift, and emission paths distinguished.
 - Your Turn ratio `(3/2)² = 2.25` shown and model-scoped.
 
-The native dark title outro is intentional and visibly carries the correct title plus “Liam, in for Bear”; the automated Claude-outro skin warning is non-blocking after inspection.
+The native dark title outro is intentional and visibly carries the correct title plus “Kore, in for Humanitarians AI”; the automated Claude-outro skin warning is non-blocking after inspection.

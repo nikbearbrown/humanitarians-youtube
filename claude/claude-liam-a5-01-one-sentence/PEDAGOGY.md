@@ -1,6 +1,6 @@
 # PEDAGOGY audit — claude-liam-a5-01-one-sentence ("The Hardest Sentence")
 
-ai-explainer, claude-liam, Kokoro am_onyx. Pragmatist register.
+ai-explainer, claude-liam, Kokoro af_kore. Pragmatist register.
 Source: INFO 7375 Assignment 5 brief, Part 1 (12 pts).
 
 ## Act structure
@@ -9,8 +9,8 @@ Source: INFO 7375 Assignment 5 brief, Part 1 (12 pts).
   outro (BOUT). 8 beats. Cold open → body → verdict → HANDOFF → outro. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 is ClaudeComposerAsk. Liam self-introduces in the first breath. Greeting
-  "Hola, Liam." Output shows the three-part structure for the episode. PASS
+- B00 is ClaudeComposerAsk. Kore self-introduces in the first breath. Greeting
+  "Hola, Kore." Output shows the three-part structure for the episode. PASS
 
 ## Gap formula / hook
 - Tension: one sentence determines Part 1, A6 positioning, LinkedIn headline,

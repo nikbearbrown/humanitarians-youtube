@@ -22,7 +22,7 @@ This is a LOOP, not a request to build only one video.
 
 HARD SAFETY AND SCOPE
 
-- Free pipeline only: Kokoro `am_onyx`. Never call ElevenLabs, Higgsfield, or
+- Free pipeline only: Kokoro `af_kore`. Never call ElevenLabs, Higgsfield, or
   any paid/external generation API. Never publish, upload, git commit, or push.
 - Run without approval pauses because paid spend and publishing are forbidden.
 - Preserve all unrelated user work. Build only inside each owning book's
@@ -46,10 +46,10 @@ READ COMPLETELY BEFORE ACTING
 
 CHANNEL AND EDITORIAL CONTRACT
 
-- Channel `claude-liam`: Liam in for Bear, Kokoro `am_onyx`, Teardown
-  register, `@NikBearBrown` folder chip and logo bug.
-- B00 begins on `ClaudeComposerAsk`; Liam says in the first breath that he is
-  "Liam, in for Bear." Rotate one-word world-language greetings; never Wagwan.
+- Channel `claude-liam`: Kore in for Humanitarians AI, Kokoro `af_kore`, Teardown
+  register, `@HumanitariansAI` folder chip and logo bug.
+- B00 begins on `ClaudeComposerAsk`; Kore says in the first breath that he is
+  "Kore, in for Humanitarians AI." Rotate one-word world-language greetings; never Wagwan.
 - Explain actual physics machinery from first principles, then name the design
   trade-off or conceptual choice. Strip jargon and hype. No fabrication.
 - Fact-check every equation, number, historical claim, and physical claim
@@ -71,8 +71,8 @@ VISUAL CONTRACT
 - ASK→RESULT for every generated visual. The prompt shown must be the actual
   prompt/instruction used to create the following native result.
 - Closing block: verdict recap → `Your turn.` composer with a genuinely useful
-  physics prompt read aloud and discussed → title-restating outro. Liam signs
-  "Liam, in for Bear."
+  physics prompt read aloud and discussed → title-restating outro. Kore signs
+  "Kore, in for Humanitarians AI."
 
 QUEUE AND OUTPUT CONTRACT
 
@@ -90,7 +90,7 @@ QUEUE AND OUTPUT CONTRACT
    - BUILD-LOG.md
    - final `<slug>.mp4`
    - `_qc/REPORT.md`
-4. Generate Liam audio first and measure actual beat durations. Render native
+4. Generate Kore audio first and measure actual beat durations. Render native
    visuals, compile the finished MP4, and probe duration/frame count.
 5. Perform the required frame-level visual QC: sample at >=2 fps plus each
    beat around 15/50/85 percent, actually inspect the frames, fix scene-source

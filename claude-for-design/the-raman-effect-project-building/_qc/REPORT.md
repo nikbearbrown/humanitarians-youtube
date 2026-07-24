@@ -14,7 +14,7 @@ Open each frame in `_qc/frames/` and check:
 2. All essential text inside 5% safe area (x 96–1824, y 54–1026)
 3. No text overflowing its box or clipped behind a shape
 4. No overlapping/colliding elements
-5. @NikBearBrown chip inside safe area, not covering content
+5. @HumanitariansAI chip inside safe area, not covering content
 6. Contrast legible at normal viewing distance
 
 _Auto-generated 2026-07-17 01:45_

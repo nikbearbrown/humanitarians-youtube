@@ -6,7 +6,7 @@
 - Final: `vox-spin-not-ball.mp4`
 - Runtime: 121.21 seconds
 - Slots: 13/13 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B11 scratch-built Manim scene suite
 - QC: PASS after replacing font-mangled Unicode notation in B04/B05/B06/B10
 - Publishing: none

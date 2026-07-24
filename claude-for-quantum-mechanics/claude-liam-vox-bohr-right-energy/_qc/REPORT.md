@@ -5,7 +5,7 @@
 - Runtime: 145.85 seconds
 - Frame: 1920×1080, 16:9
 - Coverage: 14/14 beats filled
-- Narration: Kokoro `am_onyx` (Liam), $0.00
+- Narration: Kokoro `af_kore` (Kore), $0.00
 - Publication: local only; not published
 
 ## Visual inspection

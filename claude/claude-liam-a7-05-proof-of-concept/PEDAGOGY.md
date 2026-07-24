@@ -4,7 +4,7 @@
 Cold open (all stages are valid) → Slide 8: dev plan (honest stage + milestones) → Slide 9: POC evidence (three versions by stage) → transparency play (sell what you have) → traps on slides 8–9 → verdict → Your Turn (honest stage + what built → slides 8–9) → outro.
 
 ## Cold open law
-Opens: "Hola — Liam, Episode 5 of 7." States premise (all four stages valid; hiding the stage is the problem, not having a stage) and previews both slides. ✓
+Opens: "Hola — Kore, Episode 5 of 7." States premise (all four stages valid; hiding the stage is the problem, not having a stage) and previews both slides. ✓
 
 ## Gap formula
 Gap: students apologize for no code, or vague milestones ("build the product"), or overclaim the stage. Fix: four honest stage labels + milestone-as-checkpoint discipline + transparency-as-strength framing.

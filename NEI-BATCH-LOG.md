@@ -1,7 +1,7 @@
 # NEI Batch Build Log — 30 NortheasternISE Explainers
 
 **Channel:** @HumanitariansAI  
-**Voice:** Kokoro am_onyx (Liam, in for Bear)  
+**Voice:** Kokoro af_kore (Kore, in for Humanitarians AI)  
 **Palette:** claude (cream #FAF9F5, terracotta accent #D97757)  
 **Beat sheets written:** 2026-07-18  
 **Build script:** `humanitarians_html/youtube/build_nei_batch.py`

@@ -12,7 +12,7 @@ Pedagogy audit against the SLATE-RUNNER checklist. Written before audio credits 
 | How (second tool) | B07–B09 | ✓ — audiogram: lyric-overlay decorates a finished video; waveform + karaoke in one command |
 | Restraint / choice | B10 | ✓ — poem vs promo: burned-in words compete with listening vs. words ARE the visual |
 | Close | B11 | ✓ — three tools, one sentence: session directs, karaoke clocks, audiogram makes sound visible |
-| Outro / CTA | B99 | ✓ — brutalist.art · @NikBearBrown |
+| Outro / CTA | B99 | ✓ — brutalist.art · @HumanitariansAI |
 
 Act structure: **PASS**
 

@@ -18,4 +18,4 @@
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. At one tesla, mu B B is five-point-seven-eight-eight times ten to the minus fiv |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Four-thirds gives about seven-point-seven-two times ten to the minus five electron volts.  |
 | B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | The anomaly was never random spacing inside one J level. It was multiple angular-momentum  |
-| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | The Anomalous Zeeman Effect Isn't Anomalous. Liam, in for Bear. |
+| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | The Anomalous Zeeman Effect Isn't Anomalous. Kore, in for Humanitarians AI. |

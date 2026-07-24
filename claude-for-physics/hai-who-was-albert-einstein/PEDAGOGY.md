@@ -1,6 +1,6 @@
 # PEDAGOGY — hai-who-was-albert-einstein
 
-Variant: HAI · Register: Pragmatist · Voice: am_onyx · Palette: humanitarians
+Variant: HAI · Register: Pragmatist · Voice: af_kore · Palette: humanitarians
 
 ## Register Check
 

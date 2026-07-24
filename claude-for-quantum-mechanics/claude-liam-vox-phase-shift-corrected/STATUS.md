@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | A full set of phase shifts across channels and energies is powerful scattering information |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. In the weak-potential sign rule, the weighted integral of V is negative. What s |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Positive: the leading expression carries a minus sign, so a negative potential integral gi |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Attraction, Repulsion, and Phase Shifts. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Attraction, Repulsion, and Phase Shifts. Kore, in for Humanitarians AI. |

@@ -1,7 +1,7 @@
 # QC Report — claude-liam-connect-linkedin ("Claude, Gated.")
 
 Date: 2026-07-18  
-Engine: Kokoro am_onyx (free, local)  
+Engine: Kokoro af_kore (free, local)  
 Total runtime: 376.3s (~6:16)  
 Beats: 13 / 13 filled — all REMOTION  
 Frames sampled: 2fps grid (751 frames) + 15/50/85% per beat (39 spot-checks)
@@ -17,12 +17,12 @@ Frames sampled: 2fps grid (751 frames) + 15/50/85% per beat (39 spot-checks)
 | 5 | **Eyebrow/title hierarchy** — small-caps eyebrow, large serif title, correct weight | PASS |
 | 6 | **Text legibility** — all labels, body text, and code readable at 1080p | PASS |
 | 7 | **REBUILD LAW** — zero LinkedIn screenshots; everything built fresh in house palette | PASS |
-| 8 | **BOUT outro** — title "Claude, Gated." with terracotta period; @NikBearBrown; "Liam, in for Bear." | PASS |
+| 8 | **BOUT outro** — title "Claude, Gated." with terracotta period; @HumanitariansAI; "Kore, in for Humanitarians AI." | PASS |
 | 9 | **BVDT verdict card** — terracotta numbered list; 4 items; heading "Connect Claude to LinkedIn — the honest map" | PASS |
 
 ## Per-beat notes
 
-- **B00 ClaudeComposerAsk** — greeting "Hola, Liam", topic correct, output lines fully revealed at 50% mark. PASS
+- **B00 ClaudeComposerAsk** — greeting "Hola, Kore", topic correct, output lines fully revealed at 50% mark. PASS
 - **B01 LinkedInTrustBoundary** — directory card + trust boundary diagram both visible by 50%. Terracotta dashed arrow. PASS
 - **B02 LinkedInThreeLanes** — three card lanes (Publishing / Analytics / Outreach), icons, descriptions, sub-label. PASS
 - **B03 LinkedInAsymmetry** — green "OFFICIAL API" on Publishing/Analytics; terracotta WALL block with lock icon on Outreach. PASS

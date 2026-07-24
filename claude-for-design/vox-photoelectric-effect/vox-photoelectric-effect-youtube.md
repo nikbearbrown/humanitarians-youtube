@@ -19,4 +19,4 @@ AI disclosure: motion in beats B01, B03, B04, B06, B08, B12, B15 is AI-generated
 
 #physics #quantumMechanics #Einstein #photoelectric #scienceHistory
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

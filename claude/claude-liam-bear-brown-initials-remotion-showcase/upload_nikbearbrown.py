@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 upload_nikbearbrown.py — Upload Bear Brown Initials Remotion Showcase (9:16) to
-@NikBearBrown in the "Shorts" playlist.
+@HumanitariansAI in the "Shorts" playlist.
 
 Usage: python3 upload_nikbearbrown.py [--dry-run]
 """
@@ -49,9 +49,9 @@ A technique-showcase reel animating the Bear Brown initials mark 20 different wa
 3:27 Your Turn
 3:36 Outro
 
-Built with Remotion 4.x · @remotion/paths · Kokoro am_onyx voice · Claude fidelity skin.
+Built with Remotion 4.x · @remotion/paths · Kokoro af_kore voice · Claude fidelity skin.
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI
 
 #Remotion #MotionDesign #LogoAnimation #NikBearBrown
 """
@@ -155,7 +155,7 @@ def main():
         sys.exit(f"Video not found: {VIDEO}")
     print(f"Video: {VIDEO.name} ({VIDEO.stat().st_size // 1024 // 1024} MB)")
     print(f"Title: {TITLE}")
-    print(f"Channel: @NikBearBrown")
+    print(f"Channel: @HumanitariansAI")
     print(f"Playlist: {PLAYLIST_NAME}")
 
     if args.dry_run:

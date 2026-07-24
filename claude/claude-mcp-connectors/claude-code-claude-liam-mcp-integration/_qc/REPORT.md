@@ -8,7 +8,7 @@
 
 | Beat | Timestamp | Check |
 |------|-----------|-------|
-| B00 | 22s | ClaudeComposerAsk — "Olá, Liam" greeting, MCP prompt, 3 output lines. Clean. |
+| B00 | 22s | ClaudeComposerAsk — "Olá, Kore" greeting, MCP prompt, 3 output lines. Clean. |
 | B01 | 57s | McpIntAnatomy — 2 config method cards + 4 server type rows (SSE highlighted terracotta). Column headers aligned. Spark line visible. |
 | B02 | 130s | McpIntPatterns — Tool naming box with mcp__ format, pattern cards + lifecycle callout. Text readable. |
 | B05 | 202s | McpIntTell — Two-column teardown, 5+5 cards, callout box, spark line. Canvas fill good. |

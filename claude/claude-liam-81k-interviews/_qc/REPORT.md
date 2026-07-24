@@ -11,7 +11,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 | 4. Overlap / collision | PASS | No z-order issues |
 | 5. Offscreen anchor | PASS | No misplaced elements |
 | 6. Legibility | PASS | Text readable at 640px |
-| 7. Brand bug | PASS | ClaudeComposerAsk has @NikBearBrown folderLabel; custom WantFig patterns verified |
+| 7. Brand bug | PASS | ClaudeComposerAsk has @HumanitariansAI folderLabel; custom WantFig patterns verified |
 | 8. Aspect / letterbox | PASS | 16:9 1920x1080 |
 | 9. Canvas fill | PASS | Full 1920x1080 |
 

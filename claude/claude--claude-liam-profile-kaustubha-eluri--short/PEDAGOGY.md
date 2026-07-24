@@ -8,7 +8,7 @@ covered ideas and directs to the full video.
 - Concrete before abstract: yes (dev/prod gap grounded before thesis)
 - Prediction before reveal: yes (held from source)
 - Useful friction: yes (question posed at B00)
-- Readable pacing: yes (Kokoro am_onyx)
+- Readable pacing: yes (Kokoro af_kore)
 - Clear handoff: yes (B09 outro directs to full video)
 
 VERDICT: PASS

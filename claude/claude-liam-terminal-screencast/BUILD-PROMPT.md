@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-terminal-screencast
 # "Claude, Typed." | terminal-screencast skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 191.2s
+# Built: 2026-07-18 | Kokoro af_kore | 191.2s
 
 ## Standalone rebuild instructions
 

@@ -6,7 +6,7 @@
 - Final: `vox-hydrogen-cloud.mp4`
 - Runtime: 160.21 seconds
 - Slots: 16/16 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native replacement: B10 spherical probability-cloud animation
 - QC: PASS after correcting B12 sampled-frame visibility
 - Publishing: none

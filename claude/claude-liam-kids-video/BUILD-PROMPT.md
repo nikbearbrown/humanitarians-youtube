@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-kids-video
 # "Claude, Cubs." | kids-video skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 223.2s
+# Built: 2026-07-18 | Kokoro af_kore | 223.2s
 
 ## Standalone rebuild instructions
 

@@ -16,7 +16,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 | 9. Canvas fill | PASS | Full 1920x1080 |
 
 ## Summary
-YTV01 moved after B11. B12 handoff rewritten (reads prompt + discusses). B00 greeting Salve Liam. All 11 Manim scenes rendered. 15/15 compiled.
+YTV01 moved after B11. B12 handoff rewritten (reads prompt + discusses). B00 greeting Salve Kore. All 11 Manim scenes rendered. 15/15 compiled.
 
 ## Status
 QC PASS

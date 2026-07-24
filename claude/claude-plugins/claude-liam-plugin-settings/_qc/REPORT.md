@@ -14,7 +14,7 @@
 | B05 | 280s | PASS | PluginSettingsTell — GETS RIGHT / WHERE IT BITES, callout box present |
 | BVDT | 307s | PASS | ClaudeVerdictArtifact — 6-line verdict, plugin-settings heading correct |
 | BHTF | 352s | PASS | ClaudeComposerAsk handoff — Your Turn, Watch/Expected/Red flag rows |
-| BOUT | 387s | PASS | ClaudeTitleOutro — plugin-settings. @NikBearBrown plugin-settings · Claude Plugins |
+| BOUT | 387s | PASS | ClaudeTitleOutro — plugin-settings. @HumanitariansAI plugin-settings · Claude Plugins |
 
 ## Notes
 

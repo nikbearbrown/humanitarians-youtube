@@ -44,9 +44,9 @@ The ONLY new media created for this build:
 
 | Beat | Type | Engine | Voice | Path |
 |---|---|---|---|---|
-| B_LIAM | ClaudeComposerAsk (Remotion) + Kokoro audio | kokoro | am_onyx | `media/B_LIAM.mp4`, `mp3/beat-B_LIAM.mp3` |
-| B_VERDICT | ClaudeVerdictArtifact (Remotion) + Kokoro audio | kokoro | am_onyx | `media/B_VERDICT.mp4`, `mp3/beat-B_VERDICT.mp3` |
-| B_YOUR_TURN | ClaudeComposerAsk (Remotion) + Kokoro audio | kokoro | am_onyx | `media/B_YOUR_TURN.mp4`, `mp3/beat-B_YOUR_TURN.mp3` |
-| B_OUTRO | ClaudeTitleOutro (Remotion) + silence | kokoro | am_onyx (silence) | `media/B_OUTRO.mp4`, `mp3/beat-B_OUTRO.mp3` |
+| B_LIAM | ClaudeComposerAsk (Remotion) + Kokoro audio | kokoro | af_kore | `media/B_LIAM.mp4`, `mp3/beat-B_LIAM.mp3` |
+| B_VERDICT | ClaudeVerdictArtifact (Remotion) + Kokoro audio | kokoro | af_kore | `media/B_VERDICT.mp4`, `mp3/beat-B_VERDICT.mp3` |
+| B_YOUR_TURN | ClaudeComposerAsk (Remotion) + Kokoro audio | kokoro | af_kore | `media/B_YOUR_TURN.mp4`, `mp3/beat-B_YOUR_TURN.mp3` |
+| B_OUTRO | ClaudeTitleOutro (Remotion) + silence | kokoro | af_kore (silence) | `media/B_OUTRO.mp4`, `mp3/beat-B_OUTRO.mp3` |
 
 **No ElevenLabs was called. No body audio was regenerated. No body visuals were re-rendered.**

@@ -12,7 +12,7 @@ Pedagogy audit against the SLATE-RUNNER checklist. Written before audio credits 
 | Doctor | B08–B09 | ✓ — readiness check; Claude Code must run inside the venv |
 | Paid services + hero | B10–B12 | ✓ — four services; voice clone as the highest-leverage move; caveat |
 | Verify | B13 | ✓ — `./art keys` live validation |
-| Outro / CTA | B99 | ✓ — brutalist.art · @NikBearBrown |
+| Outro / CTA | B99 | ✓ — brutalist.art · @HumanitariansAI |
 
 Act structure: **PASS**
 

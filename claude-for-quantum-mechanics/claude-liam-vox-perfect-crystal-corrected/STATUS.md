@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | Real transport can also involve electron-electron scattering, Umklapp processes, boundarie |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. Compare two ideal crystals at zero temperature: one has a completely filled ban |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | The filled band is insulating in the elementary band picture because all state contributio |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Why a Perfect Lattice Does Not Cause Resistance. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Why a Perfect Lattice Does Not Cause Resistance. Kore, in for Humanitarians AI. |

@@ -1,12 +1,12 @@
 # PLAN — Claude, Shipping (Ch.9: The Product Plugin)
 
-**Slug:** `claude-liam-product` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-product` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch09-product.txt` · **One idea:** *The product plugin helps you build and ship — turning scattered feedback and analytics into prioritized decisions (specs, roadmaps, release notes) — but prioritization is a judgment call the plugin accelerates, not one it makes for you.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "How do I decide what to build next?" → ask lands answered, Liam signs in ("Annyeong — this is Liam, in for Bear.")
+B00  COLD OPEN  ClaudeComposerAsk — "How do I decide what to build next?" → ask lands answered, Kore signs in ("Annyeong — this is Kore, in for Humanitarians AI.")
 ACT I    The Missing Product Team   solo builder has no PM → the four questions       (B01 PredictCard, B02 vox, B03 Manim divergence, B04 illustration, B05 ChipGrid)
 ACT II   What It Makes              five deliverables → idea becomes a spec           (B06 ChipGrid, B07 SourceFlow, B08 vox spec)
 ACT III  Break It Into Stories      spec → testable stories → build story by story    (B09 Manim branch, B10 Onda code-block, B11 Manim accumulate)
@@ -15,7 +15,7 @@ ACT V    Ship It, Remember Why      release notes user-benefit → decision docs
 ACT VI   Who Makes the Call         it accelerates → it ranks, you decide             (B21 ChipGrid, B22 Manim converge/gate, B23 vox drawon, B24 spark)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — prioritization prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Shipping." + "Liam, in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Shipping." + "Kore, in for Humanitarians AI."
 ```
 
 ## Lane histogram (body beats only; bookends B00/V01/H01/O01 exempt)

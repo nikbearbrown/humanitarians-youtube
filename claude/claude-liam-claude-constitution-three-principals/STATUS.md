@@ -4,7 +4,7 @@
 
 | beat | status | fill method | who | slot | suggested prompt / search |
 |---|---|---|---|---|---|
-| B00 | ⬜ slate | remotion | pipeline | `media/B00.mp4` | ClaudeComposerAsk cold open — Namaste, Liam greeting |
+| B00 | ⬜ slate | remotion | pipeline | `media/B00.mp4` | ClaudeComposerAsk cold open — Namaste, Kore greeting |
 | B00B | ⬜ slate | remotion | pipeline | `media/B00B.mp4` | ClaudeComposerAsk — Show me the three-level hierarchy |
 | B01 | ✅ filled | ai-video-prompt | human | `manim/B01.mp4` | Three principals, three trust levels. Anthropic innermost ring, operators system prompt, use |
 | B01B | ⬜ slate | remotion | pipeline | `media/B01B.mp4` | ClaudeComposerAsk — Map what operators can and cannot do |

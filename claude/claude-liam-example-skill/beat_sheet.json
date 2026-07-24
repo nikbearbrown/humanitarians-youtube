@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Merhaba, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Merhaba, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,8 +34,8 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
-   "narration_text": "This is Liam for Humanitarians AI.",
+   "voice": "af_kore",
+   "narration_text": "This is Kore for Humanitarians AI.",
    "shot": {
     "type": "CARD",
     "source": "remotion",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Merhaba — this is Liam, in for Bear. You are building a model-invoked skill for Claude — the example-skill is the reference template. Unlike commands, which users invoke with a slash, skills are activated by Claude autonomously based on context. The description field is the trigger. The file lives at skills slash name slash SKILL.md. Let me walk you through the schema, the trigger mechanism, and the teardown.",
-   "voice": "am_onyx",
+   "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are building a model-invoked skill for Claude — the example-skill is the reference template. Unlike commands, which users invoke with a slash, skills are activated by Claude autonomously based on context. The description field is the trigger. The file lives at skills slash name slash SKILL.md. Let me walk you through the schema, the trigger mechanism, and the teardown.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 18,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Merhaba, Liam",
+      "greeting": "Merhaba, Kore",
       "topic": "HUMANITARIANS AI · EXAMPLE SKILL · CLAUDE PLUGINS",
       "segment": "PLUGINS",
       "command": "Show me the skill format — I want to create a model-invoked skill for my plugin.",
@@ -74,7 +74,7 @@
        "4 frontmatter fields: name · description (trigger) · version · license",
        "description = activation trigger: phrases, keywords, topic areas"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why example-skill belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — frontmatter schema + file structure",
    "narration_text": "The skill has four frontmatter fields and an optional directory structure. Name is the identifier — required. Description is the trigger — required, and it deserves more attention than any other field. Version is optional semantic versioning. License is optional. For the description, the skill gives concrete guidance: include specific trigger phrases users might say, keywords that indicate relevance, and topic areas the skill covers. The file structure is minimal for simple skills: just SKILL.md in a named directory under skills slash. For complex skills, the same directory can hold README.md for documentation, a references subdirectory for reference materials, an examples subdirectory for example files, and a scripts subdirectory for helper scripts. The skill activates when Claude determines the user's context matches the description — not when the user types a slash command, not when Claude spawns it as an agent, but when Claude reads the context and decides the skill is relevant.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 34,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "design — description trigger + three activation modes + overlap avoidance",
    "narration_text": "Three design points. The description-as-trigger pattern is the most important thing to get right. The skill gives a concrete template: this skill should be used when the user asks to quote specific phrase unquote, mentions keyword, or discusses topic area. The pattern works because it tells Claude how to pattern-match: look for these words or phrases, not just general topic similarity. The three activation modes clarify what kind of capability you are building. A skill is contextual guidance that Claude incorporates autonomously — no user action, no explicit invocation. A command requires the user to type a slash command. An agent is something Claude spawns to handle a subtask. Getting the mode wrong means building a command when you needed a skill, and users will never see it activate. Overlap avoidance is the best practice that's hardest to test. If two skills have overlapping trigger conditions, Claude may activate the wrong one, or activate both, or activate neither consistently. The skill says to avoid overlap but gives no method for detecting it — you have to read every other skill's description and decide.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 38,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. The skill gets five things right. The skills versus commands versus agents distinction is stated at the top — contextual guidance, user-invoked slash command, Claude-spawned agent — with enough precision to choose the right abstraction before building. Description-as-trigger is explained with concrete good patterns: specific phrases the user might say, keywords, topic areas. The five-point skill content guidelines are actionable: clear purpose, when to use, structured guidance, actionable instructions, examples. The optional directory structure is documented — references, examples, scripts — giving a clear upgrade path from single-file to complex skill. And the best practice to avoid overlap with other skills' trigger conditions names a non-obvious risk. Where it bites. The version and license frontmatter fields are documented but their effect on runtime behavior isn't explained — are they enforced? Displayed somewhere? The trigger mechanism is unspecified: no explanation of whether Claude uses embedding similarity, keyword matching, or exact phrase detection, which would help a skill author tune the description. Testing methodology is absent — the skill says to test that the skill activates for expected queries but gives no method, tooling, or example. There is no guidance on description length — whether longer descriptions reduce false positives or create noise. And overlap avoidance is a best practice with no detection method or resolution process.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 44,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. example-skill: model-invoked skill reference. Skills vs commands vs agents: contextual guidance vs slash command vs Claude-spawned. 4 frontmatter fields: name + description required, version + license optional. Description = activation trigger: phrases, keywords, topic areas. Optional dirs: references, examples, scripts. Content guidelines: purpose, when, structure, actionable, examples. Gaps: version/license runtime effect unstated · trigger mechanism unspecified · no testing methodology · no description length guidance · overlap avoidance advice without detection method.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 24,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Build a model-invoked skill for a plugin that helps with database query optimization. Watch five things. First: does it write the description with specific trigger phrases — not just a topic summary? Second: does it include the 'when to use' section that maps activation conditions to concrete examples? Third: does it check whether the description overlaps with any other skill in the plugin? Fourth: does it create a scripts subdirectory if the skill needs helper queries, or put everything in SKILL.md? Fifth: does it test the skill by giving Claude a realistic query and checking whether the skill activates, or does it just declare it done?",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 26,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: overlap check · scripts/ for queries · activation test",
        "Red flag: topic summary only · no when-to-use · no test · everything in SKILL.md"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "example-skill. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "example-skill. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

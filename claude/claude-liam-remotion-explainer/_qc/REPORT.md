@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Annyeong, Liam" in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Annyeong, Kore" in B00 cold open | PASS |
 | 8 | Self-demo shows real blueprint.md output (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "REMOTION-EXPLAINER · SKILL TEARDOWN" / "Annyeong, Liam" — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "REMOTION-EXPLAINER · SKILL TEARDOWN" / "Annyeong, Kore" — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Blueprint before code." — file tree renders correctly with references/ subfolder. PASS
 - **B02** SkillTeardownPipeline: "Two commands remain for the human." — 5 phases, footer note, sparkLine. PASS
 - **B03** ClaudeComposerAsk: storyboard demo command correct, output lines render. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "Free by default. Voiced by choice." — silent-first, verdictLabel. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Scoped." / 4 items render correctly. PASS
 - **BHTF** ClaudeComposerAsk: "Your turn." / correct command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Scoped." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Scoped." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

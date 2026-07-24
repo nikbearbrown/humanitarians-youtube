@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-explainer-deepen
 # "Claude, Deepened." | explainer-deepen skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx
+# Built: 2026-07-18 | Kokoro af_kore
 
 ## Standalone rebuild instructions
 

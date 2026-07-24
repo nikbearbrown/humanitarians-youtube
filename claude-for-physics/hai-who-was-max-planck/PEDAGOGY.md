@@ -2,7 +2,7 @@
 
 Register: Pragmatist (method, when to use it, when NOT to, failure conditions)
 Audience: HAI — busy mid-career practitioners applying AI in social-impact work
-Voice: Kokoro am_onyx
+Voice: Kokoro af_kore
 Structure: 10-beat Claude-explainer (B00–B09)
 Repaired: 2026-07-16 — replaced 9-beat MedhavyCard/OutroCTA build with correct Claude-explainer structure
 
@@ -37,7 +37,7 @@ Repaired: 2026-07-16 — replaced 9-beat MedhavyCard/OutroCTA build with correct
 ## Build result
 
 - Duration: 145.2s (10 beats: 7 filled VIDEO/MANIM, 3 CARD/SLATE)
-- Audio: am_onyx Kokoro, all 10 beats generated
+- Audio: af_kore Kokoro, all 10 beats generated
 - Manim: B02 + B04 copied from canonical claude-liam-who-was-max-planck/manim/
 
 VERDICT: PASS

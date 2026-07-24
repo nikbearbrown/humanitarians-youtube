@@ -6,7 +6,7 @@
 
 Changes applied:
 - `id` → `beat_id` for all beats
-- `metadata.voice_kokoro: am_onyx` added (pipeline reads this, not `.voice`)
+- `metadata.voice_kokoro: af_kore` added (pipeline reads this, not `.voice`)
 - `metadata.topic: CLAUDE · COWORK PLUGINS` added
 - `shot` object added to all beats without one
 - `estimated_duration_s` derived from word count (2.9 wps) for beats lacking it

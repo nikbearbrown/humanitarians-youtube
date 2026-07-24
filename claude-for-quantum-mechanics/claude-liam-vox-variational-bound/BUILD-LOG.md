@@ -6,7 +6,7 @@
 - Final: `vox-variational-bound.mp4`
 - Runtime: 141.42 seconds
 - Slots: 14/14 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B12 scratch-built Manim scene suite
 - QC: PASS after correcting B02 coordinates and B04/B05/B07 equation rendering
 - Publishing: none

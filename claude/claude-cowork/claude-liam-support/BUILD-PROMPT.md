@@ -27,9 +27,9 @@ FACTCHECK.md (books/anthropics/books/claude-cowork-plugins/FACTCHECK.md). Then:
 
 3. GATE P. Present the full narration (B00 → O01) on an animated slate for my
    sign-off. Do NOT generate audio until I approve. Channel is claude-liam:
-   Kokoro am_onyx, free. No ElevenLabs.
+   Kokoro af_kore, free. No ElevenLabs.
 
-4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/am_onyx).
+4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/af_kore).
    Per-beat mp3 durations become the clock; align writes the word clock. Captions
    via the faster-whisper pipeline.
 
@@ -66,8 +66,8 @@ claude stage (cream #F2F0E9, ink #3D3929, accent #D97757) and log the retint.
 
 Honor every parent law: COLD OPEN, ILLUSTRATE, SHOW-DON'T-TELL, SPARK-LINE, ASK→RESULT,
 REBUILD, DOUBLE-CHECK, FILL-THE-CANVAS, LOGO, HANDOFF (prompt read + discussed), OUTRO,
-VISUAL QC, IN-FOR-BEAR, GATE P. Cold open opens "Jambo — this is Liam, in for Bear.";
-the reel signs off "Liam, in for Bear." (tail of H01). Never hardcode plugin counts,
+VISUAL QC, IN-FOR-BEAR, GATE P. Cold open opens "Jambo — this is Kore, in for Humanitarians AI.";
+the reel signs off "Kore, in for Humanitarians AI." (tail of H01). Never hardcode plugin counts,
 prices, platform lists, or named support vendors (Zendesk/Intercom/etc. stay generic).
 ```
 

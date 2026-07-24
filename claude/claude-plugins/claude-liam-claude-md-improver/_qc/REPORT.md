@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_14_3s.png | B00 cold open | ClaudeComposerAsk: "Salut, Liam", command visible, 3 output lines, @NikBearBrown |
+| frame_14_3s.png | B00 cold open | ClaudeComposerAsk: "Salut, Kore", command visible, 3 output lines, @HumanitariansAI |
 | frame_55_3s.png | B01 locations | ClaudeMdImproverLocations: 5-row location table (path/label/note) + 6-row rubric (left) + 5-row A-F grade (right), spark line |
 | frame_113_8s.png | B02 workflow | ClaudeMdImproverWorkflow: 5-phase list (Phase 3 terracotta highlight) + diff-with-why panel (right) + 3 user tips rows, spark line |
 | frame_182_4s.png | B05 teardown | ClaudeMdImproverTell: 5+5 two-column teardown, callout overlaps row 5 (accepted batch pattern), spark line |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Salut, Liam" (rotation #35)
+- Greeting: "Salut, Kore" (rotation #35)
 - New scenes: ClaudeMdImproverLocations.tsx (B01), ClaudeMdImproverWorkflow.tsx (B02), ClaudeMdImproverTell.tsx (B05)
 - B01 design: 5-location rows + 6-criterion rubric (left 60% wide) + A-F grade column (right)
 - B02 design: 5-phase cards (Phase 3 terracotta gate highlight) + diff-with-why example panel (right) + 3 user tip rows

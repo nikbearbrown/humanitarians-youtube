@@ -3,7 +3,7 @@
 Source: Bear Brown house rule — the HARD STOP money rule now at the top of
 `brutalist-art/AGENTS.md` ("If any MCP server, tool, or command is about to
 spend money … STOP … ask the human first and wait for an explicit yes").
-ai-explainer (standard middle; NOT skill-teardown). Audio: Kokoro am_onyx
+ai-explainer (standard middle; NOT skill-teardown). Audio: Kokoro af_kore
 (free, local), generated 2026-07-18; durations are ground truth.
 
 ## Concrete claims (reuse of facts verified last turn)

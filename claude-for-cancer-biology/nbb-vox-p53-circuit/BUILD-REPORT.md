@@ -64,10 +64,10 @@
 | Field | Value |
 |---|---|
 | Question | "Why does the same DNA damage kill one cell but let another divide?" |
-| Greeting | "Merhaba, Liam" (Turkish hello) |
-| Intro | "this is Liam, in for Bear" |
+| Greeting | "Merhaba, Kore" (Turkish hello) |
+| Intro | "this is Kore, in for Humanitarians AI" |
 | Handoff line | "Can you explain it, Bear?" |
-| Voice engine | Kokoro `am_onyx` (Liam in-for-Bear) |
+| Voice engine | Kokoro `af_kore` (Kore in-for-Bear) |
 | Audio path | `nbb-vox-p53-circuit/mp3/beat-B_LIAM.mp3` |
 | Audio duration | 19.31 s |
 | Visual | `ClaudeComposerAsk` (Remotion, Claude fidelity skin) |
@@ -80,7 +80,7 @@
 
 | Field | Value |
 |---|---|
-| Voice engine | Kokoro `am_onyx` (Liam in-for-Bear) |
+| Voice engine | Kokoro `af_kore` (Kore in-for-Bear) |
 | Audio path | `nbb-vox-p53-circuit/mp3/beat-B_VERDICT.mp3` |
 | Audio duration | 43.20 s |
 | Visual | `ClaudeVerdictArtifact` (Remotion, Claude fidelity skin, 4 artifact lines) |
@@ -94,7 +94,7 @@
 
 | Field | Value |
 |---|---|
-| Voice engine | Kokoro `am_onyx` |
+| Voice engine | Kokoro `af_kore` |
 | Audio path | `nbb-vox-p53-circuit/mp3/beat-B_HANDOFF.mp3` |
 | Audio duration | 6.12 s |
 | Visual | `ClaudeComposerAsk` with `greeting: "Your turn."`, `runningText: "paste this into Claude…"` |
@@ -109,7 +109,7 @@
 | Field | Value |
 |---|---|
 | Title | "Why Cancer Cannot Read Its Own Death Instructions" |
-| Handle | `@NikBearBrown` |
+| Handle | `@HumanitariansAI` |
 | Subline | "p53 is the hinge — remove it and the kill-switch has no trigger" |
 | Voice | Silent (5.0 s) |
 | Visual | `ClaudeTitleOutro` (Remotion, Claude fidelity skin) |
@@ -134,13 +134,13 @@
 
 **Assembly structure:**
 ```
-B_LIAM cold open (19.333 s) — Liam/Kokoro + ClaudeComposerAsk
+B_LIAM cold open (19.333 s) — Kore/Kokoro + ClaudeComposerAsk
 ↓
 Body B01–B15 (241.708 s) — locked, stream-copy from source
 ↓
-B_VERDICT (43.208 s) — Liam/Kokoro + ClaudeVerdictArtifact
+B_VERDICT (43.208 s) — Kore/Kokoro + ClaudeVerdictArtifact
 ↓
-B_HANDOFF (6.125 s) — Liam/Kokoro + ClaudeComposerAsk "Your turn."
+B_HANDOFF (6.125 s) — Kore/Kokoro + ClaudeComposerAsk "Your turn."
 ↓
 B_OUTRO (5.013 s) — silent + ClaudeTitleOutro
 ```
@@ -182,9 +182,9 @@ VERDICT: PASS (see `FACTCHECK.md`)
 
 ---
 
-## NOTE — All wrapper beats use Kokoro am_onyx (Liam)
+## NOTE — All wrapper beats use Kokoro af_kore (Kore)
 
-Per the NBB-wrap protocol for this build: ALL new wrapper beats use Kokoro `am_onyx` (Liam, in for Bear). No ElevenLabs spend. The body retains its original ElevenLabs Bear narration unchanged.
+Per the NBB-wrap protocol for this build: ALL new wrapper beats use Kokoro `af_kore` (Kore, in for Humanitarians AI). No ElevenLabs spend. The body retains its original ElevenLabs Bear narration unchanged.
 
 To upgrade wrapper beats to Bear's ElevenLabs voice when the key is valid:
 1. Fix `ELEVENLABS_API_KEY` in `brutalist-art/.env`

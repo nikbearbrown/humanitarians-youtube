@@ -36,7 +36,7 @@ Rule 3 flips FAIL→PASS; score 4/7 → 5/7; two remaining FAILs noted.
 Next steps + teaser for subagent-summary-protocol.
 
 ## B09 — remotion NikBearBrownOutro · ~8s
-Brand: Nik Bear Brown / Brutalist + Educational AI / @NikBearBrown / nikbearbrown.com
+Brand: Nik Bear Brown / Brutalist + Educational AI / @HumanitariansAI / nikbearbrown.com
 
 ---
 

@@ -229,7 +229,7 @@ class B05_EmmaRoster(Scene):
             ("af_sarah", "C+"), ("af_sky", "C"),
             ("am_adam", "F+"), ("am_echo", "C"), ("am_eric", "C+"),
             ("am_fenrir", "B+"), ("am_liam", "C+"), ("am_michael", "C+"),
-            ("am_onyx", "C"), ("am_puck", "C+"), ("am_santa", "D-"),
+            ("af_kore", "C"), ("am_puck", "C+"), ("am_santa", "D-"),
             ("bf_alice", "B"), ("bf_emma", "B-"), ("bf_isabella", "C+"),
             ("bf_lily", "B-"),
             ("bm_daniel", "B+"), ("bm_fable", "B"), ("bm_george", "C"),

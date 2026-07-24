@@ -2,7 +2,7 @@
 
 VERDICT: PASS
 
-- 13/13 beats; 1920x1080, 16:9, 155.8 seconds; Kokoro `am_onyx` Liam.
+- 13/13 beats; 1920x1080, 16:9, 155.8 seconds; Kokoro `af_kore` Kore.
 - Native norm, conditional bridge, assumption audit, unitarity, self-adjoint generator, exponential, differentiation, model-input, recap, and Your Turn visuals inspected.
 - Corrects the source title's overclaim: probability conservation alone neither identifies the Hamiltonian nor uniquely derives the physical dynamics.
 - Explicitly includes linearity, continuous unitary-group structure, generator identification, and the time-independent-H limitation of the simple exponential.

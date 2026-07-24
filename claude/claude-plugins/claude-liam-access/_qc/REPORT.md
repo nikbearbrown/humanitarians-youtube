@@ -9,13 +9,13 @@ Beats: 7 / 7 filled
 
 | Beat | Frame | Result | Notes |
 |------|-------|--------|-------|
-| B00 | 19s | PASS | ClaudeComposerAsk — "Bonjour, Liam", topic/command/output correct |
+| B00 | 19s | PASS | ClaudeComposerAsk — "Bonjour, Kore", topic/command/output correct |
 | B01 | 65s | PASS | DiscordAccessAnatomy — security rule box + state path + 5 field rows |
 | B02 | 121s | PASS | DiscordAccessCommands — 8 command rows + 3 implementation rule cards |
 | B05 | 191s | PASS | DiscordAccessTell — 2-column teardown, callout + spark line |
 | BVDT | 249s | PASS | ClaudeVerdictArtifact — 6 verdict lines |
 | BHTF | 287s | PASS | ClaudeComposerAsk — "Your Turn" handoff |
-| BOUT | 308s | PASS | ClaudeTitleOutro — "Discord Access." @NikBearBrown |
+| BOUT | 308s | PASS | ClaudeTitleOutro — "Discord Access." @HumanitariansAI |
 
 ## 8-point rubric
 

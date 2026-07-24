@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | Finite surface thickness, nonspherical structure, Coulomb distortion, relativistic correct |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. A uniform-sphere form factor has its first minimum at q zero equals zero-point- |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Four-point-four-nine-three divided by zero-point-seven-five is about five-point-nine-nine  |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | The First Diffraction Minimum and Nuclear Size. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | The First Diffraction Minimum and Nuclear Size. Kore, in for Humanitarians AI. |

@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-sim-scout
 # "Claude, Simulating." | sim-scout skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 149.3s
+# Built: 2026-07-18 | Kokoro af_kore | 149.3s
 
 ## Standalone rebuild instructions
 

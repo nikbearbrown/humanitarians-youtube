@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-bio
 # "Claude, Chronicling." | bio skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 209.9s
+# Built: 2026-07-18 | Kokoro af_kore | 209.9s
 
 ## Standalone rebuild instructions
 

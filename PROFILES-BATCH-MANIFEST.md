@@ -4,7 +4,7 @@
 **Generated:** 2026-07-17
 **Summary:** **10 profiles to build** (drawn from 13 source articles; Aravind Balaji is a 4-article merge), **105 skipped** (includes 2 already built + 1 source article re-listed as merged into Aravind)
 
-Channel: `claude-liam` · Folder chip: `@HumanitariansAI` · Voice: Kokoro `am_onyx` · Format: 1920×1080 16:9 30fps
+Channel: `claude-liam` · Folder chip: `@HumanitariansAI` · Voice: Kokoro `af_kore` · Format: 1920×1080 16:9 30fps
 Build target: `../humanitarians_html/youtube/claude-liam-profile-<name-slug>/`
 Publish target (human-run later): `@humanitariansai` YouTube "Profiles" playlist
 

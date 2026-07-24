@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Liam, in for Bear." in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Kore, in for Humanitarians AI." in B00 cold open | PASS |
 | 8 | Self-demo shows real script sketch from ai-1/ch07 (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "SCRIPT-WRITER · SKILL TEARDOWN" / "Liam, in for Bear." / "Shalom, Liam" — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "SCRIPT-WRITER · SKILL TEARDOWN" / "Kore, in for Humanitarians AI." / "Shalom, Kore" — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Script first. Style second." — 4 files listed. PASS
 - **B02** SkillTeardownPipeline: "Intake → arc → roles → emit → gate." — 5 phases, footer. PASS
 - **B03** ClaudeComposerAsk: script demo, ai-1/07-chapter-writing.md target. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "Verify or mark it." — NO FABRICATION quote. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Scripted." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct script command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Scripted." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Scripted." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

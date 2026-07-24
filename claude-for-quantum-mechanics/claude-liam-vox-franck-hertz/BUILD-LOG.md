@@ -6,7 +6,7 @@
 - Final: `vox-franck-hertz.mp4`
 - Runtime: 138.51 seconds
 - Slots: 14/14 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B12 scratch-built Manim scene suite
 - QC: PASS after correcting B11 interval-arrow placement
 - Publishing: none

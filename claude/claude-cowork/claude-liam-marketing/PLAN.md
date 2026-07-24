@@ -1,19 +1,19 @@
 # PLAN — Claude, On Message (Ch.4: The Marketing Plugin)
 
-**Slug:** `claude-liam-marketing` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-marketing` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch04-marketing.txt` · **One idea:** *The marketing plugin turns Claude into a marketing collaborator that knows campaign strategy, content calendars, and competitive positioning; customizing it with your brand voice, audience, and positioning is what saves hours — it won't replace the CMO, but it beats a brief scrawled between meetings.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "What does the marketing plugin change?" → ask lands answered, Liam signs in ("Hallo — this is Liam, in for Bear.")
+B00  COLD OPEN  ClaudeComposerAsk — "What does the marketing plugin change?" → ask lands answered, Kore signs in ("Hallo — this is Kore, in for Humanitarians AI.")
 ACT I    The Collaborator      marketing is unavoidable; strategy, not just content-gen   (B01 PredictCard, B02 Manim loop, B03 VOX scrawled brief)
 ACT II   What It Does          five capabilities of the collaborator                      (B04 ChipGrid, B05 illus, B06 Manim flow, B07 VOX gap, B08 SourceFlow, B09 Manim align)
 ACT III  The Fifteen Minutes   customization = voice + audience + products                (B10 ChipGrid, B11 Manim divergence, B12 Onda code-block, B13 Manim threshold)
 ACT IV   In the Work           five workflows; VOX RUN R1 on the email sequence           (B14 illus calendar, B15–B16 VOX run R1, B17 Manim fan-out, B18 SourceFlow, B19 spark)
 ACT V    How to Wield It       four habits; you keep the judgment                         (B20 ChipGrid, B21 VOX formats, B22 Manim five-angles, B23 VOX judgment/CMO)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (+0.5s lead silence)
-H01  YOUR TURN ClaudeComposerAsk "Your turn." — prompt read aloud + discussed, signs off "Liam, in for Bear."
+H01  YOUR TURN ClaudeComposerAsk "Your turn." — prompt read aloud + discussed, signs off "Kore, in for Humanitarians AI."
 O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, On Message"
 ```
 
@@ -45,5 +45,5 @@ Consecutive-lane check: no run of >2 same-lane beats outside the vox run. B04→
 ## Gates
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel corrections logged in SOURCES.md.
-3. **GATE P** — narration reviewed on animated slate before any audio spend (Kokoro am_onyx, free; no ElevenLabs).
+3. **GATE P** — narration reviewed on animated slate before any audio spend (Kokoro af_kore, free; no ElevenLabs).
 4. Audio lock (Kokoro) → align → SHOPPING.md (vox stills, duration-locked) → Gate D1 previz → pantry fill → review cut → VISUAL QC → final.

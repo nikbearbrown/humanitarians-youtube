@@ -38,4 +38,4 @@
 - No AI-generated real people in this reel; all 6 vox stills (B06, B11, B14, B15, B17, B23) are Tier 1 illustrative (no rights escalation, no real people, no logos).
 
 ## Credits
-- Narration: Liam (in for Bear), Kokoro `am_onyx`. Channel: @NikBearBrown.
+- Narration: Kore (in for Humanitarians AI), Kokoro `af_kore`. Channel: @HumanitariansAI.

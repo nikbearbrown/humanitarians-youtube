@@ -32,4 +32,4 @@
 - B01/B02/B05 slowdowns (2.16x–2.33x): animations complete in first ~15s, content stays static and fully readable throughout. Established PASS pattern.
 - allowed-tools field highlighted in terracotta in B01 — correct visual emphasis.
 - Wrong/right comparison in B02 clear with distinct border colors (terracotta wrong, green right).
-- Greeting "Ciao, Liam" displays correctly in B00.
+- Greeting "Ciao, Kore" displays correctly in B00.

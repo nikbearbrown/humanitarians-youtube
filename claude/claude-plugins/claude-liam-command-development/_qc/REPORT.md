@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_13_9s.png | B00 cold open | ClaudeComposerAsk: "Hej, Liam", create slash command, 3 output lines, @NikBearBrown |
+| frame_13_9s.png | B00 cold open | ClaudeComposerAsk: "Hej, Kore", create slash command, 3 output lines, @HumanitariansAI |
 | frame_60_4s.png | B01 anatomy | CommandDevAnatomy: 3-location column (left) + 5-field column (right) + 4-argument row (bottom), spark line |
 | frame_130_6s.png | B02 content | CommandDevContent: instructions-rule framing + 4 pattern cards |
 | frame_207_8s.png | B05 teardown | CommandDevTell: standard teardown layout with gets-right/bites columns + callout, spark line |
@@ -31,6 +31,6 @@
 
 ## Notes
 
-- Greeting: "Hej, Liam" (rotation #37)
+- Greeting: "Hej, Kore" (rotation #37)
 - Reused existing scenes: CommandDevAnatomy (B01), CommandDevContent (B02), CommandDevTell (B05) — same skill content as claude-code #19
 - Different narration and greeting from the claude-code version; same visual frames

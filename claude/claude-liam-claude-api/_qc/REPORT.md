@@ -27,13 +27,13 @@ Auditor: automated visual QC
 ## 9-point rubric
 1. **Palette** — PASS: CLAUDE.PAGE cream, CLAUDE.INK dark, CLAUDE.SPARK terracotta throughout
 2. **Typography** — PASS: SERIF headings, MONO code/IDs, SANS UI labels
-3. **TRIGGER / greeting** — PASS: "Bonjour, Liam" in B00, IN-FOR-BEAR law satisfied
+3. **TRIGGER / greeting** — PASS: "Bonjour, Kore" in B00, IN-FOR-BEAR law satisfied
 4. **Content accuracy** — PASS: drift table, model IDs, and pricing verbatim from SKILL.md
 5. **SELF-DEMO** — PASS: B03 drift table and B04 model table are SKILL.md data, not paraphrase
 6. **Verbatim quotes** — PASS: TRIGGER text, drift rows, "non-negotiable" rule exact
 7. **Verdict props** — PASS: `artifactTitle`/`artifactHeading`/`artifactLines` (not title/lines)
 8. **Canvas fill** — B01 and B05 have ~35% lower open space (MINOR, consistent with teardown pattern)
-9. **Audio sync** — PASS: all 9 beats present, Kokoro am_onyx, $0.00 cost
+9. **Audio sync** — PASS: all 9 beats present, Kokoro af_kore, $0.00 cost
 
 ## BLOCKERs: 0
 ## MAJORs: 0

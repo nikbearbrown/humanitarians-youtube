@@ -232,7 +232,7 @@ Footer under col 3 only, in small EB Garamond italic: `The log will never tell y
 ```json
 {
   "filename": "thesis.ts",
-  "code":     "// maximally informed, minimally autonomous\n//\n// the determinism boundary IS\n// the human-judgment boundary\n//\n// @NikBearBrown  ·  brutalist.art",
+  "code":     "// maximally informed, minimally autonomous\n//\n// the determinism boundary IS\n// the human-judgment boundary\n//\n// @HumanitariansAI  ·  brutalist.art",
   "variant":  "B",
   "topic":    "AGENTIC SYSTEM TAXONOMY"
 }
@@ -258,7 +258,7 @@ Footer under col 3 only, in small EB Garamond italic: `The log will never tell y
 {
   "brand":   "Nik Bear Brown",
   "tagline": "Brutalist · Agentic · Educational AI",
-  "handle":  "@NikBearBrown",
+  "handle":  "@HumanitariansAI",
   "url":     "brutalist.art"
 }
 ```

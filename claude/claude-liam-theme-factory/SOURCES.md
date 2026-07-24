@@ -2,7 +2,7 @@
 
 Source skill: `books/anthropics/skills/skills/theme-factory/` (Anthropic,
 github.com/anthropics/skills). Modifier: skill-teardown
-(skills/make/ai-explainer/SKILL.md). Audio: Kokoro am_onyx (free, local),
+(skills/make/ai-explainer/SKILL.md). Audio: Kokoro af_kore (free, local),
 generated 2026-07-18 in the Cowork cloud session; durations are ground truth.
 
 ## Verbatim quotes (VERBATIM QUOTE LAW)

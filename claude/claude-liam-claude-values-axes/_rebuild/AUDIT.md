@@ -15,7 +15,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 | beat | law violated | fix |
 |------|-------------|-----|
 | YTV01 (pos 0) | ORDER LAW — YTV01 before B00 | Move YTV01 to after B08 in beats array |
-| B00 | IN-FOR-BEAR LAW — no "in for Bear" intro | Update B00 narration_text; regen Kokoro audio |
+| B00 | IN-FOR-BEAR LAW — no "in for Humanitarians AI" intro | Update B00 narration_text; regen Kokoro audio |
 | B09 | HANDOFF LAW — 33 chars, doesn't read prompt aloud | Rewrite B09 narration: read prompt verbatim + discussion; regen Kokoro |
 | B11 (LogoOutro) | OUTRO LAW — LogoOutro forbidden | Remove B11 from beats array |
 | B01, B07, B08 (ClaudeWindow) | ILLUSTRATE LAW — ClaudeWindow only if UI is the subject | Verify beat narration; if not about UI interaction, replace pattern |
@@ -23,7 +23,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 ## Actions required
 1. Edit beat_sheet.json: move YTV01 to after B08
 2. Edit beat_sheet.json: remove B11 (LogoOutro)
-3. Edit beat_sheet.json: B00 narration_text → "in for Bear" phrase; regen Kokoro
+3. Edit beat_sheet.json: B00 narration_text → "in for Humanitarians AI" phrase; regen Kokoro
 4. Edit beat_sheet.json: B09 narration_text → full read+discuss; regen Kokoro
 5. Verify B01/B07/B08 ClaudeWindow usage (ILLUSTRATE LAW)
 6. Render ALL beats via remotion_scenes.py (media/ empty)

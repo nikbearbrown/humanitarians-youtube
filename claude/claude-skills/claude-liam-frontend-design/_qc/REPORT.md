@@ -8,7 +8,7 @@ Duration: 3:33 (213.2s) · 1280×720 · H264+AAC
 
 | Beat | Pattern | Canvas fill | Status |
 |---|---|---|---|
-| B00 | ClaudeComposerAsk | Clean — "Hei, Liam", 3 output lines, terracotta accent | PASS |
+| B00 | ClaudeComposerAsk | Clean — "Hei, Kore", 3 output lines, terracotta accent | PASS |
 | B01 | FrontendDesignAnatomy | TRIGGER + 3 defaults (left). 5 principle cards with PRIN_H (right). Fills 85%+ | PASS |
 | B02 | FrontendDesignProcess | 4 plan cards (PLAN_H) on left fill canvas. 3 critique steps + CSS note (right). | PASS |
 | B03 | FrontendDesignRestraint | 4 restraint cards (RULE_H) left. 5 writing rules (WRITE_H) right. Both explicit height. | PASS |

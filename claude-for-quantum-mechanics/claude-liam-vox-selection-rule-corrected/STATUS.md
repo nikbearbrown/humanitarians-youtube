@@ -16,4 +16,4 @@
 | B10 | ✅ filled | ai-video-prompt | human | `manim/B10.mp4` | That long lifetime makes two-s useful for precision spectroscopy. The one-s to two-s trans |
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | Forbidden does not mean impossible. It means forbidden in a specified approximation or mul |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Your turn. Compare two-p to one-s and two-s to one-s. Which has delta ell plus or minus on |
-| B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Why Some Light an Atom Should Emit Is Forbidden. Liam, in for Bear. |
+| B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Why Some Light an Atom Should Emit Is Forbidden. Kore, in for Humanitarians AI. |

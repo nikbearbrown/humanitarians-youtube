@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-duration-planner
 # "Claude, Timed." | duration-planner skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 171.4s
+# Built: 2026-07-18 | Kokoro af_kore | 171.4s
 
 ## Standalone rebuild instructions
 

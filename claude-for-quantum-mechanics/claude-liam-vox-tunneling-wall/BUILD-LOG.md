@@ -6,6 +6,6 @@
 - Final: `vox-tunneling-wall.mp4`
 - Runtime: 148.85 seconds
 - Slots: 16/16 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - QC: PASS after correcting B12 sampled-frame visibility
 - Publishing: none

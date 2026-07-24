@@ -1,12 +1,12 @@
 # PLAN — Claude, Scouting (Ch.6: The Research Plugin)
 
-**Slug:** `claude-liam-research` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-research` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch06-research.txt` · **One idea:** *Market research is the thing every operator knows they should do and never has time for; Claude can scout your market, competitors, and customers — but treat outputs as leads to verify, not settled fact.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "How do I research my market without burning a week?" → ask lands answered, Liam signs in ("Namaste — this is Liam, in for Bear.")
+B00  COLD OPEN  ClaudeComposerAsk — "How do I research my market without burning a week?" → ask lands answered, Kore signs in ("Namaste — this is Kore, in for Humanitarians AI.")
 ACT I    The Unpaid Homework    you already do this → a day becomes an hour        (B01 PredictCard, B02 vox buried-desk, B03 Manim scale)
 ACT II   Synthesis, Not Summary sources → what they MEAN together                 (B04 SourceFlow, B05 Manim convergence, B06 summary-vs-synthesis)
 ACT III  Scouting the Field     competitor intel · review · gap · citations       (B07 ChipGrid, B08 vox terrain, B09 Manim positioning-map, B10 citation illus, B11 Manim gap-grid, B12 Onda code-block, B13 vox saved-articles)
@@ -14,7 +14,7 @@ ACT IV   Research That Decides  briefing → purpose sharpens → compare option
 ACT V    Leads, Not Verdicts    verify · keep disagreements · build the habit      (B18 ChipGrid caveats, B19 Manim contradictions, B20→B21 VOX run R1)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (+0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — market-scout prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Scouting. Liam, in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Scouting. Kore, in for Humanitarians AI."
 ```
 
 ## Lane histogram (body beats only; bookends B00/V01/H01/O01 exempt)

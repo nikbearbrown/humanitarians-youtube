@@ -2,7 +2,6 @@
 
 Multi-step search, evidence synthesis, citation handling, and comparisons between research workflows and regular chat.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Claude Research

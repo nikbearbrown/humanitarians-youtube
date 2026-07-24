@@ -3,18 +3,18 @@
     "title": "redshift-api",
     "slug": "claude-liam-redshift-api",
     "topic": "REDSHIFT-API · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the redshift-api skill. It runs SQL against Amazon Redshift — provisioned clusters and Serverless — via the Redshift Data API. Three rules govern everything. First: every call is a POST to https://redshift-data dot region dot amazonaws dot com slash, with Content-Type application x-amz-json-1.1 and X-Amz-Target RedshiftData dot action — there are no REST paths. Second: the API is fully asynchronous. Submit gets back an Id, poll DescribeStatement until terminal, then page results with GetStatementResult. Third: ExecuteStatement returning 200 does not mean the query succeeded. SQL errors only surface later as Status FAILED on DescribeStatement. Always poll before fetching. Let me walk you through the anatomy, the operations, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the redshift-api skill. It runs SQL against Amazon Redshift — provisioned clusters and Serverless — via the Redshift Data API. Three rules govern everything. First: every call is a POST to https://redshift-data dot region dot amazonaws dot com slash, with Content-Type application x-amz-json-1.1 and X-Amz-Target RedshiftData dot action — there are no REST paths. Second: the API is fully asynchronous. Submit gets back an Id, poll DescribeStatement until terminal, then page results with GetStatementResult. Third: ExecuteStatement returning 200 does not mean the query succeeded. SQL errors only surface later as Status FAILED on DescribeStatement. Always poll before fetching. Let me walk you through the anatomy, the operations, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "REDSHIFT-API · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Query my Redshift cluster — find the top 20 events from the past month, grouped by name.",
@@ -51,7 +51,7 @@
               "Async: submit → poll DescribeStatement → page GetStatementResult on NextToken",
               "ExecuteStatement 200 ≠ SQL success — poll before fetching; cell values are typed one-key objects"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — request setup and core operations",
       "narration_text": "The skill has two layers: the request setup and the core operations. Request setup requires two things. First: region — it is part of the endpoint hostname; set AWS underscore DEFAULT underscore REGION to the region your cluster or workgroup is in. Second: connection target — pick one and put it in RS underscore TARGET. For Serverless, pass WorkgroupName. For provisioned with temporary credentials, pass ClusterIdentifier and DbUser. For either with Secrets Manager, pass SecretArn. The rsapi helper wraps the endpoint, the headers, and the action name — all recipes merge RS underscore TARGET into each request body. The sanity check is ListDatabases: a 200 with a Databases array confirms the workspace is wired up. Six core operations. First: Run a query — the bundled rs underscore query dot sh script submits with ExecuteStatement, polls DescribeStatement to a terminal state, pages GetStatementResult on NextToken, and decodes the typed cell objects. Parameters bind colon name placeholders as strings; the database casts them. Second: Resume a statement by Id — when the script exits 2 on timeout or you have an Id from elsewhere, poll DescribeStatement directly, then fetch with GetStatementResult. Duration on DescribeStatement is nanoseconds. Third: Cancel a running statement with CancelStatement — best-effort; confirm with DescribeStatement. Fourth: BatchExecuteStatement runs multiple statements in one transaction; all commit or all roll back. Sub-statements have their own Ids with colon number suffixes; fetch each result separately. Fifth: ListStatements — Status filter defaults to finished only; pass ALL to see everything. Sixth: Browse the catalog with ListDatabases, ListSchemas, ListTables, and DescribeTable — all paginate with NextToken.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: always poll before reading results. ExecuteStatement returns 200 immediately — that only means the Data API accepted the submission. SQL errors appear as Status FAILED on DescribeStatement, not as an HTTP error code. Never call GetStatementResult without first confirming Status FINISHED and HasResultSet true. Second: decode cell values with to entries bracket zero dot value. Result cells are typed one-key objects — longValue is a JSON number, isNull true is a distinct shape. A naive dot value read returns nothing, and chaining jq double-slash across the typed keys breaks on false and zero. The script handles this; raw API calls must do it manually. Third: respect the 3 TPS catalog rate. ListDatabases, ListSchemas, ListTables, and DescribeTable are all capped at 3 transactions per second — far lower than ExecuteStatement at 30. Never loop catalog calls without a sleep. Fourth: for batch statements, collect each sub-statement Id and fetch results separately. The parent Id's DescribeStatement returns a SubStatements array with colon-number-suffixed Ids; each needs its own GetStatementResult call. Key gotchas. ExecuteStatement is not idempotent unless you pass a ClientToken — check ListStatements before retrying a write. Result retention is 24 hours; after that, GetStatementResult returns ResourceNotFoundException — and the error envelope shape, two underscores type and message, arrives as HTTP 400 or 403 or 500 rather than in the expected response field, so always check for an absent top-level Id or Status before reading other fields.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. The bundled rs underscore query dot sh script abstracts the entire async loop — submit, poll, page, decode — so you never write the DescribeStatement polling loop by hand unless you need to. Both provisioned and Serverless targets are documented with concrete RS underscore TARGET examples for each of the three connection modes: workgroup, cluster plus DbUser, and SecretArn. The error envelope shape is documented early — two underscores type as the discriminator, HTTP 400 and 403 and 500 as the carriers — so you know to check for it before reading the expected response shape. Rate limit quotas are explicit and precise per action — 3 TPS for catalog, 30 for execute, 20 for fetch — rather than just saying things are rate limited. The cell-decoding gotcha is documented with the specific jq pattern, to entries bracket zero dot value, that survives false and zero and null without the double-slash trap. Where it bites. ExecuteStatement is not idempotent — a retry on a transient network error can submit a write twice. The skill documents the ClientToken solution but buries it in the error-handling section rather than in the operation 1 recipe where a writer would look first. BatchExecuteStatement sub-statement result fetching is documented but requires the caller to know that parent-Id dot DescribeStatement returns a SubStatements array, and that each needs its own GetStatementResult — the batch recipe shows submission only. Result retention is 24 hours and the skill mentions it, but does not warn that polling a statement Id from a previous Claude session that ran yesterday will silently return ResourceNotFoundException with no indication that the data ever existed. The 500 MB per-statement result size limit and the 64 KB per-row limit both fail with an unclear error — the skill mentions UNLOAD to S3 as the workaround but does not flag the error message that signals you have hit the limit.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. redshift-api: POST to redshift-data dot region dot amazonaws dot com slash, X-Amz-Target RedshiftData dot action — no REST paths. Async: submit ExecuteStatement, get Id, poll DescribeStatement until FINISHED or FAILED, page GetStatementResult on NextToken. Three connection targets: WorkgroupName, ClusterIdentifier plus DbUser, or SecretArn. ExecuteStatement 200 does not mean SQL succeeded — poll before fetching. Cell values are typed one-key objects — use to entries bracket zero dot value. Rate limits: 30 TPS execute, 3 TPS catalog, 20 TPS fetch. Gaps: ExecuteStatement not idempotent without ClientToken; batch sub-statement results need separate fetches; result retention 24 hours; size limits fail with unclear errors.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Ask Claude to query your Redshift cluster — something like: find the top twenty events from the past month grouped by name. Watch five things. First: does it set AWS underscore DEFAULT underscore REGION and RS underscore TARGET before making any call, or does it try to connect without configuring the connection target? Second: does it use the rs underscore query script or does it hand-roll the DescribeStatement polling loop — and if it rolls it manually, does it check Status before calling GetStatementResult? Third: when it reads cell values from a raw GetStatementResult response, does it use to entries bracket zero dot value, or does it try a naked dot value that silently returns nothing? Fourth: if you add a BatchExecuteStatement, does it show you how to fetch each sub-statement's results separately, or does it stop at submission? Fifth: does it mention ClientToken anywhere when writing a write statement, or does it silently leave the retry path non-idempotent?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: batch sub-statement IDs fetched separately · ClientToken on write retries",
               "Red flag: no region/target · fetches without polling · naked .value · batch stops at submit"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "redshift-api. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "redshift-api. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "redshift-api",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "redshift-api · Claude Plugins"
           },
           "rendered": {

@@ -15,8 +15,8 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 
 | beat | law violated | fix |
 |------|-------------|-----|
-| B00 | COLD-OPEN LAW — greeting="Your turn." reserved for handoff | Change greeting to world-language hello, e.g. "Salut, Liam" |
-| B00 | IN-FOR-BEAR LAW — narration lacks "in for Bear" phrase | Update narration_text; regen Kokoro audio |
+| B00 | COLD-OPEN LAW — greeting="Your turn." reserved for handoff | Change greeting to world-language hello, e.g. "Salut, Kore" |
+| B00 | IN-FOR-BEAR LAW — narration lacks "in for Humanitarians AI" phrase | Update narration_text; regen Kokoro audio |
 | B01–B05 | LOGO LAW — unregistered patterns cannot render; will use PNG fallback from media/ | PNGs exist; compile.py will animate them with pan/zoom. Acceptable for now. |
 
 ## Notes
@@ -27,7 +27,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 
 ## Actions required
 1. Edit beat_sheet.json: B00 greeting → world-language hello
-2. Edit beat_sheet.json: B00 narration_text → integrate "in for Bear"; regen Kokoro
+2. Edit beat_sheet.json: B00 narration_text → integrate "in for Humanitarians AI"; regen Kokoro
 3. Render B00, B06, B07 via remotion_scenes.py (ClaudeComposerAsk, ClaudeTitleOutro patterns)
 4. Compile master via compile.py (B01–B05 use PNG fallback from media/)
 5. Flag: LOGO LAW on B01–B05 PNGs — no corner bug possible without Remotion registration

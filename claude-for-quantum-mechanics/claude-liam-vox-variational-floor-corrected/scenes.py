@@ -320,7 +320,7 @@ class B14_CorrectTitleOutro(Scene):
         self.camera.background_color = "#201F1C"
         title = Text("Why You Cannot Dig Below the Ground State", font=DISPLAY,
                      font_size=31, color="#F2EFE8")
-        credit = Text("Liam, in for Bear", font=SERIF, font_size=20,
+        credit = Text("Kore, in for Humanitarians AI", font=SERIF, font_size=20,
                       color="#D97757").next_to(title, DOWN, buff=0.45)
         series = Text("QUANTUM MECHANICS  ·  VOLUME THREE", font=MONO,
                       font_size=14, color="#AAA49A").next_to(credit, DOWN, buff=0.35)

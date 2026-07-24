@@ -3,18 +3,18 @@
     "title": "Config Guide",
     "slug": "claude-liam-config-guide",
     "topic": "CONFIG GUIDE · CLAUDE TAG PLUGIN",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. Ask how to set up at-Claude, how agents or agent scopes work, how configuration inherits across a workspace, or how to add a GitHub repo or connection — and the Config Guide skill fires. This is an index skill: it does not answer directly from its own content, but routes to five short reference files based on what the user is asking. It is currently scoped to Slack only. Let me walk you through the four-layer configuration model, the five reference topics, the debug-plugins handoff, and the teardown.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. Ask how to set up at-Claude, how agents or agent scopes work, how configuration inherits across a workspace, or how to add a GitHub repo or connection — and the Config Guide skill fires. This is an index skill: it does not answer directly from its own content, but routes to five short reference files based on what the user is asking. It is currently scoped to Slack only. Let me walk you through the four-layer configuration model, the five reference topics, the debug-plugins handoff, and the teardown.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 18,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "CONFIG GUIDE · CLAUDE TAG PLUGIN",
             "segment": "TROUBLESHOOT",
             "command": "How do agents and agent scopes work in @Claude?",
@@ -51,7 +51,7 @@
               "4 layers: agents → agent scopes → identity profiles → presets",
               "After explaining: suggest debug-plugins in a new Slack thread"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — four-layer model + five reference topics",
       "narration_text": "At-Claude is configured through four layered objects. The first layer is agents — the top-level entities the skill manages. The second is agent scopes, which control the resolution chain and per-field inheritance across workspace and channels. The third is identity profiles, which carry scopes, rules, credentials, and repo permissions. The fourth is the collection of presets, connections, GitHub repositories, and custom instructions attached to each profile. The skill is an index: it matches the user's question to one of five reference files and reads from that file. Agents and scopes covers the resolution chain and per-field inheritance. Identity profiles covers scopes, rules, credentials, and repo permissions. Connections and presets covers OAuth, MCP connections, and how to install one. GitHub and instructions covers repository setup and custom instructions. Best practices covers profile layout, read-only versus read-write access, and rollout guidance. After explaining configuration, the skill closes by suggesting the user run the debug-plugins skill in a new Slack thread to confirm the change took effect inside the container.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 34,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — index pattern + Slack scope + debug handoff",
       "narration_text": "The index pattern is the design choice worth understanding. Instead of one long SKILL.md that covers everything, the skill holds only routing logic and delegates to five short, self-contained reference files. Each reference file is a bounded topic with no cross-dependencies. The benefit is that each file stays short and focused — users get a direct answer without reading irrelevant content. The risk is that if any reference file is missing, the index silently fails to answer the question it was meant to route. Two other design details. The Slack-only scope caveat is stated directly at the top — this guide is currently written for the Slack surface. No guidance is given on what differs for other surfaces, which means a user on a different surface gets incomplete information with no warning. The debug-plugins handoff closes every configuration explanation: suggest the user run debug-plugins in a new Slack thread. The reason the thread must be new is container isolation — at-Claude's configuration state is scoped to the session, and a new thread gets a fresh container that reflects the current config, not a cached state from earlier in an existing thread.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 32,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The Config Guide gets five things right. The four-layer model is named and the resolution chain is explicitly referenced — not just described, but pointed to a specific reference file. The Slack-only scope caveat is stated upfront and clearly, at the top of the skill. The index pattern — five short self-contained files instead of one long skill — is itself good skill design: each reference is bounded. The read-only tool restriction is appropriate for a reference skill that only needs to read. The debug-plugins handoff closes the loop: after explaining, verify the change took effect in a new thread. Where it bites. The index fails silently if any reference file is missing — no fallback, no error, the question just goes unanswered. The Slack-only caveat says nothing about what differs for other surfaces — a user on a different surface gets no warning that the guidance may not apply. The topic table names five files but says nothing useful about what questions each one answers — you have to open the file to know. No admin permissions are mentioned — the skill says nothing about who needs what access to configure at-Claude. And the debug-plugins handoff says new Slack thread without explaining why, so users who skip it miss the container-isolation reason.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 38,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. Config Guide: index skill — routes to 5 reference files, Slack only, read-only tool. Four layers: agents → agent scopes → identity profiles → presets/connections/repos/instructions. Five topics: agents-scopes · identity-profiles · connections-presets · github-instructions · best-practices. After explaining: debug-plugins in a NEW thread (container isolation). Gaps: index fails silently if reference missing · Slack-only with no cross-surface guidance · topic table not self-describing · no admin permissions mentioned · new-thread reason unexplained.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 18,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Open a Claude Code session with access to the config-guide skill. Ask: How do I set up identity profiles with read-only and read-write access in @Claude? Watch five things. First: does Claude reach for a reference file — identity-profiles.md — before answering, or does it answer from the skill body alone? Second: does the answer address scopes, rules, credentials, and repo permissions — the four fields listed in the reference topic row? Third: does it surface the Slack-only caveat, or does it answer as if the guidance applies universally? Fourth: does the explanation end with a suggestion to run debug-plugins in a new Slack thread? Fifth: does it explain why the thread must be new — or does it just say new thread without the container-isolation reason?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 24,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: closes with debug-plugins in new Slack thread",
               "Red flag: answers from skill body alone · omits new-thread reason"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "Config Guide. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "Config Guide. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "Config Guide",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "config-guide · Troubleshoot"
           },
           "rendered": {

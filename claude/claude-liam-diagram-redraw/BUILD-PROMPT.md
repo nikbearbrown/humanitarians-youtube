@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-diagram-redraw
 # "Claude, Redrawn." | diagram-redraw skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 195.5s
+# Built: 2026-07-18 | Kokoro af_kore | 195.5s
 
 ## Standalone rebuild instructions
 

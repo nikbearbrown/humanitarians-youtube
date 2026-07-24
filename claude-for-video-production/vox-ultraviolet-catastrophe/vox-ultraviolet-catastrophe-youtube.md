@@ -25,4 +25,4 @@ AI disclosure: motion in beats B01, B03, B05, B08, B10, B15 is AI-generated (Hig
 
 #physics #quantumMechanics #Planck #scienceHistory
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

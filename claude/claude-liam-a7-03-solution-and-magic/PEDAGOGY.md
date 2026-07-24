@@ -4,7 +4,7 @@
 Cold open (aha moment) → Slide 3: solution as before/after → Slide 4: magic in one sentence → translation guide (jargon-audit pass) → traps on slides 3–4 → verdict → Your Turn (Part 1 + slide 2 → slides 3–4 + jargon audit) → outro.
 
 ## Cold open law
-Opens: "Hola — Liam, Episode 3 of 7." States premise (slides 3–4 = aha moment, failure mode = going technical) and previews all three topics. ✓
+Opens: "Hola — Kore, Episode 3 of 7." States premise (slides 3–4 = aha moment, failure mode = going technical) and previews all three topics. ✓
 
 ## Gap formula
 Gap: students describe architecture instead of the aha; write feature lists instead of before/after; use jargon that requires explaining. Fix: before/after structure + "We use AI to…" format + translation guide.

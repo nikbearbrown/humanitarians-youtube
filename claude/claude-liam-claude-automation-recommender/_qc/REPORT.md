@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_16_2s.png | B00 cold open | ClaudeComposerAsk: "Bonjour, Liam", command visible, 3 output lines, @NikBearBrown |
+| frame_16_2s.png | B00 cold open | ClaudeComposerAsk: "Bonjour, Kore", command visible, 3 output lines, @HumanitariansAI |
 | frame_60_9s.png | B01 five types | AutomationRecommenderTypes: 5-type rows (Hooks/Subagents/Skills/Plugins/MCP Servers), invocation control 3 rows, spark line |
 | frame_118_3s.png | B02 workflow | AutomationRecommenderSignals: 3-phase cards (Analyze/Generate/Output) + 5 signal→rec examples, spark line |
 | frame_187_4s.png | B05 teardown | AutomationRecommenderTell: 5+5 two-column teardown, callout overlaps row 5 (accepted batch pattern), spark line |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Bonjour, Liam" (rotation #34)
+- Greeting: "Bonjour, Kore" (rotation #34)
 - New scenes: AutomationRecommenderTypes.tsx (B01), AutomationRecommenderSignals.tsx (B02), AutomationRecommenderTell.tsx (B05)
 - B01 design: 5-type rows with name/trigger/use columns + invocation control table (3 rows)
 - B02 design: 3-phase workflow cards + 5 signal→recommendation example rows

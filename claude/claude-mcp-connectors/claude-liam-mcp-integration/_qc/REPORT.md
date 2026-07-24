@@ -14,7 +14,7 @@
 | B05 | 228s | PASS | McpIntegrationTell — 5 GETS RIGHT / 5 WHERE IT BITES, tool-name callout with ! icon |
 | BVDT | 294s | PASS | ClaudeVerdictArtifact — 6-line verdict, all key content present |
 | BHTF | 335s | PASS | ClaudeComposerAsk handoff — GitHub+stdio prompt, Watch/Expected/Red flag rows |
-| BOUT | 358s | PASS | ClaudeTitleOutro — mcp-integration. @NikBearBrown mcp-integration · Claude Plugins |
+| BOUT | 358s | PASS | ClaudeTitleOutro — mcp-integration. @HumanitariansAI mcp-integration · Claude Plugins |
 
 ## Warnings
 

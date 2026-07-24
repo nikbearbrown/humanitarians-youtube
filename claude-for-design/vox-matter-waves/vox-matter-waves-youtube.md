@@ -19,4 +19,4 @@ AI disclosure: motion in beats B01, B04, B07, B10, B12, B13 is AI-generated (Hig
 
 #physics #quantumMechanics #deBroglie #doubleSlit #scienceHistory
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

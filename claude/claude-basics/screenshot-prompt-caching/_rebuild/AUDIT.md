@@ -12,11 +12,11 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 
 | beat | law violated | fix |
 |------|-------------|-----|
-| B01–B04 (Manim) | LOGO LAW — Manim renders lack @NikBearBrown corner watermark | Add NBB text watermark to Manim scene Python source and re-render |
+| B01–B04 (Manim) | LOGO LAW — Manim renders lack @HumanitariansAI corner watermark | Add NBB text watermark to Manim scene Python source and re-render |
 
 ## Notes
 - Structural laws all pass: ORDER, COLD-OPEN, HANDOFF, OUTRO
-- Voice: kokoro am_onyx — audio untouched
+- Voice: kokoro af_kore — audio untouched
 - Existing mp4 backed up as screenshot-prompt-caching-pre-rebuild.mp4
 - Manim scenes in manim/ — need source edit + re-render
 

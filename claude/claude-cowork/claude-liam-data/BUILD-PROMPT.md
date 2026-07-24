@@ -17,8 +17,8 @@ FACTCHECK.md (books/anthropics/books/claude-cowork-plugins/FACTCHECK.md). Then:
    shape. This sheet was authored to the deep-explainer doctrine but may use loose
    field names; fix them to the schema without changing content, lanes, narration,
    or the act order. Keep the spine: ClaudeComposerAsk cold open (ask answered,
-   greeting "Olá, Liam", Liam signs in) → body → ClaudeVerdictArtifact (0.5s lead) →
-   ClaudeComposerAsk "Your turn." (Liam signs off "Liam, in for Bear.") → ClaudeTitleOutro.
+   greeting "Olá, Kore", Kore signs in) → body → ClaudeVerdictArtifact (0.5s lead) →
+   ClaudeComposerAsk "Your turn." (Kore signs off "Kore, in for Humanitarians AI.") → ClaudeTitleOutro.
 
 2. LANE-MIX LINT. Run the beat-mix histogram. Expect VOX 6 (20.7%), MANIM 8 (27.6%),
    REMOTION 9 (31.0%), CARD 6 (20.7%) over 29 body beats — all in band. Confirm the
@@ -27,9 +27,9 @@ FACTCHECK.md (books/anthropics/books/claude-cowork-plugins/FACTCHECK.md). Then:
 
 3. GATE P. Present the full narration (B00 → O01) on an animated slate for my
    sign-off. Do NOT generate audio until I approve. Channel is claude-liam:
-   Kokoro am_onyx, free. No ElevenLabs.
+   Kokoro af_kore, free. No ElevenLabs.
 
-4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/am_onyx).
+4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/af_kore).
    Per-beat mp3 durations become the clock; align writes the word clock. Captions
    via the faster-whisper pipeline. Reveals in Manim/vox beats land ON the spoken word.
 

@@ -1,6 +1,6 @@
 # PLAN — Claude, Counsel (Ch.11: The Legal and Finance Plugins)
 
-**Slug:** `claude-liam-legal-finance` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-legal-finance` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch11-legal-finance.txt` · **One idea:** *Legal and finance are the two "essentials" that protect a small operator — legal flags the concerning clause before you sign, finance models the scenario before you commit — but both only screen and accelerate; the consequential call stays with a human (and a real lawyer/CFO for real stakes).*
 
 This chapter covers **TWO separate official plugins** merged by the book into one chapter. It ships as **one episode**: legal gets its own two acts (screener + hard limit), finance gets its own two acts (accelerator + hard limit), bracketed by a shared-pattern setup and a shared-habits close. See SOURCES.md for the separate-plugins note.
@@ -8,7 +8,7 @@ This chapter covers **TWO separate official plugins** merged by the book into on
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "Which two plugins protect a one-person business?" → ask answered, Liam signs in ("Shalom")
+B00  COLD OPEN  ClaudeComposerAsk — "Which two plugins protect a one-person business?" → ask answered, Kore signs in ("Shalom")
 ACT I    The Shared Pattern    busy-not-careless → screen + accelerate, first-pass    (C01, B01 PredictCard, B02 vox, B03 ChipGrid, B04 Manim filter)
 ACT II   The Legal Plugin      a screening tool → color flags → what it does          (C02, B05 vox drawon, B06 Onda code, B07 Manim flags, B08 ChipGrid, B09 Manim threshold)
 ACT III  Not a Lawyer          four limits → screen vs counsel → triage               (C03, B10 ChipGrid, B11–B12 VOX run R1, B13 Manim branch)
@@ -55,4 +55,4 @@ Lane sequence (body): `C R V R M C V R M R M C R V V M C V R R M M C R V M C R M
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel notes + the legal/finance-are-separate note in SOURCES.md.
 3. **GATE P** — narration reviewed on an animated slate before any audio.
-4. Audio lock (Kokoro `am_onyx`) → align → **Gate D2 SHOPPING.md** (7 vox stills, tier-0 library pass first, from LOCKED durations) → **Gate D1 full-length SLATE PREVIZ** → pantry fill → review cut → VISUAL QC LAW → `art final`.
+4. Audio lock (Kokoro `af_kore`) → align → **Gate D2 SHOPPING.md** (7 vox stills, tier-0 library pass first, from LOCKED durations) → **Gate D1 full-length SLATE PREVIZ** → pantry fill → review cut → VISUAL QC LAW → `art final`.

@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Liam, in for Bear." in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Kore, in for Humanitarians AI." in B00 cold open | PASS |
 | 8 | Self-demo shows real pace-check of sim-scout beats (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "DURATION-PLANNER · SKILL TEARDOWN" / "Liam, in for Bear." / "Vanakkam, Liam" — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "DURATION-PLANNER · SKILL TEARDOWN" / "Kore, in for Humanitarians AI." / "Vanakkam, Kore" — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Two levers. One floor table." — 4 files listed. PASS
 - **B02** SkillTeardownPipeline: "Count → floor → check → hold → report." — 5 phases, footer. PASS
 - **B03** ClaudeComposerAsk: duration demo, claude-liam-sim-scout target. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "Cut when the idea is done." — anti-padding quote. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Timed." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct pacing command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Timed." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Timed." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

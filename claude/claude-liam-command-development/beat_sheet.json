@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Ciao, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Ciao, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,7 +34,7 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "This is Humanitarians.",
    "shot": {
     "type": "CARD",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Ciao — this is Liam, in for Bear. Ask Claude to create a slash command, add a command, write a custom command, define command arguments, or use CLAUDE_PLUGIN_ROOT — the Command Development skill fires. Commands are not agents. Commands are frequently-used prompts defined as Markdown files that Claude executes when invoked. Three locations: project commands in .claude/commands/, personal commands in ~/.claude/commands/, plugin commands in plugin-name/commands/. Five frontmatter fields: description, allowed-tools, model, argument-hint, disable-model-invocation. The critical rule: commands are instructions FOR Claude, not messages TO the user. Let me walk you through the structure, the fields, and where this skill gets it right and where it bites.",
-   "voice": "am_onyx",
+   "narration_text": "Ciao — this is Kore, in for Humanitarians AI. Ask Claude to create a slash command, add a command, write a custom command, define command arguments, or use CLAUDE_PLUGIN_ROOT — the Command Development skill fires. Commands are not agents. Commands are frequently-used prompts defined as Markdown files that Claude executes when invoked. Three locations: project commands in .claude/commands/, personal commands in ~/.claude/commands/, plugin commands in plugin-name/commands/. Five frontmatter fields: description, allowed-tools, model, argument-hint, disable-model-invocation. The critical rule: commands are instructions FOR Claude, not messages TO the user. Let me walk you through the structure, the fields, and where this skill gets it right and where it bites.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 22,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Ciao, Liam",
+      "greeting": "Ciao, Kore",
       "topic": "HUMANITARIANS AI · COMMAND DEVELOPMENT · CLAUDE CODE SKILL",
       "segment": "PLUGIN DEV",
       "command": "Create a slash command for my plugin that reviews a pull request and posts a summary.",
@@ -74,7 +74,7 @@
        "3 locations: .claude/commands/ · ~/.claude/commands/ · plugin-name/commands/",
        "Critical rule: body = instructions FOR Claude, not messages TO user"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why Command Development belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — locations + frontmatter fields + dynamic args",
    "narration_text": "A command file is a Markdown file with an optional YAML frontmatter block. Three locations. Project commands in .claude/commands/ — scoped to the specific project, shown as '(project)' in /help, the right choice for team workflows. Personal commands in ~/.claude/commands/ — available across every project on the machine, shown as '(user)', for personal cross-project utilities. Plugin commands in plugin-name/commands/ — bundled with the plugin, shown as '(plugin-name)', discovered automatically when the plugin is installed. Five frontmatter fields. description: a brief string shown in /help — defaults to the first line if omitted. allowed-tools: which tools the command can use — Bash(git:*) not Bash(*) is the correct pattern. model: haiku for fast simple commands, sonnet for standard, opus for complex analysis — defaults to the conversation. argument-hint: documents expected arguments for autocomplete and /help display. disable-model-invocation: prevents programmatic SlashCommand tool calls — set true when manual-only. Dynamic arguments: $ARGUMENTS captures all input as one string, $1 and $2 and $3 are positional, @file includes file contents inline, and !backtick bash backtick executes a shell command to inject dynamic context.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 30,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "design — instructions rule + four patterns",
    "narration_text": "The instructions rule is the most critical design constraint. Commands are consumed by Claude, not by the user. Correct: 'Review this code for SQL injection, XSS attacks, and authentication issues. Provide specific line numbers and severity ratings.' Incorrect: 'This command will review your code for security issues. You will receive a detailed report.' The first tells Claude what to do. The second describes what will happen to the user — Claude gets nothing actionable. Always write the command body as a directive to Claude. Four common patterns. Review pattern: allowed-tools Read plus Bash(git:*), inject changed file list with !backtick git diff dash dash name-only backtick, then explicit review criteria. Testing pattern: Bash(npm:*), run tests with !backtick npm test dollar-one backtick, analyze results and suggest fixes. Documentation pattern: @$1 includes the source file — no bash needed, just a clear documentation directive. Workflow pattern: Bash(gh:*) plus Read, numbered phases for a complete PR lifecycle. For plugin commands, ${CLAUDE_PLUGIN_ROOT} resolves the plugin's absolute installation path — use it to reference scripts, configs, and templates portably without hardcoded paths.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. Command Development gets the instructions-versus-description distinction right — commands are written for agent consumption, explicitly stated and illustrated with a correct-versus-incorrect pair showing the contrast. Three locations are completely specified with scoping rules, /help labels, and appropriate use cases. Dynamic argument syntax is comprehensive: $ARGUMENTS, positional $1/$2/$3, @file references, and !backtick bash backtick all covered. allowed-tools scoping patterns are concrete — Bash(git:*) versus Bash(*) is the right pattern and shown with examples. Organization guidance — flat versus namespaced — is paired with the threshold of fifteen commands, so the decision is not just advisory. Where it bites: bash execution syntax is pushed to an external reference file — references/plugin-features-reference.md — and the exact syntax is not reproduced in the skill. $IF() conditional syntax appears in an example but is never explained. There is no validation tooling — no script to check a command file's structure or test that it fires. CLAUDE_PLUGIN_ROOT is documented without cross-platform notes on path format. And disable-model-invocation is listed but its operational effect on the SlashCommand tool is not explained.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 32,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. Command Development fires for slash commands, custom commands, command frontmatter, dynamic arguments, and CLAUDE_PLUGIN_ROOT usage. Commands: Markdown files, YAML frontmatter optional. Three locations: project, user, plugin. Five fields: description, allowed-tools, model, argument-hint, disable-model-invocation. Critical rule: command body is instructions FOR Claude, not messages TO the user. Args: $ARGUMENTS, $1/$2/$3 positional, @file references, !backtick bash backtick inline. Patterns: Review, Testing, Documentation, Workflow. Plugin path: ${CLAUDE_PLUGIN_ROOT} for portable plugin-relative references. Gaps: bash syntax in external ref, $IF() unexplained, no validation tooling, no cross-platform CLAUDE_PLUGIN_ROOT notes.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 20,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Open a Claude Code session. Paste this: Create a slash command for my plugin that reviews a pull request and posts a summary. Watch four things: first, does the command body start with instructions Claude can act on — not a description of what the user will see? Second, does allowed-tools use Bash(gh:*) or Bash(git:*) rather than Bash(*) or the bare star? Third, is argument-hint set — something like [pr-number] — so the autocomplete hint shows up in /help? And fourth, does any bash execution use the !backtick syntax inline rather than a placeholder the user would need to fill in? If the command body reads like a user-facing announcement, the skill's critical rule was missed. If allowed-tools is Bash(*), the principle of least privilege was dropped. Those are your gates.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 34,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: allowed-tools: Bash(gh:*) or Bash(git:*) — not Bash(*)",
        "Red flag: no argument-hint, or body reads like a user message"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "Command Development. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "Command Development. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

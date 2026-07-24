@@ -51,7 +51,7 @@ In landscape the wordmark reads cleanly as a single horizontal row across the fu
 2:49 Your Turn
 2:56 Outro
 
-Built with Remotion 4.x · outlined SVG glyphs via Inkscape · Kokoro am_onyx voice · Claude fidelity skin.
+Built with Remotion 4.x · outlined SVG glyphs via Inkscape · Kokoro af_kore voice · Claude fidelity skin.
 
 youtube.com/@humanitariansai
 

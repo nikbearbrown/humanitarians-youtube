@@ -7,9 +7,9 @@ ACC   = ManimColor("#D97757")
 SOFT  = ManimColor("#73705F")
 GHOST = ManimColor("#A9A491")
 
-# ── @NikBearBrown corner watermark (LOGO LAW) ─────────────────────────────────
+# ── @HumanitariansAI corner watermark (LOGO LAW) ─────────────────────────────────
 def nbb_watermark(scene):
-    mark = Text('@NikBearBrown', font_size=11, color='#73705F', weight=NORMAL)
+    mark = Text('@HumanitariansAI', font_size=11, color='#73705F', weight=NORMAL)
     mark.to_corner(DR, buff=0.18)
     mark.set_opacity(0.22)
     scene.add(mark)

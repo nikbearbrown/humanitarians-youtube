@@ -4,7 +4,7 @@ Work order for all beats. `[MACHINE]` = pipeline builds it; `[REQUEST]` = human 
 
 | Beat | Act | Source | Visual | Status |
 |---|---|---|---|---|
-| B00 | ASK (cold open) | Remotion | `ClaudeComposerAsk` — "Hallo, Liam" / command: "Who was Max Planck?" | [MACHINE] |
+| B00 | ASK (cold open) | Remotion | `ClaudeComposerAsk` — "Hallo, Kore" / command: "Who was Max Planck?" | [MACHINE] |
 | B01 | THE PROBLEM | CARD | Question card: "Why doesn't a warm oven emit infinite energy?" / sub: "The Ultraviolet Catastrophe — 1890s" | [MACHINE] |
 | B02 | THE GAMBIT | Manim | `B02_Graphic`: E = hν equation + quantized energy ladder (terracotta steps on cream) | [MACHINE] |
 | B03 | THE ASK | Remotion | `ClaudeComposerAsk` — "The ask," / command: "plot Planck distribution vs Rayleigh-Jeans…" | [MACHINE] |
@@ -13,7 +13,7 @@ Work order for all beats. `[MACHINE]` = pipeline builds it; `[REQUEST]` = human 
 | B06 | THE LEGACY | Remotion | `ClaudeWindow` artifact: "The Quantum Century" — 6-item timeline list | [MACHINE] |
 | B07 | THE MAN | CARD | Endcard: biographical summary 1858–1947, Nobel 1918, tragedy | [MACHINE] |
 | B08 | HANDOFF | Remotion | `ClaudeComposerAsk` — "Your turn." / command: explain UV catastrophe prompt | [MACHINE] |
-| B09 | OUTRO | Remotion | `ClaudeTitleOutro` — "Who was Max Planck." / @NikBearBrown / "Liam, in for Bear." | [MACHINE] |
+| B09 | OUTRO | Remotion | `ClaudeTitleOutro` — "Who was Max Planck." / @HumanitariansAI / "Kore, in for Humanitarians AI." | [MACHINE] |
 
 ## Open slots (require human action or pantry drop)
 None — all beats are machine-buildable on first pass. Slate cut will show Remotion scenes, Manim renders, and CARD slates. Final cut requires all Remotion renders and both Manim scenes to complete.

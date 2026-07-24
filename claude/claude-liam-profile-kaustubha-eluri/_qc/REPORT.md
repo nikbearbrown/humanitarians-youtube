@@ -32,7 +32,7 @@ Build: 1920×1080, 30 fps, 202.6s (3:22), 4862 video frames
 - [x] @HumanitariansAI folder chip — B00, B08 ✓
 - [x] "Your turn." greeting — B08 ✓
 - [x] "The Engineer Who Stayed" title restate — B09 ✓
-- [x] "Liam, in for Bear." signed in B00 and B09 narration ✓
+- [x] "Kore, in for Humanitarians AI." signed in B00 and B09 narration ✓
 - [x] No statistics or invented metrics anywhere ✓
 
 ## Defects Found

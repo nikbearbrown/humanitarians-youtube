@@ -1,7 +1,7 @@
 # SOURCES — claude-liam-vercel-mcp ("Claude, Trusted.")
 
 Source: Bear Brown research prompt "Connect Claude to Vercel." ai-explainer
-(standard middle; NOT skill-teardown). Audio: Kokoro am_onyx (free, local),
+(standard middle; NOT skill-teardown). Audio: Kokoro af_kore (free, local),
 generated 2026-07-18 in the Cowork cloud session; durations are ground truth.
 
 ## Web-verified against the LIVE Vercel docs (DOUBLE-CHECK LAW)

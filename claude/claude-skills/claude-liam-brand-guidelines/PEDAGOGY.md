@@ -1,7 +1,7 @@
 # PEDAGOGY audit — claude-liam-brand-guidelines
 
 ## Audience
-Claude practitioners and makers on @NikBearBrown. They know how to use Claude but
+Claude practitioners and makers on @HumanitariansAI. They know how to use Claude but
 may not have seen skills before. They can follow technical explanations.
 
 ## ONE idea

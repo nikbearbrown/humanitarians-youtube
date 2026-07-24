@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Liam, in for Bear." in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Kore, in for Humanitarians AI." in B00 cold open | PASS |
 | 8 | Self-demo shows real routing of ai-1/ch07 beats (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "SHOT-PLANNER · SKILL TEARDOWN" / "Liam, in for Bear." / "Salaam, Liam" — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "SHOT-PLANNER · SKILL TEARDOWN" / "Kore, in for Humanitarians AI." / "Salaam, Kore" — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Route by evidence. Override by reason." — 4 files listed. PASS
 - **B02** SkillTeardownPipeline: "Type → table → write → red-flag." — 5 phases, footer. PASS
 - **B03** ClaudeComposerAsk: shot-planner demo, ai-1/ch07 beats target. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "Red flags block. Not warn." — mandate quote. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Routing." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct route command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Routing." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Routing." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

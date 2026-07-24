@@ -14,7 +14,7 @@ Frames extracted at 2 fps from master mp4 + per-beat 15/50/85% stills.
 |------|-------|----------|--------|-------|
 | B00 | ClaudeComposerAsk | 20.4 s | **PASS** | Greeting, spark, composer card, output lines all present; cream bg, terracotta accents correct |
 | B01 | VercelOfficial | 27.8 s | **PASS** | Green OFFICIAL badge, mcp.vercel.com URL, BETA/OAUTH pills, Claude Code+Desktop highlighted; sparkLine present |
-| B02 | ClaudeComposerAsk | 26.7 s | **PASS** | Setup command visible, detection output in terracotta mono, "@NikBearBrown" folder, "@NikBearBrown" folder correct |
+| B02 | ClaudeComposerAsk | 26.7 s | **PASS** | Setup command visible, detection output in terracotta mono, "@HumanitariansAI" folder, "@HumanitariansAI" folder correct |
 | B03 | VercelDiagnose | 25.9 s | **PASS** | Three-step flow (red→white→green), tool names in code block, arrows, sparkLine correct |
 | B04 | VercelAccountEquivalent | 27.7 s | **PASS** | Verbatim quote chip, key icon, four cluster cards (READ green, WRITE/DEPLOY plain, buy_domain terracotta); no tool count shown |
 | B05 | VercelBuyDomain | 35.5 s | **PASS** | buy_domain badge, 6 form fields active in terracotta, price tag, expectedPrice "price-check not confirm"; **never shows completed purchase ✓** |
@@ -22,8 +22,8 @@ Frames extracted at 2 fps from master mp4 + per-beat 15/50/85% stills.
 | B07 | VercelOwnGuidance | 34.7 s | **PASS** | Rebuilt doc card (not screenshot); "REBUILT — NOT A SCREENSHOT" badge visible; pull-quote with terracotta border; Vercel attribution |
 | B08 | VercelMitigations | 37.4 s | **PASS** | Two-panel layout; code block `vercel mcp --project my-app`; Narrow/Revocable/Yours bullets; sparkLine correct |
 | BVDT | ClaudeVerdictArtifact | 30.6 s | **PASS** | "Claude + Vercel MCP — the honest map" artifact; 5-point verdict list; spark icon; clean layout |
-| BHTF | ClaudeComposerAsk | 26.8 s | **PASS** | "Your turn." spark + full handoff prompt; "@NikBearBrown" folder; "paste this into Claude…" in terracotta |
-| BOUT | ClaudeTitleOutro | 2.9 s | **PASS** | "Claude, Trusted." centered; terracotta period; "@NikBearBrown" handle; "Liam, in for Bear." subline |
+| BHTF | ClaudeComposerAsk | 26.8 s | **PASS** | "Your turn." spark + full handoff prompt; "@HumanitariansAI" folder; "paste this into Claude…" in terracotta |
+| BOUT | ClaudeTitleOutro | 2.9 s | **PASS** | "Claude, Trusted." centered; terracotta period; "@HumanitariansAI" handle; "Kore, in for Humanitarians AI." subline |
 
 ---
 

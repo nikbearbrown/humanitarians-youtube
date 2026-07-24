@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-claude-scout
 # "Claude, Finding." | claude-scout skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 120.1s
+# Built: 2026-07-18 | Kokoro af_kore | 120.1s
 
 ## Standalone rebuild instructions
 

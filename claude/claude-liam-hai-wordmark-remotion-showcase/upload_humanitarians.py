@@ -51,7 +51,7 @@ The wordmark is ultra-wide so the layout itself becomes a design decision: marqu
 2:49 Your Turn
 2:56 Outro
 
-Built with Remotion 4.x · outlined SVG glyphs via Inkscape · Kokoro am_onyx voice · Claude fidelity skin.
+Built with Remotion 4.x · outlined SVG glyphs via Inkscape · Kokoro af_kore voice · Claude fidelity skin.
 
 youtube.com/@humanitariansai
 

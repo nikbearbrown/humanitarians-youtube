@@ -1,7 +1,7 @@
 # CLAUDE-CLI Build Log — Branding and AI
 
 Overnight batch: claude-cli explainer videos for all 22 cards in cli-ideas.md.
-Channel: claude-liam. Voice: Kokoro am_onyx. 1920×1080 16:9.
+Channel: claude-liam. Voice: Kokoro af_kore. 1920×1080 16:9.
 Free pipeline only — no ElevenLabs, no higgsfield, no publishing, no git commit/push.
 
 ---
@@ -63,7 +63,7 @@ PENDING — run `./brutalist-art/art run branding-and-ai/youtube/<slug>` per car
 ## Next Steps
 
 ```bash
-# Generate audio (Kokoro am_onyx) and compile review cuts:
+# Generate audio (Kokoro af_kore) and compile review cuts:
 for slug in \
   prd-scope-decision-record \
   ai-architecture-autonomy-classifier \

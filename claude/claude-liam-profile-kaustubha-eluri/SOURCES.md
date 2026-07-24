@@ -64,7 +64,7 @@ NEUQuest
 
 ## Sign-In Line (narration B00 and B09)
 ```
-Liam, in for Bear.
+Kore, in for Humanitarians AI.
 ```
 
 ## @HumanitariansAI Folder Chip
@@ -102,5 +102,5 @@ generic industry description, not attributed to any specific paper or person.
 - [ ] @HumanitariansAI folder chip on B00 and B08
 - [ ] "Your turn." greeting on B08
 - [ ] Title "The Engineer Who Stayed" restated on B09
-- [ ] "Liam, in for Bear." signed in B00 and B09 narration
+- [ ] "Kore, in for Humanitarians AI." signed in B00 and B09 narration
 - [ ] No statistics or invented metrics appear anywhere in the reel

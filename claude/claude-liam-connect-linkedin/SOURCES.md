@@ -2,7 +2,7 @@
 
 Source: Bear Brown research prompt "How to Connect Claude to LinkedIn."
 ai-explainer (standard middle; NOT skill-teardown — source is a research
-doc, not a SKILL.md). Audio: Kokoro am_onyx (free, local), generated
+doc, not a SKILL.md). Audio: Kokoro af_kore (free, local), generated
 2026-07-18 in the Cowork cloud session; durations are ground truth.
 
 ## Web-verified before scripting (DOUBLE-CHECK LAW)

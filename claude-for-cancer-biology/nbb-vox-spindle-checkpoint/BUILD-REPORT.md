@@ -82,8 +82,8 @@
 |---|---|
 | Beat ID | NBB00 |
 | Scene | ClaudeComposerAsk |
-| Voice | Liam / Kokoro `am_onyx` |
-| Greeting | "Bonjour, Liam" |
+| Voice | Kore / Kokoro `af_kore` |
+| Greeting | "Bonjour, Kore" |
 | Question | "Why does a cell stop and wait at the moment chromosomes are ready to separate?" |
 | Handoff sentence | "Can you explain it, Bear?" |
 | Audio path | `nbb-vox-spindle-checkpoint/mp3/beat-NBB00.mp3` |
@@ -98,7 +98,7 @@
 |---|---|
 | Beat ID | NBB01 |
 | Scene | ClaudeVerdictArtifact |
-| Voice | Kokoro `am_onyx` (Bear substitute — ElevenLabs key invalid, see note below) |
+| Voice | Kokoro `af_kore` (Bear substitute — ElevenLabs key invalid, see note below) |
 | Narration | "Here's what the body just demonstrated. The spindle assembly checkpoint is not a readiness vote — it is a veto machine. One unattached kinetochore out of 92 can block the entire cell from dividing. The mechanism: that rogue kinetochore assembles MCC, which inhibits APC/C, which leaves securin intact, which keeps separase inactive. The chain holds until the last attachment is made. The trade-off: speed for accuracy. A cell that shortcuts this check gains time but risks aneuploidy — wrong chromosome counts, a known cancer driver. The checkpoint optimizes for fidelity over throughput, and that choice costs real minutes at every division." |
 | Audio path | `nbb-vox-spindle-checkpoint/mp3/beat-NBB01.mp3` |
 | Audio duration | 35.63 s |
@@ -113,7 +113,7 @@
 | Scene | ClaudeComposerAsk |
 | Greeting | "Your turn." (exact) |
 | runningText | "paste this into Claude…" (exact) |
-| Voice | Kokoro `am_onyx` (Bear substitute — see note below) |
+| Voice | Kokoro `af_kore` (Bear substitute — see note below) |
 | Prompt | "Explain what happens in [cancer type] when the spindle assembly checkpoint is weakened. What proteins are mutated, what chromosome errors result, and why does aneuploidy drive tumor progression in this case?" |
 | Audio path | `nbb-vox-spindle-checkpoint/mp3/beat-NBB02.mp3` |
 | Audio duration | 7.17 s |
@@ -127,7 +127,7 @@
 | Beat ID | NBB03 |
 | Scene | ClaudeTitleOutro |
 | Title | "Why the Spindle Checkpoint Pause Is the Most Important Moment in Cell Division" |
-| Handle | "@NikBearBrown" |
+| Handle | "@HumanitariansAI" |
 | Subline | "one unattached kinetochore, entire cell arrested" |
 | Audio | Silence (6.01 s) |
 | Audio path | `nbb-vox-spindle-checkpoint/mp3/beat-NBB03.mp3` |
@@ -179,7 +179,7 @@
 
 ## ElevenLabs API key note
 
-The ElevenLabs API key (`ELEVENLABS_API_KEY` in `.env`) returned HTTP 401 Unauthorized during this build (`art keys` confirmed the key is invalid). Bear's verdict (NBB01) and handoff (NBB02) were generated with **Kokoro `am_onyx`** as a Bear substitute (same voice as the cold open NBB00 — all wrapper beats use `am_onyx` consistently).
+The ElevenLabs API key (`ELEVENLABS_API_KEY` in `.env`) returned HTTP 401 Unauthorized during this build (`art keys` confirmed the key is invalid). Bear's verdict (NBB01) and handoff (NBB02) were generated with **Kokoro `af_kore`** as a Bear substitute (same voice as the cold open NBB00 — all wrapper beats use `af_kore` consistently).
 
 **To upgrade to the proper Bear voice when the key is repaired:**
 1. Update `beat_sheet.nbb.json` beats NBB01 and NBB02: change `"engine": "kokoro"` to `"engine": "elevenlabs"`, remove `"voice"`, add `"voice_env": "ELEVENLABS_VOICE_NIKBEARBROWN"`.

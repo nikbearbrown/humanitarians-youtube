@@ -1,7 +1,7 @@
 # PEDAGOGY audit — claude-liam-money-hard-stop ("Claude, Paused.")
 
 ai-explainer (standard vox-style middle; NOT skill-teardown — source is a
-house rule, not a SKILL.md). claude-liam, Kokoro am_onyx. Audited against
+house rule, not a SKILL.md). claude-liam, Kokoro af_kore. Audited against
 the ai-explainer house + frame laws.
 
 ## Act structure
@@ -11,8 +11,8 @@ the ai-explainer house + frame laws.
   (BVDT) → handoff (BHTF) → outro (BOUT). 11 beats, matches the spine. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 ClaudeComposerAsk, ask answered (the rule as output lines). Liam
-  self-introduces first breath (IN-FOR-BEAR LAW). Greeting "Jambo, Liam"
+- B00 ClaudeComposerAsk, ask answered (the rule as output lines). Kore
+  self-introduces first breath (IN-FOR-BEAR LAW). Greeting "Jambo, Kore"
   (one word, lexicon; distinct from prior reels' Bonjour/Ciao/Hola/
   Namaste/Hej; Wagwan Bear-only, N/A). PASS
 

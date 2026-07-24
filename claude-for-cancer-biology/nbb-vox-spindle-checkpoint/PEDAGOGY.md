@@ -5,11 +5,11 @@
 
 ---
 
-## NBB00 — Liam cold open
+## NBB00 — Kore cold open
 
 **Beat type:** Cold open (new)  
-**Voice:** Liam / Kokoro am_onyx  
-**Greeting:** "Bonjour, Liam"
+**Voice:** Kore / Kokoro af_kore  
+**Greeting:** "Bonjour, Kore"
 
 **Pedagogical check:**
 
@@ -18,7 +18,7 @@
 - Is the composer command a concise version of the video's real central question? YES — "Why does a cell stop and wait at the moment chromosomes are ready to separate?" matches the body's question beat (B03) faithfully.
 - Does the output block hand directly into the first body frame without redundancy? YES — the output lines are three-word teaser statements, not a full summary; they pique curiosity rather than preempt the body.
 - Is the beat appropriately short (6–10 s target)? YES — estimated ~8 s.
-- Does it introduce Liam as the voice? YES — "Bonjour, Liam — in for Bear."
+- Does it introduce Kore as the voice? YES — "Bonjour, Kore — in for Humanitarians AI."
 - Does it avoid answering the question or summarizing the body? YES.
 
 **Verdict:** PASS
@@ -70,7 +70,7 @@
 
 **Beat type:** Outro (new)  
 **Rendered with:** ClaudeTitleOutro  
-**Handle:** @NikBearBrown
+**Handle:** @HumanitariansAI
 
 **Pedagogical check:**
 

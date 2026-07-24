@@ -5,10 +5,10 @@
 additional required fields:
 - **Source:** post ID + HTML path + live URL
 - **AUTHOR:** byline recovered from the live post
-- **LIAM CREDIT LINE:** exact on-screen/spoken credit the claude-explainer build must use
+- **KORE CREDIT LINE:** exact on-screen/spoken credit the claude-explainer build must use
 - **Suggested builder / channel / voice**
 
-**Author-credit rule:** Liam credits the author in B00 (cold open narration) AND on the
+**Author-credit rule:** Kore credits the author in B00 (cold open narration) AND on the
 SOURCES/outro card. The credit line is spoken and appears on screen. This is non-negotiable
 for every essay card — these are student and faculty works published under their names.
 
@@ -60,7 +60,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `193127655.the-math-behind-why-your-spotify.html` | posts/193127655.the-math-behind-why-your-spotify.html | https://northeasternise.substack.com/p/the-math-behind-why-your-spotify
 - AUTHOR: Shravya Ushake
-- LIAM CREDIT LINE: "Based on the essay 'The Math Behind Why Your Spotify Discover Weekly Is So Addictive' by Shravya Ushake, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Math Behind Why Your Spotify Discover Weekly Is So Addictive' by Shravya Ushake, for NortheasternISE / Humanitarians AI."
 - Topic: RECOMMENDER SYSTEMS
 - Hook: Spotify serves 500 million users a fresh playlist of 30 songs every Monday — and most of them hit. No human curator touches it.
 - Key case: You play a song once, skip the next, save the third. Spotify's matrix updates in real time, placing you closer to a million users you've never met whose choices now shape your next playlist.
@@ -85,7 +85,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `193854501.standard-internships-put-you-near.html` | posts/193854501.standard-internships-put-you-near.html | https://northeasternise.substack.com/p/standard-internships-put-you-near
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Standard Internships Put You Near the Work. Co-op Puts You In the System.' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Standard Internships Put You Near the Work. Co-op Puts You In the System.' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: EXPERIENTIAL LEARNING
 - Hook: Every university promises "hands-on learning." Northeastern's co-op model delivers something structurally different — and most people cannot articulate why.
 - Key case: A student boards the Orange Line at 6:47 AM to their MBTA co-op embedded in a $9.6 billion transit overhaul. Their commute is their research site. The platform delay is data. The proximity is not metaphorical.
@@ -110,7 +110,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `192473618.how-gps-tracking-works-and-why-four.html` | posts/192473618.how-gps-tracking-works-and-why-four.html | https://northeasternise.substack.com/p/how-gps-tracking-works-and-why-four
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'How GPS Tracking Works — and Why Four Data Points Are Enough to Identify You' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'How GPS Tracking Works — and Why Four Data Points Are Enough to Identify You' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: PRIVACY & SPATIAL DATA
 - Hook: Four location data points — home, work, gym, coffee shop — are enough to uniquely identify 95% of people. Not your phone. You.
 - Key case: A researcher takes a mobility dataset and shows that stripping all names, device IDs, and timestamps still leaves 95% of individuals identifiable from just four coordinate pairs. The "anonymized" data was never anonymous.
@@ -135,7 +135,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `196327732.why-your-second-ai-model-breaks-everything.html` | posts/196327732.why-your-second-ai-model-breaks-everything.html | https://northeasternise.substack.com/p/why-your-second-ai-model-breaks-everything
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Why Your Second AI Model Breaks Everything' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Why Your Second AI Model Breaks Everything' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: EMBEDDED AI SYSTEMS
 - Hook: One model runs fine. Add a second and the system doesn't slow — it crashes. The GPU locks mid-inference, the kernel panics, the device reboots.
 - Key case: A Jetson board runs YOLO at 30 fps from a YouTube tutorial. The student adds a language model and a tracker. The system doesn't degrade gracefully — it disintegrates. This is not a scale problem; it's a category change.
@@ -160,7 +160,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `194810430.the-speed-paradox-why-developers.html` | posts/194810430.the-speed-paradox-why-developers.html | https://northeasternise.substack.com/p/the-speed-paradox-why-developers
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Speed Paradox: Why Developers Using AI Ship More Code but Get Slower' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Speed Paradox: Why Developers Using AI Ship More Code but Get Slower' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: AI-ASSISTED DEVELOPMENT
 - Hook: AI coding tools make developers ship 61% more code. Senior engineers using them complete tasks 19% slower. Developers feel 20% faster. All three numbers are true at the same time.
 - Key case: A developer uses AI to generate a React component in seconds, then spends an hour verifying it handles edge cases and doesn't introduce security vulnerabilities. The toil is removed; the time is not.
@@ -185,7 +185,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `191516558.llms-and-the-missing-art-of-dissent.html` | posts/191516558.llms-and-the-missing-art-of-dissent.html | https://northeasternise.substack.com/p/llms-and-the-missing-art-of-dissent
 - AUTHOR: Ayush Varma
-- LIAM CREDIT LINE: "Based on the essay 'LLMs and the Missing Art of Dissent' by Ayush Varma, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'LLMs and the Missing Art of Dissent' by Ayush Varma, for NortheasternISE / Humanitarians AI."
 - Topic: LLM ALIGNMENT
 - Hook: You throw a half-formed idea at an LLM. Instead of pushing back, it dresses up your bad thinking in confident prose and calls it insight.
 - Key case: A student pastes a vague, under-argued theory into Claude. The model elaborates it into polished paragraphs. The student submits it feeling productive. The thinking never happened. Then: the same student pastes an actual coursework assignment and gets told "I can't help with this — it explicitly forbids AI use." The model dissented exactly once, on the thing that mattered.
@@ -210,7 +210,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `189534919.the-hub-tax-how-a-hidden-graph-ai.html` | posts/189534919.the-hub-tax-how-a-hidden-graph-ai.html | https://northeasternise.substack.com/p/the-hub-tax-how-a-hidden-graph-ai
 - AUTHOR: Aravind Balaji
-- LIAM CREDIT LINE: "Based on the essay 'The Hub Tax: How a Hidden Graph AI Bottleneck Is Costing Industries Billions' by Aravind Balaji, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Hub Tax: How a Hidden Graph AI Bottleneck Is Costing Industries Billions' by Aravind Balaji, for NortheasternISE / Humanitarians AI."
 - Topic: GRAPH NEURAL NETWORKS
 - Hook: A fraud ring routed $38 million through a single merchant in four minutes. The AI flagged it — after the money settled. The median account would have flagged in milliseconds. The merchant was a hub.
 - Key case: A payment processor's fraud AI needs 1.92 million operations to analyze one hub node with 15,000 daily transaction partners. The median account has 50 connections and flags in milliseconds. The rare, dangerous node is the one the system is slowest to catch.
@@ -235,7 +235,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `194458647.the-algorithm-as-gatekeeper-what.html` | posts/194458647.the-algorithm-as-gatekeeper-what.html | https://northeasternise.substack.com/p/the-algorithm-as-gatekeeper-what
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Algorithm as Gatekeeper: What AI Hiring Systems Actually Measure' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Algorithm as Gatekeeper: What AI Hiring Systems Actually Measure' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: ALGORITHMIC BIAS
 - Hook: 60% of large companies now use AI systems that score your facial expressions, measure pauses in your speech, and rank you against every applicant — without a human in the room.
 - Key case: An AI intake agent scores two candidates on the same question. Candidate A's speech is fluent, paced, and lexically aligned with the training corpus. Candidate B's speech is equally substantive but accented and hesitant on one transition. B is ranked lower. The measurement is not noise — it is the signal the system was trained to find.
@@ -260,7 +260,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `192902221.the-chasm-between-training-a-model.html` | posts/192902221.the-chasm-between-training-a-model.html | https://northeasternise.substack.com/p/the-chasm-between-training-a-model
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Chasm Between Training a Model and Deploying It on Hardware' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Chasm Between Training a Model and Deploying It on Hardware' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: TINYML / EDGE DEPLOYMENT
 - Hook: A 10-megabyte TensorFlow model cannot "load" onto a microcontroller with 256 kilobytes of Flash. The engineer who trained it perfectly has no idea why their model just won't run.
 - Key case: A junior engineer sits with a trained CNN on a laptop and a Cortex-M4 development board on the desk, staring at the space between them. The model works. The hardware exists. There is no path from one to the other in anything they were taught.
@@ -285,7 +285,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `193184621.the-illusion-of-intelligence-what.html` | posts/193184621.the-illusion-of-intelligence-what.html | https://northeasternise.substack.com/p/the-illusion-of-intelligence-what
 - AUTHOR: Mridula Mahendran
-- LIAM CREDIT LINE: "Based on the essay 'The Illusion of Intelligence: What AI Can't Do, Can't Remember, and Can't Explain' by Mridula Mahendran, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Illusion of Intelligence: What AI Can't Do, Can't Remember, and Can't Explain' by Mridula Mahendran, for NortheasternISE / Humanitarians AI."
 - Topic: AI LITERACY
 - Hook: The AI confidently tells you something false. This is not a bug they forgot to fix — it's a fundamental property of how these systems work.
 - Key case: You ask an LLM to find five relevant academic papers. It produces a beautifully formatted bibliography with DOIs. You click the first link. The paper does not exist. The AI wasn't malfunctioning; it was doing exactly what it was designed to do.
@@ -310,7 +310,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `191804391.who-taught-the-machine-to-doubt-the.html` | posts/191804391.who-taught-the-machine-to-doubt-the.html | https://northeasternise.substack.com/p/who-taught-the-machine-to-doubt-the
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Who Taught the Machine to Doubt the World?' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Who Taught the Machine to Doubt the World?' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: DIGITAL TWINS / AI SYSTEMS
 - Hook: The sensor reads one thing. The digital twin predicts another. The system chooses the twin. The physical asset disagrees and loses.
 - Key case: An active digital twin in an industrial plant detects that a sensor is reading an anomalous temperature. Instead of triggering an alert, the model decides the sensor is faulty and dismisses it. The sensor was correct. The bearing overheats. No one was asked whether the model should have that authority.
@@ -335,7 +335,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `193897374.the-0001-token-when-machine-intelligence.html` | posts/193897374.the-0001-token-when-machine-intelligence.html | https://northeasternise.substack.com/p/the-0001-token-when-machine-intelligence
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The $0.001 Token: When Machine Intelligence Becomes a Persistent Infrastructure Cost' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The $0.001 Token: When Machine Intelligence Becomes a Persistent Infrastructure Cost' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: AI INFRASTRUCTURE ECONOMICS
 - Hook: In 2021, running a trillion-parameter model for one day cost $1 million. In 2026, it costs $10,000. In 2028, the prediction is $100. At some point you stop rationing AI thinking — and that changes everything.
 - Key case: NVIDIA's Rubin platform generates a token for $0.001. A full day of continuous AI agent reasoning costs $10,000 — economically impossible at GPT-3 era prices. The bottleneck was never the algorithm; it was moving terabytes of key-value cache between memory and compute. Rubin solves the plumbing, not the math.
@@ -360,7 +360,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `193216220.chapter-14-ethical-prompt-engineering.html` | posts/193216220.chapter-14-ethical-prompt-engineering.html | https://northeasternise.substack.com/p/chapter-14-ethical-prompt-engineering
 - AUTHOR: Abhinav Kumar Piyush
-- LIAM CREDIT LINE: "Based on the essay 'Chapter 14: Ethical Prompt Engineering — Power, Bias, and Responsibility' by Abhinav Kumar Piyush, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Chapter 14: Ethical Prompt Engineering — Power, Bias, and Responsibility' by Abhinav Kumar Piyush, for NortheasternISE / Humanitarians AI."
 - Topic: AI ETHICS / MULTI-AGENT BIAS
 - Hook: Five months. A healthcare AI processed 50,000 prior authorization requests. Then an epidemiologist noticed denial rates were 2.4x higher for one group. No single agent in the pipeline was biased. The pipeline was.
 - Key case: The ClaimFlow system (a three-agent insurance pipeline) denied prior auth at 2.4x the rate for patients whose physician narratives used safety-net hospital vernacular — shorter sentences, more abbreviations. Each agent passed a solo fairness audit. The bias emerged from stylistic signal amplification across three handoffs, not from any individual model.
@@ -385,7 +385,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `191524472.the-part-of-embedded-systems-nobody.html` | posts/191524472.the-part-of-embedded-systems-nobody.html | https://northeasternise.substack.com/p/the-part-of-embedded-systems-nobody
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Part of Embedded Systems Nobody Talks About' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Part of Embedded Systems Nobody Talks About' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: SYSTEMS SOFTWARE / SAFETY
 - Hook: At the firmware level, software does not fail gracefully. The airplane does not warn you. The medical device does not suggest a restart.
 - Key case: A paper proposes integrating C and Rust in ARM Cortex-M firmware. On the surface it's a technical document about calling conventions. Underneath it is asking something older: can you make a system safer without destroying what it is?
@@ -410,7 +410,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `193525516.were-teaching-engineers-to-do-the.html` | posts/193525516.were-teaching-engineers-to-do-the.html | https://northeasternise.substack.com/p/were-teaching-engineers-to-do-the
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'We're Teaching Engineers to Do the Wrong Things' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'We're Teaching Engineers to Do the Wrong Things' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: ENGINEERING EDUCATION
 - Hook: A junior mechanical engineer spends three years learning to hand-calculate stress concentrations. Their co-op employer's digital twin runs the same analysis in four seconds and suggests three optimized redesigns.
 - Key case: Boeing 737 MAX — not a code failure. The engineers designed the flight control component without understanding the larger system: the handover protocol between machine authority and human judgment under stress. 346 people died because engineering treated software as isolated when it was interdependent.
@@ -435,7 +435,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `193584451.arm-breaks-its-own-rules-why-the.html` | posts/193584451.arm-breaks-its-own-rules-why-the.html | https://northeasternise.substack.com/p/arm-breaks-its-own-rules-why-the
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Arm Breaks Its Own Rules: Why the AGI CPU Changes Everything' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Arm Breaks Its Own Rules: Why the AGI CPU Changes Everything' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: CHIP ARCHITECTURE / AI INFRASTRUCTURE
 - Hook: Arm spent 35 years designing chips but never manufacturing them. In April 2026, they announced a chip they will sell themselves — directly competing with the customers who license their designs.
 - Key case: On April 8, 2026, Arm announces the AGI CPU. Its customers — Apple, NVIDIA, Amazon — suddenly have Arm as a direct competitor in a product line specifically built for agentic AI systems that run 24/7. The business model that powered 99% of smartphones for three decades broke in one announcement.
@@ -460,7 +460,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `195585411.why-50-of-silicon-changes-who-controls.html` | posts/195585411.why-50-of-silicon-changes-who-controls.html | https://northeasternise.substack.com/p/why-50-of-silicon-changes-who-controls
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Why $50 of Silicon Changes Who Controls AI' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Why $50 of Silicon Changes Who Controls AI' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: EDGE AI / DECENTRALIZATION
 - Hook: A $10 microcontroller can now run keyword detection in real time. A $15 board runs object detection at 7 fps. A $40 used Android phone transcribes speech offline. The question is no longer whether AI can run at the edge — it's who loses power when it does.
 - Key case: Spotify's ghost-artist problem — AI-generated music flooding playlists to dilute royalty pools. The obvious solution was better platform moderation. But the real question is architectural: what if artists never needed the platform at all?
@@ -485,7 +485,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `196609930.factories-predict-when-machines-will.html` | posts/196609930.factories-predict-when-machines-will.html | https://northeasternise.substack.com/p/factories-predict-when-machines-will
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Factories Predict When Machines Will Fail. They Don't Apply the Same Logic to Workers.' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Factories Predict When Machines Will Fail. They Don't Apply the Same Logic to Workers.' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: PREDICTIVE MAINTENANCE / LABOR
 - Hook: A bearing in a textile mill recently announced it had six weeks to live — through vibration sensors too subtle for any human ear. The worker monitoring that bearing got no such warning before their shift was eliminated.
 - Key case: A single ball bearing's outer race defect generates pulses at a calculable frequency. AI trained on thousands of bearings flags it weeks before failure. Meanwhile, the same plant automates the monitoring role. One system gets a prognosis. The other gets a pink slip.
@@ -510,7 +510,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `196932077.why-your-office-building-burns-50000.html` | posts/196932077.why-your-office-building-burns-50000.html | https://northeasternise.substack.com/p/why-your-office-building-burns-50000
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Why Your Office Building Burns $50,000 on Empty Rooms' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Why Your Office Building Burns $50,000 on Empty Rooms' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: SMART BUILDINGS / IoT
 - Hook: A rooftop HVAC unit ran 34% above its rated power consumption for months. Nobody noticed — not because detection is hard, but because the inspection happens quarterly and leaks happen continuously.
 - Key case: A 15-building portfolio achieves 25% HVAC energy savings in one year from an AI platform. 40% of savings came from turning off systems running in zones confirmed empty. Nobody had checked. The schedule was programmed conservatively in 1985 and never revisited.
@@ -535,7 +535,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `190898197.the-price-of-a-vada-pav-what-currency.html` | posts/190898197.the-price-of-a-vada-pav-what-currency.html | https://northeasternise.substack.com/p/the-price-of-a-vada-pav-what-currency
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Price of a Vada Pav: What Currency Psychology Gets Wrong' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Price of a Vada Pav: What Currency Psychology Gets Wrong' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: PURCHASING POWER / ECONOMIC REASONING
 - Hook: Every Indian student arriving in Boston runs the same mental calculation: multiply every dollar by 83.5. A $12 sandwich becomes ₹1,002. The panic is real. The math is wrong.
 - Key case: A socio-economic report on the Mumbai-to-Boston migration corridor calculates an "Inflation Shock Factor" of 33.4 for the Vada Pav — a ₹30 street snack that costs $12 in Boston. The report treats this as a measure of immigrant fiscal disorientation. It is not. The correct multiplier, adjusted for income, is 8x.
@@ -560,7 +560,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `192912938.the-silent-failure-of-ai-research.html` | posts/192912938.the-silent-failure-of-ai-research.html | https://northeasternise.substack.com/p/the-silent-failure-of-ai-research
 - AUTHOR: Junyi Zhang and Nik Bear Brown
-- LIAM CREDIT LINE: "Based on the essay 'The Silent Failure of AI Research Tools' by Junyi Zhang and Nik Bear Brown, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Silent Failure of AI Research Tools' by Junyi Zhang and Nik Bear Brown, for NortheasternISE / Humanitarians AI."
 - Topic: AI RESEARCH TOOLS
 - Hook: You ask an LLM for five academic papers on your topic. It returns a beautifully formatted bibliography. You click the first link. The paper does not exist.
 - Key case: A researcher asks for papers on greedy algorithm optimization. The LLM returns a perfectly formatted bibliography with plausible titles, real-sounding author names, and DOI numbers — three of which are hallucinated. The fourth exists but is a survey paper. None are what the researcher needed.
@@ -585,7 +585,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `196841757.the-device-knows-before-you-do-why.html` | posts/196841757.the-device-knows-before-you-do-why.html | https://northeasternise.substack.com/p/the-device-knows-before-you-do-why
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Device Knows Before You Do: Why Edge AI Is Not Optional' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Device Knows Before You Do: Why Edge AI Is Not Optional' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: EDGE AI / REAL-TIME SYSTEMS
 - Hook: A self-driving car generates 1 gigabyte of sensor data per second. Sending it to the cloud for processing adds at least 500ms of latency. The collision avoidance system needs to respond in 100ms. The math is not close.
 - Key case: At highway speed, each additional 10ms of processing delay adds 0.3–0.5 meters of stopping distance. Cloud processing: 500–2000ms floor. On-device processing: 50ms. The difference is not performance — it's the viability of the use case.
@@ -610,7 +610,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `187983495.how-scientific-peer-review-actually.html` | posts/187983495.how-scientific-peer-review-actually.html | https://northeasternise.substack.com/p/how-scientific-peer-review-actually
 - AUTHOR: NortheasternISE (no individual byline recovered)
-- LIAM CREDIT LINE: "Based on the essay 'How Scientific Peer Review Actually Works' from NortheasternISE's Substack, for NortheasternISE / Humanitarians AI." — FLAG: no individual author recovered; human must confirm institutional attribution is acceptable or supply individual author name before build.
+- KORE CREDIT LINE: "Based on the essay 'How Scientific Peer Review Actually Works' from NortheasternISE's Substack, for NortheasternISE / Humanitarians AI." — FLAG: no individual author recovered; human must confirm institutional attribution is acceptable or supply individual author name before build.
 - Topic: SCIENTIFIC METHOD
 - Hook: You get back a review that says "Major revisions required" and you have no idea what they were actually looking for. Let me show you the machinery.
 - Key case: A submitted paper returns with a review so vague it could mean anything. But the review follows the inverted pyramid model — executive summary, major critiques, minor critiques — and each critique maps to exactly one of three tests: replicability, repeatability, or robustness. You just didn't know the rubric.
@@ -635,7 +635,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `199390485.why-counting-cars-is-harder-than.html` | posts/199390485.why-counting-cars-is-harder-than.html | https://northeasternise.substack.com/p/why-counting-cars-is-harder-than
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Why Counting Cars Is Harder Than It Looks' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Why Counting Cars Is Harder Than It Looks' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: IOT / STATE MACHINE DESIGN
 - Hook: One sensor can detect a car. It cannot tell you which way the car is going. Without direction, the counter is useless.
 - Key case: A student installs one ultrasonic sensor at a parking garage gate. It detects vehicles within 50cm perfectly. It has no idea whether they are entering or leaving. The occupancy count is random noise from day one.
@@ -660,7 +660,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `199687943.the-weapon-that-learns.html` | posts/199687943.the-weapon-that-learns.html | https://northeasternise.substack.com/p/the-weapon-that-learns
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Weapon That Learns' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Weapon That Learns' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: AI CYBERSECURITY
 - Hook: 94% of security executives say AI is the primary force reshaping cybersecurity. 87% of the same people say AI system vulnerabilities are their fastest-growing threat. They're afraid of the thing they're deploying.
 - Key case: Voice-based attacks surged 442% in the past year. 8.6 million unique malicious domain names registered in 2024 — an 81% annual increase. Generative models have compressed the threat lifecycle so completely that an attacker who once needed advanced coding expertise can now build polymorphic malware with a subscription.
@@ -685,7 +685,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `190655923.the-window-that-closes.html` | posts/190655923.the-window-that-closes.html | https://northeasternise.substack.com/p/the-window-that-closes
 - AUTHOR: Nik Bear Brown
-- LIAM CREDIT LINE: "Based on the essay 'The Window That Closes' by Nik Bear Brown, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Window That Closes' by Nik Bear Brown, for NortheasternISE / Humanitarians AI."
 - Topic: ALGORITHMIC ROUTING / MUSIC TECH
 - Hook: You released the song on a Friday. A playlist curator with 40,000 followers picked it up that weekend. The streams came in. But the saves were 2% — from the wrong audience. The algorithm filed the track as belonging nowhere. The damage is invisible in the stream count.
 - Key case: The Spotify "contamination window" — the first two to four weeks after release — shapes algorithmic routing for the track's entire lifecycle. A 500,000-follower playlist with 2% saves from an incoherent audience is categorically worse than a 5,000-follower playlist with 15% saves from a coherent taste community.
@@ -710,7 +710,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `190907170.knowing-enough-to-distrust-the-machine.html` | posts/190907170.knowing-enough-to-distrust-the-machine.html | https://northeasternise.substack.com/p/knowing-enough-to-distrust-the-machine
 - AUTHOR: NortheasternISE (no individual byline recovered — published under publication account)
-- LIAM CREDIT LINE: "Based on the essay 'Knowing Enough to Distrust the Machine' from NortheasternISE's Substack, for NortheasternISE / Humanitarians AI." — FLAG: no individual author recovered; human must confirm institutional attribution or supply individual author name before build.
+- KORE CREDIT LINE: "Based on the essay 'Knowing Enough to Distrust the Machine' from NortheasternISE's Substack, for NortheasternISE / Humanitarians AI." — FLAG: no individual author recovered; human must confirm institutional attribution or supply individual author name before build.
 - Topic: EDUCATION / AI LITERACY
 - Hook: A generation was taught to be slower, more expensive versions of machines that now fit in their pockets. The machines arrived. The students were not prepared for what that actually required.
 - Key case: A fast, accurate student who can retrieve facts and format work correctly encounters a problem in their second professional year — and freezes. Not because the problem is hard. Because they don't know what the problem is. The curriculum taught them to answer questions; the world now needs them to know which questions are worth asking.
@@ -735,7 +735,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `191068540.the-physical-world-isnt-programmable.html` | posts/191068540.the-physical-world-isnt-programmable.html | https://northeasternise.substack.com/p/the-physical-world-isnt-programmable
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Physical World Isn't Programmable' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Physical World Isn't Programmable' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: SYSTEMS ENGINEERING / EMBEDDED SYSTEMS
 - Hook: A 2026 trend analysis tells industrial engineering students that converging technologies are making the physical world "as programmable as software." Five real trends. One wrong conclusion.
 - Key case: Each of five embedded-systems trends (RISC-V, edge AI, battery-free sensors, digital twins, RTOS) is individually documented and real. The analysis then stacks them and asserts convergent transformation — without examining whether they interact, conflict, or create new failure modes when combined.
@@ -760,7 +760,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `197062057.why-your-factory-knows-its-about.html` | posts/197062057.why-your-factory-knows-its-about.html | https://northeasternise.substack.com/p/why-your-factory-knows-its-about
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'Why Your Factory Knows It's About to Break (Before You Do)' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'Why Your Factory Knows It's About to Break (Before You Do)' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: INDUSTRIAL AI / ANOMALY DETECTION
 - Hook: A bearing may increase vibration by 5 milliseconds per day. Over months, this signifies imminent failure — but at no single point does it cross a safety threshold until it disintegrates. Traditional monitoring stays silent until the smoke appears.
 - Key case: Static threshold monitoring sounds an alarm when metric X exceeds limit Y. But a CPU at 70% utilization might be normal Monday morning and catastrophic at 3 AM Saturday. Context-blind thresholds alarm unnecessarily during high-load periods and stay silent during slow degradations that precede actual failure.
@@ -785,7 +785,7 @@ for every essay card — these are student and faculty works published under the
 
 - Source: `200205874.the-body-in-the-loop.html` | posts/200205874.the-body-in-the-loop.html | https://northeasternise.substack.com/p/the-body-in-the-loop
 - AUTHOR: Aditi Shinde
-- LIAM CREDIT LINE: "Based on the essay 'The Body in the Loop' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
+- KORE CREDIT LINE: "Based on the essay 'The Body in the Loop' by Aditi Shinde, for NortheasternISE / Humanitarians AI."
 - Topic: HUMAN-AI INTERACTION
 - Hook: When researchers put physiological sensors on subjects to study driving safety, the subjects got so anxious from the equipment that they crashed. The intervention designed to measure danger created it.
 - Key case: Most AI systems treat the human as a preference engine — clicks, ratings, thumbs-up signals. Whether the user is panicking or calm, exhausted or alert, none of this enters the loop. The system responds to what you type, not to what is happening to you while you type it.

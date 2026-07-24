@@ -9,25 +9,25 @@
 
 | Beat | Timestamp | Check | Result |
 |------|-----------|-------|--------|
-| B00 | 1s | ClaudeComposerAsk — "Bonjour, Liam" + "Liam, in for Bear." + command + output | PASS |
+| B00 | 1s | ClaudeComposerAsk — "Bonjour, Kore" + "Kore, in for Humanitarians AI." + command + output | PASS |
 | B01 | 35s | SkillTeardownAnatomy — "Pragmatist register. Busy practitioners." + files | PASS |
 | B04 | 126s | ClaudeCodeBeat — SOURCE + PRAGMATIST REWRITE (method/when-to/when-NOT-to) | PASS |
 | B05 | 153s | SkillTeardownMechanism — quote "Required: when NOT to and where it fails" present | PASS |
 | B06 | 175s | SkillTeardownMechanism — "This the AI does well. This is the human's." | PASS |
 | BVDT | 218s | ClaudeVerdictArtifact — "Claude, Pragmatic." + 4 delivery lines | PASS |
-| BOUT | 238s | ClaudeTitleOutro — "Claude, Pragmatic." / @NikBearBrown / "Liam, in for Bear." | PASS |
+| BOUT | 238s | ClaudeTitleOutro — "Claude, Pragmatic." / @HumanitariansAI / "Kore, in for Humanitarians AI." | PASS |
 
 ## 9-point rubric
 
-1. **IN-FOR-BEAR LAW** — "Liam, in for Bear." in B00: PASS
+1. **IN-FOR-BEAR LAW** — "Kore, in for Humanitarians AI." in B00: PASS
 2. **ILLUSTRATE LAW** — 5 UI beats (B00/B03/BVDT/BHTF/BOUT) + 6 illustration beats: PASS
 3. **VERBATIM QUOTE LAW** — 3 quotes exact, cited once per figure: PASS
 4. **SELF-DEMO** — Phase 2 register rewrite; canonical + Pragmatist rewrite (method/when-to/when-NOT-to) shown in B04; free, no ElevenLabs: PASS
 5. **NO SLATES** — 11/11 filled: PASS
 6. **AUDIO FIRST** — all beats have measured actual_duration_s: PASS
-7. **FREE PIPELINE** — Kokoro am_onyx, $0.00: PASS
+7. **FREE PIPELINE** — Kokoro af_kore, $0.00: PASS
 8. **PALETTE** — cream/terracotta Claude palette throughout: PASS
-9. **BOUT** — "Claude, Pragmatic." / @NikBearBrown / "Liam, in for Bear.": PASS
+9. **BOUT** — "Claude, Pragmatic." / @HumanitariansAI / "Kore, in for Humanitarians AI.": PASS
 
 ## Issues
 

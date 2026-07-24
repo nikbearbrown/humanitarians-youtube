@@ -2,7 +2,6 @@
 
 Constitutional AI, alignment, evaluations, model behavior, model cards, interpretability, and policy context.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Behind The Model

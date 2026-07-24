@@ -1,7 +1,7 @@
 # PEDAGOGY audit — claude-liam-vercel-mcp ("Claude, Trusted.")
 
 ai-explainer (standard vox-style middle; NOT skill-teardown — source is a
-research prompt, not a SKILL.md). claude-liam, Kokoro am_onyx. Audited
+research prompt, not a SKILL.md). claude-liam, Kokoro af_kore. Audited
 against the ai-explainer house + frame laws.
 
 ## Act structure
@@ -12,8 +12,8 @@ against the ai-explainer house + frame laws.
   (BHTF) → outro (BOUT). 13 beats, matches the spine. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 ClaudeComposerAsk, ask answered. Liam self-introduces first breath
-  (IN-FOR-BEAR LAW). Greeting "Hej, Liam" (one word, lexicon; distinct
+- B00 ClaudeComposerAsk, ask answered. Kore self-introduces first breath
+  (IN-FOR-BEAR LAW). Greeting "Hej, Kore" (one word, lexicon; distinct
   from prior reels' Bonjour/Ciao/Hola/Namaste; Wagwan Bear-only, N/A). PASS
 
 ## Gap formula / hook

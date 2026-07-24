@@ -20,4 +20,4 @@ AI disclosure: the portrayals of Max Born (B01, B10) and Erwin Schrödinger (B03
 
 #physics #quantumMechanics #BornRule #waveFunction #scienceHistory
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

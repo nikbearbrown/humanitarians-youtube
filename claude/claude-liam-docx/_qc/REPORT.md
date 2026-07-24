@@ -8,7 +8,7 @@ Duration: 2:55 (175.1s) · 1280×720 · H264+AAC
 
 | Beat | Pattern | Canvas fill | Status |
 |---|---|---|---|
-| B00 | ClaudeComposerAsk | Clean — "Olá, Liam", terracotta accent, output lines | PASS |
+| B00 | ClaudeComposerAsk | Clean — "Olá, Kore", terracotta accent, output lines | PASS |
 | B01 | DocxAnatomy | TRIGGER callout + 2 path cards + 5 quick-ref rows. Fills ~76% | PASS |
 | B02 | DocxCreate | 5 rule cards with explicit RULE_H fill canvas to ~90% | PASS (fixed) |
 | B03 | DocxEdit | 3-step cards (STEP_H explicit) fill to ~80%, XML pitfalls right | PASS |

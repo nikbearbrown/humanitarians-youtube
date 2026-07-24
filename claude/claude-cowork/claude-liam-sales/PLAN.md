@@ -1,12 +1,12 @@
 # PLAN — Claude, Closing (Ch.5: The Sales Plugin)
 
-**Slug:** `claude-liam-sales` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-sales` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch05-sales.txt` · **One idea:** *The sales plugin meets you where you are — not built only for a big SaaS sales org with a Salesforce admin. It researches a prospect from public info, preps you for the conversation, tracks where deals stand, and drafts personalized follow-ups; configured with your process it stops being generic. A research-and-prep accelerator, not a closer — the relationship is still yours.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "Do I have to be a salesperson to use it?" → ask lands answered, Liam signs in ("Konnichiwa — this is Liam, in for Bear.")
+B00  COLD OPEN  ClaudeComposerAsk — "Do I have to be a salesperson to use it?" → ask lands answered, Kore signs in ("Konnichiwa — this is Kore, in for Humanitarians AI.")
 ACT I    Meets You Where You Are      audience, not just a SaaS sales org         (B01 PredictCard, B02 Manim range, B03 VOX)
 ACT II   What It Does                 five capabilities, mechanism by mechanism   (B04 ChipGrid, B05 SourceFlow, B06 Manim accumulate, B07 illustration, B08 Manim sort, B09 spark)
 ACT III  A Call, End to End           research → in-room → capture → follow-up    (B10 Onda code, B11 Manim assemble, B12–B13 VOX run R1, B14 Manim threshold)
@@ -15,7 +15,7 @@ ACT V    Configured, Not Generic      install → tell it 3 things → CRM optio
 ACT VI   Prep, Not a Closer           wins · admin · be present · keep data fresh (B21 Manim accumulate, B22 VOX, B23 ChipGrid, B24 VOX)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (+0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Closing. Liam, in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Closing. Kore, in for Humanitarians AI."
 ```
 
 ## Lane histogram (body beats only; bookends B00/V01/H01/O01 exempt)
@@ -53,5 +53,5 @@ Adjacency check: no run of >2 same-lane beats except inside vox run R1 (by contr
 ## Gates
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel corrections logged in SOURCES.md.
-3. **GATE P** — narration reviewed on an animated slate before any audio spend. Kokoro `am_onyx`, free. No ElevenLabs.
+3. **GATE P** — narration reviewed on an animated slate before any audio spend. Kokoro `af_kore`, free. No ElevenLabs.
 4. Audio lock (Kokoro) → align → **Gate D2** SHOPPING.md (vox stills, from LOCKED durations) → **Gate D1** slate previz → pantry fill → review cut → VISUAL QC → `art final`.

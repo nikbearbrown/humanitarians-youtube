@@ -6,7 +6,7 @@
 - Final: `vox-photoelectric-threshold.mp4`
 - Runtime: 150.15 seconds
 - Slots: 14/14 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B12 scratch-built/local Manim scene suite
 - QC: PASS after scientific-label and B11 layout corrections
 - Publishing: none

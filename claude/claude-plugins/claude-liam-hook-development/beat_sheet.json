@@ -3,18 +3,18 @@
     "title": "hook development",
     "slug": "claude-liam-hook-development",
     "topic": "HOOK DEVELOPMENT · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are building a Claude plugin that reacts to events. The hook development skill gives you two hook types — Prompt-Based and Command — and two places to put them: plugin hooks.json or the user settings file. The philosophy: hooks let your plugin intercept the session lifecycle, but the mechanisms differ in where they run, when they trigger, and how they fail. Let me walk you through the types, the events, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are building a Claude plugin that reacts to events. The hook development skill gives you two hook types — Prompt-Based and Command — and two places to put them: plugin hooks.json or the user settings file. The philosophy: hooks let your plugin intercept the session lifecycle, but the mechanisms differ in where they run, when they trigger, and how they fail. Let me walk you through the types, the events, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "HOOK DEVELOPMENT · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Add a hook that logs every file write to a JSON audit trail.",
@@ -51,7 +51,7 @@
               "Two config formats: plugin hooks.json · user settings direct format",
               "9 lifecycle events — prompt hooks only on 4 of them"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — hook types + config formats",
       "narration_text": "The skill gives you two hook types and two places to put them. Prompt-Based hooks are the recommended type — they send context to Claude, who decides what to do. The matcher is a list of tool names or patterns; the prompt field tells Claude how to respond; timeout defaults to thirty seconds. Command hooks are deterministic — they run a bash script, capture stdout and stderr, and use the exit code to decide whether to block. Exit zero means success and stdout goes into the transcript. Exit two means block — Claude sees the stderr message and stops. Any other exit code is non-blocking. Timeout defaults to sixty seconds. For portability, always use the CLAUDE_PLUGIN_ROOT environment variable in command paths rather than a hardcoded absolute path. The two config formats differ in structure. Plugin hooks dot json wraps everything: the top level has description and hooks, and inside hooks you put the event names. The settings direct format omits the wrapper — event names sit at the top level. The most common mistake is putting plugin-format JSON into settings or vice versa — the structure looks similar enough that the error is silent.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 40,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — events + execution model",
       "narration_text": "Nine lifecycle events are available. PreToolUse fires before any tool call — the right place for prompt hooks that validate inputs or ask Claude to reconsider. PostToolUse fires after — command hooks can log here, but prompt hooks are not supported on this event. Stop fires when Claude is about to stop — prompt hooks can add a final check or summary. SubagentStop is the same but for subagents. UserPromptSubmit fires when the user submits — prompt hooks can pre-process the input. SessionStart and SessionEnd are lifecycle events — command hooks only; use CLAUDE_ENV_FILE to persist variables between hooks at session start. PreCompact fires before context compression; Notification fires for system alerts — both command-only. Four execution rules matter. All matching hooks run in parallel — there is no ordering guarantee and hooks cannot see each other's output, so do not build logic that depends on hook sequencing. Hooks load at session start — there is no hot-swap; you must restart Claude after changing hooks.json. Matchers are case-sensitive: Write is not write. Security defaults: always quote bash variables, validate inputs, and deny path traversal and access to sensitive files like dot-env and private keys.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 42,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. Prompt-Based hooks as the recommended type is the correct call — they leverage Claude's judgment rather than brittle regex logic in bash. CLAUDE_PLUGIN_ROOT for command paths is the right portability pattern — hardcoded absolute paths break the moment the plugin moves to another machine. Exit code semantics are clear: zero, two, and other each have a distinct effect — this is the right level of specificity for a deterministic hook. The parallel execution model is documented — no ordering, no shared output — which prevents hook-sequencing bugs before they happen. Security patterns are named explicitly: quote bash variables, validate inputs, deny path traversal, keep sensitive files out of scope. Where it bites. Prompt hooks are the recommended type, but the skill does not state upfront that they only work on four of the nine events. A developer who reads the recommendation and then tries to add a prompt hook to PostToolUse will get silent failure — the hook simply won't run. The hot-swap restriction — hooks load at session start and cannot be reloaded — appears late in the skill and is easy to overlook. A developer spending twenty minutes tweaking hooks and wondering why nothing changes has hit this. Parallel execution is documented, but the implication is not spelled out: if you need hooks to collaborate — one hook's output feeding another — that is not possible. Each hook runs blind to the others. The two config formats look similar enough to confuse. Plugin hooks.json has a description wrapper; settings format does not — and the error is silent because malformed JSON is often still valid JSON in the other format. Matchers are case-sensitive, which is documented but easy to forget: Write and write are different matchers.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 55,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. hook development: two types — Prompt-Based, recommended, LLM-driven; Command, bash, deterministic. Two config formats — plugin hooks.json with description wrapper; settings direct, no wrapper. Nine events — PreToolUse, PostToolUse, Stop, SubagentStop, UserPromptSubmit, SessionStart, SessionEnd, PreCompact, Notification. Prompt hooks supported on four only: PreToolUse, Stop, SubagentStop, UserPromptSubmit. Execution model: all matching hooks run in parallel, no ordering, no shared output; hooks load at session start, no hot-swap. Exit codes: zero success, two blocking, other non-blocking. Gaps: prompt hooks not labeled as four-event only; hot-swap restriction easy to miss; parallel means no hook-to-hook collaboration; two formats silently confusable; matchers case-sensitive.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Give Claude a plugin that needs to log every Write tool call to a JSON file and block any Write to a dot-env file. Watch five things. First: does it use a Command hook or a Prompt-Based hook for the blocking case — and is that the right call for a deterministic check? Second: does it use CLAUDE_PLUGIN_ROOT in the command path, or does it hardcode an absolute path? Third: does it put the hook in the plugin hooks.json wrapper format, or does it accidentally use the flat settings format? Fourth: for the logging requirement — does it use PostToolUse, and if so does it realize prompt hooks won't work there? Fifth: after you change the hooks.json, does Claude remember to tell you to restart the session before testing?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: PostToolUse = command only for logging · restart reminder after change",
               "Red flag: hardcoded path · flat settings format · prompt hook on PostToolUse"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "hook development. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "hook development. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "hook development",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "hook development · Claude Plugins"
           },
           "rendered": {

@@ -17,4 +17,4 @@
 | B13 | DOCUMENT | own | Quote: "A coherent plan is not a safe plan. The format does not know the difference." |
 | B14 | CARD | own | Endcard: "A coherent plan is not a safe plan." / CLAUDE COWORK |
 | B15 | GRAPHIC | remotion | OutroSeries — Claude Cowork |
-| B16 | GRAPHIC | remotion | OutroCTA — @NikBearBrown |
+| B16 | GRAPHIC | remotion | OutroCTA — @HumanitariansAI |

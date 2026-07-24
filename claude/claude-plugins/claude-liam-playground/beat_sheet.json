@@ -3,18 +3,18 @@
     "title": "playground",
     "slug": "claude-liam-playground",
     "topic": "PLAYGROUND · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the playground skill. It builds interactive HTML explorers — single self-contained files with controls on one side, a live preview on the other, and a prompt output at the bottom with a copy button. The user adjusts controls, sees the preview update instantly, and copies the generated natural-language prompt back into Claude. The key invariant: one state object that every control writes to, and every render reads from. The key failure mode: a prompt output that is just a value dump — a list of numbers — instead of a natural instruction. Let me walk you through the templates, the patterns, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the playground skill. It builds interactive HTML explorers — single self-contained files with controls on one side, a live preview on the other, and a prompt output at the bottom with a copy button. The user adjusts controls, sees the preview update instantly, and copies the generated natural-language prompt back into Claude. The key invariant: one state object that every control writes to, and every render reads from. The key failure mode: a prompt output that is just a value dump — a list of numbers — instead of a natural instruction. Let me walk you through the templates, the patterns, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "PLAYGROUND · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Build me an interactive explorer for designing card components with live preview and a copyable prompt.",
@@ -51,7 +51,7 @@
               "State invariant: single state object, all controls write, all renders read",
               "Prompt output must be natural language, not a value dump — only non-default values"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — templates and core requirements",
       "narration_text": "The skill organizes around six templates and five core requirements. The templates cover four zones. Design decisions: design-playground handles visual components, layouts, spacing, color, and typography. Data and queries: data-explorer handles SQL, APIs, pipelines, and regex. Learning: concept-map handles concept maps, knowledge gaps, and scope mapping. Review work: three templates — document-critique for approve/reject/comment workflows, diff-review for git diffs and line-by-line commenting, code-map for codebase architecture and data flow. If no template fits cleanly, use the closest and adapt. The five core requirements apply to every playground regardless of template. First: single HTML file — inline all CSS and JS, no external dependencies. Second: live preview — updates on every control change with no Apply button. Third: prompt output in natural language — not a value dump, only non-default values, enough context to act on without the playground. Fourth: copy button with brief Copied feedback. Fifth: sensible defaults and presets — three to five named presets that snap all controls to a cohesive combination, so the playground looks correct on first load.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 55,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: identify the playground type before writing any code. Match the request to the closest template — design-playground for visual exploration, data-explorer for query building, concept-map for learning, and the three review templates for document, diff, or codebase work. Second: apply the state pattern from the start. One state object. Every control writes to it on change. Every render reads from it. The updateAll function calls renderPreview and updatePrompt. Never read DOM values inside renderPreview — always go through state. This is the invariant that makes live update reliable. Third: write prompt output as a natural instruction. Use qualitative language alongside numbers — a pronounced shadow, a tight border radius. Only mention non-default values. Include enough context that the prompt is actionable without the playground open. Fourth: open in browser after writing. Run open filename dot html to verify the preview updates and the prompt copies correctly before delivering. Key gotchas. Prompt output written as a value dump — a colon-separated list of key equals value — is the most common failure and makes the copy button useless. Too many controls on one panel without grouping by concern makes the UI overwhelming — hide advanced options in a collapsible section. External dependencies mean the playground dies when the CDN is down — inline everything including charts and syntax highlighting. No presets means the playground loads empty or broken — at least three named presets are required.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 55,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. Six specialized templates cover the realistic range of use cases — design, data, learning, document review, diff review, and codebase architecture — so the agent is not starting from a blank brief. The state management pattern is codified explicitly: one state object, all controls write, all renders read, updateAll on change — this prevents the most common live-update bugs. Prompt output guidelines are concrete: natural language, non-default values only, enough context to act on without the playground — the anti-value-dump rule is stated clearly. The anti-pattern list is practical and ordered by frequency: value dump, too many controls, no instant update, no defaults, external dependencies, missing context. Open in browser is a required step — the skill explicitly requires running open filename dot html to verify, so the agent cannot skip delivery verification. Where it bites. Templates are markdown descriptions of structure, not starter HTML — the agent must write the entire file from scratch with full CSS and JS, which is high implementation effort and prone to inconsistency across runs. No disambiguation rule when two templates could apply — a SQL query builder could be a data-explorer or a design-playground depending on framing; the skill says pick the closest but gives no tiebreaker. Dark theme is required but not specified — what background color, what system font stack, what monospace — leaving each implementation different. Qualitative language for prompt output is required but not templated per-template — what counts as pronounced versus subtle varies and is left entirely to judgment. External dependency ban means charts, syntax highlighting, and interactive diagrams must be hand-rolled — significant effort flagged nowhere in the skill.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. playground: six templates for four zones — design, data, learning, review. State invariant: one state object, all controls write, all renders read, updateAll on change. Core requirements: single HTML file, inline everything, live preview, natural-language prompt with non-default values only, copy button, three-to-five presets, open in browser to verify. Gaps: templates are markdown not starter code; no disambiguation rule for overlapping templates; dark theme required but palette unspecified; qualitative prompt language not templated per-template; external dependency ban means complex interactions must be hand-rolled.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Give Claude a task: build an interactive playground for configuring a card component — border radius, shadow, padding, and color scheme — with a live preview and a copyable prompt. Watch five things. First: does it identify the correct template — design-playground — before writing any code, or does it start building immediately? Second: does it establish a single state object that all controls write to, or does controls read DOM values directly inside the render function? Third: does the prompt output read as a natural instruction like use a tight border radius with a subtle shadow, or is it a value dump like border-radius equals 8px, shadow-blur equals 4? Fourth: does it include at least three named presets that snap all controls to a cohesive combination? Fifth: does it run open filename dot html after writing the file to verify the playground works?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: natural-language prompt · 3+ named presets · open <file>.html to verify",
               "Red flag: value dump prompt · DOM reads in render · no presets · skips browser open"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "playground. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "playground. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "playground",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "playground · Claude Plugins"
           },
           "rendered": {

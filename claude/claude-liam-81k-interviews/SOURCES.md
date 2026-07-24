@@ -56,7 +56,7 @@ All four quotes in B03, B05, B07, B09 are verbatim from the Anthropic study appe
 
 ## Build
 
-- Voice: Kokoro am_onyx (Liam, in for Bear)
+- Voice: Kokoro af_kore (Kore, in for Humanitarians AI)
 - Scenes: 8 new Remotion scenes built 2026-07-16
 - Audio: $0.00 (Kokoro, free/local)
 - No paid spend. No publishing. Human review required before any post.

@@ -171,7 +171,7 @@ export const CoworkScheduleBeat: React.FC<{ sparkLine: string }> = ({ sparkLine 
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}>
       <ClaudeWindow {...claudeWindowSchema.parse({
         view: 'composer', width: 640, height: 460, fontSize: 13,
-        greeting: sparkLine, folderLabel: '@NikBearBrown',
+        greeting: sparkLine, folderLabel: '@HumanitariansAI',
         command: '4pm daily: review exit tickets, adapt tomorrow’s plan',
         delay: 0, typeSpeed: 1,
       })} />

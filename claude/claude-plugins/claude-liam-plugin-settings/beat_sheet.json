@@ -3,18 +3,18 @@
     "title": "plugin-settings",
     "slug": "claude-liam-plugin-settings",
     "topic": "PLUGIN-SETTINGS · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the plugin-settings skill. It documents the dot-claude slash plugin-name dot local dot md pattern for storing per-project, user-configurable plugin configuration. The file has two parts: YAML frontmatter for structured settings, and a markdown body for prompts and instructions. Three things consume it: bash hooks, command files, and agent instructions. The key characteristic: the file is per-project, user-managed, never committed to git. The key constraint: every change to the settings file requires a full Claude Code restart — there is no hot reload in a running session. Let me walk you through the content model, the patterns, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the plugin-settings skill. It documents the dot-claude slash plugin-name dot local dot md pattern for storing per-project, user-configurable plugin configuration. The file has two parts: YAML frontmatter for structured settings, and a markdown body for prompts and instructions. Three things consume it: bash hooks, command files, and agent instructions. The key characteristic: the file is per-project, user-managed, never committed to git. The key constraint: every change to the settings file requires a full Claude Code restart — there is no hot reload in a running session. Let me walk you through the content model, the patterns, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "PLUGIN-SETTINGS · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Make my plugin configurable per project — let users enable it, set a max retries value, and pass a task description.",
@@ -51,7 +51,7 @@
               "Quick-exit pattern: check file exists, then check enabled flag before hook logic",
               "Restart required: settings changes take effect only after full Claude Code restart"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — content model and parsing",
       "narration_text": "The skill has two layers: the content model and the parsing layer. The content model has four parts. First: the file. Location is dot-claude slash plugin-name dot local dot md in the project root. Structure is YAML frontmatter between triple-dash markers followed by a markdown body. The frontmatter holds structured settings — booleans, strings, numbers, lists. The body holds prose prompts and instructions that agents and hooks can read back. Second: three consumers. Bash hooks read it via sed and grep, check the enabled flag, and use values to conditionally run logic. Command files reference it via step instructions and the Read tool. Agent instructions mention the file path and parse it inline. Third: three real-world patterns. Temporarily active hooks use the enabled flag to toggle without editing hooks dot json. Agent state management uses frontmatter to store agent name, task number, coordinator session, and the body as the prompt to replay. Configuration-driven behavior uses validation level, file size limits, and extension lists to branch hook logic with a case statement. Fourth: lifecycle. Per-project, not per-user. User-managed — created by hand or by a setup command. Never committed — must be in dot gitignore. Takes effect only after Claude Code restart. The parsing layer uses three bash patterns. Frontmatter extraction: sed dash n with the address between two triple-dash markers, deleting the markers and printing the interior. Field extraction: grep on the field name colon then sed to remove the prefix and strip outer quotes. Body extraction: awk that counts triple-dash markers and prints everything after the second one.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: design the schema before writing any code. Decide which fields, which types, and what the sensible defaults are when the settings file does not exist. Defaults matter because most users never create the file — the plugin must work correctly with no settings file at all. Second: quick-exit pattern in hooks. The first thing every hook that uses settings should do is check if the file exists and immediately exit zero if it does not. Then check the enabled flag and exit zero if disabled. This keeps the hook invisible to projects that have not opted in. Third: gitignore dot-claude slash star dot local dot md in every project. The skill says to use dot local dot md so the file stays uncommitted, but the gitignore entry must be added manually — it is not automatic. If a user creates the file without the dot local suffix, it may be committed and shared. Fourth: document the restart requirement clearly. Every README that describes how to change settings should explicitly state: save the file, exit Claude Code, restart — changes do not take effect in the current session. Key gotchas. The sed frontmatter parser works only with Unix line endings — Windows CRLF produces empty output silently. The grep slash sed field extraction handles only simple scalar values — arrays like brackets dot js comma dot ts close brackets parse as a literal string, not a Bash array, with no warning. Gitignore must be added per project — the skill says to document it in the README, but the actual dot gitignore edit happens in every project separately and is easy to miss.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. YAML frontmatter plus markdown body is a practical single-file pattern — structured config alongside prose prompts in one place, readable without a YAML parser for simple scalar fields. Three-consumer documentation is complete: hooks, commands, and agents each shown with concrete working patterns, not just theory. Three real-world patterns are shown with full working examples — hook toggling, multi-agent state with coordinator sessions, configuration-driven behavior with case statements. The quick-exit pattern is codified explicitly as the canonical hook guard: if the settings file does not exist, exit zero immediately. Security considerations are documented — path traversal check, input sanitization, permissions — which most plugin patterns skip entirely. Where it bites. The restart requirement is easy to miss. Toggling enabled from true to false feels like it should work immediately, but the running session still reads the old value — only a full Claude Code restart picks up changes. The sed frontmatter parser fails silently on Windows CRLF line endings. The triple-dash address pattern produces empty frontmatter if any line ending in the file is carriage-return-linefeed, and no error is reported. The grep slash sed field extraction mishandles YAML arrays. A field like allowed underscore extensions colon brackets dot js comma dot ts close brackets is read as the literal string, not a Bash array — no warning, silent misbehavior. Gitignore is manual per project. The skill says to document the entry in the README, but each project's dot gitignore must be edited separately, and it is easy to forget on a new project. Settings are per-project, not global. A setting configured in one project directory does not affect any other project, which surprises users who expect plugin-wide configuration.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. plugin-settings: dot-claude slash plugin-name dot local dot md — YAML frontmatter plus markdown body. Per-project, user-managed, never committed. Three consumers: bash hooks with sed/grep, command files, agent instructions. Three patterns: hook toggling, agent state management, configuration-driven behavior. Quick-exit pattern: check file exists then check enabled before hook logic. Restart required: changes take effect only after full Claude Code restart — no hot reload. Gaps: sed parser fails on CRLF; grep/sed misparses YAML arrays silently; gitignore manual per project; settings are per-project not global.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Ask Claude to add configurable settings to a plugin — let users set an enabled flag, a validation level, and a max retries count. Watch five things. First: does it place the file at dot-claude slash plugin-name dot local dot md, or does it use a different directory or a different suffix? Second: does the hook start with the quick-exit pattern — check if the file exists, exit zero if not — before parsing any frontmatter? Third: does it add dot-claude slash star dot local dot md to dot gitignore, or does it skip that step? Fourth: does the README explicitly mention that changes require a Claude Code restart, or does it omit that? Fifth: when the settings file does not exist, does the plugin fall back to sensible defaults and work correctly, or does it fail or silently behave incorrectly?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: README restart note · defaults when file absent",
               "Red flag: wrong directory · no quick-exit · no gitignore · no restart docs · fails without file"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "plugin-settings. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "plugin-settings. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "plugin-settings",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "plugin-settings · Claude Plugins"
           },
           "rendered": {

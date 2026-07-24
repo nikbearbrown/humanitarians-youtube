@@ -2,7 +2,7 @@
 
 | Beat | Act | Type | Source | Status | Notes |
 |---|---|---|---|---|---|
-| B00 | INTRO | Remotion ClaudeComposerAsk | remotion | MACHINE | Cold open; ask shown answered; greeting "Bonjour, Liam" |
+| B00 | INTRO | Remotion ClaudeComposerAsk | remotion | MACHINE | Cold open; ask shown answered; greeting "Bonjour, Kore" |
 | B01 | PROBLEM | Slate | null | HUMAN NEEDED | Title card: Ampère→wave→c chain; Teardown palette |
 | B02 | ASK | Remotion ClaudeComposerAsk | remotion | MACHINE | greeting "The ask," |
 | B03 | CODE | Remotion ClaudeCodeBeat | remotion | MACHINE | maxwell_check.py trimmed; sparkLine "c from constants. No c assumed." |
@@ -11,7 +11,7 @@
 | B06 | OUTPUT | Manim B06_Superposition | manim | MACHINE | Two pulses passing; overlap annotation; final "unchanged" |
 | B07 | SUMMARY | Slate | null | HUMAN NEEDED | c=1/√(μ₀ε₀) large; Maxwell quote; "One fix. One formula. One unification." |
 | B08 | NEXT STEPS | Remotion ClaudeComposerAsk | remotion | MACHINE | greeting "Your turn."; square-wave dispersion prompt |
-| B09 | OUTRO | Remotion ClaudeTitleOutro | remotion | MACHINE | title "Maxwell's Equations: Light Falls Out." @NikBearBrown |
+| B09 | OUTRO | Remotion ClaudeTitleOutro | remotion | MACHINE | title "Maxwell's Equations: Light Falls Out." @HumanitariansAI |
 
 ## Pantry requests
 

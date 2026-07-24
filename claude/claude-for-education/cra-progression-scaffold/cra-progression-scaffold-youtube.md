@@ -7,4 +7,4 @@ Every claim in this video was fact-checked against the source chapter and primar
 
 ##TeacherPD ##CRAMath ##FractionTeaching ##Scaffolding ##K12Teachers
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

@@ -18,4 +18,4 @@
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Strictly, experiments observe transition frequencies between levels, not isolated horizont |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Your turn. Divide the n-equals-two fine-structure interval, four-point-five times ten to t |
 | B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | The ratio is about ten-point-two. So the Lamb split needs roughly ten times more energy re |
-| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | Three Zooms Into Hydrogen's n=2 Levels. Liam, in for Bear. |
+| B15 | ✅ filled | ai-video-prompt | human | `manim/B15.mp4` | Three Zooms Into Hydrogen's n=2 Levels. Kore, in for Humanitarians AI. |

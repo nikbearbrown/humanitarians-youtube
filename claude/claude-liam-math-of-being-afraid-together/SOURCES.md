@@ -29,8 +29,8 @@ All claims, statistics, and the TPI equation in this video are drawn directly fr
 
 ## Build info
 
-- Voice: Kokoro am_onyx (free, local)
-- Channel: claude-liam / @NikBearBrown
+- Voice: Kokoro af_kore (free, local)
+- Channel: claude-liam / @HumanitariansAI
 - Built: 2026-07-16
 - Total runtime: ~3:52 (232s)
 - Cost: $0.00 (Kokoro, no ElevenLabs)

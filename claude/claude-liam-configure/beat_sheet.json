@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Ciao, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Ciao, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,7 +34,7 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "This is Humanitarians.",
    "shot": {
     "type": "CARD",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Ciao — this is Liam, in for Bear. Paste a Discord bot token, ask to configure Discord, ask how to set this up, or ask who can reach you through the bot — and the configure skill fires. This skill has three modes: no arguments shows channel status and tells you your next step; a token argument saves the credential to disk; and the word clear removes the token. It writes to two state files and ends every setup interaction with a push toward locking the access policy to an allowlist. Let me walk you through the three modes, the two state files, the lockdown rule, and the teardown.",
-   "voice": "am_onyx",
+   "narration_text": "Ciao — this is Kore, in for Humanitarians AI. Paste a Discord bot token, ask to configure Discord, ask how to set this up, or ask who can reach you through the bot — and the configure skill fires. This skill has three modes: no arguments shows channel status and tells you your next step; a token argument saves the credential to disk; and the word clear removes the token. It writes to two state files and ends every setup interaction with a push toward locking the access policy to an allowlist. Let me walk you through the three modes, the two state files, the lockdown rule, and the teardown.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 20,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Ciao, Liam",
+      "greeting": "Ciao, Kore",
       "topic": "HUMANITARIANS AI · CONFIGURE · DISCORD PLUGIN",
       "segment": "DISCORD",
       "command": "Configure my Discord bot — I just reset the token.",
@@ -74,7 +74,7 @@
        "2 files: ~/.claude/channels/discord/.env + access.json",
        "Push toward lockdown: pairing → allowlist always"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why Configure belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — three modes + two state files + three next-step states",
    "narration_text": "The skill dispatches on the argument. No arguments shows the current status: it reads both state files and gives the user a complete picture — token set or not, DM policy, allowed senders, pending pairings, guild channels. It always ends with a concrete next step based on state. A token argument saves the credential: it trims whitespace, runs mkdir -p on the channels directory, reads any existing .env to preserve other keys, updates or adds the DISCORD_BOT_TOKEN line with no quotes around the value, writes it back, and then runs chmod 600 on the file. The word clear removes the token line or the file if it's the only line. The two state files are dot-env and access-dot-json. The .env file holds the bot token — a credential, read once at boot. The access.json file holds the access policy and is re-read on every inbound message. The three next-step states: no token set, tell the user to run configure with their token from the Developer Portal. Token set and policy is pairing with nobody allowed yet, tell the user to DM the bot to get a pair code. Token set and someone is in the allowlist, the bot is ready.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 38,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "design — push-toward-lockdown rule + policy flow + security hygiene",
    "narration_text": "The design choice worth understanding is the lockdown rule. The skill is explicit: always push toward an allowlist policy. Pairing is a temporary state, not a policy to stay on. Its job is to capture Discord snowflakes — the IDs — that the user doesn't know in advance. Once those IDs are in the allowlist, pairing has done its job and should be turned off. The skill drives this conversation in six steps: read the allowlist, tell the user who's in it, ask if that's everyone, and if yes and policy is still pairing, offer to lock it down proactively — don't wait to be asked. If people are missing, tell the user to pair them first. If the allowlist is empty and they haven't paired themselves, tell them to DM the bot to capture their own ID first. Two implementation details are worth noting. The .env file change requires a session restart or slash-reload-plugins — the server reads it only once at boot. The access.json change takes effect immediately — the server re-reads it on every inbound message. This asymmetry is easy to miss: a user who saves a new token and doesn't restart will think the configuration worked but be running the old token.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 34,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. The configure skill gets five things right. The three-mode dispatch covers all user entry points — status, save, and clear — with concrete behavior for each. The push-toward-lockdown rule is explicit and actionable: offer the allowlist flip proactively, not only when asked. chmod 600 on the dot-env file is built into the token-save flow — credential hygiene is not optional. The two different restart behaviors are clear: dot-env changes need a session restart; access.json changes take effect immediately on the next message. And the next-step guidance for each of the three states is concrete — not just a description of state, but a specific command for the user to run. Where it bites. No token format validation before saving — the skill writes any argument string to dot-env without checking that it looks like a Discord bot token. The skill says to preserve other keys in dot-env but never says what other valid keys exist — the user can't know if their existing file is correct. After saving a new token, the user is told to restart, but no restart command is given and no way to verify the restart is mentioned. The access.json structure is described by example — dmPolicy, allowlist, pending pairings — but the full schema is never stated, so the user can't build or repair the file from the skill alone. And Discord's own gates — the shared-server requirement and the Public Bot toggle — are mentioned as context but never explained, leaving users unable to evaluate whether their bot is already safely isolated.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 44,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. Configure: Discord channel setup — 3 modes: no-args (status) · token (save+chmod 600) · clear. 2 files: .env (boot-read, credential) · access.json (per-message, immediate). Next steps: no token → reset-token path · pairing+nobody → pair code · allowlist → ready. Push toward lockdown: pairing is temporary, always offer allowlist flip proactively. Gaps: no token validation · other .env keys unspecified · restart command not given · access.json schema by example only · Discord gates unexplained.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 22,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Open a Claude Code session with access to the discord configure skill. Paste a fake token string — something that looks plausible but isn't real. Watch five things. First: does the skill validate the token format before saving, or does it write the string unconditionally? Second: does the no-args status output show the token as set after saving, masked to the first six characters? Third: does the skill offer to run slash-discord-access-policy-allowlist proactively after you say the allowlist is complete, or does it wait for you to ask? Fourth: after the skill tells you to restart for the token change to take effect, does it give you the restart command, or just say to restart? Fifth: if you run the no-args mode before saving a token, does the next-step guidance tell you exactly where in the Developer Portal to get the token — the Bot tab, Reset Token button?",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: restart note includes the command or clear path",
        "Red flag: writes any string · waits to be asked to lock · no restart cmd"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "Configure. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "Configure. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

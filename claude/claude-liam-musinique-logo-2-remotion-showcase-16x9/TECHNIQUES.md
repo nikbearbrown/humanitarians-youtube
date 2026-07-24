@@ -4,7 +4,7 @@ Reel: claude-liam-musinique-logo-2-remotion-showcase-16x9
 Duration: 3:45.9 (225.9s, 6777 frames @ 30fps)
 Rendered: 2026-07-16
 Subject: logos/musinique-logo-2.svg (viewBox 0 0 2048 2048, 1 path element, 73 subpaths)
-Channel: claude-liam · @NikBearBrown · Kokoro am_onyx · Teardown register
+Channel: claude-liam · @HumanitariansAI · Kokoro af_kore · Teardown register
 
 | Beat | Technique | Start | Duration | Scene file | Keep/Kill |
 |------|-----------|-------|----------|------------|-----------|

@@ -8,7 +8,7 @@
 
 | Beat | Timestamp | Check |
 |------|-----------|-------|
-| B00 | 17s | ClaudeComposerAsk — "Shalom, Liam" greeting, settings command, 3 output lines. Clean. |
+| B00 | 17s | ClaudeComposerAsk — "Shalom, Kore" greeting, settings command, 3 output lines. Clean. |
 | B01 | 66s | PluginSettingsAnatomy — file location tree + YAML/body structure boxes + 3 consumer cards (HOOKS green, COMMANDS/AGENTS gray). All elements present. |
 | B02 | 125s | PluginSettingsPatterns — parsing box with sed/awk code + CAVEAT callout (terracotta) + 3 pattern cards. Readable. |
 | B05 | 191s | PluginSettingsTell — standard teardown, 5+5 cards, callout box, spark line. Canvas fill good. |

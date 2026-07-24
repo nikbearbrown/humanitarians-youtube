@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-shot-planner
 # "Claude, Routing." | shot-planner skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 172.7s
+# Built: 2026-07-18 | Kokoro af_kore | 172.7s
 
 ## Standalone rebuild instructions
 

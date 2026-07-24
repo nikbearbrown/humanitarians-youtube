@@ -1,12 +1,12 @@
 # PLAN — Claude, In Order (Ch.3: The Productivity Plugin)
 
-**Slug:** `claude-liam-productivity` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-productivity` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch03-productivity.txt` · **One idea:** *The productivity plugin is the generalist of the collection — it specializes in YOU (task tracking, meeting prep, email triage, note synthesis), works immediately out of the box with no connections, gets sharper the more Claude knows about how you work, and is the foundation layer most people keep on permanently under their domain plugins.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "Which plugin should I turn on first?" → ask lands answered ("The productivity plugin"), Liam signs in
+B00  COLD OPEN  ClaudeComposerAsk — "Which plugin should I turn on first?" → ask lands answered ("The productivity plugin"), Kore signs in
 ACT I    The Generalist        others pick a domain; this picks you        (C01, B01 PredictCard, B02 Manim divergence, B03 orbits illustration)
 ACT II   What It Does          the five moves + the one caution            (C02, B04 ChipGrid, B05 talk→structured, B06 VOX note-synthesis, B07 spark)
 ACT III  Out of the Box        zero setup; calendar is optional            (C03, B08 install→live, B09 Manim threshold, B10 connect-flow)
@@ -15,7 +15,7 @@ ACT V    It Learns You         adopts your method; compounds; global instr.  (C0
 ACT VI   The Foundation Layer  base under the specialists; never turned off  (C06, B21 LayerStack, B22 Manim base-holds, B23 VOX tidy-desk, B24 Manim operating-system)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (+0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — first-person multi-part prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, In Order." + "Liam, in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, In Order." + "Kore, in for Humanitarians AI."
 ```
 
 Acts are 4–8 beats each (Act IV is the 8-beat max, the workflow act the reel exists for). Every act opens with a Title-Case SegmentCard.
@@ -62,7 +62,7 @@ Other VOX beats (B06, B11, B17, B23) are standalone — hard cut in, hard cut ou
 
 1. **Plan** (this doc) — approve the act map + lane histogram + vox run.
 2. **Factcheck** — inherits book-level FACTCHECK.md; per-reel corrections in SOURCES.md.
-3. **GATE P** — full narration (B00 → O01) reviewed on an animated slate before ANY audio spend. Channel claude-liam (Kokoro `am_onyx`, free — no ElevenLabs).
+3. **GATE P** — full narration (B00 → O01) reviewed on an animated slate before ANY audio spend. Channel claude-liam (Kokoro `af_kore`, free — no ElevenLabs).
 4. **Audio lock** (Kokoro) → align (word clock).
 5. **Gate D2** — tier-0 library pass (`pantry_search.py` per vox still), then write `SHOPPING.md` from LOCKED durations (6 VOX stills, all Tier 1).
 6. **Gate D1 previz** — full-length compile, slates in vox slots, Manim/Remotion rendered for real, `--review` burn-in.

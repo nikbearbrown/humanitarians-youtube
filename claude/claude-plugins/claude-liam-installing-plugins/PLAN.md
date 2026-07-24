@@ -1,12 +1,12 @@
 # PLAN — Claude, Configured (Ch.2: Installing and Customizing Plugins)
 
-**Slug:** `claude-liam-installing-plugins` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-installing-plugins` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch02-installing-customizing.txt` · **One idea:** *Installing a plugin is trivial — browse, click, done; the leverage is CUSTOMIZING it — teaching the plugin your voice, your process, your terms in a plain-language conversation until generic defaults become output built for your business.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "Installing is easy. So where's the actual work?" → ask lands answered, Liam signs in
+B00  COLD OPEN  ClaudeComposerAsk — "Installing is easy. So where's the actual work?" → ask lands answered, Kore signs in
 ACT I    Installing Is Easy       browse → click → ready → capabilities appear → upload    (C01, B01 REM grid, B02 Manim accumulate, B03 ChipGrid, B04 vox)
 ACT II   Making It Yours          defaults are generic → customize is a CONVERSATION       (C02, B05 Manim divergence, B06 REM transform, B07 Manim loop, B08 vox)
 ACT III  A Real Customization     the marketing session: your business → tuned output      (C03, B09 REM Q&A, B10–B11 VOX run R1, B12 ChipGrid, B13 Manim divergence)
@@ -14,7 +14,7 @@ ACT IV   Connecting Your Tools    self-contained vs connected; authorize, option
 ACT V    Living With Them         disable-preserves · updates · two-or-three · local · test (C05, B18 Manim toggle, B19 REM growth, B20 Manim scale, B21 vox, B22 Onda code, B23 spark)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (+0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Configured. Liam, in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, Configured. Kore, in for Humanitarians AI."
 ```
 
 ## Lane histogram (body beats only; bookends B00/V01/H01/O01 exempt)
@@ -52,7 +52,7 @@ No lane runs >2 consecutive (the only 2-in-a-row is the sanctioned vox run R1, B
 ## Gates
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel notes in SOURCES.md.
-3. **GATE P** — full narration (B00 → O01) reviewed on an animated slate before any audio. Channel claude-liam: Kokoro am_onyx, free. No ElevenLabs.
+3. **GATE P** — full narration (B00 → O01) reviewed on an animated slate before any audio. Channel claude-liam: Kokoro af_kore, free. No ElevenLabs.
 4. Audio lock (Kokoro) → align writes the word clock.
 5. **Gate D2** — tier-0 library pass (`pantry_search.py`) per VOX still (B04, B08, B10, B11, B17, B21), then SHOPPING.md from the LOCKED durations.
 6. **Gate D1** — full-length SLATE PREVIZ (`art run`): slates in vox slots, Manim/Remotion rendered for real, `--review` burn-in.

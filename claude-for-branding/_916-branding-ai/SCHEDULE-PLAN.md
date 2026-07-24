@@ -2,7 +2,7 @@
 ## Schedule Plan — DO NOT ACT — planning only
 
 Generated: 2026-07-18  
-Source channel: @NikBearBrown (UCg0cw2ouRhQ8dr114yGp0mA)  
+Source channel: @HumanitariansAI (UCg0cw2ouRhQ8dr114yGp0mA)  
 Latest scheduled post: 2026-07-18T08:22:04Z (`sleeper-agents-safety-training-fails::short`)  
 First Short publishAt: 2026-07-18T09:22:04Z (latest scheduled + 1h), then +1h each.
 
@@ -158,7 +158,7 @@ if it exceeds 175s, cut BHTF (37.6s) → ~140s.
 
 ## Publishing Schedule (COMPUTE ONLY — no uploads)
 
-Playlist: "Shorts" on @NikBearBrown (created if missing).  
+Playlist: "Shorts" on @HumanitariansAI (created if missing).  
 Schedule law: latest scheduled + 1h = 2026-07-18T09:22:04Z for slot 1; then
 +1h per video.
 

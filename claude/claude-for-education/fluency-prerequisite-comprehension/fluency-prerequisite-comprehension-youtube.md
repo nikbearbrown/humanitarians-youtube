@@ -7,4 +7,4 @@ Every claim in this video was fact-checked against the source chapter and primar
 
 ##TeacherPD ##ReadingFluency ##WorkingMemory ##ReadingScience ##K12Teachers
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

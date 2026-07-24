@@ -12,7 +12,7 @@ Pedagogy audit against the SLATE-RUNNER checklist. Written before audio credits 
 | How | B09–B11 | ✓ — beat_sheet.json heart, fill-in, request cards |
 | Demo | B12–B13 | ✓ — ./setup capability check, three commands |
 | Close | B14 | ✓ — playlist rail as proof-of-concept |
-| Outro / CTA | B99 | ✓ — brutalist.art · @NikBearBrown |
+| Outro / CTA | B99 | ✓ — brutalist.art · @HumanitariansAI |
 
 Act structure: **PASS**
 

@@ -3,7 +3,7 @@
 - Master: `vox-anomalous-zeeman-corrected.mp4`
 - Probe: 198.96 seconds, 1920×1080, 24 fps
 - Fill: 15/15 beats; no slates
-- Voice: Kokoro `am_onyx`; Liam explicitly in for Bear; cost $0.00
+- Voice: Kokoro `af_kore`; Kore explicitly in for Humanitarians AI; cost $0.00
 - Visual inspection: final contact sheet read after correction pass; zero blocker and zero major defects
 
 ## Fix made during QC
@@ -21,4 +21,4 @@
 - Weak, intermediate, and Paschen–Back regimes distinguished.
 - Your Turn values `7.72×10^-5 eV`, `3.86×10^-5 eV`, ratio 2 shown.
 
-The native dark title outro is intentional and visibly carries the correct title plus “Liam, in for Bear”; the automated Claude-outro warning is non-blocking after inspection.
+The native dark title outro is intentional and visibly carries the correct title plus “Kore, in for Humanitarians AI”; the automated Claude-outro warning is non-blocking after inspection.

@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-logo
 # "Claude, Stung." | logo skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 254.0s
+# Built: 2026-07-18 | Kokoro af_kore | 254.0s
 
 ## Standalone rebuild instructions
 

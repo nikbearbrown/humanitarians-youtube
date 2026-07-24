@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Jambo, Liam" in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Jambo, Kore" in B00 cold open | PASS |
 | 8 | Self-demo shows real scan_book.py output (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "SCOUT · SKILL TEARDOWN" / "Jambo, Liam" / "Liam, in for Bear." — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "SCOUT · SKILL TEARDOWN" / "Jambo, Kore" / "Kore, in for Humanitarians AI." — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "Cards. Not films." — 4 files, callout "video-ideas.md / one file, per book, ranked". PASS
 - **B02** SkillTeardownPipeline: "Scan → detect → filter → card." — 5 phases, footer note. PASS
 - **B03** ClaudeComposerAsk: scan_book.py command on organic-chemistry. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "The card is the handoff." — stop-at-card quote + verdictLabel "STOP AT THE CARD". PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Scouting." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct scout command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Scouting." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Scouting." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

@@ -13,15 +13,15 @@ Key facts cited:
 
 ## Channel
 
-- **Channel**: claude-liam (@NikBearBrown)
-- **Persona**: Liam, in for Bear
-- **Voice**: Kokoro am_onyx (free, local — no ElevenLabs spend)
+- **Channel**: claude-liam (@HumanitariansAI)
+- **Persona**: Kore, in for Humanitarians AI
+- **Voice**: Kokoro af_kore (free, local — no ElevenLabs spend)
 - **Register**: Teardown (Feynman × MKBHD)
 
 ## Build
 
 - Beat sheet: `beat_sheet.json`
-- Audio: Kokoro am_onyx, generated via `generate_audio_kokoro.py`
+- Audio: Kokoro af_kore, generated via `generate_audio_kokoro.py`
 - Scenes: SycGradientSpectrum (B01), SycCurriculumStages (B02), SycWatcherWatched (B04)
 - Standard: ClaudeComposerAsk (B00, B05), ClaudeWindow (B03), ClaudeTitleOutro (B06)
 - Compiled: `claude-liam-sycophancy-to-subterfuge.mp4`

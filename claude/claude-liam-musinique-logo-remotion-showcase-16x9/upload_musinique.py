@@ -42,7 +42,7 @@ A technique-showcase reel animating the Musinique mark 20 different ways — 16:
 3:30 Your Turn
 3:39 Outro
 
-Built with Remotion 4.x · 47 individually-driven SVG paths · Kokoro am_onyx voice · Claude fidelity skin.
+Built with Remotion 4.x · 47 individually-driven SVG paths · Kokoro af_kore voice · Claude fidelity skin.
 
 #Remotion #MotionDesign #LogoAnimation #Musinique #Brutalist
 """

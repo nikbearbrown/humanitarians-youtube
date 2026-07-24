@@ -79,5 +79,5 @@ class B14_Answer(Scene):
 
 class B15_CorrectTitleOutro(Scene):
     def construct(self):
-        self.camera.background_color="#201F1C"; title=Text("Ammonia Inversion: The Molecule That Tunnels Through Itself",font=DISPLAY,font_size=29,color="#F2EFE8"); credit=Text("Liam, in for Bear",font=SERIF,font_size=20,color="#D97757").next_to(title,DOWN,buff=.45)
+        self.camera.background_color="#201F1C"; title=Text("Ammonia Inversion: The Molecule That Tunnels Through Itself",font=DISPLAY,font_size=29,color="#F2EFE8"); credit=Text("Kore, in for Humanitarians AI",font=SERIF,font_size=20,color="#D97757").next_to(title,DOWN,buff=.45)
         self.play(FadeIn(title),FadeIn(credit),run_time=1); hold(self,"B15")

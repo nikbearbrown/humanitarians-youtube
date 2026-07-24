@@ -1,6 +1,6 @@
 # PEDAGOGY audit — claude-liam-a8-00-the-map ("Before You Build: The Map")
 
-ai-explainer (pragmatist register — how-to orientation). claude-liam, Kokoro am_onyx.
+ai-explainer (pragmatist register — how-to orientation). claude-liam, Kokoro af_kore.
 Episode E0 of the "Ship It" series (INFO 7375 Assignment 8). Audited against
 ai-explainer house + frame laws.
 
@@ -9,7 +9,7 @@ ai-explainer house + frame laws.
   handoff (BHTF) → outro (BOUT). 6 beats. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 is ClaudeComposerAsk. Liam self-introduces ("Hola — this is Liam").
+- B00 is ClaudeComposerAsk. Kore self-introduces ("Hola — this is Kore").
   Output lines enumerate the six deliverables and the A6/A7 source. PASS
 
 ## Gap formula / hook

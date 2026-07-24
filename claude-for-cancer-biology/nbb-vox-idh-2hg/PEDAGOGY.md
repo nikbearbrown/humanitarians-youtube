@@ -6,7 +6,7 @@ This document covers only the NEW wrapper beats: NBB00 (cold open), NBB01 (verdi
 
 ## Cold Open (NBB00)
 
-- Liam introduces himself as in for Bear per the IN-FOR-BEAR LAW.
+- Kore introduces himself as in for Humanitarians AI per the IN-FOR-BEAR LAW.
 - The central question ("Why does a metabolic enzyme mutation produce an epigenetic block to differentiation?") frames the body accurately.
 - "Can you explain it, Bear?" hands off cleanly to the locked body.
 - Duration: 8.7s — within the 6–10s specification.
@@ -30,7 +30,7 @@ This document covers only the NEW wrapper beats: NBB00 (cold open), NBB01 (verdi
 
 - Restates the episode title.
 - Subline derived from the verdict: "Poison by resemblance."
-- Handle: @NikBearBrown. Correct.
+- Handle: @HumanitariansAI. Correct.
 
 ## Learning Arc
 

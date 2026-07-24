@@ -61,5 +61,5 @@ moving against each other as the technique being demonstrated.
 - Outlined SVG: `logos/HUMANITARIANS-AI-wordmark.outlined.svg`
 - Full composition: `runtime/remotion/src/HaiWordmarkShowcase16x9.tsx`
 - Timing JSON: `runtime/remotion/src/hai-wordmark-timing.json` (reused from 9:16)
-- Audio: `runtime/remotion/public/hai-wordmark-mp3/` (Kokoro am_onyx, 21 beats — reused)
+- Audio: `runtime/remotion/public/hai-wordmark-mp3/` (Kokoro af_kore, 21 beats — reused)
 - Source 9:16 composition: `runtime/remotion/src/HaiWordmarkShowcase.tsx`

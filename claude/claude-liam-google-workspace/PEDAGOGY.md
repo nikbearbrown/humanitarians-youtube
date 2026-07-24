@@ -1,7 +1,7 @@
 # PEDAGOGY audit — claude-liam-google-workspace ("Claude, Grounded.")
 
 ai-explainer (standard vox-style middle; NOT skill-teardown — source is a
-research prompt, not a SKILL.md). claude-liam, Kokoro am_onyx. Audited
+research prompt, not a SKILL.md). claude-liam, Kokoro af_kore. Audited
 against the ai-explainer house + frame laws.
 
 ## Act structure
@@ -12,8 +12,8 @@ against the ai-explainer house + frame laws.
   matches the spine. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 ClaudeComposerAsk, ask answered (output shows the split). Liam
-  self-introduces first breath (IN-FOR-BEAR LAW). Greeting "Namaste, Liam"
+- B00 ClaudeComposerAsk, ask answered (output shows the split). Kore
+  self-introduces first breath (IN-FOR-BEAR LAW). Greeting "Namaste, Kore"
   (one word, lexicon; distinct from prior reels' Bonjour/Ciao/Hola;
   Wagwan Bear-only, N/A). PASS
 

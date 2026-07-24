@@ -29,11 +29,11 @@ FACTCHECK.md (books/anthropics/books/claude-cowork-plugins/FACTCHECK.md). Then:
 
 3. GATE P. Present the full narration (B00 → O01) on an animated slate for my
    sign-off. Do NOT generate audio until I approve. Channel is claude-liam:
-   Kokoro am_onyx, free. No ElevenLabs. Confirm the two hard-limit caveats land as
+   Kokoro af_kore, free. No ElevenLabs. Confirm the two hard-limit caveats land as
    their own acts — "screening tool, not a lawyer" (Act III) and "accelerator, not a
    CFO" (Act V) — and that no plugin count, price, or platform list appears anywhere.
 
-4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/am_onyx).
+4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/af_kore).
    Per-beat mp3 durations become the clock; align writes the word clock. Captions
    via the faster-whisper pipeline.
 

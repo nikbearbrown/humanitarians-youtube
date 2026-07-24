@@ -24,12 +24,12 @@ only verification authority.
      audio generation.
    - Hard rules that bind this episode: no imagery of Lamis Mukta (Tier 3);
      no product names or CTAs in narration; all vox stills Tier 1 generic,
-     source "ai"; one terracotta accent per beat; logo bug @NikBearBrown
+     source "ai"; one terracotta accent per beat; logo bug @HumanitariansAI
      lower-right every beat.
 
 2. AUDIO (Kokoro only — Onyx)
    - `python3 runtime/scripts/generate_audio_kokoro.py youtube/claude-liam-context-dreaming`
-   - Voice: am_onyx. B42 keeps its 0.5 s lead silence.
+   - Voice: af_kore. B42 keeps its 0.5 s lead silence.
    - Audio lock: measured per-beat mp3 durations become the clock; run the
      align step so the word clock exists (reveals land ON the spoken word —
      B03 underline on "multiplying", B20 "optimistic locking" label, B33

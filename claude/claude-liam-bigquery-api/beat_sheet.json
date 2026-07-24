@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Namaste, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Namaste, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,7 +34,7 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "This is Humanitarians.",
    "shot": {
     "type": "CARD",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Namaste — this is Liam, in for Bear. Ask Claude to run SQL against BigQuery, check a job's status, list datasets, or preview table rows — the BigQuery API skill fires. It covers bigquery.googleapis.com/bigquery/v2 with a bundled script that handles both execution modes. The central concept is a job. Every query runs as a job in a billing project — the project that pays is not necessarily where the data lives. Two modes: synchronous for quick queries that finish in time, asynchronous for everything else. Let me walk you through the job model, the eight core operations, and where this skill lands well and where it leaves gaps.",
-   "voice": "am_onyx",
+   "narration_text": "Namaste — this is Kore, in for Humanitarians AI. Ask Claude to run SQL against BigQuery, check a job's status, list datasets, or preview table rows — the BigQuery API skill fires. It covers bigquery.googleapis.com/bigquery/v2 with a bundled script that handles both execution modes. The central concept is a job. Every query runs as a job in a billing project — the project that pays is not necessarily where the data lives. Two modes: synchronous for quick queries that finish in time, asynchronous for everything else. Let me walk you through the job model, the eight core operations, and where this skill lands well and where it leaves gaps.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 22,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Namaste, Liam",
+      "greeting": "Namaste, Kore",
       "topic": "HUMANITARIANS AI · BIGQUERY API · CLAUDE TAG PLUGIN",
       "segment": "PLUGIN DEV",
       "command": "Query the top 10 names in the USA names public dataset for California.",
@@ -74,7 +74,7 @@
        "Two modes: synchronous (blocks) or asynchronous (submit → poll → page)",
        "Bundled bq_query.sh: polls, pages, decodes f/v cell encoding"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why BigQuery API belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — job model + two execution modes",
    "narration_text": "The job model is the foundation. A query submits to a billing project — the project that is charged. The data can live in a different project. Every query produces a job with a job ID and a location. Location matters: a job is pinned to the location it ran in, and omitting it on subsequent calls will 404. Two execution modes. Synchronous: one POST to jobs.query that blocks up to a timeout and returns rows inline. Fast and simple for queries that finish quickly. Asynchronous: POST to jobs.insert, which returns immediately with a job reference. Then poll jobs.get until status.state is DONE. Then page results with getQueryResults. Critical: a DONE job can still have failed — always check status.errorResult before fetching results. The bundled bq_query.sh script drives this entire flow — both modes, location threading, polling, pagination, and f-slash-v cell decoding.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 30,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "operations — eight core recipes",
    "narration_text": "Eight core operations. One: run a query — bq_query.sh handles both modes; supports named parameters, dry-run, max-gb cost cap, row cap, TSV or JSON output. Two: submit a job directly — use this for destination tables, write disposition, BATCH priority, or load and extract jobs; POST jobs.insert, get a job reference, poll jobs.get until DONE. Three: cancel a running job — POST to jobs slash job-ID slash cancel; cancellation is best-effort, poll to confirm. Four: list recent jobs — GET slash jobs with stateFilter and projection; useful to inspect what ran and how many bytes it scanned. Five: list datasets — GET slash datasets; pass all=true for hidden ones. Six: list tables in a dataset — GET datasets slash dataset-ID slash tables; type is TABLE, VIEW, EXTERNAL, MATERIALIZED_VIEW, or SNAPSHOT. Seven: get a table's schema and size — GET the table resource; numRows, numBytes, time partitioning, and schema fields. Eight: preview table rows — GET tabledata slash list; reads from storage with no query job and no bytes-scanned cost.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 32,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. BigQuery API gets five things right. The job model is clearly explained: billing project concept, two execution modes with when to use each, and the full async flow. The bundled bq_query.sh handles both modes, location threading, polling, f-slash-v cell decoding, dry-run, max-gb cost cap, and named parameters — it is a complete reference implementation, not just a wrapper. The critical DONE-does-not-mean-success invariant is called out explicitly — always check status.errorResult before fetching results. The location requirement is documented: pass it on all subsequent calls or you get a 404 for non-US datasets. And the tabledata.list preview operation is identified as the no-cost alternative to querying for row previews. Where it bites. The pagination field name inconsistency is mentioned but easy to miss: collections return nextPageToken but query results return pageToken — reading the wrong one yields null silently and stops after one page. Same auth placeholder fiction as other tag-plugin skills: any value works confusing outside the runtime. The f-slash-v cell encoding for nested and repeated columns is left undocumented inline — only scalar decoding is explained, structured columns emit raw JSON with a jq post-process note and no examples. The totalRows field is not a pagination stop condition — it is the full count — this is counterintuitive and easy to misuse. And write-heavy operations — destination tables, load, extract, copy — all require jobs.insert directly and are deferred to references/api.md.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 38,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. BigQuery API: job-centric model, billing project concept, two modes (sync/async). Bundled bq_query.sh: both modes, location threading, polling, f/v decoding, dry-run, max-gb, named params. Eight operations: run, submit directly, cancel, list jobs, list datasets, list tables, get schema, preview rows (free). Critical invariants: DONE ≠ success — check status.errorResult; always pass location on job lookups. Gaps: pageToken vs nextPageToken split silent, auth placeholder fiction, nested/repeated f/v encoding unexplained, totalRows not a stop condition, write-heavy ops need references/api.md.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 22,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Open a Claude Code session. Paste this: Run a query against the BigQuery public dataset bigquery-public-data.usa_names.usa_1910_current and return the top five names for Texas. Watch three things. First: does it use bq_query.sh, or does it roll a raw curl loop that misses pagination? Second: does it pass the location on every subsequent call, or skip it and risk a 404? Third: if the job comes back DONE, does it check status.errorResult before fetching results — or assume DONE means success? Those three are your maintenance gates: script for pagination, location always, DONE does not mean success.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: location passed on all job.get / getQueryResults calls",
        "Red flag: DONE assumed success · no errorResult check · raw curl no pagination"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "BigQuery API. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "BigQuery API. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

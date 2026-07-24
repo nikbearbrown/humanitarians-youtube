@@ -31,10 +31,10 @@ Date: 2026-07-16
 
 ### Voice compliance
 
-- [x] All voiced beats: am_onyx (Kokoro)
-- [x] B00 cold-open uses voice am_onyx
-- [x] B_CLI uses am_onyx
-- [x] B_OUTRO uses am_onyx
+- [x] All voiced beats: af_kore (Kokoro)
+- [x] B00 cold-open uses voice af_kore
+- [x] B_CLI uses af_kore
+- [x] B_OUTRO uses af_kore
 
 ### CLI exercise compliance (B_CLI)
 

@@ -39,7 +39,7 @@ and re-run compile.py to upgrade them from slates to VIDEO slots.
 ## Note on HAI B04 slow-motion warning
 
 compile.py issued a WARNING that B04 Manim clip (6.5s) was slowed 3.2x to fill the 20.4s beat.
-This is expected: the HAI B04 narration is longer than Liam's. If the extreme slow-motion is
+This is expected: the HAI B04 narration is longer than Kore's. If the extreme slow-motion is
 visually unacceptable, add narration-synced Manim render by re-running scenes.py with
 updated timing, or drop a new B04.mp4 into pantry/.
 
@@ -49,4 +49,4 @@ Previous build used MedhavyConceptCard (B00–B06), B_CLI terminal card, OutroCT
 9 beats, no Manim simulations, no Claude UI beats. Replaced with correct 10-beat Claude-explainer
 structure matching claude-liam-who-was-max-planck. Manim files copied from canonical.
 Remotion beats re-rendered with HAI persona (greeting "Hallo, HAI", folderLabel "@HumanitariansAI").
-Audio regenerated with am_onyx voice in Pragmatist register narration.
+Audio regenerated with af_kore voice in Pragmatist register narration.

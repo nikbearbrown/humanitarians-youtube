@@ -19,4 +19,4 @@ Free for verified U.S. K-12 educators · FERPA DPA · your data never trains the
 
 #Claude #ClaudeForTeachers #K12 #AIinEducation #Teachers #MCP #LearningCommons #Anthropic #NikBearBrown
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

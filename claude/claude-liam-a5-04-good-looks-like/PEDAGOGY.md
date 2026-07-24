@@ -1,6 +1,6 @@
 # PEDAGOGY audit — claude-liam-a5-04-good-looks-like ("What Good Looks Like")
 
-ai-explainer, claude-liam, Kokoro am_onyx. Pragmatist register.
+ai-explainer, claude-liam, Kokoro af_kore. Pragmatist register.
 Source: INFO 7375 Assignment 5 brief, Part 4 (12 pts).
 
 ## Act structure
@@ -9,7 +9,7 @@ Source: INFO 7375 Assignment 5 brief, Part 4 (12 pts).
   → handoff (BHTF) → outro (BOUT). 8 beats. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 is ClaudeComposerAsk. Liam introduces in first breath. "Hola, Liam."
+- B00 is ClaudeComposerAsk. Kore introduces in first breath. "Hola, Kore."
   Explains why 4 and 5 are separate. Output previews the four gate levels. PASS
 
 ## Gap formula / hook

@@ -68,17 +68,17 @@
 ### B_LIAM — Cold Open
 
 **Narration:**
-"Vanakkam, Liam — this is Liam, in for Bear. A siRNA drug silenced its target ninety percent in a dish. In a mouse, it did almost nothing. The team looked for a better target for months — but they were diagnosing the wrong failure. The drug was reaching the cell. Then the cell was eating it alive. Can you explain it, Bear?"
+"Vanakkam, Kore — this is Kore, in for Humanitarians AI. A siRNA drug silenced its target ninety percent in a dish. In a mouse, it did almost nothing. The team looked for a better target for months — but they were diagnosing the wrong failure. The drug was reaching the cell. Then the cell was eating it alive. Can you explain it, Bear?"
 
 | Field | Value |
 |---|---|
-| Voice engine | Kokoro `am_onyx` |
+| Voice engine | Kokoro `af_kore` |
 | Audio path | `mp3/beat-B_LIAM.mp3` |
 | Audio duration | 16.70s |
 | Visual | ClaudeComposerAsk (Remotion) |
 | Visual path | `media/B_LIAM.mp4` |
 | Wrapper clip | `wrapper-clips/clip-B_LIAM.mp4` (16.708s, 1280x720, h264/yuv420p) |
-| Greeting | "Vanakkam, Liam" (Tamil hello) |
+| Greeting | "Vanakkam, Kore" (Tamil hello) |
 
 ### B_VERDICT — Verdict
 
@@ -86,7 +86,7 @@
 
 | Field | Value |
 |---|---|
-| Voice engine | Kokoro `am_onyx` |
+| Voice engine | Kokoro `af_kore` |
 | Audio path | `mp3/beat-B_VERDICT.mp3` |
 | Audio duration | 52.93s |
 | Visual | ClaudeVerdictArtifact (Remotion) — 4 artifact lines |
@@ -101,7 +101,7 @@
 
 | Field | Value |
 |---|---|
-| Voice engine | Kokoro `am_onyx` |
+| Voice engine | Kokoro `af_kore` |
 | Audio path | `mp3/beat-B_YOUR_TURN.mp3` |
 | Audio duration | 4.84s |
 | Visual | ClaudeComposerAsk (Remotion) — greeting: "Your turn.", runningText: "paste this into Claude…" |
@@ -115,7 +115,7 @@
 | Voice | Silent (5.0s silence generated) |
 | Audio path | `mp3/beat-B_OUTRO.mp3` |
 | Audio duration | 5.00s |
-| Visual | ClaudeTitleOutro — title: "The pH-Triggered Lock That Lets RNA Drugs Escape the Cell's Trash", handle: "@NikBearBrown", subline: "neutral in blood, cationic in the endosome — that charge flip is the drug" |
+| Visual | ClaudeTitleOutro — title: "The pH-Triggered Lock That Lets RNA Drugs Escape the Cell's Trash", handle: "@HumanitariansAI", subline: "neutral in blood, cationic in the endosome — that charge flip is the drug" |
 | Visual path | `media/B_OUTRO.mp4` |
 | Wrapper clip | `wrapper-clips/clip-B_OUTRO.mp4` (5.000s, 1280x720, h264/yuv420p) |
 
@@ -125,13 +125,13 @@
 
 **Structure:**
 ```
-B_LIAM cold open (16.708s) — Liam/Kokoro am_onyx + ClaudeComposerAsk
+B_LIAM cold open (16.708s) — Kore/Kokoro af_kore + ClaudeComposerAsk
 ↓
 Body B01–B11 (185.917s) — stream-copy locked, all original audio and visuals preserved
 ↓
-B_VERDICT (52.958s) — Liam/Kokoro am_onyx + ClaudeVerdictArtifact
+B_VERDICT (52.958s) — Kore/Kokoro af_kore + ClaudeVerdictArtifact
 ↓
-B_YOUR_TURN (4.875s) — Liam/Kokoro am_onyx + ClaudeComposerAsk "Your turn."
+B_YOUR_TURN (4.875s) — Kore/Kokoro af_kore + ClaudeComposerAsk "Your turn."
 ↓
 B_OUTRO (5.000s) — silent + ClaudeTitleOutro
 ```
@@ -186,13 +186,13 @@ All wrapper narration is sourced from the body's beat narrations and the source 
 `/Users/bear/Documents/CoWork/bear-textbooks/books/cancer-nanomedicine/youtube/nbb-vox-endosomal-escape/QC-sheet.png`
 
 7 frames:
-1. Cold open (5s) — ClaudeComposerAsk, "Vanakkam, Liam", question visible
+1. Cold open (5s) — ClaudeComposerAsk, "Vanakkam, Kore", question visible
 2. Body first beat (18s) — B01 title card, CANCER NANOMEDICINE
 3. Body mid beat (90s) — B05 pH drop Manim graphic, ENDOSOME, proton pumps
 4. Body last beat (185s) — B10 quote card, "A vehicle with a pH-sensitive lock..."
 5. Verdict (215s) — ClaudeVerdictArtifact card loading
 6. Your turn (255s) — ClaudeVerdictArtifact fully rendered with all 4 lines visible
-7. Outro (262s) — ClaudeTitleOutro, title, @NikBearBrown, subline
+7. Outro (262s) — ClaudeTitleOutro, title, @HumanitariansAI, subline
 
 **Body-to-verdict transition:** No old outro content detected in frames 4 and 5. Frame 4 (185s) shows B10 quote card; frame 5 (215s) shows ClaudeVerdictArtifact. The OutroSeries/OutroCTA from B12/B13 do not appear.
 
@@ -202,12 +202,12 @@ All wrapper narration is sourced from the body's beat narrations and the source 
 
 | Beat | Engine | Voice field | ElevenLabs called |
 |---|---|---|---|
-| B_LIAM | kokoro | `"voice": "am_onyx"` | NO |
-| B_VERDICT | kokoro | `"voice": "am_onyx"` | NO |
-| B_YOUR_TURN | kokoro | `"voice": "am_onyx"` | NO |
+| B_LIAM | kokoro | `"voice": "af_kore"` | NO |
+| B_VERDICT | kokoro | `"voice": "af_kore"` | NO |
+| B_YOUR_TURN | kokoro | `"voice": "af_kore"` | NO |
 | B_OUTRO | silence | n/a | NO |
 
-**VOICE RULE PASS: No ElevenLabs was called at any point. All new wrapper audio uses Liam, Kokoro am_onyx via `b.get("voice")`.**
+**VOICE RULE PASS: No ElevenLabs was called at any point. All new wrapper audio uses Kore, Kokoro af_kore via `b.get("voice")`.**
 
 ---
 

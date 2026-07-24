@@ -14,7 +14,7 @@
 | B05 | 231s | PASS | PlaygroundTell — 5 GETS RIGHT / 5 WHERE IT BITES, callout with ! icon |
 | BVDT | 298s | PASS | ClaudeVerdictArtifact — 6-line verdict, all key content present |
 | BHTF | 339s | PASS | ClaudeComposerAsk handoff — Your Turn prompt, Watch/Expected/Red flag rows |
-| BOUT | 364s | PASS | ClaudeTitleOutro — playground. @NikBearBrown playground · Claude Plugins |
+| BOUT | 364s | PASS | ClaudeTitleOutro — playground. @HumanitariansAI playground · Claude Plugins |
 
 ## Warnings
 

@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_17_4s.png | B00 cold open | ClaudeComposerAsk: "Merhaba, Liam", command visible, 3 output lines, @NikBearBrown |
+| frame_17_4s.png | B00 cold open | ClaudeComposerAsk: "Merhaba, Kore", command visible, 3 output lines, @HumanitariansAI |
 | frame_66_7s.png | B01 anatomy | BuildMcpbAnatomy: bundle tree (left, green border) + 4 manifest sections (right, color-coded), no-auto-prefix warning callout visible, spark line |
 | frame_132_7s.png | B02 pipeline | BuildMcpbPipeline: USE MCPB (green) / USE REMOTE HTTP (terracotta) two-column + 3-step Node pipeline + 3 security invariants rows, spark line |
 | frame_207_0s.png | B05 teardown | BuildMcpbTell: 5+5 teardown columns, callout overlaps row 5 (accepted batch pattern), spark line |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Merhaba, Liam" (rotation #32)
+- Greeting: "Merhaba, Kore" (rotation #32)
 - New scenes: BuildMcpbAnatomy.tsx (B01), BuildMcpbPipeline.tsx (B02), BuildMcpbTell.tsx (B05)
 - B01 design: bundle tree structure (left, green) + 4 manifest key sections (right, color-coded) + no-auto-prefix warning
 - B02 design: USE MCPB / USE REMOTE HTTP gate + 3-step Node build pipeline + 3 security invariants

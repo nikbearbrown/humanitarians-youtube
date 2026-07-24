@@ -1,12 +1,12 @@
 # PLAN — Claude, In Concert (Ch.13: Combining Plugins)
 
-**Slug:** `claude-liam-combining-plugins` · **Channel:** claude-liam (Liam, Kokoro `am_onyx`, free) · **Register:** Teardown
+**Slug:** `claude-liam-combining-plugins` · **Channel:** claude-liam (Kore, Kokoro `af_kore`, free) · **Register:** Teardown
 **Source:** `chapters/ch13-combining-plugins.txt` · **One idea:** *The real power isn't one plugin, it's a stack — research feeds marketing, data feeds product, sales feeds finance; combining plugins gives a solo operator the coordinated coverage of a whole team, as long as you keep each hand-off intentional.*
 
 ## Act map (spine)
 
 ```
-B00  COLD OPEN  ClaudeComposerAsk — "If I install several plugins, do I have to tell Claude which one?" → ask lands answered ("No — Claude reaches for whatever fits"), Liam signs in "Sawubona — this is Liam, in for Bear."
+B00  COLD OPEN  ClaudeComposerAsk — "If I install several plugins, do I have to tell Claude which one?" → ask lands answered ("No — Claude reaches for whatever fits"), Kore signs in "Sawubona — this is Kore, in for Humanitarians AI."
 ACT I    How a Stack Works           infer-from-context, route, span-both, be-explicit    (B01 LayerStack, B02 Manim branch, B03 Manim accumulate, B04 VOX, B05 ChipGrid)
 ACT II   Research Feeds Marketing     survey landscape → build into the gaps               (B06 SourceFlow, B07 Manim accumulate, B08 VOX, B09 contrast)
 ACT III  Research Feeds Sales         meeting prep → tactical brief                         (B10–B11 VOX run R1, B12 Manim branch, B13 contrast)
@@ -15,7 +15,7 @@ ACT V    Deal Preparation             sales + legal stack on a contract         
 ACT VI   Keep the Hand-off Intentional  four habits + custom-plugin + notice the gaps       (B23 ChipGrid, B24 Manim accumulate, B25 VOX, B26 spark)
 V01  VERDICT   ClaudeVerdictArtifact — "Let's recap with Claude." (0.5s lead)
 H01  YOUR TURN ClaudeComposerAsk "Your turn." — prompt read aloud + discussed
-O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, In Concert." + sign-off "Liam — in for Bear."
+O01  OUTRO     ClaudeTitleOutro — title re-read "Claude, In Concert." + sign-off "Kore — in for Humanitarians AI."
 ```
 
 ## Lane histogram (body beats only; bookends exempt)
@@ -52,5 +52,5 @@ Lint: no lane runs >2 consecutive outside the vox run; vox share inside 20–25%
 ## Gates
 1. Plan (this doc) — **approve**.
 2. Factcheck — inherits whole-book FACTCHECK.md; per-reel corrections in SOURCES.md.
-3. **GATE P** — narration reviewed on an animated slate before any audio spend (Kokoro `am_onyx`, free; no ElevenLabs).
+3. **GATE P** — narration reviewed on an animated slate before any audio spend (Kokoro `af_kore`, free; no ElevenLabs).
 4. Audio lock (Kokoro) → align → **SHOPPING.md** (7 vox stills, after audio lock) → **Gate D1** full-length slate previz → pantry fill → review cut → VISUAL QC LAW → `art final`.

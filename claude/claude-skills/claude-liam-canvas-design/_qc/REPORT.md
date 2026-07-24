@@ -29,7 +29,7 @@
 
 | Beat | Pattern | Canvas Fill | Result | Notes |
 |---|---|---|---|---|
-| B00 | ClaudeComposerAsk | Good | PASS | "Ciao, Liam" greeting; jazz festival command; 3 output lines; @NikBearBrown |
+| B00 | ClaudeComposerAsk | Good | PASS | "Ciao, Kore" greeting; jazz festival command; 3 output lines; @HumanitariansAI |
 | B01 | CanvasDesignAnatomy | Minor gap | PASS | Step 1+2 cards left, 3 callout cards right, quote box; lower ~30% open (same pattern as brand-guidelines B01, accepted) |
 | B02 | CanvasDesignPipeline | Good | PASS | 3 nodes centered H/2, orange+gray arcs, insight bar bottom |
 | B03 | CanvasDesignPhilosophy | Good | PASS | Movement name callout, 5 dimensions numbered, craftsmanship mandate quote, 3 SKILL.md examples right |
@@ -37,7 +37,7 @@
 | B05 | CanvasDesignTell | Minor gap | PASS | Central callout + ✓/✗ columns; lower ~40% open — same pattern as brand-guidelines B05, accepted |
 | BVDT | ClaudeVerdictArtifact | Acceptable | PASS | "Claude, Canvas." + 5 correct verdict lines; items fade in properly |
 | BHTF | ClaudeComposerAsk | Good | PASS | "Your turn." + full meditation retreat handoff prompt visible |
-| BOUT | ClaudeTitleOutro | Good | PASS | "Claude, Canvas." · @NikBearBrown · canvas-design · Anthropic Skills |
+| BOUT | ClaudeTitleOutro | Good | PASS | "Claude, Canvas." · @HumanitariansAI · canvas-design · Anthropic Skills |
 
 ---
 

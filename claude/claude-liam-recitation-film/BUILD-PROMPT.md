@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-recitation-film
 # "Claude, Reciting." | recitation-film skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 207.4s
+# Built: 2026-07-18 | Kokoro af_kore | 207.4s
 
 ## Standalone rebuild instructions
 

@@ -7,4 +7,4 @@ Every claim in this video was fact-checked against the source chapter and primar
 
 #Claude #Cowork #ClaudeCode #AItools #NikBearBrown #usagelimits #modelrouting
 
-youtube.com/@NikBearBrown
+youtube.com/@HumanitariansAI

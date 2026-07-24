@@ -1,6 +1,6 @@
-# BUILD NOTES — build-this-vox-liam
+# BUILD NOTES — build-this-vox-kore
 
-Vox mixed-media explainer. Liam voice (Kokoro am_onyx). Ogilvy rewrite narration.
+Vox mixed-media explainer. Kore voice (Kokoro af_kore). Ogilvy rewrite narration.
 All 6 beats built from source — **zero slates**. Full review cut ready.
 
 **Never publish.**
@@ -10,12 +10,12 @@ All 6 beats built from source — **zero slates**. Full review cut ready.
 ## Open
 
 ```
-open /Users/bear/Documents/CoWork/bear-textbooks/books/ai1-cli/remotion/clients/BearBrown/build-this-vox-liam/build-this-vox-liam-review.mp4
+open /Users/bear/Documents/CoWork/bear-textbooks/books/ai1-cli/remotion/clients/BearBrown/build-this-vox-kore/build-this-vox-kore-review.mp4
 ```
 
 QC contact sheet (mid-frame of every beat):
 ```
-open /Users/bear/Documents/CoWork/bear-textbooks/books/ai1-cli/remotion/clients/BearBrown/build-this-vox-liam/qc-sheet.png
+open /Users/bear/Documents/CoWork/bear-textbooks/books/ai1-cli/remotion/clients/BearBrown/build-this-vox-kore/qc-sheet.png
 ```
 
 ---
@@ -29,7 +29,7 @@ open /Users/bear/Documents/CoWork/bear-textbooks/books/ai1-cli/remotion/clients/
 | B02 | DOCUMENT | 4 — CONCEPT/process | Manim `B02_MatchSpecSupport`: draw-on three-column MATCH→SPEC→SUPPORT | 13.4s | MANIM (B02.mp4) |
 | B03 | GRAPHIC | 3 — DATA/comparison | Manim `B03_PriceCompare`: $35 vs $200+ bar chart + hand-off guarantee | 16.6s | MANIM (B03.mp4) |
 | B04 | GRAPHIC | 4 — CONCEPT | Manim `B04_WinWin`: two-column Grad/Founder benefit reveal | 7.5s | MANIM (B04.mp4) |
-| B05 | CARD | 5 — CTA | PIL-rendered newsprint card: bearbrown.co + @NikBearBrown + sign-off | 7.0s | STILL (B05.png) |
+| B05 | CARD | 5 — CTA | PIL-rendered newsprint card: bearbrown.co + @HumanitariansAI + sign-off | 7.0s | STILL (B05.png) |
 
 **Total measured audio: 65.4s**
 
@@ -62,11 +62,11 @@ No language carries > 40% of beats (isotype: 3/6 = 50% — borderline; the three
 
 ## IN-FOR-BEAR LAW
 
-- B00 narration ends: "…This is Liam, in for Bear." ✓
-- B05 (CTA) ends: "Liam, in for Bear." ✓
-- Greeting field: "Olá, Liam" (B00 card, top left) ✓
+- B00 narration ends: "…This is Kore, in for Humanitarians AI." ✓
+- B05 (CTA) ends: "Kore, in for Humanitarians AI." ✓
+- Greeting field: "Olá, Kore" (B00 card, top left) ✓
 - Wagwan: absent ✓
-- Voice: Kokoro am_onyx (zero ElevenLabs spend) ✓
+- Voice: Kokoro af_kore (zero ElevenLabs spend) ✓
 
 ---
 
@@ -89,4 +89,4 @@ No language carries > 40% of beats (isotype: 3/6 = 50% — borderline; the three
 
 1. Review the cut — timing, pacing, beat-to-visual map.
 2. If isotype motion feels repetitive across B01/B03/B04, convert B04 to `drawon` by rebuilding the Manim scene with a draw-on animation instead of simultaneous FadeIn.
-3. When satisfied: `python3 brutalist-art/runtime/scripts/compile.py ai1-cli/remotion/clients/BearBrown/build-this-vox-liam` (no `--review` flag) — produces clean `build-this-vox-liam-cut.mp4`.
+3. When satisfied: `python3 brutalist-art/runtime/scripts/compile.py ai1-cli/remotion/clients/BearBrown/build-this-vox-kore` (no `--review` flag) — produces clean `build-this-vox-kore-cut.mp4`.

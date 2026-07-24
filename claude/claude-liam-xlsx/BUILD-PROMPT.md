@@ -9,8 +9,8 @@ Build a claude-explainer teardown reel for the `xlsx` Anthropic skill.
 `beat_sheet.json` — 7 beats (B00, B01, B02, B05, BVDT, BHTF, BOUT)
 
 ## Persona
-- Liam (in for Bear), voice `am_onyx`, engine Kokoro (free)
-- Greeting: "Konnichiwa, Liam"
+- Kore (in for Humanitarians AI), voice `af_kore`, engine Kokoro (free)
+- Greeting: "Konnichiwa, Kore"
 
 ## Scenes
 - B00 / BHTF: `ClaudeComposerAsk` (existing)

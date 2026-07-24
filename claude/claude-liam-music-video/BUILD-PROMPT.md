@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-music-video
 # "Claude, Synced." | music-video skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 219.2s
+# Built: 2026-07-18 | Kokoro af_kore | 219.2s
 
 ## Standalone rebuild instructions
 

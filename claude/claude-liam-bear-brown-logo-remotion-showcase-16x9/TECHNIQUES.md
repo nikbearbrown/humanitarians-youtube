@@ -2,7 +2,7 @@
 
 **Slug:** claude-liam-bear-brown-logo-remotion-showcase-16x9
 **Format:** 1920×1080, 30 fps, 5879 frames, ~3:16
-**Channel:** claude-liam · @NikBearBrown · Kokoro am_onyx
+**Channel:** claude-liam · @HumanitariansAI · Kokoro af_kore
 **Subject:** Bear Brown full logo mark (viewBox 0 0 7500 5000, single complex path)
 **Rendered:** 2026-07-16
 **Output:** mp4/claude-liam-bear-brown-logo-remotion-showcase-16x9.mp4 (29 MB)

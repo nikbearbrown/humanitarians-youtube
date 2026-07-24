@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | This is leading-exponential WKB. It captures scale brilliantly when the barrier varies gen |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | The transferable lesson is simple: integrate the local decay rate across the forbidden reg |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Your turn. If the first barrier gives transmission ten to the minus six, estimate the tran |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | One Exponential That Rules Four Worlds. Quantum Mechanics, Volume Three. Liam, in for Bear |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | One Exponential That Rules Four Worlds. Quantum Mechanics, Volume Three. Kore, in for Humanitarians AI |

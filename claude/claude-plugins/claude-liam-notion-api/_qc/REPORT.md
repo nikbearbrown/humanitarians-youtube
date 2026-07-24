@@ -14,7 +14,7 @@
 | B05 | 239s | PASS | NotionApiTell — 5 GETS RIGHT / 5 WHERE IT BITES, data-source-ID callout with ! icon |
 | BVDT | 310s | PASS | ClaudeVerdictArtifact — 6-line verdict, all key content present |
 | BHTF | 351s | PASS | ClaudeComposerAsk handoff — In Progress query prompt, Watch/Expected/Red flag rows |
-| BOUT | 373s | PASS | ClaudeTitleOutro — notion-api. @NikBearBrown notion-api · Claude Plugins |
+| BOUT | 373s | PASS | ClaudeTitleOutro — notion-api. @HumanitariansAI notion-api · Claude Plugins |
 
 ## Warnings
 

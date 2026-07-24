@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-collage-ads
 # "Claude, Collaged." | collage-ads skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 225.9s
+# Built: 2026-07-18 | Kokoro af_kore | 225.9s
 
 ## Standalone rebuild instructions
 

@@ -1,6 +1,6 @@
 # BUILD-PROMPT — claude-liam-lyric-overlay
 # "Claude, Overlaid." | lyric-overlay skill teardown
-# Built: 2026-07-18 | Kokoro am_onyx | 213.4s
+# Built: 2026-07-18 | Kokoro af_kore | 213.4s
 
 ## Standalone rebuild instructions
 

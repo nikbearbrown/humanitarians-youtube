@@ -1,6 +1,6 @@
 The Smaller Model That Was Eighty Times Slower
 
-This is Liam for Humanitarians AI. Annyeong, Liam. This is Liam, in for Bear. The LSTM had fewer parameters than the CNN — and ran nearly eighty times slower.
+This is Kore for Humanitarians AI. Annyeong, Kore. This is Kore, in for Humanitarians AI. The LSTM had fewer parameters than the CNN — and ran nearly eighty times slower.
 
 What you'll see:
 • Here is why The Smaller Model That Was Eighty Times Slower belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.
@@ -11,7 +11,7 @@ What you'll see:
 
 Playlist: Claude for Computer Science
 
-Narrated by Liam for Humanitarians AI.
+Narrated by Kore for Humanitarians AI.
 @HumanitariansAI
 
 #ClaudeAI #HumanitariansAI #Education #ComputerScience

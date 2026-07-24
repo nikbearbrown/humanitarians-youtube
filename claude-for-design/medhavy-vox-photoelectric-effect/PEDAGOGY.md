@@ -30,7 +30,7 @@ Date: 2026-07-16
 ### Voice compliance
 
 - [x] All voiced beats: af_kore (Kokoro)
-- [x] B00 cold-open uses voice af_kore (not source's am_onyx)
+- [x] B00 cold-open uses voice af_kore (not source's af_kore)
 - [x] B_OUTRO uses af_kore
 
 ### Narration compliance — human-provided beats

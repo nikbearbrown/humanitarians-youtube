@@ -9,13 +9,13 @@ Beats: 7 / 7 filled
 
 | Beat | Frame | Result | Notes |
 |------|-------|--------|-------|
-| B00 | 19s | PASS | ClaudeComposerAsk — "Ciao, Liam", topic/command/output correct |
+| B00 | 19s | PASS | ClaudeComposerAsk — "Ciao, Kore", topic/command/output correct |
 | B01 | 67s | PASS | HookifyRuleAnatomy — file location box, 5 frontmatter field rows, spark line visible |
 | B02 | 125s | PASS | HookifyEventTypes — 4 event rows, conditions callout, 3 pitfall cards |
 | B05 | 189s | PASS | HookifyTell — 2-column teardown, callout + spark icon + spark line |
 | BVDT | 240s | PASS | ClaudeVerdictArtifact — 6 verdict lines, correct content |
 | BHTF | 283s | PASS | ClaudeComposerAsk — "Your Turn" handoff, expected/red-flag outputs visible |
-| BOUT | 310s | PASS | ClaudeTitleOutro — "Writing Hookify Rules." @NikBearBrown |
+| BOUT | 310s | PASS | ClaudeTitleOutro — "Writing Hookify Rules." @HumanitariansAI |
 
 ## 8-point rubric
 

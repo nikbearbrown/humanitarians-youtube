@@ -16,7 +16,7 @@ Batch: 2026-07-18. claude-explainer compliance rebuild.
 | 9. Canvas fill | PASS | Full 1920x1080 |
 
 ## Summary
-B00 greeting fixed to Salut Liam. IN-FOR-BEAR added. B06-B08 Remotion beats rendered. B01-B05 PNG fallback used. 9/9 compiled.
+B00 greeting fixed to Salut Kore. IN-FOR-BEAR added. B06-B08 Remotion beats rendered. B01-B05 PNG fallback used. 9/9 compiled.
 
 ## Status
 QC PASS (LOGO LAW on B01-B05 flagged — PNG fallback limitation)

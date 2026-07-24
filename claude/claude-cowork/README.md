@@ -2,7 +2,6 @@
 
 Agentic knowledge-work videos covering Cowork, connectors, and domain workflows.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Claude Cowork

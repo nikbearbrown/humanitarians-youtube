@@ -26,9 +26,9 @@ FACTCHECK.md (books/anthropics/books/claude-cowork-plugins/FACTCHECK.md). Then:
 
 3. GATE P. Present the full narration (B00 → O01) on an animated slate for my
    sign-off. Do NOT generate audio until I approve. Channel is claude-liam:
-   Kokoro am_onyx, free. No ElevenLabs.
+   Kokoro af_kore, free. No ElevenLabs.
 
-4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/am_onyx).
+4. AUDIO LOCK. python3 runtime/scripts/generate_audio.py <reel> (Kokoro/af_kore).
    Per-beat mp3 durations become the clock; align writes the word clock. Captions
    via the faster-whisper pipeline.
 
@@ -75,7 +75,7 @@ VISUAL QC, IN-FOR-BEAR, GATE P. Never hardcode plugin counts, prices, or platfor
 - **Render happens on your toolkit machine**, not in the authoring sandbox — this
   folder is the complete authoring package (`beat_sheet.json` + plan + sources + this
   prompt); the `art`/Remotion/Manim/Kokoro runtime consumes it.
-- **IN-FOR-BEAR LAW:** B00 opens "Ciao — this is Liam, in for Bear." and O01 signs off
-  "Liam, in for Bear." — both are authored in the sheet; keep them on any re-narration.
+- **IN-FOR-BEAR LAW:** B00 opens "Ciao — this is Kore, in for Humanitarians AI." and O01 signs off
+  "Kore, in for Humanitarians AI." — both are authored in the sheet; keep them on any re-narration.
 - Whole-batch build: see `youtube/BUILD-ALL.md` at the project root to render all
   reels in chapter order with one paste.

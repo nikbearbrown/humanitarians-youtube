@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Merhaba, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Merhaba, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -26,7 +26,7 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "This is Humanitarians.",
    "shot": {
     "type": "CARD",
@@ -47,8 +47,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Merhaba — this is Liam, in for Bear. You are interacting with Google Drive through the Drive REST API v3. The skill gives you two base hosts, four things to know before the first request, and two bundled scripts that handle the hardest parts. The model: everything in Drive is a file — including folders. The trap: Workspace files have no bytes. Let me walk you through the architecture and the gaps.",
-   "voice": "am_onyx",
+   "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are interacting with Google Drive through the Drive REST API v3. The skill gives you two base hosts, four things to know before the first request, and two bundled scripts that handle the hardest parts. The model: everything in Drive is a file — including folders. The trap: Workspace files have no bytes. Let me walk you through the architecture and the gaps.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 18,
    "shot": {
@@ -56,7 +56,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Merhaba, Liam",
+      "greeting": "Merhaba, Kore",
       "topic": "HUMANITARIANS AI · GOOGLE DRIVE API · CLAUDE PLUGINS",
       "segment": "PLUGINS",
       "command": "Search Drive for last quarter's reports and read the summary doc.",
@@ -66,7 +66,7 @@
        "Everything is a file — folders via parents[], no path API",
        "Workspace files: no bytes — must export, not alt=media"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -84,7 +84,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why google-drive-api belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -96,7 +96,7 @@
    "beat_id": "B01",
    "act": "anatomy — four fundamentals + bundled scripts",
    "narration_text": "The skill opens with four things to know before the first request. One: everything is a file, including folders. A folder is a file with a specific mime type. Hierarchy is the parents array. There is no path API. You navigate by ID. Two: Google Workspace files — Docs, Sheets, Slides — have no downloadable bytes. An alt=media request returns four-oh-three fileNotDownloadable. You must export them to a concrete format. Binary files download directly. Three: responses only include the fields you ask for. The default subset is minimal and omits nextPageToken. Always pass fields= explicitly. Four: files on a shared drive are invisible unless you pass supportsAllDrives equals true on every request — per-file calls and list calls have different parameter sets. The most common surprise four-oh-four is a missing supportsAllDrives. The skill also provides two bundled scripts: drive_search.sh handles the q expression, pagination, and all-drives access. drive_read.sh branches on mime type — exporting Workspace files, downloading everything else — and guards against large binaries.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 38,
    "shot": {
@@ -119,7 +119,7 @@
    "beat_id": "B02",
    "act": "design — pagination trap + Workspace export + shared drive 404",
    "narration_text": "Three design points. The fields= parameter is the trap that compounds everything. The default response omits nextPageToken. A listing that returns exactly one hundred files is not a complete result — it is a silent truncation. You only discover this if you explicitly request nextPageToken in fields= and get it back. The drive_search.sh script handles this correctly; raw curl calls are where you forget. Workspace file export is the second design point. The mime type determines whether you use alt=media or the export endpoint. Docs, Sheets, Slides, and Drawings go through export; every binary format goes through alt=media with a four-oh-three if you get them mixed up. drive_read.sh branches on this for you. The shared drive design point is the third: files on a shared drive return four-oh-four as if they don't exist. The fix is supportsAllDrives=true. For list and search requests it's a three-parameter set: corpora=allDrives, includeItemsFromAllDrives=true, supportsAllDrives=true. The skill documents this. The gap is that the error message says not found — not wrong parameters.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 40,
    "shot": {
@@ -142,7 +142,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. The skill gets five things right. The two-host architecture — metadata host and upload host — is stated before any operations. You know before the first curl which base URL to use. The Workspace files no-bytes trap is explained before the operation list, not buried in error codes — it prevents the most common four-oh-three before you can make it. The two bundled scripts have exhaustive flag documentation with real example invocations — drive_search.sh builds q expressions, follows pagination, includes all drives; drive_read.sh branches on mime type and guards large binaries. The shared drive four-oh-four is named the most common surprise four-oh-four and given the full three-parameter fix — right diagnosis, right location. Rate limits are documented in quota units, not request counts, with per-operation costs — calibrates how aggressively to iterate. Where it bites. The nextPageToken omission from the default fields= subset is documented in the Pagination section, separated from the operation recipes. The drive_search.sh note is buried after the q-expression documentation. It is easy to write a raw files.list call and miss it entirely. The gdrive helper function is session-only — defined once in a code block, not a persisted script. The skill references it across all operations but it won't survive a new terminal session. Export size limit: exportSizeLimitExceeded is named as an error but the SKILL.md has no fallback — deferred to references/api.md. The multipart upload content-type discrepancy — multipart/related versus multipart/form-data — is documented with a caveat but no resolution recipe, only a sentence saying use explicit boundary with data-binary. And pageSize cap of one hundred silently clamps larger values with no warning at the point of use.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 52,
    "shot": {
@@ -165,7 +165,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. google-drive-api: two base hosts, metadata and upload. Everything is a file including folders — hierarchy via parents[], no path API. Workspace files have no bytes — export to text, csv, or pdf. fields= must include nextPageToken or pagination silently stops at one page. supportsAllDrives=true required for shared drive files — missing it returns four-oh-four. Bundled scripts: drive_search.sh and drive_read.sh. Rate limits: quota units per operation, not request counts. Gaps: nextPageToken default omission — documented but separated from recipes. gdrive helper is session-only. Export size fallback deferred. Multipart content-type caveat without resolution. pageSize cap without warning.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Ask Claude to find all spreadsheets modified in the last 30 days on a shared drive and export the first one as CSV. Watch five things. First: does it use drive_search.sh with the modifiedTime q clause, or does it write a raw curl that forgets to include nextPageToken in fields=? Second: does it pass all three shared drive parameters — corpora, includeItemsFromAllDrives, supportsAllDrives — on the search? Third: does it branch on mimeType before deciding whether to use alt=media or export? Fourth: does it use the gdrive() helper for subsequent calls, or does it write new bearer headers from scratch? Fifth: if the export returns exportSizeLimitExceeded, does it stop and report, or try to recover without guidance from the skill?",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -215,7 +215,7 @@
        "Expected: export branch for Sheets → text/csv via drive_read.sh",
        "Red flag: raw curl missing nextPageToken · alt=media on a Sheet · missing supportsAllDrives"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -231,8 +231,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "google-drive-api. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "google-drive-api. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

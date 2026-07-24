@@ -26,10 +26,10 @@
 
 ### Voice
 
-- Kokoro `am_onyx` — free, local, no API key. $0.00 cost.
+- Kokoro `af_kore` — free, local, no API key. $0.00 cost.
 
 ### Build
 
 - Date: 2026-07-16
-- Persona: Liam, in for Bear
-- Channel: @NikBearBrown
+- Persona: Kore, in for Humanitarians AI
+- Channel: @HumanitariansAI

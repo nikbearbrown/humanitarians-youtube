@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_14s_B00.png | B00 cold open | ClaudeComposerAsk: "Merhaba, Liam", agents/scopes query, 3 output lines, @NikBearBrown |
+| frame_14s_B00.png | B00 cold open | ClaudeComposerAsk: "Merhaba, Kore", agents/scopes query, 3 output lines, @HumanitariansAI |
 | frame_59s_B01.png | B01 anatomy | ConfigGuideAnatomy: 4-layer column (left, green) + 5 reference file column (right, terracotta), spark line |
 | frame_121s_B02.png | B02 design | ConfigGuideDesign: 3 equal-width cards (Index Pattern · Slack-Only Scope · Debug-Plugins Handoff), Slack card highlighted terracotta, gap items accented in each card |
 | frame_184s_B05.png | B05 teardown | ConfigGuideTell: callout + standard 5+5 two-column teardown, spark line with asterisk |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Merhaba, Liam" (rotation #38)
+- Greeting: "Merhaba, Kore" (rotation #38)
 - New scenes: ConfigGuideAnatomy (B01), ConfigGuideDesign (B02), ConfigGuideTell (B05)
 - Index skill pattern correctly visualized: 4-layer model maps to 5 reference file topics
 - Slack-only Scope card highlighted in B02 to signal the caveat

@@ -9,21 +9,21 @@
 
 | Beat | Timestamp | Check | Result |
 |------|-----------|-------|--------|
-| B00 | 5s | ClaudeComposerAsk — "Hola, Liam" + "Liam, in for Bear." + command | PASS |
+| B00 | 5s | ClaudeComposerAsk — "Hola, Kore" + "Kore, in for Humanitarians AI." + command | PASS |
 | B05 | 91s | SkillTeardownMechanism — "Train a face-faithful identity model. Reusable across all Soul-powered generations." | PASS |
 | BVDT | 145s | ClaudeVerdictArtifact — verdict + soul-id create + generate --soul-id command | PASS |
 
 ## 9-point rubric
 
-1. **IN-FOR-BEAR LAW** — "Liam, in for Bear." in B00: PASS
+1. **IN-FOR-BEAR LAW** — "Kore, in for Humanitarians AI." in B00: PASS
 2. **ILLUSTRATE LAW** — 5 UI beats (B00/B03/BVDT/BHTF/BOUT) + 6 illustration beats: PASS
 3. **VERBATIM QUOTE LAW** — 3 quotes exact, cited once per figure: PASS
 4. **SELF-DEMO** — Soul Character photo plan + command in B04; genuinely free, no soul-id create submitted: PASS
 5. **NO SLATES** — 11/11 filled: PASS
 6. **AUDIO FIRST** — all beats have measured actual_duration_s: PASS
-7. **FREE PIPELINE** — Kokoro am_onyx, $0.00: PASS
+7. **FREE PIPELINE** — Kokoro af_kore, $0.00: PASS
 8. **PALETTE** — cream/terracotta Claude palette throughout: PASS
-9. **BOUT** — "Claude, Identified." / @NikBearBrown / "Liam, in for Bear.": PASS
+9. **BOUT** — "Claude, Identified." / @HumanitariansAI / "Kore, in for Humanitarians AI.": PASS
 
 ## Issues
 

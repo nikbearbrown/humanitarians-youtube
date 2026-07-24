@@ -1,20 +1,20 @@
 # BUILD-NOTES — chinese-room-explainer-vox
 
-Vox mixed-media conversion of `chinese-room-explainer` (NEU/George → LIAM/am_onyx).
+Vox mixed-media conversion of `chinese-room-explainer` (NEU/George → KORE/af_kore).
 Final cut: 71.2 s · 8 beats · all slots filled · never publish.
 
 ## Beat list
 
 | ID  | Shot type | Medium | One-line narration |
 |-----|-----------|--------|--------------------|
-| B00 | GRAPHIC   | ClaudeComposerAsk (type-on) | "Kia ora, Liam — Can a machine truly think?" cold open |
+| B00 | GRAPHIC   | ClaudeComposerAsk (type-on) | "Kia ora, Kore — Can a machine truly think?" cold open |
 | B01 | STILL     | searle_1.png (Searle at desk) | Searle alone in a locked room with a rulebook and Chinese symbols |
 | B02 | GRAPHIC   | MedhavyConceptCard (illustrate) | "picture this" — the sealed-room image made concrete |
 | B03 | STILL     | searle_03.png (frantic papers) | He shuffles paper perfectly — and understands nothing |
 | B04 | STILL     | chinese-speaker-04.png (person holding message) | From outside, the room speaks Chinese; from inside, silence |
 | B05 | STILL     | turing_05.png (Turing caricature) | The Turing Test passes; Searle says that's not enough |
 | B06 | GRAPHIC   | ClaudeVerdictArtifact (stagger) | Five-line summary card — "syntax is not semantics" punchline |
-| B07 | GRAPHIC   | ClaudeTitleOutro (fade) | "Liam, in for Bear." sign-off |
+| B07 | GRAPHIC   | ClaudeTitleOutro (fade) | "Kore, in for Humanitarians AI." sign-off |
 
 ## Slot status
 
@@ -36,9 +36,9 @@ Compiler warned: upscale artifacts possible on all four stills. Run through an A
 
 ## IN-FOR-BEAR LAW compliance
 
-- B00 greeting: "Kia ora, Liam" ✓
-- Narration opens: "…this is Liam, in for Bear." ✓
-- B07 subline: "Liam, in for Bear." ✓
+- B00 greeting: "Kia ora, Kore" ✓
+- Narration opens: "…this is Kore, in for Humanitarians AI." ✓
+- B07 subline: "Kore, in for Humanitarians AI." ✓
 - "Wagwan" does not appear anywhere ✓
 
 ## Open the cut

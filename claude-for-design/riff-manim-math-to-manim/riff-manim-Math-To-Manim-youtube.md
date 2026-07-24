@@ -20,6 +20,6 @@ Chapters
 —
 Nik Bear Brown
 https://www.nikbearbrown.com/
-@NikBearBrown
+@HumanitariansAI
 
 Credits: Math-To-Manim — https://github.com/HarleyCoops/Math-To-Manim

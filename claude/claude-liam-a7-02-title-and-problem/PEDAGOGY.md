@@ -4,7 +4,7 @@
 Cold open (first two minutes matter most) → Slide 1: title + one-liner → Slide 2: quantified problem → why quantification works (ROI signal) → traps on slides 1–2 → verdict → Your Turn (Part 1 + Part 2A → slides 1–2) → outro.
 
 ## Cold open law
-Opens: "Hola — Liam, Episode 2 of 7." States the premise (first two minutes guaranteed to be heard, problem must land by minute two) and previews slides 1–2. ✓
+Opens: "Hola — Kore, Episode 2 of 7." States the premise (first two minutes guaranteed to be heard, problem must land by minute two) and previews slides 1–2. ✓
 
 ## Gap formula
 Gap: students write forgettable one-liners and vague unquantified problem statements. Fix: Part 1 sentence / A6 UVP reuse + quantified pain formula + labeled estimates.

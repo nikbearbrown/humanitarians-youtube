@@ -2,7 +2,6 @@
 
 Videos explaining what Claude is, model tiers, product surfaces, and first-use fundamentals.
 
-
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Claude Basics

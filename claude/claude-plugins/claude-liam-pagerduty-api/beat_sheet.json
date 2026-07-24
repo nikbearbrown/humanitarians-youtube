@@ -3,18 +3,18 @@
     "title": "pagerduty-api",
     "slug": "claude-liam-pagerduty-api",
     "topic": "PAGERDUTY-API · CLAUDE PLUGINS",
-    "register": "Teardown",
+    "register": "Pragmatist",
     "audience": "Claude",
     "brand": "claude-liam",
-    "persona": "Liam (in for Bear)",
-    "voice": "am_onyx",
+    "persona": "Kore (in for Humanitarians AI)",
+    "voice": "af_kore",
     "engine": "kokoro",
-    "voice_kokoro": "am_onyx",
+    "voice_kokoro": "af_kore",
     "palette": "claude",
     "style_preset": "claude",
     "ground": "#FAF9F5",
-    "greeting": "Merhaba, Liam",
-    "folderLabel": "@NikBearBrown",
+    "greeting": "Merhaba, Kore",
+    "folderLabel": "@HumanitariansAI",
     "in_for_bear": true,
     "playlist": "Claude Taught",
     "modifier": "skill-teardown",
@@ -32,8 +32,8 @@
     {
       "beat_id": "B00",
       "act": "cold open",
-      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the pagerduty-api skill. It connects Claude to PagerDuty — reading on-call schedules, tracing incidents, triggering alerts, and checking who got paged and why. The key distinction: there are two completely separate APIs on two different hosts with two different auth schemes. REST at api.pagerduty.com uses a Token header for reading and managing everything. Events v2 at events.pagerduty.com uses a routing key in the request body — no Authorization header at all — for triggering, acknowledging, and resolving alerts. Mix them up and you get silent 401s with empty response bodies. Let me walk you through the data model, the operations, and the gaps.",
-      "voice": "am_onyx",
+      "narration_text": "Merhaba — this is Kore, in for Humanitarians AI. You are working with the pagerduty-api skill. It connects Claude to PagerDuty — reading on-call schedules, tracing incidents, triggering alerts, and checking who got paged and why. The key distinction: there are two completely separate APIs on two different hosts with two different auth schemes. REST at api.pagerduty.com uses a Token header for reading and managing everything. Events v2 at events.pagerduty.com uses a routing key in the request body — no Authorization header at all — for triggering, acknowledging, and resolving alerts. Mix them up and you get silent 401s with empty response bodies. Let me walk you through the data model, the operations, and the gaps.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 15,
       "shot": {
@@ -41,7 +41,7 @@
         "remotion": {
           "pattern": "ClaudeComposerAsk",
           "props": {
-            "greeting": "Merhaba, Liam",
+            "greeting": "Merhaba, Kore",
             "topic": "PAGERDUTY-API · CLAUDE PLUGINS",
             "segment": "PLUGINS",
             "command": "Who is on call right now, and why did the payment-service alert page them at 2 AM?",
@@ -51,7 +51,7 @@
               "401 returns empty body — always print HTTP status with -w or -o /dev/null -w",
               "From: header required on all mutations — omit it and get silent 400"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -74,7 +74,7 @@
       "beat_id": "B01",
       "act": "anatomy — two APIs and the data model",
       "narration_text": "The architecture has two layers. First: two distinct APIs. The REST API at api.pagerduty.com handles everything you read and manage — on-call schedules, services, escalation policies, incidents, log entries, and users. Auth is an Authorization header with the literal string Token then a space then your API key — not Bearer, not Basic. The Events v2 API at events.pagerduty.com handles the alert lifecycle — trigger, acknowledge, resolve. Auth is a routing_key field in the JSON request body. No Authorization header. Same PagerDuty account, two completely different auth models. Second: the data model is a chain. An alert fires on a service. The service routes through an escalation policy. The escalation policy targets schedules and users. That chain opens an incident. Log entries record exactly who was notified, when, and through which channel — phone, SMS, email, push — making them the authoritative answer to why someone got paged. The bundled script pd_oncall.sh calls the slash oncalls endpoint with the bracket-style user and schedule ID filters that need curl dash g to work correctly.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 55,
       "shot": {
@@ -103,7 +103,7 @@
       "beat_id": "B02",
       "act": "design — workflow and key patterns",
       "narration_text": "Four patterns that matter. First: sanity check before anything. GET slash v1 slash users slash me with the Authorization Token header and the Accept application/json header. A 200 means your credential and host are correct. A 401 returns an empty body — you will see nothing unless you print the HTTP status code explicitly with curl dash w or dash o slash dev slash null dash w. Second: trace routing before querying incidents. GET the service to see its escalation policy, then GET the escalation policy to see which schedules and users it targets, then GET the slash oncalls endpoint with schedule ID filters to see who is currently on call. pd_oncall.sh handles the bracket URL encoding. Third: use log entries to answer why someone was paged. GET slash incidents slash ID slash log_entries shows every notification action with channel type, timestamp, and user. That is the ground truth for on-call investigations. Fourth: From header on every mutation. POST, PUT, PATCH, and DELETE all require a From header with a real email address. Omit it and the API returns 400 with a validation error. Key gotchas. Bracket-style query params like user underscore ids brackets equal need curl dash g or they get URL-encoded incorrectly. Reference objects in request bodies need a type field alongside the id — service underscore reference, escalation underscore policy underscore reference — or you get a 400 validation error. Events v2 error responses are plain text, not JSON, so a jq pipe on an error response breaks immediately. Rate limits are 960 requests per minute for REST with headers you can watch; Events v2 has no per-request rate limit header.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 55,
       "shot": {
@@ -132,7 +132,7 @@
       "beat_id": "B05",
       "act": "teardown — what it gets right / where it bites",
       "narration_text": "Here is the teardown. The skill gets five things right. The two-API distinction is documented explicitly with different hosts, different auth schemes, and different use cases — REST for read and manage, Events v2 for trigger, ack, and resolve. Getting this wrong means calls to the right endpoint with the wrong auth scheme return silent 401s with empty bodies. The 401 empty body problem is called out directly: curl default shows nothing; the fix is curl dash w percent open brace http_code close brace or redirect output and print status separately. The bundled pd_oncall.sh script handles bracket URL encoding automatically — the most error-prone part of the slash oncalls endpoint. Rate limits are documented with specific numbers and the right headers to watch: ratelimit-remaining and ratelimit-reset for REST. The data model chain is fully explained: alert fires on service, routes through escalation policy, targets schedules and users, opens incident, log entries record notification detail. Where it bites. curl bracket parameters need dash g or dash dash globoff for any raw curl call outside the bundled script — missing it silently corrupts filters with no error message. The From header is required on all mutations — POST, PUT, PATCH, DELETE — and omitting it returns a 400 that can look like a permissions problem. Reference objects need both id and type — writing only the id field returns a 400 validation error naming the field. Events v2 error responses are plain text, not JSON — a jq pipe on error output throws a parse error and hides the actual message. The REST rate limit headers exist; Events v2 has no per-request rate limit header, so you must track event volume yourself.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 60,
       "shot": {
@@ -161,7 +161,7 @@
       "beat_id": "BVDT",
       "act": "verdict",
       "narration_text": "Verdict. pagerduty-api: two separate APIs, two hosts, two auth schemes. REST at api.pagerduty.com uses Authorization Token header — not Bearer. Events v2 at events.pagerduty.com uses routing_key in the request body. 401 returns empty body — always print HTTP status. pd_oncall.sh handles bracket URL encoding. From: header required on all mutations. Reference objects need id plus type field. Events v2 errors are plain text not JSON. Rate limits: REST 960 req/min with headers; Events v2 no per-request header. Log entries are the authoritative record for on-call investigations.",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 30,
       "shot": {
@@ -199,7 +199,7 @@
       "beat_id": "BHTF",
       "act": "handoff",
       "narration_text": "Your turn. Give Claude a task: find who is on call for the payments service, trigger a test incident, then acknowledge and resolve it. Watch five things. First: does it call the sanity check endpoint first — GET slash v1 slash users slash me with the Token header — before touching any data? Second: when it calls the REST API, does it use Authorization colon Token space key, or does it fall back to Bearer? Third: when it triggers the incident via Events v2, does it put the routing key in the request body, or does it mistakenly put it in an Authorization header? Fourth: does every mutation — the trigger, the acknowledge, the resolve — include a From header with a real email address? Fifth: when it queries the slash oncalls endpoint with schedule filters, does it pass curl dash g, or does it URL-encode the bracket parameters incorrectly?",
-      "voice": "am_onyx",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 28,
       "shot": {
@@ -217,7 +217,7 @@
               "Expected: From: on trigger + ack + resolve · curl -g for bracket params",
               "Red flag: Bearer auth · routing_key in header · From: missing · bracket params URL-encoded"
             ],
-            "folderLabel": "@NikBearBrown",
+            "folderLabel": "@HumanitariansAI",
             "modelLabel": "Opus 4.8",
             "effortLabel": "High"
           },
@@ -239,8 +239,8 @@
     {
       "beat_id": "BOUT",
       "act": "outro",
-      "narration_text": "pagerduty-api. Liam, in for Bear.",
-      "voice": "am_onyx",
+      "narration_text": "pagerduty-api. Kore, in for Humanitarians AI.",
+      "voice": "af_kore",
       "engine": "kokoro",
       "estimated_duration_s": 5,
       "shot": {
@@ -249,7 +249,7 @@
           "pattern": "ClaudeTitleOutro",
           "props": {
             "title": "pagerduty-api",
-            "handle": "@NikBearBrown",
+            "handle": "@HumanitariansAI",
             "subline": "pagerduty-api · Claude Plugins"
           },
           "rendered": {

@@ -6,7 +6,7 @@
 - Final: `vox-angular-momentum-ell.mp4`
 - Runtime: 130.72 seconds
 - Slots: 14/14 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B12 local Manim scene suite
 - QC: PASS after scientific-language and B04/B09/B10/B11 layout corrections
 - Publishing: none

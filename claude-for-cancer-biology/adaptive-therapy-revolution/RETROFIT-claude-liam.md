@@ -1,4 +1,4 @@
-# Retrofit note — adaptive-therapy-revolution → claude-explainer (Liam)
+# Retrofit note — adaptive-therapy-revolution → claude-explainer (Kore)
 
 **What changed vs the original nbb/Onda cut**
 
@@ -10,9 +10,9 @@
   - `media/B03.png` — Zhang 2017 Kaplan-Meier PFS curve (+ `media/B03.source.txt`)
   - `media/B07.png` — revised drug-holiday table, or Strobl 2021 cost-of-resistance figure
 - **"Your turn." handoff (B09)** + **title-restate outro (B10)**, both composer/outro scenes.
-- **Liam voice:** kokoro `am_onyx`, IN-FOR-BEAR law applied — B00 first breath "this is Liam, in for Bear," outro "Liam, in for Bear." Greeting `Namaste, Liam` (Hindi; Wagwan stays Bear's).
-- **Honesty fix:** original said the trial "doubled" PFS; sources show 27.0 vs 16.8 mo (~1.6×), so Liam says the real numbers.
+- **Kore voice:** kokoro `af_kore`, IN-FOR-BEAR law applied — B00 first breath "this is Kore, in for Humanitarians AI," outro "Kore, in for Humanitarians AI." Greeting `Namaste, Kore` (Hindi; Wagwan stays Bear's).
+- **Honesty fix:** original said the trial "doubled" PFS; sources show 27.0 vs 16.8 mo (~1.6×), so Kore says the real numbers.
 
 **Spine (11 beats):** B00 ASK · B01 PROBLEM(slot) · B02 RESEARCH-ASK · B03 EVIDENCE(slot) · B04 SCRIPT · B05 TABLE(artifact) · B06 REVISION-ASK · B07 CATCH(slot) · B08 VERDICT(artifact) · B09 HANDOFF · B10 OUTRO.
 
-**Not done (needs you / a build pass):** GATE P sign-off, audio (`generate_audio.py` in am_onyx), the three media slots, and the Remotion render. This is a beat-sheet retrofit only — no audio spent.
+**Not done (needs you / a build pass):** GATE P sign-off, audio (`generate_audio.py` in af_kore), the three media slots, and the Remotion render. This is a beat-sheet retrofit only — no audio spent.

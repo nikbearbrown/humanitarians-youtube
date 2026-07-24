@@ -1,6 +1,6 @@
 # BUILD-PROMPT — Suno vs 11 Labs Cost Test
 
-Video for the "Brutalist — Claude for Video Production" playlist on @NikBearBrown.
+Video for the "Brutalist — Claude for Video Production" playlist on @HumanitariansAI.
 Meta, like the rest: THE VIDEO IS THE EXPERIMENT. Its own narration gets voiced
 BOTH ways — once through ElevenLabs (`generate_audio.py`), once through the Suno
 path (`./art suno` → human generates in Suno with Bear's uploaded voice → vocal-only

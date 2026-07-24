@@ -24,8 +24,8 @@ Copyright 2026 Anthropic PBC. Apache-2.0 License.
 
 ## Build
 
-- Channel: claude-liam (@NikBearBrown)
-- Voice: Kokoro am_onyx (free, local)
+- Channel: claude-liam (@HumanitariansAI)
+- Voice: Kokoro af_kore (free, local)
 - Built: 2026-07-16
 - Runtime: ~95s (7 beats, B00–B06)
 - Resolution: 1920×1080, 30fps

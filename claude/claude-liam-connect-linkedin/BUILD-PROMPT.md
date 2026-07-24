@@ -1,7 +1,7 @@
 # BUILD-PROMPT — claude-liam-connect-linkedin ("Claude, Gated.")
 
 Standalone rebuild prompt. State when written: beat_sheet.json authored
-(13 beats, standard ai-explainer — NOT skill-teardown), Kokoro am_onyx
+(13 beats, standard ai-explainer — NOT skill-teardown), Kokoro af_kore
 audio GENERATED and MEASURED (mp3/ + timings.json; actual_duration_s is
 ground truth), PEDAGOGY.md ends VERDICT: PASS, SOURCES.md logs every claim
 (two hard facts web-verified). What remains: visuals → conform → render → QC.
@@ -78,7 +78,7 @@ THE BEATS (narration + durations are in the sheet)
 - BVDT ClaudeVerdictArtifact — artifactLines in sheet; enlarged card.
 - BHTF ClaudeComposerAsk handoff — greeting "Your turn.", typing on,
   command = the classify-my-need prompt in the sheet.
-- BOUT ClaudeTitleOutro — "Claude, Gated." · @NikBearBrown · "Liam, in for Bear."
+- BOUT ClaudeTitleOutro — "Claude, Gated." · @HumanitariansAI · "Kore, in for Humanitarians AI."
 
 LAWS THAT BITE HERE
 

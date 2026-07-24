@@ -16,4 +16,4 @@
 | B11 | GRAPHIC | own | Manim B11_CloneYourVoice | HERO: split-scale. LEFT: repeating 30-min cost stack (CRIMSON). RIGHT: 30-min-once → clone → every video (teal). Big EB Garamond title. |
 | B12 | GRAPHIC | own | Manim B12_MispronounceCaveat | Wrong pronunciation in red → arrow → phonetic fix in teal; "review note" chip; punchline |
 | B13 | REMOTION | own | NikBearBrownTerminalAsk | `./art keys` command; key validation output (illustrative) |
-| B99 | REMOTION | own | BrutalistCommentCTA | Comment CTA: "Clone your voice. Then make videos." + @NikBearBrown + www.brutalist.art |
+| B99 | REMOTION | own | BrutalistCommentCTA | Comment CTA: "Clone your voice. Then make videos." + @HumanitariansAI + www.brutalist.art |

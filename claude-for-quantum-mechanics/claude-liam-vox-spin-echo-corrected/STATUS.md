@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | For a fixed offset, the first wait contributes plus delta omega tau. The pulse reverses it |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | A Hahn echo does not reverse time. It refocuses phase errors that remain correlated across |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Your turn. A spin has static offset ten radians per second and tau is fifty milliseconds.  |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Un-Blurring Time: The Spin Echo. Quantum Mechanics, Volume Three. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | Un-Blurring Time: The Spin Echo. Quantum Mechanics, Volume Three. Kore, in for Humanitarians AI. |

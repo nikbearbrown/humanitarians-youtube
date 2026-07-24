@@ -17,13 +17,13 @@
 | 4 | Audio present and synced | PASS |
 | 5 | All 11 beats render (no black frames, no slates) | PASS |
 | 6 | ILLUSTRATE LAW: 5 UI beats, 6 illustration beats | PASS |
-| 7 | IN-FOR-BEAR LAW: "Liam, in for Bear." in B00 cold open | PASS |
+| 7 | IN-FOR-BEAR LAW: "Kore, in for Humanitarians AI." in B00 cold open | PASS |
 | 8 | Self-demo shows real sim card from organic-chemistry ch05 (not faked) | PASS |
 | 9 | Verbatim quotes cited with correct source (no prefix dupe) | PASS |
 
 ## Beat-by-Beat
 
-- **B00** ClaudeComposerAsk: "SIM-SCOUT · SKILL TEARDOWN" / "Liam, in for Bear." / "Ahoj, Liam" — correct. MINOR-COSMETIC: empty sparkLine
+- **B00** ClaudeComposerAsk: "SIM-SCOUT · SKILL TEARDOWN" / "Kore, in for Humanitarians AI." / "Ahoj, Kore" — correct. MINOR-COSMETIC: empty sparkLine
 - **B01** SkillTeardownAnatomy: "WATCH it or POKE it." — 4 files listed. PASS
 - **B02** SkillTeardownPipeline: "Sim bar → classify → card." — 5 phases, footer. PASS
 - **B03** ClaudeComposerAsk: sim-scout demo, organic-chemistry ch05 target. MINOR-COSMETIC: empty sparkLine
@@ -33,7 +33,7 @@
 - **B07** SkillTeardownMechanism: "Two predictions. Mandatory." — predictions law quote. PASS
 - **BVDT** ClaudeVerdictArtifact: "Claude, Simulating." / 4 items correctly rendered. PASS
 - **BHTF** ClaudeComposerAsk: "YOUR TURN" / correct sim-scout command. MINOR-COSMETIC: empty sparkLine
-- **BOUT** ClaudeTitleOutro: "Claude, Simulating." / "@NikBearBrown" / "Liam, in for Bear." — PASS
+- **BOUT** ClaudeTitleOutro: "Claude, Simulating." / "@HumanitariansAI" / "Kore, in for Humanitarians AI." — PASS
 
 ## Defects
 

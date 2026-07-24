@@ -76,5 +76,5 @@ class B14_Answer(Scene):
 
 class B15_CorrectTitleOutro(Scene):
  def construct(self):
-  bg=FullScreenRectangle(fill_color="#1f1d1b",fill_opacity=1,stroke_width=0); title=Text("Why the Nondegenerate Ground State's\nSecond-Order Shift Is Never Positive",font=DISPLAY,font_size=34,color="#f4efe8",line_spacing=.8); sig=Text("Liam, in for Bear",font=SERIF,font_size=22,color="#c46b4f").shift(DOWN*1.2)
+  bg=FullScreenRectangle(fill_color="#1f1d1b",fill_opacity=1,stroke_width=0); title=Text("Why the Nondegenerate Ground State's\nSecond-Order Shift Is Never Positive",font=DISPLAY,font_size=34,color="#f4efe8",line_spacing=.8); sig=Text("Kore, in for Humanitarians AI",font=SERIF,font_size=22,color="#c46b4f").shift(DOWN*1.2)
   self.add(bg); self.play(FadeIn(title),FadeIn(sig),run_time=.8); hold(self,"B15",.8)

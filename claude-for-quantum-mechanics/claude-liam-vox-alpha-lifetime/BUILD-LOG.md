@@ -6,7 +6,7 @@
 - Final: `vox-alpha-lifetime.mp4`
 - Runtime: 123.44 seconds
 - Slots: 13/13 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native build: B02–B11 scratch-built Manim scene suite
 - QC: PASS; zero BLOCKER/MAJOR issues
 - Publishing: none

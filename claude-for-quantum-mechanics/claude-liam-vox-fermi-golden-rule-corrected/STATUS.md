@@ -17,4 +17,4 @@
 | B11 | ✅ filled | ai-video-prompt | human | `manim/B11.mp4` | The exponential is not exact at all times. Survival begins quadratically at ultrashort tim |
 | B12 | ✅ filled | ai-video-prompt | human | `manim/B12.mp4` | Many final energies disperse phase information. A smooth dense continuum plus weak couplin |
 | B13 | ✅ filled | ai-video-prompt | human | `manim/B13.mp4` | Your turn. If the photon density of states doubles while the matrix element is unchanged,  |
-| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | How Bouncing Becomes Decaying. Quantum Mechanics, Volume Three. Liam, in for Bear. |
+| B14 | ✅ filled | ai-video-prompt | human | `manim/B14.mp4` | How Bouncing Becomes Decaying. Quantum Mechanics, Volume Three. Kore, in for Humanitarians AI. |

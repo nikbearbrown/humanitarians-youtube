@@ -4,7 +4,7 @@
 Cold open (cool project → fundable business) → Slide 5: business model + labeled revenue → Slide 6: first-10-customers GTM → Slide 7: competition + unfair advantage → Slide 10: the ask → verdict → Your Turn (one-liner + Part 2A + A6 differentiator → slides 5–7, 10) → outro.
 
 ## Cold open law
-Opens: "Hola — Liam, Episode 4 of 7." States why these four slides matter (most students under-build them) and previews all four. ✓
+Opens: "Hola — Kore, Episode 4 of 7." States why these four slides matter (most students under-build them) and previews all four. ✓
 
 ## Gap formula
 Gap: students write two sentences on business model and ask; no real GTM; "no competition" claim; vague ask. Fix: pricing formula + first-10-customers specificity + named competitors + specific ask components.

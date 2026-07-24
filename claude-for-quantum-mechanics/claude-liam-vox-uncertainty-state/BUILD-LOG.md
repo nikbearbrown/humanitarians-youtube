@@ -6,7 +6,7 @@
 - Final: `vox-uncertainty-state.mp4`
 - Runtime: 142.71 seconds
 - Slots: 16/16 filled
-- Narration: Kokoro Liam (`am_onyx`)
+- Narration: Kokoro Kore (`af_kore`)
 - Native replacement: B10 preparation-width animation
 - QC: PASS after correcting B06/B12 persistence and B10 heading layout
 - Publishing: none

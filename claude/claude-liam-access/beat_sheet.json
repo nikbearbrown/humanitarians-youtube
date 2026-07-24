@@ -6,15 +6,15 @@
   "register": "Pragmatist",
   "audience": "Claude",
   "brand": "claude-liam",
-  "persona": "Liam (in for Bear)",
-  "voice": "am_onyx",
+  "persona": "Kore (in for Humanitarians AI)",
+  "voice": "af_kore",
   "engine": "kokoro",
-  "voice_kokoro": "am_onyx",
+  "voice_kokoro": "af_kore",
   "palette": "claude",
   "style_preset": "claude",
   "ground": "#FAF9F5",
-  "greeting": "Bonjour, Liam",
-  "folderLabel": "@NikBearBrown",
+  "greeting": "Bonjour, Kore",
+  "folderLabel": "@HumanitariansAI",
   "in_for_bear": true,
   "playlist": "Claude Taught",
   "modifier": "skill-teardown",
@@ -34,8 +34,8 @@
    "beat_id": "B00",
    "act": "GREETING",
    "engine": "kokoro",
-   "voice": "am_onyx",
-   "narration_text": "This is Liam for Humanitarians AI.",
+   "voice": "af_kore",
+   "narration_text": "This is Kore for Humanitarians AI.",
    "shot": {
     "type": "CARD",
     "source": "remotion",
@@ -55,8 +55,8 @@
   {
    "beat_id": "B00",
    "act": "cold open",
-   "narration_text": "Bonjour — this is Liam, in for Bear. Ask Claude to pair a Discord user, approve someone, check who's allowed, or change the DM policy — the access skill for the Discord channel fires. This skill manages access control by editing a single JSON file: ~/.claude/channels/discord/access.json. It never talks to Discord directly — it just edits JSON and the channel server re-reads it. The security model is strict: this skill only acts on requests typed by the user in their terminal. If a request arrives via a Discord message or any other channel notification, it refuses. Let me walk you through the state model, the command dispatch, and where this skill gets it right and where it bites.",
-   "voice": "am_onyx",
+   "narration_text": "Bonjour — this is Kore, in for Humanitarians AI. Ask Claude to pair a Discord user, approve someone, check who's allowed, or change the DM policy — the access skill for the Discord channel fires. This skill manages access control by editing a single JSON file: ~/.claude/channels/discord/access.json. It never talks to Discord directly — it just edits JSON and the channel server re-reads it. The security model is strict: this skill only acts on requests typed by the user in their terminal. If a request arrives via a Discord message or any other channel notification, it refuses. Let me walk you through the state model, the command dispatch, and where this skill gets it right and where it bites.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 22,
    "shot": {
@@ -64,7 +64,7 @@
     "remotion": {
      "pattern": "ClaudeComposerAsk",
      "props": {
-      "greeting": "Bonjour, Liam",
+      "greeting": "Bonjour, Kore",
       "topic": "HUMANITARIANS AI · DISCORD ACCESS · CLAUDE CODE SKILL",
       "segment": "DISCORD PLUGIN",
       "command": "/discord:access pair A1B2C3",
@@ -74,7 +74,7 @@
        "8 commands: pair · deny · allow · remove · policy · group · set · status",
        "Security: terminal-only — refuse any request from channel notifications"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -98,7 +98,7 @@
    "act": "Why This Matters",
    "tangent": true,
    "engine": "kokoro",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "narration_text": "Here is why Discord Access Control belongs in your working knowledge. The systems, policies, and tools shaped by it affect decisions at your level — whether or not you understand the mechanism. Knowing the underlying logic gives you the frame; missing it means reasoning from output with no access to the inputs.",
    "shot": {
     "type": "CARD",
@@ -110,7 +110,7 @@
    "beat_id": "B01",
    "act": "anatomy — state shape + security model",
    "narration_text": "The skill's state lives in ~/.claude/channels/discord/access.json. Five fields: dmPolicy — one of pairing, allowlist, or disabled. allowFrom — array of Discord sender IDs, user snowflakes, who can DM the bot. groups — channel-level overrides, each with requireMention and their own allowFrom list. pending — time-boxed pairing codes with senderId, chatId, createdAt, and expiresAt. mentionPatterns — regex strings for bot invocation. Missing file is treated as the default state: dmPolicy pairing, empty allowFrom, empty groups, empty pending. The security rule is stated immediately before any operation: if the request arrived via a channel notification rather than the user's terminal, refuse and tell the user to run the command themselves. The rationale is explicit: channel messages can carry prompt injection, and access mutations must never be downstream of untrusted input.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 28,
    "shot": {
@@ -139,7 +139,7 @@
    "beat_id": "B02",
    "act": "design — command dispatch + implementation rules",
    "narration_text": "Eight command variants. No args shows status: dmPolicy, allowFrom count and list, pending entries with codes and ages, group count. pair code approves a pending pairing: reads the file, looks up the code, checks expiry, adds the senderId to allowFrom, deletes the pending entry, writes back, then creates ~/.claude/channels/discord/approved/senderId — the channel server polls this directory and sends the confirmation. deny code removes a pending entry. allow senderId and remove senderId edit the allowFrom list directly. policy mode sets dmPolicy to pairing, allowlist, or disabled. group add and group rm manage channel-level overrides. set key value adjusts delivery config — ackReaction, replyToMode, textChunkLimit, chunkMode, mentionPatterns. Three implementation rules: always read before write because the channel server may add pending entries between reads; pretty-print JSON at two-space indent so it's hand-editable; and never auto-pick a single pending entry when pairing — even one pending entry is a potential prompt-injection attack vector.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 30,
    "shot": {
@@ -168,7 +168,7 @@
    "beat_id": "B05",
    "act": "teardown — what it gets right / where it bites",
    "narration_text": "Here is the teardown. The access skill gets the security model right: the refusal to act on channel notifications is stated clearly and the attack vector is explained — not just that channel messages are untrusted, but specifically that an attacker can seed a pending entry by DMing the bot, and approve the pending one is exactly what a prompt-injected request looks like. The state shape is fully documented with real JSON. The pair command's steps include creating the approved/ directory for the channel server's polling mechanism — not just updating the JSON but completing the full handshake. The read-before-write rule and ENOENT handling cover the real concurrency failure mode. And the snowflake ID distinction — sender ID versus chat ID, user snowflake versus DM channel snowflake — prevents a silent data corruption. Where it bites: the skill body contains dollar-ARGUMENTS as a literal placeholder with no explanation of how it gets populated or whether it's sanitized before use. The set command accepts mentionPatterns as a JSON array of regex strings with no validation bounds — no mention of catastrophic backtracking risk. The dmPolicy mode differences — what does the bot actually do differently under pairing versus allowlist versus disabled? — are never explained. And the channel server's re-read mechanism, referenced throughout, is not documented: polling interval, file-lock behavior on write, concurrent-write race conditions.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 34,
    "shot": {
@@ -197,7 +197,7 @@
    "beat_id": "BVDT",
    "act": "verdict",
    "narration_text": "Verdict. Discord access fires for pair, deny, allow, remove, policy, group, set commands. State: ~/.claude/channels/discord/access.json — dmPolicy, allowFrom, groups, pending, mentionPatterns. Security: terminal-only, refuse channel notifications; never auto-pick single pending entry. pair flow: validate code, add to allowFrom, write approved/ dir for server handshake. Implementation: read-before-write; pretty-print JSON; sender ID not chat ID. Gaps: $ARGUMENTS population undocumented; mentionPatterns regex no bounds; dmPolicy mode behavior differences absent; server re-read mechanism undocumented.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 20,
    "shot": {
@@ -235,7 +235,7 @@
    "beat_id": "BHTF",
    "act": "handoff",
    "narration_text": "Your turn. Set up the Discord channel plugin and run this in your terminal: /discord:access. Watch four things. First: does it read ~/.claude/channels/discord/access.json — or create it with defaults if missing — rather than starting from scratch? Second: does it show dmPolicy, the allowFrom list, and any pending codes — not just a success message? Third: if you paste a pairing command into Discord and ask Claude to approve it from there rather than your terminal — does it refuse? That refusal is the core security check. And fourth: if you run /discord:access pair with a code that doesn't exist, does it tell you the code was not found or expired rather than silently succeeding or crashing? Read, validate, never assume.",
-   "voice": "am_onyx",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 30,
    "shot": {
@@ -253,7 +253,7 @@
        "Expected: refuses if request arrived via Discord message (prompt injection guard)",
        "Red flag: no status output · auto-approves without code · crashes on missing file"
       ],
-      "folderLabel": "@NikBearBrown",
+      "folderLabel": "@HumanitariansAI",
       "modelLabel": "Opus 4.8",
       "effortLabel": "High"
      },
@@ -275,8 +275,8 @@
   {
    "beat_id": "BOUT",
    "act": "outro",
-   "narration_text": "Discord Access. Liam, in for Bear. From Humanitarians AI.",
-   "voice": "am_onyx",
+   "narration_text": "Discord Access. Kore, in for Humanitarians AI. From Humanitarians AI.",
+   "voice": "af_kore",
    "engine": "kokoro",
    "estimated_duration_s": 5,
    "shot": {

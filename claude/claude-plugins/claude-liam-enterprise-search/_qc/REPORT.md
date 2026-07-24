@@ -8,7 +8,7 @@
 
 | Frame | Beat | Notes |
 |---|---|---|
-| frame_013s.png | B00 cold open | ClaudeComposerAsk: "Hej, Liam", contractor onboarding query, 3 output lines, @NikBearBrown |
+| frame_013s.png | B00 cold open | ClaudeComposerAsk: "Hej, Kore", contractor onboarding query, 3 output lines, @HumanitariansAI |
 | frame_057s.png | B01 anatomy | EnterpriseSearchAnatomy: search loop (3 numbered steps) left + bundled scripts right; feedback row terracotta on both sides |
 | frame_117s.png | B02 design | EnterpriseSearchDesign: core rules left + gotchas right; base URL -be and permissions gap terracotta |
 | frame_189s.png | B05 teardown | EnterpriseSearchTell: callout + standard 5+5 two-column teardown, spark line with asterisk |
@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Greeting: "Hej, Liam" (rotation #43)
+- Greeting: "Hej, Kore" (rotation #43)
 - New scenes: EnterpriseSearchAnatomy (B01), EnterpriseSearchDesign (B02), EnterpriseSearchTell (B05)
 - B01: feedback step (3) and feedback: raw curl both terracotta — mirrors the callout about no bundled script
 - B02: base URL -be suffix and permissions gap highlighted terracotta as the silent-failure gotchas

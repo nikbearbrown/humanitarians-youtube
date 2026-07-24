@@ -1,6 +1,6 @@
 # PEDAGOGY audit — claude-liam-a5-02-user-and-stories ("Name the Human")
 
-ai-explainer, claude-liam, Kokoro am_onyx. Pragmatist register.
+ai-explainer, claude-liam, Kokoro af_kore. Pragmatist register.
 Source: INFO 7375 Assignment 5 brief, Part 2 (16 pts).
 
 ## Act structure
@@ -9,7 +9,7 @@ Source: INFO 7375 Assignment 5 brief, Part 2 (16 pts).
   handoff (BHTF) → outro (BOUT). 8 beats. PASS
 
 ## Cold open (COLD OPEN LAW)
-- B00 is ClaudeComposerAsk. Liam introduces in first breath. "Hola, Liam."
+- B00 is ClaudeComposerAsk. Kore introduces in first breath. "Hola, Kore."
   Output shows 2A/2B split and key traps. PASS
 
 ## Gap formula / hook

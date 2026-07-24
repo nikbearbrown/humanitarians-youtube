@@ -63,29 +63,29 @@
 
 ### Cold Open (NBB00)
 - **Question**: "Why does a metabolic enzyme mutation produce an epigenetic block to differentiation?"
-- **Liam audio**: `nbb-vox-idh-2hg/mp3/beat-NBB00.mp3`
+- **Kore audio**: `nbb-vox-idh-2hg/mp3/beat-NBB00.mp3`
 - **Duration**: 8.704s
-- **Visual**: ClaudeComposerAsk — greeting "Jambo, Liam", command types the central question
+- **Visual**: ClaudeComposerAsk — greeting "Jambo, Kore", command types the central question
 - **Remotion render**: `nbb-vox-idh-2hg/media/NBB00.mp4`
 
 ### Verdict (NBB01)
 - **Narration**: Synthesizes mechanism: neomorphic mutation → 2HG oncometabolite → competitive inhibition of alpha-KG-dependent demethylases → methyl mark accumulation → blast arrest. States ivosidenib restores differentiation. Names trade-off: IDH-mutant disease only.
-- **Liam audio**: `nbb-vox-idh-2hg/mp3/beat-NBB01.mp3`
+- **Kore audio**: `nbb-vox-idh-2hg/mp3/beat-NBB01.mp3`
 - **Duration**: 41.69s (new audio — previous verdict was 38.57s with incorrect repeat-body content)
 - **Visual**: ClaudeWindow (artifact view) — "The mechanism" heading, 6 verdict lines, spark line "Poison by resemblance."
 - **Remotion render**: `nbb-vox-idh-2hg/media/NBB01.mp4` (re-rendered from ClaudeVerdictArtifact → ClaudeWindow; 12s clip looped to fill 41.7s audio)
 
 ### Your Turn (NBB02)
 - **Prompt**: Competitive inhibition in cancer metabolism — asks why 2HG is competitive vs allosteric, and predicts DNA methylation patterns over time.
-- **Liam audio**: `nbb-vox-idh-2hg/mp3/beat-NBB02.mp3`
+- **Kore audio**: `nbb-vox-idh-2hg/mp3/beat-NBB02.mp3`
 - **Duration**: 7.765s
 - **Visual**: ClaudeComposerAsk — greeting "Your turn.", runningText "paste this into Claude…"
 
 ### Outro (NBB03)
 - **Title**: "Why a Metabolic Enzyme Mutation Can Lock Cells Into an Immature State"
-- **Handle**: @NikBearBrown
+- **Handle**: @HumanitariansAI
 - **Subline**: "Poison by resemblance — 2HG blocks the eraser that frees the cell."
-- **Liam audio**: `nbb-vox-idh-2hg/mp3/beat-NBB03.mp3`
+- **Kore audio**: `nbb-vox-idh-2hg/mp3/beat-NBB03.mp3`
 - **Duration**: 6.03s
 - **Visual**: ClaudeTitleOutro
 

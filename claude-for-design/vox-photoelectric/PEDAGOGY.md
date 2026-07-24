@@ -41,7 +41,7 @@ VERDICT: PASS
 - B01 title card → B00 `ClaudeComposerAsk` cold open. Greeting: "Hola, Bear" (Spanish; Wagwan check: charsum % 10 = 1, not 0). Topic eyebrow: `QUANTUM MECHANICS · THE THRESHOLD`. Narration reuses beat-B01.mp3 (same hook text — no new audio spend).
 - 7 ASK micro-beats inserted (B01a, B03a, B04a, B05a, B06a, B07a, B08a) before each Manim graphic beat. No narration; 2-second visual receipts showing the generation prompt. No audio generation needed.
 - B11 `OutroSeries` → `HANDOFF` beat. Greeting: "Your turn." Command: copper work-function exercise. New audio needed.
-- B12 `OutroCTA` → `ClaudeTitleOutro` restating full episode title with terracotta period, `@NikBearBrown` beneath. New audio needed.
+- B12 `OutroCTA` → `ClaudeTitleOutro` restating full episode title with terracotta period, `@HumanitariansAI` beneath. New audio needed.
 - Inner beats B02–B10 narration, audio files, and graphic/manim references untouched.
 - New audio to generate: `python3 runtime/scripts/generate_audio.py quantum-mechanics-vol1/youtube/vox-photoelectric --only B11,B12`
 

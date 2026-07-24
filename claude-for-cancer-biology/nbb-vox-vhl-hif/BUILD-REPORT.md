@@ -90,9 +90,9 @@
 | Field | Value |
 |---|---|
 | Question | "Why does a broken oxygen sensor cause cancer to act permanently starved?" |
-| Greeting | "Annyeong, Liam" (Korean hello) |
+| Greeting | "Annyeong, Kore" (Korean hello) |
 | Handoff line | "Can you explain it, Bear?" |
-| Voice engine | Kokoro `am_onyx` (Liam in-for-Bear) |
+| Voice engine | Kokoro `af_kore` (Kore in-for-Bear) |
 | Audio path | `nbb-vox-vhl-hif/mp3/beat-B_LIAM.mp3` |
 | Audio duration | 16.87 s |
 | Visual | `ClaudeComposerAsk` (Remotion, Claude fidelity skin) |
@@ -105,7 +105,7 @@
 | Field | Value |
 |---|---|
 | Narration | "VHL is not the sensor. It is the reader. PHDs tag HIF-1 alpha — VHL converts that tag into a destruction order. Lose VHL and HIF-1 alpha accumulates regardless of oxygen. One missing protein, whole hypoxic program, permanently on. The trade-off that makes this devastating is the same one that makes normal oxygen sensing elegant: a single bottleneck. Efficient — until it is gone." |
-| Voice engine | **Kokoro `am_onyx` PLACEHOLDER** — ElevenLabs API key invalid at build time (HTTP 401). See NOTE below. |
+| Voice engine | **Kokoro `af_kore` PLACEHOLDER** — ElevenLabs API key invalid at build time (HTTP 401). See NOTE below. |
 | Audio path | `nbb-vox-vhl-hif/mp3/beat-B_VERDICT.mp3` |
 | Audio duration | 22.44 s |
 | Visual | `ClaudeVerdictArtifact` (Remotion, Claude fidelity skin, 4 artifact lines) |
@@ -119,7 +119,7 @@
 |---|---|
 | Prompt | "I'm learning about clear cell kidney cancer and the VHL/HIF-1α pathway. VHL normally tags HIF-1α for destruction via ubiquitin ligase; in ccRCC, VHL is lost so HIF-1α accumulates constitutively. I understand belzutifan targets HIF-2α downstream. Can you walk me through: (1) why targeting HIF-2α rather than HIF-1α became the therapeutic bet, (2) what resistance mechanisms have emerged in belzutifan trials so far, and (3) what a combination approach with mTOR inhibitors is meant to address?" |
 | Narration | "Your turn. Take this prompt into Claude and explore what happens when you stress-test the VHL-HIF axis from a drug-design angle." |
-| Voice engine | **Kokoro `am_onyx` PLACEHOLDER** — ElevenLabs API key invalid at build time (HTTP 401). See NOTE below. |
+| Voice engine | **Kokoro `af_kore` PLACEHOLDER** — ElevenLabs API key invalid at build time (HTTP 401). See NOTE below. |
 | Audio path | `nbb-vox-vhl-hif/mp3/beat-B_HANDOFF.mp3` |
 | Audio duration | 7.66 s |
 | Visual | `ClaudeComposerAsk` with `greeting: "Your turn."`, `runningText: "paste this into Claude…"` |
@@ -132,7 +132,7 @@
 | Field | Value |
 |---|---|
 | Title | "Why a Broken Oxygen Sensor Causes a Cancer to Act Permanently Starved" |
-| Handle | `@NikBearBrown` |
+| Handle | `@HumanitariansAI` |
 | Subline | "one missing protein — the whole program, permanently on" |
 | Voice | Silent (5.04 s) |
 | Visual | `ClaudeTitleOutro` (Remotion, Claude fidelity skin) |
@@ -156,7 +156,7 @@
 
 **Assembly structure:**
 ```
-B_LIAM cold open (16.875 s) — Liam/Kokoro + ClaudeComposerAsk
+B_LIAM cold open (16.875 s) — Kore/Kokoro + ClaudeComposerAsk
 ↓
 Body B01–B15 (290.042 s) — locked, stream-copy from source
 ↓
@@ -206,7 +206,7 @@ VERDICT: PASS (see `FACTCHECK.md`)
 
 ## CRITICAL NOTE — ElevenLabs API key invalid
 
-`ELEVENLABS_API_KEY` returned HTTP 401 at build time (`art keys` confirmed "invalid"). B_VERDICT and B_HANDOFF were generated using Kokoro `am_onyx` (the same Liam voice) as a **placeholder**. This is a previz-quality audio track — the content is correct, the voice is not Bear's ElevenLabs clone.
+`ELEVENLABS_API_KEY` returned HTTP 401 at build time (`art keys` confirmed "invalid"). B_VERDICT and B_HANDOFF were generated using Kokoro `af_kore` (the same Kore voice) as a **placeholder**. This is a previz-quality audio track — the content is correct, the voice is not Bear's ElevenLabs clone.
 
 **To upgrade to Bear's voice:**
 1. Fix `ELEVENLABS_API_KEY` in `brutalist-art/.env`
