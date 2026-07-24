@@ -17,12 +17,13 @@ fictional-person disclosures, and publishing gates explicit.
 
 ## Fellow voice choice
 
-Each fellow chooses the voice for their own reports. Kore (`af_kore`) and Bella
-(`af_bella`) are ready-to-use Kokoro options, but neither is mandatory; a
-fellow may select any other suitable voice. Record the chosen engine and voice
-ID in every episode's `beat_sheet.json`, obtain the fellow's approval before
-audio generation, and keep one voice consistent within an episode unless a
-clearly labeled second speaker is intentional.
+Each fellow chooses one Kokoro voice for their reports and then keeps that
+voice across the series. Kore (`af_kore`) and Bella (`af_bella`) are
+ready-to-use options, but any available Kokoro voice may be selected. Record
+the choice in the fellow-folder README and every episode's `beat_sheet.json`,
+then obtain the fellow's approval before the first audio generation. A later
+voice change is an explicit, documented re-voice decision—not a per-episode
+default.
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
