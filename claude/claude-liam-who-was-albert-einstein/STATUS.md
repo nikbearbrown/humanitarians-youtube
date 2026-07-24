@@ -1,9 +1,12 @@
 # STATUS — claude-liam-who-was-albert-einstein
 
-7/10 beats filled. Derived from beat_sheet.json — edit the sheet, not this file.
+10/13 beats filled. Derived from beat_sheet.json — edit the sheet, not this file.
 
 | beat | status | fill method | who | slot | suggested prompt / search |
 |---|---|---|---|---|---|
+| B00 | ✅ filled | remotion | pipeline | `media/B00.mp4` |  |
+| YTV01 | ✅ filled | remotion | pipeline | `media/YTV01.mp4` |  |
+| B01B | ✅ filled | remotion | pipeline | `media/B01B.mp4` |  |
 | B00 | ✅ filled | remotion | pipeline | `media/B00.mp4` |  |
 | B01 | ⬜ needs-fill | ai-video-prompt | human | `media/B01.mp4` | Physicists had data they couldn't explain. Shine light on metal and electrons come out — b |
 | B02 | ✅ filled | manim | pipeline | `manim/B02.mp4` |  |

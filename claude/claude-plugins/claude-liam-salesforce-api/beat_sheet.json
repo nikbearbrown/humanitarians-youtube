@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "salesforce-api",
+    "slug": "claude-liam-salesforce-api",
+    "topic": "SALESFORCE-API · CLAUDE PLUGINS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "source_skill": "../anthropics/claude-tag-plugins/salesforce/skills/salesforce-api/SKILL.md",
+    "build": {
+      "at": "2026-07-19T13:47:38",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the salesforce-api skill. It queries, reads, creates, updates, and describes Salesforce records via the REST API. Four rules govern everything. First: every org has its own instance URL — your My Domain — and it is part of every request path. Second: errors return as a JSON array, success as an object — always guard jq projections with a type check or the error body crashes the filter and you never see errorCode. Third: SOQL has no SELECT star — use FIELDS ALL or FIELDS CUSTOM if you need every field, but they require LIMIT 200. Fourth: Describe is your schema — field names, picklist values, relationship names, and the createable and updateable flags. Read it before guessing field names. Let me walk you through the operations, the error model, and the gaps.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "SALESFORCE-API · CLAUDE PLUGINS",
+            "segment": "PLUGINS",
+            "command": "Find all open Opportunities closing this quarter, with Account name and owner — then update the top one to Closed Won.",
+            "runningText": "reading salesforce-api SKILL.md…",
+            "output": [
+              "Instance URL per org: https://<org>.my.salesforce.com/services/data/v66.0/...",
+              "Errors = JSON array; success = object — guard every jq projection with type check",
+              "No SELECT * in SOQL · Describe = schema · PATCH returns 204 · Composite 200 ≠ all subrequests OK"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T13:47:38"
+      },
+      "actual_duration_s": 43.48
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy — request setup and core operations",
+      "narration_text": "The skill has two layers: the request setup and the core operations. Request setup requires setting SALESFORCE underscore INSTANCE underscore URL to the real org My Domain, and SF underscore API to the versioned path. SALESFORCE underscore ACCESS underscore TOKEN is a placeholder — the runtime injects the real credential. The sanity check is a GET to SF underscore API slash — it returns a map of available resources on success. Seven core operations. First: Run a SOQL query via the bundled sf underscore query script — it submits, follows nextRecordsUrl through every page, surfaces the array-shaped error body, strips the per-record attributes envelope, and flattens nested parent-relationship objects to dotted-key columns. Second: Full-text search with SOSL via GET slash search with q encoded as a query param — use dash G with data-urlencode or the slash search endpoint rejects it. Third: Read, create, update, delete one record — GET for read, POST for create, PATCH for update which returns 204 No Content, DELETE for delete which returns 204 and moves the record to the recycle bin for 15 days. Fourth: Upsert by external ID with PATCH on the external-ID path — 201 means created, 200 means updated, 300 means the external ID matched multiple records and nothing was written. Fifth: Describe an sObject to get field names, types, picklist values, createable and updateable flags, and child relationships. Sixth: Composite — chain up to 25 subrequests in one round trip with cross-references via at-brace notation, and allOrNone to roll back the whole batch on any failure. The outer request returns 200 even when subrequests fail — check each subrequest's httpStatusCode. Seventh: Check limits with GET slash limits — shows DailyApiRequests Max and Remaining before running a loop.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 60,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SalesforceApiAnatomy",
+          "props": {
+            "sparkLine": "Per-org instance URL + versioned path. Errors = JSON array. sf_query.sh pages nextRecordsUrl."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T13:47:38"
+      },
+      "actual_duration_s": 101.93
+    },
+    {
+      "beat_id": "B02",
+      "act": "design — workflow and key patterns",
+      "narration_text": "Four patterns that matter. First: always guard jq with a type check. Errors return as a JSON array; success returns as an object. A jq projection that works on the success shape crashes when it receives the error array — and the crash swallows the errorCode you need to debug. The pattern is: if type equals string array then dot else the success projection end. Second: run Describe before writing any field names. Custom fields end in two underscores c, custom relationship names end in two underscores r. Getting a field name wrong returns INVALID underscore FIELD, not a helpful suggestion. Third: for PATCH and DELETE operations, check the HTTP status code explicitly. PATCH returns 204 No Content on success — an empty body is not an error. Pass dash w with percent http underscore code to surface the code; if you only check the body you will miss 204 success and misread it as a failure. Fourth: for deep pagination, follow nextRecordsUrl — OFFSET in SOQL is hard-capped at 2000 records. The sf underscore query script follows nextRecordsUrl for you. Key gotchas. Composite subrequest URLs must repeat the same API version as the outer request — if you change v66 dot 0 in SF underscore API, update every subrequest URL. Upsert 300 means the external ID matched multiple records and nothing was written — it is not an error code but a 300 HTTP status. Daily rate limit has no Retry-After — you wait for requests to age out of the 24-hour window. SOSL searches need the GET method with dash G and data-urlencode — without dash G, curl POSTs and slash search rejects it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 60,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SalesforceApiDesign",
+          "props": {
+            "sparkLine": "Guard jq with type check. Describe before field names. PATCH/DELETE = 204. nextRecordsUrl not OFFSET."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T13:47:38"
+      },
+      "actual_duration_s": 91.71
+    },
+    {
+      "beat_id": "B05",
+      "act": "teardown — what it gets right / where it bites",
+      "narration_text": "Here is the teardown. The skill gets five things right. The bundled sf underscore query script handles SOQL pagination automatically — follows nextRecordsUrl through every page, strips the attributes envelope every record carries, and flattens parent-relationship objects to dotted keys — so you never write the pagination loop by hand. The error-array shape is documented early and prominently, with the type-guard pattern shown in the first section rather than buried in error handling. Upsert by external ID is documented with all three status codes — 201 created, 200 updated, 300 multiple match, nothing written — which is the correct interpretation; most API docs omit the 300 case. Composite is documented with a concrete working example including cross-references and allOrNone, and the critical caveat that the outer 200 does not mean subrequests succeeded. Rate limits are documented with the Sforce-Limit-Info header and the correct interpretation of both failure modes: daily cap and concurrent long-running requests. Where it bites. The PATCH returns 204 No Content caveat is documented in the operations section, but only in a parenthetical. A first-time user will test a PATCH, get an empty response, assume it failed, and add error handling that masks the success. The SOSL dash G requirement is documented in a brief note that does not explain why — without understanding that dash G keeps data-urlencode as a GET parameter, users who use a different HTTP client will make the same mistake silently. Custom two-underscore c and two-underscore r naming is mentioned as a key fact, but the relationship between SOQL parent path syntax, child subquery syntax, and the two-underscore r suffix is not shown with a concrete example — users discover this by reading the error. Composite subrequest version coupling — each subrequest URL must repeat v66 dot 0 — is a subtle constraint that does not fail loudly; the subrequest silently uses the wrong version if you forget. The recycle bin cascade warning for DELETE is present but minimal — master-detail relationships can cascade deletes across many records and the skill does not quantify what confirm intent means.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 60,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SalesforceApiTell",
+          "props": {
+            "sparkLine": "sf_query.sh pagination + error-array guard + upsert 300 + composite caveat correct. PATCH 204 + SOSL -G bite."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T13:47:38"
+      },
+      "actual_duration_s": 120.85
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict. salesforce-api: instance URL per org — SALESFORCE underscore INSTANCE underscore URL slash services slash data slash v66 dot 0. Errors = JSON array, success = object — always guard jq with type check. No SELECT star in SOQL. Describe = schema. Seven operations: SOQL via sf underscore query script, SOSL via GET with dash G, CRUD, upsert by external ID, describe, composite, limits. PATCH and DELETE return 204 No Content. Composite outer 200 does not mean subrequests succeeded. Upsert 300 = multiple external ID matches, nothing written. Rate limit per 24-hour window, no Retry-After. OFFSET hard-capped at 2000 — follow nextRecordsUrl. Gaps: PATCH 204 easy to misread as failure; SOSL requires dash G; composite subrequest URLs must repeat API version.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "salesforce-api",
+            "artifactLines": [
+              "Per-org instance URL · /services/data/v66.0/ · errors = JSON array · success = object",
+              "SOQL: no SELECT * · FIELDS(ALL/CUSTOM) needs LIMIT 200 · Describe = schema · __c/__r naming",
+              "CRUD: POST=create · PATCH=update (204 No Content) · DELETE=204 → recycle bin 15d",
+              "Upsert: PATCH on external-ID path · 201=created · 200=updated · 300=multiple match, nothing written",
+              "Composite: outer 200 ≠ subrequests OK · subrequest URLs must repeat API version",
+              "Gaps: PATCH 204 misread as failure · SOSL needs -G flag · daily cap has no Retry-After"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T13:47:38"
+      },
+      "actual_duration_s": 51.09
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Ask Claude to query Salesforce for open Opportunities closing this quarter, then update the top one to Closed Won. Watch five things. First: does it set SALESFORCE underscore INSTANCE underscore URL to a real org domain before making any call, or does it use a placeholder URL that will return a 401? Second: when it reads the SOQL response with jq, does it guard with an if-type-equals-array check, or does it project directly and crash on the error body? Third: before writing the update PATCH, does it call Describe on Opportunity to confirm StageName is an updateable field with Closed Won as a valid picklist value, or does it guess? Fourth: does it check the HTTP status code after the PATCH — expecting 204 No Content — or does it try to parse a response body that will be empty? Fifth: if you ask it to do a Composite — create an Account and Contact in one call — does it include the correct API version in each subrequest URL, and does it check each subrequest's httpStatusCode individually?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your Turn",
+            "topic": "SALESFORCE-API · HANDOFF",
+            "segment": "PLUGINS",
+            "command": "Find open Opportunities closing this quarter — then update the top one to Closed Won.",
+            "runningText": "Watch: real instance URL? jq type guard? Describe before PATCH? 204 status check? composite version?",
+            "output": [
+              "Expected: real SALESFORCE_INSTANCE_URL · jq type guard · Describe confirms StageName picklist",
+              "Expected: PATCH → check 204 not body · composite subrequest URLs include API version",
+              "Red flag: placeholder URL · raw jq project · no Describe · parses empty PATCH body · wrong version"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T13:47:38"
+      },
+      "actual_duration_s": 54.68
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "salesforce-api. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "salesforce-api",
+            "handle": "@NikBearBrown",
+            "subline": "salesforce-api · Claude Plugins"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T13:47:38"
+      },
+      "actual_duration_s": 3.05
+    }
+  ]
+}

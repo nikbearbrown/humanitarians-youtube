@@ -7,7 +7,11 @@ B12_TheSplit is the hero beat — most care; EB Garamond, conductor split.
 REV 2: B04A_CaptionsRight added (captions ship with the post).
 """
 import sys, pathlib
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2] / "runtime" / "manim"))
+# locate brutalist-art/runtime/manim by walking up (layout-proof)
+for _a in pathlib.Path(__file__).resolve().parents:
+    _m = _a / "brutalist-art" / "runtime" / "manim"
+    if (_m / "animated_graphics.py").is_file():
+        sys.path.insert(0, str(_m)); break
 from animated_graphics import *
 
 ACCENT_TEAL = "#1F6F5C"

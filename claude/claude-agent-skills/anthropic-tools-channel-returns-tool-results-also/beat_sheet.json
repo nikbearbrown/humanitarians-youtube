@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "anthropic-tools-channel-returns-tool-results-also",
+    "title": "Why the channel that returns tool results also carries the mistakes",
+    "topic": "Error messages as in-loop self-correction signals",
+    "purpose": "`tool_error` is a field on the same message type as results, mutually exclusive with `tool_outputs` and using the identical turn-taking rhythm — so error handling is architecturally the same loop as result handling, no special case.",
+    "category": "claude-agent-skills",
+    "playlist": "Claude Agent Skills",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/anthropic-tools/README.md`",
+    "origin": "promoted",
+    "score": "8/10",
+    "length_band": "2–3 min",
+    "still_lanes": "c2v (success dict vs. error dict → corrected call)",
+    "prerequisites": "tool_inputs/tool_outputs turn format",
+    "exclusions": "retry limits, backoff, exceptions outside the loop, the model's internal reasoning",
+    "visual_object": "Two side-by-side `tool_outputs` dicts — one with results and `tool_error=None`, one with `tool_outputs=None` and an error string — then the corrected call that follows.",
+    "manim_move": "morph",
+    "hook": "The model requests a tool but omits a required parameter; the framework can't run it — yet the conversation doesn't deadlock or crash.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "The model calls `perform_addition(a=9)` with no `b`; the system returns a `tool_outputs` message with `tool_outputs=None` and `tool_error=\"Missing required parameter 'b'\"`; the model reads it and reissues `perform_addition(a=9, b=1)`.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "If the error path returned a different shape than the success path, the model would need two mental models for responses — yet it self-corrects seamlessly; why?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "The model requests a tool but omits a required parameter; the framework can't run it — yet the conversation doesn't deadlock or crash.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "`tool_error` is a field on the same message type as results, mutually exclusive with `tool_outputs` and using the identical turn-taking rhythm — so error handling is architecturally the same loop as result handling, no special case.",
+      "estimated_duration_s": 18,
+      "visual": "Two side-by-side `tool_outputs` dicts — one with results and `tool_error=None`, one with `tool_outputs=None` and an error string — then the corrected call that follows.",
+      "manim_move": "morph",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "`perform_addition(a=9)` → `{tool_outputs:None, tool_error:\"Missing required parameter 'b'\"}` → next message `perform_addition(a=9, b=1)`.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "`tool_error` is a field on the same message type as results, mutually exclusive with `tool_outputs` and using the identical turn-taking rhythm — so error handling is architecturally the same loop as result handling, no special case.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

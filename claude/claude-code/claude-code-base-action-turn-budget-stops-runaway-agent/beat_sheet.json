@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "claude-code-base-action-turn-budget-stops-runaway-agent",
+    "title": "Why a turn budget stops a runaway agent more cleanly than a stopwatch",
+    "topic": "Turn budgets as circuit breakers for agentic loops",
+    "purpose": "Each request→response→tool cycle is one turn; the loop halts *after* a response, never mid-tool — so a turn budget always cuts at a semantically coherent boundary, while a clock fires at an arbitrary instant.",
+    "category": "claude-code",
+    "playlist": "Claude Code",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/claude-code-base-action/README.md`",
+    "origin": "promoted",
+    "score": "7/10",
+    "length_band": "2–3 min",
+    "still_lanes": "c2v, raster",
+    "prerequisites": "agentic loop concept, GitHub Actions basics",
+    "exclusions": "token-level budgets; cost-per-turn economics; multi-agent orchestration",
+    "visual_object": "A progress bar filling one segment per turn (1→5→stop), beside a clock slicing the same bar at a random point mid-segment.",
+    "manim_move": "accumulate",
+    "hook": "A goal-seeking agent runs until the task is \"done\" — inside a CI job that must terminate, something has to cut it off.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "With `max_turns: 5`, Claude reads files (turn 1), writes changes (turns 2–4), returns a summary (turn 5); the workflow exits with bounded, committed work. A 45-second wall-clock timeout instead fires mid-file-write, leaving a half-written file.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "A loop is open-ended; a CI job must end predictably. Why does a turn counter give a cleaner stopping condition than a wall-clock timeout?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "A goal-seeking agent runs until the task is \"done\" — inside a CI job that must terminate, something has to cut it off.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "Each request→response→tool cycle is one turn; the loop halts *after* a response, never mid-tool — so a turn budget always cuts at a semantically coherent boundary, while a clock fires at an arbitrary instant.",
+      "estimated_duration_s": 18,
+      "visual": "A progress bar filling one segment per turn (1→5→stop), beside a clock slicing the same bar at a random point mid-segment.",
+      "manim_move": "accumulate",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "3-turn budget: read (1), patch (2), return diff (3) — exhausted cleanly. Same task, 45s timeout → fires during turn 2's write → corrupt file.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "Each request→response→tool cycle is one turn; the loop halts *after* a response, never mid-tool — so a turn budget always cuts at a semantically coherent boundary, while a clock fires at an arbitrary instant.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

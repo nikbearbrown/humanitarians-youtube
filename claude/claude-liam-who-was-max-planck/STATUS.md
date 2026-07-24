@@ -1,9 +1,12 @@
 # STATUS — claude-liam-who-was-max-planck
 
-7/10 beats filled. Derived from beat_sheet.json — edit the sheet, not this file.
+10/13 beats filled. Derived from beat_sheet.json — edit the sheet, not this file.
 
 | beat | status | fill method | who | slot | suggested prompt / search |
 |---|---|---|---|---|---|
+| B00 | ✅ filled | remotion | pipeline | `media/B00.mp4` |  |
+| YTV01 | ✅ filled | remotion | pipeline | `media/YTV01.mp4` |  |
+| B01B | ✅ filled | remotion | pipeline | `media/B01B.mp4` |  |
 | B00 | ✅ filled | remotion | pipeline | `media/B00.mp4` |  |
 | B01 | ⬜ needs-fill | ai-video-prompt | human | `media/B01.mp4` | In the late 1800s, physicists had a crisis. Heat metal until it glows — iron, copper, anyt |
 | B02 | ✅ filled | manim | pipeline | `manim/B02.mp4` |  |

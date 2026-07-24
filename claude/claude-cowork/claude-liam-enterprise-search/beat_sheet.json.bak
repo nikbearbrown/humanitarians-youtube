@@ -1,0 +1,231 @@
+{
+  "metadata": {
+    "slug": "claude-liam-enterprise-search",
+    "title": "Claude, Finding It",
+    "subtitle": "The Enterprise Search Plugin",
+    "channel": "claude-liam",
+    "persona": "Liam",
+    "folderLabel": "@NikBearBrown",
+    "audience": "Practitioners and makers following the channel's Claude workflows",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "palette": "claude",
+    "typography": { "serif": "EB Garamond", "ui": "system sans", "mono": "SF Mono" },
+    "model_chip": { "model": "Fable 5", "effort": "High" },
+    "source": "books/anthropics/books/claude-cowork-plugins/chapters/ch08-enterprise-search.txt",
+    "derived_from": "claude-cowork-plugins.md (Ch.8)",
+    "genre": "deep-explainer",
+    "one_idea": "In a bigger org the answer usually already exists — buried in someone's doc, deck, or thread; enterprise search connects Claude across your sources so it retrieves what the company already knows, bounded strictly by your existing access permissions.",
+    "duration_estimate_s": 330,
+    "lane_histogram_target": { "VOX": "20-25%", "MANIM": "25-40%", "REMOTION": "30-45%", "CARD": "remainder" }
+  },
+  "beats": [
+    {
+      "id": "B00", "act": "COLD OPEN", "lane": "ASK", "scene": "ClaudeComposerAsk",
+      "greeting": "Merhaba, Liam",
+      "props": { "command": "My company already wrote this down somewhere. Can Claude just find it?", "runningText": "searching your sources…", "output": ["Yes — across every source you've connected,", "bounded strictly by your own access."] },
+      "narration_text": "Merhaba — this is Liam, in for Bear. Ignore the name for a second — 'enterprise search' sounds like something a giant deploys across ten thousand people. But it earns its keep the moment knowledge is scattered across many tools and many people: the answer you need already exists, buried in someone's doc, a deck, a thread — and you can't reach it. This plugin points Claude at your own sources and finds it. Here's how, and where the line is.",
+      "spark_line": "The answer already exists."
+    },
+
+    { "id": "C01", "act": "ACT I", "lane": "CARD", "scene": "SegmentCard", "props": { "title": "The Buried Answer" }, "narration_text": "Start with the problem every team has.", "spark_line": "The Buried Answer" },
+    {
+      "id": "B01", "act": "ACT I", "lane": "REMOTION", "scene": "PredictCard",
+      "narration_text": "If your organization has been operating for more than a year, you have a retrieval problem. Someone wrote the pricing rationale. Someone documented the onboarding process. The terms you agreed with a vendor are in an email. It all exists. You just can't get to it.",
+      "show": "A single card resolves: 'It exists. You just can't reach it.' — the paradox stated plainly.",
+      "spark_line": "It exists, unreachable."
+    },
+    {
+      "id": "B02", "act": "ACT I", "lane": "MANIM", "scene": "manim/scatter_across_platforms.mp4",
+      "narration_text": "The trouble is the knowledge is scattered. A drive here, a wiki page there, a shared folder, a chat thread, someone's laptop. File search matches names, your memory is fallible, and the pieces sit on three or four different systems at once.",
+      "show": "One question at center; documents scatter outward into four separate, drifting silos with no bridge between them.",
+      "viz": { "pattern": "scatter", "from": "one question", "to": "four disconnected silos" },
+      "spark_line": "Scattered, not searchable."
+    },
+    {
+      "id": "B03", "act": "ACT I", "lane": "VOX", "scene": "media/B03.png",
+      "shot": { "type": "STILL", "source": "ai", "motion": "kenburns", "focus": [0.5, 0.45] },
+      "narration_text": "In a bigger org it's worse — the doc you need isn't even yours. It's in a colleague's deck from a project you weren't on, a thread three teams over. The company knows the answer. No single person does.",
+      "show": "A still of a vast open-plan office, desks receding into the distance — knowledge spread across a hundred people. Slow push-in.",
+      "spark_line": "The company knows.",
+      "pantry_note": "Tier 1 illustrative: wide documentary shot of a large open office / rows of desks, duotone. No real logos; no faces in focus."
+    },
+
+    { "id": "C02", "act": "ACT II", "lane": "CARD", "scene": "SegmentCard", "props": { "title": "Content, Not Filename" }, "narration_text": "Here's the distinction that makes it work.", "spark_line": "Content, Not Filename" },
+    {
+      "id": "B04", "act": "ACT II", "lane": "MANIM", "scene": "manim/filename_vs_content.mp4",
+      "narration_text": "Normal file search matches the name. Call a document 'Q3 notes' when it actually holds your decision to switch payment processors — search 'payment processor' and the file never surfaces. The name and the content have nothing to do with each other.",
+      "show": "A file labeled 'Q3-notes' sits dark; a query 'payment processor' sweeps the filenames and finds nothing — misses by a mile.",
+      "viz": { "pattern": "miss", "query": "payment processor", "target": "filename match", "result": "no hit" },
+      "spark_line": "Names lie."
+    },
+    {
+      "id": "B05", "act": "ACT II", "lane": "REMOTION", "scene": "illustration/search-inside-document",
+      "narration_text": "Enterprise search reads inside the documents. It matches your question against the actual words on the page, not the label on the folder. Ask what's in the file, and it looks at what's in the file.",
+      "show": "The same 'Q3-notes' file opens; the query now lands on a sentence deep inside it — a terracotta highlight on the matching line.",
+      "spark_line": "It reads inside."
+    },
+    {
+      "id": "B06", "act": "ACT II", "lane": "REMOTION", "scene": "SourceFlow",
+      "narration_text": "And it does that across everything at once. Your drive, your wiki, your shared folders, your chat — searched simultaneously. You don't have to remember where you put something. You only have to remember roughly what it was about.",
+      "show": "Several generic source streams flow in on the left into one unified search on the right — SourceFlow, all queried together.",
+      "viz": { "pattern": "SourceFlow", "source": "all your connected sources", "target": "one simultaneous search" },
+      "spark_line": "Everywhere, at once."
+    },
+    {
+      "id": "B07", "act": "ACT II", "lane": "REMOTION", "scene": "code-block",
+      "narration_text": "In practice it's a plain question. No query syntax, no boolean operators. You type the thing you half-remember, and the plugin does the reaching.",
+      "show": "Onda code-block: a composer line typing a natural-language question, not a search string.",
+      "props": { "code": "\"Where did we write down why we chose one processor over another?\"" },
+      "spark_line": "Ask, don't query."
+    },
+
+    { "id": "C03", "act": "ACT III", "lane": "CARD", "scene": "SegmentCard", "props": { "title": "Graveyard to Living Memory" }, "narration_text": "What that turns your archives into.", "spark_line": "Graveyard → Memory" },
+    {
+      "id": "B08", "act": "ACT III", "lane": "MANIM", "scene": "manim/graveyard_to_living.mp4",
+      "narration_text": "Most document archives are a graveyard — things go in, nothing comes back out. Content search flips that. The same pile of old files becomes a living resource you can actually ask questions of.",
+      "show": "A field of grey, dormant document-headstones lights up one row at a time into an active, warm archive.",
+      "viz": { "pattern": "transform", "from": "dormant archive", "to": "living resource" },
+      "spark_line": "Graveyard, revived."
+    },
+    {
+      "id": "B09", "act": "ACT III", "lane": "REMOTION", "scene": "illustration/context-injection",
+      "narration_text": "It goes one step further. When the plugin finds the relevant document, it can pull that content straight into the conversation. Ask Claude about your pricing strategy, and it retrieves your own pricing analysis and reasons from it.",
+      "show": "A found document slides into an active conversation panel and becomes part of the context — injection, not just a link.",
+      "spark_line": "Pulled into context."
+    },
+    {
+      "id": "B10", "act": "ACT III", "lane": "MANIM", "scene": "manim/grounded_vs_generic.mp4",
+      "narration_text": "That's the difference between generic advice and grounded advice. Without it, Claude reasons from best practices. With it, Claude reasons from your actual business — your numbers, your decisions, your history.",
+      "show": "Two answer-vectors: a pale 'generic best-practice' arrow drifts wide while a sharp 'grounded-in-your-data' arrow lands on target.",
+      "viz": { "pattern": "divergence", "from": "generic best practice", "to": "grounded in your context" },
+      "spark_line": "Grounded, not generic."
+    },
+
+    { "id": "C04", "act": "ACT IV", "lane": "CARD", "scene": "SegmentCard", "props": { "title": "What You'd Actually Ask" }, "narration_text": "So what do you do with it? Five plain questions.", "spark_line": "What You'd Ask" },
+    {
+      "id": "B11", "act": "ACT IV", "lane": "REMOTION", "scene": "ChipGrid",
+      "narration_text": "The workflows all sound like something you'd say out loud. Institutional memory. Client context. Policy lookup. Meeting prep. And catching yourself before you contradict a past promise.",
+      "show": "Five chips resolve onto the stage: Institutional memory · Client context · Policy lookup · Meeting prep · No contradictions.",
+      "viz": { "pattern": "ChipGrid", "chips": ["Institutional memory", "Client context", "Policy lookup", "Meeting prep", "No contradictions"] },
+      "spark_line": "Five plain asks."
+    },
+    {
+      "id": "B12", "act": "ACT IV", "lane": "REMOTION", "scene": "code-block",
+      "narration_text": "Institutional memory first. How did we decide to use Stripe instead of PayPal — and what was the reasoning? If anyone wrote it down, even casually in meeting notes, the plugin surfaces the why, not just the what.",
+      "show": "Onda code-block: the decision-recall question typed plainly at the composer.",
+      "props": { "code": "\"How did we decide on Stripe over PayPal, and why?\"" },
+      "spark_line": "Why did we decide?"
+    },
+    {
+      "id": "B13", "act": "ACT IV", "lane": "VOX", "scene": "media/B13.png",
+      "shot": { "type": "STILL", "source": "ai", "motion": "kenburns", "focus": [0.5, 0.45], "vox_run": "R1",
+        "handoff": { "camera": { "x": 0.5, "y": 0.45, "scale": 1.6 }, "objects": [ { "id": "email", "x": 0.5, "y": 0.45, "scale": 1.0, "opacity": 1 } ] } },
+      "narration_text": "Client context. A client you haven't heard from in six months emails to resume a project. You need to remember where things stood — scope, timeline, last status, open issues.",
+      "show": "A still of an inbox with a long-dormant thread reopening — one message surfacing after months. Slow push toward it.",
+      "spark_line": "Where did we stand?",
+      "pantry_note": "Tier 1 illustrative: a laptop inbox with one highlighted thread, duotone. Continuity into B14 (vox_run R1). No real names or addresses."
+    },
+    {
+      "id": "B14", "act": "ACT IV", "lane": "VOX", "scene": "media/B14.png",
+      "shot": { "type": "STILL", "source": "ai", "motion": "kenburns", "focus": [0.5, 0.5], "vox_run": "R1",
+        "handoff": { "camera": { "x": 0.5, "y": 0.5, "scale": 1.1 }, "objects": [ { "id": "briefing", "x": 0.5, "y": 0.5, "scale": 1.0, "opacity": 1 } ] } },
+      "narration_text": "The plugin assembles the briefing for you — the original proposal, your project notes, the last exchange, any status update. Five minutes, instead of an hour digging through folders.",
+      "show": "Continuous pull-back from the single email to reveal a full assembled briefing spread across the desk — same room grammar as B13.",
+      "spark_line": "A briefing, assembled.",
+      "pantry_note": "Tier 1 illustrative: papers / briefing assembled on a desk, duotone. Continuity from B13 (vox_run R1)."
+    },
+    {
+      "id": "B15", "act": "ACT IV", "lane": "REMOTION", "scene": "code-block",
+      "narration_text": "Policy lookup. What's our standard cancellation policy for consulting engagements? If it's written down anywhere, you get the answer — invoicing terms, workflow, communication standards, whatever you've committed to on paper.",
+      "show": "Onda code-block: the policy question typed plainly at the composer.",
+      "props": { "code": "\"What's our standard cancellation policy for consulting work?\"" },
+      "spark_line": "What's our policy?"
+    },
+    {
+      "id": "B16", "act": "ACT IV", "lane": "MANIM", "scene": "manim/prep_assemble_briefing.mp4",
+      "narration_text": "Meeting prep. Before a call, pull everything you already hold on the other side — proposals, emails, notes, past work. The plugin gathers your private history into one briefing, so you walk in already knowing it.",
+      "show": "Scattered fragments — emails, notes, proposals — converge and stack into a single tidy briefing card.",
+      "viz": { "pattern": "accumulate", "steps": ["Proposals", "Emails", "Notes", "Past work"], "into": "one briefing" },
+      "spark_line": "Walk in prepared."
+    },
+    {
+      "id": "B17", "act": "ACT IV", "lane": "VOX", "scene": "media/B17.png",
+      "shot": { "type": "STILL", "source": "ai", "motion": "drawon", "focus": [0.5, 0.5] },
+      "narration_text": "And avoiding contradictions. Before you quote a price or set terms, ask what you've said before. Have we ever quoted website-audit work — what did we charge, and to whom? It keeps you from promising one thing today and another thing last year.",
+      "show": "A still of two proposal pages side by side on a desk, one older and one new; a terracotta line draws on connecting the two figures.",
+      "spark_line": "Said it before?",
+      "pantry_note": "Tier 1 illustrative: two documents side by side being compared, duotone; the connecting line is a previz annotation, not baked into the still. No legible client names."
+    },
+
+    { "id": "C05", "act": "ACT V", "lane": "CARD", "scene": "SegmentCard", "props": { "title": "Bounded by Your Access" }, "narration_text": "Now the line that matters most.", "spark_line": "Bounded by Access" },
+    {
+      "id": "B18", "act": "ACT V", "lane": "MANIM", "scene": "manim/access_boundary.mp4",
+      "narration_text": "Here's the part to be clear about. The plugin searches only what you can already see. Your credentials, your permissions — nothing new. It can't reach a document you couldn't open yourself. It reaches what you already can, faster.",
+      "show": "A search wavefront expands outward but stops hard at a bright ring labeled 'your existing access' — it cannot cross the boundary.",
+      "viz": { "pattern": "boundary", "field": "your search", "limit": "your existing permissions" },
+      "spark_line": "Your access only."
+    },
+    {
+      "id": "B19", "act": "ACT V", "lane": "MANIM", "scene": "manim/connect_and_index.mp4",
+      "narration_text": "Which is also why it does nothing until you connect it. Its entire value comes from your own repositories, so you point it at wherever the important documents actually live. Indexing takes a while the first time; after that, searches are fast.",
+      "show": "Streams of document-dots flow from source nodes into a central index that fills and then resolves into a fast, queryable store.",
+      "viz": { "pattern": "flow-accumulate", "from": "your connected sources", "to": "an indexed, queryable store" },
+      "spark_line": "Connect, then index."
+    },
+    {
+      "id": "B20", "act": "ACT V", "lane": "VOX", "scene": "media/B20.png",
+      "shot": { "type": "STILL", "source": "ai", "motion": "drawon", "focus": [0.5, 0.45] },
+      "narration_text": "You can feel the boundary. You only ever see what you're already cleared to see, and the plugin inherits exactly that. It's your own reach made faster — never a way around your permissions.",
+      "show": "A still of a badge reader beside a door that opens only for some; a terracotta ring draws on around the access point.",
+      "spark_line": "Your reach, faster.",
+      "pantry_note": "Tier 1 illustrative: a keycard / badge access reader on a door, duotone; the ring is a previz annotation. No real signage or logos."
+    },
+
+    { "id": "C06", "act": "ACT VI", "lane": "CARD", "scene": "SegmentCard", "props": { "title": "Build the Habit" }, "narration_text": "Last, how to make it pay off.", "spark_line": "Build the Habit" },
+    {
+      "id": "B21", "act": "ACT VI", "lane": "REMOTION", "scene": "ChipGrid",
+      "narration_text": "Four habits multiply what it can find. Name things clearly going forward. Say where to look when you know. Ask it to synthesize, not just fetch. And write down decisions as you make them.",
+      "show": "Four chips resolve: Name clearly · Point it · Synthesize · Document decisions.",
+      "viz": { "pattern": "ChipGrid", "chips": ["Name clearly", "Point it", "Synthesize", "Document decisions"] },
+      "spark_line": "Four small habits."
+    },
+    {
+      "id": "B22", "act": "ACT VI", "lane": "MANIM", "scene": "manim/synthesis_across_docs.mp4",
+      "narration_text": "The synthesis one is where it beats plain search for good. What are the three approaches we've tried for client onboarding? File search can only ever hand you files. This combines several documents into one coherent answer.",
+      "show": "Three separate documents feed into a single merged answer node — many-in, one-out synthesis.",
+      "viz": { "pattern": "branch-merge", "in": "3 documents", "out": "1 synthesized answer" },
+      "spark_line": "Combine, don't list."
+    },
+    {
+      "id": "B23", "act": "ACT VI", "lane": "VOX", "scene": "media/B23.png",
+      "shot": { "type": "STILL", "source": "ai", "motion": "kenburns", "focus": [0.42, 0.5] },
+      "narration_text": "And the last habit compounds. Every time you note why you chose something — the vendor with lower international fees, say — thirty seconds now becomes a searchable asset that saves an hour a year from now. The archive is only as good as what you feed it.",
+      "show": "A still of a hand jotting a short note on a card — a small deposit into a large, warm archive behind it. Slow push toward the note.",
+      "spark_line": "Document as you go.",
+      "pantry_note": "Tier 1 illustrative: a hand writing a brief note / index card, an archive shelf softly behind, duotone. No legible text."
+    },
+
+    {
+      "id": "V01", "act": "CLOSE", "lane": "REMOTION", "scene": "ClaudeVerdictArtifact",
+      "lead_silence_s": 0.5,
+      "narration_text": "Let's recap with Claude. In any organization, the answer you need usually already exists — scattered across your tools and your people. Enterprise search connects Claude to those sources and reads inside them, so it retrieves what the company already knows and reasons from it. It's bounded strictly by your existing access — nothing new. And it rewards a habit: the more clearly you document, the more it can find.",
+      "props": { "artifactLines": [ "The answer usually already exists — just scattered", "Searches content across all your sources at once", "Pulls your own documents into the conversation", "Bounded strictly by your existing access — nothing new", "Rewards documenting decisions as you go" ] },
+      "spark_line": "The verdict."
+    },
+    {
+      "id": "H01", "act": "CLOSE", "lane": "ASK", "scene": "ClaudeComposerAsk",
+      "greeting": "Your turn.",
+      "props": { "command": "Help me set up enterprise search for my team. First, ask me which tools our documents actually live in — drive, wiki, shared folders, chat. Then, based on my answer, tell me the three questions I should try first to prove it works, and one decision I should start documenting this week so it's searchable later.", "runningText": "paste this into Claude…" },
+      "narration_text": "Your turn. Paste this into Claude: help me set up enterprise search for my team — ask which tools our documents actually live in, then tell me the three questions to try first to prove it works, and one decision I should start documenting this week so it's searchable later. It turns this chapter into a setup for your actual sources — run it and watch what it asks you.",
+      "spark_line": "Set up yours."
+    },
+    {
+      "id": "O01", "act": "CLOSE", "lane": "CARD", "scene": "ClaudeTitleOutro",
+      "narration_text": "Claude, Finding It. Liam, in for Bear.",
+      "props": { "title": "Claude, Finding It", "handle": "@NikBearBrown", "subline": "The Enterprise Search plugin" },
+      "spark_line": "Claude, Finding It"
+    }
+  ]
+}

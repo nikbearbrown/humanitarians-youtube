@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "linear api",
+    "slug": "claude-liam-linear-api",
+    "topic": "LINEAR API · CLAUDE PLUGINS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "source_skill": "../anthropics/claude-tag-plugins/linear/skills/linear-api/SKILL.md",
+    "build": {
+      "at": "2026-07-19T11:11:38",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with Linear. The linear-api skill gives you one GraphQL endpoint for everything — there is no REST API. Every read is a query, every write is a mutation, and all of it goes to one URL. The philosophy: two ID systems coexist, HTTP 200 can still mean failure, and rate limiting looks like a 400 not a 429. Let me walk you through the model, the operations, and the gaps.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "LINEAR API · CLAUDE PLUGINS",
+            "segment": "PLUGINS",
+            "command": "List all open issues assigned to me in the ENG team, then move the urgent ones to In Progress.",
+            "runningText": "reading linear-api SKILL.md…",
+            "output": [
+              "Single GraphQL endpoint: POST https://api.linear.app/graphql",
+              "Two ID systems: UUID (API ops) · identifier ENG-123 (human-readable, reads only)",
+              "HTTP 200 even on errors — always check .errors before trusting .data"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 24.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:11:38"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy — GraphQL model + ID systems + rate limits",
+      "narration_text": "Four things shape every Linear API interaction. First, the single endpoint: everything goes to POST https://api.linear.app/graphql — queries for reads, mutations for writes. There are no slash-issues, slash-projects, or any other REST-style paths. If you find yourself constructing a URL with object names in the path, stop — you're on the wrong track. Second, two ID systems coexist. UUIDs are what the API uses everywhere for lookups and mutations. Identifiers — like ENG-123 — are the human-readable keys shown in the UI. For reads you can use either: issue(id: ENG-123) works. For mutations — create, update, comment — you must use UUIDs. Passing a team key or issue identifier to a mutation returns INVALID_INPUT, not a helpful error. Third, authorization has no Bearer prefix. Send the API key directly in the Authorization header as the value itself — not `Bearer <key>`. This is different from most REST APIs and will silently fail if you add the prefix. Fourth, HTTP 200 does not mean success. GraphQL returns HTTP 200 for most application errors and puts the actual error in the response body under `.errors`. Always check the response for `.errors` before trusting `.data`. The helper and scripts do this automatically; if you're writing raw queries, add the check explicitly. Two operational tools: the linear_gql bash helper handles authorization and JSON wrapping for any query. The linear_issues.sh script handles IssueFilter construction, cursor pagination, and .errors checking for bulk issue lists.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 46,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "LinearApiAnatomy",
+          "props": {
+            "sparkLine": "One endpoint. UUID for mutations. No Bearer prefix. HTTP 200 can mean failure."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 86.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:11:38"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design — workflow + key patterns",
+      "narration_text": "Four patterns matter. First: sanity check with the viewer query before any real work. It confirms the workspace is wired up and shows who the configured identity is. Second: discover team and state UUIDs before any create or update mutation. You need the team's UUID — not its key — for issueCreate. You need the workflow state UUID — not the state name — for issueUpdate. List them with the teams query (recipe 8 in the skill). Third: description and comment body are Markdown — not ADF, not plain text, just Markdown. This is simpler than Jira's Atlassian Document Format. Fourth: check the mutation's success boolean in addition to HTTP status and .errors. Mutations return `{success: bool, issue: {...}}` — even when HTTP is 200 and .errors is empty, success may be false. Three things that trip developers up. Rate limits return HTTP 400 with errors[].extensions.code: RATELIMITED — not a 429 as most REST APIs do. A standard retry-on-429 loop silently misses Linear rate limiting. The reset headers use UTC epoch milliseconds, not seconds — the sleep calculation needs to divide by 1000 and subtract the current time. Connections have no totalCount field except on search endpoints. To count issues on a team or project you must paginate and count nodes, or read an aggregate field like `team { issueCount }`.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 42,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "LinearApiDesign",
+          "props": {
+            "sparkLine": "UUID before mutate. Markdown body. Rate limit is HTTP 400 not 429. Epoch milliseconds."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 74.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:11:38"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "teardown — what it gets right / where it bites",
+      "narration_text": "Here is the teardown. The skill gets five things right. Single GraphQL endpoint documented up front with an explicit note that REST paths don't exist — no slash-issues confusion. Two ID systems clearly separated: UUID for API operations, identifier for human readability, and both work for reads — this is more precise than most GraphQL skill docs. HTTP 200 on errors documented at the top and built into the helper: `if .errors then .errors else .data end`. Markdown for description and comment body — consistent, simpler than Jira's ADF, and correct. Authorization header without Bearer prefix is explicitly flagged — this is the most common mistake when adapting code from other APIs and the skill calls it out directly. Where it bites. Rate limit is HTTP 400 not 429, and the skill mentions this, but it appears in the rate-limits section late in the document. A developer building a retry loop from the error handling section first will write 429-only logic and silently miss rate limiting. Connections have no totalCount except on search endpoints — the exception is noted but there's no guidance on how to tell at a glance whether a given connection is a search connection or a regular connection that lacks the field. The reset headers are epoch milliseconds — the sleep calculation is provided but the milliseconds-not-seconds fact is easy to miss on a first read. UUID required for mutations — identifiers silently fail with INVALID_INPUT. The skill says this but the failure mode isn't shown: you don't get a clear error saying use UUID, you get INVALID_INPUT with a field-level message that may not obviously point to the ID format issue. The mutation success boolean is documented but the three-layer check — HTTP status, then .errors, then success boolean — is spread across different sections and never stated as a checklist.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 52,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "LinearApiTell",
+          "props": {
+            "sparkLine": "No-REST note and HTTP-200-on-error correct. Rate limit HTTP 400 easy to miss in retry logic."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 103.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:11:38"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict. linear api: single GraphQL endpoint POST api.linear.app/graphql — no REST paths. Two ID systems: UUID for mutations, identifier for human reads. HTTP 200 even on errors — check .errors. Authorization: no Bearer prefix. Markdown body for description and comments. Mutations: discover team/state UUID first, check success boolean. Rate limits: HTTP 400 + RATELIMITED code, reset in epoch milliseconds. Connections: no totalCount except search. Gaps: rate limit HTTP 400 buried late — retry loop misses it; connections no-totalCount detection guidance absent; epoch ms easy to mis-read; UUID-required failure mode opaque; three-layer success check never stated as one checklist.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "linear api",
+            "artifactLines": [
+              "Single GraphQL endpoint · two ID systems: UUID (mutations) · identifier (human reads)",
+              "HTTP 200 on errors — always check .errors · Authorization: no Bearer prefix",
+              "Markdown body (description + comments) · discover UUID before any mutation",
+              "Rate limits: HTTP 400 + RATELIMITED code (not 429) · reset = epoch milliseconds",
+              "Connections: no totalCount except search endpoints · mutation success boolean separate",
+              "Gaps: 400-not-429 buried · epoch ms footnote · UUID failure opaque · 3-layer check split"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 42.67,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:11:38"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Give Claude a task: list all open issues in the ENG team assigned to you, then move the highest priority one to the In Progress state. Watch five things. First: does it use the viewer query to get the assignee UUID, or does it try to filter by email? Second: before the update mutation, does it query for the In Progress state UUID, or does it try to pass the state name as a string? Third: does it check .errors on every GraphQL response, or does it only check HTTP status? Fourth: if the rate limit is hit, does it handle HTTP 400 with code RATELIMITED, or does it only retry on 429? Fifth: does it verify the mutation's success boolean in the response, or does it assume success from HTTP 200 and empty errors?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your Turn",
+            "topic": "LINEAR API · HANDOFF",
+            "segment": "PLUGINS",
+            "command": "List open ENG issues assigned to me, move the highest priority one to In Progress.",
+            "runningText": "Watch: viewer UUID? state UUID lookup? .errors check? 400+RATELIMITED? success boolean?",
+            "output": [
+              "Expected: viewer query for UUID · teams query for state UUID · .errors on every response",
+              "Expected: retry on HTTP 400 + RATELIMITED · check .success on mutation",
+              "Red flag: email as assignee · state name as string · 429-only retry · HTTP-status-only check"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 39.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:11:38"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "linear api. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "linear api",
+            "handle": "@NikBearBrown",
+            "subline": "linear api · Claude Plugins"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:11:38"
+      }
+    }
+  ]
+}

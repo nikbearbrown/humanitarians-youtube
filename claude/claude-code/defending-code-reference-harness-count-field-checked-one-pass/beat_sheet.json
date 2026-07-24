@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "defending-code-reference-harness-count-field-checked-one-pass",
+    "title": "Why a \"count field\" checked in one pass and used in another is a buffer overflow waiting between them",
+    "topic": "Two-pass parsing desynchronization",
+    "purpose": "Two-phase parsing opens a temporal window: the second phase re-reads a field from the input assuming the first phase constrained it; when the phases don't share a validation point, the value flows through unbounded.",
+    "category": "claude-code",
+    "playlist": "Claude Code",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/defending-code-reference-harness/targets/drlibs/README.md`",
+    "origin": "promoted",
+    "score": "10/10",
+    "length_band": "~2 min",
+    "still_lanes": "c2v (checked vs. unchecked data arrows)",
+    "prerequisites": "memory safety, buffer overflow, parsing phases",
+    "exclusions": "timing races (this is logic desync); use-after-free by delayed validation",
+    "visual_object": "Two side-by-side code blocks, one arrow from input to the checked alloc (left), a separate arrow from input to the unchecked loop (right).",
+    "manim_move": "split",
+    "hook": "A safety-critical length is validated in one phase and re-consumed unchecked in another — the overflow lives in the gap between them.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "A WAV `smpl` chunk parser validates `sampleLoopCount` in its count-prediction phase and allocates a 512-item heap buffer; the later read phase reads the same field from the stream again and loops that many times with no re-check. Attacker sends count=2000.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "If you validate a field in an early pass, will a second pass always re-validate before using it — or do the phases drift until the check is silently forgotten?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "A safety-critical length is validated in one phase and re-consumed unchecked in another — the overflow lives in the gap between them.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "Two-phase parsing opens a temporal window: the second phase re-reads a field from the input assuming the first phase constrained it; when the phases don't share a validation point, the value flows through unbounded.",
+      "estimated_duration_s": 18,
+      "visual": "Two side-by-side code blocks, one arrow from input to the checked alloc (left), a separate arrow from input to the unchecked loop (right).",
+      "manim_move": "split",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "RIFF/WAV `smpl` chunk. Count-pass: `if (loop_count>512) error; alloc 512*16`. Read-pass loops `loop_count` times into 8192 bytes. Attacker sends `loop_count=2000` → 32000-byte write → heap overflow.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "Two-phase parsing opens a temporal window: the second phase re-reads a field from the input assuming the first phase constrained it; when the phases don't share a validation point, the value flows through unbounded.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

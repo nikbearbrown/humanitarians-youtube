@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "anthropic-sdk-typescript-schema-enters-types-travels-text",
+    "title": "Why a schema enters as types, travels as text, and returns as types",
+    "topic": "Round-trip type safety through structured-output parsing",
+    "purpose": "The SDK encodes the Zod schema to a JSON Schema constraint outbound, Claude returns a conformant JSON string, then the SDK validates that string back through the SAME in-memory Zod object — recovering both runtime value and static type. The schema is touched at both ends of the arc.",
+    "category": "claude-prompting",
+    "playlist": "Claude Prompting",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/anthropic-sdk-typescript/helpers.md`",
+    "origin": "promoted",
+    "score": "7/10",
+    "length_band": "2–3 min",
+    "still_lanes": "c2v (ring pipeline, schema reused at both ends)",
+    "prerequisites": "TS type erasure, JSON Schema basics, Zod",
+    "exclusions": "jsonSchemaOutputFormat differences, streaming structured outputs, validation-error recovery",
+    "visual_object": "A ring-shaped pipeline: Zod schema → JSON Schema (out) → JSON string (back) → Zod `.parse()` → typed object, same node at both ends.",
+    "manim_move": "transform",
+    "hook": "TypeScript types vanish at runtime and Claude only emits plain text, yet `client.messages.parse()` hands back a fully typed object in the exact shape you declared — with no validation code from you.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "Pass a Zod schema to `zodOutputFormat`, call `.parse()`, read `.parsed_output` as a typed object — though the wire only ever carried a JSON Schema out and a JSON string back.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "The schema is erased on the wire and Claude knows nothing of TypeScript — so how does the typed `parsed_output` reappear with the right shape on the return path?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "TypeScript types vanish at runtime and Claude only emits plain text, yet `client.messages.parse()` hands back a fully typed object in the exact shape you declared — with no validation code from you.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "The SDK encodes the Zod schema to a JSON Schema constraint outbound, Claude returns a conformant JSON string, then the SDK validates that string back through the SAME in-memory Zod object — recovering both runtime value and static type. The schema is touched at both ends of the arc.",
+      "estimated_duration_s": 18,
+      "visual": "A ring-shaped pipeline: Zod schema → JSON Schema (out) → JSON string (back) → Zod `.parse()` → typed object, same node at both ends.",
+      "manim_move": "transform",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "`z.object({primes: z.array(z.number())})` → JSON Schema in the request → Claude returns `{\"primes\":[2,3,5]}` → Zod validates → caller gets `{primes:[2,3,5]}` typed `number[]`.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "The SDK encodes the Zod schema to a JSON Schema constraint outbound, Claude returns a conformant JSON string, then the SDK validates that string back through the SAME in-memory Zod object — recovering both runtime value and static type. The schema is touched at both ends of the arc.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

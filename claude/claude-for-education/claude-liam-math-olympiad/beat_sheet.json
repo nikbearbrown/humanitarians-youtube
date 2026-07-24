@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "math-olympiad",
+    "slug": "claude-liam-math-olympiad",
+    "topic": "MATH-OLYMPIAD · CLAUDE PLUGINS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "source_skill": "../anthropics/claude-plugins-official/plugins/math-olympiad/skills/math-olympiad/SKILL.md",
+    "build": {
+      "at": "2026-07-19T11:31:43",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the math-olympiad skill. It solves competition math — IMO, Putnam, USAMO, AIME — with adversarial verification that catches what self-verification misses. The philosophy: check the interpretation before solving anything, strip the thinking trace before any verifier sees it, use pattern-armed attacks rather than generic checking, and say no confident solution rather than guess. Let me walk you through the model, the operations, and the gaps.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "MATH-OLYMPIAD · CLAUDE PLUGINS",
+            "segment": "PLUGINS",
+            "command": "Solve IMO 2024 Problem 5 and verify the proof adversarially.",
+            "runningText": "reading math-olympiad SKILL.md…",
+            "output": [
+              "Interpretation check first — 50/63 prior errors were wrong problem reading",
+              "Strip thinking trace before verification — seeing reasoning biases verifier toward agreement",
+              "Asymmetric vote: 4 HOLDS to confirm · 2 HOLE FOUND to refute · pigeonhole exit"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 25.88,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:31:43"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy — verification architecture",
+      "narration_text": "The skill runs an eight-step adversarial workflow. Before solving anything, an interpretation check lists two or three readings of the problem and identifies which is the intended hard reading — olympiad problems have trap easy interpretations. Prior work found 50 of 63 technically correct solutions were for the wrong reading. Then eight to twelve solver agents run in parallel. Each internally iterates: solve, self-improve, self-verify, correct, up to five rounds. This is not one-shot solving; per-attempt refinement is what drives accuracy. The key constraint is no computation in tight-budget mode — pure reasoning only, no Bash, no Python. Numerical verification is not a proof step. Before verification begins, the thinking trace is stripped — all false starts, all exploration prose, all thinking-block content. What the verifier sees is the clean proof only. This is the number-one lever: a verifier that sees the reasoning is biased toward agreement even when the conclusion is wrong. Adversarial verifiers run fresh context with a specific pattern checklist — not is this correct, but does this make the pattern-40 mistake, the pattern-4 mistake, and so on. The vote is asymmetric: four HOLDS to confirm, two HOLE FOUND to refute, with pigeonhole early exit once the outcome is decided. If verification fails after revision cycles, deep mode runs before the final abstention — one focused agent with bounded computation is allowed. Then a calibrated abstention or a presentation pass.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 50,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "MathOlympiadAnatomy",
+          "props": {
+            "sparkLine": "Interpretation check. Strip thinking trace. Pattern-armed attack. Asymmetric vote. Abstain honestly."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 80.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:31:43"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design — workflow + key patterns",
+      "narration_text": "Four patterns matter. First: check the interpretation before anything else. State which reading you are solving and WHY you believe it is the intended one. The hard reading is almost certainly intended — olympiad problems are designed to have a trap easy case. Second: label every agent call with the problem ID in batch mode. Running all six IMO problems in parallel produces 36 results — without labels there is no association between results and problems. Labels go on every solver agent, every verifier agent, and every deep-mode call. Third: deep mode before abstention. Step 6d is marked not optional — after tight-budget abstains, launch one focused agent with the best partial proof and the verifier gap descriptions. Bounded computation is allowed in deep mode: modular arithmetic, small-case enumeration up to n equals 10, symbolic identity checks. No web access ever, including in deep mode. Fourth: presentation pass is separate from correctness. Launch a fresh agent with the verified proof and ask for the cleanest way to say it — is there a three-line hindsight proof? Which lemmas should be inlined? The presentation agent gets the verified proof, not the path to finding it. Key gotchas. The solver prompt must be used verbatim — the tool restriction is enforced by the text alone. Pattern checks require loading the reference files from references/adversarial_prompts.md and verifier_patterns.md. Doubly-exponential recursions cannot be computed past n around 30; work in Z mod 2 to the m instead. A solver cannot verify its own solution — always different agent, fresh context.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 46,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "MathOlympiadDesign",
+          "props": {
+            "sparkLine": "Check interpretation. Label every agent. Deep mode before abstain. Presentation is separate from correctness."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 87.23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:31:43"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "teardown — what it gets right / where it bites",
+      "narration_text": "Here is the teardown. The skill gets five things right. Dual context isolation addresses both biases: strip the thinking trace before verification, and blind each verifier to other verifiers' verdicts. Social proof is a bias too — a verifier told three agents already confirmed this will agree at a higher rate. The interpretation check is grounded with a specific number: 50 of 63 technically correct solutions in prior work were for the wrong reading. That's not a general warning, it's a calibration. Asymmetric vote thresholds are documented with the reasoning: one flaky verifier should not kill a correct proof, but two independent dissents is a real signal — hence four to confirm, two to refute. The VERBATIM solver prompt instruction includes the consequence of violating it: omitting the no-computation paragraphs produces subagents that grind Python for 30 iterations and confidently return a pattern that fits n up to 10 but fails at 100. Calibrated abstention is a first-class output: what was tried, what was proven, where it breaks — optimizes conditional accuracy, not coverage. Where it bites. Verbatim enforcement is prompt-only — the Agent tool cannot enforce tool restriction. A session that paraphrases the prompt loses the behavior silently with no error. The pattern checklist requires loading external reference files; if the session doesn't load references/adversarial_prompts.md, the verifier does generic is-this-correct checking rather than pattern-armed attack. Cost is not discussed: eight to twelve solvers, five verifiers, a deep mode agent, and a presentation agent can accumulate quickly on harder problems, and there is no abort-if-too-expensive guidance. Label policy is mentioned but missing a recovery path: if 36 results come back unlabeled, there is no guidance on what to do. Step 6d as not-optional is stated but the deep mode no-web instruction must be copied into every deep mode prompt invocation — easy to forget on the third invocation of a long session.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 54,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "MathOlympiadTell",
+          "props": {
+            "sparkLine": "Dual isolation and asymmetric vote correct. VERBATIM enforcement fragile; pattern files must be loaded."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 107.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:31:43"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict. math-olympiad: interpretation check before solving — 50/63 prior errors were wrong reading. Strip thinking trace before verification — reasoning biases verifier toward agreement. 8-12 parallel solvers with internal refinement, no computation in tight-budget. Adversarial verifier with pattern checklist from reference files. Asymmetric vote: 4 HOLDS to confirm, 2 HOLE FOUND to refute, pigeonhole early exit. Deep mode before final abstention. Calibrated abstention: no confident solution over guessing. Gaps: VERBATIM prompt enforcement is prompt-only, silently lost if paraphrased; pattern files must be loaded; no cost guidance; no unlabeled-result recovery; deep mode no-web instruction must be repeated per invocation.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "math-olympiad",
+            "artifactLines": [
+              "Interpretation check first — 50/63 errors were wrong reading · strip thinking trace before verify",
+              "8-12 parallel solvers with internal refinement · no computation in tight-budget mode",
+              "Adversarial verifier: pattern-armed attack from reference files, not generic checking",
+              "Asymmetric vote: 4 HOLDS confirm · 2 HOLE FOUND refute · pigeonhole early exit",
+              "Deep mode before final abstention · calibrated abstention: conditional accuracy over coverage",
+              "Gaps: VERBATIM prompt-only enforcement · pattern files must load · no cost or label-recovery guidance"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 43.22,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:31:43"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Give Claude a task: solve an olympiad inequality and verify the proof. Watch five things. First: before solving anything, does Claude check the interpretation — listing multiple readings and identifying which is the intended hard one? Second: when it launches solver agents, does it use the VERBATIM no-computation prompt, or does it write its own version and lose the tool restriction? Third: before launching verifier agents, does it strip the thinking trace — all exploration prose, all false starts — so the verifier sees only the clean proof? Fourth: does it use asymmetric vote thresholds — four HOLDS to confirm, two HOLE FOUND to refute — or does it do a simple majority? Fifth: if verification fails after revision cycles, does it launch a deep-mode agent with bounded computation before writing the abstention, or does it skip straight to no confident solution?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your Turn",
+            "topic": "MATH-OLYMPIAD · HANDOFF",
+            "segment": "PLUGINS",
+            "command": "Prove that for positive reals x,y,z with xyz=1: x+y+z >= x/y + y/z + z/x.",
+            "runningText": "Watch: interpretation check? VERBATIM prompt? strip thinking? asymmetric vote? deep mode before abstain?",
+            "output": [
+              "Expected: interpretation check · VERBATIM solver prompt · strip trace before verify",
+              "Expected: 4 HOLDS confirm · 2 HOLE FOUND refute · deep mode before final abstention",
+              "Red flag: skip interpretation · paraphrase prompt · majority vote · no deep mode"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 43.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:31:43"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "math-olympiad. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "math-olympiad",
+            "handle": "@NikBearBrown",
+            "subline": "math-olympiad · Claude Plugins"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.79,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:31:43"
+      }
+    }
+  ]
+}

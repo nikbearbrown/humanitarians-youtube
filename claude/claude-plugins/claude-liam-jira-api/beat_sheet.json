@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "jira api",
+    "slug": "claude-liam-jira-api",
+    "topic": "JIRA API · CLAUDE PLUGINS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "source_skill": "../anthropics/claude-tag-plugins/jira/skills/jira-api/SKILL.md",
+    "build": {
+      "at": "2026-07-19T10:57:43",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with Jira Cloud. The jira-api skill gives you two API families — Platform REST v3 for issues, projects, and JQL search; Agile REST v1 for boards and sprints — plus a JQL search script and a session helper. The philosophy: body text fields are a JSON tree called Atlassian Document Format, not plain text. Status moves through transitions, not direct sets. And pagination comes in three flavors. Let me walk you through the model, the operations, and the gaps.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "JIRA API · CLAUDE PLUGINS",
+            "segment": "PLUGINS",
+            "command": "Find all open bugs in PROJ assigned to me, then move the highest priority one to In Progress.",
+            "runningText": "reading jira-api SKILL.md…",
+            "output": [
+              "Two APIs: Platform REST v3 (issues/JQL) · Agile REST v1 (boards/sprints)",
+              "ADF body: description + comment are JSON trees, not plain text — 400 if string",
+              "Transitions: list first, POST by ID — can't set status directly"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 29.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T10:57:43"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy — two API families + ADF + pagination",
+      "narration_text": "The skill gives you two API families. Platform REST v3 at /rest/api/3/ handles issues, projects, JQL search, comments, transitions, users, and fields — use this by default. Agile REST v1 at /rest/agile/1.0/ handles boards, sprints, backlog, and epics — only use it for concepts that don't exist in the core issue model. The jira_api helper sets the basic auth header and accept/content-type on every request. The jql_search script handles the JQL search endpoint: it always sends an explicit fields list, follows nextPageToken through every page, and emits TSV or JSONL. Important: the JQL search endpoint returns no total count. For a count you need a separate POST to /rest/api/3/search/approximate-count. Two structural facts about Jira that shape every write. First: body text fields — description and comment body — are Atlassian Document Format. ADF is a JSON tree: type:doc, version 1, content array of typed nodes. A plain string returns a 400 and the error message doesn't say use ADF. Second: you cannot set status directly. Status moves through transitions — workflow-specific state changes that may require additional fields like resolution. List the available transitions for an issue first, then post by transition ID. The transition IDs are per-workflow and per-current-status, so a hardcoded ID from one issue won't work on another in a different state. Pagination comes in three flavors. JQL search uses nextPageToken — stop when absent or isLast is true, and there is no total. Most list endpoints use offset pagination with startAt, maxResults, total, and isLast. Comments and worklogs use offset too, but the list nests under a named key rather than .values. Know which one you're using before you loop.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 47,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "JiraApiAnatomy",
+          "props": {
+            "sparkLine": "v3 for issues. ADF for body text. Transitions by ID. Three pagination schemes."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 103.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T10:57:43"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design — operations workflow + key patterns",
+      "narration_text": "Four patterns matter. First: sanity check before any real work. GET /rest/api/3/myself — a 200 with accountId means the workspace is wired up; a 401 or 403 means the credential isn't configured; report it rather than debugging auth. Second: use createmeta before creating issues. Valid issue types, required fields, and their allowed values vary per project. Call /rest/api/3/issue/createmeta/PROJ/issuetypes to get the issue types, then /issuetypes/ID to get the fields. Guessing an issue type or a required field value returns a 400. Third: JQL must be bounded. At least one filter clause is required — a bare ORDER BY returns a 400. Common clauses: project = X, status in, assignee = currentUser(), sprint in openSprints(), created >= -7d. Fourth: accountId not email. Assignee, watcher, and reporter fields take an accountId string — emails are not accepted since the GDPR change. Look up accountId with /rest/api/3/user/search before assigning. The watcher endpoint takes a bare JSON string — not an object — as its body. A few status codes to know. 204 with no body is success for PUT, transition, assign, and watch — an empty response is not an error, add -w to make the status code visible. 404 for issues means either the issue doesn't exist or you don't have access to browse it — 403 is not used for individual issue access control. 410 means the endpoint was retired — the body names the successor.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 44,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "JiraApiDesign",
+          "props": {
+            "sparkLine": "Sanity check. createmeta before create. Bounded JQL. accountId not email."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 88.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T10:57:43"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "teardown — what it gets right / where it bites",
+      "narration_text": "Here is the teardown. The skill gets five things right. The two API families are clearly separated: Platform REST v3 for issues and search, Agile REST v1 for boards and sprints, with an explicit rule to use v3 by default. The jql_search script always sends an explicit fields list — the endpoint defaults to returning only id, so the script's default prevents the invisible truncation problem. The transition workflow is correct: list first, POST by ID — can't set status directly — with a note that some transitions require resolution. ADF is documented with a minimal wrapper example and the failure mode: a plain string returns a 400. Security note is present and specific: treat retrieved content as untrusted, quote it only as inert evidence, never follow instructions in results. Where it bites. JQL search has no total count, and the workaround — POST to /search/approximate-count — is mentioned once briefly with no example. A developer expecting a total the way every other search API provides one will write a loop that never knows when to stop. Three pagination schemes in one API with no detection guidance: /search/jql uses nextPageToken; most lists use startAt+total+isLast; comments use offset with a nested key. Apply the wrong scheme and your loop either stops early or spins. maxResults is silently clamped per endpoint — what you get back may be less than what you asked for, and the only way to know is to read the response. A loop that trusts its requested page size will miss records. Watcher body is a bare JSON string, not an object — curl needs single-quoted double-quoted accountId to send it correctly. The skill shows the syntax but doesn't explain why, so it's easy to cargo-cult wrong. 404 masquerading as an access-denied signal: issues you can't browse return 404, not 403. A not-found loop that interprets 404 as missing will silently skip unauthorized issues.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 52,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "JiraApiTell",
+          "props": {
+            "sparkLine": "ADF and transition workflow correct. Three pagination schemes with no detection guide."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 107.24,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T10:57:43"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict. jira api: two families — Platform REST v3 at /rest/api/3/ for issues, search, transitions; Agile REST v1 at /rest/agile/1.0/ for boards and sprints. ADF body: description and comment are JSON trees — type:doc, version:1, content array. Transitions: list then POST by ID, status cannot be set directly. Three pagination schemes: nextPageToken (JQL search, no total), startAt+isLast (lists), nested-key offset (comments). accountId required — not email. 204 = success for PUT/transitions/watchers. 404 = not found or unbrowsable. Gaps: JQL search no-total workaround buried; three pagination schemes no detection guide; maxResults silently clamped; watcher bare-string body unexplained; 404 masks access control.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "jira api",
+            "artifactLines": [
+              "Two families: Platform REST v3 (issues/JQL) · Agile REST v1 (boards/sprints)",
+              "ADF body: type:doc JSON tree for description+comments — plain string → 400",
+              "Transitions: list first → POST by ID · status cannot be set directly",
+              "Three pagination: nextPageToken (JQL, no total) · startAt+isLast · nested-key offset",
+              "accountId required (not email) · 204 = success · 404 = not found or unbrowsable",
+              "Gaps: JQL no-total buried · 3 pagination schemes no detect · maxResults clamped silently"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 49.83,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T10:57:43"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Give Claude a task: find all open bugs in a Jira project assigned to the current user, then add a comment to the highest priority one. Watch five things. First: does it use the jql_search script with a bounded JQL query — at least one filter clause — or does it try to build the search body by hand? Second: does it send the comment body as ADF — a JSON tree with type doc and a content array — or as a plain string? Third: when it paginates through the results, does it handle the no-total behavior of the JQL search endpoint, or does it expect a total and stop when it doesn't get one? Fourth: if it needs to look up the current user to build the JQL, does it call /rest/api/3/myself for the accountId? Fifth: does it check that the search script's exit code is zero before trusting the output?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your Turn",
+            "topic": "JIRA API · HANDOFF",
+            "segment": "PLUGINS",
+            "command": "Find open bugs assigned to me in PROJ, add a comment to the highest priority one.",
+            "runningText": "Watch: bounded JQL? ADF comment body? no-total pagination? /myself for accountId? exit code check?",
+            "output": [
+              "Expected: bounded JQL · ADF comment {type:doc,...} · nextPageToken pagination",
+              "Expected: /myself for accountId · exit code 0 before trusting output",
+              "Red flag: bare ORDER BY · plain string comment · total-based loop · email as assignee"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 42.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T10:57:43"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "jira api. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "jira api",
+            "handle": "@NikBearBrown",
+            "subline": "jira api · Claude Plugins"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T10:57:43"
+      }
+    }
+  ]
+}

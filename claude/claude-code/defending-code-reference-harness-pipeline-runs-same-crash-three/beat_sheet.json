@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "defending-code-reference-harness-pipeline-runs-same-crash-three",
+    "title": "Why the pipeline runs the same crash three times before it believes it",
+    "topic": "Reproducibility as a gate (the 3/3 rule)",
+    "purpose": "ASAN detects real memory errors deterministically; randomized allocators and timing artifacts crash inconsistently, so requiring 3/3 filters true bugs from noise before anything is reported.",
+    "category": "claude-code",
+    "playlist": "Claude Code",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/defending-code-reference-harness/docs/pipeline.md`",
+    "origin": "promoted",
+    "score": "9/10",
+    "length_band": "~2 min",
+    "still_lanes": "c2v",
+    "prerequisites": "ASAN, reproducibility testing, memory instrumentation",
+    "exclusions": "allocator races; cgroups/RLIMIT enforcement; OOM killer",
+    "visual_object": "Three parallel containers each emitting ✓/✗; a gate downstream that opens only on ✓✓✓.",
+    "manim_move": "duplicate",
+    "hook": "A single crash isn't trusted — the same PoC runs in three isolated containers and advances only if all three abort.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "A crafted WAV triggers a heap OOB write. The grader runs it three times; all three ASAN-abort identically → advances. A fuzzer artifact that crashes once due to malloc randomization → 1/3 → discarded.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "If you run an ASAN binary three times on identical input, will a real corruption bug crash all three, while timing-dependent false positives crash only once or twice?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "A single crash isn't trusted — the same PoC runs in three isolated containers and advances only if all three abort.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "ASAN detects real memory errors deterministically; randomized allocators and timing artifacts crash inconsistently, so requiring 3/3 filters true bugs from noise before anything is reported.",
+      "estimated_duration_s": 18,
+      "visual": "Three parallel containers each emitting ✓/✗; a gate downstream that opens only on ✓✓✓.",
+      "manim_move": "duplicate",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "Crafted PNG integer-overflow alloc. Runs A/B/C all heap-buffer-overflow → 3/3 advance. Contrast: malloc-state-dependent artifact → ✓✗✓ → 1/3 discarded.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "ASAN detects real memory errors deterministically; randomized allocators and timing artifacts crash inconsistently, so requiring 3/3 filters true bugs from noise before anything is reported.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

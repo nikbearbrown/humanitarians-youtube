@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "claude-quickstarts-50-turn-agent-pays-same",
+    "title": "Why a 50-turn agent pays for the same screenshot 35 times unless it caches the pixels",
+    "topic": "Prompt caching for unchanged screens",
+    "purpose": "Hash the screenshot, mark it `cache_control={\"type\":\"ephemeral\"}` on first send; later identical turns return a cache hit — instant, zero new tokens — instead of reprocessing.",
+    "category": "claude-basics",
+    "playlist": "Claude Basics",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/claude-quickstarts/computer-use-best-practices/README.md`",
+    "origin": "promoted",
+    "score": "9/10",
+    "length_band": "3–5 min",
+    "still_lanes": "raster (filmstrip with per-turn token labels)",
+    "prerequisites": "tokens, LLM API calls, caching semantics",
+    "exclusions": "full caching protocol, cache eviction policies",
+    "visual_object": "A 50-cell filmstrip where repeated frames light green (cache hit) and only the 5 unique frames light red (tokenized)",
+    "manim_move": "accumulate",
+    "hook": "Every agent turn snaps a fresh screenshot, but the desktop rarely changed — re-tokenizing identical pixels burns tokens and latency for no new information.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "A 50-turn form-filling task revisits only 5 unique desktop states. Naive: 50 × 2,000 = 100,000 image tokens. With ephemeral cache_control on first sight of each state: 5 × 2,000 = 10,000 tokens; the other 45 turns are cache hits.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "If most screenshots in a long task are unchanged, why re-tokenize them instead of reusing the first?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "Every agent turn snaps a fresh screenshot, but the desktop rarely changed — re-tokenizing identical pixels burns tokens and latency for no new information.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "Hash the screenshot, mark it `cache_control={\"type\":\"ephemeral\"}` on first send; later identical turns return a cache hit — instant, zero new tokens — instead of reprocessing.",
+      "estimated_duration_s": 18,
+      "visual": "A 50-cell filmstrip where repeated frames light green (cache hit) and only the 5 unique frames light red (tokenized)",
+      "manim_move": "accumulate",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "States A A A B B C C C A A… First visit to each = 2,000 tokens; every revisit = 0. Total 10,000 vs 100,000.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "Hash the screenshot, mark it `cache_control={\"type\":\"ephemeral\"}` on first send; later identical turns return a cache hit — instant, zero new tokens — instead of reprocessing.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

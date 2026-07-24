@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "claudes-c-compiler-assembly-shrinks-through-13-sequential",
+    "title": "Why assembly shrinks through 13 sequential filters, not one",
+    "topic": "Multi-stage peephole optimization",
+    "purpose": "Peephole passes form a dependency chain — local passes clear simple patterns, a global pass fuses across blocks, cleanup passes handle tail-calls and frame-pointer elision the earlier passes unlocked.",
+    "category": "claude-code",
+    "playlist": "Claude Code",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/claudes-c-compiler/src/backend/README.md`",
+    "origin": "promoted",
+    "score": "9/10",
+    "length_band": "2–3 min",
+    "still_lanes": "raster, c2v",
+    "prerequisites": "x86 assembly reading, control-flow-graph intuition",
+    "exclusions": "instruction encodings, register allocation, full pass-name list",
+    "visual_object": "A row of assembly boxes, each smaller than the last, annotated with which pass removed which instruction.",
+    "manim_move": "transform",
+    "hook": "The backend emits raw assembly, then runs 13 peephole passes — each finds patterns the previous pass first had to make visible.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "The dead pair `mov %eax,%ebx; mov %ebx,%eax` survives until pass 7, because an earlier dead-store elimination first removes a store that made the moves look live.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "Why isn't the same peephole pattern caught in a single pass? What does pass N produce that lets pass N+1 see a pattern it couldn't before?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "The backend emits raw assembly, then runs 13 peephole passes — each finds patterns the previous pass first had to make visible.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "Peephole passes form a dependency chain — local passes clear simple patterns, a global pass fuses across blocks, cleanup passes handle tail-calls and frame-pointer elision the earlier passes unlocked.",
+      "estimated_duration_s": 18,
+      "visual": "A row of assembly boxes, each smaller than the last, annotated with which pass removed which instruction.",
+      "manim_move": "transform",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "`mov %rax,%rbx; call foo; mov %rbx,%rax` (result unused) → dead-call pass kills side effects → dead-move pass removes both moves.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "Peephole passes form a dependency chain — local passes clear simple patterns, a global pass fuses across blocks, cleanup passes handle tail-calls and frame-pointer elision the earlier passes unlocked.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

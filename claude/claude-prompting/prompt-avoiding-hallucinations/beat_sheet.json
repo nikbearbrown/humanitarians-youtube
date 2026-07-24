@@ -1,0 +1,308 @@
+{
+  "metadata": {
+    "slug": "prompt-avoiding-hallucinations",
+    "title": "Grounding: The Fix for Hallucinations",
+    "topic": "PROMPT ENGINEERING · Avoiding Hallucinations",
+    "source": "Anthropic Prompt Engineering Tutorial Lesson 8",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "style_preset": "teardown",
+    "palette": "claude",
+    "register": "Teardown",
+    "aspect_ratio": "16:9",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "audience": "claude-liam",
+    "build": {
+      "at": "2026-07-16T23:54:24",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    },
+    "playlist": "Claude Research",
+    "hashtags": [
+      "AI",
+      "AIAlignment",
+      "Anthropic",
+      "Claude",
+      "MachineLearning",
+      "AIResearch",
+      "NikBearBrown",
+      "hallucinations",
+      "grounding",
+      "promptengineering"
+    ],
+    "tags": [
+      "AI",
+      "AIAlignment",
+      "Anthropic",
+      "Claude",
+      "MachineLearning",
+      "AIResearch",
+      "NikBearBrown",
+      "hallucinations",
+      "grounding",
+      "promptengineering"
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "Grounding as the fix for hallucinations makes intuitive sense, but I want to understand exactly how supplying source text changes what the model does. Walk me through: (1) why giving Claude a document to quote from reduces fabrication compared to relying on parametric memory; (2) how I'd instruct it to say 'not found in the source' instead of inventing an answer; (3) a test case where a poorly grounded prompt still hallucinates because the retrieved passage was almost-but-not-quite relevant, and how I'd catch it.",
+      "estimated_duration_s": 20,
+      "shot": {
+        "scene_type": "ClaudeComposerAsk",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "command": "Grounding as the fix for hallucinations makes intuitive sense, but I want to understand exactly how supplying source text changes what the model does. Walk me through: (1) why giving Claude a document to quote from reduces fabrication compared to relying on parametric memory; (2) how I'd instruct it to say 'not found in the source' instead of inventing an answer; (3) a test case where a poorly grounded prompt still hallucinates because the retrieved passage was almost-but-not-quite relevant, and how I'd catch it.",
+            "topic": "PROMPT ENGINEERING · Avoiding Hallucinations",
+            "segment": "Cold Open",
+            "runningText": "Analyzing: Anthropic Prompt Engineering Tutorial · Lesson 8",
+            "output": [
+              "Hallucination is statistical consistency — not lying; the model can't query a fact DB",
+              "Three-element grounding pattern: source in prompt, answer only from it, I don't know allowed",
+              "'I don't know' is accurate information — the answer isn't in the source you provided",
+              "Citations ground the output too — if Claude can't quote it, the claim is suspect"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "placeholder": "Type / for skills"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T23:54:24"
+      },
+      "engine": "kokoro",
+      "voice": "am_onyx"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "body",
+      "narration_text": "Let's recap with Claude. Hallucination is not lying. A language model does not have access to a ground-truth database it can query. It generates text that is statistically consistent with everything it was trained on. When you ask Claude a specific factual question without providing a source, Claude produces the most probable answer. If the correct answer is rare or recent or outside the training distribution, the most probable answer can be wrong. Confidence does not track correctness.",
+      "estimated_duration_s": 30,
+      "shot": {
+        "scene_type": "ClaudeVerdictArtifact",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "The Problem",
+            "artifactHeading": "Confidence without grounding.",
+            "artifactLines": [
+              "Claude generates text statistically consistent with its training data",
+              "It has no ground-truth database to query for specific facts",
+              "Most probable answer ≠ correct answer — especially for rare, recent, or niche facts",
+              "Hallucination is not lying — it is the natural output of an ungrounded language model",
+              "Confidence does not track correctness without a grounding signal"
+            ]
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 23.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T23:54:24"
+      },
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "lead_silence_s": 0.5
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "body",
+      "narration_text": "The grounding pattern has three elements. First: put the source document in the prompt. Not a link — the actual text. Second: instruct Claude to answer only from what is in that document. Third: instruct Claude to say I don't know if the answer is not in the document. These three elements together remove the model's ability to substitute inference for retrieval.",
+      "estimated_duration_s": 27,
+      "shot": {
+        "scene_type": "ClaudeVerdictArtifact",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "The Grounding Pattern",
+            "artifactHeading": "Three prompt elements.",
+            "artifactLines": [
+              "Put the source document in the prompt — not a link, the actual text",
+              "Instruct Claude to answer only from what is in that document",
+              "Instruct Claude to say 'I don't know' if the answer is not in the document",
+              "Together: removes the model's ability to substitute inference for retrieval",
+              "The model now has a reference to check against and a permitted uncertainty response"
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T23:54:24"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "body",
+      "narration_text": "A grounded model that says I don't know is giving you accurate information. It is telling you the answer is not in the source you provided. This is more useful than a confident wrong answer because it correctly attributes the gap to the source, not to Claude's ability to reason. Train your users — and yourself — to treat I don't know as a successful response, not a failure.",
+      "estimated_duration_s": 26,
+      "shot": {
+        "scene_type": "ClaudeVerdictArtifact",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "The Uncertainty Signal",
+            "artifactHeading": "I don't know is information.",
+            "artifactLines": [
+              "A grounded Claude saying 'I don't know' = the answer is not in the source",
+              "This is more useful than a confident wrong answer",
+              "It correctly attributes the gap to the source, not to Claude's reasoning ability",
+              "Train yourself and your users: 'I don't know' is a successful response, not a failure",
+              "Goal: calibrated uncertainty — not zero uncertainty"
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.67,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T23:54:24"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "body",
+      "narration_text": "Citations take grounding one step further: they ground the output as well as the input. Ask Claude to quote the sentence it used to reach its conclusion, or use the native Citations API. The citation is evidence. If Claude claims something is in a document and cannot produce the verbatim text that supports it, the claim is suspect. The citation requirement makes hallucinated derivations visible rather than buried in confident prose.",
+      "estimated_duration_s": 29,
+      "shot": {
+        "scene_type": "ClaudeVerdictArtifact",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Citations as Verification",
+            "artifactHeading": "Ground the output too.",
+            "artifactLines": [
+              "Ask Claude to quote the sentence it used to reach its conclusion",
+              "Or use the native Citations API",
+              "The citation is evidence — not decoration",
+              "If Claude claims something is in the document, you can check the quote",
+              "If it cannot produce a verbatim quote, the claim is suspect"
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 22.76,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T23:54:24"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "handoff",
+      "narration_text": "Your turn. Ask Claude: 'Here is a document — paste any contract section, paper abstract, or policy page. Answer only from this document. If the answer is not in the document, say: I don't know based on this document. Then ask it two questions — one whose answer is in the document, and one whose answer is not.' What you're testing is whether the grounding instruction actually holds at inference time. The first question confirms Claude can use the source. The second question is the real test: does it stay honest and say I don't know, or does it reach into parametric memory and hallucinate a plausible-sounding answer? If it hallucinates on question two, your grounding prompt needs tightening — repeat only from this document more than once, or add: do not use any information outside the provided text. That failure mode is the one that buries confident wrong answers in production. Liam, in for Bear.",
+      "estimated_duration_s": 35,
+      "shot": {
+        "scene_type": "ClaudeComposerAsk",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "command": "Here is a document: [paste any document — a contract section, paper abstract, or policy page]. Answer only from this document. If the answer is not in the document, say 'I don't know based on this document.' Questions: [1] [ask something whose answer IS in the document] [2] [ask something whose answer is NOT in the document]",
+            "topic": "TRY THIS NOW",
+            "segment": "Handoff",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "answers the grounded question correctly",
+              "says I don't know for the ungrounded question",
+              "if it hallucinates on question 2, the grounding prompt failed — adjust and retry"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "placeholder": "Type / for skills"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 43.22,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T23:54:24"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "beat_type": "outro",
+      "narration_text": "Grounding: The Fix for Hallucinations",
+      "estimated_duration_s": 6,
+      "shot": {
+        "scene_type": "ClaudeTitleOutro",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Grounding: The Fix for Hallucinations",
+            "handle": "@NikBearBrown",
+            "subline": "Anthropic Prompt Engineering Tutorial · Lesson 8"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-07-16T23:54:24"
+      },
+      "engine": "kokoro",
+      "voice": "am_onyx"
+    }
+  ]
+}

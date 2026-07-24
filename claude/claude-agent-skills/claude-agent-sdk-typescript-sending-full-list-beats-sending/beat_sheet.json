@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "claude-agent-sdk-typescript-sending-full-list-beats-sending",
+    "title": "Why sending the full list beats sending only what changed",
+    "topic": "Level-triggered vs. edge-triggered state delivery",
+    "purpose": "Level delivery makes the receiver \"latest message wins\" — a dropped message means \"stale for a moment,\" not \"permanently wrong.\" Edge deltas are efficient but fragile: one lost delta corrupts any consumer without a resync path. Redundant but idempotent beats minimal but brittle.",
+    "category": "claude-agent-skills",
+    "playlist": "Claude Agent Skills",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/claude-agent-sdk-typescript/CHANGELOG.md`",
+    "origin": "promoted",
+    "score": "8/10",
+    "length_band": "2–3 min",
+    "still_lanes": "c2v (edge timeline vs. level timeline), raster (drop marker on each)",
+    "prerequisites": "event streams, idempotency",
+    "exclusions": "WebSocket transport internals, task scheduling APIs, step sequencing",
+    "visual_object": "Two timelines — an edge stream that diverges and never recovers after one drop, vs. a level stream that snaps back on the next emission.",
+    "manim_move": "compare",
+    "hook": "A background workflow emits \"task started / task finished\" deltas; miss one and your live-task list drifts from reality forever — no error, no recovery.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "A consumer accumulates `task_started` and removes on completion; one `task_started` is dropped, so it permanently undercounts. `background_tasks_changed` replaces this by emitting the COMPLETE current set on every change.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "Edge events are smaller and send only what changed; so why replace them with a full-set emission on every change?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "A background workflow emits \"task started / task finished\" deltas; miss one and your live-task list drifts from reality forever — no error, no recovery.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "Level delivery makes the receiver \"latest message wins\" — a dropped message means \"stale for a moment,\" not \"permanently wrong.\" Edge deltas are efficient but fragile: one lost delta corrupts any consumer without a resync path. Redundant but idempotent beats minimal but brittle.",
+      "estimated_duration_s": 18,
+      "visual": "Two timelines — an edge stream that diverges and never recovers after one drop, vs. a level stream that snaps back on the next emission.",
+      "manim_move": "compare",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "Tasks A, B, C start; `started(C)` is dropped. Edge consumer stuck at {A,B}; level consumer gets `changed([A,B,C])` and stays correct after any delivered message.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "Level delivery makes the receiver \"latest message wins\" — a dropped message means \"stale for a moment,\" not \"permanently wrong.\" Edge deltas are efficient but fragile: one lost delta corrupts any consumer without a resync path. Redundant but idempotent beats minimal but brittle.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

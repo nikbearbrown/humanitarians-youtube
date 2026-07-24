@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "m5-onboard",
+    "slug": "claude-liam-m5-onboard",
+    "topic": "M5-ONBOARD · CLAUDE PLUGINS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "source_skill": "../anthropics/claude-plugins-official/plugins/cwc-makers/skills/m5-onboard/SKILL.md",
+    "build": {
+      "at": "2026-07-19T11:21:49",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. You are working with the m5-onboard skill. It automates the full cold-start workflow for an M5Stack ESP32 device: detect on USB, identify model, flash UIFlow 2.0, and push a MicroPython app bundle. The philosophy: one orchestrator covers all four stages, native-USB boards require a physical button dance the script cannot bypass, and a two-minute run needs streaming — not a foreground command that looks like a hang. Let me walk you through the model, the operations, and the gaps.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "M5-ONBOARD · CLAUDE PLUGINS",
+            "segment": "PLUGINS",
+            "command": "Flash my M5Stack Cardputer-Adv and install the Claude Buddy app bundle.",
+            "runningText": "reading m5-onboard SKILL.md…",
+            "output": [
+              "python3 scripts/onboard.py --apps buddy — one command covers all 4 stages",
+              "Native-USB boards: BtnG0+BtnRST button dance required — no software path",
+              "Run in background + tee log — foreground 2-min run looks identical to a hang"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 29.63,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:21:49"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy — stages + run pattern",
+      "narration_text": "The skill runs four stages through one orchestrator. Stage one is Detect — detect.py enumerates serial ports, filters to USB bridges or the ESP32-S3 native USB interface, and probes with esptool to confirm the chip. Port naming varies by OS: usbmodem on macOS, ttyACM or ttyUSB on Linux, COMx on Windows. Stage two is Identify — detect.py cross-references hardware signatures to suggest the right firmware variant, but the final choice is yours via the --variant flag. Stage three is Flash — esptool writes UIFlow 2.0 at 460800 baud for UART bridges and 115200 no-stub for native USB. Native-USB boards need a physical button dance to enter download mode; the script waits and coaches you through it. Stage four is Install Apps — install_apps.py uploads every .py from the source directory into /flash/ via paste-mode REPL, then reboots via machine.reset rather than DTR/RTS, which is a no-op on native USB. The main orchestrator is onboard.py. Call it directly with --apps buddy for a fresh Cardputer-Adv. Two auxiliary tools: install_apps.py --src buddy when the device is already flashed and you just want to push or refresh the app bundle; smoke_test.py for an I2C, LCD, speaker, and button check after provisioning. Do not reach for the sub-scripts to build your own flow unless the user asks for a partial run.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 50,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "M5OnboardAnatomy",
+          "props": {
+            "sparkLine": "One orchestrator: detect, identify, flash, install. Button dance blocks the flash stage."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 82.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:21:49"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design — workflow + key patterns",
+      "narration_text": "Four patterns matter. First: ask the variant before running. Cardputer and Cardputer-Adv share a form factor but take different firmware images. detect.py cannot distinguish them before flashing because they share the same native USB VID. Flashing the wrong image boot-loops the device. If the user says nothing, default to cardputer-adv — the rig provisions them overwhelmingly. If the user says Cardputer without Adv, ask. Second: run in the background with tee. The orchestrator runs two to three minutes. Running it foreground in the Bash tool captures output and blocks delivery until the command exits — silence for three minutes looks identical to a hang. Use run_in_background true, tee to a log file, then Monitor with a grep filter for stage banners and the button-dance prompt. Third: relay the button dance when the log shows it. On native-USB boards you MUST tell the user to press and hold BtnG0 on the back of the device, briefly press RST while holding G0, keep holding G0 for one more second, then release. Both buttons are flush-mounted on the back. There is no software path that substitutes — no DTR/RTS, no esptool flag. The script waits; you wait; the user presses. Fourth: install-only mode for already-flashed devices. Run install_apps.py --port PORT --src buddy to push or refresh the app bundle without re-flashing firmware.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 45,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "M5OnboardDesign",
+          "props": {
+            "sparkLine": "Ask variant first. Background + tee. Relay button dance. Install-only mode for already-flashed."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 72.19,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:21:49"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "teardown — what it gets right / where it bites",
+      "narration_text": "Here is the teardown. The skill gets five things right. Single orchestrator with one command — detect, identify, flash, install covered by python3 scripts/onboard.py --apps buddy, and the sub-scripts are described individually only for partial runs. Physical button dance documented with exact coaching: hold BtnG0, briefly press RST, keep G0 dark — retry coaching built into the script when the user releases G0 too early. Background run pattern specified with the exact grep filter: stage banners, heartbeats, button-dance prompts surface while 99% of the byte-progress spam is suppressed. esptool failure handling is baked in: post-flash watchdog-reset failure is treated as non-fatal when Hash of data verified appears — the script knows this case and falls back to manual coaching. Cardputer-Adv as default is explicitly stated and the rationale is given: the rig provisions them overwhelmingly. Where it bites. Variant question is user-intent not hardware fingerprint — the skill states this but a developer who skips to the command and doesn't read the which-variant section will try to detect the board programmatically and get nowhere. NVS set_str versus set_blob: if a prior run wrote a blob, the device boot-loops silently — the fix is erase-key before set_str, but this is buried in the critical gotchas section rather than noted in the install-apps workflow. BLE wedge failure, OSError minus 519, is opaque: nothing in the error message points to boot_option equals 2 as the root cause. Linux dialout group requirement is in the platform notes section rather than the preflight check — a developer on Debian who hits Permission denied will blame the hardware before reading that far. Windows Store Python quirky PATH is flagged late: the preference for the winget version should be in the dependencies section, not the platform notes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 54,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "M5OnboardTell",
+          "props": {
+            "sparkLine": "Button dance and background run pattern correct. NVS blob bug and dialout group buried."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 101.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:21:49"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict. m5-onboard: one orchestrator, python3 scripts/onboard.py --apps buddy, covers detect, identify, flash, and install. Variant must be user-intent: Cardputer vs Cardputer-Adv share VID, can't distinguish before flashing — wrong image boot-loops. Flash stage requires physical BtnG0+BtnRST button dance on native-USB boards — no software path. Run in background with tee log and grep filter — foreground looks like a hang. Install-only mode: install_apps.py --src buddy. Baud rates: 460800 UART, 115200 no-stub native USB. NVS boot_option=2 required when bundle has main.py — prevents BLE wedge. Gaps: variant question easy to miss; NVS blob bug buried in gotchas; OSError -519 opaque; dialout group and Windows Store Python in platform notes not preflight.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "m5-onboard",
+            "artifactLines": [
+              "One orchestrator: onboard.py --apps buddy — detect, identify, flash, install",
+              "Variant = user-intent: Cardputer vs Cardputer-Adv share VID — wrong image boot-loops",
+              "Native-USB flash: BtnG0+BtnRST button dance required — no software path exists",
+              "Run in background + tee log — foreground 2-3 min run looks identical to a hang",
+              "NVS boot_option=2 required when bundle ships main.py — prevents BLE OSError -519",
+              "Gaps: variant easy to skip; NVS blob bug buried; dialout group in platform notes"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 52.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:21:49"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Give Claude a task: a user has just plugged in a new M5Stack Cardputer-Adv and wants it fully provisioned with the Claude Buddy app bundle. Watch five things. First: does Claude ask what model it is, or does it immediately run onboard.py without confirming the variant? Second: does it run onboard.py in the background with tee and Monitor, or does it run it foreground and wait in silence? Third: when the log shows the button-dance prompt, does Claude relay the physical steps to the user — hold BtnG0, press RST, screen goes dark — or does it try to proceed without them? Fourth: does Claude use the correct baud and no-stub flags for native USB, or does it suggest 921600 or skip no-stub? Fifth: after install, does it mention checking boot_option equals 2 if the bundle ships a main.py, or does it assume BLE will work without that NVS key?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your Turn",
+            "topic": "M5-ONBOARD · HANDOFF",
+            "segment": "PLUGINS",
+            "command": "Provision my new Cardputer-Adv with the Claude Buddy bundle.",
+            "runningText": "Watch: variant check? background+tee? button dance relay? baud rate? boot_option=2?",
+            "output": [
+              "Expected: ask variant · run_in_background+tee · relay BtnG0+BtnRST · 115200 --no-stub",
+              "Expected: check boot_option=2 after install when main.py present",
+              "Red flag: silent foreground run · skip variant · DTR/RTS attempt · 921600 baud"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 46.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:21:49"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "m5-onboard. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "m5-onboard",
+            "handle": "@NikBearBrown",
+            "subline": "m5-onboard · Claude Plugins"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-07-19T11:21:49"
+      }
+    }
+  ]
+}

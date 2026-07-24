@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "agent-sdk-workshop-agent-s-memory-guardrail-one",
+    "title": "Why an agent's memory guardrail is one the model can't see",
+    "topic": "Tools (model-visible) vs. hooks (invisible lifecycle callbacks)",
+    "purpose": "Tools are model-controllable (the model decides when to invoke, result returns mid-turn); hooks are SDK-controllable (fire on lifecycle events, invisible, can prepend context before the model sees the prompt). Deliberate saving needs the model's agency; guaranteed injection must not depend on it.",
+    "category": "claude-agent-skills",
+    "playlist": "Claude Agent Skills",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/agent-sdk-workshop/docs/CHEATSHEET.md`",
+    "origin": "promoted",
+    "score": "8/10",
+    "length_band": "2–3 min",
+    "still_lanes": "c2v (two-lane diagram, write in tool lane, read in hook lane), raster (hook-event table)",
+    "prerequisites": "what tools are, basic agent loop",
+    "exclusions": "all hook event types in depth, PreToolUse/PostToolUse guardrail patterns, raw hook code",
+    "visual_object": "Two lanes — Tool lane (model emits → SDK runs → result returns) vs. Hook lane (event fires → callback runs → context silently prepended) — memory's write path in one, read path in the other.",
+    "manim_move": "split",
+    "hook": "Two mechanisms intercept what an agent does; the model knows only one of them exists.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "Stage-3 memory uses both at once — a `save_memory` tool the model chooses to call, and a `UserPromptSubmit` hook that silently injects saved context before every turn without the model's knowledge.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "One task (save memories, then re-inject them) should predict one mechanism; here it's split across two entirely different primitives — why does writing memory need a tool and reading it need a hook?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "Two mechanisms intercept what an agent does; the model knows only one of them exists.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "Tools are model-controllable (the model decides when to invoke, result returns mid-turn); hooks are SDK-controllable (fire on lifecycle events, invisible, can prepend context before the model sees the prompt). Deliberate saving needs the model's agency; guaranteed injection must not depend on it.",
+      "estimated_duration_s": 18,
+      "visual": "Two lanes — Tool lane (model emits → SDK runs → result returns) vs. Hook lane (event fires → callback runs → context silently prepended) — memory's write path in one, read path in the other.",
+      "manim_move": "split",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "Model saves \"user prefers bullet points\" via the tool; next session, before the user types, the hook reads the store and prepends the preference; the model answers in bullets — told at session start, not remembering.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "Tools are model-controllable (the model decides when to invoke, result returns mid-turn); hooks are SDK-controllable (fire on lifecycle events, invisible, can prepend context before the model sees the prompt). Deliberate saving needs the model's agency; guaranteed injection must not depend on it.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}

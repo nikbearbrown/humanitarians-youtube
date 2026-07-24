@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "slug": "skills-claude-write-right-spreadsheet-formula",
+    "title": "Why Claude can write the right spreadsheet formula and the file still shows the wrong number",
+    "topic": "Formula string vs. cached value in .xlsx",
+    "purpose": "An .xlsx cell stores TWO things — the formula string and a cached last-computed value. A library that writes the formula sets only the string; the cache stays stale. Nothing evaluates it until a calculation engine (LibreOffice) opens the file and rewrites the cache.",
+    "category": "claude-skills",
+    "playlist": "Claude Skills",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/skills/skills/xlsx/SKILL.md`",
+    "origin": "discovered",
+    "score": "8/10",
+    "length_band": "2–3 min",
+    "still_lanes": "c2v (two-layer cell), raster (before/after value)",
+    "prerequisites": "spreadsheet formulas, files store both formula and value",
+    "exclusions": "OOXML XML internals, LibreOffice setup, circular references, formula-error types",
+    "visual_object": "One cell split into two stacked layers — a formula layer (`=B5*(1+B6)`) and a cached-value layer showing a stale 100 that flips to 105 only when a \"recalc\" gear passes over it.",
+    "manim_move": "split",
+    "hook": "An agent writes a correct formula into a cell, saves the file, reopens it — and the cell still shows the old answer, with no error.",
+    "greeting": "Konnichiwa, Liam"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "Cell C5 is set to `=B5*(1+B6)` with B5=100, B6=0.05. Open the workbook: C5 reads 100, not 105. The formula is right; the number is stale — until a real engine recalculates.",
+      "estimated_duration_s": 13,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "from Key case — cold open on the concrete instance"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "The formula is provably correct, yet the file reports the wrong value with no error — why can't the tool that wrote the formula also produce its answer?",
+      "estimated_duration_s": 8,
+      "visual": "on-screen QUESTION",
+      "slate": true,
+      "scaffold_note": "gap-form question beat"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "An agent writes a correct formula into a cell, saves the file, reopens it — and the cell still shows the old answer, with no error.",
+      "estimated_duration_s": 8,
+      "visual": "",
+      "slate": true,
+      "scaffold_note": "the tension, no visual"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "An .xlsx cell stores TWO things — the formula string and a cached last-computed value. A library that writes the formula sets only the string; the cache stays stale. Nothing evaluates it until a calculation engine (LibreOffice) opens the file and rewrites the cache.",
+      "estimated_duration_s": 18,
+      "visual": "One cell split into two stacked layers — a formula layer (`=B5*(1+B6)`) and a cached-value layer showing a stale 100 that flips to 105 only when a \"recalc\" gear passes over it.",
+      "manim_move": "split",
+      "slate": true,
+      "scaffold_note": "the resolving mechanism; orbits the visual object"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "Write `=SUM(B2:B4)` over B2=10, B3=20, B4=30 into C1; save → C1's cache still reads 0. Run recalc → engine evaluates → cache rewritten to 60. Same file, same formula, correct number only after recalculation.",
+      "estimated_duration_s": 16,
+      "visual": "16:9 worked example",
+      "slate": true,
+      "scaffold_note": "THE EXAMPLE act, illustrative"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "An .xlsx cell stores TWO things — the formula string and a cached last-computed value. A library that writes the formula sets only the string; the cache stays stale. Nothing evaluates it until a calculation engine (LibreOffice) opens the file and rewrites the cache.",
+      "estimated_duration_s": 8,
+      "visual": "verdict card",
+      "slate": true,
+      "scaffold_note": "recap + your-turn handoff"
+    }
+  ]
+}
