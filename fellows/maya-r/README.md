@@ -4,7 +4,12 @@ Maya R. is a **fictional name** used to demonstrate how Humanitarians AI fellows
 
 Each episode folder begins with `YYYY-MM-DD`, uses lowercase kebab-case, and summarizes that week's work. The research itself comes from the real local Madison corpus at `/Users/bear/Documents/CoWork/bear-textbooks/books/madison`. Every report names its exact source and lifecycle status.
 
-These are deep-explainer production plans, not evidence that a live pipeline ran. Kore narrates with Kokoro `af_kore`. Human approval is still required at the plan, fact-check, narration, previz, final-review, and publishing gates.
+These are deep-explainer production plans, not evidence that a live pipeline
+ran. The examples select Kore with Kokoro `af_kore`, but fellows may instead
+choose Bella (`af_bella`) or any other voice they prefer. The selected voice
+must be recorded in the beat sheet and approved by the fellow before audio is
+generated. Human approval is still required at the plan, fact-check, narration,
+previz, final-review, and publishing gates.
 
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->

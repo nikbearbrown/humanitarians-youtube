@@ -4,7 +4,7 @@ Use the brutalist-art `deep-explainer` workflow on this folder.
 
 1. Read `beat_sheet.json`, `SOURCES.md`, and `FACTCHECK.md`.
 2. Keep Maya R. explicitly fictional. Do not invent a live report video, metric, credential, link, or completed run.
-3. Apply the current HAI override: Kore, Kokoro `af_kore`, `@HumanitariansAI`.
+3. This example selects Kore with Kokoro `af_kore` and `@HumanitariansAI`. Before audio, confirm the fellow's choice; fellows may use Bella (`af_bella`) or any other preferred voice and the beat sheet must record that selection.
 4. Present the 24-body-beat lane histogram and act map for human plan approval.
 5. Complete and obtain human approval for `FACTCHECK.md`.
 6. Review narration on slates before generating Kokoro audio.

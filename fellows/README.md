@@ -15,6 +15,15 @@ The `maya-r/` example is explicitly fictional and demonstrates deep-explainer
 reports grounded in actual Madison research. Keep review, rights, attribution,
 fictional-person disclosures, and publishing gates explicit.
 
+## Fellow voice choice
+
+Each fellow chooses the voice for their own reports. Kore (`af_kore`) and Bella
+(`af_bella`) are ready-to-use Kokoro options, but neither is mandatory; a
+fellow may select any other suitable voice. Record the chosen engine and voice
+ID in every episode's `beat_sheet.json`, obtain the fellow's approval before
+audio generation, and keep one voice consistent within an episode unless a
+clearly labeled second speaker is intentional.
+
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Fellows

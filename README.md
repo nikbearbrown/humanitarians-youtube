@@ -64,6 +64,11 @@ These are filesystem observations, not approval or publication claims.
 
 The current HAI production default is **Kore**, using the Kokoro voice **`af_kore`**. Persona and audience copy should describe Kore as **“in for Humanitarians AI,”** and public channel references should use **`@HumanitariansAI`**. Historical directory identifiers such as `claude-liam-*` remain unchanged so existing paths, manifests, and links continue to resolve.
 
+Fellows are an explicit exception to the default voice policy: each fellow may
+choose Kore (`af_kore`), Bella (`af_bella`), or any other voice they prefer for
+their own report. The chosen voice must be documented and approved before audio
+generation.
+
 ## Typical project contents
 
 A project may contain:
