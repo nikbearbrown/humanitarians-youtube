@@ -1,12 +1,25 @@
 # Fellows
 
-This top-level collection is reserved for Humanitarians AI fellow-profile and fellow-showcase video projects. Add each video as its own beat-sheet-driven subdirectory; keep review, rights, attribution, and publishing gates explicit.
+This top-level collection is reserved for Humanitarians AI fellow-profile and fellow-showcase video projects.
+
+Use one lowercase-kebab folder per fellow, named `first-name-last-initial`, then
+one dated weekly-report folder per video:
+
+```text
+fellows/
+  maya-r/
+    2026-07-10-building-the-verified-data-gate/
+```
+
+The `maya-r/` example is explicitly fictional and demonstrates deep-explainer
+reports grounded in actual Madison research. Keep review, rights, attribution,
+fictional-person disclosures, and publishing gates explicit.
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Fellows
 
-This folder organizes **0 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+This folder organizes **3 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
 
 ## Rebuild toolkit
 

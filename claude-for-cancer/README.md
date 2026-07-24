@@ -2,6 +2,10 @@
 
 This directory is the **Claude for Cancer** collection in the Humanitarians YouTube production repository. Each child project is a beat-sheet-driven video workspace; rendered media may be gitignored or stored alongside its production files.
 
+This is also the canonical collection for cancer-research videos. Use
+`claude-for-cancer/<video-project>/`; do not create a parallel
+`claude-for-cancer-research/` collection.
+
 ## Collection snapshot
 
 - Video projects with `beat_sheet.json`: **54**
