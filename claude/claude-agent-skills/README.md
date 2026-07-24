@@ -6,7 +6,7 @@ The `SKILL.md` system, skill design, reusable agent workflows, and how skills di
 
 # Claude Agent Skills
 
-This folder organizes **23 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+This folder organizes **29 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
 
 ## Rebuild toolkit
 
@@ -32,6 +32,8 @@ Brutalist is audio-first and local: the beat sheet drives narration, measured au
 - [Claude Code Claude Liam Agent Development](./claude-code-claude-liam-agent-development/)
 - [Claude Cookbooks Cheap Worker Crew Reads 9](./claude-cookbooks-cheap-worker-crew-reads-9/)
 - [Claude For Legal One Context Flag Flips Every](./claude-for-legal-one-context-flag-flips-every/)
+- [Pattern Analysis Subagent](./claude-liam-pattern-analysis-subagent/)
+- [Subagent Context](./claude-liam-vox-subagent-context/)
 - [Claude Plugins Official Claude Liam Agent Development](./claude-plugins-official-claude-liam-agent-development/)
 - [Claude Quickstarts Waiting Each Result Before Next](./claude-quickstarts-waiting-each-result-before-next/)
 - [Cwc Long Running Agents Agent Will Mark Feature Done](./cwc-long-running-agents-agent-will-mark-feature-done/)
@@ -43,6 +45,10 @@ Brutalist is audio-first and local: the beat sheet drives narration, measured au
 - [Healthcare Prior Auth Ai Structurally Cannot](./healthcare-prior-auth-ai-structurally-cannot/)
 - [Healthcare Swapping Fast Model Made Whole](./healthcare-swapping-fast-model-made-whole/)
 - [Launch Your Agent Autonomous Agent Freeze Mid Run](./launch-your-agent-autonomous-agent-freeze-mid-run/)
+- [Pattern Analysis Subagent](./nbb-pattern-analysis-subagent/)
+- [Vox Subagent Context](./nbb-vox-subagent-context/)
+- [Pattern Analysis Subagent](./pattern-analysis-subagent/)
 - [Rightmodel Pareto Frontier](./rightmodel-pareto-frontier/)
+- [Subagent Context](./vox-subagent-context/)
 
 <!-- END BRUTALIST REBUILD GUIDE -->

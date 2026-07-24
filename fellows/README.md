@@ -11,6 +11,10 @@ fellows/
     2026-07-10-building-the-verified-data-gate/
 ```
 
+Profile introduction videos live under
+`fellows/profiles/first-name-last-initial/`. Weekly work reports remain under
+the fellow's direct folder.
+
 The `maya-r/` example is explicitly fictional and demonstrates deep-explainer
 reports grounded in actual Madison research. Keep review, rights, attribution,
 fictional-person disclosures, and publishing gates explicit.

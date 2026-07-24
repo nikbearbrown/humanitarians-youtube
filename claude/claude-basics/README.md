@@ -6,7 +6,7 @@ Videos explaining what Claude is, model tiers, product surfaces, and first-use f
 
 # Claude Basics
 
-This folder organizes **18 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+This folder organizes **21 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
 
 ## Rebuild toolkit
 
@@ -25,8 +25,11 @@ Brutalist is audio-first and local: the beat sheet drives narration, measured au
 - [Anthropic Sdk Php Server Hands Back Encrypted Context](./anthropic-sdk-php-server-hands-back-encrypted-context/)
 - [Anthropic Sdk Typescript Partial Json Valid Object Before](./anthropic-sdk-typescript-partial-json-valid-object-before/)
 - [Browser Coordinate Scaling](./browser-coordinate-scaling/)
+- [Ch02 Lecture](./ch02-lecture/)
 - [Claude Constitution One Narrow Safety Rule Make](./claude-constitution-one-narrow-safety-rule-make/)
 - [Claude Cookbooks Splitting Chunk From Document Makes](./claude-cookbooks-splitting-chunk-from-document-makes/)
+- [Claude For Dummies](./claude-for-dummies/)
+- [Claude For Dummies](./claude-liam-claude-for-dummies/)
 - [Claude Quickstarts 50 Turn Agent Pays Same](./claude-quickstarts-50-turn-agent-pays-same/)
 - [Claude Quickstarts Claude S Click Lands Wrong](./claude-quickstarts-claude-s-click-lands-wrong/)
 - [Claudeforfoundationmodels Same Api Key Shipped Prototype](./claudeforfoundationmodels-same-api-key-shipped-prototype/)

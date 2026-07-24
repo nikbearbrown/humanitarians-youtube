@@ -6,7 +6,7 @@ Videos about Code plugins, Cowork plugins, marketplace mechanics, and plugin cre
 
 # Claude Plugins
 
-This folder organizes **46 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+This folder organizes **64 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
 
 ## Rebuild toolkit
 
@@ -21,6 +21,9 @@ Brutalist is audio-first and local: the beat sheet drives narration, measured au
 
 ## Projects in this folder
 
+- [Anthropics Claude Plugins Official Youtube Claude Liam Agent Development](./anthropics--claude-plugins-official--youtube--claude-liam-agent-development/)
+- [Anthropics Claude Plugins Official Youtube Claude Liam Command Development](./anthropics--claude-plugins-official--youtube--claude-liam-command-development/)
+- [Brutalist Figma Claude Lectures Ch06 Lecture](./brutalist-figma-claude--lectures--ch06-lecture/)
 - [Claude Code Claude Liam Plugin Settings](./claude-code-claude-liam-plugin-settings/)
 - [Claude Code Claude Liam Plugin Structure](./claude-code-claude-liam-plugin-structure/)
 - [Access](./claude-liam-access/)
@@ -29,18 +32,31 @@ Brutalist is audio-first and local: the beat sheet drives narration, measured au
 - [Bigquery Api](./claude-liam-bigquery-api/)
 - [Building Plugins](./claude-liam-building-plugins/)
 - [Cardputer Buddy](./claude-liam-cardputer-buddy/)
+- [Cardputer Buddy From Claude Root](./claude-liam-cardputer-buddy--from-claude-root/)
 - [Claude Automation Recommender](./claude-liam-claude-automation-recommender/)
+- [Claude Automation Recommender From Claude Root](./claude-liam-claude-automation-recommender--from-claude-root/)
 - [Claude Md Improver](./claude-liam-claude-md-improver/)
+- [Claude Md Improver From Claude Root](./claude-liam-claude-md-improver--from-claude-root/)
+- [Claude Opus 4 5 Migration](./claude-liam-claude-opus-4-5-migration/)
 - [Combining Plugins](./claude-liam-combining-plugins/)
 - [Command Development](./claude-liam-command-development/)
 - [Config Guide](./claude-liam-config-guide/)
+- [Config Guide From Claude Root](./claude-liam-config-guide--from-claude-root/)
 - [Configure](./claude-liam-configure/)
+- [Configure From Claude Root](./claude-liam-configure--from-claude-root/)
 - [Confluence Api](./claude-liam-confluence-api/)
+- [Confluence Api From Claude Root](./claude-liam-confluence-api--from-claude-root/)
 - [Datadog Api](./claude-liam-datadog-api/)
+- [Datadog Api From Claude Root](./claude-liam-datadog-api--from-claude-root/)
 - [Debug Plugins](./claude-liam-debug-plugins/)
+- [Debug Plugins From Claude Root](./claude-liam-debug-plugins--from-claude-root/)
 - [Enterprise Search](./claude-liam-enterprise-search/)
+- [Enterprise Search From Claude Root](./claude-liam-enterprise-search--from-claude-root/)
 - [Example Command](./claude-liam-example-command/)
+- [Example Command From Claude Root](./claude-liam-example-command--from-claude-root/)
+- [Example Skill](./claude-liam-example-skill/)
 - [Google Drive Api](./claude-liam-google-drive-api/)
+- [Google Drive Api From Claude Root](./claude-liam-google-drive-api--from-claude-root/)
 - [Grafana Api](./claude-liam-grafana-api/)
 - [Graphing](./claude-liam-graphing/)
 - [Hook Development](./claude-liam-hook-development/)
@@ -53,7 +69,9 @@ Brutalist is audio-first and local: the beat sheet drives narration, measured au
 - [Pagerduty Api](./claude-liam-pagerduty-api/)
 - [Playground](./claude-liam-playground/)
 - [Plugin Settings](./claude-liam-plugin-settings/)
+- [Plugin Settings From Claude Root](./claude-liam-plugin-settings--from-claude-root/)
 - [Plugin Structure](./claude-liam-plugin-structure/)
+- [Plugin Structure From Claude Root](./claude-liam-plugin-structure--from-claude-root/)
 - [Project Artifact](./claude-liam-project-artifact/)
 - [Redshift Api](./claude-liam-redshift-api/)
 - [Salesforce Api](./claude-liam-salesforce-api/)
