@@ -25,6 +25,12 @@ then obtain the fellow's approval before the first audio generation. A later
 voice change is an explicit, documented re-voice decision—not a per-episode
 default.
 
+When no preference has been supplied, use the fellow's name only as a starting
+heuristic: a female-coded name receives a female Kokoro voice suggestion
+(`af_*`), and a male-coded name receives a male Kokoro voice suggestion
+(`am_*`). This is a production default, not a claim about anyone's identity.
+The fellow's stated preference always overrides the name-based suggestion.
+
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 
 # Fellows

@@ -11,6 +11,10 @@ The selected voice must be recorded in each beat sheet and approved by the
 fellow before the first audio is generated. Human approval is still required
 at the plan, fact-check, narration, previz, final-review, and publishing gates.
 
+For this fictional example, the female-coded name “Maya” receives the female
+Kokoro suggestion `af_kore`. A real fellow's stated preference would override
+that name-based default.
+
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 

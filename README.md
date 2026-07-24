@@ -69,6 +69,11 @@ chooses one Kokoro voice, documents it, and keeps it across their report
 series. The choice must be approved before the first audio generation; later
 changes require an explicit documented re-voice decision.
 
+Absent a stated preference, use a female Kokoro voice (`af_*`) for a
+female-coded fellow name and a male Kokoro voice (`am_*`) for a male-coded
+name. Treat this only as a default suggestion; the fellow's explicit choice
+always wins.
+
 ## Typical project contents
 
 A project may contain:
