@@ -39,7 +39,7 @@ The fellow's stated preference always overrides the name-based suggestion.
 
 # Fellows
 
-This folder organizes **3 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+This folder organizes **4 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
 
 ## Rebuild toolkit
 

@@ -20,11 +20,12 @@ A video project is normally one directory containing its `beat_sheet.json` and s
 
 ## Current collections
 
-As of **July 24, 2026**, the current filesystem contains **3,950** primary `beat_sheet.json` files, **3,958** beat-sheet JSON files including named variants, and **3,993** README files across **22** top-level collections. Each linked collection README inventories its videos and derives its present production state from the files on disk.
+As of **July 24, 2026**, the filesystem snapshot below covered **3,950** primary `beat_sheet.json` files, **3,958** beat-sheet JSON files including named variants, and **3,993** README files across **22** top-level collections. Two additions on **July 27, 2026** are reflected in the totals and table below: `claude-for-astronomy/` (new collection; 1 project, 1 beat sheet, 2 READMEs) and a new weekly report under the existing `fellows/` collection (1 beat sheet, 2 READMEs). Other collections' counts are carried over from the July 24 snapshot and not freshly re-audited here. Each linked collection README inventories its videos and derives its present production state from the files on disk.
 
 | Directory | Collection | Beat sheets |
 |---|---|---:|
 | [`claude-for-artificial-intelligence/`](claude-for-artificial-intelligence/) | Artificial Intelligence | 219 |
+| [`claude-for-astronomy/`](claude-for-astronomy/) | Astronomy | 1 |
 | [`claude-for-branding/`](claude-for-branding/) | Branding | 34 |
 | [`claude-for-business/`](claude-for-business/) | Business | 1 |
 | [`claude-for-cancer/`](claude-for-cancer/) | Cancer | 55 |
@@ -45,7 +46,10 @@ As of **July 24, 2026**, the current filesystem contains **3,950** primary `beat
 | [`claude-for-writing/`](claude-for-writing/) | Writing | 31 |
 | [`claude/`](claude/) | Claude | 1,737 |
 | [`codex/`](codex/) | Codex | 40 |
-| [`fellows/`](fellows/) | Fellows | 3 |
+| [`fellows/`](fellows/) | Fellows | 4 |
+
+Updated totals: **3,952** primary beat sheets, **3,960** beat-sheet JSON files including variants,
+**3,997** README files, **23** top-level collections.
 
 ## Beat sheets are the source of truth
 
@@ -138,7 +142,7 @@ The Git remote is `nikbearbrown/humanitarians-youtube`. The root `.gitignore` ex
 
 # Humanitarians YouTube Workshop
 
-This folder organizes **3950 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+This folder organizes **3952 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
 
 ## Rebuild toolkit
 
