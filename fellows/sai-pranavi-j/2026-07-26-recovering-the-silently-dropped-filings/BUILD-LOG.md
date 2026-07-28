@@ -1,0 +1,16 @@
+# Build log
+
+- 2026-07-26 — Scoped video from Project 29 (Financial Regulatory Intelligence System) Layer 1 handoff notes; selected the "+73 recovered items" empty-description filter fix as the single-insight subject (over parameterized-insert fix and feed-isolation fix, both considered and set aside for future episodes).
+- 2026-07-26 — Drafted 7-beat, ~90s `ai-explainer` beat sheet and narration script (Hook / Setup / Discovery / Proof / Fix / Takeaway / Sign-off).
+- 2026-07-26 — Authored `beat_sheet.json`, `README.md`, `FACTCHECK.md`, `SOURCES.md`, `BUILD-PROMPT.md`, `PEDAGOGY.md`, `SHOTLIST.md`, `PROMPTS.md`.
+- 2026-07-26 — Voice confirmed: `af_kore` doesn't exist in the installed `brutalist` toolkit (only `am_onyx`/`af_bella`). Fellow confirmed **Bella (`af_bella`)**, matching the `hai` persona and `@HumanitariansAI` channel.
+- 2026-07-26 — Fact-check resolved: B00 "for months" removed (unmeasured dramatization); B04 "production database" phrasing flagged, fellow elected to keep it.
+- 2026-07-26 — B01 narration expanded to spell out each regulator's full name (SEC/FINRA/CFTC) and to distinguish the two Federal Register feeds (confirmed against `workflow.dev.json`: one is a general securities/investment keyword feed, the other filtered to the CFTC agency) — diagram labels updated to `FedReg (Sec.)` / `FedReg (CFTC)` to match.
+- 2026-07-26 — Audio locked (Kokoro `af_bella`, all 7 beats).
+- 2026-07-26 — Layer 1 previz built and iterated in this fellows folder only (toolkit at `brutalist/` used read-only as the render engine, never edited): B01 (pipeline diagram) and B04 (before/after counter) as Manim scenes from the start. B00, B02, B03, B05, B06 were originally planned as vox-still/Remotion/card beats; the two named Remotion patterns (`ClaudeCodeDiffView`, `HumanitariansResearchReport`) don't exist in the installed toolkit, and building them would mean adding components to the shared `brutalist/` repo, which was out of scope — so all 5 were rebuilt as self-contained Manim scenes in this reel's own `scenes.py` instead.
+- 2026-07-26 — Fixed a toolkit slate-label truncation bug (hard 80-char single-line cut, no word-wrap) without touching the toolkit: added a short `new_visual_element` field per slate beat, which `compile.py` prefers over the full `narration_text`.
+- 2026-07-26 — GATE V frame QC: the review cut's own timecode watermark (top-right, review-only) was flagged as a false-positive "edge-bleed" on every beat; confirmed against the true clean master (no watermark), which came back at 0 BLOCKER defects after fixing one genuine issue (B01's rightmost stage box sat just past the title-safe margin — nudged in). Remaining: 11 MAJOR "underfill" (several new Manim cards are sparse relative to the frame) and a mild contrast note on B01 — cosmetic polish, not correctness.
+- 2026-07-27 — Fellow watched the rendered master (`2026-07-26-recovering-the-silently-dropped-filings.mp4`, 88.5s, 7/7 beats real, no slates) and confirmed it looks correct.
+- GATES CLOSED — plan, fact-check, narration, audio lock, previz. See `beat_sheet.json` → `metadata.gates` for the dated record.
+- OPEN — Cosmetic polish pass (underfill/contrast), optional, not blocking.
+- NOT AUTHORIZED — Publishing.
