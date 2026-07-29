@@ -1,4 +1,4 @@
-````md
+
 # Weekly Research Report: Personalized Project-Driven Reading Roadmaps
 
 **Fellow:** Satwik Reddy Sripathi  
