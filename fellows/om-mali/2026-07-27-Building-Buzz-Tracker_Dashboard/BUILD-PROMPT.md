@@ -12,7 +12,7 @@ about an external topic.
 3. Om Mali selected Kokoro `am_onyx` for this report. Confirm that choice is still current before
    generating new audio; a change is an explicit, documented re-voice decision, not a per-episode
    default.
-4. Before any new render: get the author's sign-off on the 12 rows in `FACTCHECK.md` — these are
+4. Before any new render: get the author's sign-off on the 13 rows in `FACTCHECK.md` — these are
    specific, falsifiable claims about a private system (bug counts, point thresholds, a real
    misattribution incident) that only the author can verify.
 5. All 19 beats are already filled from the original build (4 Remotion cards/graphics, 15

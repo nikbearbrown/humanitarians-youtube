@@ -13,15 +13,17 @@ an n8n agent that turns free public Hacker News discussion into a 0–100 Buzz S
 company, plus a Groq-generated, comment-grounded Community Opinion read — and this week's
 specific addition, the AI Buzz Tracker dashboard.
 
-The beat sheet contains 19 beats (B00–B18): a cold open, the motivating hypothesis, one
-architecture map, a six-beat pipeline walkthrough (fetch → score → comments), a sector-narrative
-safety check, four dashboard/status beats, a two-beat honest limitation ("the misattribution
-finding"), and an outro naming the next fix. All 19 beats are filled — 4 Remotion
-cards/graphics, 15 real screenshot stills of the author's own workflow and dashboard.
+The beat sheet contains 20 beats (B00–B19): an executive-summary beat ("Hi, I'm Om Mali...")
+stating what the video covers and why, then a cold open on the system itself, the motivating
+hypothesis, one architecture map,
+a six-beat pipeline walkthrough (fetch → score → comments), a sector-narrative safety check, four
+dashboard/status beats, a two-beat honest limitation ("the misattribution finding"), and an outro
+naming the next fix. All 20 beats are filled — 5 Remotion cards/graphics, 15 real screenshot
+stills of the author's own workflow and dashboard.
 
 ## Production state
 
-- Build: complete — 19/19 beats filled, Kokoro voice `am_onyx`, cut = master (see `BUILD-LOG.md`)
+- Build: complete — 20/20 beats filled, Kokoro voice `am_onyx`, cut = master (see `BUILD-LOG.md`)
 - Gate P (narration/pedagogy structure): PASS (see `PEDAGOGY.md`)
 - Fact-check gate: **author confirmation still needed** — every claim describes the author's own
   private system and can only be verified by Om Mali, not by an external source (see
@@ -54,8 +56,8 @@ This is a progress showcase for a professor/project review audience: what does i
 free, public Hacker News discussion into a structured, comment-grounded attention signal for the
 AI sector — and what does the dashboard built on top of it actually show?
 
-The current plan contains **19 beats**. Its runtime is measured from per-beat narration audio
-(~5:32 summed from `actual_duration_s` across all 19 beats). The source recorded by the project
+The current plan contains **20 beats**. Its runtime is measured from per-beat narration audio
+(~5:48 summed from `actual_duration_s` across all 20 beats). The source recorded by the project
 is the author's own system — see `SOURCES.md` and `FACTCHECK.md`.
 
 ## Make your own version
@@ -112,7 +114,7 @@ Run this after editing the narration:
    build).
 5. **Generate local audio:** Kokoro voice `am_onyx`. Measured audio durations are the master
    clock.
-6. **Compile the previz → final cut:** all 19 beats filled, no open slots.
+6. **Compile the previz → final cut:** all 20 beats filled, no open slots.
 7. **Fill the pantry:** all 15 STILL beats use the author's own screenshots (`pantry/`), which
    need no external rights clearance — see `SOURCES.md`.
 8. **Watch, refine, and repeat.**
@@ -147,9 +149,9 @@ Run this after editing the narration:
   actual workflow screenshot with the actual nodes named in narration.)
 - Is every important claim supported and every hypothetical labeled? (See `FACTCHECK.md` — all 12
   rows need the author's own confirmation.)
-- Does the payoff visibly resolve the opening case? (The dashboard, shown in B12–B15, is the
-  concrete result of the pipeline walked through in B02–B11.)
-- Is the limitation honestly presented, not smoothed over? (B16–B17 present a real
+- Does the payoff visibly resolve the opening case? (The dashboard, shown in B13–B16, is the
+  concrete result of the pipeline walked through in B03–B12.)
+- Is the limitation honestly presented, not smoothed over? (B17–B18 present a real
   misattribution bug and an unresolved gap, not a solved problem.)
 - Did a human (Om Mali specifically) confirm every author-asserted claim before this is cleared
   to publish?

@@ -1,21 +1,38 @@
 """scenes.py — AI vs. the Data Deluge (explainer--ai-vs-data-deluge, 16:9)
 
-Rebuilt 2026-07-27 for the 18-beat second-pass cut (SCRIPT/SHOTLIST revised
-2026-07-26). One Scene per GRAPHIC beat with source='own': B01, B03, B04, B08,
-B09, B10, B11, B12. B09/B10/B11 are new/changed for this pass — the AstroNet
-dual-view CNN architecture (global+local views, beat 9), the impostor-catching
-payoff (beat 10), and the two-view synthesis (beat 11), replacing the old
-Earth/Sun beat and the old generic "network learned..." beat.
-B02, B05, B06, B07, B14, B16, B18 are Remotion CARD beats (SlateCard pattern,
-rendered by runtime/scripts/remotion_scenes.py, not here).
-B13, B15 are STILL·archive; B17 is FOOTAGE·archive.
+Rebuilt 2026-08-01: a new presenter self-introduction beat was inserted as B02
+(right after the B01 cold open), pushing every former B02-B18 beat up by one.
+Old beat_ids -> new: B01 unchanged; old B02-B18 -> new B03-B19. This file's
+Scene classes/DUR-key lookups were renumbered to match; the visual CONTENT of
+every scene is unchanged from the 2026-07-27 18-beat second-pass cut.
+
+One Scene per GRAPHIC beat with source='own': B01, B04, B05, B09, B10, B11,
+B12, B13 (old numbering: B01, B03, B04, B08, B09, B10, B11, B12). B10/B11/B12
+(old B09/B10/B11) are the AstroNet dual-view CNN architecture — global+local
+views (beat 10), the impostor-catching payoff (beat 11), and the two-view
+synthesis (beat 12).
+B02 (NEW intro card), B03, B06, B07, B08, B15, B17, B19 are Remotion CARD
+beats (SlateCard pattern, rendered by runtime/scripts/remotion_scenes.py, not
+here) — old numbering: B02, B05, B06, B07, B14, B16, B18.
+B14, B16 are STILL·archive; B18 is FOOTAGE·archive (old numbering: B13, B15,
+B17).
 
 Color law: TEAL = signal / confirmed transit / kept.
            CRIMSON = noise / false positive / discarded.
            GOLD = editor's-pen highlight only, never text.
 """
 import json, os, sys, pathlib
-_VOX_MANIM = pathlib.Path(__file__).resolve().parents[2] / "runtime" / "manim"
+# Toolkit location: this reel lives at a standalone project path (not nested
+# under brutalist-art/reels/<slug>/, where parents[2] used to land on the repo
+# root). Resolve robustly: ART_HOME env override > the old nested-reel guess
+# (kept for back-compat if this file is ever copied back under reels/) > the
+# known absolute toolkit path on this machine.
+_candidates = []
+if os.environ.get("ART_HOME"):
+    _candidates.append(pathlib.Path(os.environ["ART_HOME"]) / "runtime" / "manim")
+_candidates.append(pathlib.Path(__file__).resolve().parents[2] / "runtime" / "manim")
+_candidates.append(pathlib.Path(r"E:\NEU\Jobs\Humanitarians_AI\brutalist-art\runtime\manim"))
+_VOX_MANIM = next((p for p in _candidates if (p / "animated_graphics.py").exists()), _candidates[-1])
 sys.path.insert(0, str(_VOX_MANIM))
 from animated_graphics import *  # noqa: F401,F403
 import numpy as np
@@ -26,7 +43,7 @@ try:
     DUR = {b["beat_id"]: b.get("actual_duration_s", b.get("estimated_duration_s", 8.0))
            for b in _data["beats"]}
 except Exception:
-    DUR = {f"B{i:02d}": 8.0 for i in range(1, 18)}
+    DUR = {f"B{i:02d}": 8.0 for i in range(1, 20)}
 
 
 def _light_curve(n=200, dip_center=0.5, dip_width=0.06, dip_depth=0.35, noise=0.02, seed=0):
@@ -91,7 +108,7 @@ class B01_DataField(Scene):
 class B03_KeplerScale(Scene):
     """Stat overlay: 200,000 stars, 30-min cadence, 4 years -> millions of light curves."""
     def construct(self):
-        total = DUR["B03"]
+        total = DUR["B04"]
         eyebrow = Text("THE PROBLEM", font=DISPLAY, color=TEAL, font_size=20, weight=BOLD)
         eyebrow.to_edge(UP, buff=0.6)
         n_stars = Text("200,000", font=MONO, color=INK, font_size=64, weight=BOLD)
@@ -125,7 +142,7 @@ class B03_KeplerScale(Scene):
 class B04_TransitSignature(Scene):
     """Animated transit dip on a single light curve — draw-on."""
     def construct(self):
-        total = DUR["B04"]
+        total = DUR["B05"]
         title = Text("THE TRANSIT SIGNATURE", font=DISPLAY, color=INK, font_size=22, weight=BOLD)
         title.to_edge(UP, buff=0.7)
         frame = _axes_frame()
@@ -146,9 +163,10 @@ class B04_TransitSignature(Scene):
 
 class B08_TrainingSet(Scene):
     """Training-set diagram: 15,000 labeled light curves -> 'planet' / 'not a planet'.
-    (Was B09 in the old 17-beat numbering — content unchanged, beat renumbered.)"""
+    (Was B09 in the old 17-beat numbering, then B08 in the 18-beat cut — content
+    unchanged, beat renumbered twice.)"""
     def construct(self):
-        total = DUR["B08"]
+        total = DUR["B09"]
         title = Text("15,000 LABELED LIGHT CURVES", font=DISPLAY, color=INK, font_size=22, weight=BOLD)
         title.to_edge(UP, buff=0.7)
         n = 60
@@ -177,7 +195,7 @@ class B09_DualView(Scene):
     bins / 4 conv layers (labeled here, not derived on screen — a tangent would
     over-teach the architecture for a 3-min explainer)."""
     def construct(self):
-        total = DUR["B09"]
+        total = DUR["B10"]
         title = Text("TWO VIEWS, NOT ONE", font=DISPLAY, color=INK, font_size=22, weight=BOLD)
         title.to_edge(UP, buff=0.6)
         divider = Line(UP * 2.6, DOWN * 2.6, color=INK, stroke_width=1.5, stroke_opacity=0.5)
@@ -209,7 +227,7 @@ class B10_ImpostorCheck(Scene):
     fainter dip visible only in the global/wide view — the false-positive
     signature named in FACTCHECK)."""
     def construct(self):
-        total = DUR["B10"]
+        total = DUR["B11"]
         title = Text("REAL TRANSIT VS. IMPOSTOR", font=DISPLAY, color=INK, font_size=20, weight=BOLD)
         title.to_edge(UP, buff=0.6)
         divider = Line(UP * 2.4, DOWN * 2.4, color=INK, stroke_width=1.5, stroke_opacity=0.5)
@@ -248,11 +266,11 @@ class B10_ImpostorCheck(Scene):
 
 class B11_Synthesis(Scene):
     """CHANGED 2026-07-26 (second pass) — replaces the old, more generic
-    'network learned what a transit looks like' framing (old B10). The two
-    views (global + local) merge at a single fully-connected layer into one
-    probability: planet, or not."""
+    'network learned what a transit looks like' framing (old B10 in the
+    17-beat numbering). The two views (global + local) merge at a single
+    fully-connected layer into one probability: planet, or not."""
     def construct(self):
-        total = DUR["B11"]
+        total = DUR["B12"]
         title = Text("ONE FINAL ANSWER", font=DISPLAY, color=INK, font_size=22, weight=BOLD)
         title.to_edge(UP, buff=0.7)
         global_chip = LabelChip("GLOBAL VIEW", accent=SLATE, size=18).move_to(UP * 0.9 + LEFT * 2.6)
@@ -279,9 +297,10 @@ class B11_Synthesis(Scene):
 
 class B12_FlagKepler90i(Scene):
     """Light curve highlight/zoom on the flagged dip — 1-in-10,000 false-alarm odds.
-    (Was B11 in the old 17-beat numbering — content unchanged, beat renumbered.)"""
+    (Was B11 in the old 17-beat numbering, then B12 in the 18-beat cut — content
+    unchanged, beat renumbered twice.)"""
     def construct(self):
-        total = DUR["B12"]
+        total = DUR["B13"]
         title = Text("KEPLER-90i FLAGGED", font=DISPLAY, color=TEAL, font_size=24, weight=BOLD)
         title.to_edge(UP, buff=0.7)
         frame = _axes_frame()
