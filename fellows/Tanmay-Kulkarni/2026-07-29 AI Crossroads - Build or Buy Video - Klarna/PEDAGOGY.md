@@ -103,3 +103,24 @@ VERDICT: PASS — narration reviewed and approved by the author (2026-07-29,
 re-confirmed after the fact-check corrections above): reads natural, not
 robotic ("sounds as if a human is narrating it"). Cleared to generate
 audio.
+
+## Executive-summary beat added (2026-08-04, per reviewer feedback)
+
+Same feedback and fix as applied to the CommBank reel: viewers need to
+know within the first ~30 seconds who's talking and what the video
+covers, not just the cold-open ask — referenced against a real published
+Humanitarians AI channel video as the standard to match. Added **B00B**,
+directly after B00: Tanmay Kulkarni introduces himself by name and states
+the video's premise plainly, using the existing `ClaudeVerdictArtifact`
+component (reused as-is, no new code) as a "what this video covers" card.
+
+Narration written directly in the natural/conversational register this
+time (contractions, varied rhythm) rather than needing a robotic-to-human
+revision pass, per the standing principle established on the CommBank
+reel. No new factual claims — restates the thesis already established and
+sourced above.
+
+Pacing: re-applied the same 1.0s hold (no crossfade) treatment approved
+for both reels, over the 12-beat master.
+
+Final runtime: 206.7s (~3:27), up from 185.9s before this beat was added.

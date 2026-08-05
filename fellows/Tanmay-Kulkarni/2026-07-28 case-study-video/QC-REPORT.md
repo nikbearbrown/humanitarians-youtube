@@ -116,3 +116,44 @@ drawn path, once) and B06 (jolt-and-settle) alone, since those aren't
 floating loops.
 
 Recompiled once more: 152.8s, unchanged.
+
+## Executive-summary beat + pacing revision (2026-07-29, per reviewer feedback)
+
+Two changes, see `PEDAGOGY.md` for full narration/thesis rationale:
+
+1. **B00B added** (new intro-summary beat, right after B00): reuses
+   `ClaudeVerdictArtifact` unchanged. Sampled at ~45% of its span in the
+   final master — title card and three summary lines render cleanly, no
+   overflow, no collision, brand chip and SAFE margins respected.
+2. **Pacing**: applied the same hold-only treatment approved for the
+   Klarna reel — 1.0s hold (held last frame + silence) at the end of
+   every beat except the last, then a straight hard cut, no crossfade.
+   Built as a separate post-pass over `compile.py`'s own per-beat
+   conformed clips (video) and per-beat Kokoro narration (audio), same
+   as the Klarna reel — **not** part of `compile.py` itself, must be
+   re-run manually after any recompile.
+
+Final master: `claude-liam-commbank-untangled-v2.mp4`, 179.7s (~3:00).
+
+## Presenter rebrand (2026-08-04, per reviewer feedback)
+
+Replaced all "Liam, in for Bear" / `@NikBearBrown` references (spoken and
+on-screen) with Tanmay Kulkarni — see `PEDAGOGY.md` for the full list of
+fields changed. Re-rendered B00/B08/B09 (visual), regenerated audio for
+B00/B00B/B09 (narration), recompiled, re-applied the 1.0s hold pacing.
+Sampled B00 and B08/B09 in the final master — greeting and folder chip
+render correctly ("Habari, Tanmay", "@TanmayKulkarni"). Full-text grep of
+the beat sheet confirmed zero remaining Bear/Brown/Liam references.
+
+Final master: 180.3s (~3:00).
+
+## Resolution fix (2026-08-04, per reviewer feedback)
+
+Caught: final output was only 720p, despite every Remotion component being
+registered and rendered at 1920x1080 with `--scale=2` (true 4K, 3840x2160)
+per beat. Root cause: `compile.py` defaults to `--height 720` (width
+computed proportionally) during the conform/concat step, silently
+downscaling the already-4K per-beat renders. Fixed by re-running
+`compile.py --height 2160 --force`, then re-applying the same 1.0s-hold
+pacing script on the new 4K clips. Confirmed via `ffprobe`: final master
+is 3840x2160.

@@ -1,6 +1,6 @@
 # Claude, Untangled? — CommBank Case Study Video
 
-A ~2:33 explainer video dramatizing the central finding of the CommBank
+A ~3:00 explainer video dramatizing the central finding of the CommBank
 case study: two real, independently confirmed CommBank AI systems — a
 thinly-sourced payment-disputes tool and a well-documented inbound voice
 bot tied to real 2025 layoffs — have circulated in wider coverage as one
@@ -10,7 +10,7 @@ own citations.
 
 ## Files
 
-- **`claude-liam-commbank-untangled.mp4`** — the finished video.
+- **`claude-untangled-commbank.mp4`** — the finished video.
 - **`05-commbank-agentic-ai-disputes.md`** — the source
   case study this video dramatizes (Agentic AI Adoption in Financial
   Services series).

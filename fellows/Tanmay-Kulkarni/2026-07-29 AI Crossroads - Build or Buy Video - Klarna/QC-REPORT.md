@@ -64,3 +64,27 @@ Total runtime grew from 170.0s (original hard-cut, no pauses) to 186.1s
 (final, 1.0s hold before every one of the 10 internal cuts). This
 transition pass is **not part of `compile.py`** — it's a separate script
 that must be re-run manually if the beat sheet is edited and recompiled.
+
+## Executive-summary beat added (2026-08-04, per reviewer feedback)
+
+Added B00B (new intro-summary beat, right after B00), matching the same
+change made to the CommBank reel: reuses `ClaudeVerdictArtifact` unchanged.
+Sampled in the final master — title card and three summary lines render
+cleanly, no overflow, no collision, brand chip and SAFE margins respected.
+Re-applied the same 1.0s-hold pacing pass over the resulting 12-beat
+master (not part of `compile.py`, must be re-run manually after any
+recompile).
+
+Final master: `the-artificial-intelligence-crossroads-klarna-v2.mp4`,
+206.7s (~3:27).
+
+## Resolution fix (2026-08-04, per reviewer feedback)
+
+Caught: final output was only 720p, despite every Remotion component being
+registered and rendered at 1920x1080 with `--scale=2` (true 4K, 3840x2160)
+per beat. Root cause: `compile.py` defaults to `--height 720` (width
+computed proportionally) during the conform/concat step, silently
+downscaling the already-4K per-beat renders. Fixed by re-running
+`compile.py --height 2160 --force`, then re-applying the same 1.0s-hold
+pacing script on the new 4K clips. Confirmed via `ffprobe`: final master
+is 3840x2160.

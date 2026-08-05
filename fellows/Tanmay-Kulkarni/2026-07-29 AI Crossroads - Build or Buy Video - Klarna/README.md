@@ -1,6 +1,6 @@
 # The Artificial Intelligence Crossroads: Build or Buy? — Klarna Case
 
-A ~3:06 explainer video (HAI / Pragmatist register) built for the
+A ~3:27 explainer video (HAI / Pragmatist register) built for the
 `claude-for-design` collection in the `humanitarians-youtube` repo,
 replacing that topic's original fictional draft with a real, primary-sourced
 case: Klarna's AI customer-service deployment (Feb 2024 launch → May 2025

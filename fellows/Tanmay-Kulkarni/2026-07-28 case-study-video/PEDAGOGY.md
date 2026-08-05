@@ -1,6 +1,6 @@
 # PEDAGOGY — Claude, Untangled? (nbb / claude-liam ai-explainer)
 
-Reel built from `05-commbank-agentic-ai-disputes.md`
+Reel built from `../../05-commbank-agentic-ai-disputes-RECONCILED-FINAL.md`
 (Week 15's CommBank case study). The episode's thesis IS the case study's own
 central finding (Section 6.2): CommBank has two separate, independently
 confirmed AI systems — a thinly-sourced payment-disputes tool and a
@@ -87,3 +87,62 @@ independent and untouched. The redundant `narration` field was removed.
 
 VERDICT: PASS — narration and structure reviewed and approved by the author
 (2026-07-28), including the B07 revision. Cleared to generate audio.
+
+## Executive-summary beat added (2026-07-29, per reviewer feedback)
+
+Feedback on the published-ready cut: viewers need to know within the
+first ~30 seconds who's talking and what the video actually covers, not
+just the cold-open ask — referenced against a real published
+Humanitarians AI channel video as the standard to match. Added **B00B**,
+directly after B00: Liam introduces himself by name and states the
+video's premise plainly, using the existing `ClaudeVerdictArtifact`
+component (reused as-is, no new code) as a "what this video covers" card.
+
+Narration went through one revision: the first draft read as flat and
+listy ("This video untangles a viral story..."); rewritten with
+contractions, a rhetorical question, and varied sentence rhythm ("Sounds
+tidy, right? Too tidy.") so it reads as spoken, not recited. No new
+factual claims — restates the thesis already established and sourced
+above.
+
+Runtime grew from 152.8s to 169.4s with B00B added (before the pacing
+pass below).
+
+## Pacing revision (2026-07-29, per reviewer feedback)
+
+Same feedback and fix as applied to the Klarna reel: beats cut straight
+into each other with no breathing room. `compile.py` has no transition
+mechanism at all (hard-cut concat only), so this needed a separate
+post-pass — same script, same final parameters: a **1.0s hold** (last
+frame + silence) at the end of every beat except the last, then a
+straight hard cut into the next beat. No crossfade — reviewer explicitly
+preferred a clean cut after the hold over any dissolve.
+
+Final runtime: 179.7s (~3:00), up from 152.8s originally.
+
+## Presenter rebrand (2026-08-04, per reviewer feedback)
+
+Feedback: the video named "Prof. Brown" (via the "Liam, in for Bear" /
+@NikBearBrown channel framing) at the beginning and near the end — should
+credit the author (Tanmay Kulkarni) instead, for credibility. Reviewer
+chose to replace both the spoken name AND the on-screen handle chip
+throughout, not just one or the other.
+
+Changes (narration + visual props, no factual/thesis changes):
+- Metadata: `voice`, `greeting` (`Habari, Liam` → `Habari, Tanmay`),
+  `greeting_note` (dropped the IN-FOR-BEAR LAW framing — Tanmay is his own
+  presenter, not a stand-in), and the `tags` entry all updated.
+- B00: narration ("Habari — this is Tanmay Kulkarni"), `greeting` prop, and
+  `folderLabel` chip (`@TanmayKulkarni`).
+- B00B: narration ("Hi, I'm Tanmay Kulkarni").
+- B08: `folderLabel` chip only (narration didn't reference the name).
+- B09: narration ("Tanmay Kulkarni, signing off") and the outro `handle`
+  prop.
+
+Re-rendered B00/B08/B09 (visual props changed) and regenerated audio for
+B00/B00B/B09 (narration changed), then recompiled and re-applied the same
+1.0s-hold pacing. Confirmed via frame samples: "Habari, Tanmay" and
+"@TanmayKulkarni" render correctly wherever the old branding appeared; a
+full-file sweep confirmed zero remaining "Bear"/"Brown"/"Liam" references.
+
+Final runtime: 180.3s (~3:00, unchanged in practice).
