@@ -67,9 +67,11 @@ Every episode is built to two documents kept outside this repo:
   assertion, sources on screen rather than only voiced, comparisons held
   side-by-side). Public release requires ≥8/12 **and** a passing gate.
 
-Each episode folder carries its own `QC-REPORT.md` logging every defect found
-and fixed. From the Lemonade episode onward a `PROOF-REVIEW.md` records the
-formal review, including any finding that sent the cut back before publishing.
+Every shipped master is reviewed against `PROOF.md` before release. Each episode
+folder carries its own `QC-REPORT.md` logging every defect found and fixed, the
+gate verification, and any finding that sent the cut back before publishing. The
+review documents themselves are kept outside this repo alongside the two
+standards.
 
 ## Rebuild toolkit
 

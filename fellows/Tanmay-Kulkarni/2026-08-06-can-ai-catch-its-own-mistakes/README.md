@@ -152,9 +152,8 @@ not have one.
   PROOF rubric score, and the GATE P sign-off.
 - **`QC-REPORT.md`** — the full build log: every defect found by looking at
   frames, the PROOF checkpoint that caught two gate violations before the beat
-  sheet, and the author review that sent the finished cut back for two more.
-- **`PROOF-REVIEW.md`** — the formal review of the shipped master: rubric
-  12/12, production gate PASS, the one logged deviation, and the punch list.
+  sheet, the author review that sent the finished cut back for two more, and the
+  gate verification on the shipped master.
 
 ## Sourcing
 
