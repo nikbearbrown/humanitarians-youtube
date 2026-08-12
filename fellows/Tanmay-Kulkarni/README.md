@@ -21,6 +21,16 @@ walkthrough. Recording it here per `fellows/README.md`, which asks that a voice
 change be an explicit, documented decision rather than a per-episode default.
 `af_bella` is the standing choice; any future change gets logged the same way.
 
+**Documented exception, 2026-08-06 — `am_onyx` for the self-verification
+episode.** That film is a first-person investigation with a confession and a
+reversal in it rather than a walkthrough, and it wanted a narrator. It keeps the
+**warm first-person register**, *not* the Teardown register the toolkit
+conventionally pairs with Onyx — register is a writing style and voice is a
+timbre, and rewriting that film's wince or its moment of disbelief into Teardown
+clip would have flattened the arc the script is built on. This is an exception
+for one episode, reasoned in its `SCRIPT.md`. **`af_bella` remains the standing
+choice for the series.**
+
 ## Episodes
 
 | Week reported | Folder | Subject |
@@ -28,14 +38,17 @@ change be an explicit, documented decision rather than a per-episode default.
 | 2026-07-28 | [`2026-07-28 case-study-video`](./2026-07-28%20case-study-video/) | CommBank — untangling two conflated AI systems |
 | 2026-07-29 | [`2026-07-29 AI Crossroads - Build or Buy Video - Klarna`](./2026-07-29%20AI%20Crossroads%20-%20Build%20or%20Buy%20Video%20-%20Klarna/) | Klarna — build-or-buy, read through the Productivity J-Curve |
 | 2026-08-05 | [`2026-08-05-lemonade-claims-bot-mycroft`](./2026-08-05-lemonade-claims-bot-mycroft/) | Lemonade — building the claims workflow, and what production would demand |
+| 2026-08-06 | [`2026-08-06-can-ai-catch-its-own-mistakes`](./2026-08-06-can-ai-catch-its-own-mistakes/) | Self-verification — testing a repo topic's claim, and finding it doesn't hold |
 
 ## Two lanes
 
 These reports come in two kinds, and they are deliberately not mixed:
 
 - **Work-derived** — a film about the week's actual work (CommBank, Lemonade).
-- **Repo-topic** — a film built from a topic suggestion in this repo, replacing
-  an earlier fictional draft (Klarna).
+- **Repo-topic** — a film built from a topic already in this repo, replacing an
+  earlier draft with real research (Klarna; self-verification). Each of these
+  episodes names its source folder, what was wrong with it, and what was added
+  on top, in its own README.
 
 They carry different registers and different act structures. Referencing a
 previous episode for *format conventions* is fine; content, visuals and
