@@ -1,6 +1,6 @@
 # The Finance Agent That Cannot Approve Itself
 
-**Fellow:** Adwait Changan · **Week 31** (July 27–31, 2026) · **Project:** Mycroft Finance Investigator
+**Fellow:** Adwait Changan · **this week** · **Project:** Mycroft Finance Investigator
 **Voice:** Kokoro `am_onyx` ("Onyx, in for Humanitarians AI") · **Channel:** @HumanitariansAI
 **Builder:** `cli-explainer` · **Register:** Pragmatist · **Aspect:** 16:9 · **15 beats, ~4.5 min**
 

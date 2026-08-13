@@ -1,11 +1,11 @@
-# Visual QC report — The Finance Agent That Cannot Approve Itself (Week 31)
+# Visual QC report — The Finance Agent That Cannot Approve Itself (this week)
 
 Method: sampled frames with ffmpeg and read the PNGs (VISUAL QC LAW), plus the full contact
 sheet (`qc-sheet.png`). 15/15 beats render as real visuals — **zero slates**.
 
 ## Result
 Zero BLOCKER, zero MAJOR defects. First render pass clean (the `ClaudeScience*` composition
-duration fix from Week 30 is already in the local toolkit, so the four-rule LayerStack (B06)
+duration fix from last week is already in the local toolkit, so the four-rule LayerStack (B06)
 reveals fully within its beat).
 
 Checked specifically:

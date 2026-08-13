@@ -1,10 +1,10 @@
-# FLOW-REVIEW — The Finance Agent That Cannot Approve Itself (Week 31)
+# FLOW-REVIEW — The Finance Agent That Cannot Approve Itself (this week)
 
 A watch-free projection of the cut for an AI reviewer (Codex/Claude) or a human. Ground truth
 is `beat_sheet.json`; the real code lives under the Mycroft project root (see `SOURCES.md`).
 
 - **Fellow / narrator:** Adwait Changan · Onyx (`am_onyx`) · @HumanitariansAI · Pragmatist
-- **Week 31** (July 27–31, 2026) · 15 beats, ~4.5 min · 16:9
+- **this week** · 15 beats, ~4.5 min · 16:9
 - **Thesis:** a finance agent can compute a verified variance and gather evidence, but it
   **cannot approve its own explanation** — approval is a human gate enforced in code.
 

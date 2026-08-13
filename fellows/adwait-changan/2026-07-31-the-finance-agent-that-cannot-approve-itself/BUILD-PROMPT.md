@@ -1,4 +1,4 @@
-# Build prompt — The Finance Agent That Cannot Approve Itself (Week 31)
+# Build prompt — The Finance Agent That Cannot Approve Itself (this week)
 
 Use the `brutalist.art` `cli-explainer` workflow on this folder. Run from the Python 3.12 venv:
 `source /Users/adwaitchangan/Study/Brutalist/brutalist.art/.venv/bin/activate`.

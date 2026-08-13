@@ -9,7 +9,7 @@ SHA-256, agent identities rejected, evidence-backed cause required, append-only 
 Humanitarians AI viewers — where to use AI and where to fence it off. This models the
 human-control boundary in real code.
 
-## Structure (15 beats, ~4.5 min · Week 31, July 27–31)
+## Structure (15 beats, ~4.5 min · this week, the week of July 27)
 1. Cold open + the sharp question (ClaudeComposerAsk).
 2. Act 1 — the problem (B01–B03): recap the verified run; why self-approval is the trap.
 3. Act 2 — the review gate (B04–B08): real `review.py` (open request; the enforcement),
@@ -24,7 +24,7 @@ human-control boundary in real code.
 ## Honesty (all code-bound — see FACTCHECK.md)
 - All code excerpts are real, trimmed from `review.py` / the schema; no pseudocode.
 - Numbers (43 rows/6 datasets, $350k/$230k/−$120k, 7 steps, 41 evidence, 7 new tests, 19
-  total) are the fellow's confirmed Week-31 figures.
+  total) are the fellow's confirmed this week figures.
 - Stated plainly on screen + in narration: **local deterministic, no external LLM in the
   runtime; the committed sample review request remains OPEN; no human approval or causal
   explanation was fabricated.**

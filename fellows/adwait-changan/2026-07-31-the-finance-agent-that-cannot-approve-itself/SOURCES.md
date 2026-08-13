@@ -1,6 +1,6 @@
 # Sources
 
-## Primary source — Adwait Changan, Mycroft Finance Investigator (Week 31, July 27–31, 2026)
+## Primary source — Adwait Changan, Mycroft Finance Investigator (this week)
 
 Project root: `/Users/adwaitchangan/Study/Latest Mycroft/mycroft/projects/Mycroft-Finance-Investigator`
 
@@ -20,7 +20,7 @@ On-screen code and artifacts are trimmed verbatim from:
 6. `test_record_is_append_only`
 7. `test_decision_must_match_run`
 
-## Reported figures (Week 31)
+## Reported figures (this week)
 - Recap run: 43 data rows across six synthetic datasets; Budget EBITDA $350,000; Actual
   $230,000; Variance −$120,000; 7 tool steps; 41 evidence references.
 - Tests: 7 new review-control tests; **19 passing this week** (12 finance + 7 review).
