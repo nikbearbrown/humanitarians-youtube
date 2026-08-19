@@ -52,10 +52,11 @@ Two sentences from the **same transcript, the same morning**. In full, as HSBC s
 > non-strategic or low-returning businesses, the medium-term intent being to reallocate these
 > costs to areas of competitive strength and generate accretive returns."
 
-The film shows each sentence up to the point that carries the comparison — "…straight to the
-bottom line." and "…from non-strategic or low-returning businesses." — attributed on screen to the
-dated transcript. The trailing clauses are omitted for width, and neither changes what the
-quoted span says.
+The film shows each sentence up to the point that carries the comparison, with the omission
+marked — `saves straight to the bottom line …"` and `low-returning businesses …"` — attributed on
+screen to the dated transcript. The words shown are exact and neither omitted clause changes what
+the quoted span says, but a film arguing against adding to what someone said should not present a
+shortened sentence as a whole one, so the ellipsis is on screen.
 
 Same figure, two different things — money being **kept** and money being **moved**. Nobody
 misreported it. It is simply what happens when one number does two jobs in one document, and it

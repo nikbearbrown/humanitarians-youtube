@@ -230,6 +230,25 @@ matched pair. Both now share one width from the wider quote.
 still printed *"Frames sampled: 32 · BLOCKER: 0 · MAJOR: 0 · Clean"* while **all ten clips were
 missing**. Same trap as §8. The tell was the per-clip table printed beside it.
 
+## 12. Ellipses added to B07's quotes
+
+Both on-screen sentences stop before the end of what HSBC said:
+
+| | |
+|---|---|
+| Transcript | "…straight to the bottom line**, with immaterial revenue impact.**" |
+| Transcript | "…low-returning businesses**, the medium-term intent being to reallocate these costs to areas of competitive strength and generate accretive returns.**" |
+
+The displayed words were exact, both remainders were grammatically complete, and neither omitted
+clause changes the meaning — so this was defensible, not an error. But **a film arguing against
+adding to what someone said should not present a shortened sentence as a whole one.** Both quotes
+now end `line …"` and `businesses …"`.
+
+Verified rather than assumed: Georgia carries U+2026, so the glyph renders from the same face with
+no Pango fallback — checked on a 2160p still before re-rendering. GATE A, GATE W and GATE B all
+clean; card widths and label clearances unchanged. Narration is untouched (an ellipsis is not
+spoken), so the audio, the timings and the 513.61s total are identical.
+
 ---
 
 ## Final verification — 2026-08-19 (re-verified after the letter-spacing fix)
@@ -251,6 +270,7 @@ missing**. Same trap as §8. The tell was the per-clip table printed beside it.
 - [x] **B07 labels clear the card borders** and both cards share one width
 - [x] **Fresh render confirmed by a value expected to change** — B08 23.0s→22.9s,
       B11 55.6s→55.0s versus the previous build
+- [x] **B07 quotes carry a marked ellipsis**, glyph confirmed rendering in Georgia at 2160p
 - [x] `@HumanitariansAI` and the `Irreducibly Human` kicker on every Remotion beat
 
 **Nothing outstanding.** Film 5 shipped with a known monoculture weakness carried forward; this one
