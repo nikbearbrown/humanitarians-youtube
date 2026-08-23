@@ -6,14 +6,16 @@ Claude-branded explainers and weekly research / build reports.
 
 Weekly-report series: **`af_bella` (Bella)**.
 
-This Claude-branded explainer cut uses **`am_onyx` (Liam, in for Komal)**,
-recorded in the episode `beat_sheet.json`. That is a documented creator-cut
+These Claude-branded explainer cuts use **`am_onyx` (Liam, in for Komal)**,
+recorded in each episode `beat_sheet.json`. That is a documented creator-cut
 choice, not a silent per-episode default.
 
-Channel chip on this cut: `Komal`. House channel: `@HumanitariansAI`.
+Channel chip on these cuts: `Komal`. House channel: `@HumanitariansAI`.
 
 ## Projects in this folder
 
+- [2026-08-07 Sustainable, Prove It.](./2026-08-07-sustainable-prove-it/)
+- [2026-08-14 Quiet Tech.](./2026-08-14-luxury-quiet-tech/)
 - [2026-08-21 Dead Stock.](./2026-08-21-luxury-dead-stock/)
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
