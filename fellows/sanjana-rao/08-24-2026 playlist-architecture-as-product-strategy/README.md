@@ -51,14 +51,6 @@ Per your screenshot, the concrete scenes use the channel's actual playlists:
 production gate PASS**. The one soft spot (falsifiability) and a couple of optional
 [EDIT] polishes are noted there.
 
-## Two source scenes were omitted (by your choice)
-
-The brief's Scene 1 (webcam intro) and Scene 9 (live screen demo) needed your own
-footage, so they were cut. Their intent is preserved: the cold-open composer opens
-the video in your voice, and the clustering method is shown as an animated scene.
-To add real footage later, drop `media/B00.mp4` (webcam) or a demo clip into the
-reel's `media/` folder by beat id and re-run the compile step below.
-
 ## Re-render / edit
 
 Edit narration or on-screen text in `beat_sheet.json`, then (from the toolkit root,
