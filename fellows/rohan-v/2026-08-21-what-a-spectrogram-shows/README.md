@@ -13,4 +13,6 @@ python3 runtime/scripts/generate_audio_kokoro.py /absolute/path/to/this/folder -
 python3 runtime/scripts/remotion_scenes.py /absolute/path/to/this/folder
 # render Manim classes in scenes.py → manim/B0N.mp4
 python3 runtime/scripts/compile.py /absolute/path/to/this/folder --height 1080
+# 4K: ART_REMOTION_SCALE=2 remotion_scenes.py --force; Manim 3840x2160; compile --height 2160
+# 9:16: shorts.py then remotion + compile --height 1920 (or 3840 for 4K)
 ```
