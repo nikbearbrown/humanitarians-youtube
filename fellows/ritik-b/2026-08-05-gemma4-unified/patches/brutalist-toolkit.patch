@@ -1,0 +1,328 @@
+diff --git a/runtime/remotion/package.json b/runtime/remotion/package.json
+index 77c3b44..4d70ce9 100644
+--- a/runtime/remotion/package.json
++++ b/runtime/remotion/package.json
+@@ -7,11 +7,11 @@
+     "render": "remotion render"
+   },
+   "dependencies": {
+-    "@remotion/cli": "^4.0.0",
+-    "@remotion/paths": "^4.0.490",
++    "@remotion/cli": "4.0.490",
++    "@remotion/paths": "4.0.490",
+     "react": "^18.3.1",
+     "react-dom": "^18.3.1",
+-    "remotion": "^4.0.0"
++    "remotion": "4.0.490"
+   },
+   "devDependencies": {
+     "@types/react": "^18.3.0",
+diff --git a/runtime/remotion/src/Root.tsx b/runtime/remotion/src/Root.tsx
+index dd0b2c9..312c489 100644
+--- a/runtime/remotion/src/Root.tsx
++++ b/runtime/remotion/src/Root.tsx
+@@ -28,6 +28,12 @@ import {MusiniqueMismatch, musiniqueMismatchSchema} from './scenes/MusiniqueMism
+ import {MusiniqueHearingLimit, musiniqueHearingLimitSchema} from './scenes/MusiniqueHearingLimit';
+ import {MusiniqueArsenal, musiniqueArsenalSchema} from './scenes/MusiniqueArsenal';
+ import {ClaudeVerdictArtifact, claudeVerdictArtifactSchema} from './scenes/ClaudeVerdictArtifact';
++import {EcosystemWheelBeat, ecosystemWheelBeatSchema} from './scenes/EcosystemWheelBeat';
++import {PredictCardBeat, predictCardBeatSchema} from './scenes/PredictCardBeat';
++import {GemmaEncoderStack, gemmaEncoderStackSchema} from './scenes/GemmaEncoderStack';
++import {GemmaScoreboard, gemmaScoreboardSchema} from './scenes/GemmaScoreboard';
++import {GemmaConvergenceThread, gemmaConvergenceThreadSchema} from './scenes/GemmaConvergenceThread';
++import {GemmaExecSummary, gemmaExecSummarySchema} from './scenes/GemmaExecSummary';
+ import {ClaudeVerdictArtifact916, claudeVerdictArtifact916Schema} from './scenes/ClaudeVerdictArtifact916';
+ import {ClaudeTitleOutro, claudeTitleOutroSchema} from './scenes/ClaudeTitleOutro';
+ // claude-liam — adaptive-therapy-revolution
+@@ -1271,6 +1277,57 @@ export const RemotionRoot: React.FC = () => {
+         durationInFrames={450} fps={30} width={1920} height={1080}
+         schema={musiniqueArsenalSchema}
+         defaultProps={{ sparkLine: 'This season is an arsenal.' }} />
++      {/* claude-debunked — the graded-exhibit wheel + the shared predict beat */}
++      <Composition id="EcosystemWheelBeat" component={EcosystemWheelBeat}
++        durationInFrames={420} fps={30} width={1920} height={1080}
++        schema={ecosystemWheelBeatSchema}
++        defaultProps={{
++          sparkLine: 'A suspiciously perfect wheel.',
++          wheel: {grade: false, startAt: 0},
++        }} />
++      <Composition id="PredictCard" component={PredictCardBeat}
++        durationInFrames={270} fps={30} width={1920} height={1080}
++        schema={predictCardBeatSchema}
++        defaultProps={{
++          sparkLine: 'Commit before the reveal.',
++          question: "What's the most likely failure mode?",
++          commit: 'commit to an answer before the next beat',
++        }} />
++      {/* gemma4-unified — the encoder-deletion exhibit, the scoreboard, the reframe.
++          These scenes drive every animation off useP() (frame/durationInFrames), so
++          the registered duration IS the animation length. remotion_scenes.py
++          truncates a clip to its beat length, so each duration below is set at or
++          just under the SHORTEST measured beat that uses it — the animation then
++          always completes, and longer beats freeze-hold the settled final state
++          (which is consolidation time, per duration-planner). Measured audio:
++          B01 17.32s / B02 17.56s / B03 15.17s → 450f (15.0s)
++          B05 19.99s / B06 20.12s            → 590f (19.67s)
++          B08 25.02s                          → 740f (24.67s) */}
++      <Composition id="GemmaEncoderStack" component={GemmaEncoderStack}
++        durationInFrames={450} fps={30} width={1920} height={1080}
++        schema={gemmaEncoderStackSchema}
++        defaultProps={{
++          sparkLine: 'Three specialists, bolted on.',
++          focus: 'specialists' as const,
++        }} />
++      <Composition id="GemmaScoreboard" component={GemmaScoreboard}
++        durationInFrames={590} fps={30} width={1920} height={1080}
++        schema={gemmaScoreboardSchema}
++        defaultProps={{
++          sparkLine: 'Worse at seeing. Better at hearing.',
++          focus: 'split' as const,
++        }} />
++      <Composition id="GemmaConvergenceThread" component={GemmaConvergenceThread}
++        durationInFrames={740} fps={30} width={1920} height={1080}
++        schema={gemmaConvergenceThreadSchema}
++        defaultProps={{sparkLine: 'Two different convergences.'}} />
++      {/* exec summary — 570f (19.0s), under the MEASURED 19.43s beat so the roadmap
++          cards finish landing before the clip is truncated. (Estimated 24.7s; Kokoro
++          came in 21% faster, which is why this is set from the measurement.) */}
++      <Composition id="GemmaExecSummary" component={GemmaExecSummary}
++        durationInFrames={570} fps={30} width={1920} height={1080}
++        schema={gemmaExecSummarySchema}
++        defaultProps={{sparkLine: 'What this is, and why.'}} />
+       <Composition id="ClaudeVerdictArtifact" component={ClaudeVerdictArtifact}
+         durationInFrames={1020} fps={30} width={1920} height={1080}
+         schema={claudeVerdictArtifactSchema}
+diff --git a/runtime/remotion/src/scenes/ClaudeTitleOutro.tsx b/runtime/remotion/src/scenes/ClaudeTitleOutro.tsx
+index 7c12850..95589b1 100644
+--- a/runtime/remotion/src/scenes/ClaudeTitleOutro.tsx
++++ b/runtime/remotion/src/scenes/ClaudeTitleOutro.tsx
+@@ -41,16 +41,26 @@ export const ClaudeTitleOutro: React.FC<ClaudeTitleOutroProps> = ({ title, handl
+       gap: 0,
+       opacity: o,
+     }}>
+-      {/* Title line */}
++      {/* Spark — the brand mark, top-center (poster composition; canvas-fill law) */}
++      <svg width={64} height={64} viewBox="0 0 24 24" style={{ position: 'absolute', top: 92, left: '50%', transform: 'translateX(-50%)' }}>
++        {Array.from({ length: 8 }, (_, i) => (
++          <line key={i} x1={12} y1={12}
++            x2={12 + 10 * Math.cos((i * Math.PI) / 4 + 0.2)}
++            y2={12 + 10 * Math.sin((i * Math.PI) / 4 + 0.2)}
++            stroke={CLAUDE.SPARK} strokeWidth={3.2} strokeLinecap="round" />
++        ))}
++      </svg>
++
++      {/* Title line — poster-scale serif (FILL-THE-CANVAS: the floor is not the target) */}
+       <div style={{
+         fontFamily: SERIF,
+         fontWeight: 700,
+-        fontSize: 72,
++        fontSize: 148,
+         color: CLAUDE.INK,
+         letterSpacing: '-0.02em',
+         textAlign: 'center',
+         lineHeight: 1.08,
+-        maxWidth: 1080,
++        maxWidth: 1600,
+         padding: '0 60px',
+       }}>
+         {titleBody}
+@@ -60,9 +70,9 @@ export const ClaudeTitleOutro: React.FC<ClaudeTitleOutroProps> = ({ title, handl
+       {/* Handle */}
+       <div style={{
+         fontFamily: SERIF,
+-        fontSize: 38,
++        fontSize: 54,
+         color: CLAUDE.INK,
+-        marginTop: 28,
++        marginTop: 52,
+         opacity: 0.9,
+       }}>
+         {handle}
+@@ -71,14 +81,25 @@ export const ClaudeTitleOutro: React.FC<ClaudeTitleOutroProps> = ({ title, handl
+       {/* Subline */}
+       <div style={{
+         fontFamily: SANS,
+-        fontSize: 22,
++        fontSize: 30,
+         color: CLAUDE.INK_SOFT,
+-        marginTop: 14,
++        marginTop: 20,
+         textAlign: 'center',
+-        maxWidth: 640,
++        maxWidth: 900,
+       }}>
+         {subline}
+       </div>
++
++      {/* Bottom terracotta rule — the house signature closes the poster */}
++      <div style={{
++        position: 'absolute',
++        bottom: 100,
++        left: '50%',
++        transform: 'translateX(-50%)',
++        width: 170,
++        height: 3,
++        backgroundColor: CLAUDE.SPARK,
++      }} />
+     </AbsoluteFill>
+   );
+ };
+diff --git a/runtime/remotion/src/scenes/ClaudeVerdictArtifact.tsx b/runtime/remotion/src/scenes/ClaudeVerdictArtifact.tsx
+index 8362fc6..ccf1cda 100644
+--- a/runtime/remotion/src/scenes/ClaudeVerdictArtifact.tsx
++++ b/runtime/remotion/src/scenes/ClaudeVerdictArtifact.tsx
+@@ -18,6 +18,10 @@ import { CLAUDE, CLAUDE_FONT } from '../tokens/claude';
+ export const claudeVerdictArtifactSchema = z.object({
+   artifactTitle: z.string().default('Verdict'),
+   artifactHeading: z.string().default('The split'),
++  /** Optional evidence line pinned to the bottom of the card. Empty = omitted,
++   *  so reels that predate this prop render exactly as before. Use it to put the
++   *  source ON the verdict — "no source, no verdict" made visible. */
++  sourceNote: z.string().default(''),
+   artifactLines: z.array(z.string()).default([
+     'Chat: synchronous judgment — you, in the loop.',
+     'Cowork: asynchronous recipes — runs while you rehearse.',
+@@ -47,7 +51,7 @@ const Spark: React.FC<{ size?: number }> = ({ size = 30 }) => (
+ );
+ 
+ export const ClaudeVerdictArtifact: React.FC<ClaudeVerdictArtifactProps> = ({
+-  artifactTitle, artifactHeading, artifactLines,
++  artifactTitle, artifactHeading, artifactLines, sourceNote,
+ }) => {
+   const frame = useCurrentFrame();
+   const { fps, width } = useVideoConfig();
+@@ -64,6 +68,13 @@ export const ClaudeVerdictArtifact: React.FC<ClaudeVerdictArtifactProps> = ({
+       {/* Artifact card */}
+       <div style={{
+         width: cardW,
++        // canvas-fill law: the artifact page fills the frame even with few lines.
++        // The card is #FFFFFF on the #F2F0E9 stage — only 22 per-channel, under the
++        // INK_DELTA=28 that runtime/qc/final_frame_check.py counts as content — so
++        // the measured bbox is driven by the type and the card's shadow edge. Three
++        // short lines at 620px measured 52% and failed GATE V; 700 plus the larger
++        // type below fills it with content rather than padding it with air.
++        minHeight: 700,
+         background: CLAUDE.CARD,
+         borderRadius: 24,
+         boxShadow: '0 20px 72px rgba(61,57,41,0.16)',
+@@ -84,11 +95,11 @@ export const ClaudeVerdictArtifact: React.FC<ClaudeVerdictArtifactProps> = ({
+         </div>
+ 
+         {/* Artifact body */}
+-        <div style={{ padding: '48px 60px 54px' }}>
++        <div style={{ padding: '52px 60px 60px' }}>
+           {/* Heading */}
+           <div style={{
+-            fontFamily: SERIF, fontSize: 46, fontWeight: 700, color: CLAUDE.INK,
+-            marginBottom: 36,
++            fontFamily: SERIF, fontSize: 60, fontWeight: 700, color: CLAUDE.INK,
++            marginBottom: 44,
+             opacity: clamp(headIn, 0, 1),
+           }}>
+             {artifactHeading}
+@@ -101,18 +112,32 @@ export const ClaudeVerdictArtifact: React.FC<ClaudeVerdictArtifactProps> = ({
+             const ty = (1 - op) * 12;
+             return (
+               <div key={i} style={{
+-                display: 'flex', alignItems: 'flex-start', gap: 22,
+-                marginBottom: 26, opacity: op, transform: `translateY(${ty}px)`,
++                display: 'flex', alignItems: 'flex-start', gap: 24,
++                marginBottom: 36, opacity: op, transform: `translateY(${ty}px)`,
+               }}>
+-                <span style={{ fontFamily: SANS, fontSize: 28, color: CLAUDE.SPARK, flexShrink: 0, marginTop: 3, fontWeight: 700 }}>
++                <span style={{ fontFamily: SANS, fontSize: 36, color: CLAUDE.SPARK, flexShrink: 0, marginTop: 3, fontWeight: 700 }}>
+                   {i + 1}.
+                 </span>
+-                <span style={{ fontFamily: SANS, fontSize: 28, color: CLAUDE.INK, lineHeight: 1.55 }}>
++                <span style={{ fontFamily: SANS, fontSize: 36, color: CLAUDE.INK, lineHeight: 1.5 }}>
+                   {line}
+                 </span>
+               </div>
+             );
+           })}
++
++          {/* Evidence line — the verdict carries its source on its face. */}
++          {sourceNote ? (
++            <div style={{
++              marginTop: 22, paddingTop: 26, borderTop: `2px solid ${CLAUDE.BORDER}`,
++              display: 'flex', alignItems: 'center', gap: 16,
++              opacity: clamp(spring({ frame: frame - 42, fps, config: { damping: 28, stiffness: 140, mass: 0.8 } }), 0, 1),
++            }}>
++              <Spark size={26} />
++              <span style={{ fontFamily: SANS, fontSize: 28, color: CLAUDE.INK_SOFT }}>
++                {sourceNote}
++              </span>
++            </div>
++          ) : null}
+         </div>
+       </div>
+     </AbsoluteFill>
+diff --git a/runtime/scripts/generate_audio_kokoro.py b/runtime/scripts/generate_audio_kokoro.py
+index 17f8fbd..6aed77f 100644
+--- a/runtime/scripts/generate_audio_kokoro.py
++++ b/runtime/scripts/generate_audio_kokoro.py
+@@ -167,7 +167,10 @@ def main():
+     todo = []
+     for b in sheet["beats"]:
+         bid = b["beat_id"]
+-        text = (b.get("narration_text") or "").strip()
++        # spoken line: `narration` overrides `narration_text` (parity with the
++        # full toolkit's generate_audio.py — e.g. B00's ask prompt is TYPED in
++        # the composer while a shorter line is SPOKEN)
++        text = (b.get("narration") or b.get("narration_text") or "").strip()
+         if not text:
+             continue
+         if a.only is not None and bid not in a.only:
+diff --git a/runtime/scripts/remotion_scenes.py b/runtime/scripts/remotion_scenes.py
+index 3abfb42..3803aa7 100644
+--- a/runtime/scripts/remotion_scenes.py
++++ b/runtime/scripts/remotion_scenes.py
+@@ -82,8 +82,17 @@ def render_beat(folder: Path, beat: dict, force: bool) -> str:
+     # --scale=2 renders the 1920x1080 comps at true 3840x2160 (supersampled text).
+     # --image-format=png removes Remotion's default JPEG-q80 frame step (the hidden
+     # quality ceiling on flat brand color + text). --crf=16 for a clean master.
++    # --timeout raises the delayRender ceiling from Remotion's 30s default. This was
++    # an attempt at the long-standing intermittent failure
++    #   "Could not find composition with ID <X>. Available compositions: CodexComposerAsk"
++    # (CodexComposerAsk is merely the FIRST composition registered in Root.tsx, so
++    # Remotion appears to be reading a PARTIAL composition snapshot). Tested
++    # 2026-08-03: the flag does NOT eliminate it — beats still fail and then succeed
++    # on retry with the flag in place. Kept because a higher ceiling is harmless for
++    # a 600-composition Root, but the cause is still UNDIAGNOSED and callers must
++    # keep retrying. Do not remove the retry logic on the strength of this flag.
+     cmd = ["npx", "remotion", "render", ENTRY, pattern, str(out.resolve()),
+-           f"--props={props_path}", "--concurrency=1",
++           f"--props={props_path}", "--concurrency=1", "--timeout=180000",
+            "--scale=2", "--image-format=png", "--crf=16"] + browser_flags()
+     r = subprocess.run(cmd, cwd=PROJECT, capture_output=True, text=True)
+     os.unlink(props_path)
+diff --git a/setup b/setup
+index 9e9eb6b..43fb30c 100755
+--- a/setup
++++ b/setup
+@@ -37,8 +37,8 @@ if [ "${1:-}" = "--install" ]; then
+   echo; shift || true
+ fi
+ 
+-declare -A OK MISS
+-check(){ if eval "$2" >/dev/null 2>&1; then OK[$1]=1; else OK[$1]=0; MISS[$1]="$3"; fi }
++# plain OK_<id>/MISS_<id> variables (not associative arrays) — macOS ships bash 3.2
++check(){ if eval "$2" >/dev/null 2>&1; then eval "OK_$1=1"; else eval "OK_$1=0"; eval "MISS_$1=\"\$3\""; fi }
+ check ffmpeg    'have ffmpeg && have ffprobe'   'install ffmpeg (brew install ffmpeg / apt install ffmpeg)'
+ check python    'have python3'                  'install Python 3.10+'
+ check node20    'node_ge 20'                    'install Node ≥ 20 (nodejs.org / nvm)'
+@@ -66,12 +66,12 @@ fail=0
+ for row in "${FEATURES[@]}"; do
+   IFS='|' read -r name reqs <<<"$row"
+   missing=""
+-  for id in $reqs; do [ "${OK[$id]:-0}" = 1 ] || missing="$missing $id"; done
++  for id in $reqs; do v="OK_$id"; [ "${!v:-0}" = 1 ] || missing="$missing $id"; done
+   if [ -z "$missing" ]; then
+     printf '  %-28s %b\n' "$name" "$(g '✅ ready')"
+   else
+     printf '  %-28s %b\n' "$name" "$(r '❌ blocked')"; fail=1
+-    for id in $missing; do echo "        · ${MISS[$id]}"; done
++    for id in $missing; do m="MISS_$id"; echo "        · ${!m}"; done
+   fi
+ done
+ echo
