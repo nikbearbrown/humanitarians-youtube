@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/ai1-cli-main/youtube/2026-08-19-claude-cli-rag-the-problem/**)",
+      "Read(//d/ai1-cli-main/**)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\\" -Directory -Depth 1 -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"brutal|runtime|toolkit\" } | Select-Object FullName)",
+      "Read(//d/ai1-cli-main/brutalist/**)",
+      "Read(//d//**)",
+      "PowerShell($paths = @\\(\"D:\\\\\",\"C:\\\\Users\\\\vedan\"\\); foreach \\($p in $paths\\) { Get-ChildItem -Path $p -Filter \"compile.py\" -Recurse -ErrorAction SilentlyContinue -Depth 6 | Select-Object -First 20 FullName })",
+      "Read(//c/Users/vedan/OneDrive/Desktop/brutalist.art-main/**)",
+      "Read(//c/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/scripts/**)",
+      "PowerShell($tsx = \"C:\\\\Users\\\\vedan\\\\OneDrive\\\\Desktop\\\\brutalist.art-main\\\\runtime\\\\remotion\\\\src\\\\Root.tsx\"; \\(Get-Item $tsx\\).Length; Select-String -Path $tsx -Pattern 'id=\"\\([^\"]+\\)\"' -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Groups[1].Value })",
+      "PowerShell($p=\"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\\\\beat_sheet.json\"; $j=Get-Content $p -Raw | ConvertFrom-Json; $j.metadata | ConvertTo-Json -Depth 5; Write-Output \"=== BEATS ===\"; $j.beats | ForEach-Object { \"{0}`t{1}`t{2}`t{3}`t{4}\" -f $_.beat_id, $_.act, $_.shot.type, $_.shot.remotion.pattern, $_.actual_duration_s })",
+      "PowerShell(Get-ChildItem \"D:\\\\ai1-cli-main\\\\youtube\" -Directory | ForEach-Object { $s = Join-Path $_.FullName \"short\"; \"{0,-52} short={1}\" -f $_.Name, \\(Test-Path $s\\) }; Write-Output \"--- any short folders anywhere in ai1 ---\"; Get-ChildItem \"D:\\\\ai1-cli-main\" -Directory -Recurse -Filter \"short\" -ErrorAction SilentlyContinue | Select-Object -First 20 FullName)",
+      "PowerShell(Write-Output \"python:\"; try { python --version } catch { \"none\" }; Write-Output \"ffmpeg:\"; \\(Get-Command ffmpeg -ErrorAction SilentlyContinue\\).Source; Write-Output \"node:\"; \\(Get-Command node -ErrorAction SilentlyContinue\\).Source; node --version; Write-Output \"npx:\"; \\(Get-Command npx -ErrorAction SilentlyContinue\\).Source; Write-Output \"remotion node_modules:\"; Test-Path \"C:\\\\Users\\\\vedan\\\\OneDrive\\\\Desktop\\\\brutalist.art-main\\\\runtime\\\\remotion\\\\node_modules\")",
+      "PowerShell($r=\"C:\\\\Users\\\\vedan\\\\OneDrive\\\\Desktop\\\\brutalist.art-main\\\\runtime\\\\remotion\"; Get-ChildItem $r | Select-Object Mode,Name | Format-Table -AutoSize; Write-Output \"--- src ---\"; Get-ChildItem \"$r\\\\src\" | Select-Object Mode,Name,Length | Format-Table -AutoSize)",
+      "PowerShell($t = Join-Path $env:TEMP \"symtest_target.txt\"; \"hello\" | Out-File -Encoding utf8 $t; $l = Join-Path $env:TEMP \"symtest_link.txt\"; if \\(Test-Path $l\\) { Remove-Item $l -Force }; python -c \"import os,pathlib; pathlib.Path\\(os.environ['TEMP'],'symtest_link.txt'\\).symlink_to\\(pathlib.Path\\(os.environ['TEMP'],'symtest_target.txt'\\)\\); print\\('SYMLINK OK'\\)\")",
+      "Bash(cd \"C:/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/remotion/src\" && grep -n 'ClaudeComposerAsk\\\\|ClaudeTitleOutro\\\\|ClaudeCodeBeat\\\\|CliRunOutput\\\\|RagExecutiveSummary\\\\|ClaudeWindow' Root.tsx | head -80)",
+      "Read(//c/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/remotion/src/**)",
+      "PowerShell($p=\"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\\\\beat_sheet.json\"; $j=Get-Content $p -Raw -Encoding UTF8 | ConvertFrom-Json; $j.beats | ForEach-Object { \"===== $\\($_.beat_id\\)  pattern=$\\($_.shot.remotion.pattern\\)\"; $_.shot.remotion.props | ConvertTo-Json -Depth 8 })",
+      "Read(//c/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/remotion/src/scenes/**)",
+      "Bash(cd \"C:/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/scripts\" && grep -n 'height\\\\|aspect\\\\|9:16\\\\|width\\\\|1920\\\\|1080' compile.py | head -60)",
+      "Bash(cd \"C:/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/remotion/src\" && sed -n '120,145p;215,240p' Root.tsx && echo \"--- 916 files on disk ---\" && ls scenes/ | grep 916 && ls illustrations/ && ls | grep -i 916)",
+      "Read(//c/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/remotion/src/illustrations/**)",
+      "Bash(cd \"C:/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/remotion/src/tokens\" && ls && cat claude.ts 2>/dev/null || cat claude.tsx)",
+      "Read(//c/Users/vedan/OneDrive/Desktop/brutalist.art-main/runtime/remotion/src/tokens/**)",
+      "PowerShell(ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate,codec_name,pix_fmt -show_entries format=duration -of default=noprint_wrappers=1 \"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\\\\claude-cli-rag-the-problem.mp4\")",
+      "PowerShell(Set-Location \"C:\\\\Users\\\\vedan\\\\OneDrive\\\\Desktop\\\\brutalist.art-main\\\\runtime\\\\remotion\"; $o = npx remotion compositions src/index.ts 2>&1; Write-Output \"EXIT=$LASTEXITCODE\"; $o | Select-Object -First 25)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; python \"C:\\\\Users\\\\vedan\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--humanitarians-youtube\\\\a4af9fde-f171-4aa5-b5fe-8aa5f87c7d01\\\\scratchpad\\\\run_shorts.py\" \"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\" --no-endcard --no-outro-rewrite)",
+      "PowerShell(Remove-Item -Recurse -Force \"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\\\\short\" -ErrorAction SilentlyContinue; $env:PYTHONUTF8=\"1\"; $env:PYTHONIOENCODING=\"utf-8\"; python \"C:\\\\Users\\\\vedan\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--humanitarians-youtube\\\\a4af9fde-f171-4aa5-b5fe-8aa5f87c7d01\\\\scratchpad\\\\run_shorts.py\" \"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\" --no-endcard --no-outro-rewrite)",
+      "PowerShell($env:PYTHONUTF8=\"1\"; $env:PYTHONIOENCODING=\"utf-8\"; Set-Location \"C:\\\\Users\\\\vedan\\\\OneDrive\\\\Desktop\\\\brutalist.art-main\"; python runtime\\\\scripts\\\\remotion_scenes.py \"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\\\\short\" --now \"2026-08-30T00:00:00\")",
+      "PowerShell($s=\"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\\\\short\"; Get-ChildItem -Recurse $s | Select-Object @{n='rel';e={$_.FullName.Substring\\($s.Length+1\\)}}, Length | Format-Table -AutoSize; $j = Get-Content \"$s\\\\beat_sheet.json\" -Raw -Encoding UTF8 | ConvertFrom-Json; $j.metadata.aspect_ratio; $j.metadata.fit; $j.metadata.kind; $j.metadata.slug; $j.metadata.total_estimated_duration_seconds; $j.beats | ForEach-Object { \"{0}`t{1}`t{2}`t{3}\" -f $_.beat_id, $_.shot.remotion.pattern, $_.actual_duration_s, $_.audio_file })",
+      "PowerShell($m=\"D:\\\\ai1-cli-main\\\\youtube\\\\2026-08-19-claude-cli-rag-the-problem\\\\short\\\\media\"; Get-ChildItem $m -ErrorAction SilentlyContinue | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize; Write-Output \"chrome/remotion procs:\"; \\(Get-Process -Name chrome,node -ErrorAction SilentlyContinue | Measure-Object\\).Count)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\vedan\\OneDrive\\Desktop\\brutalist.art-main\\runtime\\remotion\\src\\scenes",
+      "C:\\Users\\vedan\\OneDrive\\Desktop\\brutalist.art-main\\runtime\\remotion\\src"
+    ]
+  }
+}
