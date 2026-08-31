@@ -16,7 +16,7 @@ actual, already-recorded choice, not an unconfirmed guess).
 
 # Om Mali
 
-This folder organizes **3 video projects** built around beat sheets. Each project README explains
+This folder organizes **4 video projects** built around beat sheets. Each project README explains
 the subject, supplies research and fact-check prompts, and documents the free local rebuild
 workflow.
 
@@ -44,5 +44,6 @@ same persistent voice, same ai-explainer spine each week.)*
 - [2026 08 08 Verifying Private AI Valuations](./2026-08-08-Verifying-Private-AI-Valuations/) — *week 1. Built with brutalist.art (`ai-explainer` / `claude-hai`), 10 beats, 2:35, 3840×2160. GATE P signed, all 20 FACTCHECK rows confirmed, GATE V clean. The earlier 6-beat static cut is archived at `_previous-build/`.*
 - [2026 08 15 Bulk Ingestion at Scale](./2026-08-15-Bulk-ingestion-at-scale/) — *week 2. 11 beats, 3:00, 3840×2160. GATE P signed, GATE L + GATE V clean, 20 FACTCHECK rows traced (row 16 is derived, not quoted). The three week-2 figures and their SVG sources now live in this folder's `pantry/`, moved out of the Mycroft working tree.*
 - [2026 08 22 Entity Resolution and the Golden Set](./2026-08-22-Entity-resolution-and-the-golden-set/) — *week 4 (there is no week 3 episode). 12 beats, 3:22, 3840×2160. GATE P signed, GATE L + GATE V clean, 20 FACTCHECK rows traced (read 2, 12 and 16). The episode argues against its own author in three places — a precision loss, an approved label overturned, and a limit no threshold fixes — and keeps all three.*
+- [2026 08 28 Measuring a Local LLM Against the Matcher](./2026-08-28-Measuring-a-local-LLM-against-the-matcher/) — *week 5. 12 beats, 3:35, and the first episode shipped in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped, from one set of components and one set of narration files. GATE L + GATE V clean, GATE P signed, 20 FACTCHECK rows traced (read 3, 9, 13 and 18). A **negative result**: a local 8B model was given exactly what the deterministic matcher gets, lost 5.1 points of precision, and was not adopted. The plan pre-committed to that outcome before the model was run, which is the only reason the finding is worth anything.*
 
 <!-- END BRUTALIST REBUILD GUIDE -->

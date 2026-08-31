@@ -1,0 +1,25 @@
+# Allowlist: this project commits only its source/docs.
+# Everything else here (video, audio, images, Manim cache, QC frame dumps,
+# per-frame render work) is a regenerable build artifact and stays untracked.
+
+# 1. Ignore everything by default.
+*
+
+# 2. But still descend into subdirectories, so the rules below can match
+#    files nested inside them. Without this, git never looks past step 1.
+!*/
+
+# 3. Re-include the files we actually keep.
+!beat_sheet.json
+!manifest.json
+!qc-sheet.png
+!*.md
+!*.py
+!*.txt
+
+# 4. ...except Manim's partial_movie_file_list.txt scratch, which just points
+#    at the ignored .mp4 chunks in its render cache. Must come after !*.txt.
+media/videos/**/*.txt
+
+# 5. Keep this file itself tracked.
+!.gitignore

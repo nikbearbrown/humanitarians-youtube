@@ -1,0 +1,49 @@
+Measuring a Local LLM Against the Matcher — Private AI Valuation Agent, week 5
+
+I tried to replace my rule-based entity matcher with an 8B language model running locally on
+my own machine. It lost. This is the measurement.
+
+The model got exactly what the rules get: the name on the filing, the security title, the fund
+that filed it, and a list of 11 candidate companies. No price, no answer. 322 calls against the
+same 322 labelled names I built the week before. Zero failures.
+
+Precision went from 0.9959 to 0.9449. Five points sounds survivable until you count it in
+holdings instead of names: one wrong record becomes 196.
+
+And it failed the same way every time — it promoted resemblances. It saw a company called
+Hyperscale Data and answered Scale AI, because, it said, Hyperscale Data is Scale AI's parent
+company. That is not true; it invented a corporate fact. It saw a term loan to Scaled Agile and
+said Scale AI again, at full confidence, across 32 holdings. And it saw an internal Fidelity
+security code and called it X.AI on three matching characters.
+
+The finding that actually changes the plan is the confidence number. The model reported full
+confidence on 315 of its 322 answers — including 12 of the 15 it got wrong. So next week's
+human review queue cannot be sorted by how sure the model is. That was the plan.
+
+One thing did work. Every mistake was the model ADDING a company; the one time it helped, it
+took one away. So a version allowed only to veto scores a perfect 1.0000 — on four rows. Four.
+I built it, measured it, and left it switched off. It is a decent sceptic and a poor proposer.
+
+The plan committed in advance to what happens if there is no lift: keep the rules, and say so.
+So I am saying so.
+
+Scope, honestly: one model, one size, one quantization (llama3.1:8b, Q4_K_M, temperature 0,
+seed 7). A larger model might clear the bar. None was tried, and that is an open question — the
+claim here is that this 8B model failed at this task, not that AI cannot do it.
+
+Next week: the human review queue.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is generated from the run's cached artifacts, not typed by hand; the
+build asserts the key counts and fails rather than let a number drift. See FACTCHECK.md in the
+project folder for what still needs confirmation before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#EntityResolution #LLMEvaluation #NegativeResults #DataEngineering #SEC #LocalLLM
+#HumanitariansAI #Mycroft
