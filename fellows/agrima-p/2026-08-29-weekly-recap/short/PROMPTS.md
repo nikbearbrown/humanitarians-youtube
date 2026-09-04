@@ -21,7 +21,7 @@ claude "help me build a real log of what I actually did this week"
 ## B02 — the ask (cycle 1)
 ```
 claude "write weekly_recap_v1.py -- log this week:
-  the article, the video tool, what's next"
+  the article, the video, what's next"
 ```
 
 ## B05 — the change (cycle 2, the required revision)

@@ -7,7 +7,7 @@ invented numbers, no code/CLI content beyond what those two scripts actually
 print. Built in the house Claude palette.
 
 B01_NotAHighlightReel — typographic card: "Not a highlight reel."
-B04_FlatWeek          — three same-weight cards: Substack / Brutalist / Fashion
+B04_FlatWeek          — three same-weight cards: Article / Video / Suffolk talk
 B07_SplitWeek         — same three cards, regrouped: DONE vs STARTING NEXT
 B08_TheLesson         — closing typographic beat: the real lesson
 """
@@ -62,33 +62,33 @@ class B01_NotAHighlightReel(Scene):
 # via a regex requiring each scene class to inherit directly from Scene.
 # ---------------------------------------------------------------------------
 
-def _substack_card(w=2.6, h=3.2, fs=15):
+def _article_card(w=2.6, h=3.2, fs=15):
     box = card_bg(w, h, stroke_color=PALETTE["border"])
-    kicker = Text("SUBSTACK", color=PALETTE["accent"], font_size=fs - 2)
+    kicker = Text("ARTICLE + RESEARCH", color=PALETTE["accent"], font_size=fs - 4)
     lines = VGroup(*[
         Line(LEFT * (w * 0.32), RIGHT * (w * 0.32), color=PALETTE["border"], stroke_width=2)
         for _ in range(3)
     ]).arrange(DOWN, buff=0.14)
-    title = Text("\"The Death of the\n'Generic' Resume\"", color=PALETTE["ink"],
+    title = Text("AI in nonprofit\nmarketing", color=PALETTE["ink"],
                   font_size=fs, line_spacing=1.2, should_center=True)
     inner = VGroup(kicker, title, lines).arrange(DOWN, buff=0.22)
     return VGroup(box, inner.move_to(box.get_center()))
 
 
-def _brutalist_card(w=2.6, h=3.2, fs=15):
+def _video_card(w=2.6, h=3.2, fs=15):
     box = card_bg(w, h, stroke_color=PALETTE["border"])
     tri = Triangle(color=PALETTE["accent"], fill_color=PALETTE["accent"],
                     fill_opacity=1, stroke_width=0).scale(0.28).rotate(-PI / 2)
     ring = Circle(radius=0.42, color=PALETTE["accent"], stroke_width=2.5)
     icon = VGroup(ring, tri)
     badge = Text("16:9 + 9:16", color=PALETTE["dim"], font_size=fs - 3)
-    title = Text("Brutalist\nworkflow", color=PALETTE["ink"], font_size=fs,
+    title = Text("The video,\nproduced", color=PALETTE["ink"], font_size=fs,
                   line_spacing=1.2, should_center=True)
     inner = VGroup(icon, title, badge).arrange(DOWN, buff=0.22)
     return VGroup(box, inner.move_to(box.get_center()))
 
 
-def _fashion_card(w=2.6, h=3.2, fs=15):
+def _suffolk_card(w=2.6, h=3.2, fs=15):
     box = card_bg(w, h, stroke_color=PALETTE["border"])
     cal_body = RoundedRectangle(corner_radius=0.06, width=1.1, height=0.9,
                                  fill_color=PALETTE["bg"], fill_opacity=1,
@@ -97,9 +97,9 @@ def _fashion_card(w=2.6, h=3.2, fs=15):
                                  fill_color=PALETTE["dim"], fill_opacity=1, stroke_width=0)
     cal_head.next_to(cal_body, UP, buff=-0.14)
     cal = VGroup(cal_body, cal_head)
-    title = Text("Fashion\nsustainability", color=PALETTE["ink"], font_size=fs,
+    title = Text("Suffolk\nUniversity talk", color=PALETTE["ink"], font_size=fs,
                   line_spacing=1.2, should_center=True)
-    badge = Text("kickoff held", color=PALETTE["dim"], font_size=fs - 3)
+    badge = Text("Wed, with Yatra", color=PALETTE["dim"], font_size=fs - 3)
     inner = VGroup(cal, title, badge).arrange(DOWN, buff=0.22)
     return VGroup(box, inner.move_to(box.get_center()))
 
@@ -114,9 +114,9 @@ class B04_FlatWeek(Scene):
     def construct(self):
         self.camera.background_color = PALETTE["bg"]
 
-        a = _substack_card()
-        b = _brutalist_card()
-        c = _fashion_card()
+        a = _article_card()
+        b = _video_card()
+        c = _suffolk_card()
         row = VGroup(a, b, c).arrange(RIGHT, buff=0.5).move_to(ORIGIN)
 
         _reveal_card(self, a, 2.6, run_time=0.6)
@@ -136,9 +136,9 @@ class B07_SplitWeek(Scene):
         done_head = Text("DONE THIS WEEK", color=PALETTE["good"], font_size=20)
         next_head = Text("STARTING NEXT WEEK", color=PALETTE["accent"], font_size=20)
 
-        a = _substack_card(w=2.2, h=2.7, fs=13)
-        b = _brutalist_card(w=2.2, h=2.7, fs=13)
-        c = _fashion_card(w=2.4, h=3.0, fs=14)
+        a = _article_card(w=2.2, h=2.7, fs=13)
+        b = _video_card(w=2.2, h=2.7, fs=13)
+        c = _suffolk_card(w=2.4, h=3.0, fs=14)
 
         done_row = VGroup(a, b).arrange(RIGHT, buff=0.35)
         done_col = VGroup(done_head, done_row).arrange(DOWN, buff=0.35)
