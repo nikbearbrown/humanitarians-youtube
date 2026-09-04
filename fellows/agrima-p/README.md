@@ -29,4 +29,11 @@ an explicit, documented re-voice decision is made.
 - `2026-08-29-weekly-recap/` — This Week: What Shipped, What's Next. A
   CLI-explainer weekly recap built around a real weekly_recap_v1.py, revised
   into weekly_recap_v2.py to split DONE-THIS-WEEK from STARTING-NEXT-WEEK —
-  both scripts real, both actually run. 16:9 + 9:16 cuts.
+  both scripts real, both actually run. 16:9 + 9:16 cuts. (Note: this repo
+  snapshot predates a later content correction made directly with the user —
+  the shipped video's three weekly items differ from this build; ask before
+  relying on this copy for exact current content.)
+- `2026-09-03-ai-nonprofit-marketing/` — The Nonprofit Marketing Problem AI Is
+  Quietly Solving. An AI-explainer sourced from a user-written article on AI
+  in nonprofit marketing (donor personalization, donation-form optimization,
+  fundraising ROI), built on the ai-explainer chassis. 16:9 + 9:16 cuts.
