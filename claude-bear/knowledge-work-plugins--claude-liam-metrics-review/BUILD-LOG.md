@@ -132,3 +132,26 @@ format).
 
 **Status: review cut DONE.** Passed every Phase-3 gate. Proceeding to
 Phase 4 (4K render + deliver.py) in this same invocation.
+
+## 2026-09-04 — Phase 4 delivery
+
+Master is already 3840x2160 (THE 4K LAW in compile.py forces any clean,
+non-`--review` master to 4K), so the Fellows-facing 4K file is the same
+render, copied to the `-4k` filename `deliver.py` expects, then packaged
+to both delivery targets.
+
+```
+cp knowledge-work-plugins--claude-liam-metrics-review.mp4 \
+   knowledge-work-plugins--claude-liam-metrics-review-4k.mp4
+python3 skills/make/hai-simple/loop/deliver.py <REEL_DIR> --push
+```
+
+Result: outbox staged at
+`DELIVERY/knowledge-work-plugins--claude-liam-metrics-review/` (4K mp4 +
+description); repo copy staged at
+`humanitarians-youtube/claude-bear/knowledge-work-plugins--claude-liam-metrics-review/`
+(README.md, beat_sheet.json, SCRIPT.md, SUBJECT.json, BUILD-LOG.md — no
+media); committed and pushed to github.com/nikbearbrown/humanitarians-youtube
+(commit `2e1b3432`).
+
+**Status: DELIVERED.**
