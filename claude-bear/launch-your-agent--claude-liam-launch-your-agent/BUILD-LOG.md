@@ -138,3 +138,22 @@ series as Claude-basics content. Direct code link per DELIVERY CONTRACT
 format included.
 
 **Status: review cut DONE.** Passed every Phase-3 gate.
+
+## 2026-09-04 — Phase 4, DELIVERED
+
+Master was already born native 3840×2160 (compile.py's 4K LAW), so copied
+directly to `launch-your-agent--claude-liam-launch-your-agent-4k.mp4`
+rather than re-rendering at a higher resolution.
+
+```
+python3 skills/make/hai-simple/loop/deliver.py <REEL_DIR> --push
+```
+
+Staged `DELIVERY/launch-your-agent--claude-liam-launch-your-agent/` (4K
+master + description) for the Drive sync. Committed to
+`claude-bear/launch-your-agent--claude-liam-launch-your-agent/`
+(README.md = description, beat_sheet.json, SCRIPT.md, SUBJECT.json,
+CARRY-OUT.md, QUESTION.md, BUILD-LOG.md — no mp3/mp4) as commit
+`6511c0f2`, pushed clean (no rebase conflicts).
+
+**Status: DELIVERED.**
