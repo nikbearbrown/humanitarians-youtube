@@ -14,6 +14,7 @@ GitHub account `SKKarishma20` has collaborator access.
 
 ## Voice choice
 
-Choose one Kokoro voice before producing the first narrated report and retain it
-across the series. Record the approved voice here and in each episode's
-`beat_sheet.json`.
+Approved voice: **Bella (`af_bella`)**.
+
+Use this voice consistently across Karishma's narrated Fellow reports and
+record it in each episode's `beat_sheet.json`.
