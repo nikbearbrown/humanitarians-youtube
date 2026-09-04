@@ -1,0 +1,45 @@
+B00 — cold open
+Hi — I'm Divij Pawar. This is part four of the STEM Agents series. Today: how do you actually design an agentic AI workflow — how to find the one piece that's really the model's job, how to choose your orchestration pattern, and how to derive guardrails instead of copying someone else's.
+
+B01 — the framework: the truth-table test
+Traditional software writes an if-then rule for every case you can imagine — because the real world doesn't fit into if-else statements. Agentic engineering flips that: instead of scripting the whole problem, you isolate the one part that's genuinely unstructured, and hand only that part to a model. Here's the test: can you write a truth table for this decision? If yes, it's deterministic code — write the if-else. If the boundary itself is fuzzy — a visual judgment call, an ambiguous sentence, an incomplete instruction — that's the model's job, and everything else stays engineered: the boundaries, the tools, the state.
+
+B02 — orchestration patterns: pipeline vs. agent loop
+Once you know which piece is the model's job, there's a second decision: who decides what happens next? One option is an autonomous agent loop — the model itself decides which tool to call, in what order, and when to stop. It's flexible, and it's how a lot of demos get built. The other option is a fixed, deterministic pipeline — the engineer decides the order in advance, and the model only reasons inside each step. It's less flexible, and it's what most production systems touching real consequences actually use. The case study we're about to walk through picks the boring option, on purpose: perception, then location, then grounding, then synthesis, always in that order. Predictability beats flexibility the moment you're touching legal or government systems.
+
+B03 — the case study
+Here's a real case study: an open-source Android app called Pothole Reporter. It handles three kinds of civic reports — potholes, garbage, and open manholes — across several Indian states and every mapped national highway. But only one of those three actually uses AI. Garbage and manhole reports are just what the user says they are — a person looked and confirmed it. Potholes are different: judging whether road damage is bad enough to report is the fuzzy call the app hands to a vision model. A photo isn't an agent. An agent bridges raw perception and contextualized action. Let's reverse-engineer how this one does it.
+
+B04 — the context gap
+Step one, when you approach a problem as an agentic engineer: isolate the unstructured variable — the part you genuinely can't hardcode. Here, it's the physical environment. A pothole looks different in rain, at night, from any angle, so a vision-language model handles perception: find it, size it, call it clear, probable, uncertain, or absent. Notice how narrow that job is — the model's blast radius here is just "does this look like reportable damage," never "who's liable for it." The narrower the question you hand the model, the easier it is to catch it being wrong.
+
+But perception alone isn't enough. The model has no local context — it doesn't know whose road this actually is, or who's supposed to fix it. Guess at an authority from a photo alone, and you risk naming the wrong office, which is worse than naming none. That context gap gets closed with tools and retrieval, not more prompting.
+
+B05 — perception and tool-use
+So instead of letting the model decide what to do next, this workflow runs a strict, deterministic pipeline — the engineer enforces the order.
+
+First, the photo: Drive mode runs a continuous background scan through the phone's camera, and nearby repeat sightings of the same pothole get folded into one report instead of ten. The frame goes to the vision model, which judges the damage and reports it as clear, probable, uncertain, or absent — never a fake precise percentage.
+
+Second, tool use: the agent grabs the exact GPS coordinate and makes a deterministic call to OpenStreetMap, reverse-geocoding it into a street address.
+
+B06 — grounding and synthesis
+Third, knowledge grounding — and this step only runs for supported Karnataka routes; nothing is invented for the other states. The system ranks the coordinate against a downloadable pack of thirteen thousand, five hundred seventy-seven contracts, itself filtered down from a public procurement snapshot of over forty-two thousand rows, and shortlists up to twenty-five candidates. A model may then pick one above a confidence threshold — and most of those contracts don't even have a known contractor name on file, so the app leaves that field blank rather than invent one.
+
+Fourth, action synthesis: the photo, the coordinate, the road-ownership check, and any contract match feed back into the model with a strict prompt template. Out comes one complaint, addressed to the right recipient. But the app never sends it — it opens your own email, filled in, and stops there.
+
+B07 — deriving your own guardrails
+A good agentic engineer designs for failure, not just success. But don't just copy someone else's guardrails — derive your own by asking three questions. Where can your retrieval be wrong or stale? Hedge the language there. Where is the action irreversible or high-stakes? Put a human in front of it. And is there a category of input where refusing outright is safer than guessing? Build a fail-safe branch for it.
+
+This case study answers all three the same way: fail closed. Every downloaded dataset is checked byte-for-byte against a pinned checksum before it's trusted — if a file is missing or altered, that route refuses rather than guesses. On a national highway, the app refuses to name a maintaining authority itself and hands off to the official highway channel instead. A contract match is only ever labeled probable, because the actual warranty term isn't in the data — the app only infers it from how old the tender is. And nothing is ever sent automatically: the app doesn't call a complaint API and doesn't log in anywhere. It opens your own email, filled in, and stops.
+
+B08 — the anti-pattern: grading its own homework
+Here's the mistake that undoes all of this: trusting the model to grade its own homework. It's tempting to skip the human review step because the model is usually right — but usually right is exactly the failure mode you're designing guardrails against. The one case in a hundred where it's confidently wrong is the one that reaches a real commissioner's inbox, or a real bank account. If a guardrail only fires when you remember to check it, it isn't a guardrail — it's a suggestion.
+
+B09 — verdict
+So — isolate the one genuinely unstructured piece, and run the truth-table test to find it. Choose a fixed pipeline over an autonomous loop wherever consequences are real. Derive your guardrails from three questions: what's stale, what's irreversible, what should refuse outright. And never let "usually right" replace a human check — that's the exact failure mode guardrails exist for.
+
+B10 — your turn
+Your turn. Pick one AI feature you're building, or one you use every day. Run the truth-table test on what the model actually decides. Then ask whether it should run as a fixed pipeline or a looser agent loop, given what's actually at stake. Then derive one guardrail from what's stale, what's irreversible, or what should refuse outright — before you ship.
+
+B11 — outro
+Signing off — Divij Pawar.

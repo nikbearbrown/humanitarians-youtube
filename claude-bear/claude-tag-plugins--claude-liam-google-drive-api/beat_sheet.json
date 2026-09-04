@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "title": "Claude, Google Drive API.",
+    "slug": "claude-tag-plugins--claude-liam-google-drive-api",
+    "topic": "GOOGLE DRIVE API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer whether Claude finds a Drive file by walking a folder path or by ID, using the Google Drive API skill's own documented facts as the concrete case. Lands the carry-out that every call turns on three habits — folder-as-file, supportsAllDrives, and export instead of download.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-tag-plugins/youtube/claude-liam-google-drive-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B02 -> B03 (spreadsheets-modified-on-shared-drive-exported-as-csv request, traced through the three shared-drive parameters + fields=nextPageToken, then paid off against export vs alt=media)",
+    "build": {
+      "at": "2026-08-31T16:08:53",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumes Claude finds a Drive file by its folder path, like a normal filesystem. There's no path API — Drive works entirely by file ID. So what does that ID-based model actually get you?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Claude finds my file by its folder path in Drive. Right?', hesitates on 'path', corrects to 'ID', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Claude finds my file\nby its folder path\nin Drive. Right?",
+            "face": "serif",
+            "fontSize": 64,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "path",
+            "replacementWords": "ID",
+            "mistakeRate": 3,
+            "hesitateWithin": 2,
+            "hesitateBetween": 10,
+            "charMs": 40,
+            "jitter": 22,
+            "seed": "hai-google-drive-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('path' -> 'ID') is visible on a late frame.",
+      "actual_duration_s": 12.14,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:08:53"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes / 2 wrong guess, falsified",
+      "narration_text": "In Google Drive, a folder isn't a separate kind of thing from a file — it's a file, with a mimeType that says folder. Ask Claude to list a folder's contents and there's no get-folder endpoint to call. It searches for every file whose parents array contains that folder's ID.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "A 'get folder' endpoint guess struck through; the real query revealed — files filtered by parents containing an ID"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "Not a separate thing — a file with a mimeType",
+          "mechanic": "A folder icon and a file icon drawn as two separate shapes, then merged into one card labelled mimeType: \"folder\". A guessed call 'GET /folders/{id}/contents' fades in above, then gets struck through in terracotta. Beside it, the real query opens: files where parents contains that ID.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "GDB01Scene"
+      },
+      "actual_duration_s": 15.23,
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T16:08:53"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "3 mechanism / 4 ANCHOR PLANTED",
+      "narration_text": "Say you want every spreadsheet modified in the last month on your team's shared drive, exported as CSV. Files there are invisible by default — the search needs three extra parameters just to see them. And once the list comes back, fields= has to explicitly ask for nextPageToken, or the results quietly stop at one page.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR — the shared-drive spreadsheet-export request, three-param requirement and fields=nextPageToken both flagged"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR — shared drive, invisible by default",
+          "mechanic": "THE ANCHOR. A request card appears — 'spreadsheets modified this month, on our shared drive, export as CSV'. A shared-drive icon sits behind a faded scrim labelled INVISIBLE BY DEFAULT; three parameter chips light up one at a time (corpora=allDrives, includeItemsFromAllDrives=true, supportsAllDrives=true). Beside it, a fields= chip appears with nextPageToken called out in terracotta. THIS EXACT REQUEST RETURNS AT B03.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "GDB02Scene"
+      },
+      "actual_duration_s": 18.13,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T16:08:53"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "4 ANCHOR PAYOFF / 5 both directions",
+      "narration_text": "Get all three shared-drive parameters right, ask for nextPageToken, and the list comes back complete, page after page. But that spreadsheet has no downloadable bytes — it's a Google Sheet, not a binary file — so pulling it with alt=media returns a flat 403, not a helpful error. The fix is the export endpoint instead. Skip any one of these three habits and the failure never says which parameter you missed — a missing supportsAllDrives just looks like the file was never there.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS — complete pagination, then 403 on alt=media for a Sheet, then a missing param read back as 'not found'"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS — complete, then two silent failures",
+          "mechanic": "THE B02 REQUEST RETURNS, identical. Pages stack up cleanly, labelled 'page 1, 2, 3 — all requested'. Beside it, two failure cards: one shows alt=media on the Sheet returning '403' in terracotta with the export endpoint marked as the fix; the other shows a missing supportsAllDrives returning '404' labelled 'looks like: never existed' — neither error names the missing parameter.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "GDB03Scene"
+      },
+      "actual_duration_s": 25.96,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T16:08:53"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Every Google Drive call Claude makes turns on three habits — treat a folder as a file, add supportsAllDrives for anything shared, and export instead of download for anything Google made.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Every Google Drive call Claude makes turns on three habits — treat a folder as a file, add supportsAllDrives for anything shared, and export instead of download for anything Google made.",
+            "attribution": "",
+            "sparkLine": "Three habits, every call."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 10.92,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:08:53"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Find all spreadsheets modified in the last thirty days on our shared drive, and export the first one as CSV. Watch three things: does it pass all three shared-drive parameters on the search, does it ask for nextPageToken in fields=, and does it export the Sheet instead of trying alt=media. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GOOGLE DRIVE API · YOUR TURN",
+            "segment": "Your Turn",
+            "command": "Find all spreadsheets modified in the last 30 days on our shared drive, and export the first one as CSV.",
+            "runningText": "Watch: all 3 shared-drive params? nextPageToken in fields=? export not alt=media?",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.05,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:08:53"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Google Drive API. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Claude, Google Drive API. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.88,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:08:53"
+      }
+    }
+  ]
+}

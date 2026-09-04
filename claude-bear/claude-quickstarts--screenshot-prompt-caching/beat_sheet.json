@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "Caching Pixels You've Already Seen.",
+    "slug": "claude-quickstarts--screenshot-prompt-caching",
+    "topic": "COMPUTER USE · PROMPT CACHING",
+    "purpose": "Answer one real question in the Plain register: if Claude already saw a screenshot once, does resending it cost nothing? Lands the carry-out that caching a screenshot is requested, not automatic, and the discount lasts only until the picture or the session changes.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-quickstarts/youtube/screenshot-prompt-caching/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B02 -> B04 (50-turn task, 5 unique desktop states A-E: 100,000 tokens uncached vs 10,000 cached)",
+    "build": {
+      "at": "2026-08-31T11:09:58",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "You'd guess a screenshot Claude's already seen costs nothing to resend. It doesn't — the API re-tokenizes it fresh, every single time, unless you flag it as one it's seen before.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'If Claude already saw this screenshot, does sending it again cost nothing?', hesitates on 'nothing', corrects to 'the same', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "If Claude already\nsaw this screenshot,\ndoes sending it\nagain cost nothing?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "nothing",
+            "replacementWords": "the same",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 12,
+            "charMs": 38,
+            "jitter": 26,
+            "seed": "hai-screenshot-prompt-caching-v2"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('nothing' -> 'the same') is visible on a late frame.",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 10.62,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes / wrong guess",
+      "narration_text": "A computer-use agent takes a screenshot on every turn of a fifty-turn task. Most of those turns, nothing on the desktop has actually changed — a dialog is still open, a progress bar is still crawling. The agent sends the identical image anyway, and by default the API tokenizes it again from scratch, at roughly two thousand tokens a screenshot. Thirty-five of the fifty turns repeat a screenshot the API has already been billed for once.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "50 turn-slots in a row, a dialog and a progress bar shown unchanged across several, 35 marked as repeats, a token counter climbing beside them"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "The naive loop, unpriced",
+          "mechanic": "50 small rectangles in a horizontal row on cream, representing turns. Two small icons (a dialog box, a progress bar) sit above a cluster of identical-looking turns to sell 'nothing changed'. 35 of the 50 rectangles shade identically (INK_SOFT, marked 'same image'); 15 are outlined in teal ('new state'). A token counter beside the row climbs step by step toward 70,000 tokens spent re-reading repeats.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "B01Scene"
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 23.25,
+      "audio_file": "mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "act": "setup - ANCHOR PLANTED",
+      "narration_text": "Make it concrete. Across those fifty turns the desktop only ever looks like one of five distinct states — call them A through E. Without caching, the API doesn't know that turn twelve looks exactly like turn three: it bills every one of the fifty screenshots at full price. Fifty times two thousand tokens is one hundred thousand tokens, to describe a screen that only actually changed five times.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR - a 50-frame filmstrip, five states A-E repeating, every frame billed the same, a counter climbing to 100,000 tokens"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR - the unoptimized bill",
+          "mechanic": "THE ANCHOR. A 50-frame filmstrip scrolls across cream; each frame is labelled with one of five states (A-E) repeating in sequence, every frame the same terracotta 'billed full price' color regardless of repeats. A counter beside it climbs to '100,000 tokens'. THIS EXACT FILMSTRIP RETURNS AT B04.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "B02Scene"
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 20.69,
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "act": "3 mechanism",
+      "narration_text": "The fix is a single field on the image block: cache underscore control, type ephemeral. Send a screenshot with that flag the first time its exact pixels appear, and the API caches it. Send the identical screenshot again with the same flag, and it's a cache hit — recognized instantly, tokenized for next to nothing. Nothing about what you send changes; what changes is whether the API has to read it again.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "The cache_control JSON field appearing on an image block; a first-sighting screenshot flagged, a repeat of it landing as a HIT"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "One field: cache_control ephemeral",
+          "mechanic": "A JSON image block on cream; the line 'cache_control: {\"type\": \"ephemeral\"}' types itself in beside it. Below, two small screenshot icons: the first, labelled 'MISS - full price', in terracotta; the second, identical, labelled 'HIT - next to nothing', in teal.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "B03Scene"
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 21.18,
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "act": "4 ANCHOR PAYOFF - both directions",
+      "narration_text": "Back to the fifty-turn task: five unique states means five cache misses and forty-five hits. Five times two thousand is ten thousand tokens, not one hundred thousand — ninety percent saved. But this is the screenshot case only: it doesn't cover the full caching protocol, minimum cacheable size, or eviction rules, and the cache itself doesn't last forever. Switch API keys, or leave the task idle too long, and the very next screenshot is a miss again — whether or not the picture actually changed.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS - the same 50-frame filmstrip, now 5 miss-frames in terracotta and 45 hit-frames in teal, counter dropping to 10,000 tokens; a struck card noting scope limits"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS - cut down, and the scope limit",
+          "mechanic": "THE B02 FILMSTRIP RETURNS, identical, then recolors: the 5 first-sightings of each state stay terracotta ('MISS'), the 45 repeats turn teal ('HIT'). The counter drops from '100,000' to '10,000 tokens', a '90% saved' badge appears. Beside it, a small card: 'not the full protocol' and 'not permanent', both in ink — marked as scope limits, not struck as false.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "B04Scene"
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 26.97,
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Claude doesn't know a screenshot repeats until you tell it to remember one — and that memory only lasts until the picture, or the session, changes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Claude doesn't know a screenshot repeats until you tell it to remember one — and that memory only lasts until the picture, or the session, changes.",
+            "attribution": "",
+            "sparkLine": "Remembered, not free."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 8.0,
+      "audio_file": "mp3/beat-BCRY.mp3"
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. My computer-use agent resends an identical screenshot up to thirty-five times across a fifty-turn task. Add ephemeral prompt caching to the screenshot blocks and report the token cost with and without it. Then ask it the harder question: what happens if the screenshot changes by one pixel — does a naive cache check still call that a hit? Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "COMPUTER USE · PROMPT CACHING",
+            "segment": "Your Turn",
+            "command": "My computer-use agent resends an identical screenshot up to 35 times across a 50-turn task. Add ephemeral prompt caching to the screenshot blocks and report the token cost with and without it. Then tell me: what happens if the screenshot changes by one pixel — does my cache check still call it a hit?",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 20.52,
+      "audio_file": "mp3/beat-BHTF.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Caching Pixels You've Already Seen. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Caching Pixels You've Already Seen. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:09:58"
+      },
+      "actual_duration_s": 3.8,
+      "audio_file": "mp3/beat-BOUT.mp3"
+    }
+  ]
+}

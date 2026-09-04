@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "title": "Claude, Jira API.",
+    "slug": "claude-tag-plugins--claude-liam-jira-api",
+    "topic": "JIRA API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer whether moving a Jira ticket to Done is a direct status write or something else, using the jira-api skill's own documented facts as the concrete case. Lands the carry-out that every write turns on two habits — a transition ID instead of a status you set, and a JSON tree instead of a string you type.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-tag-plugins/youtube/claude-liam-jira-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B02 -> B03 (bounded JQL search + ADF comment request, traced through pagination-by-token, then paid off complete vs quietly wrong)",
+    "build": {
+      "at": "2026-08-31T18:22:28",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumes Claude can set a ticket's status directly, like dragging a card on a board. It can't — status moves through a transition, an ID Claude looks up first. What does that look like?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Claude must just set the ticket's status to Done to close it out.', hesitates on 'set', corrects to 'transition', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Claude must just\nset the ticket's\nstatus to Done\nto close it out.",
+            "face": "serif",
+            "fontSize": 64,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "set",
+            "replacementWords": "transition",
+            "mistakeRate": 3,
+            "hesitateWithin": 2,
+            "hesitateBetween": 10,
+            "charMs": 40,
+            "jitter": 22,
+            "seed": "hai-jira-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-08-31T17:48:00"
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('set' -> 'transition') is visible on a late frame.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.52,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-08-31T18:22:28"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes / 2 wrong guess, falsified",
+      "narration_text": "Ask Claude to move a ticket to Done, and it can't just write that value — Jira has no direct status field to set. It first lists the issue's available transitions, matches the one named Done, and posts that transition's ID. And that ID isn't universal: the same-looking transition on a different ticket, in a different workflow, often carries a different ID.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "A direct status-write guess struck through; the actual path opened — list transitions, match by name, post by ID — with the same ID failing on a second ticket"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "No status field — a transition, looked up first",
+          "mechanic": "A guessed write, 'status: Done', fades in, then gets struck through in terracotta. Beside it, the real path opens as three chips: list transitions, match 'Done' by name, post ID. A second ticket appears below with the same ID pasted in — it lands on a card marked with an X, a different ID card lighting up in its place.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "JAB01Scene"
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.58,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T18:22:28"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "3 mechanism / 4 ANCHOR PLANTED",
+      "narration_text": "Two families split the work: Platform REST v3 handles issues, projects, and search — the default — while Agile REST v1 only covers boards and sprints, concepts the core issue model doesn't have. Say Claude searches PROJ for every open bug assigned to you: that search has to be bounded — at least one filter clause, or it's rejected — and it comes back a page at a time, a token pointing to the next page instead of a total count. Comment on the top result, and that comment can't be a plain string: it has to be a JSON tree — a doc, versioned, built from typed content blocks — or Jira sends back a 400.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 42,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR — two API families, then the bounded-search-plus-comment request traced through nextPageToken pagination and ADF"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR — bounded search, paged by token, commented in ADF",
+          "mechanic": "THE ANCHOR. Two labelled tracks: Platform REST v3 (issues, projects, search) marked DEFAULT; Agile REST v1 (boards, sprints) marked ONLY WHEN NEEDED. Below, a request card — 'every open bug in PROJ, assigned to me' — sends a bounded JQL filter, a token chip passes to 'next page' instead of a total counter, then a comment card opens into a JSON tree: type doc, content array. THIS EXACT REQUEST RETURNS AT B03.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "JAB02Scene"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 32.47,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T18:22:28"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "4 ANCHOR PAYOFF / 5 both directions",
+      "narration_text": "Get it right, and the loop stops the moment the token disappears — no total needed — and the comment posts clean as a typed JSON tree, not a sentence. Get it wrong, and it fails quietly two different ways: a loop written to expect a total from search never gets one, and can spin forever waiting; a comment sent as a plain string comes back a 400, but the error never mentions ADF, so it just looks broken. One more habit worth carrying: assignees and watchers take an account ID, never an email — Jira stopped accepting email lookups years ago.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 36,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS — the same request completing when the token runs out and the ADF comment posts clean, then the same request silently spinning or 400ing when a habit is skipped, then accountId flagged"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS — complete, then quietly wrong, then one more habit",
+          "mechanic": "THE B02 REQUEST RETURNS, identical. Left: pages stack until the token chip goes empty, marked 'done — no total needed'; the comment card posts as a clean JSON tree. Right: a loop card waits on a total that never arrives, spinning; a plain-string comment card returns '400' with no mention of ADF, both marked 'looks broken' in terracotta. A small card breaks off to the side: 'accountId, not email' with an email icon struck through.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "JAB03Scene"
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 29.97,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T18:22:28"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Every Jira write Claude makes turns on two habits — a transition ID instead of a status you set, and a JSON tree instead of a string you type — get those right, and the three pagination schemes are the only thing left to watch for.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Every Jira write Claude makes turns on two habits — a transition ID instead of a status you set, and a JSON tree instead of a string you type — get those right, and the three pagination schemes are the only thing left to watch for.",
+            "attribution": "",
+            "sparkLine": "Transition ID, not a status. JSON tree, not a string."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "actual_duration_s": 13.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:22:28"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Find all open bugs in PROJ assigned to me, then move the highest-priority one to In Progress and add a comment explaining why. Watch three things: does it list the issue's transitions and post by ID instead of trying to set status directly, does it send the comment as a JSON tree instead of a plain string, and does it keep paging through search results by token instead of stopping when it doesn't see a total. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "JIRA API · YOUR TURN",
+            "segment": "Your Turn",
+            "command": "Find all open bugs in PROJ assigned to me, then move the highest-priority one to In Progress and add a comment explaining why.",
+            "runningText": "Watch: transition by ID? ADF comment body? paging by token, not total?",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 23.57,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:22:28"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Jira API. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Claude, Jira API. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:22:28"
+      }
+    }
+  ]
+}

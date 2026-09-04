@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "The Data Source, Not the Database.",
+    "subtitle": "The Notion API Skill",
+    "slug": "claude-tag-plugins--claude-liam-notion-api",
+    "topic": "NOTION API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer one real question in the Plain register: does Claude query a Notion database directly, or does it need something else? Lands the carry-out that Claude queries the data source underneath a database, not the database itself, and that a missing page almost always means a sharing problem, not a bad ID.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-tag-plugins/youtube/claude-liam-notion-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - wrong guess (database ID) resolves immediately at NB01; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T19:47:00",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumes Claude just needs a database's ID to run a query. It doesn't — Notion splits every database into a separate data source, and queries need that ID instead. So what's the difference?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Claude just needs the database ID to run a query. How does that work?', hesitates on 'database', corrects to 'data source'",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Claude just needs\nthe database ID\nto run a query.\nHow does that work?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "database",
+            "replacementWords": "data source",
+            "mistakeRate": 6,
+            "hesitateWithin": 2,
+            "hesitateBetween": 14,
+            "charMs": 48,
+            "jitter": 26,
+            "seed": "hai-notion-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('database' -> 'data source') lands on screen.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 11.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T19:47:00"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "Notion doesn't let Claude query a database directly. Every database has its own data source underneath it, and that data source is where the real table lives — its schema, and every row in it. A row is just a page whose parent happens to be that data source. So schema reads, queries, and creating a new row all need the data source ID, not the database ID; get that wrong, and you'll be told the object doesn't exist. Two bundled scripts handle the common work: notion_search.sh searches your workspace and pages through every result; notion_read_page.sh reads a full page, block by block, in the order you'd read it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 38,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "ONE DATABASE, TWO IDS",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "ONE DATABASE, TWO IDS",
+          "chips": [
+            "page = block",
+            "DB-owns-source",
+            "2-scripts"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "source ID, not database ID",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "audio_file": "mp3/beat-NB01.mp3",
+      "actual_duration_s": 33.49,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T19:47:00"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "Two details trip people up. First: every request needs a specific version header. Leave it off, and every single call fails immediately with a missing-version error, before Notion even looks at what you asked for. Second: when a search or a read comes back empty, or says the object wasn't found, that's almost never a bad ID. It almost always means the page or database hasn't been shared with Claude's connection yet. Check sharing before you start second-guessing the ID.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "MISSING VERSION, MISSING SHARE",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "MISSING VERSION, MISSING SHARE",
+          "chips": [
+            "version-header",
+            "check-sharing",
+            "not-bad-ID"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "share first, then question the ID",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "audio_file": "mp3/beat-NB02.mp3",
+      "actual_duration_s": 24.47,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T19:47:00"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "A few things are easy to miss. The page-reading script lists a nested sub-page or sub-database when it finds one, but it doesn't open it — that needs its own separate read. Any file link inside a block, like an image, stops working after about an hour, so it's never something to save and reuse. When a result list has more pages, the code fetching them has to watch for an error coming back mid-stream, or the loop can run forever instead of stopping. And filtering a database isn't one-size-fits-all — the right condition depends on the property's type: select takes 'equals,' multi-select takes 'contains,' date takes 'before' or 'after.' Reading the schema first isn't optional; it's the only way to know which one applies.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 44,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "LISTED, NOT OPENED",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "LISTED, NOT OPENED",
+          "chips": [
+            "no-recursion",
+            "links-expire",
+            "guard-loop",
+            "filter-by-type"
+          ],
+          "arrows": false,
+          "accent": [
+            3
+          ],
+          "strike": [],
+          "caption": "schema first — filters are typed",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "audio_file": "mp3/beat-NB03.mp3",
+      "actual_duration_s": 36.84,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T19:47:00"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Claude doesn't query a Notion database directly — it queries the data source underneath it, and needs that ID, not the database's. And when something can't be found, that almost always means it hasn't been shared with Claude yet, not that the ID is wrong.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Claude doesn't query a Notion database directly — it queries the data source underneath it, and needs that ID, not the database's. And when something can't be found, that almost always means it hasn't been shared with Claude yet, not that the ID is wrong.",
+            "attribution": "",
+            "sparkLine": "Data source, not database. Sharing, not a bad ID."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "actual_duration_s": 14.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T19:47:00"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Search my Notion workspace for pages about onboarding, then read the most recently updated match and summarize it for me in your own words. If reaching that page means querying a database along the way, tell me out loud whether you're using the database's own ID or the data source ID underneath it. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "NOTION API · CLAUDE TAG PLUGIN",
+            "segment": "The Data Source, Not the Database.",
+            "command": "Search my Notion workspace for pages about onboarding, then read the most recently updated match and summarize it for me in your own words. If reaching that page means querying a database along the way, tell me out loud whether you're using the database's own ID or the data source ID underneath it.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 19.05,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T19:47:00"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "The Data Source, Not the Database. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "NOTION API · @HumanitariansAI",
+            "line": "The Data Source, Not the Database."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.88,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T19:47:00"
+      }
+    }
+  ]
+}

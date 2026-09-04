@@ -1,0 +1,595 @@
+{
+  "metadata": {
+    "title": "Engineering the AI Agent",
+    "slug": "engineering-the-ai-agent",
+    "topic": "AGENTIC WORKFLOW DESIGN",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-divij",
+    "persona": "Divij Pawar",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Olá, Divij",
+    "folderLabel": "@DivijPawar",
+    "in_for_bear": false,
+    "fps": 30,
+    "series": "STEM — Agents (4 of 4)",
+    "source_script": "04_engineering_the_ai_agent.md",
+    "source_narration": "04_narration_tts_ready.txt",
+    "build": {
+      "at": "2026-08-24T02:56:16",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hi — I'm Divij Pawar. This is part four of the STEM Agents series. Today: how do you actually design an agentic AI workflow — how to find the one piece that's really the model's job, how to choose your orchestration pattern, and how to derive guardrails instead of copying someone else's.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.74,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "How do you actually design an agentic AI workflow?",
+            "topic": "AGENTIC WORKFLOW DESIGN",
+            "segment": "Engineering the Agent",
+            "greeting": "Olá, Divij",
+            "runningText": "tracing the pipeline…",
+            "output": [
+              "Isolate the one unstructured piece: run the truth-table test",
+              "Choose a pipeline or an agent loop — on purpose, not by default",
+              "Derive guardrails from what's stale, irreversible, or refusable"
+            ],
+            "folderLabel": "@DivijPawar",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "the framework: the truth-table test",
+      "narration_text": "Traditional software writes an if-then rule for every case you can imagine — because the real world doesn't fit into if-else statements. Agentic engineering flips that: instead of scripting the whole problem, you isolate the one part that's genuinely unstructured, and hand only that part to a model. Here's the test: can you write a truth table for this decision? If yes, it's deterministic code — write the if-else. If the boundary itself is fuzzy — a visual judgment call, an ambiguous sentence, an incomplete instruction — that's the model's job, and everything else stays engineered: the boundaries, the tools, the state.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 37,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 31.38,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B01_TwoWaysToWriteCode"
+        },
+        "visual_intent": "The framework beat — a tangled if/else tree on the left resolves into a clean hub-and-spoke model on the right, with the truth-table test named as the deciding question, before any mechanism beat.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'Two Ways to Write Code' writes on; a vertical divider draws"
+          },
+          {
+            "at": 0.15,
+            "event": "Left half labeled 'Traditional'; a tangled tree of if/else branch lines builds, captioned 'hundreds of if/else branches'"
+          },
+          {
+            "at": 0.4,
+            "event": "Right half labeled 'Agentic'; a 'Model' chip seats center-right with spokes drawing out to 'Tools', 'Memory', 'Action' chips"
+          },
+          {
+            "at": 0.65,
+            "event": "A caption seats beneath: 'ask: a truth table — or a judgment call?'"
+          },
+          {
+            "at": 0.85,
+            "event": "Left tangle and the test caption fade; a serif landing line holds: isolate the fuzzy reasoning, keep everything else deterministic"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_TwoWaysToWriteCode",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "orchestration patterns: pipeline vs. agent loop",
+      "narration_text": "Once you know which piece is the model's job, there's a second decision: who decides what happens next? One option is an autonomous agent loop — the model itself decides which tool to call, in what order, and when to stop. It's flexible, and it's how a lot of demos get built. The other option is a fixed, deterministic pipeline — the engineer decides the order in advance, and the model only reasons inside each step. It's less flexible, and it's what most production systems touching real consequences actually use. The case study we're about to walk through picks the boring option, on purpose: perception, then location, then grounding, then synthesis, always in that order. Predictability beats flexibility the moment you're touching legal or government systems.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 38.31,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B02_OrchestrationPatterns"
+        },
+        "visual_intent": "A second, independent framework beat — the architecture decision the source script never raised. Left: a model deciding its own tool order (uncertain, dashed). Right: the same four pipeline stages, always in fixed order.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'Who Decides What's Next?' writes on; a vertical divider draws"
+          },
+          {
+            "at": 0.15,
+            "event": "Left labeled 'Agent Loop'; a Model chip connects via dashed, unordered lines to three tool labels, captioned 'decides the order itself'"
+          },
+          {
+            "at": 0.4,
+            "event": "Right labeled 'Fixed Pipeline'; the four-stage chip row seats fully lit, captioned 'always in this order'"
+          },
+          {
+            "at": 0.6,
+            "event": "A line lands: 'Pothole Reporter picks the boring option, on purpose'"
+          },
+          {
+            "at": 0.8,
+            "event": "Both sides clear; a serif landing line holds: predictability beats flexibility once real consequences are on the line"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_OrchestrationPatterns",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "case study — the problem",
+      "narration_text": "Here's a real case study: an open-source Android app called Pothole Reporter. It handles three kinds of civic reports — potholes, garbage, and open manholes — across several Indian states and every mapped national highway. But only one of those three actually uses AI. Garbage and manhole reports are just what the user says they are — a person looked and confirmed it. Potholes are different: judging whether road damage is bad enough to report is the fuzzy call the app hands to a vision model. A photo isn't an agent. An agent bridges raw perception and contextualized action. Let's reverse-engineer how this one does it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 38,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 34.35,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B03_ThePotholeCase"
+        },
+        "visual_intent": "Introduces the worked example using the project's own real documentation photo (docs/example-pothole.jpg, MIT-licensed) — a legitimate nopunt HOLD, not a drawn stand-in — with an AI bounding box and a 'probable' chip matching the app's real categorical confidence language, then the two open questions that make this a hard problem.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'Pothole Reporter' writes on; a repo chip 'coding-parrot / pothole-reporter' fades in"
+          },
+          {
+            "at": 0.2,
+            "event": "The project's real documentation photo fades in"
+          },
+          {
+            "at": 0.35,
+            "event": "A dashed bounding box draws over the photo's visible pothole with a 'probable' chip above it"
+          },
+          {
+            "at": 0.55,
+            "event": "A stat line '3 report types — only 1 uses AI' fades in on the right"
+          },
+          {
+            "at": 0.7,
+            "event": "Two open questions seat beneath it: 'which contractor?' / 'which official?'"
+          },
+          {
+            "at": 0.85,
+            "event": "Questions clear; a serif landing line holds: a photo isn't an agent, an agent bridges perception and action"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_ThePotholeCase",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "deconstruction — the context gap",
+      "narration_text": "Step one, when you approach a problem as an agentic engineer: isolate the unstructured variable — the part you genuinely can't hardcode. Here, it's the physical environment. A pothole looks different in rain, at night, from any angle, so a vision-language model handles perception: find it, size it, call it clear, probable, uncertain, or absent. Notice how narrow that job is — the model's blast radius here is just \"does this look like reportable damage,\" never \"who's liable for it.\" The narrower the question you hand the model, the easier it is to catch it being wrong.\n\nBut perception alone isn't enough. The model has no local context — it doesn't know whose road this actually is, or who's supposed to fix it. Guess at an authority from a photo alone, and you risk naming the wrong office, which is worse than naming none. That context gap gets closed with tools and retrieval, not more prompting.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 56,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 44.33,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B04_TheContextGap"
+        },
+        "visual_intent": "Left: the vision model doing perception under variable conditions, with its narrow blast radius named explicitly — a callback to STEM3's framework. Right: what it knows vs. doesn't, resolving into the two tools that close the gap.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'The Context Gap' writes on"
+          },
+          {
+            "at": 0.08,
+            "event": "A 'Vision-Language Model' box seats left; 'rain / night / any angle' row fades in beneath it"
+          },
+          {
+            "at": 0.22,
+            "event": "An arrow draws down to an output box: find it / size it / score confidence"
+          },
+          {
+            "at": 0.32,
+            "event": "A caption seats beneath the output box: 'small blast radius'"
+          },
+          {
+            "at": 0.42,
+            "event": "Right column opens: 'but perception alone isn't enough'"
+          },
+          {
+            "at": 0.52,
+            "event": "'knows: what a pothole looks like' seats above 'doesn't know: whose road this is' in terracotta"
+          },
+          {
+            "at": 0.64,
+            "event": "'guess the authority → risk naming the wrong office' lands beneath, in terracotta"
+          },
+          {
+            "at": 0.76,
+            "event": "An arrow draws down to 'the context gap'"
+          },
+          {
+            "at": 0.9,
+            "event": "Two chips resolve it: 'Tools' and 'Retrieval (RAG)'"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_TheContextGap",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "pipeline — perception & tool-use",
+      "narration_text": "So instead of letting the model decide what to do next, this workflow runs a strict, deterministic pipeline — the engineer enforces the order.\n\nFirst, the photo: Drive mode runs a continuous background scan through the phone's camera, and nearby repeat sightings of the same pothole get folded into one report instead of ten. The frame goes to the vision model, which judges the damage and reports it as clear, probable, uncertain, or absent — never a fake precise percentage.\n\nSecond, tool use: the agent grabs the exact GPS coordinate and makes a deterministic call to OpenStreetMap, reverse-geocoding it into a street address.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 34.24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B05_PipelinePerceptionTool"
+        },
+        "visual_intent": "The four-stage pipeline seats across the top with stages 1-2 lit and 3-4 ghosted; below, the continuous-scan/dedupe mechanism and the GPS-to-address tool call play out in order. No specific capture-trigger interval is claimed — the real project documents a continuous background scan, not a distance-gated snapshot (see SOURCES.md).",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'Look, Then Locate' writes on; four stage chips (Perception / Tool-Use / Grounding / Synthesis) seat with connecting arrows"
+          },
+          {
+            "at": 0.15,
+            "event": "Stages 1-2 light terracotta; stages 3-4 dim to ghost"
+          },
+          {
+            "at": 0.28,
+            "event": "A dashed scan line draws, captioned 'continuous background scan'"
+          },
+          {
+            "at": 0.4,
+            "event": "'repeat sightings folded into one report' lands beneath it"
+          },
+          {
+            "at": 0.55,
+            "event": "'frame → vision model → clear / probable / uncertain / absent' lands beneath that"
+          },
+          {
+            "at": 0.68,
+            "event": "A raw coordinate seats on the right in mono type"
+          },
+          {
+            "at": 0.82,
+            "event": "An arrow draws down to a resolved street address, captioned 'OpenStreetMap · reverse-geocode'"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_PipelinePerceptionTool",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "pipeline — grounding & synthesis",
+      "narration_text": "Third, knowledge grounding — and this step only runs for supported Karnataka routes; nothing is invented for the other states. The system ranks the coordinate against a downloadable pack of thirteen thousand, five hundred seventy-seven contracts, itself filtered down from a public procurement snapshot of over forty-two thousand rows, and shortlists up to twenty-five candidates. A model may then pick one above a confidence threshold — and most of those contracts don't even have a known contractor name on file, so the app leaves that field blank rather than invent one.\n\nFourth, action synthesis: the photo, the coordinate, the road-ownership check, and any contract match feed back into the model with a strict prompt template. Out comes one complaint, addressed to the right recipient. But the app never sends it — it opens your own email, filled in, and stops there.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 58,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 43.14,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B06_PipelineGroundingAction"
+        },
+        "visual_intent": "Same four-stage pipeline, now with stages 3-4 lit. The real Karnataka-only contract-matching funnel (42,283 -> 13,577 -> <=25 -> 1) resolves the coordinate; an email draft fills in field by field, then the app's real never-auto-sends guarantee lands.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'Ground It, Then Send It' writes on; the four stage chips re-seat with 3-4 lit, 1-2 dimmed"
+          },
+          {
+            "at": 0.12,
+            "event": "A stacked-record database icon fades in, captioned 'Karnataka only'"
+          },
+          {
+            "at": 0.28,
+            "event": "A four-line funnel fades in: 42,283 tenders → 13,577 indexed → ≤25 candidates → 1 probable match"
+          },
+          {
+            "at": 0.45,
+            "event": "'most: no contractor name on file' lands beneath the funnel"
+          },
+          {
+            "at": 0.6,
+            "event": "An email draft box seats on the right; To / Subject / Body lines fade in one at a time as the fields fill"
+          },
+          {
+            "at": 0.85,
+            "event": "'the app never sends it — it opens yours, filled in, and stops' lands beneath the draft"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_PipelineGroundingAction",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "deriving your own guardrails",
+      "narration_text": "A good agentic engineer designs for failure, not just success. But don't just copy someone else's guardrails — derive your own by asking three questions. Where can your retrieval be wrong or stale? Hedge the language there. Where is the action irreversible or high-stakes? Put a human in front of it. And is there a category of input where refusing outright is safer than guessing? Build a fail-safe branch for it.\n\nThis case study answers all three the same way: fail closed. Every downloaded dataset is checked byte-for-byte against a pinned checksum before it's trusted — if a file is missing or altered, that route refuses rather than guesses. On a national highway, the app refuses to name a maintaining authority itself and hands off to the official highway channel instead. A contract match is only ever labeled probable, because the actual warranty term isn't in the data — the app only infers it from how old the tender is. And nothing is ever sent automatically: the app doesn't call a complaint API and doesn't log in anywhere. It opens your own email, filled in, and stops.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 64,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 54.83,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B07_TheGuardrails"
+        },
+        "visual_intent": "Three guardrails side by side, each demonstrating its own stopping behaviour: a fork that hands off rather than guesses, a warranty claim hedged by tender age, a send control the app is architecturally incapable of pressing itself. The narration reframes all three as one unifying answer — fail closed — to the general 3-question method.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'Guardrails' writes on; 'design for failure, not just success' holds briefly then clears"
+          },
+          {
+            "at": 0.12,
+            "event": "Column 1 'Fail-safe routing': a fork splits to 'national highway' (struck) vs. 'local road' (continues); 'hands off — no guess' lands beneath"
+          },
+          {
+            "at": 0.35,
+            "event": "Column 2 'Probabilistic language': 'this IS under warranty' strikes through, replaced by 'possibly within warranty — based on tender age' in terracotta"
+          },
+          {
+            "at": 0.55,
+            "event": "Column 3 'Human-in-the-loop': a 'Send' control sits inactive, held for review, then activates only after 'no complaint API, no login — it just opens' lands"
+          },
+          {
+            "at": 0.72,
+            "event": "'same answer, every time: fail closed' lands beneath all three columns"
+          },
+          {
+            "at": 0.85,
+            "event": "Everything settles; a serif landing line holds: autonomy is a liability until you've defined how it fails"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim:B07_TheGuardrails",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "the anti-pattern: grading its own homework",
+      "narration_text": "Here's the mistake that undoes all of this: trusting the model to grade its own homework. It's tempting to skip the human review step because the model is usually right — but usually right is exactly the failure mode you're designing guardrails against. The one case in a hundred where it's confidently wrong is the one that reaches a real commissioner's inbox, or a real bank account. If a guardrail only fires when you remember to check it, it isn't a guardrail — it's a suggestion.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 33,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 22.38,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B08_TheAntiPattern"
+        },
+        "visual_intent": "The dedicated falsifiability/stress-test beat — a field of dots, one struck wrong, dramatizes 'usually right' as the exact failure mode guardrails exist for.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title 'Grading Its Own Homework' writes on"
+          },
+          {
+            "at": 0.12,
+            "event": "A serif line lands: it's tempting to skip the human review — the model is usually right"
+          },
+          {
+            "at": 0.3,
+            "event": "A field of small dots fades in; one dot enlarges and turns terracotta"
+          },
+          {
+            "at": 0.55,
+            "event": "An arrow draws down to 'confidently wrong, once in a hundred'"
+          },
+          {
+            "at": 0.68,
+            "event": "'a real inbox · a real bank account' lands beneath it"
+          },
+          {
+            "at": 0.85,
+            "event": "Everything clears; a serif landing line holds: if a guardrail only fires when you remember to check it, it isn't a guardrail — it's a suggestion"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_TheAntiPattern",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "verdict",
+      "narration_text": "So — isolate the one genuinely unstructured piece, and run the truth-table test to find it. Choose a fixed pipeline over an autonomous loop wherever consequences are real. Derive your guardrails from three questions: what's stale, what's irreversible, what should refuse outright. And never let \"usually right\" replace a human check — that's the exact failure mode guardrails exist for.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 19.71,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Summary",
+            "artifactHeading": "Engineer the Boundaries, Not the Whole Problem",
+            "artifactLines": [
+              "Isolate the one genuinely unstructured piece — run the truth-table test to find it",
+              "Choose a fixed pipeline over an autonomous loop wherever consequences are real",
+              "Derive guardrails from three questions: what's stale, irreversible, or refusable",
+              "Never let 'usually right' replace the human check guardrails exist for"
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "your turn",
+      "narration_text": "Your turn. Pick one AI feature you're building, or one you use every day. Run the truth-table test on what the model actually decides. Then ask whether it should run as a fixed pipeline or a looser agent loop, given what's actually at stake. Then derive one guardrail from what's stale, what's irreversible, or what should refuse outright — before you ship.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 18.07,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Where would a fixed pipeline be safer than an agent loop in my own AI feature?",
+            "topic": "AGENTIC WORKFLOW DESIGN",
+            "segment": "Explore Deeper",
+            "greeting": "Your turn.",
+            "runningText": "mapping your own agent…",
+            "output": [
+              "Run the truth-table test on what the model decides",
+              "Choose a pipeline or a loop — on purpose, not by default",
+              "Derive one guardrail from what's stale or irreversible"
+            ],
+            "folderLabel": "@DivijPawar",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T02:56:16"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "outro",
+      "narration_text": "Signing off — Divij Pawar.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 3,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 2.3,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Engineering the AI Agent",
+            "handle": "@DivijPawar",
+            "subline": "Isolate the reasoning. Choose the pipeline. Derive the guardrails."
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T02:56:16"
+      }
+    }
+  ]
+}

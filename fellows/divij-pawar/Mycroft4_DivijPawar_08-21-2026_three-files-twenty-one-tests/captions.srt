@@ -1,0 +1,411 @@
+1
+00:00:00,000 --> 00:00:02,625
+Hi — I'm Divij Pawar. This is part two of When Two
+
+2
+00:00:02,625 --> 00:00:03,458
+Agents Disagree.
+
+3
+00:00:04,000 --> 00:00:07,792
+Last time: correctness needs ground truth, disagreement needs nothing, and the safe
+
+4
+00:00:07,792 --> 00:00:10,375
+move is to surface a conflict rather than resolve it.
+
+5
+00:00:11,083 --> 00:00:13,500
+This time I'll show you what I actually built on top of
+
+6
+00:00:13,500 --> 00:00:16,833
+that — three files, twenty-one tests, and nothing else in the system
+
+7
+00:00:16,833 --> 00:00:17,633
+changed.
+
+8
+00:00:18,010 --> 00:00:20,718
+Here's the whole thing in one breath. I already had an accountability
+
+9
+00:00:20,718 --> 00:00:23,802
+layer that made an agent's reasoning permanently on the record — but
+
+10
+00:00:23,802 --> 00:00:26,052
+it could only prove what was said, never whether it was true.
+
+11
+00:00:26,677 --> 00:00:30,635
+Cross-agent validation was already on the architecture diagram: specified, named,
+
+12
+00:00:30,635 --> 00:00:34,093
+and completely empty. So I built the smallest honest version. Run two
+
+13
+00:00:34,093 --> 00:00:37,510
+agents, compare their numbers, write down where they disagree, and stop. No
+
+14
+00:00:37,510 --> 00:00:39,343
+judge. No model. Set arithmetic.
+
+15
+00:00:40,110 --> 00:00:41,402
+Four things already existed.
+
+16
+00:00:41,777 --> 00:00:45,485
+The ReasoningObject — one frozen record per agent attempt, holding the conclusion,
+
+17
+00:00:45,652 --> 00:00:47,277
+the steps, the confidence, the sources.
+
+18
+00:00:47,985 --> 00:00:51,235
+The validation loop — output must parse into a required structure, one
+
+19
+00:00:51,235 --> 00:00:54,402
+retry, then halt; both attempts get recorded either way, because a failed
+
+20
+00:00:54,402 --> 00:00:55,568
+attempt is evidence too.
+
+21
+00:00:56,152 --> 00:00:57,443
+The store — SQLite, with
+
+22
+00:00:57,818 --> 00:01:01,277
+database-level triggers that abort any update or delete, so you cannot quietly
+
+23
+00:01:01,277 --> 00:01:02,110
+edit history.
+
+24
+00:01:02,693 --> 00:01:06,318
+And the consistency probe, which already had the scoring: sixty percent number
+
+25
+00:01:06,318 --> 00:01:10,568
+overlap, forty percent word overlap, three thresholds. All of that existed.
+
+26
+00:01:10,943 --> 00:01:13,693
+It was just pointed at one agent, compared against a repeat of
+
+27
+00:01:13,693 --> 00:01:14,493
+itself.
+
+28
+00:01:14,840 --> 00:01:17,298
+So I audited the project to find where this could actually be
+
+29
+00:01:17,298 --> 00:01:20,673
+useful, and the answer was already on the published architecture diagram.
+
+30
+00:01:21,423 --> 00:01:23,507
+The orchestration layer declared three mechanisms:
+
+31
+00:01:23,965 --> 00:01:24,840
+cross-agent validation,
+
+32
+00:01:25,215 --> 00:01:27,340
+dynamic task allocation, pattern recognition.
+
+33
+00:01:27,757 --> 00:01:29,173
+All three had zero implementation.
+
+34
+00:01:29,840 --> 00:01:31,423
+But cross-agent validation was the
+
+35
+00:01:31,798 --> 00:01:34,840
+best-specified orphan in the repo — twenty-one thousand, eight hundred and
+
+36
+00:01:34,882 --> 00:01:39,507
+twenty-four bytes of specification, sixteen scaffolded scripts, and zero shared
+
+37
+00:01:39,507 --> 00:01:41,882
+logic connecting them. That's the pattern everywhere.
+
+38
+00:01:42,382 --> 00:01:45,840
+The node layer is thirty thousand, four hundred and ninety-seven lines; one
+
+39
+00:01:45,882 --> 00:01:49,590
+thousand two hundred and seventy-six of those are real logic. Tests: zero.
+
+40
+00:01:49,923 --> 00:01:51,173
+And why had nobody built it?
+
+41
+00:01:51,590 --> 00:01:54,965
+Cross-agent validation needs two agents that emit comparable conclusions.
+
+42
+00:01:55,382 --> 00:01:57,215
+The project had approximately zero.
+
+43
+00:01:57,930 --> 00:02:00,597
+Version one got scoped down until it was almost boring, and the
+
+44
+00:02:00,597 --> 00:02:01,430
+cuts are the design.
+
+45
+00:02:01,930 --> 00:02:05,763
+Producer A: a real agent, already wired to live SEC EDGAR endpoints.
+
+46
+00:02:05,805 --> 00:02:08,972
+Producer B: a hand-written fixture that returns a conclusion I pick in
+
+47
+00:02:08,972 --> 00:02:10,472
+advance. That sounds like cheating.
+
+48
+00:02:10,888 --> 00:02:14,138
+It isn't. If both producers are real and the comparator says contradiction,
+
+49
+00:02:14,430 --> 00:02:17,722
+you can't tell whether they genuinely disagree or your comparator is broken.
+
+50
+00:02:18,097 --> 00:02:18,897
+With a fixture,
+
+51
+00:02:19,305 --> 00:02:21,513
+a wrong result can only be the comparator's fault.
+
+52
+00:02:22,055 --> 00:02:26,513
+Second cut: contradiction means numeric divergence only. No entailment model, no
+
+53
+00:02:26,513 --> 00:02:27,313
+judge.
+
+54
+00:02:27,222 --> 00:02:30,013
+Third cut: it writes a record and stops — no escalation, no
+
+55
+00:02:30,013 --> 00:02:33,888
+alert. And no new HTTP route: the layer has four open critical
+
+56
+00:02:33,888 --> 00:02:37,180
+security findings, and adding no route adds no new exposure.
+
+57
+00:02:37,890 --> 00:02:40,223
+Three files, and the test file is the biggest of them —
+
+58
+00:02:40,223 --> 00:02:41,473
+that ratio isn't an accident.
+
+59
+00:02:41,973 --> 00:02:45,723
+Each agent gets its own context: information asymmetry, encoded in a function
+
+60
+00:02:45,723 --> 00:02:46,523
+signature.
+
+61
+00:02:46,807 --> 00:02:50,015
+When an agent fails validation twice, the loop raises, and its records
+
+62
+00:02:50,015 --> 00:02:52,765
+get carried forward rather than dropped, because a halt is a fact
+
+63
+00:02:52,765 --> 00:02:53,973
+somebody may want to see.
+
+64
+00:02:54,473 --> 00:02:58,223
+Then the comparison, in full: extract the numbers from both conclusions, take
+
+65
+00:02:58,223 --> 00:02:59,182
+the symmetric difference,
+
+66
+00:02:59,848 --> 00:03:01,973
+and anything in exactly one of them is a divergence.
+
+67
+00:03:02,432 --> 00:03:04,348
+No model. No judge. Set arithmetic.
+
+68
+00:03:04,848 --> 00:03:08,765
+The scoring wasn't rewritten, it was re-pointed — same weights, same thresholds,
+
+69
+00:03:08,765 --> 00:03:13,098
+imported unmodified. And one line covers both cases: a different value is
+
+70
+00:03:13,098 --> 00:03:15,473
+caught, and a missing number is caught by the same rule.
+
+71
+00:03:16,250 --> 00:03:18,792
+Now, how it lives inside the layer rather than beside it.
+
+72
+00:03:19,208 --> 00:03:22,250
+Both agents share one run ID, because here the comparison is the
+
+73
+00:03:22,250 --> 00:03:25,833
+evidence — flag a contradiction without producing both conclusions and you've
+
+74
+00:03:25,833 --> 00:03:27,792
+published an accusation with no exhibits.
+
+75
+00:03:28,458 --> 00:03:31,542
+The runs table stores a free-form JSON blob, so a whole new
+
+76
+00:03:31,542 --> 00:03:34,000
+kind of record needed no migration and no new column.
+
+77
+00:03:34,375 --> 00:03:37,958
+One new key. And it inherits the append-only triggers for free: once
+
+78
+00:03:37,958 --> 00:03:38,792
+a flag is written,
+
+79
+00:03:39,375 --> 00:03:42,750
+it can't be updated or deleted. Then, the tests. Twenty-one new, all
+
+80
+00:03:42,750 --> 00:03:46,000
+passing — which is worth almost nothing. A passing suite proves your
+
+81
+00:03:46,000 --> 00:03:48,458
+tests agree with your code, not that they'd notice if the code
+
+82
+00:03:48,458 --> 00:03:50,000
+were wrong. So I broke it on purpose.
+
+83
+00:03:50,625 --> 00:03:53,625
+Swap the symmetric difference for an intersection: seven tests fail.
+
+84
+00:03:54,000 --> 00:03:57,292
+Return false instead of null when no comparison happened: three more.
+
+85
+00:03:58,020 --> 00:03:59,770
+So let's be precise about what this is not.
+
+86
+00:04:00,145 --> 00:04:04,145
+Comparison is numeric only — two conclusions that disagree completely while citing
+
+87
+00:04:04,145 --> 00:04:06,020
+the same figures sail straight through.
+
+88
+00:04:06,478 --> 00:04:09,812
+Producer B is still a fixture, so no genuine disagreement has ever
+
+89
+00:04:09,812 --> 00:04:11,145
+been observed on live data.
+
+90
+00:04:11,520 --> 00:04:12,320
+It
+
+91
+00:04:11,978 --> 00:04:14,978
+isn't SQL-queryable. And a flagged contradiction triggers nothing.
+
+92
+00:04:15,620 --> 00:04:18,703
+Your turn. Paste this into Claude: "Find one place in my system
+
+93
+00:04:18,703 --> 00:04:21,370
+where a check returns false when it actually means the check could
+
+94
+00:04:21,370 --> 00:04:22,170
+not run."
+
+95
+00:04:22,328 --> 00:04:23,128
+That's the
+
+96
+00:04:22,995 --> 00:04:26,245
+null-versus-false distinction, aimed at your own code. False claims a check happened
+
+97
+00:04:26,245 --> 00:04:27,120
+and came back clean.
+
+98
+00:04:27,662 --> 00:04:28,828
+Null says the check couldn't run.
+
+99
+00:04:29,245 --> 00:04:31,787
+A system that silently converts the second into the first
+
+100
+00:04:32,162 --> 00:04:34,787
+manufactures an all-clear out of a failure. Go find one.
+
+101
+00:04:35,628 --> 00:04:39,670
+Three files. Twenty-one tests. Nothing else changed. The judgment stays with the
+
+102
+00:04:39,670 --> 00:04:42,503
+human — that was never the bottleneck. That was the point. Divij
+
+103
+00:04:42,503 --> 00:04:43,303
+Pawar.

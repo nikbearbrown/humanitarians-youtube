@@ -2,6 +2,8 @@
 # Typed work order per beat. cli-explainer story spine, rendered via the
 # run.sh/compile.py pipeline (vox_run.sh/vox_compile.py/type_check.py do
 # not exist in this toolkit install — see beat_sheet.json metadata.note).
+# Content corrected per a revised kickoff prompt — see metadata.note for
+# the full disclosure; this file reflects only the current, shipping cut.
 
 ## OPEN — INTRO (B00)
 
@@ -25,7 +27,8 @@ B01 · Manim B01_NotAHighlightReel (scenes.py)
 
 B02 · ClaudeComposerAsk (Remotion) — the ask
   action: render -> media/B02.mp4
-  props: greeting="The ask,", command=weekly_recap_v1.py request
+  props: greeting="The ask,", command=weekly_recap_v1.py request (article,
+         video, Suffolk talk)
   status: RENDERABLE
 
 B03 · ClaudeCodeBeat (Remotion) — the real v1 code
@@ -36,9 +39,9 @@ B03 · ClaudeCodeBeat (Remotion) — the real v1 code
 
 B04 · Manim B04_FlatWeek (scenes.py) — the real v1 output, visualized
   action: render -> manim/B04.mp4
-  show: three same-weight cards — mock Substack article header, Brutalist
-        video-production icon card (16:9 + 9:16), fashion/calendar card —
-        no visual distinction between what's done and what's just started
+  show: three same-weight cards — article/research card, video-production
+        icon card (16:9 + 9:16), Suffolk University talk card — no visual
+        distinction between what's done and what's just started
   status: RENDERABLE
 
 ## CLI LOOP — cycle 2, the required revision (B05-B07)
@@ -57,9 +60,9 @@ B06 · ClaudeCodeBeat (Remotion) — the real v2 code
 B07 · Manim B07_SplitWeek (scenes.py) — the real v2 output, visualized
   action: render -> manim/B07.mp4
   show: the same three cards, now regrouped under two headers — DONE THIS
-        WEEK (checkmark green, Substack + Brutalist cards) and STARTING
-        NEXT WEEK (terracotta, fashion card) — a vertical divider between
-        the two groups; the visible improvement the revision made
+        WEEK (checkmark green, article + video cards) and STARTING NEXT
+        WEEK (terracotta, Suffolk University card) — a vertical divider
+        between the two groups; the visible improvement the revision made
   status: RENDERABLE
 
 ## CLOSE (B08-B10)
@@ -92,9 +95,13 @@ B10 · ClaudeTitleOutro (Remotion)
   CODE/OUTPUT beats' real source and output (THE ACTUAL-CODE LAW). See
   FACTCHECK.md for the captured terminal transcripts.
 - Target duration: 1-3 minutes per explicit user request (a range, not an
-  exact target) — drafted toward ~2:30, confirmed only once Kokoro audio is
-  generated and measured (audio-first principle).
+  exact target) — confirmed only once Kokoro audio is generated and
+  measured (audio-first principle).
 - `@HumanitariansAI` matches the branding precedent set on this user's other
-  three reels in this book; af_bella (Bella) voice per explicit request for
-  a woman's voice — the only female voice this toolkit ships (see
+  reels in this book; af_bella (Bella) voice per explicit request for a
+  woman's voice — the only female voice this toolkit ships (see
   beat_sheet.json metadata.note).
+- Content correction: this cut replaces the original build's fashion-
+  sustainability framing wholesale with the corrected kickoff's three items
+  (article/research, video production, Suffolk University talk) — see
+  beat_sheet.json metadata.note for the full disclosure.

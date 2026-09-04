@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "title": "The Scorer That Won't Score You",
+    "slug": "runway-risk-scorer",
+    "brand": "claude-liam",
+    "channel": "@HumanitariansAI",
+    "series": "Weekly Progress",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "hello": "Namaste",
+    "description": "A cli-explainer on the AI-Vendor Runway-Risk Scorer: a tool that computes five funding-risk metrics and then deliberately refuses to issue a verdict, halting at a human gate. The teach is the governance discipline, not the metrics.",
+    "aspect": "16:9",
+    "date": "2026-08-22",
+    "build": {
+      "at": "2026-08-23T13:52:03",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Namaste. Here's a risk tool that does something strange: it measures how close an AI startup is to running out of money, and then it refuses to tell you if that's bad. On purpose. This is the runway-risk scorer, and the thing worth watching is not the math. It's the line it won't cross.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "RUNWAY-RISK SCORER · WEEKLY PROGRESS",
+            "segment": "The Scorer That Won't Score You",
+            "greeting": "Namaste",
+            "command": "python runway_risk_score.py --company acme_ai --json-out brief.json",
+            "runningText": "ingest · validate_shape · score — halting at human gate",
+            "output": [
+              "Tool: AI-Vendor Runway-Risk Scorer",
+              "Computes: 5 funding-risk metrics, each with provenance",
+              "Rule: emits a number, never a verdict (P1 human gate)",
+              "Spine: PROBLEM → ASK → CODE → OUTPUT → CHANGE → CLOSE"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "problem",
+      "narration_text": "The problem is trust. If you ask an AI to score a startup's collapse risk and it prints 'HIGH RISK, avoid,' you now have a machine making a judgment call on incomplete, messy data, and a human who rubber-stamps it. The failure isn't a wrong number. It's a human who stopped thinking because the tool sounded sure.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "THE PROBLEM · THE VERDICT TRAP",
+            "segment": "Why a confident tool is dangerous",
+            "greeting": "The trap",
+            "command": "# the tempting design",
+            "runningText": "score → 'HIGH RISK: avoid' → human rubber-stamps",
+            "output": [
+              "Tempting: tool outputs a verdict, human approves",
+              "Failure: human stops thinking when the tool sounds sure",
+              "Data is messy, partial, unvalidated — verdict hides that",
+              "The fix is structural, not a better model"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 16.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ask",
+      "narration_text": "So here's the design rule, written as a prompt to the build agent. Five mechanical metrics: total raised, months since last raise, funding-stage trend, distress indicators, signal freshness. Every number carries a source. Any signal we can't verify gets dropped, not guessed. And the score function is forbidden from printing the words 'high' or 'low' risk.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "THE ASK · THE GENERATION PROMPT",
+            "segment": "Five metrics, full provenance, no verdict",
+            "greeting": "The rule",
+            "command": "claude \"build score(): 5 metrics, each with signal_id + source_url. Drop unvalidated signals. NEVER emit a verdict — emit the number and halt.\"",
+            "runningText": "encoding P1 (human gate) + P2 (verified data) into code",
+            "output": [
+              "total_raised_usd · months_since_last_raise",
+              "funding_stage_trend · distress_indicator_count · signal_freshness_days",
+              "each metric → signal_id + source_url (provenance, P3)",
+              "unvalidated signal → dropped, never inferred (P2)"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "code",
+      "narration_text": "This is the actual score function. It builds a metrics dictionary — five numbers — and beside every number, the provenance: the exact signal IDs and source URLs the number came from. Then look at what it returns. A gate field hard-coded to HALT-AWAITING-HUMAN. No risk label. No recommendation. The verdict is a hole in the code, left there on purpose, and the human fills it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "runway_risk_score.py — score() (real source, trimmed)",
+            "code": "def score(company_id, usable, dropped_unvalidated_count, today):\n    \"\"\"STEP 3 — compute the five metrics with provenance. No judgment.\"\"\"\n    # ... total_raised, months_since_last_raise, funding_stage_trend,\n    #     distress_indicator_count, signal_freshness computed above,\n    #     each appending {signal_id, source_url} into a provenance list ...\n\n    return {\n        \"company_id\": company_id,\n        \"gate\": \"HALT-AWAITING-HUMAN\",   # never a verdict (P1)\n        \"metrics\": {\n            \"total_raised_usd\":         total if raise_prov else None,\n            \"months_since_last_raise\":  months_since,\n            \"funding_stage_trend\":      stages,\n            \"distress_indicator_count\": len(distress),\n            \"signal_freshness_days\":    freshness_days,\n        },\n        \"provenance\": {                  # every metric -> its sources\n            \"total_raised\": raise_prov,\n            \"months_since_last_raise\": recency_prov,\n            \"funding_stage\": stage_prov,\n            \"distress\": distress_prov,\n        },\n    }   # <-- it stops here. no label. no recommendation."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 19.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "output",
+      "narration_text": "Run it, and this is the brief. Five metrics, and under each one, the source line — the signal ID in brackets and the URL it came from. It even tells you what it dropped: signals used versus dropped-unvalidated. And at the bottom, the report doesn't conclude. It states a human gate, names who has to decide, and says plainly: this tool computed metrics, it did not decide anything.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "output — render_brief(), halted at the gate",
+            "code": "RUNWAY-RISK BRIEF — harbor-ai\n====================================================\nSignals used (validated): 7   dropped (unvalidated): 3\n\n1. Total raised: $45,000,000\n     - $30M  [sig_041]  https://sec.gov/edgar/...\n     - $15M  [sig_012]  https://techcrunch.com/...\n2. Months since last raise: 19\n     - last raise 2024-01-15  [sig_041]  https://sec.gov/...\n3. Funding-stage trend: seed -> series_a\n4. Distress indicators (layoff/security/exec-change): 2\n     - layoff: 20% cut  [sig_055]  https://...\n     - executive_change: CFO exit  [sig_058]  https://...\n5. Most recent validated signal: 63 days ago\n----------------------------------------------------\nHUMAN GATE (P1/P4) — not cleared by this script.\nThis tool computed metrics. It did not decide anything."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 19.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "change",
+      "narration_text": "Now the revision. The shape check splits signals three ways: well-formed, malformed, and unvalidated. The key decision is that unvalidated signals — ones no human signed off on — don't get carried with a warning label. They get dropped, and only their count survives, so you know something was excluded without it touching a single number. A low-confidence number is still a number, and it still anchors the human. Provenance beats polish.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "validate_shape() — drop unvalidated, keep only the count",
+            "code": "def validate_shape(signals):\n    usable, malformed, unvalidated = [], [], []\n    for s in signals:\n        missing = [f for f in REQUIRED_FIELDS if not s.get(f)]\n        if missing:\n            malformed.append({\"signal\": s, \"missing\": missing})\n        elif not is_validated(s):        # P2: no validated_by ->\n            unvalidated.append(s)         #     dropped, NOT flagged\n        else:\n            usable.append(s)\n    return usable, malformed, unvalidated\n\n# only len(unvalidated) reaches the brief — never the values.\n# a 'low-confidence' number still anchors the human, so it\n# must not appear at all. provenance beats polish."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 21.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "So what does this tool actually teach? Not five metrics. A pattern you can reuse on any AI decision system: separate what the machine computes from what the human decides, and make the machine physically unable to cross that line. The score is a hole in the code. That hole is the whole design.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "The Scorer That Won't Score You",
+            "artifactHeading": "The reusable pattern",
+            "artifactLines": [
+              "Compute / judge split: the machine measures, the human decides.",
+              "Make the gate structural — the verdict is absent from the code, not just discouraged.",
+              "Provenance beats polish: no source_url, no signal (drop it).",
+              "Two customers: one human-readable brief, one machine-readable JSON."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 15.57,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Take any AI tool you're building that scores or ranks or flags something. Find the line where it hands you a conclusion. Then ask: should that conclusion live in the code at all, or should the code stop one step earlier and let you judge? Try deleting the verdict. See what breaks.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "YOUR TURN",
+            "segment": "Delete the verdict from your own tool",
+            "greeting": "Your turn.",
+            "command": "# find the line where your tool concludes for you",
+            "runningText": "then ask: should that line exist at all?",
+            "output": [
+              "1. Locate where your tool outputs a judgment/label/rank",
+              "2. Delete it — return the raw metrics + provenance instead",
+              "3. Add an explicit 'AWAITING HUMAN REVIEW' gate",
+              "4. Notice what you, the human, now have to actually think about"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 15.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "The scorer that won't score you. The best thing this tool does is the thing it refuses to do. Namaste.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "The Scorer That Won't Score You",
+            "handle": "@HumanitariansAI",
+            "subline": "Weekly progress — runway-risk scorer."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 6.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T13:52:03"
+      }
+    }
+  ]
+}

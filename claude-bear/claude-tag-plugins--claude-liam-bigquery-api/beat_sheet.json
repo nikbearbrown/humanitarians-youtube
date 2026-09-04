@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "title": "Claude, BigQuery API.",
+    "slug": "claude-tag-plugins--claude-liam-bigquery-api",
+    "topic": "BIGQUERY API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer whether a Claude BigQuery query is one instant call or a tracked job, using the BigQuery API skill's own documented facts as the concrete case. Lands the carry-out that every job turns on two habits — carrying location on every follow-up call, and checking for an error before trusting DONE.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-tag-plugins/youtube/claude-liam-bigquery-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B02 -> B03 (top-10-names-California job, traced through billing project + location, then checked correctly vs. DONE-but-failed)",
+    "build": {
+      "at": "2026-08-31T12:34:27",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumes Claude sends one API call and BigQuery hands back the rows. It doesn't — every query becomes a job, tracked and checked until it's ready. So what does that job actually look like?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Claude must just make one API call and hand back my rows. Is that it?', hesitates on 'call', corrects to 'job', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Claude must just\nmake one API call\nand hand back my\nrows. Is that it?",
+            "face": "serif",
+            "fontSize": 64,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "call",
+            "replacementWords": "job",
+            "mistakeRate": 3,
+            "hesitateWithin": 2,
+            "hesitateBetween": 10,
+            "charMs": 40,
+            "jitter": 22,
+            "seed": "hai-bigquery-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('call' -> 'job') is visible on a late frame.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T12:34:27"
+      },
+      "actual_duration_s": 11.75
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes / 2 wrong guess, falsified",
+      "narration_text": "Ask Claude to pull the top ten names in a public dataset and sometimes the rows come straight back — that's the synchronous mode, one request that blocks until it's done. But a slower query can't finish inside that window, so it submits instead: a job with its own ID, checked and paged until it's ready.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "Sync mode shown as one blocking call; when the window runs out, a job card with its own ID appears in its place"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "One call, or a tracked job",
+          "mechanic": "A single request card blocks, spins briefly, and returns rows — labelled SYNCHRONOUS. A second, slower request hits a timeout mark and instead spawns a job card with an ID stamped on it, labelled ASYNCHRONOUS, checked and paged over time.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "BQB01Scene"
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T12:34:27"
+      },
+      "actual_duration_s": 16.73
+    },
+    {
+      "beat_id": "B02",
+      "act": "3 mechanism / 4 ANCHOR PLANTED",
+      "narration_text": "That job runs inside a billing project — the project charged for the bytes scanned isn't necessarily where the data lives — and it's pinned to the location it ran in. Ask for the top ten names in California from the public names dataset, and every later check on that job has to carry the same location back, or it 404s.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR — the 'top 10 names, California' job traced: billing project pays, location pins the job, every follow-up call carries that same location"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR — billing project pays, location pins it",
+          "mechanic": "THE ANCHOR. A job card labelled 'top 10 names · California' sits between two tags: BILLING PROJECT (pays) pointing at the job, and a separate DATA tag off to the side (lives elsewhere). A LOCATION stamp locks onto the job. Every later request arrow drawn from the job back out carries that same location stamp with it. THIS EXACT JOB RETURNS AT B03.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "BQB02Scene"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T12:34:27"
+      },
+      "actual_duration_s": 18.71
+    },
+    {
+      "beat_id": "B03",
+      "act": "4 ANCHOR PAYOFF / 5 both directions",
+      "narration_text": "Check that job again with the location attached and it comes back clean — but reaching DONE isn't proof it succeeded; the result can carry an error, so that gets checked before the rows are trusted. And a job still running isn't proof it's stuck — that's what the checking is for. One more thing worth knowing: the field name for \"more pages\" isn't the same everywhere — list endpoints use nextPageToken, but a query's own results use pageToken — read the wrong one and it comes back empty, silently, after page one.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 33,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS — the same job checked correctly and cleared, then DONE-but-failed flagged, then the pagination field-name split broken out as the one exception"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS — clean, then DONE-but-failed, then the one exception",
+          "mechanic": "THE B02 JOB RETURNS, identical, location stamp attached, checked and cleared — labelled DONE, no error. Beside it, the same job shape marked DONE but with an errorResult flag lit terracotta — 'looks finished' even though it isn't. A small card breaks off to the side: 'nextPageToken (lists) vs pageToken (query results)' — the one naming split that doesn't match the rest.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "BQB03Scene"
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T12:34:27"
+      },
+      "actual_duration_s": 26.2
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Every BigQuery job Claude runs turns on two habits — carry the same location on every follow-up call, and check for an error before trusting a job marked done — get those right and both query modes take care of themselves.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Every BigQuery job Claude runs turns on two habits — carry the same location on every follow-up call, and check for an error before trusting a job marked done — get those right and both query modes take care of themselves.",
+            "attribution": "",
+            "sparkLine": "Location always. DONE ≠ success."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T12:34:27"
+      },
+      "actual_duration_s": 12.84
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Run a query against the BigQuery public dataset bigquery-public-data.usa_names.usa_1910_current and return the top five names for Texas. Watch three things: does it pass the same location on every follow-up call, does it check for an error before trusting a job marked done, and does it use the bundled script instead of a raw request that might miss a page. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "BIGQUERY API · YOUR TURN",
+            "segment": "Your Turn",
+            "command": "Run a query against bigquery-public-data.usa_names.usa_1910_current and return the top five names for Texas.",
+            "runningText": "Watch: location on every call? errorResult checked before trusting DONE? bundled script for pagination?",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T12:34:27"
+      },
+      "actual_duration_s": 22.21
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, BigQuery API. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Claude, BigQuery API. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T12:34:27"
+      },
+      "actual_duration_s": 3.67
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "metadata": {
+    "slug": "2026-08-30-what-prompt-injection-actually-looks-like-short",
+    "title": "Prompt Injection: The Vulnerability Hiding in Plain Text",
+    "date": "August 30, 2026",
+    "report_type": "general-ai-topic-explainer",
+    "fellow": "Sai Pranavi Jeedigunta",
+    "fellow_folder": "sai-pranavi-j",
+    "series": "Humanitarians AI Fellows — Weekly STEM Video",
+    "channel": "@HumanitariansAI",
+    "audience": "Engineers building AI agents",
+    "persona": "hai",
+    "engine": "kokoro",
+    "voice": "af_bella",
+    "voice_kokoro": "af_bella",
+    "voice_policy": "Bella (af_bella) — persistent voice for this fellow's whole series. Unchanged for this episode.",
+    "voice_selection_basis": "Fellow-confirmed: matches @HumanitariansAI channel and hai/Pragmatist persona.",
+    "voice_approval": "CONFIRMED (carried over from prior episodes)",
+    "register": "Pragmatist",
+    "aspect": "16:9",
+    "builder": "ai-explainer",
+    "runtime_target_s": 138,
+    "source_status": "General AI/STEM topic explainer, not a report of the fellow's own engineering work. Both examples (the hidden-instruction summarizer scenario and the recipe-blog falsifiability case) are generic and hypothetical, not drawn from any real disclosed incident, product, or CVE. The one external claim (prompt injection as a named, widely-recognized vulnerability class) is sourced to OWASP's Top 10 for LLM Applications (LLM01) — see SOURCES.md and FACTCHECK.md.",
+    "render_state": "beat-sheet-approved-pending-audio",
+    "gates": {
+      "plan": "APPROVED — 2026-08-30 (Gate P)",
+      "factcheck": "RESOLVED — 2026-08-30 (see FACTCHECK.md; OWASP LLM01 citation added to B03, both worked examples confirmed generic)",
+      "narration": "APPROVED — 2026-08-30, cleared for audio generation",
+      "audio_lock": "PENDING — not yet generated",
+      "shopping_list": "N/A — all 9 beats are self-contained Manim scenes (scenes.py); no pantry stills or Remotion assets needed",
+      "previz": "PENDING — scenes.py not yet authored",
+      "publish": "NOT AUTHORIZED"
+    },
+    "lane_histogram": {
+      "body_beats": 9,
+      "vox": 0,
+      "vox_share": 0.0,
+      "manim": 9,
+      "remotion": 0,
+      "card": 0
+    },
+    "build": {
+      "at": "2026-08-31T00:01:50",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    },
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "2026-08-30-what-prompt-injection-actually-looks-like",
+    "dropped_beats": [],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 152.46
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "TITLE",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "",
+      "new_visual_element": "Opening title card: the video title and @HumanitariansAI, silent (no narration), before the executive summary",
+      "estimated_duration_s": 4,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B00_TitleCard",
+          "module": "scenes.py"
+        },
+        "note": "Silent beat — still needs a real silent mp3 (ffmpeg -f lavfi -i anullsrc), not audio_file: null, per compile.py's build_master_audio() file-exists contract.",
+        "duration_source": "silent-beat: fixed target, not measured narration",
+        "measured_note": "ffmpeg anullsrc -t 4, ffprobe-measured 4.05s"
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 4.05,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B00.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "EXEC-SUMMARY",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Hi, I'm Sai Pranavi Jeedigunta. This video is about prompt injection — what happens when an AI agent reads text that was never meant to be a command, and treats it like one anyway — and three questions that catch it before it causes harm.",
+      "new_visual_element": "Personal-intro card: fellow's name + one-line summary of what the video covers, spoken",
+      "estimated_duration_s": 14,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B01_ExecSummary",
+          "module": "scenes.py"
+        },
+        "note": "Same pattern as this fellow's other episodes' B01."
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 15.6,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "HOOK",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Picture an AI assistant whose job is to read a web page and summarize it for you. Somewhere in that page, buried in text no human reader would even notice, is a line that isn't part of the article at all. It's an instruction. And the assistant has no built-in way to tell the difference.",
+      "new_visual_element": "A browser/page view; visible article text, then a callout revealing hidden text reading an instruction to forward the user's email",
+      "estimated_duration_s": 15,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B02_HiddenInstructionHook",
+          "module": "scenes.py"
+        },
+        "note": "Generic/hypothetical scenario — no real product or company named, per FACTCHECK.md."
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.29,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FRAMEWORK",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Here's the check, before any example: three questions, every time an agent is about to act on text it didn't write. One, Source: did this come from the person giving instructions, or from something they merely pointed the agent at? Two, Instruction or data: is this describing something, or telling the agent to do something? Three, Consequence: if the agent complies, what happens, and can it be undone?",
+      "new_visual_element": "Rubric card, all 3 questions shown together (Source / Instruction-or-Data / Consequence), small OWASP LLM01 citation line",
+      "estimated_duration_s": 22,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B03_ThreeQuestionsFramework",
+          "module": "scenes.py"
+        },
+        "note": "Framework shown fully before any example, matching the AI-code video's rubric beat. Citation: 'OWASP Top 10 for LLM Applications — LLM01: Prompt Injection' per FACTCHECK.md item #1 (resolved)."
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 23.57,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "WORKED-EXAMPLE",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Back to that hidden line. Source: it came from the web page, not from the person who asked for a summary. Instruction or data: it's phrased as a command, ignore, forward, not as content about the article's subject. Consequence: forwarding someone's email is high-stakes and can't be undone. All three answers point the same way: this isn't data to summarize. It's an attack, and the agent should refuse and flag it, not comply.",
+      "new_visual_element": "The hidden instruction text shown legibly alongside all 3 rubric answers, each visibly resolved",
+      "estimated_duration_s": 24,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B04_WorkedExampleResolved",
+          "module": "scenes.py"
+        },
+        "note": "All 3 rubric answers must be shown together, not implied — see Legibility Contract in BEAT-SHEET.md."
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 25.44,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "FALSIFIABILITY",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Now the case that could break this rubric if it were sloppy. A recipe blog says, preheat your oven to four hundred degrees. That's also an imperative sentence, a command, grammatically. But run the same three questions: it came from the exact page the user asked to have summarized, it's the actual content the user wants, and the action happens inside the summary text, not out in the world. Nothing gets sent, nothing gets forwarded. Same sentence shape as the attack. Completely different answer.",
+      "new_visual_element": "The recipe-blog text shown legibly, its 3 rubric answers resolved differently from B04",
+      "estimated_duration_s": 24,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B05_RecipeBlogFalsifiability",
+          "module": "scenes.py"
+        },
+        "note": "Stress-tests the rubric against a naive 'any imperative sentence = injection' over-trigger. Visually distinguish this beat's resolution from B04's (e.g. different accent color for 'benign' vs 'attack')."
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 27.65,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCAFFOLDED-TASK",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Here's something to check today. Find one place where an agent you use or build reads text from outside, a web page, an email, a file. Ask the three questions: what's the source, is it instruction or data, and what's the consequence if you get it wrong. If you can't answer consequence with nothing bad happens, that's a place worth hardening before it becomes a problem.",
+      "new_visual_element": "The 3 questions restated as a checklist card",
+      "estimated_duration_s": 20,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B06_AuditChecklist",
+          "module": "scenes.py"
+        },
+        "note": "Concrete action, not a restatement of B03 — should read as a checklist/task card, not another copy of the rubric card."
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 22.68,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "TAKEAWAY",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "An AI agent doesn't know the difference between a sentence and a command unless something teaches it to ask. The three questions are how you teach it.",
+      "new_visual_element": "Statement card",
+      "estimated_duration_s": 15,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B07_Statement",
+          "module": "scenes.py"
+        },
+        "note": "Statement card matching the visual pattern of prior episodes' takeaway beat."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 9.17,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "SIGN-OFF",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Explained with Claude Code.",
+      "new_visual_element": "@HumanitariansAI — explained with Claude Code, in for Sai Pranavi Jeedigunta",
+      "estimated_duration_s": 5,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B08_BrandOutro",
+          "module": "scenes.py"
+        },
+        "note": "Brand card matching prior episodes' B08."
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 1.51,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:01:50"
+      }
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "@HumanitariansAI",
+        "next": "",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-08-31T00:01:50"
+      }
+    }
+  ]
+}

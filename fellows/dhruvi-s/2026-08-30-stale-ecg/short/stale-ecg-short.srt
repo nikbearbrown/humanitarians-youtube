@@ -1,0 +1,232 @@
+1
+00:00:00,000 --> 00:00:04,708
+Cardiac admissions, a mortality model
+built from the chart, and one routine
+
+2
+00:00:04,708 --> 00:00:06,167
+test sitting in the record.
+
+3
+00:00:06,792 --> 00:00:08,667
+The question is whether adding it helps.
+
+4
+00:00:08,920 --> 00:00:10,712
+On its own that answer looks boring.
+
+5
+00:00:11,170 --> 00:00:12,462
+Two thousandths of a point.
+
+6
+00:00:13,128 --> 00:00:14,878
+Nobody ships a change that small.
+
+7
+00:00:15,420 --> 00:00:19,462
+But it is an average over a hundred
+and forty-four thousand admissions, and
+
+8
+00:00:19,462 --> 00:00:20,795
+it is hiding a sign flip.
+
+9
+00:00:21,420 --> 00:00:24,920
+Some of those ECGs were taken
+the same day the patient arrived.
+
+10
+00:00:25,545 --> 00:00:26,753
+Some were three years old.
+
+11
+00:00:27,253 --> 00:00:30,462
+The model cannot tell the difference,
+because nothing in the feature vector
+
+12
+00:00:30,462 --> 00:00:32,337
+says how old the evidence is.
+
+13
+00:00:32,470 --> 00:00:34,970
+So the first ask is a
+split, not a summary.
+
+14
+00:00:35,345 --> 00:00:40,053
+Bin every admission by how old its
+ECG was at the moment of admission, and
+
+15
+00:00:40,053 --> 00:00:41,470
+put an interval on each bin.
+
+16
+00:00:42,178 --> 00:00:44,053
+One detail matters more than it looks.
+
+17
+00:00:44,803 --> 00:00:46,678
+Resample patients, not admissions.
+
+18
+00:00:47,512 --> 00:00:51,762
+Patients come back, and an
+admission-level split leaks the same person across
+
+19
+00:00:51,762 --> 00:00:52,678
+the fold boundary.
+
+20
+00:00:52,970 --> 00:00:54,220
+This is the resampling loop.
+
+21
+00:00:54,762 --> 00:00:59,053
+It draws patients with replacement,
+rebuilds the table from that draw, and
+
+22
+00:00:59,053 --> 00:01:01,553
+recomputes every bin
+inside the same replicate.
+
+23
+00:01:02,220 --> 00:01:03,887
+Doing it in one loop is the point.
+
+24
+00:01:04,470 --> 00:01:08,220
+It keeps the bins correlated, so the
+difference between two of them is a quantity
+
+25
+00:01:08,220 --> 00:01:09,428
+you can put an interval on.
+
+26
+00:01:09,970 --> 00:01:12,678
+The slope against log gap
+comes off the same draw.
+
+27
+00:01:13,220 --> 00:01:16,345
+Four separate error bars
+side by side are not a test.
+
+28
+00:01:16,928 --> 00:01:17,680
+This is.
+
+29
+00:01:17,700 --> 00:01:18,600
+Here is the split.
+
+30
+00:01:19,158 --> 00:01:23,992
+A same-day ECG adds four and a half
+thousandths, and the interval clears zero.
+
+31
+00:01:24,492 --> 00:01:29,408
+An ECG over a year old subtracts five
+thousandths, and that interval clears
+
+32
+00:01:29,408 --> 00:01:31,450
+zero too, in the other direction.
+
+33
+00:01:32,117 --> 00:01:34,492
+Worse than leaving the ECG out entirely.
+
+34
+00:01:34,992 --> 00:01:37,325
+The two middle bins are
+drawn hatched on purpose.
+
+35
+00:01:38,033 --> 00:01:39,908
+They are underpowered, not null.
+
+36
+00:01:40,658 --> 00:01:44,283
+Their minimum detectable effect is
+larger than the effect they would need to
+
+37
+00:01:44,283 --> 00:01:49,200
+find, so the honest reading is that we
+cannot tell, and the chart is required
+
+38
+00:01:49,200 --> 00:01:51,867
+to say so rather than let
+you read a trend into it.
+
+39
+00:01:51,960 --> 00:01:52,860
+Your turn.
+
+40
+00:01:52,918 --> 00:01:56,127
+Take a model you actually run
+and pick its most important input.
+
+41
+00:01:56,710 --> 00:01:59,168
+Then ask a question you
+probably have not asked it:
+
+42
+00:01:59,543 --> 00:02:03,627
+how old is that value at the moment
+you score, compared to how old it was in
+
+43
+00:02:03,627 --> 00:02:04,527
+training.
+
+44
+00:02:04,585 --> 00:02:07,710
+If those two distributions
+differ, you have the same setup.
+
+45
+00:02:08,127 --> 00:02:12,460
+Bin your validation set by the age of
+that feature and check whether the effect
+
+46
+00:02:12,460 --> 00:02:13,460
+changes sign.
+
+47
+00:02:14,002 --> 00:02:15,377
+Here is a prompt to start with.
+
+48
+00:02:15,530 --> 00:02:16,572
+That's the short version.
+
+49
+00:02:17,280 --> 00:02:19,197
+The full video removes the confound:
+
+50
+00:02:19,697 --> 00:02:24,238
+the same patients, scored again with
+older ECGs, where the harm survives.
+
+51
+00:02:24,905 --> 00:02:28,113
+It also covers the mechanism,
+and the fix that did not work.
+
+52
+00:02:28,530 --> 00:02:29,430
+Link below.

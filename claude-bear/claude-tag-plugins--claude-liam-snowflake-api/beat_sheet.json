@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "title": "Claude, Snowflake Api.",
+    "slug": "claude-tag-plugins--claude-liam-snowflake-api",
+    "topic": "SNOWFLAKE API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer what actually comes back when Claude submits SQL to Snowflake through the snowflake-api skill, using the skill's own documented description as the concrete case. Lands the carry-out that a submit call is a receipt, not an answer — poll the handle to a terminal state, then fetch results one partition at a time.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-tag-plugins/youtube/claude-liam-snowflake-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B02 -> B03 (the 'what tables are in this schema' query, submitted via the SQL API for its handle, then polled to a terminal state and fetched in partitions)",
+    "build": {
+      "at": "2026-08-31T21:50:09",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone submits SQL to Snowflake and expects their answer to come straight back. It doesn't — the first thing back is only a handle to check later. So what actually comes back first?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'I submit SQL to Snowflake and get my answer back. Right?', hesitates on 'answer', corrects to 'handle', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "I submit SQL to\nSnowflake and get\nmy answer back.\nRight?",
+            "face": "serif",
+            "fontSize": 64,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "answer",
+            "replacementWords": "handle",
+            "mistakeRate": 3,
+            "hesitateWithin": 2,
+            "hesitateBetween": 10,
+            "charMs": 40,
+            "jitter": 22,
+            "seed": "hai-snowflake-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('answer' -> 'handle') is visible on a late frame.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T21:50:09"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes / 2 wrong guess, falsified",
+      "narration_text": "Submit a query to Snowflake's SQL API and the first response back is a statement handle — not rows, not an error, just a handle to check later. Submit SQL with a typo and the API still hands back a handle just the same; only polling that handle afterward reveals the statement failed — the failure never shows up in the response to the call that submitted it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "A clean query and a typo'd query both submit and both come back with a handle, identical; only a later poll on the typo'd one flips to FAILED"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "Submit returns a handle, not rows",
+          "mechanic": "Two request cards submit side by side — CLEAN SQL and SQL WITH A TYPO. Both return an identical statement handle. A second poll appears beneath each: the clean one reads FINISHED; the typo'd one reads FAILED, appearing only on the poll, never on the original submit response.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "SFB01Scene"
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.78,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T21:50:09"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "3 mechanism / 4 ANCHOR PLANTED",
+      "narration_text": "Before any query runs, Claude needs a warehouse to run it on — compute picked from what's browsable: warehouses, databases, schemas, and tables. Choose one, then submit the real question — what tables are in this schema — and the SQL API hands back exactly one thing: a statement handle. Not the table list. Just a handle to check later.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR — a warehouse chosen from the browsable list, the 'what tables are in this schema' query submitted, the API returns one handle"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR — warehouse, then submit",
+          "mechanic": "THE ANCHOR. A browsable list — WAREHOUSES, DATABASES, SCHEMAS, TABLES — with one warehouse highlighted as chosen. Below, a query card 'what tables are in this schema' submits and returns a single handle stamp, nothing else. THIS EXACT QUERY AND HANDLE RETURN AT B03.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "SFB02Scene"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T21:50:09"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "4 ANCHOR PAYOFF / 5 both directions",
+      "narration_text": "Poll that same handle until it reaches a terminal state, then fetch the result — but it can arrive in more than one partition, so one fetch isn't always the whole answer. Reaching a terminal state isn't proof the query succeeded either; that same status can read failed instead, and only the poll ever shows it, never the original submit. A handle still shown as running isn't stuck — that's what polling is for, and it's also what you'd cancel if you needed to stop it early. The habit that carries past this one question: expect the table list in partitions, and check status before you trust any of them.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 36,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS — the same handle polled to a finished, partitioned result, beside the same handle polled to failed instead; a cancel option and a partitions note break out to the side"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS — terminal state isn't proof, then partitions",
+          "mechanic": "THE B02 HANDLE RETURNS, identical, polled for status. One branch reads FINISHED, result ready, rows paged across PARTITION 1 / PARTITION 2. A second branch, same shape, reads FAILED instead — flagged terracotta, never visible on the original submit. A third small state, RUNNING, sits mid-poll with a CANCEL option beside it, unstuck, just waiting. A card breaks off to the side: 'fetch every partition, not just the first' with a struck-through single-fetch assumption beside it.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "SFB03Scene"
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 30.31,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T21:50:09"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Every Snowflake query Claude runs turns on one habit — treat the submit call as a receipt, not an answer: poll the handle to a terminal state, then fetch the result one partition at a time — get that right and a response from the SQL API stops meaning anything it doesn't.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Every Snowflake query Claude runs turns on one habit — treat the submit call as a receipt, not an answer: poll the handle to a terminal state, then fetch the result one partition at a time — get that right and a response from the SQL API stops meaning anything it doesn't.",
+            "attribution": "",
+            "sparkLine": "Submit is a receipt. Poll, then fetch."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "actual_duration_s": 15.66,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T21:50:09"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. List the tables in a schema I have access to in Snowflake. Watch three things: does it treat the first response as a handle to check, not a finished answer, does it poll that handle to a terminal state before trusting it, and does it fetch more than one partition if the table list is long. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "SNOWFLAKE API · YOUR TURN",
+            "segment": "Your Turn",
+            "command": "List the tables in a schema I have access to in Snowflake.",
+            "runningText": "Watch: first response treated as a handle, not an answer? polled to terminal state? more than one partition fetched?",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 17.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T21:50:09"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Snowflake Api. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Claude, Snowflake Api. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.65,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T21:50:09"
+      }
+    }
+  ]
+}

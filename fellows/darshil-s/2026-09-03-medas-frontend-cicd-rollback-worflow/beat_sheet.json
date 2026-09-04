@@ -1,0 +1,622 @@
+{
+  "metadata": {
+    "title": "Continuous Integration and Rollback",
+    "slug": "medas-ci-rollback",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "docs/ci-workflow.md; docs/rollback-workflow.md (medas-aggregation-frontend repo)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "hello": "Habari",
+    "description": "Two workflows added after the original CI/CD pipeline: the CI workflow (lint/test/build on every PR, informative but not merge-blocking on this org's Free plan) and the Rollback workflow (manual, guarded, redeploys an already-built image without rebuilding). The worked example is real: PR #2 deliberately broke a test to prove CI catches it but doesn't block the merge button.",
+    "aspect": "16:9",
+    "note": "GitHub-dark skin throughout the CI and Rollback sections (diegetic subject surface), Claude-cream skin for the bookends (INTRO, NEXT STEPS, OUTRO). No screen recordings -- every command and error message is drawn from ci-workflow.md and rollback-workflow.md.",
+    "total_estimated_duration_seconds": 232,
+    "build": {
+      "at": "2026-08-31T15:17:30",
+      "cut": "master",
+      "filled": 15,
+      "of": 15,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, ask shown answered",
+      "narration_text": "Habari -- this is Darshil. Two more workflows now guard medas-aggregation-frontend: one that checks every pull request automatically, the other that undoes a bad deploy on command. Here's what each one actually catches, and where each one's authority stops.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "gh pr checks 2  &&  gh workflow run rollback.yaml -f environment=dev -f version=dev-v0.0.1",
+            "topic": "GITHUB ACTIONS · CI · ROLLBACK",
+            "segment": "Continuous Integration and Rollback",
+            "greeting": "Habari, Darshil",
+            "runningText": "walkthrough: what CI catches → what Rollback undoes…",
+            "output": [
+              "repo: TayyarH/medas-aggregation-frontend",
+              "CI: automatic, every PR, visibility only",
+              "Rollback: manual, deliberate, redeploys -- never rebuilds"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 14.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "CI",
+      "role_note": "section A, step 1 -- the trigger",
+      "narration_text": "Start with when CI even runs. It fires on a pull request into dev, stage, or master -- opened or updated. No push trigger, no manual button. Nobody has to remember to run it; GitHub does it the moment a PR exists.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              ".github",
+              "workflows",
+              "ci.yaml"
+            ],
+            "branch": "dev",
+            "lang": "yaml",
+            "lines": [
+              "on:",
+              "  pull_request:",
+              "    branches: [dev, stage, master]",
+              "",
+              "# no push: trigger -- direct pushes don't run this",
+              "# no workflow_dispatch -- there is no manual \"Run workflow\" button"
+            ],
+            "caption": "Every PR into any of the three branches gets the exact same checks."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 12.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CI",
+      "role_note": "section A, step 2 -- checkout through lint",
+      "narration_text": "Four steps in, in order: pull down the PR's exact code, install Node 20, run npm ci for a locked, reproducible install, then lint. Lint is set to continue-on-error on purpose -- a style warning shouldn't block the pipeline the way a real failure should.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              ".github",
+              "workflows",
+              "ci.yaml"
+            ],
+            "branch": "dev",
+            "lang": "yaml",
+            "lines": [
+              "- uses: actions/checkout@v4",
+              "- uses: actions/setup-node@v4",
+              "  with: { node-version: 20, cache: npm }",
+              "- run: npm ci",
+              "- name: Lint",
+              "  run: npm run lint",
+              "  continue-on-error: true   # warns, never blocks"
+            ],
+            "caption": "npm ci, not npm install -- the exact versions in package-lock.json, every run."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CI",
+      "role_note": "section A, step 3 -- test + build, the two that actually block",
+      "narration_text": "The last two steps are different. Run tests -- Vitest, covering the diagnosis-merging logic and the auth token storage -- and this one is not continue-on-error: a failing test fails the whole job. Then build, the same vite build that produces the real bundle -- a final check that the app still compiles, not just passes tests.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              ".github",
+              "workflows",
+              "ci.yaml"
+            ],
+            "branch": "dev",
+            "lang": "yaml",
+            "lines": [
+              "- name: Run tests",
+              "  run: npm run test        # Vitest -- NOT continue-on-error",
+              "",
+              "- name: Build",
+              "  run: npm run build       # vite build -- the real bundle"
+            ],
+            "caption": "tests/components/mergeUtils.test.js · tests/context/AuthContext.test.jsx"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.51,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CI",
+      "role_note": "section A, step 4 -- the limitation",
+      "narration_text": "Here's the limit worth knowing. CI can show a red X on a PR. It cannot stop the Merge button from being clicked. Real enforcement needs GitHub's paid branch-protection feature, and this org's Free plan only allows that on public repos -- not an option here, given the codebase touches patient diagnosis logic.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubRepoHero",
+          "props": {
+            "name": "medas-aggregation-frontend",
+            "kind": "React + Vite diagnostic UI",
+            "headline": "CI can flag it. It can't block it.",
+            "starLabel": "Star",
+            "repo": "TayyarH/medas-aggregation-frontend",
+            "handle": "@TayyarH",
+            "tagline": "Free-plan org, private repo -- branch protection isn't available"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.24,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CI",
+      "role_note": "section A, close -- the worked example (PR #2)",
+      "narration_text": "Proved it directly. On PR #2, one test assertion was deliberately changed to something obviously wrong. CI ran -- checkout, node, install, and lint all passed -- then Run tests failed at about twenty seconds, and a red X landed on the PR. The Merge button? Still clickable. Just a yellow warning, not a block.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "TayyarH",
+              "medas-aggregation-frontend",
+              "pull",
+              "2"
+            ],
+            "branch": "dev",
+            "lang": "diff",
+            "lines": [
+              "- expect(mergeConsensus(a, b)).toBe(CORRECT_VALUE)",
+              "+ expect(mergeConsensus(a, b)).toBe('This Is Deliberately Wrong')",
+              "",
+              "# Run tests -- FAILED after ~20s",
+              "# PR #2: \"Some checks were not successful\" -- Merge button still enabled"
+            ],
+            "caption": "PR #1 (the real CI setup) ran clean -- all six steps, ~28 seconds."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.56,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ROLLBACK",
+      "role_note": "section B, pivot -- caught vs. undone",
+      "narration_text": "CI catches a bug before merge. It does nothing once something bad is already live. For that, a second workflow: Rollback -- switch a running environment back to a version that already worked, without rebuilding anything.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubRepoHero",
+          "props": {
+            "name": "medas-aggregation-frontend",
+            "kind": "React + Vite diagnostic UI",
+            "headline": "Caught before merge. Now: undo after deploy.",
+            "starLabel": "Star",
+            "repo": "TayyarH/medas-aggregation-frontend",
+            "handle": "@TayyarH",
+            "tagline": "no rebuild -- just repoint Cloud Run at an image that already worked"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 11.82,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ROLLBACK",
+      "role_note": "section B, step 1 -- workflow_dispatch, manual only",
+      "narration_text": "Unlike CI's automatic PR trigger, or Deploy's automatic tag trigger, Rollback runs only when someone deliberately clicks a button. It asks for two inputs: which environment, and the exact version tag to restore. That's on purpose -- a rollback is a decision, never an accident.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              ".github",
+              "workflows",
+              "rollback.yaml"
+            ],
+            "branch": "dev",
+            "lang": "yaml",
+            "lines": [
+              "on:",
+              "  workflow_dispatch:",
+              "    inputs:",
+              "      environment: { type: choice, options: [dev, stage, master] }",
+              "      version:     { type: string }     # e.g. dev-v0.0.1"
+            ],
+            "caption": "The \"Run workflow\" button only appears once this file exists on the default branch."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 15.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ROLLBACK",
+      "role_note": "section B, step 2 -- guard 1, validate inputs",
+      "narration_text": "Before touching anything, it checks the version tag actually matches the chosen environment -- dev only accepts dev-v tags, stage only stage-v, master only a bare v. Pick dev but type a stage tag by mistake, and it stops right here with a clear error, instead of rolling back the wrong environment.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "TayyarH",
+              "medas-aggregation-frontend",
+              "terminal"
+            ],
+            "branch": "dev",
+            "lang": "bash",
+            "lines": [
+              "case \"$ENV\" in",
+              "  dev)    case \"$VERSION\" in dev-v*)   ;; *) exit 1 ;; esac ;;",
+              "  stage)  case \"$VERSION\" in stage-v*) ;; *) exit 1 ;; esac ;;",
+              "  master) case \"$VERSION\" in v*)       ;; *) exit 1 ;; esac ;;",
+              "esac"
+            ],
+            "caption": "Catches a dev/stage/master mismatch before Google Cloud is ever touched."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 16.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "ROLLBACK",
+      "role_note": "section B, step 3 -- guard 2, verify the image exists",
+      "narration_text": "Second guard: it looks up the exact image tag in Artifact Registry before deploying anything. A typo like dev-v0.01 instead of dev-v0.0.1 fails here, loudly -- not partway through an actual deployment to a live service.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "TayyarH",
+              "medas-aggregation-frontend",
+              "terminal"
+            ],
+            "branch": "dev",
+            "lang": "bash",
+            "lines": [
+              "IMAGE_URI=\"$REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$VERSION\"",
+              "gcloud artifacts docker images describe \"$IMAGE_URI\" || \\",
+              "  { echo \"::error::Could not resolve image '$IMAGE_URI'\"; exit 1; }"
+            ],
+            "caption": "Never rebuilds -- only ever redeploys an image that was already built and pushed."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 15.64,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "ROLLBACK",
+      "role_note": "section B, step 4 -- the redeploy itself",
+      "narration_text": "Only after both guards pass does it actually act -- the same gcloud run deploy used by the Deploy workflow, pointed at the old image instead of a freshly built one. Cloud Run creates a new revision and routes live traffic to it, typically finishing much faster than a real deploy, since nothing gets rebuilt.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "TayyarH",
+              "medas-aggregation-frontend",
+              "terminal"
+            ],
+            "branch": "dev",
+            "lang": "bash",
+            "lines": [
+              "gcloud run deploy $SERVICE \\",
+              "  --image=\"$IMAGE_URI\" \\",
+              "  --region=$REGION --service-account=$WIF_SERVICE_ACCOUNT \\",
+              "  --allow-unauthenticated --quiet"
+            ],
+            "caption": "Same deploy mechanism as Deploy -- the only difference is which image."
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 17.28,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "ROLLBACK",
+      "role_note": "section B, close -- end to end",
+      "narration_text": "End to end: a person clicks Run workflow, picks the environment and version, the inputs get validated, the image gets verified, and only then does Cloud Run get repointed. Every step before the actual deploy exists to catch a mistake before it reaches a live, doctor-facing service.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Run workflow (manual)",
+                "d": "environment + version, typed by a person"
+              },
+              {
+                "k": "validate inputs",
+                "d": "tag prefix must match the environment"
+              },
+              {
+                "k": "verify image exists",
+                "d": "Artifact Registry lookup, before Cloud Run",
+                "hi": true
+              },
+              {
+                "k": "gcloud run deploy",
+                "d": "repoints Cloud Run -- no rebuild"
+              }
+            ],
+            "caption": "Three checks before one action -- deliberately slower than Deploy, on purpose."
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 16.53,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "SUMMARY",
+      "role_note": "the lesson, one beat",
+      "narration_text": "So: two workflows, two different jobs. CI runs on every PR automatically and can only warn -- someone still has to look at the check before merging. Rollback runs only when a person deliberately triggers it, and only after two separate guards pass. Automatic and lenient, paired with manual and strict -- that pairing is the actual safety net, not either one alone.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Continuous Integration and Rollback",
+            "artifactHeading": "Two workflows, two different jobs",
+            "artifactLines": [
+              "CI: automatic on every PR, but can only warn -- a human still has to look before merging.",
+              "Rollback: manual only, gated by two guards -- input validation, then an image-exists check.",
+              "Neither rebuilds a bad deploy away -- CI prevents it going out; Rollback undoes it once it's out.",
+              "Together: automatic + lenient, paired with manual + strict."
+            ]
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 18.92,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B12.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW -- suggested prompt, read and discussed",
+      "narration_text": "Your turn: if your own pipeline has a check that only warns instead of blocking, look for whether a manual undo path exists too. If a test can fail and still let a merge through, a guarded rollback workflow is what actually protects the live service -- not the check by itself.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "gh workflow run rollback.yaml -f environment=dev -f version=<last-known-good-tag>",
+            "topic": "GITHUB ACTIONS · CI · ROLLBACK",
+            "segment": "Continuous Integration and Rollback",
+            "greeting": "Your turn.",
+            "runningText": "paste this into your own repo…",
+            "output": [
+              "If a check can warn without blocking a merge,",
+              "make sure a manual, guarded rollback exists --",
+              "that's what actually protects the live service."
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 15.04,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B13.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Continuous integration and rollback. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Continuous Integration and Rollback",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 3.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B14.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T15:17:30"
+      }
+    }
+  ]
+}

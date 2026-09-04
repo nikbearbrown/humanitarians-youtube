@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "Reading the Claims",
+    "slug": "patent-agent-video4-reading-the-claims",
+    "topic": "Claude Code · Patent Intelligence",
+    "register": "Pragmatist",
+    "voice": "claude-hai",
+    "voice_kokoro": "af_bella",
+    "engine": "kokoro",
+    "palette": "humanitarians",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "channel": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "note": "Mycroft patent intelligence progress video 4. Real session: found that word count and limitation-marker heuristics don't predict claim scope across 9 real independent claims; built a Claude-based classifier with a required confidence caveat; got a genuinely good first result; hit a real model refusal on biotech subject matter and handled it gracefully; built the real ClaimsAgent class wiring parser + classifier together; ran a real end-to-end test against a cached patent.",
+    "total_estimated_duration_seconds": 150,
+    "build": {
+      "at": "2026-08-31T14:07:57",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00A",
+      "act": "INTRO",
+      "role_note": "presenter executive summary",
+      "narration_text": "Hi, I'm Aishwarya from the Mycroft team. This video covers the harder half of the Claims Agent — not splitting claims apart, but reading what one actually protects.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "Reading the Claims",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Hi, I'm Aishwarya",
+            "runningText": "from the Mycroft team",
+            "output": [
+              "This video covers the harder half of the Claims Agent —",
+              "not splitting claims apart, but reading what one protects."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00A.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B00A.mp3",
+      "actual_duration_s": 10.28,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00A.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW",
+      "narration_text": "Nine independent claims. Word counts from forty-seven to three hundred and three. Not one clean line separating broad from narrow.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "python3 inspect_independent_claims.py",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "Reading the Claims",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Hai,",
+            "runningText": "inspecting 9 claims…",
+            "output": [
+              "word count: 47 to 303",
+              "no clean line: broad vs. narrow"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 8.64,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "the real evidence against a shortcut",
+      "narration_text": "Method: the cheap approach was tried first — word count, limitation markers, method-versus-system. Real data across nine claims showed neither one predicts scope on its own. A short claim can be narrow by being specific. A long claim can still be broad. This was the real reason to reach for judgment instead of a rule.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_TheRealEvidence",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.52,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_TheRealEvidence",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "OUTPUT",
+      "role_note": "the first real classification",
+      "narration_text": "Running one real independent claim through Claude: broad, offensive, with a reasoning that pointed to the actual claim language — not the word count — and a caveat naming something specific and checkable: whether the dependent claims narrow the broad term used in the independent one.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_TheFirstClassification",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.71,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_TheFirstClassification",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CHANGE",
+      "role_note": "the real refusal",
+      "narration_text": "A second real claim, a real refusal. Plant cell cultures, a pharmaceutical compound family — the model correctly flagged the subject matter and declined to classify it. Not a bug. A real, structural limit of using this kind of model call on real, varied patent content.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_TheRealRefusal",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.52,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_TheRealRefusal",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "role_note": "handling it honestly",
+      "narration_text": "The fix wasn't to route around the refusal. It was to catch it, and say so — mark the reading as unclear, name the real reason, and point back to the raw text instead of pretending a scope reading exists when it doesn't.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_HandlingItHonestly",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 13.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_HandlingItHonestly",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTPUT",
+      "role_note": "building the real agent class",
+      "narration_text": "The pieces needed one real home: a ClaimReading for each claim's structural facts plus, for independent claims, a scope reading; a PatentClaimsReading holding the whole set with real counts, not invented ones. The ClaimsAgent class itself does one job — split the claims, flag genuine multi-dependencies, and call the classifier only on the independent ones, with an option to skip classification entirely when only the free, structural reading is needed.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_BuildingTheAgent",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 28.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_BuildingTheAgent",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT",
+      "role_note": "the real end-to-end test",
+      "narration_text": "Run against a real, cached patent — no new BigQuery cost, one real classification call. Structural pass first, zero API cost: seventeen claims, one independent, sixteen dependent, matching the verified count exactly. Full pass with classification: the same real numbers, plus one honest scope reading with its own confidence caveat. No crash, nothing invented.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_TheEndToEndTest",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 23.94,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim:B06_TheEndToEndTest",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW",
+      "narration_text": "Your turn. Take any independent claim, run it through the same classifier, and read the confidence caveat before trusting the label — it's there to tell you exactly where the reading's judgment could be wrong.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"classify this independent patent claim's protection scope as broad/narrow and defensive/offensive/exploratory, with a real confidence caveat: [PASTE CLAIM TEXT]\"",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "Reading the Claims",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "read the caveat first…"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 12.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:07:57"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW",
+      "narration_text": "Reading the Claims. Built with Claude, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Reading the Claims.",
+            "handle": "@HumanitariansAI",
+            "subline": "judgment, honestly caveated"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 3.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:07:57"
+      }
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "metadata": {
+    "title": "State Space Models and Mamba Architecture",
+    "slug": "state-space-models-and-mamba",
+    "deliverable_name": "StateSpaceModelsAndMamba_UdaySonawane_2026-08-27.mp4",
+    "topic": "WEEKLY STEM",
+    "brand_key": "claude-hai",
+    "register": "Pragmatist",
+    "channel": "@HumanitariansAI",
+    "audience": "students — smart people getting started with AI",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "aspect": "16:9",
+    "style_preset": "claude",
+    "palette": "claude",
+    "note": "ai-explainer chassis on the claude-hai channel (@HumanitariansAI, am_onyx, Pragmatist, student audience). Built to the PROOF rubric: BLUF, then the FRAMEWORK (three axes: STATE / UPDATE / COST) shown as a structure before any architecture is scored, worked scoring of the incumbents, then SSM -> S4 -> Mamba, then a falsifiability beat the framework PREDICTS (fixed state => copying ceiling), verdict, scaffolded task. ILLUSTRATE LAW: the Claude UI appears only in the bookends; every middle beat illustrates its concept. No LaTeX anywhere (dvisvgm absent) — equations are set as plain Text. Every claim is sourced in SOURCES.md / FACTCHECK.md.",
+    "total_estimated_duration_seconds": 235,
+    "build": {
+      "at": "2026-08-27T23:09:55",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — Claude composer, ask lands answered. Speaks the author's name. HAI greeting uses a short-form hello (word budget).",
+      "narration_text": "I'm Uday Sonawane, and this week: state space models, and the Mamba architecture.",
+      "new_visual_element": "Claude composer, the week's question, answered",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": "the Claude composer with the week's question and its three-line answer",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"what problem is the Mamba architecture actually solving, and what does it give up to solve it?\"",
+            "topic": "WEEKLY STEM",
+            "segment": "State Space Models and Mamba",
+            "greeting": "Hej, HAI",
+            "runningText": "reading the papers…",
+            "output": [
+              "attention costs the square of the sequence",
+              "an SSM keeps ONE fixed-size state",
+              "Mamba: make that state selective"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 5.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "role_note": "EXECUTIVE-SUMMARY LAW — one breath, for a smart non-technical viewer, before any specific",
+      "narration_text": "Here it is in one breath. Transformers remember every token, and pay for it: cost grows with the square of the sequence. State space models keep one fixed-size summary instead, so cost grows linearly. Mamba is the version of that idea that finally competed on language. Memory traded for speed. And the trade is not free.",
+      "new_visual_element": "the one-breath summary: quadratic curve versus linear line",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "show": "two cost curves against sequence length — quadratic versus linear — with the trade named beneath",
+        "visual_intent": "Axes draw. A quadratic curve climbs steeply, labelled attention. A straight line rises gently, labelled state space. The gap between them fills faintly. Spark lands in terracotta: memory traded for speed."
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.69,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "FRAMEWORK",
+      "role_note": "PROOF rubric — the reusable rubric shown AS A STRUCTURE before any architecture is scored. These three axes are what the viewer takes away.",
+      "narration_text": "So before any architecture, three questions to ask about all of them. One: the state. What does the model carry forward? Two: the update. How does that state change when a new token arrives? Three: the cost. What does one more token cost, in time and in memory? Every sequence model is an answer to those three. Score a new one on them, and you will know what it can and cannot do.",
+      "new_visual_element": "the three axes, as a numbered structure",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "show": "three numbered axis cards: STATE / UPDATE / COST, each with its question",
+        "visual_intent": "Three cards land in a row, one per narration step: STATE (what is carried forward), UPDATE (how it changes per token), COST (what one more token costs). They stay on screen as the rubric every later beat is scored against."
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.88,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "WORKED EXAMPLE",
+      "role_note": "the rubric applied live to the two architectures the viewer already knows — the reasoning, not the conclusion",
+      "narration_text": "Score the two you already know. A recurrent network has a small fixed state, updates it with the same rule every step, and costs constant time per token. Cheap, but it forgets. A Transformer's state is the whole context, every token kept. Its update is attention, comparing the new token against all the previous ones. And its cost grows with the square of the length. It forgets nothing, and it pays for that on every single token.",
+      "new_visual_element": "RNN and Transformer scored on the three axes, side by side",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "resolve",
+        "show": "a 2x3 scoring grid: RNN and Transformer against STATE / UPDATE / COST",
+        "visual_intent": "The three axis labels carry over as row headers. Two columns fill in, RNN first then Transformer, cell by cell as each is named. Both columns stay on screen together so the comparison is visible while it is asserted."
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 21.29,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MECHANISM",
+      "role_note": "the SSM recurrence itself — set as plain Text, never LaTeX (dvisvgm absent)",
+      "narration_text": "A state space model is a third answer, borrowed from control theory. A hidden state h evolves by a linear rule: h prime equals A h plus B x. The output just reads that state: y equals C h. Discretize it so it steps token by token, and you have a recurrence. Fixed-size state. Linear cost. The whole story from here is what A, B and C are allowed to be.",
+      "new_visual_element": "the two SSM equations, then the unrolled recurrence",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "show": "h'(t) = A h(t) + B x(t) and y(t) = C h(t), then the same state stepping across four tokens",
+        "visual_intent": "Both equations set large in mono. A, B and C highlight in terracotta as named. Then the equations lift and a four-step chain draws beneath: one state box, the same box, updated per token — the fixed-size state made visible."
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 19.61,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "MECHANISM",
+      "role_note": "S4 — structure made it trainable; the ceiling that motivated Mamba. Sourced: Gu, Goel, Re 2021.",
+      "narration_text": "In the earlier versions those matrices were fixed, and carefully structured. That is the S4 result, from Gu, Goel and Ré, in twenty twenty-one. Structure made them trainable, and it worked: S4 was the first architecture to get a non-trivial result on Path-X, the long-range benchmark that had defeated everything before it. But the matrices were the same for every token. The model could not decide that this token matters and that one does not.",
+      "new_visual_element": "fixed matrices applied identically to every token",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "reveal",
+        "show": "one fixed A/B/C block reused across every token in the sequence, with the S4 citation on screen",
+        "visual_intent": "A row of tokens; the same A B C block stamps onto each one, identical every time. The repetition is the point. Then the limitation lands in terracotta: same rule for every token. Source line credits Gu, Goel and Re, 2021."
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 22.21,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "MECHANISM",
+      "role_note": "the Mamba move — selection. Sourced: Gu & Dao, arXiv:2312.00752.",
+      "narration_text": "Mamba's move, from Gu and Dao in twenty twenty-three, is one change with a long shadow. Make the parameters functions of the input. Delta, B and C get computed from the token itself. Now the model can selectively propagate or forget, depending on what it is reading. That breaks the convolution trick the older models trained with, so the paper pays for it with a hardware-aware parallel scan. The selection is the idea. The scan is the bill.",
+      "new_visual_element": "fixed parameters becoming functions of the input",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "resolve",
+        "show": "the same token row, but now each token computes its own delta, B and C",
+        "visual_intent": "The identical stamped blocks from the previous beat now differ per token — each token draws an arrow up into its own delta/B/C, and the blocks change. One token dims to near-forgotten, another brightens in terracotta: selectively propagate or forget."
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 22.1,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "EVIDENCE",
+      "role_note": "the paper's own numbers, on screen, with the citation — REBUILD LAW and no-source-no-verdict",
+      "narration_text": "What that bought, in the paper's own numbers: five times higher inference throughput than a Transformer of similar size. Scaling that is linear in sequence length. Performance that keeps improving out to million-length sequences. Mamba at three billion parameters outperforms Transformers its own size, and matches ones twice its size. And it drops attention and M L P blocks entirely.",
+      "new_visual_element": "the four headline claims, each with its citation",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "show": "four claim cards: 5x throughput, linear scaling, 1M-length, 3B matches 2x size — sourced to arXiv:2312.00752",
+        "visual_intent": "Four claim cards land one per narration clause, each a number set large. The source line sits under all four: Gu and Dao, arXiv 2312.00752. Nothing on screen that is not in the paper."
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 20.78,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "FALSIFIABILITY",
+      "role_note": "PROOF rubric — the case that breaks it, and the framework PREDICTS it from axis 1. Sourced: Jelassi et al. 2024, arXiv:2402.01032.",
+      "narration_text": "Now the beat that matters most, and the framework predicts it. Go back to axis one. The state is fixed size. So ask what that breaks. Copying. Jelassi and colleagues, in twenty twenty-four, proved it: a state space model cannot copy arbitrary input strings unless its state grows with the sequence. A Transformer can, because it kept everything. And this is not a flaw in Mamba. Any model with fixed memory has the same ceiling. The axis that made it cheap is the axis that limits it.",
+      "new_visual_element": "a long string being copied, and the fixed state overflowing",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "reveal",
+        "show": "a growing input string against a fixed-size state box that cannot hold it, side by side with the transformer's growing store",
+        "visual_intent": "Left: an input string grows token by token while one fixed state box stays the same size — it fills and cannot take more. Right: a store that grows with the input. Both held side by side. The terracotta line: fixed memory, fixed ceiling. Source credits Jelassi et al., 2024."
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 27.11,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "role_note": "the rubric closed — Mamba scored on the same three axes, plus when to use it and when NOT to (the HAI spine question)",
+      "narration_text": "So, scored. State: fixed and small, which is the whole bargain. Update: input-dependent, which is what made it competitive. Cost: linear, which is what you came for. Use it when the sequence is long and the job is compression — audio, genomics, streaming. Be careful when the job is retrieval, when the answer is a literal span sitting somewhere back in the context.",
+      "new_visual_element": "Mamba's column filled into the same scoring grid, plus use / be careful",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "show": "the grid from B03 with a third column for Mamba, then a USE IT / BE CAREFUL split",
+        "visual_intent": "The same three axis rows return; a Mamba column fills beside RNN and Transformer, closing the loop opened in B03. Beneath, two short lists: USE IT (long sequences, compression) and BE CAREFUL (retrieval, literal recall) — the second in terracotta."
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.39,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B09.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "role_note": "HANDOFF LAW + PROOF active-task rule — a runnable scaffold with a good/bad discriminator, read aloud",
+      "narration_text": "Your turn, and do not take my scoring for it. Paste this. Pick a sequence architecture I did not cover, and score it on state, update, and cost per token. Then name one task it should fail. A good answer names a concrete failure and shows which axis predicts it. A bad answer lists features. If you cannot say what an architecture fails at, you do not understand it yet.",
+      "new_visual_element": "Claude composer, the handoff prompt typed in",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": "the Claude composer with the viewer's prompt and the good/bad test",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"score RWKV on three axes — state, update, cost per token. Then name one task it should fail, and which axis predicts that failure.\"",
+            "topic": "WEEKLY STEM",
+            "segment": "Your turn · score one yourself",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "GOOD: a named failure + the axis that predicts it",
+              "BAD: a list of features",
+              "can't name a failure = don't understand it yet"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 18.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-27T23:09:55"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "title restate — @HumanitariansAI, author name in subline",
+      "narration_text": "State space models, and Mamba. Humanitarians A I.",
+      "new_visual_element": "title card, channel handle",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": "the title-restate outro card",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "State Space Models and Mamba",
+            "handle": "@HumanitariansAI",
+            "subline": "Uday Sonawane · Weekly STEM"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 3.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-08-27T23:09:55"
+      }
+    }
+  ]
+}

@@ -1,0 +1,642 @@
+{
+  "metadata": {
+    "title": "Three Files, Twenty-One Tests",
+    "slug": "three-files-twenty-one-tests",
+    "topic": "CROSS-AGENT VALIDATION",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-divij",
+    "persona": "Divij Pawar",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Divij",
+    "folderLabel": "@DivijPawar",
+    "in_for_bear": false,
+    "series": "Cross-Agent Validation - part 2 of 2",
+    "continues_from": "when-two-agents-disagree/beat_sheet.json (Video 1) - answers its B09 subline",
+    "source_script": "D:/Code/mycroft/verification-layer/divij/video-script-cross-agent-validation-20min.md (PART TWO, chapters 7-13 + close)",
+    "build": {
+      "at": "2026-08-23T16:49:46",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open - welcome + self-intro",
+      "narration_text": "Hi — I'm Divij Pawar. This is part two of When Two Agents Disagree. Last time: correctness needs ground truth, disagreement needs nothing, and the safe move is to surface a conflict rather than resolve it. This time I'll show you what I actually built on top of that — three files, twenty-one tests, and nothing else in the system changed.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 18.01,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "What does cross-agent validation look like when you actually build it?",
+            "topic": "CROSS-AGENT VALIDATION",
+            "segment": "Three Files, Twenty-One Tests",
+            "greeting": "Hola, Divij",
+            "runningText": "reading the diff…",
+            "output": [
+              "Three new files. Everything else in the layer, unchanged.",
+              "The comparison itself is one line of set arithmetic.",
+              "A flagged contradiction is recorded, never resolved."
+            ],
+            "folderLabel": "@DivijPawar",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        },
+        "concept": "COLD OPEN LAW + tips.txt section 2: a sequel still opens on the welcome screen with a spoken self-intro. Never assume Video 1's context carries over visually. The 'last time' recap is one clause inside this beat, not a replacement for it.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Claude composer UI fades in, greeting 'Hola, Divij'"
+          },
+          {
+            "at": 0.2,
+            "event": "command types in: 'What does cross-agent validation look like when you actually build it?'"
+          },
+          {
+            "at": 0.5,
+            "event": "running line: reading the diff"
+          },
+          {
+            "at": 0.6,
+            "event": "three output lines resolve; the second is the spine of the whole video"
+          }
+        ]
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary (BLUF)",
+      "narration_text": "Here's the whole thing in one breath. I already had an accountability layer that made an agent's reasoning permanently on the record — but it could only prove what was said, never whether it was true. Cross-agent validation was already on the architecture diagram: specified, named, and completely empty. So I built the smallest honest version. Run two agents, compare their numbers, write down where they disagree, and stop. No judge. No model. Set arithmetic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 22.1,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B01_PerfectRecordUnknownTruth"
+        },
+        "concept": "EXECUTIVE-SUMMARY LAW. One card, no code, no data. An immaculate stack of timestamped records builds up — crisp, orderly, obviously well-engineered — then the whole stack desaturates under the caption PERFECT RECORD. UNKNOWN TRUTH. A second, empty slot labelled CROSS-AGENT VALIDATION sits beside it and fills with a single terracotta line. Names the shape and the stakes; spends none of the reveals (no symmetric difference, no mutation table, no orphan counters).",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "a stack of immaculate timestamped records builds up, one card at a time"
+          },
+          {
+            "at": 0.28,
+            "event": "the stack desaturates; caption: 'PERFECT RECORD. UNKNOWN TRUTH.'"
+          },
+          {
+            "at": 0.45,
+            "event": "an empty dashed slot appears beside it, labelled 'CROSS-AGENT VALIDATION'"
+          },
+          {
+            "at": 0.62,
+            "event": "the slot fills with one terracotta line: 'compare two agents. record the gap. stop.'"
+          },
+          {
+            "at": 0.8,
+            "event": "chips resolve beneath: 'NO JUDGE' - 'NO MODEL' - 'SET ARITHMETIC'"
+          },
+          {
+            "at": 0.92,
+            "event": "hold, no motion"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_PerfectRecordUnknownTruth",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "what already existed",
+      "narration_text": "Four things already existed. The ReasoningObject — one frozen record per agent attempt, holding the conclusion, the steps, the confidence, the sources. The validation loop — output must parse into a required structure, one retry, then halt; both attempts get recorded either way, because a failed attempt is evidence too. The store — SQLite, with database-level triggers that abort any update or delete, so you cannot quietly edit history. And the consistency probe, which already had the scoring: sixty percent number overlap, forty percent word overlap, three thresholds. All of that existed. It was just pointed at one agent, compared against a repeat of itself.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 31,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 34.73,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B02_WhatAlreadyExisted"
+        },
+        "concept": "A four-part component diagram; each part lights in turn, then all four stay lit as a single system. Part 2 (the validation loop) gets a small inset flow: ATTEMPT 1 - parse? - SUCCESS, else ATTEMPT 2 - SUCCESS or HALT, with both attempts dropping records into the same stack. Part 3 shows a RAISE(ABORT) stamp on an attempted edit. Part 4 shows the 0.6 / 0.4 weights and the three thresholds in PT Mono (data job). Do NOT set 'ReasoningObject' through an uppercase chip helper - it smashes to 'REASONINGOBJECT' with no visible break (tips.txt section 9). Write it as 'Reasoning Object' or keep mixed case.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "four empty component slots draw in across the frame"
+          },
+          {
+            "at": 0.08,
+            "event": "slot 1 fills: 'Reasoning Object' - frozen record, conclusion + steps + confidence + sources"
+          },
+          {
+            "at": 0.26,
+            "event": "slot 2 fills: the validation loop; inset flow ATTEMPT 1 / ATTEMPT 2 / HALT"
+          },
+          {
+            "at": 0.38,
+            "event": "both attempts visibly drop records into the same stack"
+          },
+          {
+            "at": 0.52,
+            "event": "slot 3 fills: SQLite store; an edit attempt hits a RAISE(ABORT) stamp"
+          },
+          {
+            "at": 0.68,
+            "event": "slot 4 fills: consistency probe; mono panel shows 0.6 numbers / 0.4 words"
+          },
+          {
+            "at": 0.78,
+            "event": "three thresholds resolve: HIGH 0.70 / MEDIUM 0.40 / LOW below 0.40"
+          },
+          {
+            "at": 0.88,
+            "event": "all four stay lit; an arrow loops the probe back onto a single agent"
+          },
+          {
+            "at": 0.94,
+            "event": "caption: 'POINTED AT ITSELF'"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_WhatAlreadyExisted",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "the orphan",
+      "narration_text": "So I audited the project to find where this could actually be useful, and the answer was already on the published architecture diagram. The orchestration layer declared three mechanisms: cross-agent validation, dynamic task allocation, pattern recognition. All three had zero implementation. But cross-agent validation was the best-specified orphan in the repo — twenty-one thousand, eight hundred and twenty-four bytes of specification, sixteen scaffolded scripts, and zero shared logic connecting them. That's the pattern everywhere. The node layer is thirty thousand, four hundred and ninety-seven lines; one thousand two hundred and seventy-six of those are real logic. Tests: zero. And why had nobody built it? Cross-agent validation needs two agents that emit comparable conclusions. The project had approximately zero.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 34,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 43.09,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B03_TheOrphan"
+        },
+        "concept": "Three movements. (1) The published architecture diagram draws in — four agent categories, an orchestration layer on top holding three named mechanisms. All three stamp ZERO IMPLEMENTATION; the spotlight lands on CROSS-AGENT VALIDATION. (2) A counter panel ticks up in PT Mono: 21,824 bytes / 1 conductor doc / 16 scripts / 0 shared logic. The last row is the punchline — let it land alone. (3) Two bars: 30,497 total vs 1,276 real logic. The gap is the story, so give the small bar a label and let the empty space carry the rest. tips.txt section 6: three mechanism nodes with chips underneath collided in the last reel - wrap 'Dynamic Task Allocation' and 'Pattern Recognition' to two lines.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "architecture diagram draws in: four agent categories, orchestration layer above"
+          },
+          {
+            "at": 0.14,
+            "event": "three mechanism nodes label in, each wrapped to two lines"
+          },
+          {
+            "at": 0.24,
+            "event": "all three stamp 'ZERO IMPLEMENTATION'"
+          },
+          {
+            "at": 0.32,
+            "event": "spotlight narrows onto CROSS-AGENT VALIDATION"
+          },
+          {
+            "at": 0.44,
+            "event": "counter panel, PT Mono: specification 21,824 bytes"
+          },
+          {
+            "at": 0.52,
+            "event": "conductor documents: 1"
+          },
+          {
+            "at": 0.58,
+            "event": "scaffolded node scripts: 16"
+          },
+          {
+            "at": 0.66,
+            "event": "shared logic wiring any of it together: 0 - held alone, terracotta"
+          },
+          {
+            "at": 0.78,
+            "event": "clear to two bars: 30,497 lines total vs 1,276 lines of real logic"
+          },
+          {
+            "at": 0.88,
+            "event": "small chip under the bars: 'TESTS IN THE NODE LAYER: 0'"
+          },
+          {
+            "at": 0.94,
+            "event": "caption: 'BLOCKED ON ITS OWN DEPENDENCIES'"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_TheOrphan",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "the cuts are the design",
+      "narration_text": "Version one got scoped down until it was almost boring, and the cuts are the design. Producer A: a real agent, already wired to live SEC EDGAR endpoints. Producer B: a hand-written fixture that returns a conclusion I pick in advance. That sounds like cheating. It isn't. If both producers are real and the comparator says contradiction, you can't tell whether they genuinely disagree or your comparator is broken. With a fixture, a wrong result can only be the comparator's fault. Second cut: contradiction means numeric divergence only. No entailment model, no judge. Third cut: it writes a record and stops — no escalation, no alert. And no new HTTP route: the layer has four open critical security findings, and adding no route adds no new exposure.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 35,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 39.96,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B04_CutsAreTheDesign"
+        },
+        "concept": "Two boxes first: AgentID.FINANCIAL wired to a live EDGAR endpoint, and AgentID.EARNINGS wired to a hand-written fixture. Then the fixture justification, done visually rather than narrated: two hypotheses branch off a CONTRADICTION node - 'they disagree' / 'comparator broken' - and with two real producers neither branch can be eliminated; the fixture kills one branch and the surviving branch highlights. Ends on a checklist: five items checked IN SCOPE, seven struck through DEFERRED, each deferred item carrying a one-word reason. Use checked() from graphics_lib for the ticks - never put a check glyph inside a font-forced Text() (tips.txt section 4). Twelve checklist rows at floor type size will run past y = -3.6; compress the row spacing and check the LAST row's position before rendering 4K (tips.txt section 7).",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "two boxes: AgentID.FINANCIAL (live EDGAR) and AgentID.EARNINGS (fixture)"
+          },
+          {
+            "at": 0.14,
+            "event": "a CONTRADICTION node branches into two hypotheses"
+          },
+          {
+            "at": 0.22,
+            "event": "branch A: 'the agents genuinely disagree'; branch B: 'the comparator is broken'"
+          },
+          {
+            "at": 0.3,
+            "event": "with two real producers, neither branch can be eliminated - both stay lit"
+          },
+          {
+            "at": 0.4,
+            "event": "the fixture swaps in; branch B extinguishes, branch A locks, terracotta"
+          },
+          {
+            "at": 0.52,
+            "event": "clear to the scope checklist; five IN SCOPE rows tick in"
+          },
+          {
+            "at": 0.68,
+            "event": "seven DEFERRED rows strike through, each with a one-word reason"
+          },
+          {
+            "at": 0.86,
+            "event": "the last deferred row highlights: 'no new HTTP route'"
+          },
+          {
+            "at": 0.92,
+            "event": "chip beneath: '4 OPEN CRITICAL FINDINGS - NO NEW EXPOSURE'"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_CutsAreTheDesign",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "the code",
+      "narration_text": "Three files, and the test file is the biggest of them — that ratio isn't an accident. Each agent gets its own context: information asymmetry, encoded in a function signature. When an agent fails validation twice, the loop raises, and its records get carried forward rather than dropped, because a halt is a fact somebody may want to see. Then the comparison, in full: extract the numbers from both conclusions, take the symmetric difference, and anything in exactly one of them is a divergence. No model. No judge. Set arithmetic. The scoring wasn't rewritten, it was re-pointed — same weights, same thresholds, imported unmodified. And one line covers both cases: a different value is caught, and a missing number is caught by the same rule.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 35,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 38.36,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B05_SymmetricDifference"
+        },
+        "concept": "The visual spine of the video - give the symmetric-difference animation the most screen time in the reel. (1) File tree: three items marked NEW, six marked UNCHANGED; the test file is visibly the largest. (2) The halt handler as real source on a PT Mono card, held long enough to read - four lines, no more. (3) The set animation: two number sets fill from two conclusions, the intersection cancels out, and what remains in exactly one set lifts out in terracotta. Run it twice - once for 12% vs 8%, once for 12% vs nothing - so 'same rule, no special case' is shown, not stated. Real source text only, PT Mono, never prose restyled as code.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "file tree draws in: three NEW files, six UNCHANGED"
+          },
+          {
+            "at": 0.1,
+            "event": "the test file is visibly the tallest of the three NEW rows"
+          },
+          {
+            "at": 0.2,
+            "event": "signature card: each agent takes its own context - chip 'ASYMMETRY, IN THE SIGNATURE'"
+          },
+          {
+            "at": 0.32,
+            "event": "PT Mono card, held: the HaltError handler carrying reasoning objects forward"
+          },
+          {
+            "at": 0.44,
+            "event": "chip: 'THE HALT IS THE EVIDENCE'"
+          },
+          {
+            "at": 0.56,
+            "event": "set animation begins: conclusion A yields {12%}, conclusion B yields {8%}"
+          },
+          {
+            "at": 0.64,
+            "event": "intersection cancels; both numbers lift out as divergent, terracotta"
+          },
+          {
+            "at": 0.74,
+            "event": "replay with conclusion B empty: {12%} vs {} - 12% lifts out by the same rule"
+          },
+          {
+            "at": 0.84,
+            "event": "caption: 'SAME RULE. NO SPECIAL CASE.'"
+          },
+          {
+            "at": 0.92,
+            "event": "three chips: 'NO MODEL' - 'NO JUDGE' - 'SET ARITHMETIC'"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_SymmetricDifference",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "how it fits, and proving the tests can fail",
+      "narration_text": "Now, how it lives inside the layer rather than beside it. Both agents share one run ID, because here the comparison is the evidence — flag a contradiction without producing both conclusions and you've published an accusation with no exhibits. The runs table stores a free-form JSON blob, so a whole new kind of record needed no migration and no new column. One new key. And it inherits the append-only triggers for free: once a flag is written, it can't be updated or deleted. Then, the tests. Twenty-one new, all passing — which is worth almost nothing. A passing suite proves your tests agree with your code, not that they'd notice if the code were wrong. So I broke it on purpose. Swap the symmetric difference for an intersection: seven tests fail. Return false instead of null when no comparison happened: three more.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 41.77,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "manim": {
+          "scene_class": "B06_RunIdAndMutation"
+        },
+        "concept": "Longest beat; two halves, roughly equal, with a hard cut between them. FIRST HALF: two record stacks slide together and merge under one container labelled run_id: 7f3a...; then the payload dict appears in PT Mono with every key greyed except the last, cross_agent_comparison, in terracotta; then three inherited-property chips resolve - APPEND-ONLY / IMMUTABLE RECORDS / TIERED DISCLOSURE - under the caption NONE OF THIS WAS WRITTEN FOR CROSS-AGENT VALIDATION. SECOND HALF: a big green 129/129, then a question mark beside it; then the mutation table builds row by row. Close on the false-vs-null two-chip comparison - that is the sharpest idea in the reel, so it gets the last four seconds and no competing motion. Native scene length must reach the full beat duration; do not let compile.py stretch this one (tips.txt section 8).",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "two agent record stacks slide together and merge"
+          },
+          {
+            "at": 0.1,
+            "event": "container label resolves: 'run_id: 7f3a...'"
+          },
+          {
+            "at": 0.18,
+            "event": "chip: 'THE COMPARISON IS THE EVIDENCE'"
+          },
+          {
+            "at": 0.28,
+            "event": "payload dict, PT Mono; every key greyed except the last"
+          },
+          {
+            "at": 0.36,
+            "event": "'cross_agent_comparison' highlights in terracotta - chip: 'ONE NEW KEY'"
+          },
+          {
+            "at": 0.46,
+            "event": "three chips resolve: APPEND-ONLY / IMMUTABLE RECORDS / TIERED DISCLOSURE"
+          },
+          {
+            "at": 0.52,
+            "event": "caption: 'NONE OF THIS WAS WRITTEN FOR CROSS-AGENT VALIDATION'"
+          },
+          {
+            "at": 0.6,
+            "event": "hard cut; a large green '129 / 129' fills the frame"
+          },
+          {
+            "at": 0.66,
+            "event": "a question mark fades in beside it"
+          },
+          {
+            "at": 0.74,
+            "event": "mutation table row 1: symmetric_difference to intersection - 7 tests failed"
+          },
+          {
+            "at": 0.82,
+            "event": "mutation table row 2: contradiction_flag None to False on halt - 3 tests failed"
+          },
+          {
+            "at": 0.88,
+            "event": "row 3: file restored byte-identical, suite reconfirmed 129 / 129"
+          },
+          {
+            "at": 0.93,
+            "event": "two chips, held: 'false = CHECKED, FOUND NOTHING' / 'null = NO CHECK WAS POSSIBLE'"
+          }
+        ]
+      },
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_RunIdAndMutation",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "verdict - the honest list",
+      "narration_text": "So let's be precise about what this is not. Comparison is numeric only — two conclusions that disagree completely while citing the same figures sail straight through. Producer B is still a fixture, so no genuine disagreement has ever been observed on live data. It isn't SQL-queryable. And a flagged contradiction triggers nothing.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 17.6,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Known gaps",
+            "artifactHeading": "What version one does not do",
+            "artifactLines": [
+              "Numeric divergence only - two conclusions can disagree in prose and still pass.",
+              "Producer B is a fixture; no real cross-agent disagreement observed on live data.",
+              "Stored in a JSON blob: retrievable by run ID, not queryable in SQL.",
+              "A flagged contradiction triggers nothing. No alert. No escalation. No named human."
+            ]
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        },
+        "concept": "The verdict page is the honest list, not a victory lap - every line is a limitation logged the day it was built. Calm register, no hedging, no apology. Plain hyphens, not a Unicode minus.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page slides in"
+          },
+          {
+            "at": 0.2,
+            "event": "heading lands: 'What version one does not do'"
+          },
+          {
+            "at": 0.35,
+            "event": "four numbered lines resolve in sequence, each holding after it lands"
+          }
+        ]
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "your turn - handoff",
+      "narration_text": "Your turn. Paste this into Claude: \"Find one place in my system where a check returns false when it actually means the check could not run.\" That's the null-versus-false distinction, aimed at your own code. False claims a check happened and came back clean. Null says the check couldn't run. A system that silently converts the second into the first manufactures an all-clear out of a failure. Go find one.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.8,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Find one place where my code returns false when it means the check could not run.",
+            "topic": "CROSS-AGENT VALIDATION",
+            "segment": "Your Turn",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Run this against a codebase you actually maintain",
+              "Learn where your system manufactures a false all-clear",
+              "false = checked and clean. null = the check never ran."
+            ],
+            "folderLabel": "@DivijPawar",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        },
+        "concept": "HANDOFF LAW: greeting drops the persona for 'Your turn.'; the prompt is typed AND read aloud verbatim, then discussed. It extends B06's sharpest idea into the viewer's own code rather than asking them to 'learn more'. Typing appears in exactly two beats in this reel: B00 and here.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "composer clears, greeting 'Your turn.'"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in, character by character, in time with the read"
+          },
+          {
+            "at": 0.55,
+            "event": "running line: paste this into Claude"
+          },
+          {
+            "at": 0.65,
+            "event": "three output lines resolve; the third restates the false/null distinction"
+          }
+        ]
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:49:46"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "outro",
+      "narration_text": "Three files. Twenty-one tests. Nothing else changed. The judgment stays with the human — that was never the bottleneck. That was the point. Divij Pawar.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 8.77,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Three Files, Twenty-One Tests",
+            "handle": "@DivijPawar",
+            "subline": "The judgment stays with the human. That was the point."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        },
+        "concept": "OUTRO LAW: exact episode-title restate, poster serif with the terracotta period, handle beneath. The subline answers Part One's outro subline - the two cards are designed to be read as a pair.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title card: 'Three Files, Twenty-One Tests'"
+          },
+          {
+            "at": 0.3,
+            "event": "handle: '@DivijPawar'"
+          },
+          {
+            "at": 0.5,
+            "event": "subline resolves"
+          }
+        ]
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:49:46"
+      }
+    }
+  ]
+}

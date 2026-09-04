@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "Match The Transport, Not The Key.",
+    "subtitle": "The MCP Integration Skill (Transports & Tool Names)",
+    "slug": "claude-plugins-official--claude-liam-mcp-integration",
+    "topic": "MCP INTEGRATION · CLAUDE PLUGINS",
+    "purpose": "Answer one real question in the Plain register: when you wire an external service into a Claude Code plugin over MCP, is there one standard way to hook it up — or does the right setup depend on where the service actually runs? Lands the carry-out that the transport is matched to where the service lives, and the pre-allowed tool name has to match character for character or it fails silently.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-plugins-official/youtube/claude-liam-mcp-integration/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Extending Claude — Skills, Plugins & Connectors",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - single worked example (the mcp-integration skill itself), named at B00 and present through NB01-NB03; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T04:02:16",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed the only thing that matters is which key to use. It isn't — the real choice is which transport your plugin needs. So: what kind of transport does my plugin need for a service?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'What kind of key does my plugin need for a service?', hesitates on 'key', corrects to 'transport', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "What kind of\nkey does my plugin\nneed for\na service?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "key",
+            "replacementWords": "transport",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 8,
+            "charMs": 42,
+            "jitter": 26,
+            "seed": "hai-mcp-integration"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 1.0 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('key' -> 'transport') lands on screen and the full corrected question finishes typing before the clip ends. Params (42ms/char, 8% hesitateBetween, 4% mistakeRate, 4-line/~49-char text) follow the fixed pattern established on the claude-plugins-official--claude-liam-agent-development sibling after its first-attempt overrun.",
+      "actual_duration_s": 10.67,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:02:16"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "Four transport types, and each server uses exactly one. Stdio spawns a local process — Claude Code starts it, talks over standard input and output, and shuts it down when it's done; that's for custom servers and local tools. SSE connects to a hosted server, and handles OAuth automatically — you log in once in a browser, and Claude Code manages the tokens after that; that's the type for official hosted services like GitHub or Linear. HTTP calls a REST API with a token in the request headers, for stateless one-off calls. WebSocket keeps a live, two-way connection open, for real-time updates. All four load lazily — nothing connects until you actually use one of its tools — and a config change needs a restart before it takes effect.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 32,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "FOUR TRANSPORT TYPES",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "FOUR TRANSPORT TYPES",
+          "chips": [
+            "stdio",
+            "SSE",
+            "HTTP",
+            "WebSocket"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "one per server, matched to where it lives",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "actual_duration_s": 40.83,
+      "audio_file": "mp3/beat-NB01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T04:02:16"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "A few patterns keep a multi-server plugin manageable. Put server config in its own dot-mcp-dot-json file instead of burying it inline in plugin.json — it stays isolated and easier to maintain as servers are added. Use the CLAUDE_PLUGIN_ROOT variable for every file path, never a hardcoded one, so the plugin still works after it's installed somewhere else. And when you pre-allow tools for a command, list the exact tool names instead of a wildcard — the format is mcp, double underscore, the plugin name, the server name, double underscore, the tool name, all stitched together. Run slash-mcp first to see the real names before you write that list.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "PORTABLE PATHS, EXACT NAMES",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "PORTABLE PATHS, EXACT NAMES",
+          "chips": [
+            ".mcp.json",
+            "CLAUDE_PLUGIN_ROOT",
+            "exact tool names"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "scoped permissions, no hardcoded paths",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "actual_duration_s": 35.52,
+      "audio_file": "mp3/beat-NB02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T04:02:16"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "Here's the catch: that tool name has to match character for character. Get one letter wrong in the pre-allow list, and the tool doesn't show up — no error, no warning, it's just not there. And for stdio or HTTP servers, the credentials they need are just environment variables — nothing checks them until the first real call, so a broken setup can look perfectly healthy right up until that moment.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "WRONG BY ONE CHARACTER",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "WRONG BY ONE CHARACTER",
+          "chips": [
+            "exact match",
+            "one typo",
+            "no error"
+          ],
+          "arrows": false,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "a mismatch fails silently, not loudly",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "actual_duration_s": 19.95,
+      "audio_file": "mp3/beat-NB03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T04:02:16"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Match the transport to where the service actually lives — stdio for local, SSE for hosted OAuth, HTTP for tokens, WebSocket for real-time. Then pre-allow the exact tool name, because one character off and it fails silently, not loudly.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Match the transport to where the service actually lives — stdio for local, SSE for hosted OAuth, HTTP for tokens, WebSocket for real-time. Then pre-allow the exact tool name, because one character off and it fails silently, not loudly.",
+            "attribution": "",
+            "sparkLine": "Match the transport. Name it exactly."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 14.74,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:02:16"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Paste this into Claude: Add a GitHub SSE MCP server and a local custom stdio server to my plugin. Then check what it wrote: did it use dot-mcp-dot-json, kept separate from plugin.json? Does every path use the CLAUDE_PLUGIN_ROOT variable instead of something hardcoded? And before it pre-allows any tools, did it tell you to run slash-mcp first, to get the exact names? That's the real test of a working setup.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "MCP INTEGRATION · CLAUDE PLUGINS",
+            "segment": "Match The Transport, Not The Key.",
+            "command": "Add a GitHub SSE MCP server and a local custom stdio server to my plugin.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 22.66,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:02:16"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Match The Transport, Not The Key. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "MCP INTEGRATION · @HumanitariansAI",
+            "line": "Match The Transport, Not The Key."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.75,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:02:16"
+      }
+    }
+  ]
+}

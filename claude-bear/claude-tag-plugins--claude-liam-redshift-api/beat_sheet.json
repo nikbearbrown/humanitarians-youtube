@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "title": "Claude, Redshift API.",
+    "slug": "claude-tag-plugins--claude-liam-redshift-api",
+    "topic": "REDSHIFT API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer whether a successful Redshift Data API call means the query succeeded, using the redshift-api skill's own documented facts as the concrete case. Lands the carry-out that every call turns on two habits — polling DescribeStatement to a terminal state before fetching, and decoding cells with to_entries[0].value.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-tag-plugins/youtube/claude-liam-redshift-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B02 -> B03 (top-20-events-past-month query, submitted via ExecuteStatement for its Id, then polled to a terminal state and decoded)",
+    "build": {
+      "at": "2026-08-31T20:40:50",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumes a 200 back from Redshift means their query worked. It doesn't — 200 only means the query began; whether it actually finished comes later. So did it really work?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'A 200 from Redshift means my query worked. Right?', hesitates on 'worked', corrects to 'began', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A 200 from\nRedshift means my\nquery worked.\nRight?",
+            "face": "serif",
+            "fontSize": 64,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "worked",
+            "replacementWords": "began",
+            "mistakeRate": 3,
+            "hesitateWithin": 2,
+            "hesitateBetween": 10,
+            "charMs": 40,
+            "jitter": 22,
+            "seed": "hai-redshift-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('worked' -> 'began') is visible on a late frame.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:40:50"
+      },
+      "actual_duration_s": 10.26
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes / 2 wrong guess, falsified",
+      "narration_text": "Submit a query and Redshift's Data API hands back an Id — not rows, not a result, just an Id to check later. Send SQL with a typo and ExecuteStatement still returns 200; only polling DescribeStatement later reveals Status FAILED — the failure never shows up in the response to the call that submitted it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "A clean query and a typo'd query both submit and both come back 200 + an Id; only a later poll on the typo'd one flips to FAILED"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "200 means accepted, not correct",
+          "mechanic": "Two request cards submit side by side — CLEAN SQL and SQL WITH A TYPO. Both return 200 and an Id, identical. A second poll appears beneath each: the clean one reads FINISHED; the typo'd one reads FAILED, appearing only on the poll, never on the original 200.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "RSB01Scene"
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T20:40:50"
+      },
+      "actual_duration_s": 18.77
+    },
+    {
+      "beat_id": "B02",
+      "act": "3 mechanism / 4 ANCHOR PLANTED",
+      "narration_text": "Two things have to be set before any call: the region — baked into the endpoint hostname — and a connection target in one shape: a workgroup name for Serverless, a cluster plus a database user for provisioned access, or a secret for Secrets Manager. Set the workgroup and submit the real query — the top twenty events from the past month, grouped by name — and ExecuteStatement hands back exactly one thing: an Id.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR — region and RS_TARGET (workgroup) set, the 'top 20 events, past month, grouped by name' query submitted, ExecuteStatement returns one Id"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR — region + RS_TARGET, then submit",
+          "mechanic": "THE ANCHOR. Two setting tags lock in: REGION (endpoint hostname) and RS_TARGET, with three small labelled slots — WorkgroupName, ClusterIdentifier+DbUser, SecretArn — one (WorkgroupName) highlighted as chosen. Below, a query card 'top 20 events · past month · grouped by name' submits and returns a single Id stamp. THIS EXACT QUERY AND ID RETURN AT B03.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "RSB02Scene"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T20:40:50"
+      },
+      "actual_duration_s": 21.23
+    },
+    {
+      "beat_id": "B03",
+      "act": "4 ANCHOR PAYOFF / 5 both directions",
+      "narration_text": "Poll that same Id with DescribeStatement until it reaches FINISHED, then check HasResultSet before calling GetStatementResult — a write statement can finish with nothing to page. But FINISHED alone doesn't mean the SQL was clean; that same field can read FAILED instead, and only DescribeStatement, never the original call, ever says so. A statement still sitting at STARTED isn't stuck either — that's what the poll loop is for. One habit that carries past this one query: decode each cell with to entries bracket zero dot value; a plain dot value silently returns nothing.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 33,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS — the same Id polled to FINISHED and paged, beside the same Id polled to FAILED instead; a decode card breaks out to the side"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS — FINISHED vs FAILED, then decode",
+          "mechanic": "THE B02 ID RETURNS, identical, polled with DescribeStatement. One branch reads FINISHED, HasResultSet true, rows paged. A second branch, same shape, reads FAILED instead — flagged terracotta, never visible on the original 200. A third small state, STARTED, sits mid-poll, unstuck, just waiting. A card breaks off to the side: 'to_entries[0].value, not .value' with a struck-through naive read beside it.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "RSB03Scene"
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T20:40:50"
+      },
+      "actual_duration_s": 31.08
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Every Redshift query Claude runs turns on two habits — poll DescribeStatement to a terminal state before ever calling GetStatementResult, and decode each cell with to entries bracket zero dot value instead of a naive dot value — get those right and a 200 from ExecuteStatement stops meaning anything it doesn't.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Every Redshift query Claude runs turns on two habits — poll DescribeStatement to a terminal state before ever calling GetStatementResult, and decode each cell with to_entries[0].value instead of a naive .value — get those right and a 200 from ExecuteStatement stops meaning anything it doesn't.",
+            "attribution": "",
+            "sparkLine": "Poll to terminal. Decode to_entries[0]."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:40:50"
+      },
+      "actual_duration_s": 17.77
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Query my Redshift Serverless workgroup — find the top twenty events from the past month, grouped by name. Watch three things: does it set the region and the workgroup before making any call, does it poll DescribeStatement to a terminal state before ever calling GetStatementResult, and does it read the result cells with to entries bracket zero dot value instead of a naive dot value that comes back empty. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "REDSHIFT API · YOUR TURN",
+            "segment": "Your Turn",
+            "command": "Query my Redshift Serverless workgroup — find the top twenty events from the past month, grouped by name.",
+            "runningText": "Watch: region+workgroup set? DescribeStatement polled to terminal before fetch? to_entries[0].value used for cells?",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:40:50"
+      },
+      "actual_duration_s": 23.68
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Redshift API. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Claude, Redshift API. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:40:50"
+      },
+      "actual_duration_s": 3.52
+    }
+  ]
+}

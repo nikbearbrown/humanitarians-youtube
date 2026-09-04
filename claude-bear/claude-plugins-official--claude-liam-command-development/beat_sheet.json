@@ -1,0 +1,316 @@
+{
+  "metadata": {
+    "title": "For Claude, Not For You.",
+    "subtitle": "The Command Development Skill",
+    "slug": "claude-plugins-official--claude-liam-command-development",
+    "topic": "COMMAND DEVELOPMENT · CLAUDE PLUGIN",
+    "purpose": "Answer one real question in the Plain register: when you write a Claude Code slash command, is its body a message to the user, or an instruction to Claude? Lands the carry-out that a command's body is written for Claude, not for you — the words that matter tell Claude what to do.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-plugins-official/youtube/claude-liam-command-development/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Extending Claude — Skills, Plugins & Connectors",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - single worked example (the slash-command file format itself), named at B00 and present through NB01-NB03; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T00:16:15",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed a command's body describes what will happen to the user. It doesn't — it's a directive TO Claude. So: when I write a command body, am I writing it for Claude?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'When I write a command body, am I writing it for the user?', hesitates on 'user', corrects to 'Claude', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "When I write\na command body,\nam I writing it\nfor them?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "them",
+            "replacementWords": "Claude",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 8,
+            "charMs": 42,
+            "jitter": 26,
+            "seed": "hai-command-development"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 1.0 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('user' -> 'Claude') lands on screen and the full corrected question finishes typing before the clip ends. Params (42ms/char, 4% mistakeRate, 8% hesitateBetween, 56-char/13-word text) reused verbatim from the agent-development/claude-automation-recommender siblings' already-proven-safe values, after the TIMING LAW overrun lesson learned on the first agent-development render.",
+      "actual_duration_s": 9.58,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:16:15"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "A slash command is a Markdown file with YAML frontmatter, and its body is a directive TO Claude — not a message to the user. Commands live in three places: project commands, shared with the team and available only in that project; personal commands, available in every project; and plugin commands, bundled with an installed plugin. Frontmatter carries five fields: description, allowed-tools, model, argument-hint, and disable-model-invocation.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "ANATOMY: LOCATIONS + FIELDS",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "ANATOMY: LOCATIONS + FIELDS",
+          "chips": [
+            "command.md",
+            "three spots",
+            "five fields"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "scope, then the fields that shape it",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "actual_duration_s": 23.02,
+      "audio_file": "mp3/beat-NB01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:16:15"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "Arguments come two ways. Dollar-ARGUMENTS captures everything typed after the command as one string. Dollar-1, dollar-2 capture individual pieces — a PR number, then a priority level. The at-sign reads a file: at-dollar-1 opens whatever path the argument names; a static reference like at-package-dot-json embeds a known file every time, no argument needed. Plugin commands get one more trick: CLAUDE_PLUGIN_ROOT resolves to the plugin's own folder, so a command can point at its own scripts without a hardcoded path. One note from the skill itself: this whole file format is now considered legacy — new work is pointed toward a skill file instead.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "ARGUMENTS + FILE REFS",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "ARGUMENTS + FILE REFS",
+          "chips": [
+            "$ARGUMENTS",
+            "$1 / $2",
+            "@ file refs"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "one string, or one piece at a time",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "actual_duration_s": 35.71,
+      "audio_file": "mp3/beat-NB02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:16:15"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "One gap worth knowing: a command can also run a shell command inline before Claude ever sees the rest — an exclamation mark, then backticks, pulling in something like the current git diff automatically. That's the single most useful dynamic trick available. But the guide that teaches command-writing doesn't show it inline — it's pushed off into a separate reference file instead.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "ONE GAP",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "ONE GAP",
+          "chips": [
+            "! bash",
+            "handiest",
+            "reference file"
+          ],
+          "arrows": false,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "not taught where you'd look for it",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "actual_duration_s": 19.33,
+      "audio_file": "mp3/beat-NB03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:16:15"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "A slash command's body is written for Claude, not for you. The words that matter tell Claude what to do — not what you'll see happen.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "A slash command's body is written for Claude, not for you. The words that matter tell Claude what to do — not what you'll see happen.",
+            "attribution": "",
+            "sparkLine": "Direct Claude. Don't describe the outcome."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 7.27,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:16:15"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Open a Claude Code session and paste this: Create a slash command called review-pr that takes a PR number as an argument, reads the changed files, and reviews them for code quality. Watch four things. First: does the command body tell Claude what to do, or describe what will happen to you? Second: does it use dollar-ARGUMENTS or dollar-1 for the PR number, with the argument-hint field set? Third: does it use allowed-tools to restrict what the command can touch? Fourth: if you ask it to add bash execution to pull in the PR diff dynamically, does it show you the exclamation-mark backtick syntax inline, or send you to a reference file?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "COMMAND DEVELOPMENT · CLAUDE PLUGIN",
+            "segment": "For Claude, Not For You.",
+            "command": "Create a slash command called review-pr that takes a PR number as an argument, reads the changed files, and reviews them for code quality.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 33.77,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:16:15"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "For Claude, Not For You. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "COMMAND DEVELOPMENT · @HumanitariansAI",
+            "line": "For Claude, Not For You."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.14,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:16:15"
+      }
+    }
+  ]
+}

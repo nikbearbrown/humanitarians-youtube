@@ -1,0 +1,242 @@
+{
+ "metadata": {
+  "slug": "one-number-many-names",
+  "title": "One Number, Many Names",
+  "topic": "HUMANITARIANS AI · MYCROFT — SEC FILINGS AGENT",
+  "segment": "One Number, Many Names",
+  "register": "Skeptic",
+  "audience": "Anyone who combines data from different sources",
+  "brand": "claude-liam-hai",
+  "voice": "af_kore",
+  "engine": "kokoro",
+  "voice_kokoro": "af_kore",
+  "palette": "claude",
+  "ground": "#FAF9F5",
+  "folderLabel": "@HumanitariansAI",
+  "sign_in_line": "Asavari, in for Humanitarians AI.",
+  "chapter_number": 2,
+  "tags": [
+   "HumanitariansAI",
+   "Mycroft",
+   "XBRL",
+   "SEC",
+   "DataEngineering"
+  ],
+  "channel": "hai",
+  "track": "Mycroft (SEC Agent)"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "GREETING",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 4.0,
+   "narration_text": "This is Humanitarians.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "This is Humanitarians.",
+      "topic": "HUMANITARIANS AI · MYCROFT — SEC FILINGS AGENT",
+      "segment": "One Number, Many Names",
+      "greeting": "Salaam, Humanitarians",
+      "runningText": "opening…",
+      "output": [],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B00",
+   "act": "OPEN",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 16.0,
+   "narration_text": "Two companies report the same thing, revenue, and label it completely differently. A human sees they mean the same thing in a second. Software cannot assume that.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "How do two companies report the same thing?",
+      "topic": "HUMANITARIANS AI · MYCROFT — SEC FILINGS AGENT",
+      "segment": "One Number, Many Names",
+      "greeting": "Selam, Kore",
+      "runningText": "tracing the reasoning…",
+      "output": [
+       "They don't use the same label.",
+       "Net Sales · Revenue from Contracts · a custom tag.",
+       "The software must decide when they mean the same thing."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B01B",
+   "act": "Why This Matters",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 20.0,
+   "narration_text": "Hi, I'm Asavari, a fellow at Humanitarians AI. This video is about a deceptively hard problem in financial data: two companies reporting the same thing under different names. You'll learn how to decide, and prove, when two differently-labeled numbers actually mean the same thing. If you ever combine data from different sources, this one's for you.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "command": "What is this video about, and why should I watch it?",
+      "topic": "HUMANITARIANS AI · MYCROFT — SEC FILINGS AGENT",
+      "segment": "One Number, Many Names",
+      "greeting": "Hi, I'm Asavari",
+      "runningText": "the one-line summary…",
+      "output": [
+       "Who: Asavari, a Humanitarians AI fellow",
+       "What: One Number, Many Names",
+       "Why watch: catch the mistake before it costs you"
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Fable 5",
+      "effortLabel": "High"
+     }
+    }
+   },
+   "tangent": true
+  },
+  {
+   "beat_id": "B01",
+   "act": "THE PROBLEM",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 24.0,
+   "narration_text": "Three filings, three different labels, all pointing at the same idea. Treat them as different and your comparison across companies is broken. Treat them as the same without checking and you might merge two things that only look alike. Either mistake is silent.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "The same concept, three labels",
+      "artifactHeading": "one concept -> many tags",
+      "artifactLines": [
+       "\"Net Sales\"",
+       "\"Revenue from Contracts with Customers\"",
+       "smpl: custom extension  ->  all mean: revenue"
+      ],
+      "sparkLine": "One concept, many tags."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "THE MECHANISM",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 30.0,
+   "narration_text": "The fix is deliberate. For each metric, keep an ordered list of tags, most preferred first, the modern standard before the older ones. Take the first the company reports, and record which tag matched, on every value. So the mapping is visible and anyone can disagree. And when nothing matches, it doesn't guess. It flags the metric as missing.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "title": "resolve_metric",
+      "code": "candidates = [\n  'RevenueFromContractWithCustomerExcludingAssessedTax',  # ASC 606\n  'Revenues',\n  'SalesRevenueNet',            # legacy\n]\nfor tag in candidates:\n    if tag in facts: return match(tag)   # record WHICH tag\nreturn MISSING   # never guessed",
+      "sparkLine": "Auditable by construction."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "THE LIMIT",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 22.0,
+   "narration_text": "One nuance. When a company uses its own custom tag, that's not an error. It's often the most accurate label for something unusual. So missing doesn't mean bad data. It means the tool needs a human to confirm the mapping. That distinction keeps the dataset honest.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "A custom tag isn't a wrong tag",
+      "artifactHeading": "Missing is not wrong",
+      "artifactLines": [
+       "A company-specific extension is legitimate",
+       "It just isn't in the standard list",
+       "'Missing' means 'needs a human mapping', not 'bad data'"
+      ],
+      "sparkLine": "Keeps the dataset honest."
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B04",
+   "act": "The verdict",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 14.0,
+   "narration_text": "Any time you merge data from different sources, comparability is a decision, and you should be able to prove it. Do the labels truly mean the same thing? Which exact source did each value come from? Could someone audit that mapping later? And what did you refuse to merge? Numbers are never just numbers. The names matter.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Comparability is a decision you have to prove",
+      "artifactHeading": "Same name is not the same as same meaning",
+      "artifactLines": [
+       "Do the labels actually mean the same thing?",
+       "Which exact tag did each number come from?",
+       "Can someone audit that mapping later?",
+       "What did you refuse to map — and why?"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "OUTRO",
+   "engine": "kokoro",
+   "voice": "af_kore",
+   "estimated_duration_s": 6.0,
+   "narration_text": "One Number, Many Names. From Humanitarians AI.",
+   "shot": {
+    "type": "CARD",
+    "source": "remotion",
+    "motion": "fade",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "One Number, Many Names",
+      "handle": "@HumanitariansAI",
+      "subline": "Using Brutalist · Mycroft — SEC Filings Agent"
+     }
+    }
+   }
+  }
+ ]
+}

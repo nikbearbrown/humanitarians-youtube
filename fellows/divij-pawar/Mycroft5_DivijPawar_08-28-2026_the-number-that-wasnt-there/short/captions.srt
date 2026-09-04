@@ -1,0 +1,235 @@
+1
+00:00:00,000 --> 00:00:03,292
+Two weeks ago, this project built something that runs two AI agents
+
+2
+00:00:03,292 --> 00:00:06,000
+on the same company and flags when their numbers disagree.
+
+3
+00:00:06,708 --> 00:00:09,125
+Last week, both agents finally became real.
+
+4
+00:00:09,542 --> 00:00:12,333
+This week, it ran for the first time. And the first thing
+
+5
+00:00:12,333 --> 00:00:15,167
+it produced wasn't a disagreement. It was a number that came from
+
+6
+00:00:15,167 --> 00:00:15,967
+nowhere.
+
+7
+00:00:16,300 --> 00:00:18,550
+The second agent ran on a model set up locally.
+
+8
+00:00:19,008 --> 00:00:20,883
+Once it ran: real filing data went in.
+
+9
+00:00:21,383 --> 00:00:24,217
+A real independent model came back with a conclusion for each side.
+
+10
+00:00:24,550 --> 00:00:27,800
+Producer A, reading assets, revenue, and net income, wrote: 'Calculated the
+
+11
+00:00:28,050 --> 00:00:31,467
+debt-to-equity ratio as zero point three four.' Its input data contained no
+
+12
+00:00:31,467 --> 00:00:35,092
+debt and no equity figures. Not close, not derived, the concept wasn't
+
+13
+00:00:35,092 --> 00:00:35,892
+in the data at all.
+
+14
+00:00:36,258 --> 00:00:38,133
+Producer B, reading real earnings figures,
+
+15
+00:00:38,842 --> 00:00:42,925
+cited zero numbers. It described them, 'consistent,' 'significantly large,' but
+
+16
+00:00:42,925 --> 00:00:44,008
+never wrote one down.
+
+17
+00:00:44,383 --> 00:00:46,133
+The system flagged a contradiction.
+
+18
+00:00:46,550 --> 00:00:48,800
+It was right to. But not for the reason you'd hope.
+
+19
+00:00:49,450 --> 00:00:51,117
+One surprising result could be noise.
+
+20
+00:00:51,617 --> 00:00:54,700
+So five separate tests ran against it, not a quick pass or
+
+21
+00:00:54,700 --> 00:00:56,200
+fail on each, but the full treatment:
+
+22
+00:00:56,617 --> 00:00:58,950
+what the test is, why it was run, what a clean result
+
+23
+00:00:58,950 --> 00:01:02,033
+should look like, exactly what was fed into it, what actually came
+
+24
+00:01:02,033 --> 00:01:03,117
+back, and what that means.
+
+25
+00:01:03,658 --> 00:01:04,492
+Here's all five.
+
+26
+00:01:05,220 --> 00:01:09,053
+Five tests. One upstream extraction gap, one informative outlier,
+
+27
+00:01:09,428 --> 00:01:11,803
+one mechanism that worked exactly as designed,
+
+28
+00:01:12,262 --> 00:01:14,595
+one clean structural pass, and one real,
+
+29
+00:01:15,178 --> 00:01:17,595
+project-redirecting flaw in what the flag actually measures.
+
+30
+00:01:18,360 --> 00:01:20,693
+The fix wasn't just tested against hand-built examples.
+
+31
+00:01:21,110 --> 00:01:24,818
+It was checked against the same twelve real companies, recalculated, not re-run.
+
+32
+00:01:25,318 --> 00:01:27,693
+Under the old rule: eleven of twelve flagged. Under the new rule:
+
+33
+00:01:27,818 --> 00:01:31,360
+seven of twelve. Four companies, where one agent simply hadn't quantified anything,
+
+34
+00:01:31,527 --> 00:01:32,568
+stopped being false alarms.
+
+35
+00:01:33,068 --> 00:01:35,985
+The other seven, where both agents cited real numbers about different things,
+
+36
+00:01:35,985 --> 00:01:39,527
+are still flagged. That's the honest, measured size of the fix. Not
+
+37
+00:01:39,527 --> 00:01:40,327
+everything.
+
+38
+00:01:40,735 --> 00:01:42,652
+Something specific and countable.
+
+39
+00:01:43,340 --> 00:01:45,257
+Two separate questions, two separate answers.
+
+40
+00:01:45,715 --> 00:01:49,340
+Does the machinery work? Real filings, real independent reasoning, a full audit
+
+41
+00:01:49,340 --> 00:01:52,298
+trail, a guardrail that held on every one of twenty-four real calls.
+
+42
+00:01:52,840 --> 00:01:54,340
+Yes. Provably, not just theoretically.
+
+43
+00:01:55,090 --> 00:01:58,632
+Does the flag reliably mean these two agents disagree? Not yet. Most
+
+44
+00:01:58,632 --> 00:02:01,840
+of what it flags right now is agents discussing different things, not
+
+45
+00:02:01,840 --> 00:02:03,340
+agents contradicting each other.
+
+46
+00:02:03,923 --> 00:02:07,340
+And the one real fabrication this system produced was caught by a
+
+47
+00:02:07,340 --> 00:02:08,548
+person reading the output,
+
+48
+00:02:08,965 --> 00:02:10,215
+not by the system itself.
+
+49
+00:02:11,070 --> 00:02:15,070
+A system built specifically to distrust fluent, confident answers just produced one,
+
+50
+00:02:15,362 --> 00:02:18,070
+and then measured exactly how wrong it was, instead of hiding it.
+
+51
+00:02:18,403 --> 00:02:19,528
+That's not a finished detector.
+
+52
+00:02:19,945 --> 00:02:22,528
+It's a detector that's now told on itself, twice, in two days,
+
+53
+00:02:22,528 --> 00:02:25,362
+once about a number, once about what its own flag actually measures.
+
+54
+00:02:25,820 --> 00:02:28,570
+The smallest true claim, not the biggest: this proved the plumbing.
+
+55
+00:02:28,945 --> 00:02:30,237
+It did not yet prove the judgment.
+
+56
+00:02:30,930 --> 00:02:34,055
+That's the short version. The full video also covers Fast version.
+
+57
+00:02:34,513 --> 00:02:37,597
+Cross-Agent Validation runs…, Test one: claim verification.
+
+58
+00:02:38,013 --> 00:02:41,472
+Here's… and Test two: determinism. What it… — watch The Number That
+
+59
+00:02:41,472 --> 00:02:44,305
+Wasn't There for the whole story. The link is right below.

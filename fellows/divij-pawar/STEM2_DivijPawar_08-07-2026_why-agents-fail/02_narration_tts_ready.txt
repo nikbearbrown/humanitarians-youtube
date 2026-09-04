@@ -1,0 +1,35 @@
+Somewhere right now, an AI agent is stuck. Not broken. Not crashed. Worse — it's still running, still confident, still absolutely sure it's making progress, while it does the exact same thing over and over, burning time, burning money, and reporting "success" the entire way through.
+
+This is the part nobody puts in the demo video. Today we're opening up the four ways agents actually fail — and then we're going to fix one, live, so you can see exactly what stops the bleeding.
+
+An agent works in a cycle: look at the situation, decide what to do, take an action, check what happened, repeat. That loop is the whole engine. The problem is, nothing built into that loop guarantees it ever stops.
+
+Say you've got a coding agent trying to fix a failing test. It runs the test, sees it fail, edits the code, runs the test again. Reasonable so far. But if its fix doesn't actually address the real problem, the test fails again, in the exact same way. So it tries again. Same failure. Again. The agent has no built-in sense of "I've tried this three times, something's fundamentally wrong here." It just keeps observing the same failure, and reacting the same way, forever — unless something outside the loop stops it.
+
+Every AI model has something like a working memory — a limited window of text it can actually pay attention to at once. As a task runs longer, more and more gets stuffed into that window: the original instructions, ten tool results, error messages, retries, side conversations.
+
+Eventually, older information starts getting crowded out, or just deprioritized. The agent's original goal — the thing you actually asked for — was three hundred messages ago. What's left in its immediate attention is the last few tool calls and errors. So it starts optimizing for "make this error go away," instead of "accomplish what the user actually wanted." That's context drift. The agent hasn't forgotten in a dramatic way — it's just lost the thread of what mattered most.
+
+Every tool an agent can use has a strict shape it expects — specific fields, specific formats. Like a form that only accepts a date in one exact format, or a function that only accepts a real, existing file name.
+
+Sometimes the model predicts an argument that sounds exactly right — plausible, well-formatted, confident — but it's just made up. Maybe it's referencing a file that was deleted three steps ago. Maybe it's inventing a setting the tool never supported. The tool call either throws an error, or worse, silently does something slightly different than intended. And because language models are built to produce fluent, confident-sounding text, a hallucinated argument doesn't look like a guess. It looks exactly like a fact.
+
+This is the failure mode that makes the other three dangerous, instead of just annoying. An agent has no built-in alarm bell for "I am stuck." It doesn't experience frustration or doubt. So after ten failed attempts at the same fix, it can still generate a final summary that reads: "Task completed successfully."
+
+That gap — between what actually happened, and what the agent reports happened — is the single most dangerous thing about agent failures. A human who's stuck usually looks stuck. An agent that's stuck can look identical to an agent that succeeded, right up until someone checks the actual result.
+
+Let's walk through one, start to finish. You ask a coding agent to deploy a small website update. Step one — it runs the deploy command. Step two — the deploy fails, because of a missing environment variable. Step three — instead of asking you what that variable should be, it guesses a value, and hallucinates it into the config. Step four — the deploy runs again, fails differently now, because the guessed value was wrong. Step five — the agent, still in the loop, tries a slightly different guess. Step six — same failure, different guess. This repeats twelve times.
+
+By attempt twelve, the context window is packed with failed deploy logs. The original instruction — "deploy this small update" — has been buried under eleven rounds of error messages. And the agent, unprompted, hasn't once said, "I don't actually know this value. Can you tell me?"
+
+So how do you actually stop this? Three guardrails — and they work together.
+
+A turn limit. Cap how many loop cycles the agent gets, before it's forced to stop and report status instead of continuing silently. Twelve failed deploy attempts becomes three, then a forced stop.
+
+A verifier step. Before the agent marks anything as done, a separate check — sometimes a second model call, sometimes a hard rule — actually confirms the real-world result matches the claim. Did the website actually go live? Check. Don't just ask the agent if it thinks it did.
+
+A human-in-the-loop gate. For anything with real consequences — spending money, deleting a file, deploying to production — the agent proposes the action and stops, and a person has to approve it before it executes. This turns "confidently wrong" from a silent disaster, into a visible pause you can catch.
+
+None of these fixes make an agent smarter. They just make its failures visible, and its damage limited — which, it turns out, is most of the actual engineering work behind building agents that don't quietly wreck your afternoon.
+
+Next time an agent tells you it's done, ask yourself — did anything actually check that? If the answer's no, you're trusting a system that's never once had to know the difference between succeeding, and just saying so.

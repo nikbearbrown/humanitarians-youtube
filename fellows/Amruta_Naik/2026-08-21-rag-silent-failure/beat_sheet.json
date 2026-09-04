@@ -1,0 +1,266 @@
+{
+ "metadata": {
+  "title": "Why Your RAG Confidently Retrieves the Wrong Thing",
+  "slug": "rag-silent-failure",
+  "brand": "claude-liam",
+  "channel": "@HumanitariansAI",
+  "series": "AI STEM Explainer",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "hello": "Namaste",
+  "description": "An ai-explainer on the four silent-failure modes of RAG retrieval: similarity is not relevance, embeddings have no clock, chunks lose their context, and nothing checks for contradictions. The teach is a reusable four-axis diagnostic a viewer can run on their own RAG system.",
+  "aspect": "16:9",
+  "date": "2026-08-23"
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "cold open",
+   "narration_text": "Namaste. Your retrieval system returns five chunks. The similarity scores look healthy. The model answers with total confidence. And it's wrong. No error, no warning, nothing in your monitoring caught it. This is silent failure in RAG, and by the end of this you'll have a four-part checklist to catch it.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 20,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "RAG SILENT FAILURE · AI STEM EXPLAINER",
+      "segment": "Why retrieval looks confident and is wrong",
+      "greeting": "Namaste",
+      "command": "query → embed → top-k similarity → stuff into prompt → answer",
+      "runningText": "high similarity scores · zero errors · confidently wrong",
+      "output": [
+       "The 4 silent-failure axes you'll learn to check:",
+       "1. Similarity ≠ relevance",
+       "2. Embeddings have no clock (staleness)",
+       "3. Chunks lose their context",
+       "4. Nothing checks for contradictions"
+      ],
+      "folderLabel": "@HumanitariansAI"
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 19.46
+  },
+  {
+   "beat_id": "B01",
+   "act": "framework",
+   "narration_text": "Here's the framework first, before any example. Standard RAG does four things: chunk your documents, embed them into vectors, retrieve the closest ones by cosine similarity, and stuff them into the prompt. Every silent failure lives in a gap this pipeline has no stage to catch. Four gaps, four axes. Learn the axes and you can diagnose any RAG system, including your own.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "The RAG Silent-Failure Diagnostic",
+      "artifactHeading": "Four axes — check every one",
+      "artifactLines": [
+       "1. RELEVANCE — does 'similar' actually mean 'answers the question'?",
+       "2. FRESHNESS — could a stale chunk score just as high as a current one?",
+       "3. CONTEXT — does each chunk still make sense torn from its document?",
+       "4. CONFLICT — is anything checking retrieved chunks against each other?"
+      ]
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 24.45
+  },
+  {
+   "beat_id": "B02",
+   "act": "axis 1",
+   "narration_text": "Axis one: similarity is not relevance. Ask 'how do I reset my password' and the retriever happily returns the 'password reset policy' document. High similarity, wrong intent — one tells you how, the other tells you the rule. Same words, different job. The vector space measures resemblance, not usefulness. The fix is a reranking step that scores usefulness after retrieval, not just closeness.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "AXIS 1 · SIMILARITY ≠ RELEVANCE",
+      "segment": "Close in vector space, wrong for the task",
+      "greeting": "The mismatch",
+      "command": "query: 'how do I reset my password?'",
+      "runningText": "retrieves 'password reset POLICY' — high score, wrong intent",
+      "output": [
+       "'how do I...' wants a procedure",
+       "'...policy' returns a rule — different job",
+       "cosine similarity measures resemblance, not usefulness",
+       "FIX: add a reranker that scores usefulness after retrieval",
+       "SOURCE: DEV Community, 'RAG Is Not Dead' (Mar 2026)"
+      ],
+      "folderLabel": "@HumanitariansAI"
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 24.64
+  },
+  {
+   "beat_id": "B03",
+   "act": "axis 2",
+   "narration_text": "Axis two: embeddings have no clock. This is the sneaky one. Semantic similarity has no sense of time. An embedding of a deprecated API reference scores exactly as high as the current one. A policy from last quarter retrieves ahead of the updated version. The system can't tell, because the meaning still matches. Your monitoring sees healthy scores while a third of answers quietly go wrong. The fix is decay-weighted scoring — make recency part of the rank.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "AXIS 2 · EMBEDDINGS HAVE NO CLOCK",
+      "segment": "Stale chunks score as high as fresh ones",
+      "greeting": "The sneaky one",
+      "command": "# deprecated API doc vs current API doc",
+      "runningText": "same meaning → same similarity → stale wins, silently",
+      "output": [
+       "semantic similarity has NO temporal dimension",
+       "deprecated reference scores = current reference",
+       "monitoring stays green while answers rot",
+       "FIX: decay-weighted scoring — recency enters the rank",
+       "SOURCE: TianPan.co, 'The RAG Freshness Problem' (May 2026)"
+      ],
+      "folderLabel": "@HumanitariansAI"
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 27.97
+  },
+  {
+   "beat_id": "B04",
+   "act": "axis 3",
+   "narration_text": "Axis three: chunks lose their context. Split a document at five hundred tokens and you tear sentences from what they refer to. A chunk that reads 'it increased by forty percent' is useless — you don't know what 'it' is or when. The retriever grabs it anyway, and the model fills the gap with a guess. The fix is contextual chunking: attach a short summary of the parent document to each chunk before you embed it.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "title": "Axis 3 — a chunk torn from its context",
+      "code": "# RAW CHUNK (embedded as-is, 512-token split):\n\"It increased by 40% after the change.\"\n#   -> what is 'it'?  when?  after WHICH change?\n#   the retriever still returns it. the model guesses.\n\n# CONTEXTUAL CHUNK (parent summary prepended before embed):\n\"[Q3 2025 revenue report, Northwind Corp]\n Revenue increased by 40% after the pricing change.\"\n#   -> now the chunk carries its own context.\n\n# FIX: contextual chunking — prepend document context,\n#      then embed. retrieval and grounding both improve."
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 24.51
+  },
+  {
+   "beat_id": "B05",
+   "act": "axis 4",
+   "narration_text": "Axis four: nothing checks for contradictions. Even when retrieval is perfect, your top chunks can disagree with each other — two documents citing different revenue, two API docs with different rate limits, all in the same top-three result. Standard RAG has no stage that notices. It hands all of them to the model, which blends them into one confident, wrong answer. The fix is a conflict-detection step that keeps the most recent source in each cluster of disagreement.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "AXIS 4 · NOTHING CHECKS CONFLICTS",
+      "segment": "Right chunks, contradicting each other",
+      "greeting": "The blind spot",
+      "command": "top-3: [rev=$42M] [rev=$45M] [rate=100/s]",
+      "runningText": "pipeline has no stage to detect contradictions before generation",
+      "output": [
+       "retrieval can be correct AND self-contradictory",
+       "model blends conflicts into one confident answer",
+       "FIX: conflict-detection stage before generation",
+       "resolve cluster-aware — keep newest per conflict cluster"
+      ],
+      "folderLabel": "@HumanitariansAI"
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 30.95
+  },
+  {
+   "beat_id": "BEDGE",
+   "act": "falsifiability",
+   "narration_text": "Now stress-test the framework. Does more compute fix this? No — and that's the tell that these are real architectural gaps, not tuning problems. A bigger embedding model or a million-token context window makes each axis worse, not better: more stale chunks retrieved, more conflicts stuffed in, more context lost. If throwing scale at it helped, it wouldn't be a silent failure. It's silent precisely because the pipeline is missing a stage, not because the model is too small.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Stress test: does scale fix it?",
+      "artifactHeading": "No — which proves these are architectural gaps",
+      "artifactLines": [
+       "Bigger embedding model → still no temporal dimension (axis 2 unfixed).",
+       "Million-token context → more conflicts stuffed in, not fewer (axis 4 worse).",
+       "Fine-tuning for precision → broad recall drops ~40% (a documented regression).",
+       "The fix is a missing STAGE, never a bigger model.",
+       "SOURCE: Redis research, via Techbuddies Studio (Apr 2026)."
+      ]
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BEDGE.mp3",
+   "actual_duration_s": 30.86
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "handoff",
+   "narration_text": "Your turn, and it's concrete. Take one real query your RAG system gets wrong. Pull the top five retrieved chunks and score each on the four axes: is it relevant or just similar, is it fresh, does it carry its own context, does it contradict its neighbors. Whichever axis fails first is the stage your pipeline is missing. Fix that one before you touch the model.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "topic": "YOUR TURN",
+      "segment": "Score one bad query on all four axes",
+      "greeting": "Your turn.",
+      "command": "# take one query your RAG gets wrong",
+      "runningText": "score its top-5 chunks — the first axis that fails is your missing stage",
+      "output": [
+       "1. RELEVANT or just similar?  (right intent, or right words?)",
+       "2. FRESH?  (or is a stale chunk scoring high?)",
+       "3. SELF-CONTAINED?  (does it make sense torn from its doc?)",
+       "4. CONSISTENT?  (or do chunks contradict each other?)",
+       "→ first failing axis = the stage to build next"
+      ],
+      "folderLabel": "@HumanitariansAI"
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 23.02
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "outro",
+   "narration_text": "Four axes: relevance, freshness, context, conflict. Retrieval quality sets the ceiling — fix it before you blame the model. Namaste.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 8,
+   "shot": {
+    "type": "REMOTION",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Why RAG Confidently Retrieves the Wrong Thing",
+      "handle": "@HumanitariansAI",
+      "subline": "AI STEM Explainer — the four silent-failure axes."
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 9.24
+  }
+ ]
+}

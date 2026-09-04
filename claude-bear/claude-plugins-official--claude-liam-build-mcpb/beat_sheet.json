@@ -1,0 +1,496 @@
+{
+  "metadata": {
+    "title": "Build MCPB",
+    "subtitle": "Packaged, Not Sandboxed",
+    "slug": "claude-plugins-official--claude-liam-build-mcpb",
+    "topic": "CLAUDE · PLUGIN DEV · MCPB",
+    "purpose": "Answer one real question in the Plain register: does bundling a local MCP server as an MCPB make it sandboxed or otherwise safer to run? Lands the carry-out that packaging buys runnability without a toolchain, not safety - the env var name still has to match exactly and every path check is still the developer's to write.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-plugins-official/youtube/claude-liam-build-mcpb/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Extending Claude — Skills, Plugins & Connectors",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B03 -> B06 (the ROOT_DIR env var: name-match trap at B05, unvalidated-path trap at B06)",
+    "one_flag": "N/A - no inference beat; every claim is a generic, directly-stated mechanic carried from the source's own narration",
+    "build": {
+      "at": "2026-08-30T21:58:08",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "You'd guess bundling your server as an MCPB is what makes it safe to run. It isn't. Bundling only means it runs without your dev toolchain installed — safety is still entirely on you.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Does bundling it as an MCPB make it safe to run?', hesitates on 'safe', corrects to 'easy', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Does bundling it\nas an MCPB\nmake it safe to run?",
+            "face": "serif",
+            "fontSize": 74,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "safe",
+            "replacementWords": "easy",
+            "mistakeRate": 5,
+            "hesitateWithin": 2,
+            "hesitateBetween": 12,
+            "charMs": 46,
+            "jitter": 26,
+            "seed": "hai-build-mcpb"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; hand-computed expected typing time for these props ~7.45s against an audio window of ~10.8s (~3.3s margin). Verify media/B00.mp4 >= 8s and that the correction ('safe' -> 'easy') is visible on a late frame.",
+      "actual_duration_s": 10.86,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes",
+      "narration_text": "Hear \"package my server as an MCPB\" and it's easy to assume the bundle itself has been made safer — like putting the code in a container.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "SOUNDS LIKE A SAFER CONTAINER",
+        "media": "manim/B01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "SOUNDS LIKE A SAFER CONTAINER",
+          "chips": [
+            "MCPB = PACKAGED SERVER",
+            "SAFER, BY DEFAULT?"
+          ],
+          "arrows": true,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "that's the natural read",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BGB01Scene"
+      },
+      "actual_duration_s": 8.21,
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "2 wrong guess, broken",
+      "narration_text": "But open the manifest and there's no permissions block, no sandbox field — nothing to check. A packaged MCPB runs with exactly the same file access as the original, unpackaged script. Package a path bug into it, and it walks outside its own folder exactly as easily.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "SAME ACCESS AS THE RAW SCRIPT",
+        "media": "manim/B02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "SAME ACCESS AS THE RAW SCRIPT",
+          "chips": [
+            "SAFER, BY DEFAULT?",
+            "NO PERMISSIONS BLOCK",
+            "SAME FILE ACCESS AS THE RAW SCRIPT"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [
+            0
+          ],
+          "caption": "packaging changed nothing it can touch",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BGB02Scene"
+      },
+      "actual_duration_s": 16.17,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "4 ANCHOR PLANTED",
+      "narration_text": "Here's the anchor: say your manifest launches the server with one setting — an environment variable named ROOT_DIR — pointing at the folder the user picked at install time.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR — ROOT_DIR",
+        "media": "manim/B03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR — ONE ENV VARIABLE",
+          "chips": [
+            "manifest.json",
+            "mcp_config.env",
+            "ROOT_DIR"
+          ],
+          "arrows": true,
+          "accent": [],
+          "strike": [],
+          "caption": "one variable, one job",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BGB03Scene"
+      },
+      "actual_duration_s": 10.03,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "3 mechanism",
+      "narration_text": "An MCPB is a zip: manifest.json, a server folder with your code and dependencies, and an icon. The host reads the manifest and launches mcp_config's command exactly as written — dollar-dirname for bundle-relative paths, dollar-user-config for install-time values like that folder the user picked.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "ZIP, THEN LAUNCH EXACTLY",
+        "media": "manim/B04.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "ZIP, THEN LAUNCH EXACTLY",
+          "chips": [
+            "manifest.json + server/ + icon.png",
+            "HOST LAUNCHES mcp_config, EXACTLY"
+          ],
+          "arrows": true,
+          "accent": [],
+          "strike": [],
+          "caption": "no interpretation, no auto-anything",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BGB04Scene"
+      },
+      "actual_duration_s": 18.22,
+      "audio_file": "mp3/beat-B04.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "3 mechanism",
+      "narration_text": "The env var name is exactly what you wrote in the manifest — no auto-prefix, no transform. Write ROOT_DIR in the manifest but read ROOT_DIRECTORY in your server code, and the value comes back silently empty. No error, no crash — the config is just quietly ignored.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "WRONG NAME, NO ERROR",
+        "media": "manim/B05.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "WRONG NAME, NO ERROR",
+          "chips": [
+            "ROOT_DIR (manifest)",
+            "ROOT_DIRECTORY (code)",
+            "SILENTLY EMPTY"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "no auto-prefix, no transform",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BGB05Scene"
+      },
+      "actual_duration_s": 15.45,
+      "audio_file": "mp3/beat-B05.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "4 ANCHOR PAYOFF",
+      "narration_text": "So back to ROOT_DIR: get the name right, and that path flows straight into your handler with no check on it at all. Because there's no sandbox, one unvalidated \"../\" in a filename walks the server right out of its own folder.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS — UNCHECKED PATH",
+        "media": "manim/B06.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS — NO CHECK ON IT",
+          "chips": [
+            "manifest.json",
+            "mcp_config.env",
+            "ROOT_DIR"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "right name, still no sandbox",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BGB06Scene"
+      },
+      "actual_duration_s": 12.39,
+      "audio_file": "mp3/beat-B06.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "5 both directions",
+      "narration_text": "A packaged MCPB that runs fine on your machine doesn't prove it's safe anywhere else — it may only prove your own dev toolchain quietly filled a gap. And an MCPB that fails on a clean machine doesn't mean the packaging step is broken — it usually means one dependency never actually got bundled in.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "NEITHER ONE IS PROOF",
+        "media": "manim/B07.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "NEITHER ONE IS PROOF",
+          "pairs": [
+            [
+              "RUNS FINE ON YOUR MACHINE",
+              "PROVES IT'S SAFE ELSEWHERE?"
+            ],
+            [
+              "FAILS ON A CLEAN MACHINE",
+              "PROVES PACKAGING IS BROKEN?"
+            ]
+          ],
+          "strike": [
+            1,
+            3
+          ],
+          "caption": "neither one is proof",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BGB07Scene"
+      },
+      "actual_duration_s": 17.11,
+      "audio_file": "mp3/beat-B07.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Packaging a server as an MCPB makes it runnable without a toolchain — it doesn't make it safe. The env var name still has to match exactly, and every path check is still yours to write.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Packaging a server as an MCPB makes it runnable without a toolchain — it doesn't make it safe. The env var name still has to match exactly, and every path check is still yours to write.",
+            "attribution": "",
+            "sparkLine": "Runnable, not safe."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 11.18,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Paste this into Claude: build an MCPB that reads files from a directory the user configures at install time. Watch three things: does the env var name in the manifest's mcp_config exactly match what the server code reads? Does the server validate that every requested path stays inside that configured root, or would a dot-dot-slash escape it? And does the build script bundle dependencies with esbuild, or does it assume node_modules will already be there?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · PLUGIN DEV · MCPB",
+            "segment": "Build MCPB",
+            "command": "Build an MCPB that reads files from a directory I configure at install time.",
+            "runningText": "Watch: env var name matches? path validation? esbuild bundles deps?",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "Expected: user_config.rootDir type:directory · env ROOT_DIR = process.env.ROOT_DIR",
+              "Expected: path.join(ROOT, userPath) with a bounds check · esbuild bundle",
+              "Red flag: env name mismatch · no bounds check · assumes node_modules"
+            ]
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 23.85,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T21:58:08"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Build MCPB. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Build MCPB. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.29,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T21:58:08"
+      }
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+1
+00:00:00,000 --> 00:00:03,067
+Hi — I'm Divij Pawar. Here's a problem I ran into: an
+
+2
+00:00:03,067 --> 00:00:06,133
+AI system gave a conclusion with confidence and a good explanation.
+
+3
+00:00:06,733 --> 00:00:09,600
+But what if that explanation was completely made up? What if the
+
+4
+00:00:09,600 --> 00:00:13,533
+AI just hallucinated a reason that sounded right? An unauditable conclusion is
+
+5
+00:00:13,533 --> 00:00:17,000
+a system failure, no matter how accurate it actually is. I built
+
+6
+00:00:17,000 --> 00:00:19,100
+a layer to stop that from happening silently.
+
+7
+00:00:19,930 --> 00:00:22,597
+I built a layer that sits between any AI system and the
+
+8
+00:00:22,597 --> 00:00:23,930
+person trusting its answer.
+
+9
+00:00:24,497 --> 00:00:27,163
+It doesn't make the AI more accurate — that's a different problem.
+
+10
+00:00:27,530 --> 00:00:30,697
+Instead, it makes it structurally impossible for a conclusion to sneak through
+
+11
+00:00:30,697 --> 00:00:31,863
+without proof behind it.
+
+12
+00:00:32,230 --> 00:00:35,763
+The layer enforces three things: every conclusion must be sourced, the record
+
+13
+00:00:35,763 --> 00:00:39,497
+must be permanent and unchangeable, and if anything breaks, the whole pipeline
+
+14
+00:00:39,497 --> 00:00:40,797
+stops instead of guessing.
+
+15
+00:00:41,460 --> 00:00:44,227
+Imagine you have four AI agents analyzing a company.
+
+16
+00:00:44,593 --> 00:00:45,793
+One agent looks at finances.
+
+17
+00:00:46,160 --> 00:00:48,693
+Another checks patents. A third analyzes earnings.
+
+18
+00:00:49,060 --> 00:00:52,293
+The fourth evaluates competition. They all send their findings to a final
+
+19
+00:00:52,293 --> 00:00:55,993
+system that combines them into a single recommendation: buy, hold, or sell.
+
+20
+00:00:56,693 --> 00:00:59,893
+Now imagine the financial agent's analysis is based on a number it
+
+21
+00:00:59,893 --> 00:01:03,927
+made up — a hallucinated value that never actually existed. Nothing stops
+
+22
+00:01:03,927 --> 00:01:04,727
+it.
+
+23
+00:01:04,593 --> 00:01:07,527
+That fake number flows right through the system and becomes part of
+
+24
+00:01:07,527 --> 00:01:08,860
+an official investment decision.
+
+25
+00:01:09,227 --> 00:01:12,593
+And here's the scary part: AI systems are really good at explaining
+
+26
+00:01:12,593 --> 00:01:13,427
+wrong answers.
+
+27
+00:01:13,893 --> 00:01:16,627
+Ask an AI why it made a mistake, and it will invent
+
+28
+00:01:16,627 --> 00:01:21,027
+a plausible, confident explanation for something that never actually happened inside
+
+29
+00:01:21,027 --> 00:01:21,827
+the model.
+
+30
+00:01:22,250 --> 00:01:24,883
+I looked at two other ways to solve this, and rejected both.
+
+31
+00:01:25,317 --> 00:01:28,917
+First: use another AI to check the first AI's reasoning. That doesn't
+
+32
+00:01:28,917 --> 00:01:31,850
+work, because the checking AI has the same blind spot as the
+
+33
+00:01:31,850 --> 00:01:35,817
+one being checked. A perfectly crafted, completely fake explanation can sound just
+
+34
+00:01:35,817 --> 00:01:37,617
+as genuine to a checker as a real one.
+
+35
+00:01:38,083 --> 00:01:42,050
+Second: mathematically trace through the AI's computation to verify the reasoning.
+
+36
+00:01:42,517 --> 00:01:43,350
+Theoretically sound,
+
+37
+00:01:43,783 --> 00:01:47,350
+but it forces you to abandon powerful AI models and use much
+
+38
+00:01:47,350 --> 00:01:50,217
+weaker ones. Neither solution actually worked.
+
+39
+00:01:50,790 --> 00:01:52,323
+So I built three different mechanisms.
+
+40
+00:01:52,723 --> 00:01:53,523
+First: a
+
+41
+00:01:53,757 --> 00:01:56,757
+ReasoningObject. Before any conclusion is allowed to propagate — before it reaches
+
+42
+00:01:56,757 --> 00:01:59,457
+an investor or gets acted on — the AI must produce a
+
+43
+00:01:59,457 --> 00:02:00,423
+signed affidavit.
+
+44
+00:02:00,823 --> 00:02:03,323
+What did you conclude? How confident are you? What was the exact
+
+45
+00:02:03,323 --> 00:02:06,157
+source line that led you there? What citations support this?
+
+46
+00:02:06,557 --> 00:02:09,523
+If the AI can't point to the actual source that justified its
+
+47
+00:02:09,523 --> 00:02:12,223
+conclusion, the state transition is rejected outright.
+
+48
+00:02:12,923 --> 00:02:13,723
+Second:
+
+49
+00:02:13,757 --> 00:02:16,957
+append-only checkpointing. Every record gets written to a database in a way
+
+50
+00:02:16,957 --> 00:02:18,690
+that prevents updates or deletions.
+
+51
+00:02:19,157 --> 00:02:22,723
+This is enforced by the database itself, not by application code, because
+
+52
+00:02:22,723 --> 00:02:25,890
+code can have bugs or get bypassed. If a reviewer later flags
+
+53
+00:02:25,890 --> 00:02:28,623
+a run as wrong, that flag goes into a separate table. The
+
+54
+00:02:28,623 --> 00:02:32,023
+original record is never touched. You can always reconstruct exactly what the
+
+55
+00:02:32,023 --> 00:02:33,490
+system saw and said at the time.
+
+56
+00:02:34,023 --> 00:02:35,757
+Third: Adversarial Arbitration.
+
+57
+00:02:36,323 --> 00:02:40,057
+When two agents genuinely disagree on something important, they debate once.
+
+58
+00:02:40,690 --> 00:02:44,923
+If they still disagree, that disagreement becomes a first-class output — an
+
+59
+00:02:44,923 --> 00:02:48,623
+Affidavit of Disagreement — instead of being quietly averaged away into a
+
+60
+00:02:48,623 --> 00:02:49,757
+meaningless middle ground.
+
+61
+00:02:50,500 --> 00:02:52,000
+Here's where theory meets reality.
+
+62
+00:02:52,433 --> 00:02:54,733
+I needed to force the AI to structure its output in a
+
+63
+00:02:54,733 --> 00:02:58,233
+specific way: two XML blocks, a thought log and a conclusion, nothing
+
+64
+00:02:58,233 --> 00:02:59,033
+else.
+
+65
+00:02:59,133 --> 00:03:01,867
+Version one was a polite request — 'please format your output like
+
+66
+00:03:01,867 --> 00:03:04,667
+this.' I tested it against live Claude output. It failed.
+
+67
+00:03:05,067 --> 00:03:07,700
+The model wrote a numbered preamble before the opening tag, and my
+
+68
+00:03:07,700 --> 00:03:10,800
+parser couldn't find the blocks. So the fix wasn't a softer prompt
+
+69
+00:03:10,867 --> 00:03:12,200
+— it was a mechanical constraint.
+
+70
+00:03:12,867 --> 00:03:15,967
+First character must be a bracket. No preamble allowed. Period.
+
+71
+00:03:16,367 --> 00:03:19,500
+Now when parsing fails, it logs immediately as a PARSE_FAILURE with the
+
+72
+00:03:19,500 --> 00:03:20,567
+broken response attached.
+
+73
+00:03:21,233 --> 00:03:24,733
+One retry happens with an explicit corrective directive. If that fails too,
+
+74
+00:03:24,767 --> 00:03:28,433
+the entire pipeline halts. No grade is delivered. And here's the key:
+
+75
+00:03:28,667 --> 00:03:31,367
+both the failure and the success are part of history, not just
+
+76
+00:03:31,367 --> 00:03:32,167
+the success.
+
+77
+00:03:32,630 --> 00:03:34,397
+Now here's the part I need to say clearly.
+
+78
+00:03:34,763 --> 00:03:37,997
+Everything I just showed you enforces structure. It guarantees a thought log
+
+79
+00:03:37,997 --> 00:03:41,763
+exists. It guarantees it's well-formed. It guarantees it's permanently recorded.
+
+80
+00:03:42,163 --> 00:03:44,797
+But it does NOT guarantee that the log reflects what actually happened
+
+81
+00:03:44,797 --> 00:03:45,697
+inside the AI.
+
+82
+00:03:46,097 --> 00:03:49,530
+A hallucinated conclusion can be accompanied by a perfectly coherent, perfectly
+
+83
+00:03:49,530 --> 00:03:53,797
+formatted, completely fabricated thought log. That log will pass every structural
+
+84
+00:03:53,797 --> 00:03:54,630
+check I've built.
+
+85
+00:03:55,230 --> 00:03:58,097
+Every single one. I wrote this down explicitly — we call it
+
+86
+00:03:58,097 --> 00:04:01,997
+ADR-06 in our design log: the log is evidence of output, not
+
+87
+00:04:01,997 --> 00:04:02,963
+evidence of process.
+
+88
+00:04:03,463 --> 00:04:05,697
+This is not a bug I plan to fix later. It's a
+
+89
+00:04:05,697 --> 00:04:09,297
+fundamental property of how large language models work. No logging layer, by
+
+90
+00:04:09,297 --> 00:04:10,463
+itself, can solve this.
+
+91
+00:04:10,863 --> 00:04:14,097
+I see a lot of 'AI accountability' framing that quietly slides past
+
+92
+00:04:14,097 --> 00:04:14,930
+this distinction.
+
+93
+00:04:15,297 --> 00:04:17,897
+It presents a structured trace as if structure equals truth.
+
+94
+00:04:18,530 --> 00:04:21,863
+I'd rather say clearly what this system is and isn't. It's not
+
+95
+00:04:21,863 --> 00:04:22,663
+a
+
+96
+00:04:22,530 --> 00:04:24,363
+hallucination-prevention system. It's not a
+
+97
+00:04:24,730 --> 00:04:28,963
+fact-verification system. It's a structural enforcement system with a known, honest
+
+98
+00:04:28,963 --> 00:04:29,763
+limit.
+
+99
+00:04:30,080 --> 00:04:33,113
+So where does that leave us? Structural enforcement is real and tested.
+
+100
+00:04:33,413 --> 00:04:36,847
+The three mechanisms I built work. Ground-truth checking is real, where a
+
+101
+00:04:36,847 --> 00:04:39,513
+ground truth exists to check against — like comparing what an AI
+
+102
+00:04:39,513 --> 00:04:42,913
+claims about a financial filing to the actual filing from the SEC.
+
+103
+00:04:43,813 --> 00:04:47,080
+Reproducibility checking is real — run the same request twice and look
+
+104
+00:04:47,080 --> 00:04:49,713
+for numbers that appear in only one of the two runs. And
+
+105
+00:04:49,713 --> 00:04:53,047
+the hardest problem — proving that the stated reasoning is the actual
+
+106
+00:04:53,047 --> 00:04:56,180
+reasoning — that one remains genuinely open, and it might not be
+
+107
+00:04:56,180 --> 00:05:00,080
+fully solvable with current AI models. But here's what I can guarantee:
+
+108
+00:05:00,447 --> 00:05:04,447
+when structural accountability fails, it fails loudly, on the record, instead of
+
+109
+00:05:04,447 --> 00:05:06,713
+quietly becoming someone's investment decision.
+
+110
+00:05:07,247 --> 00:05:08,747
+That's the difference this layer makes.
+
+111
+00:05:09,500 --> 00:05:12,600
+Here's a challenge for you: design a validation directive for your own
+
+112
+00:05:12,600 --> 00:05:16,267
+AI pipeline that fails loudly instead of quietly accepting a bad answer.
+
+113
+00:05:16,933 --> 00:05:18,267
+When you build it, check three things.
+
+114
+00:05:18,700 --> 00:05:21,533
+First: does it log the failure immediately, with the full broken response
+
+115
+00:05:21,533 --> 00:05:22,333
+attached?
+
+116
+00:05:22,433 --> 00:05:24,967
+Second: does the retry get its own separate record in the system?
+
+117
+00:05:25,333 --> 00:05:26,133
+Third:
+
+118
+00:05:25,833 --> 00:05:28,167
+does it halt the pipeline on a second failure instead of just
+
+119
+00:05:28,167 --> 00:05:30,667
+guessing and moving on? If any of those three are missing,
+
+120
+00:05:31,067 --> 00:05:33,067
+you've found your accountability gap.
+
+121
+00:05:33,590 --> 00:05:34,390
+Signing off — Divij Pawar.
