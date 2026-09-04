@@ -126,3 +126,12 @@ rather than re-rendering at a higher resolution.
 ```
 python3 skills/make/hai-simple/loop/deliver.py <REEL_DIR> --push
 ```
+
+Staged `DELIVERY/knowledge-work-plugins--claude-liam-knowledge-synthesis/`
+(4K master + description) for the Drive sync. Committed to
+`claude-bear/knowledge-work-plugins--claude-liam-knowledge-synthesis/`
+(README.md = description, beat_sheet.json, SCRIPT.md, SUBJECT.json,
+CARRY-OUT.md, QUESTION.md, BUILD-LOG.md — no mp3/mp4) as commit `ee57500b`,
+pushed clean (no rebase conflicts).
+
+**Status: DELIVERED.**
