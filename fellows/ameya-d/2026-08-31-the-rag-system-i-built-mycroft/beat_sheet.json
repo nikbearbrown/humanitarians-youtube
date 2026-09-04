@@ -1,0 +1,376 @@
+{
+  "metadata": {
+    "title": "The RAG System I Built",
+    "slug": "mycroft-rag-walkthrough",
+    "topic": "CLAUDE CODE · THIS WEEK · THE RAG SYSTEM I BUILT",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "cli-explainer",
+    "note": "Weekly WORK video — walkthrough of the fin-disclosure-rag production RAG system with real measured numbers. Claude bookends + one real ClaudeCodeBeat (hybrid.py RRF) + ClaudeVerdictArtifact + YOUR TURN + ClaudeTitleOutro. Manim body. Persona: Liam, in for Ameya (Onyx). @HumanitariansAI. All figures real (run_eval.py, compare_embeddings.py, weight_sweep.py, benchmark.py; see SOURCES.md/FACTCHECK.md).",
+    "total_estimated_duration_seconds": 330,
+    "build": {
+      "at": "2026-08-31T11:32:58",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "role_note": "COLD OPEN LAW — Claude UI, ask answered; IN-FOR-BEAR LAW",
+      "narration_text": "Namaste — this is Liam, in for Ameya. This week's build is a production R A G system over six hundred financial disclosures, measured at every stage. Here is what I built, the numbers it produced, and three results that genuinely surprised me.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"walk through the RAG system I built over 600 financial disclosures — and what the numbers showed\"",
+            "topic": "CLAUDE CODE · THIS WEEK · THE RAG SYSTEM I BUILT",
+            "segment": "The RAG System I Built",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "opening the build…",
+            "output": [
+              "600 docs → 1,500 chunks → 25 eval questions",
+              "a 384-dim model beat a 768-dim one",
+              "vector search is 0.2% of total latency"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 14.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — The Task",
+      "role_note": "Manim — 600 docs, golden set",
+      "narration_text": "Start with the task. Six hundred financial disclosure documents — the kind no language model has in its training data, and far too many to paste into a prompt. So the job is retrieval: find the handful of passages that answer a question, and hand only those to the model. To keep myself honest, I wrote twenty-five questions with known, exact answers — a golden set to measure against.",
+      "visual_intent": "600 docs -> 1,500 chunks -> 25 eval questions; 'retrieval is the job'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_Task",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 21.72,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_Task",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — The Pipeline",
+      "role_note": "Manim — end-to-end pipeline + tracing",
+      "narration_text": "The system itself follows the shape every R A G pipeline shares. Ingest the documents, chunk them, embed the chunks, and index them. Then at query time: retrieve, rerank, and generate — with every stage traced, so I can see exactly which chunks were pulled and what each step cost. Nothing exotic. The value is in measuring each piece instead of guessing.",
+      "visual_intent": "pipeline: ingest→chunk→embed→index→retrieve→rerank→generate; a 'traced' tag underneath",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Pipeline",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 20.01,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Pipeline",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — Chunking",
+      "role_note": "Manim — recursive chunking, MRR 0.833 -> 1.000",
+      "narration_text": "First lever: chunking, and it moved quality more than I expected. Switching from a naive split to recursive splitting — try paragraphs, then lines, then sentences — took retrieval M R R from zero point eight three to a perfect one point zero on the eval set. The rule I kept: chunk by data type. Prose recursively, tables by row with the header repeated, contracts by clause.",
+      "visual_intent": "before/after: naive split MRR 0.833 -> recursive split MRR 1.000; 'chunk by data type' rules",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Chunking",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 22.49,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Chunking",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — Embeddings (Surprise 1)",
+      "role_note": "Manim — 384-dim beats 768-dim",
+      "narration_text": "Next, the embedding model — and the first surprise. I benchmarked three of them. A small three-hundred-eighty-four-dimensional model scored eighty-eight percent hit rate; a larger seven-hundred-sixty-eight-dimensional one, only seventy-six. The smaller model won on every axis: half the storage, about three times faster, and better retrieval. Bigger is not better. Measure on your own corpus.",
+      "visual_intent": "two bars: 384-dim 88% hit (accent, winner) vs 768-dim 76%; side notes: half storage, ~3x faster",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Embeddings",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 20.76,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Embeddings",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — Hybrid (Surprise 2)",
+      "role_note": "Manim — weight sweep, hit flat / MRR climbs",
+      "narration_text": "Then hybrid search — dense embeddings plus keyword B M twenty-five, fused by rank. Blending the two lifted M R R from zero point six five with dense alone to zero point eight one at the best mix, a twenty-four percent gain, peaking around zero point two to zero point three dense. And here is the second surprise: across that range, hit rate barely moved — it sat around eighty-four percent while M R R kept climbing. Dense retrieval was not finding new documents; it was reordering the ones keyword search already found. It adds ranking, not recall.",
+      "visual_intent": "line/step: MRR 0.655 -> 0.810 rising with peak marked 0.2-0.3; a flat hit@5=84% line above it",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Hybrid",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 34.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Hybrid",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — Latency (Surprise 3)",
+      "role_note": "Manim — where the time goes",
+      "narration_text": "Now the third surprise, and it is the most useful. I measured where the time actually goes. Vector search — the part everyone obsesses over — was four milliseconds, two tenths of one percent. Reranking, three hundred. And the language model, over a thousand. A cache hit skips all of it in two microseconds. If you are optimising the vector math before you have added a cache, you are polishing the wrong two tenths of a percent.",
+      "visual_intent": "proportional latency bars: vector 4ms / rerank 301ms / generation 1288ms; cache hit 0.002ms callout",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Latency",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 22.17,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Latency",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — The Fusion Code",
+      "role_note": "ClaudeCodeBeat — real hybrid.py RRF (ACTUAL-CODE LAW)",
+      "narration_text": "Here is the heart of the fusion, and it is refreshingly simple. Run dense and sparse search separately. Then, instead of trying to compare a cosine score to a keyword score — which live on totally different scales — you fuse by rank. Each document earns one over sixty plus its rank, summed across both lists. No normalisation, no calibration. Rank is the common currency.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "hybrid.py",
+            "sparkLine": "fuse by rank, not score",
+            "code": "def hybrid_search(self, query, query_vec, k=20, rrf_k=60):\n    dense_ranked  = self.dense_search(query_vec, k)   # meaning\n    sparse_ranked = self.sparse_search(query, k)      # exact terms\n\n    rrf = {}\n    for rank, idx in enumerate(dense_ranked):\n        rrf[idx] = rrf.get(idx, 0) + 1.0 / (rrf_k + rank + 1)\n    for rank, idx in enumerate(sparse_ranked):\n        rrf[idx] = rrf.get(idx, 0) + 1.0 / (rrf_k + rank + 1)\n\n    fused = sorted(rrf.items(), key=lambda x: x[1], reverse=True)\n    return [int(i) for i, _ in fused[:k]]"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 21.46,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — Three Surprises",
+      "role_note": "Manim — the three results",
+      "narration_text": "So, three things I will carry into the next build. One: a smaller embedding model beat a larger one on every axis. Two: once hit rate saturates, it hides real differences — M R R is the metric that still tells you something. And three: vector search is a rounding error in your latency budget. Measure before you optimise.",
+      "visual_intent": "three numbered cards: (1) small beat large (2) hit saturates, MRR discriminates (3) vector search = 0.2% latency",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Surprises",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 18.58,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Surprises",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "role_note": "ClaudeVerdictArtifact — the takeaways",
+      "narration_text": "The build works, and it is measured end to end. If you keep three lines from it: a smaller embedding model beat the larger one on every axis; hit rate saturates while M R R keeps discriminating; and vector search is two tenths of a percent of your latency. Measure first — the surprises are where the wins are.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "What the numbers showed",
+            "artifactLines": [
+              "A 384-dim model beat a 768-dim one — half the storage, ~3x faster, better retrieval.",
+              "Hit rate saturates; MRR is the metric that still discriminates.",
+              "Vector search is 0.2% of latency — cache and context beat vector-math tuning."
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 17.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "role_note": "HANDOFF LAW — prompt read + discussed; 'Your turn.'",
+      "narration_text": "Your turn. Point this at your own system: build a small golden set from real questions, then sweep one lever at a time — chunking, embeddings, hybrid weight — and record M R R after each. The moment you can see the numbers move, tuning stops being guesswork.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"build a 25-question golden set, then sweep chunking, embedding model, and hybrid weight — record MRR after each change\"",
+            "topic": "CLAUDE CODE · THIS WEEK · THE RAG SYSTEM I BUILT",
+            "segment": "The RAG System I Built",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 16.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:32:58"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — title re-read; @HumanitariansAI",
+      "narration_text": "The R A G system I built this week. Measured, not guessed. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "The RAG System I Built.",
+            "handle": "@HumanitariansAI",
+            "subline": "measured, not guessed"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 5.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:32:58"
+      }
+    }
+  ]
+}
