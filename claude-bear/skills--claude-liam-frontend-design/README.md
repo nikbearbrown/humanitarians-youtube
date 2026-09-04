@@ -13,7 +13,7 @@ the subject in the first place, only that the plan isn't the same three
 defaults every AI reaches for by habit.
 
 **Topic:** FRONTEND DESIGN · ANTHROPIC SKILL
-**Playlist:** Claude Basics
+**Playlist:** Extending Claude — Skills, Plugins & Connectors
 **Code (no media):** https://github.com/nikbearbrown/humanitarians-youtube/tree/main/claude-bear/skills--claude-liam-frontend-design
 
 ---

@@ -164,16 +164,16 @@ slate), 158.8s, 3840x2160 (native 4K — `compile.py`'s 4K LAW).
   likewise not treated as blocking.
 
 Metadata file written: `skills--claude-liam-frontend-design.md` (channel
-@HumanitariansAI, **Playlist: Claude Basics**). Per `playlists.json`,
-SUBJECT.json's family (`skills`) does not `str.startswith`-match any map
-prefix (all keys — `claude-skills`, `claude-agent-skills`, `claude-plugins`,
-etc. — are longer strings than `"skills"`, so `"skills".startswith(key)` is
-false for every key), so per the documented fallback the `hai-simple` skill
-key itself is checked next and matches its own map entry exactly
-(`"hai-simple".startswith("hai-simple")`), resolving to "Claude Basics" —
-the same deterministic algorithm applied on the
-`claude-plugins-official--claude-liam-agent-development` sibling (there,
-family DID match `claude-plugins` directly). Direct code link per DELIVERY
+@HumanitariansAI, **Playlist: Extending Claude — Skills, Plugins &
+Connectors**). Per `playlists.json`, SUBJECT.json's family (`skills`) has
+no literal `str.startswith` prefix match (all keys — `claude-skills`,
+`claude-agent-skills`, `claude-plugins`, etc. — are longer strings than
+`"skills"`), and the `hai-simple`->"Claude Basics" skill-key fallback would
+misfile a reel whose actual subject is an Anthropic Agent Skill (this one:
+`frontend-design`) — resolved instead by content match to the
+`claude-skills`/`claude-agent-skills` bucket, the same override already
+established same-day by the `skills--claude-liam-claude-api` and sibling
+`skills--*` redos logged in HAILOOP-LOG.md. Direct code link per DELIVERY
 CONTRACT format included.
 
 **Status: review cut DONE.** Passed every Phase-3 gate.
