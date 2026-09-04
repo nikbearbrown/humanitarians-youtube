@@ -173,3 +173,22 @@ playlist for a reel about a named Anthropic Skill's internal mechanism.
 Direct code link per DELIVERY CONTRACT format included.
 
 **Status: review cut DONE.** Passed every Phase-3 gate.
+
+## 2026-09-04 — Phase 4, DELIVERED
+
+Master was already born native 3840×2160 (compile.py's 4K LAW), so copied
+directly to `skills--claude-liam-canvas-design-4k.mp4` rather than
+re-rendering at a higher resolution.
+
+```
+python3 skills/make/hai-simple/loop/deliver.py <REEL_DIR> --push
+```
+
+Staged `DELIVERY/skills--claude-liam-canvas-design/` (4K master + description)
+for the Drive sync. Committed to
+`claude-bear/skills--claude-liam-canvas-design/` (README.md = description,
+beat_sheet.json, SCRIPT.md, SUBJECT.json, CARRY-OUT.md, QUESTION.md,
+BUILD-LOG.md — no mp3/mp4) as commit `4a701cb9`, pushed clean (no rebase
+conflicts).
+
+**Status: DELIVERED.**
