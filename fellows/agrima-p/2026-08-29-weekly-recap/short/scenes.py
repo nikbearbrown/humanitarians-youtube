@@ -9,7 +9,7 @@ B04_FlatWeek           — three cards stacked in ONE column
 B07_SplitWeek           — DONE / STARTING NEXT groups stacked vertically
 B08_TheLesson           — three-line closing typographic beat
 
-(No beats were dropped from this Short — the parent reel is only 2:01,
+(No beats were dropped from this Short — the parent reel is only 1:59,
 already under the 3:00 Shorts cap — so all 11 beats + endcard carry over.)
 """
 
@@ -78,28 +78,28 @@ class B01_NotAHighlightReel(Scene):
 # for a narrow portrait column. Plain functions, not a shared base class.
 # ---------------------------------------------------------------------------
 
-def _substack_card(w=3.2, h=2.0, fs=14):
+def _article_card(w=3.2, h=2.0, fs=14):
     box = card_bg(w, h)
-    kicker = Text("SUBSTACK", color=PALETTE["accent"], font_size=fs - 3)
-    title = fit(Text("\"The Death of the 'Generic' Resume\"", color=PALETTE["ink"],
+    kicker = Text("ARTICLE + RESEARCH", color=PALETTE["accent"], font_size=fs - 5)
+    title = fit(Text("AI in nonprofit\nmarketing", color=PALETTE["ink"],
                       font_size=fs - 1, line_spacing=1.15, should_center=True), w - 0.5)
     inner = VGroup(kicker, title).arrange(DOWN, buff=0.16)
     return VGroup(box, inner.move_to(box.get_center()))
 
 
-def _brutalist_card(w=3.2, h=2.0, fs=14):
+def _video_card(w=3.2, h=2.0, fs=14):
     box = card_bg(w, h)
     tri = Triangle(color=PALETTE["accent"], fill_color=PALETTE["accent"],
                     fill_opacity=1, stroke_width=0).scale(0.2).rotate(-PI / 2)
     ring = Circle(radius=0.3, color=PALETTE["accent"], stroke_width=2)
     icon = VGroup(ring, tri)
-    title = Text("Brutalist workflow", color=PALETTE["ink"], font_size=fs - 1)
+    title = Text("The video, produced", color=PALETTE["ink"], font_size=fs - 1)
     badge = Text("16:9 + 9:16", color=PALETTE["dim"], font_size=fs - 4)
     inner = VGroup(icon, title, badge).arrange(DOWN, buff=0.14)
     return VGroup(box, inner.move_to(box.get_center()))
 
 
-def _fashion_card(w=3.2, h=2.0, fs=14):
+def _suffolk_card(w=3.2, h=2.0, fs=14):
     box = card_bg(w, h)
     cal_body = RoundedRectangle(corner_radius=0.05, width=0.8, height=0.65,
                                  fill_color=PALETTE["bg"], fill_opacity=1,
@@ -108,8 +108,8 @@ def _fashion_card(w=3.2, h=2.0, fs=14):
                                  fill_color=PALETTE["dim"], fill_opacity=1, stroke_width=0)
     cal_head.next_to(cal_body, UP, buff=-0.1)
     cal = VGroup(cal_body, cal_head)
-    title = Text("Fashion sustainability", color=PALETTE["ink"], font_size=fs - 1)
-    badge = Text("kickoff held", color=PALETTE["dim"], font_size=fs - 4)
+    title = Text("Suffolk University talk", color=PALETTE["ink"], font_size=fs - 1)
+    badge = Text("Wed, with Yatra", color=PALETTE["dim"], font_size=fs - 4)
     inner = VGroup(cal, title, badge).arrange(DOWN, buff=0.14)
     return VGroup(box, inner.move_to(box.get_center()))
 
@@ -124,9 +124,9 @@ class B04_FlatWeek(Scene):
     def construct(self):
         self.camera.background_color = PALETTE["bg"]
 
-        a = _substack_card(h=1.7)
-        b = _brutalist_card(h=1.7)
-        c = _fashion_card(h=1.7)
+        a = _article_card(h=1.7)
+        b = _video_card(h=1.7)
+        c = _suffolk_card(h=1.7)
         VGroup(a, b, c).arrange(DOWN, buff=0.16).move_to(ORIGIN + UP * 0.25)
 
         _reveal_card(self, a, 3.2, run_time=0.55)
@@ -147,9 +147,9 @@ class B07_SplitWeek(Scene):
         done_head = Text("DONE THIS WEEK", color=PALETTE["good"], font_size=17)
         next_head = Text("STARTING NEXT WEEK", color=PALETTE["accent"], font_size=17)
 
-        a = _substack_card(w=3.2, h=1.55, fs=12)
-        b = _brutalist_card(w=3.2, h=1.55, fs=12)
-        c = _fashion_card(w=3.2, h=1.75, fs=13)
+        a = _article_card(w=3.2, h=1.55, fs=12)
+        b = _video_card(w=3.2, h=1.55, fs=12)
+        c = _suffolk_card(w=3.2, h=1.75, fs=13)
 
         done_stack = VGroup(a, b).arrange(DOWN, buff=0.16)
         done_group = VGroup(done_head, done_stack).arrange(DOWN, buff=0.22)

@@ -1,12 +1,12 @@
 """weekly_recap_v2.py — same week, split into DONE vs STARTING NEXT."""
 
 DONE = [
-    {"item": "Published \"The Death of the 'Generic' Resume\"", "where": "Substack"},
-    {"item": "Learned the Brutalist video workflow (16:9 + 9:16)", "where": "brutalist.art"},
+    {"item": "Published the AI nonprofit marketing article, with research behind it", "where": "published this week"},
+    {"item": "Produced the accompanying Brutalist video (16:9 + 9:16)", "where": "brutalist.art"},
 ]
 
 NEXT = [
-    {"item": "Fashion sustainability: forecasting, sampling, traceability", "where": "kickoff held, work starts next week"},
+    {"item": "Suffolk University talk, with Yatra", "where": "this Wednesday"},
 ]
 
 
