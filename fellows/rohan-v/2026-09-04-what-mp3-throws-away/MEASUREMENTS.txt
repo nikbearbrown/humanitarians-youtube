@@ -1,0 +1,41 @@
+Measured on this machine, 2026-09-04, with ffmpeg + libmp3lame.
+Method: 10s of white noise (anoisesrc, 44.1kHz stereo, flat spectrum) encoded
+to MP3, decoded back to WAV, then mean_volume measured in 500Hz-wide bands
+via ffmpeg bandpass + volumedetect. White noise is used because a flat source
+spectrum makes whatever the encoder discarded directly visible.
+
+BAND ENERGY (mean_volume, dB)
+band        SOURCE    128kbps    320kbps
+12000Hz     -30.8     -31.1      -30.8
+14000Hz     -31.8     -32.2      -31.8
+15000Hz     -32.4     -32.9      -32.4
+16000Hz     -33.1     -33.7      -33.1
+17000Hz     -34.0     -47.2      -34.0
+18000Hz     -35.1     -54.0      -35.1
+19000Hz     -36.4     -58.7      -36.4
+20000Hz     -38.3     -63.5      -41.8
+
+=> 128 kbps lowpass sits at ~16 kHz. 16k is intact (-0.6 dB); 17k is 13.2 dB
+   down; 18k is 18.9 dB down.
+=> 320 kbps is bit-identical to source through 19 kHz; 20k is 3.5 dB down.
+
+FILE SIZES (10s stereo 44.1kHz)
+source WAV     1,764,078 bytes
+128 kbps MP3     160,958 bytes   -> 10.96 : 1
+320 kbps MP3     402,329 bytes   ->  4.38 : 1
+
+GENERATION LOSS (repeated 128 kbps re-encode, mean_volume dB)
+generation      12kHz     14kHz     15kHz
+source (wav)    -30.8     -31.8     -32.4
+1 encode        -31.1     -32.2     -32.9
+4 encodes       -33.3     -34.3     -35.0
+6 encodes       -34.7     -35.7     -36.4
+11 encodes      -37.8     -38.8     -39.5
+
+=> Degradation is monotonic and compounding. From 1 encode to 11, the 12 kHz
+   band loses 6.7 dB (~7 dB). Nothing recovers.
+
+CAVEAT: these are this machine's libmp3lame defaults at CBR. Other encoders,
+VBR modes and versions choose different lowpass points. The shape of the
+result (a hard cliff whose position tracks bitrate) is general; the exact
+frequency is encoder-dependent.
