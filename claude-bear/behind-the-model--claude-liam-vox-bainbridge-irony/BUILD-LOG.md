@@ -115,9 +115,24 @@ python3 skills/make/hai-simple/loop/deliver.py <REEL_DIR> --push
 
 Outbox staged:
 `DELIVERY/behind-the-model--claude-liam-vox-bainbridge-irony/` (4K mp4 +
-description.md). Repo: committed + pushed to
-`humanitarians-youtube/claude-bear/behind-the-model--claude-liam-vox-bainbridge-irony/`
-(README.md, beat_sheet.json, SCRIPT.md, SUBJECT.json, BUILD-LOG.md,
-CARRY-OUT.md, QUESTION.md — no mp3/mp4), clean push, no conflicts.
+description.md). Repo copy step succeeded but `deliver.py --push` failed at
+its own `git pull --rebase` (local unstaged changes from the copy it had
+just made — not a remote conflict); committed and pushed those same two
+files (`beat_sheet.json`, `BUILD-LOG.md`) directly, clean push, no conflicts.
 
-**Status: DELIVERED.** Both delivery targets staged/pushed. Reel complete.
+**Post-delivery fix (same invocation):** Gate V's own frame sweep had caught
+BHTF's `ClaudeComposerAsk` missing a `modelLabel` prop, silently defaulting
+to the component's demo placeholder "Fable 5" — the same defect the
+`verification-matrix` sibling reel logged on 2026-09-05. Fixed
+(`modelLabel: "Opus 4.8"`, matching sibling convention), re-rendered BHTF
+only via `remotion_scenes.py --only BHTF --force`, recompiled (`compile.py
+--force`; the pipeline correctly flagged and purged the now-stale
+`-4k.mp4` copy from the first delivery pass). Re-verified after the fix:
+GATE T PASS (0 FAILs), ffprobe 3840x2160/h264+aac/143.96s, GATE AUDIO
+-24.0 dB / max -2.8 dB, master mtime newer than beat_sheet.json, frame pull
+at the BHTF beat confirms "Opus 4.8" now renders correctly. Re-copied to
+`-4k.mp4` and re-ran `deliver.py --push` (outbox overwrite + repo commit as
+above).
+
+**Status: DELIVERED.** Both delivery targets staged/pushed, including the
+post-fix master. Reel complete.
