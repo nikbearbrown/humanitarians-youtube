@@ -1,0 +1,1370 @@
+{
+  "metadata": {
+    "slug": "agentic-design-patterns-part-2",
+    "title": "State Is The Hard Part",
+    "topic": "Irreducibly Human",
+    "logline": "Patterns 7–13 — orchestration, memory and fail-safes, and why all of them are really about state",
+    "purpose": "Part 2 of a 3-part series on agentic design patterns for AI system design interviews",
+    "skill": "ai-explainer",
+    "channel": "claude-hai",
+    "persona": "Rishabh",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Bula, Rishabh",
+    "register": "Plain",
+    "engine": "kokoro",
+    "voice_kokoro": "af_sarah",
+    "palette": "claude",
+    "aspect": "16:9",
+    "aspect_ratio": "16:9",
+    "clock": "narration",
+    "audience": "Students and practitioners moving from single prompts to production AI systems",
+    "playlist": "Agentic Design Patterns",
+    "playlist_short": "Shorts",
+    "source": "agentic-patterns-part2.md (Master Class Part 2, in Agentic Design Video/)",
+    "credit": "Concepts from “Agentic Design Patterns: A Hands-On Guide to Building Intelligent Systems” by Antonio Gulli",
+    "house_rules": "HOUSE-RULES.local.md — greeting/sign-off + 1.0s beat gap (pad_beats.local.py)",
+    "notes": "Outro uses HaiTitleOutro, NOT ClaudeTitleOutro (which hardcodes @NikBearBrown per OUTRO-LOCK.md).",
+    "build": {
+      "at": "2026-09-04T22:07:26",
+      "cut": "master",
+      "filled": 15,
+      "of": 15,
+      "slates": [],
+      "skin_warnings": [
+        "B14: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "OPEN",
+      "estimated_duration_s": 24,
+      "narration_text": "Bula — this is Rishabh for Humanitarians AI. Part one gave you six patterns for a single agent. Now add a second agent, a memory that has to persist, and an API call that fails at three in the morning. Almost none of the hard problems are about the agents. They are about the state between them.",
+      "new_visual_element": "Cold open — composer ask, answered",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "composer greeting 'Bula, Rishabh'; the ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "running indicator 'tracing the state…'"
+          },
+          {
+            "at": 0.78,
+            "event": "three output lines land — the ask is answered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Bula, Rishabh",
+            "folderLabel": "@HumanitariansAI",
+            "topic": "Irreducibly Human",
+            "segment": "Agentic Design Patterns · Part 2",
+            "command": "My multi-agent system works until two agents write at once. What am I missing?",
+            "runningText": "tracing the state…",
+            "output": [
+              "The agents were never the hard part.",
+              "Seven patterns for orchestration, memory and fail-safes —",
+              "all of them really about state."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.18,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "OPEN",
+      "estimated_duration_s": 14,
+      "narration_text": "The hard part is state. Seven patterns for what sits between them — who holds it, how it decays, who may write to it, and what breaks when it fails. Get that wrong and the agents do not matter.",
+      "new_visual_element": "Executive summary — written and corrected on screen",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "writer types 'The hard part is agents.'"
+          },
+          {
+            "at": 0.3,
+            "event": "'agents' turns terracotta — the misconception"
+          },
+          {
+            "at": 0.42,
+            "event": "deleted and retyped as 'state'"
+          },
+          {
+            "at": 0.65,
+            "event": "three remaining lines complete the claim"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "The hard part is agents.\nSeven patterns for what\nsits between them.",
+            "triggerWords": "agents",
+            "replacementWords": "state",
+            "seed": "agentic-patterns-p2",
+            "face": "serif",
+            "fontSize": 175,
+            "lineSpacing": 1.45,
+            "align": "center",
+            "charMs": 34,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 2
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "actual_duration_s": 12.01,
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "I — The Set",
+      "estimated_duration_s": 19,
+      "narration_text": "Seven more patterns, and the title tells you the shape: orchestration, memory, and fail-safes. Two coordinate work across agents. Three handle what the system knows and remembers. Two handle what happens when it goes wrong. Every one of them is really about state.",
+      "new_visual_element": "The seven patterns as a set",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "seven cards land, four across then three"
+          },
+          {
+            "at": 0.7,
+            "event": "the orchestration / memory / fail-safe grouping reads"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Seven More",
+            "sparkLine": "Orchestration. Memory. Fail-safes.",
+            "note": "Patterns 7–13 of 20 — what breaks when you scale.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "Multi-Agent",
+                "col": 0,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "b",
+                "label": "Memory",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "c",
+                "label": "Learning",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "d",
+                "label": "Goals",
+                "col": 3,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "e",
+                "label": "Exceptions",
+                "col": 0,
+                "row": 1,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "f",
+                "label": "Human-in-Loop",
+                "col": 1,
+                "row": 1,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "g",
+                "label": "RAG",
+                "col": 2,
+                "row": 1,
+                "kind": "node",
+                "sub": ""
+              }
+            ],
+            "edges": [],
+            "accentId": "",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 16.55,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "II — Orchestration",
+      "estimated_duration_s": 22,
+      "narration_text": "A manager agent hands specialized work to a researcher, a writer, a validator — and all of them read and write one shared store. That store is the whole pattern. Two agents writing at once without locks corrupts it, so each gets a read-only snapshot and submits an atomic patch the orchestrator validates.",
+      "new_visual_element": "Multi-agent collaboration — the shared store",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "manager fans work out to three specialists"
+          },
+          {
+            "at": 0.5,
+            "event": "all three converge on the shared store, which lights terracotta"
+          },
+          {
+            "at": 0.85,
+            "event": "note: snapshot in, atomic patch out"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Multi-Agent",
+            "sparkLine": "The shared store is the pattern.",
+            "note": "Concurrent writes corrupt it. Snapshot in, atomic patch out.",
+            "nodes": [
+              {
+                "id": "m",
+                "label": "Manager",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "r",
+                "label": "Research",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "w",
+                "label": "Writer",
+                "col": 1,
+                "row": 1,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "v",
+                "label": "Validator",
+                "col": 1,
+                "row": 2,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "s",
+                "label": "Shared State",
+                "col": 2,
+                "row": 1,
+                "kind": "gate",
+                "sub": "versioned"
+              }
+            ],
+            "edges": [
+              {
+                "from": "m",
+                "to": "r",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "m",
+                "to": "w",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "m",
+                "to": "v",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "r",
+                "to": "s",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "w",
+                "to": "s",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "v",
+                "to": "s",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "s",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.73,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "III — Memory",
+      "estimated_duration_s": 22,
+      "narration_text": "Memory is a classification problem before it is a storage problem. Conversation goes to short-term and gets compressed. Events go to a vector store tagged with recency. Core preferences get extracted into a structured profile that never decays. And retrieval scores on similarity, recency and frequency together — never similarity alone.",
+      "new_visual_element": "Memory management — the three tiers",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "incoming information splits into three tiers"
+          },
+          {
+            "at": 0.6,
+            "event": "the long-term profile lights terracotta — the tier that never decays"
+          },
+          {
+            "at": 0.85,
+            "event": "note: the composite retrieval score"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Memory",
+            "sparkLine": "Classify before you store.",
+            "note": "Similarity alone retrieves stale memories and poisons the context.",
+            "nodes": [
+              {
+                "id": "i",
+                "label": "Incoming",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "s",
+                "label": "Short-Term",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": "compressed"
+              },
+              {
+                "id": "e",
+                "label": "Episodic",
+                "col": 1,
+                "row": 1,
+                "kind": "node",
+                "sub": "recency tags"
+              },
+              {
+                "id": "l",
+                "label": "Long-Term",
+                "col": 1,
+                "row": 2,
+                "kind": "node",
+                "sub": "never decays"
+              }
+            ],
+            "edges": [
+              {
+                "from": "i",
+                "to": "s",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "i",
+                "to": "e",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "i",
+                "to": "l",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "l",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 21.93,
+      "audio_file": "mp3/beat-B04.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "III — Memory",
+      "estimated_duration_s": 21,
+      "narration_text": "Capture feedback, denoise it, then update behaviour. The denoise step is the one people skip. Feedback is noisy and sometimes malicious, so a system that learns from all of it learns the wrong thing. And prefer rewriting prompts and swapping examples over fine-tuning — real-time fine-tuning is rare and risky.",
+      "new_visual_element": "Learning and adaptation — the denoise gate",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "feedback captured from the system's own action"
+          },
+          {
+            "at": 0.55,
+            "event": "denoise gate lights terracotta"
+          },
+          {
+            "at": 0.85,
+            "event": "note: unfiltered feedback teaches the wrong behaviour"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Learning",
+            "sparkLine": "Denoise before you learn.",
+            "note": "Learn from unfiltered feedback and you learn the wrong thing.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "Action",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "c",
+                "label": "Capture",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "d",
+                "label": "Denoise",
+                "col": 2,
+                "row": 0,
+                "kind": "gate",
+                "sub": "quality check"
+              },
+              {
+                "id": "u",
+                "label": "Update Prompts",
+                "col": 3,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              }
+            ],
+            "edges": [
+              {
+                "from": "a",
+                "to": "c",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "c",
+                "to": "d",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "d",
+                "to": "u",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "d",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.77,
+      "audio_file": "mp3/beat-B05.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "II — Orchestration",
+      "estimated_duration_s": 21,
+      "narration_text": "Turn a vague goal into measurable targets, then watch the metrics — latency, token spend, step count. When one drifts several standard deviations from expected, a drift analyser decides whether it is a one-off failure or the environment itself changing. The trap is goals that conflict: speed against cost, deadlocking.",
+      "new_visual_element": "Goal setting and monitoring — the drift check",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "goal becomes KPIs, then live monitoring"
+          },
+          {
+            "at": 0.6,
+            "event": "drift check lights terracotta at the threshold"
+          },
+          {
+            "at": 0.85,
+            "event": "note: goal conflicts deadlock"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Goals",
+            "sparkLine": "Measure, then watch for drift.",
+            "note": "Conflicting goals — speed against cost — deadlock.",
+            "nodes": [
+              {
+                "id": "g",
+                "label": "SMART Goal",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "k",
+                "label": "KPIs",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "m",
+                "label": "Monitor",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "d",
+                "label": "Drift?",
+                "col": 3,
+                "row": 0,
+                "kind": "gate",
+                "sub": "σ threshold"
+              },
+              {
+                "id": "r",
+                "label": "Re-plan",
+                "col": 4,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              }
+            ],
+            "edges": [
+              {
+                "from": "g",
+                "to": "k",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "k",
+                "to": "m",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "m",
+                "to": "d",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "d",
+                "to": "r",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "d",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.75,
+      "audio_file": "mp3/beat-B06.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "IV — Fail-safes",
+      "estimated_duration_s": 22,
+      "narration_text": "Classify the error before you react to it. Temporary means back off exponentially and retry. Permanent means fall back to something simpler and deterministic. Critical means stop and fetch a human. And alert only on that last one — paging an engineer for every silent retry is exactly how alerts start getting ignored.",
+      "new_visual_element": "Exception handling — the three-way classification",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "error splits three ways by classification"
+          },
+          {
+            "at": 0.6,
+            "event": "the critical branch lights terracotta"
+          },
+          {
+            "at": 0.85,
+            "event": "note: alert fatigue"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Exceptions",
+            "sparkLine": "Classify, then react.",
+            "note": "Alert on critical only. Paging on every retry is how alerts get ignored.",
+            "nodes": [
+              {
+                "id": "x",
+                "label": "Error",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "t",
+                "label": "Backoff & Retry",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": "temporary"
+              },
+              {
+                "id": "p",
+                "label": "Plan B",
+                "col": 1,
+                "row": 1,
+                "kind": "node",
+                "sub": "permanent"
+              },
+              {
+                "id": "h",
+                "label": "Escalate",
+                "col": 1,
+                "row": 2,
+                "kind": "node",
+                "sub": "critical"
+              }
+            ],
+            "edges": [
+              {
+                "from": "x",
+                "to": "t",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "x",
+                "to": "p",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "x",
+                "to": "h",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "h",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.58,
+      "audio_file": "mp3/beat-B07.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "IV — Fail-safes",
+      "estimated_duration_s": 21,
+      "narration_text": "The agent pauses at a checkpoint — a low-confidence call, a regulated decision, a large transfer — and asks a person. The engineering problem is not the prompt. It is suspending state indefinitely without leaking resources while a review queue waits. And your latency is now bound to human response time.",
+      "new_visual_element": "Human-in-the-loop — the suspended checkpoint",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "confidence check gates the flow"
+          },
+          {
+            "at": 0.55,
+            "event": "pause-and-review lights terracotta, state suspended"
+          },
+          {
+            "at": 0.85,
+            "event": "note: latency bound to a human"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Human-in-the-Loop",
+            "sparkLine": "Pause, ask, resume.",
+            "note": "Your latency is now human response time.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "Agent",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "c",
+                "label": "Low confidence?",
+                "col": 1,
+                "row": 0,
+                "kind": "gate",
+                "sub": ""
+              },
+              {
+                "id": "p",
+                "label": "Pause & Review",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "sub": "state suspended"
+              },
+              {
+                "id": "r",
+                "label": "Resume",
+                "col": 3,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              }
+            ],
+            "edges": [
+              {
+                "from": "a",
+                "to": "c",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "c",
+                "to": "p",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "p",
+                "to": "r",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "p",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.84,
+      "audio_file": "mp3/beat-B08.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "III — Memory",
+      "estimated_duration_s": 22,
+      "narration_text": "Rewrite the query, search the vector store, rerank the top matches, then ground the model in what comes back. Two things decide whether it works: chunking that respects meaning rather than a fixed size, and a calibrated K. Retrieve too much and the model gets lost in the middle and hallucinates anyway.",
+      "new_visual_element": "RAG — retrieve, rerank, ground",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "query searched against the vector store"
+          },
+          {
+            "at": 0.55,
+            "event": "rerank gate lights terracotta with its top-K chip"
+          },
+          {
+            "at": 0.85,
+            "event": "note: lost in the middle"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "RAG",
+            "sparkLine": "Retrieve, rerank, ground.",
+            "note": "Too large a K and the model gets lost in the middle.",
+            "nodes": [
+              {
+                "id": "q",
+                "label": "Query",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "s",
+                "label": "Vector Search",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "r",
+                "label": "Rerank",
+                "col": 2,
+                "row": 0,
+                "kind": "gate",
+                "sub": "top-K"
+              },
+              {
+                "id": "g",
+                "label": "Ground",
+                "col": 3,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "l",
+                "label": "Answer",
+                "col": 4,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              }
+            ],
+            "edges": [
+              {
+                "from": "q",
+                "to": "s",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "s",
+                "to": "r",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "r",
+                "to": "g",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g",
+                "to": "l",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "r",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 18.64,
+      "audio_file": "mp3/beat-B09.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "V — Together",
+      "estimated_duration_s": 22,
+      "narration_text": "Put four of them together. A manager routes a returning customer's question. Memory pulls their history — a structured preference that never decayed. RAG grounds the answer in the current policy document. And because the refund crosses a threshold, human-in-the-loop pauses for approval. Four patterns, one conversation.",
+      "new_visual_element": "Worked example — four patterns on one conversation",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "customer question enters and is routed"
+          },
+          {
+            "at": 0.45,
+            "event": "memory and RAG add history and policy"
+          },
+          {
+            "at": 0.75,
+            "event": "approval gate lights terracotta before the reply"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "One Conversation, Four Patterns",
+            "sparkLine": "Patterns compose.",
+            "note": "State moves through every one of them.",
+            "nodes": [
+              {
+                "id": "c",
+                "label": "Customer",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              },
+              {
+                "id": "m",
+                "label": "Manager",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "y",
+                "label": "Memory",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "sub": "preferences"
+              },
+              {
+                "id": "g",
+                "label": "RAG",
+                "col": 3,
+                "row": 0,
+                "kind": "node",
+                "sub": "policy doc"
+              },
+              {
+                "id": "a",
+                "label": "Approval",
+                "col": 4,
+                "row": 0,
+                "kind": "gate",
+                "sub": "over threshold"
+              },
+              {
+                "id": "r",
+                "label": "Reply",
+                "col": 5,
+                "row": 0,
+                "kind": "terminal",
+                "sub": ""
+              }
+            ],
+            "edges": [
+              {
+                "from": "c",
+                "to": "m",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "m",
+                "to": "y",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "y",
+                "to": "g",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g",
+                "to": "a",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "a",
+                "to": "r",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "a",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.67,
+      "audio_file": "mp3/beat-B10.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "V — Together",
+      "estimated_duration_s": 21,
+      "narration_text": "And the honest limit. Every one of these adds infrastructure you maintain forever — a vector store to reindex, an alert matrix to tune, a review queue someone has to actually staff. If your agent runs one task, for one user, in one session, none of this applies. Add each pattern when its failure appears.",
+      "new_visual_element": "When NOT to add these",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "three conditions land left to right"
+          },
+          {
+            "at": 0.6,
+            "event": "'One session' lights terracotta as the voice names persistence"
+          },
+          {
+            "at": 0.85,
+            "event": "note: add the pattern when the failure appears"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "When Not To",
+            "sparkLine": "Three times you skip all seven.",
+            "note": "Add each pattern when its failure appears — never before.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "One task",
+                "col": 0,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "b",
+                "label": "One user",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              },
+              {
+                "id": "c",
+                "label": "One session",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "sub": ""
+              }
+            ],
+            "edges": [],
+            "accentId": "c",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.41,
+      "audio_file": "mp3/beat-B11.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "VI — Verdict",
+      "estimated_duration_s": 19,
+      "narration_text": "So: the agents were never the hard part. Seven patterns, and every one of them is a decision about state — who holds it, how it ages, who may write to it, and what happens when it breaks. Get that right and the orchestration is almost boring.",
+      "new_visual_element": "Verdict artifact page",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "artifact page opens; seven verdict lines land in order"
+          },
+          {
+            "at": 0.85,
+            "event": "the closing state line lands last"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Agentic Design Patterns — Part 2",
+            "artifactHeading": "The verdict",
+            "artifactLines": [
+              "Multi-Agent — specialization. Costs orchestration and state conflicts.",
+              "Memory — continuity. Costs index upkeep and context poisoning.",
+              "Learning — self-improvement. Costs exposure to poisoned feedback.",
+              "Goals — resource control. Costs deadlock between competing targets.",
+              "Exceptions — reliability. Costs infrastructure and alert fatigue.",
+              "Human-in-the-Loop — safety. Costs human-speed latency.",
+              "RAG — grounding. Costs index drift and a calibrated K.",
+              "Every one is a decision about state."
+            ]
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 15.17,
+      "audio_file": "mp3/beat-B12.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "VI — Verdict",
+      "estimated_duration_s": 31,
+      "narration_text": "Your turn. The prompt: take the multi-agent or long-running system I am building. For each of the seven patterns, tell me whether I already have it, whether I need it yet, and what specific failure would show up first if I skip it. Then name the one piece of state most likely to corrupt, and how you would protect it. That last question is the one worth running — it turns a checklist into a risk assessment of your own architecture.",
+      "new_visual_element": "Handoff — the viewer's prompt",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the suggested prompt types itself into the composer"
+          },
+          {
+            "at": 0.75,
+            "event": "prompt sits complete while the voice discusses it"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "folderLabel": "@HumanitariansAI",
+            "topic": "Irreducibly Human",
+            "segment": "Your turn",
+            "command": "Take the multi-agent or long-running AI system I am building. For each of these seven patterns — multi-agent collaboration, memory, learning, goal monitoring, exception handling, human-in-the-loop, RAG — tell me whether I already have it, whether I need it yet, and what specific failure would show up first if I skip it. Then name the one piece of state most likely to corrupt, and how you would protect it.",
+            "runningText": "paste this into Claude…",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 24.74,
+      "audio_file": "mp3/beat-B13.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "OUTRO",
+      "estimated_duration_s": 11,
+      "narration_text": "That is part two. Part three closes the series with safety, cost, and complex reasoning. Rishabh, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "title restates with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "hairline rule draws; handle and credit land"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "State Is The Hard Part",
+            "handle": "@HumanitariansAI",
+            "subline": "Agentic Design Patterns · Part 2",
+            "credit": "Concepts from “Agentic Design Patterns: A Hands-On Guide to Building Intelligent Systems” by Antonio Gulli"
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 8.94,
+      "audio_file": "mp3/beat-B14.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T22:07:26"
+      }
+    }
+  ]
+}
