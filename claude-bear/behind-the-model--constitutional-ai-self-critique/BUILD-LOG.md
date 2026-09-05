@@ -136,5 +136,11 @@ touched since this final compile.
 
 ## Delivery
 
-Master born natively 3840×2160 via `compile.py`'s 4K LAW. 4K delivery packaging via
-`deliver.py --push` to follow this log entry (per PHASE 4).
+Master born natively 3840×2160 via `compile.py`'s 4K LAW, copied directly to `-4k.mp4`
+(no separate 4K re-render needed). Delivered via `deliver.py --push`: staged
+`DELIVERY/behind-the-model--constitutional-ai-self-critique/` (4K mp4 + description)
+for the Drive sync, and committed the text artifacts (README.md, beat_sheet.json,
+SCRIPT.md, SUBJECT.json, BUILD-LOG.md, CARRY-OUT.md, QUESTION.md — no mp3/mp4) to
+`humanitarians-youtube/claude-bear/behind-the-model--constitutional-ai-self-critique/`,
+pushed clean (commit `cb583508`). Playlist: **Behind the Model** (direct family-prefix
+match in `playlists.json`).
