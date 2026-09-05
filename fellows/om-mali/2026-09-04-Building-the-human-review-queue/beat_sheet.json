@@ -1,0 +1,1015 @@
+{
+  "metadata": {
+    "title": "Building the Human Review Queue",
+    "slug": "building-the-human-review-queue",
+    "topic": "Irreducibly Human",
+    "topic_note": "Slot-1 kicker is the FIXED claude-hai series name (runtime/qc/brand_labels.json, GATE L rule 7) — never a per-video guess.",
+    "register": "Pragmatist",
+    "audience": "Humanitarians AI",
+    "brand": "claude-hai",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "voice_policy": "persistent-fellow-selected",
+    "voice_approval": "APPROVED",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Salut, HAI",
+    "greeting_note": "hello lexicon: French (short form). HAI persona takes only the shortest cues (Hi · Ola · Hej · Ciao · Hallo · Salut). Rotated off weeks 1, 2, 4 and 5 so the series never repeats a language.",
+    "aspect_ratio": "16:9",
+    "fit": "pad",
+    "typography": {
+      "serif": "Tiempos/EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "color_semantics": "Claude FIDELITY skin: cream #F2F0E9 stage, warm ink #3D3929, terracotta #D97757 as the ONE accent. The Mycroft figures use red as the primary series — never 'danger' — marking the human's share of the work; that remaps onto the Claude accent grammar. Palette change only, no data change. Same treatment as weeks 1, 2, 4 and 5.",
+    "series": "Private AI Valuation Agent — week 6 (follows 2026-08-28-Measuring-a-local-LLM-against-the-matcher)",
+    "derived_from": "narration_script.md (human-authored, 441 spoken words, target 3:00) plus README.md's figure-to-beat map. Every on-screen figure is a prop injected by build_beat_sheet.py from figdata_week6.json, under assertions — no number is typed by hand.",
+    "note": "ai-explainer / claude-hai. ILLUSTRATE LAW: the Claude UI appears at B00 (cold open, answered), B09 (verdict artifact), B10 (handoff) and B11 (outro) only — every body beat illustrates its concept as a native animated Remotion scene (REBUILD LAW). The five source PNGs and their SVG sources are REFERENCE in pantry/, never slotted as media. The script's six sections are split into eight body beats so no beat carries two ideas; the split is logged in BUILD-LOG.md. THE CENTRAL CLAIM: the software routed, grouped and presented — it decided nothing.",
+    "companion_vertical": "vertical/ — the same twelve beats, same audio, rendered 9:16 at 2160×3840 from portrait compositions (never a crop).",
+    "tags": [
+      "SEC",
+      "N-PORT",
+      "human in the loop",
+      "review queue",
+      "LangGraph",
+      "Postgres",
+      "entity resolution",
+      "stock split",
+      "data engineering",
+      "Humanitarians AI",
+      "Mycroft"
+    ],
+    "build": {
+      "at": "2026-09-04T19:07:21",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "lane": "BOOKEND",
+      "narration_text": "Hi, I'm Om Mali. This video is about the human review queue I built this week, the part of the pipeline that knows when to stop and ask a person. The project turns S E C filings into share prices for private companies. The hard part was never the arithmetic. It is working out which company a filing is actually talking about.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "Cream Claude composer, empty. Serif greeting 'Salut, HAI' + terracotta spark above it."
+          },
+          {
+            "at": "0.15",
+            "event": "The ask types itself into the composer, character by character."
+          },
+          {
+            "at": "0.60",
+            "event": "Send button arms terracotta; running indicator reads 'draining the queue…'."
+          },
+          {
+            "at": "0.75",
+            "event": "Three output lines land in sequence — the ask arrives ANSWERED (COLD OPEN LAW)."
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "props": {
+            "greeting": "Salut, HAI",
+            "topic": "Irreducibly Human",
+            "segment": "Building the Human Review Queue",
+            "command": "Build me a review queue for the matcher: resolve what it can, stop at what it cannot, group the questions so I answer each one once, and hold a paused question in Postgres so it survives the process exiting.",
+            "runningText": "draining the queue…",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Opus 5",
+            "effortLabel": "High",
+            "output": [
+              "5,806 holdings — 4,537 resolved unaided (78.1%)",
+              "1,269 stopped and waited: 42 cards, 8 actual questions",
+              "45 decisions recorded, every one with a name and a reason"
+            ],
+            "durationInSeconds": 18.3
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 18.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "EXECUTIVE SUMMARY",
+      "lane": "REMOTION",
+      "narration_text": "Here is the whole week in one line. The matcher resolved seventy-eight percent of the holdings on its own, and on the rest it refused to guess. Those stopped and waited for a person. Nothing was dropped for being difficult. And nothing here was decided by a model. It routed, it grouped, it presented. Every decision carries my name and a written reason.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "The BLUF and the week's one claim: the split of the work, and the verb the software never performed.",
+        "show": [
+          {
+            "at": "on 'refused to guess'",
+            "event": "Headline sets in serif at display size."
+          },
+          {
+            "at": "on 'seventy-eight percent'",
+            "event": "Two halves land: 78.1% resolved, 21.9% stopped, the human share in terracotta."
+          },
+          {
+            "at": "on 'it routed, it grouped, it presented'",
+            "event": "Three verb chips land in sequence."
+          },
+          {
+            "at": "on 'nothing here was decided'",
+            "event": "A fourth chip, 'decide', lands and is struck through."
+          },
+          {
+            "at": "on 'my name and a written reason'",
+            "event": "The rule lands across the foot."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6Bluf",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "It stops, and it asks.",
+            "headline": "It refuses to guess.",
+            "halves": [
+              {
+                "kicker": "RESOLVED UNAIDED",
+                "value": "78.1%",
+                "sub": "4,537 holdings — registered identifier or a name already known"
+              },
+              {
+                "kicker": "STOPPED AND WAITED",
+                "value": "21.9%",
+                "sub": "1,269 holdings — routed to a person, none dropped"
+              }
+            ],
+            "chain": [
+              "route",
+              "group",
+              "present"
+            ],
+            "chainNote": "What the software did.",
+            "verdictLabel": "What it did NOT do",
+            "verdict": "decide",
+            "rule": "All 45 recorded decisions carry a human name and a written reason. The code rejects a decision missing either.",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 17.98
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "WHAT STOPPED",
+      "lane": "REMOTION",
+      "narration_text": "Five thousand eight hundred and six holdings. The matcher resolved four thousand five hundred and thirty-seven of them on its own, off a registered identifier or a name it already knew. Twelve hundred and sixty-nine stopped. Most of those were suspected stock splits. Three hundred were companies not yet admitted to the published universe. Twenty-eight belonged to nothing at all.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Rebuild of pantry/w6-funnel.png. The terracotta segment is the subject of the week, so the bar splits before it fans.",
+        "show": [
+          {
+            "at": "on 'five thousand eight hundred and six'",
+            "event": "One full-width bar draws and the total counts up to 5,806."
+          },
+          {
+            "at": "on 'resolved four and a half thousand'",
+            "event": "The bar splits: 4,537 in ink, 1,269 in terracotta."
+          },
+          {
+            "at": "on 'most of those were suspected splits'",
+            "event": "The terracotta segment fans out into its four triggers."
+          },
+          {
+            "at": "on 'nothing at all'",
+            "event": "The 28-holding sliver lights last."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6Funnel",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "Nothing was dropped for being difficult.",
+            "eyebrow": "WEEK 6 · WHAT STOPPED",
+            "title": "Where each one went",
+            "subtitle": "one bar, split by what decided it",
+            "total": 5806,
+            "totalLabel": "holdings",
+            "segments": [
+              {
+                "label": "resolved unaided",
+                "value": 4537,
+                "hot": false
+              },
+              {
+                "label": "stopped for a person",
+                "value": 1269,
+                "hot": true
+              }
+            ],
+            "pctLabel": "78.1% / 21.9%",
+            "triggers": [
+              {
+                "label": "split",
+                "value": 925
+              },
+              {
+                "label": "new company",
+                "value": 300
+              },
+              {
+                "label": "unresolved",
+                "value": 28
+              },
+              {
+                "label": "band",
+                "value": 16
+              }
+            ],
+            "triggerLabel": "why it stopped",
+            "methods": [
+              {
+                "label": "alias",
+                "holdings": 2760,
+                "questions": 97
+              },
+              {
+                "label": "lei",
+                "holdings": 1681,
+                "questions": 68
+              },
+              {
+                "label": "human",
+                "holdings": 1269,
+                "questions": 42
+              },
+              {
+                "label": "fuzzy",
+                "holdings": 57,
+                "questions": 8
+              },
+              {
+                "label": "spv",
+                "holdings": 39,
+                "questions": 16
+              }
+            ],
+            "methodLabel": "how it was finally decided",
+            "decidedNote": "5,806 of 5,806 decided. Nothing dropped, nothing pending.",
+            "source": "SOURCE: figdata_week6.json — queried from the project Postgres at build time",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 18.37
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "THE REPETITION",
+      "lane": "REMOTION",
+      "narration_text": "Now look at what stopped. Forty-two cards, but only eight actual questions. X dot A-I alone arrives under twenty-four different spellings. Some of them share an issuer name and differ only in the security title. Asking twenty-four times whether X dot A-I belongs in the dataset would be absurd.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Rebuild of pantry/w6-collapse.png, upper half. Titles are carried because three rows share an issuer name and would otherwise read as a data error.",
+        "show": [
+          {
+            "at": "on 'forty-two cards'",
+            "event": "Two counters resolve side by side: 42 cards, 8 questions."
+          },
+          {
+            "at": "on 'twenty-four different spellings'",
+            "event": "The real filed strings scroll — the repetition is the point."
+          },
+          {
+            "at": "on 'differ only in the security title'",
+            "event": "The rows sharing an issuer name light, with their titles beside them."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6Collapse",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "Twenty-four spellings, one company.",
+            "eyebrow": "WEEK 6 · THE REPETITION",
+            "title": "42 cards, 8 questions",
+            "subtitle": "every spelling X.AI Corp arrives under, as filed",
+            "cards": 42,
+            "cardsLabel": "cards that stopped",
+            "questions": 8,
+            "questionsLabel": "actual questions",
+            "spellings": [
+              {
+                "name": "X.AI HOLDINGS CORP",
+                "title": "X.AI HOLDINGS CORP SER C PC PP",
+                "holdings": 79
+              },
+              {
+                "name": "X.AI HOLDINGS CORP",
+                "title": "X.AI HOLDINGS CORP CLASS A P/P",
+                "holdings": 64
+              },
+              {
+                "name": "X.AI HOLDINGS CORP",
+                "title": "X.AI HOLDINGS CORP SER B PC PP",
+                "holdings": 27
+              },
+              {
+                "name": "X.AI Holdings Corp.",
+                "title": "X.AI Holdings Corp.",
+                "holdings": 18
+              },
+              {
+                "name": "X.AI, CORP.",
+                "title": "X.AI, CORP.",
+                "holdings": 12
+              },
+              {
+                "name": "x.AI, Inc.",
+                "title": "x.AI, Inc., Series C, Class E",
+                "holdings": 12
+              },
+              {
+                "name": "X.AI CORP.",
+                "title": "X.AI CORP.",
+                "holdings": 6
+              },
+              {
+                "name": "X.AI HOLDINGS CLASS A COMMON",
+                "title": "X.AI HOLDINGS CLASS A COMMON",
+                "holdings": 6
+              },
+              {
+                "name": "X.AI HOLDINGS CORP., CLASS C",
+                "title": "X.AI HOLDINGS CORP., CLASS C",
+                "holdings": 6
+              },
+              {
+                "name": "X.AI, HOLDINGS CORP. CLASS B",
+                "title": "X.AI, HOLDINGS CORP. CLASS B",
+                "holdings": 6
+              },
+              {
+                "name": "X.AI HOLDINGS CORP",
+                "title": "X.AI HOLDINGS CORP SER E PC PP",
+                "holdings": 5
+              },
+              {
+                "name": "X.AI HOLDINGS PREF E",
+                "title": "X.AI HOLDINGS PREF E",
+                "holdings": 5
+              },
+              {
+                "name": "X.AI, CORP. PREFERRED SERIES B   /",
+                "title": "X.AI, CORP. PREFERRED SERIES B   /",
+                "holdings": 5
+              },
+              {
+                "name": "X.AI HOLDINGS CORP SERIES C PREF E",
+                "title": "X.AI HOLDINGS CORP SERIES C PREF E",
+                "holdings": 4
+              },
+              {
+                "name": "x.AI, Inc.",
+                "title": "x.AI, Inc., Series C",
+                "holdings": 4
+              },
+              {
+                "name": "X.AI Corp SER E CVT PFD PP",
+                "title": "X.AI CORP SER E CVT PFD PP",
+                "holdings": 3
+              },
+              {
+                "name": "X.Ai Holdings Corp.",
+                "title": "x.AI, Inc., Series C, Class E",
+                "holdings": 3
+              },
+              {
+                "name": "X.AI, CORP. PERFERRED SERIES C   /",
+                "title": "X.AI, CORP. PERFERRED SERIES C   /",
+                "holdings": 3
+              },
+              {
+                "name": "HOF CAPITAL WH STRATEGIC OPPORTUNITIES FUND, LP (INVESTED IN X.AI, CORP., PREFERRED SERIES B)",
+                "title": "HOF CAPITAL WH STRATEGIC OPPORTUNITIES FUND, LP (INVESTED IN X.AI, CORP., PREFERRED SERIES B)",
+                "holdings": 2
+              },
+              {
+                "name": "MVP OPPORTUNITY FUND VI LLC, SERIES 24G (INVESTED IN X.AI, Corp., PREFERRED SERIES C)",
+                "title": "MVP OPPORTUNITY FUND VI LLC, SERIES 24G (INVESTED IN X.AI, Corp., PREFERRED SERIES C)",
+                "holdings": 2
+              },
+              {
+                "name": "SC JAL, LLC (INVESTED IN X.AI, CORP., PREFERRED SERIES B)",
+                "title": "SC JAL, LLC (INVESTED IN X.AI, CORP., PREFERRED SERIES B)",
+                "holdings": 2
+              },
+              {
+                "name": "X.AI HOLDINGS Corp SER C CVT PFD PP",
+                "title": "X.AI CORP SER C CVT PFD PP",
+                "holdings": 2
+              },
+              {
+                "name": "Snowpoint Growth 2.6, LLC (invested in X.AI Corp. Series E Preferred Stock)",
+                "title": "Snowpoint Growth 2.6, LLC (invested in X.AI Corp. Series E Preferred Stock)",
+                "holdings": 1
+              },
+              {
+                "name": "X.AI Corp SER C CVT PFD PP",
+                "title": "X.AI CORP SER C CVT PFD PP",
+                "holdings": 1
+              }
+            ],
+            "spellingCount": 24,
+            "spellingHoldings": 278,
+            "spellingNote": "24 spellings, 278 holdings, one company. Rows sharing an issuer name differ only in the security title.",
+            "source": "SOURCE: figdata_week6.json — xai_spellings, name AND title as filed",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 16.26
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.26,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE KEY",
+      "lane": "REMOTION",
+      "narration_text": "So the answer is not recorded against the spelling. It is recorded against the company. One answer clears all twenty-four at once, and spelling number twenty-five never asks anyone. That is the difference between a queue that shrinks as you work and one that grows with every new filing.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "The mechanism, not the tally: the same 24 strings resolve to one key, and the next one arrives pre-answered.",
+        "show": [
+          {
+            "at": "on 'not recorded against the spelling'",
+            "event": "Twenty-four separate question marks fan out, then dim."
+          },
+          {
+            "at": "on 'recorded against the company'",
+            "event": "They collapse into ONE card carrying the company and its verdict."
+          },
+          {
+            "at": "on 'clears all twenty-four'",
+            "event": "Twenty-four ticks fill from the single answer."
+          },
+          {
+            "at": "on 'spelling number twenty-five'",
+            "event": "A 25th card arrives already ticked and never enters the queue."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6Key",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "Answer the company, not the string.",
+            "eyebrow": "WEEK 6 · THE KEY",
+            "title": "One answer, twenty-four cards",
+            "wrongLabel": "keyed on the spelling",
+            "wrongNote": "24 questions, and a new one with every new filing",
+            "rightLabel": "keyed on the company",
+            "rightNote": "1 question, and it stays answered",
+            "company": "X.AI Corp",
+            "verdict": "company",
+            "clears": 24,
+            "clearsLabel": "cards cleared by one answer",
+            "nextLabel": "spelling 25",
+            "nextNote": "arrives already answered — it never reaches a person",
+            "keysNote": "3 of the 8 questions are keyed at company level; the rest are single cards.",
+            "source": "SOURCE: figdata_week6.json — review_groups, company_level_keys",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 14.95
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.95,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "DURABILITY",
+      "lane": "REMOTION",
+      "narration_text": "The other half of this is durability. When the graph stops, it writes its entire state into Postgres. The process can exit. I tested that by pausing the graph in one process and answering the question in a completely separate one. The queue did not notice the difference.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Rebuild of pantry/w6-durability.png. The two processes must be visibly separate, with only the store between them.",
+        "show": [
+          {
+            "at": "on 'when the graph stops'",
+            "event": "Five nodes draw left to right; the third halts and takes the accent."
+          },
+          {
+            "at": "on 'writes its entire state into Postgres'",
+            "event": "An arrow drops from the halted node into a Postgres cylinder."
+          },
+          {
+            "at": "on 'in one process'",
+            "event": "Process A appears above the store, then greys out and exits."
+          },
+          {
+            "at": "on 'a completely separate one'",
+            "event": "Process B appears below, reads the same store and resumes the graph."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6Durability",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "The process can exit.",
+            "eyebrow": "WEEK 6 · DURABILITY",
+            "title": "Where a paused question lives",
+            "nodes": [
+              "ingest",
+              "match",
+              "interrupt()",
+              "resume",
+              "commit"
+            ],
+            "haltAt": 2,
+            "haltLabel": "the graph stops here",
+            "storeLabel": "Postgres",
+            "storeNote": "the entire graph state, written on halt",
+            "procA": {
+              "label": "process A",
+              "note": "paused the graph, then exited"
+            },
+            "procB": {
+              "label": "process B",
+              "note": "answered the question, resumed the graph"
+            },
+            "proof": "Two processes, one queue. Nothing was held in memory between them.",
+            "source": "SOURCE: the author's own run log. This beat is the one part of the reel NOT evidenced by figdata_week6.json — see FACTCHECK rows 10 and 11.",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 14.68
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE UNPLANNED TEST",
+      "lane": "REMOTION",
+      "narration_text": "Then I got a second test I did not ask for. The database server crashed. When it came back, all forty-two questions were still sitting there, exactly as they were. That is the part I would not have thought to test, and it is the part that actually matters.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 19,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "The script calls this the strongest beat. The count must be shown to be the SAME number, not asserted to be.",
+        "show": [
+          {
+            "at": "on 'a second test I did not ask for'",
+            "event": "42 question marks sit in a settled block."
+          },
+          {
+            "at": "on 'the database server crashed'",
+            "event": "The frame cuts to a hard rule; the block goes dark."
+          },
+          {
+            "at": "on 'when it came back'",
+            "event": "The identical block returns, counted again to 42."
+          },
+          {
+            "at": "on 'exactly as they were'",
+            "event": "The caveat lands beneath — one accident is not a guarantee."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6Crash",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "It came back whole.",
+            "eyebrow": "WEEK 6 · THE UNPLANNED TEST",
+            "before": {
+              "label": "before",
+              "value": 42,
+              "note": "questions waiting"
+            },
+            "event": "the database server crashed",
+            "eventNote": "not a drill, and not part of the plan",
+            "after": {
+              "label": "after",
+              "value": 42,
+              "note": "questions waiting, unchanged"
+            },
+            "verdict": "Nothing was in memory to lose.",
+            "caveat": "One unplanned outage is not a durability guarantee. It is the only test of this kind that has been run, and it was run by accident.",
+            "source": "SOURCE: figdata_week6.json — review_cards = 42. The before/after identity is the author's observation of one outage, not two recorded snapshots (FACTCHECK row 12).",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 13.21
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 13.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "WHAT IT CAUGHT",
+      "lane": "REMOTION",
+      "narration_text": "And here is what that bought. Perplexity's share count went from six thousand and eighty-one to sixty thousand eight hundred and ten, while the dollar value stayed the same, to the cent. That is a ten for one stock split. Priced naively it would have entered my price history as a ninety percent crash.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Rebuild of pantry/w6-split.png, first row. The unchanged dollar value is the evidence, so it is bracketed rather than stated.",
+        "show": [
+          {
+            "at": "on 'six thousand and eighty-one'",
+            "event": "The first row lands: shares, filed value, implied price."
+          },
+          {
+            "at": "on 'sixty thousand eight hundred and ten'",
+            "event": "The second row lands beneath, share count ten times larger."
+          },
+          {
+            "at": "on 'to the cent'",
+            "event": "The two filed values are bracketed as identical, shown to the cent."
+          },
+          {
+            "at": "on 'ninety percent crash'",
+            "event": "The naive reading lands struck through in terracotta."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6Split",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "Ten times the shares. The same dollars.",
+            "eyebrow": "WEEK 6 · WHAT IT CAUGHT",
+            "title": "A split, not a crash",
+            "company": "Perplexity AI, Inc.",
+            "rows": [
+              {
+                "period": "2025-12-31",
+                "balance": 6081.0,
+                "value": 4228993.75,
+                "price": 695.4438003617826
+              },
+              {
+                "period": "2026-03-31",
+                "balance": 60810.0,
+                "value": 4228993.75,
+                "price": 69.54438003617825
+              }
+            ],
+            "balanceLabel": "shares",
+            "valueLabel": "filed value",
+            "priceLabel": "implied price",
+            "unchanged": "$4,228,993.75",
+            "unchangedLabel": "unchanged, to the cent",
+            "ratio": "10 for 1",
+            "ratioLabel": "stock split",
+            "naive": "−90%",
+            "naiveLabel": "what a naive price series would have recorded",
+            "source": "SOURCE: figdata_week6.json — perplexity, both period ends as filed",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 15.27
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 15.27,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "THREE CAUSES",
+      "lane": "REMOTION",
+      "narration_text": "Three price steps tripped the same split detector. Only one was a split. SpaceX's ten times step is the same fund reporting common stock at eighty-one dollars and preferred at eight hundred and ten, on the same day. Anthropic's is an ordinary funding round, four times up over one quarter. One trigger, three different causes. A detector that treated them alike would be wrong two times out of three.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Rebuild of pantry/w6-split.png, all three rows. The magnitudes DIFFER (x10, x10, x4.0) and are labelled as such; what the three share is the detector that flagged them, not their shape.",
+        "show": [
+          {
+            "at": "on 'tripped the same split detector'",
+            "event": "Three step glyphs land in a row, each labelled with its own magnitude."
+          },
+          {
+            "at": "on 'only one was a split'",
+            "event": "The first takes the accent and is labelled a split."
+          },
+          {
+            "at": "on 'common at eighty-one, preferred at eight hundred and ten'",
+            "event": "The second reveals its real cause beneath it."
+          },
+          {
+            "at": "on 'an ordinary funding round'",
+            "event": "The third reveals its cause."
+          },
+          {
+            "at": "on 'wrong two times out of three'",
+            "event": "The verdict lands across the foot, with the corrected count."
+          }
+        ],
+        "remotion": {
+          "pattern": "W6ThreeCauses",
+          "provenance": "reel-local/BuildingTheHumanReviewQueue",
+          "props": {
+            "sparkLine": "One trigger. Three causes.",
+            "eyebrow": "WEEK 6 · THREE CAUSES",
+            "title": "One trigger, three different things",
+            "subtitle": "every price step the split detector flagged — and what each one really was",
+            "cases": [
+              {
+                "company": "Perplexity AI, Inc.",
+                "shape": "×10 shares",
+                "cause": "a real 10-for-1 stock split",
+                "evidence": "filed value identical at $4,228,993.75",
+                "real": true
+              },
+              {
+                "company": "Space Exploration Technologies Corp.",
+                "shape": "×10 price",
+                "cause": "not a split — two share classes",
+                "evidence": "same fund, same day (2023-10-31): common $81 vs preferred $810",
+                "real": false
+              },
+              {
+                "company": "Anthropic PBC",
+                "shape": "×4.0 price",
+                "cause": "not a split — an ordinary funding round",
+                "evidence": "$12.18 on 2023-10-31 to $48.94 on 2024-01-31",
+                "real": false
+              }
+            ],
+            "realLabel": "a split",
+            "notRealLabel": "not a split",
+            "verdict": "A detector that treated them alike would be wrong 2 times out of 3.",
+            "correction": "3 split questions, 9 cards, 925 holdings. An earlier write-up said four questions and three-in-four; counted from the database it is 3 and 2 times out of 3.",
+            "source": "SOURCE: figdata_week6.json — perplexity, spacex_same_day, anthropic_step",
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 20.48
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 20.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "lane": "BOOKEND",
+      "narration_text": "Week six on one page. Five thousand eight hundred and six holdings, every one of them decided. Seventy-eight percent by the matcher, the rest by a person. Forty-two cards collapsed into eight questions, because the answer is recorded against the company. A paused question lives in Postgres, and survived a crash nobody planned. And each decision is now a test, so a future change to the matcher cannot quietly overturn a judgment I already made.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 32,
+      "lead_silence_s": 0.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "The Claude artifact page opens — Building the Human Review Queue, week 6."
+          },
+          {
+            "at": "each line",
+            "event": "Five findings stagger in, one per spoken clause."
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "provenance": "proven-core/ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "Building the Human Review Queue — week 6",
+            "artifactHeading": "What the queue does",
+            "artifactLines": [
+              "5,806 holdings, 5,806 decided. 4,537 (78.1%) resolved unaided; 1,269 (21.9%) stopped and waited. None dropped.",
+              "42 cards collapsed to 8 questions. The answer is keyed on the company, not the spelling — one answer cleared X.AI's 24.",
+              "interrupt() writes the whole graph state to Postgres. Paused in one process, answered in another — and it survived an unplanned database outage intact.",
+              "3 suspected splits, 925 holdings. One was real: Perplexity ×10 shares at $4,228,993.75 unchanged. Treating all three alike would be wrong 2 times out of 3.",
+              "45 decisions recorded, each with a human name and a written reason — the code rejects one missing either. Each is now a regression test."
+            ],
+            "durationInSeconds": 22.31
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 22.31,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "HANDOFF",
+      "lane": "BOOKEND",
+      "narration_text": "Your turn. Paste this into Claude. Take any place in your own work where a script gives up and asks you something. Ask yourself two questions about it. First, is the answer recorded against the thing you actually decided, or against the string that happened to arrive? And second, if the process died right now, would the question still be there when it came back? If either answer is no, you do not have a queue. You have an interruption.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 31,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "Composer returns, greeting reads 'Your turn.'"
+          },
+          {
+            "at": "0.10",
+            "event": "The suggested prompt types itself in as the narration reads it aloud, verbatim."
+          },
+          {
+            "at": "0.70",
+            "event": "Running text reads 'paste this into Claude…' while the narration discusses what to look for."
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Irreducibly Human",
+            "segment": "Building the Human Review Queue",
+            "command": "Find the place in my pipeline where it gives up and asks me something. Help me key the answer on the entity I actually decided rather than the string that arrived, and persist the paused state so the question survives the process exiting. Then tell me what my design still cannot recover from.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Opus 5",
+            "effortLabel": "High",
+            "durationInSeconds": 19.54
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 19.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "lane": "BOOKEND",
+      "narration_text": "Building the human review queue. Week six of the Private AI Valuation Agent. Next week, an actual price panel. Om Mali, for Humanitarians A I.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "estimated_duration_s": 12,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "Title restates poster-style in serif with the terracotta period; handle beneath."
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "provenance": "proven-core/ClaudeTitleOutro",
+          "props": {
+            "title": "Building the Human Review Queue",
+            "handle": "@HumanitariansAI",
+            "subline": "week 6 · the Private AI Valuation Agent",
+            "durationInSeconds": 9.28
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 9.28,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T19:07:21"
+      }
+    }
+  ]
+}

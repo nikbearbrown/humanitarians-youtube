@@ -1,0 +1,57 @@
+Building the Human Review Queue — Private AI Valuation Agent, week 6
+
+This week I built the part of the pipeline that knows when to stop and ask a person.
+
+The project turns SEC filings into share prices for private companies. The hard part was never
+the arithmetic — it is working out which company a filing is actually talking about, when the
+same company arrives under dozens of different spellings.
+
+5,806 holdings. The matcher resolved 4,537 of them on its own, off a registered identifier or a
+name it already knew. On the other 1,269 it refused to guess. Those stopped and waited for me.
+Nothing was dropped for being difficult.
+
+Three things made the queue workable:
+
+ONE ANSWER, NOT TWENTY-FOUR. What stopped was 42 cards, but only 8 actual questions. X.AI
+alone arrives under 24 different spellings — some sharing an issuer name and differing only in
+the security title. The answer is recorded against the company, not the spelling, so one answer
+clears all 24 and spelling number 25 never reaches a person.
+
+A PAUSED QUESTION SURVIVES THE PROCESS. When the graph stops it writes its whole state to
+Postgres. I tested that by pausing in one process and answering in a completely separate one.
+Then I got a second test I did not ask for: the database server crashed, and when it came back
+all 42 questions were still sitting there. That is one accident, not a durability guarantee —
+but it is the test I would not have thought to design.
+
+IT CAUGHT A SPLIT THAT LOOKED LIKE A CRASH. Perplexity's share count went from 6,081 to 60,810
+while the filed value stayed at $4,228,993.75 — identical to the cent. That is a 10-for-1 stock
+split, and priced naively it would have entered my price history as a 90% crash. Two other
+price steps looked exactly the same and were not splits at all: SpaceX's is the same fund
+reporting common stock at $81 and preferred at $810 on the same day, and Anthropic's is an
+ordinary funding round. Same shape, three different causes — a detector that treated them alike
+would be wrong two times out of three.
+
+The thing I most want to be clear about: the software decided nothing. It routed, it grouped,
+and it presented. All 45 recorded decisions carry a human name and a written reason, and the
+code rejects a decision missing either. Seventy-eight percent resolved unaided and twenty-two
+percent needed a person — that is the design working, not a shortfall.
+
+Every decision is now also a regression test, so a future change to the matcher cannot quietly
+overturn a judgment already made.
+
+Next week: turning all of this into an actual price panel.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is queried from the project's database at build time, not typed by hand;
+the build asserts the key counts and fails rather than let a number drift. See FACTCHECK.md in
+the project folder for what still needs confirmation before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#HumanInTheLoop #DataEngineering #EntityResolution #SEC #Postgres #LangGraph #ReviewQueue
+#HumanitariansAI #Mycroft
