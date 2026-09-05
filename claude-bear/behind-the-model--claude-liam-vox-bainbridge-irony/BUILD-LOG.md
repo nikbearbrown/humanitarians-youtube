@@ -112,3 +112,12 @@ cp behind-the-model--claude-liam-vox-bainbridge-irony.mp4 \
    behind-the-model--claude-liam-vox-bainbridge-irony-4k.mp4
 python3 skills/make/hai-simple/loop/deliver.py <REEL_DIR> --push
 ```
+
+Outbox staged:
+`DELIVERY/behind-the-model--claude-liam-vox-bainbridge-irony/` (4K mp4 +
+description.md). Repo: committed + pushed to
+`humanitarians-youtube/claude-bear/behind-the-model--claude-liam-vox-bainbridge-irony/`
+(README.md, beat_sheet.json, SCRIPT.md, SUBJECT.json, BUILD-LOG.md,
+CARRY-OUT.md, QUESTION.md — no mp3/mp4), clean push, no conflicts.
+
+**Status: DELIVERED.** Both delivery targets staged/pushed. Reel complete.
