@@ -13,6 +13,7 @@ Masters ship at 1080p by default. For 4K: Manim `-qk -r 3840,2160`, `ART_REMOTIO
 ## Week of 2026-09-04
 
 - [Unblocking the Team.](./2026-09-04-unblocking-the-team/) — weekly progress report
+- [What MP3 Throws Away](./2026-09-04-what-mp3-throws-away/) — lossy compression explainer
 
 ## Week of 2026-08-28
 
