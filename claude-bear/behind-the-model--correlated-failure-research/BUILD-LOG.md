@@ -110,3 +110,14 @@ real (no slate), audible narration throughout (mean -23.8 dB, verified via ffpro
 ffmpeg directly, not just compile.py's self-report). This is the review cut (COMPLETION
 LAW satisfied: mp4 newer than beat_sheet.json, mean_volume verified). `compile.py` forces
 a 4K master by default ("4K LAW"), so no separate low-res pass exists for this cut.
+
+## Delivery
+
+Master born natively 3840x2160 via `compile.py`'s 4K LAW, copied directly to `-4k.mp4`
+(no separate 4K re-render needed). Delivered via `deliver.py --push`: staged
+`DELIVERY/behind-the-model--correlated-failure-research/` (4K mp4 + description) for the
+Drive sync, and committed the text artifacts (README.md, beat_sheet.json, SCRIPT.md,
+SUBJECT.json, BUILD-LOG.md, CARRY-OUT.md, QUESTION.md — no mp3/mp4) to
+`humanitarians-youtube/claude-bear/behind-the-model--correlated-failure-research/`
+(commit `527b03d5`). Playlist: **Behind the Model** (direct family-prefix match in
+`playlists.json`).
