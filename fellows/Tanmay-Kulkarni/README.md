@@ -31,6 +31,19 @@ clip would have flattened the arc the script is built on. This is an exception
 for one episode, reasoned in its `SCRIPT.md`. **`af_bella` remains the standing
 choice for the series.**
 
+**Documented exception, 2026-09-03 — `am_onyx` for both Week 21 films.** The topic
+video is narration over a measurement rather than a walkthrough, the same reason
+Week 20's topic video used Onyx. The work video follows it because **both films
+name the same presenter aloud and ship the same week** — one presenter, released
+together, should not arrive in two timbres.
+
+Worth recording how close this came to going wrong: the work video's first draft
+specified `af_bella` on the strength of Week 19's `SCRIPT.md` header, while Week
+19's `beat_sheet.json` — the file that actually generated its audio — says
+`am_onyx`. The document and the artifact disagreed. **`metadata.voice_kokoro` in
+the beat sheet is the record**, per this section's own instruction; a header is
+not.
+
 ## Episodes
 
 | Week reported | Folder | Subject |
@@ -45,6 +58,8 @@ choice for the series.**
 | 2026-08-23 | [`2026-08-23-where-the-record-stops`](./2026-08-23-where-the-record-stops/) | DBS credit-memo — labelling a build CONFIRMED, CONSTRUCTED or BLANK |
 | 2026-08-30 | [`2026-08-30-a-quantum-sphere-stem-video`](./2026-08-30-a-quantum-sphere-stem-video/) | A quantum sphere is never the size it looks — the cross section that refuses to be classical |
 | 2026-08-30 | [`2026-08-30-drafts-one-thing-files-another-mycroft`](./2026-08-30-drafts-one-thing-files-another-mycroft/) | Morgan Stanley — the distinction a review pass surfaced, and the one line that keeps it |
+| 2026-09-03 | [`2026-09-03-the-cell-next-door-stem-video`](./2026-09-03-the-cell-next-door-stem-video/) | The cell next door — a survival number, its own fact-check, and both of them wrong |
+| 2026-09-03 | [`2026-09-03-the-stages-that-stayed-dark-mycroft`](./2026-09-03-the-stages-that-stayed-dark-mycroft/) | Zurich/Clara — move one line, and 27 of 28 tests still pass |
 
 ## Two lanes
 

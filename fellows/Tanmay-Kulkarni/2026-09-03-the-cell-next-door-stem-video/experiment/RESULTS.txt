@@ -1,0 +1,105 @@
+tmb_orr_audit.py — is tumor mutational burden actually the variable?
+
+==========================================================================
+1. FORMULA AUDIT — the letter's regression vs the letter's predictions
+==========================================================================
+   ORR = 10.8 * ln(TMB) -0.7
+
+tumor type                          TMB   stated  recomputed   delta  TMB needed
+basal-cell carcinoma (skin)        47.3    40.1%      40.95%  +0.85       43.7
+sarcomatoid carcinoma (lung)        7.2    20.6%      20.62%  +0.02        7.2
+
+   The formula reproduces one of the letter's two worked examples to
+   0.02 points and misses the other by ~0.85. Reading it as a precision
+   instrument is already unsupported by the letter that published it.
+
+==========================================================================
+2. ANCHOR RESIDUALS — regression vs primary-trial ORR
+==========================================================================
+tumor type                    TMB/Mb    pred     obs   resid    n
+colorectal, dMMR/MSI-H          59.4   43.4%   40.0%   -3.4   10
+colorectal, pMMR/MSS             2.4    8.9%    0.0%   -8.9   18
+pancreatic ductal adeno.         1.5    3.7%    3.1%   -0.6   32
+pancreatic ductal adeno.         1.5    3.7%    0.0%   -3.7   33
+
+   mean |residual| = 4.1 percentage points
+
+   Where TMB is very low, the regression is close: it predicts pancreatic
+   failure well. Its worst anchor is MMR-proficient colorectal, which it
+   over-predicts — a tumor type Yarchoan names as a known outlier. That is
+   the point: the taxonomy is needed exactly where the residual is large.
+
+   Sensitivity of the exome conversion (dMMR / pMMR colorectal):
+     exome =   25 Mb -> dMMR pred  45.4%   pMMR pred  10.9%
+     exome =   30 Mb -> dMMR pred  43.4%   pMMR pred   8.9%
+     exome =   35 Mb -> dMMR pred  41.7%   pMMR pred   7.2%
+     exome =   40 Mb -> dMMR pred  40.3%   pMMR pred   5.8%
+   The dMMR prediction stays within a few points of the observed 40%
+   across every plausible exome size, so the conclusion is not an artifact
+   of the conversion.
+
+==========================================================================
+3. VARIANCE — the cost of r = 0.74, as a number
+==========================================================================
+   r  = 0.74
+   r^2 = 0.5476  -> TMB accounts for 55% of the between-cancer-type
+         variation in objective response rate.
+   1 - r^2 = 0.4524 -> 45% is not accounted for by mutation count.
+
+   Note what the unit is. This is variance across CANCER TYPES, not across
+   patients. It is the correlation of 27 group averages. The letter's own
+   confidence intervals show the width even at that level:
+     basal-cell carcinoma (skin)      40.1%  95% CI 31.2-50.6  (width 19.4 pts)
+     sarcomatoid carcinoma (lung)     20.6%  95% CI 16.7-24.5  (width 7.8 pts)
+
+   A 19-point-wide interval on a cancer-type average is the ceiling, not
+   the bedside performance. No patient-level claim follows from it.
+
+==========================================================================
+4. ATTENUATION [ILLUSTRATIVE MODEL] — biology vs sampling noise
+==========================================================================
+   Model, stated in full so it can be argued with:
+     phenotype_i = a*ln(TMB_i) + e_i        e_i ~ TMB-independent biology
+     true ORR_i  = linear in phenotype_i     (no extra noise)
+     obs ORR_i   = Binomial(n_i, ORR_i)/n_i  (finite trial)
+   Under this model with NO sampling noise, corr(lnTMB, ORR)^2 is exactly
+   the TMB-explained share, so r=0.74 would mean 45% TMB-independent
+   biology. Finite trials attenuate r, so the real share is smaller.
+
+ TMB-independent biology  -> observed r
+                     10%          0.874
+                     20%          0.831
+                     25%          0.813
+                     30%          0.786
+                     35%          0.763
+                     40%          0.743  <-- matches published r
+                     45%          0.713
+                     55%          0.656
+
+   Closest match to the published r = 0.74: 40% TMB-independent biology
+   Naive reading of 1 - r^2:                    45%
+
+   Direction of the correction matters more than the exact figure. Finite
+   trials make TMB look WORSE than it is, so part of the gap the source reel
+   would attribute to immune phenotype is really just small-n noise. The
+   honest claim is weaker than the one the reel could have made — which is
+   the whole reason to compute it instead of asserting it.
+
+==========================================================================
+5. WITHIN-TYPE CHECK — Merkel-cell carcinoma, no TMB value required
+==========================================================================
+   Nghiem 2016 NEJM (PMID 27093365), first-line pembrolizumab, n=26:
+     MCPyV virus-POSITIVE tumours  (low mutational burden, viral antigens)
+       response rate 62%  (10/16)
+     MCPyV virus-NEGATIVE tumours  (UV-driven, high mutational burden)
+       response rate 44%  (4/9)
+
+   The LOWER-burden subgroup responded at the HIGHER rate, inside a single
+   tumour type, with treatment and staging held constant. That is a direct
+   counterexample to mutation count as the causal variable.
+
+   It is also 16 and 9 patients. Overlapping intervals; not significant.
+   Treat it as a mechanism illustration, never as a result. Yarchoan names
+   Merkel cell as the canonical above-the-line outlier and attributes it to
+   viral antigen presentation; this is that attribution, in one trial.
+
