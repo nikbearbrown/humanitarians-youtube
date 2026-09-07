@@ -93,7 +93,7 @@ Pull it from `_qc/frames/` after the QC pass rather than re-rendering.
 
 ## Vertical cut
 
-`short/yatra-nobody-wrote-this-short.mp4` — 1080×1920, the complete video
+`short/yatra-nobody-wrote-this-short.mp4` — 2160×3840, the complete video
 (2:48, inside the 3:00 cap, no beats dropped). For Instagram and LinkedIn.
 Note the irony of posting it to LinkedIn is deliberate and worth leaning on in
 the caption.

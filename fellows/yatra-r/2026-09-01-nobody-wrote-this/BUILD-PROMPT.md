@@ -69,7 +69,7 @@ STEPS:
   #    say so: that means a narration edit pushed it over, and the fix is the
   #    script, not the cut.
   python3 runtime/scripts/compile.py \
-      ~/Desktop/brutalist-reels/youtube/yatra-nobody-wrote-this/short --height 1920
+      ~/Desktop/brutalist-reels/youtube/yatra-nobody-wrote-this/short --height 3840
 
   # 6. report: durations, gate results, QC verdict. Do NOT publish. The master
   #    stays in the reel folder.
@@ -83,7 +83,7 @@ STEPS:
 |---|---|
 | `yatra-nobody-wrote-this.mp4` | 16:9 master, 3840×2160 — YouTube |
 | `yatra-nobody-wrote-this-slate.mp4` | review cut with beat markers |
-| `short/yatra-nobody-wrote-this-short.mp4` | 9:16, 1080×1920 — Instagram / LinkedIn |
+| `short/yatra-nobody-wrote-this-short.mp4` | 9:16, 2160×3840 — Instagram / LinkedIn |
 | `_qc/REPORT.md` + `_qc/frames/` | the frame-level visual QC pass |
 | `mp3/` + `mp3/timings.json` | narration and the master clock |
 
@@ -94,3 +94,55 @@ runtime/remotion/src/scenes/NobodyWroteThis.tsx      # 16:9 — nine components
 runtime/remotion/src/scenes/NobodyWroteThis916.tsx   # 9:16 — re-banded, not scaled
 runtime/remotion/src/Root.tsx                        # registrations + frame counts
 ```
+
+---
+
+## 9:16 exports at 4K (2160×3840)
+
+The portrait beats already render at 2160×3840 — `remotion_scenes.py` uses
+`--scale=2` on the 1080×1920 compositions. Only the compile step decides the
+delivered resolution, so a 4K vertical needs **no re-render**, just:
+
+```bash
+python3 runtime/scripts/compile.py <REEL>/short --height 3840
+```
+
+`compile.py` derives width from `metadata.aspect_ratio` (`9:16`), so
+`--height 3840` yields 2160×3840. Delete `<REEL>/short/clips/` first, or the
+previously conformed 1080p clips get reused and you get an upscale.
+
+**The endcard is the one thing that is NOT natively 4K.** `shorts.py` hardcodes
+`W, H = 1080, 1920` in `endcard_png()`, so the generated `media/END.png` is
+1080p and will be upscaled into a 4K timeline — visibly soft type on the final
+card. Regenerate it at double size before compiling:
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+import shorts
+W, H = 2160, 3840
+img = Image.new("RGB", (W, H), shorts.INK)
+d = ImageDraw.Draw(img)
+fh = ImageFont.truetype(shorts.find_serif(), 128)      # 2x the 64px original
+hb = d.textbbox((0, 0), handle, font=fh); hw = hb[2] - hb[0]
+d.text(((W - hw) / 2, H * 0.30), handle, font=fh, fill=shorts.CREAM)
+y = H * 0.30 + (hb[3] - hb[1]) + 52                    # 2x the 26px gap
+d.line([((W - hw) / 2, y), ((W + hw) / 2, y)], fill=shorts.TERRA, width=8)
+img.save("<REEL>/short/media/END.png")
+```
+
+`handle` must come from `metadata.channel_handle` — `shorts.py`'s `--handle`
+defaults to `@nikbearbrown` and never reads the beat sheet.
+
+## If a rebuild fails on `TimeoutError: [Errno 60]`
+
+That is iCloud, not a corrupt file. These reels live under `~/Desktop`, which is
+iCloud-synced; when the volume runs low macOS evicts rendered media to the cloud,
+leaving files that report their full size in `ls` but hold zero bytes on disk.
+`compile.py` then dies hashing one. Force them back:
+
+```bash
+brctl download <REEL>/short/media
+```
+
+Check for evicted files with `stat -f '%b'` — a block count of 0 against a
+non-zero size means the data is not local.

@@ -97,7 +97,7 @@ Pull either from `_qc/frames/` after the QC pass rather than re-rendering.
 
 ## Vertical cut
 
-`short/yatra-this-week-gordy-short.mp4` — 1080×1920, the complete video
+`short/yatra-this-week-gordy-short.mp4` — 2160×3840, the complete video
 (2:23, well inside the 3:00 cap, no beats dropped). For Instagram and LinkedIn.
 
 **When generating it, pass `--handle "@Yatra"` to `shorts.py`** — its default is
