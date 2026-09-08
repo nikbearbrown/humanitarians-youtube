@@ -1,0 +1,338 @@
+From: fellows/ritik-b — "Visual Question Answering, Blind?" (2026-09-06)
+Subject: [PATCH] register the VQA scenes, and fix two 9:16 toolkit scenes
+
+Apply from the brutalist.art repo root, AFTER copying remotion/scenes/Vqa*.tsx into
+runtime/remotion/src/scenes/:
+
+    git apply patches/brutalist-toolkit.patch
+
+Three changes, in order of how much they matter to anyone other than this reel:
+
+1. scenes/ClaudeVerdictArtifact916.tsx — RENDER `sourceNote`. The portrait verdict
+   component declared the prop (it shares claudeVerdictArtifactSchema) but never
+   destructured or rendered it, so ANY 9:16 verdict beat silently dropped its citation.
+   That is a "no source, no verdict" failure in the toolkit, not in a reel. Rendered with
+   the same treatment as the 16:9 component: hairline rule, mono, staggered in after the
+   last line. An empty string still omits the block, so reels predating this are
+   unchanged. The matching `sourceNote: ''` default is added to BOTH verdict
+   registrations in Root.tsx — its absence was also causing 2 standing tsc errors.
+
+2. scenes/ClaudeTitleOutro916.tsx — size the portrait outro as a POSTER. It was failing
+   GATE V's 55% canvas-fill floor at 22% (a ~106px title on a 1920-tall canvas). Also
+   fixes a latent box-model bug: `maxWidth: 1080 - PAD_X*2` combined with
+   `padding: 0 PAD_X` under content-box sizing left the title an 864px content box, so a
+   long unbreakable word overflowed through the title-safe edge instead of wrapping. Now
+   border-box with width = SAFE916.w, ~154px type, and the fill taken from leading and
+   gaps rather than glyph width.
+
+3. Root.tsx — register the 14 Vqa compositions. Each of the seven scenes is registered
+   TWICE, at 1920x1080 and 1080x1920, from ONE responsive component: the title-safe box is
+   1728x972 landscape and 972x1728 portrait, so the SHORT axis is 972 in both, one px type
+   scale reads identically, and only the layout direction flips inside the component (see
+   scenes/VqaKit.tsx). calculateMetadata turns the `durationS` prop into durationInFrames
+   so a beat re-times to its measured narration instead of animating early and
+   freeze-holding the tail.
+
+Changes 1 and 2 are worth upstreaming on their own; change 3 is this reel's registration.
+
+diff --git a/runtime/remotion/src/scenes/ClaudeTitleOutro916.tsx b/runtime/remotion/src/scenes/ClaudeTitleOutro916.tsx
+index 32a9b97..c1ba537 100644
+--- a/runtime/remotion/src/scenes/ClaudeTitleOutro916.tsx
++++ b/runtime/remotion/src/scenes/ClaudeTitleOutro916.tsx
+@@ -31,10 +31,13 @@ export const ClaudeTitleOutro916: React.FC<ClaudeTitleOutro916Props> = ({ title,
+ 
+   // Portrait: top 12% = 230px, bottom 25% = 480px safe zones
+   // Center content in active band (230–1440px)
+-  const TITLE_FONT = height * 0.055;    // ~106px in 1920
+-  const HANDLE_FONT = height * 0.030;   // ~58px
+-  const SUBLINE_FONT = height * 0.018;  // ~35px
+-  const PAD_X = 72; // ~6.7% of 1080
++  // Sized for a 9:16 POSTER, not a scaled-down 16:9 card. GATE V's 55% canvas-fill
++  // floor was failing at 22% with the old ~106px title; portrait has a 1728px long axis
++  // to spend and a phone viewer is holding the frame at arm's length.
++  const TITLE_FONT = height * 0.080;    // ~154px in 1920; widest word ~820px < 972 safe
++  const HANDLE_FONT = height * 0.046;   // ~88px
++  const SUBLINE_FONT = height * 0.027;  // ~52px
++  const PAD_X = 0;  // the 972px box is centred in 1080, so it IS the safe inset
+ 
+   return (
+     <AbsoluteFill style={{
+@@ -53,8 +56,9 @@ export const ClaudeTitleOutro916: React.FC<ClaudeTitleOutro916Props> = ({ title,
+         color: CLAUDE.INK,
+         letterSpacing: '-0.02em',
+         textAlign: 'center',
+-        lineHeight: 1.08,
+-        maxWidth: 1080 - PAD_X * 2,
++        lineHeight: 1.20,
++        boxSizing: 'border-box' as const,
++        width: 1080 - 108,          // exactly SAFE916.w, centred by the parent
+         padding: `0 ${PAD_X}px`,
+       }}>
+         {titleBody}
+@@ -66,7 +70,7 @@ export const ClaudeTitleOutro916: React.FC<ClaudeTitleOutro916Props> = ({ title,
+         fontFamily: SERIF,
+         fontSize: HANDLE_FONT,
+         color: CLAUDE.INK,
+-        marginTop: height * 0.022,
++        marginTop: height * 0.072,
+         opacity: 0.9,
+         textAlign: 'center',
+       }}>
+@@ -78,9 +82,10 @@ export const ClaudeTitleOutro916: React.FC<ClaudeTitleOutro916Props> = ({ title,
+         fontFamily: SANS,
+         fontSize: SUBLINE_FONT,
+         color: CLAUDE.INK_SOFT,
+-        marginTop: height * 0.012,
++        marginTop: height * 0.038,
+         textAlign: 'center',
+-        maxWidth: 1080 - PAD_X * 2,
++        boxSizing: 'border-box' as const,
++        width: 1080 - 108,
+         padding: `0 ${PAD_X}px`,
+         lineHeight: 1.4,
+       }}>
+diff --git a/runtime/remotion/src/scenes/ClaudeVerdictArtifact916.tsx b/runtime/remotion/src/scenes/ClaudeVerdictArtifact916.tsx
+index d9fe631..fe8215a 100644
+--- a/runtime/remotion/src/scenes/ClaudeVerdictArtifact916.tsx
++++ b/runtime/remotion/src/scenes/ClaudeVerdictArtifact916.tsx
+@@ -33,7 +33,7 @@ const Spark: React.FC<{ size?: number }> = ({ size = 30 }) => (
+ );
+ 
+ export const ClaudeVerdictArtifact916: React.FC<ClaudeVerdictArtifact916Props> = ({
+-  artifactTitle, artifactHeading, artifactLines,
++  artifactTitle, artifactHeading, artifactLines, sourceNote,
+ }) => {
+   const frame = useCurrentFrame();
+   const { fps, width, height } = useVideoConfig();
+@@ -42,12 +42,14 @@ export const ClaudeVerdictArtifact916: React.FC<ClaudeVerdictArtifact916Props> =
+   const headIn = spring({ frame: frame - 8, fps, config: { damping: 28, stiffness: 140, mass: 0.8 } });
+ 
+   const lines = (artifactLines ?? []).map(stripLeadNum);
+-  const CARD_W = width * 0.90;
+-  const PAD_H = width * 0.055;
+-  const PAD_V = height * 0.022;
+-  const FONT_TITLE = height * 0.018;
+-  const FONT_HEADING = height * 0.024;
+-  const FONT_LINE = height * 0.017;
++  // GATE V canvas-fill: at 0.90 width and 1.7%-of-height body type this card covered
++  // only 50% of the 972x1728 safe box. Scaled up to occupy it.
++  const CARD_W = width * 0.95;
++  const PAD_H = width * 0.050;
++  const PAD_V = height * 0.024;
++  const FONT_TITLE = height * 0.020;
++  const FONT_HEADING = height * 0.028;
++  const FONT_LINE = height * 0.0195;
+   const TEXT_MAX_W = CARD_W - PAD_H * 2 - 30;
+ 
+   return (
+@@ -94,7 +96,7 @@ export const ClaudeVerdictArtifact916: React.FC<ClaudeVerdictArtifact916Props> =
+             fontSize: FONT_HEADING,
+             fontWeight: 700,
+             color: CLAUDE.INK,
+-            marginBottom: height * 0.018,
++            marginBottom: height * 0.022,
+             opacity: clamp(headIn, 0, 1),
+             maxWidth: TEXT_MAX_W,
+             lineHeight: 1.3,
+@@ -112,7 +114,7 @@ export const ClaudeVerdictArtifact916: React.FC<ClaudeVerdictArtifact916Props> =
+                 display: 'flex',
+                 alignItems: 'flex-start',
+                 gap: 14,
+-                marginBottom: height * 0.015,
++                marginBottom: height * 0.019,
+                 opacity: op,
+                 transform: `translateY(${(1 - op) * 12}px)`,
+               }}>
+@@ -139,6 +141,29 @@ export const ClaudeVerdictArtifact916: React.FC<ClaudeVerdictArtifact916Props> =
+               </div>
+             );
+           })}
++
++          {/* the source, ON the verdict — "no source, no verdict" made visible.
++              Empty string omits the block, so reels predating this prop are unchanged. */}
++          {sourceNote ? (() => {
++            const srcIn = spring({ frame: frame - (lines.length + 2) * 7, fps, config: { damping: 28, stiffness: 140, mass: 0.8 } });
++            const op = clamp(srcIn, 0, 1);
++            return (
++              <div style={{
++                marginTop: height * 0.014,
++                paddingTop: height * 0.012,
++                borderTop: `1px solid ${CLAUDE.BORDER}`,
++                fontFamily: CLAUDE_FONT.mono,
++                fontSize: FONT_LINE * 0.86,
++                color: CLAUDE.INK_SOFT,
++                lineHeight: 1.45,
++                maxWidth: TEXT_MAX_W,
++                wordBreak: 'break-word' as const,
++                opacity: op,
++              }}>
++                {sourceNote}
++              </div>
++            );
++          })() : null}
+         </div>
+       </div>
+     </AbsoluteFill>
+diff --git a/runtime/remotion/src/Root.tsx b/runtime/remotion/src/Root.tsx
+index a400596..ac612ed 100644
+--- a/runtime/remotion/src/Root.tsx
++++ b/runtime/remotion/src/Root.tsx
+@@ -195,6 +195,18 @@ import {ValuesSplitScreen916, valuesSplitScreen916Schema} from './scenes/ValuesS
+ // ── portrait 916 wrappers for shared components ──
+ import {ClaudeTitleOutro916, claudeTitleOutro916Schema} from './scenes/ClaudeTitleOutro916';
+ import {ClaudeWindow916, claudeWindow916Schema} from './scenes/ClaudeWindow916';
++// ── fellows/ritik-b — Visual Question Answering, Blind? (2026-09-06) ──
++// One responsive component per beat, registered TWICE: 16:9 and 9:16. The
++// title-safe box is 1728x972 landscape and 972x1728 portrait, so the SHORT axis
++// is 972 in both — the px type scale is shared and only the layout direction
++// flips inside the component (see scenes/VqaKit.tsx).
++import {VqaExecSummary, vqaExecSummarySchema} from './scenes/VqaExecSummary';
++import {VqaFourMoves, vqaFourMovesSchema} from './scenes/VqaFourMoves';
++import {VqaTokenize, vqaTokenizeSchema} from './scenes/VqaTokenize';
++import {VqaAttend, vqaAttendSchema} from './scenes/VqaAttend';
++import {VqaDecide, vqaDecideSchema} from './scenes/VqaDecide';
++import {VqaBlindTest, vqaBlindTestSchema} from './scenes/VqaBlindTest';
++import {VqaPairs, vqaPairsSchema} from './scenes/VqaPairs';
+ // ── claude-liam — coding-agents-social-sciences figures ──
+ import {CodingAgentsFig1Loop, codingAgentsFig1LoopSchema} from './scenes/CodingAgentsFig1Loop';
+ import {CodingAgentsFig2Gradient, codingAgentsFig2GradientSchema} from './scenes/CodingAgentsFig2Gradient';
+@@ -1335,6 +1347,7 @@ export const RemotionRoot: React.FC = () => {
+         defaultProps={{
+           artifactTitle: 'Verdict',
+           artifactHeading: 'The split',
++          sourceNote: '',
+           artifactLines: [
+             'Chat: synchronous judgment — you\'re in the loop every step.',
+             'Cowork: asynchronous recipes — folder + instructions + schedule.',
+@@ -1347,6 +1360,7 @@ export const RemotionRoot: React.FC = () => {
+         defaultProps={{
+           artifactTitle: 'Verdict',
+           artifactHeading: 'The split',
++          sourceNote: '',
+           artifactLines: [
+             'Chat: synchronous judgment — you\'re in the loop every step.',
+             'Cowork: asynchronous recipes — folder + instructions + schedule.',
+@@ -1886,6 +1900,123 @@ export const RemotionRoot: React.FC = () => {
+           artifactLines: ['Evidence line one.', 'Evidence line two.'],
+           sparkLine: 'Control, not cure.',
+         }} />
++      {/* ── fellows/ritik-b · "Visual Question Answering, Blind?" ─────────────
++          Each beat is ONE responsive component registered at both canvases.
++          durationS is a prop and calculateMetadata turns it into frames, so a
++          beat re-times to its measured narration instead of animating early
++          and freeze-holding the tail. */}
++      <Composition id="VqaExecSummary" component={VqaExecSummary}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={vqaExecSummarySchema}
++        defaultProps={vqaExecSummarySchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="VqaExecSummary916" component={VqaExecSummary}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={vqaExecSummarySchema}
++        defaultProps={vqaExecSummarySchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="VqaFourMoves" component={VqaFourMoves}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={vqaFourMovesSchema}
++        defaultProps={vqaFourMovesSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="VqaFourMoves916" component={VqaFourMoves}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={vqaFourMovesSchema}
++        defaultProps={vqaFourMovesSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="VqaTokenize" component={VqaTokenize}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={vqaTokenizeSchema}
++        defaultProps={vqaTokenizeSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="VqaTokenize916" component={VqaTokenize}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={vqaTokenizeSchema}
++        defaultProps={vqaTokenizeSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="VqaAttend" component={VqaAttend}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={vqaAttendSchema}
++        defaultProps={vqaAttendSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="VqaAttend916" component={VqaAttend}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={vqaAttendSchema}
++        defaultProps={vqaAttendSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="VqaDecide" component={VqaDecide}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={vqaDecideSchema}
++        defaultProps={vqaDecideSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="VqaDecide916" component={VqaDecide}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={vqaDecideSchema}
++        defaultProps={vqaDecideSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="VqaBlindTest" component={VqaBlindTest}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={vqaBlindTestSchema}
++        defaultProps={vqaBlindTestSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="VqaBlindTest916" component={VqaBlindTest}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={vqaBlindTestSchema}
++        defaultProps={vqaBlindTestSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="VqaPairs" component={VqaPairs}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={vqaPairsSchema}
++        defaultProps={vqaPairsSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="VqaPairs916" component={VqaPairs}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={vqaPairsSchema}
++        defaultProps={vqaPairsSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
+       <Composition
+         id="LogoOutro916"
+         component={LogoOutro}
