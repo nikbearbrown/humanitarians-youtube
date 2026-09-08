@@ -18,7 +18,9 @@ sheets that describe them.
 | `EveryToolEveryWeek.tsx` / `…916.tsx` | Every Tool, Every Week. — the per-tool loop, week strip, document status |
 | `AssistedNotAutomated.tsx` / `…916.tsx` | Assisted, Not Automated. — the cited-statistic scenes, act cards, sources card |
 | `OneToolAWeek.tsx` / `…916.tsx` | One Tool a Week. — tool/article card, proposed-team card |
-| `Root.registrations.tsx` | The 57 `<Composition>` registrations for the above, extracted from the toolkit's shared `Root.tsx`. Not standalone. |
+| `NobodyWroteThis.tsx` / `…916.tsx` | Nobody Wrote This. — kinetic BLUF, three-bin frame, hero stat, platform ladder, disproportion tracks, all-or-nothing bins, opposed-policy collision, pressure axis |
+| `WeekGordy.tsx` / `…916.tsx` | This Week, Gordy. — week-in-one-breath with status chips, five-stage pipeline, tool card, status board, deliverable route, withheld-articles review track, claiming/not-claiming ledger |
+| `Root.registrations.tsx` | The 89 `<Composition>` registrations for the above, extracted from the toolkit's shared `Root.tsx`. Not standalone. |
 
 `…916.tsx` files are the 9:16 portrait variants. They are **re-banded, not scaled**: the
 Shorts law's composition logic is that 16:9 lays out side by side while 9:16 stacks top and
@@ -34,6 +36,21 @@ is **not renderable**: `YtwWeeks` shows one named week and an open-ended run of 
 and so cannot express a count; `YtwStatus` is a fixed done/not-done pair and cannot imply a
 date; `RcpCard` takes `lines: string[]` rendered verbatim with no "summary" or "findings"
 field, because a field like that is an invitation to fill it.
+
+`NobodyWroteThis.tsx` and `WeekGordy.tsx` extend the same idea to two new refusals:
+
+- `LnkAllOrNothing` has **no remainder-bar prop**. The human-written share of LinkedIn
+  posts is arithmetically available (`100 − 41 − 4.3`) but was never published, and a bar
+  length is a number — so the remainder renders as a dashed, unfilled band.
+- `LnkLadder` takes an explicit `bar` number **separate from** the verbatim `value` string,
+  because three of that episode's values are ranges and the house `num()` helper reads
+  `"4–13%"` as `413` — a bar nine times its own track. Printed figures are always the
+  source's; the bar is only a drawing instruction.
+- `WkReview`'s `slots` carry a label and nothing else — no title, summary, excerpt or
+  content prop exists, because the two articles it depicts are in review and unpublished.
+  A component that *can* render a title will eventually be given one.
+- `WkPipeline` has no per-stage `state` field, so the framework beat cannot leak the status
+  board that the next beat reveals.
 
 `AssistedNotAutomated.tsx` inverts this deliberately, because that episode was supplied
 seven verified figures to cite. There, `SeoStat`, `SeoCompare`, `SeoDrop` and `SeoShare`
