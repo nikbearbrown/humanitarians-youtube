@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "title": "LLM Inference: Why Generation Is the Slow Part",
+    "slug": "llm-inference",
+    "topic": "CLAUDE CODE · RAG SERIES · LLM INFERENCE",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "deep-explainer",
+    "note": "RAG series extension: how generation runs. Tied to the project's 1288ms model latency (PRODUCTION_NOTES.md §4). Claude bookends + Manim body. Liam, in for Ameya (Onyx). @HumanitariansAI.",
+    "total_estimated_duration_seconds": 300,
+    "build": {
+      "at": "2026-09-07T21:39:13",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. In the project, vector search took four milliseconds and the language model took over a thousand. The model is almost the whole clock. So today, let's open it up: why is generation slow, and what actually makes it faster.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain LLM inference — KV cache, batching, quantization, speculative decoding — and what makes it fast\"",
+            "topic": "CLAUDE CODE · RAG SERIES · LLM INFERENCE",
+            "segment": "Why Generation Is Slow",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "opening up the model…",
+            "output": [
+              "tokens are generated one at a time",
+              "the KV cache is why it's even feasible",
+              "streaming changes felt speed, not total time"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 17.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — Autoregression",
+      "narration_text": "Here's the root of it. A model doesn't write an answer all at once. It predicts one token, appends it, and runs the whole network again to predict the next. A hundred-token answer is a hundred forward passes, in strict sequence. That serial loop — not the math of any single step — is why generation feels slow.",
+      "visual_intent": "autoregressive loop: predict token → append → forward pass again; 100 tokens = 100 passes, sequential",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_Autoregress",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.14,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_Autoregress",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — Prefill vs Decode",
+      "narration_text": "Inference has two phases, and they behave differently. Prefill reads your whole prompt in one parallel pass — that's fast per token, and it sets your time-to-first-token. Then decode begins: one token at a time, the slow serial part. Prefill is a sprint; decode is the long walk. Knowing which phase you're in tells you what to optimize.",
+      "visual_intent": "two phases: PREFILL (prompt, parallel, → TTFT) | DECODE (one token at a time, serial)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_PrefillDecode",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.47,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_PrefillDecode",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — KV Cache",
+      "narration_text": "Now the trick that makes it feasible at all: the key-value cache. Without it, every new token would re-read the entire sequence from scratch — cost growing with the square of the length. Instead, you store the keys and values of every past token and reuse them, so each step only processes the newest token. It turns a quadratic nightmare into something linear. The cost is memory — the cache grows with every token.",
+      "visual_intent": "KV cache: store past keys/values, only new token computed each step; O(n^2) → O(n); grows in memory",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_KVCache",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 22.91,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_KVCache",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — Batching",
+      "narration_text": "A GPU is a throughput machine — it would rather do a lot at once than one thing quickly. So servers batch many requests through the model together. That lifts total tokens-per-second dramatically, but any single user waits a touch longer. That's the core tension of serving: throughput for the fleet versus latency for the one. You tune it to your traffic.",
+      "visual_intent": "many requests batched through one forward pass; throughput up, per-user latency slightly up; the trade",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Batching",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 19.33,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Batching",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — Quantization",
+      "narration_text": "You can also shrink the model itself. Quantization stores the weights at lower precision — eight-bit, even four-bit, instead of sixteen. The model gets smaller and faster, fits on cheaper hardware, and the quality loss is usually small when it's done carefully. Less precision, more speed, for a cost you can measure.",
+      "visual_intent": "weights fp16 → int8 → int4; smaller + faster + cheaper; small quality loss",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Quantize",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.86,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Quantize",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — Speculative Decoding",
+      "narration_text": "Here's a clever one: speculative decoding. A small, fast draft model guesses the next few tokens, and the big model checks all of them in a single pass. When the guesses are right — and they often are — you got several tokens for the price of one big step. The output is identical to running the big model alone; you just spent fewer of its expensive steps.",
+      "visual_intent": "draft model proposes k tokens → target model verifies in one pass → accept run; same output, fewer big steps",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Speculative",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.74,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Speculative",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — Streaming",
+      "narration_text": "And the cheapest win of all doesn't make the model faster — it changes how fast it feels. Stream the tokens as they're generated instead of waiting for the whole answer. Total time is the same, but the user sees words in a few hundred milliseconds instead of staring at a spinner for two seconds. Perceived latency is a real product lever.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "generate.py — stream the answer",
+            "code": "for token in llm.stream(prompt):   # yield as they arrive\n    print(token, end=\"\", flush=True)\n# total time unchanged — but TTFT drops from ~2s to ~200ms.\n# perceived latency is a product decision, not a model one.",
+            "sparkLine": "same total, better felt"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 19.11,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — The Levers",
+      "narration_text": "So put it together for a real system. The model dominates the clock, so start where it pays: stream first for felt speed, route easy queries to a smaller model, batch on the server, quantize to fit cheaper hardware, and cache the stable prompt prefix. Notice what's missing — optimizing the vector math, which was two tenths of a percent. Fix the big number first.",
+      "visual_intent": "levers ordered: stream · route · batch · quantize · prompt-cache; 'the model is the clock — fix the big number'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Levers",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.95,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Levers",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration_text": "So keep three things. Generation is slow because it's serial — one token, one forward pass, in order. The KV cache is what makes that even practical, at the cost of memory. And the fastest, cheapest win is often streaming — it changes how fast the system feels without changing the model at all.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "LLM inference",
+            "artifactLines": [
+              "Generation is serial: one token = one forward pass.",
+              "The KV cache turns O(n²) into O(n) — for memory.",
+              "Stream first — it changes felt speed for free."
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take this prompt to your own app: measure time-to-first-token and total time with streaming on versus off, then route your easy queries to a smaller model and watch the cost drop. Once you can see where the milliseconds and the dollars actually go, you'll optimize the right thing first.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"measure TTFT and total latency with streaming on vs off, then add model routing and report cost per query\"",
+            "topic": "CLAUDE CODE · RAG SERIES · LLM INFERENCE",
+            "segment": "Why Generation Is Slow",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 15.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T21:39:13"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration_text": "LLM inference — serial by nature, faster by design. Stream it, and it feels quick. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "LLM Inference.",
+            "handle": "@HumanitariansAI",
+            "subline": "the model is the clock"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 8.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T21:39:13"
+      }
+    }
+  ]
+}

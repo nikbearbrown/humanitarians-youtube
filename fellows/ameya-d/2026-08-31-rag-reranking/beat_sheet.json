@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "title": "RAG: Reranking",
+    "slug": "rag-reranking",
+    "topic": "CLAUDE CODE · RAG SERIES · RERANKING",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "cli-explainer",
+    "note": "RAG-series episode on reranking. Claude bookends + one real ClaudeCodeBeat (rerank.py) + ClaudeVerdictArtifact + YOUR TURN + ClaudeTitleOutro. Manim body. Persona: Liam, in for Ameya (Onyx). @HumanitariansAI throughout. Numbers are real, from fin-disclosure-rag (rerank.py, benchmark.py; see SOURCES.md/FACTCHECK.md).",
+    "total_estimated_duration_seconds": 300,
+    "build": {
+      "at": "2026-08-31T11:22:15",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "role_note": "COLD OPEN LAW — Claude UI, ask answered; IN-FOR-BEAR LAW",
+      "narration_text": "Namaste — this is Liam, in for Ameya. This is the RAG series, and today it is reranking. Your first-stage search is fast, but fast and right are not the same thing. So we add a second pass that reads the question and the passage together, and quietly moves the best answer to the top. Let us take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain reranking in RAG — why a fast first search still needs a careful second pass\"",
+            "topic": "CLAUDE CODE · RAG SERIES · RERANKING",
+            "segment": "Reranking",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "setting up the second pass…",
+            "output": [
+              "first-stage retrieval is fast, not precise",
+              "a cross-encoder reads query + passage together",
+              "rerank a shortlist — never the whole corpus"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 17.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — The Problem",
+      "role_note": "Manim — good context, wrong order",
+      "narration_text": "Here is the problem, and it is a gentle one. Your first-stage retrieval is quick because it compares vectors that were computed ahead of time. But that speed comes from a shortcut — the query and the document never actually met. So the right passage often lands in your top twenty, just not at the very top. And the model only reads the first few. Good context, wrong order, wasted.",
+      "visual_intent": "ranked list 1..N; the correct passage glowing at #7; the model only reads a top-3 window",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_Problem",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.33,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_Problem",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — Two Encoders",
+      "role_note": "Manim — bi vs cross encoder",
+      "narration_text": "Two kinds of encoders, and the difference is the whole idea. A bi-encoder encodes the query and the document separately, so the document vectors can be stored in advance. That is what makes first-stage retrieval fast. A cross-encoder does the opposite — it reads the query and the passage together, in one pass, and scores how well they truly match. More accurate, but it cannot be precomputed, so you would never run it across the whole corpus.",
+      "visual_intent": "two panels: bi-encoder (separate, precompute, fast, retrieve) vs cross-encoder (together, accurate, rerank only)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Encoders",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 22.46,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Encoders",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — The Mechanism",
+      "role_note": "Manim — pair, score, sort",
+      "narration_text": "So how does the second pass actually work. You take each candidate the first stage returned, pair it with the question, and hand the pair to the cross-encoder. It looks at both texts at once and returns a single relevance score. Sort by that score, keep the top few, and those are the passages the model finally reads. The retriever finds; the reranker decides.",
+      "visual_intent": "query paired with each of N candidates -> cross-encoder -> score -> sorted, top-3 kept",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Mechanism",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.73,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Mechanism",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — Two Stages",
+      "role_note": "Manim — retrieve wide, rerank narrow",
+      "narration_text": "Picture it as two stages that play to their strengths. Stage one casts a wide, cheap net — pull twenty candidates fast. Stage two is careful and small — rerank those twenty and keep the best three. Wide, then narrow. You get the recall of a big search and the precision of a slow, accurate model, without paying the accurate model's price on every document.",
+      "visual_intent": "funnel: ~20 candidates (wide, fast) -> rerank -> top 3 (narrow, precise)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_TwoStage",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 20.71,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_TwoStage",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — The Real Code",
+      "role_note": "ClaudeCodeBeat — actual rerank.py (ACTUAL-CODE LAW)",
+      "narration_text": "And here is the real code from the project, because it is smaller than you would think. Load a cross-encoder once. Pair the query with every candidate. Predict the scores in a single batch. Sort, and return the top three. That is the entire reranker — about ten lines wrapped around a model that already knows how to compare a question to a passage.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "rerank.py",
+            "sparkLine": "pair · score · sort · top-3",
+            "code": "from sentence_transformers import CrossEncoder\n\n_reranker = CrossEncoder(\"cross-encoder/ms-marco-MiniLM-L-6-v2\")\n\ndef rerank(query, candidates, top_n=3):\n    pairs = [(query, c[\"text\"]) for c in candidates]\n    scores = _reranker.predict(pairs)      # reads query+passage together\n    scored = sorted(zip(candidates, scores),\n                    key=lambda x: x[1], reverse=True)\n    return [c for c, s in scored[:top_n]]  # keep the best few"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 18.84,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — The Cost",
+      "role_note": "Manim — latency table (real benchmark.py numbers)",
+      "narration_text": "Now the honest part — this is not free. On this project, first-stage search took about four milliseconds. The rerank pass took three hundred. That sounds alarming until you see the whole picture, because the language model itself takes over a thousand. So reranking is real, but it is bounded — you only ever score a shortlist, never the corpus. Think of it as a shortlist tax, not a search tax.",
+      "visual_intent": "proportional latency bar: retrieve 4ms (0.2%) / rerank 301ms (~18%) / generation 1288ms (~79%)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Cost",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 21.29,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Cost",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — When To Reach For It",
+      "role_note": "Manim — when to rerank / trim context",
+      "narration_text": "So when is it worth it. Rerank when correctness matters — support answers, financial disclosures, anything you would have to stand behind. And there is a quiet second gift here: because the top three really are the best three, you can send the model three strong chunks instead of ten mediocre ones. Fewer tokens, lower cost, and often a cleaner answer. For a low-stakes chatbot, it is perfectly fine to skip it.",
+      "visual_intent": "left: rerank when correctness matters (examples). right: trim context — 10 mediocre -> 3 strong chunks",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B07_When",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 21.57,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim:B07_When",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "VERDICT",
+      "role_note": "ClaudeVerdictArtifact — the takeaways",
+      "narration_text": "So keep three things. First-stage retrieval is fast because the query and the document never met — which is exactly why the ranking is loose. A cross-encoder reads them together and reranks a shortlist, never the whole corpus. And you reach for it when correctness matters, where it also lets you send fewer, better chunks.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Reranking, plainly",
+            "artifactLines": [
+              "First-stage retrieval ranks loosely — query and document never meet.",
+              "A cross-encoder reads both together and reranks a shortlist, never the corpus.",
+              "Reach for it when correctness matters; it also trims context to fewer, better chunks."
+            ]
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 17.9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "YOUR TURN",
+      "role_note": "HANDOFF LAW — prompt read + discussed; 'Your turn.'",
+      "narration_text": "Your turn. Take this prompt to your own system — retrieve twenty, rerank to three with a cross-encoder, and measure M R R before and after. If the number climbs, the right answers were there all along; they were just sitting in the wrong seats. Once you can see the lift, you will know exactly when reranking earns its place.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"retrieve top-20, rerank to top-3 with a cross-encoder, and report MRR before vs after on my eval set\"",
+            "topic": "CLAUDE CODE · RAG SERIES · RERANKING",
+            "segment": "Reranking",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 16.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:22:15"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — title re-read; @HumanitariansAI",
+      "narration_text": "RAG, reranking. Retrieve wide, rerank narrow. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG: Reranking.",
+            "handle": "@HumanitariansAI",
+            "subline": "retrieve wide, rerank narrow"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 4.93,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T11:22:15"
+      }
+    }
+  ]
+}

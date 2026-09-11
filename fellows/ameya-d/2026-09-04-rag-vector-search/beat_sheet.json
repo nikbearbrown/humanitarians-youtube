@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "title": "RAG: Vector Search at Scale (HNSW vs IVF)",
+    "slug": "rag-vector-search",
+    "topic": "CLAUDE CODE · RAG SERIES · VECTOR SEARCH",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "deep-explainer",
+    "note": "RAG series extension: ANN indexes. Grounded in PRODUCTION_NOTES.md §2. Claude bookends + Manim body. Persona Liam, in for Ameya (Onyx). @HumanitariansAI.",
+    "total_estimated_duration_seconds": 300,
+    "build": {
+      "at": "2026-09-04T15:17:35",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. In the project, searching fifteen hundred vectors took four milliseconds. So why does everyone worry about vector search? Because four milliseconds at fifteen hundred becomes minutes at ten million. Today: how you search a huge index fast.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain ANN indexes — flat, HNSW, IVF — and when to use each\"",
+            "topic": "CLAUDE CODE · RAG SERIES · VECTOR SEARCH",
+            "segment": "Vector Search at Scale",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "mapping the index space…",
+            "output": [
+              "brute force is exact but O(n) — dies at scale",
+              "HNSW: a graph you walk · IVF: clusters you skip",
+              "it's always recall vs latency vs memory"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 17.58,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — Brute Force",
+      "narration_text": "Start with what the project actually did. For every question, compare its vector against every chunk, one by one. That's brute force — order n times d. At fifteen hundred vectors it's instant. At ten million, you're comparing against ten million things on every single query. It doesn't scale, and that's the whole reason approximate search exists.",
+      "visual_intent": "query vector compared against all N vectors; O(n·d); 1.5k=4ms fine, 10M=dead",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_BruteForce",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.88,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_BruteForce",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — The Triangle",
+      "narration_text": "Every index after this makes the same trade, so hold onto it. You are balancing three things: recall — did you find the true nearest neighbors; latency — how fast; and memory — how much RAM it costs. Approximate search buys speed by giving up a little exactness. Pick the corner that matches your problem.",
+      "visual_intent": "triangle: recall — latency — memory; 'approximate = trade exactness for speed'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Triangle",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 19.54,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Triangle",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — Flat",
+      "narration_text": "The first option is honest: Flat, or brute force. It compares against everything, so it's exact — recall is perfect. Below about a hundred thousand vectors, this is genuinely the right answer. Don't reach for a fancy index before you need one; exact and simple beats approximate and buggy at small scale.",
+      "visual_intent": "Flat card: compare all, exact, recall 1.0, good < ~100k",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Flat",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.58,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Flat",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — HNSW",
+      "narration_text": "When you outgrow that, the popular default is HNSW — the graph that Chroma, Qdrant, and Weaviate reach for. Picture a multi-layer map of proximity: you drop in at the top, take big hops toward the neighborhood, then smaller ones as you close in. That greedy walk finds near neighbors in roughly log-n time, with high recall. The price is memory — the graph lives in RAM.",
+      "visual_intent": "HNSW layered proximity graph, greedy descent top→bottom; ~O(log n), high recall, high RAM; knobs M, ef_construction, ef_search",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_HNSW",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 22.23,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_HNSW",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — IVF",
+      "narration_text": "IVF takes a different route. First, cluster all the vectors — k-means into buckets. At query time, don't search everything: find the few nearest cluster centers and only search inside those. One knob, nprobe, decides how many clusters you open — more clusters, better recall, slower search. It's a dial you tune against your own data.",
+      "visual_intent": "IVF: k-means clusters with centroids; query routes to nearest few; nprobe dial (recall vs speed)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_IVF",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 20.18,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_IVF",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — Compression",
+      "narration_text": "For truly large corpora, you add compression. Product quantization shrinks each vector into a compact code, so IVF-PQ holds far more vectors in the same RAM. You lose a little precision, so you often re-score the top candidates with the full vectors afterward. Storage is real math: number of chunks, times dimensions, times four bytes. A million vectors at seven-sixty-eight dimensions is three gigabytes — which is exactly why a smaller model saves you twice.",
+      "visual_intent": "IVF-PQ: compress vectors to codes; storage math n×d×4B; 1M×768×4B=3GB; rescore top-k with full vectors",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Quant",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 27.86,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Quant",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — The Real Code",
+      "narration_text": "Here's the retriever the project actually shipped. It normalizes once, then scores the query against every chunk with a single matrix multiply and takes the top matches. Read the shape of it: this is Flat, brute force, and at fifteen hundred vectors it's the correct choice. The point isn't that it's wrong — it's that swapping in HNSW or IVF is a one-line change you make only when the numbers say so.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "retrieval.py — top-k (this is Flat)",
+            "code": "# unit-normalized vectors → cosine is a dot product\nsims = emb @ q            # (N, d) · (d,) → (N,)  score every chunk\ntop = sims.argsort()[::-1][:k]   # take the k nearest\n# exact + simple. At 1.5k vectors: ~4 ms.\n# At 10M: swap `emb @ q` for an ANN index (HNSW / IVF).",
+            "sparkLine": "exact now, swap-able later"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 22.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — Choosing",
+      "narration_text": "So how do you actually choose. Under a hundred thousand vectors, stay Flat — exact and simple. Need high recall and you have the RAM? HNSW. Memory-bound with tens of millions of vectors? IVF, with product quantization. And a quiet connection from our own work: the k-means centroid routing on the Boehringer system was IVF by hand — partition the space, search only the relevant part. Same idea, no library.",
+      "visual_intent": "decision table: <100k Flat | recall+RAM HNSW | huge+memory IVF-PQ; note 'k-means routing = hand-rolled IVF'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Choose",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 24.47,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Choose",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration_text": "So keep three things. Brute force is exact and perfectly fine until about a hundred thousand vectors. Above that, HNSW is a graph you walk and IVF is a set of clusters you skip. And every choice is the same trade — recall against latency against memory. Name that trade out loud, and any interview question on vector search is yours.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Vector search at scale",
+            "artifactLines": [
+              "Brute force (Flat) is exact — and fine below ~100k vectors.",
+              "HNSW = a graph you walk; IVF = clusters you skip.",
+              "Always recall vs latency vs memory — name the trade."
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 19.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take this prompt to your own index: measure brute-force recall and latency, then build an HNSW index and sweep ef-search until recall matches — and watch what it costs in memory. Once you can see the trade with your own numbers, you'll know exactly which index your project needs.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"benchmark my index: brute-force recall/latency vs HNSW at ef_search 32/64/128 — report recall, p95 latency, and RAM\"",
+            "topic": "CLAUDE CODE · RAG SERIES · VECTOR SEARCH",
+            "segment": "Vector Search at Scale",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 16.55,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T15:17:35"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration_text": "RAG — vector search at scale. Flat until it hurts, then a graph or clusters. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG: Vector Search at Scale.",
+            "handle": "@HumanitariansAI",
+            "subline": "recall vs latency vs memory"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 7.81,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T15:17:35"
+      }
+    }
+  ]
+}

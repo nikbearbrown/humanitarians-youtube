@@ -1,0 +1,715 @@
+{
+  "metadata": {
+    "title": "RAG From First Principles",
+    "slug": "rag-from-first-principles",
+    "topic": "CLAUDE CODE · RETRIEVAL, MEASURED",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "deep-explainer",
+    "note": "Deep-explainer (full ~18-20 min) from VIDEO_SCRIPT.md. 12 acts. Claude bookends + ClaudeVerdictArtifact recap + YOUR TURN + ClaudeTitleOutro. Body is Manim (data-viz) + ClaudeCodeBeat (real code) + segment cards. VOX-quota N/A: this is a measurement film with no archival stills (see BUILD-LOG.md) — so no pantry/Gate D2. Persona: Liam, in for Ameya (Onyx). @HumanitariansAI throughout. ALL numbers are real, from the repo scripts — see FACTCHECK.md claims ledger.",
+    "total_estimated_duration_seconds": 1120,
+    "build": {
+      "at": "2026-08-21T16:31:31",
+      "cut": "master",
+      "filled": 25,
+      "of": 25,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "role_note": "COLD OPEN LAW — Claude UI, ask answered; IN-FOR-BEAR LAW (Liam, in for Ameya)",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. Most RAG explainers show you the diagram. This one shows you the measurements — including three results that contradict the received wisdom. Let's build a retrieval system from scratch, and measure every single stage.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"build a RAG system from scratch over 600 financial disclosures and measure every stage — chunking, embedding, retrieval\"",
+            "topic": "CLAUDE CODE · RETRIEVAL, MEASURED",
+            "segment": "RAG From First Principles",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "measuring the pipeline…",
+            "output": [
+              "600 docs → 1,500 chunks → 25 exact-truth eval questions",
+              "every number measured, nothing assumed",
+              "three results break the conventional wisdom"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "COLD OPEN — the hook",
+      "role_note": "Manim — three numbers reveal",
+      "narration_text": "Three things, all measured, all counterintuitive. One: a 384-dimension embedding model beat a 768. Two: mean pooling — the step that turns your text into a vector — destroys information, and I'll show you the exact percentage. Three: the standard just-use-hybrid-search advice made retrieval worse than doing nothing.",
+      "visual_intent": "black-to-cream reveal: 768 → 384, the word LOST, and 0.655 fading in one at a time",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_ThreeNumbers",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.45,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_ThreeNumbers",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT I — The Problem",
+      "role_note": "Manim — corpus + context overflow",
+      "narration_text": "Six hundred financial disclosures — earnings, risk factors, merger terms. Someone asks: what are Bluewater Bank's estimated merger cost synergies? The model can't answer — those documents aren't in its training data. And you can't paste six hundred of them into a prompt; you'd blow the context window and pay for every token. So instead: find the three most relevant pieces, and put only those in.",
+      "visual_intent": "600-doc counter; split screen: 128k context overflowing red (600 docs) vs 3 small chunks fitting green",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Problem",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 19.9,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Problem",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT II — Chunking",
+      "role_note": "ClaudeCodeBeat — real chunk_text",
+      "narration_text": "First, cut the documents into chunks. The naive version is twelve lines. One detail matters more than the rest: the step size. It isn't chunk_size — it's chunk_size minus overlap. That subtraction is what makes chunks overlap instead of sitting edge to edge.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "chunking.py  —  the naive splitter",
+            "code": "def chunk_text(text, chunk_size, overlap):\n    if overlap >= chunk_size:\n        raise ValueError(\"Overlap must be less than chunk size\")\n    return [text[i:i + chunk_size]\n            for i in range(0, len(text), chunk_size - overlap)]\n\n#   step = chunk_size - overlap   <- the one line that matters",
+            "sparkLine": "Step, not size."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 14.38,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT II — Chunking",
+      "role_note": "Manim — overlap animation",
+      "narration_text": "Watch it on ten characters, window four, overlap one. Each window starts three later, so one character repeats at every boundary. That overlap exists for one reason: so a fact that lands on a boundary isn't cut in half.",
+      "visual_intent": "ABCDEFGHIJ with size=4 overlap=1: [ABCD]/[DEFG]/[GHIJ]/[J], repeated boundary char in terracotta",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Overlap",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 12.59,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Overlap",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT II — Chunking",
+      "role_note": "Manim — fixed vs recursive + histogram",
+      "narration_text": "But that splitter is blind — it cuts at four hundred characters whether that's a sentence end or the middle of a word. Recursive splitting tries paragraphs first, then lines, then sentences, then words. Same settings, more chunks — eight becomes ten — because it stops at boundaries instead of packing to the limit. The real distribution is bimodal: short headers, long paragraphs. chunk_size is a ceiling, not a target.",
+      "visual_intent": "fixed 8 vs recursive 10; bimodal histogram (67-388, mean 202, median 104)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Histogram",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 21.18,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Histogram",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT III — Tokenization",
+      "role_note": "Manim — token split + chars/token",
+      "narration_text": "Before the model reads a chunk, text becomes tokens — subword units from a fixed vocabulary. The cat sat on a mat: six tokens, each word already in the vocabulary. The same character count of financial text — dollar figures, EBITDA — thirteen tokens, because EBITDA fractures and numbers shred. Financial text tokenizes two to three times less efficiently. That's cost, context limits, and silent truncation past 384 tokens.",
+      "visual_intent": "two token strips: 'the cat sat on a mat' 6 tokens vs '$4,829.17 EBITDA Q3x' 13 tokens; chars/token bars 8.0 / 4.0 / 1.67",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Tokens",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 23.83,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Tokens",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT IV — The Forward Pass",
+      "role_note": "Manim — one vector per token, then pooling",
+      "narration_text": "Now the tokens go through the model, and here's what most people get wrong. The transformer produces one vector per token — not one per chunk. Seven tokens, seven vectors. Mean pooling averages all seven into a single vector of 384 numbers. That one vector now stands for the entire chunk.",
+      "visual_intent": "shape collapse: tokens (7,) -> per-token (7,384) -> mean pooling -> (384,); seven arrows collapsing to one",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B07_Pooling",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 16.92,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim:B07_Pooling",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT IV — The Forward Pass",
+      "role_note": "Manim — batched matmul speedup",
+      "narration_text": "You could embed one chunk at a time. Almost nobody does. Sixty-four separate matrix multiplies: fifteen milliseconds. One batched multiply: one millisecond. Twelve and a half times faster — doing the identical seventy-five million operations. The speedup isn't less math; it's the weight matrix loaded from memory once and reused across all sixty-four rows. Memory bandwidth is the bottleneck, not arithmetic.",
+      "visual_intent": "skinny (1,768) vs fat (64,768) matmul; 14.924ms vs 1.181ms, 12.6x; 'ops: 75,497,472 — IDENTICAL'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Batch",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 21.14,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Batch",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "ACT IV — The Forward Pass",
+      "role_note": "Manim — padding waste + attention mask",
+      "narration_text": "But the real system didn't get twelve times. Batch eight was fastest; batch 128 was slower than eight. Because chunks have different lengths, and to batch them into one rectangular tensor, they all pad to the longest one. Sixty-four percent of a short row's compute is padding — calculated, then thrown away. The attention mask marks which positions are real; ignore it and the padding corrupts the vector.",
+      "visual_intent": "throughput 9.9 / 14.2 (best) / 11.0 (worse); attention mask rows with padding cells greyed; '64% wasted'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B09_Padding",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 20.95,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B09.mp4",
+        "filled_by": "manim:B09_Padding",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "ACT V — The Index",
+      "role_note": "Manim — parallel lists, positional link",
+      "narration_text": "Fifteen hundred vectors, 768 numbers each — four point four megabytes. And here's what surprises people: nothing links a chunk to its vector except position. Chunk seven corresponds to embedding seven. Two parallel lists, no shared id. The whole system rests on one assumption — that encode returns vectors in input order. It does. But if that ever broke, you'd retrieve the right vector and cite the wrong document. Silently, with no error.",
+      "visual_intent": "two columns joined by index number; chunks[7] <-> embeddings[7]; red circle on the missing id field",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B10_Index",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 21.99,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B10.mp4",
+        "filled_by": "manim:B10_Index",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "ACT VI — Retrieval",
+      "role_note": "ClaudeCodeBeat — cosine similarity",
+      "narration_text": "A question comes in. Embed it — one vector — and compare it against all fifteen hundred with cosine similarity: the angle between vectors, ignoring magnitude. One matrix-vector product computes all fifteen hundred at once, in optimised C, no Python loop. And if the vectors are pre-normalised, every norm is one, and this collapses to a plain dot product.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "retrieval.py  —  cosine, all at once",
+            "code": "scores = np.dot(doc_vectors, query_vector) / (\n    np.linalg.norm(doc_vectors, axis=1) * np.linalg.norm(query_vector))\n\n# one matrix-vector product -> all 1500 similarities, in C\n# pre-normalised vectors -> norms are 1.0 -> this is just a dot product",
+            "sparkLine": "One dot product."
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 19.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "ACT VI — Retrieval",
+      "role_note": "ClaudeCodeBeat — the argpartition bug",
+      "narration_text": "Then take the top k — and here's a real bug. argpartition guarantees the k largest land in the last k slots, but it does not sort them against each other. This returned results in ascending order — worst first — and looked completely fine until someone checked the numbers. The fix is one line: sort just those k.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "retrieval.py  —  the top-k bug, and the fix",
+            "code": "top_k = np.argpartition(scores, -k)[-k:]\n#   O(n) — but the k results are in ARBITRARY order\n\ntop_k = top_k[np.argsort(scores[top_k])[::-1]]\n#   sort just those k — O(k log k)\n\n# before:  [0.801, 0.886, 0.941]   <- ascending. wrong.\n# after:   [0.941, 0.886, 0.801]   <- correct",
+            "sparkLine": "Partition isn't sort."
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 16.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B12.mp4",
+        "filled_by": "media",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "ACT VII — The Loss",
+      "role_note": "Manim — dilution table",
+      "narration_text": "Now the uncomfortable part. Mean pooling is lossy compression. Same fact — the cost synergies are twenty-two million — same query. Only the surrounding filler grows. Fifty-three characters: cosine point seven three. Thirteen hundred characters: point four seven. A thirty-five percent drop — and the fact is word-for-word present in every one of those chunks. It just gets averaged away.",
+      "visual_intent": "dilution table, progressive drop: 53->0.7254, 217->0.7421, 381->0.6927, 709->0.5980, 1365->0.4681 (-35.5%)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B13_Dilution",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 19.84,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B13.mp4",
+        "filled_by": "manim:B13_Dilution",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "ACT VII — The Loss",
+      "role_note": "Manim — the address metaphor",
+      "narration_text": "So how does it still work? Because the vector isn't the content — it's an address. A card-catalog entry. You use it to find the book, then you read the actual book. The raw text sits right next to the vector, untouched, and the language model reads that text — not the vector. Dilution hurts retrieval, not the answer — provided retrieval found the right chunk.",
+      "visual_intent": "card-catalog card -> arrow -> the full text/book; 'vector = address, not content'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B14_Address",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 17.51,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B14.mp4",
+        "filled_by": "manim:B14_Address",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "ACT VIII — Measuring",
+      "role_note": "Manim — hit rate vs MRR",
+      "narration_text": "You can't improve what you don't measure. Two metrics. Hit rate at k: was the right document anywhere in the top k — binary. MRR: how high was it — rank one scores one, rank two a half, rank three a third. Fixed and recursive chunking both hit a hundred percent. But recursive put the answer at rank one every time; fixed buried it at rank two twice. Hit rate saturates and hides that.",
+      "visual_intent": "two gauges binary vs graded; table: fixed hit@3 100% MRR 0.833 vs recursive 100% MRR 1.000",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B15_Metrics",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 18.97,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B15.mp4",
+        "filled_by": "manim:B15_Metrics",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "ACT IX — Surprise One",
+      "role_note": "Manim — model comparison table",
+      "narration_text": "Where the conventional wisdom breaks. Surprise one: the 384-dimension bge model beat the 768-dimension mpnet — eighty-eight percent hit rate to seventy-six, half the storage, three times faster to build. Dimension is a capacity ceiling, not a quality guarantee. What matters is the training objective: bge is trained for retrieval, with hard negatives; mpnet is general-purpose similarity.",
+      "visual_intent": "3-row model table: mpnet 768 76%/0.655, MiniLM 384 76%/0.637, bge 384 88%/0.683 (bge highlighted)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B16_Models",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 22.31,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B16.mp4",
+        "filled_by": "manim:B16_Models",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "ACT IX — Surprise Two",
+      "role_note": "Manim — hybrid worse",
+      "narration_text": "Surprise two: hybrid search made it worse. Combine dense embeddings with BM25 keyword search at equal weight — the received wisdom, because their failure modes look complementary. Dense only: seventy-six. BM25 only: eighty-four. Equal-weight hybrid: eighty — below BM25 alone. Fusion assumes both retrievers are comparably good; average in a weaker signal and you drag the stronger one down.",
+      "visual_intent": "3-bar: dense 76%/0.655, BM25 84%/0.750, hybrid-equal 80%/0.733 (marked WORSE)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B17_HybridWorse",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 22.36,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B17.mp4",
+        "filled_by": "manim:B17_HybridWorse",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "ACT IX — Surprise Three",
+      "role_note": "Manim — weight sweep wins",
+      "narration_text": "Surprise three: weight it correctly and hybrid wins — MRR point eight one zero, the best result in the whole project. But watch the mechanism. Hit rate stays flat at eighty-four from zero to zero point three dense weight; MRR climbs from point seven five to point eight one. Dense retrieval isn't finding new documents — it's reordering the ones BM25 already found. It contributes ranking signal, not recall.",
+      "visual_intent": "weight sweep line: MRR 0.750 -> 0.810 peak at 0.2-0.3 dense; hit-rate flat at 84%; '0.655 -> 0.810, +24%'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B18_Sweep",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 22.19,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B18.mp4",
+        "filled_by": "manim:B18_Sweep",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "act": "ACT X — Where the Time Goes",
+      "role_note": "Manim — latency stacked bar",
+      "narration_text": "Where does the time actually go? Embed the query: forty milliseconds. Vector search — the part everyone obsesses over — four milliseconds, two tenths of one percent of the total. Reranking: three hundred. Generation: thirteen hundred milliseconds — three hundred and twenty times the cost of the search. If you're optimising vector math, you're optimising point two percent of the problem.",
+      "visual_intent": "proportional stacked latency bar: embed 40.9 / retrieve 4.0 / rerank 301.5 / generate 1287.9 ms",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B19_Latency",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 19.05,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B19.mp4",
+        "filled_by": "manim:B19_Latency",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "ACT X — Where the Time Goes",
+      "role_note": "Manim — cache hit",
+      "narration_text": "And a cache hit? Two microseconds — eight hundred thousand times faster than a cold request, because it skips everything. So optimise in order: cache first, exact then semantic. Then route easy queries to a cheaper model. Then trim the retrieved context. The vector math is the last thing worth touching, not the first.",
+      "visual_intent": "latency tiers: retrieve 45ms / +rerank 346ms / +generate 1634ms / cache-hit 0.002ms; '800,000x'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B20_Cache",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B20.mp3",
+      "actual_duration_s": 17.05,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B20.mp4",
+        "filled_by": "manim:B20_Cache",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "ACT XI — Scale",
+      "role_note": "Manim — ANN index types",
+      "narration_text": "Everything so far was brute force — compare against everything. Exact, but linear, and at ten million vectors it dies. Approximate nearest neighbour fixes it. HNSW builds a layered proximity graph — sparse at the top for long jumps, dense at the bottom for precision — logarithmic instead of linear. IVF is just k-means routing: partition the space, search only the nearest partition. And storage is chunks times dimensions times four bytes — which is why halving dimensions mattered twice over.",
+      "visual_intent": "index table Flat/HNSW/IVF/IVF-PQ with trade-offs; small HNSW layered-graph sketch",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B21_Scale",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B21.mp3",
+      "actual_duration_s": 26.9,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B21.mp4",
+        "filled_by": "manim:B21_Scale",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "VERDICT",
+      "role_note": "ClaudeVerdictArtifact — the three takeaways",
+      "narration_text": "Three things to carry away. One: the defaults are frequently wrong — bigger embeddings lost, equal-weight fusion lost, and both are standard advice. Two: hit rate saturates; once it's near a hundred percent, MRR is the metric that still tells you something. Three: vector search is two tenths of a percent of your latency — if you're optimising it before you've added a cache, you're solving the wrong problem.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Measure, don't assume",
+            "artifactLines": [
+              "The defaults are frequently wrong — bigger embeddings lost, equal-weight fusion lost.",
+              "Hit rate saturates; MRR is the metric that still separates good from great.",
+              "Vector search is 0.2% of latency — cache before you optimise the math."
+            ]
+          },
+          "rendered": {
+            "out": "media/B22.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B22.mp3",
+      "actual_duration_s": 20.67,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B22.mp4",
+        "filled_by": "media",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "YOUR TURN",
+      "role_note": "HANDOFF LAW — prompt read + discussed; greeting 'Your turn.'",
+      "narration_text": "Your turn. Take this prompt: point the pipeline at your own corpus, and sweep the hybrid weight from zero to one against your own eval set — then read where MRR peaks. It will not be zero point three; it'll be wherever your data lives. Watch whether dense weight adds recall or just reorders. That single sweep is the difference between shipping the default and shipping the right answer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"sweep the dense/sparse hybrid weight from 0 to 1 on my own eval set, plot hit-rate and MRR, and mark where MRR peaks\"",
+            "topic": "CLAUDE CODE · RETRIEVAL, MEASURED",
+            "segment": "RAG From First Principles",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B23.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B23.mp3",
+      "actual_duration_s": 19.11,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B23.mp4",
+        "filled_by": "media",
+        "at": "2026-08-21T16:31:31"
+      }
+    },
+    {
+      "beat_id": "B24",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — title re-read; @HumanitariansAI",
+      "narration_text": "Measure. Do not assume. The defaults are someone else's corpus. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Measure. Do Not Assume.",
+            "handle": "@HumanitariansAI",
+            "subline": "RAG from first principles — every arrow measured"
+          },
+          "rendered": {
+            "out": "media/B24.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9,
+      "audio_file": "mp3/beat-B24.mp3",
+      "actual_duration_s": 5.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B24.mp4",
+        "filled_by": "media",
+        "at": "2026-08-21T16:31:31"
+      }
+    }
+  ]
+}

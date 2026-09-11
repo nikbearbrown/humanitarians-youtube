@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "title": "RAG: Tokenization (Why Financial Text Costs More)",
+    "slug": "rag-tokenization",
+    "topic": "CLAUDE CODE · RAG SERIES · TOKENIZATION",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "deep-explainer",
+    "note": "RAG series: tokenization. Grounded in VIDEO_SCRIPT.md SEGMENT 3 (real tokenizer output, chars/token ratios, 384-token truncation). Claude bookends + Manim body. Liam, in for Ameya (Onyx). @HumanitariansAI.",
+    "total_estimated_duration_seconds": 295,
+    "build": {
+      "at": "2026-09-11T15:50:42",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. Before a model can read a single chunk, your text becomes numbers — not characters, tokens. And financial text tokenizes two to three times worse than plain prose. Today, why that quietly costs you money, context, and sometimes your answer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain tokenization — subwords, why numbers cost more, and the 384-token truncation trap\"",
+            "topic": "CLAUDE CODE · RAG SERIES · TOKENIZATION",
+            "segment": "Why Financial Text Costs More",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "counting the tokens…",
+            "output": [
+              "common word = 1 token; everything else shreds",
+              "financial text tokenizes 2-3× worse",
+              "models truncate silently past their limit"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 19.11,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — Subwords",
+      "narration_text": "A tokenizer has a fixed vocabulary — about thirty thousand subword units. A common word maps to one token. Anything outside the vocabulary gets shredded into pieces. So the same sentence can be short or long in tokens depending entirely on which words you used.",
+      "visual_intent": "vocab ~30k subwords; 'the' → 1 token; 'EBITDA' → fractured into pieces",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_Vocab",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 16.6,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_Vocab",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — Same Chars, More Tokens",
+      "narration_text": "Look at two strings with identical character counts. 'The cat sat on a mat' — twenty characters, six tokens, each a whole word. Now a dollar figure with EBITDA and a ticker — also twenty characters, but thirteen tokens. Same length on the page, more than double the cost to the model.",
+      "visual_intent": "'the cat sat on a mat' 20 chars → 6 tokens; '$4,829.17 EBITDA Q3x' 20 chars → 13 tokens",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Compare",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.49,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Compare",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — The Shredding",
+      "narration_text": "Watch how it shreds. EBITDA isn't in the vocabulary, so it fractures into three pieces. The double-hash marker means 'this continues the previous word, no space.' And numbers are the worst case — that dollar amount costs seven tokens for nine characters. Rare tokens are expensive tokens.",
+      "visual_intent": "['$','4',',','82','##9','.','17','e','##bit','##da','q','##3','##x']; ## = continues previous",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Shred",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.19,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Shred",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — The Ratio",
+      "narration_text": "The clean way to see it is characters per token — higher is more efficient. Plain business prose runs about eight characters per token. Everyday English, around four. But a dense financial string with dollar signs and quarters drops to one point six seven — you're paying almost a token per character.",
+      "visual_intent": "chars/token bars: 'Meridian Financial Corp reported' 8.00 · 'the cat sat...' 4.00 · '$482,391.57 EBITDA Q4 YoY' 1.67",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Ratio",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 18.62,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Ratio",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — Three Consequences",
+      "narration_text": "So financial text tokenizing two to three times worse has three consequences. Cost — APIs bill per token, so the same document is two to three times more expensive. Context — your window is measured in tokens, not characters, so it fills faster than you'd expect. And truncation, which is the sneaky one.",
+      "visual_intent": "three cards: COST (per-token billing) · CONTEXT (window in tokens) · TRUNCATION (the sneaky one)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Consequences",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 19.52,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Consequences",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — Silent Truncation",
+      "narration_text": "Here's the trap. A popular embedding model, all-mpnet-base-v2, silently discards anything past three hundred eighty-four tokens. No error, no warning. You think you embedded the whole chunk; you embedded the first part and threw the rest away. If your financial chunks are token-heavy, they hit that wall sooner than the character count suggests.",
+      "visual_intent": "chunk > 384 tokens → tail discarded silently (no warning); mpnet limit",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Truncation",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 18.09,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Truncation",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — The Real Output",
+      "narration_text": "This isn't theory — it's the tokenizer's actual output on the project's text. Feed it a clean sentence and you get whole-word tokens. Feed it a financial string and you get this fractured list, double-hashes and all. Print your own tokens once and the cost model stops being abstract.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "token_demo.py — real tokenizer output",
+            "code": "tok('the cat sat on a mat')   # 6 tokens\n# ['the','cat','sat','on','a','mat']\n\ntok('$4,829.17 EBITDA Q3x')    # 13 tokens (same 20 chars)\n# ['$','4',',','82','##9','.','17','e','##bit','##da','q','##3','##x']\n# '##' = continues the previous token, no space",
+            "sparkLine": "print your tokens once"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 16.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — The Fix",
+      "narration_text": "So the practical move is simple: if tokens matter to you — and for financial text they do — measure and chunk by tokens, not characters. Count tokens with the same tokenizer your model uses, and set your chunk limits against that number. Then the four-hundred-character chunk that's secretly six hundred tokens can't ambush you.",
+      "visual_intent": "chunk by TOKENS not chars; count with the model's own tokenizer; set limits in tokens",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Fix",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.61,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Fix",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration_text": "So keep three things. A tokenizer maps common words to one token and shreds everything else, so financial text costs two to three times more than prose. That hits cost, context, and truncation together. And models can truncate silently at their token limit — measure in tokens, not characters, and you'll never be surprised.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Tokenization",
+            "artifactLines": [
+              "Common word = 1 token; rare tokens (numbers) shred and cost more.",
+              "Financial text: 2-3× more tokens — cost, context, truncation.",
+              "Measure and chunk by tokens, not characters."
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 19.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take this prompt to your own corpus: tokenize a sample with your model's tokenizer and report the characters-per-token ratio, plus how many chunks would exceed the model's token limit. If that count isn't zero, you just found silent data loss before it cost you an answer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"tokenize my corpus with the model tokenizer, report chars/token, and count chunks over the 384-token limit\"",
+            "topic": "CLAUDE CODE · RAG SERIES · TOKENIZATION",
+            "segment": "Why Financial Text Costs More",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 15.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T15:50:42"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration_text": "RAG — tokenization. Count in tokens, and nothing gets thrown away in silence. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG: Tokenization.",
+            "handle": "@HumanitariansAI",
+            "subline": "count in tokens, not characters"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 8.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T15:50:42"
+      }
+    }
+  ]
+}
