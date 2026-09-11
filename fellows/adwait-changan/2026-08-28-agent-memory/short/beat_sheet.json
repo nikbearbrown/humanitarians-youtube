@@ -1,0 +1,651 @@
+{
+  "metadata": {
+    "slug": "AgentMemory_AdwaitChangan_2026-08-28-short",
+    "folder": "2026-08-28-agent-memory",
+    "title": "Memory and Context",
+    "date": "August 28, 2026",
+    "playlist": "Agentic AI: From the Loop to MCP",
+    "report_type": "fellow-weekly-episode",
+    "fellow": "Adwait Changan",
+    "fellow_folder": "adwait-changan",
+    "series": "Humanitarians AI Fellows — Agentic AI",
+    "channel": "@HumanitariansAI",
+    "audience": "Students and mid-career learners getting started with AI",
+    "persona": "Adwait Changan (fellow, first person) — voiced by Kokoro am_onyx",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "voice_policy": "Persistent fellow-selected Kokoro voice. am_onyx across the full series.",
+    "intro_line": "Hi, I am Adwait Changan, and this video is about why agents do not actually forget.",
+    "intro_line_rule": "HAI PM criterion 5 — verbatim form 'Hi, I am [Your Name], and this video is about [summary of topic].' Present in B00.",
+    "register": "Teardown",
+    "aspect": "16:9 (9:16 derived via ./art shorts — PM criterion 3)",
+    "builder": "ai-explainer",
+    "one_idea": "An agent has no memory. It has a context budget it re-pays every turn — so forgetting is overflow, and eviction is a design decision you make or inherit.",
+    "source_root": "fellows/adwait-changan/2026-08-28-agent-memory",
+    "source_document": "context.py (authored and run for this episode; B03 and B07 show real printed output, B05 shows budget_row() verbatim). Imports tools.py from Episode 3 unchanged.",
+    "source_status": "Original teaching material. Every figure on screen is a real measurement printed by context.py. Characters, not tokens — disclosed. See FACTCHECK.md.",
+    "render_state": "plan-approved-required",
+    "gates": {
+      "plan": "PENDING HUMAN APPROVAL",
+      "factcheck": "PENDING HUMAN APPROVAL",
+      "narration": "PENDING HUMAN APPROVAL",
+      "audio_lock": "NOT STARTED",
+      "previz": "NOT STARTED",
+      "publish": "NOT AUTHORIZED"
+    },
+    "proof": {
+      "framework_before_examples": "B01/B02 framework at ~22-55s; first worked example B03 at ~55s",
+      "falsifiability_beat": "B07 — 'just use a bigger window' tested and shown to fail",
+      "worked_example": "B03 — the framework run on real measured numbers",
+      "reusable_rubric": "B08 — three questions for any agent turn",
+      "side_by_side": "B03 holds all 8 turns in one frame; B07 holds all three budgets in one frame"
+    },
+    "lane_histogram": {
+      "total_beats": 13,
+      "remotion": 13,
+      "manim": 0,
+      "vox": 0,
+      "note": "All 13 beats use existing Remotion patterns; zero slates expected."
+    },
+    "build": {
+      "at": "2026-08-28T15:03:13",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    },
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "AgentMemory_AdwaitChangan_2026-08-28",
+    "dropped_beats": [
+      "B04",
+      "B05",
+      "B06",
+      "B09"
+    ],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 176.63
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Hi, I am Adwait Changan, and this video is about why agents do not actually forget. Today we are going to learn where an agent's memory really lives — and it is not where most people think. Last week we counted what a single tool costs to describe. Now we add them up across a whole run, and find that an agent has no memory at all. It has a budget, and it re-pays that budget every single turn.",
+      "estimated_duration_s": 22,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "composer on cream; the fellow names himself and the topic in the first breath"
+          },
+          {
+            "at": "0.30",
+            "event": "the ask types itself in, send button arms terracotta"
+          },
+          {
+            "at": "0.50",
+            "event": "running indicator: 'counting the budget…'"
+          },
+          {
+            "at": "0.65",
+            "event": "three output lines land — no memory, re-sent every turn, overflow"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Today,",
+            "topic": "HUMANITARIANS AI · AGENTIC AI",
+            "segment": "Memory and Context",
+            "command": "Where does an agent's memory actually live, and what does it cost me per turn?",
+            "runningText": "counting the budget…",
+            "output": [
+              "Nowhere. There is no memory — there is a context window.",
+              "Every turn re-sends the whole thing from scratch: instructions, tools, history.",
+              "So forgetting is not amnesia. It is overflow, and you choose what gets dropped."
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      },
+      "actual_duration_s": 19.69
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT 1 — THE FRAMEWORK",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Here is the whole model, before any example. Every turn, three things compete for one budget. Your instructions and tool definitions — fixed, but re-sent every single time. The history — everything said and observed so far, which only grows. And whatever is left over. That last one is where the answer has to fit.",
+      "estimated_duration_s": 17,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.12",
+            "event": "'Instructions' layer slides in on the spoken word"
+          },
+          {
+            "at": "0.38",
+            "event": "'History' stacks on at 'which only grows'"
+          },
+          {
+            "at": "0.62",
+            "event": "'Room to answer' lands in terracotta — the accent layer"
+          },
+          {
+            "at": "0.88",
+            "event": "caption underlines: one budget, re-paid from scratch"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack916",
+          "props": {
+            "sparkLine": "One budget, three claims.",
+            "layers": [
+              {
+                "title": "Instructions",
+                "sub": "system prompt and tool definitions — fixed, and re-sent every single turn"
+              },
+              {
+                "title": "History",
+                "sub": "everything said and observed so far — it only grows"
+              },
+              {
+                "title": "Room to answer",
+                "sub": "whatever is left over. The answer has to fit in here",
+                "accent": true
+              }
+            ],
+            "caption": "Three claims. One budget. Re-paid from scratch, every turn."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 16.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT 1 — THE FRAMEWORK",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "And here is the part people miss. Nothing persists on the model's side. Every turn, the entire thing — instructions, tool definitions, the full history — is packed up and sent again from scratch. The model is not remembering your last turn. You are re-telling it, at full price, every time.",
+      "estimated_duration_s": 16,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "'Every turn' appears at the source position"
+          },
+          {
+            "at": "0.25",
+            "event": "the three 're-sent' feeds light in narration order"
+          },
+          {
+            "at": "0.55",
+            "event": "arc sweeps to 'The model' — one payload, rebuilt"
+          },
+          {
+            "at": "0.85",
+            "event": "settle line: 'You re-tell it. Every turn.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceSourceFlow916",
+          "props": {
+            "sparkLine": "Nothing persists.",
+            "sourceLabel": "Every turn",
+            "feeds": [
+              {
+                "label": "instructions — re-sent"
+              },
+              {
+                "label": "tool definitions — re-sent"
+              },
+              {
+                "label": "the full history — re-sent"
+              }
+            ],
+            "destApp": "The model",
+            "destTitle": "sees one payload, rebuilt from scratch — it is not recalling anything",
+            "arcCaption": "nothing persists on the model's side",
+            "settleLine": "You re-tell it. Every turn."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.42,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT 1 — THE FRAMEWORK",
+      "content_type": "evidence",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "So let us actually count it. Two tools from last week plus one system prompt: nine hundred and three characters of instructions, before the agent has done anything at all. Then every observation adds eighty-eight more. Watch the right-hand column. Room to answer is not a constant. It is being spent, turn by turn.",
+      "estimated_duration_s": 18,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "header row and turn 1 write on — 903 instructions, 1009 room"
+          },
+          {
+            "at": "0.35",
+            "event": "turns 2 through 5 land, the instructions column visibly constant"
+          },
+          {
+            "at": "0.65",
+            "event": "turns 6 through 8 complete the table"
+          },
+          {
+            "at": "0.85",
+            "event": "the right-hand column reads top to bottom: 1009 down to 393"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeWindow916",
+          "props": {
+            "view": "artifact",
+            "artifactTitle": "context.py — the budget, turn by turn",
+            "artifactHeading": "Same instructions every turn. History only grows.",
+            "artifactLines": [
+              "turn  instructions  history  room to answer",
+              "   1           903       88            1009",
+              "   2           903      176             921",
+              "   3           903      264             833",
+              "   4           903      352             745",
+              "   5           903      440             657",
+              "   6           903      528             569",
+              "   7           903      616             481",
+              "   8           903      704             393"
+            ],
+            "sparkLine": "The room is being spent.",
+            "numbered": false,
+            "width": 1500,
+            "fontSize": 26
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT 3 — THE OBVIOUS OBJECTION",
+      "content_type": "falsifiability",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Now the obvious objection: just get a bigger window. So we tested it. Double the budget, and the overflow moves from turn thirteen to turn thirty-six. Double it again, turn eighty-one. It never goes away. History grows linearly and the budget is a constant, so every budget overflows eventually. A bigger window buys you turns. It does not buy a fix.",
+      "estimated_duration_s": 19,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.15",
+            "event": "the 2000-char row writes on — overflow at turn 13"
+          },
+          {
+            "at": "0.38",
+            "event": "the 4000-char row lands — turn 36, visibly later, still there"
+          },
+          {
+            "at": "0.58",
+            "event": "the 8000-char row lands — turn 81"
+          },
+          {
+            "at": "0.82",
+            "event": "the closing line holds: doubling moves the overflow, it does not remove it"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeWindow916",
+          "props": {
+            "view": "artifact",
+            "artifactTitle": "context.py — first_overflow()",
+            "artifactHeading": "The objection: “just use a bigger window”",
+            "artifactLines": [
+              "  budget  2000 chars  ->  first overflow at turn 13",
+              "  budget  4000 chars  ->  first overflow at turn 36",
+              "  budget  8000 chars  ->  first overflow at turn 81",
+              "  Doubling the budget does not remove the overflow. It moves it."
+            ],
+            "sparkLine": "It moves. It does not vanish.",
+            "numbered": false,
+            "width": 1500,
+            "fontSize": 26
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT 3 — THE OBVIOUS OBJECTION",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Which gives you three questions to ask of any agent turn, on any project. What is fixed here, and am I re-paying for it every turn. What is growing, and how fast. And when it does not fit, what gets dropped — did I choose that, or did a library choose it for me?",
+      "estimated_duration_s": 18,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.12",
+            "event": "'What is fixed?' layer slides in"
+          },
+          {
+            "at": "0.40",
+            "event": "'What is growing?' stacks on"
+          },
+          {
+            "at": "0.64",
+            "event": "'What gets dropped?' lands in terracotta"
+          },
+          {
+            "at": "0.90",
+            "event": "caption underlines the rubric's reach"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack916",
+          "props": {
+            "sparkLine": "Three questions, any agent.",
+            "layers": [
+              {
+                "title": "What is fixed?",
+                "sub": "and am I re-paying for it on every single turn"
+              },
+              {
+                "title": "What is growing?",
+                "sub": "and how fast — measure it, do not estimate it"
+              },
+              {
+                "title": "What gets dropped?",
+                "sub": "did you choose the eviction policy, or did a default choose it for you",
+                "accent": true
+              }
+            ],
+            "caption": "Three questions. Any agent, any framework, any week."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 13.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "VERDICT",
+      "content_type": "verdict",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "So, the verdict. An agent has no memory. It has a context window, and every turn re-sends the whole thing from scratch — instructions, tool definitions, and all of the history. What looks like forgetting is overflow: the history grows, the budget does not, and something has to give. A bigger window does not fix that. In our own measurement it moved the overflow from turn thirteen to turn eighty-one, and no further. So eviction is the real design decision. Choose what gets dropped, deliberately — or a default will choose it for you.",
+      "estimated_duration_s": 32,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "verdict artifact page opens in the Claude frame"
+          },
+          {
+            "at": "0.15",
+            "event": "each verdict line writes on as the narration reaches it"
+          },
+          {
+            "at": "0.60",
+            "event": "the 'turn 13 to turn 81' line holds — the beat's terracotta moment"
+          },
+          {
+            "at": "0.90",
+            "event": "the page settles complete and readable"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact916",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "There is no memory. There is a budget.",
+            "artifactLines": [
+              "An agent has no memory — it has a context window, re-sent in full every single turn.",
+              "Three things compete for it: fixed instructions, growing history, and room to answer.",
+              "What looks like forgetting is overflow — history grows, the budget does not.",
+              "A bigger window moved our overflow from turn 13 to turn 81. It never removed it.",
+              "Eviction is the design decision. Choose what gets dropped, or a default chooses for you."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 26.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "YOUR TURN",
+      "content_type": "handoff",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "Your turn. Here is the prompt. Take the agent I am building. Count the characters in my system prompt and in every tool definition, then estimate how much each turn adds to the history. Tell me which turn I run out of room on, and what my current code drops when that happens. Run that against your own agent. Most people have never measured the fixed cost — and are surprised how much of the budget is gone before the first turn even starts.",
+      "estimated_duration_s": 28,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "greeting flips to 'Your turn.' — the viewer is addressed directly"
+          },
+          {
+            "at": "0.10",
+            "event": "the suggested prompt types itself in as the voice reads it aloud"
+          },
+          {
+            "at": "0.62",
+            "event": "running indicator: 'paste this into Claude…'"
+          },
+          {
+            "at": "0.78",
+            "event": "two hint lines land — the fixed cost, and the unchosen policy"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "HUMANITARIANS AI · AGENTIC AI",
+            "segment": "Run This Yourself",
+            "command": "Take the agent I am building. Count the characters in my system prompt and in every tool definition, then estimate how much each turn adds to the history. Tell me which turn I run out of room on, and what my current code drops when that happens.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Most people have never measured the fixed cost — it is larger than they guess.",
+              "If it cannot say what gets dropped, you have an eviction policy you did not choose."
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 21.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "OUTRO",
+      "content_type": "outro",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "narration_text": "That is the short version. The full episode also walks through the ten lines of code that measure this, and the four things you can drop when it does not fit. Watch Memory and Context for the whole story — the link is right below. Adwait Changan, for Humanitarians AI.",
+      "estimated_duration_s": 11,
+      "lane": "REMOTION",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "poster-serif title restates the episode, terracotta period"
+          },
+          {
+            "at": "0.45",
+            "event": "handle settles beneath"
+          },
+          {
+            "at": "0.72",
+            "event": "subline names the fellow and the episode number"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "Memory and Context",
+            "handle": "@HumanitariansAI",
+            "subline": "Adwait Changan · Humanitarians AI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 14.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T15:03:13"
+      },
+      "short_outro_rewritten": true
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "@HumanitariansAI",
+        "next": "",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-08-28T15:03:13"
+      }
+    }
+  ]
+}
