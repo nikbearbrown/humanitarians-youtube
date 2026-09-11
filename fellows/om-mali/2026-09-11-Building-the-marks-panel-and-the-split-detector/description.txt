@@ -1,0 +1,62 @@
+Building the Marks Panel and the Split Detector — Private AI Valuation Agent, week 7
+
+This week the project finally produces a per-share price history: value divided by share count,
+once per security, per fund, per quarter. 5,479 marks.
+
+That part is one line of arithmetic. The week went into the thing that stops a stock split
+entering the series as a crash — and into finding out that my detector was too narrow to catch
+the case it was written for.
+
+WHERE EVERY MARK CAME FROM. 5,806 filed holdings go in. 28 were rejected last month as
+belonging to nothing. 72 sit on filings a later amendment replaced. The remaining 5,706
+aggregate into marks. 5,806 − 28 − 72 = 5,706. It reconciles exactly, and nothing is dropped
+for being awkward.
+
+THE BUG. Perplexity went from $695.04 a share to $58.26. Read naively that is a 92% collapse.
+It is a split. My detector used a window of ±0.02 around a whole number, and Perplexity's ratio
+is 11.93 — 0.07 away from 12, which the window misses by a factor of three. It had looked
+correct only because a second Perplexity step landed on exactly 10.0000, inside any window.
+The detector was not broken. It was too narrow to catch its own test case. The rule is now a
+relative 1% window, imported by both the detector and last month's review queue.
+
+CATCHING IT IS NOT DECIDING IT. Three companies threw a suspected split, and the ratio cannot
+tell you which is which. The share count can. Perplexity's preferred line went from 19,395
+shares to 193,950 while the filed value stayed at $13,488,132.50 — identical to the cent. That
+is a split. Anthropic held the same 89,078 shares in all thirteen quarters; only the value
+moved, and the step reverses the next quarter, which a split never does. SpaceX the same:
+constant share count, value exactly doubled. Splits move the share count. Repricings move the
+value. A person made all three calls, and the reason is written down on every one.
+
+RATIO IS NOT FACTOR. That 11.93 is not a split factor. It is a 10-for-1 split and a 16%
+markdown that landed in the same quarter. Divide by 11.93 and you erase a real price move.
+Divide by 10 and it survives. So the panel stores what the machine measured and what a person
+decided to divide by as separate fields.
+
+THE CHECKS. The plan listed seven for this panel. Six pass. The seventh needs filings the SEC
+has not published yet, and it reports that rather than quietly passing. One of the six expected
+four managers to agree on Anthropic's price; ten do, in two clusters four thousandths of a
+dollar apart.
+
+To be clear about what this is and is not: the splits are detected, quarantined and decided —
+not adjusted. Applying the factor is next month's work, and Perplexity's seven marks stay
+blocked from every change series until then. And a "mark" is one fund's recorded price for one
+security at one quarter end. Not a valuation of the company. This project publishes what funds
+wrote down, and nothing more.
+
+Next week: how often these marks actually move.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is queried from the marks panel at build time, not typed by hand; the
+build asserts the key counts and fails rather than let a number drift. See FACTCHECK.md in the
+project folder for what still needs confirmation before publishing — including the one number
+in this video that no committed artifact backs.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#DataEngineering #SEC #StockSplit #PriceHistory #HumanInTheLoop #Thresholds #PrivateMarkets
+#HumanitariansAI #Mycroft
