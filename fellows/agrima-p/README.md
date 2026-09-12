@@ -36,3 +36,17 @@ an explicit, documented re-voice decision is made.
   Quietly Solving. An AI-explainer sourced from a user-written article on AI
   in nonprofit marketing (donor personalization, donation-form optimization,
   fundraising ROI), built on the ai-explainer chassis. 16:9 + 9:16 cuts.
+- `2026-09-12-rescue-reinvented/` — Rescue, Reinvented: How Artificial
+  Intelligence Is Reshaping Rescue Work. An AI-explainer sourced from a
+  user-written article on AI in animal shelters (Finding Rover lost-pet
+  matching, AI-assisted notes-to-content, Doobert coordination), built on
+  the ai-explainer chassis. Presenter self-intro lives in its own dedicated
+  beat. 16:9 + 9:16 cuts.
+- `2026-09-12-weekly-recap-catbot/` — This Week: What Shipped, What's Next
+  (cat-bot edition). A CLI-explainer weekly recap — a separate week's log
+  from `2026-08-29-weekly-recap/` — built around a real weekly_recap_v1.py,
+  revised into weekly_recap_v2.py to split DONE-THIS-WEEK from
+  STARTING-NEXT-WEEK — both scripts real, both actually run. 16:9 + 9:16
+  cuts (9:16 is a full-parity reformat, no beats dropped). Content: publishing
+  the Rescue, Reinvented article, producing two Brutalist videos, and a new
+  "cat bot" project idea with early cat-shelter research.
