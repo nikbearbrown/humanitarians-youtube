@@ -1,0 +1,585 @@
+{
+  "metadata": {
+    "title": "Dead Links, Live Redirects.",
+    "slug": "claude-hai-dead-links-live-redirects",
+    "brand": "claude-hai",
+    "channel": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "audience": "HAI",
+    "register": "Pragmatist",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style": "cli",
+    "hello": "Hi",
+    "topic": "Irreducibly Human",
+    "description": "The second Fellows-Portal build reel: a site-wide link and route cleanup that turned into a lesson about the router. A crawler finds dead links, duplicate tool artifacts, and a superseded /tools route; consolidating the duplicates deletes five files that next.config.mjs still redirects to, producing a 404 on a file nothing linked to. The revision keeps the files and excludes them from the Tools listing instead. Closes with the three project subdomains, served by a middleware rewrite so the subdomain stays visible. Covers commits 13c3370..b952855 (2026-08-10).",
+    "note": "Sequel to claude-hai-fellows-portal-refactor. Scope is deliberately everything AFTER that video: the 11 commits dated 2026-08-10 on branch dev. SCOPE GAP, chosen not overlooked: video 1's content ends at 0e8dc55 (2026-06-09) and this one begins at 0e125f1 (2026-08-10), leaving 26 commits uncovered by either reel — 6 by RishabhHM (2026-07-01: donate page, A-Z sort, course metadata) and 20 by nikbearbrown / Nik Bear Brown (2026-07-15..21: the AI+1 hub, fellow video submissions, a site-wide broken-link pass). They are thematically unrelated to this reel's spine. PROVENANCE: the rootFilesMovedToArtifacts redirect list that breaks in B07 was authored in 2073715 (2026-07-15, nikbearbrown), four weeks before the delete and by a different author — B07 says so on air. All code beats are real source or real git output — see SOURCES.md for the commit-to-beat map. NO SCREEN CAPTURES: B04/B10/B13 were cut (routine 'it works' demos) and B07 was REBUILT as a native Remotion animation of the redirect chain per the REBUILD LAW. The reel is fully machine-renderable; nothing is owed by the human.",
+    "aspect": "16:9",
+    "date": "2026-08-14",
+    "total_estimated_duration_seconds": 348,
+    "build": {
+      "at": "2026-08-14T22:54:11",
+      "cut": "master",
+      "filled": 15,
+      "of": 15,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — open on the Claude UI, ask shown answered",
+      "narration_text": "Hi! This is RM, for Humanitarians AI. After the portal refactor, we pointed a crawler at the whole site. It found dead links, tool files that existed twice, and a route nothing reached anymore. Cleaning that up is easy — right up until you delete a file the router is still pointing at.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"crawl humanitarians.ai — find every dead link, thin page, and duplicate artifact\"",
+            "topic": "Irreducibly Human",
+            "segment": "Dead Links, Live Redirects.",
+            "greeting": "Hi, HAI",
+            "runningText": "crawling the site…",
+            "output": [
+              "dead links: a Boyle Substack, an unlaunched Newsletter",
+              "/tools — superseded by /ai1/tools, still shipping 288 lines",
+              "5 artifact files duplicated under /artifacts"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 21.2,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 19.01,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "ILLUSTRATE LAW — inner beat, no Claude chrome; three stacked cards",
+      "narration_text": "Link rot on a real site is three different problems wearing one coat. Links that point nowhere are embarrassing but harmless. Files that exist twice make a directory lie to you. And a route nothing reaches is dead weight you are still shipping. Only one of these three bites back when you fix it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "FellowsPortalLayerStack",
+          "props": {
+            "sparkLine": "Three kinds of rot.",
+            "layers": [
+              {
+                "title": "Links that point nowhere",
+                "sub": "a dead Substack, a Newsletter that never launched"
+              },
+              {
+                "title": "Files that exist twice",
+                "sub": "gru.html and gru-tool.html — the same tool, listed twice"
+              },
+              {
+                "title": "A route nothing reaches",
+                "sub": "/tools, fully superseded by /ai1/tools",
+                "accent": true
+              }
+            ],
+            "caption": "Three kinds of rot — one of them bites back.",
+            "cardWidth": 1040,
+            "top": 120,
+            "durationInFrames": 542
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 21.6,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:FellowsPortalLayerStack",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK — cycle 1",
+      "role_note": "the ask that earns the crawler",
+      "narration_text": "Start by measuring, not guessing. The ask is a crawler: walk every internal page reachable from the homepage, record the status code and how much text actually rendered, flag the thin ones, and check the external links too. You cannot fix rot you have not counted.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"wire up a link checker — crawl every internal page from the homepage, record HTTP status and rendered-text size, flag thin or template pages, and check every external link\"",
+            "topic": "Irreducibly Human",
+            "segment": "Dead Links, Live Redirects.",
+            "greeting": "The ask,",
+            "runningText": "writing the crawler…"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18.4,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 16.96,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE — cycle 1",
+      "role_note": "ACTUAL-CODE LAW — real source from scripts/check-links.mjs",
+      "narration_text": "Two things make this more than a status-code check. It reads rendered text size, so a page that returns two hundred OK while being empty still gets flagged. And it carries a list of template markers — lorem ipsum, coming soon, placeholder — so unfinished pages surface as unfinished, not as working.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "scripts/check-links.mjs + package.json",
+            "code": "// Crawl the site and report broken / empty / template links.\nconst MIN_TEXT = Number(process.env.MIN_TEXT || 250)\n\n// Markers that strongly suggest unfinished / template content.\nconst TEMPLATE_MARKERS = [\n  'lorem ipsum', 'yourusername', 'example.com',\n  'placeholder', 'coming soon', 'todo:', 'untitled',\n]\n\n// package.json\n\"check-links\": \"node scripts/check-links.mjs\"",
+            "sparkLine": "Crawl, then judge."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20.8,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 19.65,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ASK — cycle 2",
+      "role_note": "the ask that looks obviously correct",
+      "narration_text": "Those were three commits and four lines — a dead Substack link, a Newsletter that never launched, a project pointing at the wrong path. The duplicates were harder. The artifacts folder carried both gru dot html and gru-tool dot html — the same tool, twice, so the Tools directory listed it twice. The obvious ask is the one you would write: consolidate them, keep one canonical file per tool.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"public/artifacts has both gru.html and gru-tool.html — consolidate the duplicates, keep one canonical file per tool\"",
+            "topic": "Irreducibly Human",
+            "segment": "Dead Links, Live Redirects.",
+            "greeting": "The ask,",
+            "runningText": "consolidating artifacts…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17.6,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 24.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE — cycle 2",
+      "role_note": "ACTUAL-CODE LAW — the real diffstat of the delete",
+      "narration_text": "Five files, two thousand six hundred and twelve lines, gone. The Tools directory immediately reads correctly — one entry per tool. Every test passes. This is the commit that looks finished and is not.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "git show --stat — the consolidation commit",
+            "code": "$ git show --stat c89299f\n\n public/artifacts/cajal-reference.html     | 440 ---------\n public/artifacts/critiq-reference.html    | 443 ---------\n public/artifacts/gru-reference.html       | 397 ---------\n public/artifacts/gru.html                 | 875 ---------\n public/artifacts/tictoc-reference-v2.html | 457 ---------\n 5 files changed, 2612 deletions(-)",
+            "sparkLine": "Five files, gone."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.6,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 13.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — cycle 2, the break (rebuilt, not captured)",
+      "role_note": "REBUILD LAW — the 404 shown as a native animation of the causal chain, not a screen capture. Every line is verifiable.",
+      "narration_text": "Then you open slash gru dot html and get a four-oh-four. Nothing on the site linked to that file — that is why it looked safe. But next dot config dot mjs redirects to it, permanently. A redirect is a reference, and grep will never find it, because the pointer lives in the router, not in a page.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "FellowsPortalLayerStack",
+          "props": {
+            "durationInFrames": 587,
+            "sparkLine": "A redirect is a reference.",
+            "layers": [
+              {
+                "title": "next.config.mjs",
+                "sub": "/gru.html → /artifacts/gru.html · permanent: true"
+              },
+              {
+                "title": "c89299f",
+                "sub": "deleted public/artifacts/gru.html — nothing linked to it"
+              },
+              {
+                "title": "GET /gru.html",
+                "sub": "301 → 404",
+                "accent": true
+              }
+            ],
+            "caption": "The redirect outlived its destination.",
+            "cardWidth": 1040,
+            "top": 120
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 23.2,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 19.58,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:FellowsPortalLayerStack",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "CHANGE — cycle 3, the required revision",
+      "role_note": "THE REVISION LAW — check the output, change the approach",
+      "narration_text": "So the revision is not a better delete. It is a different move: keep the files, because the redirects need them, and fix the real complaint — the duplicate row — in the listing, not on disk. And notice where that redirect came from: four weeks earlier, a different author, the commit that built the AI plus one hub. Inherited config is still your config.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"those files are redirect targets in next.config.mjs — restore them, and exclude them from the Tools listing instead so they stop showing up twice\"",
+            "topic": "Irreducibly Human",
+            "segment": "Dead Links, Live Redirects.",
+            "greeting": "The revision,",
+            "runningText": "restoring, then excluding…"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 26.0,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 21.23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "CODE — cycle 3",
+      "role_note": "ACTUAL-CODE LAW — real source from lib/html-meta.ts",
+      "narration_text": "One named set and one filter. The comment is doing as much work as the code — it says why these files are on disk, so the next person to find an unreferenced HTML file does not delete it for the same reason you nearly did. And now both things are true: the redirect still resolves, and the directory lists the tool once.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "lib/html-meta.ts",
+            "code": "// Legacy artifact files kept on disk only so the /:file(*-tool.html)\n// and rootFilesMovedToArtifacts redirects in next.config.mjs still\n// resolve. They're superseded by a \"-tool.html\" counterpart and\n// shouldn't show up as separate entries in the Tools directory.\nconst SUPERSEDED_ARTIFACT_FILES = new Set([\n  'gru.html', 'gru-reference.html', 'critiq-reference.html',\n  'tictoc-reference-v2.html', 'cajal-reference.html',\n])\n\nfiles = readdirSync(dir)\n  .filter(f => f.endsWith('.html') && !SUPERSEDED_ARTIFACT_FILES.has(f))\n  .sort()",
+            "sparkLine": "Keep the file. Hide the row."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18.0,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 21.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "ASK — cycle 4",
+      "role_note": "the last cycle — routing, not cleanup",
+      "narration_text": "The last piece is the opposite of deleting: three projects were getting their own subdomains. Mycroft, Medhavy and Dayhoff. The catch is that the pages already exist inside this app, and the subdomain has to stay visible in the address bar.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"point mycroft, medhavy and dayhoff .humanitarians.ai at their existing project pages — keep the subdomain visible in the URL\"",
+            "topic": "Irreducibly Human",
+            "segment": "Dead Links, Live Redirects.",
+            "greeting": "The ask,",
+            "runningText": "adding middleware…"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.4,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.93,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "CODE — cycle 4",
+      "role_note": "ACTUAL-CODE LAW — real source from middleware.ts",
+      "narration_text": "The whole feature is a lookup table and a rewrite. Rewrite, not redirect — that is the one word that matters. A redirect would send the browser to slash mycroft and throw the subdomain away. A rewrite serves that page while the address bar keeps saying mycroft dot humanitarians dot ai. Same app, one file, and the footer now points at all three.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "middleware.ts",
+            "code": "const SUBDOMAIN_PROJECTS: Record<string, string> = {\n  \"mycroft.humanitarians.ai\": \"/mycroft\",\n  \"medhavy.humanitarians.ai\": \"/medhavy\",\n  \"dayhoff.humanitarians.ai\": \"/dayhoff\",\n}\n\nexport function middleware(request: NextRequest) {\n  const hostname = request.headers.get(\"host\") || \"\"\n  const projectPath = SUBDOMAIN_PROJECTS[hostname]\n  if (projectPath) {\n    const url = request.nextUrl.clone()\n    url.pathname = url.pathname === \"/\"\n      ? projectPath : `${projectPath}${url.pathname}`\n    return NextResponse.rewrite(url)\n  }\n  return NextResponse.next()\n}",
+            "sparkLine": "Rewrite, don't redirect."
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20.8,
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 21.78,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "SUMMARY",
+      "role_note": "the lesson in one beat",
+      "narration_text": "So: crawl before you guess, because a checker finds what a code search cannot. A file with no inbound links can still be load-bearing in the router. Deleting is not the only fix — excluding a row from a listing kept the redirect and cleaned the directory at the same time. And rewrite keeps the subdomain that redirect would have thrown away.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Dead Links, Live Redirects.",
+            "artifactHeading": "A redirect is a reference",
+            "artifactLines": [
+              "Crawl before you guess — a link checker finds what code search can't.",
+              "A file with no inbound links can still be load-bearing in the router.",
+              "Deleting isn't the only fix — hide the row, keep the file.",
+              "Rewrite keeps the subdomain; redirect throws it away."
+            ]
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24.8,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 20.57,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B14F",
+      "act": "FUTURE WORK",
+      "role_note": "what this cleanup did not finish",
+      "narration_text": "What is still open. The checker runs by hand, so nothing stops the next dead link from shipping. Nothing tests that a redirect destination still exists — which is exactly the failure we just hit. And the superseded list is maintained by hand, so it drifts the moment someone adds a tool.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "FellowsPortalLayerStack",
+          "props": {
+            "sparkLine": "What's next.",
+            "layers": [
+              {
+                "title": "Run the checker in CI",
+                "sub": "today it runs by hand — nothing stops the next dead link"
+              },
+              {
+                "title": "Test that redirect targets exist",
+                "sub": "the exact failure this video is about, unguarded"
+              },
+              {
+                "title": "Derive the superseded list",
+                "sub": "hand-maintained today, drifts the moment a tool is added"
+              }
+            ],
+            "caption": "The cleanup is done. The guardrails are not.",
+            "cardWidth": 1040,
+            "top": 120,
+            "durationInFrames": 555
+          },
+          "rendered": {
+            "out": "media/B14F.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20.8,
+      "audio_file": "mp3/beat-B14F.mp3",
+      "actual_duration_s": 18.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14F.mp4",
+        "filled_by": "remotion:FellowsPortalLayerStack",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — read the prompt aloud and say why it's worth running",
+      "narration_text": "Your turn. Paste this: audit my Next.js app — list every redirect destination in next dot config dot mjs, then check that each destination file or route actually exists, and flag any redirect that would four-oh-four. Run it even if you have never deleted anything, because redirects outlive the moves that created them. The ones pointing at files nobody remembers are the ones that break quietly.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"audit my Next.js app — list every redirect destination in next.config.mjs, then check that each destination file or route actually exists. flag any redirect that would 404.\"",
+            "topic": "Irreducibly Human",
+            "segment": "Dead Links, Live Redirects.",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 26.4,
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 25.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-08-14T22:54:11"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "OUTRO",
+      "role_note": "title-restate outro — the LAST beat",
+      "narration_text": "Dead links, live redirects. For Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Dead Links, Live Redirects.",
+            "handle": "@HumanitariansAI",
+            "subline": "a redirect is a reference"
+          },
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 2.8,
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 3.58,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-08-14T22:54:11"
+      }
+    }
+  ]
+}

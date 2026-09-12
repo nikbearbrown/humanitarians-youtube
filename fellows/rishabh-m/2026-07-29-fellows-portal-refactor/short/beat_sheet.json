@@ -1,0 +1,217 @@
+{
+  "metadata": {
+    "title": "Fellows Portal, Refactored.",
+    "slug": "claude-hai-fellows-portal-refactor-short",
+    "brand": "claude-hai",
+    "channel": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "audience": "HAI",
+    "register": "Pragmatist",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style": "cli",
+    "hello": "Hi",
+    "topic": "Irreducibly Human",
+    "description": "A real build reel: taking a single-tier Fellows Portal (one shared admin password, one growing dashboard file, free-text project matching) to a proper three-role system (fellow / admin / super-admin) via a two-boolean schema, one unified session model, and nav-level gating. Screen-capture OUTPUT beats are real recordings against the live dev app using existing dummy accounts.",
+    "note": "DOUBLE-CHECK corrections logged in SOURCES.md: (1) the pre-refactor app was NOT 'just a login page' — fellow auth, profile dashboard, and report submission already existed (built 2026-04-04 by a different author + Claude Opus); what was missing was role tiering (a single shared ADMIN_PASSWORD, not per-user flags). (2) 'report upload' corrected to 'report submission' — reports are markdown text via a form, not file uploads.",
+    "aspect": "16:9",
+    "date": "2026-07-29",
+    "total_estimated_duration_seconds": 76.52,
+    "build": {
+      "at": "2026-08-07T23:17:30",
+      "cut": "master",
+      "filled": 5,
+      "of": 5,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "END: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "claude-hai-fellows-portal-refactor",
+    "dropped_beats": [
+      "B01",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B11",
+      "B12",
+      "B12F",
+      "B13"
+    ],
+    "playlist_short": "Shorts"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — open on the Claude UI, ask shown answered",
+      "narration_text": "Hi! This is RM, for Humanitarians AI. Our Fellows Portal used to run three different levels of access on one shared password. Here's the schema change that fixed it, and the two features that actually enforced it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "claude \"audit /portal and /admin — is this three real roles, or one shared password with extra steps?\"",
+            "topic": "Irreducibly Human",
+            "segment": "Fellows Portal, Refactored.",
+            "greeting": "Hi, HAI",
+            "runningText": "reading the fellows schema…",
+            "output": [
+              "fellows table: is_admin, is_super_admin — real per-user flags",
+              "old /admin/login + ADMIN_PASSWORD: gone",
+              "one fellow_session cookie, everywhere"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "actual_duration_s": 14.21,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-08-07T23:17:30"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK — cycle 1",
+      "role_note": "composer (ClaudeComposerAsk)",
+      "narration_text": "The method: don't build a roles table for two roles. Add two booleans to the table that already exists, and kill the second, disconnected auth system that was checking a completely different secret.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "claude \"add is_admin and is_super_admin to the fellows table, and remove the separate ADMIN_PASSWORD session — one session model, two boolean tiers\"",
+            "topic": "Irreducibly Human",
+            "segment": "Fellows Portal, Refactored.",
+            "greeting": "The ask,",
+            "runningText": "designing the schema…"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "actual_duration_s": 12.12,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-08-07T23:17:30"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE — cycle 1",
+      "role_note": "ClaudeCodeBeat — the ACTUAL committed code (dc81ddd, a879e56), trimmed to what teaches",
+      "narration_text": "Read it before trusting it. Two new columns, default false. And the old admin check — one shared HMAC token, timing-safe compared against an env var everyone with deploy access could read — is gone. What replaces it reads the SAME row every other fellow query already reads.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat916",
+          "props": {
+            "title": "sql/001_fellows_projects.sql + lib/admin-auth.ts",
+            "code": "-- schema: two booleans, not a roles table\nALTER TABLE fellows ADD COLUMN is_admin boolean NOT NULL DEFAULT false;\nALTER TABLE fellows ADD COLUMN is_super_admin boolean NOT NULL DEFAULT false;\n\n// lib/admin-auth.ts — BEFORE: one shared secret, no per-user identity\nconst expected = hmac(ADMIN_PASSWORD, 'admin_session')\nreturn timingSafeEqual(cookie, expected)\n\n// lib/admin-auth.ts — AFTER: read the fellow's own row\nexport async function isAdmin() {\n  const fellow = await getFellowFromCookies()\n  return fellow?.is_admin === true || fellow?.is_super_admin === true\n}\nexport async function isSuperAdmin() {\n  const fellow = await getFellowFromCookies()\n  return fellow?.is_super_admin === true\n}",
+            "sparkLine": "Two booleans, one session."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "actual_duration_s": 18.69,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat916",
+        "at": "2026-08-07T23:17:30"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — restate the episode title",
+      "narration_text": "That's the schema change. The full video shows what actually enforced it — the profile split, and nav-level gating that gives an admin and a super-admin different dashboards from one component. Watch Fellows Portal, Refactored. The link is right below.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "Fellows Portal, Refactored.",
+            "handle": "@HumanitariansAI",
+            "subline": "two booleans, three real roles"
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-08-14T10:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.0,
+      "audio_file": "mp3/beat-B14.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro916",
+        "at": "2026-08-07T23:17:30"
+      },
+      "short_outro_rewritten": true,
+      "actual_duration_s": 16.02
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "@HumanitariansAI",
+        "next": "",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-08-07T23:17:30"
+      }
+    }
+  ]
+}
