@@ -321,3 +321,74 @@ import {LnkBluf916, LnkFrame916, LnkStat916, LnkLadder916, LnkDisproportion916, 
 <Composition id="LnkPressure916" component={LnkPressure916}
         durationInFrames={370} fps={30} width={1080} height={1920}
         defaultProps={{data: {slideMeta: '', title: '', left: {tag: '', label: '', sub: '', cite: ''}, right: {tag: '', label: '', sub: '', cite: ''}, marker: '', axisLabel: '', note: ''}}} />
+
+
+// ============================================================================
+// Added 2026-09-07 — Interest Media.
+//
+// Two refusals below are enforced by the TYPES rather than by memory, and are the
+// reason these are new components instead of reuses:
+//   * ItmSource has a `claimParaphrase` field and NO `quote` field. The "interest
+//     media" framing is credited to Gary Vaynerchuk and the instruction was to
+//     paraphrase him, never to quote him — so there is no prop to quote him with.
+//   * NOTHING in this family carries a numeric prop. No value, pct, count, bar or
+//     stat exists on any type here, so this reel cannot print a statistic. That
+//     matters most on ItmVolume, whose subject IS volume: its marks are unlabelled
+//     and uncounted, and it argues density rather than a figure.
+//
+// MARKS and TICKS are exported from InterestMedia.tsx and IMPORTED by the portrait
+// module rather than redeclared, so the two cuts of one reel cannot drift apart on
+// how dense "too much" looks.
+// ============================================================================
+
+import {ItmBluf, ItmSource, ItmFeed, ItmVolume, ItmQuestion, ItmModels, ItmJob, ItmLimits} from './scenes/InterestMedia';
+import {ItmBluf916, ItmSource916, ItmFeed916, ItmVolume916, ItmQuestion916, ItmModels916, ItmJob916, ItmLimits916} from './scenes/InterestMedia916';
+
+<Composition id="ItmBluf" component={ItmBluf}
+        durationInFrames={314} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', claims: [{label: ''}], hotIndex: 0, closer: ''}}} />
+<Composition id="ItmSource" component={ItmSource}
+        durationInFrames={493} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', who: '', claimParaphrase: '', stamp: '', oldWord: '', newWord: '', tail: '', oldAsks: '', newAsks: '', note: ''}}} />
+<Composition id="ItmFeed" component={ItmFeed}
+        durationInFrames={426} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', leftHead: '', leftItems: [], leftFoot: '', rightHead: '', rightItems: [], rightFoot: '', signals: [], note: ''}}} />
+<Composition id="ItmVolume" component={ItmVolume}
+        durationInFrames={309} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', networkLabel: '', networkSub: '', verdictBand: '', note: ''}}} />
+<Composition id="ItmQuestion" component={ItmQuestion}
+        durationInFrames={210} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', inputLabel: '', outputLabel: '', oldKey: '', newKey: '', note: ''}}} />
+<Composition id="ItmModels" component={ItmModels}
+        durationInFrames={408} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', oldTitle: '', oldSteps: ['', '', ''], oldGateLabel: '', oldFoot: '', newTitle: '', newSteps: ['', '', ''], newFoot: '', note: ''}}} />
+<Composition id="ItmJob" component={ItmJob}
+        durationInFrames={282} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', oldHead: '', oldQuestion: '', newHead: '', newQuestion: '', tickLabel: '', note: ''}}} />
+<Composition id="ItmLimits" component={ItmLimits}
+        durationInFrames={372} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />
+<Composition id="ItmBluf916" component={ItmBluf916}
+        durationInFrames={314} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', claims: [{label: ''}], hotIndex: 0, closer: ''}}} />
+<Composition id="ItmSource916" component={ItmSource916}
+        durationInFrames={493} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', who: '', claimParaphrase: '', stamp: '', oldWord: '', newWord: '', tail: '', oldAsks: '', newAsks: '', note: ''}}} />
+<Composition id="ItmFeed916" component={ItmFeed916}
+        durationInFrames={426} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', leftHead: '', leftItems: [], leftFoot: '', rightHead: '', rightItems: [], rightFoot: '', signals: [], note: ''}}} />
+<Composition id="ItmVolume916" component={ItmVolume916}
+        durationInFrames={309} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', networkLabel: '', networkSub: '', verdictBand: '', note: ''}}} />
+<Composition id="ItmQuestion916" component={ItmQuestion916}
+        durationInFrames={210} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', inputLabel: '', outputLabel: '', oldKey: '', newKey: '', note: ''}}} />
+<Composition id="ItmModels916" component={ItmModels916}
+        durationInFrames={408} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', oldTitle: '', oldSteps: ['', '', ''], oldGateLabel: '', oldFoot: '', newTitle: '', newSteps: ['', '', ''], newFoot: '', note: ''}}} />
+<Composition id="ItmJob916" component={ItmJob916}
+        durationInFrames={282} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', oldHead: '', oldQuestion: '', newHead: '', newQuestion: '', tickLabel: '', note: ''}}} />
+<Composition id="ItmLimits916" component={ItmLimits916}
+        durationInFrames={372} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />
