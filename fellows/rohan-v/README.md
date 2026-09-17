@@ -10,6 +10,23 @@ Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Do 
 
 Masters ship at 1080p by default. For 4K: Manim `-qk -r 3840,2160`, `ART_REMOTION_SCALE=2` on Remotion bookends, then `compile.py --height 2160` (16:9) or `--height 3840` (9:16).
 
+## Week of 2026-09-18
+
+Two STEM explainers, both audio. Both 16:9 and native 9:16 at 4K.
+
+- [16-bit or 24-bit: What Bit Depth Does](./2026-09-18-what-bit-depth-does/) — bit depth, for someone who has never opened an audio editor
+- [Why Your Track Sounds Thin On A Phone](./2026-09-18-why-tracks-sound-thin-on-a-phone/) — mono fold-down, and the ten-second check that catches it
+
+Both reels are **word-clock choreographed**: `align.py` measures when every word
+is actually spoken, `cues.json` names an anchor phrase per reveal, and
+`sync_cues.py` writes the measured fractions into the beat sheet. 58 cues
+authored, 58 resolved. Motion lands on the spoken word rather than on a guessed
+fraction of the beat.
+
+Eight new landscape components and eight native `916` portrait siblings. The
+9:16 cut is a **re-render, not a crop** — each beat is re-laid-out for a tall
+frame (see each reel's `SHOTLIST.md` for what moved and why).
+
 ## Week of 2026-09-11
 
 - [Use the Tool First.](./2026-09-11-use-the-tool-first/) — weekly progress report

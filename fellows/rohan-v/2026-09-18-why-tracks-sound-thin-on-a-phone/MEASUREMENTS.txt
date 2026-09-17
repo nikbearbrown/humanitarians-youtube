@@ -1,0 +1,66 @@
+Measured on this machine, 2026-09-16.
+Signals built in numpy (build_mono_signals.py), measured with ffmpeg
+bandpass + volumedetect. No network, no paid APIs.
+
+════════════════════════════════════════════════════════════════════════
+CASE 1 — a fully opposite layer  (the clean teaching case)
+
+A 20 s stereo track with three parts:
+  bass   110 Hz  identical on both sides            (centred)
+  vocal  440 Hz  identical on both sides            (centred)
+  air   3000 Hz  INVERTED on the right              (spread)
+
+Measured per 60 Hz-wide band: one side alone, then the same track summed to a
+single speaker.
+
+BAND                       ONE SIDE     MONO SUM       CHANGE
+110Hz bass (centred)          -13.4        -13.4      +0.0 dB
+440Hz vocal (centred)         -16.2        -16.2      +0.0 dB
+3000Hz air (wide)             -17.0        -66.5      -49.5 dB
+
+=> What sits in the centre is untouched. The opposite layer is gone.
+
+════════════════════════════════════════════════════════════════════════
+CASE 2 — a delay-based widener  (what actually happens in practice)
+
+Broadband noise, with the right side delayed by 0.6 ms (28 samples at 48 kHz).
+This is how most "stereo wideners" work.
+
+PREDICTED FIRST. Summing a signal with a delayed copy cancels at odd multiples
+of 1/(2d). For d = 0.6 ms:
+    nulls at 833 Hz, 2500 Hz, 4167 Hz ...
+    peaks halfway between, at 1667 Hz and 3333 Hz
+
+THEN MEASURED (120 Hz-wide bands):
+BAND             ONE SIDE     MONO SUM       CHANGE     PREDICTED
+400Hz               -39.5        -42.6      -3.1 dB     (slope)
+830Hz               -39.6        -49.8     -10.2 dB     NULL
+1660Hz              -39.6        -40.0      -0.4 dB     peak
+2500Hz              -39.6        -49.4      -9.8 dB     NULL
+3300Hz              -39.7        -40.3      -0.6 dB     peak
+
+=> All four predicted positions landed.
+
+WHY THE NULLS ARE ~-10 dB AND NOT -infinity
+Neither reason is an error:
+  1. the analysis bandpass is 120 Hz wide, so it collects energy from
+     neighbouring frequencies that are NOT cancelling;
+  2. the delayed layer is broadband noise, not a pure tone, so only the
+     component exactly at the null frequency cancels completely.
+This is why the reel says "holes", not "silence".
+
+════════════════════════════════════════════════════════════════════════
+COMMANDS
+
+  python3 build_mono_signals.py        # writes stereo/mono/left/wide_* wavs
+
+  band () {
+    ffmpeg -hide_banner -nostats -i "$1" \
+      -af "bandpass=f=$2:width_type=h:w=60,volumedetect" -f null - 2>&1 \
+      | grep -m1 "mean_volume:" | sed 's/.*mean_volume: //;s/ dB//'
+  }
+  band left.wav 3000 ; band mono.wav 3000
+
+NOTE: do NOT pass -v error to the measuring command. volumedetect prints at
+info level, so -v error suppresses the very numbers being measured — that cost
+a first pass of this measurement.
