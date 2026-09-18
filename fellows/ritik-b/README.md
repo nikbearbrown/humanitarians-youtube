@@ -18,3 +18,6 @@ explicit documented re-voice decision, not a per-episode default.
   published.
 - [2026-08-05 — Gemma 4, Unified?](./2026-08-05-gemma4-unified/) — encoder-free
   multimodal architecture teardown. Master built, fact-checked, not published.
+- [2026-09-08 — BLIP: Noisier Data, Better Model?](./2026-09-08-blip-bootstrap/) — how BLIP bootstraps its own training captions, and the four-axis audit for any
+  model trained on data it generated itself. Both 4K masters built, gate-clean,
+  not published.

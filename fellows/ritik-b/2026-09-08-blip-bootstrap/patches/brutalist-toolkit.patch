@@ -1,0 +1,186 @@
+From: Ritik B. <bompilwar.r@northeastern.edu>
+Subject: [PATCH] fellows/ritik-b: register the "BLIP: Noisier Data, Better Model?" compositions
+
+Registers 14 compositions in runtime/remotion/src/Root.tsx — seven responsive scene
+components, each at 1920x1080 and 1080x1920, so the reel renders in both orientations
+from one component set. `calculateMetadata` turns each scene's `durationS` prop into
+`durationInFrames`, so a beat animates across its measured narration instead of
+finishing early and freeze-holding the tail.
+
+APPLY ORDER: this hunk's context sits directly below the registrations added by
+fellows/ritik-b/2026-09-06-vqa-blind/patches/brutalist-toolkit.patch. Apply that patch
+FIRST, then this one.
+
+The eight scene files themselves are not patched — they do not exist in a clean clone.
+Copy them from this reel's remotion/scenes/ into runtime/remotion/src/scenes/.
+
+  ReelKit.tsx            the orientation-aware stage (promoted from VqaKit.tsx)
+  ReelExecSummary.tsx    the Beat 2 BLUF        (promoted from VqaExecSummary.tsx)
+  ReelFramework.tsx      the framework beat     (promoted from VqaFourMoves.tsx)
+  BlipMed.tsx            one transformer, three functionalities
+  BlipCapFilt.tsx        the worked example
+  BlipIndependence.tsx   Table 4 — the confirmation-bias receipt
+  BlipDiversity.tsx      Table 2 — the butterfly
+  BlipLadder.tsx         Table 1 — the ablation on a declared truncated axis
+
+Nothing else in the toolkit is modified by this reel.
+---
+diff --git a/runtime/remotion/src/Root.tsx b/runtime/remotion/src/Root.tsx
+index ac612ed..0c4b9f9 100644
+--- a/runtime/remotion/src/Root.tsx
++++ b/runtime/remotion/src/Root.tsx
+@@ -204,12 +204,24 @@ import {VqaExecSummary, vqaExecSummarySchema} from './scenes/VqaExecSummary';
+ import {VqaFourMoves, vqaFourMovesSchema} from './scenes/VqaFourMoves';
+ import {VqaTokenize, vqaTokenizeSchema} from './scenes/VqaTokenize';
+ import {VqaAttend, vqaAttendSchema} from './scenes/VqaAttend';
+ import {VqaDecide, vqaDecideSchema} from './scenes/VqaDecide';
+ import {VqaBlindTest, vqaBlindTestSchema} from './scenes/VqaBlindTest';
+ import {VqaPairs, vqaPairsSchema} from './scenes/VqaPairs';
++// ── fellows/ritik-b — BLIP: Noisier Data, Better Model? (2026-09-08) ──
++// Second reel in the series, same dual-canvas contract as the VQA reel above.
++// ReelExecSummary / ReelFramework are the generic promotions of that reel's BLUF
++// and framework beats (VqaExecSummary / VqaFourMoves are now re-export shims);
++// the five Blip* scenes are this reel's own.
++import {ReelExecSummary, reelExecSummarySchema} from './scenes/ReelExecSummary';
++import {ReelFramework, reelFrameworkSchema} from './scenes/ReelFramework';
++import {BlipMed, blipMedSchema} from './scenes/BlipMed';
++import {BlipCapFilt, blipCapFiltSchema} from './scenes/BlipCapFilt';
++import {BlipIndependence, blipIndependenceSchema} from './scenes/BlipIndependence';
++import {BlipDiversity, blipDiversitySchema} from './scenes/BlipDiversity';
++import {BlipLadder, blipLadderSchema} from './scenes/BlipLadder';
+ // ── claude-liam — coding-agents-social-sciences figures ──
+ import {CodingAgentsFig1Loop, codingAgentsFig1LoopSchema} from './scenes/CodingAgentsFig1Loop';
+ import {CodingAgentsFig2Gradient, codingAgentsFig2GradientSchema} from './scenes/CodingAgentsFig2Gradient';
+ import {CodingAgentsFig3Who, codingAgentsFig3WhoSchema} from './scenes/CodingAgentsFig3Who';
+ import {CodingAgentsFig4Use, codingAgentsFig4UseSchema} from './scenes/CodingAgentsFig4Use';
+ import {CodingAgentsFig5Ladder, codingAgentsFig5LadderSchema} from './scenes/CodingAgentsFig5Ladder';
+@@ -2014,12 +2026,129 @@ export const RemotionRoot: React.FC = () => {
+         schema={vqaPairsSchema}
+         defaultProps={vqaPairsSchema.parse({})}
+         calculateMetadata={({props}) => ({
+           durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
+           width: 1080, height: 1920,
+         })} />
++      {/* ── fellows/ritik-b · "BLIP: Noisier Data, Better Model?" ────────────
++          Same contract as the reel above: ONE responsive component per beat,
++          registered at both canvases, durationS -> durationInFrames so each beat
++          re-times to its measured narration. ReelExecSummary and ReelFramework are
++          shared with the VQA reel (which reaches them through its own shims). */}
++      <Composition id="ReelExecSummary" component={ReelExecSummary}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={reelExecSummarySchema}
++        defaultProps={reelExecSummarySchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="ReelExecSummary916" component={ReelExecSummary}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={reelExecSummarySchema}
++        defaultProps={reelExecSummarySchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="ReelFramework" component={ReelFramework}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={reelFrameworkSchema}
++        defaultProps={reelFrameworkSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="ReelFramework916" component={ReelFramework}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={reelFrameworkSchema}
++        defaultProps={reelFrameworkSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="BlipMed" component={BlipMed}
++        durationInFrames={360} fps={30} width={1920} height={1080}
++        schema={blipMedSchema}
++        defaultProps={blipMedSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="BlipMed916" component={BlipMed}
++        durationInFrames={360} fps={30} width={1080} height={1920}
++        schema={blipMedSchema}
++        defaultProps={blipMedSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="BlipCapFilt" component={BlipCapFilt}
++        durationInFrames={390} fps={30} width={1920} height={1080}
++        schema={blipCapFiltSchema}
++        defaultProps={blipCapFiltSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="BlipCapFilt916" component={BlipCapFilt}
++        durationInFrames={390} fps={30} width={1080} height={1920}
++        schema={blipCapFiltSchema}
++        defaultProps={blipCapFiltSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="BlipIndependence" component={BlipIndependence}
++        durationInFrames={390} fps={30} width={1920} height={1080}
++        schema={blipIndependenceSchema}
++        defaultProps={blipIndependenceSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="BlipIndependence916" component={BlipIndependence}
++        durationInFrames={390} fps={30} width={1080} height={1920}
++        schema={blipIndependenceSchema}
++        defaultProps={blipIndependenceSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="BlipDiversity" component={BlipDiversity}
++        durationInFrames={390} fps={30} width={1920} height={1080}
++        schema={blipDiversitySchema}
++        defaultProps={blipDiversitySchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="BlipDiversity916" component={BlipDiversity}
++        durationInFrames={390} fps={30} width={1080} height={1920}
++        schema={blipDiversitySchema}
++        defaultProps={blipDiversitySchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
++      <Composition id="BlipLadder" component={BlipLadder}
++        durationInFrames={420} fps={30} width={1920} height={1080}
++        schema={blipLadderSchema}
++        defaultProps={blipLadderSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1920, height: 1080,
++        })} />
++      <Composition id="BlipLadder916" component={BlipLadder}
++        durationInFrames={420} fps={30} width={1080} height={1920}
++        schema={blipLadderSchema}
++        defaultProps={blipLadderSchema.parse({})}
++        calculateMetadata={({props}) => ({
++          durationInFrames: Math.max(1, Math.round(props.durationS * 30)),
++          width: 1080, height: 1920,
++        })} />
+       <Composition
+         id="LogoOutro916"
+         component={LogoOutro}
+         durationInFrames={120}
+         fps={30}
+         width={1080}
