@@ -1,0 +1,734 @@
+{
+  "metadata": {
+    "title": "Watch The Right Answer Get Outvoted.",
+    "slug": "claude-cli-rag-retrieval-methods",
+    "topic": "CLAUDE CODE · CHAPTER 6 DEMO",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "tool": "claude",
+    "persona": "Vedanshu Daxesh Patel",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Konnichiwa, Vedanshu",
+    "greeting_note": "hello lexicon: Japanese (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Namaste/Aloha/Ciao/Hola/Bonjour/Ahoj/Merhaba/Shalom/Hej/Jambo/Sawubona, all used by the eleven sibling reels in this series.",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "in_for_bear": false,
+    "playlist": "Claude Taught",
+    "source_book": "RAG Foundations — Vedanshu Daxesh Patel",
+    "source_file": "chapters/06-retrieval-methods.md",
+    "source_figures": [
+      "images/retrieval-methods-fig-01.png/.svg — sparse vector (long, mostly zeros) vs dense embedding (short, fully populated). NOT rebuilt: this reel argues about which KIND OF MATCH wins, not about vector shape, and no beat's claim rests on the geometry. Omitted rather than decorated in.",
+      "images/retrieval-methods-fig-02.png/.svg — query into a sparse and a dense retriever in parallel, merged by a fusion step. Rebuilt natively inside B08 (RrfMargin) — but rebuilt at the moment the merge GOES WRONG, with the reel's own measured ranks, rather than as a neutral architecture diagram. REBUILD LAW."
+    ],
+    "code_dir": "code/",
+    "note": "CLI explainer (cli-explainer skill — ADVANCED tier), built on D:\\ai1-cli-main per CLAUDE.md rule 3. Folder dated 2026-09-08 per explicit instruction. Follows the mandatory CLI spine: INTRO → PROBLEM → CLI/CODE/OUTPUT → revision cycle CLI/CODE/OUTPUT → SUMMARY → NEXT STEPS → OUTRO; THE REVISION LAW satisfied by one full revision cycle. ACTUAL-CODE LAW: code/ holds four REAL runnable scripts (corpus.py, encoder.py, bm25_search.py, hybrid_search.py); both CODE beats quote them verbatim and every number in every OUTPUT beat is captured stdout, saved as _run-bm25.txt and _run-hybrid.txt. Dense retrieval uses REAL all-MiniLM-L6-v2 weights from the local HuggingFace cache — encoder.py parses safetensors and runs the 6-layer BERT forward pass in numpy because sentence-transformers is not installed here; validated behaviourally (identical 1.000 / paraphrase 0.555 / unrelated 0.100). Nothing is hand-tuned. THE FINDING IS NOT THE TIDY ONE and the reel says so: dense won BOTH queries, and the fused hybrid LOST the paraphrase by 0.00025 — which independently reproduces the chapter's own refusal to claim hybrid always wins. B04 reuses CliRunOutput and B09 reuses RagExecutiveSummary, props-only. B01/B07/B08 are three new bespoke components (RetrievalTwoQueries, RetrievalMatrix, RrfMargin) — GATE L searched four ways and every close lead (BrandDriftCaseStudy, CwcEvalScoring, CadencesFig3Artifacts) exposes only sparkLine/activeColumn, i.e. content hardcoded to another reel. B11 is TitleOutroChannel per OUTRO-LOCK.md §Scope.",
+    "tags": [
+      "RAG",
+      "sparse retrieval",
+      "BM25",
+      "dense retrieval",
+      "hybrid retrieval",
+      "reciprocal rank fusion",
+      "paraphrase gap",
+      "entity-centric queries"
+    ],
+    "build": {
+      "at": "2026-09-18T12:21:49",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": [
+        "B11: palette=claude but the outro is 'TitleOutroChannel' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — the ask lands answered.",
+      "narration_text": "Konnichiwa — I'm Vedanshu Daxesh Patel. Chapter five made search fast. Chapter six asks whether comparing embeddings is even the right way to match in the first place — because there are two genuinely different ways to decide whether a chunk answers a question, and each one fails exactly where the other works.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Composer greeting 'Konnichiwa, Vedanshu' types in; spark ignites"
+          },
+          {
+            "at": "20%",
+            "event": "Command types: two employees, same policy, opposite questions"
+          },
+          {
+            "at": "52%",
+            "event": "Send arms; runningText 'building both retrievers…' plays"
+          },
+          {
+            "at": "68%",
+            "event": "Output line 1: sparse matches literal terms — BM25"
+          },
+          {
+            "at": "82%",
+            "event": "Output line 2: dense matches meaning — embeddings"
+          },
+          {
+            "at": "95%",
+            "event": "Output line 3: each fails where the other works"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Konnichiwa, Vedanshu",
+            "topic": "CLAUDE CODE · CHAPTER 6 DEMO",
+            "segment": "Watch The Right Answer Get Outvoted.",
+            "command": "Two employees ask about the same tuition policy. One quotes the code TR-114. One says \"help pay for grad school\". Which retrieval method finds the right chunk for BOTH?",
+            "runningText": "building both retrievers…",
+            "output": [
+              "sparse — BM25, matching literal terms",
+              "dense — embeddings, matching meaning",
+              "each one fails exactly where the other works"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — the two employees",
+      "role_note": "Mandatory PROBLEM beat: the stakes, stated BEFORE any prompt. Rebuilds the chapter's worked-example premise.",
+      "narration_text": "Here is the problem, and it is the chapter's own example. Two employees, the same tuition-reimbursement policy, two completely different questions. The first quotes an exact code: T-R-one-fourteen. The second never says tuition, or reimbursement, or policy at all — just, does the company help pay for grad school. Same answer. Opposite questions.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "two query cards at equal weight, both arrowing down onto the single policy chunk they should each retrieve",
+        "show": [
+          {
+            "at": "10%",
+            "event": "left/top card lands: the exact-code question"
+          },
+          {
+            "at": "34%",
+            "event": "right/bottom card lands: the paraphrase question"
+          },
+          {
+            "at": "58%",
+            "event": "the connector draws — both point at one chunk"
+          },
+          {
+            "at": "68%",
+            "event": "the TR-114 policy chunk lands in terracotta beneath them"
+          }
+        ],
+        "remotion": {
+          "pattern": "RetrievalTwoQueries",
+          "props": {
+            "headline": "Same Answer. Opposite Questions.",
+            "queries": [
+              {
+                "label": "an exact code",
+                "text": "What's the reimbursement limit under policy code TR-114?"
+              },
+              {
+                "label": "a paraphrase",
+                "text": "Does the company help pay for grad school?"
+              }
+            ],
+            "targetLabel": "TR-114 — Tuition Reimbursement Policy",
+            "targetText": "The company reimburses approved degree coursework up to $5,250 per calendar year. Employees must be full-time and receive a grade of B or better.",
+            "caption": "Chapter 6's worked example: one gold passage, two queries with almost nothing in common.",
+            "sparkLine": "One chunk. Two ways in.",
+            "beatSeconds": 18.41
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:RetrievalTwoQueries",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLI — the ask",
+      "narration_text": "The ask: sparse retrieval, from scratch. B-M-twenty-five — term frequency, inverse document frequency, length normalisation, and saturation, so a word repeated fifty times doesn't count fifty times. One detail matters more than it looks: tokenise so T-R-one-fourteen survives as a single term. Split it into t-r and one-fourteen, and the exact-match signal is gone before we start.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Spark greeting 'The ask,' holds"
+          },
+          {
+            "at": "26%",
+            "event": "Command types — note the tokenisation requirement at the end"
+          },
+          {
+            "at": "80%",
+            "event": "Send arms; runningText 'generating script…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The ask,",
+            "topic": "CLAUDE CODE · CHAPTER 6 DEMO",
+            "segment": "Watch The Right Answer Get Outvoted.",
+            "command": "claude \"write bm25_search.py — BM25 from scratch over 12 help-desk policy passages, with IDF, length normalisation and term-frequency saturation. Tokenise so TR-114 stays ONE term. Run both queries and report whether top-1 is the gold passage.\"",
+            "runningText": "generating script…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 20.86,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ACTUAL-CODE LAW — verbatim from code/bm25_search.py.",
+      "narration_text": "Read the scoring function. Every query term contributes its inverse document frequency, scaled by how often it appears in this passage — and that contribution saturates, so repetition stops paying. The normaliser divides by document length, so a long passage can't win just by being long. And T-R-one-fourteen appears in exactly one of twelve passages, which gives it the highest I-D-F in the collection.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "Code card lands, filename in the title bar"
+          },
+          {
+            "at": "30%",
+            "event": "the TOKEN regex — hyphens kept inside a term, so TR-114 survives"
+          },
+          {
+            "at": "60%",
+            "event": "idf() — rare terms score far higher than common ones"
+          },
+          {
+            "at": "85%",
+            "event": "spark line settles: rare words carry the weight"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "bm25_search.py — Claude Code output",
+            "code": "TOKEN = re.compile(r\"[a-z0-9][a-z0-9\\-]*\")   # hyphens stay INSIDE a term\n\ndef idf(self, term):\n    n = self.df.get(term, 0)\n    return math.log(1 + (self.N - n + 0.5) / (n + 0.5))\n\ndef score(self, query, doc_i):\n    s = 0.0\n    norm = K1 * (1 - B + B * self.lens[doc_i] / self.avgdl)   # length\n    for t in tokenize(query):\n        f = self.tf[doc_i].get(t, 0)\n        if f:\n            s += self.idf(t) * (f * (K1 + 1)) / (f + norm)    # saturating\n    return s",
+            "sparkLine": "Rare words carry the weight."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 21.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run it",
+      "role_note": "Real captured stdout — see _run-bm25.txt.",
+      "narration_text": "Run it. The code query: T-R-one-fourteen wins at three point four nine, ahead of two other policies that also contain the word reimbursement. Sparse nails it. Now the paraphrase: help pay for grad school returns the certification-exam policy, at three point eight two, because that passage literally contains the words company pays. The right answer is third. That is the paraphrase gap, measured.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "the real transcript, both queries, landing on HIT then MISS",
+        "show": [
+          {
+            "at": "8%",
+            "event": "command line lands with the terracotta $"
+          },
+          {
+            "at": "26%",
+            "event": "exact-code block prints — TR-114 on top, HIT"
+          },
+          {
+            "at": "58%",
+            "event": "paraphrase block prints — CE-118 on top, gold third"
+          },
+          {
+            "at": "86%",
+            "event": "verdict settles: wins the code, loses the paraphrase"
+          }
+        ],
+        "remotion": {
+          "pattern": "CliRunOutput",
+          "props": {
+            "title": "python bm25_search.py",
+            "lines": [
+              "[exact code]  What's the reimbursement limit under policy code TR-114?",
+              "   1. TR-114   3.488  <- gold      => HIT",
+              "[paraphrase]  Does the company help pay for grad school?",
+              "   1. CE-118   3.819",
+              "   2. PD-207   1.957",
+              "   3. TR-114   1.943  <- gold      => MISS"
+            ],
+            "verdict": {
+              "text": "wins the exact code, loses the paraphrase",
+              "tone": "bad"
+            },
+            "sparkLine": "Run it."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 20.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:CliRunOutput",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLI — check and revise",
+      "role_note": "THE REVISION LAW — the second cycle begins here.",
+      "narration_text": "The revision. Add dense retrieval — real MiniLM embeddings, matching on meaning instead of words. Then fuse the two rankings with Reciprocal Rank Fusion: each candidate scores one over sixty plus its rank, in every list it appears in, summed. Ranks, not scores, because B-M-twenty-five scores and cosine similarities are not on a comparable scale. And report all three methods.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Spark greeting 'The change,' holds"
+          },
+          {
+            "at": "28%",
+            "event": "Revised command types — dense retriever plus RRF fusion"
+          },
+          {
+            "at": "82%",
+            "event": "Send arms; runningText 'updating…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The change,",
+            "topic": "CLAUDE CODE · CHAPTER 6 DEMO",
+            "segment": "Watch The Right Answer Get Outvoted.",
+            "command": "claude \"now add dense retrieval with all-MiniLM-L6-v2 embeddings, and fuse the two rankings with Reciprocal Rank Fusion, k=60. Report top-1 for sparse, dense AND hybrid on both queries.\"",
+            "runningText": "updating…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 20.27,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE — revised",
+      "role_note": "ACTUAL-CODE LAW — verbatim from code/hybrid_search.py.",
+      "narration_text": "Two pieces. Dense: embed the query, dot it against every passage embedding — the vectors are normalised, so that dot product is cosine similarity. Then fusion: for every ranked list a candidate appears in, add one over sixty plus its rank. No weights. No tuning. That is the whole of Reciprocal Rank Fusion, and it is four lines long.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "Revised code card lands"
+          },
+          {
+            "at": "35%",
+            "event": "rrf() — ranks summed as reciprocals, no weights anywhere"
+          },
+          {
+            "at": "68%",
+            "event": "the dense scores line — cosine via dot product"
+          },
+          {
+            "at": "85%",
+            "event": "spark line settles: ranks, not scores"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "hybrid_search.py — dense, then fusion",
+            "code": "def rrf(rankings, k=RRF_K):            # RRF_K = 60\n    \"\"\"rankings: ranked id lists (best first) -> fused {id: score}.\"\"\"\n    fused = {}\n    for ranked in rankings:\n        for rank, pid in enumerate(ranked, 1):\n            fused[pid] = fused.get(pid, 0.0) + 1.0 / (k + rank)\n    return fused\n\n\n# dense: vectors are L2-normalised, so a dot product IS cosine\nqv = model.encode([q])[0]\ndense_scores = {ids[i]: float(doc_vecs[i] @ qv) for i in range(len(ids))}\n\nfused = rrf([sparse_ranked, dense_ranked])",
+            "sparkLine": "Ranks, not scores."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 17.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — three methods, two queries",
+      "role_note": "The result, and it is NOT the expected one. Real data from _run-hybrid.txt.",
+      "narration_text": "And here is the result I did not expect. Dense got both. It found T-R-one-fourteen for the code query too, at zero point six — the entity-centric weakness the chapter warns about did not show up at twelve passages. And the hybrid, the combination that is supposed to be the safe default, missed the paraphrase. Only plain dense went two for two.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "a three-by-two matrix of methods against query kinds, hit or miss, with the surprising hybrid miss as the one accent",
+        "show": [
+          {
+            "at": "8%",
+            "event": "column headers land: exact code · paraphrase · both"
+          },
+          {
+            "at": "24%",
+            "event": "sparse row resolves — HIT, MISS, no"
+          },
+          {
+            "at": "44%",
+            "event": "dense row resolves — HIT, HIT, YES"
+          },
+          {
+            "at": "64%",
+            "event": "hybrid row resolves — HIT, then the accented MISS"
+          }
+        ],
+        "remotion": {
+          "pattern": "RetrievalMatrix",
+          "props": {
+            "headline": "Only One Method Got Both.",
+            "columns": [
+              "exact code",
+              "paraphrase"
+            ],
+            "rows": [
+              {
+                "method": "sparse",
+                "note": "BM25",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "MISS"
+                  }
+                ]
+              },
+              {
+                "method": "dense",
+                "note": "all-MiniLM-L6-v2",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "HIT"
+                  }
+                ]
+              },
+              {
+                "method": "hybrid",
+                "note": "RRF, k=60",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "MISS",
+                    "accent": true
+                  }
+                ]
+              }
+            ],
+            "bothLabel": "both",
+            "caption": "Top-1 on the gold passage, measured by this reel's own hybrid_search.py over 12 passages. The hybrid miss is the surprise.",
+            "citation": "RRF: Cormack, Clarke & Buettcher, 2009",
+            "sparkLine": "Not the tidy answer.",
+            "beatSeconds": 18.33
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:RetrievalMatrix",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTPUT — why fusion lost",
+      "role_note": "FALSIFIABILITY — the arithmetic of the failure, shown. Also the native rebuild of the chapter's Fig. 02.",
+      "narration_text": "Here is why. On the paraphrase, the certification policy was sparse's number one and dense's number two. The right answer was dense's number one — but sparse had it third. One over sixty-one plus one over sixty-two beats one over sixty-three plus one over sixty-one, by a quarter of one thousandth. Fusion did not reason about either list. It counted ranks, and a confidently wrong ranking outvoted a correct one.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "the two candidates' rank contributions written out as reciprocals and summed, with the correct answer that lost marked in terracotta and the margin stated beneath",
+        "show": [
+          {
+            "at": "6%",
+            "event": "the paraphrase query pins to the top"
+          },
+          {
+            "at": "20%",
+            "event": "CE-118 row: sparse #1 + dense #2 → 0.03252"
+          },
+          {
+            "at": "42%",
+            "event": "TR-114 row in terracotta: sparse #3 + dense #1 → 0.03227"
+          },
+          {
+            "at": "66%",
+            "event": "the margin settles beneath: 0.00025 apart"
+          }
+        ],
+        "remotion": {
+          "pattern": "RrfMargin",
+          "props": {
+            "headline": "Outvoted By A Quarter Of A Thousandth.",
+            "query": "Does the company help pay for grad school?",
+            "candidates": [
+              {
+                "id": "CE-118",
+                "sparseRank": 1,
+                "denseRank": 2,
+                "score": 0.03252,
+                "gold": false
+              },
+              {
+                "id": "TR-114",
+                "sparseRank": 3,
+                "denseRank": 1,
+                "score": 0.03227,
+                "gold": true
+              }
+            ],
+            "k": 60,
+            "marginLabel": "0.00025 apart — the wrong passage wins the fusion",
+            "caption": "RRF sums 1/(k + rank) across both lists. It has no way to know that sparse was confidently wrong.",
+            "citation": "Cormack, Clarke & Buettcher, 2009 · redrawn from the chapter's Fig. 02",
+            "sparkLine": "It counted. It didn't reason.",
+            "beatSeconds": 20.74
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 20.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:RrfMargin",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "Mandatory SUMMARY beat — the lesson, honestly, including what this run does NOT prove.",
+      "narration_text": "So: sparse matches words, and misses paraphrases. Dense matches meaning, and here missed nothing. Hybrid usually helps and rarely hurts — but usually is doing real work in that sentence, and this run is one of the times it hurt. Two honest limits: twelve passages is too small to reproduce dense retrieval's known weakness on rare entities, and one fusion loss is not a verdict on fusion. The chapter says the same thing — the honest summary is not that hybrid always wins.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 32,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: 'Usually is doing real work.'"
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: the two failure modes are complementary, the fusion is not free"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "note": "reused props-only from the sibling CLI reels",
+          "props": {
+            "headline": "“Usually” is doing real work.",
+            "subline": "Sparse and dense fail on different queries, so combining them usually helps and rarely hurts — but fusion counts ranks rather than reasoning, so a confidently wrong retriever can still outvote a correct one.",
+            "sparkLine": "Measure it on your own queries."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 23.52,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:RagExecutiveSummary",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS — handoff",
+      "role_note": "HANDOFF LAW — read aloud verbatim, then discussed.",
+      "narration_text": "Your turn. Paste this: 'Take my own document set and build all three retrievers — sparse, dense, and a fused hybrid. Then find me the queries where the hybrid is WORSE than its best single retriever, and show me the rank arithmetic that made it lose.' That second sentence is the one that earns its keep. Anything will report an average that makes fusion look good; asking for the cases where it loses, plus the arithmetic, is what turns a default into a decision you can actually defend.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 40,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · CHAPTER 6 DEMO",
+            "segment": "Watch The Right Answer Get Outvoted.",
+            "command": "Take my own document set and build all three retrievers — sparse, dense, and a fused hybrid. Then find me the queries where the hybrid is WORSE than its best single retriever, and show me the rank arithmetic that made it lose.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 24.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-18T12:21:49"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — title restate. TitleOutroChannel per OUTRO-LOCK.md §Scope.",
+      "narration_text": "Watch The Right Answer Get Outvoted. Vedanshu Daxesh Patel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "TitleOutroChannel",
+          "props": {
+            "title": "Watch The Right Answer Get Outvoted.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel",
+            "polarity": "light"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 4.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "remotion:TitleOutroChannel",
+        "at": "2026-09-18T12:21:49"
+      }
+    }
+  ]
+}

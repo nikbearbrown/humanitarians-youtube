@@ -1,0 +1,22 @@
+sparse (BM25) vs dense (all-MiniLM-L6-v2) vs hybrid (RRF k=60)
+12 passages · gold for both queries: TR-114
+
+[exact code] What's the reimbursement limit under policy code TR-114?
+   sparse top-3   TR-114, PD-207, TE-330
+   dense  top-3   TR-114 0.600, TE-330 0.532, VA-101 0.427
+   hybrid top-3   TR-114 0.03279, TE-330 0.03200, PD-207 0.03175
+   => sparse: HIT   dense: HIT   hybrid: HIT 
+
+[paraphrase] Does the company help pay for grad school?
+   sparse top-3   CE-118, PD-207, TR-114
+   dense  top-3   TR-114 0.485, CE-118 0.302, PD-207 0.277
+   hybrid top-3   CE-118 0.03252, TR-114 0.03227, PD-207 0.03200
+     CE-118: sparse #1 + dense #2 -> 1/61 + 1/62 = 0.03252
+     TR-114: sparse #3 + dense #1 -> 1/63 + 1/61 = 0.03227
+   => sparse: MISS  dense: HIT   hybrid: MISS
+
+top-1 hit on the gold passage:
+method     exact code   paraphrase   both
+sparse            HIT         MISS     no
+dense             HIT          HIT    YES
+hybrid            HIT         MISS     no
