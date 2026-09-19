@@ -1,0 +1,804 @@
+{
+  "metadata": {
+    "title": "The Sharpest Guess.",
+    "slug": "denoising-deep-space",
+    "topic": "Irreducibly Human",
+    "brand": "claude-hai",
+    "audience": "HAI",
+    "persona": "HAI",
+    "folderLabel": "@HumanitariansAI",
+    "register": "Pragmatist",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#F2F0E9",
+    "typography": {
+      "serif": "EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "aspect_ratio": "16:9",
+    "fit": "crop",
+    "clock": "narration (Kokoro af_bella) - per-beat mp3 durations are MEASURED, never estimated",
+    "greeting": "Hej, HAI",
+    "greeting_note": "hello lexicon. SKILL.md limits the HAI persona to the SHORTEST forms only - Hi / Ola / Hej / Ciao - so the serif line stays one comfortable line. All four are now used: Hej (Ep. 03), Ciao (Ep. 04), Ola (Ep. 05), Hi (Ep. 08). Eps. 06 and 07 used Salut and Namaste, both OUTSIDE the permitted set. With four legal forms and nine episodes repetition is forced, so from here the lexicon CYCLES least-recently-used first. That is Hej, last seen at Ep. 03.",
+    "playlist": "AI in Astronomy & Space Science",
+    "series_position": "Ep. 09",
+    "target_runtime": "Under 3:00 BY DESIGN. 436 words against Ep. 08's measured 0.3652 s/word predicts 2:39.2, leaving ~21 s of margin. The margin is wide because the words-only model is NOISY IN BOTH DIRECTIONS - Ep. 06 ran 10.4% long, Ep. 07 0.4% short, Ep. 08 5.0% short - not because any particular kind of word runs long. Ep. 08 wrongly justified its margin by claiming numerals under-predict; they did not.",
+    "purpose": "Ep. 09 of the AI in Astronomy & Space Science series, from weekly_stem_videos/ideas.md Astronomy topic 09 (Denoising deep space images - how AI reconstructs sharper JWST/Hubble images from noisy raw sensor data).",
+    "color_semantics": "Claude fidelity palette. Terracotta #D97757 is the ONE accent and marks WHAT THE PRIOR SUPPLIED - the null-space difference between two indistinguishable skies, the disagreement between posterior samples, the variance-ratio curve, the invented half of every reconstruction. Ink marks WHAT THE PHOTONS MEASURED - the observation, the data-consistent part, the agreed core. The mapping never flips, so B05 teaches it once and every later plate reads for free. Accented text is #A44A32; #B9B4A0 is strokes and fills only. Sky frames are warm bright-on-dark; the one line plot is ink-and-terracotta on white.",
+    "distinct_from_earlier_episodes": "Eps. 01-06 had AI inspecting observations. Ep. 07 had AI standing in for a calculation. Ep. 08 was about a division of labour between a learned half and a computed half. Ep. 09 is the first episode where the AI's output is NOT A MEASUREMENT AT ALL: the quantity on screen was never observed, it was predicted, and the prediction is load-bearing. The limit is therefore new - not an accuracy ceiling (Ep. 04), an unseen class (Ep. 03), an irreversible rejection (Ep. 05), a latency (Ep. 06), a circularity (Ep. 07) or a misreading (Ep. 08), but NON-IDENTIFIABILITY: the data has a null space, many different truths produce it exactly, and choosing one of them is an assumption dressed as a result.",
+    "note": "ILLUSTRATE LAW: the Claude UI appears at B00, B11, B12, B13. Every other beat illustrates its concept as a reel-local Manim scene (scenes.py). All plates come from assets/gen_deconv.py, which RUNS the calculations: a real circular-aperture OTF with its hard zero, Poisson photons and Gaussian read noise, a Fourier stripe fit on known-dark columns (what NSClean does), a bisection that forces three different priors to identical chi-squared, and an EXACT posterior (linear-Gaussian with a circulant PSF is diagonal in Fourier space, so the samples are exact rather than approximate). Two claims are ASSERTED and the script writes nothing if either fails: that detector striping is recoverable while lost information is not, and that two skies differing by half their structure produce IDENTICAL images. PUBLISHED numbers and COMPUTED-HERE numbers are kept apart on screen and in the narration. No published figure is reproduced or redrawn. No LaTeX/MathTex anywhere. metadata.channel_title is omitted for the GATE V edge-bleed reason logged in Ep. 03. scenes.py is ASPECT-AWARE: one file lays out 16:9 and the 9:16 derivative in short/.",
+    "tags": [
+      "image deconvolution",
+      "denoising",
+      "inverse problem",
+      "null space",
+      "diffusion model",
+      "posterior sampling",
+      "hallucination",
+      "variance ratio",
+      "point spread function",
+      "NSClean",
+      "1/f noise",
+      "JWST",
+      "Hubble",
+      "Humanitarians AI"
+    ],
+    "build": {
+      "at": "2026-09-18T11:58:31",
+      "cut": "master",
+      "filled": 14,
+      "of": 14,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "content_type": "title",
+      "narration_text": "Hi, I'm Om Mali. This video is about how AI sharpens telescope images, and why the sharpest picture is a guess, one of many that fit the data equally well.",
+      "estimated_duration_s": 10.96,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "ask",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "cream page; IRREDUCIBLY HUMAN eyebrow, then the serif segment title"
+          },
+          {
+            "at": "0.15",
+            "event": "spark + greeting Hej, HAI settles above the composer card"
+          },
+          {
+            "at": "0.25",
+            "event": "the ask types itself into the composer; send button arms when it lands"
+          },
+          {
+            "at": "0.55",
+            "event": "terracotta running indicator: drawing 256 posterior samples..."
+          },
+          {
+            "at": "0.70",
+            "event": "three result lines stagger in - method, limit, honest output. The ask lands ANSWERED."
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hej, HAI",
+            "topic": "IRREDUCIBLY HUMAN",
+            "segment": "The Sharpest Guess",
+            "command": "AI can turn a blurry telescope image into a sharp one. Where does the new detail come from, how would I know if it were invented, and what should a reconstruction actually report?",
+            "runningText": "drawing 256 posterior samples...",
+            "output": [
+              "method - a diffusion model supplies what the aperture destroyed, from what it was trained on",
+              "limit - above the aperture cutoff the transfer function is exactly zero: nothing to recover",
+              "honest output - not one sharp image but a range, and a ratio that says how much was invented"
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "FRAME",
+      "content_type": "presenter",
+      "narration_text": "Eight episodes of AI reading the sky. This one is about AI drawing it, and where the detail comes from.",
+      "estimated_duration_s": 7.3,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "kinetic",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "OM MALI writes in, terracotta hairline underlines it"
+          },
+          {
+            "at": "0.30",
+            "event": "role line fades in beneath: Humanitarians AI - presenter"
+          },
+          {
+            "at": "0.45",
+            "event": "a card draws beside it"
+          },
+          {
+            "at": "0.60",
+            "event": "row one lands and is STRUCK: eight episodes / AI reads the sky"
+          },
+          {
+            "at": "0.80",
+            "event": "row two lands in the accent and is boxed: this one / AI draws it"
+          },
+          {
+            "at": "0.92",
+            "event": "closer: Ep. 09 - the detail is not a measurement"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B01_Presenter",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 6.83,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "BLUF",
+      "content_type": "executive-summary",
+      "narration_text": "Every telescope image is blurred and noisy. Some of that is fixable arithmetic. But the blur destroys information outright, and getting a sharp picture back means filling the gap with an assumption about what galaxies look like.",
+      "estimated_duration_s": 13.51,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "kinetic",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "a card lands, empty"
+          },
+          {
+            "at": "0.20",
+            "event": "kinetic set one: BLURRED AND NOISY / every image"
+          },
+          {
+            "at": "0.46",
+            "event": "set two: SOME OF IT IS ARITHMETIC / subtract and move on"
+          },
+          {
+            "at": "0.72",
+            "event": "set three lands in the accent and is underlined: THE REST IS AN ASSUMPTION / about what galaxies look like"
+          },
+          {
+            "at": "0.90",
+            "event": "closer: the gap gets filled either way"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B02_OneBreath",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 14.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "THE DISTINCTION",
+      "content_type": "definitional",
+      "narration_text": "Two different things get called denoising. Detector striping is a pattern you can measure in blank sky and subtract - seconds on a laptop, no network. Blur is not a pattern. It is missing information.",
+      "estimated_duration_s": 12.78,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "drawon",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "the striped frame lands on the left, banded and ugly"
+          },
+          {
+            "at": "0.26",
+            "event": "it is replaced by the cleaned frame; the banding is simply gone"
+          },
+          {
+            "at": "0.44",
+            "event": "a quiet chip: measured in blank sky, subtracted - 3.6% residual"
+          },
+          {
+            "at": "0.62",
+            "event": "on the right, the blurred frame and the true frame land together"
+          },
+          {
+            "at": "0.80",
+            "event": "a terracotta chip: nothing subtracts this"
+          },
+          {
+            "at": "0.92",
+            "event": "closer: one is a pattern, one is a loss"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B03_TwoKinds",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.76,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE MECHANISM",
+      "content_type": "mechanism",
+      "narration_text": "Here is the chain: real sky, blurred by the aperture, counted as photons, plus read noise. The aperture is the killer. Above its cutoff the transfer function is exactly zero.",
+      "estimated_duration_s": 10.96,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "drawon",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "four panels draw in left to right: sky, blurred, photons, pixels"
+          },
+          {
+            "at": "0.34",
+            "event": "each is labelled beneath as it lands"
+          },
+          {
+            "at": "0.58",
+            "event": "an arrow runs along the chain; the word LOSSY lands under the second panel"
+          },
+          {
+            "at": "0.74",
+            "event": "a counter: 98% of the frequencies in the grid carry nothing"
+          },
+          {
+            "at": "0.90",
+            "event": "closer: multiplied by zero, and gone"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B04_TheChain",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 12.14,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "THE PROOF",
+      "content_type": "evidence",
+      "narration_text": "So watch this. I built two skies that differ by half their structure. Blur them both and the images are identical - not close, identical to four decimal places. The data cannot tell them apart.",
+      "estimated_duration_s": 12.78,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "annotate",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "sky one lands on the left, a clean spiral"
+          },
+          {
+            "at": "0.22",
+            "event": "sky two lands beside it, visibly a different galaxy"
+          },
+          {
+            "at": "0.42",
+            "event": "the terracotta difference map lands between them: 52% apart"
+          },
+          {
+            "at": "0.62",
+            "event": "both collapse into ONE observation panel on the right"
+          },
+          {
+            "at": "0.78",
+            "event": "a counter runs to 0.0000 and stops: noise sigma between the two images"
+          },
+          {
+            "at": "0.92",
+            "event": "closer: the data cannot tell them apart"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B05_SameData",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 13.12,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE CONSEQUENCE",
+      "content_type": "mechanism",
+      "narration_text": "Give one image to three different assumptions and you get three different sharp galaxies. All three match the data equally well. Sharpness is not something you recovered. It is something you chose.",
+      "estimated_duration_s": 11.69,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "one observation panel sits at the left"
+          },
+          {
+            "at": "0.20",
+            "event": "three reconstructions fan out from it, visibly different"
+          },
+          {
+            "at": "0.46",
+            "event": "a chi-squared value types in under each: 1.008, 1.007, 1.008"
+          },
+          {
+            "at": "0.66",
+            "event": "a rule underlines all three: equally consistent with the data"
+          },
+          {
+            "at": "0.82",
+            "event": "a terracotta chip: they differ from each other by 36%"
+          },
+          {
+            "at": "0.93",
+            "event": "closer: sharpness is a choice"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B06_ThreeAnswers",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 11.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "THE PRIOR",
+      "content_type": "definitional",
+      "narration_text": "A real system makes that choice by training on simulated galaxies, tens of thousands of them. It returns the most likely galaxy given what it was shown. That assumption is doing real work.",
+      "estimated_duration_s": 12.05,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "isotype",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "a box draws: the training set, filled with 17,852 tiny tiles"
+          },
+          {
+            "at": "0.28",
+            "event": "an arrow leaves it into a second box in the accent: the prior"
+          },
+          {
+            "at": "0.48",
+            "event": "a counter: 17,852 simulated galaxies"
+          },
+          {
+            "at": "0.66",
+            "event": "two quiet figures land: 133 hours on 32 GPUs to train, 100 seconds to sample"
+          },
+          {
+            "at": "0.84",
+            "event": "the prior box pulses once as the observation is fed in"
+          },
+          {
+            "at": "0.93",
+            "event": "closer: the most likely galaxy it was ever shown"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B07_WhereItComesFrom",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 12.42,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "THE HONEST OUTPUT",
+      "content_type": "mechanism",
+      "narration_text": "The honest version returns hundreds of answers instead of one. Where they agree, the photons decided. Where they disagree, the prior did. Above the cutoff the spread is exactly the prior.",
+      "estimated_duration_s": 11.32,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "annotate",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "three sample panels land in a row, then a fourth: their mean"
+          },
+          {
+            "at": "0.34",
+            "event": "the fifth panel arrives in terracotta: the disagreement map"
+          },
+          {
+            "at": "0.54",
+            "event": "a label under the bright core: here the photons decided"
+          },
+          {
+            "at": "0.70",
+            "event": "a label over the terracotta outskirts: here the prior did"
+          },
+          {
+            "at": "0.86",
+            "event": "a chip: above the cutoff, posterior variance equals prior variance - 1.0000"
+          },
+          {
+            "at": "0.94",
+            "event": "closer: the spread IS the answer"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B08_ManyAnswers",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 11.95,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "FALSIFIABILITY",
+      "content_type": "evidence",
+      "narration_text": "That gives you a detector. Compare the spread of the answers against the spread of the assumption. Strong data, tiny ratio. Weak data, and the ratio climbs while features appear that were never observed.",
+      "estimated_duration_s": 12.42,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "annotate",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "axes draw; the computed variance-ratio curve sweeps in terracotta"
+          },
+          {
+            "at": "0.30",
+            "event": "the low-signal end is ringed and labelled: the prior takes over"
+          },
+          {
+            "at": "0.50",
+            "event": "the published pair lands beside it as two ink figures: 0.0114 at SNR 699, 0.0685 at SNR 7"
+          },
+          {
+            "at": "0.72",
+            "event": "a small tag separates them: measured in this reel / published"
+          },
+          {
+            "at": "0.86",
+            "event": "a struck line: features all around the galaxy, none of them observed"
+          },
+          {
+            "at": "0.94",
+            "event": "closer: the ratio is the alarm"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B09_WhenItInvents",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 12.8,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B09.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "THE DESIGN TELL",
+      "content_type": "judgment",
+      "narration_text": "So the tell is this: a denoiser does not remove noise, it adds an assumption. Checked against Webb, one method's guesses held up. Qualitatively. Nobody has measured how often they do not.",
+      "estimated_duration_s": 11.69,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "a card heads WHAT A DENOISER ACTUALLY DOES"
+          },
+          {
+            "at": "0.20",
+            "event": "row one lands in ink and is STRUCK: removes the noise"
+          },
+          {
+            "at": "0.40",
+            "event": "row two lands in the accent and is boxed: adds an assumption"
+          },
+          {
+            "at": "0.58",
+            "event": "beside it, a Hubble panel and a Webb panel appear side by side"
+          },
+          {
+            "at": "0.74",
+            "event": "a tick lands between them, then the word QUALITATIVELY in ink beneath"
+          },
+          {
+            "at": "0.88",
+            "event": "a quiet line: no published rate for how often it is wrong"
+          },
+          {
+            "at": "0.95",
+            "event": "closer: report the range, not the picture"
+          }
+        ]
+      },
+      "graphic": {
+        "manim": "B10_TheTell",
+        "engine": "manim"
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 12.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "VERDICT",
+      "content_type": "recap",
+      "narration_text": "So: striping subtracts, blur does not. One sharp picture is a choice among many. The only honest output is a range, and the range tells you which details you actually measured.",
+      "estimated_duration_s": 11.32,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "ask",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "the artefact page opens on the cream stage"
+          },
+          {
+            "at": "0.15",
+            "event": "line one lands"
+          },
+          {
+            "at": "0.38",
+            "event": "line two lands"
+          },
+          {
+            "at": "0.62",
+            "event": "line three lands"
+          },
+          {
+            "at": "0.85",
+            "event": "line four lands in the accent"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "provenance": "proven-core/ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "The Sharpest Guess - one page",
+            "artifactHeading": "Where the detail comes from",
+            "artifactLines": [
+              "Detector striping is a measurable pattern: fit it in blank sky, subtract it, done in seconds.",
+              "Blur is not a pattern. Above the aperture cutoff the transfer function is exactly zero.",
+              "So many different skies produce the same image, and picking one is an assumption, not a result.",
+              "The honest output is a range of answers - where they disagree, nothing was measured."
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 12.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "HANDOFF",
+      "content_type": "handoff",
+      "narration_text": "Your turn. Read it: when a model sharpens, upscales or fills in my data, help me work out which parts are measured and which are the model's assumption, and what to report. Run it on something you have enhanced. Watch whether it asks for a range.",
+      "estimated_duration_s": 16.8,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "ask",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "the composer returns, greeting fixed to Your turn."
+          },
+          {
+            "at": "0.20",
+            "event": "the prompt types itself in as it is read aloud"
+          },
+          {
+            "at": "0.62",
+            "event": "terracotta running indicator: paste this into Claude..."
+          },
+          {
+            "at": "0.72",
+            "event": "three grading lines stagger in as the rubric is spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "provenance": "proven-core/ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "IRREDUCIBLY HUMAN",
+            "segment": "The Sharpest Guess",
+            "command": "When a model sharpens, upscales or fills in my data, help me work out which parts are measured and which are the model's assumption - and what I should report alongside the result.",
+            "runningText": "paste this into Claude...",
+            "output": [
+              "grade it: does it separate MEASURED from ASSUMED",
+              "grade it: does it ask what the model was TRAINED ON",
+              "grade it: does it offer a RANGE rather than one answer"
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 14.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B12.mp4",
+        "filled_by": "media",
+        "at": "2026-09-18T11:58:31"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "OUTRO",
+      "content_type": "title",
+      "narration_text": "The Sharpest Guess. Humanitarians AI. AI in Astronomy, episode nine.",
+      "estimated_duration_s": 3.65,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "ask",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "the title restates, poster-style, with the terracotta period"
+          },
+          {
+            "at": "0.45",
+            "event": "a terracotta rule, then the handle"
+          },
+          {
+            "at": "0.75",
+            "event": "the series subline settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "provenance": "proven-core/ClaudeTitleOutro",
+          "props": {
+            "title": "The Sharpest Guess",
+            "handle": "@HumanitariansAI",
+            "subline": "AI in Astronomy & Space Science - Ep. 09"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 5.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B13.mp4",
+        "filled_by": "media",
+        "at": "2026-09-18T11:58:31"
+      }
+    }
+  ]
+}
