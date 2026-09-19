@@ -1,0 +1,532 @@
+{
+  "metadata": {
+    "title": "How Redis Handles Millions of Requests",
+    "slug": "how-redis-handles-millions-of-requests",
+    "topic": "Irreducibly Human",
+    "register": "Teardown-warm",
+    "audience": "backend engineers, software engineers, technical learners",
+    "brand": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "creator": "Akshay Chavan",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "voice_kokoro": "am_onyx",
+    "voice_policy": "fellow-selected",
+    "voice_approval": "PENDING_REVIEW",
+    "aspect_ratio": "16:9",
+    "source_resolution": "3840x2160",
+    "delivery_resolution": "3840x2160",
+    "youtube_required_min_height": 2160,
+    "fps": 24,
+    "note": "4K UHD long-form master. Verify local source with qc/qc_4k.py; verify YouTube exposes 2160p after processing.",
+    "tags": [
+      "Redis",
+      "backend engineering",
+      "caching",
+      "distributed systems",
+      "Redis Cluster",
+      "pipelining",
+      "in-memory database",
+      "Humanitarians AI"
+    ],
+    "total_estimated_duration_seconds": 299,
+    "build": {
+      "at": "2026-09-18T16:47:08",
+      "cut": "master",
+      "filled": 14,
+      "of": 14,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "Cold open: establish request scale and the Redis scaling question.",
+      "narration_text": "Hi... I'm Akshay. Imagine an application serving millions of requests: sessions, product lookups, counters, rate limits, real-time data. If every request depends on a slower storage path, latency can climb quickly as traffic grows. Redis changes that path. It keeps data in memory, processes requests efficiently, and can distribute the keyspace across multiple nodes. So how does that architecture stay fast when the request count explodes?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "annotate",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Akshay",
+            "topic": "HUMANITARIANS AI · BACKEND ENGINEERING",
+            "segment": "Redis at Scale",
+            "command": "Explain how Redis can handle millions of requests while keeping the hot data path fast.",
+            "runningText": "turning request-heavy workloads into a scalable in-memory data path...",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "keep hot data in memory",
+              "reduce network round trips",
+              "spread keys across cluster nodes"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-18T08:23:32.465948+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 23.42,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 23.458333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "Show the cost of repeatedly depending on a slower backing-store path.",
+      "narration_text": "Start without Redis. An API needs session data, user profiles, product information, counters, and rate-limit state. If those operations repeatedly depend on slower backing stores, every request adds more latency and load. Under a traffic spike, one overloaded data path can start building queues. The application spends more time waiting, the database does more work, and response times climb.",
+      "visual_intent": "An API fans out to session, profile, product, counter, and rate-limit data. The backing-store path becomes overloaded; queues and latency rise.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B01_DirectFanoutFails",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 21,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 21.12,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 21.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_DirectFanoutFails",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MEMORY",
+      "role_note": "Introduce Redis as the fast in-memory path for frequently accessed data.",
+      "narration_text": "Now put Redis on the fast path. Frequently accessed data can live in memory, where Redis can serve it without repeatedly taking the slower backing-store path. A cache hit can return immediately from Redis. If the application needs data that is not there, it can fall back to its database and populate Redis for later requests. That dramatically changes the cost of repeatedly accessing hot data.",
+      "visual_intent": "Requests reach Redis in memory. Cache hits take the short direct path. A cache miss follows a longer path to the backing database and returns data to Redis for later requests.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "hold",
+        "manim": {
+          "scene_class": "B02_DurableLog",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 20.93,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 20.958333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_DurableLog",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "EVENT LOOP",
+      "role_note": "Explain efficient handling of many client connections with event-driven networking.",
+      "narration_text": "But memory is only part of the story. A Redis server can have many client connections open at once. Instead of requiring a dedicated application thread to sit and wait on every idle connection, Redis uses event-driven networking to react when sockets have work ready. Requests arrive from many clients, Redis processes commands quickly, and replies flow back over those connections. That keeps connection-management overhead from dominating the fast data operations.",
+      "visual_intent": "Many client connection lanes feed Redis. GET, SET, and INCR commands move through the lanes while replies return efficiently.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B03_Partitions",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 21,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 24.13,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 24.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Partitions",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CLIENT CODE",
+      "role_note": "Show basic Redis operations from application code.",
+      "narration_text": "From the application, Redis looks simple. Connect a client, write a key with SET, read it with GET, or update a counter with INCR. Those commands operate on Redis data structures already available to the server. The API is intentionally straightforward, which lets applications use Redis for patterns like caching, sessions, counters, and rate limiting without adding a complicated request path.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "annotate",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "redis_client.py",
+            "code": "import redis\n\nr = redis.Redis(host=\"redis\", port=6379)\n\nr.set(\"session:42\", \"active\")\nsession = r.get(\"session:42\")\nr.incr(\"requests:today\")",
+            "sparkLine": "SET, GET, and INCR keep common data operations simple."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-18T08:31:22.326392+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 21.46,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 21.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SHARDING",
+      "role_note": "Distribute the Redis keyspace across multiple cluster nodes.",
+      "narration_text": "Eventually, one Redis node may not be enough. Redis Cluster spreads the keyspace across multiple primary nodes. Instead of every machine storing and serving every key, each primary owns part of the keyspace. Requests for different keys can therefore reach different nodes, distributing memory, network traffic, and command processing across the cluster.",
+      "visual_intent": "The keyspace is divided across Redis Node A, Node B, and Node C. Different key groups and requests are distributed among the nodes.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "hold",
+        "manim": {
+          "scene_class": "B05_Brokers",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 18.77,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 18.791666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Brokers",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HASH SLOTS",
+      "role_note": "Explain how Redis Cluster maps keys to hash slots and nodes.",
+      "narration_text": "Redis Cluster makes that distribution predictable with hash slots. The keyspace is divided into sixteen thousand three hundred eighty-four slots. A key is hashed to one of those slots, and each slot belongs to a particular primary node. A cluster-aware client can use that mapping to send a command directly to the node responsible for its key. Different slot ranges can then be spread across different machines.",
+      "visual_intent": "Keys map to hash slots, then slot ranges map to Redis Node A, B, or C. Several keys can map into ranges owned by the same node.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B06_ConsumerGroups",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 21,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 21.03,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 21.041666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_ConsumerGroups",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "PIPELINING",
+      "role_note": "Explain how Redis pipelining reduces repeated network round trips.",
+      "narration_text": "There is another bottleneck that has nothing to do with finding a key in memory: the network round trip. Normally, a client can send one command, wait for its response, send the next command, and wait again. Do that thousands of times and network latency adds up. Redis pipelining lets the client send multiple commands without waiting for every individual response first. Redis processes the commands and returns the replies, reducing repeated round trips and increasing the amount of useful work done per unit of time.",
+      "visual_intent": "Compare sequential command-response round trips with a pipeline that sends multiple commands together before reading their replies.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "kinetic",
+        "manim": {
+          "scene_class": "B07_Offsets",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 27,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 28.79,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 28.791666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim:B07_Offsets",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "PIPELINE CODE",
+      "role_note": "Connect the pipelining explanation to Redis client code.",
+      "narration_text": "In code, the client creates a pipeline, queues several commands, then executes them together. The important point is not that the commands become one giant Redis operation. The advantage is that the client does not wait for a complete network round trip between every command. In production, pipelines should still be reasonably bounded because Redis has to queue replies until the client reads them.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "annotate",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "pipeline.py",
+            "code": "import redis\n\nr = redis.Redis(host=\"redis\", port=6379)\npipe = r.pipeline(transaction=False)\n\npipe.get(\"product:101\")\npipe.get(\"product:102\")\npipe.incr(\"requests:today\")\n\nresults = pipe.execute()",
+            "sparkLine": "Queue commands first; reduce repeated network round trips."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-18T08:33:31.168879+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 20.2,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 20.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "TOPOLOGY CHANGE",
+      "role_note": "Show slot movement or failover and Redis Cluster MOVED redirection.",
+      "narration_text": "Now imagine the cluster topology changes. A slot may move to another node, or a failover may change which node serves a range of slots. If a client sends a command to the wrong node, Redis Cluster can return a MOVED redirection pointing to the node that currently owns that slot. Cluster-aware clients update their routing information, so normal requests can again go directly to the appropriate node.",
+      "visual_intent": "Slot groups initially map to nodes. A topology change moves a slot range. A stale request receives MOVED, then routing updates to the new owner.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B09_Rebalance",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 22,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 21.33,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 21.333333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B09.mp4",
+        "filled_by": "manim:B09_Rebalance",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "REPLICATION",
+      "role_note": "Explain Redis Cluster replicas and primary failover without promising zero data loss.",
+      "narration_text": "Sharding increases capacity, but what happens when a primary fails? Redis Cluster can keep replicas of primary nodes on other machines. If a primary becomes unavailable and the cluster can perform a failover, an eligible replica can be promoted to serve that primary's hash slots. Replication improves availability, but it should not be confused with a guarantee of zero data loss: Redis Cluster replication is asynchronous, so failure timing and configuration still matter.",
+      "visual_intent": "A Redis primary replicates to replicas on other nodes. The primary fails, an eligible replica is promoted, and traffic reroutes using clean side-lane connectors.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B10_Replication",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 27.86,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 27.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B10.mp4",
+        "filled_by": "manim:B10_Replication",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "SCALE",
+      "role_note": "Combine the mechanisms into the complete request-scale architecture.",
+      "narration_text": "Put it together and there is no single \"millions of requests\" switch. Keeping the working data in memory makes common operations fast. Event-driven networking handles many client connections efficiently. Pipelining reduces repeated network round trips. Hash slots divide the keyspace, and Redis Cluster spreads those slots across nodes. Replicas provide failover options. Together, those mechanisms let a Redis deployment distribute both the data and the request load as traffic grows.",
+      "visual_intent": "Full architecture zoom-out: many clients feed Redis cluster nodes with replicas and backing systems. Request counter climbs from 10K to 100K to 1M+.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "kinetic",
+        "manim": {
+          "scene_class": "B11_FullScale",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 23,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 28.3,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 28.333333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B11.mp4",
+        "filled_by": "manim:B11_FullScale",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "TRADEOFFS",
+      "role_note": "Show Redis scaling limits instead of implying that memory removes bottlenecks.",
+      "narration_text": "Limits still exist. A hot key can concentrate traffic on one node even when the rest of the cluster has capacity. Large values or expensive commands can increase latency. Memory is finite, so dataset size, expiration, and eviction policy matter. Network round trips, payload sizes, persistence, and client behavior matter too. Redis can be extremely fast, but scaling still requires understanding the workload instead of assuming memory makes every operation free.",
+      "visual_intent": "Four warning cards: HOT KEY, EXPENSIVE OR LARGE OPERATION, MEMORY PRESSURE, and NETWORK OR PERSISTENCE. Preserve the existing four-card layout.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "kinetic",
+        "manim": {
+          "scene_class": "B12_Tradeoffs",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 23,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 28.15,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 28.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B12.mp4",
+        "filled_by": "manim:B12_Tradeoffs",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "OUTRO",
+      "role_note": "Brutalist branded outro; concise Redis scaling mental model.",
+      "narration_text": "The mental model is simple: Redis keeps the hot data path fast in memory, handles client traffic efficiently, uses pipelining to reduce network overhead, and uses hash slots to spread data across cluster nodes when one machine isn't enough. Replicas add failover options. That's how Redis can be designed to serve request-heavy applications at very large scale.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "How Redis Handles Millions of Requests.",
+            "handle": "@HumanitariansAI",
+            "subline": "with Akshay Chavan · Backend Engineering"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-09-18T21:12:49.441239+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "actual_duration_s": 20.03,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 20.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B13.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-09-18T16:47:08"
+      },
+      "qc": {
+        "full_bleed": true
+      }
+    }
+  ]
+}
