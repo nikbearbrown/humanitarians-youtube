@@ -59,3 +59,14 @@ an explicit, documented re-voice decision is made.
   article's own hedged stats (creator-venture share, trust-over-personality)
   are carried with on-screen skepticism flags, not presented as settled
   fact. 16:9 + 9:16 cuts (9:16 drops 3 middle beats to fit the Shorts cap).
+- `2026-09-19-weekly-recap-suffolk/` — This Week: What Shipped, What's Next
+  (Suffolk edition). A CLI-explainer weekly recap — a separate week's log
+  from the earlier weekly-recap builds — built around a real
+  weekly_recap_v1.py, revised into weekly_recap_v2.py to split
+  DONE-THIS-WEEK from STARTING-NEXT-WEEK — both scripts real, both actually
+  run. 16:9 + 9:16 cuts (9:16 is a full-parity reformat, no beats dropped).
+  Content: publishing the "No Face, No Problem" article on Substack,
+  producing four Brutalist videos, and preparing the upcoming Humanitarians
+  AI guest lecture at Suffolk University with Yatra. No stock footage — the
+  article header, four-video grid, and lecture slide/podium card are all
+  generated visuals.
