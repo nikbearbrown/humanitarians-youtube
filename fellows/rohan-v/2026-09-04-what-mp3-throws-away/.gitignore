@@ -1,24 +1,33 @@
-# Media never goes to GitHub — it goes to the shared Google Drive folder
-# via `./art drive <reel>`. Only text and the QC contact sheets are committed.
+# Renders stay out; build inputs stay in. Mirrors the repository root
+# .gitignore (rule changed 2026-09-18): anything the pipeline PRODUCED from a
+# beat sheet goes to Google Drive; anything used to BUILD the video -- screen
+# captures, source recordings, sfx, pantry stills and clips, fixtures -- is
+# committed here. So nothing below is excluded by file type, only by location
+# or by render suffix. The root file already covers the render folders; they
+# are repeated so this folder stays safe if it is copied out on its own.
+
+# renders
 mp3/
-mp4/
+audio/
 media/
 clips/
+manim/
+exports/
+renders/
 _qc/
+*-slate.mp4
+*-cut.mp4
+*-review.mp4
+*-topaz.mp4
+*-8k.mp4
 
-# The portrait sub-reel is a derived scaffold — regenerate it with
-#   python3 runtime/scripts/shorts.py <reel> --no-endcard
-# Its QC contact sheet is promoted to qc-sheet-9x16.png and IS committed.
-short/
+# the named 16:9 / 9:16 masters are renders too; they live in Drive
+*_16x9.mp4
+*_9x16.mp4
 
-# Final masters live here locally but are Drive-only.
-*.mp4
-*.mov
-*.wav
-
-# Toolkit scratch
-*.bak
-*.bak-*
-todo.json
-STATUS.md
-replace_log.md
+# local build state
+build-state.json
+*.verified.json
+__pycache__/
+*.pyc
+.DS_Store
