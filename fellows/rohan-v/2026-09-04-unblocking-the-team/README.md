@@ -149,3 +149,9 @@ Two destinations, and they never mix:
 only the two named deliverables — review cuts, per-beat media, `clips/` and
 `short/` are excluded so working files cannot reach the shared folder. Verify
 with `rclone check`.
+
+## Renders
+
+The 4K masters are in Google Drive, not in git — renders go to Drive, source and build assets stay here.
+
+[`2026-09-04/` on Drive](https://drive.google.com/drive/folders/1sY8n8GPYxtkwtkSH-_o7NOAMdClhXpyE) — `2026-09-04_unblocking_the_team_16x9.mp4` and `2026-09-04_unblocking_the_team_9x16.mp4`.

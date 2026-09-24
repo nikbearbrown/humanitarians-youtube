@@ -83,3 +83,9 @@ python3 runtime/scripts/compile.py <reel> --height 2160
 ```
 
 Audio first, always.
+
+## Renders
+
+The 4K masters are in Google Drive, not in git — renders go to Drive, source and build assets stay here.
+
+[`2026-08-28/` on Drive](https://drive.google.com/drive/folders/1UBpIYX_NBcEpMebfTLbJYtmN7WYwZ3Kf) — `2026-08-28_stem_separation_16x9.mp4` and `2026-08-28_stem_separation_9x16.mp4`.

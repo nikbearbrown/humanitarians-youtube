@@ -124,3 +124,9 @@ python3 runtime/scripts/compile.py <reel>/short --height 3840
 ```
 
 Audio first, always. The vertical is re-rendered, never cropped.
+
+## Renders
+
+The 4K masters are in Google Drive, not in git — renders go to Drive, source and build assets stay here.
+
+[`2026-09-04/` on Drive](https://drive.google.com/drive/folders/1sY8n8GPYxtkwtkSH-_o7NOAMdClhXpyE) — `2026-09-04_what_mp3_throws_away_16x9.mp4` and `2026-09-04_what_mp3_throws_away_9x16.mp4`.
