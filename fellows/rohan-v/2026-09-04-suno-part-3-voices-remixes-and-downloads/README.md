@@ -42,8 +42,9 @@ training, not promotion. Every screen is rebuilt as a native Remotion scene from
 The Suno interface as I captured it, distilled into
 [`SUNO-UI-SPEC.md`](../2026-09-04-suno-interface-research/SUNO-UI-SPEC.md). The
 captures themselves are listed but not committed — see
-[`CAPTURES.md`](../2026-09-04-suno-interface-research/CAPTURES.md). Every claim in this part, and which
-capture or documentation page it rests on, is in [`FACTCHECK.md`](./FACTCHECK.md).
+[`CAPTURES.md`](../2026-09-04-suno-interface-research/CAPTURES.md). This part has no separate factcheck: its claims,
+and the captures each rests on, are set out in [`PLAN.md`](./PLAN.md), including what the
+new captures overturned.
 
 ## Renders
 
