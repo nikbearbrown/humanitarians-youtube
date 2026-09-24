@@ -32,7 +32,7 @@ and the standing weekly brief:
 |---|---|---|
 | Week-01 review | Identical start/end screens across videos | `ClaudeComposerAsk` opener; HAI end card |
 | Week-01 review | Mention Humanitarians AI in intro and outro | B00 opens with it, B06 closes with it |
-| Week-02 review | Name phonetic in narration only | `Row-Haan VeeJayKooMaar` |
+| Week-02 review | Name phonetic in narration only | `Row-Haan` |
 | Week-02 review | 9:16 native re-render, never a letterbox | five new `916` siblings |
 | Week-02 build | Round, don't truncate, when formatting numbers | no truncation anywhere; all figures carry one decimal as measured |
 | Week-02 build | Array props must be in `defaultProps`, not just the zod schema | every array prop registered in `Root.tsx` |

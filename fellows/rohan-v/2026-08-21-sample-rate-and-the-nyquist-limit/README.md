@@ -1,6 +1,6 @@
 # Sample Rate and the Nyquist Limit
 
-**Fellow:** Rohan Vijaykumar (Lyrical Literacy)
+**Fellow:** Rohan V. (Lyrical Literacy)
 **Week ending:** 2026-08-21
 **Brand:** `claude-hai` · Kokoro `af_bella` · `@HumanitariansAI`
 

@@ -10,7 +10,7 @@ the visuals were cut to fit these.
 | B02 | CORRECTION | 0:41 | 24.43s | `HaiProgressOverturned` | **new** | Five assumptions on the left, each struck through in terracotta as its correction lands on a bordered card to the right |
 | B03 | KIT | 1:06 | 23.55s | `HaiProgressKitGrid` | **new** | Counting total (23), three supporting stats, and all 23 component names as monospace chips |
 | B04 | NEXT | 1:29 | 21.93s | `HaiProgressRoadmap` | **reused** | Timeline with NOW pin: two shipped items solid, two committed items dashed with due chips |
-| B05 | OUTRO | 1:51 | 10.50s | `ClaudeTitleOutro` | chassis | Title, `@HumanitariansAI`, `Rohan Vijaykumar` |
+| B05 | OUTRO | 1:51 | 10.50s | `ClaudeTitleOutro` | chassis | Title, `@HumanitariansAI`, `Rohan V.` |
 
 ## Visual rhythm
 

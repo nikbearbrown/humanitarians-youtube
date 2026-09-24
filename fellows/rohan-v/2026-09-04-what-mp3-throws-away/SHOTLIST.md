@@ -11,7 +11,7 @@ the visuals were cut to fit these.
 | B03 | COMPARISON | 1:02 | 23.70s | `LossyBitrateCompare` | **new** | Three spectrum strips, each truncated at its measured cliff, with ratio and real byte count; the discarded remainder greyed |
 | B04 | LIMIT | 1:26 | 21.12s | `LossyGenerationLoss` | **new** | Source reference line; four rungs descending, each deficit counting up; total block lands last |
 | B05 | APPLY | 1:47 | 22.06s | `ClaudeWindow` | library | Artifact card — fine / not fine / keep the master / never edit the thinned file |
-| B06 | OUTRO | 2:09 | 10.13s | `ClaudeTitleOutro` | chassis | Title, `@HumanitariansAI`, `Rohan Vijaykumar` |
+| B06 | OUTRO | 2:09 | 10.13s | `ClaudeTitleOutro` | chassis | Title, `@HumanitariansAI`, `Rohan V.` |
 
 ## Visual rhythm
 

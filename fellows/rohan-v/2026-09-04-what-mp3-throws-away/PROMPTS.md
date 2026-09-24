@@ -107,8 +107,8 @@ Type sized off `height`; everything inside the active band (y 230–1440).
 ## HAI channel standard
 
 - **Opener**: `ClaudeComposerAsk`; narration opens "Hi, I'm Rohan, for Humanitarians AI."
-- **Outro**: `ClaudeTitleOutro` — title / `@HumanitariansAI` / `Rohan Vijaykumar`
-- Narration closes "I'm Rohan Vijaykumar, for Humanitarians AI."
+- **Outro**: `ClaudeTitleOutro` — title / `@HumanitariansAI` / `Rohan V.`
+- Narration closes "I'm Rohan V., for Humanitarians AI."
 - Presenter's name spelled phonetically in `narration_text` only.
 - Palette: the `claude` token set, never retinted. One terracotta accent.
 - Every body beat ends on a spark line; eyebrow on every body beat.

@@ -11,7 +11,7 @@ The STEM half of the week-02 submission; the progress half is
 | **Format** | 16:9 and 9:16, 4K (3840×2160 / 2160×3840), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 7 · 4 purpose-built scenes · 3 chassis components · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |
@@ -50,7 +50,7 @@ reel says so on screen rather than implying 16 kHz is universal.
 | B03 | COMPARISON | 23.70s | `LossyBitrateCompare` | 128 / 320 / lossless — each strip cut at its own measured cliff |
 | B04 | LIMIT | 21.12s | `LossyGenerationLoss` | Re-encode steps descending, none recovering |
 | B05 | APPLY | 22.06s | `ClaudeWindow` | When lossy is fine, when it is malpractice |
-| B06 | OUTRO | 10.13s | `ClaudeTitleOutro` | "I'm Rohan Vijaykumar, for Humanitarians AI" |
+| B06 | OUTRO | 10.13s | `ClaudeTitleOutro` | "I'm Rohan V., for Humanitarians AI" |
 
 Total 139.77s. Narration durations are ground truth; every visual is cut to fit
 the voice.

@@ -9,7 +9,7 @@ installed, to four files delivered to the two correct places.
 | **Format** | 16:9, 4K (3840×2160), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 13 · all machine-rendered · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |

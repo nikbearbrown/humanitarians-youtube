@@ -110,7 +110,7 @@ MEASUREMENTS.txt, because it will happen to someone else.
 |---|---|---|
 | Week-01 review | identical opener/closer across reels | `ClaudeComposerAsk` → `HaiTitleOutro` |
 | Week-01 review | name Humanitarians AI in intro and outro | B00 opens with it, B06 closes with it |
-| Week-02 review | name phonetic in narration only | `Row-Haan VeeJayKooMaar`; on-screen spelling correct |
+| Week-02 review | name phonetic in narration only | `Row-Haan`; on-screen spelling correct |
 | Week-02 review | 9:16 native re-render, never a letterbox | four new `916` siblings |
 | Week-03 review | no mojibake in portrait cuts | both short beat sheets byte-checked |
 | Week-03 build | no personal references in narration | none |

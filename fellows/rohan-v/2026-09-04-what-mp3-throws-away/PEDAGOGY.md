@@ -75,7 +75,7 @@ pass; no beat was re-cut. The 9:16 Short is the same length.
 
 ## Name pronunciation
 
-`narration_text` spells the presenter phonetically — `Row-Haan VeeJayKooMaar` —
+`narration_text` spells the presenter phonetically — `Row-Haan` —
 so Kokoro says it correctly. Every on-screen string keeps the correct spelling.
 
 VERDICT: **PASS**

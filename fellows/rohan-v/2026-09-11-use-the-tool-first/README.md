@@ -10,7 +10,7 @@ series shipped. The STEM half of this week's submission is
 | **Format** | 16:9 and 9:16, 4K (3840×2160 / 2160×3840), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 6 · 3 purpose-built scenes · 1 reused library scene · 2 chassis · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |
@@ -47,7 +47,7 @@ different places. Disk says 29; the reel uses 29 and
 | B02 | CORRECTION | 0:41 | 24.43s | `HaiProgressOverturned` | Five assumptions struck through, replaced one at a time |
 | B03 | KIT | 1:06 | 23.55s | `HaiProgressKitGrid` | 23 component names as evidence, plus spec/capture counts |
 | B04 | NEXT | 1:29 | 21.93s | `HaiProgressRoadmap` *(reused)* | Signup docs still open; both tools together next |
-| B05 | OUTRO | 1:51 | 10.50s | `ClaudeTitleOutro` | "I'm Rohan Vijaykumar, for Humanitarians AI" |
+| B05 | OUTRO | 1:51 | 10.50s | `ClaudeTitleOutro` | "I'm Rohan V., for Humanitarians AI" |
 
 Total 122.10s. Narration durations are ground truth.
 

@@ -22,7 +22,7 @@ the epistemic stance the viewer needs when deciding whether to use a stem.
 | B03 MECHANICS — text | ✓ Cake analogy: additive, irreversible, statistics-based; deliberately text-only so the waveform beats carry the motion budget |
 | B04 LIMIT — bleed waveform | ✓ The ghost trace in B04 is the most direct proof of the thesis: the viewer can *see* something that shouldn't be there |
 | B05 APPLY — text | ✓ Three concrete checkable criteria; not "use your ears" |
-| B06 outro | ✓ "I'm Rohan Vijaykumar, for Humanitarians AI" — matches first video's closing convention |
+| B06 outro | ✓ "I'm Rohan V., for Humanitarians AI" — matches first video's closing convention |
 
 ## Visual grammar (v2)
 
@@ -57,8 +57,8 @@ full explanation.
 ## HAI channel standard (applies to all future videos)
 
 - **Opener**: `ClaudeComposerAsk` — narration: "Hi, I'm Rohan, for Humanitarians AI."
-- **Outro**: `ClaudeTitleOutro` — title / @HumanitariansAI / Rohan Vijaykumar
-- Narration closer: "I'm Rohan Vijaykumar, for Humanitarians AI."
+- **Outro**: `ClaudeTitleOutro` — title / @HumanitariansAI / Rohan V.
+- Narration closer: "I'm Rohan V., for Humanitarians AI."
 
 ## Length
 

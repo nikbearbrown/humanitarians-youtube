@@ -50,7 +50,7 @@ and finally, authorising the build:
 |---|---|---|
 | Week-01 review | identical start/end screens across reels | `ClaudeComposerAsk` opener, HAI end card |
 | Week-01 review | mention Humanitarians AI in intro and outro | B00 opens with it, B06 closes with it |
-| Week-02 review | name phonetic in narration only | `Row-Haan VeeJayKooMaar` in `narration_text`; on-screen spelling stays *Rohan Vijaykumar* |
+| Week-02 review | name phonetic in narration only | `Row-Haan` in `narration_text`; on-screen spelling stays *Rohan V.* |
 | Week-02 review | 9:16 native, never a letterbox | four `916` siblings, each re-laid out rather than scaled |
 | Week-03 review | portrait cuts must not carry mojibake | both short beat sheets byte-checked; `shorts.py` UTF-8 read fixed at source |
 | Week-03 build | HAI components, not the Claude-locked ones | `HaiApplyCard`, `HaiTitleOutro` |

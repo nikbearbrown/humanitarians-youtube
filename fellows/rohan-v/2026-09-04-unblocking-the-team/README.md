@@ -12,7 +12,7 @@ committed next.
 | **Format** | 16:9 and 9:16, 4K (3840×2160 / 2160×3840), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 6 · 4 purpose-built scenes · 2 chassis components · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |
@@ -33,13 +33,13 @@ than a list of tasks.
 | B02 | SHIPPED | 30.27s | `HaiProgressSeriesCards` | Suno series, 3 parts, 10:35 of 4K training material |
 | B03 | IN FLIGHT | 22.68s | `HaiProgressSignupChain` | Four accounts before a fellow makes anything; guide being written |
 | B04 | NEXT | 12.63s | `HaiProgressRoadmap` | Midjourney series, end of next week |
-| B05 | OUTRO | 10.71s | `ClaudeTitleOutro` | "I'm Rohan Vijaykumar, for Humanitarians AI." |
+| B05 | OUTRO | 10.71s | `ClaudeTitleOutro` | "I'm Rohan V., for Humanitarians AI." |
 
 Total 119.75s. Narration durations are ground truth — every visual is cut to fit
 the voice, never the reverse.
 
 The presenter's name is spelled phonetically in `narration_text` only
-(`Row-Haan VeeJayKooMaar`) so Kokoro pronounces it correctly. Every on-screen
+(`Row-Haan`) so Kokoro pronounces it correctly. Every on-screen
 string keeps the correct spelling.
 
 ## New Remotion scenes in this reel
@@ -75,8 +75,8 @@ area it respects.
 Held identical to the two week-01 reels:
 
 - **Opener**: `ClaudeComposerAsk` — narration opens "Hi, I'm Rohan, for Humanitarians AI."
-- **Outro**: `ClaudeTitleOutro` — `title` / `@HumanitariansAI` / `Rohan Vijaykumar`
-- Narration closes "I'm Rohan Vijaykumar, for Humanitarians AI."
+- **Outro**: `ClaudeTitleOutro` — `title` / `@HumanitariansAI` / `Rohan V.`
+- Narration closes "I'm Rohan V., for Humanitarians AI."
 
 ## What is in this folder
 

@@ -17,7 +17,7 @@ Specifically required:
 4. Show **how videos are saved locally** and **how code is submitted to GitHub**.
 5. Give the **exact links** — toolkit repo, submission repo, Drive folder.
 6. State that four 4K files are due per week — two topics, each in 16:9 and 9:16.
-7. Open with "Hi, I'm Rohan"; sign off "Rohan Vijaykumar".
+7. Open with "Hi, I'm Rohan"; sign off "Rohan V.".
 8. Fluid animation; recreate the Claude desktop app, the GitHub website, and the
    other windows a fellow meets along the way.
 9. Voice: Kokoro `af_bella`.

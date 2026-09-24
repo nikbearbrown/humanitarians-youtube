@@ -1,7 +1,7 @@
 # SHOTLIST — "Your Weekly Video, Handled."
 
 13 beats · 4 min 14 s · 16:9 4K (3840×2160) · Kokoro `af_bella`
-Presenter: Rohan Vijaykumar · Channel: @HumanitariansAI
+Presenter: Rohan V. · Channel: @HumanitariansAI
 
 Every beat is machine-renderable Remotion. **There are no slates and no pantry
 slots** — nothing is owed by a human before this reel compiles clean.
@@ -20,7 +20,7 @@ slots** — nothing is owed by a human before this reel compiles clean.
 | B09 | SUBMIT · VIDEO | `HaiSubmitDriveUpload` | remotion | 18.75s | **Google Drive fidelity mock.** Four 4K files upload, progress bars fill, ticks land, "4 of 4 uploaded". DO THIS BY HAND badge. Exact Drive URL below. |
 | B10 | RECAP | `HaiSubmitRecap` | remotion | 22.02s | Two columns: CLAUDE HANDLES (7, green ticks) vs YOU HANDLE (3, terracotta card). The division of labour as a shape. |
 | B11 | YOUR TURN | `ClaudeComposerAsk` | composer | 8.13s | Composer, greeting "Your turn." The paste-ready prompt types itself in. |
-| B12 | OUTRO | `ClaudeTitleOutro` | composer | 10.60s | Title restate, terracotta period, `@HumanitariansAI`, subline "Rohan Vijaykumar". |
+| B12 | OUTRO | `ClaudeTitleOutro` | composer | 10.60s | Title restate, terracotta period, `@HumanitariansAI`, subline "Rohan V.". |
 
 ## Lane histogram
 

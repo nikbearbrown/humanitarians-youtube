@@ -73,7 +73,7 @@ useful anyway. No beat was cut.
 
 Rendered all six at 4K, compiled a review cut, read the QC sheet — and **B05
 was showing `@NikBearBrown` and a bear mascot** instead of `@HumanitariansAI` /
-`Rohan Vijaykumar`, despite the beat sheet passing the correct props.
+`Rohan V.`, despite the beat sheet passing the correct props.
 
 Cause: `docs/OUTRO-LOCK.md` scopes `ClaudeTitleOutro` to claude-liam /
 @NikBearBrown reels **only**, and that component now hardcodes the handle,

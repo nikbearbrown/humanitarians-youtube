@@ -18,7 +18,7 @@ The brief, and how each constraint was resolved.
 |---|---|---|
 | Channel standard | Opener and outro components fixed across all reels | `ClaudeComposerAsk` / `ClaudeTitleOutro` ✓ |
 | Channel standard | Mention Humanitarians AI in intro and outro | B00 opens with it, B06 closes with it ✓ |
-| Rohan, 2026-09-04 | Presenter's name spelled phonetically for Kokoro | `Row-Haan VeeJayKooMaar` in `narration_text` only; on-screen spelling untouched ✓ |
+| Rohan, 2026-09-04 | Presenter's name spelled phonetically for Kokoro | `Row-Haan` in `narration_text` only; on-screen spelling untouched ✓ |
 | Rohan, 2026-09-04 | 9:16 must adapt to the aspect ratio, never be squeezed | Four new `916` siblings; each beat's layout rotated, not scaled ✓ |
 | Rohan, 2026-09-04 | Drive upload is part of every video's workflow | `./art drive <reel>` ✓ |
 | Toolkit doctrine | Library-first — search before authoring | `./art scenes` run for both visual needs; both confirmed genuine misses ✓ |

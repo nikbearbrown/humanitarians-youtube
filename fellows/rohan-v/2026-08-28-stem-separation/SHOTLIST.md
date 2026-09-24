@@ -1,7 +1,7 @@
 # SHOTLIST — "Stem Separation: Estimation, Not Extraction"
 
 7 beats · ~2:22 · 16:9 4K (3840×2160) · Kokoro `af_bella`
-Presenter: Rohan Vijaykumar · Channel: @HumanitariansAI
+Presenter: Rohan V. · Channel: @HumanitariansAI
 
 Three purpose-built waveform scenes (B01, B02, B04), two shared-library
 artifact cards (B03, B05), one shared opener (B00), one shared outro (B06).
@@ -15,7 +15,7 @@ artifact cards (B03, B05), one shared opener (B00), one shared outro (B06).
 | B03 | MECHANICS | `ClaudeWindow` | ~22s | Artifact view. Title "Why unbaking is impossible". Heading "Estimation, not extraction". Four text lines on additive mixing + statistical prediction. Spark line: "You cannot unbake the cake. The model knows what cakes tend to taste like." |
 | B04 | LIMIT | `StemSepBleedViz` | ~22s | Large waveform frame: **vocal stem** (blue, solid) with a **drum bleed ghost** (terracotta, translucent, pulsing) underneath. Annotation arrow pointing at the ghost: "DRUM BLEED / ghost of another source". Bottom comparison strip: "CLEAN STEM" vs "WITH BLEED" side by side. Spark line: "A ghost of another source — the expected cost of estimation." |
 | B05 | APPLY | `ClaudeWindow` | ~23s | Artifact view. Title "The trust test". Heading "Good enough vs. lying to you". Three lines: pass criteria, fail criteria, confidence note. Spark line: "It is not giving you the vocal. It is giving you its best guess at the vocal." |
-| B06 | OUTRO | `ClaudeTitleOutro` | ~10s | **Matches first video's outro exactly.** Cream ground, serif title in warm ink, terracotta period: "Stem Separation: Estimation, Not Extraction." Handle "@HumanitariansAI" below. Subline "Rohan Vijaykumar". |
+| B06 | OUTRO | `ClaudeTitleOutro` | ~10s | **Matches first video's outro exactly.** Cream ground, serif title in warm ink, terracotta period: "Stem Separation: Estimation, Not Extraction." Handle "@HumanitariansAI" below. Subline "Rohan V.". |
 
 ## Lane histogram
 

@@ -75,7 +75,7 @@ signup guide will cover, which is more useful anyway. No beat was cut.
 
 ## Name pronunciation
 
-`narration_text` spells the presenter phonetically — `Row-Haan VeeJayKooMaar` —
+`narration_text` spells the presenter phonetically — `Row-Haan` —
 so Kokoro says it correctly. Every on-screen string keeps the correct spelling.
 
 VERDICT: **PASS**

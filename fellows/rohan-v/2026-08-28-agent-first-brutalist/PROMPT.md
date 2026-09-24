@@ -15,7 +15,7 @@ about which steps the agent performs and which stay human.
 | Constraint | Resolution |
 |---|---|
 | Opens "Hi, I'm Rohan" | B00, first line of narration. |
-| Signs off with the full name | B12: "I'm Rohan Vijaykumar, for Humanitarians AI." Outro subline carries it on screen. |
+| Signs off with the full name | B12: "I'm Rohan V., for Humanitarians AI." Outro subline carries it on screen. |
 | Voice `af_bella` | `metadata.voice_kokoro`; every beat generated with it. |
 | 3–5 minutes | Measured **4 min 14 s**. |
 | Fellows never type commands | The whole spine. B02 shows approval, not typing; B08 shows the agent choosing the Git route; B10 states "Not one of them requires a command line." |

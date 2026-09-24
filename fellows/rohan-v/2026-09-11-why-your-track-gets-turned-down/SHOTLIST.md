@@ -11,7 +11,7 @@ the visuals were cut to fit these.
 | B03 | THE CATCH | 0:56 | 18.35s | `LoudNormalizeGain` | **new** | Vertical loudness axis with a target line; both markers slide onto it, gains shown as they travel |
 | B04 | THE COST | 1:15 | 18.03s | `LoudRangeLost` | **new** | Two vertical spans, 12.0 collapsing to 0.7, plus a MOVED / DID NOT BUDGE proof table |
 | B05 | APPLY | 1:33 | 16.83s | `ClaudeWindow` | library | Artifact card — four things to do on export |
-| B06 | OUTRO | 1:50 | 11.41s | `HaiTitleOutro` | library | Title, `@HumanitariansAI`, `Rohan Vijaykumar` |
+| B06 | OUTRO | 1:50 | 11.41s | `HaiTitleOutro` | library | Title, `@HumanitariansAI`, `Rohan V.` |
 
 ## Visual rhythm
 

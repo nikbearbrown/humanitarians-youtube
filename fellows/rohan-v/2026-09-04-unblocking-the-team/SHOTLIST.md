@@ -10,7 +10,7 @@ the visuals were cut to fit these, not the other way round.
 | B02 | SHIPPED | 0:43 | 30.27s | `HaiProgressSeriesCards` | **new** | Three part-cards, each with waveform, runtime, 4K badge, DONE chip; terracotta total bar counts 0:00 → 10:35 |
 | B03 | IN FLIGHT | 1:13 | 22.68s | `HaiProgressSignupChain` | **new** | Four tool cards in brand hues, linked by a drawn connector; documentation sheet slides in beneath, stamped IN PROGRESS |
 | B04 | NEXT | 1:36 | 12.63s | `HaiProgressRoadmap` | **new** | Timeline, solid left / dashed right, NOW pin drops; two shipped cards, two committed cards with due chips |
-| B05 | OUTRO | 1:49 | 10.71s | `ClaudeTitleOutro` | chassis | Title, `@HumanitariansAI`, `Rohan Vijaykumar` |
+| B05 | OUTRO | 1:49 | 10.71s | `ClaudeTitleOutro` | chassis | Title, `@HumanitariansAI`, `Rohan V.` |
 
 ## Visual rhythm
 
@@ -42,7 +42,7 @@ B02 and B04 settle early and hold, which is safe at any duration ≥ 7s.
 | Opener component | `ClaudeComposerAsk` | `ClaudeComposerAsk` ✓ |
 | Outro component | `ClaudeTitleOutro` | `ClaudeTitleOutro` ✓ |
 | Opener narration | "Hi, I'm Rohan, for Humanitarians AI." | identical ✓ |
-| Closing narration | "I'm Rohan Vijaykumar, for Humanitarians AI." | identical ✓ |
+| Closing narration | "I'm Rohan V., for Humanitarians AI." | identical ✓ |
 | Palette | `claude` token set | identical ✓ |
 | Eyebrow grammar | `HUMANITARIANS AI · <SECTION>` | `HUMANITARIANS AI · WEEKLY PROGRESS` ✓ |
 | Spark line | serif italic, terracotta rule, bottom left | identical ✓ |

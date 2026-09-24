@@ -86,7 +86,7 @@ place. B01 grew slightly when its narration was corrected.
 
 ## Name pronunciation
 
-`narration_text` spells the presenter phonetically — `Row-Haan VeeJayKooMaar` —
+`narration_text` spells the presenter phonetically — `Row-Haan` —
 so Kokoro says it correctly. Every on-screen string keeps the correct spelling.
 
 VERDICT: **PASS**

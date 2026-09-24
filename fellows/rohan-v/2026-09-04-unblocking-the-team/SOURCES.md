@@ -2,7 +2,7 @@
 
 ## Primary source
 
-Rohan Vijaykumar's own account of the week, given 2026-08-29. Reproduced in
+Rohan V.'s own account of the week, given 2026-08-29. Reproduced in
 full in [SOURCE-brief.md](./SOURCE-brief.md). This is a progress report, so the
 presenter is the primary source for what he did; everything with a number
 attached was independently verified below.

@@ -23,7 +23,7 @@ The brief, and how each constraint was resolved.
 | Week-01 review | Mention Humanitarians AI in intro and outro | B00 opens with it, B05 closes with it |
 | Week-01 review | "This video is very bare" — build real motion graphics | Four purpose-built scenes; zero generic text cards |
 | Standing Suno rule | Internal-training register, no overselling | No perk framing anywhere; the register reports, it does not pitch |
-| Standing rule | No personal references beyond the presenter | Only "Rohan Vijaykumar" appears |
+| Standing rule | No personal references beyond the presenter | Only "Rohan V." appears |
 | Toolkit doctrine | Library-first — search before authoring | `./art scenes` run for all four needs; all four confirmed genuine misses before any component was written |
 
 ## The register question

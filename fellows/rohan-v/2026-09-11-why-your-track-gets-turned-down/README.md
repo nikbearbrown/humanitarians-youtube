@@ -11,7 +11,7 @@ submission; the progress half is
 | **Format** | 16:9 and 9:16, 4K (3840×2160 / 2160×3840), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 7 · 4 purpose-built scenes · 3 chassis/library · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |
@@ -69,7 +69,7 @@ Three results carry the reel:
 | B03 | THE CATCH | 0:56 | 18.35s | `LoudNormalizeGain` | Both tracks slide onto the same playback target |
 | B04 | THE COST | 1:14 | 18.03s | `LoudRangeLost` | The gap collapses 12.0 → 0.7, and a proof table shows gain cannot undo it |
 | B05 | APPLY | 1:32 | 16.83s | `ClaudeWindow` | What to do on export |
-| B06 | OUTRO | 1:49 | 11.41s | `ClaudeTitleOutro` | "I'm Rohan Vijaykumar, for Humanitarians AI" |
+| B06 | OUTRO | 1:49 | 11.41s | `ClaudeTitleOutro` | "I'm Rohan V., for Humanitarians AI" |
 
 Total 120.69s. Narration durations are ground truth.
 

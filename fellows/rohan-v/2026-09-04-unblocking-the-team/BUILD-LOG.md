@@ -193,10 +193,10 @@ carried over to this reel. That was a filing error, not a new requirement.
 | Beat | Was | Now |
 |---|---|---|
 | B00 | "Hi, I'm Rohan, …" | "Hi, I'm Row-Haan, …" |
-| B05 | "I'm Rohan Vijaykumar, …" | "I'm Row-Haan VeeJayKooMaar, …" |
+| B05 | "I'm Rohan V., …" | "I'm Row-Haan, …" |
 
 The phonetic spelling is confined to `narration_text`. Every on-screen string
-still reads `Rohan Vijaykumar` — `ClaudeTitleOutro.subline`,
+still reads `Rohan V.` — `ClaudeTitleOutro.subline`,
 `ClaudeComposerAsk.greeting`, `metadata.presenter`, and all docs. A note in
 `metadata.note` now states the split so a future build cannot collapse it.
 

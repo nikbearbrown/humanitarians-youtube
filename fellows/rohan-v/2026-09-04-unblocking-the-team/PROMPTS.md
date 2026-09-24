@@ -123,8 +123,8 @@ the week-01 deliverables.
 Held identical across all reels on this channel:
 
 - **Opener**: `ClaudeComposerAsk`; narration opens "Hi, I'm Rohan, for Humanitarians AI."
-- **Outro**: `ClaudeTitleOutro` with `title` / `@HumanitariansAI` / `Rohan Vijaykumar`
-- Narration closes "I'm Rohan Vijaykumar, for Humanitarians AI."
+- **Outro**: `ClaudeTitleOutro` with `title` / `@HumanitariansAI` / `Rohan V.`
+- Narration closes "I'm Rohan V., for Humanitarians AI."
 - Palette: the `claude` token set, never retinted
 - Every body beat ends on a spark line: serif italic, terracotta rule, bottom left
 - Eyebrow on every body beat: `HUMANITARIANS AI · <SECTION>`

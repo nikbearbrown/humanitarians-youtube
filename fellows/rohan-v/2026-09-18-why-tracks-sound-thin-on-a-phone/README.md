@@ -11,7 +11,7 @@ it. One of the two week-04 STEM reels; the other is
 | **Format** | 16:9 and 9:16, 4K (3840×2160 / 2160×3840), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 7 · 4 purpose-built scenes · 3 chassis/library · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |

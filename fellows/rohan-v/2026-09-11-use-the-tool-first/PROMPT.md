@@ -29,7 +29,7 @@ Rohan, 2026-09-10:
 |---|---|---|
 | Week-01 review | Start and end screens identical across all videos | `ClaudeComposerAsk` / `ClaudeTitleOutro`, unchanged |
 | Week-01 review | Mention Humanitarians AI in intro and outro | B00 opens with it, B05 closes with it |
-| Week-02 review | Name must be phonetic in narration only | `Row-Haan VeeJayKooMaar` in `narration_text`; on-screen spelling correct |
+| Week-02 review | Name must be phonetic in narration only | `Row-Haan` in `narration_text`; on-screen spelling correct |
 | Week-02 review | 9:16 must be a native re-render, never a letterbox | `shorts.py` + three new `916` siblings |
 | Week-02 build | Round, don't truncate, when formatting durations | B01's total reads 18:59, not 18:58 |
 | Week-02 build | Props a component indexes into must be in `defaultProps` | every array prop registered in `Root.tsx`, not just in the zod schema |

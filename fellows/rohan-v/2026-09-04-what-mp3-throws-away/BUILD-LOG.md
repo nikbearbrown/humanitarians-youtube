@@ -85,7 +85,7 @@ B04 21.12   B05 22.06   B06 10.13
 Total **139.77s = 2:19**, against the 2:21 stem-separation sibling. Cost $0.00.
 No beat was re-recorded — the per-beat word budget held on the first pass.
 
-Name spelled phonetically in `narration_text` (`Row-Haan VeeJayKooMaar`); every
+Name spelled phonetically in `narration_text` (`Row-Haan`); every
 on-screen string keeps the correct spelling.
 
 ## 6 — Visual QC caught three fill defects
