@@ -14,6 +14,8 @@ build assets.
 |---|---|---|
 | [`2026-09-18-ai-accuracy-is-lying-to-you`](2026-09-18-ai-accuracy-is-lying-to-you) | educational (STEM / AI) | A 95%-accurate model on a rare event can be worthless — accuracy rewards the majority answer |
 | [`2026-09-18-dae-the-numbers-arent-final-yet`](2026-09-18-dae-the-numbers-arent-final-yet) | independent research (data analytics engineering) | A metric is a draft that keeps being revised; comparing a fresh number to a settled one measures the settling, not performance |
+| [`2026-09-25-ai-why-it-cant-count-letters`](2026-09-25-ai-why-it-cant-count-letters) | educational (STEM / AI) | It cannot count the letters in a word because it never receives letters — text is split into tokens first |
+| [`2026-09-25-dae-your-test-set-saw-the-future`](2026-09-25-dae-your-test-set-saw-the-future) | independent research (ML evaluation) | A random split on time-ordered data trains on the future and tests on the past — silently |
 
 **Video files are not in this repo.** They are delivered separately. Everything
 here is the record of how they were built and why each claim in them holds.
