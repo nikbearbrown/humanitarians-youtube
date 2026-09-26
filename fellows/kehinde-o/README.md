@@ -1,7 +1,7 @@
 # Kehinde O.
 
-**Role:** Research Analyst  
-**Project:** _to be filled in_  
+**Role:** AI Textbook Auditor  
+**Project:** Medhavy cancer textbook fact-check  
 **GitHub:** [@khennyG](https://github.com/khennyG)
 
 Humanitarians AI volunteer, AI Textbook Auditor on the Medhavy cancer textbook
@@ -9,11 +9,10 @@ project. Weekly reports are one dated folder per video.
 
 ## Voice choice
 
-Week 1 used Kokoro **`am_onyx`**; week 2 uses **`af_kore`**. Recorded here and
-in every episode's `beat_sheet.json`, as a documented re-voice rather than a
-silent per-episode change. Recorded here and in every
-episode's `beat_sheet.json` per the fellows voice-choice policy. A later change
-would be a documented re-voice decision, not a per-episode default.
+Week 1 used Kokoro **`am_onyx`**. Every week since has used **`af_kore`**,
+recorded here and in each episode's `beat_sheet.json` as a documented re-voice
+rather than a silent per-episode change. A later change would be recorded the
+same way.
 
 ## Channel and register
 
@@ -31,6 +30,10 @@ would be a documented re-voice decision, not a per-episode default.
 | 2026-09-08 | `2026-09-08-chapter-2-review/` | Project update |
 | 2026-09-14 | `2026-09-14-further-but-better/` | STEM/AI explainer |
 | 2026-09-14 | `2026-09-14-chapter-23-review/` | Project update |
+| 2026-09-24 | `2026-09-24-the-number-that-shrank/` | STEM/AI explainer |
+| 2026-09-24 | `2026-09-24-chapter-25-review/` | Project update |
+| 2026-09-24 | `2026-09-24-backwards-along-the-tape/` | STEM/AI explainer |
+| 2026-09-24 | `2026-09-24-chapter-30-review/` | Project update |
 
 Rendered MP4 and MP3 are intentionally not committed; the 4K masters live on the
 shared Google Drive and each report's README links to its folder.
