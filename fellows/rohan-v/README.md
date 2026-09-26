@@ -6,13 +6,28 @@
 
 Humanitarians AI fellow. Weekly STEM explainers for the Lyrical Literacy project.
 
-- **Voice:** Kokoro `af_bella` at speed `0.95` (locked for the series)
+- **Voice:** Kokoro `af_bella` — my persistent narrator for every episode (FELLOWS-SUBMISSION). Speed `0.95` is recorded only for the 2026-08-21 pair; later builds record none, i.e. the generator default `1.0`
 - **Channel chip:** `@HumanitariansAI`
 - **Builder:** `ai-explainer` on the `claude-hai` brand (Pragmatist register)
 
 Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders — narration, beat clips and the 4K masters — go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx) is committed beside it, per the [fellows README](../README.md).
 
 Masters ship at 1080p by default. For 4K: Manim `-qk -r 3840,2160`, `ART_REMOTION_SCALE=2` on Remotion bookends, then `compile.py --height 2160` (16:9) or `--height 3840` (9:16).
+
+## Week of 2026-09-25
+
+One STEM explainer and one progress update, both 16:9 (3840×2160) and native 9:16
+(2160×3840). Masters in Drive, [`2026-09-25/`](https://drive.google.com/drive/folders/1bbImyiy_SvbzPU4WDqD_cJVorkMdL8_J)
+(`landscape/`, `vertical/`), named per [FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+
+- [How AI Image Generators Turn Noise Into a Picture](./2026-09-25-how-ai-image-generators-turn-noise-into-a-picture/) — diffusion, shown on a toy model I trained on a laptop CPU (`ImageDiffusion_RohanV.mp4`)
+- [Testing AI Video Editors, and a Setup Guide for New Fellows](./2026-09-25-testing-ai-video-editors-and-a-setup-guide/) — weekly progress: four agentic editing tools, one hands-on test, the new-fellow guide in progress (`AgenticEditingUpdate_RohanV.mp4`)
+
+First week on the updated Brutalist framework: the required opening line, AI
+narration disclosed on screen, typeset math, executable evidence instead of
+pictures of it, and GATE T passing on **both** aspects — the portrait cuts were
+re-laid to the 9:16 type spec (body 4.0vh, floor 3.2vh) after the first vertical
+render failed it.
 
 ## Week of 2026-09-18
 
