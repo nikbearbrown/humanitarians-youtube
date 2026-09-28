@@ -2,7 +2,9 @@
 
 **Role:** Project Manager  
 **Project:** Lyrical Literacy  
-**GitHub:** [@rohanvijaykumar](https://github.com/rohanvijaykumar)
+**GitHub:** [@rohanvijaykumar](https://github.com/rohanvijaykumar)  
+**Supervisor:** Nina H.  
+**Agreement period:** 11 Aug — 30 Sep 2026 (renewal requested: [RENEWAL.md](./RENEWAL.md))
 
 Humanitarians AI fellow. Weekly STEM explainers for the Lyrical Literacy project.
 
