@@ -2,6 +2,11 @@
 
 ## 2026-09-24 — building the week 5 project update
 
+- **Video:** not yet published
+- **Drive:** https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp (`Medhavy_Kehinde/Fact Check/Chapter 30/`)
+- **Report:** [REPORT.md](REPORT.md)
+- **Project repository:** https://github.com/Medhavy/medhavi-cancer (private), branch `text-edits`
+- **Paired explainer:** [Backwards Along the Tape](../2026-09-24-backwards-along-the-tape/)
 This was the largest workbook in the project so far: 1,654 sentences, more than five times
 Chapter 25, with 55 flagged assertions spread across 111 evidence rows because one sentence
 can lean on several sources.

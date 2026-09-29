@@ -2,6 +2,11 @@
 
 ## 2026-09-24 — building the week 5 STEM explainer
 
+- **Video:** not yet published
+- **Drive:** https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp (`Medhavy_Kehinde/STEM Topic/backwards-along-the-tape/`)
+- **Report:** [REPORT.md](REPORT.md)
+- **Source project:** https://github.com/Kenny0bi/ember
+- **Paired report:** [Fact-Checking Chapter 30](../2026-09-24-chapter-30-review/)
 I paired this with the Chapter 30 report deliberately. Chapter 30's spine is the fourth
 audit pass, the one that stopped asking whether my sources were real and started asking
 whether they said what I claimed. My ember repo has the same posture: it does not claim the

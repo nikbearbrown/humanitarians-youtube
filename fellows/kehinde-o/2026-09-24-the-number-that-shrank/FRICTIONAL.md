@@ -2,6 +2,11 @@
 
 ## 2026-09-24 — building the week 4 STEM explainer
 
+- **Video:** not yet published
+- **Drive:** https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp (`Medhavy_Kehinde/STEM Topic/the-number-that-shrank/`)
+- **Report:** [REPORT.md](REPORT.md)
+- **Source project:** https://github.com/Kenny0bi/adverse-event-pipeline
+- **Paired report:** [Fact-Checking Chapter 25](../2026-09-24-chapter-25-review/)
 I wanted a STEM topic that connected to the fact-checking work rather than sitting beside
 it, so I used my own FAERS pharmacovigilance pipeline. Chapter 25 is full of drug-record
 errors; this project is the same subject approached from the data side.

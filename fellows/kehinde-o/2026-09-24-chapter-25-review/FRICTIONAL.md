@@ -2,6 +2,11 @@
 
 ## 2026-09-24 — building the week 4 project update
 
+- **Video:** not yet published
+- **Drive:** https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp (`Medhavy_Kehinde/Fact Check/Chapter 25/`)
+- **Report:** [REPORT.md](REPORT.md)
+- **Project repository:** https://github.com/Medhavy/medhavi-cancer (private), branch `text-edits`
+- **Paired explainer:** [The Number That Shrank](../2026-09-24-the-number-that-shrank/)
 I expected this chapter to be a smaller version of Chapter 23: find the errors in the
 textbook, write them up, report the count. What actually happened is that the interesting
 finding was in my own earlier work rather than in the textbook.
