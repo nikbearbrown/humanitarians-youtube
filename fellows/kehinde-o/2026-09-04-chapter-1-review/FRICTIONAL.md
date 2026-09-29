@@ -23,6 +23,17 @@ cancer textbook and reporting it: 136 flagged rows reviewed, 105 TRUE, 21 FALSE,
   them. "Otto and Bhatt, 2022" for PMC9583502 is a real paper with real authors,
   and neither of them is Otto or Bhatt. That is much harder to catch than a made-up
   reference, because every surface check passes.
+- **Two other error shapes showed up alongside the misattributions.** Statistics
+  that are near misses rather than inventions: the chapter says "10-30%" where the
+  source says "25-30%", which is harder to catch than a wrong number because it
+  sounds plausible. And figures that were right once and have been superseded: the
+  chapter puts the human body at 10^14 cells where the modern estimate is
+  3 x 10^13. Deciding which version of a number is current is its own piece of work.
+- **I built the workflow while doing the chapter, then wrote it down.** Read the
+  flagged sentence, find the cited source on PubMed or the FDA databases, confirm
+  the citation is real and that it supports the specific claim, then record the
+  decision and comments. I turned that into a step-by-step Workbook Update Guide so
+  the next chapter would not start from nothing.
 - **I changed the video.** The first draft was a general explainer on AI
   hallucination. It was more interesting as a plain progress report on what I had
   actually found and counted, so I dropped the framing and rebuilt it as a straight
@@ -36,6 +47,8 @@ cancer textbook and reporting it: 136 flagged rows reviewed, 105 TRUE, 21 FALSE,
 **What Claude contributed, and what I did with it.**
 - Mine: the whole fact-check, the verdicts, the evidence document, and the
   decision to re-scope the video.
+- Prof. Evin provided the workbook and the initial guidance on what the review
+  columns should contain.
 - Claude's: the beat sheet from my review record, and the diagnosis of the
   trigger-word bug.
 - Accepted: reporting the counts plainly rather than dramatising the errors.
@@ -51,5 +64,6 @@ cancer textbook and reporting it: 136 flagged rows reviewed, 105 TRUE, 21 FALSE,
   resolves proves nothing about whether the authors, the year or the claim match.
 - Understood: reporting my own numbers honestly is more useful than a narrative
   about AI risk. The counts are the finding.
-- Open: the text edits for this chapter were not applied to the repository in this
-  period.
+- Open: the text corrections went up as part of PR #46 on
+  https://github.com/Medhavy/medhavi-cancer; applying them to the chapter files is
+  still outstanding.

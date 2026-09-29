@@ -29,6 +29,10 @@ LunarLander, about why it failed and what fixed it.
 - **This became the video.** The honest version is not "here is how DQN works" but
   "here is a bug that looks like undertraining and is not". That is more useful and
   it is what actually happened.
+- **The vertical cut needed different thinking, not different cropping.** Text-heavy
+  frames that read well in landscape do not read the same way in a tall frame, and
+  the fix is to re-lay them out rather than to crop in. That was the first time I
+  had to design a frame twice for the same content.
 - The overview beat carried the same trigger-word bug as weeks 1 and 2; rebuilt
   later.
 

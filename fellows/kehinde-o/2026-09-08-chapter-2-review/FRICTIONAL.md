@@ -27,6 +27,13 @@ Then the video reporting it.
 - **The AI-only tab was not safe to skim.** Three of the 134 sentences the model
   had cleared were wrong. Spot-checking that tab is now part of how I work rather
   than an optional extra.
+- **A new error type, and a new database to learn.** Some claims here are about
+  biologics rather than small molecules, which meant verifying against the FDA
+  Purple Book rather than the Orange Book, and learning a database interface I had
+  not used before. I also hit citation-claim mismatch for the first time as a named
+  thing: the cited paper is real, the authors are right, and it simply does not
+  support the sentence it is attached to. Catching that means reading the abstract
+  or the paper, not just resolving the identifier.
 - **My supervisor changed three of my calls.** Prof. Evin reviewed the chapter and
   approved it with three minor changes, which I applied to the TextEdit guide.
   That is the first external check on my judgment in this project and it is worth
@@ -54,3 +61,5 @@ Then the video reporting it.
   sentence by sentence would have hidden that.
 - Understood: "no human review needed" is a model's opinion, not a verdict.
 - Open: text edits were pending Prof. Evin's go-ahead at the end of this period.
+  The corrections went up as part of PR #46 on
+  https://github.com/Medhavy/medhavi-cancer.

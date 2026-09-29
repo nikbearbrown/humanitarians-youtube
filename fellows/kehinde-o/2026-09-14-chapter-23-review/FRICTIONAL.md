@@ -38,6 +38,13 @@ approved as written.
   which is the part I would rather not have needed.
 - **I reversed one of my own verdicts.** On dexrazoxane, 2025 literature had shifted
   the consensus after I had already ruled. Reversed and documented.
+- **The editorial tab needed a different kind of work.** Garbled text and broken
+  characters from generation are quick to spot but are not factual verification,
+  and they cannot be fixed in the same pass. The rule I settled on is that encoding
+  repairs go in as their own commit before any content edit, because a content edit
+  made against corrupted text cannot be trusted.
+- **The AI-only tab had errors again**, as in Chapter 2, which settles it: a tab
+  marked as not needing human review still needs human review.
 - **A defect blocks the next stage.** Files 2 to 5 carry a character-encoding fault
   that corrupts Greek letters. Until it is repaired and committed, find-and-replace
   on those files fails silently, so no text edit can be trusted.
@@ -63,4 +70,7 @@ approved as written.
   me too.
 - Understood: a search-engine summary is not the source. Opening the page is the
   only check that counts.
-- Open: the encoding repair, and the text edits that depend on it.
+- Open: the encoding repair, and the text edits that depend on it. The corrections
+  went up as part of PR #46 on https://github.com/Medhavy/medhavi-cancer.
+- Open: a step-by-step Workbook Update Guide was written for this chapter, as for
+  Chapter 1, so the process stays repeatable.

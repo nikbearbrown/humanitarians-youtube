@@ -31,6 +31,11 @@ own `ami` repo, a 1.29M-parameter BiLSTM.
   the failure looked like success. Fixed by probing the bundled binary at startup
   and, when it is unusable, rendering a PNG sequence and stitching it with the
   system ffmpeg instead. Without that patch nothing on this machine renders.
+- **Audio-first was a genuinely different way to think about production.** I had
+  assumed you cut visuals and then fit narration to them. It is the reverse: the
+  narration is generated and measured first, and every visual is conformed to it.
+  Some of my beats ran long and had to be split rather than trimmed, because the
+  fix for a long beat is less script, not a faster animation.
 - **The output was not actually 4K.** The pipeline passed a flat `--scale=2`,
   which only reaches 4K if the composition is 1920 wide. Several are not. Replaced
   with a per-composition factor computed from each composition's real dimensions.
