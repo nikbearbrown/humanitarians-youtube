@@ -93,18 +93,22 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 
 ## Open items I am carrying
 
-- **Neither textbook pull request has been reviewed yet.** PR #46 has been open
-  since the start of the period and PR #48 since 17 September. Until they are
-  merged, none of the corrections are live in the textbook.
-- **A character-encoding fault blocks the text edits for Chapters 23, 25 and 30.**
-  It affects 7 files where the workbook recorded 4. Until it is repaired and
-  committed, find-and-replace fails silently on the corrupted characters, so no
-  edit made before then can be trusted.
-- **Eight of ten videos are delivered but not yet published**, so there is no
-  engagement data to act on, and the weekly commenting requirement cannot start
-  in earnest until they are live.
-- **Chapter 23 went up as its own pull request because of a mistake I made.** I
-  wrote those edits on `main` instead of the `text-edits` branch, so they could
-  not join PR #46 and had to open separately as PR #48. Noted on the PR itself.
-- All seven chapters have completed reviews; every correction is in PR #46 or
-  PR #48.
+- **Repair the character encoding before applying any text edits.** Several
+  chapter files still carry corrupted characters from generation: Greek letters,
+  em dashes and accented characters, and in one Chapter 30 file eight broken
+  arrows. Chapter 30 is the worst, 7 files against the 4 its workbook recorded;
+  Chapter 25 needs 2 files repaired. This has to be committed first, because the
+  corrections are applied by find-and-replace and a search against a corrupted
+  character matches nothing and reports no error. An edit made before the repair
+  looks applied and is not.
+
+## Waiting on others
+
+Not mine to action, but they hold up the next steps:
+
+- **Neither textbook pull request has been reviewed.** PR #46 has been open since
+  the start of the period, PR #48 since 17 September. Until they are merged, none
+  of the corrections are live in the textbook.
+- **Eight of the ten videos are delivered but not yet published**, so there is no
+  engagement data to act on and the weekly commenting requirement cannot start in
+  earnest until they are live.
