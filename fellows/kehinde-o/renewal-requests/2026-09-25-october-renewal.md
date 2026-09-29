@@ -10,21 +10,51 @@
 
 ## What the current period produced
 
-Six weeks of fact-check auditing on the AI-generated Medhavy cancer textbook. Every flagged claim across seven chapters (1, 2, 6, 9, 23, 25 and 30) was verified against authoritative sources including PubMed, PMC, FDA Orange Book, FDA Purple Book, NCI SEER, CDC, and WHO. For each row I recorded a Reviewer Decision (Approved, Needs Revision, or Rejected), Reviewer Comments with source URLs, and a Suggested Phrase with corrected text.
+Seven chapters of the AI-generated Medhavy cancer textbook audited against
+primary sources, and ten videos produced. Every figure below comes from a
+reviewed workbook or an evidence document, not an estimate.
 
-Text corrections were prepared in exact .mdx format and submitted via PR #46, covering Chapters 1, 2, 23, 25 and 30. Chapters 6 and 9 are reviewed and their evidence documents and TextEdit guides are written; their corrections are not yet submitted. Encoding fixes were committed separately from content edits. For each chapter I created a detailed Evidence Document (Word format) with the full source chain for every claim checked, and a step-by-step Workbook Update Guide so future auditors can follow the same process.
+- **Seven chapters audited:** 1, 2, 6, 9, 23, 25 and 30. **325 rows formally
+  reviewed and ruled on**, drawn from 418 flagged assertions. In the three
+  chapters where the full sentence count was recorded (23, 25 and 30) those
+  assertions were screened out of 2,416 sentences.
+- **A patient-safety finding in Chapter 23.** The chapter presents venetoclax for
+  multiple myeloma as established practice. It is not an FDA-approved use, the
+  label carries a mortality warning against that combination, and the CANOVA
+  phase III trial missed its primary endpoint with more treatment-emergent deaths
+  in the venetoclax arm. Chapter 23's evidence document carries **100 unique
+  source URLs**, every one machine-verified.
+- **A method that audits itself.** Chapter 23 was checked three times, Chapter 30
+  four. Those passes found errors in my own review, not only in the textbook: two
+  quotations attributed to the wrong papers, five wrong first authors, links
+  truncated at 46 characters, and three sources cited on rows they do not
+  support. One of my own verdicts was reversed on newer evidence.
+- **Errors are near misses, not inventions.** Real identifiers with the wrong
+  authors, "10-30%" where the source says "25-30%", a drug filed in the wrong
+  class, a sentence that was true when written and is not now. In Chapter 25,
+  re-checking a completed earlier pass reversed six of its calls, and twice the
+  earlier plan was going to correct a sentence that was already right.
+- **Ten videos, 4K in both aspect ratios**, five project updates and five STEM
+  explainers, each built on measured work. Two are published; eight are delivered
+  and awaiting the review pipeline.
 
-Ten Brutalist-style videos across the period: one STEM/AI explainer and one project update per week. All videos are 4K, dual aspect ratio (16x9 and 9x16), and follow the required intro line and naming conventions.
+Every claim was verified against PubMed, PMC, the FDA Orange and Purple Books,
+NCI SEER, CDC and WHO. For each row I recorded a Reviewer Decision, Reviewer
+Comments with source URLs, and a Suggested Phrase with corrected text. Text
+corrections were prepared in exact .mdx format and submitted via PR #46, covering
+Chapters 1, 2, 23, 25 and 30; Chapters 6 and 9 are reviewed and documented but
+not yet submitted. Encoding fixes were committed separately from content edits,
+because a content edit made against corrupted characters fails silently.
 
 ### Evidence
 
 | Week | Commit | Drive | Video | Log |
 |---|---|---|---|---|
-| 1 — Ch 1 review | [`b188fb0`](https://github.com/nikbearbrown/humanitarians-youtube/commit/b188fb0) | [folder](https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp) | [drive](https://drive.google.com/drive/folders/1oKxwuTMsZYwdl_gfUAo0DaOryQfh5yue) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-04-chapter-1-review/FRICTIONAL.md) |
-| 2 — Ch 2 review | [`833713b`](https://github.com/Medhavy/medhavi-cancer/commit/833713b), [`73f864c`](https://github.com/nikbearbrown/humanitarians-youtube/commit/73f864c) | [folder](https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp) | [watch](https://www.youtube.com/watch?v=mVGxJ4ssHQ4) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-08-chapter-2-review/FRICTIONAL.md) |
-| 3 — Ch 23 review | [`1e98cee`](https://github.com/Medhavy/medhavi-cancer/commit/1e98cee) | [folder](https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp) | [watch](https://www.youtube.com/watch?v=GBjkrRlyDSE) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-14-chapter-23-review/FRICTIONAL.md) |
-| 4 — Ch 25 review | [`540094a`](https://github.com/Medhavy/medhavi-cancer/commit/540094a) | [folder](https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp) | [drive](https://drive.google.com/drive/folders/1JCH2BQ_5HSASV6kWpwhJ1glXuvOgBMgQ) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-chapter-25-review/FRICTIONAL.md) |
-| 5 — Ch 30 review | [`3b961f3`](https://github.com/Medhavy/medhavi-cancer/commit/3b961f3), [`af0dc27`](https://github.com/Medhavy/medhavi-cancer/commit/af0dc27) | [folder](https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp) | [drive](https://drive.google.com/drive/folders/1fDzojEz0dyZ_P2kISW7nRO68KhFGasvq) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-chapter-30-review/FRICTIONAL.md) |
+| 1 — Ch 1 review | [`b188fb0`](https://github.com/nikbearbrown/humanitarians-youtube/commit/b188fb0) | [folder](https://drive.google.com/drive/folders/1oKxwuTMsZYwdl_gfUAo0DaOryQfh5yue) | not yet published | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-04-chapter-1-review/FRICTIONAL.md) |
+| 2 — Ch 2 review | [`833713b`](https://github.com/Medhavy/medhavi-cancer/commit/833713b), [`73f864c`](https://github.com/nikbearbrown/humanitarians-youtube/commit/73f864c) | [folder](https://drive.google.com/drive/folders/15Lul4P00YvB-R_sC5WcuW-umAPfyzRsq) | [watch](https://www.youtube.com/watch?v=mVGxJ4ssHQ4) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-08-chapter-2-review/FRICTIONAL.md) |
+| 3 — Ch 23 review | [`1e98cee`](https://github.com/Medhavy/medhavi-cancer/commit/1e98cee) | [folder](https://drive.google.com/drive/folders/1A0ItV5yQiGQORX4Jc56LnyhySUPVUuSe) | [watch](https://www.youtube.com/watch?v=GBjkrRlyDSE) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-14-chapter-23-review/FRICTIONAL.md) |
+| 4 — Ch 25 review | [`540094a`](https://github.com/Medhavy/medhavi-cancer/commit/540094a) | [folder](https://drive.google.com/drive/folders/1JCH2BQ_5HSASV6kWpwhJ1glXuvOgBMgQ) | not yet published | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-chapter-25-review/FRICTIONAL.md) |
+| 5 — Ch 30 review | [`3b961f3`](https://github.com/Medhavy/medhavi-cancer/commit/3b961f3), [`af0dc27`](https://github.com/Medhavy/medhavi-cancer/commit/af0dc27) | [folder](https://drive.google.com/drive/folders/1fDzojEz0dyZ_P2kISW7nRO68KhFGasvq) | not yet published | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-chapter-30-review/FRICTIONAL.md) |
 | 6 — renewal, cleanup | [`ff518e7`](https://github.com/Medhavy/medhavi-cancer/commit/ff518e7), [`c96aa1c`](https://github.com/Medhavy/medhavi-cancer/commit/c96aa1c), [`52230fe`](https://github.com/Medhavy/medhavi-cancer/commit/52230fe) | -- | -- | [folder organization](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/renewal-requests/) |
 
 Pull requests: [PR #46 (medhavi-cancer)](https://github.com/Medhavy/medhavi-cancer/pull/46) · [PR #87 (humanitarians-youtube, merged)](https://github.com/nikbearbrown/humanitarians-youtube/pull/87) · [PR #155 (humanitarians-youtube, open)](https://github.com/nikbearbrown/humanitarians-youtube/pull/155)
@@ -33,13 +63,13 @@ Pull requests: [PR #46 (medhavi-cancer)](https://github.com/Medhavy/medhavi-canc
 
 | Week | Topic | Video | Drive | Log |
 |---|---|---|---|---|
-| [21-27 Aug](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-04-what-the-marks-weigh) | How AI-generated medical text is audited for factual accuracy | [drive](https://drive.google.com/drive/folders/13i1R1XG0UYKjdUMEOz_dbqaBJ21Vnl-M) | [folder](https://drive.google.com/drive/folders/13i1R1XG0UYKjdUMEOz_dbqaBJ21Vnl-M) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-04-what-the-marks-weigh/FRICTIONAL.md) |
-| [28 Aug - 3 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-08-the-target-that-moved) | Source verification methodology using PubMed and FDA databases | [drive](https://drive.google.com/drive/folders/1oJS7pFOMbxEOIqplWqb8mqq-RU6LS0JA) | [folder](https://drive.google.com/drive/folders/1oJS7pFOMbxEOIqplWqb8mqq-RU6LS0JA) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-08-the-target-that-moved/FRICTIONAL.md) |
-| [4-10 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-14-further-but-better) | Systematic review methodology applied to AI-generated content | [drive](https://drive.google.com/drive/folders/1ic6obqGRoH9rKHU7ybxzyAuslmbziWAr) | [folder](https://drive.google.com/drive/folders/1ic6obqGRoH9rKHU7ybxzyAuslmbziWAr) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-14-further-but-better/FRICTIONAL.md) |
-| [11-17 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-the-number-that-shrank) | Statistical accuracy in cancer epidemiology data | [drive](https://drive.google.com/drive/folders/1azgy5N9vnBEQlgyroc69QP17LDnrHEnm) | [folder](https://drive.google.com/drive/folders/1azgy5N9vnBEQlgyroc69QP17LDnrHEnm) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-the-number-that-shrank/FRICTIONAL.md) |
-| [18-24 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-backwards-along-the-tape) | Data quality assessment in health informatics | [drive](https://drive.google.com/drive/folders/1HEZz2dRWLqM9K28Zt-8gZzk5p9KaFoZt) | [folder](https://drive.google.com/drive/folders/1HEZz2dRWLqM9K28Zt-8gZzk5p9KaFoZt) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-backwards-along-the-tape/FRICTIONAL.md) |
+| [21-27 Aug](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-04-what-the-marks-weigh) | **What the Marks Weigh** — how much information a Yoruba tone mark carries, measured on my own [ami](https://github.com/Kenny0bi/ami) model | not yet published | [folder](https://drive.google.com/drive/folders/13i1R1XG0UYKjdUMEOz_dbqaBJ21Vnl-M) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-04-what-the-marks-weigh/FRICTIONAL.md) |
+| [28 Aug - 3 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-08-the-target-that-moved) | **The Target That Moved** — a deep Q-learning agent that scored worse than random, and the moving target behind it ([repo](https://github.com/Kenny0bi/Deep-Q-learning-lunarlander)) | not yet published | [folder](https://drive.google.com/drive/folders/1oJS7pFOMbxEOIqplWqb8mqq-RU6LS0JA) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-08-the-target-that-moved/FRICTIONAL.md) |
+| [4-10 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-14-further-but-better) | **Further, But Better** — post-training quantization: why the winning method moves weights further from the originals ([quantlab](https://github.com/Kenny0bi/quantlab)) | not yet published | [folder](https://drive.google.com/drive/folders/1ic6obqGRoH9rKHU7ybxzyAuslmbziWAr) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-14-further-but-better/FRICTIONAL.md) |
+| [11-17 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-the-number-that-shrank) | **The Number That Shrank** — drug-safety signals in 1.2M FDA adverse-event cases, and why a ratio is only as good as the evidence behind it ([repo](https://github.com/Kenny0bi/adverse-event-pipeline)) | not yet published | [folder](https://drive.google.com/drive/folders/1azgy5N9vnBEQlgyroc69QP17LDnrHEnm) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-the-number-that-shrank/FRICTIONAL.md) |
+| [18-24 Sep](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-backwards-along-the-tape) | **Backwards Along the Tape** — what `backward()` actually computes, on a from-scratch NumPy autograd engine ([ember](https://github.com/Kenny0bi/ember)) | not yet published | [folder](https://drive.google.com/drive/folders/1HEZz2dRWLqM9K28Zt-8gZzk5p9KaFoZt) | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-backwards-along-the-tape/FRICTIONAL.md) |
 
-25 hours per week across six weeks (150 total). Weekly Frictional logs: one per work folder, listed in [README.md](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/README.md).
+Weekly hours: [weekly-hours/README.md](../weekly-hours/README.md) — 25 hours per week across six weeks, 150 in total, against an agreement minimum of 20. Weekly frictional logs: one per work folder, listed in [README.md](../README.md).
 
 ## Plan for the requested period
 
@@ -58,4 +88,15 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 
 ## Open items I am carrying
 
-Chapters 6 and 9 are fact-checked and documented but their text corrections are not yet submitted; they go in first in the requested period. The other five chapters have completed reviews and their corrections are in PR #46.
+- **Chapters 6 and 9** are fact-checked and documented, with evidence documents
+  and TextEdit guides written, but their text corrections are not yet submitted.
+  They go in first in the requested period.
+- **A character-encoding fault blocks the text edits for Chapters 23, 25 and 30.**
+  It affects 7 files where the workbook recorded 4. Until it is repaired and
+  committed, find-and-replace fails silently on the corrupted characters, so no
+  edit made before then can be trusted.
+- **Eight of ten videos are delivered but not yet published**, so there is no
+  engagement data to act on, and the weekly commenting requirement cannot start
+  in earnest until they are live.
+- The other five chapters have completed reviews and their corrections are in
+  [PR #46](https://github.com/Medhavy/medhavi-cancer/pull/46).
