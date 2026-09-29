@@ -20,7 +20,7 @@ The Editorial tab had formatting and encoding issues from AI generation (garbled
 
 ## What I did next
 
-I worked through all three tabs systematically. For the main chapter and AI-Only tabs, I followed the standard verification process. For the Editorial tab, I documented the formatting issues and noted that they need encoding fixes as a separate commit before any content edits (per the standing rule in CLAUDE.md).
+I worked through all three tabs systematically. For the main chapter and AI-Only tabs, I followed the standard verification process. For the Editorial tab, I documented the formatting issues and noted that they need encoding fixes as a separate commit before any content edits. That is now a standing rule in my own workflow: a content edit made against corrupted text cannot be trusted, because find-and-replace fails silently on the broken characters.
 
 I created a step-by-step Workbook Update Guide for Chapter 23, the same as I did for Chapter 1.
 
