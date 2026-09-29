@@ -1,35 +1,71 @@
-# Frictional Log -- What the Marks Weigh
+# Frictional log — Explainer: What the Marks Weigh
 
-**Date:** September 4, 2026
-**Fellow:** Kehinde Obidele
-**Work:** Brutalist video (STEM/AI explainer, Week 1)
+## 2026-09-04 — first reel, and most of the week went on the toolkit
 
-## What I set out to do
+- **Video:** not yet published
+- **Drive:** https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp (`Medhavy_Kehinde/STEM Topic/what-the-marks-weigh/`)
+- **Report:** [REPORT.md](REPORT.md)
+- **Source project:** https://github.com/Kenny0bi/ami
+- **Paired report:** [Chapter One, Reviewed](../2026-09-04-chapter-1-review/)
 
-Produce a STEM/AI explainer video for Week 1 using the Brutalist toolkit (Fellow tier). The video is about Yoruba diacritics: how much information a tone mark actually carries, measured rather than asserted, and why that number decides whether restoring the marks needs a model or a lookup table. It is built on my own `ami` repository, a 1.29M-parameter BiLSTM trained on MENYO-20k.
+**What I was working on.** My first Humanitarians AI explainer, on Yoruba
+diacritics: how much information a tone mark actually carries, and why measuring
+that decides whether restoring them needs a model or a lookup table. Built on my
+own `ami` repo, a 1.29M-parameter BiLSTM.
 
-## What I expected
+**What I tried, and what I expected.**
+- I expected the video to be the work and the toolkit to be a detail. It was the
+  other way round: most of this week went on getting Brutalist to run at all.
+- I expected to narrate the entropy result as a headline number and move on.
 
-I expected the Brutalist workflow to be straightforward: write a beat sheet, create PEDAGOGY.md, generate audio with Kokoro, compile, and render. I expected to produce both 16:9 and 9:16 versions.
+**Where it resisted, and what I did next.**
+- **The install would not resolve.** `kokoro-onnx` requires onnxruntime 1.20.1 or
+  newer; there is no x86_64 macOS wheel above 1.19.2, and this is an Intel Mac.
+  Pip gave ResolutionImpossible. Resolved by pinning `onnxruntime==1.19.2` and
+  installing `kokoro-onnx==0.4.9 --no-deps` with its dependencies by hand.
+- **The voice model never downloaded**, because the pip failure aborted the step
+  that fetches it. Pulled it manually with curl.
+- **Renders produced no video and said nothing.** Remotion's bundled ffmpeg
+  aborts on macOS 12: its `libavdevice` links a symbol that only exists on macOS
+  13 and later. Every frame rendered correctly and the encode died silently, so
+  the failure looked like success. Fixed by probing the bundled binary at startup
+  and, when it is unusable, rendering a PNG sequence and stitching it with the
+  system ffmpeg instead. Without that patch nothing on this machine renders.
+- **Audio-first was a genuinely different way to think about production.** I had
+  assumed you cut visuals and then fit narration to them. It is the reverse: the
+  narration is generated and measured first, and every visual is conformed to it.
+  Some of my beats ran long and had to be split rather than trimmed, because the
+  fix for a long beat is less script, not a faster animation.
+- **The output was not actually 4K.** The pipeline passed a flat `--scale=2`,
+  which only reaches 4K if the composition is 1920 wide. Several are not. Replaced
+  with a per-composition factor computed from each composition's real dimensions.
+- **Animations were being cut off before their payoff**, because clips longer than
+  their narration were truncated rather than retimed.
+- **A number was rendered wrong on screen.** The verdict card strips a leading
+  numeral, so "1.64 bits" displayed as "64 bits". The rule I now follow is never to
+  start one of those lines with a digit.
+- **The outro carried the wrong channel.** The stock outro hardcodes
+  @NikBearBrown, and the shorts tool appends an endcard with that handle by
+  default. It shipped on a short and I caught it on playback. I had a dedicated
+  HAI outro component built, and the endcard stripped.
 
-## Where it resisted
+**What Claude contributed, and what I did with it.**
+- Mine: the topic, the `ami` model and its measurements, and the decision about
+  what the video should argue.
+- Claude's: the beat sheet in the toolkit's conventions, the diagnosis of the
+  ffmpeg and scaling failures, and the patches for both.
+- Accepted: the PNG-sequence fallback, the per-composition 4K scaling, and a
+  separate HAI outro component rather than bending the stock one.
+- Rejected/changed: the first outro carried a Humanitarians AI monogram that
+  looked wrong at the end of a cream page. I asked for it removed; it is now
+  off by default.
+- Evidence: rendered masters on the Drive folder above; beat sheet in this folder.
 
-Learning the Brutalist toolkit for the first time took longer than expected. Understanding how the beat_sheet.json structure maps to the final video required reading the skill documentation carefully. The audio-first philosophy was different from how I had thought about video production before.
-
-Getting the narration pacing right took a few iterations. Some beats were too long and needed to be split. The mandatory intro ("Hi, I am Kehinde Obidele and this video is about...") had to be the very first beat.
-
-## What I did next
-
-I worked through the toolkit's own build order: write the beat sheet, write PEDAGOGY.md with a learning objective and mark it VERDICT: PASS, generate the narration with Kokoro, then compile the review cut. The gate is real, not ceremonial: audio will not generate until the pedagogy review passes.
-
-## What Claude or another person contributed
-
-Claude helped draft the initial beat sheet narration. I revised the wording to match how I speak and checked every figure against what my own model actually measured, rather than letting a number stand because it sounded right.
-
-## What I accepted, changed, or rejected
-
-I accepted the audio-first workflow after seeing how it produces consistent timing. I changed some of Claude's suggested narration to be more personal and grounded in my own measurements. I rejected overly technical language that would lose a general audience.
-
-## Result
-
-Week 1 STEM/AI explainer video completed. Both 16:9 and 9:16 versions rendered. Video uploaded to Google Drive. Source files (beat_sheet.json, PEDAGOGY.md, README.md) committed to GitHub.
+**What I understand now, and what I still do not.**
+- Understood: audio-first is not a style preference. Narration length is the clock
+  every visual is conformed to, so fixing timing by hand is always wrong.
+- Understood: a render that produces no file is easier to catch than a render that
+  produces a wrong one. The silent encode failure cost hours; the "64 bits" bug
+  shipped because I checked the file existed rather than watching it.
+- Not resolved: the video is not published yet, so I have no view numbers or
+  comments to learn from.

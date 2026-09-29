@@ -1,37 +1,69 @@
-# Frictional Log -- Chapter 1 Fact-Check Review
+# Frictional log — Chapter One, Reviewed
 
-**Date:** September 4, 2026
-**Fellow:** Kehinde Obidele
-**Work:** Fact-check review of Chapter 1 (Introduction to Cancer Biology)
+## 2026-09-04 — first chapter closed, and the first video about my own work
 
-## What I set out to do
+- **Video:** not yet published
+- **Drive:** https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp (`Medhavy_Kehinde/Fact Check/Chapter 1/`)
+- **Report:** [REPORT.md](REPORT.md)
+- **Project repository:** https://github.com/Medhavy/medhavi-cancer (private), branch `text-edits`
+- **Paired explainer:** [What the Marks Weigh](../2026-09-04-what-the-marks-weigh/)
 
-Review every flagged claim in the Chapter 1 workbook (`01_factcheck_review.xlsx`). For each row, verify the claim against authoritative sources and record a Reviewer Decision, Reviewer Comments with source URLs, and a Suggested Phrase for any corrections.
+**What I was working on.** Closing out the Chapter 1 fact-check of the Medhavy
+cancer textbook and reporting it: 136 flagged rows reviewed, 105 TRUE, 21 FALSE,
+10 FLAGGED, with an evidence document recording the source chain for each.
 
-## What I expected
+**What I tried, and what I expected.**
+- I expected the errors to be obvious inventions. Most were not.
+- The video was originally going to be about AI hallucination in general, using
+  fabricated citations as the hook.
 
-I expected most TRUE-flagged claims to be accurate and the FALSE/FLAGGED ones to need corrections. I assumed the AI-generated citations would point to real papers.
+**Where it resisted, and what I did next.**
+- **The most common failure was not invention but misattribution.** The AI
+  produced real, resolvable PMC identifiers and attached the wrong authors to
+  them. "Otto and Bhatt, 2022" for PMC9583502 is a real paper with real authors,
+  and neither of them is Otto or Bhatt. That is much harder to catch than a made-up
+  reference, because every surface check passes.
+- **Two other error shapes showed up alongside the misattributions.** Statistics
+  that are near misses rather than inventions: the chapter says "10-30%" where the
+  source says "25-30%", which is harder to catch than a wrong number because it
+  sounds plausible. And figures that were right once and have been superseded: the
+  chapter puts the human body at 10^14 cells where the modern estimate is
+  3 x 10^13. Deciding which version of a number is current is its own piece of work.
+- **I built the workflow while doing the chapter, then wrote it down.** Read the
+  flagged sentence, find the cited source on PubMed or the FDA databases, confirm
+  the citation is real and that it supports the specific claim, then record the
+  decision and comments. I turned that into a step-by-step Workbook Update Guide so
+  the next chapter would not start from nothing.
+- **I changed the video.** The first draft was a general explainer on AI
+  hallucination. It was more interesting as a plain progress report on what I had
+  actually found and counted, so I dropped the framing and rebuilt it as a straight
+  Chapter 1 report using the fellows format rather than the explainer one.
+- **A correction in the video never appeared.** The overview beat is supposed to
+  type a sentence and then correct a word in place. The trigger word had been
+  written with its punctuation attached, and the component strips punctuation
+  before matching, so the match never fired and the correction never played. This
+  affected this reel and two others before it was found. All were rebuilt.
 
-## Where it resisted
+**What Claude contributed, and what I did with it.**
+- Mine: the whole fact-check, the verdicts, the evidence document, and the
+  decision to re-scope the video.
+- Prof. Evin provided the workbook and the initial guidance on what the review
+  columns should contain.
+- Claude's: the beat sheet from my review record, and the diagnosis of the
+  trigger-word bug.
+- Accepted: reporting the counts plainly rather than dramatising the errors.
+- Rejected/changed: the original hallucination framing, and an early draft that
+  described the errors as dangerous without qualification. The errors are specific
+  and mostly attribution or currency problems; overstating them would misrepresent
+  the chapter.
+- Evidence: `01_factcheck_review_REVIEWED.xlsx`, `Chapter_01_Evidence_Document.docx`
+  and two step-by-step guides, held in the project working folder.
 
-The biggest friction was fabricated citations. The AI generated real-looking PMCIDs paired with wrong author names. For example, "Otto and Bhatt, 2022" was assigned to PMC9583502, but those are not the actual authors of that paper. I had to look up each PMCID on PubMed to verify the real authors.
-
-Some statistics were close but not accurate. The textbook said "10-30%" in places where the source actually said "25-30%." These near-misses are harder to catch than outright errors because they sound plausible.
-
-Outdated figures were another issue. The textbook cited 10^14 cells in the human body, but modern estimates put the number at 3 x 10^13. Deciding which version of a number is "correct" required finding the most current consensus.
-
-## What I did next
-
-I built a systematic workflow: read the flagged sentence, locate the cited source on PubMed or FDA databases, confirm whether the citation is real and the claim is supported, then record my decision and comments. I created a step-by-step Workbook Update Guide so the process is repeatable.
-
-## What Claude or another person contributed
-
-Claude helped me look up PMCIDs and cross-reference author names against PubMed records. I verified every result myself before recording it. Evin (PM) provided the workbook and initial guidance on what the review columns should contain.
-
-## What I accepted, changed, or rejected
-
-I reviewed 136 rows total: 105 TRUE, 21 FALSE, 10 FLAGGED. I accepted claims that matched their cited sources. I marked claims as Needs Revision when the citation was wrong, the statistics were inaccurate, or the authors were fabricated. I rejected claims with no supporting evidence at all. I created an Evidence Document (Word format) with the full source chain for every claim checked.
-
-## Result
-
-Chapter 1 fact-check review complete. Workbook updates done. Evidence document created. Text corrections submitted as part of PR #46 on Medhavy/medhavi-cancer.
+**What I understand now, and what I still do not.**
+- Understood: a citation can be real and still be wrong. Checking that a PMCID
+  resolves proves nothing about whether the authors, the year or the claim match.
+- Understood: reporting my own numbers honestly is more useful than a narrative
+  about AI risk. The counts are the finding.
+- Open: the text corrections went up as part of PR #46 on
+  https://github.com/Medhavy/medhavi-cancer; applying them to the chapter files is
+  still outstanding.
