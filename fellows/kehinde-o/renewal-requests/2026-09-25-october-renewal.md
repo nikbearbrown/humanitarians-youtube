@@ -10,9 +10,9 @@
 
 ## What the current period produced
 
-Six weeks of fact-check auditing on the AI-generated Medhavy cancer textbook. Every flagged claim across five chapters (1, 2, 23, 25, and 30) was verified against authoritative sources including PubMed, PMC, FDA Orange Book, FDA Purple Book, NCI SEER, CDC, and WHO. For each row I recorded a Reviewer Decision (Approved, Needs Revision, or Rejected), Reviewer Comments with source URLs, and a Suggested Phrase with corrected text.
+Six weeks of fact-check auditing on the AI-generated Medhavy cancer textbook. Every flagged claim across seven chapters (1, 2, 6, 9, 23, 25 and 30) was verified against authoritative sources including PubMed, PMC, FDA Orange Book, FDA Purple Book, NCI SEER, CDC, and WHO. For each row I recorded a Reviewer Decision (Approved, Needs Revision, or Rejected), Reviewer Comments with source URLs, and a Suggested Phrase with corrected text.
 
-Text corrections were prepared in exact .mdx format and submitted via PR #46 covering all five chapters. Encoding fixes were committed separately from content edits. For each chapter I created a detailed Evidence Document (Word format) with the full source chain for every claim checked, and a step-by-step Workbook Update Guide so future auditors can follow the same process.
+Text corrections were prepared in exact .mdx format and submitted via PR #46, covering Chapters 1, 2, 23, 25 and 30. Chapters 6 and 9 are reviewed and their evidence documents and TextEdit guides are written; their corrections are not yet submitted. Encoding fixes were committed separately from content edits. For each chapter I created a detailed Evidence Document (Word format) with the full source chain for every claim checked, and a step-by-step Workbook Update Guide so future auditors can follow the same process.
 
 Ten Brutalist-style videos across the period: one STEM/AI explainer and one project update per week. All videos are 4K, dual aspect ratio (16x9 and 9x16), and follow the required intro line and naming conventions.
 
@@ -43,7 +43,7 @@ Pull requests: [PR #46 (medhavi-cancer)](https://github.com/Medhavy/medhavi-canc
 
 ## Plan for the requested period
 
-Review order follows Prof Evin's assigned sequence. Chapters completed so far: 14 (Krithi), 23, 25, 30, 1, 6, 9, 2 (Kehinde). Each sprint is gated: I will not move to the next chapter until the current chapter's fact-check review, text edit PR, and evidence document are complete.
+Review order follows Prof Evin's assigned sequence. Chapters completed so far: 1, 2, 6, 9, 23, 25 and 30, seven in total. Each sprint is gated: I will not move to the next chapter until the current chapter's fact-check review, text edit PR, and evidence document are complete.
 
 1. **Ch 10 and Ch 13** (1-7 Oct). Fact-check review of Chapters 10 and 13. Submit text edit PR for Chapter 10. Produce 2 Brutalist videos (1 STEM/AI explainer + 1 project update). Weekly YouTube engagement.
 2. **Ch 19 and Ch 27** (8-14 Oct). Fact-check review of Chapters 19 and 27. Submit text edit PRs for Chapters 13 and 19. Produce 2 Brutalist videos. Weekly YouTube engagement.
@@ -58,4 +58,4 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 
 ## Open items I am carrying
 
-None at this time. All five chapters from the current period have completed fact-check reviews, and PR #46 is submitted.
+Chapters 6 and 9 are fact-checked and documented but their text corrections are not yet submitted; they go in first in the requested period. The other five chapters have completed reviews and their corrections are in PR #46.

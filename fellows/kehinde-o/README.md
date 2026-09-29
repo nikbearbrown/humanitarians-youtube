@@ -26,11 +26,11 @@ I am reviewing the 38-chapter Medhavy cancer textbook for factual accuracy. The 
 | Folder | Date | Type | Description |
 |---|---|---|---|
 | [2026-09-04-chapter-1-review](2026-09-04-chapter-1-review/) | Sep 4, 2026 | Fact-check | Chapter 1 review: 136 rows (105 TRUE, 21 FALSE, 10 FLAGGED). Evidence doc and workbook update guide created. |
-| [2026-09-04-what-the-marks-weigh](2026-09-04-what-the-marks-weigh/) | Sep 4, 2026 | STEM video | Week 1 STEM/AI explainer: what AI fact-checking looks like in practice. |
+| [2026-09-04-what-the-marks-weigh](2026-09-04-what-the-marks-weigh/) | Sep 4, 2026 | STEM video | Week 1 STEM/AI explainer: how much information a Yoruba tone mark carries, measured on my own `ami` model. |
 | [2026-09-08-chapter-2-review](2026-09-08-chapter-2-review/) | Sep 8, 2026 | Fact-check | Chapter 2 review complete. Text edits submitted in PR #46. |
-| [2026-09-08-the-target-that-moved](2026-09-08-the-target-that-moved/) | Sep 8, 2026 | Project update | Week 2 project update: examples of errors found in Chapters 1 and 2. |
+| [2026-09-08-the-target-that-moved](2026-09-08-the-target-that-moved/) | Sep 8, 2026 | STEM video | Week 2 STEM/AI explainer: a deep Q-learning agent that scored worse than random, and the moving target behind it. |
 | [2026-09-14-chapter-23-review](2026-09-14-chapter-23-review/) | Sep 14, 2026 | Fact-check | Chapter 23 review: 86 rows across three tabs. Workbook updates complete. |
-| [2026-09-14-further-but-better](2026-09-14-further-but-better/) | Sep 14, 2026 | STEM video | Week 3 STEM/AI explainer: lessons from reviewing multiple chapters. |
+| [2026-09-14-further-but-better](2026-09-14-further-but-better/) | Sep 14, 2026 | STEM video | Week 3 STEM/AI explainer: post-training quantization, and why the winning method moves weights further from the originals. |
 | [2026-09-24-chapter-25-review](2026-09-24-chapter-25-review/) | Sep 24, 2026 | Fact-check | Chapter 25 review: 288 sentences, 45 flagged, 22 in scope. Three audit passes. |
 | [2026-09-24-the-number-that-shrank](2026-09-24-the-number-that-shrank/) | Sep 24, 2026 | STEM video | Week 4 STEM/AI explainer: FAERS pharmacovigilance and disproportionality ratios. |
 | [2026-09-24-chapter-30-review](2026-09-24-chapter-30-review/) | Sep 24, 2026 | Fact-check | Chapter 30 review: 1,654 sentences, 55 flagged, 111 evidence rows. Four audit passes. |
