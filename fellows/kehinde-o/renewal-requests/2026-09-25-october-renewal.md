@@ -57,7 +57,7 @@ because a content edit made against corrupted characters fails silently.
 | 5 — Ch 30 review | [`3b961f3`](https://github.com/Medhavy/medhavi-cancer/commit/3b961f3), [`af0dc27`](https://github.com/Medhavy/medhavi-cancer/commit/af0dc27) | [folder](https://drive.google.com/drive/folders/1fDzojEz0dyZ_P2kISW7nRO68KhFGasvq) | not yet published | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-chapter-30-review/FRICTIONAL.md) |
 | 6 — renewal, cleanup | [`ff518e7`](https://github.com/Medhavy/medhavi-cancer/commit/ff518e7), [`c96aa1c`](https://github.com/Medhavy/medhavi-cancer/commit/c96aa1c), [`52230fe`](https://github.com/Medhavy/medhavi-cancer/commit/52230fe) | -- | -- | [folder organization](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/renewal-requests/) |
 
-Pull requests: [PR #46 (medhavi-cancer)](https://github.com/Medhavy/medhavi-cancer/pull/46) · [PR #87 (humanitarians-youtube, merged)](https://github.com/nikbearbrown/humanitarians-youtube/pull/87) · [PR #155 (humanitarians-youtube, open)](https://github.com/nikbearbrown/humanitarians-youtube/pull/155)
+Pull requests: [PR #46 (medhavi-cancer, open)](https://github.com/Medhavy/medhavi-cancer/pull/46) · [PR #87 (humanitarians-youtube, merged)](https://github.com/nikbearbrown/humanitarians-youtube/pull/87) · [PR #157 (humanitarians-youtube, open)](https://github.com/nikbearbrown/humanitarians-youtube/pull/157)
 
 ## STEM topics
 
