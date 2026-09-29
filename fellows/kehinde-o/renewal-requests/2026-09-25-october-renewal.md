@@ -40,11 +40,16 @@ reviewed workbook or an evidence document, not an estimate.
 
 Every claim was verified against PubMed, PMC, the FDA Orange and Purple Books,
 NCI SEER, CDC and WHO. For each row I recorded a Reviewer Decision, Reviewer
-Comments with source URLs, and a Suggested Phrase with corrected text. Text
-corrections were prepared in exact .mdx format and submitted via PR #46, covering
-Chapters 1, 2, 23, 25 and 30; Chapters 6 and 9 are reviewed and documented but
-not yet submitted. Encoding fixes were committed separately from content edits,
-because a content edit made against corrupted characters fails silently.
+Comments with source URLs, and a Suggested Phrase with corrected text.
+
+Text corrections were prepared in exact .mdx format and submitted as two pull
+requests on the textbook repository:
+[PR #46](https://github.com/Medhavy/medhavi-cancer/pull/46) carries Chapters 1,
+2, 6, 9, 25 and 30, and [PR #48](https://github.com/Medhavy/medhavi-cancer/pull/48)
+carries Chapter 23 on its own. PR #46 is on the shared `text-edits` branch, so it
+also contains Chapter 14, which is Krithi's work rather than mine. Encoding fixes
+were committed separately from content edits, because a content edit made against
+corrupted characters fails silently.
 
 ### Evidence
 
@@ -57,7 +62,7 @@ because a content edit made against corrupted characters fails silently.
 | 5 — Ch 30 review | [`3b961f3`](https://github.com/Medhavy/medhavi-cancer/commit/3b961f3), [`af0dc27`](https://github.com/Medhavy/medhavi-cancer/commit/af0dc27) | [folder](https://drive.google.com/drive/folders/1fDzojEz0dyZ_P2kISW7nRO68KhFGasvq) | not yet published | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-chapter-30-review/FRICTIONAL.md) |
 | 6 — renewal, cleanup | [`ff518e7`](https://github.com/Medhavy/medhavi-cancer/commit/ff518e7), [`c96aa1c`](https://github.com/Medhavy/medhavi-cancer/commit/c96aa1c), [`52230fe`](https://github.com/Medhavy/medhavi-cancer/commit/52230fe) | -- | -- | [folder organization](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/renewal-requests/) |
 
-Pull requests: [PR #46 (medhavi-cancer, open)](https://github.com/Medhavy/medhavi-cancer/pull/46) · [PR #87 (humanitarians-youtube, merged)](https://github.com/nikbearbrown/humanitarians-youtube/pull/87) · [PR #157 (humanitarians-youtube, open)](https://github.com/nikbearbrown/humanitarians-youtube/pull/157)
+Pull requests. Textbook corrections: [PR #46, Chapters 1, 2, 6, 9, 25, 30 (open)](https://github.com/Medhavy/medhavi-cancer/pull/46) · [PR #48, Chapter 23 (open)](https://github.com/Medhavy/medhavi-cancer/pull/48). Video work: [PR #87 (merged)](https://github.com/nikbearbrown/humanitarians-youtube/pull/87) · [PR #157 (open)](https://github.com/nikbearbrown/humanitarians-youtube/pull/157).
 
 ## STEM topics
 
@@ -88,9 +93,9 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 
 ## Open items I am carrying
 
-- **Chapters 6 and 9** are fact-checked and documented, with evidence documents
-  and TextEdit guides written, but their text corrections are not yet submitted.
-  They go in first in the requested period.
+- **Neither textbook pull request has been reviewed yet.** PR #46 has been open
+  since the start of the period and PR #48 since 17 September. Until they are
+  merged, none of the corrections are live in the textbook.
 - **A character-encoding fault blocks the text edits for Chapters 23, 25 and 30.**
   It affects 7 files where the workbook recorded 4. Until it is repaired and
   committed, find-and-replace fails silently on the corrupted characters, so no
@@ -98,5 +103,9 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 - **Eight of ten videos are delivered but not yet published**, so there is no
   engagement data to act on, and the weekly commenting requirement cannot start
   in earnest until they are live.
-- The other five chapters have completed reviews and their corrections are in
-  [PR #46](https://github.com/Medhavy/medhavi-cancer/pull/46).
+- **PR #48 was opened from `main` rather than a fresh branch**, so it carries
+  five commits that are not mine and shows a CI workflow file and an unrelated
+  library file in its diff. It needs re-basing onto a clean branch, or a note to
+  the reviewer explaining the extra files.
+- All seven chapters have completed reviews; every correction is in PR #46 or
+  PR #48.
