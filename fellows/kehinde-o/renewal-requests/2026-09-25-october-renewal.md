@@ -103,9 +103,8 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 - **Eight of ten videos are delivered but not yet published**, so there is no
   engagement data to act on, and the weekly commenting requirement cannot start
   in earnest until they are live.
-- **PR #48 was opened from `main` rather than a fresh branch**, so it carries
-  five commits that are not mine and shows a CI workflow file and an unrelated
-  library file in its diff. It needs re-basing onto a clean branch, or a note to
-  the reviewer explaining the extra files.
+- **Chapter 23 went up as its own pull request because of a mistake I made.** I
+  wrote those edits on `main` instead of the `text-edits` branch, so they could
+  not join PR #46 and had to open separately as PR #48. Noted on the PR itself.
 - All seven chapters have completed reviews; every correction is in PR #46 or
   PR #48.
