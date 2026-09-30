@@ -5,7 +5,7 @@
 **Project Manager:** Shourya Verma
 **Tenure:** 2026-07-22 to 2026-10-02 (two contracts, Weeks 1–11)
 **Kokoro voice:** `am_onyx` (used for the whole series)
-**Last updated:** 2026-09-29
+**Last updated:** 2026-09-30
 
 ## Executive Summary
 
