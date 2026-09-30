@@ -1,0 +1,790 @@
+{
+  "metadata": {
+    "title": "Reorder Is Not Retrieve.",
+    "slug": "claude-cli-rag-reranking",
+    "topic": "CLAUDE CODE · CHAPTER 9 DEMO",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "persona": "Vedanshu Daxesh Patel",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Yassou, Vedanshu",
+    "greeting_note": "hello lexicon: Greek (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Namaste, Aloha, Ahoj, Hola, Merhaba, Shalom, Ciao, Bonjour, Hej, Sawubona, Jambo, Konnichiwa, Annyeong, Vanakkam and Olá — all used by the fifteen sibling reels in this series.",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "in_for_bear": false,
+    "playlist": "Claude Taught",
+    "source_book": "RAG Foundations — Vedanshu Daxesh Patel",
+    "source_file": "chapters/09-reranking-query-rewriting.md",
+    "typography": {
+      "serif": "EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "source_figures": [
+      "images/reranking-query-rewriting-fig-01.png/.svg — two-stage diagram (fast bi-encoder shortlist feeding a slower cross-encoder re-ranker). Rebuilt natively as B04 (TwoStageCascade) carrying this reel's measured timings, never embedded — REBUILD LAW.",
+      "images/reranking-query-rewriting-fig-02.png/.svg — before/after of a vague question rewritten into a retrieval-friendly query. Rebuilt natively across B06 (the rewrite itself, in the composer) and B08 (RetrievalMatrix — the measured outcome of both phrasings), never embedded — REBUILD LAW."
+    ],
+    "tags": [
+      "RAG",
+      "re-ranking",
+      "query rewriting",
+      "bi-encoder",
+      "cross-encoder",
+      "late interaction",
+      "MaxSim",
+      "HyDE",
+      "pre-retrieval",
+      "post-retrieval"
+    ],
+    "build": {
+      "at": "2026-09-29T18:05:53",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": [
+        "B11: palette=claude but the outro is 'TitleOutroChannel' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Yassou — Vedanshu here. Chapter nine adds two refinements to the retrieve stage. Re-rank what came back, and rewrite what you searched for. I built both against a real index and measured them. One of them did nothing at all, and finding out why is the whole video.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "12%",
+            "event": "composer types the ask"
+          },
+          {
+            "at": "58%",
+            "event": "send button arms terracotta"
+          },
+          {
+            "at": "70%",
+            "event": "running indicator: building two stages…"
+          },
+          {
+            "at": "82%",
+            "event": "three output lines land — the ask is answered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Yassou, Vedanshu",
+            "topic": "CLAUDE CODE · CHAPTER 9 DEMO",
+            "segment": "Reorder Is Not Retrieve.",
+            "command": "Build the two-stage retriever from Chapter 9 — a cheap broad first pass, then an expensive re-score of just the shortlist. Then measure whether the re-score actually changes anything.",
+            "runningText": "building two stages…",
+            "output": [
+              "stage 1 · bi-encoder over the whole index",
+              "stage 2 · joint re-score of the top-5",
+              "measured on six questions, not one"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "role_note": "COLD OPEN LAW — opens on the Claude UI, ask shown answered.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 14.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "problem — why a second pass exists at all",
+      "narration_text": "Here is the problem the whole chapter sits on. A fast retriever encodes your question and every document separately, into fixed vectors, and then compares numbers. That is what makes searching a huge index cheap. It also means a document's vector is computed without ever seeing your question. The two never look at each other.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "15%",
+            "event": "headline lands"
+          },
+          {
+            "at": "45%",
+            "event": "subline types in beneath it"
+          },
+          {
+            "at": "85%",
+            "event": "spark line settles — the stakes, before any code"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "props": {
+            "headline": "The Score Was Computed Before You Asked.",
+            "subline": "A bi-encoder embeds every document once, with no query in sight, so retrieval is a lookup. The speed and the blind spot are the same design decision.",
+            "sparkLine": "Cheap because it never looks."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "role_note": "Mandatory PROBLEM beat — the why that earns the build. No prompt yet.",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.22,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:RagExecutiveSummary",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "cycle 1 · CLI — the ask",
+      "narration_text": "So the ask is deliberately narrow. Keep the per-token vectors instead of pooling them away, score the query against each shortlisted chunk jointly, and time every pass. And prove the blind spot rather than asserting it: encode the same document beside two different questions and compare the bytes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "14%",
+            "event": "the prompt types into the composer"
+          },
+          {
+            "at": "72%",
+            "event": "send arms"
+          },
+          {
+            "at": "86%",
+            "event": "running indicator: writing rerank.py…"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The ask,",
+            "topic": "CLAUDE CODE · CHAPTER 9 DEMO",
+            "segment": "Reorder Is Not Retrieve.",
+            "command": "claude \"write rerank.py — stage 1 embeds the corpus once and returns a top-5. stage 2 keeps per-token vectors and scores query against candidate jointly with MaxSim. time every pass, and prove a document's vector does not depend on the query.\"",
+            "runningText": "writing rerank.py…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "cycle 1 · CODE — the joint scorer",
+      "narration_text": "Two functions carry the beat. MaxSim takes the query's token vectors and the document's, multiplies them into a similarity matrix, and for every query token keeps its single best match in that document. Unlike a pooled dot product, this score does not exist until a pair exists. The second function is the proof: same document, two questions, compare.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "rerank.py opens"
+          },
+          {
+            "at": "40%",
+            "event": "maxsim reads as the joint scorer"
+          },
+          {
+            "at": "80%",
+            "event": "prove_query_independence lands — the check, not the claim"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "rerank.py",
+            "code": "def maxsim(q_tokens, d_tokens):\n    return float((q_tokens @ d_tokens.T).max(axis=1).sum())\n\ndef rerank(query, hits, model):\n    \"\"\"Stage 2 — re-score ONLY the shortlist, jointly.\"\"\"\n    qt  = model.encode_tokens([query])[0]\n    dts = model.encode_tokens([h[\"text\"] for h in hits])\n    out = [{**h, \"rerank\": maxsim(qt, dt) / len(qt)}\n           for h, dt in zip(hits, dts)]\n    return sorted(out, key=lambda h: -h[\"rerank\"])\n\ndef prove_query_independence(model, cs):\n    \"\"\"A document vector cannot depend on the query.\"\"\"\n    doc = cs[0][\"text\"]\n    a = model.encode([QUESTION, doc])[1]\n    b = model.encode([\"what is the parking policy\", doc])[1]\n    return float(np.abs(a - b).max())          # measured: 0.0",
+            "sparkLine": "No pair, no score."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "role_note": "ACTUAL-CODE LAW — real source from code/rerank.py, trimmed to the two functions that teach.",
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.82,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "cycle 1 · OUTPUT — the cascade, and what it costs",
+      "narration_text": "The run makes the asymmetry concrete. Stage one embeds twenty-eight chunks once, in about two and a half seconds, and every later query is one pass plus twenty-eight dot products. Stage two measured eighty-six milliseconds per query-document pair. On a shortlist of five that is fine. On a million chunks it is twenty-three hours, for one question.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "a wide corpus block feeding a five-row shortlist, each arrow annotated with its measured cost",
+        "show": [
+          {
+            "at": "8%",
+            "event": "the full index block fills with chunk bars"
+          },
+          {
+            "at": "28%",
+            "event": "stage-1 arrow draws with its one-off index cost"
+          },
+          {
+            "at": "45%",
+            "event": "the shortlist block arrives — five rows against twenty-eight"
+          },
+          {
+            "at": "60%",
+            "event": "stage-2 arrow draws with its per-pair cost"
+          },
+          {
+            "at": "88%",
+            "event": "the prohibitive figure lands in terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "TwoStageCascade",
+          "props": {
+            "headline": "Cheap And Broad, Then Careful And Narrow.",
+            "sparkLine": "The shortlist is the affordability.",
+            "corpusLabel": "the whole index",
+            "corpusRows": 9,
+            "corpusCount": "28 chunks",
+            "stage1": {
+              "label": "stage 1 · bi-encoder",
+              "note": "pooled cosine against every chunk",
+              "cost": "index built once: 2448 ms"
+            },
+            "shortlistLabel": "shortlist",
+            "shortlistRows": 5,
+            "stage2": {
+              "label": "stage 2 · joint re-score",
+              "note": "per-token MaxSim, query against candidate",
+              "cost": "86 ms per pair"
+            },
+            "costNote": "86 ms per pair is 428 ms on a 5-chunk shortlist — and 23.8 hours per query across a million chunks. That gap is the only reason the second stage is affordable.",
+            "caption": "Redrawn from the chapter's Fig. 01, carrying this reel's own measured timings. Stage 2 here is late interaction, not a cross-encoder — see the summary.",
+            "citation": "two-stage framing: Ch. 9; bi-encoder speedup after Reimers & Gurevych, 2019",
+            "beatSeconds": 18.71
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 18.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:TwoStageCascade",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "cycle 1 · OUTPUT — the result, which is a null",
+      "narration_text": "And then the result. Across six questions the re-ranker promoted nothing and demoted nothing. Here is the sharpest one. It did reorder — look at the lines cross. But the document that actually answers this question is not in either column. It never made the top five, so stage two never saw it. It reordered the wrong five.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "two ranked columns joined by connectors that visibly cross, with the answering document absent from both",
+        "show": [
+          {
+            "at": "6%",
+            "event": "the query lands above the columns"
+          },
+          {
+            "at": "18%",
+            "event": "the first-pass shortlist fills, five candidates"
+          },
+          {
+            "at": "42%",
+            "event": "connector lines draw — and they cross"
+          },
+          {
+            "at": "50%",
+            "event": "the re-ranked column resolves in its new order"
+          },
+          {
+            "at": "72%",
+            "event": "verdict: 0 promoted, 0 demoted across six questions"
+          },
+          {
+            "at": "86%",
+            "event": "the absent answer lands in terracotta beneath the frame"
+          }
+        ],
+        "remotion": {
+          "pattern": "ShortlistReorder",
+          "props": {
+            "headline": "It Reordered. The Wrong Five.",
+            "sparkLine": "Stage 2 only sees what stage 1 sent.",
+            "query": "When am I allowed to change my health plan?",
+            "beforeLabel": "first pass",
+            "afterLabel": "after re-ranking",
+            "rows": [
+              {
+                "id": "HC-500#1",
+                "to": 3
+              },
+              {
+                "id": "RP-220#1",
+                "to": 1
+              },
+              {
+                "id": "HC-500#0",
+                "to": 2
+              },
+              {
+                "id": "DP-390#0",
+                "to": 4
+              },
+              {
+                "id": "DP-390#1",
+                "to": 5
+              }
+            ],
+            "verdict": "Across all six questions: 0 promoted, 0 demoted.",
+            "missing": "OE-300 — Open Enrolment Window — is the document that answers this question. It was never in the top-5, so no re-ranker could reach it.",
+            "caption": "Measured by this reel's own rerank.py over six questions. Ranks are document-level: any chunk of the right document counts.",
+            "citation": "Ch. 9 §“Re-ranking”; re-ranking as post-retrieval after Gao et al., 2023/2024",
+            "beatSeconds": 16.92
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.92,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ShortlistReorder",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "cycle 2 · CLI — the revision",
+      "narration_text": "So the re-ranker is not the fix here, and the reason is structural. A re-ranker reorders a shortlist. It cannot retrieve. Whatever the first pass missed, the second pass never sees. Which points somewhere else entirely — if the shortlist is wrong, change what was searched for, not the order of what came back.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "12%",
+            "event": "the revision prompt types in"
+          },
+          {
+            "at": "70%",
+            "event": "runningText reads 'updating…' — this is a change, not a new build"
+          },
+          {
+            "at": "86%",
+            "event": "send arms"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The change,",
+            "topic": "CLAUDE CODE · CHAPTER 9 DEMO",
+            "segment": "Reorder Is Not Retrieve.",
+            "command": "claude \"the re-ranker moved nothing, and on one question the answer was never in the top-5 at all. write rewrite.py — same index, same encoder, but search the rewritten query instead of the literal one, and report which answers get rescued.\"",
+            "runningText": "updating…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "role_note": "THE REVISION LAW — the second cycle, motivated by cycle 1's measured null rather than by a script beat.",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 15.77,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "cycle 2 · CODE — search a different sentence",
+      "narration_text": "The change is almost nothing in code, which is the point. Same encoder, same index, same top-five. The only difference is the sentence handed to retrieve. One honest caveat sits right here in the file: the chapter's two methods both need a language model to produce that sentence, and this machine has none, so these rewrites are written by hand.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "rewrite.py opens"
+          },
+          {
+            "at": "45%",
+            "event": "the two retrieve calls sit side by side — the only difference"
+          },
+          {
+            "at": "85%",
+            "event": "the hand-written caveat reads as a comment in the source"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "rewrite.py",
+            "code": "def sweep(index, model):\n    rows = []\n    for q, gold_doc in QUESTIONS:\n        rw = REWRITES[q]                       # hand-written. no LLM here.\n\n        hits_a, _ = retrieve(q,  index, model)   # the literal question\n        hits_b, _ = retrieve(rw, index, model)   # the rewritten one\n\n        rows.append({\n            \"q\": q, \"rw\": rw, \"gold\": gold_doc,\n            \"before\": rank_of(hits_a, gold_doc),\n            \"after\":  rank_of(hits_b, gold_doc),\n        })\n    return rows\n\n# nothing about the retriever changed. only the query text.",
+            "sparkLine": "Same index. New sentence."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "role_note": "ACTUAL-CODE LAW — real source from code/rewrite.py. The LLM caveat is in the file itself, not only in the narration.",
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 17.81,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "cycle 2 · OUTPUT — the better output",
+      "narration_text": "Same six questions, both phrasings. Five were already fine and stayed fine. The one the re-ranker could not touch is the one that moved: the answer went from outside the top five to inside it. Rescued by changing the question, not the ranking. Answers present in the shortlist went from five of six to six of six.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "six questions against two phrasings, with exactly one cell flipping from MISS to HIT",
+        "show": [
+          {
+            "at": "10%",
+            "event": "the six question rows fill in"
+          },
+          {
+            "at": "35%",
+            "event": "the literal column resolves — five hits and one miss"
+          },
+          {
+            "at": "60%",
+            "event": "the rewritten column resolves — six hits"
+          },
+          {
+            "at": "80%",
+            "event": "the single MISS cell holds terracotta as the only change"
+          }
+        ],
+        "remotion": {
+          "pattern": "RetrievalMatrix",
+          "props": {
+            "headline": "One Rescue The Re-ranker Could Not Make.",
+            "sparkLine": "Change the query, not the order.",
+            "columns": [
+              "literal question",
+              "rewritten query"
+            ],
+            "rows": [
+              {
+                "method": "RE-410",
+                "note": "old benefits back",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "HIT"
+                  }
+                ]
+              },
+              {
+                "method": "EQ-150",
+                "note": "laptop returned",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "HIT"
+                  }
+                ]
+              },
+              {
+                "method": "OE-300",
+                "note": "change health plan",
+                "cells": [
+                  {
+                    "v": "MISS",
+                    "accent": true
+                  },
+                  {
+                    "v": "HIT"
+                  }
+                ]
+              },
+              {
+                "method": "TR-114",
+                "note": "certification course",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "HIT"
+                  }
+                ]
+              },
+              {
+                "method": "RP-220",
+                "note": "transit subsidy",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "HIT"
+                  }
+                ]
+              },
+              {
+                "method": "BO-100",
+                "note": "what is offered",
+                "cells": [
+                  {
+                    "v": "HIT"
+                  },
+                  {
+                    "v": "HIT"
+                  }
+                ]
+              }
+            ],
+            "bothLabel": "",
+            "caption": "HIT means the answering document was somewhere in the top-5. Measured by this reel's own rewrite.py; rewrites are hand-written, not model-generated.",
+            "citation": "query rewriting as pre-retrieval: Gao et al., 2023/2024; rewrite-then-retrieve after Ma et al., 2023",
+            "beatSeconds": 16.79
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 16.79,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:RetrievalMatrix",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "summary — the lesson, and the limits of this test",
+      "narration_text": "So: both refinements live inside the retrieve stage, and they are not interchangeable. Re-ranking reorders a shortlist. Rewriting changes what reaches the shortlist. Three honest limits. Six questions is a small test. My second stage is late interaction, not the cross-encoder the chapter describes — a real one might well have moved things. And the rewrites were mine, not a model's.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "12%",
+            "event": "headline lands"
+          },
+          {
+            "at": "40%",
+            "event": "subline types beneath it"
+          },
+          {
+            "at": "88%",
+            "event": "spark line settles on the choice, not the verdict"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "props": {
+            "headline": "Two refinements, one stage, not interchangeable.",
+            "subline": "A re-ranker reorders what it was handed; a rewrite changes what gets handed over. On this corpus only the second one mattered — on six questions, with a stand-in re-ranker and hand-written rewrites.",
+            "sparkLine": "Know which one you need."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 19.86,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:RagExecutiveSummary",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "next steps — your turn",
+      "narration_text": "Your turn. Paste this: take the last fifty questions my RAG system answered, and for each one report whether the answering document was in the first-pass shortlist at all. Then split them — the ones where it was present but ranked low, and the ones where it was missing entirely. Run that before you add a re-ranker. The first group is what re-ranking can fix. The second group is not, and if that is most of them, a re-ranker is the wrong purchase.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "8%",
+            "event": "greeting reads 'Your turn.'"
+          },
+          {
+            "at": "22%",
+            "event": "the prompt types into the composer"
+          },
+          {
+            "at": "70%",
+            "event": "running indicator: paste this into Claude…"
+          },
+          {
+            "at": "84%",
+            "event": "the prompt holds while the voice discusses what it buys"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · CHAPTER 9 DEMO",
+            "segment": "Reorder Is Not Retrieve.",
+            "command": "Take the last fifty questions my RAG system answered. For each one, report whether the answering document was in the first-pass shortlist at all. Then split them into two groups: present but ranked low, and missing entirely.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "role_note": "HANDOFF LAW — read aloud verbatim, then discussed: the split is the diagnostic that tells you whether re-ranking is worth buying.",
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 21.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T18:05:53"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "outro",
+      "narration_text": "Reorder is not retrieve. Vedanshu Daxesh Patel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "20%",
+            "event": "title restates poster-style with the terracotta period"
+          },
+          {
+            "at": "60%",
+            "event": "handle and author signature settle beneath"
+          }
+        ],
+        "remotion": {
+          "pattern": "TitleOutroChannel",
+          "props": {
+            "title": "Reorder Is Not Retrieve.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel",
+            "polarity": "light"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-09-29T10:00:00"
+          }
+        }
+      },
+      "role_note": "OUTRO LAW — exact title restate. TitleOutroChannel, NOT ClaudeTitleOutro: OUTRO-LOCK.md §Scope restricts the locked card to claude-liam-* slugs and it renders no subline, which would drop the author signature.",
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 3.8,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "remotion:TitleOutroChannel",
+        "at": "2026-09-29T18:05:53"
+      }
+    }
+  ]
+}
