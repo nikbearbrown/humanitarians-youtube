@@ -1,6 +1,6 @@
-# Vedanshu P.
+# Vedanshu Daxesh Patel.
 
-**Role:** Software Engineer, OPT volunteer, Humanitarians AI
+**Role:** Software Engineer, Humanitarians AI
 **Project:** AI+1
 **Project Manager:** Shourya Verma
 **Tenure:** 2026-07-22 to 2026-10-02 (two contracts, Weeks 1–11)
@@ -22,17 +22,17 @@ Vedanshu Daxesh Patel spent the tenure learning the AI+1 pipeline and then build
 
 | Week | Dates | Hours | Focus | Folders in this repo |
 |---|---|---|---|---|
-| 1 | Jul 22–28 | 23 | Book generation and research (ramp-up) | none |
-| 2 | Jul 29–Aug 4 | 25 | Beat sheet and video via Brutalist (ramp-up) | none |
-| 3 | Aug 5–11 | 22 | First debugging of pipeline stages | none |
-| 4 | Aug 12–18 | 22.5 | RAG book, first RAG work | `2026-08-12-*` (2) |
-| 5 | Aug 19–25 | 21 | Assigned 9:16 task; caught a factual error and a code error | `2026-08-19-*` (2) |
-| 6 | Aug 26–31 | 22 | 4K/QC feedback, LangChain integration R&D | `2026-08-26-*` (3), `2026-08-31-*` (2) |
-| 7 | Sep 1–7 | 21 | RAG embeddings and summary video | `2026-09-01-*` (2) |
-| 8 | Sep 8–14 | 21 | Chunking and vector-DB experiments | `2026-09-08-*` (2) |
-| 9 | Sep 15–21 | 21 | Retrieval methods and summary video | `2026-09-15-*` (2) |
-| 10 | Sep 22–28 | 22 | End-to-end RAG pipeline and prompt construction | `2026-09-22-*` (2) |
-| 11 | Sep 29–Oct 2 | 21.5 | Reranking, query rewriting, summary video (final week) | `2026-09-29-*` (1) |
+| 1 | Jul 22–28 | 23 | Book generation and research (ramp-up) |  |
+| 2 | Jul 29–Aug 4 | 25 | Beat sheet and video via Brutalist (ramp-up) |  |
+| 3 | Aug 5–11 | 22 | First debugging of pipeline stages |  |
+| 4 | Aug 12–18 | 22.5 | RAG book, first RAG work | `2026-08-12-*`  |
+| 5 | Aug 19–25 | 21 | Assigned 9:16 task; caught a factual error and a code error | `2026-08-19-*`  |
+| 6 | Aug 26–31 | 22 | 4K/QC feedback, LangChain integration R&D | `2026-08-26-*` , `2026-08-31-*`  |
+| 7 | Sep 1–7 | 21 | RAG embeddings and summary video | `2026-09-01-*` |
+| 8 | Sep 8–14 | 21 | Chunking and vector-DB experiments | `2026-09-08-*` |
+| 9 | Sep 15–21 | 21 | Retrieval methods and summary video | `2026-09-15-*`  |
+| 10 | Sep 22–28 | 22 | End-to-end RAG pipeline and prompt construction | `2026-09-22-*` |
+| 11 | Sep 29–Oct 2 | 21.5 | Reranking, query rewriting, summary video (final week) | `2026-09-29-*` |
 | **Total** | | **242** | First contract 135.5h (W1–6), renewed 106.5h (W7–11) | |
 
 ## Folder Guide
@@ -63,10 +63,6 @@ Folders from `2026-08-31` on include a `short/` 9:16 cut. Several include a `sho
 ## Open Items
 
 1. **Retrieval decision not recorded.** Weeks 7–11 implemented and compared several chunking, retrieval, and reranking approaches. No record says which approach AI+1 should use or why.
-2. **No video links.** MP4s are local only. Each finished reel needs a viewing link before it counts as delivered.
-3. **Weeks 1–3 and LangChain R&D have no artifacts here.** The completion report documents this work, but none of its output is in this repository.
-4. **Week 11 summary video is missing.** The completion report lists one for Week 11, but no `claude-summary` folder exists for Chapters 7–9.
-5. **Week 11 compiled before contract end.** This README is dated 2026-09-29, and the final day is 2026-10-02. Confirm the Week 11 hours after the contract closes.
 
 ## Source Attribution
 
