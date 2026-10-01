@@ -6,6 +6,7 @@
 **Voice:** af_bella (Kokoro)
 **Beat sheet:** `beat_sheet.json` (this folder, landscape) / `vertical/beat_sheet.json` (portrait)
 **Video (Google Drive):** [https://drive.google.com/drive/folders/1yKdjjpGk4ItTKjezvrYDYPz1WwUx6Ftd?usp=drive_link](https://drive.google.com/drive/folders/1yKdjjpGk4ItTKjezvrYDYPz1WwUx6Ftd?usp=drive_link)
+**Published to YouTube:** [https://www.youtube.com/watch?v=l3PFGmHi4Yo](https://www.youtube.com/watch?v=l3PFGmHi4Yo)
 
 ## Why This Is Being Pushed Now
 
