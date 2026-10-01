@@ -1,12 +1,21 @@
 # Varun N.
 
 **Role:** AI Engineer  
-**Project:** _to be filled in_  
-**GitHub:** [@OMEGA-84](https://github.com/OMEGA-84)
+**Project:** Medhavy  
+**GitHub:** [@Omega-84](https://github.com/Omega-84)  
+**Voice:** Kokoro `bm_george` (UK male) -- chosen 2026-09-30 from a six-voice test render; not used by any other fellow on the build machine. Used for every video; any change is a logged re-voice decision.
 
 ## What's in this folder
 
-No work in this folder yet. Each piece of work gets its own dated,
+Weekly progress reels for Project Medhavy (16:9 and 9:16, 4K, 30fps). Each
+week's video is linked from its folder README.
+
+| Week | Folder |
+|---|---|
+| 1 (Aug 1-7) | [2026-08-07-progress-starting-over](2026-08-07-progress-starting-over/) |
+| 2 (Aug 8-14) | [2026-08-14-progress-white-background](2026-08-14-progress-white-background/) |
+
+Each piece of work gets its own dated,
 lowercase-kebab subfolder — `YYYY-MM-DD-short-slug/` — holding its
 `beat_sheet.json`, README, sources and build assets.
 
