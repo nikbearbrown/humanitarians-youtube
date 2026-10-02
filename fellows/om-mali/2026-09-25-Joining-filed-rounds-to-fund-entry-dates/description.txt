@@ -1,0 +1,74 @@
+Joining Filed Rounds to Fund Entry Dates — Private AI Valuation Agent, week 9
+
+For eight weeks this project ran on one SEC form. N-PORT tells you what a position is worth at a
+month end. It never tells you when it was bought. This week I added two filings that do, and the
+whole episode is about what the join between them runs on.
+
+Form D is filed by the COMPANY when it sells shares, and gives offering dates and amounts. The
+restricted securities footnote required by Reg S-X 12-12 is filed by the FUND in its annual
+report, and gives acquisition dates and cost. Two different filers, describing the same shares.
+
+WHY THE OBVIOUS JOIN IS WRONG. The natural way to find a company's Form D filings is to search
+for its name. I did that across 49 quarters and got 706 rows. 595 of them — 84.3% — are not the
+company. They are feeder funds named after it, raising money to buy its shares on the secondary
+market. "Anthropic Jan 2026 a Series of CGF2021 LLC" is one of them, and the amount it reports
+selling is its own raise, not Anthropic's. Add those up, call it a funding round, and you have
+published numbers no company ever filed.
+
+AND NO BETTER STRING MATCHING FIXES IT. One filer from 2014 normalises to exactly the same
+string as X.AI and is a completely different company. That is not a normalisation bug to be
+tuned away; it is two real entities with the same name. So the join runs on an EDGAR identifier
+a person has confirmed. The code proposes. A human decides.
+
+FIVE LAYOUTS OF THE SAME FOOTNOTE. The second source has no bulk dataset and no required format.
+The regulation says what must be disclosed, not what the columns are called, so every fund family
+writes it differently — four use tables with different headings, one uses no table at all. That
+got me 249 positions from 31 filings, 227 of them with a per-position cost. The other 22 are one
+filer's, reported at fund level rather than per position, and the build asserts that exactly one
+filer does that.
+
+WHAT THE JOIN BOUGHT. Two things the panel could not say before. Entry dates reach back to
+20 January 2015, 7.9 years before the panel's first mark for that company. But only three of the
+seven companies genuinely reach back — for the rest I have only the latest annual and
+semi-annual reports, so this is a floor on the record, not a history. And an exposure map: 90
+manager–company pairs across 30 managers and 10 companies, using each filer's own reported
+percentage of net assets. That is concentration, not conviction. A large percentage is a fact
+about the fund's size as much as about the position.
+
+THE PART I DID NOT EXPECT. With both sources joined, 10 of 18 fund acquisition dates fall on the
+exact day a company reported selling shares. The clearest case is Databricks, 22 October 2019 —
+five separate fund managers independently name that same day. The company files because it sold.
+The funds file because they own. Neither filing cites the other, which is what makes the
+agreement evidence rather than arithmetic. It is not proof of causation: buying on the day an
+issuer reports a first sale is also consistent with a secondary purchase that settled that day.
+
+AND THE DENOMINATOR IS DOING THE WORK. That 56% counts only purchases made while a company was
+still filing Form D. One company stopped in mid-2022, so its later buys have no round to be near
+and the distance to the nearest one measures the end of the archive rather than a fund's
+behaviour. Counted against every acquisition date instead, 56% reads as 33%. Both readings are
+in the video, at the same size.
+
+What none of this shows: no valuation, because neither source carries shares outstanding. No
+return, because a footnote cost over a later mark is not one when the share count may have
+changed in between. No causation.
+
+Next week: back to the panel.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is a prop injected from figdata_week9.json at build time, not typed by
+hand; the build asserts the key counts — the 706-row split, the 249/227/22 lot accounting, the
+single fund-level filer, the 18-row corroboration set and the 12 out-of-window dates that turn
+56% into 33% — and fails rather than let a number drift. Three values in the video are NOT in
+that file: the 2014 name collision, the five-layout taxonomy and the $400M Databricks amount.
+Each is attributed on screen. See FACTCHECK.md in the project folder for what still needs
+confirmation before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#DataEngineering #SEC #FormD #PrivateMarkets #EntityResolution #RecordLinkage
+#HumanitariansAI #Mycroft

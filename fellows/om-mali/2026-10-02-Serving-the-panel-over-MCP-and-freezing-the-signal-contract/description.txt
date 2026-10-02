@@ -1,0 +1,98 @@
+Serving the Panel over MCP and Freezing the Signal Contract — Private AI Valuation Agent, week 10
+
+For nine weeks the deliverable was a number or a method. This week it is two things other
+people use: a read-only server an AI assistant can query directly, and a frozen JSON contract
+another system can parse without guessing. Up to now everything here was a script I run and a
+document I read. Fine for building it. Useless to anyone else.
+
+THE HARD PART WAS NEVER THE PROTOCOL. Writing a server that speaks it took an afternoon. The
+real constraint is size. Ask for Databricks' full price history and you get 2,151 rows —
+575,299 characters, roughly 143,800 tokens at four characters per token. That is larger than
+most context windows, and useless even where it fits, because a model handed 2,000 rows will
+not read them.
+
+So every answer is three parts: a summary describing the WHOLE result set, one bounded page,
+and a cursor. On that query, 18k characters instead of 575k — a 97% cut. Two bounds, not one:
+50 rows AND 48,000 characters, because row widths are not uniform.
+
+AND THE ENVELOPE IS NOT FREE. This is the part the figures do not show, because the one tool
+they show is the one where bounding wins. Measured across all six: `list_unresolved` +49%,
+`list_companies` +34%, `get_fund_exposure` +31%, `compare_managers` +28%, `get_propagation`
++19%. The envelope makes five of the six answers BIGGER. It pays for itself on exactly one
+tool — the one that would otherwise return 2,151 rows. That is the trade, and it is worth
+saying out loud.
+
+SIX TOOLS, AND NONE OF THEM WRITES. List the companies, get one company's marks, compare
+managers on a date, get propagation, get a fund's exposure, list what is still unresolved. No
+tool records a decision, clears a gate, or changes a mark. Earlier in this project a resolution
+decision was established as needing a named human, and a tool a model can call to record one is
+the opposite of that. A model here reads every judgment already made and sees what is still
+open. It cannot make one.
+
+A CONTRACT IS WHAT IT REFUSES. The signal is frozen at schema version 1.0, validated before it
+is ever written to disk, and carries nine top-level keys. It refuses ten field names outright:
+valuation, market_cap, shares_outstanding, post_money, pre_money, return, irr, moic, fair_value,
+nav_per_share. Not style — structure. N-PORT gives a fund's share count, never the company's
+shares outstanding, so there is no arithmetic here to a company's value. A field for one would
+invite a consumer to fill it from elsewhere and inherit that source's error.
+
+Where a figure is withheld, the reason is a value rather than a missing key. Four companies are
+suppressed this quarter. And two counts in this project disagree on purpose: the server lists
+11 companies because that is the universe it carries, the signal publishes 10 because one of
+them has zero marks. Neither number is wrong; they answer different questions. `list_unresolved`
+returns zero rows and says so in its summary — nothing is unresolved this quarter, which is a
+finding, not a blank.
+
+THE PART I GOT WRONG. The quarterly note is the only prose a model writes here, and it gets the
+computed figures and nothing else — no database, no tools, no retrieval. So a number in its
+prose that isn't in those figures is a fabrication, and that is mechanically checkable. I
+expected that one check to be enough.
+
+It wasn't. A draft passed it cleanly and still said one company had the fewest marks, one
+sentence before saying a different company had the fewest. Every number in it was real — the
+figure it quoted, 2,151, is Databricks' true mark count, and Databricks has the MOST marks of
+any company in the set. The ranking was what the model invented, and it contradicted itself
+inside one paragraph.
+
+Four checks now, and a failed draft goes back to the model carrying the specific complaint, up
+to three attempts.
+
+WHAT THE CHECKS STILL MISS. A draft that came back empty passed every one of them and was
+recorded as a success, at zero words — nothing to fabricate, nothing to rank, no placeholder. A
+reasoning model had spent its whole token budget on a hidden channel. That is why length became
+the fourth check. And a draft that spelled a number in words went unread, because the check only
+looked at digits; "across sixty-one groups" was correct, and would have passed identically had
+it been wrong.
+
+Then three setup bugs in a row, getting the server to launch from a real client: a `cwd` key the
+client never applies before resolving the module, a `--cwd` flag that does not exist on the CLI,
+and a default registration scope that binds the server to whichever directory the command ran
+in. The server's own selftest passed through all three. So did an in-process protocol test that
+supplied the working directory itself. A test finds this class of bug only if it WITHHOLDS what
+the real caller withholds.
+
+What none of this shows: no company valuation, because neither source carries shares
+outstanding. Not timely — filings lag their period end by roughly 55 to 60 days, and the bulk
+sets lag those again. And every rendering of the model's prose is labelled model output rather
+than a verified claim, because a wrong adjective with a correct number attached still passes all
+four checks.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is a prop injected from figdata.json at build time or read directly out
+of the emitted signal, not typed by hand; the build asserts the key counts — including that the
+bounding envelope COSTS on five of the six tools, and that none of the ten refused field names
+appears in the emitted file — and fails rather than let a number drift. Three values in the
+video are NOT in figdata.json: the fourth guard, the two late misses, and the three setup bugs.
+Each is attributed on screen. Six claims were additionally confirmed by calling the live server
+during the build. See FACTCHECK.md in the project folder for what still needs confirmation
+before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#MCP #DataEngineering #SEC #PrivateMarkets #APIDesign #LLMEvaluation
+#HumanitariansAI #Mycroft
