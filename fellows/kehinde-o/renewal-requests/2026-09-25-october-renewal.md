@@ -14,10 +14,10 @@ Seven chapters of the AI-generated Medhavy cancer textbook audited against
 primary sources, and ten videos produced. Every figure below comes from a
 reviewed workbook or an evidence document, not an estimate.
 
-- **Seven chapters audited:** 1, 2, 6, 9, 23, 25 and 30. **325 rows formally
-  reviewed and ruled on**, drawn from 418 flagged assertions. In the three
-  chapters where the full sentence count was recorded (23, 25 and 30) those
-  assertions were screened out of 2,416 sentences.
+- **Nine chapters audited:** 1, 2, 6, 9, 10, 13, 23, 25 and 30. **418 rows
+  formally reviewed and ruled on**, drawn from 892 flagged assertions. In the
+  seven chapters where the full sentence count was recorded those assertions were
+  screened out of 3,308 sentences.
 - **A patient-safety finding in Chapter 23.** The chapter presents venetoclax for
   multiple myeloma as established practice. It is not an FDA-approved use, the
   label carries a mortality warning against that combination, and the CANOVA
@@ -29,6 +29,12 @@ reviewed workbook or an evidence document, not an estimate.
   quotations attributed to the wrong papers, five wrong first authors, links
   truncated at 46 characters, and three sources cited on rows they do not
   support. One of my own verdicts was reversed on newer evidence.
+- **Copied text carries copied mistakes.** Two independent cases found by the same
+  method: Chapter 6 calls the BRCA and PARP relationship "synergistic lethality",
+  reproduced in a 43 word verbatim run from a source that uses the wrong term; and
+  Chapter 13 says VCAM-1 is expressed in endothelial cells, a 61 word lift from a
+  source that says the same wrong thing. Neither was hallucinated. Both were copied
+  accurately from a source that was wrong, and the error outlived it.
 - **Errors are near misses, not inventions.** Real identifiers with the wrong
   authors, "10-30%" where the source says "25-30%", a drug filed in the wrong
   class, a sentence that was true when written and is not now. In Chapter 25,
@@ -43,9 +49,9 @@ NCI SEER, CDC and WHO. For each row I recorded a Reviewer Decision, Reviewer
 Comments with source URLs, and a Suggested Phrase with corrected text.
 
 Text corrections were prepared in exact .mdx format and submitted as two pull
-requests on the textbook repository:
+requests on the textbook repository, **both merged on 2 October 2026**:
 [PR #46](https://github.com/Medhavy/medhavi-cancer/pull/46) carries Chapters 1,
-2, 6, 9, 25 and 30, and [PR #48](https://github.com/Medhavy/medhavi-cancer/pull/48)
+2, 6, 9, 10, 25 and 30, and [PR #48](https://github.com/Medhavy/medhavi-cancer/pull/48)
 carries Chapter 23 on its own. PR #46 is on the shared `text-edits` branch, so it
 also contains Chapter 14, which is Krithi's work rather than mine. Encoding fixes
 were committed separately from content edits, because a content edit made against
@@ -62,7 +68,7 @@ corrupted characters fails silently.
 | 5 — Ch 30 review | [`3b961f3`](https://github.com/Medhavy/medhavi-cancer/commit/3b961f3), [`af0dc27`](https://github.com/Medhavy/medhavi-cancer/commit/af0dc27) | [folder](https://drive.google.com/drive/folders/1fDzojEz0dyZ_P2kISW7nRO68KhFGasvq) | not yet published | [log](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/2026-09-24-chapter-30-review/FRICTIONAL.md) |
 | 6 — renewal, cleanup | [`ff518e7`](https://github.com/Medhavy/medhavi-cancer/commit/ff518e7), [`c96aa1c`](https://github.com/Medhavy/medhavi-cancer/commit/c96aa1c), [`52230fe`](https://github.com/Medhavy/medhavi-cancer/commit/52230fe) | -- | -- | [folder organization](https://github.com/nikbearbrown/humanitarians-youtube/blob/kehinde-o-folder-structure/fellows/kehinde-o/renewal-requests/) |
 
-Pull requests. Textbook corrections: [PR #46, Chapters 1, 2, 6, 9, 25, 30 (open)](https://github.com/Medhavy/medhavi-cancer/pull/46) · [PR #48, Chapter 23 (open)](https://github.com/Medhavy/medhavi-cancer/pull/48). Video work: [PR #87 (merged)](https://github.com/nikbearbrown/humanitarians-youtube/pull/87) · [PR #157 (open)](https://github.com/nikbearbrown/humanitarians-youtube/pull/157).
+Pull requests. Textbook corrections: [PR #46, Chapters 1, 2, 6, 9, 10, 25, 30 (merged 2 Oct)](https://github.com/Medhavy/medhavi-cancer/pull/46) · [PR #48, Chapter 23 (merged 2 Oct)](https://github.com/Medhavy/medhavi-cancer/pull/48). Video work: [PR #87 (merged)](https://github.com/nikbearbrown/humanitarians-youtube/pull/87) · [PR #157 (open)](https://github.com/nikbearbrown/humanitarians-youtube/pull/157).
 
 ## STEM topics
 
@@ -78,7 +84,7 @@ Weekly hours: [weekly-hours/README.md](../weekly-hours/README.md) — 25 hours p
 
 ## Plan for the requested period
 
-Review order follows Prof Evin's assigned sequence. Chapters completed so far: 1, 2, 6, 9, 23, 25 and 30, seven in total. Each sprint is gated: I will not move to the next chapter until the current chapter's fact-check review, text edit PR, and evidence document are complete.
+Review order follows Prof Evin's assigned sequence. Chapters completed so far: 1, 2, 6, 9, 10, 13, 23, 25 and 30, nine in total. Each sprint is gated: I will not move to the next chapter until the current chapter's fact-check review, text edit PR, and evidence document are complete.
 
 1. **Ch 10 and Ch 13** (1-7 Oct). Fact-check review of Chapters 10 and 13. Submit text edit PR for Chapter 10. Produce 2 Brutalist videos (1 STEM/AI explainer + 1 project update). Weekly YouTube engagement.
 2. **Ch 19 and Ch 27** (8-14 Oct). Fact-check review of Chapters 19 and 27. Submit text edit PRs for Chapters 13 and 19. Produce 2 Brutalist videos. Weekly YouTube engagement.
@@ -106,9 +112,9 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 
 Not mine to action, but they hold up the next steps:
 
-- **Neither textbook pull request has been reviewed.** PR #46 has been open since
-  the start of the period, PR #48 since 17 September. Until they are merged, none
-  of the corrections are live in the textbook.
+- **Both textbook pull requests were merged on 2 October 2026**, so the
+  corrections for all nine reviewed chapters are now live in the textbook. This
+  item is closed.
 - **Eight of the ten videos are delivered but not yet published**, so there is no
   engagement data to act on and the weekly commenting requirement cannot start in
   earnest until they are live.
