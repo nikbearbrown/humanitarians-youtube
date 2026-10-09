@@ -1,14 +1,23 @@
 # Gomathy S.
 
 **Role:** AI Engineer  
-**Project:** _to be filled in_  
+**Project:** Brutalist Videos  
 **GitHub:** [@GomathySelvamuthiah](https://github.com/GomathySelvamuthiah)
 
 ## What's in this folder
 
-No work in this folder yet. Each piece of work gets its own dated,
-lowercase-kebab subfolder — `YYYY-MM-DD-short-slug/` — holding its
-`beat_sheet.json`, README, sources and build assets.
+2 work folders, one per video:
+
+- `2026-09-28-context-window-isnt-memory/` — The Context Window Isn't Memory (2026-09-28)
+- `2026-10-07-what-is-a-knowledge-cutoff/` — What Is a Knowledge Cutoff? (2026-10-07)
+
+Each holds the 16:9 source and a `vertical/` folder for the 9:16 cut.
+Renders are in the shared Drive.
+
+## Voice
+
+Kokoro `af_bella` ("Bella") is the voice for this series, recorded in every
+reel's `beat_sheet.json` under `metadata.voice_kokoro`.
 
 ## Frictional log
 
