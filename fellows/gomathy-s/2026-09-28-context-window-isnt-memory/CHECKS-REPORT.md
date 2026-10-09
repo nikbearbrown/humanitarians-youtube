@@ -12,16 +12,16 @@ SHOW/HOLD/CARD classification and whole-sheet teaching-arc checklist.
 |---|---|---|
 | B00 | SHOW | `ClaudeComposerAsk` — bookend |
 | B01 | SHOW | `BrutalistHesitantWriter` — bookend; `qc.sparse_by_design` declared |
-| B02 | SHOW | `ClaudeScienceLayerStack` (3 layers) |
-| B03 | SHOW | `ClaudeScienceLayerStack` (2 layers) |
+| B02 | SHOW | `FormBCard` (3 items) |
+| B03 | SHOW | `FormBCard` (2 items) |
 | B04 | SHOW | Manim `B04_TokenSplit` (`scenes.py`) |
 | B05 | SHOW | `FormBCard` |
 | B06 | SHOW | `AttritionChain` |
 | B07 | SHOW | `FormBCard` |
-| B08 | SHOW | `ScaleComparison` |
+| B08 | SHOW | `FormBCard` (4 items) |
 | B09 | SHOW | `ClaudeVerdictArtifact` — bookend |
 | B10 | SHOW | `ClaudeComposerAsk` — bookend |
-| B11 | SHOW | `OutroCTA` — bookend; `qc.sparse_by_design` declared |
+| B11 | SHOW | `OutroSeries` — bookend; `qc.sparse_by_design` declared |
 
 ## Teaching-arc checklist — honest result, not a rubber stamp
 
@@ -41,7 +41,7 @@ SHOW/HOLD/CARD classification and whole-sheet teaching-arc checklist.
       B11 title-restate outro.
 - [x] **No source, no verdict** — every claim-bearing body beat (B00, B02,
       B03, B05, B06, B07, B08) carries on-screen evidence (composer output,
-      layer cards, FormB lists, the room-remaining chart, the scale chart).
+      FormB lists, the room-remaining chart).
 
 **Status: PASS with two disclosed weaknesses** (WORKED EXAMPLE,
 FALSIFIABILITY) — an accepted, explicit cost of compressing to the 60s/12-beat

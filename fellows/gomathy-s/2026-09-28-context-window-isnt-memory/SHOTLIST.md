@@ -14,10 +14,10 @@ spec (60s, 12 beats) — same thesis, facts, sources, Bella voice, `@Humanitaria
 | B05 | II | `FormBCard` | 4.68 | Code / Numbers / Jargon / Non-English text — cost more per word |
 | B06 | III | `AttritionChain` | 7.10 | Room-remaining climb to ceiling + "context rot" restored as a tendency |
 | B07 | III | `FormBCard` | 5.04 | Error / Summary / Dropped turns — depends on the app |
-| B08 | IV | `ScaleComparison` | 5.06 | Relative window-size scale; filling more costs more |
+| B08 | IV | `FormBCard` | 5.06 | Small / Medium / Large / Very large — filling more costs more, and doesn't buy focus |
 | B09 | CLOSE | `ClaudeVerdictArtifact` | 6.79 | Summary restates the thesis verbatim: "a context window is a fixed, shared budget — not memory" |
 | B10 | CLOSE | `ClaudeComposerAsk` | 6.07 | YOUR TURN; one-line check ("does it say what to drop first?") |
-| B11 | CLOSE | `OutroCTA` | 5.76 | Title + `@HumanitariansAI` handle |
+| B11 | CLOSE | `OutroSeries` | 5.76 | `@HumanitariansAI` eyebrow + title line |
 
 ## What was dropped or merged from the 9-beat/154.5s long cut
 
@@ -28,6 +28,8 @@ spec (60s, 12 beats) — same thesis, facts, sources, Bella voice, `@Humanitaria
 | Three-outcome elaboration (why apps error / summarize / drop) → three words in one breath (B07) | No individual explanation of each mechanism — named, not explained. |
 | Handoff's 3-point rubric → one check question (B10) | "Does it say what to drop first?" replaces the fuller three-question rubric from the long cut. |
 | Verdict's four enumerated points → two sentences restating the thesis (B09) | Per this pass's explicit instruction: the summary must restate "a context window is a fixed shared budget, not memory" plainly, not itemize every supporting fact. |
+| `ScaleComparison` relative-scale chart → `FormBCard` four-size list (B08) | `ScaleComparison` failed GATE T §8.1 min-size at 4K (hardcoded 11–16 px SVG text, no size prop). The illustrative scale values (1/4/16/64) no longer appear on screen. |
+| `OutroCTA` → `OutroSeries` (B11) | GATE T: in `OutroCTA` the handle text and the Subscribe pill's background are the same hex value (a colour collision in the shared component, not fixable by props). |
 | "Context rot" named term | Cut from the long cut's B00, then **restored** as a one-line tendency in B06 per this pass's instruction — kept in the final cut. |
 
 ## Doctrine tension (disclosed, not hidden)

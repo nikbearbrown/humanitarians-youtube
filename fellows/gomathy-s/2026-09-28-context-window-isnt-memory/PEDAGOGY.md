@@ -30,7 +30,8 @@ application-defined, not one universal mechanism.
 - Summary (B09) restates the thesis verbatim, as this pass required: "a
   context window is a fixed, shared budget — not memory. Bigger isn't
   automatically better." ✓
-- Title-restate outro (B11), `OutroCTA` — unchanged from the long cut ✓
+- Title-restate outro (B11), `OutroSeries` — replaces the long cut's
+  `OutroCTA`, which failed GATE T (see SHOTLIST.md) ✓
 
 ## Register discipline
 - No hedging language outside the one still-flagged inference point (B05,
@@ -58,9 +59,8 @@ the long cut's B08 phrasing exactly — no new claim, a consistency fix.
 
 ## Known open items
 See CHECKS-REPORT.md (two disclosed checklist weaknesses) and BUILD-LOG.md
-item 2 (B05's inference flag, no on-screen disclaimer) and item 1 (B04's
-Manim scene — simplified from the long cut, still text-plus-bar only, no
-token-cost table). SOURCES.md carries the full source list and compression
-log.
+item 2 (B05's inference flag, no on-screen disclaimer). B04's Manim scene
+is simplified from the long cut — still text-plus-bar only, no token-cost
+table. SOURCES.md carries the full source list and compression log.
 
 VERDICT: PASS.

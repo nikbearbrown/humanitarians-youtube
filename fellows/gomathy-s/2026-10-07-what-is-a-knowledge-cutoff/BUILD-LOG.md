@@ -37,11 +37,24 @@ No toolkit files edited; everything here lives in this folder.
 - `[art] WARNING: build stamp failed: 'str' object has no attribute 'get'` —
   known toolkit stamp bug (also in claude-liam-context-window), non-blocking.
 
+## Final masters
+
+Clean masters built 2026-10-09 with `./art final`, each with a `.verified.json`:
+
+- `knowledge-cutoff.mp4` — 3840×2160, 60.5 s
+- `knowledge-cutoff-vertical.mp4` — 2160×3840, 60.5 s (see `vertical/BUILD-LOG.md`)
+
+Landscape final: GATE T PASS, 0 FAIL (§8.10 advisories on B07/B08 as above);
+GATE V 24 frames, 0 BLOCKER / 0 MAJOR. Masters are in the shared Drive.
+
+## Resolved
+
+- **`modelLabel` chip — resolved.** The review cut's `ClaudeComposerAsk`
+  showed its default chip "Fable 5" (B00, B10). `modelLabel` is now
+  `"Claude"` on B00 and B10 in both orientations; the final masters show
+  "Claude".
+
 ## Open, for the reviewer
 
-- `ClaudeComposerAsk` shows its default `modelLabel` chip "Fable 5" (B00,
-  B10). It's the app's UI chrome, not a claim, and the prior reel kept the
-  default — but it is a model name on screen. `modelLabel` is a prop if you
-  want it changed.
 - B11 `OutroSeries` renders on its own white ground with a thin red
   underline (component tokens) — same one-beat palette break as the prior reel.

@@ -39,6 +39,15 @@ compiler's conformed per-beat clips, which carry no burn-ins):
 
 PASS, 0 FAIL, no §8.10 advisories (portrait FormBCard text differs enough).
 
+## Clean final (2026-10-09)
+
+`knowledge-cutoff-vertical.mp4` (2160×3840, 60.5 s) + `.verified.json`.
+The clean master passed both gates, no `--lenient`:
+
+- GATE T: PASS, 0 FAIL (`TYPECHECK.md`, 2026-10-09).
+- GATE V: 24 frames, 0 BLOCKER / 0 MAJOR — confirms the scratch-concat
+  result above.
+
 ## Advisory
 
 - GATE A: B01 "no shapes recorded — scene may be text-only" — by design (hesitant writer).

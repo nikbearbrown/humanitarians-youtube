@@ -1,44 +1,24 @@
-# SHOTLIST — claude-liam-context-window (12-beat / 60s cut)
+# SHOTLIST — claude-liam-context-window-vertical (9:16, 12 beats)
 ## Total: 1:03 (63.16s) · 12 beats
 
-Reworked from the 9-beat/154.5s long cut to match the Brutalist first-project
-spec (60s, 12 beats) — same thesis, facts, sources, Bella voice, `@HumanitariansAI`.
+Full-length portrait companion to the 16:9 reel — same narration, audio
+durations, facts and sources, with native portrait graphics (not a crop).
+Why each beat differs from the 16:9 version: `BUILD-LOG.md` (portrait-only
+decisions). Cut/merge history from the long cut: `../SHOTLIST.md`.
 
 | Beat | Act | Pattern | Duration (s) | Notes |
 |---|---|---|---|---|
-| B00 | OPEN | `ClaudeComposerAsk` | 5.50 | Cold open; hook on the memory misconception ("that's not memory failing — it's a budget") |
-| B01 | BLUF | `BrutalistHesitantWriter` | 3.19 | Single-line correction: "Claude's memory" → "a fixed budget." Stakes line cut for length. |
-| B02 | I | `FormBCard` | 3.89 | System prompt / Tool definitions / Conversation history |
-| B03 | I | `FormBCard` | 4.06 | Your message / Claude's reply |
-| B04 | II | Manim `B04_TokenSplit` | 6.02 | Tokens ≠ words; running-total bar |
-| B05 | II | `FormBCard` | 4.68 | Code / Numbers / Jargon / Non-English text — cost more per word |
-| B06 | III | `AttritionChain` | 7.10 | Room-remaining climb to ceiling + "context rot" restored as a tendency |
-| B07 | III | `FormBCard` | 5.04 | Error / Summary / Dropped turns — depends on the app |
-| B08 | IV | `ScaleComparison` | 5.06 | Relative window-size scale; filling more costs more |
-| B09 | CLOSE | `ClaudeVerdictArtifact` | 6.79 | Summary restates the thesis verbatim: "a context window is a fixed, shared budget — not memory" |
-| B10 | CLOSE | `ClaudeComposerAsk` | 6.07 | YOUR TURN; one-line check ("does it say what to drop first?") |
-| B11 | CLOSE | `OutroCTA` | 5.76 | Title + `@HumanitariansAI` handle |
+| B00 | OPEN | `ClaudeComposerAsk916` | 5.50 | Cold open; `largeText: true` |
+| B01 | BLUF | Manim `B01_HesitantWriter` | 3.19 | Two lines: "A context window is" / "Claude's memory." → "a fixed budget." Stands in for `BrutalistHesitantWriter` (portrait size floor) |
+| B02 | I | `FormBCard916` | 3.89 | System prompt / Tool definitions / Conversation history |
+| B03 | I | `FormBCard916` | 4.06 | Your message / Claude's reply |
+| B04 | II | Manim `B04_TokenSplit` | 6.02 | Portrait restack: tokens ≠ words, running-total bar in the bottom third |
+| B05 | II | `FormBCard916` | 4.68 | Code / Numbers / Jargon / Text in other languages; one-line subs |
+| B06 | III | Manim `B06_CeilingClimb` | 7.10 | Room-remaining climb to the fixed ceiling, `ILLUSTRATIVE` on screen; stands in for `AttritionChain` (no portrait variant) |
+| B07 | III | `FormBCard916` | 5.04 | Error / Summary / Dropped turns — depends on the app |
+| B08 | IV | `FormBCard916` | 5.06 | Small / Medium / Large / Very large — filling more costs more |
+| B09 | CLOSE | `ClaudeVerdictArtifact916` | 6.79 | Summary restates the thesis; `qc.sparse_by_design` |
+| B10 | CLOSE | `ClaudeComposerAsk916` | 6.07 | YOUR TURN; `largeText: true`, status line dropped |
+| B11 | CLOSE | Manim `B11_OutroCard` | 5.76 | `@HumanitariansAI` / "The Context Window Isn't Memory."; stands in for `OutroSeries` (no portrait variant) |
 
-## What was dropped or merged from the 9-beat/154.5s long cut
-
-| Change | Why |
-|---|---|
-| 5-layer `ClaudeScienceLayerStack` (one beat, long cut) → two `FormBCard` beats (B02, B03) | `ClaudeScienceLayerStack` has a **fixed 30s native render** with no duration override; its reveal timing can't complete inside a ~4s beat (compile.py *truncates* clips longer than the target, it doesn't speed them up — confirmed by render, not assumed). `FormBCard` reveals fast enough for beats this short. Real cost: loses the "stacking into one container" visual metaphor for a flatter list-of-things card. |
-| 4-row token-cost comparison table (exact counts, growing bars) → `FormBCard` list (B05) | No time to build the comparison chart in ~4.5s. Keeps the claim, drops the on-screen counter evidence. |
-| Three-outcome elaboration (why apps error / summarize / drop) → three words in one breath (B07) | No individual explanation of each mechanism — named, not explained. |
-| Handoff's 3-point rubric → one check question (B10) | "Does it say what to drop first?" replaces the fuller three-question rubric from the long cut. |
-| Verdict's four enumerated points → two sentences restating the thesis (B09) | Per this pass's explicit instruction: the summary must restate "a context window is a fixed shared budget, not memory" plainly, not itemize every supporting fact. |
-| "Context rot" named term | Cut from the long cut's B00, then **restored** as a one-line tendency in B06 per this pass's instruction — kept in the final cut. |
-
-## Doctrine tension (disclosed, not hidden)
-At ~5s/beat average, this cut cannot fully satisfy `nopunt`'s whole-sheet
-teaching-arc checklist the way the 154.5s long cut did:
-- **FRAMEWORK** and **BOOKENDS** still hold.
-- **WORKED EXAMPLE** — B06's ceiling climb is the closest thing to one, but
-  it no longer walks concrete turn-by-turn numbers on screen the way the long
-  cut's B04 did.
-- **FALSIFIABILITY** — B04/B05 gesture at "tokens aren't uniform" but don't
-  stress-test the framework the way the long cut's dedicated beat did.
-- **SCAFFOLDED TASK** — weakened from a 3-point rubric to 1 question.
-
-This is a real, accepted cost of the 60s/12-beat format, not an oversight.
+Every `FormBCard916` item carries `icon: "BOX"`.
