@@ -6,7 +6,7 @@
 
 ## What's in this folder
 
-14 work folders, one per report or video:
+16 work folders, one per report or video:
 
 - `2026-08-21-every-image-earns-its-place/` — every image earns its place (2026-08-21)
 - `2026-08-21-model-to-the-bill/` — model to the bill (2026-08-21)
@@ -22,6 +22,8 @@
 - `2026-09-25-the-weights-were-never-the-risk/` — the weights were never the risk (2026-09-25)
 - `2026-10-02-refuse-dont-guess/` — refuse dont guess (2026-10-02)
 - `2026-10-02-the-model-didnt-change-the-world-did/` — the model didnt change the world did (2026-10-02)
+- `2026-10-09-small-enough-to-stay-offline/` — small enough to stay offline (2026-10-09)
+- `2026-10-09-who-is-testing-who/` — who is testing who (2026-10-09)
 
 ## Frictional log
 

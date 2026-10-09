@@ -1,0 +1,63 @@
+date 2026-10-09 12:55 PDT · python 3.11.5 · pytest 9.1.1 · coverage 7.16.2 · mutmut 3.8.0
+
+=== mock (tests_mock/)  mutation score 33/55 = 60.0%  {'killed': 33, 'survived': 11, 'no tests': 11}
+  by kind: {'behavior': 42, 'message': 11, 'sql-case': 2} · behaviour mutants killed 33/42 = 78.6%
+  models.py      lines covered  14/14  (100.0%) · mutants killed  0/0  {}
+  parts.py       lines covered  19/19  (100.0%) · mutants killed 19/22 {'killed': 19, 'survived': 3}
+  repository.py  lines covered   0/9   (  0.0%) · mutants killed  0/11 {'no tests': 11}
+  service.py     lines covered  17/17  (100.0%) · mutants killed 14/22 {'killed': 14, 'survived': 8}
+  not killed (status, kind: old → new):
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized(None)
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized("XXUnauthorizedXX")
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized("unauthorized")
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized("UNAUTHORIZED")
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError(None)
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError("XXBook not foundXX")
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError("book not found")
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError("BOOK NOT FOUND")
+    survived  message  raise ValueError("book id must be a positive integer")  →  raise ValueError(None)
+    survived  message  raise ValueError("book id must be a positive integer")  →  raise ValueError("XXbook id must be a positive integerXX")
+    survived  message  raise ValueError("book id must be a positive integer")  →  raise ValueError("BOOK ID MUST BE A POSITIVE INTEGER")
+    no tests  behavior self.conn = conn  →  self.conn = None
+    no tests  behavior row = self.conn.execute(  →  row = None
+    no tests  behavior "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  None, (book_id,)).fetchone()
+    no tests  behavior "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  "SELECT id, title, author FROM books WHERE id = ?", None).fetc
+    no tests  behavior "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  (book_id,)).fetchone()
+    no tests  behavior "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  "SELECT id, title, author FROM books WHERE id = ?", ).fetchone
+    no tests  behavior "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  "XXSELECT id, title, author FROM books WHERE id = ?XX", (book_
+    no tests  sql-case "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  "select id, title, author from books where id = ?", (book_id,)
+    no tests  sql-case "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  "SELECT ID, TITLE, AUTHOR FROM BOOKS WHERE ID = ?", (book_id,)
+    no tests  behavior return Book(*row) if row else None  →  return Book(*row) if (row) and False else None
+    no tests  behavior return Book(*row) if row else None  →  return Book(*row) if (row) or True else None
+
+=== db (tests_db/)  mutation score 41/55 = 74.5%  {'killed': 41, 'survived': 14}
+  by kind: {'behavior': 42, 'message': 11, 'sql-case': 2} · behaviour mutants killed 41/42 = 97.6%
+  models.py      lines covered  14/14  (100.0%) · mutants killed  0/0  {}
+  parts.py       lines covered  19/19  (100.0%) · mutants killed 18/22 {'killed': 18, 'survived': 4}
+  repository.py  lines covered   9/9   (100.0%) · mutants killed  9/11 {'killed': 9, 'survived': 2}
+  service.py     lines covered  17/17  (100.0%) · mutants killed 14/22 {'killed': 14, 'survived': 8}
+  not killed (status, kind: old → new):
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized(None)
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized("XXUnauthorizedXX")
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized("unauthorized")
+    survived  message  raise Unauthorized("Unauthorized")  →  raise Unauthorized("UNAUTHORIZED")
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError(None)
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError("XXBook not foundXX")
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError("book not found")
+    survived  message  raise BookNotFoundError("Book not found")  →  raise BookNotFoundError("BOOK NOT FOUND")
+    survived  message  raise ValueError("book id must be a positive integer")  →  raise ValueError(None)
+    survived  message  raise ValueError("book id must be a positive integer")  →  raise ValueError("XXbook id must be a positive integerXX")
+    survived  message  raise ValueError("book id must be a positive integer")  →  raise ValueError("BOOK ID MUST BE A POSITIVE INTEGER")
+    survived  behavior self.counters[name] += 1  →  self.counters[name] = 1
+    survived  sql-case "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  "select id, title, author from books where id = ?", (book_id,)
+    survived  sql-case "SELECT id, title, author FROM books WHERE id = ?", (book_id,)  →  "SELECT ID, TITLE, AUTHOR FROM BOOKS WHERE ID = ?", (book_id,)
+
+=== pricing (tests_pricing/)  mutation score 28/33 = 84.8%  {'killed': 28, 'survived': 5}
+  by kind: {'behavior': 30, 'message': 3} · behaviour mutants killed 28/30 = 93.3%
+  pricing.py     lines covered  11/11  (100.0%) · mutants killed 28/33 {'killed': 28, 'survived': 5}
+  not killed (status, kind: old → new):
+    survived  behavior if any(p < 0 for p in prices):  →  if any(p <= 0 for p in prices):
+    survived  behavior if any(p < 0 for p in prices):  →  if any(p < 1 for p in prices):
+    survived  message  raise ValueError("prices can't be negative")  →  raise ValueError(None)
+    survived  message  raise ValueError("prices can't be negative")  →  raise ValueError("XXprices can't be negativeXX")
+    survived  message  raise ValueError("prices can't be negative")  →  raise ValueError("PRICES CAN'T BE NEGATIVE")
