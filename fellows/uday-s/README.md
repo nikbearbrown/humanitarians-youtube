@@ -72,6 +72,14 @@ measured clock — see that episode's `BUILD-LOG.md`, "REVISION 2".
   topic explainer on HOPE and nested learning. The brief called it a training
   method; it is an architecture, and the video corrects that on screen.
   11 beats · ~3:27.
+- [2026-10-09 — Green Because It Wasn't Looking](./2026-10-09-mycroft-weekly-green-because-it-wasnt-looking/) —
+  weekly work report on `mycroft` @ `fbd30b6`, **episode 7**: a conformance check
+  that was passing because of what it never opened — 187 files before, 743 after.
+  12 beats · ~3:38.
+- [2026-10-09 — One Model, Three Numbers](./2026-10-09-small-models-coding-rl/) —
+  topic explainer on small models, coding agents and RL: one model posts four
+  different scores on the same benchmark, and which one gets quoted decides
+  whether it looks state of the art. 11 beats · ~3:31.
 
 The two 2026-08-27 folders carry a `short/` subfolder: a derivative 1080×1920 cut
 for YouTube Shorts, reusing the parent's audio with only the funnel outro
@@ -89,7 +97,7 @@ closes on "gate 2 cannot clear"; ep 2 resolves two rows of that list; ep 3's
 falsifiability beat lands back on ep 1's frozen corpus; ep 4 closes the ledger
 at six of six steps and finds the same ep-1 defect one level up (a gate with
 nothing to fail). Watch them in order:
-`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87`.
+`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6`.
 
 **Dual-use note:** *The Gap You Can Actually Close* is a security topic handled
 defensively. It explains what the term names, reports published statistics, and

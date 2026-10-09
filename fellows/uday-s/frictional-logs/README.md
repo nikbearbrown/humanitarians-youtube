@@ -17,6 +17,8 @@ These cover the six steps of `market-sentiment-analysis-part-1` in
 | 2026-09-17 | [Step 6 — produce human report](./2026-09-17-step-6-produce-human-report.md) | [mycroft #48](https://github.com/nikbearbrown/mycroft/pull/48) |
 | 2026-09-25 | [Recipe promotion to RUNNABLE-SAMPLE, and the gate fixes](./2026-09-25-recipe-promotion-and-gate-fixes.md) | not yet merged upstream |
 | 2026-10-02 | [Closing the DEFINE and APPROVE TODOs](./2026-10-02-closing-the-two-todos.md) | `8c13b87`, on the feature branch |
+| 2026-10-09 | [Unhiding the step scripts from conformance](./2026-10-09-conformance-skip-list.md) | `fbd30b6`, on `fix/conformance-skip-list` |
+| 2026-10-09 | [`.gitattributes` and manifest drift](./2026-10-09-gitattributes-and-manifest-drift.md) | same branch |
 
 ## Where the video work's logs are
 
