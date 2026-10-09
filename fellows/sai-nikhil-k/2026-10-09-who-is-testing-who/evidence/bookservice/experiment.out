@@ -1,0 +1,17 @@
+date 2026-10-09 12:44 PDT · python 3.11.5 · pytest 9.1.1
+baseline (no change): {'mock': '13 passed in 0.04s', 'db': '4 passed in 0.01s'}
+
+BUGS — a good suite fails
+  B1 the query returns its columns in the wrong order           mock: passed · db: CAUGHT
+  B2 the repository hands back the raw database row, not a Book mock: passed · db: CAUGHT
+  B3 a missing book raises IndexError instead of returning None mock: passed · db: CAUGHT
+  B4 the success metric's name is misspelled                    mock: CAUGHT · db: CAUGHT
+  B5 a fetch is counted before the book is known to exist       mock: CAUGHT · db: CAUGHT
+
+REFACTORS — a good suite passes
+  R1 move the not-found check into the repository               mock: FAILED · db: passed
+  R2 build the DTO in the service instead of calling the mapper mock: FAILED · db: passed
+
+mock: caught 2/5 bugs · failed 2/2 harmless refactors
+
+db: caught 5/5 bugs · failed 0/2 harmless refactors
