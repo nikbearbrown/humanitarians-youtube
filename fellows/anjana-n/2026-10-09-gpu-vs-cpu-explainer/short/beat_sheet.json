@@ -1,0 +1,343 @@
+{
+ "metadata": {
+  "title": "Why GPUs Beat CPUs for AI",
+  "slug": "gpu-vs-cpu-explainer-short",
+  "topic": "GPU vs CPU · THE AI WORKLOAD",
+  "aspect_ratio": "9:16",
+  "register": "Teardown",
+  "audience": "Claude",
+  "brand": "claude-anjana",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "color_semantics": "Claude fidelity UI beats (B00 ask, B06 verdict, B07 handoff, B08 outro) stay cream/ink/terracotta per CLAUDE-BRAND.md. Body beats (B01-B05) use the briefs' OWN palette exactly as written, with no role remapped and no value substituted: ground #1A1A2E, CPU blue #4A90D9, GPU green #27AE60, matrix/result gold #F1C40F, tensor purple #9B59B6, muted grey #95A5A6, text #EAEAEA, chip outlines #2C3E50, tube interiors #1E1E2E. No palette deviation to record.",
+  "greeting": "Hello, Anjana",
+  "greeting_note": "Plain English hello, narrator is Anjana; no channel handle or brand chip on this build.",
+  "note": "",
+  "tags": [
+   "GPU",
+   "CPU",
+   "CUDA",
+   "tensor cores",
+   "SIMD",
+   "memory bandwidth",
+   "HBM2e",
+   "A100",
+   "matrix multiplication",
+   "Claude"
+  ],
+  "build": {
+   "at": "2026-10-09T15:54:03",
+   "cut": "master",
+   "filled": 9,
+   "of": 9,
+   "slates": []
+  },
+  "fit": "crop",
+  "kind": "short",
+  "reformat": "",
+  "derived_from": "gpu-vs-cpu-explainer",
+  "dropped_beats": [
+   "B00",
+   "B04",
+   "B06",
+   "B07"
+  ],
+  "playlist_short": "Shorts",
+  "total_estimated_duration_seconds": 150.4
+ },
+ "beats": [
+  {
+   "beat_id": "B01",
+   "act": "THE BOTTLENECK",
+   "narration_text": "Every layer of a neural network performs the same core operation: multiply a matrix of inputs by a matrix of weights, add a bias, and apply an activation function. Training means repeating this billions of times across thousands of batches. Inference means running it millions of times per day. The dominant computational cost of any AI workload is matrix multiplication. Understanding that single fact is the key to understanding why GPUs are the hardware of choice for AI.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "the input column of four circles appears, each with its value"
+     },
+     {
+      "at": 0.16,
+      "event": "the 4×4 weight matrix builds and takes its gold glow"
+     },
+     {
+      "at": 0.4,
+      "event": "the 'multiply' arrow draws; the output column resolves"
+     },
+     {
+      "at": 0.56,
+      "event": "'add bias + activate' lands"
+     },
+     {
+      "at": 0.68,
+      "event": "the counter starts: 1B … 10B … 100B … 1T"
+     },
+     {
+      "at": 0.9,
+      "event": "the label settles: the dominant cost"
+     }
+    ],
+    "remotion": {
+     "pattern": "GpuBottleneck916",
+     "props": {
+      "sparkLine": "The dominant computational cost."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": "2026-10-09T12:00:00"
+     }
+    }
+   },
+   "estimated_duration_s": 26,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 31.32,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "remotion:GpuBottleneck",
+    "at": "2026-10-09T15:54:03"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "ONE FAST VS MANY WIDE",
+   "narration_text": "A modern server CPU has up to 128 high-performance cores. Each core handles complex branching, deep pipelines, and low-latency single-threaded tasks exceptionally well. A GPU takes a different approach. An A100 has 6,912 CUDA cores — individually simpler, but designed to execute the same instruction across thousands of data elements simultaneously. This is the SIMD model: single instruction, multiple data. Matrix multiplication decomposes into thousands of independent multiply-and-accumulate operations — exactly the workload SIMD was built for.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "left: the CPU chip, eight large cores in a 2×4 grid"
+     },
+     {
+      "at": 0.14,
+      "event": "sixteen operation tokens queue to its left"
+     },
+     {
+      "at": 0.22,
+      "event": "one core brightens; a token enters, checks, exits — the clock ticks once"
+     },
+     {
+      "at": 0.42,
+      "event": "the queue drains a tick at a time, the other seven cores idle"
+     },
+     {
+      "at": 0.58,
+      "event": "right: the GPU chip fills with its dense grid of cores"
+     },
+     {
+      "at": 0.74,
+      "event": "all sixteen tokens enter at once; every core lights; one tick clears them"
+     },
+     {
+      "at": 0.9,
+      "event": "the SIMD badge resolves between the two sides"
+     }
+    ],
+    "remotion": {
+     "pattern": "GpuSimd916",
+     "props": {
+      "sparkLine": "Single instruction, multiple data."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": "2026-10-09T12:00:00"
+     }
+    }
+   },
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 38.33,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "remotion:GpuSimd",
+    "at": "2026-10-09T15:54:03"
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "BANDWIDTH",
+   "narration_text": "Core count alone doesn't determine throughput. The limiting factor is often memory bandwidth — the rate at which data can be delivered to the processing cores. A server CPU reads from DDR5 memory at roughly 50 to 100 gigabytes per second. A GPU like the A100 uses HBM2e — high bandwidth memory — delivering over two terabytes per second. That's a twenty-times advantage. When thousands of cores need continuous data, the memory interface becomes the critical path. Higher bandwidth means those cores spend less time waiting and more time computing.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "top: the DDR5 tube draws; packets begin flowing at a steady pace"
+     },
+     {
+      "at": 0.2,
+      "event": "its throughput meter fills low — ~100 GB/s"
+     },
+     {
+      "at": 0.42,
+      "event": "bottom: the HBM2e tube, three times the height, fills with a dense fast stream"
+     },
+     {
+      "at": 0.66,
+      "event": "its meter fills high — ~2 TB/s"
+     },
+     {
+      "at": 0.82,
+      "event": "the 20× badge resolves between the two meters"
+     },
+     {
+      "at": 0.92,
+      "event": "label: memory bandwidth determines sustained throughput"
+     }
+    ],
+    "remotion": {
+     "pattern": "GpuBandwidth916",
+     "props": {
+      "sparkLine": "Bandwidth is the critical path."
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": "2026-10-09T12:00:00"
+     }
+    }
+   },
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 35.38,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "remotion:GpuBandwidth",
+    "at": "2026-10-09T15:54:03"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "THE FULL PICTURE",
+   "narration_text": "GPUs outperform CPUs for AI workloads because of how well their architecture maps to the problem. Neural networks are dominated by matrix multiplication. GPUs provide thousands of cores for parallel execution. High-bandwidth memory keeps those cores supplied with data. And tensor cores accelerate the most critical operation in dedicated hardware. CPUs remain essential for orchestration, data loading, preprocessing, and the control logic that surrounds the compute. The two architectures are complementary — GPUs handle the dense numerical throughput while CPUs manage everything around it.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "stagger",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "the gold bar slides in: matrix multiplication is the dominant cost"
+     },
+     {
+      "at": 0.14,
+      "event": "the green bar stacks: thousands of cores for parallel execution"
+     },
+     {
+      "at": 0.26,
+      "event": "the blue bar stacks: high-bandwidth memory interface"
+     },
+     {
+      "at": 0.38,
+      "event": "the purple bar caps it: dedicated tensor core hardware"
+     },
+     {
+      "at": 0.5,
+      "event": "all four pulse together once"
+     },
+     {
+      "at": 0.6,
+      "event": "right: the CPU piece resolves with its four roles"
+     },
+     {
+      "at": 0.74,
+      "event": "the GPU piece interlocks with it, equal weight, neither diminished"
+     },
+     {
+      "at": 0.9,
+      "event": "the closing line settles: complementary architectures"
+     }
+    ],
+    "remotion": {
+     "pattern": "GpuFullPicture916",
+     "props": {
+      "sparkLine": "Each built for what it does best."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": "2026-10-09T12:00:00"
+     }
+    }
+   },
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 38.71,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "remotion:GpuFullPicture",
+    "at": "2026-10-09T15:54:03"
+   }
+  },
+  {
+   "beat_id": "B08",
+   "act": "OUTRO",
+   "narration_text": "Anjana here, thanks for watching.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "ClaudeTitleOutro: title in serif, terracotta period"
+     },
+     {
+      "at": 0.8,
+      "event": "subline fades in: 'complementary architectures'"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeTitleOutro916",
+     "props": {
+      "title": "Why GPUs Beat CPUs for AI",
+      "handle": "",
+      "subline": "complementary architectures"
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": "2026-10-09T12:00:00"
+     }
+    }
+   },
+   "estimated_duration_s": 5,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 2.16,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B08.mp4",
+    "filled_by": "remotion:ClaudeTitleOutro",
+    "at": "2026-10-09T15:54:03"
+   }
+  },
+  {
+   "beat_id": "END",
+   "narration_text": "",
+   "actual_duration_s": 4.5,
+   "audio_file": "mp3/beat-END.mp3",
+   "shot": {
+    "type": "CARD",
+    "source": "own",
+    "motion": "hold",
+    "treatment": "none"
+   },
+   "card": {
+    "handle": "",
+    "next": "",
+    "silent": true
+   }
+  }
+ ]
+}
