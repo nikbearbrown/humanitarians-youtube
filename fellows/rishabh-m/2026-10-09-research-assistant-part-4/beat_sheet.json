@@ -1,0 +1,1376 @@
+{
+  "metadata": {
+    "slug": "research-assistant-part-4",
+    "title": "Design From Real Data",
+    "topic": "Irreducibly Human",
+    "logline": "Part 4 of building an AI research assistant — Stage 2A: real arXiv metadata into Postgres, designed from real responses and arXiv's limits",
+    "purpose": "Part 4 — Building a Research Assistant (Stage 2A: metadata ingestion)",
+    "skill": "ai-explainer",
+    "channel": "claude-hai",
+    "persona": "Rishabh",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Greetings, Rishabh",
+    "register": "Plain",
+    "engine": "kokoro",
+    "voice_kokoro": "af_sarah",
+    "palette": "claude",
+    "aspect": "16:9",
+    "aspect_ratio": "16:9",
+    "clock": "narration",
+    "audience": "Students and early-career engineers building their first real AI system",
+    "playlist": "Building a Research Assistant",
+    "playlist_short": "Shorts",
+    "source": "/Users/rishabh_hm/Documents/Projects/AI-Research-Assistant — personal/Documentation/Stage 2 - Data Pipeline.md (Part 2A), commits 511c15d..22f9c6b (Oct 5–8), src/config.py, src/services/arxiv/, src/repositories/paper.py, airflow/dags/arxiv_ingestion.py (reference code under personal/ ignored)",
+    "house_rules": "HOUSE-RULES.local.md — greeting/sign-off + 1.0s beat gap (pad_beats.local.py)",
+    "notes": "First person, build-log framing; no course or reference mentioned. No credit line. Pre-commit/make-lint mismatch omitted for length. LOGO LAW: arXiv, Postgres, Airflow, FastAPI marks on diagram nodes.",
+    "build": {
+      "at": "2026-10-09T21:38:12",
+      "cut": "master",
+      "filled": 18,
+      "of": 18,
+      "slates": [],
+      "skin_warnings": [
+        "B17: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "OPEN",
+      "estimated_duration_s": 16,
+      "narration_text": "Greetings — this is Rishabh for Humanitarians AI. Part four of building a research assistant. Stage one ended with everything running, and a database holding one sample paper. This week, real papers go in.",
+      "new_visual_element": "Cold open — composer ask, answered",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "greeting 'Greetings, Rishabh'; the ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "running indicator"
+          },
+          {
+            "at": 0.78,
+            "event": "three output lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Greetings, Rishabh",
+            "folderLabel": "@HumanitariansAI",
+            "topic": "Irreducibly Human",
+            "segment": "Building a Research Assistant · Part 4",
+            "command": "My pipeline runs, but the database holds one sample paper. Where do I start filling it?",
+            "runningText": "reading the stage two log…",
+            "output": [
+              "Not with the parser.",
+              "Start with what arXiv actually sends back.",
+              "Then respect its limits."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 14.33,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 14.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "OPEN",
+      "estimated_duration_s": 16,
+      "narration_text": "Here's the whole video in one line. Don't design from guesses. Design from data. I fetched real responses from arXiv first, and they shaped the parser before I'd written any of it. Everything after that had to respect arXiv's limits.",
+      "new_visual_element": "Executive summary — written and corrected on screen",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "writer types 'Start from guesses.'"
+          },
+          {
+            "at": 0.3,
+            "event": "'guesses' turns terracotta — the misconception"
+          },
+          {
+            "at": 0.45,
+            "event": "deleted and retyped as 'data'"
+          },
+          {
+            "at": 0.7,
+            "event": "'Real responses / shaped my parser / before I wrote it.' completes the claim"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Start from guesses.\nReal responses\nshaped my parser\nbefore I wrote it.",
+            "triggerWords": "guesses",
+            "replacementWords": "data",
+            "seed": "research-assistant-p4",
+            "face": "serif",
+            "fontSize": 175,
+            "lineSpacing": 1.45,
+            "align": "center",
+            "charMs": 34,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 2
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "actual_duration_s": 15.36,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "I — The Goal",
+      "estimated_duration_s": 20,
+      "narration_text": "The goal for stage two: fill that database automatically. Every day, ask arXiv for the new AI papers, save their details, and later, download and parse the PDFs. This week was the first part. Metadata only: titles, authors and abstracts, into Postgres.",
+      "new_visual_element": "arXiv → metadata → Postgres; PDFs next",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "arXiv → metadata → Postgres → PDFs builds in spoken order"
+          },
+          {
+            "at": 0.6,
+            "event": "'Metadata · this week' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Fill The Database",
+            "sparkLine": "Metadata first.",
+            "note": "This week: metadata only. PDFs and parsing come next.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "arXiv API",
+                "sub": "new cs.AI papers",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal",
+                "logo": "logos/arxiv-wordmark.svg"
+              },
+              {
+                "id": "m",
+                "label": "Metadata",
+                "sub": "this week",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "p",
+                "label": "Postgres",
+                "sub": "the papers table",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "logo": "logos/postgresql-01.svg"
+              },
+              {
+                "id": "f",
+                "label": "PDFs",
+                "sub": "next",
+                "col": 3,
+                "row": 0,
+                "kind": "terminal"
+              }
+            ],
+            "edges": [
+              {
+                "from": "a",
+                "to": "m",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "m",
+                "to": "p",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "p",
+                "to": "f",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "m",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 17.45,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 17.458333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "I — The Goal",
+      "estimated_duration_s": 22,
+      "narration_text": "Coming back after a break, I found two bugs stage one had left me. First, my tests had never been committed. One line in git ignore was silently hiding every file starting with test. And my model redeclared timestamp columns it should have inherited, so they had no defaults. The rule, again: check what git and the database actually have.",
+      "new_visual_element": "Never committed — the .gitignore line",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real .gitignore excerpt reveals"
+          },
+          {
+            "at": 0.45,
+            "event": "'test_*.py' lights terracotta on 'silently hiding'"
+          },
+          {
+            "at": 0.85,
+            "event": "note: git check-ignore names the rule"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "Never Committed",
+            "sparkLine": "Silently ignored.",
+            "filename": ".gitignore   (excerpt, before the fix)",
+            "language": "gitignore",
+            "code": "# Test files and generated test output\ntest_*.py\ntest_output/\ntest_data/",
+            "highlight": [
+              2
+            ],
+            "highlightAtSeconds": 8.0,
+            "revealSeconds": 1.2,
+            "lineNumbers": true,
+            "note": "git check-ignore -v <file> names the rule that hides it.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 21.03,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 21.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "II — Four Rules",
+      "estimated_duration_s": 24,
+      "narration_text": "So before writing any new code, I set four rules. Respect the service: arXiv allows one request every three seconds. Design from real data, not assumptions. Isolate failures at the right level. And make every run safe to repeat. The rest of this video is those four rules turning into code.",
+      "new_visual_element": "Four rules for stage two",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "four rule cards land in spoken order"
+          },
+          {
+            "at": 0.3,
+            "event": "'Real Data First' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Four Rules",
+            "sparkLine": "Set before the code.",
+            "note": "Everything after this is one of these four, turned into code.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "Respect The Service",
+                "sub": "one request per 3 s",
+                "col": 0,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "b",
+                "label": "Real Data First",
+                "sub": "fetch it, then design",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "c",
+                "label": "Isolate Failures",
+                "sub": "at the right level",
+                "col": 0,
+                "row": 1,
+                "kind": "node"
+              },
+              {
+                "id": "d",
+                "label": "Safe To Repeat",
+                "sub": "same day, same rows",
+                "col": 1,
+                "row": 1,
+                "kind": "node"
+              }
+            ],
+            "edges": [],
+            "accentId": "b",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.18,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 19.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "III — The Build",
+      "estimated_duration_s": 22,
+      "narration_text": "Rule one went into the settings first. Every arXiv option lives in its own small section, and the delay between requests has a floor. Set it to one second, and the settings refuse to load. A limit that only lives in a comment is a limit someone will break.",
+      "new_visual_element": "The rate limit has a floor in config",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real ArxivSettings class reveals"
+          },
+          {
+            "at": 0.35,
+            "event": "'rate_limit_delay … ge=3.0' lights terracotta on 'has a floor'"
+          },
+          {
+            "at": 0.85,
+            "event": "note: below 3.0 is a validation error"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "A Limit With A Floor",
+            "sparkLine": "Not just a comment.",
+            "filename": "src/config.py   (excerpt, descriptions trimmed)",
+            "language": "python",
+            "code": "class ArxivSettings(BaseModel):\n    model_config = ConfigDict(frozen=True)\n\n    base_url: str = \"https://export.arxiv.org/api/query\"\n    search_category: str = \"cs.AI\"\n    max_results: int = Field(default=100, ge=1, le=2000)\n    rate_limit_delay: float = Field(default=3.0, ge=3.0)\n    timeout_seconds: float = Field(default=30.0, gt=0)\n    max_retries: int = Field(default=3, ge=0)",
+            "highlight": [
+              7
+            ],
+            "highlightAtSeconds": 7.3,
+            "revealSeconds": 1.8,
+            "lineNumbers": true,
+            "note": "ARXIV__RATE_LIMIT_DELAY=1 fails validation. The app never starts too fast.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 16.34,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 16.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "III — The Build",
+      "estimated_duration_s": 30,
+      "narration_text": "Rule two. Before writing the parser, I sent three requests to the real API: a normal search, a bad one, and an old paper. Each answer changed a decision. Paper IDs carry a version, so I store them without it. Otherwise a revised paper becomes a second row. Old IDs have a slash inside them, so I keep everything after abs. And a bad query explains itself inside the feed, so the parser raises with arXiv's own reason.",
+      "new_visual_element": "What the real data showed → the decision it forced",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "observed → decision, three lanes, in spoken order"
+          },
+          {
+            "at": 0.3,
+            "event": "'Strip The Version' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "What The Real Data Showed",
+            "sparkLine": "Three requests first.",
+            "note": "Every row here is a bug I never had to debug.",
+            "nodes": [
+              {
+                "id": "o1",
+                "label": "abs/2610.37668v1",
+                "sub": "IDs carry a version",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal"
+              },
+              {
+                "id": "d1",
+                "label": "Strip The Version",
+                "sub": "a revision updates, not duplicates",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "o2",
+                "label": "abs/cs/0112017v1",
+                "sub": "old IDs have a slash",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal"
+              },
+              {
+                "id": "d2",
+                "label": "Keep All After /abs/",
+                "sub": "not just the last part",
+                "col": 1,
+                "row": 1,
+                "kind": "node"
+              },
+              {
+                "id": "o3",
+                "label": "HTTP 400",
+                "sub": "reason inside the feed",
+                "col": 0,
+                "row": 2,
+                "kind": "terminal"
+              },
+              {
+                "id": "d3",
+                "label": "Raise Its Reason",
+                "sub": "arXiv's own message",
+                "col": 1,
+                "row": 2,
+                "kind": "node"
+              }
+            ],
+            "edges": [
+              {
+                "from": "o1",
+                "to": "d1",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "o2",
+                "to": "d2",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "o3",
+                "to": "d3",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "d1",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 26.0,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 26.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "III — The Build",
+      "estimated_duration_s": 24,
+      "narration_text": "Rule three lives in the same file. One malformed paper is logged and skipped, and the rest of the feed still loads. But a broken feed, or an error entry, raises. And because parsing is pure, text in and papers out, the tests just feed it a saved real response. No network, no mocks.",
+      "new_visual_element": "Skip the entry, raise on the feed",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real parse loop reveals"
+          },
+          {
+            "at": 0.2,
+            "event": "the skip branch lights terracotta on 'logged and skipped'"
+          },
+          {
+            "at": 0.85,
+            "event": "note: error isolation at the right level"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "Skip The Entry, Not The Feed",
+            "sparkLine": "Isolate at the right level.",
+            "filename": "src/services/arxiv/parser.py   (excerpt, … = argument trimmed)",
+            "language": "python",
+            "code": "for entry in root.findall(\"atom:entry\", NS):\n    entry_id = entry.findtext(\"atom:id\", default=\"\", namespaces=NS)\n\n    # arXiv reports query errors as a feed with a single error entry.\n    if \"/api/errors\" in entry_id:\n        raise ArxivParseError(f\"arXiv API error: …\")\n\n    try:\n        papers.append(_parse_entry(entry))\n    except ValidationError as e:\n        logger.warning(\"Skipping malformed arXiv entry %s: %s\", entry_id or \"<no id>\", e)",
+            "highlight": [
+              10,
+              11
+            ],
+            "highlightAtSeconds": 3.6,
+            "revealSeconds": 2.0,
+            "lineNumbers": true,
+            "note": "One bad paper is skipped. A broken feed raises.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 18.71,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 18.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "III — The Build",
+      "estimated_duration_s": 24,
+      "narration_text": "Back to rule one, in the client. Every request goes through one rate limiter first: searches, retries, and later, PDF downloads. It waits only for whatever is left of the three seconds. It uses the monotonic clock, because wall-clock time can jump. And the clock and the sleep are passed in, so the tests can run instantly.",
+      "new_visual_element": "One rate limiter, every request",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real RateLimiter.wait reveals"
+          },
+          {
+            "at": 0.3,
+            "event": "'remaining = …' lights terracotta on 'whatever is left'"
+          },
+          {
+            "at": 0.85,
+            "event": "note: one limiter for every request"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "One Limiter, Every Request",
+            "sparkLine": "Wait for what's left.",
+            "filename": "src/services/arxiv/rate_limiter.py   (excerpt)",
+            "language": "python",
+            "code": "def wait(self) -> None:\n    with self._lock:\n        if self._last is not None:\n            remaining = self._min_interval - (self._clock() - self._last)\n            if remaining > 0:\n                self._sleep(remaining)\n        self._last = self._clock()",
+            "highlight": [
+              4,
+              5,
+              6
+            ],
+            "highlightAtSeconds": 8.0,
+            "revealSeconds": 1.6,
+            "lineNumbers": true,
+            "note": "Searches, retries and PDF downloads all call wait() first.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.46,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 20.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "III — The Build",
+      "estimated_duration_s": 24,
+      "narration_text": "What to retry is a decision, not a default. Timeouts, rate limits and server errors get retried, with a wait that doubles each time, plus a little randomness, so clients that failed together don't all come back together. But a four hundred means my request is wrong. Retrying just wastes arXiv's time, so it fails at once, with arXiv's own message.",
+      "new_visual_element": "Retry the temporary; fail fast on a bad request",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "a response fans out to three outcomes"
+          },
+          {
+            "at": 0.6,
+            "event": "'Fail Fast' lights terracotta on 'my request is wrong'"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "What To Retry",
+            "sparkLine": "A decision, not a default.",
+            "note": "Backoff doubles from 3 s, plus jitter, capped at 60 s.",
+            "nodes": [
+              {
+                "id": "r",
+                "label": "Response",
+                "sub": "",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal"
+              },
+              {
+                "id": "g1",
+                "label": "Timeout · 429 · 5xx",
+                "sub": "",
+                "col": 1,
+                "row": 0,
+                "kind": "gate"
+              },
+              {
+                "id": "g2",
+                "label": "400 · other 4xx",
+                "sub": "",
+                "col": 1,
+                "row": 1,
+                "kind": "gate"
+              },
+              {
+                "id": "g3",
+                "label": "Under 400",
+                "sub": "",
+                "col": 1,
+                "row": 2,
+                "kind": "gate"
+              },
+              {
+                "id": "x1",
+                "label": "Retry",
+                "sub": "doubling wait + jitter",
+                "col": 2,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "x2",
+                "label": "Fail Fast",
+                "sub": "with arXiv's message",
+                "col": 2,
+                "row": 1,
+                "kind": "node"
+              },
+              {
+                "id": "x3",
+                "label": "Return",
+                "sub": "the response",
+                "col": 2,
+                "row": 2,
+                "kind": "terminal"
+              }
+            ],
+            "edges": [
+              {
+                "from": "r",
+                "to": "g1",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "r",
+                "to": "g2",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "r",
+                "to": "g3",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g1",
+                "to": "x1",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g2",
+                "to": "x2",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g3",
+                "to": "x3",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "x2",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 21.63,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 21.666666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "III — The Build",
+      "estimated_duration_s": 26,
+      "narration_text": "Then I ran it against one real day. September first: two hundred forty-three papers, in three pages of a hundred, in six and a half seconds. One gap in the log said two point seven nine seconds, which looked like a violation. It wasn't. The log records when a response arrives. The limiter spaces out when requests are sent.",
+      "new_visual_element": "One real day — and the 2.79 s gap that wasn't",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real verify snippet and the recorded result reveal"
+          },
+          {
+            "at": 0.55,
+            "event": "'2.79 s' line lights terracotta on 'looked like a violation'"
+          },
+          {
+            "at": 0.85,
+            "event": "note: arrival time is not send time"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "One Real Day",
+            "sparkLine": "243 papers, 3 requests.",
+            "filename": "verify (live)   — result recorded in the Stage 2 log",
+            "language": "python",
+            "code": "with ArxivClient(get_settings().arxiv) as c:\n    papers = c.fetch_by_submitted_date(date(2026, 9, 1), date(2026, 9, 1))\n    print(len(papers), papers[0].arxiv_id, papers[0].title)\n\n# recorded: 243 papers, all IDs unique\n# recorded: 3 requests (start=0 / 100 / 200), 6.5 s total\n# recorded: one logged gap of 2.79 s",
+            "highlight": [
+              7
+            ],
+            "highlightAtSeconds": 8.6,
+            "revealSeconds": 1.6,
+            "lineNumbers": true,
+            "note": "Logs mark when the response arrived, not when it was sent.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.78,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 20.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "III — The Build",
+      "estimated_duration_s": 26,
+      "narration_text": "Rule four starts with the schema. Creating tables at startup never changes a table that already exists, so every schema change would mean wiping the database. Once papers take minutes each to parse, a wipe costs hours. So I adopted Alembic now, and gave migrations their own one-off container. It runs once and exits, and the API and Airflow start only after it succeeds.",
+      "new_visual_element": "Migrations run once, before anything starts",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "Postgres → migrate → API and Airflow builds in spoken order"
+          },
+          {
+            "at": 0.55,
+            "event": "'migrate · runs once' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Migrate Once, Then Start",
+            "sparkLine": "Never wipe the data.",
+            "note": "If the migration fails, nothing starts against the wrong schema.",
+            "nodes": [
+              {
+                "id": "p",
+                "label": "Postgres",
+                "sub": "healthy",
+                "col": 0,
+                "row": 0.5,
+                "kind": "node",
+                "logo": "logos/postgresql-01.svg"
+              },
+              {
+                "id": "m",
+                "label": "migrate",
+                "sub": "alembic upgrade head · exits 0",
+                "col": 1,
+                "row": 0.5,
+                "kind": "node"
+              },
+              {
+                "id": "a",
+                "label": "API",
+                "sub": "starts after",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "logo": "logos/fastapi-01.svg"
+              },
+              {
+                "id": "f",
+                "label": "Airflow",
+                "sub": "starts after",
+                "col": 2,
+                "row": 1,
+                "kind": "node",
+                "logo": "logos/airflow-01.svg"
+              }
+            ],
+            "edges": [
+              {
+                "from": "p",
+                "to": "m",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "m",
+                "to": "a",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "m",
+                "to": "f",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "m",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 24.02,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 24.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "III — The Build",
+      "estimated_duration_s": 26,
+      "narration_text": "Then the save itself. Instead of checking each paper and then inserting it, one statement upserts the whole day: insert, and on conflict, update. It's atomic, so a failed run saves nothing and can simply run again. And it's safe to repeat. I ran September first twice: still two hundred forty-three rows, all refreshed, no duplicates.",
+      "new_visual_element": "One upsert per day — atomic and safe to repeat",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real upsert_many reveals"
+          },
+          {
+            "at": 0.25,
+            "event": "'on_conflict_do_update' lights terracotta on 'on conflict, update'"
+          },
+          {
+            "at": 0.85,
+            "event": "note: ran twice, still 243"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "One Statement Per Day",
+            "sparkLine": "Safe to repeat.",
+            "filename": "src/repositories/paper.py   (excerpt, … = lines omitted, one line wrapped)",
+            "language": "python",
+            "code": "def upsert_many(self, papers: list[PaperCreate]) -> int:\n    # Postgres rejects a batch that touches the same row twice; the last copy wins.\n    unique = {paper.arxiv_id: paper for paper in papers}\n    …\n    stmt = insert(Paper).values([paper.model_dump() for paper in unique.values()])\n    stmt = stmt.on_conflict_do_update(\n        index_elements=[Paper.arxiv_id],\n        set_={**{column: stmt.excluded[column] for column in ARXIV_METADATA_COLUMNS},\n              \"updated_at\": func.now()},\n    )\n    self.session.execute(stmt)\n    self.session.commit()\n    return len(unique)",
+            "highlight": [
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "highlightAtSeconds": 7.4,
+            "revealSeconds": 2.2,
+            "lineNumbers": true,
+            "note": "Ran Sep 1 twice: still 243 rows, all refreshed.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.75,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 20.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "III — The Build",
+      "estimated_duration_s": 22,
+      "narration_text": "Last, the scheduler. A manual Airflow DAG runs the same ingestion code, for any date I give it. It ran in about nine seconds, and saved two hundred eighty-three papers from October eighth. With September first and the sample paper, the database went from one row to five hundred twenty-seven.",
+      "new_visual_element": "The first DAG — one row to 527",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "Airflow → same code → Postgres → 527 papers builds in spoken order"
+          },
+          {
+            "at": 0.6,
+            "event": "'527 Papers' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "The First DAG",
+            "sparkLine": "One row to 527.",
+            "note": "Sample paper + Sep 1 (243) + Oct 8 (283) = 527.",
+            "nodes": [
+              {
+                "id": "t",
+                "label": "Airflow",
+                "sub": "manual · any date",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal",
+                "logo": "logos/airflow-01.svg"
+              },
+              {
+                "id": "i",
+                "label": "ingest_metadata",
+                "sub": "the same code as the script",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "p",
+                "label": "Postgres",
+                "sub": "one upsert",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "logo": "logos/postgresql-01.svg"
+              },
+              {
+                "id": "n",
+                "label": "527 Papers",
+                "sub": "from one sample",
+                "col": 3,
+                "row": 0,
+                "kind": "terminal"
+              }
+            ],
+            "edges": [
+              {
+                "from": "t",
+                "to": "i",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "i",
+                "to": "p",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "p",
+                "to": "n",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "n",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.35,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 19.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "IV — When Not To",
+      "estimated_duration_s": 20,
+      "narration_text": "When is this too much? If you need ten papers once, for a demo, a loop and a sleep is fine. No migrations, no upsert, no scheduler. This structure earns its keep when the job runs every day, on data that's expensive to rebuild.",
+      "new_visual_element": "Size it to the job",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "top path: a one-off demo → a loop and a sleep"
+          },
+          {
+            "at": 0.5,
+            "event": "bottom path: every day → limits, upserts, migrations, which lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "When Not To",
+            "sparkLine": "Size it to the job.",
+            "note": "A one-off script needs a sleep. A daily job needs the rules.",
+            "nodes": [
+              {
+                "id": "d",
+                "label": "One-Off Demo",
+                "sub": "",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal"
+              },
+              {
+                "id": "l",
+                "label": "A Loop And A Sleep",
+                "sub": "good enough",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "e",
+                "label": "Runs Every Day",
+                "sub": "",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal"
+              },
+              {
+                "id": "r",
+                "label": "Limits · Upserts · Migrations",
+                "sub": "worth building",
+                "col": 1,
+                "row": 1,
+                "kind": "node"
+              }
+            ],
+            "edges": [
+              {
+                "from": "d",
+                "to": "l",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "e",
+                "to": "r",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "r",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 15.17,
+      "audio_file": "mp3/beat-B14.mp3",
+      "render_duration_s": 15.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "V — Verdict",
+      "estimated_duration_s": 18,
+      "narration_text": "So, stage two, part one. Real arXiv papers are in the database, by hand for now. Every decision came from real data, or from respecting arXiv's limits. Next: downloading the PDFs, and parsing them.",
+      "new_visual_element": "Verdict artifact page — seven rules",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "artifact page opens; seven rules land in order"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Building a Research Assistant — Part 4",
+            "artifactHeading": "The verdict",
+            "artifactLines": [
+              "Fetch real responses first, then write the parser against them.",
+              "Put the rate limit in config, with a floor nobody can go under.",
+              "Every request goes through one rate limiter, retries included.",
+              "Retry what's temporary. Fail fast, with arXiv's reason, on a 4xx.",
+              "A log line marks when the response arrived, not when it was sent.",
+              "One upsert per day: atomic, and safe to run again and again.",
+              "Migrations run once, in their own container, before anything starts."
+            ],
+            "brandLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 14.46,
+      "audio_file": "mp3/beat-B15.mp3",
+      "render_duration_s": 14.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "V — Verdict",
+      "estimated_duration_s": 38,
+      "narration_text": "Your turn. Before you write code against any API, paste this into Claude, with one real response underneath. Here is a real response from an API I'm about to use, below. Don't write the code yet. List what in it would break a parser written from the docs alone, and what I should decide before I write one. Then ask me what the rate limit is, and how I'll respect it. Notice what it's not asking for: code. You're asking it to read the data with you, before you guess.",
+      "new_visual_element": "Handoff — the viewer's prompt",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the prompt types itself into the composer"
+          },
+          {
+            "at": 0.75,
+            "event": "prompt sits complete while the voice discusses it"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "folderLabel": "@HumanitariansAI",
+            "topic": "Irreducibly Human",
+            "segment": "Your turn",
+            "command": "Here is a real response from an API I'm about to use, below. Don't write the code yet. List what in it would break a parser written from the docs alone, and what I should decide before I write one. Then ask me what the rate limit is, and how I'll respect it.",
+            "runningText": "paste this into Claude…",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 25.68,
+      "audio_file": "mp3/beat-B16.mp3",
+      "render_duration_s": 25.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-09T21:38:12"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "OUTRO",
+      "estimated_duration_s": 6,
+      "narration_text": "Look at the data before you write the code. Rishabh, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "title restates with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; handle and subline land"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Design From Real Data",
+            "handle": "@HumanitariansAI",
+            "subline": "Building a Research Assistant · Part 4",
+            "credit": ""
+          },
+          "rendered": {
+            "out": "media/B17.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 5.59,
+      "audio_file": "mp3/beat-B17.mp3",
+      "render_duration_s": 5.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B17.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-09T21:38:12"
+      }
+    }
+  ]
+}
