@@ -6,10 +6,11 @@
 
 ## What's in this folder
 
-2 work folders, one per video:
+3 work folders, one per video:
 
 - `2026-09-28-context-window-isnt-memory/` — The Context Window Isn't Memory (2026-09-28)
 - `2026-10-07-what-is-a-knowledge-cutoff/` — What Is a Knowledge Cutoff? (2026-10-07)
+- `2026-10-15-what-does-a-p-value-mean/` — What Does a P-Value Actually Mean? (2026-10-15)
 
 Each holds the 16:9 source and a `vertical/` folder for the 9:16 cut.
 Renders are in the shared Drive.
