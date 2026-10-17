@@ -1,0 +1,347 @@
+{
+  "metadata": {
+    "title": "RAG: Evaluation in Production (Offline vs Online)",
+    "slug": "rag-eval-production",
+    "topic": "CLAUDE CODE · RAG SERIES · EVAL IN PRODUCTION",
+    "register": "Teardown",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "deep-explainer",
+    "note": "RAG series: offline eval vs online monitoring + tracing (LangSmith-style). Grounded in PRODUCTION_NOTES.md §6/§7. Claude bookends + Manim body. Liam, in for Ameya (Onyx). @HumanitariansAI.",
+    "total_estimated_duration_seconds": 300,
+    "build": {
+      "at": "2026-10-02T13:01:17",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. You shipped the RAG system and the numbers looked good. Here's the question that actually matters: how do you know it still works tomorrow, on traffic you've never seen? There are two kinds of evaluation, and you need both.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain offline eval vs online monitoring for RAG, and what a trace gives you\"",
+            "topic": "CLAUDE CODE · RAG SERIES · EVAL IN PRODUCTION",
+            "segment": "Offline vs Online",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "splitting eval in two…",
+            "output": [
+              "offline: a golden set, before deploy — you know the answer",
+              "online: real traffic, no labels — you watch proxies",
+              "a trace is how you debug either one"
+            ]
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.32,
+      "render_duration_s": 16.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — Two Jobs",
+      "narration_text": "Offline and online evaluation are not the same job. Offline runs before you ship, on a fixed set where you know the right answer, so you can compute correctness directly. Online runs in production, on real questions with no labels, where you cannot compute correctness at all. Same word, two completely different problems.",
+      "visual_intent": "split screen: OFFLINE (before deploy, labels, correctness) | ONLINE (production, no labels, proxies)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_TwoJobs",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.41,
+      "render_duration_s": 17.416666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_TwoJobs",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — Offline",
+      "narration_text": "Start with offline, because it's the one you control. You build a golden set — real questions with known-good answers — and you score your system against it: retrieval quality with hit rate and M R R, generation quality with faithfulness. Because you know the truth, these numbers mean exactly what they say.",
+      "visual_intent": "golden set (Q + known answer) → score: hit@k, MRR, faithfulness; 'you know the truth'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Offline",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.39,
+      "render_duration_s": 18.416666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Offline",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — The CI Gate",
+      "narration_text": "Now make it a gate. Run that golden set on every deploy and compare to the baseline. If M R R or faithfulness drops, the deploy is blocked — the same way a failing unit test stops a release. A silent quality regression after a prompt tweak is exactly the bug this catches, before a single user sees it.",
+      "visual_intent": "CI: golden set runs → MRR/faithfulness vs baseline → PASS deploys / DROP blocks",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_CIGate",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.28,
+      "render_duration_s": 18.291666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_CIGate",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — Online's Problem",
+      "narration_text": "Then you ship, and the ground truth disappears. In production, a user asks a question you've never seen, and nobody labels whether the answer was right. You can't compute correctness live. So online monitoring changes the question — from 'is this answer correct' to 'is the system behaving like it did when it was healthy.'",
+      "visual_intent": "production: unlabeled question in → answer out → '?'; can't compute correctness live",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_OnlineProblem",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.75,
+      "render_duration_s": 17.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_OnlineProblem",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — The Proxies",
+      "narration_text": "Without labels, you watch proxies — signals that move when something breaks. The retrieval score distribution: alert when the mean top-one score starts declining, because that means retrieval is drifting. Refusal rate, latency, and cost per request. And user feedback signals. None of these is correctness, but together they tell you when to go look.",
+      "visual_intent": "proxy dashboard: score distribution (mean top-1 ↓ = alert) · refusal rate · latency · cost · feedback",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Proxies",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 19.16,
+      "render_duration_s": 19.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Proxies",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — The Trace",
+      "narration_text": "And the thing that makes both debuggable is the trace. For every request, a tool like LangSmith records the whole story: which chunks were retrieved and at what scores, the exact prompt that was sent, what came back, and the latency of each stage — plus the tokens and cost. When a proxy alerts, the trace is where you find out why.",
+      "visual_intent": "per-request trace span: retrieved chunks+scores → prompt → response → per-stage latency + tokens/cost",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Trace",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 18.13,
+      "render_duration_s": 18.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Trace",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — The Real Code",
+      "narration_text": "In practice the offline gate is small. Run the golden set, compute M R R, and fail the build if it slipped below the baseline. That's a handful of lines standing between you and a silent regression — and it's the same eval harness the whole series has been building, now pointed at the deploy.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ci_eval.py — block the deploy on a drop",
+            "code": "mrr = run_eval(golden_set)        # fixed Qs, known answers\nbaseline = load_baseline()        # last good score\nassert mrr >= baseline - 0.02, f\"MRR regressed: {mrr:.3f} < {baseline:.3f}\"\n# passes → deploy.  fails → the release stops here, not in prod.",
+            "sparkLine": "a test for quality"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 17.19,
+      "render_duration_s": 17.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — Together",
+      "narration_text": "So the full picture is two loops. Before deploy: the offline golden set, in C I, gates the release. After deploy: online proxies watch for drift, and traces explain it. And one rule ties them together, the same one from the whole series — debug retrieval first. When a number moves, look at the retrieved chunks before you touch the prompt.",
+      "visual_intent": "loop diagram: OFFLINE gate (pre-deploy) → ship → ONLINE monitor+trace (post-deploy) → back; 'debug retrieval first'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Together",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.11,
+      "render_duration_s": 19.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Together",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration_text": "So keep three things. Offline eval needs a golden set and runs before deploy, where you can measure correctness. Online monitoring has no labels, so you watch proxies — score distributions, refusals, latency, cost. And a per-request trace is what makes either one debuggable. Gate before, watch after.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Eval in production",
+            "artifactLines": [
+              "Offline: a golden set in CI gates the deploy on MRR/faithfulness.",
+              "Online: no labels — watch score distributions, refusals, latency, cost.",
+              "A per-request trace is what makes either one debuggable."
+            ]
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.09,
+      "render_duration_s": 18.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take this prompt to your own system: build a twenty-question golden set, wire it into C I so a drop blocks the deploy, then log the retrieval scores of live traffic and watch the mean. The day that mean starts sliding, you'll know before your users do — and the trace will tell you why.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"add a 20-question golden set to CI that blocks deploy on an MRR drop, and log live retrieval score distributions\"",
+            "topic": "CLAUDE CODE · RAG SERIES · EVAL IN PRODUCTION",
+            "segment": "Offline vs Online",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 17.19,
+      "render_duration_s": 17.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T13:01:17"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration_text": "RAG — evaluation in production. Gate before you ship, watch after. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG: Eval in Production.",
+            "handle": "@HumanitariansAI",
+            "subline": "gate before, watch after"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-10-02T16:46:49.738466+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 7.51,
+      "render_duration_s": 7.541666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-10-02T13:01:17"
+      }
+    }
+  ]
+}
