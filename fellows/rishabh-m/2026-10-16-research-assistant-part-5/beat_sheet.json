@@ -1,0 +1,1289 @@
+{
+  "metadata": {
+    "slug": "research-assistant-part-5",
+    "title": "The Queue Is A Query",
+    "topic": "Irreducibly Human",
+    "logline": "Part 5 of building an AI research assistant — Stage 2B: downloading, parsing and saving arXiv PDFs, one paper at a time, with every failure recorded",
+    "purpose": "Part 5 — Building a Research Assistant (Stage 2B: PDF processing)",
+    "skill": "ai-explainer",
+    "channel": "claude-hai",
+    "persona": "Rishabh",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Hola, Rishabh",
+    "register": "Plain",
+    "engine": "kokoro",
+    "voice_kokoro": "af_sarah",
+    "palette": "claude",
+    "aspect": "16:9",
+    "aspect_ratio": "16:9",
+    "clock": "narration",
+    "audience": "Students and early-career engineers building their first real AI system",
+    "playlist": "Building a Research Assistant",
+    "playlist_short": "Shorts",
+    "source": "/Users/rishabh_hm/Documents/Projects/AI-Research-Assistant — personal/Documentation/Stage 2 - Data Pipeline.md (Part 2B, Steps 5–7), commits f24bfa8..10d074b (Oct 12–15), src/services/{pdf_cache,pdf_parser,processing}.py, src/services/arxiv/client.py, src/repositories/paper.py (reference code under personal/ ignored)",
+    "house_rules": "HOUSE-RULES.local.md — greeting/sign-off + 1.0s beat gap (pad_beats.local.py)",
+    "notes": "First person, build-log framing; no course or reference mentioned. No credit line. Parser choice stated honestly: no local benchmark run. LOGO LAW: arXiv, Docling, Postgres, Airflow, FastAPI marks.",
+    "build": {
+      "at": "2026-10-16T21:44:23",
+      "cut": "master",
+      "filled": 17,
+      "of": 17,
+      "slates": [],
+      "skin_warnings": [
+        "B16: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "OPEN",
+      "estimated_duration_s": 15,
+      "narration_text": "Hola — this is Rishabh for Humanitarians AI. Part five of building a research assistant. Last time, real paper metadata went in. This week, the PDFs: downloaded, parsed, and saved, one paper at a time.",
+      "new_visual_element": "Cold open — composer ask, answered",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "greeting 'Hola, Rishabh'; the ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "running indicator"
+          },
+          {
+            "at": 0.78,
+            "event": "three output lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Rishabh",
+            "folderLabel": "@HumanitariansAI",
+            "topic": "Irreducibly Human",
+            "segment": "Building a Research Assistant · Part 5",
+            "command": "527 papers have metadata. How do I parse their PDFs without one bad file stopping the day?",
+            "runningText": "reading the stage 2B log…",
+            "output": [
+              "Give every paper its own status.",
+              "Then the queue is just a query.",
+              "And one failure stays one failure."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 14.61,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 14.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "OPEN",
+      "estimated_duration_s": 15,
+      "narration_text": "Here's the idea. One bad PDF should fail one paper, not the whole day. So every paper keeps its own status in the database. The work queue becomes a simple query, and retrying a failure is automatic.",
+      "new_visual_element": "Executive summary — written and corrected on screen",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "writer types 'One bad PDF fails all.'"
+          },
+          {
+            "at": 0.3,
+            "event": "'all' turns terracotta"
+          },
+          {
+            "at": 0.45,
+            "event": "retyped as 'one'"
+          },
+          {
+            "at": 0.7,
+            "event": "the claim completes"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "One bad PDF fails all.\nEach paper keeps\nits own status, so\nthe queue is a query.",
+            "triggerWords": "all",
+            "replacementWords": "one",
+            "seed": "research-assistant-p5",
+            "face": "serif",
+            "fontSize": 175,
+            "lineSpacing": 1.45,
+            "align": "center",
+            "charMs": 34,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 2
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "actual_duration_s": 14.21,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 14.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "I — The Goal",
+      "estimated_duration_s": 18,
+      "narration_text": "The goal for this part: every pending paper gets its PDF downloaded, parsed by Docling, and saved as sections. And every failure is recorded on the paper it belongs to.",
+      "new_visual_element": "pending → download → Docling → sections",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "pending → download → Docling → Postgres builds in spoken order"
+          },
+          {
+            "at": 0.5,
+            "event": "'Docling · sections + tables' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Parse The PDFs",
+            "sparkLine": "One paper at a time.",
+            "note": "Every paper ends parsed, or with the reason it wasn't.",
+            "nodes": [
+              {
+                "id": "q",
+                "label": "Pending Papers",
+                "sub": "527 queued",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal"
+              },
+              {
+                "id": "d",
+                "label": "Download",
+                "sub": "rate-limited, cached",
+                "col": 1,
+                "row": 0,
+                "kind": "node",
+                "logo": "logos/arxiv-wordmark.svg"
+              },
+              {
+                "id": "p",
+                "label": "Docling",
+                "sub": "sections + tables",
+                "col": 2,
+                "row": 0,
+                "kind": "node",
+                "logo": "logos/docling-01.svg"
+              },
+              {
+                "id": "s",
+                "label": "Postgres",
+                "sub": "parsed, or why not",
+                "col": 3,
+                "row": 0,
+                "kind": "node",
+                "logo": "logos/postgresql-01.svg"
+              }
+            ],
+            "edges": [
+              {
+                "from": "q",
+                "to": "d",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "d",
+                "to": "p",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "p",
+                "to": "s",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "p",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 11.97,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 12.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "II — Download",
+      "estimated_duration_s": 22,
+      "narration_text": "Downloads go through the same rate limiter as everything else. Then two checks. The size, against a cap. And the first bytes. arXiv can answer with status two hundred and send an HTML page instead of a PDF. So unless the file starts with percent PDF, it is not cached.",
+      "new_visual_element": "A 200 is not a PDF until the bytes say so",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real download_pdf reveals"
+          },
+          {
+            "at": 0.55,
+            "event": "the %PDF- check lights terracotta on 'the first bytes'"
+          },
+          {
+            "at": 0.85,
+            "event": "note"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "Check The Bytes",
+            "sparkLine": "A 200 can still be HTML.",
+            "filename": "src/services/arxiv/client.py   (excerpt, docstring dropped, … = message trimmed)",
+            "language": "python",
+            "code": "def download_pdf(self, pdf_url: str, max_bytes: int) -> bytes:\n    url = _export_host(pdf_url)\n    response = self._get(url)\n\n    declared = int(response.headers.get(\"Content-Length\", 0))\n    if declared > max_bytes or len(response.content) > max_bytes:\n        raise PdfTooLargeError(f\"PDF larger than … MB: {url}\")\n    if not response.content.startswith(b\"%PDF-\"):\n        raise ArxivAPIError(f\"Not a PDF (…): {url}\")\n    return response.content",
+            "highlight": [
+              8,
+              9
+            ],
+            "highlightAtSeconds": 6.8,
+            "revealSeconds": 1.8,
+            "lineNumbers": true,
+            "note": "Only bytes starting with %PDF- reach the cache.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 18.41,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 18.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "II — Download",
+      "estimated_duration_s": 26,
+      "narration_text": "The cache is one file per paper version, so a revised paper gets a fresh download. Every write goes to a temp file in the same folder, then one rename. A crash never leaves half a PDF under the real name. And reading real output found a surprise: the temp files were owner-only, so the mode is set explicitly.",
+      "new_visual_element": "Temp file, then one atomic rename",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real PdfCache.put reveals"
+          },
+          {
+            "at": 0.35,
+            "event": "'os.replace(tmp, path)' lights terracotta on 'one rename'"
+          },
+          {
+            "at": 0.85,
+            "event": "note"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "Write, Then Rename",
+            "sparkLine": "Never half a PDF.",
+            "filename": "src/services/pdf_cache.py   (excerpt, comments trimmed)",
+            "language": "python",
+            "code": "def put(self, pdf_url: str, content: bytes) -> Path:\n    path = self.path_for(pdf_url)\n    path.parent.mkdir(parents=True, exist_ok=True)\n    # Write to a temp file in the same folder, then rename.\n    fd, tmp = tempfile.mkstemp(dir=path.parent, suffix=\".part\")\n    try:\n        with os.fdopen(fd, \"wb\") as f:\n            f.write(content)\n            os.fchmod(f.fileno(), 0o644)  # mkstemp creates 0600\n        os.replace(tmp, path)\n    except BaseException:\n        Path(tmp).unlink(missing_ok=True)\n        raise\n    return path",
+            "highlight": [
+              10
+            ],
+            "highlightAtSeconds": 8.5,
+            "revealSeconds": 2.0,
+            "lineNumbers": true,
+            "note": "A rename is atomic only within one filesystem, so: same folder.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.41,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 20.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "III — Parse",
+      "estimated_duration_s": 27,
+      "narration_text": "Docling only goes where it runs. No endpoint parses PDFs, so the API image stays at four hundred twenty-one megabytes. The Airflow image carries Docling and its models, baked in at build time. And an offline flag means a missing model fails loudly. It did: Docling was looking in the wrong folder.",
+      "new_visual_element": "Docling only in Airflow; offline flag",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "API image and Airflow image land"
+          },
+          {
+            "at": 0.6,
+            "event": "'Loud Failure' lights terracotta on 'It did'"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Docling Only Where It Runs",
+            "sparkLine": "Fail loudly.",
+            "note": "Without the flag, the first run would quietly download 1.4 GB.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "API Image",
+                "sub": "421 MB · no Docling",
+                "col": 0,
+                "row": 0,
+                "kind": "node",
+                "logo": "logos/fastapi-01.svg"
+              },
+              {
+                "id": "f",
+                "label": "Airflow Image",
+                "sub": "7.54 GB · models baked in",
+                "col": 0,
+                "row": 1,
+                "kind": "node",
+                "logo": "logos/airflow-01.svg"
+              },
+              {
+                "id": "o",
+                "label": "Offline Flag",
+                "sub": "HF_HUB_OFFLINE=1",
+                "col": 1,
+                "row": 1,
+                "kind": "node"
+              },
+              {
+                "id": "x",
+                "label": "Loud Failure",
+                "sub": "wrong model folder, found",
+                "col": 2,
+                "row": 1,
+                "kind": "node"
+              }
+            ],
+            "edges": [
+              {
+                "from": "f",
+                "to": "o",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "o",
+                "to": "x",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "x",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 20.05,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 20.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "III — Parse",
+      "estimated_duration_s": 26,
+      "narration_text": "The parser walks the document in reading order, and tables come along as Markdown. On BERT: sixteen pages, thirty-one sections, six with tables, in about twenty-eight seconds. I chose Docling because it's built for structured documents. I haven't benchmarked it locally yet, but the comparison script is ready.",
+      "new_visual_element": "Reading order, tables included",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real _sections loop reveals"
+          },
+          {
+            "at": 0.5,
+            "event": "the TableItem branch lights terracotta on 'tables come along'"
+          },
+          {
+            "at": 0.85,
+            "event": "note: BERT result"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "Tables Come Along",
+            "sparkLine": "Reading order.",
+            "filename": "src/services/pdf_parser.py   (excerpt from _sections)",
+            "language": "python",
+            "code": "for item, _level in document.iterate_items():\n    if isinstance(item, TableItem):\n        parts.append(item.export_to_markdown(doc=document))\n    elif not isinstance(item, TextItem) or item.label in SKIPPED_LABELS:\n        continue\n    elif item.label in HEADING_LABELS:\n        close_section()\n        title, parts = item.text.strip(), []\n    else:\n        parts.append(item.text)\nclose_section()\nreturn sections",
+            "highlight": [
+              2,
+              3
+            ],
+            "highlightAtSeconds": 3.2,
+            "revealSeconds": 1.8,
+            "lineNumbers": true,
+            "note": "BERT: 16 pages, 31 sections, 6 with tables, ~28 s.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.79,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 19.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "IV — Status",
+      "estimated_duration_s": 27,
+      "narration_text": "The status lives in the database, not in one run's memory. Every paper is pending, parsed, failed, or skipped. A failure is retried up to three times. Too large is skipped, because it will never succeed. So the work queue is just a query: pending, or failed with attempts left. And the migration's default queued all five hundred twenty-seven papers at once.",
+      "new_visual_element": "pending → parsed / failed / skipped",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "pending → download and parse → three outcomes"
+          },
+          {
+            "at": 0.45,
+            "event": "'failed · retried up to 3×' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Status Lives In The Database",
+            "sparkLine": "The queue is a query.",
+            "note": "Queue: pending, or failed with attempts left.",
+            "nodes": [
+              {
+                "id": "q",
+                "label": "pending",
+                "sub": "",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal"
+              },
+              {
+                "id": "g",
+                "label": "Download + Parse",
+                "sub": "",
+                "col": 1,
+                "row": 1,
+                "kind": "gate"
+              },
+              {
+                "id": "p",
+                "label": "parsed",
+                "sub": "sections saved",
+                "col": 2,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "f",
+                "label": "failed",
+                "sub": "retried up to 3×",
+                "col": 2,
+                "row": 1,
+                "kind": "node"
+              },
+              {
+                "id": "s",
+                "label": "skipped",
+                "sub": "too large, never retried",
+                "col": 2,
+                "row": 2,
+                "kind": "node"
+              }
+            ],
+            "edges": [
+              {
+                "from": "q",
+                "to": "g",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g",
+                "to": "p",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g",
+                "to": "f",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "g",
+                "to": "s",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "f",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 22.38,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 22.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "IV — Status",
+      "estimated_duration_s": 26,
+      "narration_text": "The migration taught me two things. Autogenerate doesn't detect check constraints, so I added that one by hand. And the migrate container had copied the old migrations at build time, so it couldn't find the new revision, and nothing started. The rule: copied code needs a rebuild.",
+      "new_visual_element": "Two migration gotchas",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "two lanes build in spoken order"
+          },
+          {
+            "at": 0.65,
+            "event": "'make build' lights terracotta on 'needs a rebuild'"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "Two Migration Gotchas",
+            "sparkLine": "Copied code needs a rebuild.",
+            "note": "Mounted code updates itself. Copied code does not.",
+            "nodes": [
+              {
+                "id": "a1",
+                "label": "Autogenerate",
+                "sub": "",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal"
+              },
+              {
+                "id": "a2",
+                "label": "No CHECK",
+                "sub": "a known limit",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "a3",
+                "label": "Added By Hand",
+                "sub": "ck_papers_pdf_status",
+                "col": 2,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "b1",
+                "label": "New Migration",
+                "sub": "",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal"
+              },
+              {
+                "id": "b2",
+                "label": "Stale Image",
+                "sub": "can't locate revision",
+                "col": 1,
+                "row": 1,
+                "kind": "node"
+              },
+              {
+                "id": "b3",
+                "label": "make build",
+                "sub": "then start",
+                "col": 2,
+                "row": 1,
+                "kind": "node"
+              }
+            ],
+            "edges": [
+              {
+                "from": "a1",
+                "to": "a2",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "a2",
+                "to": "a3",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "b1",
+                "to": "b2",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "b2",
+                "to": "b3",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "b3",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 17.47,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 17.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "V — One Paper At A Time",
+      "estimated_duration_s": 30,
+      "narration_text": "Then the loop. Each paper gets its own try, and no database session stays open while a PDF parses. Too large means skipped. Anything else is recorded as failed, with its error, and the loop moves on. A broad except is right here, and only here: it's the line between items. But if every paper in a run fails, the task raises. That's a system problem, not bad PDFs.",
+      "new_visual_element": "One paper fails alone; all failing fails the run",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real processing loop reveals"
+          },
+          {
+            "at": 0.35,
+            "event": "the except Exception branch lights terracotta on 'Anything else'"
+          },
+          {
+            "at": 0.85,
+            "event": "the all-failed guard"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "Fail One, Not All",
+            "sparkLine": "The line between items.",
+            "filename": "src/services/processing.py   (excerpt, … = lines omitted or trimmed)",
+            "language": "python",
+            "code": "for paper_id, arxiv_id, pdf_url in queue:\n    try:\n        path = cache.get(pdf_url) or cache.put(pdf_url, client.download_pdf(…))\n        parsed = parser.parse(path)\n    except PdfTooLargeError as e:\n        _record_failure(database, paper_id, str(e), PdfStatus.skipped)\n        report.skipped += 1\n    except Exception as e:  # one paper's failure must not stop the others\n        logger.exception(\"PDF processing failed for %s\", arxiv_id)\n        _record_failure(database, paper_id, f\"{type(e).__name__}: {e}\", PdfStatus.failed)\n        report.failed += 1\n    …\nif queue and report.parsed == 0 and report.failed:\n    raise RuntimeError(f\"All {report.failed} PDFs failed: …\")",
+            "highlight": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "highlightAtSeconds": 7.6,
+            "revealSeconds": 2.2,
+            "lineNumbers": true,
+            "note": "",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 23.19,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 23.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "V — One Paper At A Time",
+      "estimated_duration_s": 22,
+      "narration_text": "One more case. arXiv publishes a new version of a paper. The upsert compares the stored PDF link with the incoming one. If it changed, the paper goes back to pending, with its attempts reset. Otherwise a revised paper would keep the old version's sections.",
+      "new_visual_element": "A new version resets the status",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the real version-aware upsert reveals"
+          },
+          {
+            "at": 0.35,
+            "event": "new_version and the two case() lines light terracotta"
+          },
+          {
+            "at": 0.85,
+            "event": "note"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeFile",
+          "props": {
+            "title": "A New Version Starts Over",
+            "sparkLine": "Never stale sections.",
+            "filename": "src/repositories/paper.py   (excerpt from upsert_many)",
+            "language": "python",
+            "code": "stmt = insert(Paper).values([paper.model_dump() for paper in unique.values()])\n# Inside ON CONFLICT, Paper.<column> is the stored row and stmt.excluded.<column> is the incoming one.\nnew_version = Paper.pdf_url != stmt.excluded.pdf_url\nstmt = stmt.on_conflict_do_update(\n    index_elements=[Paper.arxiv_id],\n    set_={\n        **{column: stmt.excluded[column] for column in ARXIV_METADATA_COLUMNS},\n        \"pdf_status\": case((new_version, PdfStatus.pending.value), else_=Paper.pdf_status),\n        \"pdf_attempts\": case((new_version, 0), else_=Paper.pdf_attempts),\n        \"updated_at\": func.now(),\n    },\n)",
+            "highlight": [
+              3,
+              8,
+              9
+            ],
+            "highlightAtSeconds": 7.5,
+            "revealSeconds": 2.0,
+            "lineNumbers": true,
+            "note": "Same link: status kept. New link: pending, attempts 0.",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 17.06,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 17.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:ClaudeCodeFile",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "VI — Proof",
+      "estimated_duration_s": 26,
+      "narration_text": "Then I ran it both ways. With a limit of three, the run parsed the three newest papers, in about a minute and a half. Then I pointed one paper at a PDF that doesn't exist. The run failed, as it should. The row says failed, one attempt, HTTP four oh four. A test that must fail should be run.",
+      "new_visual_element": "Happy path, and the failure on purpose",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "top lane: pdf_limit 3 → parsed 3"
+          },
+          {
+            "at": 0.55,
+            "event": "bottom lane: missing PDF → run failed, which lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "A Test That Must Fail",
+            "sparkLine": "Run it both ways.",
+            "note": "Only a failing run proves the failure path.",
+            "nodes": [
+              {
+                "id": "h1",
+                "label": "pdf_limit = 3",
+                "sub": "",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal"
+              },
+              {
+                "id": "h2",
+                "label": "Parsed 3",
+                "sub": "24, 38, 44 sections · ~1.5 min",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "f1",
+                "label": "2609.99999v1",
+                "sub": "a PDF that doesn't exist",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal"
+              },
+              {
+                "id": "f2",
+                "label": "Run Failed",
+                "sub": "failed · 1 attempt · HTTP 404",
+                "col": 1,
+                "row": 1,
+                "kind": "node"
+              }
+            ],
+            "edges": [
+              {
+                "from": "h1",
+                "to": "h2",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "f1",
+                "to": "f2",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "f2",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.05,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 19.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "VI — Proof",
+      "estimated_duration_s": 18,
+      "narration_text": "The real cost: thirty to forty-five seconds per paper. A day of AI papers is about two hundred fifty, so two to three hours of CPU. That's why the batch size is a parameter for now. The daily schedule decides it next.",
+      "new_visual_element": "~250 papers × ~30–45 s = ~2–3 h of CPU",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the chain builds in spoken order"
+          },
+          {
+            "at": 0.5,
+            "event": "'~2–3 h of CPU' lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "The Real Cost",
+            "sparkLine": "Parsing is the slow part.",
+            "note": "So pdf_limit is a parameter. The schedule picks it next.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "~250 Papers",
+                "sub": "one day of cs.AI",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal"
+              },
+              {
+                "id": "b",
+                "label": "~30–45 s Each",
+                "sub": "Docling, CPU",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "c",
+                "label": "~2–3 h of CPU",
+                "sub": "per day",
+                "col": 2,
+                "row": 0,
+                "kind": "terminal"
+              }
+            ],
+            "edges": [
+              {
+                "from": "a",
+                "to": "b",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "b",
+                "to": "c",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "c",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 15.29,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 15.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "VII — When Not To",
+      "estimated_duration_s": 18,
+      "narration_text": "When is this too much? If you only need abstracts, skip the PDFs entirely. The metadata already has them. Per-paper status earns its keep when items fail on their own, and the batch runs again tomorrow.",
+      "new_visual_element": "Size it to the job",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "illustration",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "top path: abstracts only → skip the PDFs"
+          },
+          {
+            "at": 0.5,
+            "event": "bottom path: full text daily → status per paper, which lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "AgenticPatternDiagram",
+          "props": {
+            "title": "When Not To",
+            "sparkLine": "Size it to the job.",
+            "note": "Abstracts come with the metadata. Full text needs the machinery.",
+            "nodes": [
+              {
+                "id": "a",
+                "label": "Abstracts Only",
+                "sub": "",
+                "col": 0,
+                "row": 0,
+                "kind": "terminal"
+              },
+              {
+                "id": "b",
+                "label": "Skip The PDFs",
+                "sub": "metadata has them",
+                "col": 1,
+                "row": 0,
+                "kind": "node"
+              },
+              {
+                "id": "c",
+                "label": "Full Text, Daily",
+                "sub": "",
+                "col": 0,
+                "row": 1,
+                "kind": "terminal"
+              },
+              {
+                "id": "d",
+                "label": "Status Per Paper",
+                "sub": "worth building",
+                "col": 1,
+                "row": 1,
+                "kind": "node"
+              }
+            ],
+            "edges": [
+              {
+                "from": "a",
+                "to": "b",
+                "style": "straight",
+                "label": ""
+              },
+              {
+                "from": "c",
+                "to": "d",
+                "style": "straight",
+                "label": ""
+              }
+            ],
+            "accentId": "d",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 13.35,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 13.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:AgenticPatternDiagram",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "VIII — Verdict",
+      "estimated_duration_s": 16,
+      "narration_text": "So, stage two, part two. Every pending paper can now be downloaded, parsed and saved, and every failure says why. Next: the daily schedule, and showing the data through the API.",
+      "new_visual_element": "Verdict artifact page — seven rules",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "artifact page opens; seven rules land in order"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Building a Research Assistant — Part 5",
+            "artifactHeading": "The verdict",
+            "brandLabel": "@HumanitariansAI",
+            "artifactLines": [
+              "Check the bytes: a status of 200 can still be an HTML page.",
+              "Write to a temp file in the same folder, then rename it once.",
+              "Install heavy tools only where they run, models included.",
+              "Offline flags turn silent downloads into loud failures.",
+              "Keep status in the database, so the queue is just a query.",
+              "One paper fails alone. Every paper failing fails the run.",
+              "A test that must fail should be run, and watched failing."
+            ]
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 12.52,
+      "audio_file": "mp3/beat-B14.mp3",
+      "render_duration_s": 12.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "VIII — Verdict",
+      "estimated_duration_s": 36,
+      "narration_text": "Your turn. Before you write your next batch job, paste this into Claude, with the code underneath. Here is a batch job I'm writing, below. Don't fix the code. For each step, tell me what happens to the other items when one fails, where its progress is recorded, and how a rerun knows what's left. Then ask me which failures should never be retried. Notice what it's not asking for: a fix. You're asking where failure goes, before it happens.",
+      "new_visual_element": "Handoff — the viewer's prompt",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the prompt types itself into the composer"
+          },
+          {
+            "at": 0.75,
+            "event": "prompt sits complete while the voice discusses it"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "folderLabel": "@HumanitariansAI",
+            "topic": "Irreducibly Human",
+            "segment": "Your turn",
+            "command": "Here is a batch job I'm writing, below. Don't fix the code. For each step, tell me what happens to the other items when one fails, where its progress is recorded, and how a rerun knows what's left. Then ask me which failures should never be retried.",
+            "runningText": "paste this into Claude…",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 24.17,
+      "audio_file": "mp3/beat-B15.mp3",
+      "render_duration_s": 24.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-16T21:44:23"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "OUTRO",
+      "estimated_duration_s": 6,
+      "narration_text": "If the queue is a query, a retry is just the next run. Rishabh, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "title restates with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; handle and subline land"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Queue Is A Query",
+            "handle": "@HumanitariansAI",
+            "subline": "Building a Research Assistant · Part 5",
+            "credit": "",
+            "titleSize": 230
+          },
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 6.57,
+      "audio_file": "mp3/beat-B16.mp3",
+      "render_duration_s": 6.583333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-16T21:44:23"
+      }
+    }
+  ]
+}

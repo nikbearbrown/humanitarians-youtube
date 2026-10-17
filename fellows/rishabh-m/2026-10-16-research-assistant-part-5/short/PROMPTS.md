@@ -1,0 +1,3 @@
+# PROMPTS — research-assistant-part-5-short
+
+No generation prompts. Every beat is a Remotion composition; no open slots, no pantry, no paid generation.
