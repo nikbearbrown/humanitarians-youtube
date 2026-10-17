@@ -1,0 +1,689 @@
+{
+  "metadata": {
+    "title": "The Tails Go First",
+    "slug": "ai-the-tails-go-first",
+    "topic": "STEM · SYNTHETIC DATA",
+    "register": "Teardown",
+    "audience": "anyone training on model-generated data, or about to",
+    "brand": "claude-liam",
+    "channel_title": "@HumanitariansAI",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "aspect": "16:9",
+    "greeting": "Annyeong, Jainil",
+    "greeting_note": "hello lexicon: Korean, one word. Not reused — prior: Hola/Jambo, Ciao/Hej, Sawubona/Merhaba, Namaste, Bonjour.",
+    "note": "Track ai-. Every number and both density curves come from collapse_evidence.py, which ships in this folder: 60 seeds, n=200 per generation, median over seeds. The reel claims tail loss under recursive generative training for a Gaussian-mixture world, which is what the script shows and one of the three families Shumailov et al. tested. It makes NO numeric claim about LLMs — the generation counts here are properties of this experiment. Outro is HaiTitleOutro. B04's curve is the measured per-generation median printed by collapse_evidence.py (generations 0,5,...,60), not an interpolation.",
+    "tags": [
+      "model collapse",
+      "synthetic data",
+      "generative models",
+      "distribution tails",
+      "recursive training"
+    ],
+    "build": {
+      "at": "2026-10-16T20:12:47",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B08: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Annyeong. This is Jainil. There is a lot of synthetic data around now, and a tempting idea that comes with it: a model generates training data, you train the next model on that data, and round it goes. This week I ran that loop sixty times, and watched what it throws away first.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "open",
+            "event": "composer on cream, spark + 'Annyeong, Jainil' above it"
+          },
+          {
+            "at": "0.3",
+            "event": "the question types itself in"
+          },
+          {
+            "at": "0.75",
+            "event": "send arms terracotta, running indicator"
+          },
+          {
+            "at": "0.9",
+            "event": "two output lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Annyeong, Jainil",
+            "topic": "STEM · SYNTHETIC DATA",
+            "segment": "The Tails Go First",
+            "command": "If I keep training each model on the last model's output, what breaks first?",
+            "runningText": "running the loop…",
+            "output": [
+              "Not the average.",
+              "The rare cases."
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-16T23:50:23.470043+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "actual_duration_s": 15.15,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 15.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Here is the whole idea in one breath. Train a model on its own output, over and over, and the average stays perfectly fine. What disappears is the rare stuff. It goes quietly, nothing warns you, and it does not come back.",
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "open",
+            "event": "empty cream page, caret blinking"
+          },
+          {
+            "at": "0.2",
+            "event": "writer types 'Train on your own output, and nothing is lost.'"
+          },
+          {
+            "at": "0.6",
+            "event": "writer stops on 'nothing', deletes it"
+          },
+          {
+            "at": "0.78",
+            "event": "'the rare things are' types in its place"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Train on your own output,\nand nothing is lost.",
+            "triggerWords": "nothing",
+            "replacementWords": "the rare things are",
+            "face": "serif",
+            "align": "center",
+            "seed": "ai-the-tails-go-first-b01"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-16T23:51:14.842527+00:00"
+          }
+        }
+      },
+      "qc": {
+        "sparse": true
+      },
+      "estimated_duration_s": 14,
+      "actual_duration_s": 12.46,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 12.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SETUP",
+      "narration_text": "Start with a world that has something rare in it. Most of the data sits in one ordinary lump around zero. Five percent of it sits all the way out here, far from everything else — a small subpopulation that genuinely exists and that you would want a model to know about. Generation zero draws two hundred samples from that world. Four and a half percent of them land in the rare part.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "open",
+            "event": "title, then the density silhouette draws left to right"
+          },
+          {
+            "at": "0.45",
+            "event": "the big ordinary lump completes"
+          },
+          {
+            "at": "0.65",
+            "event": "the small far bump draws"
+          },
+          {
+            "at": "0.8",
+            "event": "the bump fills terracotta and its label lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "DistributionShape",
+          "props": {
+            "curve": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.04,
+              0.12,
+              0.28,
+              0.4,
+              0.64,
+              0.8,
+              0.94,
+              1,
+              0.96,
+              0.82,
+              0.64,
+              0.4,
+              0.24,
+              0.12,
+              0.06,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.04,
+              0.04,
+              0.08,
+              0.04,
+              0.04,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "ghost": [],
+            "markFrom": 0.67,
+            "markTo": 0.9,
+            "markLabel": "the rare 5%",
+            "stats": [],
+            "xLeft": "the ordinary",
+            "xRight": "the rare",
+            "title": "GENERATION ZERO — REAL DATA",
+            "caption": "200 samples. 4.5% of them land in the rare subpopulation."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-16T23:51:55.824467+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "actual_duration_s": 19.05,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 19.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:DistributionShape",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "TURN",
+      "narration_text": "Now the loop. Generation one is a model fitted to generation zero's samples. Generation two is fitted to generation one's output. And so on down the line. After that first step, no real data ever enters again. Nothing here is adversarial and nothing is badly implemented — every generation simply does its best with whatever the last one handed it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "open",
+            "event": "the first card, 'Real data', springs up"
+          },
+          {
+            "at": "0.35",
+            "event": "arrow draws, Generation 1 lands"
+          },
+          {
+            "at": "0.55",
+            "event": "arrow draws, Generation 2 lands"
+          },
+          {
+            "at": "0.75",
+            "event": "arrow draws, Generation n lands"
+          },
+          {
+            "at": "0.88",
+            "event": "the terracotta note under the real-data card: it is never seen again"
+          }
+        ],
+        "remotion": {
+          "pattern": "StageRail",
+          "props": {
+            "stages": [
+              {
+                "label": "Real data",
+                "sub": "seen once"
+              },
+              {
+                "label": "Generation 1",
+                "sub": "fitted to real data"
+              },
+              {
+                "label": "Generation 2",
+                "sub": "fitted to gen 1's output"
+              },
+              {
+                "label": "Generation n",
+                "sub": "fitted to gen n-1's output"
+              }
+            ],
+            "activeIndex": 0,
+            "activeNote": "never seen again",
+            "title": "EACH MODEL LEARNS FROM THE LAST ONE'S OUTPUT",
+            "caption": "No adversary, no bug. Every generation does its best with what it was given."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-16T23:52:38.100840+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "actual_duration_s": 19.09,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 19.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:StageRail",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "EVIDENCE",
+      "narration_text": "Here is the rare subpopulation's share, generation by generation. Four and a half percent to start. Three and a quarter by generation ten. One and a half by generation twenty. By generation thirty it is zero. Across sixty runs it went extinct in forty-nine of them, and in not one of those forty-nine did it ever come back.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "open",
+            "event": "axes draw, then the curve starts at 4.5% on the left"
+          },
+          {
+            "at": "0.45",
+            "event": "the line sags through generation 10 and 20"
+          },
+          {
+            "at": "0.7",
+            "event": "it reaches the axis and stays flat on zero"
+          },
+          {
+            "at": "0.85",
+            "event": "the extinction point lights terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "PositionCurve",
+          "props": {
+            "values": [
+              4.5,
+              4.5,
+              3.25,
+              3.25,
+              1.5,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "title": "SHARE OF THE RARE SUBPOPULATION",
+            "startLabel": "generation 0",
+            "endLabel": "generation 60",
+            "yLabel": "% of the data",
+            "lowCallout": "extinct — and it never returns",
+            "caption": "Every fifth generation. Extinct in 49 of 60 runs; recovered in 0 of those 49.",
+            "plotScale": 1.3
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-17T00:07:22.428628+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "actual_duration_s": 17.43,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 17.458333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:PositionCurve",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "LAND",
+      "narration_text": "And here is the part that should bother you. This is the shape at generation forty, with the original dashed in behind it. The bump is simply gone. But look at the numbers underneath. The mean moved from plus zero point two eight to plus zero point three six. The standard deviation went from one point six to one point seven. Nothing in the ordinary summary statistics tells you that five percent of the world is permanently missing.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "open",
+            "event": "the original shape appears first as a dashed ghost outline"
+          },
+          {
+            "at": "0.3",
+            "event": "the generation-40 curve draws solid over it — no far bump"
+          },
+          {
+            "at": "0.6",
+            "event": "the gap where the bump used to be is plainly visible"
+          },
+          {
+            "at": "0.78",
+            "event": "three stat cells land: mean, standard deviation, the rare 5%"
+          }
+        ],
+        "remotion": {
+          "pattern": "DistributionShape",
+          "props": {
+            "curve": [
+              0,
+              0,
+              0,
+              0,
+              0.08,
+              0.16,
+              0.28,
+              0.36,
+              0.449,
+              0.56,
+              0.575,
+              0.589,
+              0.64,
+              0.62,
+              0.64,
+              0.5,
+              0.36,
+              0.342,
+              0.184,
+              0.12,
+              0.04,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "ghost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.04,
+              0.12,
+              0.28,
+              0.4,
+              0.64,
+              0.8,
+              0.94,
+              1,
+              0.96,
+              0.82,
+              0.64,
+              0.4,
+              0.24,
+              0.12,
+              0.06,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.04,
+              0.04,
+              0.08,
+              0.04,
+              0.04,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "markFrom": 0,
+            "markTo": 0,
+            "markLabel": "",
+            "stats": [
+              {
+                "label": "mean",
+                "value": "+0.28 → +0.36"
+              },
+              {
+                "label": "std dev",
+                "value": "1.60 → 1.67"
+              },
+              {
+                "label": "the rare 5%",
+                "value": "gone"
+              }
+            ],
+            "xLeft": "the ordinary",
+            "xRight": "where the rare used to be",
+            "title": "GENERATION FORTY",
+            "caption": "Two of these three numbers look completely healthy."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-16T23:53:57.740305+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 27,
+      "actual_duration_s": 21.61,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 21.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:DistributionShape",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SOURCE",
+      "narration_text": "This is not my phrasing, it is the paper's own. Shumailov and colleagues, in Nature, twenty twenty-four. They found it across language models, variational autoencoders, and Gaussian mixture models — and that last family is the one I just ran in front of you. Note the word they chose for it: irreversible.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "card",
+        "show": [
+          {
+            "at": "open",
+            "event": "cream card, the quote reveals as the voice reaches it"
+          },
+          {
+            "at": "0.85",
+            "event": "citation settles beneath, smaller and softer"
+          }
+        ],
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "“We find that indiscriminate use of model-generated content in training causes irreversible defects in the resulting models, in which tails of the original content distribution disappear.”"
+            ],
+            "meta": [
+              "SOURCE — Shumailov, Shumaylov, Zhao, Papernot, Anderson & Gal, Nature 631:755–759, 2024"
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-16T23:56:54.163641+00:00"
+          }
+        }
+      },
+      "qc": {
+        "sparse": true
+      },
+      "estimated_duration_s": 22,
+      "actual_duration_s": 16.36,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 16.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:FormACard",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Take this one at something you actually run: I have a training set that includes model-generated examples — help me work out which parts of my real distribution are underrepresented in it, and what I would have to keep sampling from the real world to avoid losing them. The second half of that prompt is the useful half.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "open",
+            "event": "composer again, greeting reads 'Your turn.'"
+          },
+          {
+            "at": "0.25",
+            "event": "the viewer's prompt types itself in full"
+          },
+          {
+            "at": "0.85",
+            "event": "send arms terracotta and holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "STEM · SYNTHETIC DATA",
+            "segment": "Try it on a training set you own",
+            "command": "My training set includes model-generated examples. Help me work out which parts of my real distribution are underrepresented in it, and what I would have to keep sampling from the real world to avoid losing them.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-16T23:58:14.867815+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "actual_duration_s": 17.05,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 17.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-16T20:12:47"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "The tails go first. This is Jainil. Subscribe.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "card",
+        "show": [
+          {
+            "at": "open",
+            "event": "serif title restate"
+          },
+          {
+            "at": "0.5",
+            "event": "SUBSCRIBE pill and @HumanitariansAI settle beneath"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Tails Go First",
+            "slug": "ai-the-tails-go-first"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-16T23:58:32.962488+00:00"
+          }
+        }
+      },
+      "qc": {
+        "sparse": true
+      },
+      "estimated_duration_s": 6,
+      "actual_duration_s": 3.52,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 3.5416666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-16T20:12:47"
+      }
+    }
+  ]
+}
