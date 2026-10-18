@@ -1,0 +1,461 @@
+{
+  "metadata": {
+    "title": "Banking Domain Data Analyst Interview Prep — the SQL Banks Actually Ask",
+    "slug": "banking-domain-interview-end-to-end-v2-short",
+    "topic": "SQL · WINDOW FUNCTIONS · COHORTS · BANKING",
+    "skill": "cli-explainer",
+    "tool": "claude",
+    "persona": "none",
+    "narrator_identity": "Supriya",
+    "channel": null,
+    "channel_title": "",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "typography": {
+      "serif": "EB Garamond",
+      "sans": "Montserrat",
+      "mono": "PT Mono"
+    },
+    "source": [
+      "books/banking-data-analyst-interview-prep/book.md",
+      "books/banking-data-analyst-interview-prep/chapters/08-sql-i-balances-cohorts-window-functions.md (lines 100-197)",
+      "books/banking-data-analyst-interview-prep/chapters/09-sql-ii-charge-off-waterfalls-vintage-curves.md (lines 155-206)"
+    ],
+    "description": "The whole-book trailer: banking DA interviews add a regulatory/ratio/fraud-instinct layer on top of general SQL and Python. Two real worked examples carry the build-with-Claude loop — Ch.8's correct running-balance CTE (sum-before-filter) and Ch.9's cohort-preserving vintage-curve query (Harborline Card Co.) — bookended by the book's six-part map.",
+    "aspect_ratio": "9:16",
+    "resolution": "3840x2160",
+    "resolution_note": "4K target. compile.py needs --height 2160.",
+    "date": "2026-09-08",
+    "gate_p": "PENDING",
+    "no_paid_services": true,
+    "note": "CLI-explainer video, required 12-beat spine (matches banking-domain-sql-running-total-bug's shape): B00 INTRO · B01 PROBLEM (Manim) · B02 MECHANISM (Manim) · B03 CLI/ASK · B04 CODE (Ch.8, correct) · B05 OUTPUT (Manim) · B06 CLI/CHANGE (required revision) · B07 CODE (Ch.9, cohort) · B08 OUTPUT (Manim) · B09 SUMMARY (Manim) · B10 NEXT STEPS (handoff) · B11 OUTRO. PM-driven branding change from the sibling reel: narrator says 'Hi, I'm Supriya' directly (no 'in for X' framing), and the visible on-screen handle in every composer/code beat's folderLabel and the OUTRO is 'Supriya' — not just spoken attribution.",
+    "v1_note": "Replaces brutalist-art/reels/banking-domain-interview-end-to-end/ (a different, paid toolkit checkout — 7-beat Manim-only title-card montage, no composer/code beats). v1's 9:16 master was 2160x3840 but only 139.5kbps — underfilled frame, not a bitrate-cap issue. This v2 fixes fill via FILL-THE-CANVAS/TYPESIZE LAW + a new ClaudeCodeBeat916 component; bitrate follows from genuine content.",
+    "shorts_length_flag": "9:16 derivation via ./art shorts drops the revision cycle (B06-B08) to fit the 180s cap, per cli-explainer/SKILL.md's REVISION LAW carve-out for 9:16. Earlier PM guidance wanted 9:16 full-length; latest PM feedback (4K/fill/branding) didn't revisit length. User approved proceeding on 2026-09-08 with an explicit flag to double-check with PM — see PLAN.md.",
+    "total_estimated_duration_seconds": 161.52,
+    "revision": "v3 2026-10-16: real SQLite receipts (sql/, MySQL→SQLite swaps disclosed), fact-check fixes, exact intro/branding, 491→405 words for a full-length 9:16. v2 = baseline commit 516aeb8.",
+    "build": {
+      "at": "2026-10-16T21:44:35",
+      "cut": "master",
+      "filled": 13,
+      "of": 13,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "END: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "banking-domain-interview-end-to-end-v2",
+    "dropped_beats": [],
+    "playlist_short": "Shorts"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — open on the Claude UI, ask shown answered",
+      "narration_text": "Hi, I am Supriya and this video is about the SQL that banking interviews actually ask. You already know SQL. That's not what trips people up.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "claude \"what's the banking-specific gap in my data-analyst interview prep?\"",
+            "topic": "BANKING · DATA ANALYST · INTERVIEW PREP",
+            "segment": "The Second Language",
+            "greeting": "Hi, I am Supriya",
+            "runningText": "reading the gap…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.5,
+            "output": [
+              "second language: regulators, ratios",
+              "the SQL: balances + cohorts"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "estimated_duration_s": 7.0,
+      "actual_duration_s": 9.34,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "why care — stated before the CLI loop begins; SHOW-DON'T-TELL LAW: Manim, not a static card",
+      "narration_text": "A general analytics interview tests joins, cohorts, and dashboards: skills you already have. A banking one adds a second language on top: regulators like the OCC and the CFPB, ratios like CET1 and LCR, and the habit of asking whether a number is regulatory-reportable, or could be fraud.",
+      "visual_intent": "SQL and Python tiles slide in and lock together (a skillset already solid); a second, translucent layer of terms — CET1 · LCR · OCC · CFPB · charge-off — slides in on top and snaps opaque, labeled 'the layer banking adds'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_TheSecondLanguage",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "estimated_duration_s": 28.0,
+      "actual_duration_s": 20.46,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_TheSecondLanguage",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "role_note": "the book's own map — six parts",
+      "narration_text": "This book maps that layer in six parts: the banking landscape, regulation and risk, the modern data stack, technical prep with forty-plus SQL problems and Python for banking, the behavioral and case rounds, and a day-of cheat sheet.",
+      "visual_intent": "six labeled blocks build left-to-right into a single pipeline (Landscape → Regulation/Risk → Data Stack → Technical Prep → Behavioral/Case/Systems → Day-Of), each locking in with a soft snap as its name is spoken",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_SixPartMap",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "estimated_duration_s": 24.0,
+      "actual_duration_s": 15.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_SixPartMap",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CLI",
+      "role_note": "composer (ClaudeComposerAsk) — cycle 1, the ask",
+      "narration_text": "Take one worked problem from chapter eight: end-of-month balances for the first half of twenty twenty-six, built one CTE at a time.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "claude \"review this running-balance query: end-of-month balances for Jan–Jun 2026, one CTE at a time\"",
+            "topic": "SQL · WINDOW FUNCTIONS · BANKING",
+            "segment": "The Running Balance",
+            "greeting": "The ask,",
+            "runningText": "reading the query…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "estimated_duration_s": 8.0,
+      "actual_duration_s": 8.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — cycle 1, the correct query (Ch.8, no bug reconstruction)",
+      "narration_text": "Here's the shape. Running computes the cumulative balance over the whole ledger, with no WHERE clause at all. One CTE later, the date filter narrows to the reporting window and keeps each month's last posting. Sum first. Filter after.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat916",
+          "props": {
+            "title": "running_balance_fixed.mysql.sql (excerpt)",
+            "code": "WITH running AS (\n  SELECT account_id, transaction_id, posted_at,\n    SUM(amount) OVER (\n      PARTITION BY account_id\n      ORDER BY posted_at, transaction_id\n      ROWS UNBOUNDED PRECEDING\n    ) AS running_balance\n  -- no WHERE: the whole ledger\n  FROM transactions\n),\nlast_posting_per_month AS (\n  -- … ROW_NUMBER() … AS rn\n  FROM running\n  -- moved here: after the sum\n  WHERE posted_at >= '2026-01-01'\n    AND posted_at <  '2026-07-01'\n),",
+            "sparkLine": "Sum first. Filter after.",
+            "lang": "sql",
+            "handle": "Supriya",
+            "fit": true
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "estimated_duration_s": 22.0,
+      "actual_duration_s": 15.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTPUT",
+      "role_note": "Manim — cycle 1, the correct result",
+      "narration_text": "Run it on a Cascade Savings account that carried twelve thousand four hundred dollars into January. The month-end balances on screen are the true ones, because the sum saw the whole ledger first.",
+      "visual_intent": "3-row EOM table builds top-to-bottom (Jan/Feb/Mar), each value landing in teal: 12,100.00 / 12,250.00 / 12,175.00; small annotation ties Jan's value back to the Nov 2025 deposit crossing the year boundary",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_CorrectBalance",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "estimated_duration_s": 20.0,
+      "actual_duration_s": 12.12,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_CorrectBalance",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLI",
+      "role_note": "composer (ClaudeComposerAsk) — cycle 2, the required revision. SPARK-LINE LAW: CHANGE beat carries the ask itself as its spark, no separate greeting.",
+      "narration_text": "That's one shape. Chapter nine adds a harder one, on a different dataset: a card issuer's monthly snapshots, where the job is to keep one cohort intact.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "claude \"chapter nine: build the Jan 2025 cohort's delinquency mix at 3, 6 and 9 months on book\"",
+            "topic": "SQL · COHORTS · BANKING",
+            "segment": "The Cohort Constraint",
+            "greeting": "The next shape,",
+            "runningText": "building the cohort query…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "estimated_duration_s": 9.0,
+      "actual_duration_s": 10.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — cycle 2, the cohort-preserving query (Ch.9, Harborline Card Co.)",
+      "narration_text": "Isolate the January twenty twenty-five cohort first. Compute months on book by diffing each snapshot against the origination month. Then group by months on book and bucket. A calendar-month group-by would lose the cohort.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat916",
+          "props": {
+            "title": "vintage_curve.mysql.sql (excerpt)",
+            "code": "WITH cohort AS (\n  SELECT account_id\n  FROM   accounts\n  WHERE  origination_month = '2025-01-01'\n),\nsnap AS (\n  SELECT s.account_id, s.dpd_bucket,\n    PERIOD_DIFF(\n      DATE_FORMAT(s.snapshot_month, '%Y%m'),\n      DATE_FORMAT(a.origination_month, '%Y%m')\n    ) AS months_on_book\n),\nbucketed AS (\n  SELECT months_on_book, dpd_bucket,\n    COUNT(*) AS accounts_in_bucket,\n    -- , SUM(COUNT(*)) OVER (…) AS cohort_total\n  GROUP BY months_on_book, dpd_bucket\n)",
+            "sparkLine": "Keep the cohort.",
+            "lang": "sql",
+            "handle": "Supriya",
+            "fit": true
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "estimated_duration_s": 24.0,
+      "actual_duration_s": 14.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTPUT",
+      "role_note": "Manim — cycle 2, the cohort result",
+      "narration_text": "Run it on a Harborline sample cohort. At month three, ninety-two percent are current. By month nine, four percent are ninety-plus days past due and three percent charged off. Each column adds back to five hundred, because this sample has one snapshot per account per month.",
+      "visual_intent": "a 3-column (3/6/9 months) stacked-bar build, each column's segments landing bucket by bucket (current→30→60→90+→charge_off), a running 'of 500' cohort-total label pinned above every column so it visibly never changes",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_VintageCurve",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "estimated_duration_s": 24.0,
+      "actual_duration_s": 17.49,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim:B08_VintageCurve",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "the lesson, one beat",
+      "narration_text": "Two moves: get the SQL evaluation order right, and never lose the cohort. That's chapters eight and nine. The rest of the book covers regulatory metrics, the data stack, and the behavioral and case rounds.",
+      "visual_intent": "2-line checklist builds with checkmarks ('get the SQL order right' / 'never lose the cohort'), then the six-part map from B02 re-appears compressed beneath it as a 'the rest of the book' tag",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B09_TwoMoves",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "estimated_duration_s": 20.0,
+      "actual_duration_s": 13.18,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B09.mp4",
+        "filled_by": "manim:B09_TwoMoves",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — the suggested prompt read aloud and discussed, not just shown",
+      "narration_text": "Your turn. Try this: Check my banking SQL for two bugs: is any date filter applied before a running SUM() OVER, and does every row stay tied to its cohort? Both bugs run without an error, so the only way to find them is to ask.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "Check my banking SQL for two bugs: is any date filter applied before a running SUM() OVER, and does every row stay tied to its cohort?",
+            "topic": "BANKING · DATA ANALYST · INTERVIEW PREP",
+            "segment": "Check Your Own Query",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.4
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "estimated_duration_s": 12.0,
+      "actual_duration_s": 15.91,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "title-restate outro — LAST beat. Visible handle 'Supriya', not spoken-only.",
+      "narration_text": "Banking Domain Data Analyst Interview Prep: the SQL banks actually ask.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutroFilled916",
+          "props": {
+            "title": "Banking Domain Data Analyst Interview Prep — the SQL Banks Actually Ask.",
+            "handle": "Supriya",
+            "subline": "Built with Claude.",
+            "scale": 0.95
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "estimated_duration_s": 10.0,
+      "actual_duration_s": 4.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-16T21:44:35"
+      }
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "Supriya",
+        "next": "",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-10-16T21:44:35"
+      }
+    }
+  ]
+}

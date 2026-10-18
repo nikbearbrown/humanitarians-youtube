@@ -1,0 +1,10 @@
+$ sqlite3 postings.db
+sqlite> EXPLAIN QUERY PLAN
+SELECT account_id, SUM(amount_cents) AS total_cents
+FROM postings
+WHERE posted_at >= '2026-01-01' AND posted_at < '2026-02-01'
+GROUP BY account_id;
+
+QUERY PLAN
+|--SEARCH postings USING INDEX idx_postings_posted_at (posted_at>? AND posted_at<?)
+`--USE TEMP B-TREE FOR GROUP BY

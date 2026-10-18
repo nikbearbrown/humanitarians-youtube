@@ -1,0 +1,10 @@
+$ sqlite3 postings.db
+sqlite> EXPLAIN QUERY PLAN
+SELECT account_id, SUM(amount_cents) AS total_cents
+FROM postings
+WHERE strftime('%Y-%m', posted_at) = '2026-01'
+GROUP BY account_id;
+
+QUERY PLAN
+|--SCAN postings
+`--USE TEMP B-TREE FOR GROUP BY
