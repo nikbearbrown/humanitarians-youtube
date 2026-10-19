@@ -23,12 +23,17 @@ Signed: Om Mali  Date: 10/09/2026
 | Ep. 09 | 436 | 2:39.2 | 2:43.6 |
 | Ep. 10 | 429 | 2:41.0 | 2:27.7 |
 | Ep. 11 | 419 | 2:24.3 | 2:29.0 |
-| **Ep. 12** | **400** | **2:22.2** | — |
+| **Ep. 12** | **400** | **2:22.2** | **2:22.1** |
 
 Margin ~38 s. The words-only model is noise of order ±5–10% **with no
 consistent sign** — Ep. 06 +10.4%, Ep. 07 −0.4%, Ep. 08 −5.0%, Ep. 09 +2.7%,
 Ep. 10 −8.2%, Ep. 11 +3.3%. The rate used is Ep. 11's measured 0.3556 s/word.
-Even at the slowest rate in the series this lands at 2:30. If the measured
+Even at the slowest rate in the series this lands at 2:30.
+
+**Measured after the gate: 2:22.1**, 38 s under the cap, so no `--speed` was
+needed. Model error **−0.1%** — the most accurate words-only prediction of
+the seven-episode series, which is luck rather than skill: the range is still
++10.4% to −8.2%. If the measured
 total somehow exceeds 3:00 the fix is `--speed`, not a rewrite of signed
 narration.
 

@@ -89,7 +89,7 @@ illustrate their own concept as reel-local Manim. No composer wallpaper.
 | W — WCAG · margins · overlap | 10/10 `rc=0` |
 | B — pixel-true layout, both aspects | 20/20 `rc=0` (after 6 fixes, two of them regressions from my own fixes) |
 | Visual pre-flight — 20 frames read, both aspects | 8 further defects found and fixed, none caught by any gate |
-| P — human signature | **pending** — `PEDAGOGY.md` |
+| P — human signature | **PASSED** — `PEDAGOGY.md`, signed Om Mali, 09/10/2026 |
 
 ### Visual pre-flight — 8 further defects, none caught by any gate
 
@@ -128,6 +128,19 @@ frame after each change.
    type. Portrait drops the chip; the citation line names the sources anyway.
 4. **B07 portrait, GATE B.** The two bar labels at y −2.26 ran into the
    closing line at −2.42. Moved up and reduced.
+
+## Gates after the build
+
+| Gate | Result |
+|---|---|
+| P — human signature | PASSED before any audio was generated |
+| Audio | 142.1 s measured (2:22.1), 38 s inside the cap, model error −0.1% |
+| Pacing — 24 fps, both aspects | 20/20 inside `-0.25 s … +0.05 s` |
+| V — 16:9 master | 28 frames · BLOCKER 0 · MAJOR 0 → `_qc/REPORT-16x9.md` |
+| V — 9:16 master | 28 frames · BLOCKER 0 · MAJOR 0 → `_qc/REPORT-9x16.md` |
+| Frame reading, both aspects | 8 defects found and fixed, two of them regressions from my own fixes |
+
+Both GATE V runs used an explicit `--mp4`.
 
 ## Not run, and why
 

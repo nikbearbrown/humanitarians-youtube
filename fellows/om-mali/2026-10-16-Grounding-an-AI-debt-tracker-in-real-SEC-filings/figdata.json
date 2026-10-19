@@ -1,0 +1,48 @@
+{
+  "_note": "AI Debt Tracker, week 1. Every on-screen figure in this reel is a prop read from this file by build_beat_sheet.py. Values are transcribed from the author's own saved results as published in pantry/*.svg (adt-w0-borrowing, adt-w0-feasibility, adt-w1-levels, adt-w1-bakeoff) and narration_script.md's source table. Nothing here is estimated.",
+  "issuance_bn": {
+    "companies": ["Amazon", "Alphabet", "Meta", "Microsoft", "Oracle"],
+    "avg_2020_2024": 28,
+    "y2025": 121,
+    "multiple": 4.3,
+    "source": "Bank of America data, reported by Reuters / Yahoo Finance, 2026"
+  },
+  "universe": {
+    "ai": 25,
+    "non_ai": 75,
+    "reports_from": "Jul 2024",
+    "reports_to": "Sep 2026"
+  },
+  "levels": [
+    { "level": "bond by bond", "companies": 15, "note": "itemised instruments cover 80%+ of total debt" },
+    { "level": "by deal", "companies": 4, "note": "grouped issuances, not instruments" },
+    { "level": "totals only", "companies": 6, "note": "one debt figure, no breakdown" }
+  ],
+  "levels_assumed": 21,
+  "levels_assumed_basis": "counted by tagged members, not by how much of the debt they cover",
+  "levels_gate": { "coverage_line": 0.80, "qualified_on_coverage": 14, "moved_up_on_tie": 1, "tie": "4–4" },
+  "cases": { "total": 495, "dev": 95, "test": 400 },
+  "matching": {
+    "got": 594, "of": 636, "share": 0.934, "line": 0.90,
+    "split": "dev", "scope": "per-bond quarters",
+    "all_quarters_share": 0.85,
+    "all_quarters_gap": "Intel and Oracle quarters that list few bonds and are graded on totals anyway"
+  },
+  "spike": {
+    "quarters": 46, "companies": 23,
+    "announced": { "got": 56, "of": 64, "share": 0.875, "line": 0.80 },
+    "headroom": { "got": 21, "of": 46, "share": 0.4565, "line": 0.30, "raw": 33 }
+  },
+  "bakeoff": {
+    "documents": 29, "fields_total": 143, "line": 0.85, "gpu_gb": 8, "cost_usd": 0,
+    "truth_corrections": 6, "share_before_corrections": 0.95,
+    "valid_answers": { "got": 29, "of": 29 },
+    "models": [
+      { "name": "Qwen3 4B",     "params_b": 4, "got": 141, "of": 143, "median_s": 6.1, "runaway": 0 },
+      { "name": "Llama 3.1 8B", "params_b": 8, "got": 130, "of": 143, "median_s": null, "runaway": 3 },
+      { "name": "Qwen3 8B",     "params_b": 8, "got": 126, "of": 143, "median_s": null, "runaway": 2 }
+    ]
+  },
+  "frozen": ["universe_v1 company list (25 AI + 75 non-AI)", "qwen3:4b as the extraction model"],
+  "next": ["the grader", "the do-nothing baseline"]
+}

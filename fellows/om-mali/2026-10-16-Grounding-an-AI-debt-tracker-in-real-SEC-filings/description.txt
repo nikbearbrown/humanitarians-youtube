@@ -1,0 +1,81 @@
+Grounding an AI Debt Tracker in Real SEC Filings — AI Debt Tracker, week 1
+
+A new Mycroft project: an agent that tracks the bonds and loans financing the AI build-out,
+graded against each company's next quarterly report. This week did not build the agent. It
+built the ground under it — the answer key, the cut-off that stops it peeking, the matcher,
+and the model — so that when the agent arrives there is already a score it has to beat.
+
+THE GAP. In 2025 the five biggest cloud companies sold $121bn of US corporate bonds, 4.3× their
+$28bn-a-year average over 2020–2024. Mycroft runs agents for news, patents and hiring. None of
+its ~99 recipes tracks debt or credit.
+
+WHAT IT WILL DO — and note the tense. The agent will watch SEC filings from 25 AI-sector
+companies, read each debt announcement, and keep a ledger of every bond and loan: the amount,
+the interest rate, the due date. From that ledger it produces a signal — total debt, new
+borrowing, and what falls due in the next one to two years. None of that is written yet. What
+follows is.
+
+GRADED AGAINST A REPORT IT CANNOT HAVE READ. Each quarter's ledger is graded against that
+company's next quarterly report, where the debt is machine-readable. The answer is therefore
+always published after the evidence. A point-in-time server enforces it: ask for a filing dated
+after the report you are being graded on and it refuses. Without that refusal, every number
+below is a model that was shown the answer.
+
+COULD IT FAIL? TESTED FIRST. On 46 real company-quarters across 23 companies, 87.5% of new
+bonds — 56 of 64 — were announced in a filing before the report showed them, against a pass mark
+of 80% set before the test ran. And simply copying last quarter's debt forward is wrong in 21 of
+those 46 quarters. So there is something to beat.
+
+THE ANSWER KEY, AND THE WEEK'S REAL FINDING. Every quarterly report from July 2024 to September
+2026, for the 25 AI companies and 75 non-AI companies held alongside them. The first surprise
+was in the tagging. Microsoft's 13 "bonds" are really 13 batches of bonds; Oracle's quarterly
+reports list only the newest few. Counted by tags, 21 companies looked gradeable bond by bond.
+Measured by how much of each company's debt its report actually itemises — the gate is 80%
+coverage — the number is 15. Fourteen qualified outright and one moved up on a 4–4 tie.
+
+That is not a data error being corrected. It is a weaker way of counting being replaced by a
+stronger one, and it changes what the agent is allowed to be graded on at all.
+
+WHAT IT GRADES ON. Each quarter is graded at the detail its own report gives. That leaves 495
+dated test cases: 95 to build on, and 400 held back and never tuned on. On the quarters graded
+bond by bond, bonds now match from one report to the next 93.4% of the time — 594 of 636 —
+above the 90% line set beforehand.
+
+THE SMALLEST MODEL WON. Three local models, 29 real debt announcements, no hints, and the rule
+for picking a winner fixed before the test. Qwen3 at 4 billion parameters read 99% of the bond
+details (141 of 143) in about 6.1 seconds a filing on an 8 GB laptop GPU, at $0. Llama 3.1 8B
+got 91%, Qwen3 8B got 88% — and the two 8B models between them looped on their own answers
+until they were cut off five times. The 4B never did.
+
+WHAT NONE OF THIS ESTABLISHES. 87.5% is 56 of 64 genuinely new bonds carrying a stated interest
+rate; nine old bonds that were only newly tagged are excluded, and counting them would put the
+figure at 76.7%, under the line. "Wrong in 21 of 46" is the conservative count — raw,
+carry-forward differed in 33 of 46, but part of that is re-tagging rather than new debt. 93.4%
+is the per-bond quarters; across every quarter it is 85%, the gap being Intel and Oracle
+quarters that list few bonds and are graded on totals anyway. The 99% is one plain prompt on a
+29-document set, after correcting six expected values the filings themselves contradicted —
+95% before the corrections, same winner. And the $121bn is Bank of America's figure reported by
+Reuters, context for the project rather than a measurement by it.
+
+NEXT. The company list and the model are frozen. Build the grader and the do-nothing baseline
+first, so the score the agent has to beat exists before the agent does.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is a prop injected from figdata.json at build time, not typed by hand.
+The build asserts the key relationships and fails rather than let a number drift — including
+that the three grading levels sum to the whole 25-company universe, that the measured
+bond-by-bond count stays below the assumed one, that the all-quarters matching figure stays
+below the per-bond one, and that the bake-off winner is the smallest model and wins outright.
+Five claims in the video are NOT in figdata.json: the Mycroft recipe count, the designed
+pipeline, the point-in-time server's two source files, and Microsoft's and Oracle's tagging.
+Each is attributed on screen. See FACTCHECK.md in the project folder for what still needs
+confirmation before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#AIDebt #SEC #LocalLLM #Benchmarking #ResearchEngineering #PointInTime #HumanitariansAI #Mycroft
