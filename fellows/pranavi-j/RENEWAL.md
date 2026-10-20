@@ -7,9 +7,10 @@
 
 ## Dating note
 
-Two reports (2026-07-26, 2026-07-27) are dated before this agreement's formal start (1 Aug
-2026). Flagging this plainly rather than silently smoothing it over — I have not independently
-reconciled why the earliest work product predates the agreement start date on file.
+Two reports (2026-07-26, 2026-07-27) are dated before this agreement's 1 Aug 2026 start. This is
+not a gap — this agreement is itself a renewal of an original agreement beginning around 29 June
+2026 (onboarding, project selection, initial research), which the 1 Aug renewal continued. Those
+two reports belong to that original period, carried forward unchanged.
 
 ## What the current period produced
 
@@ -20,6 +21,12 @@ intelligence pipeline (`mycroft`), one general AI/STEM topic explainer. Every re
 code and paperwork are merged into `main` on GitHub right now — not sitting in unmerged branches.
 Rendered masters are in the shared Google Drive (mapped below); code never carries large media,
 per the repo's own media policy.
+
+One Substack article from this period: ["The Facial Recognition Bias
+Stat"](https://mycroftproject.substack.com/p/the-facial-recognition-bias-stat) (2 Aug 2026).
+Earlier Substack articles and the "Your Own Mycroft" chapter exercises (`TITAN.md`/`CANNOT-KNOW.md`
+claim-audit work) predate this agreement's 1 Aug start and belong to the prior period, already
+reported separately — not claimed as part of this period's evidence.
 
 ### Weekly evidence
 
@@ -49,8 +56,15 @@ explains it.
 | 15 Oct | 20 | Work | The Alert That Waited for a Second Item | [`f9eed1e`](https://github.com/SaiPranaviJeedigunta/mycroft/commit/f9eed1e) — B6: alert email dropped on exactly 1 item | [landscape](https://drive.google.com/open?id=1aey3_Igm6LUqh6vHuR6XDtjjCYYG6I2Y) · [vertical](https://drive.google.com/open?id=1AAQO67ALY9U6A_XA20ZI2TAfJS0EY9YC) | [folder](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/pranavi-j/2026-10-15-the-alert-that-waited-for-a-second-item) |
 |  |  | STEM | Chain-of-Thought: Why the Reasoning Isn't Always the Reason | — | [landscape](https://drive.google.com/open?id=1XpUl74J9yzEcHLJKaY26t0nt9Joak5PE) · [vertical](https://drive.google.com/open?id=1rE6RYyhcQ9hp_jZ-HoNZxq-5mWrvjqSn) | [folder](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/pranavi-j/2026-10-15-chain-of-thought-why-the-reasoning-isnt-always-the-reason) |
 
-Weekly hours: [HOURS.md](HOURS.md) — self-reported, 20 hours every week, no independent timesheet
-system exists for this project. No week fell short.
+Weekly hours: [HOURS.md](HOURS.md) — 20 hours every week, no week fell short. Tracked on the
+org-wide "Humanitarians AI" [sprint tracker](https://docs.google.com/spreadsheets/d/1G36Cfm9-qoAeuKdmpuyrv4pqIeGP099wg4ffhGmP1fs/edit?gid=314844973#gid=314844973)
+shared across volunteers (not a personal document). Earlier weeks (through mid-August) also have
+per-day hour logs filed through the Addams OPT documentation system, in
+[humanitarians-ai-opt-reports](https://github.com/SaiPranaviJeedigunta/humanitarians-ai-opt-reports)
+(weeks 1–7). That PDF-report process was superseded once the weekly-video system was in place —
+from that point on, the videos and their paperwork (`FACTCHECK.md`/`BUILD-LOG.md`) serve as the
+work-documentation evidence instead, which is why the per-day PDF logs stop there rather than
+continuing in parallel.
 
 **Note on commit dates:** several of these commits carry a git-committer timestamp slightly
 earlier than the report's own listed week (e.g. the 7 Sep report's commit is timestamped 30 Aug).
@@ -79,7 +93,8 @@ international office, not this report.
 
 ## Missing evidence / open items
 
-- **Hours are self-reported**, not drawn from an independent timesheet system.
+- **Hours are tracked on the shared sprint tracker**, not a per-project automated timesheet system
+  — real and org-wide, but still fellow-entered rather than system-logged.
 - **`FRICTIONAL.md` process logs were not kept contemporaneously** for any of the 18 work folders
   this period — a plain process failure on my end, not a policy decision. Retrospective logs
   (headed and dated as reconstructed, not real-time) have been added to close the record, but they
@@ -87,7 +102,6 @@ international office, not this report.
   gets its `FRICTIONAL.md` from the start.
 - **The Link That Pointed Nowhere** (14 Sep) links to its parent Drive folder, not a direct file
   link — the reviewer needs one extra click into the "GoogleNewsLinkFix" subfolder.
-- **Two reports predate the agreement start date on file** (see "Dating note" above) — unreconciled.
 - **Naming-convention gap, found during this review:** the org's `fellows/README.md` requires
   first-name-last-initial only, no surnames, "not in folder names, READMEs, beat sheets,
   descriptions or build logs." The folder itself was correctly renamed (`pranavi-j`), but every
