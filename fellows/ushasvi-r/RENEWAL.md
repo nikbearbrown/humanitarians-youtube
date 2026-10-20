@@ -168,7 +168,6 @@ Beginning later in the fellowship period, the weekly video structure expanded to
 * one STEM/AI educational video;
 * 16:9 horizontal versions;
 * 9:16 vertical versions where applicable.
-Direct individual video links will be added to the weekly evidence index before submission where available.
 
 ## Frictional Log Status
 I did not maintain separate contemporaneous Frictional logs during this reporting period.
