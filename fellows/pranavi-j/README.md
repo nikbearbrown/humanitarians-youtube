@@ -1,6 +1,37 @@
-# Sai Pranavi Jeedigunta
+# Sai Pranavi J.
 
-Weekly research reports on Humanitarians AI project work, documented as it happens.
+**Role:** Fellow — Project 29 (`mycroft`) engineering + weekly AI/STEM explainer series
+**Project:** Financial Regulatory Intelligence System (`mycroft`) + general AI/STEM video series
+**GitHub:** [@SaiPranaviJeedigunta](https://github.com/SaiPranaviJeedigunta)
+**Agreement period:** 1 Aug 2026 – 31 Oct 2026 (renewal requested, see [RENEWAL.md](RENEWAL.md))
+
+## Executive summary
+
+Nine weeks, two Brutalist videos a week: one real engineering fix in Project 29's regulatory
+intelligence pipeline, one general AI/STEM topic explainer, each in 4K 16:9 and native 4K 9:16.
+Eighteen reports total, all merged to `main` on GitHub, all GATE V-verified, all with
+`FACTCHECK.md`/`SOURCES.md`/`BUILD-LOG.md`. The Project 29 work follows a documented 4-layer
+hardening plan; this period closed out most of Layer 1 and shipped the first Layer 2 pieces
+(Ollama-based LLM re-scoring and fallback classification), landing a 9th fix — a one-character
+bug that silently dropped the alert email on exactly one high-priority item — the week this report
+was written. See [RENEWAL.md](RENEWAL.md) for the full evidence table and open items, including a
+previously-undiscovered naming-convention gap this review surfaced (full name used instead of
+first-name-last-initial across all 18 reports).
+
+## Quick review
+
+- [Renewal request](RENEWAL.md) — evidence table, hours, open items ([index](renewal-requests/README.md))
+- [Weekly hours](HOURS.md) — 20 hours every week, self-reported
+- [Research plan for the requested period](research-plan.md)
+
+## Voice
+
+**Bella (`af_bella`)**, confirmed 2026-07-26. The name-based heuristic in
+[`fellows/README.md`](../README.md) originally suggested Kore (`af_kore`),
+but that voice doesn't exist in the installed `brutalist` toolkit — it only
+ships two Kokoro voices, Onyx (`am_onyx`) and Bella (`af_bella`). Bella
+matches the `hai` persona and `@HumanitariansAI` channel and is now locked in
+for the full report series.
 
 ## Voice
 
@@ -178,4 +209,14 @@ This folder was renamed from `fellows/sai-pranavi-j/` to `fellows/pranavi-j/` as
 org-wide fellows-folder normalization (first-name-last-initial convention) applied across the
 whole `humanitarians-youtube` repo. All 8 prior reports carried over unchanged. A new
 `FRICTIONAL.md` requirement was introduced alongside the rename (a per-work-subfolder, ungraded
-process log — see the repo-wide fellows guidance for what an entry contains).
+process log — see the repo-wide fellows guidance for what an entry contains). Each of the 18 work
+folders now has one, added 2026-10-20 as part of this renewal review — see each folder's own file.
+
+**Separately, this same review surfaced that the folder-naming half of this convention was
+followed but the no-surname half was not:** the README title, every video's spoken narration, and
+every deliverable filename across all 18 reports use the full surname
+("Sai Pranavi Jeedigunta" / `SaiPranaviJeedigunta.mp4`), not the first-name-last-initial form the
+org's `fellows/README.md` requires everywhere. This README's title and header are now compliant;
+the 18 already-rendered videos and their filenames are not, and fixing that would mean
+re-recording narration and re-rendering every master — not done as part of this renewal and
+flagged openly in [RENEWAL.md](RENEWAL.md) rather than fixed quietly or left undiscovered.

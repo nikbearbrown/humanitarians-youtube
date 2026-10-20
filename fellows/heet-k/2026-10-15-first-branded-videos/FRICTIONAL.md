@@ -5,7 +5,7 @@
 > Written 2026-10-17, within the week it describes, from the Week 20 report.
 > The production detail below is reconstructed; no slugs or renders were captured.
 
-- **Evidence:** NOT PROVIDED — see [README.md](README.md#evidence-gap--stated-plainly)
+- **Evidence:** the [four Shorts](README.md#the-videos), listed in the entry below
 - **Branding used:** [professor-confirmed intro/outro](../2026-10-01-intro-outro-brutalist-pass/) (confirmed 11 Oct)
 - **This week's other thread:** [collaborative video plan](../2026-10-15-collaborative-video-plan/)
 - **Hours:** Week 20 total 22.0 — 10.0 on this thread — [HOURS.md](../HOURS.md)

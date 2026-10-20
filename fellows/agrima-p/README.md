@@ -143,6 +143,32 @@ an explicit, documented re-voice decision is made.
   PDF could not be rendered, so every visual is generated; slides excluded by
   instruction are not used. 16:9 (2:52) + 9:16 (2:57, full-parity reformat, no
   beats dropped) cuts.
+- `2026-10-19-hotel-phone-helper/` — The Hotel Phone Gets a Helper: AI voice
+  assistants are now answering hotel calls at any hour. User asked for a "Deep
+  Explainer" at exactly 4:00 with no footage — the toolkit's actual
+  deep-explainer skill targets 5-10 min and requires archival stills, so built
+  instead on the ai-explainer chassis (disclosed substitution). Warm, simple,
+  friendly tone, positive but fair: the "up to 90%" figure from a company's
+  Czech hotel launch is narrated and labeled on screen as company-reported
+  ("best read as a goal, not a promise"), the ~30%-of-the-day figure is "reports
+  suggest", the nine-boutique-hotels result is "in one case study", and a closing
+  sources card and spoken note say most sources are companies that build hotel
+  AI tools, so the percentages are not independent research. The opening Friday
+  lobby scene is labeled an illustration, not a reported case. Generated visuals
+  only (no real hotel brand logos). 16:9 (4:00) + 9:16 (2:51, four middle beats
+  dropped to fit the Shorts cap: hotels never close, the first-ring details, the
+  in-person greeting, and the after-stay call).
+- `2026-10-19-weekly-recap-hotel/` — This Week: Done, and Still a Draft. A
+  CLI-explainer weekly recap — a separate week's log from the earlier
+  weekly-recap builds — built around a real weekly_recap_v1.py, revised into
+  weekly_recap_v2.py to add a status to each item (published / attended / first
+  draft / produced) and print a finished-vs-draft count — both scripts real,
+  both actually run. Content: publishing "The Hotel Phone Gets a Helper" on
+  Substack, attending Homes of Hope meetings, writing with Yatra a first draft of
+  documentary promotion strategies (nothing about the draft is described beyond
+  "first draft"), and producing two Brutalist videos (four files in 16:9 + 9:16).
+  Homes of Hope visuals are abstract (no photos, no people shapes). 16:9 (1:45)
+  + 9:16 (1:50, full-parity reformat, no beats dropped) cuts.
 
 ## Frictional log
 

@@ -55,12 +55,10 @@ I also understand, more concretely than before, that an integration step —
 putting the link where the project can find it — is part of finishing, not
 paperwork after finishing.
 
-What I still do not have is the evidence. The outro formats are in Drive and can
-be opened. The video fix cannot: no URL, no commit hash, no before/after. Next
-time the link goes into the log as I make it, not from memory a week later.
-
-*TODO — Heet: add the YouTube URL and the codebase commit for the fixed video as
-a new dated entry below. Do not edit this one.*
+What I did not do was write the link down as I made it. The outro formats are in
+Drive; the fixed video's URL went unrecorded at the time and is added in the
+entry below. Next time the link goes into the log as I make it, not from memory
+a week later.
 
 ---
 

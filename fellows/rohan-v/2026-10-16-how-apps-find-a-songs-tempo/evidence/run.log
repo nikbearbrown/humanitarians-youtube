@@ -1,0 +1,65 @@
+ONSET LATENCY (click test): the curve peaks -24.8 ms from the click; beat times corrected by it
+TEST SET: 40 grooves, 30 s each, 8 Western styles x 5 tempos (synthetic, grooves.py)
+
+style           true     raw            prior          librosa
+Rock             100    99.8 right       99.8 right       99.4 right
+Rock             112   112.1 right      112.1 right      112.3 right
+Rock             120    60.0 half       119.6 right      117.5 right
+Rock             132    66.1 half       131.5 right      129.2 right
+Rock             144    71.9 half       143.9 right      143.6 right
+Funk              96   128.3 wrong      128.3 wrong      129.2 wrong
+Funk             100   199.6 double     134.1 wrong      136.0 wrong
+Funk             104    83.3 wrong       83.3 wrong      136.0 wrong
+Funk             108    53.9 half       143.9 wrong      143.6 wrong
+Funk             112    56.1 half       150.3 wrong      152.0 wrong
+House            118    58.9 half       118.0 right      117.5 right
+House            122    61.1 half       122.1 right      123.0 right
+House            124    61.8 half        83.0 wrong      123.0 right
+House            126    63.0 half        63.0 half        83.4 wrong
+House            128    64.2 half        85.7 wrong      129.2 right
+Hip hop           80   160.6 double     160.6 double     161.5 double
+Hip hop           85   170.9 double     170.9 double     172.3 double
+Hip hop           88   174.9 double     174.9 double      89.1 right
+Hip hop           92   184.0 double      92.1 right       92.3 right
+Hip hop           96    95.9 right       95.9 right       95.7 right
+Slow ballad       60    60.0 right      120.1 double     117.5 double
+Slow ballad       64    64.2 right      128.4 double     129.2 double
+Slow ballad       68    68.0 right      136.0 double     136.0 double
+Slow ballad       72    71.9 right      143.8 double     143.6 double
+Slow ballad       76    76.0 right      152.0 double      76.0 right
+Drum and bass    160    80.3 half        80.3 half        80.7 half
+Drum and bass    165    82.8 half        82.8 half        83.4 half
+Drum and bass    170    85.2 half        85.2 half        86.1 half
+Drum and bass    174    87.0 half        87.0 half        86.1 half
+Drum and bass    178    89.0 half        89.0 half        89.1 half
+Waltz (3/4)       84    83.8 right       83.8 right       83.4 right
+Waltz (3/4)       96    95.9 right       95.9 right       95.7 right
+Waltz (3/4)      108   107.9 right      107.9 right      107.7 right
+Waltz (3/4)      120    60.0 half       120.0 right      117.5 right
+Waltz (3/4)      132    66.1 half       131.4 right      129.2 right
+Jazz swing       110    55.0 half       110.0 right      112.3 right
+Jazz swing       130    64.9 half       129.7 right      129.2 right
+Jazz swing       150   150.7 right      150.7 right      152.0 right
+Jazz swing       170   170.8 right       85.2 half       172.3 right
+Jazz swing       190    95.2 half        95.2 half        95.7 half
+
+raw   : right 13/40  (Accuracy 1)   right-or-octave 38/40  (Accuracy 2)   counts {'right': 13, 'half': 20, 'wrong': 2, 'double': 5}
+prior : right 17/40  (Accuracy 1)   right-or-octave 33/40  (Accuracy 2)   counts {'right': 17, 'wrong': 7, 'half': 8, 'double': 8}
+librosa: right 22/40  (Accuracy 1)   right-or-octave 34/40  (Accuracy 2)   counts {'right': 22, 'wrong': 6, 'double': 6, 'half': 6}
+librosa 0.11.0 cross-check: same verdict on 34/40, same tempo within 4% on 33/40
+
+  Rock           raw ['right', 'right', 'half', 'half', 'half']  prior ['right', 'right', 'right', 'right', 'right']
+  Funk           raw ['wrong', 'double', 'wrong', 'half', 'half']  prior ['wrong', 'wrong', 'wrong', 'wrong', 'wrong']
+  House          raw ['half', 'half', 'half', 'half', 'half']  prior ['right', 'right', 'wrong', 'half', 'wrong']
+  Hip hop        raw ['double', 'double', 'double', 'double', 'right']  prior ['double', 'double', 'double', 'right', 'right']
+  Slow ballad    raw ['right', 'right', 'right', 'right', 'right']  prior ['double', 'double', 'double', 'double', 'double']
+  Drum and bass  raw ['half', 'half', 'half', 'half', 'half']  prior ['half', 'half', 'half', 'half', 'half']
+  Waltz (3/4)    raw ['right', 'right', 'right', 'half', 'half']  prior ['right', 'right', 'right', 'right', 'right']
+  Jazz swing     raw ['half', 'half', 'right', 'right', 'half']  prior ['right', 'right', 'right', 'half', 'half']
+
+DRIFT (rock, starts at 120 BPM, ends at 123.4 BPM, ±1.2% wobble, 8 ms looseness):
+  one number: 122.4 BPM
+  fixed grid at that BPM: off by up to 140 ms, 19 ms at the end; first more than 50 ms off at 5.9 s
+  beat tracker: median 6 ms from the true beat, 95% within 15 ms (61 beats placed for 62)
+
+EXAMPLE (rock, 120 BPM, seed 2): match at half a beat 0.502, one beat 0.631, two beats 0.781, four beats 0.582; strongest repeat -> 60.0 BPM, with the 120 preference -> 119.6 BPM

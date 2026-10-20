@@ -33,10 +33,9 @@ Logged at 6 hrs in [HOURS.md](../HOURS.md).
 [Did She Lose Five-Sixths Of Her Mass?](https://www.youtube.com/shorts/byO4NcbLcXc)
 — a published Short carrying the outro.
 
-## Evidence gap
+## What is here, and what is not
 
-**There is no outro source, and there will not be one.** Confirmed 2026-10-17:
-no scene code and no beat sheet were kept. The outro can be watched in the Short
+No outro scene code or beat sheet was kept. The outro can be watched in the Short
 above and in the other
 [branded videos](../2026-10-15-first-branded-videos/), but it cannot be rebuilt
 from this repository.

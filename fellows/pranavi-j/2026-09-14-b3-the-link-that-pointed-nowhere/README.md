@@ -9,6 +9,10 @@
 classification-ordering near-miss caught before deploying, and three escalating live
 verification rounds (20/20, 16/16, 6/6). See `SOURCES.md` and `FACTCHECK.md`.
 
+## Watch
+
+- Folder (landscape + vertical 4K deliverables): [Drive link](https://drive.google.com/open?id=1cQ5xt_bs14AGbVy4HNgD61kXYp-0fAGA) — open the GoogleNewsLinkFix subfolder inside.
+
 This ~2.7-minute AI-generated video asks: **what does it take to actually resolve a Google
 News redirect link, and what almost broke while fixing it?** It is the fifth report in the
 "Layer 1 hardening" series. The old `url=([^&]+)` regex never matched modern Google News

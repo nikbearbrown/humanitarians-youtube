@@ -1,0 +1,402 @@
+{
+  "metadata": {
+    "title": "The Running-Balance Bug Hiding in a Correct-Looking SQL Query",
+    "slug": "banking-domain-sql-running-total-bug",
+    "topic": "SQL · WINDOW FUNCTIONS · BANKING",
+    "skill": "cli-explainer",
+    "tool": "claude",
+    "persona": "none",
+    "narrator_identity": "in for Supriya",
+    "channel": null,
+    "channel_title": "",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "typography": {
+      "serif": "EB Garamond",
+      "sans": "Montserrat",
+      "mono": "PT Mono"
+    },
+    "source": [
+      "books/banking-data-analyst-interview-prep/chapters/08-sql-i-balances-cohorts-window-functions.md (lines 141-197)",
+      "books/banking-data-analyst-interview-prep/factchecks/MASTER_REPORT.md (Critical finding #3)"
+    ],
+    "description": "A real SQL correctness bug found and fixed in this book's Chapter 8 worked example: a date filter applied inside the running-balance CTE, before the cumulative SUM() OVER, silently truncating balance history for any account with pre-2026 activity. Fixed by moving the filter downstream to last_posting_per_month.",
+    "aspect_ratio": "16:9",
+    "resolution": "3840x2160",
+    "resolution_note": "4K target, matching the reference package's render note. compile.py needs --height 2160.",
+    "date": "2026-08-10",
+    "gate_p": "PENDING",
+    "no_paid_services": true,
+    "note": "CLI-explainer video in the required 12-beat spine (matching projects/data-analyst-book/hai-sql-window-functions-tie-bug/): B00 INTRO (cold open) · B01 PROBLEM (Manim) · B02 MECHANISM (Manim) · B03 CLI/ASK · B04 CODE (buggy) · B05 OUTPUT (Manim, wrong result) · B06 CLI/CHANGE (required revision) · B07 CODE (fixed) · B08 OUTPUT (Manim, corrected result) · B09 SUMMARY (Manim) · B10 NEXT STEPS (handoff) · B11 OUTRO. No named persona/channel per compliance requirement — narrator says 'in for Supriya' in B00 and B11 only, plain claude-skin composer/code beats, no @handle (channel_title text mark instead).",
+    "total_estimated_duration_seconds": 190.0,
+    "build": {
+      "at": "2026-08-10T12:15:17",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — open on the Claude UI, ask shown answered",
+      "narration_text": "In for Supriya. This query runs clean — and it's wrong for any account with a past.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"review this MySQL running-balance CTE for correctness before it ships\"",
+            "topic": "SQL · WINDOW FUNCTIONS · BANKING",
+            "segment": "The Running-Balance Bug",
+            "greeting": "Hi, in for Supriya",
+            "runningText": "reviewing query…",
+            "folderLabel": "Banking Domain Data Analyst Interview Prep",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "estimated_duration_s": 6.0,
+      "actual_duration_s": 5.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "why care — stated before the CLI loop begins; SHOW-DON'T-TELL LAW: Manim, not a static card",
+      "narration_text": "In a bank's data warehouse, 'what's this account's balance today' really means 'sum every posting up to today.' Get that running total right, and the report is trustworthy. Get one clause out of order, and the query still runs, still returns numbers — and every one of them is wrong for any account with history before the reporting window. No error thrown. No warning logged. Just a wrong balance that looks completely correct.",
+      "visual_intent": "a balance line accumulates smoothly across a 2025→2026 timeline; at the Jan 1 2026 boundary a red gate/cut mark appears with no alarm icon — the line keeps drawing past it uninterrupted, on-screen label 'no error thrown'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_RunningBalanceStakes",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "estimated_duration_s": 30.0,
+      "actual_duration_s": 24.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_RunningBalanceStakes",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "role_note": "the ordering rule — why the bug is possible at all",
+      "narration_text": "Here's the rule that explains it. A window function runs after WHERE, GROUP BY, and HAVING — but only inside its own query. Put that WHERE in an earlier CTE instead, and it still runs first, before a SUM() OVER two CTEs downstream ever sees the data. Filter early, and the running total built on top never sees what got filtered out.",
+      "visual_intent": "split screen: LEFT — ledger rows flow into a filter funnel (rows before 2026 fade away) then into a SUM() OVER accumulator, landing on a small/wrong total, labeled WRONG in crimson; RIGHT — the same ledger rows flow whole into the accumulator first, landing on the true total, THEN a filter narrows to the reporting window, labeled RIGHT in teal. Brace + arrow annotations mark the order on each side.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_FilterOrderSplit",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "estimated_duration_s": 27.0,
+      "actual_duration_s": 22.59,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_FilterOrderSplit",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CLI",
+      "role_note": "composer (ClaudeComposerAsk) — cycle 1, the ask",
+      "narration_text": "Ask Claude to review the chapter's own running-balance query before it ships — six months of end-of-month balances, built one CTE at a time.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"review chapters/08-sql-i-balances-cohorts-window-functions.md's running-balance CTE — 6-month end-of-month balances, one CTE at a time — flag anything wrong before it ships\"",
+            "topic": "SQL · WINDOW FUNCTIONS · BANKING",
+            "segment": "The Running-Balance Bug",
+            "greeting": "The ask,",
+            "runningText": "reading the query…",
+            "folderLabel": "Banking Domain Data Analyst Interview Prep",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "estimated_duration_s": 10.0,
+      "actual_duration_s": 9.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — the ACTUAL buggy CTE, trimmed to what teaches",
+      "narration_text": "Here's the CTE that computes the running balance. Read the WHERE clause — it's sitting right inside running, filtering the ledger down to twenty-twenty-six before the SUM() OVER ever runs.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "running_balance.sql (as drafted)",
+            "code": "WITH running AS (\n    SELECT account_id, transaction_id, posted_at,\n        SUM(amount) OVER (\n            PARTITION BY account_id\n            ORDER BY posted_at, transaction_id\n            ROWS UNBOUNDED PRECEDING\n        ) AS running_balance\n    FROM transactions\n    WHERE posted_at >= '2026-01-01'   -- <- runs BEFORE SUM() OVER sees it\n      AND posted_at <  '2026-07-01'\n),\n-- last_posting_per_month, monthly_balances, dormant_flag: unchanged",
+            "sparkLine": "Filtered before it summed."
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "estimated_duration_s": 13.0,
+      "actual_duration_s": 12.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTPUT",
+      "role_note": "OPEN vox slot → Manim video — cycle 1, the wrong result",
+      "narration_text": "Run it against an account that's been open since twenty-twenty-five. The true balance carried twelve thousand four hundred dollars into January. This query says January's balance is negative three hundred. It didn't error. It just forgot the account had a past.",
+      "visual_intent": "animated result table for ACCT-50231: rows for Jan/Feb/Mar 2026 land one at a time showing -$300.00, -$150.00, -$225.00 in crimson; a pulsing crimson badge reads 'MISSING $12,400 OF HISTORY'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_TruncatedBalance",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "estimated_duration_s": 17.0,
+      "actual_duration_s": 16.11,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_TruncatedBalance",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLI",
+      "role_note": "composer (ClaudeComposerAsk) — THE REQUIRED REVISION",
+      "narration_text": "That's a bug, not a feature. The fix is one clause, moved one CTE downstream: pull the date filter out of running, and put it on last underscore posting underscore per underscore month instead.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"fix running_balance.sql — the date filter is inside the running CTE, before SUM() OVER runs; move it to last_posting_per_month instead so the running total sees the full ledger\"",
+            "topic": "SQL · WINDOW FUNCTIONS · BANKING",
+            "segment": "The Running-Balance Bug",
+            "greeting": "The revision,",
+            "runningText": "updating query…",
+            "folderLabel": "Banking Domain Data Analyst Interview Prep",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "estimated_duration_s": 14.0,
+      "actual_duration_s": 13.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — the ACTUAL fixed CTE (matches the book's shipped query)",
+      "narration_text": "Same query, one clause relocated. Running now sees the whole ledger, no WHERE at all. The date filter shows up one CTE later — after the sum is already correct, only narrowing which months get reported.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "running_balance.sql (fixed)",
+            "code": "WITH running AS (\n    SELECT account_id, transaction_id, posted_at,\n        SUM(amount) OVER (\n            PARTITION BY account_id\n            ORDER BY posted_at, transaction_id\n            ROWS UNBOUNDED PRECEDING\n        ) AS running_balance\n    FROM transactions            -- no WHERE — sees the WHOLE ledger\n),\nlast_posting_per_month AS (\n    SELECT account_id, DATE_FORMAT(posted_at, '%Y-%m-01') AS month_start,\n           running_balance,\n           ROW_NUMBER() OVER (\n               PARTITION BY account_id, DATE_FORMAT(posted_at, '%Y-%m')\n               ORDER BY posted_at DESC, transaction_id DESC\n           ) AS rn\n    FROM running\n    WHERE posted_at >= '2026-01-01'   -- <- filter moved HERE, after the sum\n      AND posted_at <  '2026-07-01'\n)\n-- monthly_balances, dormant_flag: unchanged",
+            "sparkLine": "Summed first. Filtered after."
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "estimated_duration_s": 15.0,
+      "actual_duration_s": 13.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTPUT",
+      "role_note": "OPEN vox slot → Manim video — cycle 2, the corrected result",
+      "narration_text": "Re-run it. January's balance comes back as twelve thousand one hundred dollars — the real prior balance, minus the one withdrawal that actually happened in January. Nothing invented. Nothing lost.",
+      "visual_intent": "mirrored version of B05's table: the crimson -$300.00/-$150.00/-$225.00 rows ghost, strike through, and fade; corrected teal rows land in their place: $12,100.00, $12,250.00, $12,175.00",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_CorrectedBalance",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "estimated_duration_s": 13.0,
+      "actual_duration_s": 13.1,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim:B08_CorrectedBalance",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "the lesson — one beat; SHOW-DON'T-TELL LAW: Manim, not a static card",
+      "narration_text": "So the bug was never the window function. It was a WHERE clause living one CTE too early. Compute the running total over the whole ledger first. Narrow down to your reporting window only after the balance is already right.",
+      "visual_intent": "animated checklist, three lines landing with checkmarks: 'Compute the running total over the WHOLE ledger' / 'Filter to the reporting window only AFTER the sum' / 'A misplaced WHERE doesn't error — it quietly zeroes your history'; italic side-note beneath: 'Window functions run after WHERE inside their OWN query — not before a WHERE in an earlier CTE.'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B09_TheLesson",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "estimated_duration_s": 17.0,
+      "actual_duration_s": 13.91,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B09.mp4",
+        "filled_by": "manim:B09_TheLesson",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — suggested prompt typed in, viewer-addressed",
+      "narration_text": "Your move: take this prompt, and run it against your own running-balance query. If the date filter sits inside the CTE that computes the sum, that's your bug — move it downstream, and check it against an account with history older than your reporting window.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"check my own running-balance CTE — is the date filter inside the SUM() OVER CTE, or after it? If it's inside, move it downstream and re-run against an account with history before the window.\"",
+            "topic": "SQL · WINDOW FUNCTIONS · BANKING",
+            "segment": "The Running-Balance Bug",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "Banking Domain Data Analyst Interview Prep",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "estimated_duration_s": 19.0,
+      "actual_duration_s": 15.91,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-10T12:15:17"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — restate the episode title",
+      "narration_text": "The running-balance bug hiding in a correct-looking SQL query. In for Supriya — building it with Claude, then taking it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "The Running-Balance Bug Hiding in a Correct-Looking SQL Query",
+            "handle": "Banking Domain Data Analyst Interview Prep",
+            "subline": "in for Supriya — built with Claude, taken apart"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "estimated_duration_s": 9.0,
+      "actual_duration_s": 8.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-08-10T12:15:17"
+      }
+    }
+  ]
+}

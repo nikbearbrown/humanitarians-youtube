@@ -4,6 +4,11 @@
 **Series:** Humanitarians AI Fellows — Weekly STEM Video (`ai-explainer`)
 **Source status:** General AI/STEM topic explainer, not a report of the fellow's own engineering work. Both the worked example (B04, a fabricated citation) and the falsifiability case (B05, boiling point of water) are fully generic/hypothetical illustrations — no real model, vendor, or actual paper is named or resembled. See `FACTCHECK.md` and `SOURCES.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1ToeCppowIP5ejLVhgak-G1VN-E1UYZgw)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1HYOarSjx1vokyRpw39Z2VtPrxG6c9RDi)
+
 This video teaches a reusable 3-question rubric — **Checkable? / Would it hedge? / Does confidence track difficulty?** — for telling a model's genuine certainty apart from fluent-sounding phrasing that merely resembles certainty. The framework is shown fully before any example, walked through a worked example (a fabricated citation delivered in exactly the same confident tone as a real one), then stress-tested against a case where fluent, confident phrasing is actually warranted (a well-established fact answered correctly) so the rubric doesn't over-trigger on tone alone. It closes on a concrete task the viewer can run today.
 
 ## What this covers (and what it deliberately leaves out)

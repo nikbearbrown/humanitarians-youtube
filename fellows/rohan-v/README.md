@@ -20,7 +20,7 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 - [Renewal request](./RENEWAL.md) (sent 2026-09-28, approved) · [renewal index](./renewal-requests/README.md)
 - [Weekly hours](./weekly-hours/README.md): one file per week · [summary table](./HOURS.md)
 - [Research and project plan](./research-plan.md), with status
-- Latest week: [2026-10-09](#week-of-2026-10-09)
+- Latest week: [2026-10-16](#week-of-2026-10-16)
 
 ## How this folder is built
 
@@ -31,6 +31,16 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders (narration, beat clips and the 4K masters) go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx, evidence data) is committed beside it, per the [fellows README](../README.md).
 
 Every master is 4K: `./art final <reel>` (3840×2160) and `./art final <reel>/vertical --height 3840` (2160×3840).
+
+## Week of 2026-10-16
+
+A STEM explainer and a progress update, both 16:9 (3840×2160) and native 9:16 (2160×3840). Masters in
+Drive, [`2026-10-16/`](https://drive.google.com/drive/folders/17pJ6dCN9-GP_vnSmeY3U5a4KKg59V85g) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-10-12-weekly-hours.md).
+
+- [How Apps Find a Song's Tempo](./2026-10-16-how-apps-find-a-songs-tempo/): onsets, autocorrelation and the octave error, on a tempo detector I built and tested on 40 Western grooves, cross-checked against librosa (`TempoDetection_RohanV.mp4`)
+- [Homes of Hope Songs: Proof of Concept Progress](./2026-10-16-homes-of-hope-song-proof-of-concept/): the English + Hindi proof of concept for Lyrical Literacy × Homes of Hope, under 90 s (`HomesOfHopePoC_RohanV.mp4`)
 
 ## Week of 2026-10-09
 

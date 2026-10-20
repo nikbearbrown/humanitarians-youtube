@@ -6,6 +6,11 @@
 **Source status:** General AI/STEM topic explainer, not a report of the fellow's own engineering work. Both worked examples (a support-bot RAG system retrieving a stale policy document, and an internal-product-launch question where retrieval genuinely helps) are generic, illustrative, hypothetical scenarios — no real product, vendor, or RAG system is named. See `FACTCHECK.md`.
 **Submission spec:** first video built under the toolkit's **NEW** submission spec (effective 2026-09-07, `brutalist/docs/FELLOWS-SUBMISSION.md`) — deliverable naming `ProjectName_VolunteerName.mp4` (no date/aspect suffix), separate `deliverables/landscape/` and `deliverables/vertical/` folders, full-length 4K 2160×3840 vertical companion via `./art vertical` (not a Shorts-style cut). See this fellow's sibling weekly-work video's beat sheet for the same note.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1OtMMy-O_rEf-E3g0LtwYlj5LtYZ2GJmS)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1W6tT1ChQoEVxFWZo9vMMckBljGxMeblN)
+
 This video opens on a silent title card, then teaches a reusable 3-question rubric — "Is the source actually Relevant? Is it actually Current? Is the model actually Grounded in it, or just remembering it?" — for deciding whether a Retrieval-Augmented Generation (RAG) system's answer is really grounded in what it retrieved. It shows the framework in full before any example, walks it through a worked example (a support bot that retrieves a real but eight-months-stale policy document and answers confidently from it anyway), stress-tests the rubric against a case where retrieval genuinely is the fix, and closes on a concrete audit task.
 
 ## What this covers (and what it deliberately avoids)

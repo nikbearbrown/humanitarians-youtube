@@ -90,6 +90,6 @@ them; this closes the second one.
 did not survive. Same shape as the rest of this period: the work was done, the
 artifact was not kept.
 
-**Still open:** which look the professor preferred — the cream/parchment or the
-dark Notebook. Both were rendered because I could not decide, and I still do not
-know whether that deferral was ever resolved.
+On the two looks: both were rendered and both shipped. No preference between
+cream/parchment and the dark Notebook was recorded, and the question was never
+put to a decision — the pair stands as the deliverable.

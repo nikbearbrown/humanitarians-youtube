@@ -2,7 +2,7 @@
 
 - **Week:** 12–18 Oct 2026 (Week 20)
 - **Project:** Medhavy · **Role:** AI Software Engineer · **PM:** Jash S.
-- **Collaborator:** the two new videos were made jointly with [Varun N.](../varun-n/). The intro/outro they use are my own solo work.
+- **Collaborator:** the two new videos were made jointly with [Varun N.](../../varun-n/). The intro/outro they use are my own solo work.
 - **Status:** **published to YouTube.** Shared with the team and the professor — not reviewed, not approved.
 - **Evidence:** four published Shorts, linked below.
 - **Frictional log:** [FRICTIONAL.md](FRICTIONAL.md)
@@ -37,7 +37,7 @@ Four Shorts on the [Medhavy channel](https://www.youtube.com/@MedhavyAI), all
 wrapped in the confirmed intro/outro:
 
 **The two new content videos** — what this week actually produced, made jointly
-with [Varun N.](../varun-n/):
+with [Varun N.](../../varun-n/):
 
 | Title | Link |
 |---|---|
@@ -57,17 +57,14 @@ All four are classical-mechanics questions — falling bodies, mass versus weigh
 friction, and inertia. That is a coherent first batch: one subject area, four
 angles, rather than four unrelated pilots.
 
-## Still missing
+## Notes
 
-The videos can now be watched, which is the main thing. What a reader still
-cannot reconstruct:
+- Built with [`logo-motion`](../2026-10-01-intro-outro-brutalist-pass/#attribution--correcting-the-weekly-reports),
+  an existing brutalist.art skill.
+- Beat sheets and scene code were not kept, and the masters are on YouTube rather
+  than in a Drive folder.
 
-- **No beat sheets or scene code.** None were kept. Confirmed 2026-10-17 — this
-  is a real gap, not a pending task, and nothing will be reconstructed after the
-  fact to fill it.
-- **No Drive folder** for the masters.
-
-The skill is now identified: [`logo-motion`](../2026-10-01-intro-outro-brutalist-pass/#attribution--correcting-the-weekly-reports),
+On attribution: [`logo-motion`](../2026-10-01-intro-outro-brutalist-pass/#attribution--correcting-the-weekly-reports),
 an existing brutalist.art skill rather than one I wrote.
 
 ## Hours

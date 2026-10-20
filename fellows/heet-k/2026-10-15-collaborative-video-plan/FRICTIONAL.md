@@ -5,7 +5,7 @@
 > Written 2026-10-17, within the week it describes, from the Week 20 report.
 > The reasoning below is reconstructed; the plan itself was not captured here.
 
-- **Evidence:** NOT PROVIDED — see [README.md](README.md#evidence-gap--stated-plainly)
+- **Evidence:** the [channel](https://www.youtube.com/@MedhavyAI) as it now stands
 - **Preceding thread:** [video suggestions](../2026-10-08-youtube-video-suggestions/) (Week 19), [channel reorganization](../2026-09-24-channel-reorganization/) (Weeks 17–18)
 - **This week's other thread:** [first branded videos](../2026-10-15-first-branded-videos/)
 - **Hours:** Week 20 total 22.0 — 9.0 on this thread — [HOURS.md](../HOURS.md)
@@ -62,7 +62,7 @@ and I would rather say so precisely than vaguely.
 
 > Written 2026-10-17, appended rather than editing the entry above.
 
-The plan was created with **[Varun N.](../varun-n/)** (AI Engineer,
+The plan was created with **[Varun N.](../../varun-n/)** (AI Engineer,
 [@OMEGA-84](https://github.com/OMEGA-84)). The entry above said the credit split
 mattered and that I would rather state it precisely than vaguely; naming him is
 the first half of that. The second half — which parts were his — is still open,
@@ -79,11 +79,10 @@ The week's work was: delete the unwanted videos from the channel, keep the ones
 that belonged, and make the ones that were missing. That is a plan in the sense
 of a decision acted on, not in the sense of a file.
 
-Two of my earlier entries left a TODO implying a `PLAN.md` was coming. It is
-not, and leaving that TODO open would have been a quieter kind of inaccuracy
-than just saying so — it suggests a missing artifact rather than a different
-shape of work. The evidence is the [channel](https://www.youtube.com/@MedhavyAI)
-as it now stands, plus the [two new videos](../2026-10-15-first-branded-videos/).
+My earlier entries read as though a `PLAN.md` was coming. It was not — the work
+had a different shape, not a missing artifact. The evidence is the
+[channel](https://www.youtube.com/@MedhavyAI) as it now stands, plus the
+[two new videos](../2026-10-15-first-branded-videos/).
 
 What is genuinely lost: the *before*. Which videos were removed, and the
 reasoning for removing those and not others, exists nowhere. The result is

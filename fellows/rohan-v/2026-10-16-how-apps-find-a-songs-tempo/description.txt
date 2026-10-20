@@ -1,0 +1,34 @@
+How Apps Find a Song's Tempo — Humanitarians AI
+
+Where does the BPM number next to a track come from? Nobody tells the app where the beats are: it has
+to hear them. And the hard part isn't finding a beat. It's choosing which one. Explained from nothing:
+no maths or audio background needed.
+
+STEP ONE: WHERE NEW SOUNDS START
+The sound is split into forty frequency bands, and at every moment the app asks how much louder each
+band just got. Added up, that's the onset curve: every drum hit is a spike.
+
+STEP TWO: FIND THE REPEAT
+Slide the curve against a copy of itself. Where the spikes line up, the match jumps: that's
+autocorrelation. Sixty divided by the shift is the tempo, but a groove repeats at more than one shift.
+
+STEP THREE: CHOOSE THE BEAT
+I built a detector this way and tested it on forty Western grooves I generated. Picking the strongest
+repeat, it was right on 13 of 40. With a preference for tempos near 120, like the free library
+librosa, rock came out right every time, but every slow ballad came out double and every drum and bass
+groove half: the octave error. 33 of 40 were right or exactly double or half, and librosa gave the same
+verdict on 34.
+
+REAL DRUMMERS DRIFT
+On a groove that speeds up from 120 to 123 BPM, a grid at one fixed tempo is 140 ms off at worst; a
+beat tracker keeps half its beats within 6 ms.
+
+Narration is an AI voice (Kokoro af_bella). Script, decisions and the code by Rohan V.
+
+Sources: D. Ellis, "Beat Tracking by Dynamic Programming", JNMR 2007; F. Gouyon et al., "An
+experimental comparison of audio tempo induction algorithms", IEEE TASLP 2006; librosa 0.11.0
+documentation.
+
+Made with Brutalist for Humanitarians AI · Lyrical Literacy.
+
+#BPM #Tempo #BeatTracking #Music #Audio #HumanitariansAI

@@ -2,7 +2,7 @@
 
 - **Week:** 12–18 Oct 2026 (Week 20)
 - **Project:** Medhavy · **Role:** AI Software Engineer · **PM:** Jash S.
-- **Collaborator:** [Varun N.](../varun-n/)
+- **Collaborator:** [Varun N.](../../varun-n/)
 - **Status:** **shared with the team and the professor for input — not confirmed.**
 - **Evidence:** the [channel](https://www.youtube.com/@MedhavyAI) itself — the plan was enacted, not written.
 - **Frictional log:** [FRICTIONAL.md](FRICTIONAL.md)
@@ -13,7 +13,7 @@ A plan for the Medhavy channel's videos, developed **jointly with Varun N.**
 It turns the channel's content direction into a shared plan rather than a solo
 set of proposals, and it was shared with the team and the professor for input.
 
-**Not solely my work.** Created jointly with [Varun N.](../varun-n/)
+**Not solely my work.** Created jointly with [Varun N.](../../varun-n/)
 (AI Engineer, [@OMEGA-84](https://github.com/OMEGA-84)). The plan reflects joint
 effort; his contribution is noted rather than absorbed.
 
@@ -44,8 +44,7 @@ Week 19 does not extend here.
 
 ## The plan was never a document
 
-**There is no plan file, and there is not going to be one.** Confirmed by Heet
-2026-10-17: the plan was not written down. It was carried out directly, in two
+The plan was not written up as a document. It was carried out directly, in two
 moves:
 
 1. **Curating the channel** — deleting the unwanted videos and keeping only the

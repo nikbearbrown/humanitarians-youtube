@@ -5,6 +5,11 @@
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Source status:** Real engineering work. Every claim traces to `B2-VERIFICATION.md` (the 2026-10-06 addendum) and the matching `logs/RUN_LOG.md` entry in the `mycroft` repo — a local-LLM (Ollama) fallback classification step built and verified live against the actual 21 `Unknown Source` database rows and the shipped `workflow.dev.json` code.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1kFgZEsCVaIy_rFppUWlmbNGUl805EtBj)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1-Vk0ggysQepob9euT6P9GzjTpv1RL33v)
+
 This video covers a continuation of the B2 source-classification fix: 21 headlines were falling through the keyword/pattern classifier to "Unknown Source." Prior fixes (closed 2026-08-30, narrowed 2026-09-07) brought that down to 13 already resolved as of this session — verified live by re-running the real `identifySource()` function against the actual 21 DB rows — leaving a genuine residual of 8 generic headlines no fixed keyword list can resolve without false-positiving on unrelated content. This video covers adding a local-LLM (Ollama) fallback classification step for just that residual, and the honestly modest result: it resolved 1 of 8, correctly declining to guess on the rest rather than force a label onto genuinely ambiguous content.
 
 ## What this covers (and what it deliberately leaves out)

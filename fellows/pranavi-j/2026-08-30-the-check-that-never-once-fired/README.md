@@ -5,6 +5,11 @@
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Source status:** Real engineering work. Every claim traces to `B2-VERIFICATION.md` (2026-08-30) and `logs/RUN_LOG.md`'s 2026-08-30 B2 entry — a live test run against all 5 real regulatory-intel feeds as they existed today, explicitly not a claim about the pipeline's full historical run log. See `SOURCES.md` and `FACTCHECK.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1BxtUm8agM9_tH3iLNAp52cUdRicCPwWT)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1CG-y6XlwvAXR6-4KMVK8gNWuwXjLepTt)
+
 This ~2-minute AI-generated video asks: **what happens when a safeguard is never actually tested against real input?** It dramatizes a second fix from this week's continued Layer 1 hardening pass on the same regulatory-intel pipeline as the two prior reports: the source classifier had a rule specifically written to catch CFTC filings and route them to a `CFTC Regulations` label — and when tested against every live CFTC item available today, it matched **zero of them**.
 
 ## What this covers (and what it deliberately leaves out)

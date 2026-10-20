@@ -5,6 +5,11 @@
 **Format:** `ai-explainer` (3-minute cap), first-person narration
 **Source status:** Topic explainer, not a report of the fellow's own engineering work (contrast with the `2026-07-26-recovering-the-silently-dropped-filings/` weekly report in the sibling folder). The one factual claim with real stakes — the NIST demographic-effects finding — is verified directly against the primary source (NISTIR 8280) before narration was locked; see `FACTCHECK.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=14Vb3jj-31gty6uv8i9gfYcqJBGwD2l8V)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=12lwyok1GkrM35EHB3AD0UbqU5r5xyJT0)
+
 This ~3-minute AI-generated video asks: **is facial recognition good or bad?** — and answers that the question itself is the wrong frame. It opens with a title card and a personal on-screen introduction from the fellow, then walks through how the technology actually works (a similarity score, not a yes/no match), states its legitimate uses and its real harms with equal directness, cites NIST's own demographic-bias data including a named industry dissent, and closes on a proportional-scrutiny thesis rather than a policy verdict.
 
 ## What this covers (and what it deliberately avoids)
@@ -25,6 +30,7 @@ Deliberately avoided: naming any specific vendor or product, asserting a ban/reg
 - QC: GATE A/W/B clean; GATE V (against the true clean master, not the watermarked review cut) 0 BLOCKER / 12 MAJOR, all reviewed by eye and judged cosmetic — see `BUILD-LOG.md` and `SELF-ASSESSMENT.md`
 - Duration: **185.17s**
 - Publishing: **not authorized** (unchanged — separate human fellowship sign-off; this rebuild does not push or upload)
+- Code repository: paperwork/code (no media) pushed to `github.com/nikbearbrown/humanitarians-youtube`, branch `sai-pranavi-j-facial-recognition-4k-rebuild` (commit `4a2a8c2`) — no PR opened yet
 
 ## 9:16 Short (`short/`)
 

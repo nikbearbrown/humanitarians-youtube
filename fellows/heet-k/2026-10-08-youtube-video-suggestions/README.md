@@ -33,18 +33,16 @@ that "deciding what types of video to add" is not.
 - **Not an approved content plan.** A set of ideas is not a channel strategy.
 - **Not produced videos.**
 
-## The suggestions were never written down
+## Notes
 
-**Confirmed by Heet 2026-10-17: no list exists and none is coming.** The
-suggestions were spoken and then acted on rather than recorded. What they became
-is visible: two of them are the content Shorts made the following week —
+The suggestions were made in conversation and acted on rather than written up,
+so there is no list. What they became is visible: two of them are the content
+Shorts built the following week —
 [What Really Stops A Sliding Puck?](https://www.youtube.com/shorts/nJUA8plGrOQ)
 and [How Does Anything Ever Move?](https://www.youtube.com/shorts/e9wJXusS31g).
 
-That closes the question of what this week produced, in the only way still
-available: by its output rather than its artifact. The ideas that were
-*considered and dropped* are lost, and those are the ones that would have shown
-the reasoning.
+This week is therefore recorded by its output rather than by an artifact of its
+own.
 
 ## Hours
 

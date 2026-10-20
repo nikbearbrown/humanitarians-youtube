@@ -5,7 +5,7 @@
 - **Status:** **professor-confirmed final (11 Oct).** Held and unsent through
   Week 18; modified to final, submitted, and confirmed in Week 19.
 - **Skill used:** [`logo-motion`](https://github.com/nikbearbrown/brutalist.art/tree/main/skills/make/logo-motion) — an **existing** brutalist.art skill, not one I wrote. See the attribution note below.
-- **Evidence:** the stings are visible in the [published Shorts](../2026-10-15-first-branded-videos/); no Drive folder and no committed props.
+- **Evidence:** the stings are visible in the [published Shorts](../2026-10-15-first-branded-videos/).
 - **Frictional log:** [FRICTIONAL.md](FRICTIONAL.md) — two dated entries, held → confirmed
 - **Addams journal:** [addams-week-18.html](addams-week-18.html) — the Week 18 reflective entry, "Running the Branding Through a Tool I Built"
 
@@ -26,7 +26,7 @@ re-edited by hand.
 [Week 15 set](../2026-09-11-intro-outro-final/) remains the professor-confirmed
 final; nothing here supersedes it.
 
-## Evidence gap — stated plainly
+## Notes
 
 - **The skill is `logo-motion`** — confirmed 2026-10-17. One parametric Remotion
   `LogoMotion` composition where the mark, wordmark, tagline, palette and length

@@ -1,0 +1,602 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-ci-pipeline",
+    "title": "Unautomated Security",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper development log, Week 7 — replacing manual verification with a pytest harness and a GitHub Actions pipeline that rebuilds the stack, fires the adversarial suite at it, and blocks the merge when anything slips through.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners following the Provenance Gatekeeper build",
+    "playlist": "Fellows Research",
+    "source": "Week 7: CI/CD Pipeline & Automated Testing — Video Script, Provenance Gatekeeper Development Log. Supplied 2026-10-17.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion, both required. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut — so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script's green PASS / red X pair maps to unfilled ink for passing and terracotta for failing: a green would be a second accent and is the contrast colour-blind viewers lose.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "title_note": "The script's Scene 1 on-screen text is 'IT WORKS ON MY MACHINE', kept verbatim on the card. The reel is TITLED 'Unautomated Security' (from the script's own closing line) because the Week 1 reel in this same series is already titled 'Works On My Machine' and two near-identical titles would collide in the playlist.",
+    "tags": [
+      "Provenance Gatekeeper",
+      "pytest",
+      "GitHub Actions",
+      "CI/CD",
+      "unit testing",
+      "Docker",
+      "FastAPI",
+      "regression testing",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-10-17T23:03:37",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 24,
+      "narration_text": "Hi, I am Onkar Bhujbal. Last week we built a regex parser for the Provenance Gatekeeper that extracts financial data from unpredictable A.I. text. It worked perfectly on my local machine. But enterprise software is not about what works locally — it is about what survives in production. This week we strip away manual testing and build an automated continuous integration pipeline.",
+      "new_visual_element": "Cold open — green locally, on fire in production",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'comparing local to prod…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the same suite, two different verdicts"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names it: IT WORKS ON MY MACHINE"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Unautomated Security",
+            "command": "The parser passes every test I run by hand. Why did production reject a payload it accepted locally?",
+            "runningText": "comparing local to prod…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "local: PASS (run by hand, last Tuesday, 4 of 19 cases)",
+              "prod:  FAIL — the 15 cases you did not re-run",
+              "IT WORKS ON MY MACHINE."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-18T02:13:43.342930+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The 4-of-19 / 15-case split is ILLUSTRATIVE — it dramatises the manual-testing gap the script describes. No real suite size or failure count was supplied, and none is claimed as measured.",
+      "actual_duration_s": 20.71,
+      "render_duration_s": 20.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 12,
+      "lead_silence_s": 0.8,
+      "narration_text": "Week seven added no new detection logic at all. It added the thing that makes last week's logic trustworthy next month — a suite that runs itself, on a machine that is not mine, every single time anyone touches the code.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'I tested the parser.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'I' goes terracotta, deletes, retypes as 'CI'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Every commit. Not every Tuesday.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "I tested the parser.\nEvery commit. Not every Tuesday.",
+            "triggerWords": "I",
+            "replacementWords": "CI",
+            "seed": "ci-pipeline-2026-10-17",
+            "fontSize": 88,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-18T02:15:08.340649+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "fontSize raised to 88 to clear the ~5% underfill that GATE V flags on earlier reels' finals. Trigger is the single word 'I' -> 'CI', which is also the beat's whole argument: the tester should not be a person.",
+      "actual_duration_s": 12.61,
+      "render_duration_s": 12.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE PYTEST HARNESS",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "We started by writing strict unit tests with pytest. We codified every adversarial scenario we knew of — valid strings, magnitude errors, S.Q.L. injections — into a test underscore main dot py file. Instead of running scripts by hand and eyeballing the output, we now have a programmatic harness that proves the normalization layer behaves exactly as intended.",
+      "new_visual_element": "Two stages — write the cases, then let the harness run them",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 UNIT TESTS takes the terracotta top rule"
+          },
+          {
+            "at": 0.5,
+            "event": "connector draws; panel 02 PYTEST AUTOMATION lights and holds"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands under the band: proved, not eyeballed"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Stop eyeballing the output.",
+            "payloadLabel": "a case",
+            "readyLine": "proved, not eyeballed",
+            "stages": [
+              {
+                "index": "01",
+                "name": "UNIT TESTS",
+                "detail": "valid strings, magnitude errors, SQL injections — codified"
+              },
+              {
+                "index": "02",
+                "name": "PYTEST AUTOMATION",
+                "detail": "test_main.py runs them all, the same way, every time"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-18T02:16:34.263379+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 20.5,
+      "render_duration_s": 20.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — THE GITHUB ACTIONS PIPELINE",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "But developers forget to run tests. To remove the human, we integrated GitHub Actions. We configured a workflow with path filtering, so every time new code is pushed to the Gatekeeper directory, GitHub spins up a pristine Ubuntu runner, installs our dependencies, and boots the FastAPI and ChromaDB architecture inside Docker.",
+      "new_visual_element": "Commit to runner to container — the pipeline building itself",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 GIT PUSH lights; the commit token enters the band"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 UBUNTU RUNNER lights — a machine that has never seen this code"
+          },
+          {
+            "at": 0.7,
+            "event": "connector draws; panel 03 DOCKER STACK lights as FastAPI and ChromaDB boot"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: a clean machine, every single time"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "A machine with no memory of you.",
+            "payloadLabel": "a commit",
+            "readyLine": "a clean machine, every single time",
+            "stages": [
+              {
+                "index": "01",
+                "name": "GIT PUSH",
+                "detail": "path-filtered to the Gatekeeper directory"
+              },
+              {
+                "index": "02",
+                "name": "UBUNTU RUNNER",
+                "detail": "pristine host, dependencies installed from scratch"
+              },
+              {
+                "index": "03",
+                "name": "DOCKER STACK",
+                "detail": "FastAPI + ChromaDB booted exactly as production does"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-18T02:17:59.586861+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 18.54,
+      "render_duration_s": 18.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "BASK",
+      "act": "SCENE 4 — ASK (the stress test)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's push a pull request that lets one hallucinated payload through, and watch whether the pipeline lets it reach the main branch.",
+      "new_visual_element": "Ask micro-beat — the prompt that fires the pipeline at a bad PR",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'bombarding the API…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Attack it,",
+            "topic": "Provenance Gatekeeper",
+            "segment": "stress_test.py in CI",
+            "command": "Open a PR where one adversarial payload slips past the evaluation logic, run the full stress test in Actions, and show me the merge state.",
+            "runningText": "bombarding the API…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BASK.mp4",
+            "at": "2026-10-18T02:20:03.673028+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BASK.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: BASK is the ask, B04 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 7.49,
+      "render_duration_s": 7.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BASK.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — THE ADVERSARIAL STRESS TEST",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Once the environment is live, the pipeline bombards our own A.P.I. with the adversarial stress test. If a single hallucinated payload slips through the logic, the build fails and the code is blocked from merging. We have effectively built a perimeter that regressions cannot physically cross into the main branch.",
+      "new_visual_element": "The failing test, beside the merge that never arms",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the pytest output, one assertion failing"
+          },
+          {
+            "at": 0.22,
+            "event": "right panel lands: PULL REQUEST #62 · GitHub Actions"
+          },
+          {
+            "at": 0.34,
+            "event": "check counter climbs, then STOPS short of the total"
+          },
+          {
+            "at": 0.58,
+            "event": "the button stays MERGE BLOCKED — the regression cannot enter main"
+          },
+          {
+            "at": 0.74,
+            "event": "blocked state holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "CiGateSplit",
+          "props": {
+            "sparkLine": "One payload through. Build dead.",
+            "fileName": "pytest -q tests/adversarial",
+            "code": "test_magnitude_error ......... PASS\ntest_sql_injection ........... PASS\ntest_null_payload ............ PASS\ntest_directional_error ....... FAIL\n\n  assert verdict == \"FAIL\"\n  E  AssertionError: got \"PASS\"\n\n1 failed, 3 passed",
+            "slateNote": "",
+            "prLabel": "PULL REQUEST",
+            "prTitle": "#62",
+            "prSub": "GitHub Actions",
+            "checksTo": 18,
+            "checksLabel": "CHECKS PASSED OF 19",
+            "mergeBlocked": "MERGE BLOCKED",
+            "mergeReady": "ALL CHECKS PASSED",
+            "neverArms": true
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-18T02:58:41.899037+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "PR #62, the 18-of-19 counts and the four named tests are ILLUSTRATIVE — no real test_main.py, suite size or Actions run was supplied. The failing case is a directional error, which is the exact blind spot the Week 2 reel identified, so the example is consistent with the series rather than arbitrary. The counter stops one short so the merge button never arms, which is the beat's claim.",
+      "actual_duration_s": 16.62,
+      "render_duration_s": 16.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:CiGateSplit",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So stop testing your A.I. logic by hand. Write unit tests for your extraction layer and force your repository to run them on every commit. Unautomated security is just a suggestion.",
+      "new_visual_element": "The command, and the setting that gives it teeth",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the pytest command reveals"
+          },
+          {
+            "at": 0.55,
+            "event": "the TASK line lands"
+          },
+          {
+            "at": 0.76,
+            "event": "the branch-protection note lands last — the part that makes red mean blocked"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "run_tests.sh",
+            "code": "python -m pytest tests/test_main.py -v\n\n# TASK: run this on every commit, not\n# when you remember to.\n\n# Then mark the Actions check REQUIRED\n# in branch protection.\n#\n# A failing check nobody must obey is\n# a suggestion. Required makes it a wall.",
+            "sparkLine": "Required, or it is advice."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-18T02:22:31.928659+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The branch-protection note is the reel's addition. The script's Scene 4 says the pipeline 'blocks' the merge — true only when the check is marked required; otherwise Actions reports red and the merge button still works.",
+      "actual_duration_s": 11.26,
+      "render_duration_s": 11.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "And once the pipeline is green, here is the prompt worth running. Give a model your test file and your parser, and ask which adversarial categories you have no test for at all. A suite that only contains the attacks you already thought of will pass forever, right up until it matters.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Unautomated Security",
+            "command": "Here is my test_main.py and my parser. Group my cases by attack category, name the categories I have NO test for, and write one failing test for each gap.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-18T02:24:38.227126+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 14.61,
+      "render_duration_s": 14.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-17T23:03:37"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "A test you have to remember to run is not a test. Unautomated security is just a suggestion. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Unautomated Security",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper · Week 7",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-18T02:25:20.668856+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.81,
+      "render_duration_s": 8.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-17T23:03:37"
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 > Written 2026-10-03, within the week it describes, from the Week 18 report.
 > The technical detail below is reconstructed, not captured at the time.
 
-- **Evidence:** NOT PROVIDED — no renders, no skill commit. See [README.md](README.md#evidence-gap--stated-plainly)
+- **Evidence:** the stings are visible in the [published Shorts](../2026-10-15-first-branded-videos/)
 - **Supersedes nothing:** the [Week 15 set](../2026-09-11-intro-outro-final/) is still the confirmed final.
 - **Hours:** Week 18 total 22.0 — 11.0 on this thread — [HOURS.md](../HOURS.md)
 
@@ -68,7 +68,7 @@ the one thing this week was supposed to produce.
 > Appended rather than editing the entry above: that entry's "held" status was
 > true when written, and it stays as written.
 
-- **Evidence:** still NOT PROVIDED — no renders, no skill commit. See [README.md](README.md#evidence-gap--stated-plainly)
+- **Evidence:** the stings are visible in the [published Shorts](../2026-10-15-first-branded-videos/)
 - **Confirmation:** professor-confirmed final. No countersignature included.
 - **Hours:** Week 19 total 22.0 — 12.0 on this thread — [HOURS.md](../HOURS.md)
 - **This week's other thread:** [YouTube video suggestions](../2026-10-08-youtube-video-suggestions/)

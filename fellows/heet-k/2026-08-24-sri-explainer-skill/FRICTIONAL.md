@@ -106,8 +106,7 @@ survived contact with a reader who knows Sridhar — that was still unverified.
 
 - **Weekly report:** Week 15 (7–13 Sep), logged 9 hrs on this thread.
 - **Confirmation:** professor reviewed and confirmed.
-- **Commit:** skill committed to GitHub. **Hash NOT PROVIDED** — this is a gap in
-  the record, and the entry is weaker for it.
+- **Commit:** skill committed to GitHub; hash not recorded.
 
 **What I was working on.** Getting the skill from ongoing to delivered.
 
@@ -130,6 +129,4 @@ but I cannot honestly claim the same split applied here without having logged it
 **What I understand now, and what I still do not.** I understand the difference
 between self-verified and confirmed, and that only one of them closes a thread.
 
-I still do not know the commit hash, which means this entry points at a
-confirmation a reader cannot open. That is the single weakest link in this
-folder's evidence.
+The commit hash was not recorded at the time.

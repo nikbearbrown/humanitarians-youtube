@@ -4,6 +4,11 @@
 **Series:** Humanitarians AI Fellows — Weekly STEM Video (`ai-explainer`)
 **Source status:** General AI/STEM topic explainer, not a report of the fellow's own engineering work. Describes the well-documented "lost in the middle" effect in long-context language models qualitatively — no real model or vendor is named or benchmarked, no fabricated percentage/statistic is shown. The worked example (B04, a generic onboarding document with one buried fact) and its falsifiability case (B05) are fully generic/hypothetical illustrations. See `FACTCHECK.md` and `SOURCES.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1zoL5MUv2rWUBhPaSmHxYW3hPNLM3qBMy)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1csr0G_Ogi7hQ9jFFSXlbiYSjw3hspAWx)
+
 This video teaches a reusable 3-question rubric — **How long is the context? / Where does the key fact actually sit? / Would moving it change whether it's found?** — for noticing when a long-context prompt has put something important in a position a model is less reliable at using. The mechanism is shown as a real plotted U-shaped attention-strength curve (not just asserted in narration) before any example, walked through a worked example (the same fact, same document, same question, buried in the middle — the model misses it), stress-tested with a falsifiability case (the same fact moved to the start — the model finds it), and closed with a concrete task the viewer can run today.
 
 ## What this covers (and what it deliberately leaves out)

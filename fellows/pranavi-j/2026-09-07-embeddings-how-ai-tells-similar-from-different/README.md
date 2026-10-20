@@ -10,6 +10,11 @@ example, and the "Section 4.12" / "Section 4.13" falsifiability case — are gen
 fictional, not drawn from any real disclosed incident, product, regulation, or the fellow's own
 codebase. See `FACTCHECK.md` and `SOURCES.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1xHeLhbp0GNJe4coQPk17FUB9TpKTtIBL)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1HwSs7wTDrn1GZQV0OawQMGaR4DOPO8ED)
+
 This video opens on a silent title card, then teaches a reusable 3-question rubric —
 "Wording Varies / Context Flips Meaning / Exactness Is The Point" — for deciding whether a
 document-classification or text-matching rule should key off an exact keyword or off semantic

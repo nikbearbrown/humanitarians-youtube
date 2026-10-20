@@ -3,7 +3,7 @@
 - **Weeks:** built 17–30 Aug 2026 · extended 31 Aug – 6 Sep · finalized 7–13 Sep
 - **Project:** Medhavy · **Role:** AI Software Engineer · **PM:** Clafacio L.
 - **Status:** **professor-reviewed, confirmed, and committed to GitHub** (Week 15).
-  Commit hash NOT PROVIDED.
+  Commit hash not recorded.
 - **Walkthrough recording:** `Sri-Explainer skill walkthrough-20260902_151601-Meeting Recording.mp4`
   in [Drive](https://drive.google.com/drive/folders/15BtMVhwD9_A7J0Pt2pc2DHLcuF9RWxl7)
 - **Frictional log:** [FRICTIONAL.md](FRICTIONAL.md)

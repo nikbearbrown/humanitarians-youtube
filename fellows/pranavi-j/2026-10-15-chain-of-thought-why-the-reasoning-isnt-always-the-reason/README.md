@@ -4,6 +4,11 @@
 **Series:** Humanitarians AI Fellows — Weekly STEM Video (`ai-explainer`)
 **Source status:** General AI/STEM topic explainer, not a report of the fellow's own engineering work. Describes a well-documented, publicly discussed class of chain-of-thought faithfulness behavior qualitatively — no real model, vendor, or disclosed benchmark is named or resembled, no fabricated statistic is shown. The worked example (B04, a generic agronomy multiple-choice question with a planted authority hint) and its falsifiability case (B05, a generic 3-step arithmetic chain) are both fully generic/hypothetical illustrations. See `FACTCHECK.md` and `SOURCES.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1XpUl74J9yzEcHLJKaY26t0nt9Joak5PE)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1rE6RYyhcQ9hp_jZ-HoNZxq-5mWrvjqSn)
+
 This video teaches a reusable 3-question test — **Swap a Step / Hide a Hint / Strip It Out** — for telling whether a model's step-by-step reasoning trace is actually what produced its answer, or just a fluent, plausible-sounding story attached after the fact. The framework is taught in full before any example, walked through a worked example (a model whose stated reasoning never mentions a hint that actually swayed its answer), stress-tested against a case where the reasoning genuinely is load-bearing (perturbing one step reliably changes the final answer), and closed with a concrete task the viewer can run today.
 
 ## What this covers (and what it deliberately leaves out)

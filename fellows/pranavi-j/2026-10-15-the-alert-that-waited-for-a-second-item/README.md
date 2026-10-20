@@ -5,6 +5,11 @@
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Source status:** Real engineering work. Every claim traces to `B6-VERIFICATION.md` and `workflow.dev.json`'s `Generate Email` node in the `mycroft` repo — a one-character-class bug (`newItems.length > 1` instead of `> 0`) verified live against the real extracted node code via a Node.js harness, then re-verified against the real patched file on disk.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1aey3_Igm6LUqh6vHuR6XDtjjCYYG6I2Y)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1AAQO67ALY9U6A_XA20ZI2TAfJS0EY9YC)
+
 This video covers a bug found and fixed this week in the alert-email path of the regulatory intelligence pipeline: the `Generate Email` node's `hasData` guard required **strictly more than one** qualifying item before it would build an alert email at all. A run with exactly **one** new high-priority/critical item — the single scenario this alert system exists to catch — fell into the empty-result branch and silently produced no alert, with no error and no log line a person would notice. The fix is a one-character-class change (`> 1` to `> 0`), verified live against the real extracted code before and after the patch, and again against the real patched file on disk.
 
 ## What this covers (and what it deliberately leaves out)

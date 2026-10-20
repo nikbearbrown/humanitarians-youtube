@@ -25,7 +25,10 @@
 - `2026-09-25-vendor-intel-ratelimit/` - vendor ratelimit (2026-09-25)
 - `2026-10-02-vendor-intel-tracing/` - vendor tracing (2026-10-02)
 - `2026-10-02-slm/` - slm (2026-10-02)
+- `2026-10-09-vendor-intel-hardening/` - vendor intel hardening (2026-10-09)
 - `2026-10-09-adlc/` - agentic development lifecycle (2026-10-09)
+- `2026-10-16-kv-caching/` - KV Cache (2026-10-16)
+- `2026-10-16-vendor-intel-logging-config/` - vendor intel logging config (2026-10-16)
 
 
 ## Frictional log

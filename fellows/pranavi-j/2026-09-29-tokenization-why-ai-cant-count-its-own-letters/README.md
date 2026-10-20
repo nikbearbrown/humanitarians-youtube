@@ -9,6 +9,11 @@ work. The worked example illustrates a widely-known, generic class of tokenizati
 a benchmark of any specific real model (tokenizer behavior changes between model versions). See
 `SOURCES.md` and `FACTCHECK.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1HifrCasAyqc7Dnw-48EC-_U_JDm7camO)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1-wFRtNdLAjKS3yZ-yDvBhZ7FQabTlGSi)
+
 This video covers one real, well-known mechanism behind a common AI failure mode: language models
 don't read text letter-by-letter, they read it in sub-word chunks called tokens, and a word's
 token split often doesn't line up with its actual letters — which is why asking a model to count a

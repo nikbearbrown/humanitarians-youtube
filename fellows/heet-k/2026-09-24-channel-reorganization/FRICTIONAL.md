@@ -6,7 +6,7 @@
 > Week 17 report; not a contemporaneous entry.
 
 - **Channel:** https://www.youtube.com/@MedhavyAI
-- **Evidence:** NOT PROVIDED — see [README.md](README.md#evidence-gap--stated-plainly)
+- **Evidence:** the [three unlisted videos](README.md#what-was-unlisted), named in the entry below
 - **Hours:** Week 17 total 21.0 — 10.0 reorganization + 8.0 planning on this thread — [HOURS.md](../HOURS.md)
 
 **What I was working on.** Stepping back from making individual videos to shaping
@@ -66,7 +66,7 @@ I also do not know whether the structure is right, because no one has seen it.
 > Appended to this folder rather than opening a new one: this is the same
 > Phase 1 thread continuing, not a separate piece of work.
 
-- **Evidence:** still NOT PROVIDED — nothing written down this week either.
+- **Evidence:** the [channel](https://www.youtube.com/@MedhavyAI) as it now stands
 - **Hours:** Week 18 total 22.0 — 8.0 on this thread — [HOURS.md](../HOURS.md)
 - **This week's other thread:** [intro/outro via the Brutalist skill](../2026-10-01-intro-outro-brutalist-pass/)
 
@@ -133,7 +133,7 @@ is a content-type decision, the exact thing I spent Weeks 17 and 18 failing to
 articulate in the abstract. I had already made it; I just made it by unlisting
 rather than by deciding.
 
-**Still missing:** the reasoning at the time. I can now see a pattern in what I
+**One caveat.** The reasoning at the time was not written down. I can now see a pattern in what I
 removed, but I am reading it off the result, not recalling it. That is inference
 about my own past judgement, and I would rather label it as such than present it
 as a decision I remember making.

@@ -5,6 +5,11 @@
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Source status:** Real engineering work. All measured numbers below come from a rolled-back test transaction run against live RSS feeds and a local Postgres database, not a simulation.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1vIWhuC1-6z8PvmQnLearM_P61Vsfm5cF)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1ML-wCn03WrlK8DcjLCPL8L1WImFOivvt)
+
 This ~90-second AI-generated video asks: **can a pipeline lose real data without ever throwing an error?** It dramatizes one specific fix from this week's Layer 1 hardening pass: recovering title-only filings that a silent content filter had been dropping.
 
 ## What this covers (and what it deliberately leaves out)
@@ -24,6 +29,7 @@ The other Layer 1 fixes (parameterized inserts, feed isolation, HTML escaping, t
 - Visual QC: 0 BLOCKER defects on the true clean master (checked directly, not the watermarked review cut); 11 MAJOR cosmetic notes (underfill/low-contrast) — the identical count/category as the pre-rebuild 7-beat master, now under shifted beat IDs, no new defects introduced by the rebuild
 - Self-assessment: scored against `PROOF.md`'s rubric in `SELF-ASSESSMENT.md` — 4/12 (this is a single-insight case-study reel, not the framework-teaching genre PROOF's rubric targets; see that file for the honest breakdown and the one broadly-useful takeaway: put a visible source line next to the recovered-filings/count claims)
 - Publishing: **not authorized**
+- Code repository: paperwork/code (no media) pushed to `github.com/nikbearbrown/humanitarians-youtube`, branch `sai-pranavi-j-filings-4k-rebuild` (commit `51a476b`) — no PR opened yet
 - **9:16 Short built (2026-08-28):** `short/2026-07-26-recovering-the-silently-dropped-filings-short.mp4` — **1080x1920, 110.96s**, the whole reel reformatted (under the 180s Shorts cap, so 0 beats dropped, all narration reused unchanged). All 9 GRAPHIC beats got a hand-authored portrait `short/scenes.py` (never auto-cropped, per THE REFORMAT RULE) — see `BUILD-LOG.md`'s 2026-08-28 entry for the two beats that needed a genuine top-to-bottom redesign (B03's pipeline diagram, B06's before/after count) and a Manim CLI portrait-frame quirk found and fixed along the way. GATE V clean (0 BLOCKER/0 MAJOR) on all 9 authored scenes; one MAJOR remains on the toolkit's own auto-generated endcard (flagged as a human design call, not fixable without editing `brutalist/`). Not yet authorized to publish.
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->

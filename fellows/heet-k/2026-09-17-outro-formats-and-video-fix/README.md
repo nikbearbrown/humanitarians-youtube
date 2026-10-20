@@ -35,7 +35,7 @@ The codebase commit that added the link is still unrecorded.
 
 ## PM change
 
-From Week 16 the project manager is [Jash S.](../jash-s/); [Clafacio L.](../clafacio-l/)
+From Week 16 the project manager is [Jash S.](../../jash-s/); [Clafacio L.](../../clafacio-l/)
 was PM for Weeks 4–15. Recorded for continuity.
 
 ## Hours

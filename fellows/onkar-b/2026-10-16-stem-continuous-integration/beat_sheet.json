@@ -1,0 +1,600 @@
+{
+  "metadata": {
+    "slug": "claude-stem-ci-for-ai",
+    "title": "The Regression Problem",
+    "topic": "STEM & AI Architecture",
+    "purpose": "STEM & AI Architecture, Week 7 — why AI pipelines degrade silently, why you test the deterministic guardrails rather than the model's words, and how a CI gate turns 'it probably still works' into something the repository enforces.",
+    "skill": "ai-explainer",
+    "channel": "claude-stem",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners — engineers shipping LLM-backed services that have to keep working after the next commit",
+    "playlist": "STEM & AI Architecture",
+    "source": "Week 7: Continuous Integration for AI Systems — 5-scene script, supplied 2026-10-17.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion, both required. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut — so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script's red/green CI imagery maps to terracotta for the failing state and unfilled ink for the passing one; a green would be a second accent and is also the contrast colour-blind viewers lose.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "continuous integration",
+      "CI/CD",
+      "GitHub Actions",
+      "regression testing",
+      "LLM testing",
+      "guardrails",
+      "AI architecture",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-10-17T23:01:59",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Hi, I am Onkar Bhujbal, and this video is about why A.I. pipelines silently degrade. In traditional software, a function that adds two numbers today will still add them tomorrow. But when you wrap an application around a large language model, a change in model version, a reworded system prompt, or a shift in upstream data can break your downstream architecture — without anyone touching your code.",
+      "new_visual_element": "Cold open — nothing changed, and it broke anyway",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'diffing against last month…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the code is identical, the behaviour is not"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names it: THE REGRESSION PROBLEM"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "STEM & AI Architecture",
+            "segment": "The Regression Problem",
+            "command": "My extraction accuracy dropped and nobody shipped anything. git log is empty for three weeks. What changed?",
+            "runningText": "diffing against last month…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "Your code: unchanged. Your dependency: a model.",
+              "A model is a dependency that updates without a version bump.",
+              "THE REGRESSION PROBLEM."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-18T01:59:31.427870+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "No accuracy figure, decay rate or model is named — the script reports none. The hook describes the failure CLASS the script describes, not a measured incident on this project.",
+      "actual_duration_s": 20.59,
+      "render_duration_s": 20.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 12,
+      "lead_silence_s": 0.8,
+      "narration_text": "You cannot test what a model will say. You can test everything you built around it — and you can make the repository refuse code that breaks it. That is the whole of continuous integration for A.I.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Test the model.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'model' goes terracotta, deletes, retypes as 'guardrails'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Then let the repo enforce it.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Test the model.\nThen let the repo enforce it.",
+            "triggerWords": "model",
+            "replacementWords": "guardrails",
+            "seed": "ci-for-ai-2026-10-17",
+            "fontSize": 92,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-18T02:00:53.335185+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "fontSize raised to 92 (earlier reels used 52-58). At 4K two short lines at 54px filled only ~5% of the safe area and GATE V flagged `underfill` on every previous reel's final. Short text here keeps it inside the title-safe width at 92.",
+      "actual_duration_s": 10.94,
+      "render_duration_s": 10.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — DETERMINISTIC VS PROBABILISTIC",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Testing A.I. is fundamentally different from testing standard code. You cannot assert that a model's output will precisely match a hardcoded string. Instead you test the deterministic guardrails that surround it. Continuous integration for A.I. means continuously testing your parsers, your normalizers and your fail-safes against a suite of known adversarial inputs.",
+      "new_visual_element": "What you can assert, and what you cannot",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 STATIC CODE takes the terracotta top rule — assertable"
+          },
+          {
+            "at": 0.5,
+            "event": "connector draws; panel 02 DYNAMIC INFERENCE lights — not assertable"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands under the band: assert the wrapper, never the wording"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "One of these you can assert on.",
+            "payloadLabel": "a test",
+            "readyLine": "assert the wrapper, never the wording",
+            "stages": [
+              {
+                "index": "01",
+                "name": "STATIC CODE",
+                "detail": "parsers, normalizers, fail-safes — same input, same output"
+              },
+              {
+                "index": "02",
+                "name": "DYNAMIC INFERENCE",
+                "detail": "the model's words — never the same twice, never a test target"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-18T02:02:27.455285+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 19.33,
+      "render_duration_s": 19.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — AUTOMATING THE DEFENSE",
+      "lane": "remotion",
+      "estimated_duration_s": 22,
+      "narration_text": "This is where a continuous integration pipeline — something like GitHub Actions — stops being a nicety. A C.I. pipeline is an automated robot living in your repository. Every time an engineer tries to update the system, it rebuilds the application in a vacuum and fires malicious data at it, before a human ever sees the change.",
+      "new_visual_element": "Commit, gate, production — the robot in the middle",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 A COMMIT lights; the test token enters the band"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 THE CI RUNNER lights — clean machine, adversarial inputs"
+          },
+          {
+            "at": 0.7,
+            "event": "connector draws; panel 03 PRODUCTION lights only after the runner passes"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: nothing reaches production unattacked"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "A robot that attacks your own code.",
+            "payloadLabel": "a commit",
+            "readyLine": "nothing reaches production unattacked",
+            "stages": [
+              {
+                "index": "01",
+                "name": "A COMMIT",
+                "detail": "any change, from anyone, including you"
+              },
+              {
+                "index": "02",
+                "name": "THE CI RUNNER",
+                "detail": "a pristine machine, rebuilt from scratch, fed hostile data"
+              },
+              {
+                "index": "03",
+                "name": "PRODUCTION",
+                "detail": "reached only if every adversarial case still fails safely"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-18T02:03:52.762759+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 18.69,
+      "render_duration_s": 18.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "BASK",
+      "act": "SCENE 4 — ASK (the blocked merge)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's watch what happens when someone deletes a security check and tries to merge it anyway. This is the moment the whole pipeline is for.",
+      "new_visual_element": "Ask micro-beat — the prompt that runs the failing PR",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'running the check suite…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Try it,",
+            "topic": "STEM & AI Architecture",
+            "segment": "A failing check",
+            "command": "A pull request removes one regex from the sanitizer. Run the suite and show me whether the merge button is reachable.",
+            "runningText": "running the check suite…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BASK.mp4",
+            "at": "2026-10-18T02:05:46.914856+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BASK.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: BASK is the ask, B04 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 8.09,
+      "render_duration_s": 8.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BASK.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — BLOCKING DEPLOYMENT",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "If a developer accidentally removes a security regex, or a new model update starts slipping past the evaluation logic, the pipeline catches it in isolation. It locks the repository and stops the compromised code from reaching production. That is the difference between hoping your guardrails held and knowing they did.",
+      "new_visual_element": "The diff that broke it, beside the merge button that will not arm",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the one-line diff that removed the check"
+          },
+          {
+            "at": 0.22,
+            "event": "right panel lands: PULL REQUEST #58 · GitHub Actions"
+          },
+          {
+            "at": 0.34,
+            "event": "check counter climbs, then STOPS short of the total"
+          },
+          {
+            "at": 0.58,
+            "event": "the button stays MERGE BLOCKED — it never arms"
+          },
+          {
+            "at": 0.74,
+            "event": "blocked state holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "CiGateSplit",
+          "props": {
+            "sparkLine": "The button never turns green.",
+            "fileName": "sanitizer.py  (diff)",
+            "code": "  def sanitize(text):\n-     text = STRIP_SQL.sub('', text)\n      return parse(text)\n\n# one line removed.\n# every injection test now fails.",
+            "slateNote": "",
+            "prLabel": "PULL REQUEST",
+            "prTitle": "#58",
+            "prSub": "GitHub Actions",
+            "checksTo": 41,
+            "checksLabel": "CHECKS PASSED OF 64",
+            "mergeBlocked": "MERGE BLOCKED",
+            "mergeReady": "ALL CHECKS PASSED",
+            "neverArms": true
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-18T02:55:25.762239+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "PR #58 and the 41-of-64 check counts are ILLUSTRATIVE — the script supplies no real numbers, and this is a generic teaching example rather than a run on any repository. The counter deliberately stops short of the total so the merge button never arms, which is the beat's claim.",
+      "actual_duration_s": 17.51,
+      "render_duration_s": 17.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:CiGateSplit",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So never assume your guardrails will survive the next commit. Build an automated integration pipeline that aggressively attacks your own system on every update — and make a failing attack block the merge.",
+      "new_visual_element": "The workflow the viewer adds",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the workflow reveals line by line"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: automate your regression tests"
+          },
+          {
+            "at": 0.76,
+            "event": "the branch-protection note lands last — the part people skip"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": ".github/workflows/ci.yml",
+            "code": "on: [push, pull_request]\n\njobs:\n  attack:\n    runs-on: ubuntu-latest\n    steps:\n      - run: pytest tests/adversarial -v\n\n# TASK: automate your regression tests.\n\n# Then the step everyone skips:\n#   mark this check REQUIRED in branch\n#   protection. A red X nobody has to\n#   obey is just a suggestion.",
+            "sparkLine": "Make red mean blocked."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-18T02:08:14.392138+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The branch-protection comment is the reel's addition. A CI job that reports failure but is not marked required does not block anything — the script's Scene 4 claim ('physically locks the repository') is only true with that setting on.",
+      "actual_duration_s": 11.14,
+      "render_duration_s": 11.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "And here is the prompt worth running before you trust any of it. Hand a model your test suite and ask which of your guardrails it could break without a single test going red. The gap between what you test and what you rely on is where the next regression is already living.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "STEM & AI Architecture",
+            "segment": "The Regression Problem",
+            "command": "Here is my test suite and my sanitizer. Tell me which guardrails I could delete entirely without a single one of these tests failing — and write the test that would have caught each one.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-18T02:10:10.843222+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 13.95,
+      "render_duration_s": 13.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-17T23:01:59"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Your model will change under you. Your tests are the only thing that notices. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Regression Problem",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · STEM & AI Architecture · Week 7",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-18T02:10:50.695099+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 7.23,
+      "render_duration_s": 7.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-17T23:01:59"
+      }
+    }
+  ]
+}

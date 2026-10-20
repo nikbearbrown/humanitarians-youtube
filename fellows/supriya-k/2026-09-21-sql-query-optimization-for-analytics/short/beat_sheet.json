@@ -1,0 +1,792 @@
+{
+  "metadata": {
+    "title": "SQL, Read Fewer Rows.",
+    "slug": "2026-09-21-sql-query-optimization-for-analytics-short",
+    "topic": "Irreducibly Human",
+    "skill": "ai-explainer",
+    "fellow": "Supriya Kushwaha",
+    "fellow_folder": "fellows/supriya-k",
+    "report_date": "2026-09-16",
+    "date": "2026-09-16",
+    "brand": "claude-hai",
+    "audience": "HAI",
+    "audience_note": "STUDENTS and early-career analysts — people who can write correct SQL but have never opened a query plan.",
+    "register": "Pragmatist",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "voice": "af_bella",
+    "voice_note": "Series voice lock for this fellow — af_bella (Bella), recorded in fellows/supriya-k/README.md per fellows/README.md. Matches banking-domain-sql-running-total-bug and banking-domain-star-method-behavioral. am_onyx is deliberately NOT used: Onyx would arm IN-FOR-BEAR LAW and rewrite B00 to 'Liam, in for Bear', wrong for a HAI fellow reel.",
+    "playlist": "Fellows Research",
+    "captions": false,
+    "captions_note": "MOTION.md caption policy — explainers ship an SRT SIDECAR, never a burn-in.",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "typography": {
+      "serif": "EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "greeting": "Hi, I am Supriya",
+    "greeting_note": "v2 (2026-10-17): greeting matches the exact intro line; Supriya chip on every beat, @HumanitariansAI small on the outro (hai convention, same as the data-analyst reels).",
+    "folder_chip": "Supriya",
+    "aspect_ratio": "9:16",
+    "resolution": "3840x2160",
+    "resolution_note": "remotion_scenes.py renders --scale=2; compile.py needs --height 2160.",
+    "clock": "narration (Kokoro af_bella, local/free). estimated_duration_s are word-count placeholders at ~160 wpm; actual_duration_s is null until audio lock.",
+    "duration_note": "DURATION IS AN OUTPUT (duration-planner). Sum of estimates ≈ 209 s ≈ 3:29. This sits above the 1–3 min ai-explainer band; the content, not a clock, put it there. If a sub-3:00 cut is wanted, drop B04 (20 s, restates B03's figures on a log axis) and B05 (13 s, the predict device) → ≈ 2:56. Do not compress narration to hit a number.",
+    "evidence": "demo/RESULTS.md — real SQLite 3.45.3 EXPLAIN QUERY PLAN captures for THREE pairs of logically identical queries (strftime on posted_at, CAST on branch_id, UPPER on account_ref): demo/explain_a_non_sargable.txt + explain_b_sargable.txt (shown verbatim in B03), explain_c/d (CAST), explain_e/f (UPPER). Regenerable via demo/build_demo.py (SEED=20260916), which exits non-zero if any rewrite stops returning an identical result set.",
+    "source": [
+      "demo/build_demo.py + demo/RESULTS.md (this reel's own executable evidence — primary)",
+      "SQLite documentation — The EXPLAIN QUERY PLAN command (sqlite.org/eqp.html)",
+      "SQLite documentation — Query Planning / indexed lookups (sqlite.org/queryplanner.html)",
+      "PostgreSQL 17 documentation — Using EXPLAIN (postgresql.org/docs/17/using-explain.html)"
+    ],
+    "gate_p": "PASS",
+    "no_paid_services": true,
+    "one_insight": "An index works on the column, not on a function of the column — and the query plan is the only place that difference is visible.",
+    "spine": "cold-open ClaudeComposerAsk (ask lands answered) → body (vox-style illustration) → verdict recap → YOUR TURN handoff → title-restate outro",
+    "note": "ILLUSTRATE LAW reel. Claude UI appears at B00 (cold open, with RESULT lines), B02 (ask micro-beat of the ask→result pair), B07 (verdict artifact page), B08 (handoff), B09 (outro) — the five exempt slots, nothing else. Body beats B01/B03/B04/B05/B06 each carry a DIFFERENT scheme (isotype attrition · plan capture · log scale · predict card · divergence), so no two consecutive beats share a visual state. Typing appears in exactly two beats per HANDOFF LAW: B00 and B08. SqlPlanBeat and SqlPredictCard are reel-local — see remotion-src/REGISTER.md; every other pattern is a registered library composition. QC PASS 1 (2026-09-16) found 2 BLOCKER + 5 MAJOR defects, all on the three 1280×720 library deck patterns. B01/B04/B06 now render from reel-local FORKS — SqlAttritionChain / SqlScaleComparison / SqlDivergentFates in remotion-src/ — registered at 1920×1080 with durationInFrames matched to the measured audio. The shared library components were NOT edited; toolkit-level fixes are logged in TEMPLATE-MISSES.md #5–#7.",
+    "tags": [
+      "SQL",
+      "query optimization",
+      "EXPLAIN",
+      "query plan",
+      "SQLite",
+      "analytics engineering",
+      "sargable",
+      "indexing",
+      "data analyst",
+      "Humanitarians AI",
+      "AI+1"
+    ],
+    "gate_p_signed": {
+      "verdict": "PASS",
+      "signed_by": "Supriya Kushwaha (Fellow)",
+      "date": "2026-09-16",
+      "narration_revision": "rev 2",
+      "voice_approval": "af_bella confirmed as my series voice (Bella, HAI plain register).",
+      "scope": "Authorises audio + render. Does NOT cover LOGO LAW (PEDAGOGY open item 1) or post-render QC sign-off (open item 3). Voided by any later narration_text change."
+    },
+    "build": {
+      "at": "2026-10-17T17:40:03",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "END: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "narration_revision": "rev 3 — signed GATE P 2026-10-17 (Supriya Kushwaha)",
+    "topic_label": "SQL · QUERY PLANS · ANALYTICS",
+    "topic_note": "metadata.topic carries the fixed claude-hai kicker for Gate L; the on-screen topic label stays \"SQL · QUERY PLANS · ANALYTICS\" (composer props), as Supriya confirmed for the other hai reels.",
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "2026-09-16-sql-query-optimization-for-analytics",
+    "dropped_beats": [],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 166.6,
+    "channel_title": ""
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Supriya and this video is about SQL query optimization for analytics. Two queries, identical output: the same four thousand four hundred fifty-nine rows. One reads eleven thousand rows to get there. The other reads four hundred thousand. The SQL won't tell you which. The query plan will.",
+      "content_type": "title",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "Hi, I am Supriya",
+            "event": "greeting 'Hi, Supriya' sets in serif above the composer; spark ignites terracotta"
+          },
+          {
+            "at": "Two queries",
+            "event": "the ask types itself into the composer, character by character"
+          },
+          {
+            "at": "byte for byte",
+            "event": "send button arms (terracotta); runningText 'reading the plan…' appears"
+          },
+          {
+            "at": "reads eleven thousand rows",
+            "event": "RESULT line 1 lands — 'A → SCAN postings'"
+          },
+          {
+            "at": "reads four hundred thousand",
+            "event": "RESULT line 2 lands — 'B → SEARCH … USING INDEX'"
+          },
+          {
+            "at": "The query plan does",
+            "event": "RESULT line 3 lands — '35× fewer rows read'; the ask is answered on screen"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Hi, I am Supriya",
+            "topic": "SQL · QUERY PLANS · ANALYTICS",
+            "segment": "Read Fewer Rows",
+            "command": "I have a 400,000-row postings table with an index on posted_at. Two queries return identical results — one filters with strftime('%Y-%m', posted_at) = '2026-01', the other with posted_at >= '2026-01-01' AND posted_at < '2026-02-01'. Run EXPLAIN QUERY PLAN on both and tell me which one can use the index, and why.",
+            "runningText": "reading the plan…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [],
+            "scale": 1.0
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 19.9,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SETUP",
+      "narration_text": "Here is the shape of a typical analytics query. Four hundred thousand postings. You want one month: eleven thousand rows survive the filter, and grouping by account leaves four thousand four hundred fifty-nine. Optimization is about how many of the four hundred thousand the database has to touch.",
+      "content_type": "data",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "isotype",
+        "show": [
+          {
+            "at": "Four hundred thousand postings",
+            "event": "400 ink dots fill the first panel (1 dot = 1,000 rows); counter reads 400 / 400"
+          },
+          {
+            "at": "eleven thousand rows survive",
+            "event": "dots migrate to panel 2; the 97% that fail the filter fall away and fade; counter counts down to 11 / 400, '3% remain'"
+          },
+          {
+            "at": "grouping by account leaves",
+            "event": "surviving dots migrate to panel 3, collapsing to 4; counter '1% remain'"
+          },
+          {
+            "at": "The answer is tiny",
+            "event": "the 4 final dots turn terracotta — the only accent in the frame"
+          },
+          {
+            "at": "how many of those four hundred thousand",
+            "event": "hold on all three panels; the first panel's density is the point"
+          },
+          {
+            "at": "throughout",
+            "event": "bottom-left scale note 'ISOTYPE: 1 DOT = 1,000 ROWS' holds on screen for the whole beat"
+          }
+        ],
+        "remotion": {
+          "pattern": "SqlAttritionChain916",
+          "props": {
+            "data": {
+              "title": "One month out of three years",
+              "slideMeta": "POSTINGS · 400,000 ROWS",
+              "total": 400,
+              "startLabel": "postings",
+              "stages": [
+                {
+                  "label": "WHERE January 2026",
+                  "survival": 0.028423
+                },
+                {
+                  "label": "GROUP BY account_id",
+                  "survival": 0.392207
+                }
+              ],
+              "script": "isotype scale declared in the persistent bottom-left scaleNote (was occluded by the counter card in the library component — _qc/REPORT.md #3). Counter percentages are the real selectivity (2.84% → 1.11%). See FACTCHECK.md row 6.",
+              "scaleNote": "ISOTYPE: 1 DOT = 1,000 ROWS",
+              "panelCounts": [
+                "400,000 rows",
+                "11,369 rows",
+                "4,459 groups"
+              ]
+            },
+            "handle": "Supriya",
+            "handleTop": true
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.37,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "narration_text": "So ask the database. EXPLAIN QUERY PLAN costs almost nothing, and it doesn't run your query. It just tells you what the engine intends to do.",
+      "content_type": "title",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "So stop guessing",
+            "event": "composer returns; greeting 'Watch, Supriya' in serif"
+          },
+          {
+            "at": "EXPLAIN QUERY PLAN",
+            "event": "the command types in; send arms terracotta"
+          },
+          {
+            "at": "it does not run your query",
+            "event": "runningText 'explaining…' pulses — no output lines yet; the RESULT is the next beat"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "The ask,",
+            "topic": "SQL · QUERY PLANS · ANALYTICS",
+            "segment": "Read Fewer Rows",
+            "command": "Run EXPLAIN QUERY PLAN on both queries against demo/postings.db and show me the two plans side by side, unedited.",
+            "runningText": "explaining…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 9.19,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "EVIDENCE",
+      "narration_text": "There it is. Query A: SCAN postings. Scan means every row, all four hundred thousand. Query B: SEARCH postings USING INDEX, with the date range in the parentheses. Search means the index walked to January and stopped. Same answer, and the plan said so before either query ran.",
+      "content_type": "mechanism",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "There it is",
+            "event": "both plan cards rise onto the cream page; mono type, unedited capture"
+          },
+          {
+            "at": "SCAN postings",
+            "event": "the word SCAN in card A takes the terracotta highlight"
+          },
+          {
+            "at": "all four hundred thousand",
+            "event": "card A's verdict strip draws in — '400,000 rows read'"
+          },
+          {
+            "at": "SEARCH postings USING INDEX",
+            "event": "highlight releases A and lands on SEARCH … USING INDEX in card B (one accent at a time)"
+          },
+          {
+            "at": "walked to January and stopped",
+            "event": "the '(posted_at>? AND posted_at<?)' fragment underlines with a draw-on hairline"
+          },
+          {
+            "at": "the plan said so",
+            "event": "card B's verdict strip draws in — '11,369 rows read'; citation line settles bottom-left"
+          }
+        ],
+        "remotion": {
+          "pattern": "SqlPlanBeat916",
+          "props": {
+            "title": "demo/explain_a_non_sargable.txt  →  demo/explain_b_sargable.txt",
+            "lang": "sql",
+            "left": {
+              "heading": "A — non-sargable",
+              "code": "sqlite> EXPLAIN QUERY PLAN\n  SELECT account_id, SUM(amount_cents)\n  FROM postings\n  WHERE strftime('%Y-%m', posted_at) = '2026-01'\n  GROUP BY account_id;\n\nQUERY PLAN\n|--SCAN postings\n`--USE TEMP B-TREE FOR GROUP BY",
+              "verdict": "SCAN · 400,000 rows read",
+              "tone": "warn"
+            },
+            "right": {
+              "heading": "B — sargable",
+              "code": "sqlite> EXPLAIN QUERY PLAN\n  SELECT account_id, SUM(amount_cents)\n  FROM postings\n  WHERE posted_at >= '2026-01-01'\n    AND posted_at <  '2026-02-01'\n  GROUP BY account_id;\n\nQUERY PLAN\n|--SEARCH postings USING INDEX\n|    idx_postings_posted_at (posted_at>? AND posted_at<?)\n`--USE TEMP B-TREE FOR GROUP BY",
+              "verdict": "SEARCH · 11,369 rows read",
+              "tone": "good"
+            },
+            "sparkLine": "SCAN means every row.",
+            "citation": "Captured from SQLite 3.45.3 — demo/RESULTS.md",
+            "handle": "Supriya"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 21,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 19.05,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MAGNITUDE",
+      "narration_text": "On a log scale, four hundred thousand rows read against eleven thousand three hundred sixty-nine is thirty-five times fewer. The answer itself is four thousand four hundred fifty-nine rows, so Plan B is near the floor. Plan A is two decades away.",
+      "content_type": "data",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "drawon",
+        "show": [
+          {
+            "at": "On a log scale",
+            "event": "axis draws left to right at constant velocity; decade ticks 1,000 / 10,000 / 100,000 / 1,000,000 label in"
+          },
+          {
+            "at": "stops being an opinion",
+            "event": "the 'rows the answer actually needs' band tints in at 4,459–11,369"
+          },
+          {
+            "at": "Four hundred thousand rows read",
+            "event": "Plan A's marker travels out to 400,000 and stops — terracotta, far right of the band"
+          },
+          {
+            "at": "eleven thousand three hundred sixty-nine",
+            "event": "Plan B's marker lands inside the band"
+          },
+          {
+            "at": "thirty-five times fewer",
+            "event": "a hairline span with '35×' draws between the two markers"
+          },
+          {
+            "at": "two decades away",
+            "event": "hold; the distance from A to the band is the whole picture"
+          },
+          {
+            "at": "throughout",
+            "event": "each item's label sits above its own row, fully inside the frame"
+          }
+        ],
+        "remotion": {
+          "pattern": "SqlScaleComparison916",
+          "props": {
+            "data": {
+              "slideMeta": "ROWS READ TO ANSWER ONE QUESTION · SQLITE 3.45.3",
+              "axis": {
+                "min": 1000,
+                "max": 1000000,
+                "unit": "rows"
+              },
+              "band": {
+                "from": 4459,
+                "to": 11369,
+                "label": "rows the answer actually needs"
+              },
+              "axisLabel": "rows read",
+              "items": [
+                {
+                  "label": "Plan A — SCAN postings",
+                  "value": 400000,
+                  "hot": true
+                },
+                {
+                  "label": "Plan B — SEARCH via idx_postings_posted_at",
+                  "value": 11369
+                },
+                {
+                  "label": "The answer itself — 4,459 groups",
+                  "value": 4459
+                }
+              ],
+              "script": "log axis: 400,000 / 11,369 = 35.2×; 400,000 / 4,459 = 89.7× ≈ 1.95 decades. Labels render ABOVE each row with a width budget (the library component pushed them off the left edge — _qc/REPORT.md #2)."
+            },
+            "handle": "Supriya",
+            "handleTop": true
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.87,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "PREDICT",
+      "narration_text": "Before I show you why, commit to an answer. Both queries filter on the same indexed column. So what is it about Query A's WHERE clause that takes the index away?",
+      "content_type": "title",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "Before I show you why",
+            "event": "the predict card rises on the cream stage; spark line top"
+          },
+          {
+            "at": "same indexed column",
+            "event": "the question types in one line at a time"
+          },
+          {
+            "at": "takes the index away",
+            "event": "the commit prompt underlines in terracotta and HOLDS — deliberate dead air for the viewer to answer"
+          }
+        ],
+        "remotion": {
+          "pattern": "SqlPredictCard916",
+          "props": {
+            "sparkLine": "Commit before the reveal.",
+            "question": "Both filter the same indexed column. What does A's WHERE clause do that costs it the index?",
+            "commit": "commit — the answer is one beat away",
+            "handle": "Supriya"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 10.11,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "INSIGHT",
+      "narration_text": "The function. Query A wraps the posted-at column in strftime, so the database has an expression instead of a column, and evaluating it means visiting every row. Query B leaves the column bare. That is the insight: a plain index works on the column, not on a function of the column.",
+      "content_type": "mechanism",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "The function",
+            "event": "the two tracks leave one shared origin marked 'one indexed column'"
+          },
+          {
+            "at": "wraps posted_at in strftime",
+            "event": "the upper track bends DOWN; its label sets as strftime(…) = '2026-01'"
+          },
+          {
+            "at": "visit every row",
+            "event": "track A's notes stack in — 'column wrapped in a function' / 'index unusable'; outcome strip SCAN — 400,000 rows"
+          },
+          {
+            "at": "leaves the column bare",
+            "event": "track B rises; notes stack in — 'bare column, range predicate' / 'index seek'"
+          },
+          {
+            "at": "an index works on the column",
+            "event": "the spoken rule sets as the one terracotta line between the diverged tracks"
+          },
+          {
+            "at": "an index works on the column",
+            "event": "endpoint badges set beside each track end — track A \"strftime('%Y-%m', posted_at) = '2026-01'\" → SCAN — 400,000 rows; track B \"posted_at >= '2026-01-01' AND < '2026-02-01'\" → SEARCH — 11,369 rows"
+          }
+        ],
+        "remotion": {
+          "pattern": "SqlDivergentFates916",
+          "props": {
+            "data": {
+              "slideMeta": "SAME SELECT · SAME 4,459 ROWS OUT · ONE WHERE CLAUSE APART",
+              "startLabel": "one indexed column",
+              "splitLabel": "the WHERE clause",
+              "tracks": [
+                {
+                  "label": "strftime('%Y-%m', posted_at) = '2026-01'",
+                  "outcome": "SCAN — 400,000 rows",
+                  "tone": "warn",
+                  "path": "down",
+                  "notes": [
+                    "column wrapped in a function",
+                    "index unusable"
+                  ]
+                },
+                {
+                  "label": "posted_at >= '2026-01-01' AND < '2026-02-01'",
+                  "outcome": "SEARCH — 11,369 rows",
+                  "tone": "good",
+                  "path": "up",
+                  "notes": [
+                    "bare column, range predicate",
+                    "index seek"
+                  ]
+                }
+              ],
+              "script": "endpoint badges carry the track label + outcome; reveal moved to p=0.55 and the composition registered at the measured audio length so they are reachable (the library gated them at p≥0.82, unreachable after truncation — _qc/REPORT.md #1). v2: the ~15/~60 ms notes were removed from screen (FACTCHECK C2) — timings are machine-specific; rows read is the structural claim."
+            },
+            "handle": "Supriya"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 25,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 19.03,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "VERDICT",
+      "narration_text": "Let's recap. Before you tune a query, run EXPLAIN and look for the word SCAN. If it shows up on a table you thought was indexed, check your WHERE clause for a function wrapped around the indexed column, like strftime, CAST or UPPER, and compare the bare column instead. That one move took four hundred thousand rows down to eleven thousand.",
+      "content_type": "mechanism",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": "Let's recap with Claude",
+            "event": "0.5s lead pause, then the artifact page slides in — the one UI beat of the closing block"
+          },
+          {
+            "at": "look for the word SCAN",
+            "event": "line 1 sets, then line 2; 'SCAN' carries the single terracotta accent"
+          },
+          {
+            "at": "strftime, CAST, UPPER",
+            "event": "line 3 sets; the three function names land as the list is spoken — each one is executed evidence (demo/ pairs 1-3), nothing asserted by analogy"
+          },
+          {
+            "at": "four hundred thousand rows down to eleven thousand",
+            "event": "line 4 sets; the two figures count from 400,000 → 11,369"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact916",
+          "props": {
+            "artifactTitle": "SQL, Read Fewer Rows — one page",
+            "artifactHeading": "The takeaway",
+            "artifactLines": [
+              "EXPLAIN costs almost nothing and does not run your query — read the plan before you tune anything.",
+              "SCAN means every row. SEARCH … USING INDEX means the engine got to skip rows.",
+              "A function around an indexed column (strftime, CAST, UPPER) makes a plain index unusable.",
+              "Compare the bare column instead: 400,000 rows read became 11,369 — same 4,459 rows out."
+            ],
+            "handle": "Supriya",
+            "scale": 1.15
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 21.25,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "lead_silence_s": 0.5,
+      "narration_gate_note": "date_trunc dropped from the spoken list and from artifactLines on 2026-09-16, per FACTCHECK.md L2 option 2: every function this beat names is now EXECUTED evidence (strftime = demo pair 1, CAST = pair 2, UPPER = pair 3). date_trunc is a PostgreSQL function, absent from SQLite, so it could never be executed against this fixture; it lives in the video description instead, where a correction costs no re-render. Edit made BEFORE GATE P was signed, so it cost no re-gate.",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "HANDOFF",
+      "narration_text": "I'm learning to optimize analytics SQL. Here is the schema for one of my tables and the slowest query I run against it. Walk me through its EXPLAIN plan step by step, tell me which steps read every row, find any predicate that a function or a cast has made unusable by the index, and give me the smallest rewrite that turns a SCAN into a SEARCH. Run it on your slowest dashboard query tonight.",
+      "content_type": "title",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "I'm learning to optimize analytics SQL",
+            "event": "greeting fixed to 'Your turn.' — the one persona-less greeting; the prompt begins typing"
+          },
+          {
+            "at": "Walk me through its EXPLAIN plan step by step",
+            "event": "the prompt keeps typing in time with the read — the viewer reads along with the voice"
+          },
+          {
+            "at": "turns a SCAN into a SEARCH",
+            "event": "prompt completes; send button arms terracotta; runningText 'paste this into Claude…'"
+          },
+          {
+            "at": "which single change moved the plan",
+            "event": "hold on the completed prompt while the voice discusses it — pausable frame"
+          },
+          {
+            "at": "your slowest dashboard query tonight",
+            "event": "final hold; nothing moves, the prompt is the call to action"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "SQL · QUERY PLANS · ANALYTICS",
+            "segment": "Read Fewer Rows",
+            "command": "I'm learning to optimize analytics SQL. Here is the schema for one of my tables and the slowest query I run against it. Walk me through its EXPLAIN plan step by step, tell me which steps read every row, find any predicate that a function or a cast has made unusable by the index, and give me the smallest rewrite that turns a SCAN into a SEARCH.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "scale": 1.4
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 37,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 23.57,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "narration_text": "SQL — read fewer rows. Thanks for watching. Supriya, for Humanitarians AI.",
+      "content_type": "title",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "SQL — read fewer rows",
+            "event": "the title restates poster-style in serif; the period sets in terracotta"
+          },
+          {
+            "at": "Supriya, for Humanitarians AI",
+            "event": "@HumanitariansAI settles beneath the title; HAI mark goes full-size; subline fades in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutroFilled916",
+          "props": {
+            "title": "SQL, Read Fewer Rows.",
+            "handle": "Supriya",
+            "subline": "@HumanitariansAI · SQL Query Optimization for Analytics",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 5.76,
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-10-17T17:40:03"
+      }
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "Supriya",
+        "next": "",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-10-17T17:40:03"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # Heet K.
 
-**Role:** AI Software Engineer
-**Project:** Medhavy
+**Role:** AI Software Engineer  
+**Project:** Medhavy  
 **GitHub:** [@heetkanani](https://github.com/heetkanani)
 
 - **Group / PM:** Medhavy — [Clafacio L.](../clafacio-l/) (Weeks 4–15), [Jash S.](../jash-s/) (Week 16 onward)

@@ -33,7 +33,7 @@ Note that "confirmed final" here means the *design* was confirmed. Delivery in
 the concrete formats the channel actually uses came the following week, and is
 recorded separately rather than folded into this confirmation.
 
-## Evidence gaps
+## Notes
 
 - **No source committed.** Renders only, in Drive.
 - **Confirmation form.** The professor's finalization is reported by the

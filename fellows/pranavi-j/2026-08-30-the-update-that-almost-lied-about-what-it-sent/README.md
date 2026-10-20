@@ -5,6 +5,11 @@
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Source status:** Real engineering work. Every claim traces to `A7-VERIFICATION.md` (2026-08-30) and `logs/RUN_LOG.md`'s two 2026-08-30 entries; the live-row count was re-verified directly against the DB at build time (2026-08-30 21:04), not just quoted from the doc.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1TO2mZG9ibLbyIZcS_q58ElqoUgHj4KbO)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=12vH78l_tgeuyKCtkwo8eRFbMet3UE7gs)
+
 This ~2-minute AI-generated video asks: **can a step that only records "this got emailed" quietly re-derive its own copy of the rule for what counts as high-priority — and drift from it?** It dramatizes one specific fix from this week's continued Layer 1 hardening pass on the same regulatory-intel pipeline as the 2026-07-26 report: the "Mark email sent" Postgres node was using its own copy of the high-priority rule instead of reading what the email step had actually sent.
 
 ## What this covers (and what it deliberately leaves out)

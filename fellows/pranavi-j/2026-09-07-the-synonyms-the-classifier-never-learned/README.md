@@ -8,6 +8,11 @@
 `UNKNOWN-SOURCE-INVESTIGATION.md` (2026-08-30) — a live test run against all 5 real
 regulatory-intel feeds as they existed that day. See `SOURCES.md` and `FACTCHECK.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1Cfd-v7au5kwgosWgfIpqe2DJSHa2umwS)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1r-WnLH0RZ7QLhpbbKqb8j74yedhoUB7U)
+
 This ~2-minute AI-generated video asks: **what do you do with the fraction of a fix that's
 genuinely, honestly not worth chasing?** It is the fourth report in the "Layer 1 hardening"
 series — a partial fix, reported straight. After last week's `dc:creator` fix (recovering the

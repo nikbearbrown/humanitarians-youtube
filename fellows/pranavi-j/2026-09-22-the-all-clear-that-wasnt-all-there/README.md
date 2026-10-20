@@ -7,6 +7,11 @@
 **Source status:** Real engineering work. Every claim traces to `B5-VERIFICATION.md`
 (2026-09-29) and the matching `logs/RUN_LOG.md` entry. See `SOURCES.md` and `FACTCHECK.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1HM-Vd1oQxWg8Km2WhpVQMPIclhh7QRaK)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1ixcfy8IkRX_OtyYb7ftyoQKgu1znIHUU)
+
 This ~1.8-minute AI-generated video asks: **can a status email that says "all clear" be wrong
 about what it even checked?** The pipeline's own "all clear" run-summary email — the one sent
 when a scheduled scan finds nothing high-priority — has a "Monitored Sources" section, a static

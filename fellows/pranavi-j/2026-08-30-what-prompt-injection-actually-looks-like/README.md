@@ -9,6 +9,11 @@ Same framework-first genre and shape as `2026-08-17-why-ai-generated-code-still-
 **Source status:** General AI/STEM topic explainer, not a report of the fellow's own engineering
 work. Both worked examples are generic and hypothetical — see `FACTCHECK.md`.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=189MxqDMMrj_bmDkBZw3iWzmh2l594dvg)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=12HUPahxANQ_KcICcbMN22jChG8jGlVWC)
+
 This video opens on a silent title card, then teaches a reusable 3-question rubric —
 "Source / Instruction-or-Data / Consequence" — for deciding whether text an AI agent reads from
 the outside world (a web page, an email, a file) should ever be allowed to change what the agent

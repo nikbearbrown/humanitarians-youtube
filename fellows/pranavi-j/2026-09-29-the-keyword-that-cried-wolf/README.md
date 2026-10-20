@@ -5,6 +5,11 @@
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Source status:** Real engineering work. Every claim traces to `C2-VERIFICATION.md` and the matching `logs/RUN_LOG.md` entry in the `mycroft` repo — a live local-LLM (Ollama) second-pass review built and verified against real named false positives and a genuine true positive.
 
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1xRBkIelRa25VoVRR74hVnege1Tbcodx1)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1Vo2qrD9PMBYoC1Xzmf1oiushQyL-AgqG)
+
 This video covers a real fix to the pipeline's keyword scorer: two named noise patterns from `FINDINGS.md` (a routine Medicare payment rule scored 10/Critical from the word "emergency" appearing in a law's proper name; a boilerplate Nasdaq SRO filing scored 9/Critical from "Immediate Effectiveness") now get caught by a local-LLM second opinion before they'd trigger an alert — without touching the original keyword scorer at all, and failing open if the model itself breaks.
 
 ## What this covers (and what it deliberately leaves out)

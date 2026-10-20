@@ -6,7 +6,7 @@
 > The reasoning below is reconstructed; the suggestions themselves were not
 > captured anywhere I can point at.
 
-- **Evidence:** NOT PROVIDED — see [README.md](README.md#evidence-gap--stated-plainly)
+- **Evidence:** the [two videos](../2026-10-15-first-branded-videos/) the suggestions became
 - **Preceding thread:** [channel reorganization and Phase 1 planning](../2026-09-24-channel-reorganization/), Weeks 17–18
 - **This week's other thread:** [intro/outro confirmed final](../2026-10-01-intro-outro-brutalist-pass/)
 - **Hours:** Week 19 total 22.0 — 7.0 on this thread — [HOURS.md](../HOURS.md)

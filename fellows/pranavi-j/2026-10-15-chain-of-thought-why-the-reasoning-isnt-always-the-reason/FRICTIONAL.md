@@ -1,0 +1,33 @@
+# Frictional log — Chain-of-Thought: Why the Reasoning Isn't Always the Reason
+
+*Reconstructed 2026-10-20 from this folder's BUILD-LOG.md and FACTCHECK.md.*
+
+## What was tried and expected
+
+This general-AI-topic explainer teaches a reusable 3-question test — Swap a Step / Hide a Hint / Strip It Out — for telling whether a model's step-by-step reasoning trace actually produced its answer, or is just a fluent, plausible-sounding story attached after the fact. The plan was a 9-beat explainer: the framework taught in full before any example, a worked example (a model whose stated reasoning never mentions an authority hint that actually swayed its answer), a falsifiability case stress-testing the framework against a case where reasoning genuinely is load-bearing (perturbing one arithmetic step reliably changes the final answer, exactly as predicted), and a closing task — both illustrative examples kept fully generic and hypothetical, with no real model or vendor named, confirmed by fact-check before narration lock.
+
+## Where it resisted
+
+The BUILD-LOG documents thirteen distinct real issues found and fixed during this build:
+
+- A reusable reasoning-chain diagram helper had an internal indexing bug where callers assumed a different internal ordering than what it actually returned — caught before any render by independently re-summing each scene's timing values against measured audio durations, and fixed by having the helper return two separate, clearly-named groups instead of one merged list.
+- The render-free static checker raised a real type error on coordinate midpoint math because its stub returns plain lists where real Manim returns arrays — fixed by explicitly wrapping both operands so the math works identically under both the stub and real Manim.
+- The static checker's shape-distinctness check flagged a framework beat as unchanging because it tracked only non-text shapes and this beat had just one static panel — fixed by adding a real numbered badge per card, both a genuine distinctness fix and a visual improvement.
+- An "or is it?" reveal effect that dimmed a reasoning chain behind a translucent overlay produced real text-on-text overlap findings, because the post-render checker is bounding-box based and not opacity-aware — the underlying chain text was still technically present at full opacity underneath the overlay. Fixed by actually fading out the original content before fading in the reveal, a cleaner effect in its own right.
+- The portrait redesign hit real title/content collisions on two beats, twice, because absolute hand-picked coordinates for each stacked block didn't account for how real rendered heights combined — fixed by rewriting both beats to chain every element relative to the one above it instead of re-deriving absolute positions by hand.
+- Even after that fix, the static checker's stub still flagged an out-of-frame coordinate on one portrait beat. This was confirmed as a genuine false positive two independent ways — direct visual inspection of a real extracted render frame, and a clean result from the real pixel-true layout auditor — and the build used a documented escape hatch to bypass the stub specifically for the portrait pipeline, substituting the real auditor as the equivalent check.
+- The most significant recurring issue: the automated final-export step kept crashing with an empty, uninformative error message on both aspect ratios. This was root-caused to the compile tool only surfacing partial error output while the real diagnostics print elsewhere and the temporary working directory gets deleted before it can be inspected — worked around by manually reconstructing the exact underlying export command by hand and running the verification tool directly against it with full output visible. This manual-reconstruction technique is what actually surfaced several further genuine canvas-fill underfill defects across multiple beats in both aspects that the normal review-slate workflow had been masking (the review slate's own automated check showed them as fine, a true-final-candidate-only finding).
+- Fixing one of those underfill defects by enlarging a checklist panel then caused a new, genuine collision with the closing text below it — fixed by trimming the panel's padding rather than reversing the enlargement that had fixed the underfill.
+- A stale render-cache issue recurred across six full pipeline rounds in both aspect ratios, requiring the established clean-and-rebuild discipline each time.
+- The review cut's debug overlay produced the same uniform false-positive edge-bleed finding on every beat, confirmed repeatedly as review-chrome rather than real content.
+
+## What Claude contributed, what was accepted/changed/rejected
+
+Claude (via Claude Code) authored the beat sheet, narration, and both the landscape and native-portrait Manim scenes (including new reusable reasoning-chain diagram helpers built specifically for this reel), generated Kokoro audio, and found and fixed all thirteen issues above. The defining pattern in this build was repeatedly refusing to accept an uninformative tool failure or a clean-looking automated report at face value — manually reconstructing the real export pipeline by hand to get past an opaque crash, and using that same technique to catch real underfill defects the normal review workflow had been hiding. The fellow approved the beat sheet and narration before any audio was generated (Gate P), and in the fact-check review confirmed both illustrative examples (the agronomy hint-mismatch worked example and the perturbed-arithmetic falsifiability case) should stay fully generic, explicitly requiring the narration never claim either example was observed on a real named system — phrased as "here's a documented pattern," not a claim about a specific model.
+
+## Still open / understood now
+
+- This video is explicitly not a benchmark of any real model's chain-of-thought behavior and names no specific real model, vendor, or product — chain-of-thought faithfulness is presented as a well-documented, publicly discussed class of findings, not a single paper's or vendor's claim.
+- Fact-check required the worked example's narration stay framed as an illustration of a documented pattern rather than a claim about any specific system's actual behavior.
+- Both masters were personally re-inspected frame-by-frame from the shipped deliverables as a final check, with no text-rendering artifacts, clipping, or low-contrast text found.
+- Publishing is marked ready-for-review in the beat sheet's gate record, not approved — it requires separate fellow/PM sign-off per the toolkit's submission spec.

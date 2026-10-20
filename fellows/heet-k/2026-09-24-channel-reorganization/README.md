@@ -45,7 +45,7 @@ All three remain reachable by link — unlisted, not deleted. Two are
 Claude-Code-plus-Manim build reels and one is a physics explainer, which is some
 signal about what the curation was selecting against.
 
-## Evidence gap — stated plainly
+## Notes
 
 This is the weakest-evidenced folder in the package. There is:
 
