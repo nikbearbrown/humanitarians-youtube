@@ -1,57 +1,111 @@
 # Om Mali
 
-Om Mali is a Humanitarians AI fellow. Unlike the `fellows/maya-r/` series, which is explicitly a
-**fictional** demonstration, these are **real** weekly research reports.
+**Role:** AI Engineer
 
-Each episode folder begins with `YYYY-MM-DD` and summarizes that week's actual work. Reports
-document the author's own projects; no accomplishment, metric, or result is invented — see each
-report's `FACTCHECK.md` for what still needs the author's own confirmation before publishing.
+**Project:** Mycroft
 
-Om Mali selected the Kokoro voice `am_onyx` for this report series and keeps it across weekly
-reports, per the male-coded-name default described in the top-level `fellows/README.md` (a
-fellow's own stated preference always overrides that name-based suggestion — this is the fellow's
-actual, already-recorded choice, not an unconfirmed guess).
+**Team:** Shradha Katte's team
 
-<!-- BEGIN BRUTALIST REBUILD GUIDE -->
+**GitHub:** [maliom939](https://github.com/maliom939)
 
-# Om Mali
+## Folder Guide and Evidence
 
-This folder organizes **13 video projects** built around beat sheets. Each project README explains
-the subject, supplies research and fact-check prompts, and documents the free local rebuild
-workflow.
+One folder per week of work. Each folder holds a `README.md` with that week's result, a
+`FRICTIONAL.md`, and the video build. Itemised hours for every week are in
+[weekly-hours](./weekly-hours/).
 
-## Rebuild toolkit
+| Folder | What is inside |
+|---|---|
+| [renewal-requests](./renewal-requests/) | Dated renewal and submission example |
+| [weekly-hours](./weekly-hours/) | Fourteen weekly breakdowns and evidence index |
+| [2026-07-27-data-visualization-Building-the-AI-Buzz-Tracker-dashboard](./2026-07-27-data-visualization-Building-the-AI-Buzz-Tracker-dashboard/) | Week: 20-07-2026 - 26-07-2026<br>Project: Hacker News AI Buzz Tracker<br>Description: Building the AI Buzz Tracker dashboard<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=LiJnm8r8ArU)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=V5lFlRKYeH0) |
+| [2026-08-01-api-interface-Attribution-fix-and-JSON-signal-endpoint](./2026-08-01-api-interface-Attribution-fix-and-JSON-signal-endpoint/) | Week: 27-07-2026 - 02-08-2026<br>Project: Hacker News AI Buzz Tracker<br>Description: Attribution fix and JSON signal endpoint<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=LiJnm8r8ArU)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=mPBshmrSEQ8) |
+| [2026-08-08-data-verification-Verifying-private-AI-valuations](./2026-08-08-data-verification-Verifying-private-AI-valuations/) | Week: 03-08-2026 - 09-08-2026<br>Project: Private AI Valuation Agent<br>Description: Verifying private AI valuations from SEC filings<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=Ksf097PNjCU)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=jRpqnfO7aIo) |
+| [2026-08-15-data-ingestion-Bulk-ingestion-at-scale](./2026-08-15-data-ingestion-Bulk-ingestion-at-scale/) | Week: 10-08-2026 - 16-08-2026<br>Project: Private AI Valuation Agent<br>Description: Bulk ingestion at scale<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=Ob7PZTdwDMY)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=YiJgtnEwx2Q) |
+| [2026-08-22-entity-resolution-Golden-set-and-baseline-matcher](./2026-08-22-entity-resolution-Golden-set-and-baseline-matcher/) | Week: 17-08-2026 - 23-08-2026<br>Project: Private AI Valuation Agent<br>Description: Building a golden set and a baseline name matcher<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=0SoakQiUi20)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=uwTKdbn-BfM) |
+| [2026-08-28-model-evaluation-Local-LLM-against-the-matcher](./2026-08-28-model-evaluation-Local-LLM-against-the-matcher/) | Week: 24-08-2026 - 30-08-2026<br>Project: Private AI Valuation Agent<br>Description: Measuring a local AI model against the matcher<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=J6lqFF1POFw)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=ii6fpLts5us) |
+| [2026-09-04-human-in-the-loop-Building-the-review-queue](./2026-09-04-human-in-the-loop-Building-the-review-queue/) | Week: 31-08-2026 - 06-09-2026<br>Project: Private AI Valuation Agent<br>Description: Building the human review queue<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=eXozYNG9duk)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=ZIfyYmmzqsc) |
+| [2026-09-11-data-modeling-Marks-panel-and-split-detector](./2026-09-11-data-modeling-Marks-panel-and-split-detector/) | Week: 07-09-2026 - 13-09-2026<br>Project: Private AI Valuation Agent<br>Description: Building the price panel and the stock-split detector<br>Project: [Mycroft_OmMali_11_09_2026.mp4](https://drive.google.com/drive/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=gHfhncbv4IU) |
+| [2026-09-18-analysis-How-private-marks-move-and-propagate](./2026-09-18-analysis-How-private-marks-move-and-propagate/) | Week: 14-09-2026 - 20-09-2026<br>Project: Private AI Valuation Agent<br>Description: Measuring how private valuations move and spread<br>Project: [Mycroft_OmMali_18_09_2026.mp4](https://drive.google.com/drive/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv)<br>STEM: [claude-for-astronomy_OmMali_18_09_2026](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv) |
+| [2026-09-25-data-integration-Filed-rounds-to-fund-entry-dates](./2026-09-25-data-integration-Filed-rounds-to-fund-entry-dates/) | Week: 21-09-2026 - 27-09-2026<br>Project: Private AI Valuation Agent<br>Description: Joining filed funding rounds to fund entry dates<br>Project: [Mycroft_OmMali_25_09_2026.mp4](https://drive.google.com/drive/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv)<br>STEM: [claude-for-astronomy_OmMali_25_09_2026](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv) |
+| [2026-10-02-api-interface-MCP-server-and-frozen-signal-contract](./2026-10-02-api-interface-MCP-server-and-frozen-signal-contract/) | Week: 28-09-2026 - 04-10-2026<br>Project: Private AI Valuation Agent<br>Description: Serving the data over MCP and freezing the output format<br>Project: [Mycroft_OmMali_02_10_2026.mp4](https://drive.google.com/drive/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv)<br>STEM: [claude-for-astronomy_OmMali_02_10_2026](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv) |
+| [2026-10-09-documentation-System-docs-and-a-re-runnable-demo](./2026-10-09-documentation-System-docs-and-a-re-runnable-demo/) | Week: 05-10-2026 - 11-10-2026<br>Project: Private AI Valuation Agent<br>Description: Documenting the system and making the demo repeatable<br>Project: [Mycroft_OmMali_09_10_2026.mp4](https://drive.google.com/drive/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv)<br>STEM: [claude-for-astronomy_OmMali_09_10_2026](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv) |
+| [2026-10-16-feasibility-Answer-key-and-model-selection](./2026-10-16-feasibility-Answer-key-and-model-selection/) | Week: 12-10-2026 - 18-10-2026<br>Project: AI Debt Tracker<br>Description: Building the answer key and choosing the model<br>Project: [Mycroft_OmMali_16_10_2026.mp4](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv)<br>STEM: [claude-for-astronomy_OmMali_16_10_2026](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv) |
+| [2026-10-23-Building-the-answer-key-grader-and-baseline](./2026-10-23-Building-the-answer-key-grader-and-baseline/) | Week: 19-10-2026 - 25-10-2026<br>Project: AI Debt Tracker<br>Description: Building the answer key, grader and baseline<br>Project: [Mycroft_OmMali_23_10_2026.mp4](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv)<br>STEM: [claude-for-astronomy_OmMali_23_10_2026](https://drive.google.com/drive/u/1/folders/1ueu5Fy9flEOYmzNXVpHvwfMPR76A4LKv) |
 
-```bash
-git clone https://github.com/nikbearbrown/brutalist.art.git
-cd brutalist.art
-./setup --install
-./setup
-```
+## Research and results
 
-Brutalist is audio-first and local: the beat sheet drives narration, measured audio becomes the
-clock, generated visual beats compile immediately, and unavailable media remains as labeled
-slates until a human fills the pantry. The human conducts, watches, fact-checks, refines, and
-decides whether anything is published.
+This folder covers three projects, in the order they were built.
 
-## Projects in this folder
+### Hacker News AI Buzz Tracker
 
-*(The Private AI Valuation Agent runs as a weekly series from 2026-08-08 to 2026-10-09 — same
-channel, same persistent voice, same ai-explainer spine each week. The AI Debt Tracker is a
-NEW project starting 2026-10-16, on the same chassis and the same voice.)*
+A daily automated pipeline that reads what developers say on Hacker News about twelve AI
+companies and turns it into a 0 to 100 attention score for each company, with a short summary
+of what commenters actually think.
 
-- [2026 07 27 Building Buzz Tracker Dashboard](./2026-07-27-Building-Buzz-Tracker_Dashboard/)
-- [2026 08 01 Creating Signal Endpoint](./2026-08-01-Creating-Signal-Endpoint/)
-- [2026 08 08 Verifying Private AI Valuations](./2026-08-08-Verifying-Private-AI-Valuations/) — *week 1. Built with brutalist.art (`ai-explainer` / `claude-hai`), 10 beats, 2:35, 3840×2160. GATE P signed, all 20 FACTCHECK rows confirmed, GATE V clean. The earlier 6-beat static cut is archived at `_previous-build/`.*
-- [2026 08 15 Bulk Ingestion at Scale](./2026-08-15-Bulk-ingestion-at-scale/) — *week 2. 11 beats, 3:00, 3840×2160. GATE P signed, GATE L + GATE V clean, 20 FACTCHECK rows traced (row 16 is derived, not quoted). The three week-2 figures and their SVG sources now live in this folder's `pantry/`, moved out of the Mycroft working tree.*
-- [2026 08 22 Entity Resolution and the Golden Set](./2026-08-22-Entity-resolution-and-the-golden-set/) — *week 4 (there is no week 3 episode). 12 beats, 3:22, 3840×2160. GATE P signed, GATE L + GATE V clean, 20 FACTCHECK rows traced (read 2, 12 and 16). The episode argues against its own author in three places — a precision loss, an approved label overturned, and a limit no threshold fixes — and keeps all three.*
-- [2026 08 28 Measuring a Local LLM Against the Matcher](./2026-08-28-Measuring-a-local-LLM-against-the-matcher/) — *week 5. 12 beats, 3:35, and the first episode shipped in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped, from one set of components and one set of narration files. GATE L + GATE V clean, GATE P signed, 20 FACTCHECK rows traced (read 3, 9, 13 and 18). A **negative result**: a local 8B model was given exactly what the deterministic matcher gets, lost 5.1 points of precision, and was not adopted. The plan pre-committed to that outcome before the model was run, which is the only reason the finding is worth anything.*
-- [2026 09 04 Building the Human Review Queue](./2026-09-04-Building-the-human-review-queue/) — *week 6. 12 beats, 3:21, in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped, from one set of components and one set of narration files. GATE L + GATE V clean, GATE P signed, 20 FACTCHECK rows traced (read 6, 12, 18 and 19). The queue resolved 78% of 5,806 holdings unaided and stopped at the rest — 42 cards that were only 8 real questions. The episode's central claim is a **subtraction**: the software routed, grouped and presented, and decided nothing. Reading the rendered frames caught the reel contradicting itself (the three price steps are not the same magnitude) and two source lines citing a file that did not contain the claim.*
-- [2026 09 11 Building the Marks Panel and the Split Detector](./2026-09-11-Building-the-marks-panel-and-the-split-detector/) — *week 7. 12 beats, 3:35, in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped. GATE L + GATE V clean, GATE P signed, 20 FACTCHECK rows traced (read 9, 12, 18 and 20). The panel is one line of arithmetic — value ÷ share count, 5,479 marks, reconciling exactly from 5,806 filed holdings. The week is the split detector, and the spine of the episode is the author's own bug: a ±0.02 window too narrow to catch the 11.93 case it was written for, which looked correct only because a second case landed on exactly 10. Measured on a number line rather than confessed. **One number in this reel has no artifact behind it** — the old window — and the beat that uses it says so.*
-- [2026 09 18 Measuring How Private Marks Move and Propagate](./2026-09-18-Measuring-how-private-marks-move-and-propagate/) — *week 8. 12 beats, 3:45, in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped. GATE L clean, GATE V **failed first** (2 BLOCKERs, `edge-bleed`) and then clean on both cuts; GATE P signed, 20 FACTCHECK rows traced (read 6, 9, 18 and 20). The first episode that **measures** rather than builds: four questions asked of 5,479 marks, all four answered against expectation. Structured as finding→caveat three times over, and the build asserts its own falsifier — all three widened definitions of "unchanged" must stay under the plan's 30–40%% band or the build fails. Two shared-toolkit defects surfaced: the verdict card overflowing on a long recap, and a list-number stripper that turned 25.0%% into 0%% on screen.*
-- [2026 09 25 Joining Filed Rounds to Fund Entry Dates](./2026-09-25-Joining-filed-rounds-to-fund-entry-dates/) — *week 9. 12 beats, 3:38, in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped. GATE L clean, GATE V clean on both cuts, GATE P signed. 20 FACTCHECK rows traced (read 6, 9, 14 and 19). Two new SEC filings joined to the panel, and the episode is about what the join runs on: a name scan over 49 quarters returns 706 rows of which **84% are feeder funds**, and one 2014 filer normalises to the same string as X.AI, so the key is an EDGAR identifier a person confirmed. 10 of 18 fund acquisition dates land on the exact day an issuer reported a sale — evidence, not causation, and the reel's last body beat restates its own 56% as 33% under a second denominator. **Three values have no artifact behind them** and each beat that uses one says so. Reading the frames caught a chip that rendered empty because its prop was named `key` (React strips it), and **1791.81% of a fund's net assets** on a 4K frame — an already-percent value multiplied by 100, which every geometric check passed.*
-- [2026 10 02 Serving the Panel over MCP and Freezing the Signal Contract](./2026-10-02-Serving-the-panel-over-MCP-and-freezing-the-signal-contract/) — *week 10. 12 beats, 3:32, in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped. GATE L clean, GATE V clean on both cuts, GATE P signed. 20 FACTCHECK rows traced (read 6, 12, 15 and 19), six of them confirmed by calling the **live MCP server** during the build — a verdict type new to this series. The first episode whose subject is an interface rather than a finding: a read-only server with six tools, none of which writes a mark, clears a gate or records a decision, and a signal frozen at 1.0 that refuses ten field names by name. **Two beats are in neither the script nor the figures**: bounding COSTS 19–49% on five of the six tools and pays for itself on exactly one, and the server's eleven companies against the signal's ten is reconciled on camera. The honest centre is the author's own expectation failing — a grounding check passed a draft that invented a ranking and contradicted itself in one paragraph, every number in it real. Reading the frames caught **two beats rendering another project's placeholder copy** at 4K (misnamed props; zod drops unknown keys and substitutes defaults silently), which is now a lint in `remotion_scenes.py`.*
-- [2026 10 09 Documenting the System and Making the Demo Re-runnable](./2026-10-09-Documenting-the-system-and-making-the-demo-runnable/) — *week 11. 12 beats, 3:32, in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped. GATE L clean, GATE V clean on both cuts, GATE P signed. 20 FACTCHECK rows traced (read 5, 6, 13, 17 and 19). The series' last build week, and the only one whose subject is the author being wrong about his own work: six documents named in the plan and three of them absent, a stated requirement met zero times, and a demo rewritten to re-run rather than be recorded. **The reel is narrower than its own source figure** — `w12-priorart.png` tabulates three documents at zero and the reel says two, because the third file did not exist, which the figure's own caption already implies. Two beats are in neither the script nor the figures: the one citation of 22 that changed a rule, and the architecture spine of 15 tables in 3 layers keyed on mutability. Reading the frames caught a bar column **measuring the wrong thing** — scaled to total lines, it gave the longest bar to the document that grew least on a frame about writing from nothing. GATE V then blocked the 9:16 cut over a pre-existing toolkit defect: `ClaudeTitleOutro916` had no longest-word guard, so an 11-character word crossed the title-safe edge.*
-- [2026 10 16 Grounding an AI Debt Tracker in Real SEC Filings](./2026-10-16-Grounding-an-AI-debt-tracker-in-real-SEC-filings/) — ***AI Debt Tracker, week 1** — a NEW project, not week 13 of the Private AI Valuation Agent. 12 beats, 3:34, in **both orientations** — 3840×2160 and 2160×3840, re-laid-out rather than cropped. GATE L clean, GATE V **failed first** (2 BLOCKERs, `edge-bleed` on B05) and then clean on both cuts; GATE P signed. 20 FACTCHECK rows traced (read 4, 7, 9, 12, 15 and 18). The week did not build the agent — it built the ground under it: an answer key over every quarterly report from Jul 2024 to Sep 2026, a point-in-time server that refuses any filing published after the report being graded on, a matcher at 93.4%, and a model chosen by bake-off. The episode's centre is the author's own assumption failing: **21 companies looked gradeable bond by bond by counting tags; measured by how much of each company's debt its report actually itemises, it is 15** — and that changes what the agent may be graded on at all. The build asserts it (`MEASURED_BY_BOND < ASSUMED`, over three levels that must sum to all 25 companies) and fails rather than ship a beat arguing about nothing; a second assertion holds the bake-off's claim that the SMALLEST model won outright. **A whole beat is in neither the script's section list nor its figures** — B08, which pairs each of the five headline numbers with the narrower reading the script only recorded in its Notes. Five claims have no artifact in `figdata.json` and each beat that uses one says so. **GATE P itself failed open on this build** — the audio gate searched the whole of `PEDAGOGY.md` for the substring `VERDICT: PASS`, and the reel's own PENDING template spelled the phrase out in an instruction, so an unsigned document opened the gate. `generate_audio_kokoro.py` now matches a verdict line; the fix is verified in both directions and carries forward to every reel.*
+- **A live dashboard** shows a leaderboard by attention, a trend line for each company, and a
+  breakdown of what kind of news is driving the week. It runs from the existing automation
+  server with no separate hosting.
+- **A security issue was caught before shipping.** The database key first wired into the page
+  gave full read and write access. It was revoked and replaced with a read-only key.
+- **Stories are attributed to the right company.** A story now counts only if the company is
+  named in its title, which removed a slide-tool post that had become the top story for both
+  OpenAI and Anthropic. Eight automated tests cover the rule.
+- **Other software can read the signal directly** through a versioned JSON endpoint. Companies
+  with too little data are returned with a "degraded" flag instead of being dropped or filled in.
 
-<!-- END BRUTALIST REBUILD GUIDE -->
+### Private AI Valuation Agent
+
+Works out a per-share price for private companies such as Anthropic, OpenAI, SpaceX and
+Databricks from the quarterly reports US mutual funds file with the SEC. A fund discloses what
+a holding is worth and how many shares it owns, and dividing one by the other gives a price for
+a company that has no share price.
+
+- **80.5 million filed rows were narrowed to 5,806 holdings** across 14 quarters and 5.9 GB of
+  SEC data, with every row accounted for.
+- **The company name matcher reached 99.6% precision and 100% recall** against a hand-labelled
+  answer key of 322 names. A local 8B language model was tested against it, scored worse
+  (94.5% precision) and was rejected by a rule set before the test.
+- **A human review queue matched 78% of holdings automatically** and reduced the remaining
+  1,269 to 8 real questions, each answered by a named person.
+- **5,479 prices were produced** and reconciled exactly against their filings, with a split
+  detector that stops a stock split from being read as a price crash.
+- **Measured findings:** only 25% of consecutive prices are unchanged, funds valuing the same
+  company on the same date differ by about 11%, and a new price reaches half the funds holding
+  it in a median of 30 days.
+- **Served over MCP** as six read-only, size-bounded queries, with a frozen output format that
+  refuses any field implying a company valuation the data cannot support.
+- **Documented end to end** with a proposal, system and data architecture, 22 prior-art
+  citations and a re-runnable demo. Five of the six completion criteria are met. The sixth waits
+  on SEC data not yet published.
+
+### AI Debt Tracker (current project)
+
+An AI agent, run entirely on a laptop with local models, that keeps an up to date record of
+every bond and loan owed by 25 AI-sector companies, built from public filings as they appear.
+It is graded against the debt each company later reports officially. The aim is a quarterly
+signal for Mycroft: total debt, new borrowing, how much falls due in the next 12 to 24 months,
+and the average interest rate.
+
+Results so far:
+
+- **Feasibility confirmed.** 87.5% of new bonds were announced in a filing before the quarterly
+  report showed them, and copying last quarter forward missed a change 46% of the time.
+- **An answer key and grader** cover 1,093 reports from 100 companies. The grader was checked
+  against debt tables printed in the reports themselves, and every bug that check found was
+  fixed.
+- **A point in time tool server** shows the agent only filings published before each cutoff, so
+  it cannot see the answer early.
+- **A local 4B model was chosen by bake-off**, extracting 99% of bond details from real
+  announcements in about 6 seconds each, at no cost.
+- **The do-nothing baseline** gets 90.7% of bonds right but catches 0 of 36 new bonds. That gap
+  is what the agent is being built to close.
+
+## Frictional log
+
+Every work subfolder here carries its own `FRICTIONAL.md` — a dated record of the process
+behind that specific piece of work, kept beside the evidence it describes: what was tried
+and expected, where it resisted and what was done next, what Claude or another person
+contributed and what was accepted, changed or rejected, and what is now understood or
+still open. Append as you go; never rewrite an earlier entry. It is not graded and not a
+performance review. See https://www.humanitarians.ai/fellows for what an entry contains.

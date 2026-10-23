@@ -1,0 +1,74 @@
+{
+  "_note": "AI Debt Tracker, week 2. Every on-screen figure in this reel is a prop read from this file by build_beat_sheet.py. Values are transcribed from the author's own saved results as published in pantry/*.svg (adt-w2-answerkey, adt-w2-handcheck, adt-w2-headroom) and cross-checked against narration_script.md's source table. Nothing here is estimated, and every bar's geometry in those SVGs was recomputed as a ratio and had to agree with its printed fraction.",
+
+  "answer_key": {
+    "reports": 1093,
+    "companies": 100,
+    "companies_ai": 25,
+    "companies_other": 75,
+    "bonds": 9653,
+    "from": "Jan 2024",
+    "to": "Sep 2026",
+    "levels": [
+      { "level": "Bond by bond", "reports": 900 },
+      { "level": "By deal",      "reports": 41 },
+      { "level": "Totals only",  "reports": 152 }
+    ]
+  },
+
+  "grader": {
+    "modes": ["bond by bond", "deal by deal", "totals"],
+    "bond_fields": [
+      { "field": "currency",      "rule": "must agree" },
+      { "field": "interest rate", "rule": "to 0.01 pt" },
+      { "field": "due year",      "rule": "must agree" },
+      { "field": "amount",        "rule": "within 1%" }
+    ],
+    "pairing": "each true bond can be claimed by at most one answer",
+    "interval": "95% bootstrap"
+  },
+
+  "handcheck": {
+    "first_pass":  { "got": 8,  "of": 10, "label": "First pass" },
+    "after_fixes": { "got": 10, "of": 10, "label": "After 5 fixes" },
+    "held_out":    { "got": 2,  "of": 3,  "label": "Held out" },
+    "bugs": [
+      { "n": 1, "bug": "Repaid notes counted",   "who": "Oracle" },
+      { "n": 2, "bug": "Two bonds in one entry", "who": "AMD" },
+      { "n": 3, "bug": "Acquired debt dropped",  "who": "Broadcom" },
+      { "n": 4, "bug": "Due dates read as issue dates", "who": "" },
+      { "n": 5, "bug": "Currency never stated",  "who": "Equinix" }
+    ],
+    "held_out_miss": "a company's own tagging errors, recorded for next week rather than tuned away"
+  },
+
+  "baseline": {
+    "name": "copy last quarter forward",
+    "recall": 0.907,
+    "recall_lo": 0.875,
+    "recall_hi": 0.935,
+    "quarters": 47,
+    "exact": 18,
+    "new_bonds_total": 36,
+    "new_bonds_caught": 0
+  },
+
+  "headroom": {
+    "new_bonds": { "got": 30, "of": 32, "total": 36, "no_coupon": 4 },
+    "repayments": { "got": 5, "of": 6, "disappeared": 16, "matured": 9, "no_coupon": 1 }
+  },
+
+  "clock": {
+    "moved": 43,
+    "of": 495,
+    "shift_hours": "4-5",
+    "inference": "most likely a time-zone change (4h on summer dates, 5h on winter, matching US Eastern to UTC)",
+    "fix": "each cut-off is anchored to the report itself, not to a clock"
+  },
+
+  "next": [
+    "fix one company's data-entry errors",
+    "check a fresh set of reports",
+    "start the agent's document reader"
+  ]
+}

@@ -1,0 +1,79 @@
+Building the Answer Key, Grader and Baseline — AI Debt Tracker, week 2
+
+The agent that tracks the bonds and loans financing the AI build-out still does not exist. This
+week built the things that will judge it: the answer key it is graded against, the grader that
+scores it, and the do-nothing baseline it has to beat. Then it checked the grader itself against
+debt tables printed in real reports — and the grader lost.
+
+THE ANSWER KEY. Every quarterly and annual report from January 2024 to September 2026, for 100
+companies — the 25 AI-sector companies and 75 others to compare against. 1,093 reports, 9,653
+bonds. 900 of those reports list their debt bond by bond, 41 only by deal, and 152 only as
+totals, so each quarter is graded at the detail its own report actually gives. The agent never
+sees any of it.
+
+THE GRADER. A debt list is scored three ways. Bond by bond, an entry counts as matched only if
+the currency, the interest rate (to 0.01 of a point) and the due year all agree and the amount
+is within 1% — and each true bond can be claimed by at most one answer, so one correct guess
+cannot be counted against several. Then deal by deal, then totals. Every score carries a 95%
+bootstrap interval, so a small difference between two runs is never read as an improvement.
+
+BUT WHO CHECKS THE CHECKER? I compared the answer key against the debt tables printed in ten
+real 10-Qs and 10-Ks. The first pass agreed on eight. Every single disagreement was a bug in my
+grader, not an error in the report:
+
+  1. Repaid notes were still counted as owed (Oracle)
+  2. Two bonds collapsed into one entry (AMD)
+  3. Debt acquired in a purchase dropped entirely (Broadcom)
+  4. Due dates read as issue dates
+  5. A currency that the filing never states (Equinix)
+
+After fixing all five: 10 of 10.
+
+AND 10 OF 10 IS A CALIBRATION, NOT A SCORE. Those ten reports are the ones that found the five
+bugs, so the grader cannot help but agree with them afterwards. For the honest check I picked
+three untouched reports, read them once, and graded them once. Two of three agree. The one miss
+is that company's own tagging errors — recorded for next week rather than tuned away. Three
+reports is a small check and it is the only number here that was not read while the bugs were
+being fixed.
+
+THE FLOOR, AND WHAT IT HIDES. The simplest possible tracker copies last quarter's debt forward.
+It caught none of the 36 new bonds. Zero. It still finds 90.7% of all bonds (87.5–93.5%), and
+it reproduces 18 of 47 quarters exactly — and the 90.7% is high for exactly the same reason the
+zero is zero: a quarter's debt mostly does not move. The agent is not being asked to beat
+90.7%. It is being asked to find what changed.
+
+THE HEADROOM. 30 of the 32 new bonds that could be searched for at all were announced in a
+filing published in time to be read — four of the 36 carry no tagged interest rate, so there is
+nothing to search for. Of 16 bonds that disappeared, 9 simply reached their due date and one had
+no rate to search for; of the remaining 6 early repayments, 5 were announced. The distance
+between doing nothing and reading the filings is almost the whole gap. That distance is the job.
+
+ONE SURPRISE. EDGAR quietly moved 43 of 495 filing timestamps by four to five hours between two
+reads of the same filings. The shift is 4 hours on summer dates and 5 in winter, which matches
+US Eastern to UTC — most likely a time-zone change, though EDGAR published no note, so that is
+an inference rather than a fact. Either way the lesson holds: the server that stops the agent
+seeing the future now anchors each cut-off to the report itself, not to a clock.
+
+NEXT. Fix that one company's data problems, check a fresh set of reports, and start the agent's
+document reader — the part that turns a filing into sentences it can point to, so it never has
+to type a number itself.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is a prop injected from figdata.json at build time, not typed by hand.
+The build asserts the key relationships and fails rather than let a number drift — including
+that the three grading levels sum to all 1,093 reports, that the held-out hand-check score stays
+BELOW the calibrated one (otherwise the distinction this video is built on would be empty), that
+the baseline's recall stays high while its new-bond count stays at zero, and that 36 − 4 = 32.
+Three claims in the video are not measured in figdata.json: that the agent is unbuilt, that the
+timestamp shift is an inference, and what the one held-out miss was. Each is attributed on
+screen. See FACTCHECK.md in the project folder for what still needs confirmation before
+publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#AIDebt #SEC #Evaluation #GroundTruth #Baselines #ResearchEngineering #HumanitariansAI #Mycroft
