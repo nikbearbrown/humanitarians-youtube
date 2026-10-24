@@ -1,0 +1,406 @@
+{
+  "metadata": {
+    "title": "Where Traffic Lands",
+    "slug": "dynamodb-hot-partition",
+    "topic": "Irreducibly Human",
+    "register": "Plain",
+    "brand": "claude-hai",
+    "kind": "stem-explainer",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hi, HAI",
+    "folderLabel": "@HumanitariansAI",
+    "presenter": "Maitri",
+    "audience": "Engineers; every term explained as it appears",
+    "required_intro": "Hi, I am Maitri and this video is about why a DynamoDB table can throttle even when it has spare capacity.",
+    "ai_disclosure": "Narration is Kokoro af_bella (Bella), a local synthetic voice.",
+    "aspects": [
+      "16:9",
+      "9:16"
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Maitri and this video is about why a DynamoDB table can throttle even when it has spare capacity.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, HAI",
+            "topic": "Irreducibly Human",
+            "segment": "DynamoDB Hot Partitions",
+            "command": "Why can a DynamoDB table throttle even when it has spare capacity?",
+            "runningText": "following the writes…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "one key sends every write to one partition",
+              "that partition has its own limit"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-23T22:43:25.984201+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 7.27
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Throttling means DynamoDB rejects requests and asks you to retry, even when the table has room to spare. What matters is where the traffic lands.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A table with spare capacity won't throttle.\nWhere traffic lands decides.",
+            "triggerWords": "won't throttle",
+            "replacementWords": "can still throttle",
+            "face": "serif",
+            "fontSize": 64,
+            "lineSpacing": 1.25,
+            "align": "center",
+            "seed": "dynamodb-hot-partition-b01",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-23T22:45:24.725321+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "writer types the claim"
+          },
+          {
+            "at": 0.5,
+            "event": "corrected to 'can still throttle'"
+          }
+        ]
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "lead_silence_s": 0.8,
+      "actual_duration_s": 9.75
+    },
+    {
+      "beat_id": "B02",
+      "act": "SETUP",
+      "narration_text": "An event service writes thousands of records a second, all with one partition key, the field that decides placement: today's date. DynamoDB hashes it to pick a partition. Same key, same partition.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "AgentToolLoop",
+          "props": {
+            "stages": [
+              "EVENTS",
+              "KEY 2026-10-23",
+              "HASH(KEY)",
+              "ONE PARTITION"
+            ],
+            "executeIndex": 3,
+            "loopBack": false,
+            "ports": [],
+            "sparkLine": "Same key, same partition."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-23T22:46:37.963039+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.05,
+            "event": "events → key → hash → one partition, in narration order"
+          }
+        ]
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 13.7
+    },
+    {
+      "beat_id": "B03",
+      "act": "LIMIT",
+      "narration_text": "The table allows ten thousand writes a second, but each partition is capped at about a thousand write units, where one unit is one write up to a kilobyte. Adaptive capacity helps, but it cannot raise that cap.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "EvidenceBars",
+          "props": {
+            "title": "Write capacity: whole table vs one partition",
+            "note": "1 write unit = one write per second, up to 1 KB",
+            "bars": [
+              {
+                "label": "Whole table",
+                "value": 10000,
+                "display": "10,000 / s"
+              },
+              {
+                "label": "One partition",
+                "value": 1000,
+                "display": "1,000 / s"
+              }
+            ],
+            "accentIndex": 1,
+            "caption": "Every write for today lands on the one partition",
+            "sparkLine": "Spare capacity, wrong place."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-23T22:47:48.138316+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.1,
+            "event": "whole-table bar to 10,000"
+          },
+          {
+            "at": 0.22,
+            "event": "one-partition bar stops at 1,000 (accent)"
+          }
+        ]
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 13.06
+    },
+    {
+      "beat_id": "B04",
+      "act": "FIX",
+      "narration_text": "The fix is a data-model change called write sharding: spread today's writes across ten keys, shard zero to shard nine. Ten keys, ten places to land.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "EvidenceBars",
+          "props": {
+            "title": "Writes per second per key",
+            "note": "Assuming 10,000 writes per second, spread evenly",
+            "bars": [
+              {
+                "label": "Single key",
+                "value": 10000,
+                "display": "10,000 / s"
+              },
+              {
+                "label": "Per shard (10)",
+                "value": 1000,
+                "display": "1,000 / s"
+              }
+            ],
+            "accentIndex": 1,
+            "caption": "Keys 2026-10-23#0 through 2026-10-23#9",
+            "sparkLine": "Spread the writes."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-23T22:48:54.786748+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.1,
+            "event": "single-key bar"
+          },
+          {
+            "at": 0.22,
+            "event": "per-shard bar (accent)"
+          }
+        ]
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 10.71
+    },
+    {
+      "beat_id": "B05",
+      "act": "MATH",
+      "narration_text": "Each shard carries the total over the shard count: ten thousand over ten is a thousand, right at the limit, so add shards for headroom.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "TypesetMath",
+          "props": {
+            "title": "How many shards?",
+            "rows": [
+              {
+                "src": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjU1OHB0IiBoZWlnaHQ9IjU2cHQiIHZpZXdCb3g9IjAgMCA1NTggNTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIj4KIDxtZXRhZGF0YT4KICA8cmRmOlJERiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgIDxjYzpXb3JrPgogICAgPGRjOnR5cGUgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIvPgogICAgPGRjOmRhdGU+MjAyNi0xMC0yM1QxNzozNTo0Mi4yOTExODI8L2RjOmRhdGU+CiAgICA8ZGM6Zm9ybWF0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgIDxkYzpjcmVhdG9yPgogICAgIDxjYzpBZ2VudD4KICAgICAgPGRjOnRpdGxlPk1hdHBsb3RsaWIgdjMuMTEuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy88L2RjOnRpdGxlPgogICAgIDwvY2M6QWdlbnQ+CiAgICA8L2RjOmNyZWF0b3I+CiAgIDwvY2M6V29yaz4KICA8L3JkZjpSREY+CiA8L21ldGFkYXRhPgogPGRlZnM+CiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4qe3N0cm9rZS1saW5lam9pbjogcm91bmQ7IHN0cm9rZS1saW5lY2FwOiBidXR0fTwvc3R5bGU+CiA8L2RlZnM+CiA8ZyBpZD0iZmlndXJlXzEiPgogIDxnIGlkPSJwYXRjaF8xIj4KICAgPHBhdGggZD0iTSAwIDU2IApMIDU1OCA1NiAKTCA1NTggMCAKTCAwIDAgCkwgMCA1NiAKegoiIHN0eWxlPSJmaWxsOiBub25lIi8+CiAgPC9nPgogIDxnIGlkPSJ0ZXh0XzEiPgogICA8IS0tICRcbWF0aHJte3Blclwgc2hhcmR9ID0gXGZyYWN7V317U30gPSBcZnJhY3sxMDAwMH17MTB9ID0gMTAwMCQgLS0+CiAgIDxnIHN0eWxlPSJmaWxsOiAjM2QzOTI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDQwKSBzY2FsZSgwLjQ4IC0wLjQ4KSI+CiAgICA8ZGVmcz4KICAgICA8cGF0aCBpZD0iU1RJWEdlbmVyYWwtUmVndWxhci01MyIgZD0iTSAxMDE4IDI5MzEgCkwgMTAxOCAyNDM4IApRIDE0MjEgMjk0NCAxOTM5IDI5NDQgClEgMjQwNiAyOTQ0IDI3MDcgMjU2MCAKUSAzMDA4IDIxNzYgMzAwOCAxNTgxIApRIDMwMDggODgzIDI2MjEgNDA5IApRIDIyMzQgLTY0IDE2NjQgLTY0IApRIDE0NjYgLTY0IDEzMjggLTYgClEgMTE5MCA1MSAxMDE4IDIxMSAKTCAxMDE4IC03OTQgClEgMTAxOCAtMTA5NCAxMTIwIC0xMTgwIApRIDEyMjIgLTEyNjcgMTU4MSAtMTI3NCAKTCAxNTgxIC0xMzg5IApMIDMyIC0xMzg5IApMIDMyIC0xMjgwIApRIDMxNCAtMTI1NCAzOTcgLTExNzEgClEgNDgwIC0xMDg4IDQ4MCAtODM4IApMIDQ4MCAyMTU3IApRIDQ4MCAyMzgxIDQyOSAyNDUxIApRIDM3OCAyNTIyIDIxOCAyNTIyIApRIDExNSAyNTIyIDU4IDI1MTUgCkwgNTggMjYxOCAKUSA1MDYgMjc1MiA5NzkgMjk0NCAKTCAxMDE4IDI5MzEgCnoKTSAxMDE4IDIxMzggCkwgMTAxOCA1NjMgClEgMTAxOCA0MjIgMTIzOCAyODEgClEgMTQ1OSAxNDEgMTY4MyAxNDEgClEgMjAyOSAxNDEgMjI0MyA0NjcgClEgMjQ1OCA3OTQgMjQ1OCAxMzI1IApRIDI0NTggMTg4OCAyMjQzIDIyMjQgClEgMjAyOSAyNTYwIDE2NzAgMjU2MCAKUSAxNDQ2IDI1NjAgMTIzMiAyNDE5IApRIDEwMTggMjI3OCAxMDE4IDIxMzggCnoKIiB0cmFuc2Zvcm09InNjYWxlKDAuMDE1NjI1KSIvPgogICAgIDxwYXRoIGlkPSJTVElYR2VuZXJhbC1SZWd1bGFyLTQ4IiBkPSJNIDI2MTEgMTA1MCAKTCAyNzE0IDEwMDUgClEgMjMzMCAtNjQgMTM3NiAtNjQgClEgODEzIC02NCA0ODYgMzI5IApRIDE2MCA3MjMgMTYwIDEzODkgClEgMTYwIDIwNzQgNTI1IDI1MDkgClEgODkwIDI5NDQgMTQ4NSAyOTQ0IApRIDIwNjEgMjk0NCAyMzc0IDI1MDIgClEgMjU2MCAyMjQ2IDI1OTIgMTc3MyAKTCA2MjEgMTc3MyAKUSA2NDYgMTM3MCA3MDAgMTE1OCAKUSA3NTUgOTQ3IDkxNSA3MzAgClEgMTE4NCAzNzggMTYyNiAzNzggClEgMTkzOSAzNzggMjE1MyA1MzEgClEgMjM2OCA2ODUgMjYxMSAxMDUwIAp6Ck0gNjM0IDE5NzggCkwgMTkzOSAxOTc4IApRIDE4ODIgMjM4MSAxNzUwIDI1NDcgClEgMTYxOSAyNzE0IDEzMTIgMjcxNCAKUSAxMDQzIDI3MTQgODY0IDI1MjUgClEgNjg1IDIzMzYgNjM0IDE5NzggCnoKIiB0cmFuc2Zvcm09InNjYWxlKDAuMDE1NjI1KSIvPgogICAgIDxwYXRoIGlkPSJTVElYR2VuZXJhbC1SZWd1bGFyLTU1IiBkPSJNIDEwMjQgMjkzMSAKTCAxMDI0IDIzNDIgClEgMTI2NyAyNjg4IDE0MzAgMjgxNiAKUSAxNTk0IDI5NDQgMTc5MiAyOTQ0IApRIDE5NTggMjk0NCAyMDUxIDI4NTQgClEgMjE0NCAyNzY1IDIxNDQgMjYwNSAKUSAyMTQ0IDI0NzAgMjA3NyAyMzkzIApRIDIwMTAgMjMxNyAxODk0IDIzMTcgClEgMTc3MyAyMzE3IDE2MzggMjQ0NSAKUSAxNTM2IDI1NDEgMTQ3MiAyNTQxIApRIDEzMzggMjU0MSAxMTgxIDIzNTUgClEgMTAyNCAyMTcwIDEwMjQgMjAxNiAKTCAxMDI0IDU3NiAKUSAxMDI0IDMwMSAxMTMzIDIwNSAKUSAxMjQyIDEwOSAxNTY4IDk2IApMIDE1NjggMCAKTCAzMiAwIApMIDMyIDk2IApRIDMzOSAxNTQgNDEyIDIyNCAKUSA0ODYgMjk0IDQ4NiA1MzggCkwgNDg2IDIxMzggClEgNDg2IDIzNDkgNDM4IDI0MzUgClEgMzkwIDI1MjIgMjY5IDI1MjIgClEgMTY2IDI1MjIgNDUgMjQ5NiAKTCA0NSAyNTk4IApRIDQ0OCAyNzI2IDk5MiAyOTQ0IApMIDEwMjQgMjkzMSAKegoiIHRyYW5zZm9ybT0ic2NhbGUoMC4wMTU2MjUpIi8+CiAgICAgPHBhdGggaWQ9IlNUSVhHZW5lcmFsLVJlZ3VsYXItNTYiIGQ9Ik0gOTk4IDE5MjYgCkwgMTY2NCAxNTIzIApRIDE5ODQgMTMzMSAyMTA1IDExNjQgClEgMjIyNyA5OTggMjIyNyA3MzYgClEgMjIyNyA0MTYgMTk2MSAxNzYgClEgMTY5NiAtNjQgMTMzMSAtNjQgClEgMTAzMCAtNjQgODY0IC02IApRIDY5MSA1MSA1NzAgNTEgClEgNDYxIDUxIDQxNiAtMjYgCkwgMzMzIC0yNiAKTCAzMzMgOTc5IApMIDQzNSA5NzkgClEgNTM4IDUxMiA3MzAgMjk0IApRIDkyMiA3NyAxMjQ4IDc3IApRIDE0ODUgNzcgMTYzMiAyMTEgClEgMTc3OSAzNDYgMTc3OSA1NTAgClEgMTc3OSA4NDUgMTQ0MCAxMDMwIApMIDEwOTQgMTIyMiAKUSAzMjYgMTY1MSAzMjYgMjE1MCAKUSAzMjYgMjUyMiA1NjYgMjczMCAKUSA4MDYgMjkzOCAxMjEwIDI5MzggClEgMTQ5MSAyOTM4IDE2MzggMjg2NyAKUSAxNzU0IDI4MTYgMTgxOCAyODE2IApRIDE4NjIgMjgxNiAxOTIwIDI4ODAgCkwgMTk5MCAyODgwIApMIDIwMjIgMjAxMCAKTCAxOTI2IDIwMTAgClEgMTgxOCAyNDQ1IDE2NTQgMjYyMSAKUSAxNDkxIDI3OTcgMTIwMyAyNzk3IApRIDk4NiAyNzk3IDg1NCAyNjg4IApRIDcyMyAyNTc5IDcyMyAyMzYyIApRIDcyMyAyMjUzIDc5NiAyMTI4IApRIDg3MCAyMDAzIDk5OCAxOTI2IAp6CiIgdHJhbnNmb3JtPSJzY2FsZSgwLjAxNTYyNSkiLz4KICAgICA8cGF0aCBpZD0iU1RJWEdlbmVyYWwtUmVndWxhci00YiIgZD0iTSAzMTE3IDAgCkwgMTc2MCAwIApMIDE3NjAgOTYgClEgMjA0MiAxMjggMjExOCAyMjQgClEgMjE5NSAzMjAgMjE5NSA2NTMgCkwgMjE5NSAxOTIwIApRIDIxOTUgMjU5OCAxNzIyIDI1OTggClEgMTUzMCAyNTk4IDEzNzAgMjUwOCAKUSAxMjEwIDI0MTkgMTAwNSAyMTk1IApMIDEwMDUgNjUzIApRIDEwMDUgMzIwIDEwODEgMjI0IApRIDExNTggMTI4IDE0NDAgOTYgCkwgMTQ0MCAwIApMIDU4IDAgCkwgNTggOTYgClEgMzMzIDEzNCA0MDAgMjI0IApRIDQ2NyAzMTQgNDY3IDY1MyAKTCA0NjcgMzY2NyAKUSA0NjcgMzg3MiA0MDYgMzkzMyAKUSAzNDYgMzk5NCAxNDEgMzk5NCAKUSA4MyAzOTk0IDY0IDM5ODcgCkwgNjQgNDA5MCAKTCAyMzcgNDE0MSAKUSA3MzAgNDI4OCA5NzMgNDM3MSAKTCAxMDA1IDQzNTIgCkwgMTAwNSAyNDA2IApRIDEyMjkgMjY5NCAxNDQ2IDI4MTkgClEgMTY2NCAyOTQ0IDE5NDYgMjk0NCAKUSAyNzMzIDI5NDQgMjczMyAxOTI2IApMIDI3MzMgNjUzIApRIDI3MzMgMzIwIDI3OTMgMjMzIApRIDI4NTQgMTQ3IDMxMTcgOTYgCkwgMzExNyAwIAp6CiIgdHJhbnNmb3JtPSJzY2FsZSgwLjAxNTYyNSkiLz4KICAgICA8cGF0aCBpZD0iU1RJWEdlbmVyYWwtUmVndWxhci00NCIgZD0iTSAyODI5IDQyMiAKTCAyODI5IDI0MyAKUSAyNTg2IC02NCAyMjUzIC02NCAKUSAxODg4IC02NCAxODQzIDQwMyAKTCAxODM3IDQwMyAKUSAxNDI3IC02NCA5MDkgLTY0IApRIDYwOCAtNjQgNDIyIDExMiAKUSAyMzcgMjg4IDIzNyA2MDIgClEgMjM3IDEwNTAgNjg1IDEzNTAgClEgOTkyIDE1NTUgMTgzNyAxODY5IApMIDE4MzcgMjIxNCAKUSAxODM3IDI1MDIgMTY5OSAyNjQ2IApRIDE1NjIgMjc5MCAxMzM4IDI3OTAgClEgMTE0NiAyNzkwIDEwMTggMjY5NyAKUSA4OTAgMjYwNSA4OTAgMjQ3NyAKUSA4OTAgMjQxOSA5MDkgMjM0OCAKUSA5MjggMjI3OCA5MjggMjIwOCAKUSA5MjggMjExMiA4NDEgMjAyOSAKUSA3NTUgMTk0NiA2MzQgMTk0NiAKUSA1MjUgMTk0NiA0NDEgMjAyOSAKUSAzNTggMjExMiAzNTggMjI0MCAKUSAzNTggMjU0NyA2ODUgMjc1MiAKUSA5ODYgMjk0NCAxNDIxIDI5NDQgClEgMTkzOSAyOTQ0IDIxNzYgMjY1NiAKUSAyMjkxIDI1MjIgMjMyMyAyMzg0IApRIDIzNTUgMjI0NiAyMzU1IDE5NDYgCkwgMjM1NSA3MjMgClEgMjM1NSAzMDEgMjU1NCAzMDEgClEgMjY4MiAzMDEgMjgyOSA0MjIgCnoKTSAxODM3IDgxMyAKTCAxODM3IDE3MTUgClEgMTI0OCAxNTEwIDEwMTggMTI5MyAKUSA4MDAgMTA5NCA4MDAgODAwIApRIDgwMCA1NTcgOTIxIDQzMiAKUSAxMDQzIDMwNyAxMjQyIDMwNyAKUSAxNDUzIDMwNyAxNjEzIDQxMCAKUSAxNzQ3IDUwNiAxNzkyIDU4OSAKUSAxODM3IDY3MiAxODM3IDgxMyAKegoiIHRyYW5zZm9ybT0ic2NhbGUoMC4wMTU2MjUpIi8+CiAgICAgPHBhdGggaWQ9IlNUSVhHZW5lcmFsLVJlZ3VsYXItNDciIGQ9Ik0gMzE0MiAyNjkgCkwgMjIwMiAtNjQgCkwgMjE3NiAtNDUgCkwgMjE3NiAzNjUgClEgMTg2OSAtNjQgMTM1NyAtNjQgClEgODI2IC02NCA0OTkgMzE3IApRIDE3MyA2OTggMTczIDEzMTIgClEgMTczIDE5OTAgNTYzIDI0NjcgClEgOTU0IDI5NDQgMTUwNCAyOTQ0IApRIDE4NTAgMjk0NCAyMTc2IDI2NjkgCkwgMjE3NiAzNjY3IApRIDIxNzYgMzg2NiAyMTE4IDM5MzAgClEgMjA2MSAzOTk0IDE4ODIgMzk5NCAKUSAxNzkyIDM5OTQgMTc0MSAzOTg3IApMIDE3NDEgNDA5MCAKUSAyMzIzIDQyNDMgMjY4MiA0MzcxIApMIDI3MTQgNDM1OCAKTCAyNzE0IDczMCAKUSAyNzE0IDUwNiAyNzY4IDQzNSAKUSAyODIyIDM2NSAyOTk1IDM2NSAKUSAzMDM0IDM2NSAzMTQyIDM3MSAKTCAzMTQyIDI2OSAKegpNIDIxNzYgNjUzIApMIDIxNzYgMjEyNSAKUSAyMTc2IDIzODEgMTk4MSAyNTczIApRIDE3ODYgMjc2NSAxNTIzIDI3NjUgClEgMTE1OCAyNzY1IDk0MCAyNDM4IApRIDcyMyAyMTEyIDcyMyAxNTY4IApRIDcyMyA5NzkgOTYzIDYyNCAKUSAxMjAzIDI2OSAxNjA2IDI2OSAKUSAxOTA3IDI2OSAyMDgwIDQ3NCAKUSAyMTc2IDU4MiAyMTc2IDY1MyAKegoiIHRyYW5zZm9ybT0ic2NhbGUoMC4wMTU2MjUpIi8+CiAgICAgPHBhdGggaWQ9IlNUSVhHZW5lcmFsLVJlZ3VsYXItMjAiIGQ9Ik0gNDA3NyAyMDQ4IApMIDMwNyAyMDQ4IApMIDMwNyAyNDcwIApMIDQwNzcgMjQ3MCAKTCA0MDc3IDIwNDggCnoKTSA0MDc3IDc2OCAKTCAzMDcgNzY4IApMIDMwNyAxMTkwIApMIDQwNzcgMTE5MCAKTCA0MDc3IDc2OCAKegoiIHRyYW5zZm9ybT0ic2NhbGUoMC4wMTU2MjUpIi8+CiAgICAgPHBhdGggaWQ9IlNUSVhHZW5lcmFsLUl0YWxpYy0zYSIgZD0iTSA1Nzk4IDQxNzkgCkwgNTc5OCA0MDc3IApRIDU2MTMgNDAxOSA1NTI2IDM5MzYgClEgNTQ0MCAzODUzIDUzMDYgMzU5NyAKTCAzMzc5IC0xMTUgCkwgMzI1MSAtMTE1IApMIDI5MzEgMjc4NCAKTCAyODk5IDI3ODQgCkwgMTQ3OCAtMTE1IApMIDEzNTcgLTExNSAKTCA5NjYgMzE3NCAKUSA5MTUgMzYyMiA4ODMgMzc2NiAKUSA4NTEgMzkxMCA3ODEgMzk4MSAKUSA3MTcgNDA0NSA0NTQgNDA3NyAKTCA0NTQgNDE3OSAKTCAxOTU4IDQxNzkgCkwgMTk1OCA0MDc3IApRIDE2OTYgNDA1MSAxNTk3IDM5ODcgClEgMTQ5OCAzOTIzIDE0OTggMzc1MCAKUSAxNDk4IDM2NjcgMTUwNCAzNjIyIApMIDE3ODYgMTAzNyAKTCAyODg2IDMyNjQgCkwgMjgzNSAzNjgwIApRIDI4MTAgMzkyMyAyNzIzIDM5OTMgClEgMjYzNyA0MDY0IDIzNTUgNDA3NyAKTCAyMzU1IDQxNzkgCkwgMzg2NiA0MTc5IApMIDM4NjYgNDA3NyAKUSAzNjE2IDQwNTEgMzUyMyAzOTg3IApRIDM0MzAgMzkyMyAzNDMwIDM3NzAgClEgMzQzMCAzNzUwIDM0MzYgMzcxNSAKUSAzNDQzIDM2ODAgMzQ0MyAzNjc0IApMIDM2OTkgMTAzNyAKTCA0OTAyIDMzNzMgClEgNTA1MCAzNjU0IDUwNTAgMzgwOCAKUSA1MDUwIDQwNzAgNDYyMSA0MDc3IApMIDQ2MjEgNDE3OSAKTCA1Nzk4IDQxNzkgCnoKIiB0cmFuc2Zvcm09InNjYWxlKDAuMDE1NjI1KSIvPgogICAgIDxwYXRoIGlkPSJTVElYR2VuZXJhbC1JdGFsaWMtMzYiIGQ9Ik0gMzI1MSA0MjY5IApMIDI5OTUgMjk4OSAKTCAyODgwIDMwMDggClEgMjg4MCAzNTM5IDI3MjAgMzc5NSAKUSAyNTYwIDQwNTEgMjExOCA0MDUxIApRIDE3ODYgNDA1MSAxNTk0IDM4ODEgClEgMTQwMiAzNzEyIDE0MDIgMzQxMSAKUSAxNDAyIDMxNjggMTUwNCAzMDA1IApRIDE2MDYgMjg0MiAyMDM1IDI0MTMgClEgMjQ2NCAxOTc4IDI2MTEgMTcxNSAKUSAyNzU4IDE0NTMgMjc1OCAxMTMzIApRIDI3NTggNTg5IDIzOTAgMjM3IApRIDIwMjIgLTExNSAxNDY2IC0xMTUgClEgMTIyMiAtMTE1IDgwMCAzMiAKUSA1OTUgMTA5IDQ5OSAxMDkgClEgMjg4IDEwOSAyMjQgLTk2IApMIDEwOSAtOTYgCkwgMzI2IDEzMzggCkwgNDU0IDEzMjUgClEgNDQyIDEyNjcgNDQyIDExNzggClEgNDQyIDcxMCA3MDEgNDA5IApRIDk2MCAxMDkgMTM2MyAxMDkgClEgMTczNCAxMDkgMTk2OCAzMzYgClEgMjIwMiA1NjMgMjIwMiA5MjggClEgMjIwMiAxMTM5IDIxMTggMTMwOCAKUSAyMDM1IDE0NzggMTgxOCAxNzE1IApMIDE1NjggMTk4NCAKUSAxNTQ5IDIwMDMgMTQ1OSAyMTAyIApRIDEzNzAgMjIwMiAxMzE4IDIyNTMgClEgMTAzMCAyNTYwIDkzNCAyNzU1IApRIDgzOCAyOTUwIDgzOCAzMjEzIApRIDgzOCAzNjk5IDExNjggMzk4MCAKUSAxNDk4IDQyNjIgMTk3OCA0MjYyIApRIDIzMTAgNDI2MiAyNTIyIDQxNzMgClEgMjcwNyA0MTAyIDI4MTYgNDEwMiAKUSAyOTI1IDQxMDIgMjk4MiA0MTM0IApRIDMwNDAgNDE2NiAzMTA0IDQyNjkgCkwgMzI1MSA0MjY5IAp6CiIgdHJhbnNmb3JtPSJzY2FsZSgwLjAxNTYyNSkiLz4KICAgICA8cGF0aCBpZD0iU1RJWEdlbmVyYWwtUmVndWxhci0xNCIgZD0iTSAyNTIyIDAgCkwgNzU1IDAgCkwgNzU1IDk2IApRIDExMDcgMTE1IDEyMzUgMjI3IApRIDEzNjMgMzM5IDEzNjMgNjA4IApMIDEzNjMgMzQ4MiAKUSAxMzYzIDM3OTUgMTE3MSAzNzk1IApRIDEwODIgMzc5NSA4ODMgMzcxOCAKTCA3MTAgMzY1NCAKTCA3MTAgMzc0NCAKTCAxODU2IDQzMjYgCkwgMTkxNCA0MzA3IApMIDE5MTQgNDg2IApRIDE5MTQgMjc1IDIwNDIgMTg1IApRIDIxNzAgOTYgMjUyMiA5NiAKTCAyNTIyIDAgCnoKIiB0cmFuc2Zvcm09InNjYWxlKDAuMDE1NjI1KSIvPgogICAgIDxwYXRoIGlkPSJTVElYR2VuZXJhbC1SZWd1bGFyLTEzIiBkPSJNIDMwNDYgMjExMiAKUSAzMDQ2IDE2ODMgMjk2MyAxMzAyIApRIDI4ODAgOTIyIDI3MTcgNjAyIApRIDI1NTQgMjgyIDIyNjYgOTYgClEgMTk3OCAtOTAgMTYwMCAtOTAgClEgMTIxMCAtOTAgOTE1IDEwOCAKUSA2MjEgMzA3IDQ2MSA2NDAgClEgMzAxIDk3MyAyMjcgMTM1MCAKUSAxNTQgMTcyOCAxNTQgMjE1MCAKUSAxNTQgMjc0NiAzMDEgMzIyMiAKUSA0NDggMzY5OSA3OTAgNDAxMiAKUSAxMTMzIDQzMjYgMTYyNiA0MzI2IApRIDIyNTMgNDMyNiAyNjQ5IDM3MTIgClEgMzA0NiAzMDk4IDMwNDYgMjExMiAKegpNIDI0MzIgMjA4MCAKUSAyNDMyIDMwOTEgMjIxNyAzNjI1IApRIDIwMDMgNDE2MCAxNTg3IDQxNjAgClEgMTE5MCA0MTYwIDk3OSAzNjIyIApRIDc2OCAzMDg1IDc2OCAyMTA2IApRIDc2OCAxMTIwIDk3OSA1OTggClEgMTE5MCA3NyAxNjAwIDc3IApRIDIwMDMgNzcgMjIxNyA1OTggClEgMjQzMiAxMTIwIDI0MzIgMjA4MCAKegoiIHRyYW5zZm9ybT0ic2NhbGUoMC4wMTU2MjUpIi8+CiAgICA8L2RlZnM+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVElYR2VuZXJhbC1SZWd1bGFyLTUzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDAuMzI1KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci00OCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDkuOTk5OTU0IDAuMzI1KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci01NSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTQuMzk5OTE4IDAuMzI1KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci01NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYxLjAzMjg5IDAuMzI1KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci00YiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTk5LjkzMjg1NCAwLjMyNSkiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI1NUSVhHZW5lcmFsLVJlZ3VsYXItNDQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI0OS45MzI4MDggMC4zMjUpIi8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVElYR2VuZXJhbC1SZWd1bGFyLTU1IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOTQuMzMyNzcxIDAuMzI1KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci00NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzI3LjYzMjc0NCAwLjMyNSkiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI1NUSVhHZW5lcmFsLVJlZ3VsYXItMjAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM5Ny42MzI2OTggMC4zMjUpIi8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVElYR2VuZXJhbC1JdGFsaWMtM2EiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ5Mi4zODI2MzcgMzUuOTU3ODEyKSBzY2FsZSgwLjcpIi8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVElYR2VuZXJhbC1JdGFsaWMtMzYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwNC4zODI2MzcgLTMwLjc0MjE4OCkgc2NhbGUoMC43KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci0yMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTc2Ljk0MjU4NiAwLjMyNSkiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI1NUSVhHZW5lcmFsLVJlZ3VsYXItMTQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY3MS42OTI1MjUgMzUuNjg0Mzc1KSBzY2FsZSgwLjcpIi8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVElYR2VuZXJhbC1SZWd1bGFyLTEzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MDYuNjkyNDkyIDM1LjY4NDM3NSkgc2NhbGUoMC43KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci0xMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzQxLjY5MjQ2IDM1LjY4NDM3NSkgc2NhbGUoMC43KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci0xMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzc2LjY5MjQyOCAzNS42ODQzNzUpIHNjYWxlKDAuNykiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI1NUSVhHZW5lcmFsLVJlZ3VsYXItMTMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgxMS42OTIzOTYgMzUuNjg0Mzc1KSBzY2FsZSgwLjcpIi8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVElYR2VuZXJhbC1SZWd1bGFyLTE0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MjMuNjkyNTI1IC0zMS4zNjU2MjUpIHNjYWxlKDAuNykiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI1NUSVhHZW5lcmFsLVJlZ3VsYXItMTMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc1OC42OTI0OTIgLTMxLjM2NTYyNSkgc2NhbGUoMC43KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci0yMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODcyLjk0MjM2NCAwLjMyNSkiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI1NUSVhHZW5lcmFsLVJlZ3VsYXItMTQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk2MS40NDIzMDMgMC4zMjUpIi8+CiAgICA8dXNlIHhsaW5rOmhyZWY9IiNTVElYR2VuZXJhbC1SZWd1bGFyLTEzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDExLjQ0MjI1OCAwLjMyNSkiLz4KICAgIDx1c2UgeGxpbms6aHJlZj0iI1NUSVhHZW5lcmFsLVJlZ3VsYXItMTMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwNjEuNDQyMjEyIDAuMzI1KSIvPgogICAgPHVzZSB4bGluazpocmVmPSIjU1RJWEdlbmVyYWwtUmVndWxhci0xMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTExMS40NDIxNjYgMC4zMjUpIi8+CiAgICA8cGF0aCBkPSJNIDQ5Mi4zODI2MzcgMjIuMiAKTCA0OTIuMzgyNjM3IDI4LjQ1IApMIDU1MC42OTI1ODYgMjguNDUgCkwgNTUwLjY5MjU4NiAyMi4yIApMIDQ5Mi4zODI2MzcgMjIuMiAKegoiLz4KICAgIDxwYXRoIGQ9Ik0gNjcxLjY5MjUyNSAyMi4yIApMIDY3MS42OTI1MjUgMjguNDUgCkwgODQ2LjY5MjM2NCAyOC40NSAKTCA4NDYuNjkyMzY0IDIyLjIgCkwgNjcxLjY5MjUyNSAyMi4yIAp6CiIvPgogICA8L2c+CiAgPC9nPgogPC9nPgo8L3N2Zz4K",
+                "aspect": 9.9643,
+                "expression": "\\mathrm{per\\ shard} = \\frac{W}{S} = \\frac{10000}{10} = 1000",
+                "at": 1.0
+              }
+            ],
+            "note": "W: total writes per second · S: number of shards",
+            "conditions": "Exactly at the 1,000 limit — more shards give headroom"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-23T22:50:25.727587+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.1,
+            "event": "W/S = 10000/10 = 1000"
+          }
+        ]
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 8.45
+    },
+    {
+      "beat_id": "B06",
+      "act": "TRADEOFF",
+      "narration_text": "The cost moves to reads: fetching today's events now means querying every shard and combining the results. Scale depends on where traffic lands, not just total capacity.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "LessonExcerpt",
+          "props": {
+            "header": "The trade-off",
+            "subheader": "",
+            "rows": [
+              {
+                "tag": "WRITES",
+                "text": "spread across ten shard keys",
+                "emphasis": true
+              },
+              {
+                "tag": "READS",
+                "text": "query every shard, then combine the results"
+              },
+              {
+                "tag": "LESSON",
+                "text": "scale depends on where traffic lands"
+              }
+            ],
+            "footer": "Not only on the capacity shown for the whole table",
+            "sparkLine": "Where traffic lands."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-23T22:51:34.582982+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.12,
+            "event": "writes"
+          },
+          {
+            "at": 0.32,
+            "event": "reads"
+          },
+          {
+            "at": 0.52,
+            "event": "lesson"
+          }
+        ]
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 11.26
+    },
+    {
+      "beat_id": "B07",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Paste this into Claude: here is my DynamoDB partition key design. Which keys could become hot, and how would I shard them? It is a quick check before traffic grows.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Irreducibly Human",
+            "segment": "Try This",
+            "command": "Here is my DynamoDB partition key design. Which keys could become hot, and how would I shard them?",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-23T22:54:12.698977+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B07.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 11.88
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Where Traffic Lands. At Humanitarians A I.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Where Traffic Lands",
+            "slug": "dynamodb-hot-partition",
+            "handle": "@HumanitariansAI",
+            "subline": "Narrated by Kokoro (Bella) — a synthetic voice."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-23T22:54:55.539900+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 4,
+      "audio_file": "mp3/beat-B08.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 2.79
+    }
+  ]
+}
