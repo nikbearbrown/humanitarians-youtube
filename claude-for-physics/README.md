@@ -4,8 +4,8 @@ This directory is the **Claude for Physics** collection in the Humanitarians You
 
 ## Collection snapshot
 
-- Video projects with `beat_sheet.json`: **17**
-- Authored beats represented: **142**
+- Video projects with `beat_sheet.json`: **27**
+- Authored beats represented: **204**
 - Masters present locally: **0**
 - Review cuts present locally: **0**
 - Audio-stage projects: **0**
@@ -40,8 +40,18 @@ This directory is the **Claude for Physics** collection in the Humanitarians You
 | `medhavy-bernoulli` | Does Faster Water Mean Higher Pressure? | Physics Vol. 1 §14.6 | MEDHAVY | am_michael | 6 | 1:40 | published (YouTube Short) | no | no | no |
 | `medhavy-beats` | Why Do Two Notes Make A Pulsing Sound? | Physics Vol. 1 §17.6 | MEDHAVY | am_michael | 6 | 1:53 | published (YouTube Short) | no | no | no |
 | `medhavy-ball-still-accelerating` | Is A Ball Still Accelerating At Its Peak? | Physics Vol. 1 §3.3 | MEDHAVY | am_michael | 6 | 1:46 | published (YouTube Short) | no | no | no |
+| `medhavy-doppler-asymmetry` | Does A Moving Siren Sound Like A Moving Listener? | Physics Vol. 1 §17.7 | MEDHAVY | am_michael | 6 | 2:07 | published (YouTube Short) | no | no | no |
+| `medhavy-gyroscope-precession` | Why Doesn't A Spinning Top Fall Over? | Physics Vol. 1 §11.4 | MEDHAVY | am_michael | 6 | 1:48 | published (YouTube Short) | no | no | no |
+| `medhavy-hydraulics` | How Can A Small Push Lift A Car? | Physics Vol. 1 §14.3 | MEDHAVY | am_michael | 7 | 2:00 | published (YouTube Short) | no | no | no |
+| `medhavy-inelastic-collision` | What Is Conserved When Blocks Stick Together? | Physics Vol. 1 §9.4 | MEDHAVY | am_michael | 6 | 1:39 | published (YouTube Short) | no | no | no |
+| `medhavy-orbit-energy-paradox` | Why Does Speeding Up A Satellite Slow It Down? | Physics Vol. 1 §13.4 | MEDHAVY | am_michael | 6 | 1:55 | published (YouTube Short) | no | no | no |
+| `medhavy-pe-diagram-forbidden-zones` | Why Can't A Particle Pass Certain Points? | Physics Vol. 1 §8.4 | MEDHAVY | am_michael | 7 | 1:45 | published (YouTube Short) | no | no | no |
+| `medhavy-pendulum-mass-independence` | Does A Heavier Pendulum Swing Slower? | Physics Vol. 1 §15.4 | MEDHAVY | am_michael | 6 | 1:34 | published (YouTube Short) | no | no | no |
+| `medhavy-resonance` | How Can Tiny Footsteps Sway A Bridge? | Physics Vol. 1 §15.6 | MEDHAVY | am_michael | 6 | 1:48 | published (YouTube Short) | no | no | no |
+| `medhavy-rocket-propulsion` | How Does A Rocket Accelerate In Empty Space? | Physics Vol. 1 §9.7 | MEDHAVY | am_michael | 6 | 1:45 | published (YouTube Short) | no | no | no |
+| `medhavy-rolling-wheel` | How Fast Is The Bottom Of A Rolling Wheel? | Physics Vol. 1 §11.1 | MEDHAVY | am_michael | 6 | 2:02 | published (YouTube Short) | no | no | no |
 
-_Five of the Manim scripts (`medhavy-centripetal-friction`, `medhavy-crumple-zones`, `medhavy-bernoulli`, `medhavy-beats`, `medhavy-ball-still-accelerating`) share `medhavy_common.py` in this folder._
+_The Manim scripts in the fifteen projects from `medhavy-centripetal-friction` onward share `medhavy_common.py` in this folder; the first six (`medhavy-ball-and-feather` to `medhavy-weight-vs-mass`) are standalone._
 
 ## Repository conventions
 
@@ -56,7 +66,7 @@ _This inventory is generated from the current filesystem and should be refreshed
 
 # Claude For Physics
 
-This folder organizes **17 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
+This folder organizes **27 video projects** built around beat sheets. Each project README explains the subject, supplies research and fact-check prompts, and documents the free local rebuild workflow.
 
 ## Rebuild toolkit
 
@@ -88,5 +98,15 @@ Brutalist is audio-first and local: the beat sheet drives narration, measured au
 - [Does Faster Water Mean Higher Pressure?](./medhavy-bernoulli/)
 - [Why Do Two Notes Make A Pulsing Sound?](./medhavy-beats/)
 - [Is A Ball Still Accelerating At Its Peak?](./medhavy-ball-still-accelerating/)
+- [Does A Moving Siren Sound Like A Moving Listener?](./medhavy-doppler-asymmetry/)
+- [Why Doesn't A Spinning Top Fall Over?](./medhavy-gyroscope-precession/)
+- [How Can A Small Push Lift A Car?](./medhavy-hydraulics/)
+- [What Is Conserved When Blocks Stick Together?](./medhavy-inelastic-collision/)
+- [Why Does Speeding Up A Satellite Slow It Down?](./medhavy-orbit-energy-paradox/)
+- [Why Can't A Particle Pass Certain Points?](./medhavy-pe-diagram-forbidden-zones/)
+- [Does A Heavier Pendulum Swing Slower?](./medhavy-pendulum-mass-independence/)
+- [How Can Tiny Footsteps Sway A Bridge?](./medhavy-resonance/)
+- [How Does A Rocket Accelerate In Empty Space?](./medhavy-rocket-propulsion/)
+- [How Fast Is The Bottom Of A Rolling Wheel?](./medhavy-rolling-wheel/)
 
 <!-- END BRUTALIST REBUILD GUIDE -->
