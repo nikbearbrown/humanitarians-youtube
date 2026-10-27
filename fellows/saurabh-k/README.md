@@ -34,6 +34,7 @@ its own `beat_sheet.json`, README, evidence trail and `FRICTIONAL.md`.
   - `progress-week-3/` — Repo Sensei, Week Three. 2:27, 20 beats, 13 drawn in Manim.
 
 Weekly hours records live in [`weekly-hours/`](weekly-hours/README.md).
+Renewal requests live in [`renewal-requests/`](renewal-requests/README.md).
 
 **Reporting weeks for weeks 2 and 3 are not yet confirmed.** Week 1 is dated from the
 render timestamps on disk. Weeks 2 and 3 were both built on 2026-10-26, so the calendar
