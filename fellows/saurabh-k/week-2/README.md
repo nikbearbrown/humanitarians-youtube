@@ -1,6 +1,6 @@
 # Week 2
 
-**Group:** Brutalist team · **Reporting week:** 2026-10-21 through 2026-10-26
+**Group:** Brutalist team · **Reporting week:** **[TODO — confirm reporting week]**
 
 | Folder | Video | Runtime | Beats |
 |---|---|---|---:|

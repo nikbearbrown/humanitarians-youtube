@@ -1,6 +1,6 @@
 # Week 2 Progress Report — Brutalist, Week Two
 
-**Group:** Brutalist team · **Reporting week:** 2026-10-21 through 2026-10-26
+**Group:** Brutalist team · **Reporting week:** **[TODO — confirm reporting week]**
 
 ## Executive Summary
 
