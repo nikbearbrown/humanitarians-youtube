@@ -11,6 +11,9 @@ evidences it. Attach supervisor verification where available.
   [Brutalist, Week One](../week-1/progress-week-1/README.md), plus the unsubmitted
   *Agents, On Their Own*.
 
+- **[TODO] 2026-10-21-weekly-hours.md** — not yet written. Covers weeks 2 and 3:
+  Agents On Their Own, Brutalist Week Two, Calling Voice AI and Repo Sensei Week Three.
+
 ## Format
 
 | Activity | Hours | Record / artifact |

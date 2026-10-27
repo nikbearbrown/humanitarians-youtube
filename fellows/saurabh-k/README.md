@@ -15,12 +15,14 @@ its own `beat_sheet.json`, README, evidence trail and `FRICTIONAL.md`.
 - [`week-1/`](week-1/README.md) — 2026-10-14 to 2026-10-20. Two videos:
   - `explainer-mcp-explained/` — MCP, Explained. 2:41, 11 beats.
   - `progress-week-1/` — Brutalist, Week One. 1:52, 9 beats.
+- [`week-2/`](week-2/README.md) — 2026-10-21 to 2026-10-26. Two videos:
+  - `explainer-agents-on-their-own/` — Agents, On Their Own. 2:14, 10 beats.
+  - `progress-week-2/` — Brutalist, Week Two. 2:00, 9 beats.
+- [`week-3/`](week-3/README.md) — 2026-10-21 to 2026-10-26. Two videos:
+  - `explainer-calling-voice-ai/` — Calling Voice AI. 1:59, 10 beats.
+  - `progress-week-3/` — Repo Sensei, Week Three. 2:27, 20 beats, 13 drawn in Manim.
 
 Weekly hours records live in [`weekly-hours/`](weekly-hours/README.md).
-
-A second explainer, *Agents, On Their Own* (2:14, 10 beats), is built and both cuts are
-rendered. It is held back from this submission and will arrive with week 2. The week-one
-progress report counts it among the week's four masters.
 
 ## Renders
 
