@@ -1,10 +1,11 @@
-# Fellowship renewal request — Saurabh K. — Brutalist / Humanitarians AI
+# Fellowship renewal request — Saurabh K. — Brutalist (complete) to Iacon Optimus Program
 
 **Submitted:** 2026-10-27
 **Requested duration:** 2026-11-01 through 2027-01-31
 **Current agreement ends:** `[TODO — fellow to confirm]`
 **Reporting period covered:** 2026-10-14 through 2026-10-27
 **Role:** AI Software Engineer · **Reports to:** Sanjana R. · **GitHub:** [@K-sau07](https://github.com/K-sau07)
+**Project for the renewal period:** Iacon Optimus Program (approved to move from 2026-11-01)
 
 ---
 
@@ -28,6 +29,10 @@ mechanism and a bullet list cannot show one.
 
 Alongside production: reviewing Brutalist videos and handling upload to the YouTube
 channel for the professor's final approval.
+
+**This completes the Brutalist trial month.** I have been approved to move to the Iacon
+Optimus Program, so this request is to renew onto that project from 2026-11-01. The work
+documented below is the Brutalist trial it rests on.
 
 ---
 
@@ -127,17 +132,24 @@ any public log.**
 
 ---
 
-## Next period — 2026-11-01 through 2027-01-31
+## Next period — 2026-11-01 through 2027-01-31 (Iacon Optimus Program)
+
+Moving to the Iacon Optimus Program from 2026-11-01. Specific deliverables and target
+dates to be agreed with the PM and recorded here before the period starts.
 
 | Deliverable | Target |
 |---|---|
-| 9:16 portrait cut of the week-three Repo Sensei reel, with its own Manim layouts | `[TODO]` |
-| Continue 2 videos per week: one STEM explainer, one progress report | weekly |
-| repo-sensei: finish the answering path so a cited answer can be demonstrated end to end | `[TODO]` |
+| Optimus onboarding, tool installation and access | `[TODO]` |
+| First Optimus work item, scoped with the PM | `[TODO]` |
 | Weekly Frictional log entries kept contemporaneously | weekly |
 | Weekly hours recorded in `weekly-hours/` as the week happens | weekly |
 
----
+Carried over from Brutalist, if wanted rather than assumed:
+
+| Carry-over | Status |
+|---|---|
+| 9:16 portrait cut of the week-three Repo Sensei reel | built figures are 16:9 only; portrait needs its own layouts |
+| repo-sensei answering path, so a cited answer can be shown end to end | personal project, continuing |
 
 ## Outstanding issues
 

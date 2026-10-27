@@ -1,12 +1,20 @@
 # Saurabh K.
 
 **Role:** AI Software Engineer  
-**Project:** Claude / Humanitarians AI explainer and progress videos  
+**Project:** Iacon Optimus Program — moving 2026-11-01  
+**Previous project:** Brutalist — explainer and progress videos (trial month, complete)  
 **GitHub:** [@K-sau07](https://github.com/K-sau07)  
-**Group:** Brutalist team  
+**Organization:** [Humanitarians AI](https://www.humanitarians.ai) (Iacon Optimus Program — Prof. Nik Bear Brown & Dev Shah)  
+**Group:** Brutalist team (through 2026-10)  
 **Reports to:** Sanjana R.  
 **Kokoro voice:** `am_onyx` — chosen for this series and kept across every episode  
 **Last updated:** 2026-10-27
+
+## Status
+
+The Brutalist trial month is complete — six videos across three weeks, all documented in
+this folder. Approved to move to the **Iacon Optimus Program** from 2026-11-01; work from
+that point will be filed in dated folders alongside these weeks.
 
 ## What the role covers
 
