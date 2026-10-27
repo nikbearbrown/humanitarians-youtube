@@ -19,5 +19,3 @@ plus research, scripting, code, and QC.
 | 12 | 17–23 Oct | 20 |
 | 13 | 24–31 Oct | 20 |
 | **Total** | | **260** |
-
-Weeks 5–13 reconstructed 2026-10-26 from the build logs; see the note in RENEWAL.md.
