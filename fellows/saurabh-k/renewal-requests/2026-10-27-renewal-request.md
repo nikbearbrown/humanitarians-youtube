@@ -3,7 +3,7 @@
 **Submitted:** 2026-10-27
 **Requested duration:** 2026-11-01 through 2027-01-31
 **Current agreement ends:** `[TODO — fellow to confirm]`
-**Reporting period covered:** 2026-10-14 through 2026-10-27
+**Reporting period covered:** 2026-10-05 through 2026-10-26
 **Role:** AI Software Engineer · **Reports to:** Sanjana R. · **GitHub:** [@K-sau07](https://github.com/K-sau07)
 **Project for the renewal period:** Iacon Optimus Program (approved to move from 2026-11-01)
 
@@ -12,8 +12,8 @@
 ## Executive summary
 
 Six videos produced in the reporting period — three STEM explainers and three weekly
-progress reports — each delivered as a 4K landscape master, and five of the six also as a
-4K vertical master. Ten masters in total.
+progress reports — each delivered as a 4K landscape master and a 4K vertical master.
+Twelve masters in total.
 
 Every reel is reproducible from this repository: the beat sheet, the sources behind every
 on-screen number, a claim-level fact check, and the output of every quality gate are
@@ -42,12 +42,12 @@ documented below is the Brutalist trial it rests on.
 
 | Week | Video | Runtime | Beats | Evidence |
 |---|---|---|---:|---|
-| 1 | MCP, Explained | 2:41 | 11 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-1/explainer-mcp-explained/README.md) |
-| 1 | Brutalist, Week One | 1:52 | 9 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-1/progress-week-1/README.md) |
-| 2 | Agents, On Their Own | 2:14 | 10 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-2/explainer-agents-on-their-own/README.md) |
-| 2 | Brutalist, Week Two | 2:00 | 9 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-2/progress-week-2/README.md) |
-| 3 | Calling Voice AI | 1:59 | 10 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-3/explainer-calling-voice-ai/README.md) |
-| 3 | Repo Sensei, Week Three | 2:27 | 20 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-3/progress-week-3/README.md) |
+| 5–12 Oct | MCP, Explained | 2:41 | 11 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-1/explainer-mcp-explained/README.md) |
+| 5–12 Oct | Brutalist, Week One | 1:52 | 9 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-1/progress-week-1/README.md) |
+| 13–19 Oct | Agents, On Their Own | 2:14 | 10 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-2/explainer-agents-on-their-own/README.md) |
+| 13–19 Oct | Brutalist, Week Two | 2:00 | 9 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-2/progress-week-2/README.md) |
+| 20–26 Oct | Calling Voice AI | 1:59 | 10 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-3/explainer-calling-voice-ai/README.md) |
+| 20–26 Oct | Repo Sensei, Week Three | 2:27 | 20 | [folder](https://github.com/nikbearbrown/humanitarians-youtube/blob/saurabh-k/2026-10-26/fellows/saurabh-k/week-3/progress-week-3/README.md) |
 
 **Contribution:** sole author of all six — research, beat sheet, narration script, figure
 design, and clearing every gate the toolkit runs before a master is cut.
@@ -98,7 +98,7 @@ monthly average is explicitly not acceptable.
 
 ## Videos and Frictional logs
 
-**Video masters** — all ten exist as rendered files and are pending upload:
+**Video masters** — all twelve are rendered and uploaded:
 <https://drive.google.com/drive/folders/1LEVPhkELBUQBtHTcdykCaaczGpYg38-q>
 
 `[TODO]` Direct YouTube links per video, once uploaded and pre-approved by the PM. Each
@@ -148,20 +148,16 @@ Carried over from Brutalist, if wanted rather than assumed:
 
 | Carry-over | Status |
 |---|---|
-| 9:16 portrait cut of the week-three Repo Sensei reel | built figures are 16:9 only; portrait needs its own layouts |
-| repo-sensei answering path, so a cited answer can be shown end to end | personal project, continuing |
+| repo-sensei answering and fixing paths, so a cited fix can be shown end to end | personal project, continuing |
 
 ## Outstanding issues
 
 1. **Weekly hours are not documented** for any week in this period. This is the largest
    gap against the stated requirements.
 2. **Frictional logs are empty** in all six work folders — an explicit renewal requirement.
-3. **No video is published yet.** Masters exist; YouTube links and PM pre-approval are
-   pending.
-4. **Reporting-week boundaries for weeks 2 and 3 are unconfirmed.** Week 1 is dated from
-   render timestamps; weeks 2 and 3 were both built on 2026-10-26, so the calendar split is
-   a reporting decision, not a fact derivable from the files. Marked TODO throughout.
-5. **The week-3 progress reel has no 9:16 cut.** Its figures are hand-drawn for 16:9 and do
-   not crop to portrait; a vertical version needs its own layouts.
+3. **YouTube links to be added.** All twelve masters are uploaded; the per-video links and
+   PM pre-approval go into this report before submission.
+4. **Reporting weeks** are 5–12, 13–19 and 20–26 October. Render timestamps in the
+   repository fall at the end of each period rather than across it.
 6. **SPEC-ASSERTED rows** in each FACTCHECK are awaiting sign-off against primary
    documentation.
