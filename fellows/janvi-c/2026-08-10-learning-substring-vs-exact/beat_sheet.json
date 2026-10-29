@@ -1,0 +1,439 @@
+{
+  "metadata": {
+    "title": "Why Substring Matching Fails",
+    "slug": "substring-vs-exact",
+    "topic": "Irreducibly Human",
+    "kind": "learning",
+    "skill": "ai-explainer",
+    "brand": "claude-hai",
+    "audience": "Students and practitioners learning to use and report on AI systems",
+    "register": "Plain",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "humanitarians",
+    "style_preset": "claude",
+    "aspect_ratio": "16:9",
+    "captions": false,
+    "channel_title": "@HumanitariansAI",
+    "channel": "@HumanitariansAI",
+    "presenter": "Janvi (AI-generated narration, Kokoro af_bella)",
+    "persona": "Janvi",
+    "fellow": "Janvi Chitroda, AI Data Engineer volunteer, Medhavy project, Humanitarians AI",
+    "week": "Term 2 Week 2",
+    "source": "inbox/term2-week02/term2-week2-video-content.md was named as the source but is NOT on disk; claims traced to inbox/week-01/PROJECT_PIPELINE_REPORT.md and KEYWORD_POPUP_COLLABORATION_SUMMARY.md; narration supplied verbatim and pre-approved by Janvi (2026-10-27)",
+    "pronounce": {
+      "Medhavy": "mɛdˈhɑːviː",
+      "Thejus's": "tˈeɪdʒəsɪz",
+      "Thejus": "tˈeɪdʒəs",
+      "Janvi": "dʒˈɑːnviː"
+    },
+    "note": "STEM/learning film. Thesis: substring matching catches more but catches wrong; exact matching catches right but misses variants — choose by which mistake costs more, and check a sample. The pipeline and the substring→exact decision are Thejus's; Janvi documented it. Narration supplied verbatim and pre-approved by Janvi (2026-10-27).",
+    "approvals": {},
+    "build": {
+      "at": "2026-10-27T15:25:46",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "lane": "bookend",
+      "role_note": "COLD OPEN LAW — Claude composer, ask lands answered. Required intro line + AI-narration disclosure + Thejus credited.",
+      "narration_text": "Hi, I am Janvi and this video is about substring versus exact matching, and how one switch took a filter from about 81,000 articles to about ten thousand. This narration is an AI-generated voice. The pipeline and this decision are my teammate Thejus's; I documented it.",
+      "speed": 0.95,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "A cancer filter on Wikipedia kept about 81,000 articles. Why so many?",
+            "topic": "Irreducibly Human",
+            "segment": "Why Substring Matching Fails",
+            "greeting": "Hi, Janvi",
+            "runningText": "checking how the filter matches…",
+            "output": [
+              "Substring matching: SERS sits inside Composers",
+              "Exact matching cut it to about 10,000",
+              "Then check what exact matching drops"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-27T19:16:02.014139+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Greeting 'Hi, Janvi' with spark; composer empty"
+          },
+          {
+            "at": 0.1,
+            "event": "The ask types into the composer"
+          },
+          {
+            "at": 0.45,
+            "event": "Send arms; running indicator"
+          },
+          {
+            "at": 0.6,
+            "event": "Three answer lines land"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 19.31,
+      "render_duration_s": 19.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "THE TASK",
+      "lane": "manim",
+      "role_note": "Wikipedia page stack '~7 million articles' → filter '468 oncology category terms' (sample terms) → 'a page stays if its categories match'.",
+      "narration_text": "The task: pull cancer-related pages out of English Wikipedia, about seven million articles. The filter is a list of 468 oncology category terms. A page stays if its categories match the list.",
+      "speed": 0.95,
+      "visual_intent": "Wikipedia page stack '~7 million articles' → filter '468 oncology category terms' (sample terms) → 'a page stays if its categories match'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "manim": {
+          "scene_class": "B01_TheTask",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.05,
+            "event": "English Wikipedia stack, ~7 million articles"
+          },
+          {
+            "at": 0.45,
+            "event": "filter: 468 oncology category terms"
+          },
+          {
+            "at": 0.8,
+            "event": "a page stays if its categories match"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 14.59,
+      "render_duration_s": 14.625,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_TheTask",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SUBSTRING",
+      "lane": "manim",
+      "role_note": "Rule card 'term appears anywhere inside a category name → keep'; bar and counter run to ~81,000 articles kept.",
+      "narration_text": "The first version used substring matching: keep a page if a term appears anywhere inside one of its category names. It kept about 81,000 articles.",
+      "speed": 0.95,
+      "visual_intent": "Rule card 'term appears anywhere inside a category name → keep'; bar and counter run to ~81,000 articles kept.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "manim": {
+          "scene_class": "B02_Substring",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.1,
+            "event": "rule card: substring"
+          },
+          {
+            "at": 0.75,
+            "event": "counter to ~81,000"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 10.2,
+      "render_duration_s": 10.208333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_Substring",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SERS",
+      "lane": "manim",
+      "role_note": "Term chip 'SERS' = surface-enhanced Raman spectroscopy (on the list); the word 'Composers' with 'sers' highlighted inside it; 'pages about composers → passed a cancer filter'.",
+      "narration_text": "Here's one reason. SERS, short for surface-enhanced Raman spectroscopy, is a nanotechnology term on the list. But the letters S E R S also sit inside the word Composers. So pages about composers passed a cancer filter.",
+      "speed": 0.95,
+      "visual_intent": "Term chip 'SERS' = surface-enhanced Raman spectroscopy (on the list); the word 'Composers' with 'sers' highlighted inside it; 'pages about composers → passed a cancer filter'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "manim": {
+          "scene_class": "B03_Composers",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.1,
+            "event": "SERS on the list"
+          },
+          {
+            "at": 0.55,
+            "event": "Composers, 'sers' highlighted"
+          },
+          {
+            "at": 0.85,
+            "event": "composers passed a cancer filter"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.34,
+      "render_duration_s": 16.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_Composers",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "EXACT",
+      "lane": "manim",
+      "role_note": "Rule card 'category name equals a term → keep'; the ~81,000 bar shrinks to ~10,000; 'far fewer false matches'.",
+      "narration_text": "Exact matching keeps a page only when a category name equals a term on the list. That cut the set to about ten thousand articles, with far fewer false matches.",
+      "speed": 0.95,
+      "visual_intent": "Rule card 'category name equals a term → keep'; the ~81,000 bar shrinks to ~10,000; 'far fewer false matches'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "manim": {
+          "scene_class": "B04_Exact",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.1,
+            "event": "rule card: exact"
+          },
+          {
+            "at": 0.55,
+            "event": "bar falls ~81,000 → ~10,000"
+          },
+          {
+            "at": 0.85,
+            "event": "far fewer false matches"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 10.67,
+      "render_duration_s": 10.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_Exact",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "THE TRADE",
+      "lane": "manim",
+      "role_note": "Two panels of the same dots (teal = real match, orange = false match): Substring's wide net encloses many dots incl. many false; Exact's narrow net encloses fewer, few false.",
+      "narration_text": "This is the trade between catching more and catching right. Substring matching casts a wide net, so it catches more, including many false matches. Exact matching casts a narrow net.",
+      "speed": 0.95,
+      "visual_intent": "Two panels of the same dots (teal = real match, orange = false match): Substring's wide net encloses many dots incl. many false; Exact's narrow net encloses fewer, few false.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "manim": {
+          "scene_class": "B05_Trade",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.05,
+            "event": "catching more vs catching right"
+          },
+          {
+            "at": 0.35,
+            "event": "Substring: wide net, many false matches"
+          },
+          {
+            "at": 0.85,
+            "event": "Exact: narrow net, few false matches"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 12.12,
+      "render_duration_s": 12.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_Trade",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "WHEN NOT",
+      "lane": "manim",
+      "role_note": "'cancers' vs 'cancer' and 'Lung cancer' vs 'cancer' slip past exact match (missed); fixes: add the variants you need · check a sample of what was dropped.",
+      "narration_text": "When not to rely on exact matching alone: it misses real matches written slightly differently, like plurals or reworded names. If missing an item is costly, add the variants you need, or check a sample of what was dropped.",
+      "speed": 0.95,
+      "visual_intent": "'cancers' vs 'cancer' and 'Lung cancer' vs 'cancer' slip past exact match (missed); fixes: add the variants you need · check a sample of what was dropped.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "build",
+        "manim": {
+          "scene_class": "B06_WhenNot",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.05,
+            "event": "When not to rely on exact matching alone"
+          },
+          {
+            "at": 0.35,
+            "event": "plural: cancers ≠ cancer → missed"
+          },
+          {
+            "at": 0.5,
+            "event": "reworded: Lung cancer ≠ cancer → missed"
+          },
+          {
+            "at": 0.75,
+            "event": "add the variants · check a sample of what was dropped"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 14.57,
+      "render_duration_s": 14.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim:B06_WhenNot",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "YOUR TURN",
+      "lane": "bookend",
+      "role_note": "HANDOFF LAW — suggested prompt typed in the composer.",
+      "narration_text": "Your turn. Take one filter you run on text. Pull twenty items it kept and twenty it dropped, and count the mistakes in each. That tells you which way your filter fails.",
+      "speed": 0.95,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Here are 20 items my filter kept and 20 it dropped. Count the mistakes in each and tell me which way my filter fails.",
+            "topic": "Irreducibly Human",
+            "segment": "Why Substring Matching Fails",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-27T19:17:29.886726+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "'Your turn.' greeting; the suggested prompt types"
+          },
+          {
+            "at": 0.6,
+            "event": "Prompt holds, fully typed"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 10.99,
+      "render_duration_s": 11.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-27T15:25:46"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "lane": "bookend",
+      "role_note": "Humanitarians AI outro: OutroSeries (Week 1 HANDOFF.md B11 fix).",
+      "narration_text": "Why Substring Matching Fails. Humanitarians AI.",
+      "speed": 0.95,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "@HumanitariansAI",
+            "line": "Why Substring Matching Fails."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-27T19:17:47.396241+00:00"
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "@HumanitariansAI eyebrow; title restated"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated Humanitarians AI channel outro (OutroSeries, a fixed tracked component). Its layout is not reel-editable; only underfill and clustered are waived."
+      },
+      "actual_duration_s": 3.63,
+      "render_duration_s": 3.6666666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:OutroSeries",
+        "at": "2026-10-27T15:25:46"
+      }
+    }
+  ]
+}
