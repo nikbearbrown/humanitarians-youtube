@@ -1,0 +1,451 @@
+{
+  "metadata": {
+    "title": "CabStream — Week 1 Progress",
+    "slug": "kavya-cabstream-week1-progress",
+    "topic": "CABSTREAM · PROGRESS",
+    "register": "Teardown",
+    "audience": "Personal project",
+    "brand": "personal",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Konnichiwa, Kavya",
+    "greeting_note": "hello lexicon: Japanese. Presenter is Kavya Mehta, not the claude-liam/Nik Bear Brown persona — no IN-FOR-BEAR framing, no @NikBearBrown branding. ClaudeTitleOutro was deliberately NOT used for the outro because its '@NikBearBrown' handle is hardcoded in the component source (runtime/remotion/src/scenes/ClaudeTitleOutro.tsx:19) with no prop override — using it here would have misattributed this personal project. ClaudeVerdictArtifact (no hardcoded branding) is used as the closing card instead.",
+    "note": "Real progress recap of C:\\Users\\kavya\\OneDrive\\Desktop\\CabStream, grounded in that repo's actual git log (not illustrative/fabricated). CabStream is a real, independently verifiable data-engineering project: Kafka -> Spark/Delta medallion lakehouse on Azure Databricks -> dbt Gold star schema -> Claude-powered Text-to-SQL agent, eventually processing 1.57B NYC taxi/rideshare trips (per the project's own README). This reel covers WEEK 1 ONLY (commits 2026-06-09 through 2026-06-15, confirmed via `git log --all --format='%ad %h %s' --date=short`): Kafka docker setup + producer (taxi-trips topic) on 06-09, Kafka-to-Delta bronze ingestion with verification on 06-11, silver parse/validate/deduplicate job on 06-12, weather-join silver job + dbt Gold layer on 06-15. The large verified metrics (1.57B rows, 99.9% pass rate, 86.9% rideshare dominance, COVID story, the Text-to-SQL agent) all land in LATER commits (ac80e80 'Phase 2 verified metrics' onward, into July/August per the full git log) and are explicitly called out on screen as NOT part of week 1 — this reel does not backdate them. GitHub username on the repo's merged PRs is literally 'Kavya-Mehta', confirming this is the user's own project.",
+    "tags": [
+      "CabStream",
+      "data engineering",
+      "Kafka",
+      "Databricks",
+      "progress update",
+      "Kavya Mehta"
+    ],
+    "voice_kokoro": "am_onyx",
+    "build": {
+      "at": "2026-10-28T20:43:26",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": [
+        "B07: palette=claude but the outro is 'ClaudeVerdictArtifact' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Kavya, and this video is about my first week building CabStream, a real-time data pipeline project. This narration is AI-generated with Kokoro text-to-speech, reading a script I wrote and reviewed. Day one of CabStream was an empty repo. Day six had a Kafka producer, a Delta bronze layer, a deduplicated silver layer with weather joined in, and a dbt gold layer. Here's what actually got built, in order.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Konnichiwa, Kavya",
+            "topic": "CABSTREAM · PROGRESS",
+            "segment": "Week 1 Progress",
+            "command": "Day one: empty repo. Day six: Kafka producer, Delta bronze ingestion, a deduplicated silver layer with weather joined in, and a dbt gold layer. Did a real streaming lakehouse actually get built in a week, or does the commit log just look that way?",
+            "runningText": "pulling the week 1 git log…",
+            "folderLabel": "Kavya Mehta",
+            "output": [
+              "Kafka producer: NYC taxi parquet → \"taxi-trips\" topic",
+              "bronze → silver → gold, all three layers scaffolded",
+              "6 days, from empty repo to a full medallion pipeline"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-29T00:42:45.533648+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 22.1,
+      "render_duration_s": 22.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-28T20:43:26"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Here's the idea: week one wasn't wiring up a demo pipeline. It's the full medallion architecture, scaffolded end to end — bronze, silver, and gold, in six days.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Week one was wiring up a demo pipeline.\nActually — it's the full medallion architecture.\nBronze, silver, and gold, in six days.",
+            "triggerWords": "wiring up a demo pipeline",
+            "replacementWords": "the full medallion architecture",
+            "seed": "cabstream-week1-2201",
+            "fontSize": 58,
+            "ink": "#3D3929"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-27T22:51:46.546279+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "lead_silence_s": 0.8,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 11.01,
+      "render_duration_s": 11.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-28T20:43:26"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "WHAT HAPPENED",
+      "narration_text": "Four stages, one week. A Kafka producer reading NYC taxi parquet and publishing to the taxi-trips topic, day one. Bronze — streamed into Delta Lake, with ingestion verification. Silver — parsed, validated, deduplicated, then joined against weather data. And gold — the dbt layer, scaffolded the same week. Bronze, silver, and gold, all standing by day six.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Four-layer stack, each layer labelled and lit in narration order. 'Bronze: streamed into Delta' takes the terracotta accent.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "empty cream stage, faint stack outline"
+          },
+          {
+            "at": "15%",
+            "event": "'Kafka producer, day one' draws in and labels"
+          },
+          {
+            "at": "35%",
+            "event": "'Bronze: streamed into Delta' stacks on, terracotta"
+          },
+          {
+            "at": "55%",
+            "event": "'Silver: validated and deduped' stacks on, labels"
+          },
+          {
+            "at": "70%",
+            "event": "'Gold: dbt layer added' stacks on, labels"
+          },
+          {
+            "at": "90%",
+            "event": "caption 'six days, one full pipeline' settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "What week one actually shipped.",
+            "layers": [
+              {
+                "title": "Kafka producer, day one",
+                "sub": "NYC taxi parquet to the taxi-trips topic"
+              },
+              {
+                "title": "Bronze: streamed into Delta",
+                "sub": "Kafka to Delta, ingestion verified",
+                "accent": true
+              },
+              {
+                "title": "Silver: validated and deduped",
+                "sub": "parse, validate, dedupe, then weather joined"
+              },
+              {
+                "title": "Gold: dbt layer added",
+                "sub": "star schema scaffold, same week"
+              }
+            ],
+            "caption": "six days, one full pipeline"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-27T22:53:52.950117+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 25,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 23.08,
+      "render_duration_s": 23.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ClaudeScienceLayerStack",
+        "at": "2026-10-28T20:43:26"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CHECK 1",
+      "narration_text": "Here's the actual log, not a summary. June ninth: Kafka docker setup, then the producer. June eleventh: Kafka to Delta, bronze ingestion, verified. June twelfth: the silver job, parse, validate, deduplicate. June fifteenth: weather join, then the dbt gold layer. Six days, in that order.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Output-only terminal card, no source shown. Four real dated commits print in chronological order.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "terminal window, 'GIT LOG — WEEK 1' header types"
+          },
+          {
+            "at": "25%",
+            "event": "'06-09: Kafka docker setup + producer (taxi-trips topic)' prints"
+          },
+          {
+            "at": "50%",
+            "event": "'06-11: Kafka to Delta bronze ingestion, verified' prints, terracotta wash"
+          },
+          {
+            "at": "70%",
+            "event": "'06-12: silver job: parse, validate, deduplicate' prints"
+          },
+          {
+            "at": "90%",
+            "event": "'06-15: weather join (silver) + dbt gold layer' prints; all hold"
+          }
+        ],
+        "remotion": {
+          "pattern": "ShellSession",
+          "props": {
+            "title": "week 1 — the real log",
+            "host": "kavya",
+            "path": "~/CabStream",
+            "command": "git log --all --format=\"%ad %s\" --date=short",
+            "caret": false,
+            "out": [
+              {
+                "text": "GIT LOG — WEEK 1",
+                "cls": "dim"
+              },
+              {
+                "text": "06-09: Kafka docker setup + producer (taxi-trips topic)",
+                "cls": ""
+              },
+              {
+                "text": "06-11: Kafka to Delta bronze ingestion, verified",
+                "cls": "hi"
+              },
+              {
+                "text": "06-12: silver job: parse, validate, deduplicate",
+                "cls": ""
+              },
+              {
+                "text": "06-15: weather join (silver) + dbt gold layer",
+                "cls": ""
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-27T22:58:27.945635+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.68,
+      "render_duration_s": 16.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ShellSession",
+        "at": "2026-10-28T20:43:26"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CHECK 2",
+      "narration_text": "What week one didn't have yet: no scale numbers. The one-point-five-seven-billion rows, the ninety-nine-point-nine percent pass rate, the COVID story — all of that came later, in a phase that gets its own commit calling out the verified metrics. Week one built the shape of the pipeline. It hadn't run it at scale yet.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Output-only terminal card, no source shown. The honest limits of week 1's claims print in sequence.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "terminal window, 'WHAT WEEK 1 DIDN'T HAVE YET' header types"
+          },
+          {
+            "at": "30%",
+            "event": "'no verified row counts (1.57B came later, Phase 2)' prints, terracotta wash"
+          },
+          {
+            "at": "60%",
+            "event": "'no Text-to-SQL agent (added after Gold was stable)' prints"
+          },
+          {
+            "at": "85%",
+            "event": "'week 1 built the shape. scale came after.' prints; all hold"
+          }
+        ],
+        "remotion": {
+          "pattern": "ShellSession",
+          "props": {
+            "title": "week 1 — the honest caveat",
+            "host": "kavya",
+            "path": "~/CabStream",
+            "command": "git log --all --format=\"%ad %s\" --date=short | grep -i phase",
+            "caret": false,
+            "out": [
+              {
+                "text": "WHAT WEEK 1 DIDN'T HAVE YET",
+                "cls": "dim"
+              },
+              {
+                "text": "no verified row counts (1.57B came later, Phase 2)",
+                "cls": "hi"
+              },
+              {
+                "text": "no Text-to-SQL agent (added after Gold was stable)",
+                "cls": ""
+              },
+              {
+                "text": "week 1 built the shape. scale came after.",
+                "cls": ""
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-27T23:02:53.937816+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 18.16,
+      "render_duration_s": 18.166666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ShellSession",
+        "at": "2026-10-28T20:43:26"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "VERDICT",
+      "narration_text": "Recap: a Kafka producer, Bronze Delta ingestion, Silver validation and dedup, a weather join, and a dbt Gold layer — all in six days. The commit log confirms the order: producer first, then bronze, then silver, then weather, then gold. The honest caveat: no scale numbers yet — the billion-row verification came in a later phase. Week one built the shape of the thing.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "CabStream — Week 1 Progress",
+            "artifactHeading": "What actually shipped",
+            "artifactLines": [
+              "Kafka producer, Bronze Delta ingestion, Silver validation + dedup, weather join, dbt Gold — all in six days.",
+              "The commit log confirms the order: producer first, then bronze, then silver, then weather, then gold.",
+              "The honest caveat: no scale numbers yet — the billion-row verification came in a later phase.",
+              "Week one built the shape of the pipeline, not yet its scale."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-27T23:06:12.055393+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 27,
+      "lead_silence_s": 0.5,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 22.1,
+      "render_duration_s": 22.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-28T20:43:26"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Look at your own first week on a project. Ask Claude exactly this: look at my commit history for the first week of this project, help me find the actual order things got built in, and tell me honestly what I was claiming versus what I'd actually verified at each point.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · PROGRESS",
+            "segment": "Week 1 Progress",
+            "command": "Look at my commit history for the first week of this project. Help me find the actual order things got built in, and tell me honestly what I was claiming versus what I'd actually verified at each point.",
+            "runningText": "paste this into Claude before writing the next update…",
+            "folderLabel": "Kavya Mehta",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-27T23:09:04.117552+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 21,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 14.49,
+      "render_duration_s": 14.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-28T20:43:26"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration_text": "CabStream, week one. Kavya Mehta.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "CabStream — Week 1 Progress",
+            "artifactHeading": "Built by",
+            "artifactLines": [
+              "Kavya Mehta"
+            ]
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-27T23:12:16.562593+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 2.86,
+      "render_duration_s": 2.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-28T20:43:26"
+      }
+    }
+  ]
+}

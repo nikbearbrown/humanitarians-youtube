@@ -1,0 +1,627 @@
+{
+  "metadata": {
+    "title": "OpenTelemetry for AI Agents",
+    "slug": "kavya-opentelemetry-ai-agents",
+    "topic": "AI AGENTS · OBSERVABILITY",
+    "register": "Teardown",
+    "audience": "Practitioners building AI agents",
+    "brand": "personal",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hi, Kavya",
+    "greeting_note": "English greeting so the composer matches the required submission intro spoken in B00 (docs/FELLOWS-SUBMISSION.md). Presenter is Kavya Mehta: no IN-FOR-BEAR framing, no @NikBearBrown chip. ClaudeTitleOutro hardcodes '@NikBearBrown', so the closing card is ClaudeVerdictArtifact.",
+    "ai_disclosure": "Narration is AI-generated (Kokoro am_onyx, local) reading a script written and reviewed by Kavya Mehta. Said aloud in B00 and shown on the B08 card.",
+    "note": "STEM/AI topic film. Failure scenario adapted from the unrendered draft youtube/claude-liam-opentelemetry-ai-agents, whose figures were authored; this film shows the verbatim stdout of demo/otel_demo.py (stdlib only, deterministic, saved in demo/otel_demo_output.txt). The agent and search tool are scripted and timings come from a synthetic clock. The tracer is a small stdlib recorder shaped like OpenTelemetry's span model with GenAI semantic-convention names, NOT the OpenTelemetry SDK (not installed; no download was made). Both limits are said aloud (B03, B05) and printed on screen.",
+    "tags": [
+      "OpenTelemetry",
+      "AI agents",
+      "observability",
+      "tracing",
+      "GenAI semantic conventions",
+      "Humanitarians AI",
+      "Kavya Mehta"
+    ],
+    "build": {
+      "at": "2026-10-28T21:07:59",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B08: palette=claude but the outro is 'ClaudeVerdictArtifact' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Kavya, and this video is about OpenTelemetry for AI agents. Quick note: the voice you're hearing is AI, Kokoro text-to-speech reading a script I wrote and checked. When an agent gives a wrong answer, the log usually says it finished, and that something looked off. So what would it take to see which step actually broke?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Kavya",
+            "topic": "AI AGENTS · OBSERVABILITY",
+            "segment": "OpenTelemetry for AI Agents",
+            "command": "My research agent answered with a citation that doesn't exist. The log just says it finished and the citation wasn't found. How do I see which step actually broke?",
+            "runningText": "tracing the same run as spans…",
+            "folderLabel": "Kavya Mehta",
+            "output": [
+              "plain log: finished, 1 warning, no failing step",
+              "trace: 5 spans; search_docs returned 0 hits in 11 ms",
+              "the fix starts at the index name"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-29T00:45:08.306823+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.94,
+      "render_duration_s": 16.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Here's the idea: OpenTelemetry for agents isn't more logging. It records every step as a linked, timed span, so a wrong answer comes with the path that produced it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Agent tracing is just more logging.\nEach step, timed and linked.",
+            "triggerWords": "just more logging",
+            "replacementWords": "the agent's flight recorder",
+            "seed": "kavya-otel-agents-5821",
+            "charMs": 32,
+            "hesitateBetween": 6,
+            "hesitateWithin": 0,
+            "mistakeRate": 2,
+            "fontSize": 88,
+            "ink": "#3D3929",
+            "contextTitle": "OpenTelemetry for AI Agents",
+            "brandLabel": "Kavya Mehta",
+            "brandLabelSize": 44
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-29T00:47:26.576231+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "lead_silence_s": 0.8,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 9.84,
+      "render_duration_s": 9.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "FRAMEWORK",
+      "narration_text": "Strip OpenTelemetry for agents down and it's four parts. Spans: one per model call, tool call, or retrieval. Trace context, which links every span in one run. Attributes, the structured facts on each span, like tokens, tool name, or hit count. And exporters, so the same trace opens in whichever backend you use. None of it is tied to one vendor.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "AGENT RUN enters a framed TRACE holding four part cards that appear as each is named; 'Attributes' carries the one terracotta accent (the demo's evidence lives there); ANY BACKEND leaves at the bottom; footer 'None of it is tied to one vendor.'",
+        "show": [
+          {
+            "at": "0%",
+            "event": "spark line; AGENT RUN pill; empty dashed frame labelled A TRACE"
+          },
+          {
+            "at": "Spans:",
+            "event": "'Spans' card"
+          },
+          {
+            "at": "Trace context",
+            "event": "'Trace context' card"
+          },
+          {
+            "at": "Attributes",
+            "event": "'Attributes' card, terracotta"
+          },
+          {
+            "at": "And exporters",
+            "event": "'Exporters' card; arrow to ANY BACKEND"
+          },
+          {
+            "at": "None of it",
+            "event": "footer 'None of it is tied to one vendor.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "HarnessParts",
+          "props": {
+            "sparkLine": "What a trace is made of.",
+            "inputLabel": "agent run",
+            "frameLabel": "a trace",
+            "outputLabel": "any backend",
+            "parts": [
+              {
+                "label": "Spans",
+                "desc": "one per model or tool call"
+              },
+              {
+                "label": "Trace context",
+                "desc": "links every span in a run"
+              },
+              {
+                "label": "Attributes",
+                "desc": "tokens, tool name, hit count",
+                "accent": true
+              },
+              {
+                "label": "Exporters",
+                "desc": "OTLP to the backend you pick"
+              }
+            ],
+            "revealAt": [
+              0.155,
+              0.305,
+              0.45,
+              0.695
+            ],
+            "footer": "None of it is tied to one vendor.",
+            "footerAt": 0.895,
+            "durationSeconds": 19.18
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-29T00:49:34.070073+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 21,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 19.18,
+      "render_duration_s": 19.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:HarnessParts",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "EXAMPLE-BAD",
+      "narration_text": "So I ran it. A scripted research agent gets asked about churn in the Q3 report. Here's what a plain log keeps: it finished in about two point four seconds, it answered that churn fell to three point one percent, and it warned the citation wasn't found. Which step failed? The log never recorded it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Real terminal run of demo/otel_demo.py log; verbatim stdout, each line timed to the narration; the 'which step failed? not recorded' line carries the one highlight.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "terminal; 'python otel_demo.py log' types"
+          },
+          {
+            "at": "A scripted research agent",
+            "event": "question + scripted line print dim"
+          },
+          {
+            "at": "Here's what a plain log",
+            "event": "'PLAIN LOG' header"
+          },
+          {
+            "at": "it finished",
+            "event": "'INFO  agent finished in 2,403 ms'"
+          },
+          {
+            "at": "it answered",
+            "event": "'INFO  answer: Churn fell to 3.1% (Q3 report, p.4)'"
+          },
+          {
+            "at": "it warned",
+            "event": "'WARN  citation not found in sources'"
+          },
+          {
+            "at": "Which step failed",
+            "event": "'which step failed? not recorded' highlighted"
+          }
+        ],
+        "remotion": {
+          "pattern": "HarnessTerminal",
+          "props": {
+            "sparkLine": "What a plain log keeps.",
+            "title": "research agent, plain log",
+            "host": "kavya",
+            "path": "~/otel-agents/demo",
+            "command": "python otel_demo.py log",
+            "out": [
+              {
+                "text": "question: What did the Q3 report say about churn?",
+                "cls": "dim",
+                "at": 0.034
+              },
+              {
+                "text": "agent + search: scripted; tracer: stdlib, OTel-shaped",
+                "cls": "dim",
+                "at": 0.121
+              },
+              {
+                "text": "",
+                "cls": "",
+                "at": 0.258
+              },
+              {
+                "text": "PLAIN LOG",
+                "cls": "",
+                "at": 0.258
+              },
+              {
+                "text": "INFO  agent finished in 2,403 ms",
+                "cls": "",
+                "at": 0.362
+              },
+              {
+                "text": "INFO  answer: Churn fell to 3.1% (Q3 report, p.4)",
+                "cls": "",
+                "at": 0.513
+              },
+              {
+                "text": "WARN  citation not found in sources",
+                "cls": "",
+                "at": 0.715
+              },
+              {
+                "text": "which step failed? not recorded",
+                "cls": "hi",
+                "at": 0.839
+              }
+            ],
+            "durationSeconds": 15.85
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-29T00:51:17.610375+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 15.85,
+      "render_duration_s": 15.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:HarnessTerminal",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "EXAMPLE-GOOD",
+      "narration_text": "Same run, as a trace. Five spans, each with its time and attributes. Planning took six hundred ten milliseconds. Then search docs ran in eleven milliseconds with zero hits, because the index name has a typo. The answer step still cited page four, from zero sources. The trace points straight at the search call.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Real terminal run of demo/otel_demo.py trace; verbatim stdout as an indented span tree, each span timed to the narration; the search_docs span (0 hits) carries the one highlight.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "terminal; 'python otel_demo.py trace' types; question + scripted lines dim"
+          },
+          {
+            "at": "Five spans",
+            "event": "'TRACE 5b7c0316  (5 spans)' + root span"
+          },
+          {
+            "at": "Planning took",
+            "event": "'chat demo-model  610 ms' + tokens"
+          },
+          {
+            "at": "Then search docs",
+            "event": "'execute_tool search_docs  11 ms  <-- 0 hits' highlighted + index/hits"
+          },
+          {
+            "at": "The answer step",
+            "event": "answer span + 'sources=0'"
+          },
+          {
+            "at": "The trace points",
+            "event": "check_citations span with ERROR"
+          }
+        ],
+        "remotion": {
+          "pattern": "HarnessTerminal",
+          "props": {
+            "sparkLine": "The same run, as a trace.",
+            "title": "research agent, trace",
+            "host": "kavya",
+            "path": "~/otel-agents/demo",
+            "command": "python otel_demo.py trace",
+            "out": [
+              {
+                "text": "agent + search: scripted; tracer: stdlib, OTel-shaped",
+                "cls": "dim",
+                "at": 0.04
+              },
+              {
+                "text": "TRACE 5b7c0316  (5 spans)",
+                "cls": "",
+                "at": 0.061
+              },
+              {
+                "text": "invoke_agent research_agent  2,403 ms",
+                "cls": "",
+                "at": 0.061
+              },
+              {
+                "text": "  chat demo-model  610 ms",
+                "cls": "",
+                "at": 0.212
+              },
+              {
+                "text": "    tokens 812/96",
+                "cls": "dim",
+                "at": 0.212
+              },
+              {
+                "text": "  execute_tool search_docs  11 ms  <-- 0 hits",
+                "cls": "hi",
+                "at": 0.353
+              },
+              {
+                "text": "    index=q3-reprots, hits=0",
+                "cls": "dim",
+                "at": 0.546
+              },
+              {
+                "text": "  chat demo-model  1,780 ms",
+                "cls": "",
+                "at": 0.659
+              },
+              {
+                "text": "    tokens 230/58, sources=0",
+                "cls": "dim",
+                "at": 0.784
+              },
+              {
+                "text": "  check_citations  2 ms  <-- ERROR",
+                "cls": "",
+                "at": 0.845
+              },
+              {
+                "text": "    error=cites p.4, 0 sources retrieved",
+                "cls": "dim",
+                "at": 0.845
+              }
+            ],
+            "durationSeconds": 17.34
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-29T00:53:08.571583+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.34,
+      "render_duration_s": 17.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:HarnessTerminal",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "FALSIFIABILITY",
+      "narration_text": "To be fair, tracing shows the failure. It doesn't fix it; you still have to correct that index name. It also only sees what you instrumented: a step without a span is invisible. And my demo used a scripted agent and a small tracer shaped like OpenTelemetry, not the real SDK. What it does give you: which step broke, where the time went, and what each call returned.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Two-zone card in narration order: right 'Tracing can't' (fix the bug for you, trace what you skipped) first, then the demo-limit footer, then left 'Tracing shows' (which step broke, where the time went, what each call returned). Terracotta divider between zones.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "spark line; card with both zone headers"
+          },
+          {
+            "at": "It doesn't fix it",
+            "event": "divider draws; right zone: 'fix the bug for you'"
+          },
+          {
+            "at": "It also only sees",
+            "event": "right zone: 'trace what you skipped'"
+          },
+          {
+            "at": "And my demo",
+            "event": "footer 'Demo: scripted agent, OTel-shaped stdlib tracer, not the SDK.'"
+          },
+          {
+            "at": "What it does give you",
+            "event": "left zone checks in"
+          }
+        ],
+        "remotion": {
+          "pattern": "HarnessBoundaryCard",
+          "props": {
+            "sparkLine": "What tracing can’t do.",
+            "leftLabel": "Tracing shows",
+            "leftItems": [
+              "which step broke",
+              "where the time went",
+              "what each call returned"
+            ],
+            "rightLabel": "Tracing can’t",
+            "rightItems": [
+              "fix the bug for you",
+              "trace what you skipped"
+            ],
+            "footer": "Demo: scripted agent, OTel-shaped stdlib tracer, not the SDK.",
+            "leftWindow": [
+              0.744,
+              0.93
+            ],
+            "rightWindow": [
+              0.097,
+              0.266
+            ],
+            "dividerAt": 0.097,
+            "footerAt": 0.476,
+            "durationSeconds": 18.75
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-29T00:55:08.222547+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 18.75,
+      "render_duration_s": 18.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:HarnessBoundaryCard",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration_text": "Recap. OpenTelemetry for agents is spans, trace context, attributes, and exporters. The plain log said the run finished, with one warning. The trace showed the search call returning zero hits in eleven milliseconds, and the answer citing a page anyway. The boundary: it finds the failure, it doesn't fix it. So before you blame the model, trace the run.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "OpenTelemetry for AI Agents",
+            "artifactHeading": "The verdict",
+            "artifactLines": [
+              "OTel for agents = spans + trace context + attributes + exporters.",
+              "Plain log: finished, one warning, no failing step.",
+              "Trace: search_docs ran 11 ms with 0 hits; the answer cited p.4 anyway.",
+              "Boundary: it finds the failure, it doesn't fix it or see uninstrumented steps."
+            ],
+            "lectureLayout": true
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-29T00:58:19.165249+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "lead_silence_s": 0.5,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 18.54,
+      "render_duration_s": 18.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Ask Claude exactly this: look at the last agent failure I couldn't explain. Help me add OpenTelemetry spans around each model call, tool call, and retrieval step, with the attributes I'd need to find it next time. Watch which attributes it suggests. Hit counts and token use are the ones that catch quiet failures.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · OBSERVABILITY",
+            "segment": "OpenTelemetry for AI Agents",
+            "command": "Look at the last agent failure I couldn't explain. Help me add OpenTelemetry spans around each model call, tool call, and retrieval step, with the attributes I'd need to find it next time.",
+            "runningText": "paste this into Claude and run it on your own agent…",
+            "folderLabel": "Kavya Mehta",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-29T01:01:07.992293+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 17.34,
+      "render_duration_s": 17.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-28T21:07:59"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "OpenTelemetry for AI agents. Kavya Mehta.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "OpenTelemetry for AI Agents",
+            "artifactHeading": "Made by",
+            "artifactLines": [
+              "Kavya Mehta",
+              "Narration: AI voice (Kokoro), reading my script"
+            ],
+            "lectureLayout": true
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-29T01:04:33.224068+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 4,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 3.71,
+      "render_duration_s": 3.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-28T21:07:59"
+      }
+    }
+  ]
+}
