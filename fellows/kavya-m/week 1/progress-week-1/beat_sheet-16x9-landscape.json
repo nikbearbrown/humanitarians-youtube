@@ -1,0 +1,528 @@
+{
+  "metadata": {
+    "title": "Brutalist Progress — Week 1",
+    "slug": "kavya-brutalist-week1-progress",
+    "topic": "BRUTALIST · PROGRESS",
+    "register": "Teardown",
+    "audience": "Personal project",
+    "brand": "personal",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hi, Kavya",
+    "greeting_note": "English greeting, not a world-language hello — matches the required submission intro line spoken aloud in B00 ('Hi, I am Kavya...'). Presenter is Kavya Mehta, not the claude-liam/Nik Bear Brown persona: no IN-FOR-BEAR framing, no @NikBearBrown branding anywhere in this reel. ClaudeTitleOutro was deliberately NOT used for the outro because its '@NikBearBrown' handle is hardcoded in the component source (runtime/remotion/src/scenes/ClaudeTitleOutro.tsx:19) with no prop override — using it here would misattribute this personal project. ClaudeVerdictArtifact (no hardcoded branding) is used as the closing card instead, same pattern as kavya-cabstream-week1-progress.",
+    "note": "ai-explainer recap of this session's own real, verifiable work setting up and debugging the Brutalist toolkit on Kavya's machine — not an illustrative/constructed example. Every bug cited is real and traced to an actual file/line fixed this session: pronunciation.py:23 (UnicodeDecodeError, cp1252 default encoding), remotion_scenes.py (bare 'npx' string -> WinError2, fixed via shutil.which), runtime/remotion node_modules (never installed, ran npm install), compile.py's drawtext fontfile= (Windows drive-letter colon broke the ffmpeg filtergraph parser, fixed via relpath), runtime/qc/final_frame_check.py (BURN_IN_EXCLUDE only covered the bottom-left per-beat label, not the top-right review timecode, causing every beat to false-positive as edge-bleed), and a ReqBars authoring error (multiplier values fed into a 0-100%-scale component, overflowing the bar). No code beats -- output-only cards. Built to satisfy docs/FELLOWS-SUBMISSION.md's required-content rules: the required intro line ('Hi, I am [name] and this video is about...') opens B00's narration verbatim, AI-narration is disclosed in the same beat, and this reel renders native 16:9 (3840x2160) and 9:16 (2160x3840) rather than a crop of one master. Brutalist version/commit for this build should be recorded in the submission README against the repo's current HEAD at build time.",
+    "tags": [
+      "Brutalist",
+      "toolkit",
+      "pipeline",
+      "debugging",
+      "progress update",
+      "Kavya Mehta"
+    ],
+    "voice_kokoro": "am_onyx",
+    "build": {
+      "at": "2026-10-28T15:31:23",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B08: palette=claude but the outro is 'ClaudeVerdictArtifact' � OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Kavya, and this video is about my first week setting up and debugging the Brutalist video pipeline. This narration is AI-generated with Kokoro text-to-speech, reading a script I wrote and reviewed. Week one wasn't a clean build — it was six small breaks, each one traced and fixed. Here's what actually happened, and what's true about the pipeline now.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Kavya",
+            "topic": "BRUTALIST · PROGRESS",
+            "segment": "Week 1 Progress",
+            "command": "Week 1 with Brutalist: I set up the toolkit, authored a reel, and watched it break six different ways before it rendered clean. What actually happened — and is the pipeline solid now?",
+            "runningText": "pulling the week's build log…",
+            "folderLabel": "Kavya Mehta",
+            "output": [
+              "2 missing dependencies, found and installed",
+              "6 real bugs, fixed at the root",
+              "2 final videos shipped, zero blocking defects"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-28T18:38:09.486064+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 19.39,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 19.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Here's the idea: week one wasn't smooth — it was six breaks in the pipeline, each traced to its real cause and fixed, not worked around.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Week one was a smooth, working pipeline.\nActually — six breaks, fixed at the root.\nThat's what makes it trustworthy now.",
+            "triggerWords": "a smooth, working pipeline",
+            "replacementWords": "six breaks, fixed at the root",
+            "seed": "kavya-week1-progress-4102",
+            "fontSize": 64,
+            "ink": "#3D3929"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-28T18:41:14.415768+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "actual_duration_s": 9.22,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 9.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "FRAMEWORK",
+      "narration_text": "Strip the pipeline down and it's four stages. A beat sheet, authored by hand. Kokoro audio, which measures real durations before anything else renders. Remotion render and ffmpeg compile. And QC gates that check type, layout, and facts before anything ships. Every one of these four broke at least once this week.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Phase-flow builds left to right in narration order; Kokoro audio lands in terracotta as the one accent. Footer names the week's actual failure count.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "eyebrow and title; empty flow rail"
+          },
+          {
+            "at": "25%",
+            "event": "IDEA → 'Beat sheet' draws in"
+          },
+          {
+            "at": "40%",
+            "event": "'Kokoro audio' lands in terracotta"
+          },
+          {
+            "at": "55%",
+            "event": "'Render + compile' draws in"
+          },
+          {
+            "at": "65%",
+            "event": "'QC gates' → SHIPPED VIDEO completes the flow"
+          },
+          {
+            "at": "85%",
+            "event": "footer 'four stages, six breaks' fades up and holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "WEEK 1 · BRUTALIST",
+            "title": "One pipeline, four stages, six breaks.",
+            "inputLabel": "IDEA",
+            "outputLabel": "SHIPPED VIDEO",
+            "phases": [
+              {
+                "label": "Beat sheet",
+                "desc": "narration + shot list, authored by hand"
+              },
+              {
+                "label": "Kokoro audio",
+                "desc": "measures real durations first",
+                "accent": true
+              },
+              {
+                "label": "Render + compile",
+                "desc": "Remotion scenes, ffmpeg stitch"
+              },
+              {
+                "label": "QC gates",
+                "desc": "type-lock, visual check, fact-check"
+              }
+            ],
+            "footerNote": "Four stages. Six real breaks.",
+            "sparkLine": "The shape of the pipeline."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-28T18:44:27.823832+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 26,
+      "actual_duration_s": 17.39,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 17.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "WHAT WE BUILT",
+      "narration_text": "Four things actually happened. The toolkit itself needed setup — nothing was pre-installed. The first reel got authored end to end. Six real pipeline bugs surfaced and got fixed, not patched around. And two finished videos shipped, sixteen-by-nine and nine-by-sixteen, both clean.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Four-layer stack, each layer labelled and lit in narration order. 'First reel authored' takes the terracotta accent.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "empty cream stage, faint stack outline"
+          },
+          {
+            "at": "15%",
+            "event": "'Toolkit setup' draws in and labels"
+          },
+          {
+            "at": "35%",
+            "event": "'First reel authored' stacks on, terracotta"
+          },
+          {
+            "at": "55%",
+            "event": "'Six pipeline bugs fixed' stacks on, labels"
+          },
+          {
+            "at": "70%",
+            "event": "'Two formats shipped' stacks on, labels"
+          },
+          {
+            "at": "90%",
+            "event": "caption 'one week, four milestones' settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "What week one actually produced.",
+            "layers": [
+              {
+                "title": "Toolkit setup",
+                "sub": "Kokoro voice model, ffmpeg, Node deps — none pre-installed"
+              },
+              {
+                "title": "First reel authored",
+                "sub": "\"Schema Scout\" — 10 beats, ai-explainer shape",
+                "accent": true
+              },
+              {
+                "title": "Six pipeline bugs fixed",
+                "sub": "encoding, subprocess, QC false positives — at the root"
+              },
+              {
+                "title": "Two formats shipped",
+                "sub": "16:9 and 9:16, zero blocking defects"
+              }
+            ],
+            "caption": "one week, four milestones"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-28T18:46:58.344362+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "actual_duration_s": 16.28,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 16.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeScienceLayerStack",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE BREAKS · PART 1",
+      "narration_text": "Three of the six, to start. A Windows file-encoding crash reading a pronunciation table. A silent failure because Windows needs npx-dot-c-m-d, not bare npx. And Node dependencies that were simply never installed — the setup script had skipped that step.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Output-only terminal card, no source shown. Three numbered findings print in sync with narration.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "terminal window, 'WEEK 1 — BUGS FOUND' header types"
+          },
+          {
+            "at": "25%",
+            "event": "'1. UnicodeDecodeError' prints"
+          },
+          {
+            "at": "50%",
+            "event": "'2. WinError 2: npx is npx.cmd on Windows' prints, terracotta wash"
+          },
+          {
+            "at": "75%",
+            "event": "'3. node_modules/: never installed' prints; all three hold"
+          }
+        ],
+        "remotion": {
+          "pattern": "ShellSession",
+          "props": {
+            "title": "this week — bugs found (1/2)",
+            "host": "kavya",
+            "path": "~/brutalist",
+            "command": "git log --oneline -- runtime/scripts runtime/qc",
+            "caret": false,
+            "out": [
+              {
+                "text": "WEEK 1 — BUGS FOUND",
+                "cls": "dim"
+              },
+              {
+                "text": "1. UnicodeDecodeError: pronunciation.py (cp1252 vs utf-8)",
+                "cls": ""
+              },
+              {
+                "text": "2. WinError 2: npx is npx.cmd on Windows, not npx",
+                "cls": "hi"
+              },
+              {
+                "text": "3. node_modules/: never installed by setup",
+                "cls": ""
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-28T19:01:14.255539+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "actual_duration_s": 16.41,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 16.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ShellSession",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "THE BREAKS · PART 2",
+      "narration_text": "The other three. An ffmpeg filter choking on a Windows drive-letter colon in a font path. A visual QC checker flagging every single beat as broken — it never excluded the review timestamp from its own corner check. And a chart fed the wrong kind of number, overflowing its own frame. Each one traced to its actual line, then fixed.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "visual_intent": "Output-only terminal card, no source shown. Three more numbered findings print in sync with narration.",
+        "show": [
+          {
+            "at": "0%",
+            "event": "terminal window, 'WEEK 1 — BUGS FOUND' header types"
+          },
+          {
+            "at": "20%",
+            "event": "'4. ffmpeg: drive-letter colon broke the filter' prints"
+          },
+          {
+            "at": "45%",
+            "event": "'5. GATE V: review timecode never excluded' prints, terracotta wash"
+          },
+          {
+            "at": "70%",
+            "event": "'6. chart: 123x fed into a 0-100% scale' prints"
+          },
+          {
+            "at": "90%",
+            "event": "all six lines hold together"
+          }
+        ],
+        "remotion": {
+          "pattern": "ShellSession",
+          "props": {
+            "title": "this week — bugs found (2/2)",
+            "host": "kavya",
+            "path": "~/brutalist",
+            "command": "git diff --stat",
+            "caret": false,
+            "out": [
+              {
+                "text": "WEEK 1 — BUGS FOUND",
+                "cls": "dim"
+              },
+              {
+                "text": "4. ffmpeg: C:\\... drive-letter colon broke the filter",
+                "cls": ""
+              },
+              {
+                "text": "5. GATE V: review timecode never excluded from its own check",
+                "cls": "hi"
+              },
+              {
+                "text": "6. chart: fed a 123x multiplier into a 0-100% scale",
+                "cls": ""
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-28T19:20:12.136229+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "actual_duration_s": 18.94,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 18.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ShellSession",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration_text": "Recap: the toolkit needed real setup, nothing was pre-installed. Six bugs surfaced across audio, render, compile, and QC — each one fixed at the root, not patched over. One reel shipped end to end, two formats, zero blocking defects. The honest read: a working pipeline isn't one that never breaks. It's one where every break actually gets found.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "Brutalist Progress — Week 1",
+            "artifactHeading": "What actually happened",
+            "artifactLines": [
+              "The pipeline needed setup — Kokoro, ffmpeg, and Node deps were not pre-installed.",
+              "Six real bugs surfaced across audio, render, compile, and QC — each fixed at its root.",
+              "One reel authored end to end: 10 beats, landscape and portrait, zero blocking defects.",
+              "The honest read: a working pipeline isn't one that never breaks — it's one where every break gets found."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-28T19:24:30.868559+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 26,
+      "lead_silence_s": 0.5,
+      "actual_duration_s": 19.54,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 19.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Before you trust any pipeline's green checkmark — yours or anyone else's — ask Claude exactly this: before I trust any green checkmark, help me find the actual log line that proves it, not just the summary that says done. Run it on whatever you're building next.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · PROGRESS",
+            "segment": "Week 1 Progress",
+            "command": "I'm about to trust a build pipeline's green checkmark. Before I do, help me find the actual log line that proves it worked — not just the summary that says 'done'.",
+            "runningText": "paste this into Claude before you trust the checkmark…",
+            "folderLabel": "Kavya Mehta",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-28T19:27:43.799524+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "actual_duration_s": 16.79,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 16.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-28T15:31:23"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Brutalist, week one. Kavya Mehta.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "Brutalist Progress — Week 1",
+            "artifactHeading": "Built by",
+            "artifactLines": [
+              "Kavya Mehta"
+            ]
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-28T19:30:24.120790+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "actual_duration_s": 2.86,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 2.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-28T15:31:23"
+      }
+    }
+  ]
+}
