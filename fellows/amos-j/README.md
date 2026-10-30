@@ -1,14 +1,19 @@
 # Amos J.
 
 **Role:** ML Engineer  
-**Project:** _to be filled in_  
+**Project:** RAMAN EFFECT  
 **GitHub:** [@amosjames334](https://github.com/amosjames334)
 
 ## What's in this folder
 
-No work in this folder yet. Each piece of work gets its own dated,
-lowercase-kebab subfolder — `YYYY-MM-DD-short-slug/` — holding its
-`beat_sheet.json`, README, sources and build assets.
+| Week | Frictional log |
+| --- | --- |
+| Week 1: September 14 – 18, 2026 | [FRICTIONAL.md](2026-09-14-ramanspy-reproducibility/FRICTIONAL.md) |
+| Week 2: September 21 – 25, 2026 | [FRICTIONAL.md](2026-09-25-experiments-5-9/FRICTIONAL.md) |
+| Week 3: September 28 – October 2, 2026 | [FRICTIONAL.md](2026-10-01-foundation-spec-plan1/FRICTIONAL.md) |
+| Week 4: October 5 – 9, 2026 | [FRICTIONAL.md](2026-10-03-foundation-adaptation-results/FRICTIONAL.md) |
+| Week 5: October 12 – 16, 2026 | [FRICTIONAL.md](2026-10-16-paper-prep-base-rerun/FRICTIONAL.md) |
+| Week 6: October 19 – 23, 2026 | [FRICTIONAL.md](2026-10-23-paper-section-iii/FRICTIONAL.md) |
 
 ## Frictional log
 
