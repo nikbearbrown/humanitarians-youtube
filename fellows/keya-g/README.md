@@ -1,9 +1,9 @@
 # Keya G.
 
 **Role:** SWE
----
+
 **Project:** to be filled in
----
+
 **GitHub:** [@keyagoswami017](https://github.com/keyagoswami017)
 
 ## What's in this folder
