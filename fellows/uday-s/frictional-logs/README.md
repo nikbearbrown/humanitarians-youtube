@@ -22,6 +22,9 @@ These cover the six steps of `market-sentiment-analysis-part-1` in
 | 2026-10-15 | [Building the `snickerdoodle` CLI](./2026-10-15-snickerdoodle-cli.md) | `d85106b`, on `feat/snickerdoodle-cli` |
 | 2026-10-15 | [The `check` verb](./2026-10-15-check-verb.md) | same branch |
 | 2026-10-22 | [Gate records](./2026-10-22-gate-records.md) | `93485c4`, on `feat/gate-records` |
+| 2026-10-30 | [Recipe lifecycle frontmatter](./2026-10-30-lifecycle-frontmatter.md) | `6428457`, on `chore/recipe-lifecycle-frontmatter` |
+| 2026-10-30 | [Making `check` status-aware](./2026-10-30-check-status-awareness.md) | same branch |
+| 2026-10-30 | [Conformance over data and Python](./2026-10-30-conformance-data-python.md) | same branch |
 
 ## Where the video work's logs are
 
