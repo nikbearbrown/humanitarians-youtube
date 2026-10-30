@@ -87,6 +87,21 @@
   `SkillTeardownPipeline`, `BarChart`, `ClaudeDefinitions`,
   `ClaudeVerdictArtifact`, and `TitleRestateOutro`, narrated in Kokoro
   `af_bella` (Bella). 16:9 master cut (2:29, 8 beats).
+- `2026-10-26-vla-adversarial-attack-research/` — Security & Exploitation in Physical AI: Stealthy Trajectory Steering & Spatial Consistency Verification
+  in VLA Models. A Week 6 research exploration and experimental design report
+  (`work_report.md`) under the Security & Exploitation vertical, extending
+  Verifiable Machine Learning principles to Vision–Language–Action (VLA) robot
+  foundation models (`OpenVLA-7B` in `LIBERO`). Surveys 23 recent papers
+  (2024–2026) to identify why existing test-time visual patches only cause
+  untargeted freezing/task failure rather than smooth multi-step steering, and
+  finalizes a two-hypothesis, two-engineer experimental plan incorporating peer
+  feedback from Dev: (1) Hypothesis 1 compares two coordinate-free 3D coaster
+  attacks—Way 1 ("The Attention Magnet Patch" hijacking `Llama-2` text-to-image
+  cross-attention) and Way 2 ("The Auto-Feature Copy Patch" using the ~3–4 GB
+  VRAM Vision-Encoder Shortcut)—against _TMA_ and _EDPA_ baselines, and (2)
+  Hypothesis 2 compares Random 5-View Masking against a Systematic $3 \times 3$
+  Covering Grid with a Two-Round Minority Check (extending _PatchCleanser_ to
+  closed-loop visuomotor control).
 
 ## Frictional log
 
