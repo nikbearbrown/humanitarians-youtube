@@ -1,14 +1,21 @@
 # Mohan T.
 
 **Role:** Full Stack Developer  
-**Project:** _to be filled in_  
+**Project:** National Loon Center educational games; Project Ledger ([humanitarians.ai/ledger](https://www.humanitarians.ai/ledger))  
+**PM:** Nina Harris  
 **GitHub:** [@MohanKrishna27062001](https://github.com/MohanKrishna27062001)
 
 ## What's in this folder
 
-No work in this folder yet. Each piece of work gets its own dated,
-lowercase-kebab subfolder — `YYYY-MM-DD-short-slug/` — holding its
-`beat_sheet.json`, README, sources and build assets.
+- [RENEWAL.md](RENEWAL.md) — renewal request for 1 Nov — 30 Nov 2026, with what the
+  10 Sep — 31 Oct period produced.
+- [HOURS.md](HOURS.md) — weekly hours for the current agreement.
+- **Videos:** seven, each in 16:9 and 9:16, in
+  [Drive](https://drive.google.com/drive/folders/1IDkPJ5rz7ClIZRHDSdUFdfAW-KsQm0BB?usp=sharing).
+
+Each piece of work gets its own dated, lowercase-kebab subfolder —
+`YYYY-MM-DD-short-slug/` — holding its `beat_sheet.json`, README, sources and build
+assets.
 
 ## Frictional log
 

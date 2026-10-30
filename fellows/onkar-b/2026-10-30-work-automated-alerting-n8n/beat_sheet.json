@@ -1,0 +1,635 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-n8n-incident",
+    "title": "The Alert Nobody Hardcoded",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper Development Log, Week 9 — wiring the Gatekeeper to an n8n incident pipeline: Docker-networked services, a visual severity router, a fired adversarial payload, and what one green execution does and does not prove.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows following the Provenance Gatekeeper build",
+    "playlist": "Provenance Gatekeeper Development Log",
+    "source": "Week 9: Automated Alerting & n8n Workflow Integration — 5-scene script, supplied 2026-10-29.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. Slack, email and the n8n canvas render as GENERIC labelled panels — shape and label only, never those products' marks or chrome. A fidelity brand may not wear another product's interface.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "series_note": "Week 4 (Silent Failures) already covered SQLite incident logging and a raw outbound webhook. This reel deliberately foregrounds only what is NEW in Week 9 — Docker-networked service-to-service delivery, a visual canvas with severity routing, and decoupling from vendor SDKs — and is titled distinctly so the two do not collide in the playlist.",
+    "tags": [
+      "n8n",
+      "webhooks",
+      "incident response",
+      "Docker Compose",
+      "FastAPI",
+      "alerting",
+      "Provenance Gatekeeper",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-10-29T21:47:10",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 23,
+      "narration_text": "Hi, I am Onkar Bhujbal. The Provenance Gatekeeper is doing its job — intercepting hallucinated numbers and blocking them before they reach production. But a blocked error written to a local SQLite file is a secret. If a critical financial discrepancy fires at two in the morning, nobody is reading that table. This week I connected the service to an automated incident pipeline.",
+      "new_visual_element": "Cold open — the row nobody read",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself in"
+          },
+          {
+            "at": 0.48,
+            "event": "send arms terracotta; running indicator reads 'checking who was told…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the block worked, the telling did not"
+          },
+          {
+            "at": 0.85,
+            "event": "the last line names it: A LOG IS NOT AN ALERT"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Alert Nobody Hardcoded",
+            "command": "The Gatekeeper blocked a magnitude error at 02:14 and wrote it to SQLite. Who found out?",
+            "runningText": "checking who was told…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "verdict: FAIL — written to evaluation_logs",
+              "notified: nobody",
+              "A LOG IS NOT AN ALERT."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-30T01:21:25.934476+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "02:14 is an illustrative timestamp dramatising the script's own 'needs to know instantly' framing, not a logged incident.",
+      "actual_duration_s": 20.39,
+      "render_duration_s": 20.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "narration_text": "Detection is only half a system. The other half is delivery — and delivery does not belong inside the service that detects. Hardcode it there and every change of tool becomes a change of code.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Detecting it is half.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'Logging' goes terracotta, deletes, retypes as 'Delivery'"
+          },
+          {
+            "at": 0.85,
+            "event": "corrected overview holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Detecting it is half.\nLogging is the other half.",
+            "triggerWords": "Logging",
+            "replacementWords": "Delivery",
+            "seed": "n8n-incident-2026-10-29",
+            "fontSize": 90,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-30T01:22:51.713430+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 11.03,
+      "render_duration_s": 11.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — DOCKER ORCHESTRATION",
+      "lane": "remotion",
+      "estimated_duration_s": 25,
+      "narration_text": "So that the local environment mirrors the eventual cloud deployment, I orchestrated both the FastAPI Gatekeeper and the n8n automation engine with Docker Compose. The naive version publishes the automation platform's port to the host, which means to the internet. Instead, both services sit on the same internal Docker network. The Gatekeeper reaches n8n by service name — and nothing outside the compose file can reach it at all.",
+      "new_visual_element": "The port that should not be published",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the naive compose fragment"
+          },
+          {
+            "at": 0.28,
+            "event": "on 'to the internet', the published port highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.36,
+            "event": "note lands beneath: anyone who finds the host can POST to the workflow"
+          },
+          {
+            "at": 0.5,
+            "event": "right panel reveals the internal-network version"
+          },
+          {
+            "at": 0.74,
+            "event": "ink stamp lands: NO PUBLIC PORT"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Same host. Two very different doors.",
+            "leftLabel": "NAIVE COMPOSE",
+            "leftText": "services:\n  n8n:\n    image: n8nio/n8n\n    ports: [\"5678:5678\"]",
+            "leftHot": "ports: [\"5678:5678\"]",
+            "hotNote": "published to the host — and to anything that can reach the host",
+            "rightLabel": "INTERNAL NETWORK",
+            "code": "services:\n  gatekeeper:\n    networks: [backplane]\n  n8n:\n    networks: [backplane]\n    # no ports: published\n\nnetworks:\n  backplane:\n    internal: true\n\n# POST http://n8n:5678/webhook/...",
+            "stampText": "NO PUBLIC PORT",
+            "stampBlocked": false,
+            "stampSub": "service-to-service by name; nothing outside the compose file can reach it"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-30T01:44:02.031443+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The compose fragments are minimal and illustrative — the real file carries images, volumes and env. The security point is exact: a published port is reachable by anything that can reach the host, and `internal: true` removes that route.",
+      "actual_duration_s": 22.61,
+      "render_duration_s": 22.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — THE WORKFLOW CANVAS",
+      "lane": "remotion",
+      "estimated_duration_s": 25,
+      "narration_text": "Rather than hardcoding a chat vendor's S.D.K. into the Python service — which is technical debt the moment anyone changes tools — the service exports one incident payload and stops caring. On the n8n canvas, three nodes do the rest: catch the webhook, read the JSON body, route on severity. A magnitude error takes the high-priority branch and is formatted for the on-call channel.",
+      "new_visual_element": "Three nodes, no SDK",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "payload token enters the band carrying 'incident'"
+          },
+          {
+            "at": 0.2,
+            "event": "panel 01 WEBHOOK NODE lights"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 SEVERITY ROUTER lights"
+          },
+          {
+            "at": 0.7,
+            "event": "panel 03 FORMAT & DISPATCH lights"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: zero vendor SDKs in the service"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "The routing lives outside the service.",
+            "payloadLabel": "incident",
+            "readyLine": "vendor SDKs in the Python service = 0",
+            "stages": [
+              {
+                "index": "01",
+                "name": "WEBHOOK NODE",
+                "detail": "catches one POST on the internal network"
+              },
+              {
+                "index": "02",
+                "name": "SEVERITY ROUTER",
+                "detail": "IF severity == magnitude → high priority"
+              },
+              {
+                "index": "03",
+                "name": "FORMAT & DISPATCH",
+                "detail": "chat, email — swapped on a canvas, not in code"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-30T01:26:10.161576+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Destinations are named generically (chat, email). The n8n canvas is represented as a labelled three-stage band rather than a reproduction of n8n's own interface.",
+      "actual_duration_s": 20.69,
+      "render_duration_s": 20.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — FIRING THE ADVERSARIAL PAYLOAD",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "To test it end to end I fired the automated adversarial payload at the secure endpoint — a false four-point-five-million-dollar claim. The Gatekeeper rejected it, generated the error explanation, wrote the row, and fired the webhook. Seconds later the same incident appeared in the n8n execution log, timestamps matching. The write and the shout now happen together.",
+      "new_visual_element": "The row commits and the alert lands at once",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "query types into the log panel"
+          },
+          {
+            "at": 0.4,
+            "event": "rows commit one at a time — the rejected claim among them"
+          },
+          {
+            "at": 0.62,
+            "event": "on 'appeared in the n8n execution log', the alert card lands at full opacity"
+          },
+          {
+            "at": 0.76,
+            "event": "note lands: matching timestamps, two systems, one event"
+          }
+        ],
+        "remotion": {
+          "pattern": "AlertSplit",
+          "props": {
+            "sparkLine": "Written down. And shouted about.",
+            "queryLabel": "GATEKEEPER LOG",
+            "query": "SELECT claim_id, verdict FROM evaluation_logs WHERE verdict='FAIL'",
+            "rows": [
+              {
+                "left": "claim_041",
+                "right": "DIRECTIONAL"
+              },
+              {
+                "left": "claim_042",
+                "right": "MAGNITUDE"
+              }
+            ],
+            "rowNote": "claim_042 — a false $4.5M variance, rejected",
+            "alertLabel": "n8n EXECUTION",
+            "alertChannel": "#gatekeeper-alerts",
+            "alertTitle": "High priority — magnitude error",
+            "alertBody": "claim_042 rejected. Stated $4.5M; source ledger disagrees.",
+            "alertMeta": "webhook → severity router → dispatch · same second"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-30T01:27:57.012544+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "Claim ids and the row contents are illustrative of the test run's shape, not transcribed from the database. The $4.5M figure is the script's own adversarial payload.",
+      "actual_duration_s": 19.56,
+      "render_duration_s": 19.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:AlertSplit",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4b — FALSIFIABILITY (added)",
+      "lane": "remotion",
+      "estimated_duration_s": 27,
+      "narration_text": "The script I wrote for this said the pipeline works flawlessly. It does not — one successful execution proves the happy path and nothing else. The Gatekeeper fires and forgets. If the n8n container is restarting, that POST fails into a log line nobody reads, which is exactly the problem I started the week trying to solve. Until there is a retry, a dead-letter queue, and an alert that fires when alerting itself fails, what I have is a pipeline that worked once.",
+      "new_visual_element": "The green checkmark that proves one thing",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 ONE GREEN RUN lights; the payload enters"
+          },
+          {
+            "at": 0.4,
+            "event": "connector draws toward delivery"
+          },
+          {
+            "at": 0.56,
+            "event": "on 'that POST fails', panel 02 takes the terracotta wash, border and ✕"
+          },
+          {
+            "at": 0.62,
+            "event": "the payload STOPS there — the alert about the failed alert never exists"
+          },
+          {
+            "at": 0.76,
+            "event": "mitigations land: retry with backoff · dead-letter queue · alert on alert-failure"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Worked once ≠ works.",
+            "payloadLabel": "incident",
+            "failIndex": 1,
+            "failLine": "retry with backoff · dead-letter queue · alert when alerting fails",
+            "readyLine": "vendor SDKs in the Python service = 0",
+            "stages": [
+              {
+                "index": "01",
+                "name": "ONE GREEN RUN",
+                "detail": "proves the happy path — only the happy path"
+              },
+              {
+                "index": "02",
+                "name": "n8n RESTARTING",
+                "detail": "the POST fails; the Gatekeeper already moved on"
+              },
+              {
+                "index": "03",
+                "name": "ON-CALL IS TOLD",
+                "detail": "never — the failure is a log line again"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-30T01:29:32.710797+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "BEAT ADDED. The supplied script's Scene 4 claims the pipeline 'works flawlessly'; one execution cannot support that. The honest failure is recursive and worth the beat: an undelivered alert degrades to exactly the silent log row the reel opened on.",
+      "actual_duration_s": 23.23,
+      "render_duration_s": 23.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So: don't clutter a microservice with third-party messaging libraries. Emit one neutral incident payload, route it outside the code — and treat the delivery itself as something that can fail.",
+      "new_visual_element": "The emitter the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the emitter reveals — one POST, no vendor import"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: decouple your alert logic"
+          },
+          {
+            "at": 0.78,
+            "event": "the last note lands — the delivery failure is itself an incident"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "alerts.py",
+            "code": "def emit(incident: dict) -> None:\n    # no slack_sdk. no smtplib. no vendor.\n    r = post(\"http://n8n:5678/webhook/incident\",\n             json=incident, timeout=3)\n    if not r.ok:\n        dead_letter(incident)   # try again later\n        page_oncall(\"alerting is down\")\n\n# TASK: decouple your alert logic.",
+            "sparkLine": "Emit. Don't integrate."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-30T01:30:33.148096+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The dead_letter and page_oncall lines are the reel's addition — they are what turns the Week 9 integration from a demo into a pipeline.",
+      "actual_duration_s": 10.84,
+      "render_duration_s": 10.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "Here is the prompt worth running against your own alerting. Ask a model what happens when the notification service is the thing that is down. If the answer is a log line, you have the same problem I did — you just haven't had the outage yet.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.'"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'paste this into Claude…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Alert Nobody Hardcoded",
+            "command": "Here is my alerting path. Trace what happens when the notification service itself is unreachable — and tell me who, if anyone, finds out that an alert was never delivered.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-30T01:33:24.142480+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 13.29,
+      "render_duration_s": 13.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-29T21:47:10"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Decouple the alarm from the thing raising it — then go and break the alarm on purpose. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Alert Nobody Hardcoded",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper Dev Log · Week 9",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-30T01:34:11.621669+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.0,
+      "render_duration_s": 8.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-29T21:47:10"
+      }
+    }
+  ]
+}

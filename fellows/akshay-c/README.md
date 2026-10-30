@@ -13,6 +13,13 @@ Each Brutalist video has its own work folder containing the supporting project f
 including beat sheets, prompts, fact-checking notes, scene definitions, shot lists,
 and portrait-specific configuration where applicable.
 
+## Week of 2026-10-28
+
+- Reviewed 14 videos from the Claude_bear folder and published them to the Humanitarians AI
+  Extending Claude playlist.
+- Created [How Databae Indexing Makes Queries Fast](./2026-10-28_database_indexing_makes_queries_fast/)
+  as a Brutalist technical explainer.
+
 ## Week of 2026-10-21
 
 - Reviewed 14 videos from the Claude_bear folder and published them to the Humanitarians AI
