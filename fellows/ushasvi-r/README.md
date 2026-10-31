@@ -6,7 +6,7 @@
 
 ## What's in this folder
 
-19 work folders, one per report or video:
+21 work folders, one per report or video:
 
 - `2026-08-20-causal-couture-week-1/` — causal couture week 1 (2026-08-20)
 - `2026-08-20-causal-couture-week-2/` — causal couture week 2 (2026-08-20)
@@ -27,7 +27,7 @@
 - `2026-10-11-causal-couture-week-11/` — causal couture week 11: causal evidence interpretation and decision readiness (2026-10-11)
 - `2026-10-11-model-calibration/` — model calibration: can you trust a model’s confidence? (2026-10-11)
 - `2026-10-17-causal-couture-week-12/` — causal couture week 12: reproducible causal evidence review and validation (2026-10-17)
-- `2026-10-17-train-validation-test/` — train, validation, test: why we split machine-learning data (2026-10-17)
+- 2026-10-17-train-validation-test/` — train, validation, test: why we split machine-learning data (2026-10-17)
 
 ## Frictional log
 
