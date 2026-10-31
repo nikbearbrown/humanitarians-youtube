@@ -1,0 +1,424 @@
+{
+  "metadata": {
+    "title": "What Distributed Training Actually Looks Like",
+    "slug": "distributed-training-explainer",
+    "topic": "DISTRIBUTED TRAINING",
+    "aspect_ratio": "16:9",
+    "register": "Pragmatist",
+    "audience": "Claude",
+    "brand": "claude-anjana",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "color_semantics": "Claude fidelity UI beats (B00 ask, B06 verdict, B07 handoff, B08 outro) stay cream/ink/terracotta per CLAUDE-BRAND.md. Body beats (B01-B05) illustrate the mechanism on the dark stage (#1A1A2E), using the brief's own palette verbatim.",
+    "gate_p": "PASS",
+    "build": {
+      "at": "2026-10-28T17:36:53",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Every explanation of distributed training starts with a diagram of GPUs in a row. Almost none of them tell you what is actually being split, or where the time goes. I'm Anjana.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "runningText 'splitting the work…'"
+          },
+          {
+            "at": 0.75,
+            "event": "output lines resolve, already answered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hello, Anjana",
+            "topic": "DISTRIBUTED TRAINING",
+            "segment": "Distributed Training",
+            "command": "Training a large model needs more memory than one GPU has, so the work gets split across several. But the split can happen in different ways, and the diagrams never say which. Can you show me what actually gets divided — the data, the model, or both — and where the time really goes?",
+            "runningText": "splitting the work…",
+            "folderLabel": "",
+            "output": [
+              "the weights are the small part of the budget",
+              "every GPU added costs you a synchronisation",
+              "the real constraint is bandwidth, not compute"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 11.86,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ONE GPU ISN'T ENOUGH",
+      "narration_text": "A seven-billion-parameter model in full precision takes around twenty-eight gigabytes just to store its weights. Add optimizer states, gradients, and activations, and you need over a hundred gigabytes — more than any single GPU's memory. Even if the model fits, training on a large dataset takes weeks on one device. Distributed training splits the work across multiple GPUs. The question is what gets split: the data, the model, or both.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "DistMemory builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "DistMemory",
+          "props": {
+            "sparkLine": "The weights are the small part."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 26.38,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "DATA PARALLELISM",
+      "narration_text": "Data parallelism is the most common strategy. Every GPU holds a complete copy of the model. The training dataset is split into different mini-batches — each GPU processes its own batch independently. After the forward and backward passes, each GPU has computed gradients from its own slice of data. The gradients are then averaged across all GPUs so every copy of the model updates identically. The result: each GPU sees different data, but they all stay synchronized. Training time scales nearly linearly with the number of GPUs.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "DistDataParallel builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "DistDataParallel",
+          "props": {
+            "sparkLine": "Same model, different batches."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 36,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 34.39,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ALL-REDUCE",
+      "narration_text": "Averaging gradients across GPUs sounds simple, but the communication pattern matters. All-reduce is the standard approach. In a ring all-reduce, each GPU sends a chunk of its gradients to the next GPU in a ring. After enough rounds, every GPU holds the fully averaged result — without any single GPU acting as a bottleneck. The alternative — sending everything to one central node — creates a bandwidth chokepoint that gets worse with every GPU added. Ring all-reduce scales because each GPU sends and receives the same amount of data regardless of cluster size.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "DistAllReduce builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "DistAllReduce",
+          "props": {
+            "sparkLine": "No GPU is the bottleneck."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 37.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MODEL PARALLELISM",
+      "narration_text": "When the model itself is too large for one GPU, you split the model. Tensor parallelism divides individual layers — a single matrix multiply is split across GPUs, each computing part of the result. Pipeline parallelism splits by layer groups — GPU one runs the first twelve layers, GPU two runs the next twelve. The input passes through GPUs in sequence, like a pipeline. The problem: while GPU two waits for GPU one's output, it sits idle. Micro-batching reduces this bubble by overlapping multiple smaller batches at different stages.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "DistModelParallel builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "DistModelParallel",
+          "props": {
+            "sparkLine": "Splitting the model costs idle time."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 36,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 37.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "THE FULL STACK",
+      "narration_text": "Production training combines strategies. A large language model might use tensor parallelism within a node — splitting layers across GPUs connected by fast NVLink. Pipeline parallelism spans nodes — different layer groups on different machines. Data parallelism wraps around everything — multiple copies of the full pipeline, each processing different data. The bottleneck is always communication: NVLink handles intra-node traffic at high bandwidth, while inter-node networking is slower and must be used efficiently. The training recipe is an optimization problem over compute, memory, and bandwidth.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "DistTogether builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "DistTogether",
+          "props": {
+            "sparkLine": "It's a bandwidth problem."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 38,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 37.82,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration_text": "Let's recap with Claude. One GPU runs out of memory long before it runs out of maths — the weights are the small part, and the optimizer state is what breaks the budget. Data parallelism copies the model and splits the batch, which is the easy win, and it costs you a gradient sync every single step. Ring all-reduce is what makes that sync affordable, because every GPU moves the same amount of data no matter how many of them there are. Model parallelism is what you reach for when the model genuinely does not fit, and it introduces idle time you then spend effort hiding. In production all three run at once, and the thing you are really optimising is bandwidth.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.5s lead pause, then ClaudeVerdictArtifact card builds in"
+          },
+          {
+            "at": 0.14,
+            "event": "line 1: the memory budget"
+          },
+          {
+            "at": 0.32,
+            "event": "line 2: data parallelism"
+          },
+          {
+            "at": 0.5,
+            "event": "line 3: ring all-reduce"
+          },
+          {
+            "at": 0.68,
+            "event": "line 4: model parallelism"
+          },
+          {
+            "at": 0.86,
+            "event": "line 5: bandwidth"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "distributed training",
+            "lines": [
+              "memory goes to optimizer state, not weights",
+              "data parallel is easy, and costs a sync per step",
+              "ring all-reduce keeps that sync affordable",
+              "model parallel buys capacity, pays in idle time",
+              "what you are optimising is bandwidth"
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 32,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 39.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Before you rent a second GPU, work out what is actually filling the first one. Most people assume it's the model and it usually isn't. Paste this into Claude with your own model size and batch size, and ask it to break the memory down by component first — because if optimizer state is your problem, there are three fixes that are cheaper than another machine.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Your turn.'; prompt types itself"
+          },
+          {
+            "at": 0.6,
+            "event": "runningText 'costing the budget…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "DISTRIBUTED TRAINING",
+            "segment": "Distributed Training",
+            "command": "I want to train or fine-tune a model and I'm not sure I need more than one GPU. Can you help me: one, break my memory budget down by component — weights, optimizer state, gradients and activations — for my parameter count, precision and batch size, and tell me which one is actually the problem; two, tell me which of mixed precision, gradient checkpointing and optimizer sharding would fix it without adding hardware; and three, if I do need to go distributed, tell me which kind of parallelism my situation calls for and what it will cost me per step.",
+            "runningText": "costing the budget…",
+            "folderLabel": "",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 22.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Anjana here, thanks for watching.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeTitleOutro: title in serif, terracotta period"
+          },
+          {
+            "at": 0.8,
+            "event": "subline fades in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Distributed Training",
+            "handle": "",
+            "subline": "what it actually looks like"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 3,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 2.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:36:53"
+      }
+    }
+  ]
+}
