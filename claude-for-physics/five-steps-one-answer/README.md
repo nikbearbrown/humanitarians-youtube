@@ -1,6 +1,6 @@
 # Five Steps, One Answer. — BRUTALIST REBUILD GUIDE
 
-Physics Engine series, video 3 of 17. Host: Param Madan. Voice: Kokoro `af_bella`.
+Physics Engine series, video 3 of 12. Host: Param Madan. Voice: Kokoro `af_bella`.
 Video by Param Madan · Engine by Jash Shah, Harsh Gujarati, Atharva & Param Madan.
 
 **Claim:** The engine solves every problem in five steps — parse, retrieve, plan,

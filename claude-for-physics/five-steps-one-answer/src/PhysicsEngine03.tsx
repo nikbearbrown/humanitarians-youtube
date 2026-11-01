@@ -1,5 +1,5 @@
 /**
- * PhysicsEngine03.tsx — body scenes for "Five Steps, One Answer." (physics engine, 3 of 17).
+ * PhysicsEngine03.tsx — body scenes for "Five Steps, One Answer." (physics engine, 3 of 12).
  *
  * Reel: books/physics-engine/youtube/five-steps-one-answer
  * Host: Param Madan · voice Kokoro af_bella
@@ -530,7 +530,7 @@ export const Pe3Verdict: React.FC<{ spark?: string }> = ({ spark = 'A record, no
  * B09 — the outro. Title, terracotta period, host name, credit lines.
  * ──────────────────────────────────────────────────────────────────────────── */
 export const Pe3Outro: React.FC<{ title?: string; handle?: string; subline?: string }> =
-({ title = 'Five Steps, One Answer.', handle = 'Param Madan', subline = 'Physics Engine · 3 of 17' }) => {
+({ title = 'Five Steps, One Answer.', handle = 'Param Madan', subline = 'Physics Engine · 3 of 12' }) => {
   const p = useP();
   const rise = ease(remap(p, 0.02, 0.30, 0, 1));
   const nameO = remap(p, 0.24, 0.48, 0, 1);
