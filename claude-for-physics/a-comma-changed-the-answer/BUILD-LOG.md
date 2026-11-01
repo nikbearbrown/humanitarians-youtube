@@ -1,6 +1,6 @@
 # BUILD-LOG — a-comma-changed-the-answer
 
-Physics Engine series, 2 of 17. Built 2026-10-30.
+Physics Engine series, 2 of 12. Built 2026-10-30.
 
 ## Order of work
 

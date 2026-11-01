@@ -1,6 +1,6 @@
 # A Comma Changed the Answer. — BRUTALIST REBUILD GUIDE
 
-Physics Engine series, video 2 of 17. Host: Param Madan. Voice: Kokoro `af_bella`.
+Physics Engine series, video 2 of 12. Host: Param Madan. Voice: Kokoro `af_bella`.
 Video by Param Madan · Engine by Jash Shah, Harsh Gujarati, Atharva & Param Madan.
 
 **Claim:** A language model predicts arithmetic instead of calculating it — it reads

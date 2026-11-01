@@ -1,5 +1,5 @@
 /**
- * PhysicsEngine02.tsx — body scenes for "A Comma Changed the Answer." (physics engine, 2 of 17).
+ * PhysicsEngine02.tsx — body scenes for "A Comma Changed the Answer." (physics engine, 2 of 12).
  *
  * Reel: books/physics-engine/youtube/a-comma-changed-the-answer
  * Host: Param Madan · voice Kokoro af_bella
@@ -482,7 +482,7 @@ export const Pe2Verdict: React.FC<{ spark?: string }> = ({ spark = 'Ask one ques
  * B09 — the outro. Title, terracotta period, host name, credit lines.
  * ──────────────────────────────────────────────────────────────────────────── */
 export const Pe2Outro: React.FC<{ title?: string; handle?: string; subline?: string }> =
-({ title = 'A Comma Changed the Answer.', handle = 'Param Madan', subline = 'Physics Engine · 2 of 17' }) => {
+({ title = 'A Comma Changed the Answer.', handle = 'Param Madan', subline = 'Physics Engine · 2 of 12' }) => {
   const p = useP();
   const rise = ease(remap(p, 0.02, 0.30, 0, 1));
   const nameO = remap(p, 0.24, 0.48, 0, 1);
