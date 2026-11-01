@@ -1,0 +1,102 @@
+{
+  "_note": "AI Debt Tracker, week 3. Every on-screen figure in this reel is a prop read from this file by build_beat_sheet.py. Values are transcribed from the author's own saved results as published in pantry/*.svg (adt-w3-holdout, adt-w3-funnel, adt-w3-triage, adt-w3-docs) and cross-checked against narration_script.md's source table. Every bar's geometry in those SVGs was recomputed as a ratio and had to agree with its printed fraction before the value was accepted.",
+
+  "handcheck": {
+    "last_week": { "got": 3, "of": 3, "label": "Last week's 3, after fixes" },
+    "fresh": {
+      "drawn": 5,
+      "gradable": 3,
+      "not_gradable": 2,
+      "got": 1,
+      "label": "5 fresh reports, gradable",
+      "not_gradable_note": "had no debt on either side, so there was nothing to grade",
+      "not_gradable_who": ["Cipher Mining", "TeraWulf"]
+    },
+    "fixes_last_week": 3,
+    "reports": [
+      { "who": "Dell", "what": "totals agree exactly", "defect": "", "agreed": true },
+      { "who": "Super Micro", "what": "the banks' extra allotment counted as a second bond",
+        "defect": "P38", "agreed": false },
+      { "who": "Core Scientific", "what": "small notes with no due date anywhere in the data",
+        "defect": "P39", "agreed": false }
+    ]
+  },
+
+  "timeline": {
+    "companies": 25,
+    "filings": 593,
+    "types": [
+      { "type": "8-K", "what": "material-event notices", "count": 469 },
+      { "type": "424B", "what": "prospectuses", "count": 94 },
+      { "type": "FWP", "what": "term sheets", "count": 30 }
+    ],
+    "subsidiaries": "the subsidiaries that borrow on a company's behalf are included"
+  },
+
+  "funnel": {
+    "total": 593,
+    "rules_decided": 394,
+    "rules_kept": 163,
+    "model_asked": 199,
+    "model_kept": 21,
+    "kept": 184,
+    "model": "qwen3:4b",
+    "median_s": 3.1,
+    "rules": [
+      "new-obligation 8-K items",
+      "prospectus covers selling notes, not shares",
+      "term sheets",
+      "a debt headline",
+      "no debt words at all"
+    ]
+  },
+
+  "check": {
+    "labelled": 50,
+    "labelled_random": 30,
+    "labelled_debt_word": 20,
+    "labeller": "Claude",
+    "labeller_note": "a different model from the one being tested; labelled against a written definition before triage ran, and the labels file is byte-for-byte unchanged after it",
+    "pass_line": 0.95,
+    "rows": [
+      { "metric": "Debt filings found", "got": 24, "of": 24, "kind": "recall", "hot": true },
+      { "metric": "Kept filings that are debt", "got": 24, "of": 26, "kind": "precision", "hot": false },
+      { "metric": "Event type right", "got": 20, "of": 24, "kind": "event type", "hot": false },
+      { "metric": "Last week's announcements kept", "got": 22, "of": 22, "kind": "carry-over", "hot": true }
+    ],
+    "false_alarms": [
+      "a tender offer for Alphabet shares, not notes",
+      "a TeraWulf acquisition"
+    ]
+  },
+
+  "wrong": [
+    { "what": "The first run crashed",
+      "detail": "a model answer was cut off mid-sentence",
+      "now": "an unreadable answer keeps the filing" },
+    { "what": "A bug in last week's search",
+      "detail": "\"0%\" was matching inside \"20%\", crediting a 0% 2031 convertible to an earnings release",
+      "now": "fixed (P40); last week's counts did not change" },
+    { "what": "8 of 21 model quotes",
+      "detail": "were not word for word in the text the model was given",
+      "now": "the filing is still kept; the event reader must re-check every fact" }
+  ],
+  "quotes": { "checked": 21, "not_verbatim": 8, "window_chars": 80 },
+
+  "docs": {
+    "filing": "Oracle 8-K, 27 Sep 2024",
+    "sentences": 15,
+    "tables": 10,
+    "query": "search(\"4.200% Notes due 2029\")",
+    "hit": "s5",
+    "hit_text": "On September 27, 2024, Oracle Corporation (“Oracle”) consummated the issuance and sale of $1,500,000,000 aggregate principal amount of its 4.200% Notes due …",
+    "cites": "s5, t2.r4.c1 …",
+    "refusal": "refused: this filing is withheld for this episode"
+  },
+
+  "next": [
+    "fix the two new answer-key defects",
+    "check a fresh set of reports again",
+    "build the event reader"
+  ]
+}

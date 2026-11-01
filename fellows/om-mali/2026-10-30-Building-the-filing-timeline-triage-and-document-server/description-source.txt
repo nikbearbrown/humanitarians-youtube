@@ -1,0 +1,32 @@
+Building the Filing Timeline, Triage and Document Server — AI Debt Tracker, week 3
+
+The agent's first real job: find the debt news among hundreds of SEC filings, without missing any,
+and read it in a way it can cite.
+
+THE ANSWER KEY, RE-CHECKED. Last week's three data problems are fixed (3 of 3 now agree). Five fresh
+reports, drawn before reading and graded once: 1 of the 3 with debt agrees. Two new answer-key
+defects — an over-allotment counted as a second bond, small notes with no due date in the data —
+recorded for next week, not tuned away.
+
+TIMELINE. Every 8-K, 424B prospectus and FWP term sheet in each quarter's window, for 25 AI companies
+and the subsidiaries that borrow for them: 593 filings across the dev quarters.
+
+TRIAGE. Five rules decide two thirds of them (new-obligation 8-K items, notes vs shares on a
+prospectus cover, term sheets, a debt headline, no debt words). A local qwen3:4b decides the doubtful
+199 at ~3 s each; its answers are labelled as model judgments with a quote checked against the text.
+184 filings kept.
+
+THE CHECK. 50 filings labelled against a written definition before triage ran (by Claude, a
+different model from the one tested): recall 24 of 24 (pass line 95%), precision 24 of 26, event
+type 20 of 24. All 22 filings that last week's search found announcing a bond change are kept.
+
+WHAT WENT WRONG. The first run crashed on a cut-off model answer; the check exposed a bug in last
+week's search ("0%" matching inside "20%"); 8 of the model's 21 "yes" quotes were not verbatim in
+what it read.
+
+DOCUMENT SERVER. An MCP server that turns a filing into numbered sentences, tables and cells, so the
+agent cites ids instead of retyping numbers — and refuses the report it will be graded on.
+
+NEXT. Fix the two new defects, a fresh check, then the event reader.
+
+#AIDebt #SEC #Triage #MCP #LocalLLM #Evaluation #HumanitariansAI #Mycroft

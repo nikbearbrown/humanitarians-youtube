@@ -1,0 +1,80 @@
+Building the Filing Timeline, Triage and Document Server — AI Debt Tracker, week 3
+
+The agent's first real job: find the debt news among hundreds of SEC filings without missing
+any, and read it in a way it can cite. The agent still cannot read a filing into structured
+facts. This week built what finds the filings worth reading, and what lets a reader point into
+them.
+
+THE ANSWER KEY, RE-CHECKED. Last week's three data problems are fixed, and last week's three
+test reports now all agree — but those are the reports the fixes were made against, so 3 of 3
+is a calibration, not a measurement. Five fresh reports were drawn before reading and graded
+once. Two of them (Cipher Mining, TeraWulf) had no debt on either side, so there was nothing to
+grade. Of the three that did, one agreed:
+
+  Dell             totals agree exactly
+  Super Micro      the banks' over-allotment counted as a second bond        (P38, open)
+  Core Scientific  small notes with no due date anywhere in the data         (P39, open)
+
+Both defects are left open on purpose. Fixing them against the reports that found them would
+turn next week's check into another calibration. And one reading mistake in the hand-check was
+mine: a Super Micro coupon taken from the notes' original terms, which were amended in 2025. It
+doesn't change the verdict — the double-counted allotment alone makes that report disagree.
+
+THE TIMELINE. For every quarter, the timeline gathers each 8-K, 424B prospectus and FWP term
+sheet filed in the window, for 25 AI companies and the subsidiaries that borrow on their behalf
+— a company's debt is often issued by a financing subsidiary, and a filing missed there is a
+bond missed. 593 filings across the dev quarters: 469 8-Ks, 94 prospectuses, 30 term sheets.
+The window ends at the report the quarter is graded on, so nothing later can get in.
+
+TRIAGE. Most of those filings aren't about debt at all. Five plain rules settle two thirds of
+them — 394 of 593 — before any model runs: a new-obligation item on an 8-K, a prospectus cover
+selling notes rather than shares, a term sheet, a debt headline, no debt words at all. Only the
+doubtful 199 go to a local qwen3:4b, at a median 3.1 seconds each. 184 filings are kept: 163 by
+rule and 21 by the model.
+
+THE CHECK. 50 filings — 30 drawn at random, 20 from filings containing debt words — were
+labelled against a written definition before triage ran, by Claude: a different model from the
+one being tested, but not a person. The labels file is byte-for-byte unchanged after the run.
+
+  Debt filings found              24 of 24   (recall; pass line 95%)
+  Kept filings that are debt      24 of 26   (precision)
+  Event type right                20 of 24
+  Last week's announcements kept  22 of 22
+
+24 of 24 is recall on 24 positives inside a 50-filing sample — not accuracy, and not a large
+set. The two it kept that were not debt: a tender offer for Alphabet shares, not notes, and a
+TeraWulf acquisition.
+
+WHAT WENT WRONG. The first run crashed when a model answer was cut off mid-sentence, so now an
+unreadable answer keeps the filing rather than dropping it. The check exposed a bug in last
+week's search: "0%" was matching inside "20%", which had credited a 0% 2031 convertible to an
+earnings release. Fixed; last week's published counts did not change. And 8 of the model's 21
+"yes" quotes were not word for word in the text it was given — which can be a paraphrase rather
+than an invention, so the filing is still kept and the event reader will re-check every fact.
+
+THE DOCUMENT SERVER. An MCP server that turns a filing into numbered sentences, tables, rows
+and cells, so the agent cites s5 instead of retyping $1,500,000,000. And it refuses to open the
+report the agent will be graded on — every document goes through the same point-in-time rule.
+
+NEXT. Fix the two new defects, check a fresh set of reports again, and build the event reader
+that turns these filings into structured debt events.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is a prop injected from figdata.json at build time, not typed by hand.
+The build asserts the key relationships and fails rather than let a number drift — including
+that the fresh answer-key score stays BELOW the calibrated one (otherwise the distinction this
+video is built on would be empty), that triage's perfect recall keeps sitting beside a lower
+precision and a lower event-type score, that the two named false alarms are exactly the gap
+between 24 found and 26 kept, and that 469 + 94 + 30 = 593 and 163 + 21 = 184. Three claims in
+the video are not measured in figdata.json: that the agent is unbuilt, who labelled the sample,
+and the author's own transcription error. Each is attributed on screen. See FACTCHECK.md in the
+project folder for what still needs confirmation before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#AIDebt #SEC #Triage #MCP #LocalLLM #Evaluation #HumanitariansAI #Mycroft

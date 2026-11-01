@@ -17,7 +17,6 @@ One folder per week of work. Each folder holds a `README.md` with that week's re
 | Folder | What is inside |
 |---|---|
 | [renewal-requests](./renewal-requests/) | Dated renewal and submission example |
-| [weekly-hours](./weekly-hours/) | Fourteen weekly breakdowns and evidence index |
 | [2026-07-27-data-visualization-Building-the-AI-Buzz-Tracker-dashboard](./2026-07-27-data-visualization-Building-the-AI-Buzz-Tracker-dashboard/) | Week: 20-07-2026 - 26-07-2026<br>Project: Hacker News AI Buzz Tracker<br>Description: Building the AI Buzz Tracker dashboard<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=LiJnm8r8ArU)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=V5lFlRKYeH0) |
 | [2026-08-01-api-interface-Attribution-fix-and-JSON-signal-endpoint](./2026-08-01-api-interface-Attribution-fix-and-JSON-signal-endpoint/) | Week: 27-07-2026 - 02-08-2026<br>Project: Hacker News AI Buzz Tracker<br>Description: Attribution fix and JSON signal endpoint<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=LiJnm8r8ArU)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=mPBshmrSEQ8) |
 | [2026-08-08-data-verification-Verifying-private-AI-valuations](./2026-08-08-data-verification-Verifying-private-AI-valuations/) | Week: 03-08-2026 - 09-08-2026<br>Project: Private AI Valuation Agent<br>Description: Verifying private AI valuations from SEC filings<br>Project: [Watch on YouTube](https://www.youtube.com/watch?v=Ksf097PNjCU)<br>STEM: [Watch on YouTube](https://www.youtube.com/watch?v=jRpqnfO7aIo) |
