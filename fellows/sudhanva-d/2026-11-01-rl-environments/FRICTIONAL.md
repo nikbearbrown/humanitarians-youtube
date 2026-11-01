@@ -6,14 +6,14 @@ Week-2 update on the [ant-head-rl-research](https://github.com/sdevanathan96/ant
 code: what was built, why the first runs failed, what fixed them, and a check of what the
 12/12 result actually measures.
 
-- 16:9 video: link to be added
-- 9:16 video: link to be added
+- [16:9 video](https://drive.google.com/file/d/1_BwCwNFtzX5jRuZSyHROQPy2qHG3VDA-/view?usp=sharing)
+- [9:16 video](https://drive.google.com/file/d/1Mf0X9HVxuMVSgomlgt2qJYwSV1YUOyke/view?usp=sharing)
 - Beat sheets: [16:9](ant-head-rl-research/beat_sheet_16x9.json) · [9:16](ant-head-rl-research/beat_sheet_9x16.json)
 
 ## 2. STEM explainer: "How HyperLogLog Counts"
 
-- 16:9 video: link to be added
-- 9:16 video: link to be added
+- [16:9 video](https://drive.google.com/file/d/1IrxJ0-tlCrfOpzgItNBg5AqLwJSw5tjU/view?usp=sharing)
+- [9:16 video](https://drive.google.com/file/d/1dXlN1YILCDm2PSX1D9XoXueLtfp_fZRk/view?usp=sharing)
 - Beat sheets: [16:9](hyperloglog/beat_sheet_16x9.json) · [9:16](hyperloglog/beat_sheet_9x16.json)
 - Source: Flajolet, Fusy, Gandouet, Meunier. *HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm.* AofA 2007.
 
