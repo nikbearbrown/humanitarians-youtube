@@ -192,6 +192,25 @@ an explicit, documented re-voice decision is made.
   producing two Brutalist videos (four files in 16:9 + 9:16). Homes of Hope
   visuals are abstract (no photos, no people shapes, no platform logos). 16:9
   (1:44) + 9:16 (1:48, full-parity reformat, no beats dropped) cuts.
+- `2026-10-31-chatbot-brand-check/` — Have You Asked the Chatbot About Your Brand
+  Lately?: a "Deep Explainer" video of the weekly Substack article, exactly 4:00
+  with no footage. The toolkit's deep-explainer skill targets 5-10 min and needs
+  archival stills, so it was built on the ai-explainer chassis (disclosed
+  substitution). Warm, simple, positive but fair. Every figure is labeled with its
+  source and as industry-reported: most sources are companies that sell marketing,
+  PR or brand-monitoring services, so the statistics are not independent research.
+  The opening bakery scene is labeled an illustration. Generated visuals only (no
+  real brand logos). 16:9 (4:00) + 9:16 (2:54, some content beats dropped to fit
+  the Shorts cap).
+- `2026-10-31-weekly-recap-brand-check/` — This Week: Written, Made, Supported,
+  Saved. A CLI-explainer weekly recap built around a real weekly_recap_v1.py,
+  revised into weekly_recap_v2.py to add a role to each part and print a count -
+  both scripts real, both actually run. Content (all self-reported): the weekly
+  Substack article, two Brutalist videos in two formats (four files), helping
+  Yatra with the Homes of Hope documentary poster (support role, no design
+  detail), and organizing files on GitHub and Drive. Abstract poster graphic, mock
+  article header, generic folder icons (no platform logos, no people). 16:9 (1:58)
+  + 9:16 (2:03 with a silent end card, full parity, no beats dropped) cuts.
 
 ## Frictional log
 
