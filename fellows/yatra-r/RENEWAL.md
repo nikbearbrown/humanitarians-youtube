@@ -37,8 +37,3 @@ Folder index: [README.md](README.md)
 1. **Homes of Hope** (Nov 2026 – Feb 2027). Track how the documentary posts perform and adjust, and start the YouTube videos.
 2. **Weekly videos** (every week). Two Brutalist.art videos each week, with a Frictional log in each folder.
 
-## Open items
-
-- No videos for the weeks of 14 Sep – 18 Oct.
-- No Frictional logs for the videos before 29 Oct.
-- No HOURS.md yet.
