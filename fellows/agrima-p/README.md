@@ -1,7 +1,7 @@
 # Agrima P.
 
 **Role:** Social Media Marketing Manager  
-**Project:** _to be filled in_  
+**Project:** _Homes of hope/the loon project_  
 **GitHub:** [@AGRIMAPARMAR4-SUDO](https://github.com/AGRIMAPARMAR4-SUDO)
 
 Fellow videos built with the Brutalist toolkit — AI-explainer and CLI-explainer
