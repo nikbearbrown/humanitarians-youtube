@@ -15,6 +15,7 @@ One file per week, in the structure of the [example fellow](../../example-f/week
 | 2026-10-05 – 2026-10-09 | 20 | [2026-10-05-weekly-hours.md](2026-10-05-weekly-hours.md) |
 | 2026-10-12 – 2026-10-16 | 20 | [2026-10-12-weekly-hours.md](2026-10-12-weekly-hours.md) |
 | 2026-10-19 – 2026-10-23 | 20 | [2026-10-19-weekly-hours.md](2026-10-19-weekly-hours.md) |
-| **Total** | **234** | |
+| 2026-10-26 – 2026-10-30 | 20 | [2026-10-26-weekly-hours.md](2026-10-26-weekly-hours.md) |
+| **Total** | **254** | |
 
 Every week is at or above 20 hours. The summary table for the renewal is [HOURS.md](../HOURS.md).
