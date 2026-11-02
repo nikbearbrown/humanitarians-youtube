@@ -1,20 +1,24 @@
 # Saurabh K.
 
 **Role:** AI Software Engineer  
-**Project:** Iacon Optimus Program — moving 2026-11-01  
+**Project:** Iacon Optimus Program — from 2026-11-01  
 **Previous project:** Brutalist — explainer and progress videos (trial month, complete)  
 **GitHub:** [@K-sau07](https://github.com/K-sau07)  
 **Organization:** [Humanitarians AI](https://www.humanitarians.ai) (Iacon Optimus Program — Prof. Nik Bear Brown & Dev Shah)  
 **Group:** Brutalist team (through 2026-10)  
 **Reports to:** Sanjana R.  
 **Kokoro voice:** `am_onyx` — chosen for this series and kept across every episode  
-**Last updated:** 2026-10-27
+**Last updated:** 2026-11-01
 
 ## Status
 
-The Brutalist trial month is complete — six videos across three weeks, all documented in
-this folder. Approved to move to the **Iacon Optimus Program** from 2026-11-01; work from
-that point will be filed in dated folders alongside these weeks.
+On the **Iacon Optimus Program** as of 2026-11-01. Optimus work is filed in dated folders
+alongside the Brutalist weeks — the first is
+[`2026-11-01-optimus-onboarding/`](2026-11-01-optimus-onboarding/README.md), whose scope is
+open until it is agreed with the PM.
+
+The Brutalist trial month before it is complete — six videos across three weeks, all
+documented in this folder.
 
 ## What the role covers
 
@@ -40,6 +44,11 @@ its own `beat_sheet.json`, README, evidence trail and `FRICTIONAL.md`.
 - [`week-3/`](week-3/README.md) — reporting week **[TODO — confirm]**. Two videos:
   - `explainer-calling-voice-ai/` — Calling Voice AI. 1:59, 10 beats.
   - `progress-week-3/` — Repo Sensei, Week Three. 2:27, 20 beats, 13 drawn in Manim.
+
+Iacon Optimus work, from 2026-11-01, is filed in dated folders rather than numbered weeks:
+
+- [`2026-11-01-optimus-onboarding/`](2026-11-01-optimus-onboarding/README.md) — period
+  opened; scope and first work item still to be agreed with the PM.
 
 Weekly hours records live in [`weekly-hours/`](weekly-hours/README.md).
 Renewal requests live in [`renewal-requests/`](renewal-requests/README.md).
