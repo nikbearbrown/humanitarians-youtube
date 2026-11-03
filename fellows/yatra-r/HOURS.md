@@ -17,7 +17,7 @@ Weeks run Monday to Sunday. Agreement minimum: 20 hours a week.
 | 14–20 Sep | 20 | Written 3 Nov 2026 | Homes of Hope · Humanitarians AI tools marketing · Substack articles |
 | 21–27 Sep | 20 | Written 3 Nov 2026 | Homes of Hope · Humanitarians AI tools marketing · Substack articles |
 | 28 Sep – 4 Oct | 20 | Written 3 Nov 2026 | Homes of Hope · Humanitarians AI tools marketing · Substack articles |
-| 5–11 Oct | 20 | Written 3 Nov 2026 | Homes of Hope · Humanitarians AI tools marketing · Substack articles |
-| 12–18 Oct | 20 | Written 3 Nov 2026 | MCPHS guest lecture (LinkedIn post) · Homes of Hope · Humanitarians AI tools marketing |
+| 5–11 Oct | 20 | Written 3 Nov 2026 | Homes of Hope launch, as the documentary was released: building the social media strategy, meetings with Paul Wilkes and his team, 2–3 project meetings a week |
+| 12–18 Oct | 20 | Written 3 Nov 2026 | Prepared and gave a one-hour MCPHS guest lecture, 13 Oct (LinkedIn post) · Homes of Hope launch, as the documentary was released: building the social media strategy, meetings with Paul Wilkes and his team, 2–3 project meetings a week |
 | 19–25 Oct | 22 | Bi-weekly report, Oct 19–30 | Homes of Hope strategy 5 · meeting with Paul Wilkes and team 2 · graphics 5 · LinkedIn and Instagram posts 3 · YouTube strategy 2 · Brutalist videos 5 |
 | 26–31 Oct | 20 | Bi-weekly report, Oct 19–30 | Homes of Hope strategy 2 · graphics 5 · LinkedIn and Instagram posts 3 · YouTube strategy 5 · Brutalist videos 5 |
