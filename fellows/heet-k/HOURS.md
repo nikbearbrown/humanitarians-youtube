@@ -12,7 +12,8 @@ weekly reports generated via Addams (Frictional Learning Journal).
 | 18 | 28 Sep – 4 Oct | Intro & outro created/updated via the Brutalist skill (11) · continued deciding channel video types (8) · self-review (1) | 20.0 | 2.0 | **22.0** |
 | 19 | 5–11 Oct | Intro & outro modified to final, professor-confirmed (12) · a few new YouTube video suggestions (7) · self-review (1) | 20.0 | 2.0 | **22.0** |
 | 20 | 12–18 Oct | Video plan created with a teammate (9) · a few new videos using the confirmed intro/outro (10) · self-review (1) | 20.0 | 2.0 | **22.0** |
-| **Total** | | | **133.0** | **17.0** | **150.0** |
+| 21 | 19–25 Oct | Created and uploaded 20 YouTube Shorts with [Varun N.](../varun-n/) | 20.0 | 2.0 | **22.0** |
+| **Total** | | | **153.0** | **19.0** | **172.0** |
 
 Each week meets the 20-hour requirement at the stated split.
 

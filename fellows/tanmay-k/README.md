@@ -103,6 +103,10 @@ the standing choice, and `af_bella` is the one carried as history.
 | 2026-10-11 | [`2026-10-11-four-mornings-mycroft`](./2026-10-11-four-mornings-mycroft/) | Four Mornings — one portfolio dashboard, four quiet hand-offs behind it, and the morning my own test passed when it shouldn't have |
 | 2026-10-18 | [`2026-10-18-the-birthday-paradox-three-things-stem-video`](./2026-10-18-the-birthday-paradox-three-things-stem-video/) | The birthday paradox, three things you could change — how many people, how uneven the days, how many days, and the square-root rule that falls out |
 | 2026-10-18 | [`2026-10-18-minutes-of-the-meeting-mycroft`](./2026-10-18-minutes-of-the-meeting-mycroft/) | Minutes of the Meeting — three simulators read one invented stock, a chair weighs them, an AI is handed the minutes, and the one place my own copy disagreed with the original |
+| 2026-10-25 | [`2026-10-25-color-never-hears-the-music-stem-video`](./2026-10-25-color-never-hears-the-music-stem-video/) | Color never hears the music — why a fast tune gets a yellow sky, and the feeling that sits between a sound and a color |
+| 2026-10-25 | [`2026-10-25-the-sum-behind-the-number-mycroft`](./2026-10-25-the-sum-behind-the-number-mycroft/) | The Sum Behind the Number — a stress-test percentage taken apart block by block, and my Python copy of the engine run beside the original |
+| 2026-11-01 | [`2026-11-01-the-rally-has-a-clock-stem-video`](./2026-11-01-the-rally-has-a-clock-stem-video/) | The Rally Has a Clock — when "no perfect defense" is true in Pong: one checkable ratio, and a ball that speeds up so every rally has a clock |
+| 2026-11-01 | [`2026-11-01-two-customers-one-run-mycroft`](./2026-11-01-two-customers-one-run-mycroft/) | Two Customers, One Run — one run's results written twice from the same facts, an agent log for the next program and a report for the person deciding, and the mistake found by reading both |
 
 ## Two lanes
 

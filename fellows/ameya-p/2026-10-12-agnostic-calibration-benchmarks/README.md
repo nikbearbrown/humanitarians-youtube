@@ -5,6 +5,7 @@
 **Video:** [RL_Environment_AmeyaPadwad](https://drive.google.com/file/d/1vSt0JxMK_NULaiTBgMjvm54r55B4b0Qm/view?usp=drive_link)  
 **Report:** [Work Report](work_report.md)  
 **Friction Log:** [Friction Log](FRICTIONAL.md)  
+**Hours Log:** [Weekly Hours](HOURS.md)  
 **Report Week:** Oct 12 to Oct 18, 2026
 
 ---

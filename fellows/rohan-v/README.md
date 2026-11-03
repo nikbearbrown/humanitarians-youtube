@@ -20,7 +20,7 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 - [Renewal request](./RENEWAL.md) (sent 2026-09-28, approved) · [renewal index](./renewal-requests/README.md)
 - [Weekly hours](./weekly-hours/README.md): one file per week · [summary table](./HOURS.md)
 - [Research and project plan](./research-plan.md), with status
-- Latest week: [2026-10-23](#week-of-2026-10-23)
+- Latest week: [2026-10-30](#week-of-2026-10-30)
 
 ## How this folder is built
 
@@ -31,6 +31,17 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders (narration, beat clips and the 4K masters) go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx, evidence data) is committed beside it, per the [fellows README](../README.md).
 
 Every master is 4K: `./art final <reel>` (3840×2160) and `./art final <reel>/vertical --height 3840` (2160×3840).
+
+## Week of 2026-10-30
+
+Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a program I wrote and
+measured on this series' own narrator voice and caption model, with listening clips. Built Sun 1 Nov. Masters
+in Drive, [`2026-10-30/`](https://drive.google.com/drive/folders/1_qj0XWilWw5mLy8kPWws-jyWFEGN7BOv) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-10-26-weekly-hours.md).
+
+- [How AI Voices Read a Script](./2026-10-30-how-ai-voices-read-a-script/): text clean-up, letters to sounds, and where our narrator misreads (heteronyms, prices, names), tested on its own G2P (`AIVoices_RohanV.mp4`)
+- [How Auto-Captions Find Each Word](./2026-10-30-how-auto-captions-find-each-word/): the spectrogram, word timing and the noise cliff, on Whisper tested with sentences whose true word times are known (`AutoCaptions_RohanV.mp4`)
 
 ## Week of 2026-10-23
 

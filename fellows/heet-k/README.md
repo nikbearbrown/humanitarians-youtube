@@ -2,14 +2,15 @@
 
 **Role:** AI Software Engineer  
 **Project:** Medhavy  
+**Project Manager:** [Jash S.](../jash-s/)  
 **GitHub:** [@heetkanani](https://github.com/heetkanani)
 
-- **Group / PM:** Medhavy — [Clafacio L.](../clafacio-l/) (Weeks 4–15), [Jash S.](../jash-s/) (Week 16 onward)
+- **Group:** Medhavy. PM [Jash S.](../jash-s/) from Week 16; [Clafacio L.](../clafacio-l/) Weeks 4–15.
 - **Channel:** [youtube.com/@MedhavyAI](https://www.youtube.com/@MedhavyAI)
 - **Drive (renders):** [all weeks](https://drive.google.com/drive/folders/1f7r-1Iq3WEzqcWCu6B8TVNQvqt6fBLGo)
 - **Kokoro voice:** `am_onyx` ("Onyx") — declared in every `claude-sri` beat sheet as `voice_kokoro`.
   See [voice note](#voice) below.
-- **Reporting period covered here:** 17 Aug – 18 Oct 2026
+- **Reporting period covered here:** 17 Aug – 25 Oct 2026
 
 ## What this folder is
 
@@ -37,6 +38,7 @@ live in Drive and are linked per week below, per the repo's
 | [28 Sep – 4 Oct](./2026-10-01-intro-outro-brutalist-pass/) | Further intro/outro pass, built through the Brutalist skill + its `CLAUDE.md` | **Self-reviewed, held — not sent, not confirmed.** Does not supersede the Week 15 confirmed set. | [Addams journal](./2026-10-01-intro-outro-brutalist-pass/addams-week-18.html) · skill = `logo-motion` (existing) · [stings in use](https://www.youtube.com/shorts/byO4NcbLcXc) | [log](./2026-10-01-intro-outro-brutalist-pass/FRICTIONAL.md) |
 | [5–11 Oct](./2026-10-01-intro-outro-brutalist-pass/) | Modified the held version to final and submitted it | **Professor-confirmed final.** Closes the intro/outro branding. Logged as an appended entry in the same folder. | skill = `logo-motion` (existing) · [stings in use](https://www.youtube.com/shorts/byO4NcbLcXc) | [log](./2026-10-01-intro-outro-brutalist-pass/FRICTIONAL.md) |
 | [12–18 Oct](./2026-10-15-first-branded-videos/) | First content videos on the confirmed branding | Two new classical-mechanics Shorts, plus two earlier ones carrying the same intro/outro. **Published.** | [Sliding Puck](https://www.youtube.com/shorts/nJUA8plGrOQ) · [Anything Ever Move](https://www.youtube.com/shorts/e9wJXusS31g) | [log](./2026-10-15-first-branded-videos/FRICTIONAL.md) |
+| [19–25 Oct](./2026-10-22-twenty-shorts-upload/) | **Twenty Shorts created and uploaded**, with [Varun N.](../varun-n/) | The pipeline at volume — 2 videos the previous week, 20 this one. **Published.** | [Shorts feed](https://www.youtube.com/@MedhavyAI/shorts) | [log](./2026-10-22-twenty-shorts-upload/FRICTIONAL.md) |
 
 ## `sri-explainer` — chapter-to-video skill
 
@@ -70,7 +72,7 @@ Recorded as-is rather than retro-edited.
 
 ## Hours and renewal
 
-- [Weekly hours](HOURS.md) — reconstructed by the volunteer, not measured time
+- [Weekly hours](HOURS.md)
 - [Renewal request](RENEWAL.md)
 
 ## Scope and notes

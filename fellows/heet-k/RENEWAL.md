@@ -12,9 +12,12 @@
 ## What the current period produced
 
 Three threads, each carried to a different and clearly-labelled state. The
-detailed record below covers Weeks 14–20 (31 Aug – 18 Oct), **150 hours**;
+detailed record below covers Weeks 14–21 (31 Aug – 25 Oct), **172 hours**;
 earlier weeks of the agreement period are summarised in the weekly reports but
 predate this reporting folder.
+
+The period ends on an inflection: two months building a brand identity and a
+pipeline, then **twenty Shorts published in the final week**.
 
 - **A complete channel brand identity, professor-confirmed.** Intro and outro
   built from scratch — 58 candidate marks narrowed to one hero, a palette chosen
@@ -33,9 +36,13 @@ predate this reporting folder.
   edge cases ruled out before the result, golden-test honesty on every number.
   Two visual looks, two Vol. 1 chapters built as real tests, professor-reviewed,
   confirmed, and committed.
-- **The channel curated and its first content shipped.** Unnecessary videos
-  unlisted, content direction worked out over four weeks, and two new Shorts
-  published on the confirmed branding — made jointly with [Varun N.](../varun-n/).
+- **The channel curated, and content shipped at volume.** Unnecessary videos
+  unlisted, content direction worked out over four weeks, then two Shorts
+  published in Week 20 and **twenty more in Week 21** — all on the confirmed
+  branding, made jointly with [Varun N.](../varun-n/). The jump from two to
+  twenty in a week is the measure of what the branding and tooling work bought:
+  once the stings regenerate rather than being hand-edited, the cost per video
+  drops far enough that publishing becomes the constraint instead of production.
 
 ### Evidence
 
@@ -49,6 +56,7 @@ predate this reporting folder.
 | 18 (28 Sep – 4 Oct) | [Branding through `logo-motion`](./2026-10-01-intro-outro-brutalist-pass/) | Regenerated, self-reviewed, held | [Addams journal](./2026-10-01-intro-outro-brutalist-pass/addams-week-18.html) |
 | 19 (5–11 Oct) | [Intro/outro to final](./2026-10-01-intro-outro-brutalist-pass/) · [content proposals](./2026-10-08-youtube-video-suggestions/) | **Professor-confirmed final** | [stings in use](https://www.youtube.com/shorts/byO4NcbLcXc) |
 | 20 (12–18 Oct) | [First content videos](./2026-10-15-first-branded-videos/) · [channel curated with Varun N.](./2026-10-15-collaborative-video-plan/) | Two Shorts published on the confirmed branding | [Sliding Puck](https://www.youtube.com/shorts/nJUA8plGrOQ) · [Anything Ever Move](https://www.youtube.com/shorts/e9wJXusS31g) |
+| 21 (19–25 Oct) | [Twenty Shorts created and uploaded](./2026-10-22-twenty-shorts-upload/), with Varun N. | **20 Shorts published** — the pipeline at volume | [Shorts feed](https://www.youtube.com/@MedhavyAI/shorts) |
 
 ### Drive
 
@@ -70,8 +78,9 @@ in [README.md](README.md).
 
 - **Mine alone:** the intro and outro, the `sri-explainer` skill, the two chapter
   videos, the channel curation in Week 17.
-- **Joint with [Varun N.](../varun-n/):** the two new YouTube content videos and
-  the Week 20 channel decisions.
+- **Joint with [Varun N.](../varun-n/):** the Week 20 content videos and channel
+  decisions, and the twenty Shorts created and uploaded in Week 21 — divided
+  between us across creation and upload rather than both doing both.
 - **Tooling I used but did not write:** `logo-motion`. My Weeks 18–20 weekly
   reports describe it as a skill I created; that is corrected in the
   [work folder](./2026-10-01-intro-outro-brutalist-pass/#attribution--correcting-the-weekly-reports).
@@ -100,9 +109,10 @@ treating reach as something to work on rather than a by-product:
   be a coherent classical-mechanics set, which is a natural first series; the
   [three unlisted videos](./2026-09-24-channel-reorganization/#what-was-unlisted)
   need a decision on whether they rejoin under a different framing.
-- **Add more videos.** Continue the mechanics series rather than scattering
-  topics, since a viewer who watches one should have an obvious next one. Built
-  jointly with Varun, as the Week 20 pair were.
+- **Keep the volume up, and give it shape.** Week 21 showed the pipeline can
+  produce twenty Shorts in a week. The next question is not whether more can be
+  made but whether they form a series a viewer can follow, rather than a feed.
+  Built jointly with Varun, as the Week 20 and 21 batches were.
 - **Work on titles, thumbnails and descriptions.** These are the parts of reach
   that are within my control and have not had deliberate attention yet.
 
@@ -114,15 +124,17 @@ asserting growth.
 
 The branding is finished, so the rest of the period is about content on top of it.
 
-1. **Publish on a cadence.** The first two content Shorts exist; the question is
-   whether the pipeline sustains a regular release rather than a batch.
+1. **Publish on a cadence.** Twenty Shorts went out in one week; the open
+   question is whether that becomes a sustained rhythm rather than a single
+   burst.
 2. **Write the content plan down.** Four weeks of channel-direction work produced
    decisions enacted directly rather than a document. A short written plan — what
    the channel holds and who it is for — makes the direction reviewable instead of
    inferable from what shipped.
-3. **Keep the build inputs.** The Week 18–20 videos have no beat sheets kept. Going
-   forward the beat sheet and scene code get committed alongside each video, so the
-   work is reproducible and not only watchable.
+3. **Keep the build inputs.** The Week 18–21 videos have no beat sheets kept, and
+   at twenty videos a week that gap grows faster than it can be filled in later.
+   Going forward the beat sheet and scene code get committed alongside each batch,
+   so the work is reproducible and not only watchable.
 
 Reporting continues as it has: a dated Frictional log per work folder, appended
 and never rewritten; weekly hours; and an Addams journal entry per week.

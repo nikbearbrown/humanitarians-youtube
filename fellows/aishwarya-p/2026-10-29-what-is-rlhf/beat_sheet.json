@@ -1,0 +1,294 @@
+{
+  "metadata": {
+    "title": "What Is RLHF?",
+    "slug": "what-is-rlhf",
+    "topic": "AI & Training",
+    "register": "Pragmatist",
+    "voice": "claude-hai",
+    "voice_kokoro": "af_bella",
+    "engine": "kokoro",
+    "palette": "humanitarians",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "channel": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "note": "STEM/AI concept video on RLHF. Real cited sources: Ouyang et al. 2022, 'Training language models to follow instructions with human feedback' (InstructGPT, arXiv 2203.02155: three stages; 1.3B preferred over 175B GPT-3); OpenAI 'Introducing ChatGPT' (Nov 30 2022: same methods as InstructGPT, PPO, fine-tuned from GPT-3.5 series); Bai et al. 2022, 'Constitutional AI' (arXiv 2212.08073: self-critique and revision, RLAIF); Anthropic 'Claude's Constitution' (May 9 2023: 'no human data on harmlessness'); Lee et al. 2023, 'RLAIF vs. RLHF' (Google, arXiv 2309.00267: comparable performance).",
+    "total_estimated_duration_seconds": 145,
+    "build": {
+      "at": "2026-10-29T10:43:13",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00A",
+      "act": "INTRO",
+      "role_note": "presenter executive summary",
+      "narration_text": "Hi, I'm Aishwarya from the Mycroft team. This video is about RLHF, reinforcement learning from human feedback: the training stage that turned a text predictor into an assistant you can talk to.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "",
+            "topic": "AI & Training",
+            "segment": "What Is RLHF?",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Hi, I'm Aishwarya",
+            "runningText": "from the Mycroft team",
+            "output": [
+              "The training stage that turned",
+              "a text predictor into an assistant."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00A.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B00A.mp3",
+      "actual_duration_s": 12.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00A.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW",
+      "narration_text": "In 2022, OpenAI researchers found that people preferred answers from a model with 1.3 billion parameters over answers from GPT-3, a model a hundred times larger. The smaller model wasn't bigger or better read. It had been trained on what people actually preferred.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "",
+            "topic": "AI & Training",
+            "segment": "What Is RLHF?",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "1.3B vs 175B:",
+            "runningText": "which answers did people prefer…",
+            "output": [
+              "GPT-3          175B parameters",
+              "InstructGPT    1.3B parameters   <- preferred",
+              "100x fewer parameters (Ouyang et al., 2022)"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 19.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "METHOD",
+      "role_note": "stage 1: supervised fine-tuning on labeler demonstrations",
+      "narration_text": "Method: RLHF, as OpenAI described it in the InstructGPT paper, has three stages. Stage one is supervised fine-tuning. Human labelers write example answers to real prompts, showing what a good response looks like. The pretrained model is then fine-tuned on those examples, so it starts by imitating the people who wrote them.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_SupervisedFineTuning",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 22.63,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_SupervisedFineTuning",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "METHOD",
+      "role_note": "stage 2: reward model trained on labeler rankings",
+      "narration_text": "Stage two trains a reward model. The fine-tuned model writes several answers to the same prompt, and labelers rank them from best to worst. Ranking is much faster than writing. A separate model learns from those rankings to predict which answer a person would prefer, and turns that prediction into a single score.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_RewardModel",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 19.46,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_RewardModel",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "METHOD",
+      "role_note": "stage 3: RL with PPO, KL penalty; ChatGPT used the same methods",
+      "narration_text": "Stage three is reinforcement learning. The model answers new prompts, the reward model scores each answer, and an algorithm called PPO, Proximal Policy Optimization, nudges the model toward higher-scoring answers. A penalty keeps it from drifting too far from the stage-one model. OpenAI says ChatGPT was trained with these same methods, starting from a model in its GPT-3.5 series.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_PPOOptimization",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 21,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 25.39,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_PPOOptimization",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CHANGE",
+      "role_note": "Constitutional AI: no human data on harmlessness, self-critique against principles",
+      "narration_text": "Human preference labels are slow and expensive. Anthropic's Constitutional AI, which is used to train Claude, takes a different route for harmlessness. The model received no human data on harmlessness. Instead, it gets a written list of principles, a constitution, and learns to critique and revise its own answers against them.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_ConstitutionalAI",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 21.42,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_ConstitutionalAI",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B04B",
+      "act": "CHANGE",
+      "role_note": "RLAIF: AI judge replaces human ranker; comparable to RLHF; limits",
+      "narration_text": "In the reinforcement learning stage, an AI model, not a person, judges which of two answers is better. That's called RLAIF, reinforcement learning from AI feedback. A 2023 Google study found RLAIF performed comparably to RLHF. Humans still write the principles, though, and the feedback is only as good as the model giving it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04B_RLAIF",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04B.mp3",
+      "actual_duration_s": 22.44,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04B.mp4",
+        "filled_by": "manim:B04B_RLAIF",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW",
+      "narration_text": "Your turn. Ask any chatbot the same question twice, then write down which answer you prefer and one sentence on why. That sentence is a preference label. Now imagine writing a hundred thousand of them, and you'll see why RLAIF exists.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"answer this question twice, two different ways, then ask me which one I prefer and why\"",
+            "topic": "AI & Training",
+            "segment": "What Is RLHF?",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "write one preference label…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 15.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T10:43:13"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW",
+      "narration_text": "What Is RLHF? Built with Claude, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "What Is RLHF?",
+            "handle": "@HumanitariansAI",
+            "subline": "trained on what people preferred"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 4,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 4.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T10:43:13"
+      }
+    }
+  ]
+}

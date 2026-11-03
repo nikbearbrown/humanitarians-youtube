@@ -3,6 +3,7 @@
 **Project:** Fine tuning using RLCD  
 **Collaborative Project Repository:** [AmeyaPadwad/fine_tuner](https://github.com/AmeyaPadwad/fine_tuner)  
 **Report:** [Work Report](work_report.md)  
+**Hours Log:** [Weekly Hours](HOURS.md)  
 **Report Week:** Sep 28 to Oct 4, 2026
 
 ---
