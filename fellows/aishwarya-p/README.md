@@ -13,6 +13,18 @@ Fellow videos for the Mycroft project (patent intelligence and finance research 
 
 This voice was selected for both reports below and will be kept consistent across this series unless an explicit, documented re-voice decision is made.
 
+## Weekly READMEs
+
+- **2026-10-24 - 2026-10-30:**
+  - [Measuring the Classifier (video 11)](./2026-10-28-patent-agent-video11-classifier-eval-harness/README.md)
+  - [What the Baseline Found (video 12)](./2026-10-29-patent-agent-video12-baseline-results/README.md)
+  - [What Is RLHF?](./2026-10-29-what-is-rlhf/README.md)
+  - [How AI Agents Are Changing Payments](./2026-10-29-how-ai-agents-are-changing-payments/README.md)
+
+## Published videos
+
+No YouTube links are recorded in this folder yet.
+
 ## Reports
 
 - `2026-08-03-patent-claims-lineage-agents/` — Claims + Lineage Agents: a two-agent system reading a patent's claims section and citation network, built against the real Google Patents Public Data BigQuery schema.
