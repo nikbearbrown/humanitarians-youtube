@@ -23,7 +23,10 @@ and its paperwork; the rendered mp4s are not committed.
 | [`2026-09-01-nobody-wrote-this`](2026-09-01-nobody-wrote-this/) | Nobody Wrote This. | 14 | 2:48.9 | 16:9 + 9:16 |
 | [`2026-09-03-this-week-gordy`](2026-09-03-this-week-gordy/) | This Week, Gordy. | 12 | 2:24.1 | 16:9 + 9:16 |
 | [`2026-09-07-interest-media`](2026-09-07-interest-media/) | Interest Media. | 13 | 2:29.6 | 16:9 + 9:16, both 4K |
+| [`2026-10-21-both-sides-of-the-table`](2026-10-21-both-sides-of-the-table/) | Both Sides of the Table. | 14 | 2:48.9 | 16:9 + 9:16 |
+| [`2026-10-21-the-mask-slips`](2026-10-21-the-mask-slips/) | The Mask Slips. | 13 | 2:48.3 | 16:9 + 9:16 |
 | [`2026-10-29-ads-in-the-picture`](2026-10-29-ads-in-the-picture/) | Ads in the Picture. | 13 | 2:54.0 | 16:9 + 9:16, both 4K |
+| [`2026-10-30-no-default-winner`](2026-10-30-no-default-winner/) | No Default Winner. | 13 | 2:42.4 | 16:9 + 9:16, both 4K |
 
 ## What a beat sheet is
 
