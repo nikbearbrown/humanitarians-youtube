@@ -9,7 +9,7 @@ I'm asking to renew from 1 Nov 2026 to 15 Feb 2027 as Social Media Manager on Ho
 - wrote three Substack articles on our own AI tools
 - made 12 Brutalist explainer videos, each with a fact-check file and a Frictional log
 
-I worked 20+ hours every week (see [HOURS.md](HOURS.md)). Next period I'll publish a Homes of Hope YouTube video and two Brutalist videos every week, and study how one documentary should be messaged differently on each platform.
+I worked 20+ hours every week (see [HOURS.md](HOURS.md)). Next period I'll keep running the Homes of Hope social media strategy, graphics and content, publish a Homes of Hope YouTube video and two Brutalist videos every week, and study how one documentary should be messaged differently on each platform.
 
 ## Request
 
@@ -63,6 +63,7 @@ Weeks run Monday to Sunday. Rendered videos are in the [Google Drive folder](htt
 
 | Deliverable | Target date |
 |---|---|
+| Homes of Hope: run the social media strategy, making graphics and content for LinkedIn and Instagram | Every week |
 | Homes of Hope: one YouTube video every week, following the YouTube strategy | Every week |
 | Homes of Hope: bi-weekly report on how the posts and videos performed (reach, engagement) and what I changed as a result | Every two weeks |
 | Homes of Hope: campaign summary across all three platforms, with recommendations for the next phase | 15 Feb 2027 |
