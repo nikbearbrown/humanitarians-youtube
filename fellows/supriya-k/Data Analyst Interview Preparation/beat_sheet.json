@@ -1,0 +1,432 @@
+{
+  "metadata": {
+    "title": "The SQL Interview Bug Even a Correct-Looking Query Can Hide",
+    "slug": "hai-sql-window-functions-tie-bug",
+    "brand": "claude-hai",
+    "channel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "audience": "HAI",
+    "series": "Data Analyst Interview Prep",
+    "skill": "cli-explainer",
+    "tool": "claude",
+    "persona": "hai",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "humanitarians",
+    "typography": {
+      "serif": "EB Garamond",
+      "sans": "Montserrat"
+    },
+    "register": "Pragmatist",
+    "narrator_identity": "Supriya, for Humanitarians AI",
+    "source": [
+      "books/data-analyst-interview-prep/chapters/04-sql-ii.md",
+      "books/data-analyst-interview-prep/chapters/07-python-pandas-ai-tools.md"
+    ],
+    "description": "CLI-explainer: an interview-style 'top track per user' SQL query that runs cleanly, looks correct, and silently returns two rows for a tied user. RANK() to ROW_NUMBER() revision fixes it. Sourced from Chapter 4 (window functions, Exercise 3) with a one-beat tie-in to Chapter 7's AI-code-judgment theme.",
+    "aspect": "16:9",
+    "resolution": "3840x2160",
+    "resolution_note": "Render every beat and the final master at 3840x2160 (4K). compile.py defaults to --height 720; use --height 2160. Check each beat's rendered frame resolution before compiling the master.",
+    "date": "2026-07-24",
+    "gate_p": "PENDING — see PEDAGOGY.md",
+    "no_paid_services": true,
+    "build": {
+      "at": "2026-07-24T18:46:37",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — ClaudeComposerAsk, ask shown answered. Narrator identity per explicit user instruction, not the world-language-hello lexicon.",
+      "narration_text": "Supriya, for Humanitarians AI. Here's the ask: from a streaming service's play log, find each user's single top track. Watch what comes back — the query runs, it returns rows, and at first glance it looks right. That's exactly the trap this video is about: a query that executes without error is not the same as a query that's correct on every case.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "actual_duration_s": 22.63,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"From Loopr's plays log (user_id, track_id, played_at), find each user's single top track — the one they played the most.\"",
+            "topic": "SQL INTERVIEW PREP · WINDOW FUNCTIONS",
+            "segment": "The SQL Interview Bug Even a Correct-Looking Query Can Hide",
+            "greeting": "Supriya, for Humanitarians AI",
+            "runningText": "ranking plays per user…",
+            "output": [
+              "Counting plays per user x track...",
+              "Ranking within each user (PARTITION BY user_id)...",
+              "3 users checked: 101, 102, 103",
+              "Rows returned: 4 -- one user has 2 rows"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "stakes before any prompt — SHOW-DON'T-TELL: animate the plays schema and the tie moment",
+      "narration_text": "Top-N per group is one of the most common SQL interview patterns — top track per user, top product per city, top order per customer. Almost everyone reaches for a window function to solve it. Fewer people check what happens when two rows tie for first place. Loopr, an invented streaming service, keeps one simple table: plays, with a user, a track, and a timestamp for every play. The interview question sounds easy. The tie is where it stops being easy.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 29,
+      "visual_intent": "Manim: draw the plays(user_id, track_id, played_at) table skeleton, then three rows animate in for user 101 -- track Echo and track Nova, play counts climbing in parallel and landing on the SAME value (5 and 5), with a small terracotta/crimson tie-mark pulsing between them. Caption: 'top-N per group -- until two rows tie.'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B01_ProblemStakes",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 26.79,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_ProblemStakes",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "role_note": "why a window function at all -- book Ch.4 core mechanism, illustrated before the CLI loop",
+      "narration_text": "Why a window function at all? GROUP BY collapses every user's rows into one -- you lose the ability to point at 'the top one' because there's no per-row context left. A window function computes a value for each row using a set of related rows, without collapsing them. PARTITION BY sets the groups -- here, each user. ORDER BY sets the order inside each group. That's what makes 'rank within user' possible in the first place.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 29,
+      "visual_intent": "Manim split-screen: LEFT -- GROUP BY collapsing 3 rows (Echo/Nova/Drift for user 101) down into 1 flattened row, per-row detail visibly disappearing; RIGHT -- a window function keeping all 3 rows on screen, PARTITION BY drawing a bracket around user 101's rows, ORDER BY sorting them by play count with an animated arrow. Caption: 'collapses vs. preserves.'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B02_WindowVsGroupBy",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 24.41,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_WindowVsGroupBy",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CLI",
+      "role_note": "cycle 1 -- show and discuss the prompt (SPARK-LINE: 'The ask,')",
+      "narration_text": "The plan: count plays per user and track, rank them within each user, and keep only the top one. In an interview you'd narrate this as you type it -- group by user and track, order by play count descending, take rank one. It sounds complete. Here's the query as written.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"Write a MySQL query: for each user in Loopr's plays log, return their single most-played track. Use a window function, not a GROUP BY that would collapse the per-track detail.\"",
+            "topic": "SQL INTERVIEW PREP · WINDOW FUNCTIONS",
+            "segment": "cycle 1 -- the ask",
+            "greeting": "The ask,",
+            "runningText": "drafting the ranking query…"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CODE",
+      "role_note": "cycle 1 -- ClaudeCodeBeat, THE ACTUAL-CODE LAW: real MySQL, trimmed to the lines that teach",
+      "narration_text": "Two steps. First, counts: how many times each user played each track. Second, ranked: RANK, ordered by play count descending, partitioned by user. The final SELECT keeps only rnk equals one. Nothing here throws an error. It compiles, it runs -- and RANK gives every tied row the same rank.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "top_track_buggy.sql",
+            "code": "WITH counts AS (\n  SELECT user_id, track_id, COUNT(*) AS plays\n  FROM   plays\n  GROUP  BY user_id, track_id\n),\nranked AS (\n  SELECT user_id, track_id, plays,\n         RANK() OVER (PARTITION BY user_id ORDER BY plays DESC) AS rnk\n  FROM   counts\n)\nSELECT user_id, track_id, plays\nFROM   ranked\nWHERE  rnk = 1;",
+            "sparkLine": "Same rank on a tie."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 19.35,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTPUT",
+      "role_note": "cycle 1 -- MOVING visualization, never a still; the bug becomes visible",
+      "narration_text": "Run it against three users. Jon's clear top track appears -- one row. Priya's clear top track appears -- one row. Then user 101, Maya: track Echo and track Nova, tied at five plays each. RANK gives both of them rank one. The query that was supposed to return one top track per user just returned two for her.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "visual_intent": "Manim animated result table: rows fly in one at a time as narrated -- (102, T-ECHO, 7) teal checkmark; (103, T-DRIFT, 6) teal checkmark; then (101, T-ECHO, 5) AND (101, T-NOVA, 5) both land together, both flagged crimson, a '2 ROWS FOR ONE USER' badge pulses beside them. Row count ticker: 4 rows returned / 3 users asked for.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B05_TopTrackBuggyOutput",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 20.57,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_TopTrackBuggyOutput",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLI",
+      "role_note": "cycle 2 = THE REVISION LAW (mandatory) -- check the output, type the revised ask (SPARK-LINE: 'The change,')",
+      "narration_text": "Check the output before you trust it: does exactly one row come back per user? For Maya, it doesn't -- two rows, same rank. The fix isn't a different WHERE clause. It's a different window function: swap RANK for ROW_NUMBER, and give it a tiebreaker so a tie can never produce two winners.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"This query returns 2 rows for user 101 instead of 1 -- check for ties in play count and fix the ranking so exactly one row returns per user.\"",
+            "topic": "SQL INTERVIEW PREP · WINDOW FUNCTIONS",
+            "segment": "cycle 2 -- the revision",
+            "greeting": "The change,",
+            "runningText": "checking for ties…"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 16.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "CODE",
+      "role_note": "cycle 2 -- the fixed query, discuss the diff that matters",
+      "narration_text": "One line changes. ROW_NUMBER instead of RANK -- it never repeats a value, even on a tie. And the ORDER BY inside OVER now sorts by play count descending, then track ID ascending, so ties resolve to a single, deterministic winner instead of splitting the rank. Same shape, one column added, one function swapped.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "top_track_fixed.sql",
+            "code": "WITH counts AS (\n  SELECT user_id, track_id, COUNT(*) AS plays\n  FROM   plays\n  GROUP  BY user_id, track_id\n),\nranked AS (\n  SELECT user_id, track_id, plays,\n         ROW_NUMBER() OVER (\n           PARTITION BY user_id\n           ORDER BY plays DESC, track_id ASC\n         ) AS rn\n  FROM   counts\n)\nSELECT user_id, track_id, plays\nFROM   ranked\nWHERE  rn = 1;",
+            "sparkLine": "ROW_NUMBER never repeats."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 20.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTPUT",
+      "role_note": "cycle 2 -- the BETTER output, the change made visible",
+      "narration_text": "Run it again. Jon: one row. Priya: one row. And Maya: exactly one row now too -- track Echo, her top track by the tiebreaker. Three users in, three rows out. That's what 'top track per user' actually promised.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "visual_intent": "Manim animated result table: same three rows as B05 fly in, but this time (101, T-ECHO, 5) lands ALONE with a teal checkmark -- the duplicate (101, T-NOVA, 5) row visibly does NOT appear, ghosted/crossed out beside it for one beat to show what got filtered. Row count ticker updates: 3 rows returned / 3 users asked for.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B08_TopTrackFixedOutput",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 14.89,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim:B08_TopTrackFixedOutput",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "the lesson in one beat, incl. brief Ch.7 AI-code-judgment tie-in",
+      "narration_text": "The lesson isn't RANK versus ROW_NUMBER -- it's that a query returning rows is not proof it's correct. Ties are the classic case that breaks a top-N query quietly, and they're exactly the kind of edge case the book's chapter on AI tools warns about too: code can pass a surface smell test and still be subtly wrong. Read the output. Count the rows. Check the case the happy path skips.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "visual_intent": "Manim/Remotion lesson card on the humanitarians cream stage: three checklist lines draw on in sequence -- 'Read the output.' / 'Count the rows.' / 'Check the case the happy path skips.' -- with a small side note citing Ch.7: 'AI output can pass a surface smell test and still be subtly wrong.'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "drawon",
+        "manim": {
+          "scene_class": "B09_Lesson",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 22.55,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B09.mp4",
+        "filled_by": "manim:B09_Lesson",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW -- prompt READ aloud AND discussed; greeting 'Your turn.'",
+      "narration_text": "Your turn. Take any top-N-per-group query you've written and ask: what happens on a tie? Run this prompt: 'Here's my top-N-per-group SQL query -- check whether ties in the ranking column can produce more than one row per group, and if so, add a deterministic tiebreaker to ORDER BY.' Read what comes back, then verify it yourself against a case with a real tie.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"Here's my top-N-per-group SQL query: [paste your query]. Check whether ties in the ranking column can produce more than one row per group, and if so, add a deterministic tiebreaker to ORDER BY so exactly one row returns per group.\"",
+            "topic": "SQL INTERVIEW PREP · WINDOW FUNCTIONS",
+            "segment": "The SQL Interview Bug Even a Correct-Looking Query Can Hide",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 22.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-07-24T18:46:37"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, @HumanitariansAI handle",
+      "narration_text": "The SQL Interview Bug Even a Correct-Looking Query Can Hide. Supriya, for Humanitarians AI.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "The SQL Interview Bug Even a Correct-Looking Query Can Hide",
+            "handle": "@HumanitariansAI",
+            "subline": "Supriya, for Humanitarians AI."
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 6.66,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-07-24T18:46:37"
+      }
+    }
+  ]
+}

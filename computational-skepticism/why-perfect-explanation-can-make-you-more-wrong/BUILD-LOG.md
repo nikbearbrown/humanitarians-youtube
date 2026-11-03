@@ -1,0 +1,41 @@
+# BUILD-LOG — why-perfect-explanation-can-make-you-more-wrong
+
+- **Reel**: `why-perfect-explanation-can-make-you-more-wrong`
+- **Topic**: Computational Skepticism for AI — Candidate 05: Why a Perfect Explanation Can Make You More Wrong
+- **Book Chapter**: Chapter 5 (`05-model-explainability-distinguishing-explanation-from-the-appearance-of-explanation.md`)
+- **Date**: 2026-08-29
+- **Register**: Plain (Explaining post-hoc explanation fidelity vs world validation, shortcut learning, and the two-path confidence transfer without Teardown judgment)
+- **Voice / Engine**: Kokoro `am_onyx` (free local neural TTS)
+- **Total Duration**: 183.2s (03:03)
+- **Canvas / Resolution**: 3840×2160 (4K clean master)
+- **Beats**: 16 beats (16/16 filled, 0 slates)
+  - `B00`: Remotion `BrutalistHesitantWriter` (11.54s) — Types naive "strictly more reliable" question, hesitates, corrects to "sometimes dangerously wrong"
+  - `B01`: Manim `B01Scene` (13.61s) — Screening AI Malignancy Risk 84% driven by Features X and Y (Composite Case)
+  - `B02`: Manim `B02Scene` (11.37s) — Radiologist concurrence and biopsy recommendation; benign outcome reveal
+  - `B03`: Manim `B03Scene` (12.67s) — Striking down the hallucination misconception; model math was 100% faithful
+  - `B04`: Manim `B04Scene` (12.35s) — Shortcut learning mechanism: training correlation vs deployment reality
+  - `B05`: Manim `B05Scene` (10.67s) — Internal accounting (what the model did) vs State of the world (biological ground truth)
+  - `B06`: Manim `B06Scene` (9.66s) — Anchor planted: The Two-Path Decision Flow (Prediction Alone vs Prediction + Explanation)
+  - `B07`: Manim `B07Scene` (11.52s) — Manim move compare (Path A: Prediction Alone): score only, healthy skepticism, 50% confidence
+  - `B08`: Manim `B08Scene` (12.46s) — Manim move compare (Path B: Prediction + Explanation): score + story, unearned trust, confidence surges to 90%
+  - `B09`: Manim `B09Scene` (12.91s) — Epistemic mechanism: The Fluency Trap and unearned confidence transfer
+  - `B10`: Manim `B10Scene` (12.54s) — One Flag: Transparency of internal computation is not proof of truth in deployment
+  - `B11`: Manim `B11Scene` (9.69s) — Direction A: Faithful explanation does not mean correct decision
+  - `B12`: Manim `B12Scene` (9.64s) — Direction B: Flawed prediction does not mean dishonest explanation
+  - `BCRY`: Remotion `WantQuote` (10.11s) — Carry-out sentence
+  - `BHTF`: Remotion `ClaudeComposerAsk` (16.81s) — Paste-ready verification prompt for practitioners
+  - `BOUT`: Remotion `OutroCTA` (4.63s + 1.0s tail) — Channel outro with @HumanitariansAI skin
+
+## Verification Gates
+- **Audio Check**: PASS (mean volume: -24.0 dB, max volume: -2.9 dB)
+- **Gate T (Typecheck)**: PASS (All text runs compliant, WCAG 4.5:1 contrast `#3D3929` on `#FAF9F5`, `#D97757` terracotta accent)
+- **Gate V (Visual Inspection)**: PASS (4K frames inspected at key moments: clean layout, no collisions, elegant typography)
+- **No-GenAI / No-Pantry Law**: PASS (100% Manim + Remotion, 0 AI video, 0 stock assets)
+- **Output Artifacts**:
+  - `why-perfect-explanation-can-make-you-more-wrong.mp4` (4K Master)
+  - `why-perfect-explanation-can-make-you-more-wrong-4k.mp4` (4K Master)
+  - `why-perfect-explanation-can-make-you-more-wrong.md` (YouTube metadata & description)
+  - `beat_sheet.json` (Structured beat sheet)
+  - `SCRIPT.md` (Narration script)
+  - `QUESTION.md` (Asker question)
+  - `CARRY-OUT.md` (Carry-out line)

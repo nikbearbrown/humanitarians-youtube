@@ -1,0 +1,744 @@
+{
+  "metadata": {
+    "title": "The Logout That Didn't",
+    "slug": "claude-hai-the-logout-that-didnt-short",
+    "topic": "MEDHAVY HUB · POSTMORTEM",
+    "segment": "The Logout That Didn't",
+    "register": "Pragmatist",
+    "audience": "HAI",
+    "brand": "claude",
+    "channel": "claude-hai",
+    "persona": "HAI",
+    "voice": "Bella",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "greeting": "Hi, HAI",
+    "greeting_note": "hai word-budget lexicon is shortest-forms-only (Hi / Ola / Hej / Ciao). Ola went to introduction-to-cells, Hej to one-sign-in-many-books, Ciao to lookup-not-training, so this reel takes Hi — no language repeats inside the claude-hai set.",
+    "playlist": "Humanitarians AI — How Medhavy Works",
+    "fps": 30,
+    "source": "the-logout-that-didnt-script.md (author's 5-scene script), verified live 2026-10-15 against Medhavy/medhavi-hub: components/LogoutButton.tsx on main and on development, PR #13 (open) and PR #14 (merged 2026-10-13)",
+    "note": "AI-EXPLAINER, default fidelity brand, claude-hai channel, Bella. MANDATORY SPINE INTACT: cold open (B00) → body B01-B10 → verdict page (B11) → HANDOFF (B12) → title-restate outro (B13). WAR-STORY SHAPE PRESERVED: the body is deliberately not a feature tour. It runs report (B01/B02) → investigation (B03/B04) → root cause (B05/B06/B07) → fix (B08/B09) → lesson (B10), and each act is allowed to behave like its act: B02 ends on a question rather than an answer, B07 is the reveal, B10 draws the moral. The verdict recaps the INVESTIGATION, not a feature list. ILLUSTRATE LAW: the Claude UI appears only at B00/B11/B12/B13; every body beat is a C3 concept illustration. LOGO LAW: HAI mark as a low-opacity lower-right bug on every beat, full size on B13. OPENING-STATE RULE: every body beat's show block opens with an explicit non-empty t=0 state, and the bookend wrappers carry the haiKit preroll, because the shared Claude scenes otherwise leave blank frames at a cut. VERIFIED FACTS STATED WITHOUT HEDGING (author instruction): signOut({redirectUrl}) is live on main raced against a 5s timeout with a fallback redirect, merged via PR #14 on 2026-10-13; the old no-Clerk-signOut comment is gone from main. OPEN ITEM, NOT A RESOLVED FACT: PR #13 (same fix, targeting development) was re-checked live at build time — state OPEN, mergedAt null, mergeStateStatus CLEAN — and development's LogoutButton.tsx still has no signOut call and still carries the stale comment. The caveat is therefore carried on screen at B09 and spoken at both B09 and B11. If #13 merges before publish, re-record B09 and B11 and re-render those two beats only. NO OVERCLAIM: B11 states explicitly that textbook token revocation always worked (the subject of the One Sign-In, Many Books reel) and that it was the hub's own session that survived logout, so neither video contradicts the other and nothing here says logout is fully solved. NAMING: narration says 'the identity provider' rather than naming the vendor, following the author's script. SHORT CUT (shorts.py, derivative — never a re-edit): dropped B10 (lesson), B11 (verdict) and B12 (handoff) — the beats that recap or hand off rather than investigate — plus B05 (the move), because B06 already carries the development/production contrast on its own and the cap needed one more beat. B09 was --keep-protected per the author: the PR #13 branch-status caveat survives into the short, on screen and spoken, so this cut cannot be read as claiming a full fix. B00-B04 and B06-B09 keep the war-story spine: report, investigation, root cause, fix, open item. Only the rewritten outro's audio is regenerated; every other beat reuses the parent's mp3.",
+    "tags": [
+      "postmortem",
+      "war story",
+      "authentication",
+      "logout",
+      "HttpOnly",
+      "debugging",
+      "Medhavy",
+      "Humanitarians AI"
+    ],
+    "build": {
+      "at": "2026-10-15T15:43:11",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeHaiLogoutAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "END: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "claude-hai-the-logout-that-didnt",
+    "dropped_beats": [
+      "B05",
+      "B10",
+      "B11",
+      "B12"
+    ],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 172.19
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "content_type": "title",
+      "narration_text": "Hi — this is Bella, for Chaitanya. A bug report: the Logout button logs nobody out. Every user, every time, and only in production. This is the postmortem — what broke, and why it was invisible where you'd look.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: cream page, eyebrow, serif title and the greeting 'Hi, HAI' are all set before a word is spoken"
+          },
+          {
+            "at": "0.10",
+            "event": "the ask types itself in, character by character"
+          },
+          {
+            "at": "0.58",
+            "event": "send arms terracotta; runningText 'reading the postmortem…'"
+          },
+          {
+            "at": "0.72",
+            "event": "three result lines land in order — the ask comes back ANSWERED, so the reel opens on a finding, not a question"
+          },
+          {
+            "at": "0.95",
+            "event": "HAI bug settles lower-right"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiLogoutAsk916",
+          "props": {
+            "greeting": "Hi, HAI",
+            "topic": "MEDHAVY HUB · POSTMORTEM",
+            "segment": "The Logout That Didn't",
+            "command": "Our Logout button redirects but leaves every user signed in — in production only. It works on my laptop and the logout code hasn't changed in months. Walk me through how I would actually find this.",
+            "runningText": "reading the postmortem…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "the button deleted the evidence — it never ended the session",
+              "moving to the production instance moved where the session lives",
+              "fixed on main; development still carries the bug"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.6,
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 14.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeHaiLogoutAsk916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "THE REPORT",
+      "content_type": "realworld",
+      "narration_text": "Someone clicks Logout. The page redirects. And they're still signed in. Not a rare edge case, not a flaky one — every time, for everyone, on the live site. The button does something; it just doesn't do what it says.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "click",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: a browser card is already drawn, signed-in chip lit in the corner, Logout button in place"
+          },
+          {
+            "at": "on 'clicks Logout'",
+            "event": "the button depresses"
+          },
+          {
+            "at": "on 'The page redirects'",
+            "event": "the page wipes and reloads"
+          },
+          {
+            "at": "on 'still signed in'",
+            "event": "the signed-in chip is STILL LIT after the reload — the failure is watched, not described"
+          },
+          {
+            "at": "on 'every time, for everyone'",
+            "event": "a counter of repeated attempts ticks up, every one ending signed in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiLogoutNoOp916",
+          "props": {
+            "sparkLine": "It redirects. Nothing else.",
+            "siteLabel": "hub",
+            "buttonLabel": "Log out",
+            "statusLabel": "signed in",
+            "attemptsNote": "every time, for everyone"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.9,
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 13.35,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:ClaudeHaiLogoutNoOp916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "THE TWIST",
+      "content_type": "realworld",
+      "narration_text": "And here's what makes it interesting. The same code, on a developer's laptop, logged out perfectly. It had worked for months, and nothing in the logout code had changed. So before you read a line of it: whatever's wrong here probably isn't the code.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "split",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: two panes already framed and headed — LAPTOP and LIVE SITE — each showing the identical logout code block, unread"
+          },
+          {
+            "at": "on 'logged out perfectly'",
+            "event": "the laptop pane resolves to a green signed-out state"
+          },
+          {
+            "at": "on 'for months'",
+            "event": "a months-long unchanged timeline draws beneath both panes"
+          },
+          {
+            "at": "on \"hadn't changed\"",
+            "event": "the two code blocks are marked IDENTICAL — same bytes, different outcome"
+          },
+          {
+            "at": "on \"probably isn't the code\"",
+            "event": "the code blocks grey out and the two ENVIRONMENT labels take the accent instead — the investigation turns"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiWorksOnMyMachine916",
+          "props": {
+            "sparkLine": "Same code. Different answer.",
+            "left": {
+              "title": "Laptop",
+              "outcome": "signed out",
+              "good": true
+            },
+            "right": {
+              "title": "Live site",
+              "outcome": "still signed in",
+              "good": false
+            },
+            "sameNote": "identical code, unchanged for months",
+            "turnNote": "so look at the environment, not the code"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15.3,
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 14.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:ClaudeHaiWorksOnMyMachine916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "WHAT IT WAS DOING",
+      "content_type": "mechanism",
+      "narration_text": "On paper the button did a thorough job. It called the server to record that you'd logged out. Then it walked every cookie it could see and deleted it — plain domain, parent domain, localhost. Cleared local storage, cleared session storage, and redirected you home.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "sweep",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: the full cleanup checklist is already drawn, every row present and unticked"
+          },
+          {
+            "at": "on 'called the server'",
+            "event": "row one ticks"
+          },
+          {
+            "at": "on 'the plain domain'",
+            "event": "row two ticks"
+          },
+          {
+            "at": "on 'the parent domain'",
+            "event": "row three ticks"
+          },
+          {
+            "at": "on 'localhost'",
+            "event": "row four ticks"
+          },
+          {
+            "at": "on 'local storage'",
+            "event": "row five ticks"
+          },
+          {
+            "at": "on 'session storage'",
+            "event": "row six ticks"
+          },
+          {
+            "at": "on 'redirected you home'",
+            "event": "the list reports complete, every row green — the beat deliberately looks like a success"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiCleanupSweep916",
+          "props": {
+            "sparkLine": "Thorough, on paper.",
+            "title": "what logout did",
+            "rows": [
+              "tell the server I logged out",
+              "delete cookies · plain domain",
+              "delete cookies · parent domain",
+              "delete cookies · localhost",
+              "clear local storage",
+              "clear session storage"
+            ],
+            "doneNote": "cleanup complete"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15.6,
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 16.58,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeHaiCleanupSweep916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE OMISSION",
+      "content_type": "mechanism",
+      "narration_text": "What it never did was ask the identity provider to actually end the session. It cleaned up every piece of evidence that you were logged in, by hand, and assumed that was the same thing. For months, it was.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: the completed green checklist from B03 is still on screen, carried over so the reveal has something to land against"
+          },
+          {
+            "at": "on 'never did'",
+            "event": "a seventh row slides in beneath the six — unticked, terracotta: 'ask the provider to end the session'"
+          },
+          {
+            "at": "on 'every piece of evidence'",
+            "event": "the six ticked rows are re-labelled as a group: EVIDENCE"
+          },
+          {
+            "at": "on 'the same thing'",
+            "event": "an equals sign between EVIDENCE and SESSION is struck through"
+          },
+          {
+            "at": "on 'For months, it was'",
+            "event": "the struck equals briefly flickers back — it really had been equivalent, until it wasn't"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiTheOmission916",
+          "props": {
+            "sparkLine": "Evidence isn't the session.",
+            "doneLabel": "evidence of being logged in",
+            "doneCount": 6,
+            "missingRow": "ask the provider to end the session",
+            "leftTerm": "deleted the evidence",
+            "rightTerm": "ended the session",
+            "wasTrueNote": "for months, these were the same thing"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.6,
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 12.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:ClaudeHaiTheOmission916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ROOT CAUSE",
+      "content_type": "structure",
+      "narration_text": "On the development setup the session cookie lived on the app's own domain. Page JavaScript could see it, so deleting it by hand worked. On production the session lives on a different domain — the provider's own — and it's marked HttpOnly. Page JavaScript cannot read it or delete it. That's not a bug; that's the point of the flag. It's what stops a malicious script stealing your session.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "compare",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: both diagrams are already framed and headed — DEVELOPMENT left, PRODUCTION right — each with its app box and a cookie slot drawn"
+          },
+          {
+            "at": "on \"the app's own domain\"",
+            "event": "the left cookie lands inside the app's own boundary"
+          },
+          {
+            "at": "on 'could see it'",
+            "event": "a reach from page JavaScript touches it; it clears"
+          },
+          {
+            "at": "on 'a different domain'",
+            "event": "the right cookie lands OUTSIDE the app boundary, on the provider's"
+          },
+          {
+            "at": "on 'HttpOnly'",
+            "event": "an HttpOnly tag clips onto the right cookie in terracotta"
+          },
+          {
+            "at": "on 'cannot read it or delete it'",
+            "event": "the same reach extends and stops dead at the boundary"
+          },
+          {
+            "at": "on 'the point of the flag'",
+            "event": "the blocked reach is RE-LABELLED from a failure to a defence — same picture, opposite reading"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiWhereSessionLives916",
+          "props": {
+            "sparkLine": "Not a bug. The point.",
+            "left": {
+              "title": "Development",
+              "domainLabel": "the app's own domain",
+              "reachable": true,
+              "verdict": "JavaScript can delete it"
+            },
+            "right": {
+              "title": "Production",
+              "domainLabel": "the provider's domain",
+              "reachable": false,
+              "verdict": "JavaScript cannot touch it"
+            },
+            "flagLabel": "HttpOnly",
+            "defenceNote": "this is what stops a malicious script stealing your session"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 23.7,
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 23.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:ClaudeHaiWhereSessionLives916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "THE SURVIVOR",
+      "content_type": "mechanism",
+      "narration_text": "So the loop ran, deleted everything it could reach, reported success — and the one cookie that mattered sat there untouched. Reload, and the provider helpfully signs you back in. The code wasn't wrong. Its assumption about where the session lived was.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "survive",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: a row of cookies sits drawn inside the reachable boundary, with one more outside it, all present"
+          },
+          {
+            "at": "on 'deleted everything it could reach'",
+            "event": "the inside cookies grey out one by one"
+          },
+          {
+            "at": "on 'reported success'",
+            "event": "a green SUCCESS stamp lands — on a job that did not do the thing"
+          },
+          {
+            "at": "on 'sat there untouched'",
+            "event": "the outside cookie is ringed terracotta, untouched, while everything else is dead"
+          },
+          {
+            "at": "on 'signs you back in'",
+            "event": "a reload arc runs and the signed-in chip relights from that one surviving cookie"
+          },
+          {
+            "at": "on 'assumption about where the session lived'",
+            "event": "the word ASSUMPTION replaces the word CODE under the diagnosis line"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiTheSurvivor916",
+          "props": {
+            "sparkLine": "One cookie survived.",
+            "reachLabel": "what page JavaScript can reach",
+            "reachable": [
+              "session hint",
+              "theme",
+              "analytics",
+              "csrf"
+            ],
+            "survivor": "the session itself",
+            "successNote": "cleanup reported success",
+            "reloadNote": "reload → signed back in",
+            "wrongThing": "the assumption, not the code"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 14.6,
+      "audio_file": "mp3/beat-B07.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 15.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:ClaudeHaiTheSurvivor916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "THE FIX",
+      "content_type": "mechanism",
+      "narration_text": "The fix is one line in spirit: actually call the provider's sign-out. But look at how it's written. The call is raced against a five-second timer, and if it loses, the code redirects you anyway. Signing out is a network call to someone else's service — if that service is slow, you don't want a user stranded on a page that won't let them leave.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "race",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: two lanes already drawn and labelled — SIGN OUT and 5-SECOND TIMER — both at the start line, with one finish marked REDIRECT"
+          },
+          {
+            "at": "on 'call the provider's sign-out'",
+            "event": "the sign-out lane begins advancing"
+          },
+          {
+            "at": "on 'raced against a five-second timer'",
+            "event": "the timer lane advances alongside it, a real race"
+          },
+          {
+            "at": "on 'if it loses'",
+            "event": "the timer lane reaches the line first in this run; the sign-out lane is cut short"
+          },
+          {
+            "at": "on 'redirects you anyway'",
+            "event": "BOTH lanes converge on the same REDIRECT outcome — the point is that either path ends with the user out"
+          },
+          {
+            "at": "on \"won't let them leave\"",
+            "event": "a stranded-user state is shown greyed and crossed — the outcome the race exists to prevent"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiRacedFix916",
+          "props": {
+            "sparkLine": "Try properly. Leave regardless.",
+            "laneA": "call the provider's sign-out",
+            "laneB": "five-second timer",
+            "finishLabel": "redirect",
+            "bothNote": "whichever wins, the user leaves",
+            "avoidedNote": "stuck on a page that won't let you go"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22.3,
+      "audio_file": "mp3/beat-B08.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 21.01,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:ClaudeHaiRacedFix916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "WHAT STAYED, WHAT HASN'T LANDED",
+      "content_type": "data",
+      "carries": "the PR #13 open item — on screen AND spoken",
+      "narration_text": "The cookie loop stayed, by the way — it isn't what fixes this, but it's harmless and it covers the local case. And one thing is still live as I record. The fix is on main. The development branch does not have it yet, so the next release cut from development would bring the bug straight back.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "status",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "OPENING STATE IS NOT EMPTY: a two-row branch status board is already drawn, both rows labelled main and development, states blank"
+          },
+          {
+            "at": "on 'the loop stayed'",
+            "event": "a small kept-code chip settles above the board — harmless, covers the local case"
+          },
+          {
+            "at": "on 'The fix is on main'",
+            "event": "the main row resolves: FIXED, with the merged pull-request reference"
+          },
+          {
+            "at": "on 'does not have it yet'",
+            "event": "the development row resolves in terracotta: NOT YET, with the open pull-request reference — this is the on-screen caveat the author required"
+          },
+          {
+            "at": "on 'bring the bug straight back'",
+            "event": "an arrow from the development row loops back to B01's still-signed-in state"
+          },
+          {
+            "at": "0.96",
+            "event": "a persistent footnote holds for the rest of the beat: status verified on the record date"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiBranchStatus916",
+          "props": {
+            "sparkLine": "Fixed on one branch.",
+            "keptNote": "the cookie loop stayed — harmless, covers the local case",
+            "rows": [
+              {
+                "branch": "main",
+                "state": "fixed",
+                "detail": "merged 2026-10-13",
+                "good": true
+              },
+              {
+                "branch": "development",
+                "state": "not yet",
+                "detail": "fix still open",
+                "good": false
+              }
+            ],
+            "consequence": "next release off development reintroduces the bug",
+            "asOfNote": "status checked 2026-10-15"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 19.6,
+      "audio_file": "mp3/beat-B09.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 16.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:ClaudeHaiBranchStatus916",
+        "at": "2026-10-15T15:43:11"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "OUTRO",
+      "content_type": "title",
+      "narration_text": "The Logout That Didn't. The full video has the root cause in detail, the lesson, and a prompt you can run on your own app. The link is right below.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "hold",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "the episode title restates poster-style in the Claude serif, terracotta period"
+          },
+          {
+            "at": "0.35",
+            "event": "the handle sets beneath it"
+          },
+          {
+            "at": "0.55",
+            "event": "the HAI mark resolves FULL-SIZE — the corner bug's home position"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeHaiLogoutOutro916",
+          "props": {
+            "title": "The Logout That Didn't.",
+            "handle": "@HumanitariansAI",
+            "subline": "for Chaitanya and Humanitarians AI"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-10-15T16:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 10.6,
+      "audio_file": "mp3/beat-B13.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "actual_duration_s": 9.34,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:ClaudeHaiLogoutOutro916",
+        "at": "2026-10-15T15:43:11"
+      },
+      "short_outro_rewritten": true
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "@HumanitariansAI",
+        "next": "Watch the full video: The Logout That Didn't",
+        "silent": true,
+        "ground": "cream (claude fidelity) — shorts.py dark default overridden"
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-10-15T15:43:11"
+      }
+    }
+  ]
+}

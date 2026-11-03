@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "title": "RAG: Chunking (The Quietest Quality Lever)",
+    "slug": "rag-chunking",
+    "topic": "CLAUDE CODE · RAG SERIES · CHUNKING",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "deep-explainer",
+    "note": "RAG series: chunking. Grounded in VIDEO_SCRIPT.md SEGMENT 2 (real chunk_text code, 8-vs-10, bimodal histogram). Claude bookends + Manim body. Liam, in for Ameya (Onyx). @HumanitariansAI.",
+    "total_estimated_duration_seconds": 300,
+    "build": {
+      "at": "2026-09-11T13:47:23",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. Chunking is twelve lines of code that most people write once and never think about again. It also moves retrieval quality more than almost anything else. So let's take those twelve lines apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain document chunking for RAG — fixed vs recursive, overlap, and chunk size\"",
+            "topic": "CLAUDE CODE · RAG SERIES · CHUNKING",
+            "segment": "The Quietest Quality Lever",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "slicing the documents…",
+            "output": [
+              "the step size is chunk_size minus overlap",
+              "recursive splitting stops at real boundaries",
+              "chunk_size is a ceiling, not a target"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — The Step Size",
+      "narration_text": "Start with the one detail that matters most. When you slide a window across the text, the step is not the chunk size. It is the chunk size minus the overlap. That single subtraction is what makes chunks overlap instead of sitting edge to edge. Get it wrong and your chunks either gap or duplicate.",
+      "visual_intent": "window slide over ABCDEFGHIJ, size=4 overlap=1: [ABCD][DEFG][GHIJ][J]; step = size − overlap",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_StepSize",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 15.62,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_StepSize",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — Why Overlap",
+      "narration_text": "Why overlap at all? Because a fact that lands exactly on a boundary gets cut in half — and then neither chunk can answer the question. The overlap is a small insurance policy: repeat a little at each seam so no sentence is orphaned across the cut.",
+      "visual_intent": "a sentence split across a boundary (lost) vs with overlap (preserved at the seam)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Overlap",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 14.72,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Overlap",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — Fixed Is Blind",
+      "narration_text": "But the naive splitter is blind. It cuts at exactly four hundred characters, whether that's the end of a sentence or the middle of a word. The production fix is recursive splitting: try to break on paragraphs first, then lines, then sentences, then words, and only as a last resort, raw characters.",
+      "visual_intent": "fixed cut mid-word (red) vs recursive cascade: \\n\\n → \\n → '. ' → ' ' → ''",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Recursive",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Recursive",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — The Surprise",
+      "narration_text": "And here's what surprises people. Same chunk size, same overlap — but recursive splitting produced ten chunks where the fixed splitter produced eight. More chunks, from identical settings, because recursive splitting stops at a sentence boundary even when there's room left in the budget. It will not pack text up to the limit.",
+      "visual_intent": "same 400/50: fixed → 8 chunks, recursive → 10 chunks; 'won't pack to the limit'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_EightTen",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 18.24,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_EightTen",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — The Distribution",
+      "narration_text": "Which means your chunks are not uniform at all. Here's the real distribution from fifteen hundred chunks in the project — and it's bimodal. A tall cluster of short pieces, headers and trailing fragments. A tall cluster of full body paragraphs. Minimum sixty-seven characters, maximum three eighty-eight, mean two hundred, median just a hundred and four. Your chunk size is a ceiling, not a target.",
+      "visual_intent": "bimodal histogram: 50-99=564, 100-149=336, 300-349=96, 350-399=504; min67 max388 mean202 median104",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Histogram",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 20.8,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Histogram",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — Chunk by Type",
+      "narration_text": "So the real rule is: chunk by data type. Prose splits recursively, around five hundred to a thousand characters. Code splits on function boundaries. Tables split into row groups, with the header repeated in every chunk. Contracts split by clause. Transcripts by speaker turn. One size does not fit your data.",
+      "visual_intent": "grid: prose→recursive 500-1000 · code→functions · tables→rows+header · contracts→clause · transcripts→speaker",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_ByType",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 16.9,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_ByType",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — The Real Code",
+      "narration_text": "And here are the actual twelve lines. The whole function is a list comprehension — but read the range step. It's chunk size minus overlap, exactly as we said. One guard stops overlap from swallowing the chunk. That's the entire naive chunker; recursive splitting just wraps smarter separators around this same idea.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "chunking.py — the naive splitter",
+            "code": "def chunk_text(text, chunk_size, overlap):\n    if overlap >= chunk_size:\n        raise ValueError(\"overlap must be < chunk size\")\n    step = chunk_size - overlap          # <- the line that matters\n    return [text[i:i + chunk_size]\n            for i in range(0, len(text), step)]",
+            "sparkLine": "step = size − overlap"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.05,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — The Test",
+      "narration_text": "There's one test that tells you if your chunking is broken, and you can run it by eye. Read a chunk in isolation. If it says something like 'increased forty percent due to this factor' — with no subject, no idea what increased — then the context was severed, and no retriever or model will recover it. Good chunks stand alone.",
+      "visual_intent": "a chunk shown alone: '...increased 40% due to this factor' — subject missing → chunking is wrong",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_IsolationTest",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 18.69,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_IsolationTest",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration_text": "So keep three things. The step size is chunk size minus overlap — that subtraction is the whole mechanism. Recursive splitting beats fixed because it stops at real boundaries, so your chunk size is a ceiling, not a target. And the test is simple: if a chunk can't be understood alone, fix the chunking before you touch anything else.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Chunking",
+            "artifactLines": [
+              "Step size = chunk_size − overlap — the whole mechanism.",
+              "Recursive beats fixed: it stops at real boundaries.",
+              "Test: if a chunk can't stand alone, the chunking is wrong."
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.47,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take this prompt to your own documents: chunk them fixed and recursive with the same settings, then read ten random chunks from each out loud. You'll feel which ones stand alone and which ones don't — and that's the signal that predicts your retrieval quality before you even build the index.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"chunk my docs fixed vs recursive at 400/50, print 10 random chunks from each, and flag any that lack a subject\"",
+            "topic": "CLAUDE CODE · RAG SERIES · CHUNKING",
+            "segment": "The Quietest Quality Lever",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 16.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T13:47:23"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration_text": "RAG — chunking, the quietest quality lever. Cut on real boundaries, and read one alone. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG: Chunking.",
+            "handle": "@HumanitariansAI",
+            "subline": "a ceiling, not a target"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 8.38,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T13:47:23"
+      }
+    }
+  ]
+}

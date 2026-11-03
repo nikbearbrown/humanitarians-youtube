@@ -1,0 +1,315 @@
+{
+  "metadata": {
+    "title": "The Prompt Is The Deliverable.",
+    "subtitle": "The Playground Skill (Claude Plugins)",
+    "slug": "claude-plugins-official--claude-liam-playground",
+    "topic": "PLAYGROUND · CLAUDE PLUGINS",
+    "purpose": "Answer one real question in the Plain register: when Claude builds you an interactive playground, what does it actually hand you back at the end — a finished setup, or something else? Lands the carry-out that the playground's real output is a prompt, not a list of settings, and that a value dump is a failure, not a variant.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-plugins-official/youtube/claude-liam-playground/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Extending Claude — Skills, Plugins & Connectors",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - single worked example (the playground skill itself), named at B00 and present through NB01-NB03; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T04:41:12",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "You might expect a settings panel that hands you back raw values. It doesn't — playground hands you back a prompt: natural language you copy straight into Claude.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Will Claude build me a settings panel that hands back values?', hesitates on 'values', corrects to 'a prompt', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Will Claude build\nme a settings panel\nthat hands back\nvalues?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "values",
+            "replacementWords": "a prompt",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 8,
+            "charMs": 42,
+            "jitter": 26,
+            "seed": "hai-playground"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 1.0 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('values' -> 'a prompt') lands on screen and the full corrected question finishes typing before the clip ends. Timing params matched to the agent-development sibling's post-fix values (42ms/char, 26% jitter, 4% mistakeRate, 2% hesitateWithin, 8% hesitateBetween) on a comparably-sized text.",
+      "actual_duration_s": 8.87,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:41:12"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "The skill organizes around six templates across four zones. Design decisions use design-playground — components, layouts, spacing, color, typography. Data and queries use data-explorer — SQL, APIs, pipelines, regex. Learning uses concept-map — knowledge gaps and scope mapping. And review work gets three templates — document-critique, diff-review, and code-map. Every playground, whatever the template, has to meet five requirements: one self-contained HTML file with everything inlined, a live preview that updates on every change with no Apply button, a prompt written in natural language instead of a dump of values, a copy button, and three to five ready-made presets so it looks right the moment it loads.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 34,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "SIX TEMPLATES, FOUR ZONES",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "SIX TEMPLATES, FOUR ZONES",
+          "chips": [
+            "design",
+            "data",
+            "learning",
+            "review (x3)"
+          ],
+          "arrows": false,
+          "accent": [],
+          "strike": [],
+          "caption": "core: one file · live preview · NL prompt · presets",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "actual_duration_s": 39.23,
+      "audio_file": "mp3/beat-NB01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T04:41:12"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "The whole thing runs on one invariant: a single state object. Every control writes to it when it changes, every part of the preview reads from it, and one function — updateAll — refreshes both the preview and the prompt together. Skip that, and the pattern doesn't just get messy, it breaks silently: read a control's value straight from the page instead of from state, and the live preview stops being reliable. The prompt itself has its own rule — it has to read like an instruction, not a printout. Not 'border-radius: 8px, shadow-blur: 4' but 'a tight border radius with a subtle shadow' — only the settings that changed from default, with enough context to act on even without the playground open.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 34,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "ONE STATE OBJECT",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "ONE STATE OBJECT",
+          "chips": [
+            "writes",
+            "state",
+            "reads"
+          ],
+          "arrows": true,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "not a value dump",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "actual_duration_s": 36.03,
+      "audio_file": "mp3/beat-NB02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T04:41:12"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "Nothing in the skill actually stops the value-dump output from happening. Whether the prompt reads as a natural instruction or as a colon-separated list of settings is left entirely to whoever writes the code — there's no check built in. That's exactly why opening the finished file in a browser is a required last step, not an afterthought: it's the only way to catch a prompt that came out as a dump instead of an instruction, before it ships.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "NOTHING ENFORCES IT",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "NOTHING ENFORCES IT",
+          "chips": [
+            "instruction",
+            "value dump",
+            "guesswork"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "check by opening the file",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "actual_duration_s": 22.23,
+      "audio_file": "mp3/beat-NB03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T04:41:12"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "The playground's real output is a prompt, not a list of settings. If what it hands back can't be copied straight into Claude and acted on, it's not finished — it's a value dump.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "The playground's real output is a prompt, not a list of settings. If what it hands back can't be copied straight into Claude and acted on, it's not finished — it's a value dump.",
+            "attribution": "",
+            "sparkLine": "The prompt is the deliverable."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 9.71,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:41:12"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Paste this into Claude: build an interactive playground for designing a card component — border radius, shadow, padding, and color — with a live preview and a copyable prompt. Then check what comes out. Does the prompt read like an instruction — a tight border radius, a subtle shadow — or does it read like a printout of numbers? Does every control update the preview the instant you move it, with no button to click? Are there at least three presets already in place when it loads? And does opening the file in a browser actually work?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "PLAYGROUND · CLAUDE PLUGINS",
+            "segment": "The Prompt Is The Deliverable.",
+            "command": "Build an interactive playground for designing a card component — border radius, shadow, padding, and color — with a live preview and a copyable prompt.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 26.67,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:41:12"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "The Prompt Is The Deliverable. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "PLAYGROUND · @HumanitariansAI",
+            "line": "The Prompt Is The Deliverable."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.56,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T04:41:12"
+      }
+    }
+  ]
+}

@@ -1,0 +1,444 @@
+{
+  "metadata": {
+    "title": "Correlation Is Not Causation.",
+    "slug": "correlation-is-not-causation",
+    "topic": "CORRELATION VS CAUSATION · CONFOUNDING · SIMPSON'S PARADOX · SQL",
+    "skill": "cli-explainer",
+    "tool": "claude",
+    "persona": "none",
+    "narrator_identity": "Supriya",
+    "channel": null,
+    "channel_title": "",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "typography": {
+      "serif": "EB Garamond",
+      "sans": "Montserrat",
+      "mono": "PT Mono"
+    },
+    "source": [
+      "Charig CR, Webb DR, Payne SR, Wickham JE. Comparison of treatment of renal calculi by open surgery, percutaneous nephrolithotomy, and extracorporeal shockwave lithotripsy. Br Med J (Clin Res Ed) 1986;292(6524):879–882. doi:10.1136/bmj.292.6524.879 · PMID 3083922 · PMC1339981 (Table I patients per size group; Table II success counts by size: open 81/87, 192/263, 273/350; PCNL 234/270, 55/80, 289/350; success = stone-free or fragments <2 mm at three months; group 2 = ≥2 cm or multiple stones)",
+      "Julious SA, Mullee MA. Confounding and Simpson's paradox. BMJ 1994;309(6967):1480–1481. doi:10.1136/bmj.309.6967.1480 · PMID 7804052 · PMC2541623 (framing as Simpson's paradox; 'observational (non-randomised)'; NB prints '83% (234/270)' — counts give 86.7%, Charig Table II prints 87)",
+      "sql/kidney_stones.sql (table built from Charig 1986 Table II)",
+      "sql/q1_by_treatment.sql + q1_by_treatment.out (B03 code verbatim; B04 numbers)",
+      "sql/q2_by_size.sql + q2_by_size.out (B06 code verbatim; B07/B08 numbers)"
+    ],
+    "description": "Why correlation isn't causation matters in practice, told through a real kidney-stone study: keyhole surgery looks better overall, but open surgery wins for both small and large stones — because the hard cases went to surgery. Built with real SQL that actually runs.",
+    "aspect_ratio": "16:9",
+    "resolution": "3840x2160",
+    "resolution_note": "4K target. compile.py --height 2160 (16:9) / --height 3840 (9:16), opt-in --vbitrate on both final encodes. ffprobe each master; if bitrate undershoots on flat frames, STOP and flag to Supriya — no CBR padding without approval.",
+    "date": "2026-10-14",
+    "gate_p": "PASS",
+    "no_paid_services": true,
+    "note": "CLI-explainer, required 12-beat spine. Branding (PM): exact intro 'Hi, I am Supriya and this video is about …'; no 'in for X'; visible 'Supriya' on every beat — composer folderLabel, ClaudeCodeBeat `handle` chip, Manim corner handle, full-size outro handle, 9:16 endcard via shorts.py --handle Supriya.",
+    "final_filenames": {
+      "16:9": "2026-10-05-correlation-is-not-causation.mp4",
+      "9:16": "2026-10-05-correlation-is-not-causation-vertical.mp4"
+    },
+    "shorts_length_flag": "Approved 2026-10-14: NO shortened 9:16 — the revision cycle is the punchline. ./art shorts must report 'under the cap → full reformat, no beats cut'. If measured audio exceeds ~170s, STOP and re-tighten — never drop a beat.",
+    "total_estimated_duration_seconds": 148.1,
+    "portrait_overrides": {
+      "B11": {
+        "scale": 1.2
+      },
+      "_note": "Approved by Supriya 2026-10-15: 9:16 outro scale 1.2 (1.8 overflows this title in ClaudeTitleOutroFilled916). Apply when building short/beat_sheet.json."
+    },
+    "code_layout_note": "SQL rewrapped to ≤35-char lines 2026-10-15 (whitespace only; re-run output byte-identical) so both code cards fill — approved by Supriya.",
+    "build": {
+      "at": "2026-10-15T01:27:42",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": [
+        "B11: palette=claude but the outro is 'ClaudeTitleOutroFilled' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "composer_scale_note": "16:9 composer beats use the new optional ClaudeComposerAsk `scale` (1.5), approved by Supriya 2026-10-15; 1.7 collided with the bottom rule on B00. ClaudeComposerAsk916 ignores it."
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — Claude UI, ask shown answered. Exact required intro phrasing (PM).",
+      "narration_text": "Hi, I am Supriya and this video is about why correlation isn't causation, and how real hospital data can point you to the wrong answer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"which kidney stone treatment works better?\"",
+            "topic": "SQL · CONFOUNDING · SIMPSON'S PARADOX",
+            "segment": "Correlation Is Not Causation",
+            "greeting": "Hi, I am Supriya",
+            "runningText": "querying kidney_stones…",
+            "output": [
+              "overall — keyhole looks better",
+              "split by stone size — surgery wins both",
+              "the difference — who got which treatment"
+            ],
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-15T00:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "estimated_duration_s": 9.8,
+      "actual_duration_s": 8.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "Manim — the stakes: a real choice between two treatments",
+      "narration_text": "Here's the problem. A study compared two ways of treating kidney stones: open surgery, and a keyhole procedure. Three hundred fifty patients each. The data is real, from a British Medical Journal study in nineteen eighty-six. Say you run the hospital. You have to pick one.",
+      "visual_intent": "Two labelled columns of 350 patient dots each fade in: 'Open surgery' and 'Keyhole (PCNL)'. A question card 'Which one do you pick?' settles between them. Source line beneath: 'Charig et al., BMJ 1986'. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_PickOne",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "estimated_duration_s": 18.0,
+      "actual_duration_s": 17.71,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_PickOne",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLI",
+      "role_note": "ClaudeComposerAsk — cycle 1, the ask",
+      "narration_text": "So the ask: compare the success rate of each treatment. Success means the stones were gone, or nearly gone, three months later.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"compare success rates for open surgery vs keyhole in kidney_stones\"",
+            "topic": "SQL · CONFOUNDING · SIMPSON'S PARADOX",
+            "segment": "Which Treatment Wins?",
+            "greeting": "The ask,",
+            "runningText": "writing the query…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-15T00:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "estimated_duration_s": 8.6,
+      "actual_duration_s": 8.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — cycle 1, the actual query (sql/q1_by_treatment.sql, verbatim)",
+      "narration_text": "Here's the query. One table, one row per treatment and stone size. Sum the successes, divide by the patients, group by treatment. Nothing fancy. Notice what it leaves out: which patients got which treatment.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "q1_by_treatment.sql",
+            "lang": "sql",
+            "code": "SELECT treatment,\n       SUM(patients) AS patients,\n       ROUND(100.0 * SUM(successes)\n             / SUM(patients), 1)\n         AS success_pct\nFROM kidney_stones\nGROUP BY treatment\nORDER BY success_pct DESC;",
+            "sparkLine": "Who got what?",
+            "handle": "Supriya",
+            "fit": true
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "estimated_duration_s": 13.3,
+      "actual_duration_s": 13.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "role_note": "Manim — cycle 1 output, the misleading answer (real sql/q1_by_treatment.out)",
+      "narration_text": "Keyhole: eighty-two point six percent. Open surgery: seventy-eight. Keyhole wins by almost five points. Most dashboards would stop right here.",
+      "visual_intent": "Two bars grow from zero: Keyhole (PCNL) 82.6%, Open surgery 78.0%; values count up to the real query output. A '+4.6 pts' bracket marks the gap; Keyhole bar gets the single terracotta accent. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_KeyholeWins",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "estimated_duration_s": 7.8,
+      "actual_duration_s": 9.94,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_KeyholeWins",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLI",
+      "role_note": "ClaudeComposerAsk — the revision (SPARK-LINE LAW: 'The change,')",
+      "narration_text": "The revision. Large stones are harder to clear than small ones. So the change: split the same numbers by stone size.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"split the same comparison by stone size\"",
+            "topic": "SQL · CONFOUNDING · SIMPSON'S PARADOX",
+            "segment": "Split by Stone Size",
+            "greeting": "The change,",
+            "runningText": "updating…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-15T00:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "estimated_duration_s": 8.2,
+      "actual_duration_s": 7.89,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — cycle 2, the revised query (sql/q2_by_size.sql, verbatim)",
+      "narration_text": "One change: stone size goes into the group by. Same table, same rows. I kept the patient count too, because it matters in a second.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "q2_by_size.sql",
+            "lang": "sql",
+            "code": "SELECT stone_size,\n       treatment,\n       SUM(patients) AS patients,\n       ROUND(100.0 * SUM(successes)\n             / SUM(patients), 1)\n         AS success_pct\nFROM kidney_stones\nGROUP BY stone_size, treatment\nORDER BY stone_size DESC,\n         success_pct DESC;",
+            "sparkLine": "One more column.",
+            "handle": "Supriya",
+            "fit": true
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "estimated_duration_s": 9.8,
+      "actual_duration_s": 8.96,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT",
+      "role_note": "Manim — cycle 2 output, the flip (real sql/q2_by_size.out)",
+      "narration_text": "Now look. Small stones: open surgery ninety-three percent, keyhole eighty-seven. Large stones: open surgery seventy-three, keyhole sixty-nine. Open surgery wins both groups.",
+      "visual_intent": "The two B04 bars split into two pairs: Small (<2 cm) — Open surgery 93.1% vs Keyhole 86.7%; Large (≥2 cm or multiple) — Open surgery 73.0% vs Keyhole 68.8%. The winning bar in each pair (surgery, both times) takes the terracotta accent. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B07_TheFlip",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "estimated_duration_s": 8.6,
+      "actual_duration_s": 12.8,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B07.mp4",
+        "filled_by": "manim:B07_TheFlip",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "MECHANISM",
+      "role_note": "Manim — why it flips: the patient mix (counts from sql/q2_by_size.out)",
+      "narration_text": "Here's why. Look at the patient counts. The hard cases went to surgery: two hundred sixty-three of its three hundred fifty patients had large stones. Keyhole got mostly easy ones: two hundred seventy small. Stone size drove the treatment and the outcome. The overall number measured the patients, not the procedure.",
+      "visual_intent": "The B01 dot columns re-sort by stone size (labels: 'small <2 cm', 'large ≥2 cm or multiple'): Open surgery 263 large / 87 small; Keyhole 80 large / 270 small, with counts labelled. An arrow labelled 'stone size' points to both 'treatment' and 'outcome'. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_WhoGotWhat",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "estimated_duration_s": 19.9,
+      "actual_duration_s": 19.31,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim:B08_WhoGotWhat",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "Manim — the lesson: three questions + the still-observational caveat",
+      "narration_text": "So the correlation was real. Keyhole patients did better. The gap came from the patient mix, not the procedure. Before you act on a gap, ask three things: who got which option, what else drives the outcome, and does the gap survive a split. And even the split is still observational. Only randomizing rules out the causes nobody measured.",
+      "visual_intent": "Three numbered questions build in one at a time, synced to narration: 'Who got which option?', 'What else drives the outcome?', 'Does the gap survive a split?'. Last, a quieter caveat line: 'A split is still observational — only randomizing rules out what nobody measured.' Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B09_ThreeQuestions",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "estimated_duration_s": 23.0,
+      "actual_duration_s": 20.95,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B09.mp4",
+        "filled_by": "manim:B09_ThreeQuestions",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — 'Your turn.' prompt, read aloud and discussed",
+      "narration_text": "Your turn. Paste this into Claude with your own data: find a variable that drives both who got the treatment and the outcome, then re-run the comparison split by it. If the winner flips, your dashboard was measuring the mix, not the effect.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"find a variable driving both who got treated and the outcome; re-run split by it\"",
+            "topic": "SQL · CONFOUNDING · SIMPSON'S PARADOX",
+            "segment": "Find Your Confounder",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "scale": 1.5
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-10-15T00:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "estimated_duration_s": 16.8,
+      "actual_duration_s": 14.76,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-15T01:27:42"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "title-restate outro — LAST beat. Full-size visible handle 'Supriya'.",
+      "narration_text": "Correlation Is Not Causation. Check who got what. I am Supriya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutroFilled",
+          "props": {
+            "title": "Correlation Is Not Causation.",
+            "handle": "Supriya",
+            "subline": "Built with Claude.",
+            "scale": 1.8
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "estimated_duration_s": 4.3,
+      "actual_duration_s": 4.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T01:27:42"
+      }
+    }
+  ]
+}

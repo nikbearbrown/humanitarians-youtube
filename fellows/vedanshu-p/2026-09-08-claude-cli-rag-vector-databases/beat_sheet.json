@@ -1,0 +1,711 @@
+{
+  "metadata": {
+    "title": "Watch Exact Search Hit A Wall.",
+    "slug": "claude-cli-rag-vector-databases",
+    "topic": "CLAUDE CODE · CHAPTER 5 DEMO",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "tool": "claude",
+    "persona": "Vedanshu Daxesh Patel",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Sawubona, Vedanshu",
+    "greeting_note": "hello lexicon: Zulu (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Namaste/Aloha/Ciao/Hola/Bonjour/Ahoj/Merhaba/Shalom/Hej/Jambo, all used by the ten sibling reels in this series.",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "in_for_bear": false,
+    "playlist": "Claude Taught",
+    "source_book": "RAG Foundations — Vedanshu Daxesh Patel",
+    "source_file": "chapters/05-vector-databases-ann.md",
+    "source_figures": [
+      "images/vector-databases-ann-fig-01.png/.svg — search time growing linearly for brute force vs a much flatter curve for an approximate index. Rebuilt natively as B07 (AnnScalingChart) and, unlike a redraw, plotted from THIS REEL'S OWN MEASURED RUN — REBUILD LAW.",
+      "images/vector-databases-ann-fig-02.png/.svg — the multi-layer HNSW graph. NOT used: this reel's demo builds an inverted-file index, not a graph index, and drawing HNSW's hierarchy next to IVF's cells would imply the code does something it does not. The narration names the difference out loud instead."
+    ],
+    "code_dir": "code/",
+    "note": "CLI explainer (cli-explainer skill — ADVANCED tier), built on D:\\ai1-cli-main per CLAUDE.md rule 3. Folder dated 2026-09-08 per explicit instruction, independent of the chapter's own fact-check date and of the session's calendar date. Follows the mandatory CLI spine: INTRO → PROBLEM → CLI/CODE/OUTPUT → revision cycle CLI/CODE/OUTPUT → SUMMARY → NEXT STEPS → OUTRO, with one revision cycle (THE REVISION LAW satisfied). ACTUAL-CODE LAW: code/ holds three REAL runnable scripts (corpus.py, brute_force_search.py, ann_search.py); both CODE beats quote them verbatim, and every number in every OUTPUT beat is captured from an actual run of those scripts on this machine — transcripts saved as _run-brute.txt and _run-ann.txt beside the sheet. Nothing is invented. B01/B09 reuse RagExecutiveSummary and B04 reuses CliRunOutput, all props-only. B07/B08 are two new bespoke components (AnnScalingChart, AnnRecallDial) — GATE L searched four ways and the only close lead, BarChart, sits on the vox token set (teal/slate), which would break the Claude fidelity palette and the one-accent law. BOUT is TitleOutroChannel, NOT ClaudeTitleOutro: OUTRO-LOCK.md §Scope restricts the locked @NikBearBrown card to claude-liam-* slugs, and that card hardcodes its handle and drops the subline, which would lose the author signature.",
+    "tags": [
+      "RAG",
+      "vector database",
+      "approximate nearest neighbor",
+      "ANN",
+      "IVF",
+      "HNSW",
+      "recall",
+      "curse of dimensionality"
+    ],
+    "build": {
+      "at": "2026-09-17T14:53:55",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": [
+        "B11: palette=claude but the outro is 'TitleOutroChannel' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — the ask lands answered.",
+      "narration_text": "Sawubona — I'm Vedanshu Daxesh Patel. Chapter four left us with a pile of chunks, and chapter three turned each one into an embedding. Chapter five asks the question that makes them useful: a new question comes in — how do you find the nearest few, out of hundreds of thousands, fast enough that nobody is left waiting?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Composer greeting 'Sawubona, Vedanshu' types in; spark ignites"
+          },
+          {
+            "at": "20%",
+            "event": "Command types: 100,000 chunks, find the nearest ten, fast"
+          },
+          {
+            "at": "50%",
+            "event": "Send arms; runningText 'benchmarking search…' plays"
+          },
+          {
+            "at": "66%",
+            "event": "Output line 1: exact search compares against every vector"
+          },
+          {
+            "at": "82%",
+            "event": "Output line 2: cost grows with the collection, linearly"
+          },
+          {
+            "at": "95%",
+            "event": "Output line 3: so production search is approximate, on purpose"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Sawubona, Vedanshu",
+            "topic": "CLAUDE CODE · CHAPTER 5 DEMO",
+            "segment": "Watch Exact Search Hit A Wall.",
+            "command": "100,000 chunks, each a 384-dimensional embedding. A question arrives. How do you find the nearest ten fast enough that nobody waits?",
+            "runningText": "benchmarking search…",
+            "output": [
+              "exact search compares against every stored vector",
+              "so its cost grows with the collection — linearly",
+              "which is why production search is approximate, on purpose"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why this is worth solving",
+      "role_note": "Mandatory PROBLEM beat: the stakes, stated BEFORE any prompt.",
+      "narration_text": "Here is the problem, before we write a line. Comparing a query against every stored vector is exactly correct — it never misses a true nearest neighbour. It is also the thing that does not scale: every comparison still has to happen, so double the collection and you double the work. A few hundred chunks is fine. A whole company's documents is not.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: 'Exact search doesn't scale.'"
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: every comparison still has to happen"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles: correct, and too slow"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "note": "reused props-only from the sibling CLI reels",
+          "props": {
+            "headline": "Exact search doesn't scale.",
+            "subline": "Checking every stored vector never misses the true nearest neighbour — and that is exactly why it gets slower in step with the collection. The accuracy is not the problem. The arithmetic is.",
+            "sparkLine": "Correct, and too slow."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.96,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:RagExecutiveSummary",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLI — the ask",
+      "narration_text": "The ask: build the naive version, and time it honestly. Synthetic embeddings at three collection sizes — a thousand, ten thousand, a hundred thousand. Twenty queries each, top ten, comparing against every single stored vector. No index, no tricks. I want to measure what exact search actually costs as the pile grows.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Spark greeting 'The ask,' holds"
+          },
+          {
+            "at": "25%",
+            "event": "Command types: write brute_force_search.py, time it at three sizes"
+          },
+          {
+            "at": "75%",
+            "event": "Send arms; runningText 'generating script…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The ask,",
+            "topic": "CLAUDE CODE · CHAPTER 5 DEMO",
+            "segment": "Watch Exact Search Hit A Wall.",
+            "command": "claude \"write brute_force_search.py — build synthetic 384-dim embeddings at 1k, 10k and 100k, run 20 top-10 queries against each by comparing the query to EVERY stored vector, and print milliseconds per query\"",
+            "runningText": "generating script…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.47,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ACTUAL-CODE LAW — verbatim from code/brute_force_search.py.",
+      "narration_text": "Read the search function. One dot product against every stored vector, then keep the top ten. The vectors are normalised, so that dot product is cosine similarity — the measure from chapter three. There is no cleverness in here, and that is the point: this is the version that is exactly right, and we are about to watch what being exactly right costs.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "Code card lands, filename in the title bar"
+          },
+          {
+            "at": "35%",
+            "event": "the `db @ q` line reads as the whole cost of the method"
+          },
+          {
+            "at": "80%",
+            "event": "spark line settles: one dot product per vector"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "brute_force_search.py — Claude Code output",
+            "code": "def brute_force(db, q, k=K):\n    \"\"\"Compare the query against EVERY stored vector. Exact — never misses.\"\"\"\n    sims = db @ q                      # one dot product per stored vector\n    top = np.argpartition(-sims, k)[:k]\n    return top[np.argsort(-sims[top])]\n\n\nfor n in SIZES:                        # 1_000, 10_000, 100_000\n    db = make_corpus(n, rng, projection)\n\n    t0 = time.perf_counter()\n    for q in queries:\n        brute_force(db, q)\n    ms = (time.perf_counter() - t0) / N_QUERIES * 1000\n\n    print(f\"{n:>9,}  {ms:>9.2f}  {n:>15,}\")",
+            "sparkLine": "One dot product per vector."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.09,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run it",
+      "role_note": "Real captured stdout — see _run-brute.txt.",
+      "narration_text": "Run it. A thousand vectors: eight hundredths of a millisecond. Ten thousand: one point one six. A hundred thousand: ten point nine. Ten times the collection, and very nearly ten times the time. That is the linear curve, measured on this machine — and a real company's document store does not stop at a hundred thousand chunks.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "the real transcript, lines landing in order, ending on the linear-growth verdict",
+        "show": [
+          {
+            "at": "8%",
+            "event": "command line lands with the terracotta $"
+          },
+          {
+            "at": "30%",
+            "event": "1,000 row prints"
+          },
+          {
+            "at": "50%",
+            "event": "10,000 row prints"
+          },
+          {
+            "at": "70%",
+            "event": "100,000 row prints — the jump is visible"
+          },
+          {
+            "at": "88%",
+            "event": "verdict settles: 10x the vectors, ~10x the time"
+          }
+        ],
+        "remotion": {
+          "pattern": "CliRunOutput",
+          "props": {
+            "title": "python brute_force_search.py",
+            "lines": [
+              "exact (brute-force) search · dim=384 · top-10",
+              "  vectors   ms/query   compared/query",
+              "    1,000       0.08            1,000",
+              "   10,000       1.16           10,000",
+              "  100,000      10.87          100,000"
+            ],
+            "verdict": {
+              "text": "10x the vectors, ~10x the time — linear, as advertised",
+              "tone": "bad"
+            },
+            "sparkLine": "Run it."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.69,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:CliRunOutput",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLI — check and revise",
+      "role_note": "THE REVISION LAW — the second cycle begins here.",
+      "narration_text": "Now the revision, and notice what I am asking for. Group the vectors into cells. Compare the query against the cell centroids first, then scan only the nearest few cells. And — this is the part that matters — report recall against the exact answer, so we measure what the shortcut costs instead of assuming it is free.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Spark greeting 'The change,' holds"
+          },
+          {
+            "at": "28%",
+            "event": "Revised command types — note the recall requirement at the end"
+          },
+          {
+            "at": "80%",
+            "event": "Send arms; runningText 'updating…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The change,",
+            "topic": "CLAUDE CODE · CHAPTER 5 DEMO",
+            "segment": "Watch Exact Search Hit A Wall.",
+            "command": "claude \"now add an inverted-file index — cluster the vectors into about sqrt(n) cells, compare the query to the centroids first, then scan ONLY the nearest few cells. Report comparisons per query AND recall@10 against the exact answer.\"",
+            "runningText": "updating…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.49,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE — revised",
+      "role_note": "ACTUAL-CODE LAW — verbatim from code/ann_search.py.",
+      "narration_text": "Two functions carry the whole idea. Build groups every vector into a cell — about the square root of the collection, so each cell holds about the square root too. Search ranks the centroids, takes the nearest few cells, and scans only what is inside them. Everything else is never examined. That is the entire trick.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "Revised code card lands"
+          },
+          {
+            "at": "35%",
+            "event": "n_cells — the sqrt(n) sizing that makes the growth sublinear"
+          },
+          {
+            "at": "65%",
+            "event": "ivf_search — `cand` is the only slice of the database touched"
+          },
+          {
+            "at": "85%",
+            "event": "spark line settles: rank cells, scan a few"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ann_search.py — the index, and the search",
+            "code": "def n_cells(n: int) -> int:\n    \"\"\"~sqrt(n) cells, so each holds ~sqrt(n) vectors.\"\"\"\n    return max(4, int(round(n ** 0.5)))\n\n\ndef build_lists(db, centroids):\n    \"\"\"The inverted file: cell id -> the row ids that live in it.\"\"\"\n    assign = np.argmax(db @ centroids.T, axis=1)\n    return [np.flatnonzero(assign == c) for c in range(len(centroids))]\n\n\ndef ivf_search(db, centroids, lists, q, nprobe, k=K):\n    \"\"\"Rank the cells, then scan ONLY the nearest nprobe of them.\"\"\"\n    near = np.argpartition(-(centroids @ q), nprobe)[:nprobe]\n    cand = np.concatenate([lists[c] for c in near])   # the only rows touched\n    sims = db[cand] @ q\n    top = np.argpartition(-sims, k)[:k]\n    return cand[top[np.argsort(-sims[top])]]",
+            "sparkLine": "Rank cells. Scan a few."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 16.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — how cost grows",
+      "role_note": "Rebuilds the chapter's Fig. 01 from THIS reel's measured run.",
+      "narration_text": "Here is what that buys. A hundred times the data: exact search goes from a thousand comparisons per query to a hundred thousand — a hundred times the work, exactly as promised. The index goes from a hundred and twenty-one to one thousand two hundred and seventy-one. Ten and a half times, for a hundred times the data. That is the chapter's figure, measured.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "two plotted series over collection size — exact running away off the top, approximate staying flat along the floor",
+        "show": [
+          {
+            "at": "8%",
+            "event": "axes draw, ticks at 1,000 / 10,000 / 100,000"
+          },
+          {
+            "at": "26%",
+            "event": "the exact series climbs steeply to 100,000 and labels itself"
+          },
+          {
+            "at": "56%",
+            "event": "the approximate series draws — almost flat along the axis"
+          },
+          {
+            "at": "88%",
+            "event": "end labels settle: 100,000 compared vs 1,271 compared"
+          }
+        ],
+        "remotion": {
+          "pattern": "AnnScalingChart",
+          "props": {
+            "headline": "Same Question. A Hundredth Of The Work.",
+            "xTicks": [
+              "1,000",
+              "10,000",
+              "100,000"
+            ],
+            "xLabel": "vectors in the collection",
+            "yLabel": "vectors compared per query",
+            "series": [
+              {
+                "label": "exact",
+                "values": [
+                  1000,
+                  10000,
+                  100000
+                ],
+                "accent": false,
+                "endLabel": "exact — 100,000"
+              },
+              {
+                "label": "approximate (IVF)",
+                "values": [
+                  121,
+                  396,
+                  1271
+                ],
+                "accent": true,
+                "endLabel": "approximate — 1,271"
+              }
+            ],
+            "caption": "Measured by this reel's own ann_search.py — comparisons per query, not wall-clock, so the shape is machine-independent. Redrawn from the chapter's Fig. 01.",
+            "citation": "cost model: Malkov & Yashunin, 2018",
+            "sparkLine": "Linear, versus barely.",
+            "beatSeconds": 18.09
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.09,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:AnnScalingChart",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTPUT — the dial",
+      "role_note": "FALSIFIABILITY — the cost of approximating, measured, not assumed.",
+      "narration_text": "And here is the cost, because it is not free. Compare against a third of one percent of the collection and you get a third of the true neighbours back. One and a third percent gets you sixty percent. Five percent gets you eighty-eight. Ten percent gets you ninety-six. Approximate does not mean unpredictable. It means there is a dial, and you decide where to set it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "recall plotted against share of the collection examined — the ANN-Benchmarks shape, four measured settings on one curve",
+        "show": [
+          {
+            "at": "8%",
+            "event": "axes and recall gridlines draw"
+          },
+          {
+            "at": "22%",
+            "event": "nprobe 1 lands low — 0.3% examined, 33% recall"
+          },
+          {
+            "at": "40%",
+            "event": "nprobe 4 — 1.3%, 60%"
+          },
+          {
+            "at": "58%",
+            "event": "nprobe 16 — 5.0%, 87.5%"
+          },
+          {
+            "at": "72%",
+            "event": "nprobe 32 lands in terracotta — 10.2%, 96%"
+          }
+        ],
+        "remotion": {
+          "pattern": "AnnRecallDial",
+          "props": {
+            "headline": "The Accuracy You Give Up Is A Setting.",
+            "points": [
+              {
+                "label": "nprobe 1",
+                "x": 0.00315,
+                "y": 0.33
+              },
+              {
+                "label": "nprobe 4",
+                "x": 0.01261,
+                "y": 0.6
+              },
+              {
+                "label": "nprobe 16",
+                "x": 0.05042,
+                "y": 0.875
+              },
+              {
+                "label": "nprobe 32",
+                "x": 0.1018,
+                "y": 0.96
+              }
+            ],
+            "xLabel": "share of the 100,000 vectors compared",
+            "yLabel": "recall@10 vs the exact answer",
+            "xMax": 0.12,
+            "caption": "Every point measured by this reel's ann_search.py against the brute-force answer. This is the curve ANN-Benchmarks exists to plot.",
+            "citation": "Aumüller, Bernhardsson & Faithfull, 2018/2020",
+            "sparkLine": "A dial, not a gamble.",
+            "beatSeconds": 17.73
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 17.73,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:AnnRecallDial",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "Mandatory SUMMARY beat — the lesson, in one.",
+      "narration_text": "So: exact search is correct and does not scale, because every comparison still has to happen. An index narrows the search space instead of scanning it, and the cost stops tracking the collection. What you pay is recall — and you pay exactly as much as you choose to. One honest caveat: the chapter walks through HNSW, a graph index. We built an inverted file. Different mechanism, same bargain.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: 'Approximate is a setting, not a gamble.'"
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: narrow the space, pay in recall, choose the rate"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "note": "reused props-only, second use in this reel",
+          "props": {
+            "headline": "Approximate is a setting, not a gamble.",
+            "subline": "An index narrows the search space instead of scanning it, so cost stops tracking the collection — and the recall you trade away is a number you pick, measure, and can move.",
+            "sparkLine": "Narrow it. Then measure it."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 20.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:RagExecutiveSummary",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS — handoff",
+      "role_note": "HANDOFF LAW — read aloud verbatim, then discussed.",
+      "narration_text": "Your turn. Paste this: 'Take my brute-force search and add an approximate index, then sweep the accuracy setting and plot recall against the share of the collection actually compared. Tell me the lowest setting that still answers my questions correctly, and show me the query where it first breaks.' That last clause is the one that earns its keep. Anything will hand you a speedup; asking for the query where it first breaks makes it show you the failure instead of averaging it away. Run it on your own data, and find your own breaking point.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 38,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · CHAPTER 5 DEMO",
+            "segment": "Watch Exact Search Hit A Wall.",
+            "command": "Take my brute-force search and add an approximate index, then sweep the accuracy setting and plot recall against the share of the collection actually compared. Tell me the lowest setting that still answers my questions correctly, and show me the query where it first breaks.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 25.66,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-17T14:53:55"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — title restate. TitleOutroChannel per OUTRO-LOCK.md §Scope.",
+      "narration_text": "Watch Exact Search Hit A Wall. Vedanshu Daxesh Patel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "TitleOutroChannel",
+          "props": {
+            "title": "Watch Exact Search Hit A Wall.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel",
+            "polarity": "light"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-09-08T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 4.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "remotion:TitleOutroChannel",
+        "at": "2026-09-17T14:53:55"
+      }
+    }
+  ]
+}

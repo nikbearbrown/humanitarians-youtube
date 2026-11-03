@@ -28,7 +28,7 @@ python3 runtime/scripts/compile.py <reel> --height 2160
 | B00 | `ClaudeComposerAsk` | greeting "Hi, Rohan", segment "Stem Separation", 3 output lines, runningText "separating signals…" |
 | B03 | `ClaudeWindow` | artifactTitle "Why unbaking is impossible", heading "Estimation, not extraction", 4 lines + sparkLine |
 | B05 | `ClaudeWindow` | artifactTitle "The trust test", heading "Good enough vs. lying to you", 3 lines + sparkLine |
-| B06 | `ClaudeTitleOutro` | title "Stem Separation: Estimation, Not Extraction", handle "@HumanitariansAI", subline "Rohan Vijaykumar" |
+| B06 | `ClaudeTitleOutro` | title "Stem Separation: Estimation, Not Extraction", handle "@HumanitariansAI", subline "Rohan V." |
 
 Full props are in `beat_sheet.json` under each beat's `shot.remotion.props`.
 
@@ -36,5 +36,5 @@ Full props are in `beat_sheet.json` under each beat's `shot.remotion.props`.
 
 Per user instruction, all Humanitarians AI videos use:
 - **Opener**: `ClaudeComposerAsk` — narration opens "Hi, I'm Rohan, for Humanitarians AI."
-- **Outro**: `ClaudeTitleOutro` — `title` = video title, `handle` = "@HumanitariansAI", `subline` = "Rohan Vijaykumar"
-  Narration closes: "I'm Rohan Vijaykumar, for Humanitarians AI."
+- **Outro**: `ClaudeTitleOutro` — `title` = video title, `handle` = "@HumanitariansAI", `subline` = "Rohan V."
+  Narration closes: "I'm Rohan V., for Humanitarians AI."

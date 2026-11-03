@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "Claude, Grafana API.",
+    "slug": "claude-tag-plugins--claude-liam-grafana-api",
+    "topic": "CLAUDE BASICS · GRAFANA API SKILL",
+    "purpose": "Answer one real question in the Plain register: does Claude already know how an outside API like Grafana's works, or does something have to tell it? Lands the carry-out that a skill is a map of an API's traps, read before acting — not knowledge Claude already had — and Claude only avoids the traps the map actually marks.",
+    "skill": "hai-simple",
+    "register": "Plain",
+    "brand": "hai-fellows",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "in_for_bear": true,
+    "clock": "narration",
+    "bookend_exempt": [
+      "cold-open"
+    ],
+    "one_flag": "N/A — every claim in this reel is carried directly from the source Teardown's own stated facts about the grafana-api skill, not an inference this build is making",
+    "gate_c": "SIGNED — CARRY-OUT.md",
+    "gate_h": "N/A — hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "redo_of": "anthropics/claude-tag-plugins/youtube/claude-liam-grafana-api/beat_sheet.json (Teardown, 7 beats, fully-written narration — no source_skill file present on this machine, see QUESTION.md)",
+    "build": {
+      "at": "2026-08-31T16:39:55",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed Claude already knows how to work with an outside system like Grafana's API. Not quite — it gets shown, in a file it reads before acting. Here's what that file actually has to spell out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types the naive framing, hesitates on 'KNOWS', corrects to 'has to be shown', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Claude already\nKNOWS how APIs\nlike Grafana\nwork, right?",
+            "face": "serif",
+            "fontSize": 80,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "KNOWS",
+            "replacementWords": "has to be shown",
+            "mistakeRate": 8,
+            "hesitateWithin": 3,
+            "hesitateBetween": 22,
+            "charMs": 50,
+            "jitter": 28,
+            "seed": "hai-grafana-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md. Writer types the newcomer's wrong-guess word 'KNOWS' (implying Claude already possesses this from training), hesitates, corrects to 'has to be shown' -> lands 'Claude already has to be shown how APIs like Grafana work, right?'. The wrong guess is picked up directly by B01's 'file it reads before acting' framing. Narration is 36 words + lead_silence_s 0.8, giving the typing a >=9s window (TIMING LAW).",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 11.78,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "Grafana's REST API uses three different time formats depending on the endpoint, and picking the wrong one doesn't return an error — it just comes back empty. The datasource query endpoint and annotations both want Unix milliseconds. State-history wants Unix seconds. Silences want RFC-3339, and the example command only works with GNU date — macOS's built-in date needs a different flag. Every request also carries a role: Viewer, Editor, or Admin — a 403 means the identity is missing the role that call needs. Reading dashboards and querying data only takes Viewer; writing alert rules or silences takes Editor or higher. Datasource query responses come back as Grafana's own frame format, not raw Prometheus JSON — a failure lands inside the response itself, in results dot ref-id dot error, with the HTTP status still reading 200. There's also a one-line helper that wraps the bearer token for you, but it only lives for the session — it isn't saved anywhere.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 55,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GrafanaApiAnatomy",
+          "props": {
+            "sparkLine": "Three time formats. Same API, wrong format returns empty, not an error."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 56.32,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design",
+      "narration_text": "Alert rules live on two separate surfaces. The Prometheus API gives live state — firing, pending, or inactive — read only. The provisioning API gives the rule's definition: the query, the condition, the labels — full create, update, and delete, but anything written through it is locked in the Grafana UI unless the request adds a header telling Grafana to disable that lock. Dashboards work differently again: there's no partial update, only get the whole thing, change it, and post the whole thing back — leave out the version number and Grafana returns a conflict instead of guessing which copy wins. Datasource queries fan out to the underlying database on every single call, so the design here is to batch several queries into one request instead of looping separate calls. And the annotations endpoint has no page parameter at all — for a long time window, the fix is narrowing the window, not paging through it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 55,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GrafanaApiDesign",
+          "props": {
+            "sparkLine": "Two alert surfaces: live state vs. definitions. Dashboards: full replace, not patch."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 46.46,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "5 both directions",
+      "narration_text": "So does having this file mean Claude never trips on Grafana's API? Not exactly. Where the file spells something out plainly — the time-format warning up front, the exact field to check on a datasource error — Claude follows it and skips the mistake entirely. Where it's one line, or buried after the read-only examples, Claude can still get it wrong, the same way a person skimming the same page would.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Two columns: what the skill spells out plainly, what it leaves easy to miss — no verdict frame, per-item facts only",
+        "remotion": {
+          "pattern": "MedhavyTwoColumnCard",
+          "props": {
+            "sparkLine": "Clear traps get dodged. Buried ones don't.",
+            "leftHeader": "documented plainly",
+            "leftItems": [
+              "time-format warning leads, before the first operation",
+              "two alert surfaces given separate endpoints, separate verbs",
+              "ds/query error named exactly: results.<refId>.error, even at HTTP 200",
+              "dashboard's 412 version conflict comes with two stated fixes"
+            ],
+            "rightHeader": "easy to miss",
+            "rightItems": [
+              "grafana() helper is session-only — not a saved script",
+              "GNU vs BSD date gap for silences is one code comment",
+              "the provisioning UI-lock header appears after the read examples",
+              "the literal \"grafana\" path segment reads like a placeholder — no callout"
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 20.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "A skill doesn't make Claude know an API. It gives Claude a map of where the traps are — and Claude only avoids the ones the map actually marks.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "A skill doesn't make Claude know an API. It gives Claude a map of where the traps are — and Claude only avoids the ones the map actually marks.",
+            "attribution": "",
+            "sparkLine": "A map, not knowledge — and only where it's marked.",
+            "citation": ""
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "actual_duration_s": 8.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Pick an API you've never used with Claude before, even a small public one. Before you let it write any code, ask it to list the three things it would need confirmed first: how requests are authenticated, how paginated results come back, and any known regional or format quirk. Then have it write the first real call, and check whether it actually used what it just told you it needed.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · AN API CLAUDE HASN'T SEEN",
+            "segment": "Your Turn",
+            "command": "Pick an API you've never used with Claude before, even a small public one. Before you let it write any code, list the three things you'd need confirmed first: how requests are authenticated, how paginated results come back, and any known regional or format quirk. Then write the first real call.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 20.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro series",
+      "narration_text": "Claude, Grafana API.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 4,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "CLAUDE BASICS · HUMANITARIANS AI",
+            "line": "Claude, Grafana API."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    },
+    {
+      "beat_id": "BCTA",
+      "act": "outro cta",
+      "narration_text": "…Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 4,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "…Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BCTA.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCTA.mp3",
+      "actual_duration_s": 2.09,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCTA.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T16:39:55"
+      }
+    }
+  ]
+}

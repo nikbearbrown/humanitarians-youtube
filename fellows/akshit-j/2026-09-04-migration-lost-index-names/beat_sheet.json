@@ -1,0 +1,670 @@
+{
+  "metadata": {
+    "title": "The Migration That Lost Its Index Names",
+    "slug": "2026-09-04-migration-lost-index-names",
+    "narrator": "Akshit",
+    "series": "MEDAS · Lessons",
+    "source": "Akshit's account of migrating MEDAS live data to a team-owned MongoDB; the fix commit message 'Make MongoDB init resilient to a pre-existing Atlas cluster'; Incident 02 notes (MongoDB index name mismatch)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "brand": "claude-hai",
+    "topic": "Irreducibly Human",
+    "audience": "Humanitarians AI",
+    "register": "Plain",
+    "palette": "claude",
+    "hello": "Hi",
+    "aspect": "16:9",
+    "description": "A learning video from MEDAS 2.0 (beta). Moving live data from a personal-account database to a team-owned one, a hand-written migration script copied every document but recreated every index under MongoDB's default name. Weeks later a fresh instance of the live service failed to boot: the app asked for its named index on the same keys and MongoDB refused (IndexOptionsConflict, code 85). The old database was already deactivated, so the fix went into code: an idempotent index helper used for every collection. Lessons: mongodump/mongorestore, compare indexes before retiring the source, keep the source until verified, log skipped conflicts, versioned migrations.",
+    "note": "No people are named. Code and log views are labeled illustrations of the pattern, not the original script or a captured log. MEDAS is in beta with a small number of clinical users; the dev database holds example test data only.",
+    "build": {
+      "at": "2026-09-24T16:32:04",
+      "cut": "master",
+      "filled": 15,
+      "of": 15,
+      "slates": [],
+      "skin_warnings": [
+        "B14: palette=claude but the outro is 'OutroCTA' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- composer, ask shown answered; FELLOWS-SUBMISSION intro line + AI narration disclosure",
+      "narration_text": "Hi, I am Akshit, and this video is about a database migration that copied every document perfectly, and still stopped our app from starting weeks later. It's a lesson in what a migration really has to move. A quick note: the voice you're hearing is an AI narrator reading my script.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "We migrated our database and every document arrived intact. Why did the app stop booting weeks later?",
+            "topic": "HUMANITARIANS AI | MEDAS",
+            "segment": "Lost Index Names",
+            "greeting": "Hi, Akshit",
+            "runningText": "checking what the migration moved…",
+            "output": [
+              "the data was fine; the index names were not",
+              "the app asked for its named index, MongoDB refused",
+              "migrate with mongodump, then compare indexes"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-24T20:10:27.080258+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.38,
+      "render_duration_s": 15.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "OVERVIEW",
+      "role_note": "EXECUTIVE-SUMMARY LAW -- hesitant writer; single-word trigger (the component matches single words only)",
+      "narration_text": "The migration moved all of our documents, but not everything that makes a database work. The index names stayed behind, and weeks later, that stopped our app from starting.",
+      "lead_silence_s": 0.8,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer typing bookend (EXECUTIVE-SUMMARY LAW): the overview accumulates token by token, so mid-beat frames are mostly cream by design."
+      },
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "The migration moved\nall of our data.",
+            "triggerWords": "data",
+            "replacementWords": "documents",
+            "seed": "akshit-lost-index-names-2026-09-04",
+            "fontSize": 76,
+            "brandLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-24T20:11:16.259962+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 9.83,
+      "render_duration_s": 9.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "GOAL",
+      "role_note": "problem statement and goal, before any detail",
+      "narration_text": "Some context. Our live data sat in a database under the personal account of a teammate who had moved on. That's a single point of failure, so the goal was to move everything into one team-owned database. MEDAS is in beta, used by a handful of clinicians, so this was the right time to do it.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "THE GOAL · ONE TEAM-OWNED DATABASE",
+            "title": "",
+            "inputLabel": "Live data",
+            "outputLabel": "One team-owned database",
+            "phases": [
+              {
+                "label": "Personal account",
+                "desc": "a former teammate's"
+              },
+              {
+                "label": "Risk",
+                "desc": "single point of failure"
+              },
+              {
+                "label": "Migrate",
+                "desc": "copy data and indexes",
+                "accent": true
+              },
+              {
+                "label": "Team account",
+                "desc": "centrally owned"
+              }
+            ],
+            "footerNote": "Moving the data was the right call. How it moved is the lesson.",
+            "sparkLine": "Right goal, risky path."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-24T20:12:06.440532+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.94,
+      "render_duration_s": 15.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FRAMEWORK",
+      "role_note": "FRAMEWORK beat -- the one idea the story turns on: an index has keys AND a name",
+      "narration_text": "First, the one idea this story turns on. A MongoDB index has two separate properties: what it indexes, meaning the field and its sort order, and its name, which is just a label. If you don't pass a name, MongoDB makes one up from the field, like username underscore l c underscore one. Same index, different label.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "index_anatomy.py",
+            "language": "python",
+            "code": "# every MongoDB index has two separate properties\nusers.create_index(\n    [(\"username_lc\", 1)],          # WHAT it indexes: the keys\n    unique=True,\n    name=\"idx_users_username_lc\",  # WHAT it is called: the name\n)\n\n# no name given? MongoDB builds one from the keys:\nusers.create_index([(\"username_lc\", 1)])   # -> \"username_lc_1\"",
+            "sparkLine": "Keys, and a label."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-24T20:12:34.979104+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.64,
+      "render_duration_s": 17.666666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE RULE",
+      "role_note": "the MongoDB rule that turns a label into a crash",
+      "narration_text": "And here's the rule that matters. If an index already exists on a field, and you ask for another index on the same field under a different name, MongoDB refuses. It won't guess whether you meant a duplicate. It raises an error: Index Options Conflict, code eighty-five.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "THE RULE · SAME KEYS, DIFFERENT NAME",
+            "title": "",
+            "inputLabel": "Exists: username_lc_1",
+            "outputLabel": "IndexOptionsConflict",
+            "phases": [
+              {
+                "label": "Request",
+                "desc": "idx_users_username_lc"
+              },
+              {
+                "label": "Same keys",
+                "desc": "username_lc, ascending"
+              },
+              {
+                "label": "Other name",
+                "desc": "a conflict"
+              },
+              {
+                "label": "MongoDB",
+                "desc": "refuses: code 85",
+                "accent": true
+              }
+            ],
+            "footerNote": "MongoDB will not guess whether you meant a duplicate. It raises an error instead.",
+            "sparkLine": "Same keys, new name: refused."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-24T20:13:25.914702+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.87,
+      "render_duration_s": 14.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "MY CHOICE",
+      "role_note": "labeled illustration of the migration-script pattern (not the original script)",
+      "narration_text": "Now the migration. I looked for guidance and didn't find a clear answer, so I wrote a reusable script: copy every document, then recreate every index from the source. It ran cleanly. Every collection arrived, and the document counts matched. It looked like a success.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "migration",
+              "migrate_mongodb.py"
+            ],
+            "branch": "main",
+            "lang": "python",
+            "lines": [
+              "# illustration of the pattern, simplified",
+              "for name in source.list_collection_names():",
+              "    docs = list(source[name].find())",
+              "    if docs:",
+              "        target[name].insert_many(docs)          # documents: copied",
+              "",
+              "    for idx_name, spec in source[name].index_information().items():",
+              "        keys = spec.pop(\"key\")",
+              "        spec.pop(\"v\", None)",
+              "        target[name].create_index(keys, **spec)  # indexes: recreated"
+            ],
+            "caption": "Illustration of the pattern, not the original script. Documents copied, indexes recreated."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-24T20:13:54.872747+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.63,
+      "render_duration_s": 14.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:GitHubCodeViewer",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE FLAW",
+      "role_note": "the one missing argument",
+      "narration_text": "The flaw was one missing argument. In index information, the name is the dictionary key, not part of the definition. My script read it, and never passed it on. So every index was recreated under MongoDB's default name. The data was perfect. Only the labels were lost, and nothing complained.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "the_missing_name.py",
+            "language": "python",
+            "code": "for idx_name, spec in source[name].index_information().items():\n    # idx_name == \"idx_users_username_lc\"   <- the real name, as the dict KEY\n    keys = spec.pop(\"key\")\n    target[name].create_index(keys, **spec)\n    # no name= passed, so MongoDB labels it \"username_lc_1\"\n\n# the fix: carry the name across\ntarget[name].create_index(keys, name=idx_name, **spec)",
+            "sparkLine": "One missing argument."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-24T20:14:22.423209+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 16.21,
+      "render_duration_s": 16.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "WHY NOBODY NOTICED",
+      "role_note": "why the bug stayed dormant",
+      "narration_text": "Why did nobody notice? Queries only care what an index covers, not what it's called, so everything kept working. The names only matter when the app starts, because that's when it creates its indexes. As long as no fresh instance booted, the problem stayed hidden.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "WHY NOBODY NOTICED",
+            "title": "",
+            "inputLabel": "Mismatched names",
+            "outputLabel": "Bug stays dormant",
+            "phases": [
+              {
+                "label": "Queries",
+                "desc": "use the keys, work fine"
+              },
+              {
+                "label": "Names",
+                "desc": "never checked by queries"
+              },
+              {
+                "label": "App startup",
+                "desc": "creates named indexes"
+              },
+              {
+                "label": "No fresh boot",
+                "desc": "nothing triggers it",
+                "accent": true
+              }
+            ],
+            "footerNote": "The mismatch only surfaces when a new instance starts and asks for its indexes.",
+            "sparkLine": "Hidden until a boot."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-24T20:15:11.638057+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 13.74,
+      "render_duration_s": 13.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "THE CRASH",
+      "role_note": "labeled illustration of the startup failure (not a captured log)",
+      "narration_text": "Weeks later, the live service started a fresh instance. On boot, the app asked for its named index on the username field. MongoDB found that field already indexed as username underscore l c underscore one, and refused. Because index setup runs at startup, the worker failed to boot. With only a few users in beta, the impact was small, but the cause was weeks old.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "live service",
+              "startup"
+            ],
+            "branch": "main",
+            "lang": "text",
+            "lines": [
+              "gunicorn: booting worker",
+              "init_database()",
+              "  _configure_indexes()",
+              "    users.create_index([(\"username_lc\", 1)],",
+              "                       name=\"idx_users_username_lc\")",
+              "pymongo.errors.OperationFailure:",
+              "  Index already exists with a different name: username_lc_1",
+              "  code 85  IndexOptionsConflict",
+              "Worker failed to boot"
+            ],
+            "caption": "Illustration of the startup failure, reconstructed from the error; not a captured log."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-24T20:15:39.866060+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.54,
+      "render_duration_s": 19.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:GitHubCodeViewer",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "WHY NOT REDO IT",
+      "role_note": "the source was gone, so the fix had to live in code",
+      "narration_text": "The obvious fix would be to redo the migration properly, with mongodump and mongorestore, which keep indexes and their names. But by then, the old database had been deactivated. There was no clean source left to migrate from. So the fix had to happen in the code.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "WHY WE COULD NOT JUST REDO IT",
+            "title": "",
+            "inputLabel": "Redo the migration?",
+            "outputLabel": "Fix it in code",
+            "phases": [
+              {
+                "label": "Right tool",
+                "desc": "mongodump, mongorestore"
+              },
+              {
+                "label": "Needs",
+                "desc": "the original source"
+              },
+              {
+                "label": "Old database",
+                "desc": "deactivated",
+                "accent": true
+              },
+              {
+                "label": "So",
+                "desc": "no clean source left"
+              }
+            ],
+            "footerNote": "Retiring the source before checking the indexes removed the easy way out.",
+            "sparkLine": "The source was gone."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-24T20:16:29.090639+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 14.46,
+      "render_duration_s": 14.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "THE FIX",
+      "role_note": "the idempotent index helper; the log line is the recommended addition, labeled as such",
+      "narration_text": "Together with a teammate, I made index setup idempotent. One helper creates every index, and it treats already-exists conflicts, codes eighty-five and eighty-six, as well as thirteen and sixty-seven, as no-ops instead of crashing. Every collection's indexes now go through it, not just some. It's safe to run on every boot.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "safe_create_index.py",
+            "language": "python",
+            "code": "from pymongo.errors import OperationFailure\n\n# 85 IndexOptionsConflict, 86 IndexKeySpecsConflict,\n# 13 Unauthorized, 67 CannotCreateIndex\nSKIP_CODES = (13, 67, 85, 86)\n\ndef safe_create_index(collection, keys, **kwargs):\n    try:\n        collection.create_index(keys, **kwargs)\n    except OperationFailure as e:\n        if e.code in SKIP_CODES:\n            log.warning(\"index skipped on %s: %s\", collection.name, e)  # recommended\n            return\n        raise",
+            "sparkLine": "Safe on every boot."
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-24T20:16:56.836010+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 17.6,
+      "render_duration_s": 17.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "THE CAVEAT",
+      "role_note": "FALSIFIABILITY beat -- where the fix itself is weak",
+      "narration_text": "One honest caveat. Skipping errors has a cost. If someone later changes an index on purpose, a silent skip would hide that too. So every skip should log a warning, and a mature system handles index changes as versioned, reviewed migrations, not as startup code.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "THE HONEST CAVEAT",
+            "title": "",
+            "inputLabel": "Silent skip",
+            "outputLabel": "No silent schema drift",
+            "phases": [
+              {
+                "label": "Risk",
+                "desc": "hides real changes"
+              },
+              {
+                "label": "Minimum",
+                "desc": "log every skip"
+              },
+              {
+                "label": "Mature",
+                "desc": "versioned migrations"
+              },
+              {
+                "label": "Reviewed",
+                "desc": "applied once, on purpose",
+                "accent": true
+              }
+            ],
+            "footerNote": "Tolerant startup code is a safety net, not a schema-management strategy.",
+            "sparkLine": "A net, not a plan."
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-09-24T20:17:46.016994+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.74,
+      "render_duration_s": 14.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "LESSONS",
+      "role_note": "the checklist; narration discusses the order, does not recite the card",
+      "narration_text": "If I did this migration again, the order would change. Use the tool built for it. Check the indexes, not just the document counts, while the source still exists. Only then retire the old database. The code fix protects you when things go wrong, but the checklist is what stops it from happening.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "The Migration That Lost Its Index Names",
+            "artifactHeading": "Migration checklist",
+            "artifactLines": [
+              "Migrate with mongodump and mongorestore: they carry indexes and their names, not just documents.",
+              "Before retiring the source, compare every collection's indexes, names and keys, between source and target, and fix any mismatch while the old database still exists.",
+              "Keep the old database running until that check passes.",
+              "Make startup index code idempotent, and log every conflict it skips.",
+              "Long term, manage index changes as versioned, reviewed migrations."
+            ]
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-09-24T20:19:08.816928+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 15.36,
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "YOUR TURN",
+      "role_note": "HANDOFF LAW -- prompt read aloud verbatim and discussed",
+      "narration_text": "Your turn. Paste this into Claude: I'm about to migrate a MongoDB database to a new cluster. Give me a step-by-step plan that preserves indexes and their names, a script that compares every collection's indexes between source and target, and a checklist for when it's safe to retire the old database. The comparison script is the part to keep. Run it before you delete anything.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "I'm about to migrate a MongoDB database to a new cluster. Give me a step-by-step plan that preserves indexes and their names, a script that compares every collection's indexes between source and target, and a checklist for when it's safe to retire the old database.",
+            "topic": "HUMANITARIANS AI | MEDAS",
+            "segment": "Lost Index Names",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-09-24T20:20:21.465907+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 19.56,
+      "render_duration_s": 19.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-24T16:32:04"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "OUTRO",
+      "role_note": "title restate on the Humanitarians AI outro (OutroCTA); handle in capitals clears the GATE T size floor",
+      "narration_text": "The Migration That Lost Its Index Names. I'm Akshit, thanks for watching.",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Title-restate outro card (OUTRO LAW) on OutroCTA, the Humanitarians AI outro named in fellows/SKILL.md; ClaudeTitleOutro is locked to @NikBearBrown (OUTRO-LOCK.md)."
+      },
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "The Migration That Lost Its Index Names",
+            "handle": "@HUMANITARIANSAI"
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-09-24T20:20:31.571013+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 7,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 4.76,
+      "render_duration_s": 4.791666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:OutroCTA",
+        "at": "2026-09-24T16:32:04"
+      }
+    }
+  ]
+}

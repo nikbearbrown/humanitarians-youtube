@@ -1,0 +1,134 @@
+{
+  "aapl_run": "20c538e4",
+  "aapl_checks": [
+    {
+      "key": "source:agent_a:net_income",
+      "rule": "matches_source",
+      "kind": "hard",
+      "scope": "agent_a",
+      "who": "Agent A",
+      "outcome": "pass",
+      "plain": "Net income matches the filing value the agent was given",
+      "math": "cited $29.79 billion; given $29.79B (3 months ending 2026-06-27, 10-Q)",
+      "reason": null,
+      "gates": false
+    },
+    {
+      "key": "source:agent_a:revenue",
+      "rule": "matches_source",
+      "kind": "hard",
+      "scope": "agent_a",
+      "who": "Agent A",
+      "outcome": "pass",
+      "plain": "Revenue matches the filing value the agent was given",
+      "math": "cited $109.4 billion; given $109.4B (3 months ending 2026-06-27, 10-Q)",
+      "reason": null,
+      "gates": false
+    },
+    {
+      "key": "source:agent_b:net_income",
+      "rule": "matches_source",
+      "kind": "hard",
+      "scope": "agent_b",
+      "who": "Agent B",
+      "outcome": "pass",
+      "plain": "Net income matches the filing value the agent was given",
+      "math": "cited $29.788 billion; given $29.79B (3 months ending 2026-06-27, 10-Q)",
+      "reason": null,
+      "gates": false
+    },
+    {
+      "key": "check:source:balance_sheet_filed",
+      "rule": "balance_sheet_filed",
+      "kind": "hard",
+      "scope": "source",
+      "who": "The filing",
+      "outcome": "pass",
+      "plain": "Filed assets equal filed liabilities and equity",
+      "math": "assets $383.3B vs liabilities and equity $383.3B (as of 2026-06-27)",
+      "reason": null,
+      "gates": false
+    },
+    {
+      "key": "check:source:eps_basic_ge_diluted",
+      "rule": "eps_basic_ge_diluted",
+      "kind": "hard",
+      "scope": "source",
+      "who": "The filing",
+      "outcome": "pass",
+      "plain": "Diluted EPS can't be higher than basic EPS",
+      "math": "basic $2.03 vs diluted $2.02 (2026-03-29 to 2026-06-27)",
+      "reason": null,
+      "gates": false
+    },
+    {
+      "key": "check:source:gross_le_revenue",
+      "rule": "gross_le_revenue",
+      "kind": "heuristic",
+      "scope": "source",
+      "who": "The filing",
+      "outcome": "pass",
+      "plain": "Gross profit is usually no more than revenue",
+      "math": "gross profit $54.77B vs revenue $109.4B (2026-03-29 to 2026-06-27)",
+      "reason": null,
+      "gates": false
+    },
+    {
+      "key": "check:source:net_le_operating",
+      "rule": "net_le_operating",
+      "kind": "heuristic",
+      "scope": "source",
+      "who": "The filing",
+      "outcome": "pass",
+      "plain": "Net income is usually no more than operating income",
+      "math": "net income $29.79B vs operating income $35.7B (2026-03-29 to 2026-06-27)",
+      "reason": null,
+      "gates": false
+    },
+    {
+      "key": "check:source:operating_le_gross",
+      "rule": "operating_le_gross",
+      "kind": "heuristic",
+      "scope": "source",
+      "who": "The filing",
+      "outcome": "pass",
+      "plain": "Operating income is usually no more than gross profit",
+      "math": "operating income $35.7B vs gross profit $54.77B (2026-03-29 to 2026-06-27)",
+      "reason": null,
+      "gates": false
+    }
+  ],
+  "googl_run": "e592660c",
+  "googl_unusual": [
+    {
+      "key": "check:agent_b:net_le_operating",
+      "rule": "net_le_operating",
+      "kind": "heuristic",
+      "scope": "agent_b",
+      "who": "Agent B",
+      "outcome": "fail",
+      "plain": "Net income is usually no more than operating income",
+      "math": "net income $112.2B vs operating income $40.77B",
+      "reason": "Not an identity: a one-off gain or a tax benefit can legitimately push net income above operating income.",
+      "gates": false
+    },
+    {
+      "key": "check:source:net_le_operating",
+      "rule": "net_le_operating",
+      "kind": "heuristic",
+      "scope": "source",
+      "who": "The filing",
+      "outcome": "fail",
+      "plain": "Net income is usually no more than operating income",
+      "math": "net income $112.2B vs operating income $40.77B (2026-04-01 to 2026-06-30)",
+      "reason": "Not an identity: a one-off gain or a tax benefit can legitimately push net income above operating income.",
+      "gates": false
+    }
+  ],
+  "msft_slip": [
+    {
+      "run_id": "ec40e81b",
+      "excerpt": "-06-30, FY2026 FY, and Q3 FY2026. The company's revenue was $828,860,000,000 USD, net income was $317,780,000,000 USD, and diluted EPS was $4.27 US"
+    }
+  ]
+}

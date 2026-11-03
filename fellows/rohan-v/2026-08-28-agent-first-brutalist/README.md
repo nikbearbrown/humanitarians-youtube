@@ -9,7 +9,7 @@ installed, to four files delivered to the two correct places.
 | **Format** | 16:9, 4K (3840×2160), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 13 · all machine-rendered · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |
@@ -97,3 +97,9 @@ re-measure.
   none of the ten components has a portrait layout yet. `shorts.py` refuses to
   centre-cut Remotion beats because it chops text mid-word, so this needs ten
   real portrait layouts plus a decision on whether to cut for the cap.
+
+## Renders
+
+The 4K masters are in Google Drive, not in git — renders go to Drive, source and build assets stay here.
+
+[`2026-08-28/` on Drive](https://drive.google.com/drive/folders/1UBpIYX_NBcEpMebfTLbJYtmN7WYwZ3Kf) — `2026-08-28_agent_first_brutalist_16x9.mp4` and `2026-08-28_agent_first_brutalist_9x16.mp4`.

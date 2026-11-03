@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "The Routing Key, Not the Token.",
+    "subtitle": "The PagerDuty API Skill",
+    "slug": "claude-tag-plugins--claude-liam-pagerduty-api",
+    "topic": "PAGERDUTY API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer one real question in the Plain register: does Claude authenticate to PagerDuty the same way for every operation? Lands the carry-out that PagerDuty is really two separate APIs -- REST for reading and managing, Events v2 for triggering, acknowledging, and resolving -- each with its own auth scheme, and mixing them up produces a silent, empty-bodied failure rather than a clear error.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-tag-plugins/youtube/claude-liam-pagerduty-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - wrong guess (token vs routing key) resolves immediately at NB01; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T20:19:51",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumes one PagerDuty credential handles everything -- trigger an alert, just use your API token. It doesn't. Triggering runs through a separate routing key in the request body, no token involved. So what's the difference?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Can Claude trigger a PagerDuty alert with my API TOKEN?', hesitates on 'TOKEN', corrects to 'ROUTING KEY'",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Can Claude trigger a\nPagerDuty alert with\nmy API TOKEN?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "TOKEN",
+            "replacementWords": "ROUTING KEY",
+            "mistakeRate": 6,
+            "hesitateWithin": 2,
+            "hesitateBetween": 14,
+            "charMs": 48,
+            "jitter": 26,
+            "seed": "hai-pagerduty-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('TOKEN' -> 'ROUTING KEY') lands on screen.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 13.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:19:51"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "PagerDuty splits into two separate APIs, on two different hosts, each with its own way of authenticating. The REST API, at api dot pagerduty dot com, handles everything you read and manage -- schedules, services, escalation policies, incidents, users. It authenticates with an Authorization header reading Token, then your key -- not Bearer, not Basic. Events v2, at events dot pagerduty dot com, handles the alert lifecycle instead -- triggering, acknowledging, resolving. It authenticates with a routing key sent in the request body, and sends no Authorization header at all. Under the hood, an alert fires on a service, which routes through an escalation policy to specific schedules and users, opening an incident -- and every notification along the way is logged, which is the actual record of who got paged and why.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 45,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "TWO APIS, TWO AUTH SCHEMES",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "TWO APIS, TWO AUTH SCHEMES",
+          "chips": [
+            "REST=Token",
+            "EventsV2=key",
+            "no-Bearer"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "match the API to its auth scheme",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "audio_file": "mp3/beat-NB01.mp3",
+      "actual_duration_s": 43.73,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T20:19:51"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "Before touching any data, check your credentials with a sanity call: GET slash v1 slash users slash me, with that Token header. A 200 means you're good. A 401 comes back with an empty body -- curl shows you nothing unless you print the HTTP status explicitly, with dash w or dash o slash dev slash null dash w. And once you start writing, not just reading: every mutation -- triggering, acknowledging, resolving -- needs a From header with a real email address. Leave it off, and you get a 400 that looks like it came from nowhere.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 32,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "SANITY CHECK, THEN FROM:",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "SANITY CHECK, THEN FROM:",
+          "chips": [
+            "check-first",
+            "empty-body",
+            "From-required"
+          ],
+          "arrows": false,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "print status -- don't guess it",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "audio_file": "mp3/beat-NB02.mp3",
+      "actual_duration_s": 29.29,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T20:19:51"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "A few more things worth knowing. Raw curl calls to the slash oncalls endpoint need dash g, or the bracket-style filters get mangled -- the bundled pd_oncall.sh script already handles that for you. Any object you reference in a request body -- a service, an escalation policy -- needs both an id and a type field, or you'll get a 400 naming the missing one. Events v2 error responses come back as plain text, not JSON, so piping them through jq breaks immediately. And the two APIs are rate-limited differently: REST gives you nine-sixty requests a minute with headers you can watch; Events v2 gives you no such per-request header at all.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 36,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "NEEDS -g, ID+TYPE, RATE LIMITS DIFFER",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "NEEDS -g, ID+TYPE, RATE LIMITS DIFFER",
+          "chips": [
+            "needs-dash-g",
+            "id-plus-type",
+            "plain-text-errors",
+            "different-limits"
+          ],
+          "arrows": false,
+          "accent": [
+            3
+          ],
+          "strike": [],
+          "caption": "REST 960/min with headers -- Events v2 has none",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "audio_file": "mp3/beat-NB03.mp3",
+      "actual_duration_s": 35.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T20:19:51"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "PagerDuty splits in two: the REST API reads and manages everything with a Token header, while Events v2 triggers, acknowledges, and resolves alerts with a routing key in the body -- no token there at all. Mix the two up, and you won't get an error message, you'll get an empty one.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "PagerDuty splits in two: the REST API reads and manages everything with a Token header, while Events v2 triggers, acknowledges, and resolves alerts with a routing key in the body -- no token there at all. Mix the two up, and you won't get an error message, you'll get an empty one.",
+            "attribution": "",
+            "sparkLine": "Two APIs. Two auth schemes. Mix them up, get an empty body."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "actual_duration_s": 15.66,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:19:51"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt -- read it with me. I want to connect Claude to PagerDuty. For three tasks -- checking who's on call, triggering a test alert, and looking up why an incident paged someone -- tell me which API you'd call, which host, and exactly how you'd authenticate for each one, before you write any code. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "PAGERDUTY API · CLAUDE TAG PLUGIN",
+            "segment": "The Routing Key, Not the Token.",
+            "command": "I want to connect Claude to PagerDuty. For three tasks -- checking who's on call, triggering a test alert, and looking up why an incident paged someone -- tell me which API you'd call, which host, and exactly how you'd authenticate for each one, before you write any code.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 16.77,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:19:51"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "The Routing Key, Not the Token. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "PAGERDUTY API · @HumanitariansAI",
+            "line": "The Routing Key, Not the Token."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.58,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T20:19:51"
+      }
+    }
+  ]
+}

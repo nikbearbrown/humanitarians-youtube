@@ -1,0 +1,616 @@
+{
+  "metadata": {
+    "slug": "claude-stem-ai-guardrails",
+    "title": "Never Trust The Output",
+    "topic": "STEM & AI Architecture",
+    "purpose": "STEM & AI Architecture, Week 4 — the guardrail pattern: a deterministic validation layer between a statistical model and anything that executes, why it is necessary, and the latency and false-positive costs it carries.",
+    "skill": "ai-explainer",
+    "channel": "claude-stem",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners — engineers wiring LLMs into systems that actually do things",
+    "playlist": "STEM & AI Architecture",
+    "source": "Week 4 STEM: AI Guardrails & Validation — 5-scene script (HOOK / FRAMEWORK / WORKED EXAMPLE / FALSIFIABILITY / SCAFFOLDED TASK), supplied 2026-09-26.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion, both explicitly required. Every pattern has a registered <Pattern>916 variant; GuardrailCompare stacks its two panels in portrait and ThreeStageBand serializes top-to-bottom. 9:16 is a different beat sheet, never a crop — RENDER-TARGETS.md §3. Derive with ./art vertical.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script's 'red' moments all map to terracotta: the NEVER TRUST THE OUTPUT snap, the conversational tokens highlighted inside the payload, the BLOCKED stamp, and the flashing guardrail layer in Scene 4.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "AI guardrails",
+      "validation",
+      "structured output",
+      "JSON schema",
+      "LLM safety",
+      "deterministic validation",
+      "latency",
+      "AI architecture",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-09-26T21:43:50",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 20,
+      "narration_text": "I am Onkar Bhujbal, a software engineer. Large language models are statistical prediction engines, which means they are mathematically designed to guess. In enterprise software, you cannot wire a guessing machine directly into your database. To prevent catastrophic actions, we use an architectural pattern known as A.I. guardrails.",
+      "new_visual_element": "Cold open — a confident output nobody should execute",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'about to execute this…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the model's confident dosage instruction, then what it actually is"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names the rule: NEVER TRUST THE OUTPUT"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "STEM & AI Architecture",
+            "segment": "Never Trust The Output",
+            "command": "My app pipes the model's answer straight into the database. What could go wrong?",
+            "runningText": "about to execute this…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "AI: The patient's dosage should be increased to 500mg.",
+              "That sentence is a PREDICTION, not a fact.",
+              "NEVER TRUST THE OUTPUT."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-27T01:15:07.213821+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The dosage line is the source script's own illustration of a high-stakes output. Shown as an example of a class of failure, not as a transcript of any real model in any real clinical system. No model or product is named.",
+      "actual_duration_s": 18.09,
+      "render_duration_s": 18.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "narration_text": "A guardrail is not a better prompt. It is ordinary, boring, deterministic code that sits between the model and anything that can actually do damage — and it either passes or it stops.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'You make AI safe by prompting.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'prompting' goes terracotta, deletes, retypes as 'validating'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Trust nothing. Check everything.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "You make AI safe by prompting.\nTrust nothing. Check everything.",
+            "triggerWords": "prompting",
+            "replacementWords": "validating",
+            "seed": "ai-guardrails-2026-09-26",
+            "fontSize": 54,
+            "charMs": 30,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-27T01:16:27.326256+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Single-word trigger: BrutalistHesitantWriter matches whitespace-delimited word cores only. 'prompting'->'validating' is the reel's actual misconception. Typed text is 62 chars so it finishes inside the window.",
+      "actual_duration_s": 10.67,
+      "render_duration_s": 10.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE FRAMEWORK",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "A guardrail is a strict, deterministic validation layer sitting between the A.I. and the rest of your system. Instead of trusting the text the model generates, the output is intercepted and tested against predefined rules. If it fails the structural, factual, or ethical constraints of the guardrail, the system throws an error and halts execution.",
+      "new_visual_element": "The guardrail flowchart — output, layer, execution",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 LLM OUTPUT takes the terracotta top rule"
+          },
+          {
+            "at": 0.4,
+            "event": "connector draws; panel 02 GUARDRAIL LAYER lights as the rules are named"
+          },
+          {
+            "at": 0.66,
+            "event": "connector draws; panel 03 EXECUTION lights only after the layer has passed"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands under the band: fail the rules = halt, not warn"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Nothing reaches execution unchecked.",
+            "payloadLabel": "output",
+            "readyLine": "fail the rules = halt, not warn",
+            "stages": [
+              {
+                "index": "01",
+                "name": "LLM OUTPUT",
+                "detail": "a statistical guess, in text form"
+              },
+              {
+                "index": "02",
+                "name": "GUARDRAIL LAYER",
+                "detail": "deterministic rules: structural, factual, ethical"
+              },
+              {
+                "index": "03",
+                "name": "EXECUTION",
+                "detail": "reached only if every rule passed"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-27T01:17:52.872638+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 18.5,
+      "render_duration_s": 18.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — ASK (the guard)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's take the single most common way this breaks in production — the one that shows up within a day of shipping — and write the ten lines of ordinary code that stop it.",
+      "new_visual_element": "Ask micro-beat — the prompt that writes the guard",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'writing the guard…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Guard it,",
+            "topic": "STEM & AI Architecture",
+            "segment": "Structural validation",
+            "command": "The model wraps its JSON in conversational filler and my parser crashes. Write the deterministic check that catches it before anything executes.",
+            "runningText": "writing the guard…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-27T01:19:59.846521+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: B03 is the ask, B04 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 9.24,
+      "render_duration_s": 9.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 3 — WORKED EXAMPLE",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Imagine asking an A.I. to extract JSON, but it decides to add conversational fluff like here is your data at the beginning of the response. That extra text will instantly crash a standard application parser. A structural guardrail catches this, strips the conversational tokens, forces the payload into strict JSON, and only allows the data through if the schema matches perfectly.",
+      "new_visual_element": "The raw output beside the check that rejects it",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: RAW MODEL OUTPUT, the full response as returned"
+          },
+          {
+            "at": 0.26,
+            "event": "on 'conversational fluff', the offending span highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.32,
+            "event": "note lands beneath it: conversational tokens — not valid JSON"
+          },
+          {
+            "at": 0.46,
+            "event": "right panel reveals the guard line by line as the voice walks it"
+          },
+          {
+            "at": 0.72,
+            "event": "BLOCKED stamp lands and holds — fill and label arm together"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "The parser does not negotiate.",
+            "leftLabel": "RAW MODEL OUTPUT",
+            "leftText": "Here is your data: {\"dose_mg\": 500}",
+            "leftHot": "Here is your data: ",
+            "hotNote": "conversational tokens — not valid JSON",
+            "rightLabel": "GUARDRAIL",
+            "code": "payload = strip_fluff(output)\n\nif not is_json(payload):\n    block()\n\nif not schema.matches(payload):\n    block()\n\nexecute(payload)",
+            "stampText": "BLOCKED",
+            "stampBlocked": true,
+            "stampSub": "execution halted before the parser ever ran"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-27T01:21:35.609037+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The guard is illustrative pseudocode in Python shape — strip, type-check, schema-check, execute. It is presented as the PATTERN the narration describes, not as a library API or as code from any particular project.",
+      "actual_duration_s": 20.97,
+      "render_duration_s": 21.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4 — FALSIFIABILITY",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "So where do guardrails break? Latency and false positives. If your guardrail needs a second language model to check the work of the first, you have just doubled your latency and your A.P.I. costs. And an overly aggressive guardrail will block correct, harmless output — until the system is too rigid to actually function.",
+      "new_visual_element": "The same flowchart, with the guardrail layer itself failing",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the same three-stage flowchart returns; the output token starts along the band"
+          },
+          {
+            "at": 0.4,
+            "event": "panel 01 lights as before"
+          },
+          {
+            "at": 0.56,
+            "event": "on 'where do guardrails break', panel 02 GUARDRAIL LAYER takes the terracotta wash, border and ✕"
+          },
+          {
+            "at": 0.62,
+            "event": "the token STOPS at the guardrail — nothing reaches execution, including the good output"
+          },
+          {
+            "at": 0.74,
+            "event": "the cost lands underneath: THE LATENCY TAX — 2x calls, 2x cost, 2x wait"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "The guard has a bill, and a blind spot.",
+            "payloadLabel": "output",
+            "failIndex": 1,
+            "failLine": "THE LATENCY TAX — 2x calls, 2x cost, 2x wait",
+            "readyLine": "fail the rules = halt, not warn",
+            "stages": [
+              {
+                "index": "01",
+                "name": "LLM OUTPUT",
+                "detail": "a statistical guess, in text form"
+              },
+              {
+                "index": "02",
+                "name": "GUARDRAIL LAYER",
+                "detail": "a second model checking the first — slow, and over-eager"
+              },
+              {
+                "index": "03",
+                "name": "EXECUTION",
+                "detail": "never reached — correct output blocked too"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-27T01:43:03.385786+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Reuses ThreeStageBand's failure mode so the viewer reads it as the SAME flowchart returning — which is what the script asks for. The failing panel is index 1 (the guardrail itself), which is the point: the layer that protects you is also the layer that bottlenecks you.",
+      "honesty_note": "'2x calls, 2x cost, 2x wait' follows directly from the script's own claim that a second LLM checking the first doubles latency and API cost. No benchmark figure is invented.",
+      "actual_duration_s": 16.81,
+      "render_duration_s": 16.833333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So test this in code. Write a simple Python function that takes a model's response and blocks it from printing if it contains a specific forbidden keyword. You will find very quickly that engineering the guardrail is harder than engineering the prompt.",
+      "new_visual_element": "The deterministic block the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the function reveals line by line"
+          },
+          {
+            "at": 0.6,
+            "event": "the TASK line lands: implement a deterministic block"
+          },
+          {
+            "at": 0.76,
+            "event": "the hard part lands last — the keyword list is the whole problem"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "guardrail.py",
+            "code": "def guardrail(ai_text):\n    if \"uncertain\" in ai_text:\n        return ERROR\n    return ai_text\n\n# TASK: implement a deterministic block.\n#\n# Then try to write the keyword list.\n# That list is the entire problem —\n# too short and it misses, too long\n# and it blocks correct answers.",
+            "sparkLine": "Harder than the prompt."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-27T01:23:52.709660+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The trailing comment is the reel's addition: it connects the task back to Scene 4's false-positive cost, which is what makes the exercise instructive rather than trivial.",
+      "actual_duration_s": 13.8,
+      "render_duration_s": 13.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "And once that function works, here is the prompt worth running. Ask a model for twenty outputs that your keyword filter would wrongly block — correct, harmless answers that happen to trip the rule. What comes back is your false-positive rate, written by the system you were trying to guard.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "STEM & AI Architecture",
+            "segment": "Never Trust The Output",
+            "command": "Here is my guardrail's forbidden-keyword list. Give me 20 CORRECT, harmless responses that it would wrongly block, and for each one explain which rule tripped and why the rule is too broad.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-09-27T01:25:59.124942+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 14.95,
+      "render_duration_s": 14.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-26T21:43:50"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "A model that guesses is fine. A system that executes the guess is not. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Never Trust The Output",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · STEM & AI Architecture · Week 4",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-09-27T01:26:39.534967+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 7.38,
+      "render_duration_s": 7.416666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-09-26T21:43:50"
+      }
+    }
+  ]
+}

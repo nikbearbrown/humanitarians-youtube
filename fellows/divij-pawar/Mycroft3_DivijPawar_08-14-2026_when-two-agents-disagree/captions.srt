@@ -1,0 +1,359 @@
+1
+00:00:00,000 --> 00:00:02,625
+Hi — I'm Divij Pawar. This is part one of a two-part
+
+2
+00:00:02,667 --> 00:00:04,500
+series on cross-agent validation.
+
+3
+00:00:05,208 --> 00:00:07,333
+Two AI agents look at the same company.
+
+4
+00:00:07,708 --> 00:00:10,792
+One says revenue grew twelve percent. The other says eight. Which is
+
+5
+00:00:10,792 --> 00:00:13,500
+right? You don't know. I don't know. Neither does the system that
+
+6
+00:00:13,500 --> 00:00:15,667
+produced them. But you do know one of them is wrong.
+
+7
+00:00:16,410 --> 00:00:19,618
+Here's the whole idea in one breath. Checking whether an AI's answer
+
+8
+00:00:19,618 --> 00:00:22,118
+is correct needs ground truth you usually don't have.
+
+9
+00:00:22,577 --> 00:00:25,035
+Checking whether two AIs disagree needs nothing at all.
+
+10
+00:00:25,410 --> 00:00:28,160
+So you stop building a truth detector and build a problem detector
+
+11
+00:00:28,160 --> 00:00:28,960
+instead.
+
+12
+00:00:29,452 --> 00:00:32,035
+This half of the video is what the research says that actually
+
+13
+00:00:32,035 --> 00:00:35,160
+takes — and the traps that make naive versions worse than doing
+
+14
+00:00:35,160 --> 00:00:35,960
+nothing.
+
+15
+00:00:36,190 --> 00:00:38,398
+Start with the thing nobody wants to say out loud.
+
+16
+00:00:38,815 --> 00:00:42,273
+If an agent hands you a paragraph of confident financial analysis, you
+
+17
+00:00:42,273 --> 00:00:43,648
+have almost no way to check it.
+
+18
+00:00:44,023 --> 00:00:46,607
+You could read its reasoning — but the reasoning is also generated
+
+19
+00:00:46,607 --> 00:00:47,407
+text.
+
+20
+00:00:47,315 --> 00:00:50,648
+A model that confabulated the conclusion will happily confabulate a convincing
+
+21
+00:00:50,648 --> 00:00:54,023
+explanation for it. That's not a rare failure. It's the default:
+
+22
+00:00:54,398 --> 00:00:57,648
+any system graded only by its own output will always look consistent,
+
+23
+00:00:58,190 --> 00:01:00,857
+because consistency is all it was ever asked to produce.
+
+24
+00:01:01,273 --> 00:01:03,857
+The system runs. That was never proof that it's right.
+
+25
+00:01:04,670 --> 00:01:07,128
+The cheapest version of this is to ask the same model the
+
+26
+00:01:07,128 --> 00:01:09,503
+same question twice, and see if the answers match.
+
+27
+00:01:09,920 --> 00:01:11,212
+That's self-consistency sampling.
+
+28
+00:01:11,795 --> 00:01:15,128
+Its own documentation is blunt: two identical confabulations are still
+
+29
+00:01:15,128 --> 00:01:18,295
+confabulations. High consistency is weak positive evidence.
+
+30
+00:01:18,712 --> 00:01:22,462
+Low consistency is strong negative evidence. Read that asymmetry again — it's
+
+31
+00:01:22,462 --> 00:01:26,045
+what makes the whole field work. Agreement proves almost nothing. Disagreement
+
+32
+00:01:26,045 --> 00:01:27,045
+proves something real,
+
+33
+00:01:27,628 --> 00:01:29,128
+with no ground truth required.
+
+34
+00:01:29,545 --> 00:01:33,003
+But two samples from one model aren't two opinions. They're two draws
+
+35
+00:01:33,003 --> 00:01:34,128
+from one distribution.
+
+36
+00:01:34,503 --> 00:01:36,045
+The fix is to change who answers.
+
+37
+00:01:36,900 --> 00:01:40,192
+Two different agents, compare, flag the mismatch — done? Not quite. Trap
+
+38
+00:01:40,192 --> 00:01:41,525
+one: information asymmetry.
+
+39
+00:01:41,900 --> 00:01:44,150
+Debate seeks truth when agents have seen different evidence.
+
+40
+00:01:44,567 --> 00:01:47,275
+When they've seen the same evidence, it's a persuasion contest — one
+
+41
+00:01:47,275 --> 00:01:48,817
+witness asked twice in two accents.
+
+42
+00:01:49,275 --> 00:01:52,233
+Trap two is worse, because the obvious fix causes it. They disagree,
+
+43
+00:01:52,233 --> 00:01:54,400
+so you average, or add a third agent and vote.
+
+44
+00:01:54,858 --> 00:01:58,650
+But averaging and majority voting amplify shared errors instead of cancelling them.
+
+45
+00:01:59,317 --> 00:02:02,317
+Ensembling only cancels error when errors are independent.
+
+46
+00:02:02,817 --> 00:02:05,567
+A majority of correlated agents is not a majority.
+
+47
+00:02:06,470 --> 00:02:09,720
+Once you're detecting disagreement instead of resolving it, most disagreements turn
+
+48
+00:02:09,720 --> 00:02:10,520
+out to be boring.
+
+49
+00:02:10,887 --> 00:02:12,428
+The literature sorts them four ways.
+
+50
+00:02:12,845 --> 00:02:16,095
+Stylistic — same substance, different words. Noise; flag it and you'll cry
+
+51
+00:02:16,095 --> 00:02:19,262
+wolf. Reasoning — different paths, different conclusions. That's the real thing.
+
+52
+00:02:19,720 --> 00:02:22,178
+High-confidence disagreement — both sure, mutually exclusive.
+
+53
+00:02:22,553 --> 00:02:26,553
+Surface it; don't synthesize a false consensus. And adversarial — agents faking
+
+54
+00:02:26,553 --> 00:02:27,470
+agreement. Then,
+
+55
+00:02:27,887 --> 00:02:30,720
+staged detection: a cheap classifier handles about
+
+56
+00:02:31,095 --> 00:02:34,762
+seventy-three percent of pairs with no model call. Only the uncertain ones
+
+57
+00:02:34,762 --> 00:02:35,562
+escalate.
+
+58
+00:02:35,762 --> 00:02:40,095
+Sixty-two percent lower cost, ninety point eight percent accuracy held. A check
+
+59
+00:02:40,095 --> 00:02:42,762
+you can afford to run on everything beats a better check you
+
+60
+00:02:42,762 --> 00:02:43,562
+run on a sample.
+
+61
+00:02:44,190 --> 00:02:46,607
+So what does the mature version of this look like? The most
+
+62
+00:02:46,607 --> 00:02:50,690
+complete systems in the research run many specialized agents across multiple phases,
+
+63
+00:02:50,982 --> 00:02:52,607
+evaluated on hundreds of questions.
+
+64
+00:02:53,190 --> 00:02:55,773
+One published ablation study tells you what actually matters.
+
+65
+00:02:56,190 --> 00:02:59,732
+Remove the adversarial debate, and faithfulness drops zero point one one nine
+
+66
+00:02:59,732 --> 00:03:01,232
+— the largest drop by far.
+
+67
+00:03:01,607 --> 00:03:03,690
+Remove the elegant source-weighting matrix, and it costs
+
+68
+00:03:04,065 --> 00:03:06,315
+zero point zero zero six. Nothing.
+
+69
+00:03:06,940 --> 00:03:09,690
+The sophisticated machinery is the least important part.
+
+70
+00:03:10,065 --> 00:03:13,648
+What matters is having something whose job is to disagree. That system
+
+71
+00:03:13,648 --> 00:03:17,607
+then resolves the disagreement. But arbitration needs heterogeneity you can verify.
+
+72
+00:03:18,023 --> 00:03:21,273
+If you can't prove your agents fail independently, arbitration hides your only
+
+73
+00:03:21,273 --> 00:03:23,857
+evidence that something's wrong. So surface it instead.
+
+74
+00:03:24,232 --> 00:03:27,523
+Machines verify conformance. Humans verify adequacy.
+
+75
+00:03:28,160 --> 00:03:32,535
+So, part one in four lines. Correctness needs ground truth. Disagreement doesn't.
+
+76
+00:03:32,702 --> 00:03:36,410
+Different evidence matters more than a different model. Never resolve what you
+
+77
+00:03:36,410 --> 00:03:37,785
+can't prove is independent.
+
+78
+00:03:38,327 --> 00:03:41,035
+And a cheap check that runs on everything beats a better one
+
+79
+00:03:41,035 --> 00:03:42,243
+that runs on a sample.
+
+80
+00:03:42,920 --> 00:03:46,170
+Your turn. Paste this into Claude: "Take two AI agents I already
+
+81
+00:03:46,170 --> 00:03:46,970
+run.
+
+82
+00:03:46,795 --> 00:03:49,378
+What different evidence would each need to see for their disagreement to
+
+83
+00:03:49,378 --> 00:03:51,753
+mean something about the world, instead of something about my prompt?"
+
+84
+00:03:52,253 --> 00:03:53,053
+That's the
+
+85
+00:03:53,003 --> 00:03:55,795
+information-asymmetry trap, aimed at your own stack. Look for whether Claude can
+
+86
+00:03:55,795 --> 00:03:58,420
+name two genuinely different sources — if it can't, you don't have
+
+87
+00:03:58,420 --> 00:04:00,837
+two witnesses, you have one witness asked twice.
+
+88
+00:04:01,337 --> 00:04:02,295
+Part two: the code.
+
+89
+00:04:02,930 --> 00:04:07,263
+Correctness is not mechanically decidable. Disagreement is. Part two — what I
+
+90
+00:04:07,263 --> 00:04:08,063
+actually built. Divij Pawar.

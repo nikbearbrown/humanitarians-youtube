@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "site": {
+    "name": "medhavy-hub",
+    "build_id": "6a566cb528d17dbb8cee4a181f64b9f5cb101c66b3f054d040f0fa4a8ea83dff",
+    "base_url": "https://hub.medhavy.com"
+  },
+  "privacy": {
+    "data_source": "redacted-live",
+    "redaction_log": "capture/redaction.jsonl"
+  },
+  "captures": {
+    "run-05": {
+      "path": "capture/run-05.mp4",
+      "sha256": "812bcfa1e437bdc60ef9607d9a4b45de1300c4b92915907a0b3bb5ec122462e5",
+      "build_id": "6a566cb528d17dbb8cee4a181f64b9f5cb101c66b3f054d040f0fa4a8ea83dff",
+      "method": "scripted-browser",
+      "context": "admin",
+      "action_log": "capture/run-05-actions.jsonl"
+    }
+  },
+  "features": [
+    {
+      "id": "admin-overview-totals",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B02",
+          "start_s": 3.4,
+          "action_s": 6.77,
+          "end_s": 16.8,
+          "observation": "Admin Control Panel shows 79 total users, 11 admins, 68 learners, 0 pending; scrolling reveals the registry.",
+          "riff": "The numbers are the health check; the registry below them is the product."
+        }
+      ]
+    },
+    {
+      "id": "textbook-register",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B02",
+          "start_s": 3.4,
+          "action_s": 6.77,
+          "end_s": 16.8,
+          "observation": "Manage Textbooks lists each registered book with URL and status badge (public); Add Textbook button present.",
+          "riff": "Three statuses is the whole access policy for a book: public, private, hidden."
+        }
+      ]
+    },
+    {
+      "id": "textbook-view-all",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B03",
+          "start_s": 17.4,
+          "action_s": 21.34,
+          "end_s": 28.4,
+          "observation": "View All Textbooks tab shows every book with an Open Textbook button.",
+          "riff": "Open mints a per-book 24h JWT and redirects; the CORS whitelist is a source fact, not visible."
+        }
+      ]
+    },
+    {
+      "id": "users-list",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B04",
+          "start_s": 29.0,
+          "action_s": 32.92,
+          "end_s": 40.0,
+          "observation": "Users tab lists masked learner rows with a role select each; admin rows show 'Admin role locked'.",
+          "riff": "The lock is the API refusing to demote an admin; the select is set-role."
+        }
+      ]
+    },
+    {
+      "id": "set-role",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B04",
+          "start_s": 29.0,
+          "action_s": 32.92,
+          "end_s": 40.0,
+          "observation": "Role selects are present on every non-admin row; not changed during capture.",
+          "riff": "Shown as a control, not exercised: changing a real user's role on production is not a demo."
+        }
+      ]
+    },
+    {
+      "id": "admins-list",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B05",
+          "start_s": 40.6,
+          "action_s": 44.52,
+          "end_s": 59.2,
+          "observation": "View Admins tab lists the admin accounts (masked).",
+          "riff": "Eleven admins for eighty users is a governance question, not a bug."
+        }
+      ]
+    },
+    {
+      "id": "classes-overview",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B05",
+          "start_s": 40.6,
+          "action_s": 44.52,
+          "end_s": 59.2,
+          "observation": "Classes tab shows two class cards with 8 and 13 students, Create Class and Archive controls.",
+          "riff": "Enrollment is the access grant; the class is the unit instructors manage."
+        }
+      ]
+    },
+    {
+      "id": "concept-map-import",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B06",
+          "start_s": 59.8,
+          "action_s": 63.67,
+          "end_s": 70.8,
+          "observation": "Concept Maps tab shows an Import field with run-timestamp placeholder, Grant Access, and four session rows.",
+          "riff": "Import is a pull from S3 by timestamp; review and export happen in the editor, not shown here."
+        }
+      ]
+    },
+    {
+      "id": "requests-queue",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B07",
+          "start_s": 71.4,
+          "action_s": 75.27,
+          "end_s": 78.7,
+          "observation": "Requests tab renders the Access Requests heading with an empty queue.",
+          "riff": "Empty is honest evidence; approve/deny is described from source, not exercised."
+        }
+      ]
+    },
+    {
+      "id": "analytics-dashboard",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B08",
+          "start_s": 95.8,
+          "action_s": 99.88,
+          "end_s": 124.5,
+          "observation": "PostHog-backed dashboard: tiles (80 users, 429 views, 36 opens, 51 AI), DAU chart, platform breakdown, masked engagement lists; Students and Instructors views switch.",
+          "riff": "Two analytics systems exist; this one is PostHog; the first-party counter is separate and non-atomic."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-05",
+          "beat_id": "B09",
+          "start_s": 126.3,
+          "action_s": 129.79,
+          "end_s": 133.2,
+          "observation": "Settings page shows the name editor and embedded Clerk profile.",
+          "riff": "Name is Clerk's; role is metadata; the page is mostly Clerk's own UI."
+        }
+      ]
+    },
+    {
+      "id": "onboarding",
+      "role": "student",
+      "status": "planned",
+      "reason": "Not shown, single-account admin run.",
+      "evidence": []
+    },
+    {
+      "id": "library",
+      "role": "student",
+      "status": "planned",
+      "reason": "Not shown, single-account admin run; admin /dashboard redirects to /admin.",
+      "evidence": []
+    },
+    {
+      "id": "request-access",
+      "role": "student",
+      "status": "planned",
+      "reason": "Not shown, single-account admin run.",
+      "evidence": []
+    },
+    {
+      "id": "hidden-invisible",
+      "role": "student",
+      "status": "planned",
+      "reason": "Not shown, single-account admin run.",
+      "evidence": []
+    },
+    {
+      "id": "join-by-code",
+      "role": "student",
+      "status": "planned",
+      "reason": "Not shown, single-account admin run.",
+      "evidence": []
+    },
+    {
+      "id": "open-textbook",
+      "role": "student",
+      "status": "planned",
+      "reason": "Handoff unverified: all three textbook sites 307 to hub with a localhost blocked_url on 2026-09-17.",
+      "evidence": []
+    },
+    {
+      "id": "logout",
+      "role": "student",
+      "status": "planned",
+      "reason": "Not exercised; logging out would end the only capture session.",
+      "evidence": []
+    },
+    {
+      "id": "instructor-request",
+      "role": "instructor",
+      "status": "planned",
+      "reason": "Not shown, single-account admin run.",
+      "evidence": []
+    },
+    {
+      "id": "class-create",
+      "role": "instructor",
+      "status": "planned",
+      "reason": "Not exercised; creating a class on production is not a demo.",
+      "evidence": []
+    },
+    {
+      "id": "invite-create",
+      "role": "instructor",
+      "status": "planned",
+      "reason": "Not shown, single-account admin run.",
+      "evidence": []
+    },
+    {
+      "id": "concept-map-review",
+      "role": "admin",
+      "status": "planned",
+      "reason": "Editor not opened; reviewing real nodes on production is not a demo.",
+      "evidence": []
+    },
+    {
+      "id": "textbook-delete",
+      "role": "admin",
+      "status": "planned",
+      "reason": "Destructive on production; not exercised.",
+      "evidence": []
+    },
+    {
+      "id": "requests-approve-deny",
+      "role": "admin",
+      "status": "planned",
+      "reason": "Queue was empty at capture time.",
+      "evidence": []
+    },
+    {
+      "id": "password-change-invalidation",
+      "role": "admin",
+      "status": "planned",
+      "reason": "Wired but dormant per DEVELOPER.md §4.5.",
+      "evidence": []
+    },
+    {
+      "id": "access-verify",
+      "role": "service",
+      "status": "api-only",
+      "reason": "Service-to-service; no screen.",
+      "transcript": "capture/api-only.txt",
+      "evidence": []
+    },
+    {
+      "id": "memory-api",
+      "role": "service",
+      "status": "api-only",
+      "reason": "Service-to-service with MEMORY_API_SECRET; no screen; not called.",
+      "transcript": "capture/api-only.txt",
+      "evidence": []
+    },
+    {
+      "id": "articles-api",
+      "role": "service",
+      "status": "api-only",
+      "reason": "Public glossary endpoint; no screen; not called.",
+      "transcript": "capture/api-only.txt",
+      "evidence": []
+    },
+    {
+      "id": "cors-auto-whitelist",
+      "role": "service",
+      "status": "api-only",
+      "reason": "Source fact (DEVELOPER.md §5.1); not observable in UI.",
+      "transcript": "capture/api-only.txt",
+      "evidence": []
+    }
+  ]
+}

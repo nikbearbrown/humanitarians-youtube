@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "site": {
+    "name": "medhavy-hub / Cancer Biology and Therapeutics (cancer.medhavy.com)",
+    "build_id": "6a566cb528d17dbb8cee4a181f64b9f5cb101c66b3f054d040f0fa4a8ea83dff",
+    "base_url": "https://hub.medhavy.com"
+  },
+  "privacy": {
+    "data_source": "redacted-live",
+    "redaction_log": "capture/redaction.jsonl"
+  },
+  "captures": {
+    "run-signin": {
+      "path": "capture/run-signin.mp4",
+      "sha256": "d56307a4a68a02e7d2c24d1b1a3477e5864fee089db4e79e6e34bc843961e718",
+      "build_id": "6a566cb528d17dbb8cee4a181f64b9f5cb101c66b3f054d040f0fa4a8ea83dff",
+      "method": "scripted-browser",
+      "context": "public",
+      "action_log": "capture/run-signin-actions.jsonl"
+    },
+    "run-book": {
+      "path": "capture/run-book.mp4",
+      "sha256": "d34d8f5941eb990fde0f0c8a9a2152d1830cffa2f18977f96c53d2374fc26a40",
+      "build_id": "6a566cb528d17dbb8cee4a181f64b9f5cb101c66b3f054d040f0fa4a8ea83dff",
+      "method": "scripted-browser",
+      "context": "admin",
+      "action_log": "capture/run-book-actions.jsonl"
+    },
+    "run-book-p2": {
+      "path": "capture/run-book-p2.mp4",
+      "sha256": "f7b27db8ceb1f571fabfc609fd9b820a4cbb13cc6606960b3653164587bbe472",
+      "build_id": "6a566cb528d17dbb8cee4a181f64b9f5cb101c66b3f054d040f0fa4a8ea83dff",
+      "method": "scripted-browser",
+      "context": "student",
+      "action_log": "capture/run-book-actions.jsonl",
+      "note": "Second recorded page of run-book (the textbook tab). Page-two time = session time - 13.77 s."
+    }
+  },
+  "features": [
+    {
+      "id": "hub-landing",
+      "role": "public",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-signin",
+          "beat_id": "B02",
+          "start_s": 1.9,
+          "action_s": 7.0,
+          "end_s": 7.4,
+          "observation": "Signed-out landing page renders with the Medhavi Hub branding.",
+          "riff": "The front door; nothing else until you sign in."
+        }
+      ]
+    },
+    {
+      "id": "sign-in-wall",
+      "role": "public",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-signin",
+          "beat_id": "B03",
+          "start_s": 11.7,
+          "action_s": 12.0,
+          "end_s": 21.2,
+          "observation": "Clerk sign-in card: email or username, Continue, Sign up link. Nothing typed.",
+          "riff": "Clerk owns identity; the hub never sees a password."
+        }
+      ]
+    },
+    {
+      "id": "sign-up-page",
+      "role": "public",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-signin",
+          "beat_id": "B04",
+          "start_s": 23.0,
+          "action_s": 23.3,
+          "end_s": 29.2,
+          "observation": "Clerk sign-up card. Nothing typed.",
+          "riff": "Account creation is the human's; access is granted afterwards by an instructor or admin."
+        }
+      ]
+    },
+    {
+      "id": "dashboard-shelf",
+      "role": "admin",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book",
+          "beat_id": "B05",
+          "start_s": 3.3,
+          "action_s": 5.96,
+          "end_s": 15.0,
+          "observation": "Admin View All shelf lists every book with an Open Textbook button; clicking the cancer textbook's opens a new tab.",
+          "riff": "An admin sees every book; a student sees only entitled books plus pending/request counts (not filmed)."
+        }
+      ]
+    },
+    {
+      "id": "open-textbook",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B06",
+          "start_s": 1.6,
+          "action_s": 5.9,
+          "end_s": 14.7,
+          "observation": "The textbook loads in its own tab at cancer.medhavy.com after the token handoff; home shows Ask the AI Tutor / Browse the Textbook.",
+          "riff": "The hub minted a 24h token; the book's middleware verified it back and set its own session cookie."
+        }
+      ]
+    },
+    {
+      "id": "sidebar-navigation",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B07",
+          "start_s": 14.7,
+          "action_s": 17.5,
+          "end_s": 33.6,
+          "observation": "Chapter 5 expands to its sections; 5.2 opens.",
+          "riff": "Fumadocs tree: parts, chapters, sections."
+        }
+      ]
+    },
+    {
+      "id": "chapter-page",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B07",
+          "start_s": 17.5,
+          "action_s": 21.9,
+          "end_s": 33.6,
+          "observation": "Section page with headings, an NIH-sourced figure and caption, underlined key terms, On this page outline.",
+          "riff": "MDX rendered; KaTeX and Mermaid available per the book's ARCHITECTURE.md though this section has none."
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B08",
+          "start_s": 34.0,
+          "action_s": 37.0,
+          "end_s": 41.6,
+          "observation": "Cmd-K dialog; 'Warburg effect' typed; hits in 14.3 and 30.6 with highlighted snippets.",
+          "riff": "Orama hybrid search (keyword + vector) per ARCHITECTURE.md."
+        }
+      ]
+    },
+    {
+      "id": "ai-tutor-question",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B09",
+          "start_s": 43.0,
+          "action_s": 50.8,
+          "end_s": 63.3,
+          "observation": "Ask this textbook panel with section-specific suggested prompts; question typed and sent; answer streams.",
+          "riff": "Retrieval over the chapter, streamed via SSE (API.md); GPT-4o-mini behind a MoE router."
+        }
+      ]
+    },
+    {
+      "id": "ai-tutor-sources",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B09",
+          "start_s": 59.8,
+          "action_s": 60.0,
+          "end_s": 63.3,
+          "observation": "'Top sources used' block precedes the answer with 'Dive deeper into all sources (10)'.",
+          "riff": "In a pilot run the top sources for this question included angiogenesis sections; retrieval is broad, so read the sources."
+        }
+      ]
+    },
+    {
+      "id": "ai-tutor-memory-followup",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B10",
+          "start_s": 63.4,
+          "action_s": 68.3,
+          "end_s": 80.8,
+          "observation": "Follow-up with the user's own numbers answered in context of the prior turn (10-fold amplification).",
+          "riff": "Short-term memory keyed by session via the hub memory API."
+        }
+      ]
+    },
+    {
+      "id": "ai-tutor-simplify-analogy",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B11",
+          "start_s": 80.9,
+          "action_s": 85.4,
+          "end_s": 97.8,
+          "observation": "Simpler-terms + analogy request answered.",
+          "riff": "Same mechanism; the prompt shape is the lever."
+        }
+      ]
+    },
+    {
+      "id": "ai-tutor-summary",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B12",
+          "start_s": 97.9,
+          "action_s": 101.4,
+          "end_s": 112.3,
+          "observation": "Three-line summary returned; 'AI can make mistakes' footer visible.",
+          "riff": "The disclaimer is the site's own, not ours."
+        }
+      ]
+    },
+    {
+      "id": "theme-toggle",
+      "role": "student",
+      "status": "implemented",
+      "evidence": [
+        {
+          "capture": "run-book-p2",
+          "beat_id": "B13",
+          "start_s": 114.2,
+          "action_s": 114.5,
+          "end_s": 124.6,
+          "observation": "Toggle Theme switches the book to dark mode; section scrolled.",
+          "riff": "Reading comfort; no content change."
+        }
+      ]
+    },
+    {
+      "id": "student-dashboard-counts",
+      "role": "student",
+      "status": "planned",
+      "reason": "Admin account: /dashboard redirects to /admin; pending/approved/request tiles not filmable without a student account.",
+      "evidence": []
+    },
+    {
+      "id": "request-access",
+      "role": "student",
+      "status": "planned",
+      "reason": "Not shown, admin account.",
+      "evidence": []
+    },
+    {
+      "id": "glossary-popups",
+      "role": "student",
+      "status": "planned",
+      "reason": "Underlined key terms exist on the page; hover popups not exercised in this run.",
+      "evidence": []
+    },
+    {
+      "id": "feedback-button",
+      "role": "student",
+      "status": "planned",
+      "reason": "Present in the book UI; not exercised.",
+      "evidence": []
+    },
+    {
+      "id": "instructor-tools",
+      "role": "instructor",
+      "status": "planned",
+      "reason": "Not shown, single-account run.",
+      "evidence": []
+    },
+    {
+      "id": "access-verify",
+      "role": "service",
+      "status": "api-only",
+      "reason": "The book's middleware verified the token behind the tab switch; no screen.",
+      "transcript": "capture/api-only.txt",
+      "evidence": []
+    },
+    {
+      "id": "memory-api",
+      "role": "service",
+      "status": "api-only",
+      "reason": "Backs the follow-up memory; no screen; secret never read.",
+      "transcript": "capture/api-only.txt",
+      "evidence": []
+    },
+    {
+      "id": "articles-api",
+      "role": "service",
+      "status": "api-only",
+      "reason": "Glossary definitions endpoint; not exercised.",
+      "transcript": "capture/api-only.txt",
+      "evidence": []
+    }
+  ]
+}

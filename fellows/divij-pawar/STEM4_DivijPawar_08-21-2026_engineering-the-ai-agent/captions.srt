@@ -1,0 +1,507 @@
+1
+00:00:00,000 --> 00:00:02,667
+Hi — I'm Divij Pawar. This is part four of the STEM
+
+2
+00:00:02,833 --> 00:00:03,633
+Agents series.
+
+3
+00:00:03,967 --> 00:00:04,767
+Today:
+
+4
+00:00:04,533 --> 00:00:07,733
+how do you actually design an agentic AI workflow — how to
+
+5
+00:00:07,733 --> 00:00:10,667
+find the one piece that's really the model's job, how to choose
+
+6
+00:00:10,667 --> 00:00:11,833
+your orchestration pattern,
+
+7
+00:00:12,200 --> 00:00:15,133
+and how to derive guardrails instead of copying someone else's.
+
+8
+00:00:15,740 --> 00:00:19,073
+Traditional software writes an if-then rule for every case you can imagine
+
+9
+00:00:19,207 --> 00:00:21,673
+— because the real world doesn't fit into if-else statements.
+
+10
+00:00:22,307 --> 00:00:25,973
+Agentic engineering flips that: instead of scripting the whole problem, you isolate
+
+11
+00:00:25,973 --> 00:00:29,107
+the one part that's genuinely unstructured, and hand only that part to
+
+12
+00:00:29,107 --> 00:00:29,907
+a model.
+
+13
+00:00:29,807 --> 00:00:32,273
+Here's the test: can you write a truth table for this decision?
+
+14
+00:00:32,573 --> 00:00:34,640
+If yes, it's deterministic code — write the
+
+15
+00:00:35,040 --> 00:00:38,207
+if-else. If the boundary itself is fuzzy — a visual judgment call,
+
+16
+00:00:38,807 --> 00:00:42,707
+an ambiguous sentence, an incomplete instruction — that's the model's job, and
+
+17
+00:00:42,707 --> 00:00:46,373
+everything else stays engineered: the boundaries, the tools, the state.
+
+18
+00:00:47,120 --> 00:00:49,487
+Once you know which piece is the model's job, there's a second
+
+19
+00:00:49,487 --> 00:00:51,587
+decision: who decides what happens next?
+
+20
+00:00:51,953 --> 00:00:54,853
+One option is an autonomous agent loop — the model itself decides
+
+21
+00:00:54,853 --> 00:00:57,087
+which tool to call, in what order, and when to stop.
+
+22
+00:00:57,553 --> 00:00:59,787
+It's flexible, and it's how a lot of demos get built.
+
+23
+00:01:00,153 --> 00:01:03,487
+The other option is a fixed, deterministic pipeline — the engineer decides
+
+24
+00:01:03,487 --> 00:01:06,687
+the order in advance, and the model only reasons inside each step.
+
+25
+00:01:07,053 --> 00:01:07,853
+It's less flexible,
+
+26
+00:01:08,453 --> 00:01:11,987
+and it's what most production systems touching real consequences actually use.
+
+27
+00:01:12,553 --> 00:01:15,153
+The case study we're about to walk through picks the boring option,
+
+28
+00:01:15,153 --> 00:01:17,253
+on purpose: perception, then location,
+
+29
+00:01:17,753 --> 00:01:20,420
+then grounding, then synthesis, always in that order.
+
+30
+00:01:20,787 --> 00:01:24,153
+Predictability beats flexibility the moment you're touching legal or government
+
+31
+00:01:24,153 --> 00:01:24,953
+systems.
+
+32
+00:01:25,430 --> 00:01:29,230
+Here's a real case study: an open-source Android app called Pothole Reporter.
+
+33
+00:01:29,663 --> 00:01:33,063
+It handles three kinds of civic reports — potholes, garbage, and open
+
+34
+00:01:33,063 --> 00:01:36,630
+manholes — across several Indian states and every mapped national highway.
+
+35
+00:01:37,063 --> 00:01:39,263
+But only one of those three actually uses AI.
+
+36
+00:01:39,863 --> 00:01:42,830
+Garbage and manhole reports are just what the user says they are
+
+37
+00:01:42,930 --> 00:01:44,663
+— a person looked and confirmed it.
+
+38
+00:01:45,163 --> 00:01:48,663
+Potholes are different: judging whether road damage is bad enough to report
+
+39
+00:01:48,663 --> 00:01:51,863
+is the fuzzy call the app hands to a vision model. A
+
+40
+00:01:51,863 --> 00:01:52,963
+photo isn't an agent.
+
+41
+00:01:53,330 --> 00:01:56,563
+An agent bridges raw perception and contextualized action.
+
+42
+00:01:56,997 --> 00:01:59,230
+Let's reverse-engineer how this one does it.
+
+43
+00:01:59,780 --> 00:02:03,147
+Step one, when you approach a problem as an agentic engineer: isolate
+
+44
+00:02:03,147 --> 00:02:05,613
+the unstructured variable — the part you genuinely can't
+
+45
+00:02:06,113 --> 00:02:09,480
+hardcode. Here, it's the physical environment. A pothole looks different in rain,
+
+46
+00:02:09,480 --> 00:02:12,980
+at night, from any angle, so a vision-language model handles perception: find
+
+47
+00:02:13,080 --> 00:02:15,847
+it, size it, call it clear, probable, uncertain, or absent.
+
+48
+00:02:16,480 --> 00:02:19,580
+Notice how narrow that job is — the model's blast radius here
+
+49
+00:02:19,580 --> 00:02:21,747
+is just "does this look like reportable damage,"
+
+50
+00:02:22,347 --> 00:02:25,413
+never "who's liable for it." The narrower the question you hand the
+
+51
+00:02:25,413 --> 00:02:28,213
+model, the easier it is to catch it being wrong. But perception
+
+52
+00:02:28,213 --> 00:02:31,380
+alone isn't enough. The model has no local context — it doesn't
+
+53
+00:02:31,380 --> 00:02:34,113
+know whose road this actually is, or who's supposed to fix it.
+
+54
+00:02:34,547 --> 00:02:37,113
+Guess at an authority from a photo alone, and you risk naming
+
+55
+00:02:37,113 --> 00:02:39,347
+the wrong office, which is worse than naming none.
+
+56
+00:02:39,747 --> 00:02:43,513
+That context gap gets closed with tools and retrieval, not more prompting.
+
+57
+00:02:44,110 --> 00:02:46,510
+So instead of letting the model decide what to do next, this
+
+58
+00:02:46,510 --> 00:02:50,577
+workflow runs a strict, deterministic pipeline — the engineer enforces the order.
+
+59
+00:02:51,210 --> 00:02:54,610
+First, the photo: Drive mode runs a continuous background scan through the
+
+60
+00:02:54,610 --> 00:02:55,410
+phone's camera,
+
+61
+00:02:55,643 --> 00:02:58,677
+and nearby repeat sightings of the same pothole get folded into one
+
+62
+00:02:58,677 --> 00:02:59,543
+report instead of
+
+63
+00:02:59,977 --> 00:03:02,843
+ten. The frame goes to the vision model, which judges the damage
+
+64
+00:03:02,843 --> 00:03:06,310
+and reports it as clear, probable, uncertain, or absent — never a
+
+65
+00:03:06,310 --> 00:03:07,577
+fake precise percentage.
+
+66
+00:03:08,177 --> 00:03:08,977
+Second,
+
+67
+00:03:09,077 --> 00:03:12,843
+tool use: the agent grabs the exact GPS coordinate and makes a
+
+68
+00:03:12,843 --> 00:03:14,077
+deterministic call to
+
+69
+00:03:14,843 --> 00:03:17,510
+OpenStreetMap, reverse-geocoding it into a street address.
+
+70
+00:03:18,350 --> 00:03:21,717
+Third, knowledge grounding — and this step only runs for supported Karnataka
+
+71
+00:03:21,750 --> 00:03:24,117
+routes; nothing is invented for the other states.
+
+72
+00:03:24,717 --> 00:03:28,217
+The system ranks the coordinate against a downloadable pack of thirteen thousand,
+
+73
+00:03:28,250 --> 00:03:32,150
+five hundred seventy-seven contracts, itself filtered down from a public procurement
+
+74
+00:03:32,150 --> 00:03:35,983
+snapshot of over forty-two thousand rows, and shortlists up to twenty-five
+
+75
+00:03:35,983 --> 00:03:36,783
+candidates.
+
+76
+00:03:37,117 --> 00:03:40,350
+A model may then pick one above a confidence threshold — and
+
+77
+00:03:40,350 --> 00:03:43,083
+most of those contracts don't even have a known contractor name on
+
+78
+00:03:43,083 --> 00:03:46,217
+file, so the app leaves that field blank rather than invent one.
+
+79
+00:03:46,783 --> 00:03:50,517
+Fourth, action synthesis: the photo, the coordinate, the road-ownership check, and
+
+80
+00:03:50,517 --> 00:03:53,283
+any contract match feed back into the model with a strict prompt
+
+81
+00:03:53,283 --> 00:03:56,517
+template. Out comes one complaint, addressed to the right recipient.
+
+82
+00:03:56,983 --> 00:03:59,383
+But the app never sends it — it opens your own email,
+
+83
+00:03:59,650 --> 00:04:00,883
+filled in, and stops there.
+
+84
+00:04:01,490 --> 00:04:04,490
+A good agentic engineer designs for failure, not just success.
+
+85
+00:04:05,157 --> 00:04:07,990
+But don't just copy someone else's guardrails — derive your own by
+
+86
+00:04:07,990 --> 00:04:09,023
+asking three questions.
+
+87
+00:04:09,423 --> 00:04:11,957
+Where can your retrieval be wrong or stale? Hedge the language there.
+
+88
+00:04:12,257 --> 00:04:15,057
+Where is the action irreversible or high-stakes? Put a human in front
+
+89
+00:04:15,057 --> 00:04:17,657
+of it. And is there a category of input where refusing outright
+
+90
+00:04:17,657 --> 00:04:18,590
+is safer than guessing?
+
+91
+00:04:18,957 --> 00:04:20,357
+Build a fail-safe branch for it.
+
+92
+00:04:20,723 --> 00:04:23,623
+This case study answers all three the same way: fail closed.
+
+93
+00:04:24,190 --> 00:04:25,957
+Every downloaded dataset is checked
+
+94
+00:04:26,323 --> 00:04:29,423
+byte-for-byte against a pinned checksum before it's trusted — if a file
+
+95
+00:04:29,423 --> 00:04:32,357
+is missing or altered, that route refuses rather than guesses.
+
+96
+00:04:33,157 --> 00:04:36,023
+On a national highway, the app refuses to name a maintaining authority
+
+97
+00:04:36,023 --> 00:04:38,923
+itself and hands off to the official highway channel instead.
+
+98
+00:04:39,423 --> 00:04:42,957
+A contract match is only ever labeled probable, because the actual warranty
+
+99
+00:04:42,957 --> 00:04:45,657
+term isn't in the data — the app only infers it from
+
+100
+00:04:45,657 --> 00:04:46,890
+how old the tender is.
+
+101
+00:04:47,423 --> 00:04:49,057
+And nothing is ever sent automatically:
+
+102
+00:04:49,557 --> 00:04:52,623
+the app doesn't call a complaint API and doesn't log in anywhere.
+
+103
+00:04:53,123 --> 00:04:55,490
+It opens your own email, filled in, and stops.
+
+104
+00:04:56,320 --> 00:04:59,087
+Here's the mistake that undoes all of this: trusting the model to
+
+105
+00:04:59,087 --> 00:05:00,120
+grade its own homework.
+
+106
+00:05:00,587 --> 00:05:03,253
+It's tempting to skip the human review step because the model is
+
+107
+00:05:03,253 --> 00:05:06,320
+usually right — but usually right is exactly the failure mode you're
+
+108
+00:05:06,320 --> 00:05:07,520
+designing guardrails against.
+
+109
+00:05:07,987 --> 00:05:10,453
+The one case in a hundred where it's confidently wrong is the
+
+110
+00:05:10,453 --> 00:05:13,453
+one that reaches a real commissioner's inbox, or a real bank account.
+
+111
+00:05:13,853 --> 00:05:16,453
+If a guardrail only fires when you remember to check it, it
+
+112
+00:05:16,453 --> 00:05:18,053
+isn't a guardrail — it's a suggestion.
+
+113
+00:05:18,700 --> 00:05:22,167
+So — isolate the one genuinely unstructured piece, and run the truth-table
+
+114
+00:05:22,167 --> 00:05:23,167
+test to find it.
+
+115
+00:05:23,567 --> 00:05:27,200
+Choose a fixed pipeline over an autonomous loop wherever consequences are real.
+
+116
+00:05:27,633 --> 00:05:31,333
+Derive your guardrails from three questions: what's stale, what's irreversible, what
+
+117
+00:05:31,333 --> 00:05:32,267
+should refuse outright.
+
+118
+00:05:32,633 --> 00:05:35,533
+And never let "usually right" replace a human check — that's the
+
+119
+00:05:35,533 --> 00:05:37,767
+exact failure mode guardrails exist for.
+
+120
+00:05:38,410 --> 00:05:41,177
+Your turn. Pick one AI feature you're building, or one you use
+
+121
+00:05:41,177 --> 00:05:41,977
+every day.
+
+122
+00:05:42,177 --> 00:05:44,843
+Run the truth-table test on what the model actually decides.
+
+123
+00:05:45,343 --> 00:05:47,743
+Then ask whether it should run as a fixed pipeline or a
+
+124
+00:05:47,743 --> 00:05:49,943
+looser agent loop, given what's actually at stake.
+
+125
+00:05:50,577 --> 00:05:54,310
+Then derive one guardrail from what's stale, what's irreversible, or what should
+
+126
+00:05:54,310 --> 00:05:55,843
+refuse outright — before you ship.
+
+127
+00:05:56,480 --> 00:05:57,280
+Signing off — Divij Pawar.

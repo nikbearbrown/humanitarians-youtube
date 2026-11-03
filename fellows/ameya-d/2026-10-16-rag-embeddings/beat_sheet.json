@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "title": "RAG: Embeddings & the 12x Batching Win",
+    "slug": "rag-embeddings",
+    "topic": "CLAUDE CODE · RAG SERIES · EMBEDDINGS",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "deep-explainer",
+    "note": "RAG series: the embedding forward pass + batching. Grounded in VIDEO_SCRIPT.md SEGMENT 4 (real shapes, 12.6x, 75,497,472 ops). Claude bookends + Manim body. Liam, in for Ameya (Onyx). @HumanitariansAI.",
+    "total_estimated_duration_seconds": 300,
+    "build": {
+      "at": "2026-09-11T14:50:30",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. Turning text into vectors sounds like a black box. It isn't. And there's one move — batching — that made the project's embedding step twelve times faster while doing exactly the same math. Let's open the box.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain embeddings — one vector per token, mean pooling, and why batching is 12x faster\"",
+            "topic": "CLAUDE CODE · RAG SERIES · EMBEDDINGS",
+            "segment": "The 12x Batching Win",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "embedding the chunks…",
+            "output": [
+              "the model makes one vector per token, not per chunk",
+              "mean pooling collapses them to one",
+              "batching: 12.6x faster, identical arithmetic"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 18.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — One Vector Per Token",
+      "narration_text": "Here's the thing most people get wrong. The transformer does not produce one vector for your chunk. It produces one vector per token. Seven tokens go in; seven vectors come out, each three hundred eighty-four numbers wide. The 'chunk vector' you think you have doesn't exist yet.",
+      "visual_intent": "tokens (7,) → forward pass → per-token vecs (7, 384); NOT one per chunk",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_PerToken",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 14.49,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_PerToken",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — Mean Pooling",
+      "narration_text": "So how do you get a single vector for the chunk? Mean pooling. You average all seven token vectors, element by element, into one. That average — a single three-eighty-four-dimensional vector — is what represents the entire chunk in your index. Simple, and it's the default for a reason.",
+      "visual_intent": "seven arrows collapsing into one; (7, 384) → mean → (384,)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_MeanPool",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.64,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_MeanPool",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — Batching Shapes",
+      "narration_text": "Now the speed. You could embed one chunk at a time. Almost nobody does. Instead you stack many chunks into one matrix and push them through together. One row becomes sixty-four rows — a skinny multiply becomes a fat one — and the same weight matrix serves all of them at once.",
+      "visual_intent": "batch=1 (1,768)@(768,768) skinny vs batch=64 (64,768)@(768,768) fat",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Shapes",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.49,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Shapes",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — The Measurement",
+      "narration_text": "And here's the measurement from the project. Sixty-four separate matrix multiplies took just under fifteen milliseconds. One batched multiply of the same sixty-four took one point two. That's a twelve-and-a-half times speedup — for doing the identical work.",
+      "visual_intent": "64 separate matmuls: 14.924 ms · 1 batched: 1.181 ms · speedup 12.6x",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Speedup",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.17,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Speedup",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — Identical Arithmetic",
+      "narration_text": "And I mean identical. Count the arithmetic operations both ways and you get the same number — seventy-five million, four hundred ninety-seven thousand, four hundred seventy-two. Exactly the same, looped or batched. So the speedup is not less math. Which raises the real question: where did the time go?",
+      "visual_intent": "arithmetic ops looped 75,497,472 == batched 75,497,472 (IDENTICAL); so why faster?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_SameOps",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.3,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_SameOps",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — Memory Bandwidth",
+      "narration_text": "The answer is overhead and memory. Looping pays a fixed setup cost sixty-four times; batching pays it once. And the weight matrix gets loaded from memory once and reused across all sixty-four rows, instead of being fetched again and again. The bottleneck was never the arithmetic — it was memory bandwidth. It's one oven: one cookie or sixty-four, still twelve minutes.",
+      "visual_intent": "fixed overhead ×64 vs ×1; weight matrix loaded once, reused; oven: 1 vs 64 cookies, same 12 min",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Oven",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.35,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Oven",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — The Real Code",
+      "narration_text": "In practice it's one argument. Sentence-transformers takes a batch size; hand it your whole list of chunks and a batch size of sixty-four to two-fifty-six, and it does the stacking for you. This is the single biggest win at index time — and it's one keyword.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "build_index.py — batch the encode",
+            "code": "# one at a time — don't\n# vecs = [model.encode(c) for c in chunks]   # slow: overhead ×N\n\n# batched — the 12.6x win, one argument\nvecs = model.encode(chunks, batch_size=64)   # 64..256 typical\n# same arithmetic; overhead paid once, weights loaded once",
+            "sparkLine": "batch_size = the win"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 15.42,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — At Scale",
+      "narration_text": "And this is the lever that matters most when you index a large corpus. Batching is the biggest single speedup; stream the work in shards so memory stays bounded; and content-hash each chunk so you only re-embed what actually changed. Do those three, and embedding a million chunks stops being scary.",
+      "visual_intent": "index-time levers: batch (biggest win) · stream in shards (bounded memory) · content-hash (incremental)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_AtScale",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 16.02,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_AtScale",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration_text": "So keep three things. The model makes one vector per token; mean pooling collapses them into one chunk vector. Batching is twelve times faster while doing identical arithmetic, because the real bottleneck is memory bandwidth, not math. And at scale, batch first — it's the single biggest index-time win, and it costs you one argument.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Embeddings & batching",
+            "artifactLines": [
+              "One vector per token → mean pool → one chunk vector.",
+              "Batching is 12.6× faster on identical arithmetic.",
+              "Bottleneck is memory bandwidth — batch first at scale."
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 19.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take this prompt to your own indexer: time encoding your chunks one at a time versus batched at sixty-four, and confirm the outputs are identical. When you see the same vectors come out an order of magnitude faster, you'll never loop an encode again.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"time model.encode looped vs batch_size=64 on my chunks, and assert the vectors match\"",
+            "topic": "CLAUDE CODE · RAG SERIES · EMBEDDINGS",
+            "segment": "The 12x Batching Win",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 13.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:50:30"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration_text": "RAG — embeddings, and the twelve-times win hiding in one argument. Batch it. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG: Embeddings & Batching.",
+            "handle": "@HumanitariansAI",
+            "subline": "memory bandwidth is the bottleneck"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 7.89,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:50:30"
+      }
+    }
+  ]
+}

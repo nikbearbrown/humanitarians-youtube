@@ -1,0 +1,41 @@
+Prove The Number Changed — Catching Schema Breaks That Compile Clean
+
+A backend engineer renames a column from amount_cents to amount and divides by a
+hundred to match. Nothing crashes. Every dbt model still compiles. Every test
+still passes. And monthly recurring revenue is now a hundred times too low.
+
+This is the build reel for the layer I added to my data contract agent to catch
+exactly that: instead of warning that a metric "may be wrong", it stands up a
+throwaway DuckDB warehouse, materializes the whole dbt DAG straight from the
+manifest, replays the migration, rebuilds, and diffs the marts. The warning is a
+number now, not a hunch.
+
+The interesting part is why it has to build TWICE. Replaying the migration just
+makes every model that reads the dropped column fail to compile — the loud half,
+which the deterministic layer already proved. But nobody merges a red pipeline: a
+reviewer renames the column in the staging model and moves on, and *that* is the
+state in which the number is silently wrong. So pass one records what breaks, and
+pass two applies the mechanical fix a reviewer would apply — scoped by lineage,
+not by name — and measures from there.
+
+CHAPTERS
+00:00  The breaks that compile
+00:13  The rename that lies
+00:27  Ask: build the warehouse twice
+00:38  The code — it never calls dbt
+00:52  Run one: four models red
+01:03  The change: nobody merges a red pipeline
+01:16  The code — scoped by lineage
+01:31  Run two: x0.01, still compiling
+01:41  Prove. Read. Measure.
+01:54  Your turn
+
+Code: github.com/mdhussainshariff/Mycroft → Data_Quality_Agent
+
+All figures on screen are a declared worked example from the project's own
+deterministic seed. The x0.01 ratio — the actual claim — is asserted in the test
+suite and is invariant to the data.
+
+Built with the Brutalist toolkit: Remotion, Manim, Kokoro TTS. No API keys.
+
+— Mohammed Hussain

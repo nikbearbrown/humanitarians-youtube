@@ -1,0 +1,945 @@
+{
+  "metadata": {
+    "title": "How Memory Works In An AI Agent",
+    "slug": "agent-memory",
+    "topic": "Irreducibly Human",
+    "register": "Plain",
+    "audience": "Claude",
+    "brand": "claude-hai",
+    "persona": "Prashanth",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Prashanth",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "in_for_bear": false,
+    "captions": false,
+    "publish": false,
+    "review_labels": false,
+    "typography": {
+      "serif": "Tiempos/EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "notes": [
+      "folderLabel is set as a PER-BEAT prop on every ClaudeComposerAsk beat (B00, B06, BHTF). metadata.folderLabel alone is NOT read by the component - its schema defaults to '@NikBearBrown', which is the bug that shipped the wrong handle on the first cut of llm-function-calling.",
+      "B01 triggerWords is a SINGLE TOKEN ('remembers'). buildActs() matches triggers per whitespace-delimited token, so a multi-word trigger silently never fires. The replacement may be a phrase.",
+      "B01 typing is paced in absolute ms (charMs), NOT as a fraction of the beat, so it must be tuned to FIT the measured audio window with room to hold the corrected sentence. Verify the final frame, not just the gate.",
+      "Every beat carries durationInSeconds so its composition re-times via calculateMetadata instead of truncating. ClaudeCodeBeat was given the same treatment for this reel (default stays 10s, so other reels are unaffected).",
+      "BVDT artifactLines contain NO empty strings: ClaudeVerdictArtifact numbers every line and does not filter blanks, so a blank spacer renders as an orphan number.",
+      "review_labels=false suppresses the beat-marker footer on the review cut. Compiling WITHOUT --review is not an option: that takes the master path, where final_frame_check.py runs as a hard gate and exits 2 on the underfill MAJORs these shared components always produce, writing no file at all.",
+      "Register is Plain (runtime/prose/plain/PROSE.md): stake first (B00/B01), wrong guess built then broken (B02 -> B03), mechanism once with EXACTLY ONE inference flag (B07, on what counts as relevant), one running example planted early and paid off late (the coffee order, B02 -> B09), failure modes both directions (B10), one compressible sentence (BVDT).",
+      "REUSE ONLY - no new components were built for this reel."
+    ],
+    "build": {
+      "at": "2026-09-29T00:11:05",
+      "cut": "review",
+      "filled": 14,
+      "of": 14,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'FnCallTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "content_type": "hook",
+      "narration_text": "Hi, my name is Prashanth, and this video is about how memory works in an AI agent. Ask an assistant whether it remembers your coffee order. Sometimes it does. Often it does not. The difference is not how smart the model is, it is what someone built around it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the composer asking the memory question and getting an honest no",
+        "visual_intent": "COLD OPEN LAW - opens on the Claude UI and the ask lands answered. The output tells the truth (it has no memory of the last chat) rather than faking recall, which is the whole premise of the reel",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "cream composer card fades up, serif greeting 'Hola, Prashanth' above it"
+          },
+          {
+            "at": "0.30",
+            "event": "the question types itself into the composer as the voice finishes the introduction"
+          },
+          {
+            "at": "0.58",
+            "event": "send button arms terracotta - the one accent in the frame"
+          },
+          {
+            "at": "0.66",
+            "event": "running indicator reads 'checking the conversation...'"
+          },
+          {
+            "at": "0.78",
+            "event": "output lines land: no stored history, nothing in context, and the reason - each call starts from zero"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Prashanth",
+            "topic": "Irreducibly Human",
+            "segment": "How Memory Works In An AI Agent",
+            "command": "Do you remember my coffee order?",
+            "runningText": "checking the conversation…",
+            "output": [
+              "→ context now      this message only",
+              "→ stored history   none",
+              "",
+              "No — nothing from our last chat reached me."
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 14.46
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-29T06:59:25.744499+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 14.46,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 14.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary (BLUF)",
+      "content_type": "framing",
+      "narration_text": "An agent does not remember you. Nothing about the model does that. Memory is something you build, on purpose, out of parts. Everything in this video follows from that one fact.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the overview written, reconsidered, and corrected on screen",
+        "visual_intent": "EXECUTIVE-SUMMARY LAW - the whole idea in one breath. The correction IS the reel's misconception: a viewer arrives believing the agent remembers them, and the writer strikes that one verb",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "0.8s of silence - the caret blinks on an empty cream page before the voice starts"
+          },
+          {
+            "at": "0.16",
+            "event": "writer types 'An agent remembers you.' - 'remembers' turns terracotta, marked for deletion"
+          },
+          {
+            "at": "0.36",
+            "event": "a full beat of hesitation, then 'remembers' deletes"
+          },
+          {
+            "at": "0.46",
+            "event": "'does not remember' types in its place"
+          },
+          {
+            "at": "0.64",
+            "event": "the two remaining lines type in: 'Nothing about the model does that.' / 'Memory is something you build.'"
+          },
+          {
+            "at": "0.88",
+            "event": "corrected sentence holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "An agent remembers you.\nNothing about the model does that.\nMemory is something you build.",
+            "face": "serif",
+            "fontSize": 88,
+            "lineSpacing": 1.28,
+            "align": "center",
+            "triggerWords": "remembers",
+            "replacementWords": "does not remember",
+            "seed": "agent-memory-b01",
+            "charMs": 22,
+            "hesitateWithin": 0,
+            "hesitateBetween": 4,
+            "mistakeRate": 0,
+            "jitter": 25,
+            "durationInSeconds": 9.79
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-29T06:59:59.037443+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 9.79,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 9.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "predict / commit",
+      "content_type": "hook",
+      "narration_text": "Here is the test. Yesterday you told an assistant you drink oat flat whites. It replied, helpfully, that it would keep that in mind. Today you open a brand new chat and ask what you usually order. Does it know? Commit to yes or no before I show you what actually happens.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "predict card - the viewer commits before the reveal",
+        "visual_intent": "Plain move 4 - plants the ONE running example, concrete enough to visualise, to be paid off at B09. The commit line is the single accent",
+        "show": [
+          {
+            "at": "0.06",
+            "event": "question card fades up on the cream stage"
+          },
+          {
+            "at": "0.34",
+            "event": "the two candidate answers sit side by side, ink on cream, neither highlighted"
+          },
+          {
+            "at": "0.58",
+            "event": "commit line appears in terracotta - the one accent - asking for an answer now"
+          },
+          {
+            "at": "0.82",
+            "event": "card holds still, giving the viewer real time to choose"
+          }
+        ],
+        "remotion": {
+          "pattern": "FnCallPredictCard",
+          "props": {
+            "sparkLine": "Commit first.",
+            "question": "You told it yesterday that you drink oat flat whites. New chat, today. Does it know?",
+            "commit": "commit to yes or no before the next beat",
+            "durationInSeconds": 13.97
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-29T07:00:37.927067+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 13.97,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 14.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:FnCallPredictCard",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "the falsifying case",
+      "content_type": "concept",
+      "narration_text": "The answer is no, and this is why. Every time you send a message, your program sends the model the entire conversation again, from the top. The model reads it, answers, and keeps nothing. Close the chat and that history is gone unless you saved it. Each call starts from zero.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the same request sent twice, with the whole transcript re-sent the second time",
+        "visual_intent": "statelessness made undeniable by showing the actual payload. The viewer READS that turn three carries turns one and two inside it, while the voice reacts - the evidence is on screen, not in the narration",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "file tab reads 'the request your program actually sends'"
+          },
+          {
+            "at": "0.22",
+            "event": "call 1 lands: a messages list with a single user turn"
+          },
+          {
+            "at": "0.48",
+            "event": "call 2 lands beneath it - and it repeats turn one and two verbatim before the new question"
+          },
+          {
+            "at": "0.72",
+            "event": "the trailing comment types in: the model kept nothing between the two calls"
+          },
+          {
+            "at": "0.88",
+            "event": "spark line holds: every call starts from zero"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "the request your program actually sends",
+            "code": "# call 1 — first thing you ever said\nmessages = [\n  { \"role\": \"user\", \"content\": \"I drink oat flat whites.\" },\n]\n\n# call 2 — the SAME conversation, re-sent from the top\nmessages = [\n  { \"role\": \"user\",      \"content\": \"I drink oat flat whites.\" },\n  { \"role\": \"assistant\", \"content\": \"Noted.\" },\n  { \"role\": \"user\",      \"content\": \"What do I usually order?\" },\n]\n\n# The model stored nothing between these two calls.\n# YOUR program kept the list. That is the only reason turn 2 works.",
+            "sparkLine": "Every call, from zero.",
+            "durationInSeconds": 15.0
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-29T07:01:28.837581+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 15.0,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 15.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "the framework",
+      "content_type": "framework",
+      "narration_text": "So when people say an agent has memory, they mean one of two things stacked on a model that has none. Short-term: the conversation you carry along inside the request. Long-term: a store outside the model that you write to and read back from. The model itself never changes. Only the two layers above it are yours.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the three tiers of agent memory as a stack",
+        "visual_intent": "FRAMEWORK beat - presented in full BEFORE the worked example and left as the reel's reference figure. The bottom tier is deliberately the one that never changes, so the viewer sees that memory is added, not innate",
+        "show": [
+          {
+            "at": "0.14",
+            "event": "tier one stacks in: the model itself, no memory, never changes"
+          },
+          {
+            "at": "0.42",
+            "event": "tier two stacks above it: short-term - the running conversation in the request"
+          },
+          {
+            "at": "0.64",
+            "event": "tier three stacks in terracotta: long-term - a store outside the model"
+          },
+          {
+            "at": "0.86",
+            "event": "caption settles under the stack - only the upper two are engineered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "Two layers, one model.",
+            "layers": [
+              {
+                "title": "long-term memory",
+                "sub": "a store outside the model — you write to it and read it back",
+                "accent": true
+              },
+              {
+                "title": "short-term memory",
+                "sub": "the running conversation, carried inside each request"
+              },
+              {
+                "title": "the model",
+                "sub": "no memory at all — identical weights on every call"
+              }
+            ],
+            "caption": "the bottom layer never changes — the two above it are the ones you build",
+            "durationInSeconds": 16.98
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-29T07:02:13.774295+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.98,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 17.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ClaudeScienceLayerStack",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "short-term memory",
+      "content_type": "concept",
+      "narration_text": "Short-term memory is simply the running conversation. Every turn gets appended and re-sent, so the request grows. But there is a ceiling, the context window. Fill it and something has to go, usually the oldest turns. That is why a long chat starts forgetting what you said at the beginning.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "turns filling the context window until it has no room left",
+        "visual_intent": "the growth and the ceiling shown as a filling set, so the limit is visible rather than asserted. The caption carries the consequence the viewer has probably felt",
+        "show": [
+          {
+            "at": "0.12",
+            "event": "turn chips land one by one, left to right, as the voice describes appending"
+          },
+          {
+            "at": "0.46",
+            "event": "the grid fills out - the request is visibly bigger than it was"
+          },
+          {
+            "at": "0.68",
+            "event": "the last chip reads 'no room left' as the ceiling is named"
+          },
+          {
+            "at": "0.86",
+            "event": "caption settles - the oldest turns are what fall out first"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "It has a ceiling.",
+            "items": [
+              "turn 1",
+              "turn 2",
+              "turn 3",
+              "…",
+              "turn 60",
+              "no room left"
+            ],
+            "cols": 3,
+            "caption": "when the window fills, the oldest turns drop out — that is a long chat forgetting the start",
+            "durationInSeconds": 15.25
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-29T07:02:54.640740+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 15.25,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 15.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeScienceChipGrid",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ask micro-beat",
+      "content_type": "transition",
+      "narration_text": "So how does anything survive past the window? You put it somewhere else. Watch the trip.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the composer with the generation prompt for the next beat's figure",
+        "visual_intent": "ASK->RESULT LAW - the retrieval figure at B07 is preceded by the actual prompt that produces it, so the pair reads as a receipt",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "composer card fades up under the spark line 'Somewhere else.'"
+          },
+          {
+            "at": "0.30",
+            "event": "the generation prompt types in"
+          },
+          {
+            "at": "0.74",
+            "event": "send arms terracotta; running indicator reads 'retrieving from the store...'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Somewhere else.",
+            "topic": "Irreducibly Human",
+            "segment": "Retrieve Into Context",
+            "command": "Trace one saved fact from the store back into the next request. Show what gets searched and what gets pasted in.",
+            "runningText": "retrieving from the store…",
+            "output": [],
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 5.03
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-29T07:03:16.358028+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 5.03,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 5.041666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "long-term memory",
+      "content_type": "concept",
+      "narration_text": "Long-term memory lives outside the model: a notes file, a database, a vector store. When something matters, you write it there. Then on the next request, before you call the model, you search that store and paste the relevant pieces into the conversation you are about to send. One flag: which pieces count as relevant is a guess your retrieval makes, not a fact.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the store feeding one retrieved fact back into the next request",
+        "visual_intent": "Plain move 3 - the mechanism once, plainly, with EXACTLY ONE inference flag placed where 'relevant' is doing real work. The retrieve-into-context direction is the whole point: the store flows INTO the conversation, not into the model",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "dark rack labelled 'the store, outside the model' builds on the left"
+          },
+          {
+            "at": "0.28",
+            "event": "three storage chips fly along the arc toward the request: a notes file, a database, a vector store"
+          },
+          {
+            "at": "0.58",
+            "event": "the window's task line reads 'what do I usually order?'"
+          },
+          {
+            "at": "0.74",
+            "event": "the coffee-order line checks off in terracotta as the retrieved piece; the others stay ink"
+          },
+          {
+            "at": "0.90",
+            "event": "settle line reads: pasted into the context, not into the model"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceSourceFlow",
+          "props": {
+            "sparkLine": "Retrieve into context.",
+            "sourceLabel": "the store, outside the model",
+            "feeds": [
+              {
+                "label": "“oat flat white”"
+              },
+              {
+                "label": "a notes file",
+                "tint": "#8A7B57"
+              },
+              {
+                "label": "a vector store",
+                "tint": "#5E7D7A"
+              }
+            ],
+            "destApp": "the next request",
+            "destTitle": "what do I usually order?",
+            "arcCaption": "searched first, then pasted into the messages",
+            "settleLine": "into the context, not the model…",
+            "durationInSeconds": 18.56
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-29T07:04:06.049747+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 18.56,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 18.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeScienceSourceFlow",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "the two moves",
+      "content_type": "concept",
+      "narration_text": "In code it is two moves. Save: write the fact to the store, keyed to the person it belongs to. Retrieve: search the store and put what comes back into the messages list, before the model sees it. The model still remembers nothing. It just receives a conversation that happens to contain your coffee order.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "save and retrieve as two literal calls around the model call",
+        "visual_intent": "the mechanism reduced to the two lines a viewer would actually write, so the abstraction lands as something buildable. The closing comment restates that the model is unchanged",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "file tab reads 'the two moves'"
+          },
+          {
+            "at": "0.26",
+            "event": "the save call types in: the fact goes to the store"
+          },
+          {
+            "at": "0.50",
+            "event": "the retrieve call lands: a search against the store"
+          },
+          {
+            "at": "0.70",
+            "event": "the retrieved text is spliced into the messages list ahead of the question"
+          },
+          {
+            "at": "0.88",
+            "event": "closing comment lands: same model, same weights, richer conversation"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "the two moves",
+            "code": "# MOVE 1 — save, when something matters\nstore.save(user_id, \"prefers an oat flat white\")\n\n# MOVE 2 — retrieve, before the next model call\nfacts = store.search(user_id, \"drink order\")\n\nmessages = [\n  { \"role\": \"system\", \"content\": f\"Known about the user: {facts}\" },\n  { \"role\": \"user\",   \"content\": \"What do I usually order?\" },\n]\n\n# Same model, same weights. The conversation got richer,\n# not the model.",
+            "sparkLine": "Save, then retrieve.",
+            "durationInSeconds": 15.55
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-29T07:04:57.669357+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 15.55,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 15.583333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "the payoff",
+      "content_type": "worked_example",
+      "narration_text": "So, tomorrow's new chat. Without a store, the conversation is empty and it asks what you want, exactly as it did the first time. With a store, your program retrieves one line and pastes it in, and the assistant greets you with your usual. Same model, same weights, both times. The only difference is whether someone wrote the save and retrieve step.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "one new session splitting on whether a store exists",
+        "visual_intent": "WORKED EXAMPLE - pays off the B02 prediction by running the coffee order through the B04 framework, and lands the reel's thesis: the difference is engineering, not intelligence",
+        "show": [
+          {
+            "at": "0.14",
+            "event": "the new-session question splits into two branches"
+          },
+          {
+            "at": "0.32",
+            "event": "left branch fills: no store - empty context, so it asks again"
+          },
+          {
+            "at": "0.50",
+            "event": "right branch fills: with a store - one line retrieved and pasted, so it already knows"
+          },
+          {
+            "at": "0.70",
+            "event": "both branches converge on a terracotta resolver: identical model both times"
+          },
+          {
+            "at": "0.88",
+            "event": "resolver holds - the only difference is the code someone wrote"
+          }
+        ],
+        "remotion": {
+          "pattern": "BinaryBranch",
+          "props": {
+            "data": {
+              "slideMeta": "the same question, tomorrow",
+              "question": "New session. “What do I usually order?”",
+              "branches": [
+                {
+                  "label": "no store",
+                  "detail": "context is empty — it asks what you want, exactly like the first time",
+                  "fix": "nothing was saved, so nothing can return",
+                  "tone": "warn"
+                },
+                {
+                  "label": "with a store",
+                  "detail": "one line retrieved and pasted in — it greets you with your usual",
+                  "fix": "the fact was saved, then searched for",
+                  "tone": "good"
+                }
+              ],
+              "resolver": {
+                "label": "same model, both times",
+                "detail": "identical weights — the only difference is whether someone wrote the save and retrieve step"
+              }
+            },
+            "durationInSeconds": 17.56
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-29T07:06:46.281162+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 17.56,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 17.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:BinaryBranch",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "failure modes, both directions",
+      "content_type": "falsifiability",
+      "narration_text": "Now the limits, both ways. It remembering something does not prove it understands you, it proves your retrieval found the right row. And it forgetting does not prove your store is broken, far more often the search missed, or nobody ever decided that fact was worth saving in the first place. Both failures live in code you wrote.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the four things a remembered or forgotten fact does not prove",
+        "visual_intent": "Plain move 5 - state what a POSITIVE result does not prove AND what a NEGATIVE one does not prove. Naming only the dramatic direction would quietly overstate how reliable engineered memory is",
+        "show": [
+          {
+            "at": "0.12",
+            "event": "chip one lands: it remembered - retrieval worked"
+          },
+          {
+            "at": "0.30",
+            "event": "chip two: not that it understands you"
+          },
+          {
+            "at": "0.48",
+            "event": "chip three: it forgot - the search missed"
+          },
+          {
+            "at": "0.64",
+            "event": "chip four: not that the store is broken"
+          },
+          {
+            "at": "0.78",
+            "event": "chip five: or nobody chose to save it"
+          },
+          {
+            "at": "0.90",
+            "event": "caption settles - both directions point back at the retrieval, not the model"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Both directions.",
+            "items": [
+              "it remembered → retrieval worked",
+              "NOT → it understands you",
+              "it forgot → the search missed",
+              "NOT → the store is broken",
+              "or → nobody saved it"
+            ],
+            "cols": 3,
+            "caption": "both directions point at the retrieval you wrote — not at the model's intelligence",
+            "durationInSeconds": 16.58
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-29T07:07:28.507809+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.58,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 16.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "remotion:ClaudeScienceChipGrid",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "content_type": "summary",
+      "narration_text": "The sentence worth repeating: short-term memory is what is in the context right now, long-term memory is what you saved and can retrieve later. The model holds neither. An agent has no memory unless you engineer it, and everything else here is a detail of how.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "artifact page holding the compressible sentence",
+        "visual_intent": "Plain move 6 - one sentence that stays true if it is the only thing repeated secondhand, compressing the DISTINCTION rather than the topic. Four numbered lines, no empty spacer",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "artifact page opens in the Claude window"
+          },
+          {
+            "at": "0.26",
+            "event": "the one-line claim lands first and largest"
+          },
+          {
+            "at": "0.52",
+            "event": "the four consequences list under it, in order"
+          },
+          {
+            "at": "0.86",
+            "event": "the last line holds alone: no memory unless you engineer it"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Agent Memory",
+            "artifactHeading": "The model remembers nothing. You engineer the memory.",
+            "artifactLines": [
+              "Short-term = what is in the context right now.",
+              "Long-term = what you saved and can retrieve later.",
+              "Each model call is stateless — the transcript is re-sent every turn.",
+              "Retrieval puts saved facts into the conversation, never into the model."
+            ],
+            "durationInSeconds": 14.34
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": "2026-09-29T07:08:15.161736+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 14.34,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 14.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BVDT.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "content_type": "task",
+      "narration_text": "Your turn. Paste this: I am building an assistant that should remember things about me between sessions. List exactly what it should save, where it should save it, and the retrieval query it would run at the start of each new chat. Then check three things. Does it separate what lives in context now from what lives in the store. Does it name a real query, not just say search. And would you be comfortable with everything on that save list being written down.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the composer with the viewer's prompt and the three-point rubric beside it",
+        "visual_intent": "HANDOFF LAW plus nopunt SCAFFOLDED TASK - the prompt is read aloud verbatim then discussed, and the rubric lets the viewer judge the answer. The third item is deliberately about consent: a memory design decides what gets written down about a person",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "greeting reads 'Your turn.' - the one greeting that drops the persona"
+          },
+          {
+            "at": "0.10",
+            "event": "the prompt types into the composer as the voice reads it word for word"
+          },
+          {
+            "at": "0.50",
+            "event": "running indicator reads 'paste this into Claude...'"
+          },
+          {
+            "at": "0.60",
+            "event": "rubric item 1 lands: context now versus the store"
+          },
+          {
+            "at": "0.74",
+            "event": "rubric item 2 lands: a real retrieval query, not 'search'"
+          },
+          {
+            "at": "0.86",
+            "event": "rubric item 3 lands: would you consent to everything on that save list"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Irreducibly Human",
+            "segment": "Design One Memory",
+            "command": "I am building an assistant that should remember things about me between sessions. List exactly what it should save, where it should save it, and the retrieval query it would run at the start of each new chat.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check the answer against three things:",
+              "1. does it separate what lives in context NOW from what lives in the store?",
+              "2. does it name a real retrieval query, or just say “search”?",
+              "3. would you consent to everything on that save list being written down?"
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "durationInSeconds": 21.03
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-09-29T07:09:18.667296+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 21.03,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 21.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T00:11:05"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "content_type": "outro",
+      "narration_text": "That's how agent memory works. Thanks for watching.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 4,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "title-restate outro card",
+        "visual_intent": "OUTRO LAW - exact title restate in poster serif with the terracotta terminal period, handle beneath. No mascot and no subline: OUTRO-LOCK.md scopes that card to @NikBearBrown reels",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "card fades up, polarity slug-seeded and deterministic"
+          },
+          {
+            "at": "0.14",
+            "event": "title restates in poster serif, terminal period in terracotta"
+          },
+          {
+            "at": "0.36",
+            "event": "@HumanitariansAI settles beneath the title"
+          }
+        ],
+        "remotion": {
+          "pattern": "FnCallTitleOutro",
+          "props": {
+            "title": "How Memory Works In An AI Agent.",
+            "handle": "@HumanitariansAI",
+            "slug": "agent-memory",
+            "durationInSeconds": 3.33
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-09-29T07:09:36.667043+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 3.33,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 3.3333333333333335,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:FnCallTitleOutro",
+        "at": "2026-09-29T00:11:05"
+      }
+    }
+  ]
+}

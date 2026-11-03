@@ -1,0 +1,979 @@
+{
+  "metadata": {
+    "title": "How LLM Function Calling Works",
+    "slug": "llm-function-calling",
+    "topic": "Irreducibly Human",
+    "register": "Plain",
+    "audience": "Claude",
+    "brand": "claude-hai",
+    "persona": "Prashanth",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Namaste, Prashanth",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "in_for_bear": false,
+    "captions": false,
+    "publish": false,
+    "typography": {
+      "serif": "Tiempos/EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "notes": [
+      "Register is Plain (runtime/prose/plain/PROSE.md), not Teardown: the six moves are sequenced across the sheet - stake first (B00/B01), wrong guess built then falsified (B02/B03), mechanism once with exactly ONE inference flag (B05), one running example planted early and paid off late (Boston, B00 -> B07/B08), failure modes in BOTH directions (B09), one compressible sentence to close (BVDT).",
+      "Plain does not judge the design - that is Teardown. No beat rates the design of function calling; the sheet explains how it works and stops.",
+      "Palette: ai-explainer is a FIDELITY brand and its Channels table states the look never changes per channel, so the Claude palette governs throughout with @HumanitariansAI as the footer chip. brands/hai.md's humanitarians palette belongs to the separate hai skill lane.",
+      "IN-FOR-BEAR LAW is not armed: this is not a @NikBearBrown reel, so the narrator does not sign 'in for Bear'.",
+      "Outro uses FnCallTitleOutro, not the locked ClaudeTitleOutro - OUTRO-LOCK.md scopes that card to @NikBearBrown reels only.",
+      "Slot-1 kicker is the FIXED channel series name 'Irreducibly Human' (runtime/qc/brand_labels.json, enforced by beat_lint.py rule 7): claude-hai is a fixed-series channel, so the per-video subject lives in the `segment` slot, not the kicker. Caught by GATE L on the first build attempt.",
+      "Narrator is named on screen and in voice as Prashanth: B00's narration opens \"Hi, my name is Prashanth...\", so the greeting slot reads Prashanth rather than the channel's Liam persona. Keeping 'Liam' would put the picture in direct contradiction with the audio on the cold open.",
+      "metadata.review_labels=false suppresses the beat-marker footer overlay on the review cut (per feedback: no review label on the output). It is the symmetric opposite of the existing keep_review_labels flag and is honoured only on the review path, so masters are unaffected.",
+      "BVDT artifactLines must contain NO empty strings: ClaudeVerdictArtifact numbers every line and does not filter blanks, so a blank used as a visual spacer renders as an orphan number (shipped as '4.' with no text in the first cut)."
+    ],
+    "build": {
+      "at": "2026-09-28T23:29:02",
+      "cut": "review",
+      "filled": 14,
+      "of": 14,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'FnCallTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "review_labels": false
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "content_type": "hook",
+      "narration_text": "Hi, my name is Prashanth, and this video is about how function calling lets a language model use real tools. Ask a model what the weather is in Boston right now. By itself, it cannot know that. And yet you have seen models answer that correctly, with a number in it. Something happened in between.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the composer asks a question the model cannot answer alone, and answers it anyway",
+        "visual_intent": "COLD OPEN LAW - opens directly on the Claude UI, and the ask lands answered so ASK->RESULT begins at beat zero",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "cream composer card fades up, serif greeting 'Namaste, Prashanth' above it"
+          },
+          {
+            "at": "0.20",
+            "event": "the question types itself into the composer as the voice finishes introducing the video"
+          },
+          {
+            "at": "0.55",
+            "event": "send button arms terracotta - the one accent in the frame"
+          },
+          {
+            "at": "0.65",
+            "event": "running indicator reads 'calling get_weather...'"
+          },
+          {
+            "at": "0.78",
+            "event": "output lines land in order: the tool request, then the tool result, then the sentence the viewer would actually see"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Prashanth",
+            "topic": "Irreducibly Human",
+            "segment": "How Function Calling Works",
+            "command": "What's the weather in Boston right now?",
+            "runningText": "calling get_weather…",
+            "output": [
+              "→ tool request   get_weather(city=\"Boston\")",
+              "← tool result    { \"temp_f\": 41, \"sky\": \"overcast\" }",
+              "",
+              "It's 41°F and overcast in Boston right now."
+            ],
+            "durationInSeconds": 16.0,
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-29T06:00:07.227449+00:00"
+          }
+        }
+      },
+      "render_duration_s": 16.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-28T23:29:02"
+      },
+      "actual_duration_s": 16.0,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary (BLUF)",
+      "content_type": "framing",
+      "narration_text": "Function calling is how a model asks your program to run a tool, and then uses what comes back. That one distinction, asks rather than runs, is the whole subject of this video.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the overview written, reconsidered, and corrected on screen",
+        "visual_intent": "EXECUTIVE-SUMMARY LAW - the whole idea in one breath for a smart outsider; the correction IS the reel's misconception, the one the body dismantles",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "0.8s of silence - the caret blinks on an empty cream page before the voice starts"
+          },
+          {
+            "at": "0.12",
+            "event": "writer types line one: 'Function calling is how a model'"
+          },
+          {
+            "at": "0.42",
+            "event": "types the WRONG verb 'runs' - it turns terracotta, marked for deletion"
+          },
+          {
+            "at": "0.55",
+            "event": "a full beat of hesitation, then 'runs' deletes"
+          },
+          {
+            "at": "0.62",
+            "event": "'asks your program to run' types in its place - the correction"
+          },
+          {
+            "at": "0.80",
+            "event": "final line completes: 'and then uses what comes back' - corrected sentence holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Function calling is how a model\nruns a tool\nand then uses what comes back.",
+            "face": "serif",
+            "fontSize": 96,
+            "lineSpacing": 1.28,
+            "align": "center",
+            "triggerWords": "runs",
+            "replacementWords": "asks your program to run",
+            "seed": "llm-function-calling-b01",
+            "charMs": 38,
+            "hesitateBetween": 12,
+            "durationInSeconds": 10.05,
+            "hesitateWithin": 2,
+            "mistakeRate": 0,
+            "jitter": 25
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-15T04:25:02.754204+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 10.05,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 10.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "the wrong guess",
+      "content_type": "hook",
+      "narration_text": "Here is the guess almost everyone starts with. The model needed live weather, so the model went and got it: reached out to the internet, read a page, came back. It is a completely reasonable picture, and it is the one most people carry. Commit to it, or against it, now, before the next beat.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "predict-card - the viewer commits before the reveal",
+        "visual_intent": "Plain move 2, build the wrong guess before the right one; the card holds the plausible-but-wrong model so it can be replaced rather than sit next to the correct one",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "question card fades up on the cream stage: who actually ran the tool?"
+          },
+          {
+            "at": "0.30",
+            "event": "the two candidate readings list in, ink on cream, neither highlighted"
+          },
+          {
+            "at": "0.55",
+            "event": "commit line appears in terracotta - the one accent - asking for an answer before the next beat"
+          },
+          {
+            "at": "0.80",
+            "event": "card holds still, giving the viewer real time to choose"
+          }
+        ],
+        "remotion": {
+          "pattern": "FnCallPredictCard",
+          "props": {
+            "sparkLine": "Commit first.",
+            "question": "The model “called a tool.” Who actually ran it — the model, or your program?",
+            "commit": "commit to an answer before the next beat",
+            "durationInSeconds": 15.04
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-15T03:52:00.975083+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 15.04,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 15.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:FnCallPredictCard",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "the falsifying case",
+      "content_type": "concept",
+      "narration_text": "If the model really fetched that weather, one thing would follow: your program would be optional. Turn your program off, and the answer would still arrive. It does not. Nothing arrives. A language model produces text, and only text. It holds no clock, no connection, no keys.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "chip grid of the five things a language model does not have",
+        "visual_intent": "Plain move 2 payoff - break the wrong guess with one concrete falsifying case, then show what the model actually lacks as on-screen evidence (no-source-no-verdict)",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "five chips land in narration order: a clock, a network connection, your database, your API keys, permission to act"
+          },
+          {
+            "at": "0.55",
+            "event": "each chip greys as it lands - none is the accent, because none of them is available"
+          },
+          {
+            "at": "0.78",
+            "event": "caption types under the grid: a language model produces text and only text"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Text, and only text.",
+            "items": [
+              "a clock",
+              "a network connection",
+              "your database",
+              "your API keys",
+              "permission to act"
+            ],
+            "cols": 3,
+            "caption": "a language model has none of these — turn your program off and no answer arrives",
+            "durationInSeconds": 14.34
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-15T04:16:41.586136+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 14.34,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 14.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeScienceChipGrid",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "the framework",
+      "content_type": "framework",
+      "narration_text": "So here is what actually happens, in four steps. One: you describe your tools to the model, in writing. Two: the model replies with a request, a tool name and arguments. Three: your program runs that tool. Four: you hand the result back, and the model writes the answer. Four steps. Hold onto them.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the four-stage round trip, labels only",
+        "visual_intent": "FRAMEWORK beat - presented in full BEFORE the worked example, and left as the reel's reference figure so B07 can visibly reuse it",
+        "show": [
+          {
+            "at": "0.12",
+            "event": "stage 1 card lands top-left as the voice says 'one'"
+          },
+          {
+            "at": "0.28",
+            "event": "connector draws right; stage 2 card lands top-right on 'two'"
+          },
+          {
+            "at": "0.44",
+            "event": "connector draws down; stage 3 card lands bottom-right on 'three'"
+          },
+          {
+            "at": "0.60",
+            "event": "connector draws left; stage 4 card lands bottom-left on 'four'"
+          },
+          {
+            "at": "0.72",
+            "event": "the RETURN leg draws upward in dashed terracotta - stage 4 back into stage 1, the only accent in the frame"
+          },
+          {
+            "at": "0.82",
+            "event": "caption settles under the ring: one question, two model turns"
+          }
+        ],
+        "remotion": {
+          "pattern": "FnCallLoop",
+          "props": {
+            "sparkLine": "Four steps.",
+            "active": -1,
+            "showPayloads": false,
+            "stages": [
+              {
+                "title": "You describe the tools",
+                "sub": "name, description, arguments — as text"
+              },
+              {
+                "title": "The model requests one",
+                "sub": "a tool name plus arguments, not an answer"
+              },
+              {
+                "title": "Your program runs it",
+                "sub": "your code, your keys, your network"
+              },
+              {
+                "title": "The result goes back",
+                "sub": "appended to the conversation, model runs again"
+              }
+            ],
+            "caption": "the fourth step feeds the first — which is why this is a loop, not a pipeline",
+            "durationInSeconds": 15.45
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-15T03:53:45.445352+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 15.45,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 15.458333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:FnCallLoop",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "how it decides",
+      "content_type": "concept",
+      "narration_text": "Step one is the part people skip. You send the model a written description of each tool: its name, what it does, what arguments it takes. That description is just text in the conversation. When your question arrives, the model matches it against those descriptions. One flag: that matching is learned behaviour, not a lookup table. The description is your only steering wheel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "tool definitions flowing from your codebase into the model's context, one matching the ask",
+        "visual_intent": "Plain move 3 - the mechanism explained once, plainly, with EXACTLY ONE inference flag placed where 'learned behaviour' is doing real work",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "dark rack labelled 'your tool definitions' builds on the left"
+          },
+          {
+            "at": "0.25",
+            "event": "three definition chips fly along the arc into the Claude window: get_weather, search_orders, send_email"
+          },
+          {
+            "at": "0.55",
+            "event": "the question appears in the window's task line"
+          },
+          {
+            "at": "0.70",
+            "event": "get_weather checks off in terracotta as the match; the other two stay ink - one accent, so the match is unmistakable"
+          },
+          {
+            "at": "0.88",
+            "event": "settle line reads: the description is the steering wheel"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceSourceFlow",
+          "props": {
+            "sparkLine": "Descriptions, not code.",
+            "sourceLabel": "your tool definitions",
+            "feeds": [
+              {
+                "label": "get_weather(city)"
+              },
+              {
+                "label": "search_orders(order_id)",
+                "tint": "#8A7B57"
+              },
+              {
+                "label": "send_email(to, body)",
+                "tint": "#5E7D7A"
+              }
+            ],
+            "destApp": "Claude",
+            "destTitle": "what's the weather in Boston?",
+            "arcCaption": "sent as text, in the conversation",
+            "settleLine": "one description fits the ask…",
+            "durationInSeconds": 18.24
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-15T04:17:30.946206+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 18.24,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 18.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeScienceSourceFlow",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ask micro-beat",
+      "content_type": "transition",
+      "narration_text": "Let's put a real question through those four steps, and show every payload as it moves.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the composer with the generation prompt for the next beat's figure",
+        "visual_intent": "ASK->RESULT LAW - the generated figure in B07 is preceded by the actual prompt that makes it, so the pair reads as a receipt",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "composer card fades up under the spark line 'Trace it.'"
+          },
+          {
+            "at": "0.25",
+            "event": "the generation prompt types in"
+          },
+          {
+            "at": "0.70",
+            "event": "send arms terracotta; running indicator reads 'building the trace...'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Trace it.",
+            "topic": "Irreducibly Human",
+            "segment": "The Worked Example",
+            "command": "Trace the Boston weather question through all four steps. Show the exact payload at each one.",
+            "runningText": "building the trace…",
+            "output": [],
+            "durationInSeconds": 5.03,
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-29T06:00:32.969558+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 5.03,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 5.041666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "the worked example",
+      "content_type": "worked_example",
+      "narration_text": "Boston. Step one: your tool list already includes get weather, taking a city. Step two: the model does not answer. It emits a request, get weather, city Boston. Step three: your code calls the real service and gets back forty-one degrees. Step four: that number goes back to the model, which writes the sentence you actually read.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the SAME four-stage figure, now carrying the real payload at each stage",
+        "visual_intent": "WORKED EXAMPLE - the example USES the framework figure from B04 rather than sitting beside it; each stage lights in turn as its payload lands",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "the four cards from B04 return in the same positions - recognisably the same figure"
+          },
+          {
+            "at": "0.22",
+            "event": "stage 1 payload chip appears in mono: get_weather(city: string)"
+          },
+          {
+            "at": "0.38",
+            "event": "stage 2 lights terracotta and its payload lands: the request, not an answer"
+          },
+          {
+            "at": "0.56",
+            "event": "stage 3 payload lands: the real service response, 41 degrees"
+          },
+          {
+            "at": "0.74",
+            "event": "stage 4 payload lands: the finished sentence the viewer saw at beat zero"
+          },
+          {
+            "at": "0.88",
+            "event": "the return leg pulses once - the loop closes on the same question it opened"
+          }
+        ],
+        "remotion": {
+          "pattern": "FnCallLoop",
+          "props": {
+            "sparkLine": "One question, traced.",
+            "active": 1,
+            "showPayloads": true,
+            "stages": [
+              {
+                "title": "You describe the tools",
+                "sub": "declared once, up front",
+                "payload": "get_weather(city: string)"
+              },
+              {
+                "title": "The model requests one",
+                "sub": "no answer yet — a request",
+                "payload": "get_weather(city=\"Boston\")"
+              },
+              {
+                "title": "Your program runs it",
+                "sub": "your code calls the service",
+                "payload": "{ \"temp_f\": 41 }"
+              },
+              {
+                "title": "The result goes back",
+                "sub": "the model runs a second time",
+                "payload": "“It's 41°F in Boston.”"
+              }
+            ],
+            "caption": "example values, shown to trace the mechanism — not a live reading",
+            "durationInSeconds": 17.34
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-15T03:55:56.222854+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 17.34,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 17.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:FnCallLoop",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "the result flows back",
+      "content_type": "concept",
+      "narration_text": "Here is the part that surprises people. The result does not go into some side channel. It gets appended to the conversation as a new message, and the model runs again on the longer conversation. One question, two model turns. The tool result is just more text the model reads.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the message list after one tool call, as real message objects",
+        "visual_intent": "the return leg made literal - the viewer READS the four messages while the voice reacts to them, so the evidence is on screen and not in the narration",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "message 1 (user) types in"
+          },
+          {
+            "at": "0.32",
+            "event": "message 2 (assistant, tool_use) lands - note it is the assistant's turn, and it contains a request"
+          },
+          {
+            "at": "0.55",
+            "event": "message 3 (user, tool_result) lands - the result arrives as a MESSAGE, in the same list"
+          },
+          {
+            "at": "0.76",
+            "event": "message 4 (assistant, text) lands - the second model turn, the answer"
+          },
+          {
+            "at": "0.90",
+            "event": "spark line holds: two turns, one question"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "the conversation, after one tool call",
+            "code": "messages = [\n  { role: \"user\",      content: \"What's the weather in Boston right now?\" },\n\n  // turn 1 — the model does not answer. It requests.\n  { role: \"assistant\", content: [ { type: \"tool_use\",\n                                    name: \"get_weather\",\n                                    input: { city: \"Boston\" } } ] },\n\n  // your program ran the tool. The result comes back as a MESSAGE.\n  { role: \"user\",      content: [ { type: \"tool_result\",\n                                    content: '{ \"temp_f\": 41 }' } ] },\n\n  // turn 2 — same model, longer conversation, now it answers.\n  { role: \"assistant\", content: \"It's 41°F and overcast in Boston.\" },\n]",
+            "sparkLine": "Two turns, one question."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-15T03:56:30.629727+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 15.45,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 15.458333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B08B",
+      "act": "the loop repeats",
+      "content_type": "concept",
+      "narration_text": "And it does not have to stop at one. If the first result is not enough, the model can request another tool, and another, each time on a longer conversation. That is all an agent is: this same four-step loop, run repeatedly, until the model has what it needs to answer. No new mechanism. Just more turns.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the conversation stack growing one round per tool call",
+        "visual_intent": "extends the return leg from B04/B07 into repetition, and lands the function-calling-to-agents bridge without introducing a new mechanism",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "round 1 card stacks in: ask, request, result, answer attempt"
+          },
+          {
+            "at": "0.34",
+            "event": "round 2 stacks beneath it - the conversation is visibly longer than in round 1"
+          },
+          {
+            "at": "0.58",
+            "event": "round 3 stacks in terracotta, the one accent, marked 'until it has enough'"
+          },
+          {
+            "at": "0.80",
+            "event": "caption settles: an agent is this loop, run repeatedly"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "Run it again.",
+            "layers": [
+              {
+                "title": "round 1",
+                "sub": "one tool requested, one result returned — not enough yet"
+              },
+              {
+                "title": "round 2",
+                "sub": "the model asks for a second tool, on a longer conversation"
+              },
+              {
+                "title": "round 3",
+                "sub": "enough context at last — it answers",
+                "accent": true
+              }
+            ],
+            "caption": "an agent is not a new mechanism — it is this same four-step loop, run until it has enough",
+            "durationInSeconds": 16.32
+          },
+          "rendered": {
+            "out": "media/B08B.mp4",
+            "at": "2026-09-15T04:18:15.742806+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.32,
+      "audio_file": "mp3/beat-B08B.mp3",
+      "render_duration_s": 16.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08B.mp4",
+        "filled_by": "remotion:ClaudeScienceLayerStack",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "failure modes, both directions",
+      "content_type": "falsifiability",
+      "narration_text": "Now the limits, both ways. A tool call that succeeds does not prove the model understood your question: it can call the right tool with wrong arguments and return a confident, wrong answer. And a tool the model never calls does not prove the tool was wrong. Usually the description was vague. The description is where this breaks.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "binary branch - the two failure directions, resolved by the same cause",
+        "visual_intent": "Plain move 5 - state what a POSITIVE result does not prove and what a NEGATIVE result does not prove; naming only one direction would overstate reliability",
+        "show": [
+          {
+            "at": "0.14",
+            "event": "the question splits into two branches from a single node"
+          },
+          {
+            "at": "0.30",
+            "event": "left branch fills: the call succeeded, arguments wrong, answer confident and wrong"
+          },
+          {
+            "at": "0.48",
+            "event": "right branch fills: no call made, tool was fine, description was vague"
+          },
+          {
+            "at": "0.70",
+            "event": "both branches converge on one resolver card in terracotta: the description"
+          },
+          {
+            "at": "0.88",
+            "event": "resolver holds - the single lever behind both failures"
+          }
+        ],
+        "remotion": {
+          "pattern": "BinaryBranch",
+          "props": {
+            "data": {
+              "slideMeta": "failure modes, both directions",
+              "question": "The model called your tool. Did it understand the question?",
+              "branches": [
+                {
+                  "label": "it called the tool",
+                  "detail": "succeeded, but with wrong arguments — a confident, wrong answer",
+                  "fix": "a success does not prove understanding",
+                  "tone": "warn"
+                },
+                {
+                  "label": "it never called it",
+                  "detail": "the tool was fine; the model could not tell when to reach for it",
+                  "fix": "a silence does not prove the tool is wrong",
+                  "tone": "warn"
+                }
+              ],
+              "resolver": {
+                "label": "the description",
+                "detail": "both failures trace back to how the tool was described — the one part you control"
+              }
+            },
+            "durationInSeconds": 16.9
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-15T04:19:00.025524+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.9,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 16.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:BinaryBranch",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "content_type": "summary",
+      "narration_text": "So, the one sentence worth repeating: the model never runs anything. It writes a request, your program runs it, and the result comes back as more conversation. Everything else about function calling follows from that, including agents. And the part you actually control is the description you wrote in step one.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "artifact page holding the compressible sentence",
+        "visual_intent": "Plain move 6 - close on one sentence that stays true if it is the only thing repeated secondhand; it compresses the DISTINCTION, not the topic",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "artifact page opens in the Claude window"
+          },
+          {
+            "at": "0.25",
+            "event": "the one-line claim lands first, largest on the page"
+          },
+          {
+            "at": "0.50",
+            "event": "the three mechanical consequences list under it, in order"
+          },
+          {
+            "at": "0.80",
+            "event": "the last line holds alone: what you own is the description"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Function Calling",
+            "artifactHeading": "The model never runs anything.",
+            "artifactLines": [
+              "It writes a request. Your program runs it.",
+              "The result returns as another message — not a side channel.",
+              "So one question costs two model turns, not one.",
+              "What you own: the tool description. That is the steering wheel."
+            ],
+            "durationInSeconds": 16.62
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": "2026-09-29T06:28:16.613440+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.62,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 16.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BVDT.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "content_type": "task",
+      "narration_text": "Your turn. Paste this: describe one task at my job that needs live data, then write a tool definition for it, name, description and arguments, and show me the exact request you'd emit for one real example. Then check three things in the answer. Does the description say when to use the tool, not just what it does. Are the arguments things your program can actually supply. And is the request valid for your example. Pause here and run it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 29,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "the composer with the viewer's prompt, and the three-point rubric beside it",
+        "visual_intent": "HANDOFF LAW plus nopunt SCAFFOLDED TASK - the prompt is read aloud verbatim and discussed, and the rubric gives the viewer a way to judge the output rather than just admire it",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "greeting reads 'Your turn.' - the one greeting that drops the persona"
+          },
+          {
+            "at": "0.12",
+            "event": "the prompt types into the composer as the voice reads it word for word"
+          },
+          {
+            "at": "0.52",
+            "event": "running indicator reads 'paste this into Claude...'"
+          },
+          {
+            "at": "0.60",
+            "event": "rubric item 1 lands: does the description say WHEN to use the tool"
+          },
+          {
+            "at": "0.72",
+            "event": "rubric item 2 lands: can your program actually supply those arguments"
+          },
+          {
+            "at": "0.84",
+            "event": "rubric item 3 lands: is the request valid for your own example"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Irreducibly Human",
+            "segment": "Write One Tool Definition",
+            "command": "Describe one task at my job that needs live data. Then write a tool definition for it — name, description, and arguments — and show me the exact request you'd emit for one real example.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check the answer against three things:",
+              "1. does the description say WHEN to use the tool, not just what it does?",
+              "2. are the arguments things your program can actually supply?",
+              "3. is the request valid for your own example?"
+            ],
+            "durationInSeconds": 21.29,
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-09-29T06:01:49.478928+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 21.29,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 21.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-28T23:29:02"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "content_type": "outro",
+      "narration_text": "That's function calling. Thanks for watching.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "title-restate outro card",
+        "visual_intent": "OUTRO LAW - exact title restate in poster serif with the terracotta terminal period, handle beneath. No mascot and no subline: OUTRO-LOCK.md scopes that card to @NikBearBrown reels",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "card fades up, polarity slug-seeded and deterministic"
+          },
+          {
+            "at": "0.10",
+            "event": "title restates in poster serif, terminal period in terracotta"
+          },
+          {
+            "at": "0.30",
+            "event": "@HumanitariansAI settles beneath the title"
+          }
+        ],
+        "remotion": {
+          "pattern": "FnCallTitleOutro",
+          "props": {
+            "title": "How LLM Function Calling Works.",
+            "handle": "@HumanitariansAI",
+            "slug": "llm-function-calling",
+            "durationInSeconds": 2.94
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-09-15T04:01:14.245849+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 2.94,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 2.9583333333333335,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:FnCallTitleOutro",
+        "at": "2026-09-28T23:29:02"
+      }
+    }
+  ]
+}

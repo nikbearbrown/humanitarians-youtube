@@ -1,0 +1,201 @@
+{
+  "video": "2026-09-21-sql-query-optimization-for-analytics",
+  "metadata": {
+    "title": "SQL, Read Fewer Rows.",
+    "slug": "2026-09-16-sql-query-optimization-for-analytics",
+    "topic": "Irreducibly Human",
+    "skill": "ai-explainer",
+    "fellow": "Supriya Kushwaha",
+    "fellow_folder": "fellows/supriya-k",
+    "report_date": "2026-09-16",
+    "date": "2026-09-16",
+    "brand": "claude-hai",
+    "audience": "HAI",
+    "audience_note": "STUDENTS and early-career analysts \u2014 people who can write correct SQL but have never opened a query plan.",
+    "register": "Pragmatist",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "voice": "af_bella",
+    "voice_note": "Series voice lock for this fellow \u2014 af_bella (Bella), recorded in fellows/supriya-k/README.md per fellows/README.md. Matches banking-domain-sql-running-total-bug and banking-domain-star-method-behavioral. am_onyx is deliberately NOT used: Onyx would arm IN-FOR-BEAR LAW and rewrite B00 to 'Liam, in for Bear', wrong for a HAI fellow reel.",
+    "playlist": "Fellows Research",
+    "captions": false,
+    "captions_note": "MOTION.md caption policy \u2014 explainers ship an SRT SIDECAR, never a burn-in.",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "typography": {
+      "serif": "EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "greeting": "Hi, I am Supriya",
+    "greeting_note": "v2 (2026-10-17): greeting matches the exact intro line; Supriya chip on every beat, @HumanitariansAI small on the outro (hai convention, same as the data-analyst reels).",
+    "folder_chip": "Supriya",
+    "aspect_ratio": "16:9",
+    "resolution": "3840x2160",
+    "resolution_note": "remotion_scenes.py renders --scale=2; compile.py needs --height 2160.",
+    "clock": "narration (Kokoro af_bella, local/free). estimated_duration_s are word-count placeholders at ~160 wpm; actual_duration_s is null until audio lock.",
+    "duration_note": "DURATION IS AN OUTPUT (duration-planner). Sum of estimates \u2248 209 s \u2248 3:29. This sits above the 1\u20133 min ai-explainer band; the content, not a clock, put it there. If a sub-3:00 cut is wanted, drop B04 (20 s, restates B03's figures on a log axis) and B05 (13 s, the predict device) \u2192 \u2248 2:56. Do not compress narration to hit a number.",
+    "evidence": "demo/RESULTS.md \u2014 real SQLite 3.45.3 EXPLAIN QUERY PLAN captures for THREE pairs of logically identical queries (strftime on posted_at, CAST on branch_id, UPPER on account_ref): demo/explain_a_non_sargable.txt + explain_b_sargable.txt (shown verbatim in B03), explain_c/d (CAST), explain_e/f (UPPER). Regenerable via demo/build_demo.py (SEED=20260916), which exits non-zero if any rewrite stops returning an identical result set.",
+    "source": [
+      "demo/build_demo.py + demo/RESULTS.md (this reel's own executable evidence \u2014 primary)",
+      "SQLite documentation \u2014 The EXPLAIN QUERY PLAN command (sqlite.org/eqp.html)",
+      "SQLite documentation \u2014 Query Planning / indexed lookups (sqlite.org/queryplanner.html)",
+      "PostgreSQL 17 documentation \u2014 Using EXPLAIN (postgresql.org/docs/17/using-explain.html)"
+    ],
+    "gate_p": "PASS",
+    "no_paid_services": true,
+    "one_insight": "An index works on the column, not on a function of the column \u2014 and the query plan is the only place that difference is visible.",
+    "spine": "cold-open ClaudeComposerAsk (ask lands answered) \u2192 body (vox-style illustration) \u2192 verdict recap \u2192 YOUR TURN handoff \u2192 title-restate outro",
+    "note": "ILLUSTRATE LAW reel. Claude UI appears at B00 (cold open, with RESULT lines), B02 (ask micro-beat of the ask\u2192result pair), B07 (verdict artifact page), B08 (handoff), B09 (outro) \u2014 the five exempt slots, nothing else. Body beats B01/B03/B04/B05/B06 each carry a DIFFERENT scheme (isotype attrition \u00b7 plan capture \u00b7 log scale \u00b7 predict card \u00b7 divergence), so no two consecutive beats share a visual state. Typing appears in exactly two beats per HANDOFF LAW: B00 and B08. SqlPlanBeat and SqlPredictCard are reel-local \u2014 see remotion-src/REGISTER.md; every other pattern is a registered library composition. QC PASS 1 (2026-09-16) found 2 BLOCKER + 5 MAJOR defects, all on the three 1280\u00d7720 library deck patterns. B01/B04/B06 now render from reel-local FORKS \u2014 SqlAttritionChain / SqlScaleComparison / SqlDivergentFates in remotion-src/ \u2014 registered at 1920\u00d71080 with durationInFrames matched to the measured audio. The shared library components were NOT edited; toolkit-level fixes are logged in TEMPLATE-MISSES.md #5\u2013#7.",
+    "tags": [
+      "SQL",
+      "query optimization",
+      "EXPLAIN",
+      "query plan",
+      "SQLite",
+      "analytics engineering",
+      "sargable",
+      "indexing",
+      "data analyst",
+      "Humanitarians AI",
+      "AI+1"
+    ],
+    "gate_p_signed": {
+      "verdict": "PASS",
+      "signed_by": "Supriya Kushwaha (Fellow)",
+      "date": "2026-09-16",
+      "narration_revision": "rev 2",
+      "voice_approval": "af_bella confirmed as my series voice (Bella, HAI plain register).",
+      "scope": "Authorises audio + render. Does NOT cover LOGO LAW (PEDAGOGY open item 1) or post-render QC sign-off (open item 3). Voided by any later narration_text change."
+    },
+    "build": {
+      "at": "2026-10-17T16:59:02",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": [
+        "B09: palette=claude but the outro is 'ClaudeTitleOutroFilled' \u2014 OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "narration_revision": "rev 3 \u2014 signed GATE P 2026-10-17 (Supriya Kushwaha)",
+    "topic_label": "SQL \u00b7 QUERY PLANS \u00b7 ANALYTICS",
+    "topic_note": "metadata.topic carries the fixed claude-hai kicker for Gate L; the on-screen topic label stays \"SQL \u00b7 QUERY PLANS \u00b7 ANALYTICS\" (composer props), as Supriya confirmed for the other hai reels."
+  },
+  "source_of_truth": "beat_sheet.json \u2014 edit the sheet, not this file",
+  "beats_total": 10,
+  "beats_open": 0,
+  "beats": [
+    {
+      "beat_id": "B00",
+      "status": "filled",
+      "on_disk": "media/B00.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B00.mp4",
+      "label": "Hi, I am Supriya and this video is about SQL query optimization for analytics. Two queries, identica"
+    },
+    {
+      "beat_id": "B01",
+      "status": "filled",
+      "on_disk": "media/B01.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B01.mp4",
+      "label": "Here is the shape of a typical analytics query. Four hundred thousand postings. You want one month: "
+    },
+    {
+      "beat_id": "B02",
+      "status": "filled",
+      "on_disk": "media/B02.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B02.mp4",
+      "label": "So ask the database. EXPLAIN QUERY PLAN costs almost nothing, and it doesn't run your query. It just"
+    },
+    {
+      "beat_id": "B03",
+      "status": "filled",
+      "on_disk": "media/B03.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B03.mp4",
+      "label": "There it is. Query A: SCAN postings. Scan means every row, all four hundred thousand. Query B: SEARC"
+    },
+    {
+      "beat_id": "B04",
+      "status": "filled",
+      "on_disk": "media/B04.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B04.mp4",
+      "label": "On a log scale, four hundred thousand rows read against eleven thousand three hundred sixty-nine is "
+    },
+    {
+      "beat_id": "B05",
+      "status": "filled",
+      "on_disk": "media/B05.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B05.mp4",
+      "label": "Before I show you why, commit to an answer. Both queries filter on the same indexed column. So what "
+    },
+    {
+      "beat_id": "B06",
+      "status": "filled",
+      "on_disk": "media/B06.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B06.mp4",
+      "label": "The function. Query A wraps the posted-at column in strftime, so the database has an expression inst"
+    },
+    {
+      "beat_id": "B07",
+      "status": "filled",
+      "on_disk": "media/B07.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B07.mp4",
+      "label": "Let's recap. Before you tune a query, run EXPLAIN and look for the word SCAN. If it shows up on a ta"
+    },
+    {
+      "beat_id": "B08",
+      "status": "filled",
+      "on_disk": "media/B08.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B08.mp4",
+      "label": "I'm learning to optimize analytics SQL. Here is the schema for one of my tables and the slowest quer"
+    },
+    {
+      "beat_id": "B09",
+      "status": "filled",
+      "on_disk": "media/B09.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B09.mp4",
+      "label": "SQL \u2014 read fewer rows. Thanks for watching. Supriya, for Humanitarians AI."
+    }
+  ]
+}

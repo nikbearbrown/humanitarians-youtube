@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HAI brutalist video cards — Physics Vol. 1 Ch. 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white: #FFFFFF;
+      --ink: #121212;
+      --red: #C8102E;
+      --secondary: #545454;
+      --border: #D4D4D4;
+      --ochre: #C8860E;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: #e8e8e8;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .meta {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .frame-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    /* —— 16:9 @ 4K —— */
+    .frame-16 {
+      width: 3840px;
+      height: 2160px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--white);
+      border: 2px solid var(--border);
+    }
+
+    /* —— 9:16 @ 4K —— */
+    .frame-9 {
+      width: 2160px;
+      height: 3840px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--white);
+      border: 2px solid var(--border);
+    }
+
+    .ochre-bar::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 12px;
+      background: var(--ochre);
+    }
+
+    .intro-line .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 48px;
+    }
+    .frame-16.intro-line .content {
+      position: absolute;
+      left: 120px;
+      right: 120px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .frame-16.intro-line .line {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      max-width: 3400px;
+    }
+    .frame-9.intro-line .content {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .frame-9.intro-line .tag { font-size: 28px; margin-bottom: 36px; }
+    .frame-9.intro-line .line {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--ink);
+    }
+
+    .intro .content {
+      position: absolute;
+      left: 120px;
+      right: 120px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .frame-16.intro .title {
+      font-size: 96px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--ink);
+      max-width: 3400px;
+    }
+    .frame-16.intro .subtitle {
+      margin-top: 40px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .frame-16.intro .brand {
+      position: absolute;
+      right: 96px;
+      bottom: 80px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 28px;
+      color: var(--secondary);
+      letter-spacing: 0.04em;
+    }
+
+    .frame-9.intro .content {
+      left: 80px;
+      right: 80px;
+    }
+    .frame-9.intro .title {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--ink);
+    }
+    .frame-9.intro .subtitle {
+      margin-top: 32px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .frame-9.intro .brand {
+      position: absolute;
+      right: 64px;
+      bottom: 64px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 22px;
+      color: var(--secondary);
+    }
+
+    .outro { background: var(--ink); }
+    .frame-16.outro .content,
+    .frame-9.outro .content {
+      position: absolute;
+      left: 120px;
+      right: 120px;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+    }
+    .frame-9.outro .content { left: 64px; right: 64px; }
+    .frame-16.outro .title {
+      font-size: 80px;
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--white);
+    }
+    .frame-16.outro .subtitle {
+      margin-top: 48px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 32px;
+      color: var(--ochre);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .frame-9.outro .title {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+    }
+    .frame-9.outro .subtitle {
+      margin-top: 36px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 24px;
+      color: var(--ochre);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <p class="meta">Brutalist template · 4K · Physics Vol. 1 Ch. 4 · PM gate compliant</p>
+
+  <!-- 16:9 INTRO LINE — VIDEO 1 -->
+  <div class="frame-label">v1-intro-line-16x9.png</div>
+  <div class="frame-16 intro-line ochre-bar" id="v1-intro-line-16">
+    <div class="content">
+      <div class="tag">Intro</div>
+      <div class="line">This is Charitha Sree Veluru in for Sanjana about why a green build still ships a broken physics demo.</div>
+    </div>
+  </div>
+
+  <!-- 9:16 INTRO LINE — VIDEO 1 -->
+  <div class="frame-label">v1-intro-line-9x16.png</div>
+  <div class="frame-9 intro-line ochre-bar" id="v1-intro-line-9">
+    <div class="content">
+      <div class="tag">Intro</div>
+      <div class="line">This is Charitha Sree Veluru in for Sanjana about why a green build still ships a broken physics demo.</div>
+    </div>
+  </div>
+
+  <!-- 16:9 TITLE — VIDEO 1 -->
+  <div class="frame-label">video-1-intro-16x9.png</div>
+  <div class="frame-16 intro ochre-bar">
+    <div class="content">
+      <div class="title">Why a green build still ships a broken physics demo</div>
+      <div class="subtitle">Physics Vol. 1 · Ch. 4 · canvas embeds</div>
+    </div>
+    <div class="brand">humanitarians ai</div>
+  </div>
+
+  <!-- 9:16 TITLE — VIDEO 1 -->
+  <div class="frame-label">video-1-intro-9x16.png</div>
+  <div class="frame-9 intro ochre-bar">
+    <div class="content">
+      <div class="title">Why a green build still ships a broken physics demo</div>
+      <div class="subtitle">Physics Vol. 1 · Ch. 4</div>
+    </div>
+    <div class="brand">humanitarians ai</div>
+  </div>
+
+  <!-- 16:9 OUTRO — VIDEO 1 -->
+  <div class="frame-label">video-1-outro-16x9.png</div>
+  <div class="frame-16 outro">
+    <div class="content">
+      <div class="title">Why a green build still ships a broken physics demo</div>
+      <div class="subtitle">humanitarians ai · Physics Vol. 1</div>
+    </div>
+  </div>
+
+  <!-- 9:16 OUTRO — VIDEO 1 -->
+  <div class="frame-label">video-1-outro-9x16.png</div>
+  <div class="frame-9 outro">
+    <div class="content">
+      <div class="title">Why a green build still ships a broken physics demo</div>
+      <div class="subtitle">humanitarians ai · Physics Vol. 1</div>
+    </div>
+  </div>
+
+  <!-- 16:9 INTRO LINE — VIDEO 2 -->
+  <div class="frame-label">v2-intro-line-16x9.png</div>
+  <div class="frame-16 intro-line ochre-bar">
+    <div class="content">
+      <div class="tag">Intro</div>
+      <div class="line">This is Charitha Sree Veluru in for Sanjana about why putting the simulation at the bottom breaks the lesson.</div>
+    </div>
+  </div>
+
+  <!-- 9:16 INTRO LINE — VIDEO 2 -->
+  <div class="frame-label">v2-intro-line-9x16.png</div>
+  <div class="frame-9 intro-line ochre-bar">
+    <div class="content">
+      <div class="tag">Intro</div>
+      <div class="line">This is Charitha Sree Veluru in for Sanjana about why putting the simulation at the bottom breaks the lesson.</div>
+    </div>
+  </div>
+
+  <!-- 16:9 TITLE — VIDEO 2 -->
+  <div class="frame-label">video-2-intro-16x9.png</div>
+  <div class="frame-16 intro ochre-bar">
+    <div class="content">
+      <div class="title">Why putting the simulation at the bottom breaks the lesson</div>
+      <div class="subtitle">FigureWithSim · Ch. 4 scope</div>
+    </div>
+    <div class="brand">humanitarians ai</div>
+  </div>
+
+  <!-- 9:16 TITLE — VIDEO 2 -->
+  <div class="frame-label">video-2-intro-9x16.png</div>
+  <div class="frame-9 intro ochre-bar">
+    <div class="content">
+      <div class="title">Why putting the simulation at the bottom breaks the lesson</div>
+      <div class="subtitle">FigureWithSim · Ch. 4</div>
+    </div>
+    <div class="brand">humanitarians ai</div>
+  </div>
+
+  <!-- 16:9 OUTRO — VIDEO 2 -->
+  <div class="frame-label">video-2-outro-16x9.png</div>
+  <div class="frame-16 outro">
+    <div class="content">
+      <div class="title">Why putting the simulation at the bottom breaks the lesson</div>
+      <div class="subtitle">humanitarians ai · Physics Vol. 1</div>
+    </div>
+  </div>
+
+  <!-- 9:16 OUTRO — VIDEO 2 -->
+  <div class="frame-label">video-2-outro-9x16.png</div>
+  <div class="frame-9 outro">
+    <div class="content">
+      <div class="title">Why putting the simulation at the bottom breaks the lesson</div>
+      <div class="subtitle">humanitarians ai · Physics Vol. 1</div>
+    </div>
+  </div>
+</body>
+</html>

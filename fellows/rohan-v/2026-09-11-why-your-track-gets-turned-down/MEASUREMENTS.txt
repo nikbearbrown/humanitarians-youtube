@@ -1,0 +1,67 @@
+Measured on this machine, 2026-09-10, with ffmpeg's EBU R128 scanner.
+Nothing in this reel is quoted from memory.
+
+METHOD
+A 30s synthetic music-like signal was built with real crest factor: a
+sustained three-note chord bed, a decaying low hit and a short high tick on
+every beat, plus a genuinely quieter passage from 10s to 18s.
+
+  ffmpeg -filter_complex "sine=f=110...,sine=f=180,volume='0.80*exp(-22*mod(t,1))'..."
+
+Two versions were made from that one source:
+
+  A  "kept its dynamics"  — gain only, brought up until the loudest moment
+                            nearly touches the ceiling.
+       -af "volume=18.0dB,alimiter=limit=0.891"
+
+  B  "pushed loud"        — compressed hard, then driven into a limiter, so
+                            the quiet parts are pulled up to meet the loud ones.
+       -af "volume=12.5dB,acompressor=threshold=0.02:ratio=20:makeup=18,
+            volume=5dB,alimiter=limit=0.82"
+
+Measured with:
+  ffmpeg -i <file> -filter_complex ebur128=peak=true -f null -
+
+RESULTS
+file                           LUFS      LRA   true peak
+--------------------------------------------------------
+A_dynamic.wav                 -15.3     12.0        -1.0
+B_loud.wav                     -6.6      0.7        -0.2
+B_at_target.wav               -14.0      0.7        -7.6   (B with -7.4 dB)
+A_same_gain.wav               -22.7     12.0        -8.4   (A with -7.4 dB)
+
+WHAT THE NUMBERS SHOW
+
+1. A PEAK METER CANNOT SEE LOUDNESS.
+   A peaks at -1.0 dBFS, B at -0.2 dBFS — 0.8 dB apart, visually identical on
+   a peak meter. But B measures 8.7 LU louder. Peak describes one instant;
+   loudness describes the whole track.
+
+2. PUSHING LOUD COSTS LOUDNESS RANGE.
+   LRA falls from 12.0 LU to 0.7 LU — a 94% reduction. The distance between
+   the quiet parts and the loud parts is almost entirely gone.
+
+3. THE PLATFORM ERASES THE LOUDNESS ADVANTAGE.
+   To reach a -14 LUFS playback target:
+       A needs  +1.3 dB   (almost nothing)
+       B needs  -7.4 dB   (a large cut)
+   B's entire 8.7 LU advantage is removed before anyone hears it.
+
+4. GAIN MOVES LOUDNESS BUT NEVER RESTORES RANGE.
+   The same -7.4 dB applied to both files:
+       B: -6.6 -> -14.0 LUFS,  LRA unchanged at 0.7
+       A: -15.3 -> -22.7 LUFS, LRA unchanged at 12.0
+   Turning a file up or down cannot give back range that was compressed out.
+   The loss is permanent; the loudness was never permanent to begin with.
+
+CAVEATS, STATED PLAINLY
+- This is a synthetic signal, not a commercial song. It was chosen so the
+  crest factor and the quiet passage are known exactly rather than guessed.
+  The mechanism generalises; the specific numbers belong to this file.
+- -14 LUFS is used as the playback target because it is the figure most
+  commonly published for streaming normalisation. Platforms differ, change
+  their targets, and some apply a limiter when turning quiet tracks up.
+  The reel says "about -14" and does not name a platform's internals.
+- LRA (loudness range, EBU R128) is the measure used for "the distance between
+  the quiet and loud parts". It is not the same as crest factor or dynamic
+  range in the peak sense.

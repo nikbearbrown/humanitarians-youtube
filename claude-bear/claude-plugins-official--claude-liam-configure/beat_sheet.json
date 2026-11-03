@@ -1,0 +1,316 @@
+{
+  "metadata": {
+    "title": "Saved Isn't Live.",
+    "subtitle": "The Configure Skill (Discord Plugin)",
+    "slug": "claude-plugins-official--claude-liam-configure",
+    "topic": "CONFIGURE · DISCORD PLUGIN",
+    "purpose": "Answer one real question in the Plain register: once you save a new bot token, is your Discord bot immediately running it? Lands the carry-out that a saved token isn't a live token until a restart, while the access policy takes effect on the very next message.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-plugins-official/youtube/claude-liam-configure/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Extending Claude — Skills, Plugins & Connectors",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - single worked example (the configure skill itself), named at B00 and present through NB01-NB03; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T00:50:09",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed saving a fresh Discord bot token makes it live right away. It doesn't — the credential file only gets read once, at startup. So: I saved a new token. It's live now, right?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'I saved a new token. It's live now, right?', hesitates on 'now', corrects to 'after restart', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "I saved a new\ntoken. It's live\nnow, right?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "now",
+            "replacementWords": "after restart",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 8,
+            "charMs": 42,
+            "jitter": 26,
+            "seed": "hai-configure"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 1.0 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('now' -> 'after restart') lands on screen and the full corrected question finishes typing before the clip ends. Rates (42ms/char, 8% hesitateBetween, 4% mistakeRate) copied from the already-tuned claude-plugins-official--claude-liam-agent-development sibling, which found this combination reliably finishes a similarly short 3-line text inside its audio window.",
+      "actual_duration_s": 11.39,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:50:09"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "The skill reads whatever argument you give it. No arguments: show status — read both files, tell you whether a token is set, what the access policy is, who's already paired, and give you one concrete next step. Give it a token: it trims stray whitespace, creates the channel folder if it's missing, updates the credential file without disturbing anything else already in it, and locks that file to owner-read-only. Give it the word clear: it deletes the token line, or the whole file if that's all there was. Two files carry all of this. The credential file holds the token, read once, when the session starts. The access file holds the policy, and it's read again on every single incoming message.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THREE MODES, TWO FILES",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THREE MODES, TWO FILES",
+          "chips": [
+            "no-args",
+            "<token>",
+            "clear"
+          ],
+          "arrows": true,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "status · save · remove",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "actual_duration_s": 35.35,
+      "audio_file": "mp3/beat-NB01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:50:09"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "The rule here is explicit: always push toward an allowlist, never let pairing become permanent. Pairing exists only to capture the Discord IDs you don't know yet. Once everyone you want is captured, the skill offers to flip the switch itself — without waiting to be asked. One detail is easy to miss. Save a new token, and it doesn't take effect until you restart the session — the credential file is only read once, at startup. Update the allowlist, though, and it's live on your very next message. Skip the restart after saving a token, and you'll think you're running the new one when you're not.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE LOCKDOWN RULE",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE LOCKDOWN RULE",
+          "chips": [
+            "pairing",
+            "allowlist",
+            "restart vs. instant"
+          ],
+          "arrows": true,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "offered proactively, not asked for",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "actual_duration_s": 29.21,
+      "audio_file": "mp3/beat-NB02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:50:09"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "Here's the gap worth knowing. The skill never checks that what you paste actually looks like a token — no length check, no format check, nothing. Paste a grocery list, and it gets written to the credential file exactly the same way a real token would. The skill trusts you completely at the one moment it probably shouldn't.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "NO VALIDATION",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "NO VALIDATION",
+          "chips": [
+            "<token>",
+            "unvalidated",
+            "saved blindly"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "paste anything, it saves anything",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "actual_duration_s": 16.62,
+      "audio_file": "mp3/beat-NB03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T00:50:09"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "A saved token isn't a live token — the credential file is only read once, at restart. The access policy has no such wait; it's checked on your very next message.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "A saved token isn't a live token — the credential file is only read once, at restart. The access policy has no such wait; it's checked on your very next message.",
+            "attribution": "",
+            "sparkLine": "Saved isn't live."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 9.83,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:50:09"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Open a Claude Code session with the Discord configure skill, and paste a token that's obviously fake — something like 'not-a-real-token'. Watch two things: does it save that string without any complaint at all, and after you tell it your allowlist is complete, does it offer to lock down access itself, or does it wait for you to ask?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CONFIGURE · DISCORD PLUGIN",
+            "segment": "Watch The Restart.",
+            "command": "Configure my Discord bot — here's my token: not-a-real-token",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 17.3,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:50:09"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Saved Isn't Live. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "CONFIGURE · @HumanitariansAI",
+            "line": "Saved Isn't Live."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.07,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T00:50:09"
+      }
+    }
+  ]
+}

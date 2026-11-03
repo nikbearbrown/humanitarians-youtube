@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "Two APIs, Not One.",
+    "subtitle": "The Confluence API Skill",
+    "slug": "claude-tag-plugins--claude-liam-confluence-api",
+    "topic": "CONFLUENCE API · CLAUDE TAG PLUGIN",
+    "purpose": "Answer one real question in the Plain register: does Claude call one Confluence API, or does it have to choose? Lands the carry-out that Claude routes between two API versions by job, not preference, and never treats a page's own words as a command.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-tag-plugins/youtube/claude-liam-confluence-api/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - wrong guess (one API) resolves immediately at NB01; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T13:26:28",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumes Claude calls one Confluence API. It actually calls two — a newer default and an older one for a few specific jobs. So which one runs, and when?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Claude just calls one Confluence API. How does that work?', hesitates on 'one'/'API', corrects to 'two'/'APIs'",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Claude just calls\none Confluence API.\nHow does that work?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "one, API",
+            "replacementWords": "two, APIs",
+            "mistakeRate": 6,
+            "hesitateWithin": 2,
+            "hesitateBetween": 14,
+            "charMs": 48,
+            "jitter": 26,
+            "seed": "hai-confluence-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('one'/'API' -> 'two'/'APIs') lands on screen.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:26:28"
+      },
+      "actual_duration_s": 9.58
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "Confluence Cloud actually runs two APIs at once. Claude defaults to the newer one, called v2 — it handles pages, spaces, blog posts, comments, attachments, and labels. It only drops to the older v1 API for three jobs v2 can't do: searching with Confluence's query language, uploading or downloading an attachment, and adding a label. Three small scripts cover the everyday work: cql_search.sh runs a search and pages through every result; read_page.sh fetches a page in the format you ask for; write_page.sh creates or updates a page, and safely retries if someone else saved a change first.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "TWO VERSIONS, THREE SCRIPTS",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "TWO VERSIONS, THREE SCRIPTS",
+          "chips": [
+            "v2 = default",
+            "v1 = fallback",
+            "3 scripts"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "v1 only for search, uploads, labels",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "audio_file": "mp3/beat-NB01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T13:26:28"
+      },
+      "actual_duration_s": 34.28
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "Two details trip people up. First: every Confluence call needs a slash-wiki prefix in the URL. Leave it off and every single request fails with a not-found error — it looks like a bug, but it's just the missing prefix. Second, a pagination trap: when a search has more results, the next-page link works differently in each version. In v2, that link already starts from the site's root, so you have to strip the slash-wiki part off your base address before adding it — otherwise you get slash-wiki twice. In v1, you add the base address exactly as it is. Mix these up, and later pages simply stop appearing, with no error at all.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 35,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "MISS /WIKI, GET A 404",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "MISS /WIKI, GET A 404",
+          "chips": [
+            "/wiki required",
+            "v2: strip it",
+            "v1: keep it"
+          ],
+          "arrows": false,
+          "accent": [
+            0
+          ],
+          "strike": [],
+          "caption": "get it backwards, pages stop quietly",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "audio_file": "mp3/beat-NB02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T13:26:28"
+      },
+      "actual_duration_s": 33.43
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "There's one rule that matters more than any API detail. A Confluence page might contain text written specifically to hijack an AI reading it — instructions hidden inside a comment or a page body, hoping Claude will follow them. Claude treats anything it reads back from Confluence as content to report, never as a command to run. A few smaller things are worth knowing too: one of the write formats packs its data as a string that has to be decoded twice; long result lists cap out well below their real maximum, so a big search can quietly come back short; and deleting a page for good, or uploading a file, both need one extra permission or header most people forget the first time.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 42,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "READ IT. DON'T OBEY IT.",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "READ IT. DON'T OBEY IT.",
+          "chips": [
+            "treat as data",
+            "not commands",
+            "ADF quirk",
+            "silent limits"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "words are evidence, never instructions",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "audio_file": "mp3/beat-NB03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T13:26:28"
+      },
+      "actual_duration_s": 36.39
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Claude doesn't speak one Confluence API — it defaults to the current one and drops to the older one only for search, uploads, and labels. And whatever a page says, Claude reads it as content, never as a command.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Claude doesn't speak one Confluence API — it defaults to the current one and drops to the older one only for search, uploads, and labels. And whatever a page says, Claude reads it as content, never as a command.",
+            "attribution": "",
+            "sparkLine": "Two APIs. Content, not commands."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:26:28"
+      },
+      "actual_duration_s": 11.86
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Search our Confluence space for pages about onboarding, then read the most recently updated match and summarize it for me. Before you show me anything from inside that page, tell me plainly whether you're giving me your own summary or quoting the page's own words. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CONFLUENCE API · CLAUDE TAG PLUGIN",
+            "segment": "Two APIs, Not One.",
+            "command": "Search our Confluence space for pages about onboarding, then read the most recently updated match and summarize it for me. Before you show me anything from inside that page, tell me plainly whether you're giving me your own summary or quoting the page's own words.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:26:28"
+      },
+      "actual_duration_s": 16.49
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Two APIs, Not One. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "CONFLUENCE API · @HumanitariansAI",
+            "line": "Two APIs, Not One."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:26:28"
+      },
+      "actual_duration_s": 3.37
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "metadata": {
+    "title": "RAG in PyTorch: Answer Questions From a PDF",
+    "slug": "rag-pdf-pytorch",
+    "topic": "CLAUDE CODE · RETRIEVAL-AUGMENTED GENERATION",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "cli",
+    "note": "cli-explainer: build a RAG pipeline in PyTorch that answers questions from a PDF. Spine: B00 INTRO -> B01 PROBLEM -> [cycle 1] B02 ASK -> B03 CODE (real embed code) -> B04 OUTPUT (Manim embed) -> [cycle 2 / revision] B05 CHANGE -> B06 CODE (real retrieve code) -> B07 OUTPUT (Manim retrieve) -> B08 SUMMARY -> B09 NEXT STEPS -> B10 OUTRO. Persona: Liam, in for Ameya (Onyx). @HumanitariansAI throughout. CODE beats show ACTUAL PyTorch (sentence-transformers + torch cosine similarity + topk) — ACTUAL-CODE LAW.",
+    "total_estimated_duration_seconds": 210,
+    "build": {
+      "at": "2026-08-14T12:53:22",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — Claude UI, ask answered; IN-FOR-BEAR LAW (Liam, in for Ameya)",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. Today: a retrieval-augmented generation pipeline, in PyTorch, that answers questions from a PDF the model has never seen — and cites the page it used.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"build a RAG pipeline in PyTorch that answers questions from a PDF and cites the page\"",
+            "topic": "CLAUDE CODE · RETRIEVAL-AUGMENTED GENERATION",
+            "segment": "RAG Over PDFs",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "building the pipeline…",
+            "output": [
+              "chunk the PDF → embed with a PyTorch model",
+              "retrieve top-k by cosine similarity",
+              "answer ONLY from the retrieved chunks + cite the page"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 13.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why care",
+      "role_note": "the stakes BEFORE the build",
+      "narration_text": "Ask a language model about your own PDF — a contract, a paper, a policy — and it does one of two things: says it doesn't know, or worse, invents an answer that sounds right. It never read your document. Retrieval-augmented generation fixes that. Instead of trusting the model's memory, you hand it the exact passages it needs, and make it answer from those. The question this build answers: how do you find the right passages?",
+      "visual_intent": "title card: 'the model never read your PDF' -> two failure modes (I don't know / confident hallucination) -> RAG = give it the passages",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_Problem",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.61,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_Problem",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "role_note": "composer — show & discuss the prompt (cycle 1)",
+      "narration_text": "Start with the index. Into Claude: write rag dot pie. Read the PDF, split it into overlapping chunks of a few hundred words, and embed every chunk into a vector with a PyTorch sentence-transformer. The overlap matters — it keeps a sentence that straddles two chunks from being cut in half.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write rag.py: load a PDF, split into overlapping ~500-word chunks, embed each chunk with a sentence-transformer (PyTorch), L2-normalize\"",
+            "topic": "CLAUDE CODE · RETRIEVAL-AUGMENTED GENERATION",
+            "segment": "RAG Over PDFs",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "The ask,",
+            "runningText": "embedding chunks…"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — ACTUAL PyTorch embed code",
+      "narration_text": "Here's the real code. sentence-transformers runs on PyTorch, so model dot encode gives you a tensor — one row per chunk, three hundred eighty-four numbers each. The one line that matters is the normalize: make every vector length one, and a dot product between two of them becomes cosine similarity. That trick is what makes retrieval fast in the next step.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "rag.py  —  build the index",
+            "code": "import torch, pypdf\nfrom sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer(\"all-MiniLM-L6-v2\")   # runs on PyTorch\n\ndef load_chunks(path, size=500, overlap=50):\n    text = \" \".join(p.extract_text() for p in pypdf.PdfReader(path).pages)\n    w = text.split()\n    return [\" \".join(w[i:i+size]) for i in range(0, len(w), size - overlap)]\n\nchunks = load_chunks(\"paper.pdf\")\nemb = model.encode(chunks, convert_to_tensor=True)      # [n_chunks, 384]\nemb = torch.nn.functional.normalize(emb, dim=1)        # unit vectors",
+            "sparkLine": "Text becomes vectors."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run",
+      "role_note": "OPEN vox slot -> Manim: PDF -> chunks -> vectors in space",
+      "narration_text": "Run it, and the document stops being text. The PDF is sliced into chunks, and each chunk lands as a point in a high-dimensional space — shown here in two. Passages about the same idea sit near each other; unrelated ones drift apart. The meaning of your document is now geometry.",
+      "visual_intent": "PDF icon -> 4 chunk boxes -> arrow -> dots placed in a 'vector space' box; caption '384-dim vector, shown in 2D'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Embed",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.79,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Embed",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE — check & revise",
+      "role_note": "composer — THE REVISION LAW (cycle 2)",
+      "narration_text": "An index alone doesn't answer anything. Revise: add retrieval. Embed the question the same way, score it against every chunk with a single matrix multiply, take the top four, and build a prompt that tells the model to answer only from those passages — and to cite them.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"update rag.py: embed the question, cosine-similarity vs all chunks, take top-4, build a grounded prompt that answers ONLY from them and cites the source\"",
+            "topic": "CLAUDE CODE · RETRIEVAL-AUGMENTED GENERATION",
+            "segment": "RAG Over PDFs",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "The revision,",
+            "runningText": "retrieving…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.93,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — ACTUAL PyTorch retrieve code (the revised diff)",
+      "narration_text": "The revised code. Because every vector is unit-length, the whole search is one line: q at emb-transpose is the cosine similarity of the question against all chunks at once, and torch dot topk pulls the four closest. Those chunks become the context. The prompt does the rest of the work — answer only from this context, and if it isn't here, say so. That instruction is what stops the hallucination.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "rag.py  —  retrieve + ground",
+            "code": "def retrieve(question, k=4):\n    q = model.encode([question], convert_to_tensor=True)\n    q = torch.nn.functional.normalize(q, dim=1)\n    scores = q @ emb.T                    # cosine sim vs every chunk\n    top = torch.topk(scores[0], k).indices\n    return [chunks[i] for i in top]\n\ndef answer(question):\n    context = \"\\n\\n\".join(retrieve(question))\n    prompt = (f\"Answer ONLY from the context; cite it. \"\n              f\"If it's not here, say so.\\n\\n{context}\\n\\nQ: {question}\")\n    return llm(prompt)",
+            "sparkLine": "One matmul finds it."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — revised",
+      "role_note": "OPEN vox slot -> Manim: query finds top-k, grounds the answer",
+      "narration_text": "Now ask a question. It becomes a vector too, and drops into the same space. The matrix multiply ranks every chunk by nearness, and the top four light up — the passages that actually talk about what you asked. Those, and only those, go to the model. The answer comes back built from your document, with the page it came from attached. That citation is the difference between an answer you can check and one you have to trust.",
+      "visual_intent": "vector space with chunk dots; terracotta query dot; lines to k=4 nearest, ringed; -> grounded answer card 'source: paper.pdf, p.7'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B07_Retrieve",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 20.76,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim:B07_Retrieve",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "SUMMARY",
+      "role_note": "the lesson — one beat",
+      "narration_text": "So that's RAG, end to end: chunk, embed, retrieve, ground. PyTorch does the heavy part — turning text into vectors and finding the nearest ones with a single multiply. The model never had to memorize your PDF; it just had to read the four passages you handed it. Same model, but now it answers from evidence you can point to.",
+      "visual_intent": "recap chain: chunk -> embed -> retrieve -> ground; 'answers from evidence, not memory'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Summary",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 18.22,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Summary",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — suggested prompt typed in, read & discussed; 'Your turn.'",
+      "narration_text": "Your turn. Point this at a PDF you actually care about — a lease, a textbook chapter, a research paper — ask it a real question, and check the cited page yourself. Then push on it: raise k and watch the answer get more complete but noisier, or ask something the document doesn't cover and confirm it refuses instead of inventing. That refusal is the whole point.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"point rag.py at my lease.pdf, ask 'what is the late-rent penalty?', print the answer AND the top chunk it used with its page number\"",
+            "topic": "CLAUDE CODE · RETRIEVAL-AUGMENTED GENERATION",
+            "segment": "RAG Over PDFs",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-14T12:53:22"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — restate the title; @HumanitariansAI",
+      "narration_text": "RAG in PyTorch — answers from your PDF, with the receipt. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG in PyTorch.",
+            "handle": "@HumanitariansAI",
+            "subline": "Answers from your PDF, with the receipt"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 6.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-14T12:53:22"
+      }
+    }
+  ]
+}

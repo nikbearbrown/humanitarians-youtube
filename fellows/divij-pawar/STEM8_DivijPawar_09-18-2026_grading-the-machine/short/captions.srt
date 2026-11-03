@@ -1,0 +1,195 @@
+1
+00:00:00,000 --> 00:00:03,367
+Hi — I'm Divij Pawar. Every AI system that produces an answer
+
+2
+00:00:03,367 --> 00:00:06,700
+eventually needs a score attached to it — a confidence percentage, a
+
+3
+00:00:06,700 --> 00:00:07,767
+pass or fail, a grade.
+
+4
+00:00:08,533 --> 00:00:11,933
+Here's the question almost nobody asks before trusting that number: who, or
+
+5
+00:00:11,933 --> 00:00:14,333
+what, actually produced it — and can that thing be trusted more
+
+6
+00:00:14,333 --> 00:00:17,333
+than the system it's grading? Today: a teardown of grading the machine
+
+7
+00:00:17,333 --> 00:00:18,133
+itself.
+
+8
+00:00:18,167 --> 00:00:21,167
+The obvious answer — ask the AI how confident it is,
+
+9
+00:00:21,733 --> 00:00:24,100
+or ask a second AI to check the first one's work —
+
+10
+00:00:24,100 --> 00:00:26,000
+turns out to be broken in a specific,
+
+11
+00:00:26,400 --> 00:00:30,400
+well-documented way. And the fix is less glamorous than it sounds: mostly
+
+12
+00:00:30,400 --> 00:00:32,467
+boring, structural, computed arithmetic.
+
+13
+00:00:32,900 --> 00:00:34,967
+Which turns out to be exactly why it works.
+
+14
+00:00:35,730 --> 00:00:37,697
+The simplest approach is also the most tempting:
+
+15
+00:00:38,063 --> 00:00:40,530
+just have the model tell you how sure it is. Append a
+
+16
+00:00:40,530 --> 00:00:42,463
+confidence score to the output — 'I'm 92%
+
+17
+00:00:42,863 --> 00:00:45,597
+confident in this conclusion' — and use that number downstream.
+
+18
+00:00:46,163 --> 00:00:49,297
+Here's the problem, and it's not minor: the same mechanism that produced
+
+19
+00:00:49,297 --> 00:00:52,997
+a wrong answer is the mechanism producing the confidence score attached to
+
+20
+00:00:52,997 --> 00:00:53,797
+it.
+
+21
+00:00:53,497 --> 00:00:56,597
+A model that confidently hallucinated a number has no separate,
+
+22
+00:00:57,097 --> 00:01:00,997
+more-honest module standing off to the side, watching itself, immune to the
+
+23
+00:01:00,997 --> 00:01:02,097
+exact same failure.
+
+24
+00:01:02,463 --> 00:01:03,363
+It's the same fluent,
+
+25
+00:01:03,763 --> 00:01:05,297
+pattern-completing process either way.
+
+26
+00:01:05,797 --> 00:01:09,663
+Self-reported confidence measures how confident the text sounds. It does not measure
+
+27
+00:01:09,663 --> 00:01:13,697
+how well-founded the underlying claim actually is. Those two things correlate
+
+28
+00:01:13,697 --> 00:01:14,730
+loosely at best.
+
+29
+00:01:15,350 --> 00:01:16,150
+So:
+
+30
+00:01:15,883 --> 00:01:19,583
+self-graded confidence is biased, because the same process makes the mistake and
+
+31
+00:01:19,583 --> 00:01:20,383
+grades it.
+
+32
+00:01:20,717 --> 00:01:24,017
+A second AI judge is a category error — a good rationalization
+
+33
+00:01:24,017 --> 00:01:26,383
+and genuine reasoning read identically from outside.
+
+34
+00:01:26,783 --> 00:01:30,783
+A computed score, built from fixed deductions on observable facts, is inspectable
+
+35
+00:01:30,883 --> 00:01:32,617
+— and it's the only one of the three where you can
+
+36
+00:01:32,617 --> 00:01:36,017
+actually go find a mistake and fix it. It's still being calibrated.
+
+37
+00:01:36,283 --> 00:01:37,383
+That's the honest state of it.
+
+38
+00:01:37,940 --> 00:01:41,107
+Your turn. Find one place your own system produces a confidence score
+
+39
+00:01:41,107 --> 00:01:41,907
+or a grade.
+
+40
+00:01:42,307 --> 00:01:45,373
+Ask: is it self-reported by the same model that produced the answer?
+
+41
+00:01:45,773 --> 00:01:48,207
+Is it graded by a second model judging plausibility?
+
+42
+00:01:48,573 --> 00:01:50,873
+Or is it computed from fixed, observable deductions?
+
+43
+00:01:51,240 --> 00:01:54,273
+If it's either of the first two, sketch what an inspectable, computed
+
+44
+00:01:54,273 --> 00:01:57,107
+version would actually look like for your case — even three or
+
+45
+00:01:57,107 --> 00:01:58,673
+four penalty rules is a start.
+
+46
+00:01:59,290 --> 00:02:02,257
+That's the short version. The full video also covers So the next
+
+47
+00:02:02,257 --> 00:02:05,357
+instinct is:…, So if you can't trust… and Here's the part that's
+
+48
+00:02:05,357 --> 00:02:08,157
+easy… — watch Grading the Machine for the whole story.
+
+49
+00:02:08,623 --> 00:02:09,723
+The link is right below.

@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "Claude, Datadog API.",
+    "slug": "claude-tag-plugins--claude-liam-datadog-api",
+    "topic": "CLAUDE BASICS · DATADOG API SKILL",
+    "purpose": "Answer one real question in the Plain register: does Claude already know how an outside API like Datadog's works, or does something have to tell it? Lands the carry-out that a skill is a map of an API's traps, read before acting — not knowledge Claude already had — and Claude only avoids the traps the map actually marks.",
+    "skill": "hai-simple",
+    "register": "Plain",
+    "brand": "hai-fellows",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "in_for_bear": true,
+    "clock": "narration",
+    "bookend_exempt": [
+      "cold-open"
+    ],
+    "one_flag": "N/A — every claim in this reel is carried directly from the source Teardown's own stated facts about the datadog-api skill, not an inference this build is making",
+    "gate_c": "SIGNED — CARRY-OUT.md",
+    "gate_h": "N/A — hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "redo_of": "anthropics/claude-tag-plugins/youtube/claude-liam-datadog-api/beat_sheet.json (Teardown, 7 beats, fully-written narration — no source_skill file present on this machine, see QUESTION.md)",
+    "build": {
+      "at": "2026-08-31T14:04:35",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed Claude already knows how to work with an outside system like Datadog's API. Not quite — it gets shown, in a file it reads before acting. Here's what that file actually has to spell out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types the naive framing, hesitates on 'KNOWS', corrects to 'has to be shown', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Claude already\nKNOWS how APIs\nlike Datadog\nwork, right?",
+            "face": "serif",
+            "fontSize": 80,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "KNOWS",
+            "replacementWords": "has to be shown",
+            "mistakeRate": 8,
+            "hesitateWithin": 3,
+            "hesitateBetween": 22,
+            "charMs": 50,
+            "jitter": 28,
+            "seed": "hai-datadog-api"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md. Writer types the newcomer's wrong-guess word 'KNOWS' (implying Claude already possesses this from training), hesitates, corrects to 'has to be shown' -> lands 'Claude already has to be shown how APIs like Datadog work, right?'. The wrong guess is picked up directly by B01's 'file it reads before acting' framing. Narration is 36 words + lead_silence_s 0.8, giving the typing a >=9s window (TIMING LAW).",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 11.63,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "The Datadog API splits in two by what you're asking for, not by which version is newer. v1 covers metrics, monitors, dashboards, and service levels. v2 covers logs, traces, incidents, and session data. Two headers ride on every request Claude sends: one says which account you're in, one says who you are and what you're allowed to touch. The sharpest trap is regional — Datadog runs several separate regional addresses, and calling the wrong one returns a flat permission error even with valid keys. The skill's fix: set the region first, then make one throwaway call — the validate endpoint — just to confirm it before doing anything real.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 45,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "DatadogApiAnatomy",
+          "props": {
+            "sparkLine": "v1 or v2 by resource, not generation. Regional site first."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 34.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "design",
+      "narration_text": "Long results come back a page at a time, and Datadog uses three different schemes for that, depending which endpoint you're calling. Logs, events, and traces hand back a cursor — pass it forward, and stop once it's empty. Monitors use a page number instead. Incidents and users use a page size and offset. Two more things Claude has to track: one endpoint wraps its results one layer deeper than the rest, so the exact same shape of request needs extra nesting most other endpoints skip — miss it, and the error that comes back doesn't say which field was wrong. And updating a dashboard replaces the whole document: leave a widget out of the update, and it's gone, not skipped.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 48,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "DatadogApiDesign",
+          "props": {
+            "sparkLine": "Three pagination schemes. Spans vs logs: different JSON:API depth."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 35.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "5 both directions",
+      "narration_text": "So does having this file mean Claude never trips? Not exactly. Where the file spells something out plainly — the region check, the exact error text a missing flag produces — Claude follows it and skips the mistake entirely. Where it's buried in one line, or never flagged as a trap at all, Claude can still get it wrong, the same way a person skimming the same page would.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Two columns: what the skill spells out plainly, what it leaves easy to miss — no verdict frame, per-item facts only",
+        "remotion": {
+          "pattern": "MedhavyTwoColumnCard",
+          "props": {
+            "sparkLine": "Clear traps get dodged. Buried ones don't.",
+            "leftHeader": "documented plainly",
+            "leftItems": [
+              "security note leads, before any real operation",
+              "regional site has a one-call check: validate, before anything else",
+              "the missing-flag error is named exactly: \"bad range in URL\"",
+              "each pagination scheme is tied to specific endpoints, not left general"
+            ],
+            "rightHeader": "easy to miss",
+            "rightItems": [
+              "only one bundled script — every other write is hand-rolled",
+              "dashboard replace-all warning is a single sentence",
+              "the deeper-nested endpoint's extra layer isn't flagged as a trap",
+              "the envelope mismatch between endpoints is a footnote, not a callout"
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "A skill doesn't make Claude know an API. It gives Claude a map of where the traps are — and Claude only avoids the ones the map actually marks.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "A skill doesn't make Claude know an API. It gives Claude a map of where the traps are — and Claude only avoids the ones the map actually marks.",
+            "attribution": "",
+            "sparkLine": "A map, not knowledge — and only where it's marked.",
+            "citation": ""
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "actual_duration_s": 8.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Pick an API you've never used with Claude before, even a small public one. Before you let it write any code, ask it to list the three things it would need confirmed first: how requests are authenticated, how paginated results come back, and any known regional or versioning quirk. Then have it write the first real call, and check whether it actually used what it just told you it needed.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · AN API CLAUDE HASN'T SEEN",
+            "segment": "Your Turn",
+            "command": "Pick an API you've never used with Claude before, even a small public one. Before you let it write any code, list the three things you'd need confirmed first: how requests are authenticated, how paginated results come back, and any known regional or versioning quirk. Then write the first real call.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 20.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro series",
+      "narration_text": "Claude, Datadog API.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 4,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "CLAUDE BASICS · HUMANITARIANS AI",
+            "line": "Claude, Datadog API."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    },
+    {
+      "beat_id": "BCTA",
+      "act": "outro cta",
+      "narration_text": "…Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 4,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "…Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BCTA.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCTA.mp3",
+      "actual_duration_s": 2.09,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCTA.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:04:35"
+      }
+    }
+  ]
+}

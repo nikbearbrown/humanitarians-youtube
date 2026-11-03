@@ -136,7 +136,7 @@ find . -type f \( -name SOURCES.md -o -name FACTCHECK.md -o -name REPORT.md \)
 
 ## Repository and media policy
 
-The Git remote is `nikbearbrown/humanitarians-youtube`. The root `.gitignore` excludes MP3 and MP4 distribution media; timing metadata and reconstructable source assets may remain tracked. This repository is a production archive, not the Humanitarians website deployment.
+The Git remote is `nikbearbrown/humanitarians-youtube`. The root `.gitignore` excludes rendered media by location (`mp3/`, `audio/`, `media/`, `clips/`, `exports/`, `renders/`) and by render suffix (`-slate`, `-cut`, `-topaz`); source assets used to build a film — captures, source recordings, sound effects, pantry media — are tracked regardless of file type (rule of 2026-09-18). This repository is a production archive, not the Humanitarians website deployment.
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 

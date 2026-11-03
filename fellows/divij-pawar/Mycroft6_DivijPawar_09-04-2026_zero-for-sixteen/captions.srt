@@ -1,0 +1,531 @@
+1
+00:00:00,000 --> 00:00:03,292
+This tool has flagged sixteen contradictions between two AI agents.
+
+2
+00:00:03,792 --> 00:00:06,083
+None of them were real. Not probably wrong. Not needs
+
+3
+00:00:06,083 --> 00:00:08,708
+review. I turned all thirty-one runs this thing has ever
+
+4
+00:00:08,708 --> 00:00:11,417
+stored into a labeled corpus. I replayed every one of
+
+5
+00:00:11,417 --> 00:00:15,000
+them through today's code. I counted. Sixteen false positives. Zero
+
+6
+00:00:15,000 --> 00:00:17,750
+cases of two agents citing different values for the same
+
+7
+00:00:17,750 --> 00:00:20,458
+fact. The one time it did catch something real was
+
+8
+00:00:20,458 --> 00:00:23,250
+a number an agent invented. The fix I shipped to
+
+9
+00:00:23,250 --> 00:00:26,833
+reduce the false positives now suppresses that catch too. That's
+
+10
+00:00:26,833 --> 00:00:28,833
+this week. Not a feature. A measurement.
+
+11
+00:00:29,610 --> 00:00:33,485
+Quick recap. Cross-Agent Validation compares two agents' conclusions about the
+
+12
+00:00:33,485 --> 00:00:36,610
+same company. It flags mismatched numbers. It runs on an
+
+13
+00:00:36,610 --> 00:00:40,485
+accountability layer. Storage is append-only, one record per attempt. The
+
+14
+00:00:40,485 --> 00:00:43,735
+last video disclosed one limitation. It over-flags. Seven of twelve
+
+15
+00:00:43,735 --> 00:00:46,610
+tickers came back flagged. The reason was never measured. The
+
+16
+00:00:46,610 --> 00:00:49,818
+project's own words describe a second gap. Web static index
+
+17
+00:00:49,818 --> 00:00:52,652
+dot html and app dot js are, as of that
+
+18
+00:00:52,652 --> 00:00:56,777
+document, completely unmodified. Four sessions this period closed
+
+19
+00:00:56,777 --> 00:00:59,777
+both gaps. They restructured the code. They measured the guess.
+
+20
+00:01:00,610 --> 00:01:03,193
+The ask was specific. Don't demo the happy path. Show
+
+21
+00:01:03,193 --> 00:01:05,943
+what's actually tested, and what's actually going wrong. So the
+
+22
+00:01:05,943 --> 00:01:08,610
+first new module isn't a view. It's self_report dot py,
+
+23
+00:01:08,818 --> 00:01:11,235
+a single source of truth for what's broken. Every issue
+
+24
+00:01:11,235 --> 00:01:13,985
+carries a status. The test count is computed live, by
+
+25
+00:01:14,193 --> 00:01:17,193
+unittest discovery. That's unlike the README's old claim of a
+
+26
+00:01:17,235 --> 00:01:20,068
+hundred forty-three tests, wrong in three places. The warning above
+
+27
+00:01:20,068 --> 00:01:23,277
+the compare button is generated from that ledger. It isn't
+
+28
+00:01:23,693 --> 00:01:27,277
+hard-coded. A halted run renders as no comparison possible. The
+
+29
+00:01:27,277 --> 00:01:30,777
+contradiction flag is null, not false. Couldn't check and checked
+
+30
+00:01:30,777 --> 00:01:32,360
+and found nothing are different facts.
+
+31
+00:01:33,120 --> 00:01:35,912
+Version two came from a sharper critique. The layout hides
+
+32
+00:01:35,912 --> 00:01:38,453
+how each agent actually got there. I checked whether it
+
+33
+00:01:38,453 --> 00:01:41,203
+was true. It was, and worse than stated. The comparison
+
+34
+00:01:41,203 --> 00:01:44,370
+route makes exactly one EDGAR fetch. Not two. Both producers
+
+35
+00:01:44,370 --> 00:01:47,453
+read different lenses over the identical data. They run sequentially,
+
+36
+00:01:47,453 --> 00:01:50,953
+not concurrently. A tidy two-column layout would have invented a
+
+37
+00:01:50,953 --> 00:01:53,495
+request and a concurrency that don't exist. So the layout
+
+38
+00:01:53,495 --> 00:01:56,870
+renders the real shape. And the retry path, only ever
+
+39
+00:01:56,870 --> 00:02:00,453
+observed before in scripted mock failures, now renders in the
+
+40
+00:02:00,453 --> 00:02:02,995
+HTTP layer with real sequence numbers.
+
+41
+00:02:03,800 --> 00:02:06,633
+Every cited number traces back to that agent's own input.
+
+42
+00:02:07,175 --> 00:02:09,592
+On the real Apple case, three hundred eighty-three point two
+
+43
+00:02:09,633 --> 00:02:12,425
+six six billion dollars checks out. It reconciles to the
+
+44
+00:02:12,425 --> 00:02:16,675
+raw fact, despite completely different formatting. The zero point three
+
+45
+00:02:16,675 --> 00:02:19,383
+four debt-to-equity ratio doesn't. It appears nowhere in the input
+
+46
+00:02:19,383 --> 00:02:22,675
+at all. That's a fabrication. Before this, finding it required
+
+47
+00:02:22,675 --> 00:02:24,800
+a human reading a raw log by hand.
+
+48
+00:02:25,280 --> 00:02:28,238
+Third session. Sixteen modules sat flat at the root. One
+
+49
+00:02:28,238 --> 00:02:31,197
+of them shadowed a standard library module. Everything moved into
+
+50
+00:02:31,197 --> 00:02:35,613
+layers: core, adapters, pipeline, datasources, producers, validation. Zero
+
+51
+00:02:35,613 --> 00:02:39,113
+behavior change, verified two ways. The full suite passed after
+
+52
+00:02:39,113 --> 00:02:42,405
+eight incremental moves. And the untested web server's route table,
+
+53
+00:02:42,405 --> 00:02:45,822
+and the responses for nine calls, came back byte-identical after
+
+54
+00:02:45,822 --> 00:02:46,405
+every edit.
+
+55
+00:02:47,020 --> 00:02:50,270
+Three duplications came out, each with a specific risk. The
+
+56
+00:02:50,728 --> 00:02:54,603
+number-extraction regex existed three times, verbatim. Each copy asked the
+
+57
+00:02:54,603 --> 00:02:57,187
+reader to keep it in sync by hand. A drifted
+
+58
+00:02:57,187 --> 00:02:59,895
+copy wouldn't raise an error. It would just quietly report
+
+59
+00:02:59,895 --> 00:03:01,270
+a claim it never verified.
+
+60
+00:03:02,580 --> 00:03:04,497
+And forty-seven new tests. The one I care about is
+
+61
+00:03:04,497 --> 00:03:07,580
+test_layering dot py. It reads the imports as a syntax
+
+62
+00:03:07,580 --> 00:03:10,580
+tree. It fails if a layer reaches somewhere it shouldn't.
+
+63
+00:03:10,747 --> 00:03:13,538
+A passing architecture test is worthless if it can't fail.
+
+64
+00:03:13,830 --> 00:03:16,622
+So I broke it three times on purpose. Each violation
+
+65
+00:03:16,622 --> 00:03:19,455
+named the offending file and line. Then I restored it.
+
+66
+00:03:20,040 --> 00:03:22,498
+Which brings us back to the cold open. Seven of
+
+67
+00:03:22,623 --> 00:03:25,957
+twelve tickers over-flag was prose. So all thirty-one real runs
+
+68
+00:03:26,040 --> 00:03:29,082
+this system has ever stored became a versioned fixture. Each
+
+69
+00:03:29,082 --> 00:03:31,748
+one is labeled. Each one was replayed through today's actual
+
+70
+00:03:31,748 --> 00:03:35,832
+comparator, not hand-predicted. Sixteen of thirty-one are disjoint-concept false
+
+71
+00:03:35,832 --> 00:03:38,290
+positives. Zero are genuine conflicts.
+
+72
+00:03:39,090 --> 00:03:42,465
+Here's the structural reason, the actual finding. Every flagged run
+
+73
+00:03:42,465 --> 00:03:45,882
+pairs producer A's Assets, Revenues, and Net Income against producer
+
+74
+00:03:45,882 --> 00:03:49,632
+B's Earnings Per Share and Operating Income. Those vocabularies never
+
+75
+00:03:49,632 --> 00:03:53,007
+intersect, by design. The earnings producer's own docstring calls it
+
+76
+00:03:53,007 --> 00:03:56,048
+deliberate. No amount of tuning can ever produce a genuine-conflict
+
+77
+00:03:56,090 --> 00:03:59,923
+finding. You cannot detect disagreement between two witnesses asked different
+
+78
+00:03:59,923 --> 00:04:03,923
+questions. The fix is upstream. It wasn't this session's job.
+
+79
+00:04:04,215 --> 00:04:04,882
+Eight new tests assert it.
+
+80
+00:04:06,270 --> 00:04:09,228
+Building that corpus surfaced two findings nobody had written down.
+
+81
+00:04:09,728 --> 00:04:12,478
+First: replay the historic fabrication case, the one run that
+
+82
+00:04:12,478 --> 00:04:15,103
+ever proved this tool catches something real. It wouldn't flag
+
+83
+00:04:15,103 --> 00:04:17,645
+today. Two fixes shipped the same day back in August.
+
+84
+00:04:17,937 --> 00:04:20,520
+One widened the regex. The other required both agents to
+
+85
+00:04:20,520 --> 00:04:22,978
+have cited a number before flagging. In that run, producer
+
+86
+00:04:22,978 --> 00:04:25,687
+B's side is empty. So the second fix suppresses the
+
+87
+00:04:25,687 --> 00:04:28,270
+flag entirely. Neither fix is wrong on its own.
+
+88
+00:04:28,880 --> 00:04:32,297
+Second, a real extraction bug. The shared regex truncates a
+
+89
+00:04:32,297 --> 00:04:35,213
+large comma-grouped number with no currency symbol down to its
+
+90
+00:04:35,213 --> 00:04:38,672
+last digit group. An operating income of thirteen billion, nine
+
+91
+00:04:38,713 --> 00:04:42,130
+hundred seventy-one million dollars extracts as the string zero zero
+
+92
+00:04:42,130 --> 00:04:46,172
+zero point zero. Confirmed reproducing against today's code. Both went
+
+93
+00:04:46,172 --> 00:04:48,713
+into the ledger as open issues. Neither is fixed.
+
+94
+00:04:49,340 --> 00:04:52,132
+True now that wasn't before this period. The interface calls
+
+95
+00:04:52,132 --> 00:04:55,132
+the comparison route. It leads with the subsystem's own failures
+
+96
+00:04:55,132 --> 00:04:58,340
+instead of a demo. The one-fetch, two-lenses design and the
+
+97
+00:04:58,340 --> 00:05:01,673
+sequential execution are rendered honestly. The retry path is visible
+
+98
+00:05:01,673 --> 00:05:04,632
+outside the test suite for the first time. A fabricated
+
+99
+00:05:04,632 --> 00:05:07,340
+number is findable without reading a raw log by hand.
+
+100
+00:05:07,590 --> 00:05:10,507
+The code sits in enforced layers. The enforcement is proven
+
+101
+00:05:10,507 --> 00:05:13,840
+able to fail. The over-flagging claim is now a versioned
+
+102
+00:05:13,840 --> 00:05:17,632
+corpus and eight executable tests, instead of a sentence. Two
+
+103
+00:05:17,673 --> 00:05:21,215
+hundred twenty-four tests, up from one hundred sixty-nine, green at
+
+104
+00:05:21,215 --> 00:05:21,923
+every step.
+
+105
+00:05:22,470 --> 00:05:25,345
+Still not true. The comparison route, the trace module, and
+
+106
+00:05:25,345 --> 00:05:28,887
+every line of JavaScript have zero automated tests. Everything in
+
+107
+00:05:28,887 --> 00:05:31,470
+those first two sessions was verified by hand, in a
+
+108
+00:05:31,470 --> 00:05:33,845
+browser. None of this week's UI work has ever been
+
+109
+00:05:33,845 --> 00:05:37,387
+exercised against a real language model. No working Gemini key.
+
+110
+00:05:37,720 --> 00:05:40,887
+No Ollama running here. Every verified claim in those sessions
+
+111
+00:05:40,887 --> 00:05:44,178
+used a mock adapter or fixture data. The retry and
+
+112
+00:05:44,178 --> 00:05:47,095
+halt path is still only observed against scripted mock failures,
+
+113
+00:05:47,387 --> 00:05:50,512
+never a live model. The over-flagging isn't fixed. The suppressed
+
+114
+00:05:50,512 --> 00:05:53,262
+true positive isn't resolved. That one needs a human judgment
+
+115
+00:05:53,262 --> 00:05:56,053
+call, not a patch. The regex bug is still corrupting
+
+116
+00:05:56,053 --> 00:05:58,470
+a real figure every time it's hit. Fourteen entries in
+
+117
+00:05:58,470 --> 00:06:00,970
+the ledger now. Twelve of them are open or unverified.
+
+118
+00:06:01,137 --> 00:06:03,303
+One is critical. That's up from eleven at the start
+
+119
+00:06:03,303 --> 00:06:06,512
+of the period. Nothing was resolved this period. And the
+
+120
+00:06:06,512 --> 00:06:09,220
+largest one: none of this is committed. The last commit
+
+121
+00:06:09,220 --> 00:06:13,053
+in this repository predates all four sessions. Fifty-six changed or
+
+122
+00:06:13,053 --> 00:06:15,678
+new files, sitting in a local working tree. That's not
+
+123
+00:06:15,678 --> 00:06:18,720
+a technical risk I discovered. It's one this project already
+
+124
+00:06:18,720 --> 00:06:22,012
+named after the previous period's check. Still true. Now bigger.
+
+125
+00:06:22,740 --> 00:06:24,782
+So here's the smallest true claim I can make about
+
+126
+00:06:24,782 --> 00:06:27,740
+this week. The interface got honest. The code got layers.
+
+127
+00:06:27,948 --> 00:06:30,198
+And the headline feature got measured, for the first time.
+
+128
+00:06:30,823 --> 00:06:32,740
+The measurement says it has never once caught the thing
+
+129
+00:06:32,740 --> 00:06:34,948
+it was built to catch. A tool that can't produce
+
+130
+00:06:34,948 --> 00:06:38,157
+evidence against itself isn't a verification tool. It's a demo.
+
+131
+00:06:38,448 --> 00:06:40,282
+Sixteen flags. Zero conflicts.
+
+132
+00:06:41,382 --> 00:06:45,257
+Zero for sixteen. Written down, versioned, and executable. Signing off,
+
+133
+00:06:45,257 --> 00:06:45,757
+Divij Pawar.

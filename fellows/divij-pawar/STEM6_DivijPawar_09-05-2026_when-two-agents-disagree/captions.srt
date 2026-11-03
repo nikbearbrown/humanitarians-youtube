@@ -1,0 +1,543 @@
+1
+00:00:00,000 --> 00:00:02,767
+Hi — I'm Divij Pawar. Two agents look at the exact same
+
+2
+00:00:02,767 --> 00:00:05,933
+evidence — same filing, same numbers, same question — and come back
+
+3
+00:00:05,933 --> 00:00:06,867
+with opposite answers.
+
+4
+00:00:07,233 --> 00:00:11,000
+Agent A is confident the company's margins are improving. Agent B is
+
+5
+00:00:11,000 --> 00:00:14,433
+just as confident they're not. Both wrote clean, well-reasoned explanations.
+
+6
+00:00:14,833 --> 00:00:17,867
+Both cited real sources. Neither one is lying — they just can't
+
+7
+00:00:17,867 --> 00:00:21,500
+both be right. Today: what actually happens the second two agents disagree,
+
+8
+00:00:22,267 --> 00:00:25,467
+and why the instinctive fix — average their answers and move on
+
+9
+00:00:25,467 --> 00:00:27,233
+— is about the worst thing you could do.
+
+10
+00:00:27,930 --> 00:00:31,163
+Everything covered in the last two videos assumed a single agent doing
+
+11
+00:00:31,163 --> 00:00:33,497
+a single piece of reasoning that you then go check.
+
+12
+00:00:33,897 --> 00:00:35,797
+Claim extraction, source verification,
+
+13
+00:00:36,197 --> 00:00:39,363
+asking the same question twice — all of it interrogates one voice.
+
+14
+00:00:39,763 --> 00:00:43,030
+But build a system with several specialized agents — one on financial
+
+15
+00:00:43,030 --> 00:00:43,830
+analysis,
+
+16
+00:00:43,963 --> 00:00:47,397
+one on competitive research, one reading patents, one checking earnings calls
+
+17
+00:00:47,797 --> 00:00:51,330
+— and you've created something new: two independent lines of reasoning that
+
+18
+00:00:51,330 --> 00:00:52,930
+can flatly contradict each other.
+
+19
+00:00:53,463 --> 00:00:56,363
+Here's the thing, though — that disagreement isn't a bug. It's a
+
+20
+00:00:56,363 --> 00:01:00,197
+signal. It's the system telling you something a single confident agent never
+
+21
+00:01:00,197 --> 00:01:00,997
+could:
+
+22
+00:01:00,863 --> 00:01:03,063
+maybe the honest answer is 'we don't actually know.'
+
+23
+00:01:03,750 --> 00:01:06,417
+The obvious move is to blend the outputs — average the two
+
+24
+00:01:06,417 --> 00:01:08,917
+confidence scores, split the difference on the conclusion,
+
+25
+00:01:09,283 --> 00:01:11,250
+ship something moderate and hedged, and move on.
+
+26
+00:01:11,617 --> 00:01:13,017
+That instinct is exactly wrong.
+
+27
+00:01:13,483 --> 00:01:16,117
+Averaging two agents who disagree doesn't get you closer to the truth
+
+28
+00:01:16,183 --> 00:01:18,383
+— it gets you an answer that looks moderate but is really
+
+29
+00:01:18,383 --> 00:01:19,617
+nobody's actual opinion.
+
+30
+00:01:20,250 --> 00:01:22,950
+If Agent A is right and Agent B is wrong, blending them
+
+31
+00:01:22,950 --> 00:01:24,383
+just makes the true answer worse.
+
+32
+00:01:25,017 --> 00:01:27,550
+And it throws away the one piece of information in the whole
+
+33
+00:01:27,550 --> 00:01:29,517
+exchange that was actually valuable:
+
+34
+00:01:29,917 --> 00:01:31,550
+the fact that they disagreed at all.
+
+35
+00:01:32,017 --> 00:01:36,350
+A controller that quietly smooths conflicting outputs into a neutral-sounding grade
+
+36
+00:01:36,350 --> 00:01:40,317
+has taken the most informative moment in the pipeline and erased it.
+
+37
+00:01:40,930 --> 00:01:43,597
+Before you can do anything sensible about a disagreement, you have to
+
+38
+00:01:43,597 --> 00:01:45,797
+actually catch one — and that's harder than it sounds.
+
+39
+00:01:46,263 --> 00:01:47,997
+You can't just diff the text of two conclusions.
+
+40
+00:01:48,497 --> 00:01:51,197
+Two agents can use totally different words to say the same thing,
+
+41
+00:01:51,197 --> 00:01:53,830
+or nearly identical words to say opposite things.
+
+42
+00:01:54,263 --> 00:01:55,863
+What gets compared instead is structured:
+
+43
+00:01:56,263 --> 00:01:59,663
+the confidence score each agent assigned its own conclusion, plus something like
+
+44
+00:01:59,663 --> 00:02:02,897
+a directional vector — is this conclusion bullish or bearish,
+
+45
+00:02:03,397 --> 00:02:05,597
+improving or worsening, safe or risky.
+
+46
+00:02:06,030 --> 00:02:08,997
+When the gap between those two vectors crosses a threshold, that's what
+
+47
+00:02:08,997 --> 00:02:09,897
+triggers the alarm.
+
+48
+00:02:10,363 --> 00:02:14,163
+Below it, phrasing differences get ignored — two agents restating the same
+
+49
+00:02:14,163 --> 00:02:17,963
+conclusion in different words shouldn't set anything off. Above it, something real
+
+50
+00:02:17,963 --> 00:02:19,930
+is happening, and it gets escalated.
+
+51
+00:02:20,550 --> 00:02:23,583
+Once a real divergence gets flagged, the system doesn't just pick a
+
+52
+00:02:23,583 --> 00:02:25,583
+winner — it runs one bounded round of debate.
+
+53
+00:02:26,083 --> 00:02:29,317
+Each agent sees the other's conclusion and reasoning, and gets exactly one
+
+54
+00:02:29,317 --> 00:02:32,017
+chance to respond: defend, revise, or concede.
+
+55
+00:02:32,417 --> 00:02:33,617
+Just one round, on purpose.
+
+56
+00:02:34,183 --> 00:02:36,517
+Let two language models argue without a limit and you don't get
+
+57
+00:02:36,517 --> 00:02:39,383
+closer to the truth — you get whichever agent happens to sound
+
+58
+00:02:39,383 --> 00:02:40,217
+more persuasive,
+
+59
+00:02:40,817 --> 00:02:43,150
+which has nothing to do with which one is actually right.
+
+60
+00:02:43,650 --> 00:02:46,583
+A single exchange is enough to catch a plain error — 'oh,
+
+61
+00:02:46,683 --> 00:02:50,283
+you're right, I misread that line item' — without turning the arbitration
+
+62
+00:02:50,283 --> 00:02:51,783
+itself into another source of
+
+63
+00:02:52,250 --> 00:02:53,083
+confident-sounding nonsense.
+
+64
+00:02:53,980 --> 00:02:55,380
+That round ends one of two ways.
+
+65
+00:02:55,813 --> 00:02:58,947
+Resolved: one agent updates, or they land on shared ground, and the
+
+66
+00:02:58,947 --> 00:03:02,447
+system moves forward with a single conclusion, now backed by two independent
+
+67
+00:03:02,447 --> 00:03:03,947
+lines of reasoning instead of one.
+
+68
+00:03:04,480 --> 00:03:08,013
+Or unresolved: they still disagree, and instead of getting smoothed over or
+
+69
+00:03:08,013 --> 00:03:12,080
+averaged away, that disagreement gets written down as its own output —
+
+70
+00:03:12,113 --> 00:03:13,047
+recorded plainly:
+
+71
+00:03:13,413 --> 00:03:16,780
+here is where two independent processes looked at the same evidence and
+
+72
+00:03:16,780 --> 00:03:18,047
+landed in different places,
+
+73
+00:03:18,513 --> 00:03:19,513
+and here's each one's case.
+
+74
+00:03:20,370 --> 00:03:22,370
+Here's the part that actually matters downstream:
+
+75
+00:03:22,903 --> 00:03:26,070
+an unresolved disagreement needs to reach the human, or whoever makes the
+
+76
+00:03:26,070 --> 00:03:29,537
+final call, still looking unresolved — front and center, not buried in
+
+77
+00:03:29,537 --> 00:03:30,337
+a footnote.
+
+78
+00:03:30,737 --> 00:03:34,337
+If a downstream system takes that unresolved disagreement and quietly folds it
+
+79
+00:03:34,337 --> 00:03:36,137
+into one clean final grade anyway,
+
+80
+00:03:36,603 --> 00:03:39,403
+it's undone the entire reason you ran two agents in the first
+
+81
+00:03:39,403 --> 00:03:40,203
+place,
+
+82
+00:03:40,103 --> 00:03:41,737
+no matter how good the intentions were.
+
+83
+00:03:42,203 --> 00:03:45,937
+'These two independent processes looked at the same evidence and reached different
+
+84
+00:03:45,937 --> 00:03:46,737
+conclusions,
+
+85
+00:03:46,937 --> 00:03:49,903
+and one round of debate didn't settle it' is a genuinely more
+
+86
+00:03:49,903 --> 00:03:51,103
+useful thing to hand a
+
+87
+00:03:51,470 --> 00:03:54,170
+decision-maker than a falsely confident single number.
+
+88
+00:03:54,670 --> 00:03:57,737
+It tells them exactly where to look before they trust the result.
+
+89
+00:03:58,430 --> 00:03:59,897
+And here's the honest complication.
+
+90
+00:04:00,430 --> 00:04:03,930
+This whole mechanism has a real blind spot: if both agents are
+
+91
+00:04:03,930 --> 00:04:06,963
+drawing on the same underlying source, and that source is wrong or
+
+92
+00:04:06,963 --> 00:04:10,630
+has been tampered with, they'll agree with each other — confidently, consistently
+
+93
+00:04:10,630 --> 00:04:11,897
+— while both being wrong.
+
+94
+00:04:12,463 --> 00:04:14,430
+Arbitration only fires on disagreement.
+
+95
+00:04:14,930 --> 00:04:17,363
+Shared contamination produces agreement instead.
+
+96
+00:04:18,063 --> 00:04:21,163
+The one mechanism built to catch trouble can't see the failure mode
+
+97
+00:04:21,163 --> 00:04:24,397
+where both witnesses were handed the same bad evidence to begin with.
+
+98
+00:04:24,763 --> 00:04:27,563
+You can't patch that with a cleverer threshold. It's a real limit
+
+99
+00:04:27,563 --> 00:04:28,363
+of
+
+100
+00:04:28,263 --> 00:04:31,497
+arbitration-by-disagreement — it raises the cost of one agent going rogue, but
+
+101
+00:04:31,497 --> 00:04:34,697
+two agents drawing from the same poisoned well will simply agree their
+
+102
+00:04:34,697 --> 00:04:35,597
+way past it.
+
+103
+00:04:35,963 --> 00:04:39,297
+Good to know going in: arbitration lowers your risk. It doesn't take
+
+104
+00:04:39,297 --> 00:04:40,097
+it to zero.
+
+105
+00:04:40,540 --> 00:04:44,373
+So here's what actually holds up. One: disagreement between independent agents is
+
+106
+00:04:44,373 --> 00:04:46,373
+a signal, not noise — don't blend it away.
+
+107
+00:04:46,973 --> 00:04:49,940
+Two: detect it on structure, not on wording — compare confidence and
+
+108
+00:04:49,940 --> 00:04:51,073
+direction, not phrasing.
+
+109
+00:04:51,507 --> 00:04:54,540
+Three: bound the debate to a single round, or persuasive tone starts
+
+110
+00:04:54,540 --> 00:04:55,573
+winning over correctness.
+
+111
+00:04:55,940 --> 00:04:58,873
+Four: if it stays unresolved, it has to reach the final output
+
+112
+00:04:58,873 --> 00:05:01,473
+looking unresolved, not smoothed into one grade.
+
+113
+00:05:02,173 --> 00:05:04,773
+None of this eliminates risk on its own — a shared bad
+
+114
+00:05:04,773 --> 00:05:08,073
+source can still fool both agents at once — but it catches
+
+115
+00:05:08,073 --> 00:05:11,240
+a real category of failure a single agent never could.
+
+116
+00:05:12,030 --> 00:05:15,763
+So: treat disagreement between independent agents as a signal, not noise, and
+
+117
+00:05:15,763 --> 00:05:19,363
+don't blend it away. Detect it on structure — confidence and direction
+
+118
+00:05:19,430 --> 00:05:20,230
+— not wording.
+
+119
+00:05:20,397 --> 00:05:23,397
+Bound the debate to a single round. And if it's still unresolved,
+
+120
+00:05:23,563 --> 00:05:27,097
+it has to reach the final output looking unresolved, not smoothed into
+
+121
+00:05:27,097 --> 00:05:27,897
+one grade.
+
+122
+00:05:27,930 --> 00:05:30,163
+It lowers your risk. It doesn't take it to zero.
+
+123
+00:05:30,850 --> 00:05:33,250
+Your turn. Look at a system you're building or using with more
+
+124
+00:05:33,250 --> 00:05:35,783
+than one agent — even two steps that each produce a judgment.
+
+125
+00:05:36,383 --> 00:05:39,717
+First, name the structured signal you'd actually compare if they disagreed: a
+
+126
+00:05:39,717 --> 00:05:42,017
+confidence score, a directional call, not the raw text.
+
+127
+00:05:42,517 --> 00:05:44,950
+Second, pick a threshold — how big a gap actually counts as
+
+128
+00:05:44,950 --> 00:05:47,283
+a real disagreement, versus just different phrasing.
+
+129
+00:05:47,883 --> 00:05:51,517
+Third, decide, before it ever happens, what your system does with 'unresolved'
+
+130
+00:05:51,517 --> 00:05:52,317
+— where it shows up,
+
+131
+00:05:52,883 --> 00:05:53,917
+and who sees it first.
+
+132
+00:05:54,440 --> 00:05:56,607
+That question — what a system does with 'we don't know' —
+
+133
+00:05:56,607 --> 00:05:58,407
+comes up again next, in a different form:
+
+134
+00:05:58,773 --> 00:06:02,107
+what happens when an agent has to remember something across sessions, and
+
+135
+00:06:02,107 --> 00:06:06,040
+whether what it's doing is actually remembering, or just convincingly pretending to.
+
+136
+00:06:06,040 --> 00:06:07,307
+Signing off — Divij Pawar.

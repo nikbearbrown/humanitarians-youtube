@@ -1,0 +1,359 @@
+{
+  "metadata": {
+    "title": "CNN vs. ResNet: 1D Spectral Architecture Teardown",
+    "slug": "claude-liam-cnn-vs-resnet-short",
+    "topic": "DEEP LEARNING ARCHITECTURE · 1D CONVNETS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Hrishikesh",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "folderLabel": "RamanEffect",
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "kind": "short",
+    "derived_from": "claude-liam-cnn-vs-resnet",
+    "short_validation": {
+      "status": "ready",
+      "errors": []
+    },
+    "build": {
+      "at": "2026-10-30T16:50:08",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "narration_text": "Hola, this is Hrishikesh. Today we compare and contrast plain Convolutional Neural Networks against Residual Networks, focusing purely on architecture: stacked one-D convolutions versus residual skip connections across one-thousand-point Raman spectra.",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "compare LegacyCNN vs. Raman1DCNN (ResNet) architectures: layer topology, skip connections, receptive fields, and inductive bias.",
+            "topic": "ARCHITECTURE TEARDOWN",
+            "segment": "1D CNN vs. 1D ResNet",
+            "greeting": "Hola, Hrishikesh",
+            "runningText": "inspecting Conv1D blocks and identity shortcuts...",
+            "output": [
+              "✓ LegacyCNN: 6 plain Conv1D + BatchNorm + AvgPool1D layers",
+              "✓ Raman1DCNN: 25-layer ResNet with F(x) + x skip connections",
+              "✓ Local peak bottleneck (82.2%) vs. deep residual capacity"
+            ],
+            "folderLabel": "RamanEffect"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-30T20:04:07.836351+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-10-30T16:50:08"
+      },
+      "render_duration_s": 15.25
+    },
+    {
+      "beat_id": "B01",
+      "narration_text": "Intuition says stacking deeper convolutional layers always extracts richer spectral hierarchies. In practice, plain deep stacks suffer from vanishing gradients and degradation, whereas residual blocks reformulate layers to learn perturbations around an identity highway.",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter916",
+          "props": {
+            "text": "Architectural Hypothesis\nStacking 25 plain Conv1D layers\nalways improves feature extraction.\nWait, plain deep stacks degrade.\nResNet adds identity shortcuts\nH = F + x so gradients flow.",
+            "triggerWords": "always improves feature extraction",
+            "replacementWords": "triggers gradient degradation",
+            "fontSize": 48,
+            "charMs": 9,
+            "jitter": 15,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "seed": "42"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-30T20:43:54.327153+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 15.64,
+      "render_duration_s": 15.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter916",
+        "at": "2026-10-30T16:50:08"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "narration_text": "Compare the block topologies side by side. A plain CNN forces every layer to reconstruct the full signal representation H of x, while a residual block routes the input x around two weight layers, computing ReLU of F of x plus x.",
+      "estimated_duration_s": 15.5,
+      "shot": {
+        "type": "MEDIA",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 14.66,
+      "build": {
+        "status": "STILL",
+        "src": "media/B02.png",
+        "filled_by": "still",
+        "at": "2026-10-30T16:50:08"
+      },
+      "render_duration_s": 14.666666666666666
+    },
+    {
+      "beat_id": "B03",
+      "narration_text": "How is our six-layer Legacy CNN constructed? Each stage applies a one-D convolution, batch normalization, ReLU activation, and average pooling, progressively halving sequence length from one thousand points down to fifteen while preserving sharp local wavenumber peaks.",
+      "estimated_duration_s": 16.5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "inspect legacy_baseline/model.py: trace tensor shapes and pooling mechanics in LegacyCNN.",
+            "topic": "LEGACY CNN TOPOLOGY",
+            "segment": "6-Layer Sequential Stack",
+            "greeting": "Plain stack.",
+            "runningText": "tracing 1x1000 input through 6 Conv1D stages...",
+            "output": [
+              "✓ 6 Conv1D stages with BatchNorm1d + ReLU + AvgPool1d(2)",
+              "✓ Sequence compressed: 1000 → 500 → 250 → 125 → 62 → 31 → 15",
+              "✓ Flatten head locks exact wavenumber peak positions"
+            ],
+            "folderLabel": "RamanEffect"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-30T20:05:40.097393+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 15.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-10-30T16:50:08"
+      },
+      "render_duration_s": 15.875
+    },
+    {
+      "beat_id": "B04",
+      "narration_text": "In legacy baseline model dot py, Legacy CNN chains six sequential Conv-one-D blocks without skip paths. Average pooling smooths high-frequency detector noise at each stage before flattening directly into the thirty-class linear classifier.",
+      "estimated_duration_s": 15.5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "RamanEffectCodeBlock916",
+          "props": {
+            "filename": "legacy_baseline/model.py",
+            "language": "python",
+            "code": "# 6-Stage Plain 1D CNN\nclass LegacyCNN(Module):\n  def __init__(self):\n    # 6x Conv1d+AvgPool1d\n    self.features = Seq(\n      blk(1, 32),   # 500\n      blk(32, 64),  # 250\n      blk(64, 64),  # 125\n      blk(64, 128), # 62\n      blk(128, 128) # 15\n    )\n    self.fc = Linear(30)",
+            "topic": "PLAIN CONVNET CODE",
+            "segment": "LegacyCNN Sequential Stack"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-30T20:44:38.204378+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.83,
+      "render_duration_s": 14.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:RamanEffectCodeBlock916",
+        "at": "2026-10-30T16:50:08"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "narration_text": "Now examine receptive field scaling and structural depth. While Legacy CNN's six layers span up to three hundred fifteen wavenumbers to isolate narrow vibrational bands, the twenty-five-layer ResNet expands its receptive field across eight hundred ninety-five points, capturing global spectral correlations.",
+      "estimated_duration_s": 17.5,
+      "shot": {
+        "type": "MEDIA",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.56,
+      "build": {
+        "status": "STILL",
+        "src": "media/B05.png",
+        "filled_by": "still",
+        "at": "2026-10-30T16:50:08"
+      },
+      "render_duration_s": 17.583333333333332
+    },
+    {
+      "beat_id": "B06",
+      "narration_text": "Why does greater depth become a double-edged sword on one-D spectra? With nearly four times the parameter capacity and a global receptive field, an unregularized ResNet memorizes background fluorescence curves unless constrained by dropout and spectral augmentation.",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter916",
+          "props": {
+            "text": "Capacity vs Inductive Bias\nResNet scales to 25 layers and 512 channels\nand learns generalizable peak physics.\nWait, high capacity memorizes baseline noise.\nShallow 6 layer CNN acts as a natural\nstructural bottleneck on raw peaks.",
+            "triggerWords": "learns generalizable peak physics",
+            "replacementWords": "overfits background fluorescence",
+            "fontSize": 46,
+            "charMs": 9,
+            "jitter": 15,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "seed": "84"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-30T20:45:26.957535+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 16.04,
+      "render_duration_s": 16.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter916",
+        "at": "2026-10-30T16:50:08"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "narration_text": "Comparing performance across training regimes proves the architectural tradeoff. On ten-epoch smoothed spectra, ResNet leads fifty-nine point five to fifty-three point seven percent, but on five-fold cross-validation and raw spectra, Legacy CNN's local bottleneck wins seventy-six point five and eighty-two point two percent.",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "MEDIA",
+        "motion": "hold"
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.9,
+      "build": {
+        "status": "STILL",
+        "src": "media/B07.png",
+        "filled_by": "still",
+        "at": "2026-10-30T16:50:08"
+      },
+      "render_duration_s": 18.916666666666668
+    },
+    {
+      "beat_id": "B08",
+      "narration_text": "In src model dot py, ResidualBlock-one-D implements the two-layer convolutional branch alongside an optional one-by-one strided projection shortcut, summing F of x and x before the final nonlinearity and global average pooling head.",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "RamanEffectCodeBlock916",
+          "props": {
+            "filename": "src/model.py",
+            "language": "python",
+            "code": "# 1D Residual Block\nclass ResBlock1D(Module):\n  def forward(self, x):\n    # Weight Layer 1\n    y = relu(bn1(\n      conv1(x)))\n    # Weight Layer 2\n    f_x = bn2(conv2(y))\n    # Identity Shortcut\n    skip = self.proj(x)\n    # H(x) = ReLU(F(x)+x)\n    return relu(f_x+skip)",
+            "topic": "RESNET1D ARCHITECTURE",
+            "segment": "ResidualBlock1D & Shortcut"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-30T20:46:11.693337+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 14.78,
+      "render_duration_s": 14.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:RamanEffectCodeBlock916",
+        "at": "2026-10-30T16:50:08"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "narration_text": "Choosing between a plain CNN and a ResNet comes down to signal geometry: use shallow average-pooled CNNs when features are sharp, index-locked peaks, and deploy residual networks when global context and heavy augmentation dominate. Your turn.",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "Profile your 1D signal architecture: compare receptive field width against physical peak width before adding residual depth.",
+            "topic": "ARCHITECTURE TEARDOWN",
+            "segment": "Your Turn",
+            "greeting": "Your turn.",
+            "runningText": "waiting for input...",
+            "output": [],
+            "folderLabel": "RamanEffect"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-10-30T20:08:35.867437+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 14.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-10-30T16:50:08"
+      },
+      "render_duration_s": 14.875
+    },
+    {
+      "beat_id": "B10",
+      "narration_text": "Hrishikesh.",
+      "estimated_duration_s": 1.5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "CNN vs. ResNet: 1D Spectral Architecture Teardown",
+            "slug": "claude-liam-cnn-vs-resnet"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-10-30T20:46:29.754753+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 1.19,
+      "render_duration_s": 1.2083333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro916",
+        "at": "2026-10-30T16:50:08"
+      }
+    }
+  ]
+}

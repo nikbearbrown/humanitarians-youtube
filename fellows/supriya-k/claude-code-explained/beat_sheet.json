@@ -1,0 +1,431 @@
+{
+  "metadata": {
+    "title": "Claude Code, Explained.",
+    "slug": "claude-code-explained",
+    "topic": "CLAUDE CODE · AGENTIC CODING · PLAN / GATE / EXECUTE / VERIFY",
+    "skill": "cli-explainer",
+    "tool": "claude",
+    "persona": "none",
+    "narrator_identity": "Supriya",
+    "channel": null,
+    "channel_title": "",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "typography": {
+      "serif": "EB Garamond",
+      "sans": "Montserrat",
+      "mono": "PT Mono"
+    },
+    "source": [
+      "brutalist.art/HOW-TO.md §1 (Claude cannot watch the video; conductor model)",
+      "projects/banking-data-analyst-interview-prep/banking-domain-interview-end-to-end-v2/PLAN.md (v1 9:16 = 139.5kbps, text ~15–20% of frame height; 'ClaudeComposerAsk is already portrait-aware' claim)",
+      "projects/banking-data-analyst-interview-prep/banking-domain-interview-end-to-end-v2/STATUS.md (gate 3 sanity-render failure 55%→86%, 276→341kbps; Manim portrait frame_width bug, center 25–28%, Gate B passed clean)",
+      "runtime/remotion/src/scenes/ClaudeComposerAsk916.tsx (B04 code, verbatim lines 46, 50-51, 87-92; intervening comment lines 47-49 trimmed)",
+      "projects/banking-data-analyst-interview-prep/banking-domain-interview-end-to-end-v2/short/scenes.py (B07 code, verbatim lines 27-34)",
+      "projects/banking-data-analyst-interview-prep/banking-domain-interview-end-to-end-v2/PEDAGOGY.md ('an agent never signs its own gate')"
+    ],
+    "description": "How Claude Code works as a loop — plan, gate, execute, verify — told through two real bugs from this toolkit's own 9:16 build: a portrait composer a plan wrongly called portrait-ready (caught by a standalone render), and a Manim coordinate-frame bug that passed its layout audit while underfilling the frame.",
+    "aspect_ratio": "16:9",
+    "resolution": "3840x2160",
+    "resolution_note": "4K target. compile.py --height 2160 (16:9) / --height 3840 (9:16). Final encode uses the new opt-in --vbitrate floor (approved 2026-10-01).",
+    "date": "2026-10-01",
+    "gate_p": "PASS",
+    "no_paid_services": true,
+    "note": "CLI-explainer, required 12-beat spine. Branding (PM): exact intro 'Hi, I am Supriya and this video is about …'; no 'in for X'; visible 'Supriya' on every beat — composer folderLabel, ClaudeCodeBeat `handle` chip (new optional prop), Manim corner handle, full-size outro handle.",
+    "shorts_length_flag": "Approved 2026-10-01: NO shortened 9:16. Narration tightened so the 16:9 runs under the 180s Shorts cap with the endcard; ./art shorts must report 'under the cap → full reformat, no beats cut'. If measured audio exceeds ~170s, STOP and re-tighten — never drop the revision cycle.",
+    "requires_gate3": "ClaudeCodeBeat/ClaudeCodeBeat916 optional `handle` + `lang` props (empty/'python' defaults, backward-compatible); compile.py opt-in --vbitrate. B04/B07 props reference them; they are inert until Gate 3 lands.",
+    "total_estimated_duration_seconds": 170.1,
+    "build": {
+      "at": "2026-10-01T10:53:49",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": [
+        "B11: palette=claude but the outro is 'ClaudeTitleOutroFilled' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — Claude UI, ask shown answered. Exact required intro phrasing (PM).",
+      "narration_text": "Hi, I am Supriya and this video is about how Claude Code actually works: plan, gate, execute, verify. Every example is from real work in this toolkit.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"how does agentic coding actually work here?\"",
+            "topic": "CLAUDE CODE · AGENTIC CODING",
+            "segment": "Plan, Gate, Execute, Verify",
+            "greeting": "Hi, I am Supriya",
+            "runningText": "reading the build log…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude",
+            "output": [
+              "plan — approved before anything is built",
+              "gate — a person signs, never the agent",
+              "execute — Claude writes and runs the code",
+              "verify — look at the actual frames"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "estimated_duration_s": 11.0,
+      "actual_duration_s": 10.69,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "Manim — the stakes: a file check is not a look",
+      "narration_text": "Here's the problem. Claude writes the code for a video faster than I can. It can't watch the video. An earlier vertical cut of mine was true four K, and the text filled a fifth of the frame, at most. Bitrate: one hundred thirty-nine kilobits a second.",
+      "visual_intent": "Left: a ffprobe-style readout ticks green line by line (2160×3840 ✓, codec ✓, duration ✓). Right: a portrait frame outline; a small text block sits in its top fifth while the rest stays empty cream; a bracket measures '~1/5'; a bitrate counter settles at 139.5 kbps in crimson. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_CannotWatch",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "estimated_duration_s": 18.9,
+      "actual_duration_s": 16.3,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_CannotWatch",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "role_note": "Manim — the loop, drawn with the real files that carry each step",
+      "narration_text": "So the work runs as a loop. Plan: nothing is built until I approve it. Gate: I sign the narration before any audio exists, and the agent never signs its own gate. Execute: Claude writes the code and runs the renders. Verify: look at real frames. When verify fails, back to plan.",
+      "visual_intent": "Four nodes build clockwise as each is spoken — PLAN (PLAN.md), GATE (PEDAGOGY.md · VERDICT: PASS), EXECUTE (run.sh → renders), VERIFY (_qc contact sheet) — then a terracotta return arrow draws from VERIFY back to PLAN on 'back to plan'. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_TheLoop",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "estimated_duration_s": 20.8,
+      "actual_duration_s": 18.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_TheLoop",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CLI",
+      "role_note": "ClaudeComposerAsk — cycle 1, the ask (real: v2 STATUS.md gate 3)",
+      "narration_text": "Example one. The plan said the vertical composer was already portrait-ready. Before running the pipeline, one beat got a standalone render. Everything sat in the top half. So the ask: rebuild the layout.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"the portrait composer only fills the top half. rebuild the layout for 9:16\"",
+            "topic": "REMOTION · 9:16",
+            "segment": "The Half-Empty Frame",
+            "greeting": "The ask,",
+            "runningText": "rebuilding the layout…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "estimated_duration_s": 13.4,
+      "actual_duration_s": 13.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — cycle 1, the actual fix (ClaudeComposerAsk916.tsx, trimmed)",
+      "narration_text": "Here's the fix. Type size was never the problem; position was. The old layout stacked everything between ten and forty percent of the height. The rebuild spreads the anchors down the frame, and the card starts at forty-four percent.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ClaudeComposerAsk916.tsx",
+            "lang": "tsx",
+            "code": "const PAD_X = width * 0.08;\nconst UI = height * 0.026;\nconst CMD = UI * 1.25;\n\n// Vertical anchors spread across the SAFE916 active band (~5%–93% of\n// height) instead of the source's clustered 0.10–0.40 range.\nconst Y_TOPIC = height * 0.07;\nconst Y_SEGMENT = height * 0.135;\nconst Y_GREETING = height * 0.30;\nconst Y_CARD = height * 0.44;",
+            "sparkLine": "Position, not size.",
+            "handle": "Supriya",
+            "fit": true
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "estimated_duration_s": 15.7,
+      "actual_duration_s": 14.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTPUT",
+      "role_note": "Manim — cycle 1 result, measured numbers from v2 STATUS.md",
+      "narration_text": "Render it again. Content now spans about eighty-six percent of the frame's height, up from fifty-five. Bitrate rose from two hundred seventy-six to three hundred forty-one kilobits a second, with no encoder change.",
+      "visual_intent": "Two portrait frame outlines side by side; a height bracket grows on each: 55% (crimson) → 86% (teal), content blocks sliding into place on the right one; under each a bitrate counter ticks up: 276 kbps → 341 kbps. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_FillBefore_After",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "estimated_duration_s": 13.4,
+      "actual_duration_s": 13.8,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_FillBefore_After",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLI",
+      "role_note": "ClaudeComposerAsk — cycle 2, the revision (real: v2 STATUS.md 9:16 fix log)",
+      "narration_text": "Example two is worse, because the check passed. The vertical Manim scenes cleared the layout audit with no errors, and the frames still looked nearly empty. The revision: find out why.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"Gate B passes, but the portrait frames look empty. find out why\"",
+            "topic": "MANIM · 9:16",
+            "segment": "The Gate That Passed",
+            "greeting": "The revision,",
+            "runningText": "updating…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "estimated_duration_s": 12.6,
+      "actual_duration_s": 11.82,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — cycle 2, the actual fix (short/scenes.py header, verbatim)",
+      "narration_text": "Here's what was happening. A portrait resolution doesn't change Manim's coordinate frame. The scenes drew in landscape coordinates and shrank into the middle. The audit set portrait coordinates in its own process, so it checked a space the real render never used. Two lines fixed it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "short/scenes.py",
+            "lang": "python",
+            "code": "from manim import *\nimport numpy as np\n\n# See module docstring — without these two lines, `manim -r 2160,3840` renders\n# with the 16:9-default coordinate space (frame_width=14.222, frame_height=8.0)\n# instead of the portrait one Gate B validates against.\nconfig.frame_width = 4.5\nconfig.frame_height = 8.0",
+            "sparkLine": "Two lines. Whole frame.",
+            "handle": "Supriya",
+            "fit": true
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "estimated_duration_s": 18.5,
+      "actual_duration_s": 17.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTPUT",
+      "role_note": "Manim — cycle 2 result, the better output",
+      "narration_text": "Before, the scenes used roughly the center quarter of the canvas. After, they span the full frame, and the final frame check passed. The audit was right about its own coordinates and wrong about the video.",
+      "visual_intent": "One portrait frame outline; a small content cluster (~25–28% of the canvas) sits centered with a crimson 'audit: PASS' tag beside it; the frame's coordinate grid re-scales and the content expands to fill the full frame edge to edge; tag swaps to teal 'Gate V: 0 BLOCKER · 0 MAJOR'. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_WholeFrame",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "estimated_duration_s": 14.6,
+      "actual_duration_s": 12.71,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim:B08_WholeFrame",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "Manim — the lesson in one beat",
+      "narration_text": "So that's the loop. Plan, approved first. Gate, signed by a person. Execute, where Claude is fastest. Verify, by looking. Both bugs looked fine on paper.",
+      "visual_intent": "Four-row checklist builds with checkmarks (plan · gate · execute · verify), the owner tag beside each ('you' / 'you' / 'Claude' / 'you look'); a final line writes on: 'both bugs looked fine on paper'. Corner handle 'Supriya'.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B09_FourMoves",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "estimated_duration_s": 10.7,
+      "actual_duration_s": 10.77,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B09.mp4",
+        "filled_by": "manim:B09_FourMoves",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — the prompt is read aloud and discussed",
+      "narration_text": "Your turn. Before your next change, paste this: write a plan, list what you'll verify and how, then wait for my approval. Watch the middle part. If Claude can't say how it will check the result, the plan isn't finished.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"before you change anything: write a plan, list what you'll verify and how, then wait for my approval\"",
+            "topic": "YOUR TURN",
+            "segment": "Plan Before You Build",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "Supriya",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "estimated_duration_s": 16.1,
+      "actual_duration_s": 13.63,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-01T10:53:49"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "title-restate outro — LAST beat. Full-size visible handle 'Supriya'.",
+      "narration_text": "Claude Code, Explained. Plan, gate, execute, verify. I am Supriya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutroFilled",
+          "props": {
+            "title": "Claude Code, Explained.",
+            "handle": "Supriya",
+            "subline": "Built with Claude.",
+            "scale": 1.8
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "estimated_duration_s": 4.4,
+      "actual_duration_s": 4.78,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-01T10:53:49"
+      }
+    }
+  ]
+}

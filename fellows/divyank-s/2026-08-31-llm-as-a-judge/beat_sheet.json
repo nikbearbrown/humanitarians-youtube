@@ -1,0 +1,1520 @@
+{
+  "metadata": {
+    "title": "Claude, Judged.",
+    "slug": "claude-liam-llm-as-a-judge",
+    "topic": "LLM EVALUATION · SYSTEMS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Liam",
+    "greeting_note": "hello lexicon: Turkish. Wagwan check: charsum('claude-liam-llm-as-a-judge') % 10 == 7, not 0.",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "note": "deep-explainer, fresh technical build (not sourced from ai1-cli or any single document) covering the 8 required points: test case structure, judge prompts, output parsing, bias mitigation, metric abstraction, batch evaluation runner, aggregation, CI/CD integration. 4 acts, 2 points/act. Content is general, well-established LLM-evaluation engineering practice; the one specific citation (position/verbosity/self-enhancement bias) is Zheng et al. 2023, 'Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena' -- see FACTCHECK.md for the honesty/sourcing method note. No Manim on this machine (pangocairo not installed) -- MANIM lane absorbed into REMOTION, as in the prior two deep-explainer builds. VOX quota: 6 real Wikimedia Commons photographs (public domain / CC0 / CC BY), used as METAPHOR imagery (filing records, a courtroom, a telegraph operator, scales of justice, two WWII aircraft-assembly-line photos) since the topic itself has no historical referent -- captioned as illustrative, never claimed to depict LLM evaluation literally. This is the 16:9 master; a 9:16 Short is derived via runtime/scripts/shorts.py into short/. Both compiled at 4K (16:9: 3840x2160; 9:16: 2160x3840). GATE P: PENDING, see PEDAGOGY.md.",
+    "build": {
+      "at": "2026-08-28T14:06:38",
+      "cut": "master",
+      "filled": 32,
+      "of": 32,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. Ask five different eval frameworks how they use an LLM as a judge, and you get five different half-built systems — until you look at what they all actually need underneath: eight real components, from the test case to the CI gate. Let's build the whole pipeline, in order.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "0%",
+            "event": "composer cold-opens, spark + 'Merhaba, Liam' greeting settles"
+          },
+          {
+            "at": "20%",
+            "event": "command types itself in: the eight-components question"
+          },
+          {
+            "at": "55%",
+            "event": "send arms, runningText plays"
+          },
+          {
+            "at": "75%",
+            "event": "RESULT lines land in sequence"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "LLM EVALUATION · SYSTEMS",
+            "segment": "Claude, Judged.",
+            "command": "Walk me through everything a real LLM-as-a-judge evaluation system needs, in order, from the test case to the CI gate.",
+            "runningText": "mapping the pipeline…",
+            "folderLabel": "@NikBearBrown",
+            "output": [
+              "a test case is a structured object, not a chat",
+              "the judge's own answer needs bias-checking, not just parsing",
+              "the last mile is a CI gate, not a spreadsheet"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A1C",
+      "act": "Act I — Define the Case",
+      "narration_text": "Act one: define the case.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "act card settles: 'I — Define the Case'"
+          }
+        ],
+        "remotion": {
+          "pattern": "FluencySegmentCard",
+          "props": {
+            "title": "Define the Case",
+            "index": "I"
+          },
+          "rendered": {
+            "out": "media/A1C.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A1C.mp3",
+      "actual_duration_s": 2.24,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A1C.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A1-1",
+      "act": "Act I — Define the Case",
+      "narration_text": "Every judgment starts with a record, not a conversation. A test case is a structured object: the input prompt, the candidate output being graded, an optional reference answer, and metadata — category, difficulty, the tags a later report will group by.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "STILL",
+        "source": "archive",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.45
+        ],
+        "prompt": "real archival photo of index-card / filing-folder records -- illustrative of a structured record, not a literal depiction of LLM evaluation. Already sourced, see media/A1-1.source.txt",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "treated plate; slow push into the filing folders"
+          },
+          {
+            "at": 0.7,
+            "event": "serif label lands: 'a record, not a conversation'"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-A1-1.mp3",
+      "actual_duration_s": 14.72,
+      "build": {
+        "status": "STILL",
+        "src": "media/A1-1.png",
+        "filled_by": "still",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A1-2",
+      "act": "Act I — Define the Case",
+      "narration_text": "Four layers, always in the same order. Input: what was asked. Candidate: what the model under test actually said. Reference: a gold answer, when one exists. Rubric: the criteria the judge is told to apply. Skip the rubric, and the judge is just guessing what you meant.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-70%",
+            "event": "four layers stack in order: Input, Candidate, Reference, Rubric"
+          },
+          {
+            "at": "90%",
+            "event": "caption settles: 'skip the rubric, the judge guesses'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "Four layers, in order.",
+            "layers": [
+              {
+                "title": "Input",
+                "sub": "what was actually asked"
+              },
+              {
+                "title": "Candidate",
+                "sub": "what the model under test said"
+              },
+              {
+                "title": "Reference",
+                "sub": "a gold answer, when one exists"
+              },
+              {
+                "title": "Rubric",
+                "sub": "the criteria the judge is told to apply",
+                "accent": true
+              }
+            ],
+            "caption": "skip the rubric, the judge guesses"
+          },
+          "rendered": {
+            "out": "media/A1-2.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A1-2.mp3",
+      "actual_duration_s": 14.27,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A1-2.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A1-3",
+      "act": "Act I — Define the Case",
+      "narration_text": "Now the judge itself — not a person, a second LLM call, given a role: 'you are an impartial judge.' That framing isn't decoration. It's the first line of a prompt built to resist the same sloppy habits its own model would use on an ordinary chat turn.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "STILL",
+        "source": "archive",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.4
+        ],
+        "prompt": "real archival courtroom-gavel photo -- illustrative of the judge role, not a literal depiction. Already sourced, see media/A1-3.source.txt",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "treated plate; slow push onto the gavel"
+          },
+          {
+            "at": 0.7,
+            "event": "serif label lands: 'you are an impartial judge'"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-A1-3.mp3",
+      "actual_duration_s": 14.66,
+      "build": {
+        "status": "STILL",
+        "src": "media/A1-3.png",
+        "filled_by": "still",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A1-4",
+      "act": "Act I — Define the Case",
+      "narration_text": "A working judge prompt has four parts on screen: the role framing, the rubric, the candidate output verbatim, and an explicit instruction on how to answer — usually a fixed format, because the next step in this pipeline has to read that answer back out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "7-60%",
+            "event": "four chips snap in: Role, Rubric, Candidate output, Answer format"
+          },
+          {
+            "at": "82%",
+            "event": "caption settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Four parts, every time.",
+            "items": [
+              "Role: 'you are an impartial judge'",
+              "The rubric",
+              "The candidate output, verbatim",
+              "A fixed answer format"
+            ],
+            "cols": 2,
+            "caption": "the next step has to read this answer back out"
+          },
+          "rendered": {
+            "out": "media/A1-4.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A1-4.mp3",
+      "actual_duration_s": 13.93,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A1-4.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A1-5",
+      "act": "Act I — Define the Case",
+      "narration_text": "One fork happens before any of that: is there a reference answer? Reference-based judging compares the candidate against a known-good answer — narrower, more reliable. Reference-free judging asks the judge to grade on the rubric alone, when no gold answer exists.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-40%",
+            "event": "question card settles: 'is there a reference answer?'"
+          },
+          {
+            "at": "50-95%",
+            "event": "two outcome cards land: reference-based / reference-free"
+          }
+        ],
+        "remotion": {
+          "pattern": "BinaryBranch",
+          "props": {
+            "data": {
+              "slideMeta": "the first fork",
+              "question": "Is there a reference answer?",
+              "branches": [
+                {
+                  "label": "Reference-based",
+                  "detail": "compares against a known-good answer",
+                  "fix": "narrower, more reliable",
+                  "tone": "good"
+                },
+                {
+                  "label": "Reference-free",
+                  "detail": "grades on the rubric alone",
+                  "fix": "necessary when no gold answer exists",
+                  "tone": "warn"
+                }
+              ],
+              "resolver": {
+                "label": "Both are legal",
+                "detail": "the fork decides HOW the rubric gets applied"
+              }
+            }
+          },
+          "rendered": {
+            "out": "media/A1-5.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A1-5.mp3",
+      "actual_duration_s": 14.46,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A1-5.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A1-6",
+      "act": "Act I — Define the Case",
+      "narration_text": "One more habit worth stealing: ask for reasoning before the score, not after. A judge forced to write its justification first, then commit to a verdict, catches its own contradictions — the same way asking a person to explain their answer does.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "7-55%",
+            "event": "chip sequence: Reasoning first, then Verdict"
+          },
+          {
+            "at": "80%",
+            "event": "caption settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Reasoning first.",
+            "items": [
+              "1. Write the justification",
+              "2. Then commit to the score"
+            ],
+            "cols": 2,
+            "caption": "catches its own contradictions before they're scored"
+          },
+          "rendered": {
+            "out": "media/A1-6.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A1-6.mp3",
+      "actual_duration_s": 13.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A1-6.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A2C",
+      "act": "Act II — Read the Verdict",
+      "narration_text": "Act two: read the verdict.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "act card settles: 'II — Read the Verdict'"
+          }
+        ],
+        "remotion": {
+          "pattern": "FluencySegmentCard",
+          "props": {
+            "title": "Read the Verdict",
+            "index": "II"
+          },
+          "rendered": {
+            "out": "media/A2C.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A2C.mp3",
+      "actual_duration_s": 2.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A2C.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A2-1",
+      "act": "Act II — Read the Verdict",
+      "narration_text": "The judge's answer arrives as text — a sentence, a paragraph, sometimes a stray apology. Somewhere between that raw response and a number in a spreadsheet, someone has to turn language back into data. That step is output parsing, and it breaks more often than any other.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "STILL",
+        "source": "archive",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.4
+        ],
+        "prompt": "real archival photo of a telegraph operator -- illustrative of turning a raw signal into structured data, not a literal depiction. Already sourced, see media/A2-1.source.txt",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "treated plate; slow push onto the operator at the telegraph"
+          },
+          {
+            "at": 0.7,
+            "event": "serif label lands: 'language back into data'"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-A2-1.mp3",
+      "actual_duration_s": 14.72,
+      "build": {
+        "status": "STILL",
+        "src": "media/A2-1.png",
+        "filled_by": "still",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A2-2",
+      "act": "Act II — Read the Verdict",
+      "narration_text": "Two ways to extract the score. Regex over free text — fast to write, and it silently breaks the moment the judge phrases things differently. Constrained output — JSON mode, or a function-call schema — forces the shape at generation time, so parsing becomes a formality.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "15-88%",
+            "event": "two tracks diverge: regex arcs up warn, constrained output arcs down good"
+          }
+        ],
+        "remotion": {
+          "pattern": "DivergentFates",
+          "props": {
+            "data": {
+              "slideMeta": "extracting the score",
+              "startLabel": "the judge's raw response",
+              "splitLabel": "regex / constrained output",
+              "tracks": [
+                {
+                  "label": "Regex over free text",
+                  "outcome": "breaks silently when phrasing shifts",
+                  "tone": "warn",
+                  "path": "up",
+                  "notes": [
+                    "fast to write"
+                  ]
+                },
+                {
+                  "label": "Constrained output (JSON/schema)",
+                  "outcome": "shape forced at generation time",
+                  "tone": "good",
+                  "path": "down",
+                  "notes": [
+                    "parsing becomes a formality"
+                  ]
+                }
+              ]
+            }
+          },
+          "rendered": {
+            "out": "media/A2-2.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A2-2.mp3",
+      "actual_duration_s": 15.53,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A2-2.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A2-3",
+      "act": "Act II — Read the Verdict",
+      "narration_text": "Even a perfectly parsed verdict can be a wrong one. In 2023, Zheng and colleagues, benchmarking judges for M-T Bench, named the specific ways an LLM judge tilts the scale without anyone asking it to.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "shot": {
+        "type": "STILL",
+        "source": "archive",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.45
+        ],
+        "prompt": "real archival photo of a Scales of Justice statue -- illustrative of fairness/balance, not a literal depiction. Already sourced, see media/A2-3.source.txt",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "treated plate; slow push onto the scales"
+          },
+          {
+            "at": 0.7,
+            "event": "serif label lands: 'tilts the scale, unasked'"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-A2-3.mp3",
+      "actual_duration_s": 12.61,
+      "build": {
+        "status": "STILL",
+        "src": "media/A2-3.png",
+        "filled_by": "still",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A2-4",
+      "act": "Act II — Read the Verdict",
+      "narration_text": "Three documented biases. Position bias: favoring whichever answer it reads first, or last. Verbosity bias: rewarding length over quality. Self-enhancement bias: a model quietly preferring answers written in its own family's voice.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "7-70%",
+            "event": "three chips snap in: Position, Verbosity, Self-enhancement"
+          },
+          {
+            "at": "85%",
+            "event": "caption settles with the citation"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Three named biases.",
+            "items": [
+              "Position bias — favors first/last",
+              "Verbosity bias — rewards length",
+              "Self-enhancement bias — favors its own family"
+            ],
+            "cols": 1,
+            "caption": "Zheng et al., 2023 — MT-Bench / Chatbot Arena"
+          },
+          "rendered": {
+            "out": "media/A2-4.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A2-4.mp3",
+      "actual_duration_s": 13.63,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A2-4.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A2-5",
+      "act": "Act II — Read the Verdict",
+      "narration_text": "Position bias has a direct fix: run the comparison twice, swapping which answer appears first, and keep only the verdicts that agree both times. Disagreement isn't noise to average away — it's the judge admitting the two answers were closer than the rubric could resolve.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-40%",
+            "event": "question card: 'does the order change the verdict?'"
+          },
+          {
+            "at": "50-95%",
+            "event": "two outcomes: agrees both ways / disagrees"
+          }
+        ],
+        "remotion": {
+          "pattern": "BinaryBranch",
+          "props": {
+            "data": {
+              "slideMeta": "the position-bias fix",
+              "question": "Swap the order — does the verdict change?",
+              "branches": [
+                {
+                  "label": "Agrees both ways",
+                  "detail": "the verdict survives the swap",
+                  "fix": "keep it",
+                  "tone": "good"
+                },
+                {
+                  "label": "Disagrees",
+                  "detail": "the answers were closer than the rubric resolved",
+                  "fix": "don't average — flag it",
+                  "tone": "warn"
+                }
+              ],
+              "resolver": {
+                "label": "Run it twice, swapped",
+                "detail": "the cheapest bias check that exists"
+              }
+            }
+          },
+          "rendered": {
+            "out": "media/A2-5.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A2-5.mp3",
+      "actual_duration_s": 14.83,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A2-5.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A2-6",
+      "act": "Act II — Read the Verdict",
+      "narration_text": "None of this makes the judge unbiased. It makes the bias bounded and visible instead of silent — which is the most any single evaluation step can honestly promise.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "spark line breathing beat: 'bounded, not solved'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Bounded, not solved.",
+            "items": [
+              "visible bias",
+              "silent bias"
+            ],
+            "cols": 2,
+            "caption": "the honest limit of this step"
+          },
+          "rendered": {
+            "out": "media/A2-6.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A2-6.mp3",
+      "actual_duration_s": 9.47,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A2-6.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A3C",
+      "act": "Act III — Judge at Scale",
+      "narration_text": "Act three: judge at scale.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "act card settles: 'III — Judge at Scale'"
+          }
+        ],
+        "remotion": {
+          "pattern": "FluencySegmentCard",
+          "props": {
+            "title": "Judge at Scale",
+            "index": "III"
+          },
+          "rendered": {
+            "out": "media/A3C.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A3C.mp3",
+      "actual_duration_s": 2.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A3C.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A3-1",
+      "act": "Act III — Judge at Scale",
+      "narration_text": "One test case, once, is a demo. A real evaluation suite runs hundreds or thousands of cases, across every rubric that matters, on every model version that ships. That's not a script anymore — it's a production line, and it needs the same discipline one gets.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "STILL",
+        "source": "archive",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "prompt": "real archival WWII aircraft-assembly-line photo -- illustrative of running many cases at scale, not a literal depiction. Already sourced, see media/A3-1.source.txt",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "treated plate; slow drift along the assembly line"
+          },
+          {
+            "at": 0.7,
+            "event": "serif label lands: 'a production line, not a script'"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-A3-1.mp3",
+      "actual_duration_s": 14.53,
+      "build": {
+        "status": "STILL",
+        "src": "media/A3-1.png",
+        "filled_by": "still",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A3-2",
+      "act": "Act III — Judge at Scale",
+      "narration_text": "The fix is an abstraction most harnesses converge on independently: separate WHAT gets measured from HOW it gets scored. A metric is an interface — correctness, helpfulness, safety, groundedness — and any of them can plug into the same judge-calling machinery underneath.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-70%",
+            "event": "layers stack: Metric interface, Judge-calling machinery"
+          },
+          {
+            "at": "90%",
+            "event": "caption settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "What, then how.",
+            "layers": [
+              {
+                "title": "Metric interface",
+                "sub": "correctness / helpfulness / safety / groundedness",
+                "accent": true
+              },
+              {
+                "title": "Judge-calling machinery",
+                "sub": "the same underneath, for every metric"
+              }
+            ],
+            "caption": "swap the metric, never the machinery"
+          },
+          "rendered": {
+            "out": "media/A3-2.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A3-2.mp3",
+      "actual_duration_s": 14.78,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A3-2.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A3-3",
+      "act": "Act III — Judge at Scale",
+      "narration_text": "Underneath that interface, the runner's real engineering problems: rate limits on the judge model itself, retries when a call fails or returns garbage, and concurrency — running many cases in parallel without tripping the same limits twice.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "7-70%",
+            "event": "three chips snap in: Rate limits, Retries, Concurrency"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "The unglamorous parts.",
+            "items": [
+              "Rate limits on the judge model",
+              "Retries on failed/garbage calls",
+              "Concurrency, without tripping limits twice"
+            ],
+            "cols": 1,
+            "caption": "the runner's real job"
+          },
+          "rendered": {
+            "out": "media/A3-3.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A3-3.mp3",
+      "actual_duration_s": 13.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A3-3.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A3-4",
+      "act": "Act III — Judge at Scale",
+      "narration_text": "One more runner habit that pays for itself immediately: cache the judge's verdict on an identical input. Re-run the same candidate against the same rubric, and a cache hit means zero cost and a guaranteed identical score — not a second roll of an inherently noisy dice.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "15-88%",
+            "event": "two tracks: re-run arcs up warn, cache hit arcs down good"
+          }
+        ],
+        "remotion": {
+          "pattern": "DivergentFates",
+          "props": {
+            "data": {
+              "slideMeta": "identical input, twice",
+              "startLabel": "same candidate, same rubric",
+              "splitLabel": "re-run / cache hit",
+              "tracks": [
+                {
+                  "label": "Re-run the judge",
+                  "outcome": "full cost, and a noisy re-roll",
+                  "tone": "warn",
+                  "path": "up",
+                  "notes": []
+                },
+                {
+                  "label": "Cache hit",
+                  "outcome": "zero cost, identical score",
+                  "tone": "good",
+                  "path": "down",
+                  "notes": []
+                }
+              ]
+            }
+          },
+          "rendered": {
+            "out": "media/A3-4.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A3-4.mp3",
+      "actual_duration_s": 15.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A3-4.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A3-5",
+      "act": "Act III — Judge at Scale",
+      "narration_text": "At thousands of cases, some calls will fail outright — a timeout, a malformed response the parser can't save. A batch runner that stops on the first failure never finishes; one that logs the failure and keeps going is the only version that actually scales.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "chip reveal: 'stop on failure' struck through, 'log and continue' lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Log it, keep going.",
+            "items": [
+              "Stop on first failure — never finishes",
+              "Log and continue — the only version that scales"
+            ],
+            "cols": 1,
+            "caption": "partial failure is the normal case at scale"
+          },
+          "rendered": {
+            "out": "media/A3-5.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A3-5.mp3",
+      "actual_duration_s": 14.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A3-5.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A3-6",
+      "act": "Act III — Judge at Scale",
+      "narration_text": "The payoff of the abstraction shows up here: adding a new rubric — grading for a new kind of safety violation, say — means writing one new metric, not touching the runner, the parser, or the bias-mitigation pass at all.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "one new chip lands beside the untouched pipeline"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "One new metric.",
+            "items": [
+              "New rubric = one new metric",
+              "Runner, parser, bias pass: untouched"
+            ],
+            "cols": 2,
+            "caption": "the abstraction's actual payoff"
+          },
+          "rendered": {
+            "out": "media/A3-6.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A3-6.mp3",
+      "actual_duration_s": 12.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A3-6.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A4C",
+      "act": "Act IV — Ship the Judgment",
+      "narration_text": "Act four: ship the judgment.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "act card settles: 'IV — Ship the Judgment'"
+          }
+        ],
+        "remotion": {
+          "pattern": "FluencySegmentCard",
+          "props": {
+            "title": "Ship the Judgment",
+            "index": "IV"
+          },
+          "rendered": {
+            "out": "media/A4C.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A4C.mp3",
+      "actual_duration_s": 2.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A4C.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A4-1",
+      "act": "Act IV — Ship the Judgment",
+      "narration_text": "A batch of individual verdicts isn't a result yet. Someone has to roll thousands of per-case scores into the handful of numbers a team can actually act on — and then decide what those numbers are allowed to block.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "shot": {
+        "type": "STILL",
+        "source": "archive",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "prompt": "real archival WWII aircraft-production-line photo -- illustrative of continuous production, not a literal depiction. Already sourced, see media/A4-1.source.txt",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "treated plate; slow drift down the production line"
+          },
+          {
+            "at": 0.7,
+            "event": "serif label lands: 'a handful of numbers, not a pile'"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-A4-1.mp3",
+      "actual_duration_s": 11.8,
+      "build": {
+        "status": "STILL",
+        "src": "media/A4-1.png",
+        "filled_by": "still",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A4-2",
+      "act": "Act IV — Ship the Judgment",
+      "narration_text": "Aggregation turns cases into a report: the mean score across the suite, the pass rate against a threshold, a win rate when two model versions were compared head to head, and a breakdown by category — one weak rubric shouldn't hide inside a healthy average.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "7-70%",
+            "event": "four chips snap in: Mean, Pass rate, Win rate, By-category breakdown"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Four numbers, one report.",
+            "items": [
+              "Mean score, across the suite",
+              "Pass rate, against a threshold",
+              "Win rate, head to head",
+              "Breakdown, by category"
+            ],
+            "cols": 2,
+            "caption": "one weak rubric shouldn't hide inside the average"
+          },
+          "rendered": {
+            "out": "media/A4-2.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A4-2.mp3",
+      "actual_duration_s": 13.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A4-2.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A4-3",
+      "act": "Act IV — Ship the Judgment",
+      "narration_text": "The number that matters most isn't the score itself — it's the score against the last known-good baseline. A model that scores eighty-five percent is meaningless alone; eighty-five against yesterday's eighty-eight is a regression, and the report has to say so.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-80%",
+            "event": "two layers compare: 'This run: 85%' against 'Baseline: 88%'"
+          },
+          {
+            "at": "88%",
+            "event": "caption settles: 'a regression, and the report says so'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "Compared, not alone.",
+            "layers": [
+              {
+                "title": "This run",
+                "sub": "85% aggregate score"
+              },
+              {
+                "title": "Last known-good baseline",
+                "sub": "88% aggregate score",
+                "accent": true
+              }
+            ],
+            "caption": "a regression, and the report has to say so"
+          },
+          "rendered": {
+            "out": "media/A4-3.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A4-3.mp3",
+      "actual_duration_s": 14.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A4-3.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A4-4",
+      "act": "Act IV — Ship the Judgment",
+      "narration_text": "Wire that comparison into the build, and the evaluation suite stops being a report nobody reads and starts being a gate. Above the threshold, the build passes. Below it, the build fails — the same way a broken unit test already would.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-40%",
+            "event": "question card: 'above or below the threshold?'"
+          },
+          {
+            "at": "50-95%",
+            "event": "two outcomes: build passes / build fails"
+          }
+        ],
+        "remotion": {
+          "pattern": "BinaryBranch",
+          "props": {
+            "data": {
+              "slideMeta": "the CI gate",
+              "question": "Is the aggregate above the threshold?",
+              "branches": [
+                {
+                  "label": "Above threshold",
+                  "detail": "no regression detected",
+                  "fix": "build passes",
+                  "tone": "good"
+                },
+                {
+                  "label": "Below threshold",
+                  "detail": "a real regression",
+                  "fix": "build fails, like a broken unit test",
+                  "tone": "warn"
+                }
+              ],
+              "resolver": {
+                "label": "The suite is a gate now",
+                "detail": "not a report nobody reads"
+              }
+            }
+          },
+          "rendered": {
+            "out": "media/A4-4.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A4-4.mp3",
+      "actual_duration_s": 13.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A4-4.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A4-5",
+      "act": "Act IV — Ship the Judgment",
+      "narration_text": "Every run publishes its report as a build artifact, not a chat message — attached to the commit, kept alongside the ones before it, so a regression shows up as a trend line, not a surprise six weeks later.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "chip reveal: 'chat message' struck through, 'build artifact, per commit' lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "A trend line, not a surprise.",
+            "items": [
+              "Not a chat message",
+              "A build artifact, per commit"
+            ],
+            "cols": 2,
+            "caption": "a regression is a trend line, not a surprise"
+          },
+          "rendered": {
+            "out": "media/A4-5.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A4-5.mp3",
+      "actual_duration_s": 11.86,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A4-5.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "A4-6",
+      "act": "Act IV — Ship the Judgment",
+      "narration_text": "One honest closing boundary: the judge is still a model, grading with the same kind of judgment it's being used to grade. Zheng's own team checked their judge's verdicts against real human preference before trusting it — periodic human spot-checks aren't optional overhead. They're the only check on the checker.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "spark line breathing beat: 'the only check on the checker'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Check the checker.",
+            "items": [
+              "the judge is still a model",
+              "human spot-checks stay in the loop"
+            ],
+            "cols": 2,
+            "caption": "per Zheng et al.'s own validation against human preference"
+          },
+          "rendered": {
+            "out": "media/A4-6.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-A4-6.mp3",
+      "actual_duration_s": 16.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/A4-6.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "lead_silence_s": 0.5,
+      "narration_text": "Let's recap with Claude. A test case is a structured object — input, candidate, reference, rubric — and the judge prompt names its role, states the rubric, and forces a parseable answer. Output parsing should extract a schema, not scrape a sentence, and the three documented biases — position, verbosity, self-enhancement — get bounded by swapping answer order and averaging, not eliminated. A pluggable metric abstraction lets one batch runner — with caching, retries, and concurrency — score any rubric without rewriting the pipeline underneath it. And aggregation compares this run against the last known-good baseline, so wiring that comparison into CI turns the eval suite into a gate a broken model can't quietly pass.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 34,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": "0-90%",
+            "event": "four artifact lines stagger in, one per act"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "Claude, Judged. — one page",
+            "artifactHeading": "The eight-part pipeline",
+            "artifactLines": [
+              "A test case is a structured object (input, candidate, reference, rubric); the judge prompt names its role, states the rubric, and forces a parseable answer.",
+              "Output parsing should extract a schema, not scrape a sentence; the three documented biases (position, verbosity, self-enhancement) get bounded by swapping answer order, not eliminated.",
+              "A pluggable metric abstraction lets one batch runner — with caching, retries, and concurrency — score any rubric without rewriting the pipeline underneath it.",
+              "Aggregation compares this run against the last known-good baseline; wiring that comparison into CI turns the eval suite into a gate, not a report nobody reads."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 38.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn — here's the prompt, read it with me. 'Design a minimal LLM-as-a-judge harness for one thing I actually ship: name the test case schema, the judge prompt's four required parts, how you'll mitigate position bias specifically, and the one metric your CI pipeline should gate on first.' That last clause matters — pick ONE metric to gate on before you build ten. Run it. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": "0%",
+            "event": "composer cold to 'Your turn.' greeting"
+          },
+          {
+            "at": "15%",
+            "event": "the suggested prompt types itself in, word by word"
+          },
+          {
+            "at": "70%",
+            "event": "runningText 'paste this into Claude…' settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "LLM EVALUATION · SYSTEMS",
+            "segment": "Claude, Judged.",
+            "command": "Design a minimal LLM-as-a-judge harness for one thing I actually ship: name the test case schema, the judge prompt's four required parts, how you'll mitigate position bias specifically, and the one metric your CI pipeline should gate on first.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 19.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, judged. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": "0-100%",
+            "event": "title card fades in: poster-style serif title, terracotta period, handle beneath"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Judged.",
+            "handle": "@NikBearBrown",
+            "subline": "Liam, in for Bear."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.84,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:06:38"
+      }
+    }
+  ]
+}

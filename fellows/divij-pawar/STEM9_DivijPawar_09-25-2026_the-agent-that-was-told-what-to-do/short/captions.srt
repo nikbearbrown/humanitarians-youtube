@@ -1,0 +1,207 @@
+1
+00:00:00,000 --> 00:00:02,667
+Hi — I'm Divij Pawar. You never asked this agent to do
+
+2
+00:00:02,667 --> 00:00:03,467
+anything wrong.
+
+3
+00:00:03,600 --> 00:00:06,533
+You gave it a completely reasonable job — read this webpage and
+
+4
+00:00:06,533 --> 00:00:09,533
+summarize it, check this email and draft a reply, look at this
+
+5
+00:00:09,533 --> 00:00:11,067
+document and pull out the key numbers.
+
+6
+00:00:11,767 --> 00:00:14,267
+It did exactly what it was built to do. And somewhere in
+
+7
+00:00:14,267 --> 00:00:17,067
+the middle of doing that job, it followed an instruction that didn't
+
+8
+00:00:17,067 --> 00:00:19,400
+come from you at all. This is prompt injection,
+
+9
+00:00:20,033 --> 00:00:23,033
+and it's the one failure mode in this entire series that's less
+
+10
+00:00:23,033 --> 00:00:27,233
+about the agent malfunctioning and more about the agent working exactly as
+
+11
+00:00:27,233 --> 00:00:30,733
+designed — a design with a gap nobody's fully closed.
+
+12
+00:00:31,400 --> 00:00:34,867
+Here's the actual mechanism, and it's simpler and stranger than most security
+
+13
+00:00:34,867 --> 00:00:35,667
+problems.
+
+14
+00:00:36,000 --> 00:00:38,733
+A language model doesn't process 'things the user told it to do'
+
+15
+00:00:38,800 --> 00:00:41,033
+and 'content it's merely reading' as two separate channels.
+
+16
+00:00:41,467 --> 00:00:44,533
+Both arrive as the same thing: tokens, text, sitting in the same
+
+17
+00:00:44,533 --> 00:00:45,467
+context window.
+
+18
+00:00:45,900 --> 00:00:48,767
+We covered this same instruction earlier in the series, wrapped in different
+
+19
+00:00:48,767 --> 00:00:52,467
+framing — an autonomous agent gets its instructions from a system prompt,
+
+20
+00:00:52,733 --> 00:00:54,333
+and its information from tool results,
+
+21
+00:00:54,767 --> 00:00:56,600
+web pages, documents, emails.
+
+22
+00:00:57,033 --> 00:00:59,333
+To a human, 'the text I'm supposed to obey' and 'the text
+
+23
+00:00:59,333 --> 00:01:02,567
+I'm supposed to merely read and summarize' are obviously different categories.
+
+24
+00:01:03,267 --> 00:01:06,467
+To the model doing next-token prediction, there is no chemical difference between
+
+25
+00:01:06,467 --> 00:01:07,267
+them.
+
+26
+00:01:07,100 --> 00:01:09,967
+If a webpage the agent is summarizing happens to contain a sentence
+
+27
+00:01:09,967 --> 00:01:11,233
+that reads like an instruction,
+
+28
+00:01:11,667 --> 00:01:14,833
+the model has no hard, built-in wall that says 'text encountered while
+
+29
+00:01:14,833 --> 00:01:17,233
+reading is never a command, no matter what it says.'
+
+30
+00:01:17,933 --> 00:01:19,633
+It's just more text in the context,
+
+31
+00:01:20,133 --> 00:01:23,233
+and text that looks like an instruction gets a decent chance of
+
+32
+00:01:23,233 --> 00:01:24,367
+being treated like one.
+
+33
+00:01:25,120 --> 00:01:28,453
+So: models don't separate instructions from data — both are just tokens
+
+34
+00:01:28,453 --> 00:01:29,653
+in the same context.
+
+35
+00:01:30,087 --> 00:01:33,020
+This isn't the autonomy question — an attacker doesn't need your permission,
+
+36
+00:01:33,253 --> 00:01:34,887
+just a piece of content the agent reads.
+
+37
+00:01:35,320 --> 00:01:36,120
+Locking instructions,
+
+38
+00:01:36,553 --> 00:01:39,987
+cross-examining agents, and human approval all genuinely help, and all have a
+
+39
+00:01:39,987 --> 00:01:40,787
+real hole.
+
+40
+00:01:40,987 --> 00:01:42,087
+This is an open problem.
+
+41
+00:01:42,453 --> 00:01:44,487
+None of it makes the underlying gap disappear.
+
+42
+00:01:45,190 --> 00:01:47,757
+Your turn. Look at any agent you're building or using that reads
+
+43
+00:01:47,757 --> 00:01:51,223
+content you don't fully control — a webpage, an email, a document
+
+44
+00:01:51,223 --> 00:01:52,123
+someone else wrote.
+
+45
+00:01:52,657 --> 00:01:56,023
+Ask: if that content contained a hidden instruction right now, would anything
+
+46
+00:01:56,023 --> 00:01:56,890
+in your system notice?
+
+47
+00:01:57,390 --> 00:01:59,757
+And if a human has to approve the output, does the approval
+
+48
+00:01:59,757 --> 00:02:03,357
+screen actually show every side-effect, or just the headline action?
+
+49
+00:02:04,010 --> 00:02:07,277
+That's the short version. The full video also covers Picture a genuinely
+
+50
+00:02:07,277 --> 00:02:10,977
+useful agent…, We spent an entire video… and So what actually helps?
+
+51
+00:02:11,410 --> 00:02:13,710
+A… — watch The Agent That Was Told What To Do for
+
+52
+00:02:13,710 --> 00:02:15,843
+the whole story. The link is right below.

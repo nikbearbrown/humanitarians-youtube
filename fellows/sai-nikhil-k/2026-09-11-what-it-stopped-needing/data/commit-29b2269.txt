@@ -1,0 +1,53 @@
+29b2269bff26884aff5c3663f10bdeb27d23683b
+2026-09-11 09:24:31 -0700
+
+feat!: replace the Swift menu bar app with a Python one
+
+clauding is now a Python (PyObjC) menu bar indicator installed from source,
+not a signed .app distributed as a DMG and a Homebrew cask. A plain process
+with an accessory activation policy can own an NSStatusItem, so the bundle,
+the codesigning, the notarization and the ~200 lines of build.sh that did all
+three are gone.
+
+The feature set is deliberately three states and nothing else:
+
+    idle      ✦ Opus 5 · xhigh            dim spark
+    clauding  ✦ Clauding… Opus 5 · xhigh  orange spark
+    waiting   ● Waiting for input         amber dot
+
+Dropped with the rewrite: all three animations, the elapsed timer, the
+completion sound, the update checker, the rotating thinking words, the
+per-session dropdown, and the per-tool activity labels. The text that remains
+is stable within a session, so the item's width barely moves.
+
+Behaviour changes on purpose:
+
+- "waiting for input" now covers Claude Code's idle notification as well as a
+  permission prompt. The Swift version filtered the first one out; a session
+  sitting on an unanswered prompt is exactly what you tab away from.
+- State lives in ~/.claude/clauding/, not ~/.claude/statusbar/, so a leftover
+  install of the old app can't feed state files to this one.
+- Hook commands are absolute paths. That removes the PATH-ordering hazard the
+  Swift installer had to harden against explicitly: no lookup happens, so a
+  clauding-hook planted in a project directory can never be found instead.
+  The test for that property is kept, and now asserts the real hook still ran
+  rather than that the command merely failed.
+
+Carried over because it was hard-won: the process-based liveness check, the
+interrupt-marker and age-cap recovery for turns that fire no hook, the
+mtime-gated 8KB transcript tail (now shared between the model lookup and the
+interrupt check), and the Claude spark mark itself.
+
+Model and effort come from the transcript, since no hook payload carries them.
+Model ids are matched by token rather than position, because the two id
+generations disagree on the order, and an id that doesn't parse is shown
+verbatim instead of guessed at.
+
+LICENSE and ACKNOWLEDGEMENTS.md are unchanged: this is a rewrite of
+m1ckc3s/claude-status-bar and still carries its design, hook protocol and
+state-file format.
+
+58 tests, replacing the 3 Node ones.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+

@@ -1,0 +1,615 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-zero-drift",
+    "title": "Works On My Machine",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper development log, Week 1 — the infrastructure that has to exist before any AI verification: Docker isolation, canonically promoted manifests, and a CI/CD gate that physically blocks unverified code.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners following the Provenance Gatekeeper build",
+    "playlist": "Fellows Research",
+    "source": "Week 1: Infrastructure & CI/CD — Video Script, Provenance Gatekeeper Development Log. 5-scene cut (HOOK / FRAMEWORK / WORKED EXAMPLE / FALSIFIABILITY / SCAFFOLDED TASK). Supplied 2026-09-15; PR corrected to #44 and dual render added by the author in the same revision.",
+    "aspect": "16:9",
+    "runtime_target": "2:30",
+    "dual_render": "16:9 master + 9:16 companion, BOTH EXPLICITLY REQUIRED by the script, which also asks to keep core visual artifacts centre-framed for 9:16 safe zones. Every pattern here has a registered <Pattern>916 variant and CiGateSplit / ThreeStageBand both RE-LAY OUT for portrait (panels stack, band serializes top-to-bottom) rather than cropping. 9:16 is a different beat sheet, never a crop — RENDER-TARGETS.md §3. Derive with ./art vertical.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The source script specifies the dark Brutalist palette with a red accent; a claude-explainer may not be retinted (CLAUDE-BRAND.md). Terracotta carries every 'red' the script asks for: the WORKS ON MY MACHINE snap, the struck-through CI/CD axis, the armed merge button. Structural intent — visible grid, exposed labels, zero border-radius, hard cuts — is preserved.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "Provenance Gatekeeper",
+      "Docker",
+      "CI/CD",
+      "GitHub Actions",
+      "FastAPI",
+      "requirements.txt",
+      "environment drift",
+      "DevOps",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-09-15T10:15:28",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 18,
+      "narration_text": "I am Onkar Bhujbal, a software engineer. Works on my machine is the death of microservices. My project is the Provenance Gatekeeper, and before we write a single line of A.I. verification, we have to guarantee the environment never drifts.",
+      "new_visual_element": "Cold open — the traceback that only happens on the server",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'reading the server log…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands as the traceback, then the verdict line"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names the failure: WORKS ON MY MACHINE"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Works On My Machine",
+            "command": "It runs locally. It crashes on the server. Nothing in my code changed. What is different?",
+            "runningText": "reading the server log…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "ModuleNotFoundError: No module named 'yaml'",
+              "Your code is identical. Your ENVIRONMENT is not.",
+              "WORKS ON MY MACHINE."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-15T13:53:12.382744+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The ModuleNotFoundError line is the source script's own example of the failure class, shown as the illustration it is — not a transcript of a specific build of this project.",
+      "actual_duration_s": 14.1,
+      "render_duration_s": 14.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-15T10:15:28"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "narration_text": "Week one shipped no verification logic at all. It shipped the thing that makes verification trustworthy later — an environment that cannot quietly differ from the one you tested.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Week 1 built features.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'features' goes terracotta, deletes, retypes as 'guarantees'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Drift is the enemy.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Week 1 built features.\nDrift is the enemy.",
+            "triggerWords": "features",
+            "replacementWords": "guarantees",
+            "seed": "zero-drift-2026-09-15",
+            "fontSize": 58,
+            "charMs": 30,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-15T13:54:31.293727+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Single-word trigger: BrutalistHesitantWriter matches whitespace-delimited word cores only. 'features'->'guarantees' is the reel's actual misconception — week 1 looks like it produced nothing shippable. Typed text is 42 chars so it finishes well inside the window.",
+      "actual_duration_s": 10.35,
+      "render_duration_s": 10.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-15T10:15:28"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE FRAMEWORK",
+      "lane": "remotion",
+      "estimated_duration_s": 21,
+      "narration_text": "We evaluate infrastructure against the Zero-Drift Matrix. One: is the execution isolated? Two: are the manifests automatically promoted? Three: does the repository physically block unverified code? If a pipeline fails one of these axes, your deployment is a liability.",
+      "new_visual_element": "The Zero-Drift Matrix — three axes, lit in narration order",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 ISOLATION takes the terracotta top rule on 'One'"
+          },
+          {
+            "at": 0.42,
+            "event": "connector draws; panel 02 CANONICAL MANIFEST lights on 'Two'"
+          },
+          {
+            "at": 0.66,
+            "event": "connector draws; panel 03 CI/CD GATE lights on 'Three' and holds"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands under the band: fail one axis = liability"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Three axes. All three, or none.",
+            "payloadLabel": "a commit",
+            "readyLine": "fail one axis = liability",
+            "stages": [
+              {
+                "index": "01",
+                "name": "ISOLATION",
+                "detail": "the execution runs inside Docker"
+              },
+              {
+                "index": "02",
+                "name": "CANONICAL MANIFEST",
+                "detail": "manifests promoted automatically, not by hand"
+              },
+              {
+                "index": "03",
+                "name": "CI/CD GATE",
+                "detail": "the repo physically blocks unverified code"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-15T13:55:58.829079+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 16.26,
+      "render_duration_s": 16.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-09-15T10:15:28"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — ASK (the gate)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's hold week one's actual pull request against all three axes, and see what the repository does when the checks are still running.",
+      "new_visual_element": "Ask micro-beat — the prompt that puts the PR against the matrix",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'checking the check run…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Audit it,",
+            "topic": "Provenance Gatekeeper",
+            "segment": "PR #44",
+            "command": "Score PR #44 against the Zero-Drift Matrix: is the execution isolated, are the manifests promoted, and can this merge before the checks finish?",
+            "runningText": "checking the check run…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-15T13:58:04.652737+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: B03 is the ask, B04 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 7.77,
+      "render_duration_s": 7.791666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-15T10:15:28"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 3 — WORKED EXAMPLE",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Here is the matrix applied to week one. We scaffolded the FastAPI backend inside Docker to satisfy isolation. We ran the Node build script to align the manifests. And we wired P.R. forty-four to GitHub Actions. One hundred and sixty-four canonical checks must pass before the merge button turns green.",
+      "new_visual_element": "The Dockerfile beside PR #44 and its 164-check gate",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands — the Dockerfile slot (PIPELINE request until the real file is supplied)"
+          },
+          {
+            "at": 0.22,
+            "event": "right panel lands: PULL REQUEST #44 · GitHub Actions"
+          },
+          {
+            "at": 0.34,
+            "event": "check counter starts climbing; the progress bar tracks it"
+          },
+          {
+            "at": 0.66,
+            "event": "counter settles at 164 and the merge button flips from MERGE BLOCKED to ALL CHECKS PASSED"
+          },
+          {
+            "at": 0.78,
+            "event": "armed button holds terracotta through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "CiGateSplit",
+          "props": {
+            "sparkLine": "The gate is the deliverable.",
+            "fileName": "Dockerfile",
+            "code": "",
+            "slateNote": "PIPELINE → paste the real FastAPI\nDockerfile here.\n\n# BLOCKED: the actual Dockerfile was not\n# supplied with the source script. Inventing\n# one and showing it as this project's file\n# would violate DOUBLE-CHECK LAW.\n#\n# To fill: set the `code` prop from the repo's\n# Dockerfile, trim to ~14 lines (FROM, WORKDIR,\n# the requirements COPY + pip install, CMD),\n# and re-render this beat.",
+            "prLabel": "PULL REQUEST",
+            "prTitle": "#44",
+            "prSub": "GitHub Actions",
+            "checksTo": 164,
+            "checksLabel": "CANONICAL CHECKS",
+            "mergeBlocked": "MERGE BLOCKED",
+            "mergeReady": "ALL CHECKS PASSED"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-15T14:12:13.324825+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:CiGateSplit",
+        "at": "2026-09-15T10:15:28"
+      },
+      "honesty_note": "PR #44 and the 164 canonical checks are the author's stated figures. The Dockerfile panel is a PIPELINE request, not a fabricated listing — the script describes the file but the file itself was never provided.",
+      "actual_duration_s": 18.01,
+      "render_duration_s": 18.041666666666668
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4 — FALSIFIABILITY",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "So what happens if we bypass the gate? A developer adds a local Python package, forgets to freeze requirements dot txt, and forces a push. Without axis three — the C.I. gate — the container builds successfully on their laptop and hard-crashes on the server. The matrix catches that discrepancy before it ships.",
+      "new_visual_element": "The matrix with axis 03 struck out — the bypass",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the same three-axis matrix returns; the commit token starts along the band"
+          },
+          {
+            "at": 0.4,
+            "event": "axes 01 and 02 light as before — isolation and manifests both pass"
+          },
+          {
+            "at": 0.56,
+            "event": "on 'without axis three', panel 03 CI/CD GATE is struck through in terracotta and marked ✕"
+          },
+          {
+            "at": 0.62,
+            "event": "the commit token STOPS at the broken axis instead of completing the band"
+          },
+          {
+            "at": 0.74,
+            "event": "the bypass command lands underneath: git commit -m \"quick fix\" --no-verify"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Skip one axis, ship the drift.",
+            "payloadLabel": "a commit",
+            "failIndex": 2,
+            "failLine": "git commit -m \"quick fix\" --no-verify",
+            "readyLine": "fail one axis = liability",
+            "stages": [
+              {
+                "index": "01",
+                "name": "ISOLATION",
+                "detail": "Docker — still satisfied"
+              },
+              {
+                "index": "02",
+                "name": "CANONICAL MANIFEST",
+                "detail": "requirements.txt never re-frozen"
+              },
+              {
+                "index": "03",
+                "name": "CI/CD GATE",
+                "detail": "bypassed — nothing verified the push"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-15T14:13:38.866763+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Reuses ThreeStageBand in its new FAILURE MODE (failIndex) rather than a second matrix component — same band, same geometry, so the viewer reads it as the SAME matrix returning, which is what the script asks for.",
+      "actual_duration_s": 17.79,
+      "render_duration_s": 17.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-09-15T10:15:28"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So don't trust your environment. Audit it. Run the promotion script on your own repository right now. If it returns anything other than zero un-synced manifests, your environment is already drifting.",
+      "new_visual_element": "The command the viewer runs, and the only passing output",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the TASK command reveals"
+          },
+          {
+            "at": 0.55,
+            "event": "the PASS condition reveals beneath it"
+          },
+          {
+            "at": 0.74,
+            "event": "the failure reading lands last — anything else means drift"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "audit.sh",
+            "code": "# TASK\nnode scripts/build-instructions.mjs --promote\n\n# PASS\n0 un-synced manifests\n\n# ANYTHING ELSE\n# your environment is already drifting —\n# the manifests on disk and the manifests\n# in the repo have diverged, and only one\n# of them is what CI will build.",
+            "sparkLine": "Audit it, don't trust it."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-15T14:01:59.947480+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 11.41,
+      "render_duration_s": 11.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-15T10:15:28"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 20,
+      "narration_text": "And when that audit comes back dirty, here is the prompt worth running. Hand a model your Dockerfile, your requirements file and your CI workflow, and make it score all three against the matrix — then name the single axis you are weakest on. The axis you skip is the one that fails in production.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Works On My Machine",
+            "command": "Here are my Dockerfile, requirements.txt and CI workflow. Score each against three axes — isolation, canonical manifests, and a gate that blocks unverified code. Then tell me which single axis I am weakest on and what would fail first.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-09-15T14:04:06.710785+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 15.74,
+      "render_duration_s": 15.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-15T10:15:28"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Verification you can trust starts with an environment that cannot drift. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Works On My Machine",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper · Week 1",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-09-15T14:04:47.280750+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 7.25,
+      "render_duration_s": 7.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-09-15T10:15:28"
+      }
+    }
+  ]
+}

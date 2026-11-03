@@ -1,0 +1,38 @@
+STEM6 — When Two Agents Disagree — TTS-ready narration by beat
+(condensed from 06_when_two_agents_disagree.md)
+
+B00 — cold open
+Hi — I'm Divij Pawar. Two agents look at the exact same evidence — same filing, same numbers, same question — and come back with opposite answers. Agent A is confident the company's margins are improving. Agent B is just as confident they're not. Both wrote clean, well-reasoned explanations. Both cited real sources. Neither one is lying — they just can't both be right. Today: what actually happens the second two agents disagree, and why the instinctive fix — average their answers and move on — is about the worst thing you could do.
+
+B01 — why this wasn't a problem before
+Everything covered in the last two videos assumed a single agent doing a single piece of reasoning that you then go check. Claim extraction, source verification, asking the same question twice — all of it interrogates one voice. But build a system with several specialized agents — one on financial analysis, one on competitive research, one reading patents, one checking earnings calls — and you've created something new: two independent lines of reasoning that can flatly contradict each other. Here's the thing, though — that disagreement isn't a bug. It's a signal. It's the system telling you something a single confident agent never could: maybe the honest answer is 'we don't actually know.'
+
+B02 — the naive fix, and why it's wrong
+The obvious move is to blend the outputs — average the two confidence scores, split the difference on the conclusion, ship something moderate and hedged, and move on. That instinct is exactly wrong. Averaging two agents who disagree doesn't get you closer to the truth — it gets you an answer that looks moderate but is really nobody's actual opinion. If Agent A is right and Agent B is wrong, blending them just makes the true answer worse. And it throws away the one piece of information in the whole exchange that was actually valuable: the fact that they disagreed at all. A controller that quietly smooths conflicting outputs into a neutral-sounding grade has taken the most informative moment in the pipeline and erased it.
+
+B03 — detecting the disagreement
+Before you can do anything sensible about a disagreement, you have to actually catch one — and that's harder than it sounds. You can't just diff the text of two conclusions. Two agents can use totally different words to say the same thing, or nearly identical words to say opposite things. What gets compared instead is structured: the confidence score each agent assigned its own conclusion, plus something like a directional vector — is this conclusion bullish or bearish, improving or worsening, safe or risky. When the gap between those two vectors crosses a threshold, that's what triggers the alarm. Below it, phrasing differences get ignored — two agents restating the same conclusion in different words shouldn't set anything off. Above it, something real is happening, and it gets escalated.
+
+B04 — the arbitration step: one bounded round
+Once a real divergence gets flagged, the system doesn't just pick a winner — it runs one bounded round of debate. Each agent sees the other's conclusion and reasoning, and gets exactly one chance to respond: defend, revise, or concede. Just one round, on purpose. Let two language models argue without a limit and you don't get closer to the truth — you get whichever agent happens to sound more persuasive, which has nothing to do with which one is actually right. A single exchange is enough to catch a plain error — 'oh, you're right, I misread that line item' — without turning the arbitration itself into another source of confident-sounding nonsense.
+
+B05 — the arbitration step: resolved or unresolved
+That round ends one of two ways. Resolved: one agent updates, or they land on shared ground, and the system moves forward with a single conclusion, now backed by two independent lines of reasoning instead of one. Or unresolved: they still disagree, and instead of getting smoothed over or averaged away, that disagreement gets written down as its own output — recorded plainly: here is where two independent processes looked at the same evidence and landed in different places, and here's each one's case.
+
+B06 — what you do with unresolved
+Here's the part that actually matters downstream: an unresolved disagreement needs to reach the human, or whoever makes the final call, still looking unresolved — front and center, not buried in a footnote. If a downstream system takes that unresolved disagreement and quietly folds it into one clean final grade anyway, it's undone the entire reason you ran two agents in the first place, no matter how good the intentions were. 'These two independent processes looked at the same evidence and reached different conclusions, and one round of debate didn't settle it' is a genuinely more useful thing to hand a decision-maker than a falsely confident single number. It tells them exactly where to look before they trust the result.
+
+B07 — the blind spot: shared contamination
+And here's the honest complication. This whole mechanism has a real blind spot: if both agents are drawing on the same underlying source, and that source is wrong or has been tampered with, they'll agree with each other — confidently, consistently — while both being wrong. Arbitration only fires on disagreement. Shared contamination produces agreement instead. The one mechanism built to catch trouble can't see the failure mode where both witnesses were handed the same bad evidence to begin with. You can't patch that with a cleverer threshold. It's a real limit of arbitration-by-disagreement — it raises the cost of one agent going rogue, but two agents drawing from the same poisoned well will simply agree their way past it. Good to know going in: arbitration lowers your risk. It doesn't take it to zero.
+
+B08 — the framework
+So here's what actually holds up. One: disagreement between independent agents is a signal, not noise — don't blend it away. Two: detect it on structure, not on wording — compare confidence and direction, not phrasing. Three: bound the debate to a single round, or persuasive tone starts winning over correctness. Four: if it stays unresolved, it has to reach the final output looking unresolved, not smoothed into one grade. None of this eliminates risk on its own — a shared bad source can still fool both agents at once — but it catches a real category of failure a single agent never could.
+
+B09 — verdict
+So: treat disagreement between independent agents as a signal, not noise, and don't blend it away. Detect it on structure — confidence and direction — not wording. Bound the debate to a single round. And if it's still unresolved, it has to reach the final output looking unresolved, not smoothed into one grade. It lowers your risk. It doesn't take it to zero.
+
+B10 — your turn
+Your turn. Look at a system you're building or using with more than one agent — even two steps that each produce a judgment. First, name the structured signal you'd actually compare if they disagreed: a confidence score, a directional call, not the raw text. Second, pick a threshold — how big a gap actually counts as a real disagreement, versus just different phrasing. Third, decide, before it ever happens, what your system does with 'unresolved' — where it shows up, and who sees it first.
+
+B11 — outro
+That question — what a system does with 'we don't know' — comes up again next, in a different form: what happens when an agent has to remember something across sessions, and whether what it's doing is actually remembering, or just convincingly pretending to. Signing off — Divij Pawar.

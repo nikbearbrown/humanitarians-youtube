@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "title": "Claude Plugins, Plugin Structure.",
+    "slug": "claude-plugins-official--claude-liam-plugin-structure",
+    "topic": "PLUGIN STRUCTURE · CLAUDE PLUGINS",
+    "purpose": "Answer what to write for a path inside a Claude Code plugin -- a hook command, an MCP server argument, a script reference -- so it survives being installed somewhere else, using the plugin-structure skill's own CLAUDE_PLUGIN_ROOT rule as the concrete case. Lands the carry-out that a hardcoded path only ever works on the machine that wrote it; routed through CLAUDE_PLUGIN_ROOT, it survives any install.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "anthropics/claude-plugins-official/youtube/claude-liam-plugin-structure/beat_sheet.json",
+    "register": "Plain",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Extending Claude — Skills, Plugins & Connectors",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "B02 -> B03 (a hook command written through CLAUDE_PLUGIN_ROOT vs. hardcoded; installed on a second machine, only the variable version still finds its script)",
+    "build": {
+      "at": "2026-08-31T06:03:05",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone wiring a plugin's hook figures a fixed address will do — it works on their machine. It's wrong: a plugin's path needs to survive being installed anywhere. So — should that address be fixed, or portable?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'A hook's path to its own plugin's script — should it be a fixed address?', hesitates on 'fixed', corrects to 'portable', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A hook's path to its\nown plugin's script —\nshould it be\na fixed address?",
+            "face": "serif",
+            "fontSize": 60,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "fixed",
+            "replacementWords": "portable",
+            "mistakeRate": 6,
+            "hesitateWithin": 3,
+            "hesitateBetween": 22,
+            "charMs": 55,
+            "jitter": 26,
+            "seed": "hai-plugin-structure-root"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 35-word narration + lead_silence_s 0.8 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('fixed' -> 'portable') is visible on a late frame.",
+      "actual_duration_s": 11.48,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T06:03:05"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "1 stakes / 2 wrong guess",
+      "narration_text": "A plugin's manifest — plugin.json — lives inside .claude-plugin, and needs exactly one field: name, in kebab-case. Everything else — commands, agents, skills, hooks, even an MCP server file — lives at the plugin's own root, auto-discovered, no registration step. So it's tempting to wire a hook or an MCP server with the exact path on your machine. That path is only ever right on your machine.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "A manifest card fixed inside a .claude-plugin folder; four sibling component folders at plugin root; a hook command field typing out a machine-specific absolute path"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "One field, one level up — then a tempting shortcut",
+          "mechanic": "A folder icon labelled '.claude-plugin' sits left, a card labelled 'plugin.json — name:' fixed inside it. To the right, at plugin-root level, four folders draw in: commands, agents, skills, hooks. Below, a hook command field types out '/Users/you/.claude/plugins/your-plugin/scripts/check.sh' in full, then a small label 'only right here' appears beneath it.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "PLRB01Scene"
+      },
+      "actual_duration_s": 21.23,
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T06:03:05"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "3 mechanism / 4 ANCHOR PLANTED",
+      "narration_text": "There's a variable for exactly this: CLAUDE_PLUGIN_ROOT. It resolves, at runtime, to wherever this plugin is actually installed on this machine — Claude Code fills it in. Write a hook's command as CLAUDE_PLUGIN_ROOT slash scripts slash check dot sh, and it finds the script no matter where the plugin lives. The same rule covers MCP server arguments and any script reference that crosses a directory boundary.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR — the same hook command field, the hardcoded path struck through, CLAUDE_PLUGIN_ROOT/scripts/check.sh typing in beside it"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR — one variable, resolved at runtime",
+          "mechanic": "The B01 hook command field returns. THE ANCHOR. The hardcoded absolute path is struck through in terracotta. Beside it, letter by letter, 'CLAUDE_PLUGIN_ROOT/scripts/check.sh' types itself into teal. A small badge below reads 'resolves to wherever THIS install landed'. THIS EXACT HOOK COMMAND FIELD RETURNS AT B03.",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "PLRB02Scene"
+      },
+      "actual_duration_s": 21.03,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T06:03:05"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "4 ANCHOR PAYOFF / 5 both directions",
+      "narration_text": "Install the same plugin on a teammate's machine, somewhere else entirely. The hook written with CLAUDE_PLUGIN_ROOT still finds its script and runs. The one with a hardcoded path points at a folder that doesn't exist there — and just doesn't fire, with nothing telling you why. Written through the variable, a path survives any install location. Typed by hand, it works only on the machine that wrote it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "THE ANCHOR RETURNS — same hook, on a second machine's install; the variable version lights green and runs, the hardcoded version dims to nothing with no error shown"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "THE ANCHOR RETURNS — a second machine, a second install path",
+          "mechanic": "THE B02 FIELD RETURNS, identical, now labelled 'installed on: teammate's laptop, a different path entirely'. The CLAUDE_PLUGIN_ROOT version glows teal and a small check mark fires beside it. The hardcoded version fades to grey with no error banner — a line of small italic text appears beneath: 'no error. no warning. just doesn't run.'",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E",
+            "#1F4E5F"
+          ]
+        },
+        "manim": "PLRB03Scene"
+      },
+      "actual_duration_s": 19.86,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T06:03:05"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Never hardcode a path inside a plugin. Write it through CLAUDE_PLUGIN_ROOT, so it still finds its way after the plugin's installed somewhere you'll never see.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Never hardcode a path inside a plugin. Write it through CLAUDE_PLUGIN_ROOT, so it still finds its way after the plugin's installed somewhere you'll never see.",
+            "attribution": "",
+            "sparkLine": "Hardcoded breaks elsewhere. The variable doesn't."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 8.77,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T06:03:05"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Here's the prompt — read it with me. Scaffold a plugin with a pre-tool-use hook that calls a helper script, and an MCP server with a startup argument pointing at a local file. Watch two things when Claude answers: does the hook's command path use CLAUDE_PLUGIN_ROOT, or a path typed straight from this machine? And does the MCP server's argument do the same? Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "PLUGIN STRUCTURE · CLAUDE PLUGINS",
+            "segment": "Your Turn",
+            "command": "Scaffold a plugin with a pre-tool-use hook that calls a helper script, and an MCP server with a startup argument pointing at a local file.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 19.24,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T06:03:05"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude Plugins, Plugin Structure. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Claude Plugins, Plugin Structure. Liam, in for Bear.",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.9,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T06:03:05"
+      }
+    }
+  ]
+}

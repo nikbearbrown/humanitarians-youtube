@@ -11,7 +11,7 @@ and the bleed artifact directly on screen.
 | **Format** | 16:9 and 9:16, 4K (3840×2160 / 2160×3840), 30 fps |
 | **Voice** | Kokoro `af_bella` — local, free, no API |
 | **Beats** | 7 · 3 purpose-built waveform scenes · 4 library components · **no slates** |
-| **Presenter** | Rohan Vijaykumar |
+| **Presenter** | Rohan V. |
 | **Channel** | @HumanitariansAI |
 | **Built with** | [brutalist.art](https://github.com/nikbearbrown/brutalist.art) |
 | **Status** | Built and QC'd · **not published** |
@@ -28,7 +28,7 @@ Through-line: the model estimates, it does not recover.
 | B03 | Mechanics | The cake analogy — additive, irreversible, statistics-based |
 | B04 | Limits | Vocal stem with ghost drum bleed — the estimation cost made visible |
 | B05 | Apply | The trust test — three things to check before using a stem |
-| B06 | Outro | "I'm Rohan Vijaykumar, for Humanitarians AI" — matches first video |
+| B06 | Outro | "I'm Rohan V., for Humanitarians AI" — matches first video |
 
 ## What is in this folder
 
@@ -71,8 +71,8 @@ Three components built for this video and registered in the shared toolkit:
 ## HAI channel standard (all future videos)
 
 - **Opener**: `ClaudeComposerAsk` — "Hi, I'm Rohan, for Humanitarians AI."
-- **Outro**: `ClaudeTitleOutro` — `title` / `@HumanitariansAI` / `Rohan Vijaykumar`
-- Narration closer: "I'm Rohan Vijaykumar, for Humanitarians AI."
+- **Outro**: `ClaudeTitleOutro` — `title` / `@HumanitariansAI` / `Rohan V.`
+- Narration closer: "I'm Rohan V., for Humanitarians AI."
 
 ## Rebuilding it
 
@@ -83,3 +83,9 @@ python3 runtime/scripts/compile.py <reel> --height 2160
 ```
 
 Audio first, always.
+
+## Renders
+
+The 4K masters are in Google Drive, not in git — renders go to Drive, source and build assets stay here.
+
+[`2026-08-28/` on Drive](https://drive.google.com/drive/folders/1UBpIYX_NBcEpMebfTLbJYtmN7WYwZ3Kf) — `2026-08-28_stem_separation_16x9.mp4` and `2026-08-28_stem_separation_9x16.mp4`.

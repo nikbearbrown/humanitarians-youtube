@@ -1,0 +1,22 @@
+# BUILD-LOG
+
+- 2026-10-21 — Brief: 60 s, 12 beats, am_onyx, native 16:9 + 9:16 as separate outputs, fixed opening line, review cut only.
+- Branding: "Ola, Likhith" (HAI short form; Ciao / Hey / Hola / Namaskaram used by sibling reels); @HumanitariansAI (claude-hai, kicker "Irreducibly Human", Plain); default dual-aspect HaiOutro with the AI-narration note; disclosure also on B00's first result line.
+- GATE L: the library hits (CodexWindow, GitHubCodeDiff, CodingAgentsFig1Loop) are 16:9-only → new runtime/remotion/src/CodingAgents.tsx (7 scenes × 16:9 + 916), registered in Root.tsx (folder "AgentLoopReel"), `./art scene-index` rerun.
+- Executable evidence: evidence/agent_loop.py (toy shop repo, scripted replay of the tool calls, pytest 8.3.3 in a throwaway uv env). B03–B08 show its real output.
+- Duration: first draft measured 73.2 s. Narration trimmed three times (words cut, audio never sped up) → 67.0 s; B01 then grew to 9.9 s so the hesitant-writer correction lands before the cut → 68.0 s. Floor: the fixed B00 line (5.7 s), B01's ≥9 s writer window, and the read-aloud handoff (8.3 s).
+- B01: phrase triggers never fire (the component matches single words). Rewritten as per-word swaps reads→searches, everything→first, guesses→tests ("A coding agent searches first, then tests a fix."). 16:9 adds the component's own contextTitle ("The whole idea") and brandLabel to pass GATE V fill at the 50% frame. The 9:16 version restacks to 4 lines.
+- 16:9 QC fixes: B03/B05/B06 cards were colliding with the spark line; B04 chips relaid as 5+4 with a full-width code card; B02 tiles darkened (low-contrast).
+- 9:16 QC fixes: B02 bug card height; B03 tree glyph dropped so test_shipping.py fits; B04 hit summary moved off the command card; B05 badge as two lines, bars darkened; B07 row height; B08 ring narrowed (edge bleed).
+- 16:9 review: claude-hai-coding-agents-slate.mp4, 3840×2160, 68.0 s, GATE F/L/V pass (V 0/0).
+- 9:16 review: vertical/claude-hai-coding-agents-vertical-slate.mp4, 2160×3840, 68.0 s, compiled `--height 3840`, all 12 beats native <Pattern>916. GATE V on the label-free portrait scene frames (50/85%, 24 frames): 0/0.
+- Not run: GATE T (blocks ./art final only). No final master (review cut only, per brief). FACTCHECK.md awaits Likhith's sign-off.
+- Toolchain: system python3 lacks kokoro/Pillow, so everything ran via the repo .venv.
+- Outro note shortened to "Narrated by an AI voice." per Likhith (no model name, no "not Likhith"). B11 re-rendered in both aspects, both cuts recompiled; GATE V 0/0 on both.
+- 2026-10-21 — Master cut request (Likhith). Toolkit fast-forwarded 6a8380a → a187fab (latest upstream main, 58 commits); all HAI reel registrations kept in Root.tsx; Remotion 4.0.535 / React 19.3.0, the release pin (4.0.537 exists, but the upgrade was deferred because other sessions were rendering in parallel).
+- Greetings: B00 "Namaskaram, Likhith" (16:9), "Hey, Likhith" (9:16). Intro line verified verbatim in both sheets and by a faster-whisper transcript of mp3/beat-B00.mp3 (shared by both aspects).
+- Re-rendered all 24 scenes on the new toolkit. Fixes: B09 +1 verdict line ("It works best in a repo with tests it can run.") for 9:16 fill; B08 marker dot and active borders → #A44A32 (GATE T §8.3).
+- GATE T PASS (16:9 and 9:16); GATE V 0/0 on both masters.
+- Masters: renders/H-AICodingAgents_LikhithR.mp4 (3840×2160, 68.0 s, sha256 d6fba0acd0ac…) and renders/V-AICodingAgents_LikhithR.mp4 (2160×3840, 68.0 s, sha256 f97502c121ae…); `ready` receipts renamed alongside with `renamed_from`.
+- B00 disclosure line → "narrated by an AI voice" (no model name, no "not Likhith"), matching the outro; 9:16 mid-animation sweep (10 frames per beat) clean; masters re-exported (hashes above).
+- FACTCHECK.md signed off by Likhith (2026-10-21, his wording).

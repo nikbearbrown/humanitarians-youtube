@@ -1,0 +1,30 @@
+[
+  {
+    "id": "audit-criticals",
+    "severity": "critical",
+    "status": "OPEN",
+    "title": "Four original CRITICAL audit findings still open",
+    "detail": "Investor redaction bypassed at storage time; 14 of 16 routes unauthenticated; unauthenticated DELETE /api/runs drops the audit tables; anyone can mint an auditor token. Localhost only — this is not deployable."
+  },
+  {
+    "id": "ollama-hangs-under-compare",
+    "severity": "high",
+    "status": "OPEN",
+    "title": "The local model server stopped responding twice during compare runs",
+    "detail": "Observed 2026-09-25, twice: during two-agent compare runs, Ollama stopped answering even a bare 5-token /api/generate from outside the app, and the runs' model calls never returned (no timeout exists, so they waited indefinitely). Both times Ollama answered immediately after this server was restarted, which dropped its open connections. Hypothesis, not confirmed: two concurrent tool-calling requests to one local model can wedge it. CROSS_AGENT_MAX_CONCURRENCY=1 (one agent at a time) is the obvious mitigation and has NOT been tried. The live view shows such a run honestly (the timer keeps counting on a step that never ends)."
+  },
+  {
+    "id": "filing-excerpt-coverage",
+    "severity": "low",
+    "status": "OPEN",
+    "title": "Filing excerpts cover recent inline-XBRL primary documents only",
+    "detail": "datasources/filings.py finds a figure by its us-gaap tag and a consolidated (no-dimension) context with the same period, in the filing's primary document. Measured live 2026-09-25: 24 of 24 figures the agents were given (AAPL, MSFT, NVDA, GOOGL) found, every filed value equal to companyfacts'. Not covered: filings older than the company's ~1000 most recent (reported as not_in_index), figures only in exhibits, pre-2019 non-inline filings (no_inline_xbrl). Row labels and column headers come from table-layout heuristics that have been checked on those four filers only. There is no UI for it yet (U6)."
+  },
+  {
+    "id": "gate-identity-self-declared",
+    "severity": "medium",
+    "status": "OPEN",
+    "title": "The decision gate records a typed name, not an authenticated person",
+    "detail": "The JWT carries a scope, not an identity, so decided_by is whatever the reviewer typed; every gate payload says so. Any auditor-scoped token can record a decision, and anyone can mint one (see audit-criticals). The investor withholding is also only as strong as read auth: a read with no token is served at the run's stored scope. A real identity is a separate auth project."
+  }
+]

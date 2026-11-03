@@ -1,0 +1,406 @@
+{
+  "metadata": {
+    "title": "What Happens Inside a Financial Chatbot",
+    "slug": "financial-chatbot-short",
+    "topic": "AI · NLP · RETRIEVAL AUGMENTED GENERATION",
+    "aspect_ratio": "9:16",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-anjana",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "color_semantics": "Claude fidelity UI beats (B00 ask, B06 verdict, B07 handoff, B08 outro) stay cream/ink/terracotta per CLAUDE-BRAND.md. Body beats (B01-B05) illustrate the RAG pipeline itself — dark stage (#0a0a0f), matching the attention-finance and temperature-finance companion pieces' PEDAGOGY-approved deviation. Pipeline stage colors are fixed across B02-B05: the question/vector is terracotta (#D97757), stored chunks and retrieval are blue (#3E7CB1), the LLM node is purple (#9B6FD1), citations and grounded answers are green (#4A9C6D). The four meaning-space clusters in B02 reuse those same hues so a cluster's color means the same thing every time it appears. No invented company names or tickers anywhere in this reel — the running example is 'Company A'.",
+    "greeting": "Hello, Anjana",
+    "greeting_note": "Plain English hello, narrator is Anjana",
+    "note": "Fresh build — derived from the pre-authored examples/financial-chatbot/narration/*.txt + visuals/*.md briefs (script.md and README.md were skeletons, authored from those briefs). Beats B00 (ask), B06 (verdict), B07 (your-turn handoff), B08 (title outro) added per the ai-explainer shared skeleton and the your-turn closing standard; the five body beats (B01-B05) come from narration/*.txt, kept verbatim. Source voice was listed as am_onyx in README.md/beats.json — overridden to af_bella (Anjana, no handle) per the series convention. GATE P signed (see PEDAGOGY.md — VERDICT: PASS). Two things logged there rather than shipped silently: (1) the narration-budget deviation on B02/B03/B04, worst on B04 which runs ~150 words / ~55s against a 15s brief because its source narration covers both step three and step four — its component is built to fill that whole span rather than freeze-holding on a stale frame; (2) the B05 line 'no hallucination, because the model never had to guess' is a known simplification (grounding reduces hallucination, it does not eliminate it), kept because the beat's own traceability visual qualifies it on screen. Continuity device from the briefs: the B01 chat interface persists as a corner thumbnail through B02-B03 and returns full-size in B04. Delivery: rendered at 4K in both 16:9 (this beat sheet, 3840x2160) and 9:16 (short/beat_sheet.json, 2160x3840, via runtime/scripts/shorts.py).",
+    "tags": [
+      "RAG",
+      "retrieval augmented generation",
+      "vector search",
+      "embeddings",
+      "LLM",
+      "NLP",
+      "financial documents",
+      "citations",
+      "Claude"
+    ],
+    "build": {
+      "at": "2026-09-04T10:37:07",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "END: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "financial-chatbot",
+    "dropped_beats": [
+      "B01",
+      "B06",
+      "B07"
+    ],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 165.11
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "A financial chatbot answers in two seconds and cites three real filings. That looks like the model knowing things. It isn't. I'm Anjana — here are the four steps hiding behind that answer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "runningText 'opening the black box…'"
+          },
+          {
+            "at": 0.75,
+            "event": "output lines resolve: 'the question becomes a vector' / 'meaning search, not keyword search' / 'the model reads your documents, not its memory'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Hello, Anjana",
+            "topic": "AI · NLP · RETRIEVAL AUGMENTED GENERATION",
+            "segment": "Inside a Financial Chatbot",
+            "command": "When I ask a financial chatbot whether a company raised guidance, it comes back in seconds with an answer and three citations. What is actually happening between my question and that answer?",
+            "runningText": "opening the black box…",
+            "folderLabel": "",
+            "output": [
+              "the question becomes a vector",
+              "meaning search, not keyword search",
+              "the model reads your documents, not its memory"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T10:37:07"
+      },
+      "actual_duration_s": 12.43
+    },
+    {
+      "beat_id": "B02",
+      "act": "EMBED",
+      "narration_text": "Step one. Your question is not sent to the language model yet. First it is converted into a vector, a list of numbers that captures its meaning. The embedding model reads \"Did Company A raise revenue guidance\" and produces a three hundred eighty four dimensional vector. This vector is a coordinate in meaning space. Questions about revenue guidance land near other revenue guidance text. Questions about margin pressure land somewhere else entirely. The vector is a search key, not for words, but for meaning.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the question floats center screen; the chat interface sits small in the top-left corner"
+          },
+          {
+            "at": 0.14,
+            "event": "an 'Embedding Model' box appears — a deliberate black box — and the question flows into it"
+          },
+          {
+            "at": 0.3,
+            "event": "a horizontal strip of colored cells emerges: the vector, labelled '384 dimensions'"
+          },
+          {
+            "at": 0.46,
+            "event": "the strip lifts into a 2D scatter plot of meaning space with four labelled clusters"
+          },
+          {
+            "at": 0.66,
+            "event": "the question's vector lands as a bright pulsing dot inside the revenue-guidance cluster"
+          },
+          {
+            "at": 0.88,
+            "event": "label lands: 'Not searching for words. Searching for meaning.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChatbotEmbed916",
+          "props": {
+            "sparkLine": "Not searching for words. Searching for meaning."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 33,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T10:37:07"
+      },
+      "actual_duration_s": 29.28
+    },
+    {
+      "beat_id": "B03",
+      "act": "RETRIEVE",
+      "narration_text": "Step two. The vector searches a database of every earnings call transcript the system has ever processed. Not keyword search. Vector search. It compares the question's vector against thousands of stored chunk vectors and finds the closest matches by meaning. \"Revenue guidance\" in the question matches \"top-line outlook\" in a filing even though they share no words. The system pulls the top three to five most relevant chunks, ranked by similarity. Each chunk carries its metadata: company name, transcript date, section, speaker. These chunks become the context the language model will read.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the question vector enters from the left; a cylindrical Vector Store pulses on the right, full of faint stored-chunk dots"
+          },
+          {
+            "at": 0.16,
+            "event": "a sonar ripple washes through the store — near dots brighten, distant ones stay dim"
+          },
+          {
+            "at": 0.3,
+            "event": "three dots glow brightest; similarity lines label them 0.94, 0.91, 0.87"
+          },
+          {
+            "at": 0.44,
+            "event": "'revenue guidance' ↔ 'top-line outlook' match highlights — no shared words"
+          },
+          {
+            "at": 0.58,
+            "event": "three chunk cards slide out ranked by score, each with real transcript language"
+          },
+          {
+            "at": 0.76,
+            "event": "metadata tags resolve on each card: company | quarter | section | speaker"
+          },
+          {
+            "at": 0.9,
+            "event": "the cards stack into a bundle and hand off toward a waiting, inactive LLM node"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChatbotRetrieve916",
+          "props": {
+            "sparkLine": "Context assembled. Three chunks."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 38,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T10:37:07"
+      },
+      "actual_duration_s": 35.74
+    },
+    {
+      "beat_id": "B04",
+      "act": "GENERATE",
+      "narration_text": "Step three. Now the language model gets involved. It receives a prompt with three parts. First, a system instruction: you are a financial analyst, answer only from the provided context, cite your sources. Second, the retrieved chunks, the actual transcript text the vector search found. Third, the original question. The model reads all of it together. It does not guess. It does not use its training data. It answers from the context it was given, and it tags every claim with a citation pointing back to the specific chunk it came from. Step four. The answer streams back to you with source references attached. That is RAG. Retrieval augmented generation. The model's knowledge comes from your documents, not its memory.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the prompt window begins assembling — section 1, grey: the system instruction"
+          },
+          {
+            "at": 0.16,
+            "event": "section 2, blue: 'Context:' with the three numbered chunks [1][2][3] from B03"
+          },
+          {
+            "at": 0.3,
+            "event": "section 3, white: the original question"
+          },
+          {
+            "at": 0.4,
+            "event": "the three sections lock together into one package and fire into the LLM node, which activates and glows"
+          },
+          {
+            "at": 0.52,
+            "event": "the answer streams out character by character on the right"
+          },
+          {
+            "at": 0.66,
+            "event": "as each citation tag lands, a faint line draws back to the chunk it came from — traceable"
+          },
+          {
+            "at": 0.82,
+            "event": "the answer flows up into the corner chat interface, which grows back to full size with its three badges lit"
+          },
+          {
+            "at": 0.94,
+            "event": "label lands: 'RAG. The model reads your documents. Not its memory.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChatbotGenerate916",
+          "props": {
+            "sparkLine": "The model reads your documents."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 55,
+      "audio_file": "mp3/beat-B04.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T10:37:07"
+      },
+      "actual_duration_s": 44.14
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLOSE",
+      "narration_text": "Four steps. Embed the question. Search by meaning. Read the context. Generate with citations. No hallucination, because the model never had to guess. Every answer is grounded in a real document. That is what happens inside a financial chatbot.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "a clean horizontal four-step pipeline appears: Embed · Retrieve · Read · Generate"
+          },
+          {
+            "at": 0.1,
+            "event": "each step lights as the narration names it, left to right"
+          },
+          {
+            "at": 0.55,
+            "event": "on 'grounded in a real document' the citation badges glow"
+          },
+          {
+            "at": 0.66,
+            "event": "faint lines trace all the way back through the pipeline to the chunks in the store — the whole chain visible at once"
+          },
+          {
+            "at": 0.84,
+            "event": "the title lands: What Happens Inside a Financial Chatbot / Retrieval Augmented Generation"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChatbotClose916",
+          "props": {
+            "sparkLine": "Grounded, not guessed."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B05.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T10:37:07"
+      },
+      "actual_duration_s": 17.02
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "That's the short version. The full video also opens on the chatbot itself — the question, the answer, the three citations — and closes with a hands-on prompt for working out whether your own documents need retrieval at all, or whether you should just read them. Watch What Happens Inside a Financial Chatbot for the whole story. The link is right below.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeTitleOutro: title 'What Happens Inside a Financial Chatbot' in serif, terracotta period"
+            "event": "ClaudeTitleOutro: title 'What Happens Inside a Financial Chatbot' in serif, terracotta period"
+          },
+          {
+            "at": 0.8,
+            "event": "subline fades in: 'retrieval augmented generation'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "Inside a Financial Chatbot",
+            "handle": "",
+            "subline": "retrieval augmented generation"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "audio_file": "mp3/beat-B08.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-09-04T10:37:07"
+      },
+      "actual_duration_s": 21.84,
+      "short_outro_rewritten": true
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "",
+        "next": "",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-09-04T10:37:07"
+      }
+    }
+  ]
+}

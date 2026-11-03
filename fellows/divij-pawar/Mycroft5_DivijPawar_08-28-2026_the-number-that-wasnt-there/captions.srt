@@ -1,0 +1,839 @@
+1
+00:00:00,000 --> 00:00:03,292
+Two weeks ago, this project built something that runs two AI agents
+
+2
+00:00:03,292 --> 00:00:06,000
+on the same company and flags when their numbers disagree.
+
+3
+00:00:06,708 --> 00:00:09,125
+Last week, both agents finally became real.
+
+4
+00:00:09,542 --> 00:00:12,333
+This week, it ran for the first time. And the first thing
+
+5
+00:00:12,333 --> 00:00:15,167
+it produced wasn't a disagreement. It was a number that came from
+
+6
+00:00:15,167 --> 00:00:15,967
+nowhere.
+
+7
+00:00:16,300 --> 00:00:17,100
+Fast version.
+
+8
+00:00:17,300 --> 00:00:18,842
+Cross-Agent Validation runs two
+
+9
+00:00:19,300 --> 00:00:22,133
+independently-reasoning agents on one company, pulls the numbers out of each
+
+10
+00:00:22,133 --> 00:00:24,383
+conclusion, and flags anything that doesn't match.
+
+11
+00:00:25,050 --> 00:00:28,467
+Set arithmetic, no model, no judge. It started with one real agent
+
+12
+00:00:28,467 --> 00:00:32,133
+and one fixture, a hand-written stand-in you configure with whatever answer you
+
+13
+00:00:32,133 --> 00:00:35,300
+want, used on purpose to prove the detector works before pointing it
+
+14
+00:00:35,300 --> 00:00:36,100
+at anything real.
+
+15
+00:00:36,550 --> 00:00:37,350
+Last week,
+
+16
+00:00:37,633 --> 00:00:40,633
+the fixture was replaced with a second real grader reading the same
+
+17
+00:00:40,633 --> 00:00:45,342
+SEC filing through a different lens: balance sheet versus earnings quality. A
+
+18
+00:00:45,342 --> 00:00:49,467
+hundred forty-three tests passed. Zero lines changed in the comparator itself.
+
+19
+00:00:49,842 --> 00:00:53,008
+But nobody had actually watched two real agents talk to each other
+
+20
+00:00:53,008 --> 00:00:53,808
+yet.
+
+21
+00:00:53,930 --> 00:00:56,180
+The second agent ran on a model set up locally.
+
+22
+00:00:56,638 --> 00:00:58,513
+Once it ran: real filing data went in.
+
+23
+00:00:59,013 --> 00:01:01,847
+A real independent model came back with a conclusion for each side.
+
+24
+00:01:02,180 --> 00:01:05,430
+Producer A, reading assets, revenue, and net income, wrote: 'Calculated the
+
+25
+00:01:05,680 --> 00:01:09,097
+debt-to-equity ratio as zero point three four.' Its input data contained no
+
+26
+00:01:09,097 --> 00:01:12,722
+debt and no equity figures. Not close, not derived, the concept wasn't
+
+27
+00:01:12,722 --> 00:01:13,522
+in the data at all.
+
+28
+00:01:13,888 --> 00:01:15,763
+Producer B, reading real earnings figures,
+
+29
+00:01:16,472 --> 00:01:20,555
+cited zero numbers. It described them, 'consistent,' 'significantly large,' but
+
+30
+00:01:20,555 --> 00:01:21,638
+never wrote one down.
+
+31
+00:01:22,013 --> 00:01:23,763
+The system flagged a contradiction.
+
+32
+00:01:24,180 --> 00:01:26,430
+It was right to. But not for the reason you'd hope.
+
+33
+00:01:27,080 --> 00:01:28,747
+One surprising result could be noise.
+
+34
+00:01:29,247 --> 00:01:32,330
+So five separate tests ran against it, not a quick pass or
+
+35
+00:01:32,330 --> 00:01:33,830
+fail on each, but the full treatment:
+
+36
+00:01:34,247 --> 00:01:36,580
+what the test is, why it was run, what a clean result
+
+37
+00:01:36,580 --> 00:01:39,663
+should look like, exactly what was fed into it, what actually came
+
+38
+00:01:39,663 --> 00:01:40,747
+back, and what that means.
+
+39
+00:01:41,288 --> 00:01:42,122
+Here's all five.
+
+40
+00:01:42,850 --> 00:01:44,225
+Test one: claim verification.
+
+41
+00:01:44,683 --> 00:01:47,517
+Here's what it is: for every citation in a thought_log that points
+
+42
+00:01:47,517 --> 00:01:48,392
+at a real URL,
+
+43
+00:01:48,850 --> 00:01:52,058
+this mechanism fetches that source and checks whether the numbers being claimed
+
+44
+00:01:52,058 --> 00:01:54,475
+actually appear in it, within one percent tolerance.
+
+45
+00:01:55,100 --> 00:01:55,975
+Here's why it exists:
+
+46
+00:01:56,350 --> 00:01:59,433
+this is the system's dedicated defense against exactly this failure,
+
+47
+00:01:59,808 --> 00:02:02,600
+a citation that looks real but isn't backed by what it points
+
+48
+00:02:02,600 --> 00:02:03,400
+to.
+
+49
+00:02:03,517 --> 00:02:06,267
+Here's what a clean result looks like: a true number should confirm
+
+50
+00:02:06,267 --> 00:02:07,067
+against the source.
+
+51
+00:02:07,558 --> 00:02:08,975
+A fabricated number should come back
+
+52
+00:02:09,517 --> 00:02:13,183
+checked-and-not-found. Either outcome means the mechanism is doing its job, a
+
+53
+00:02:13,183 --> 00:02:16,183
+hundred percent pass rate isn't the goal, a hundred percent honest verdict
+
+54
+00:02:16,183 --> 00:02:19,558
+is. Here's what it was actually given: the citation under test was
+
+55
+00:02:19,558 --> 00:02:23,392
+the debt-to-equity line, pointing at the same SEC filing already fetched for
+
+56
+00:02:23,392 --> 00:02:24,808
+Producer A's real inputs.
+
+57
+00:02:25,433 --> 00:02:28,683
+Here's what happened: verification never got the chance to check that number
+
+58
+00:02:28,683 --> 00:02:29,483
+at all.
+
+59
+00:02:29,475 --> 00:02:33,433
+One layer upstream, claim extraction only recognizes figures shaped like a dollar
+
+60
+00:02:33,433 --> 00:02:36,058
+amount, a percentage, a multiple, or basis points.
+
+61
+00:02:36,683 --> 00:02:40,475
+A bare decimal ratio, zero point three four, no symbol attached, matched
+
+62
+00:02:40,475 --> 00:02:41,308
+none of those patterns.
+
+63
+00:02:41,683 --> 00:02:43,892
+It was invisible before verification ever ran.
+
+64
+00:02:44,267 --> 00:02:45,067
+Here's what it means:
+
+65
+00:02:45,225 --> 00:02:48,558
+a verification layer is only as reliable as what gets handed to
+
+66
+00:02:48,558 --> 00:02:49,358
+it.
+
+67
+00:02:49,183 --> 00:02:52,767
+A gap in extraction can silently starve a working checker of the
+
+68
+00:02:52,767 --> 00:02:54,308
+one claim it most needed to see.
+
+69
+00:02:55,040 --> 00:02:58,623
+Test two: determinism. What it is: run the identical question through the
+
+70
+00:02:58,623 --> 00:03:02,832
+identical model, same temperature, same fixed seed, five separate times, and compare
+
+71
+00:03:02,832 --> 00:03:03,748
+all five answers.
+
+72
+00:03:04,290 --> 00:03:07,707
+Why it matters: it separates two very different problems. A wrong answer
+
+73
+00:03:07,707 --> 00:03:10,790
+that changes every time is noise, annoying, but survivable.
+
+74
+00:03:11,207 --> 00:03:14,332
+A wrong answer that repeats identically is a stable pattern in the
+
+75
+00:03:14,332 --> 00:03:16,873
+model's reasoning, worse, but at least diagnosable.
+
+76
+00:03:17,415 --> 00:03:20,498
+What a clean result looks like: either all five converge on the
+
+77
+00:03:20,498 --> 00:03:24,415
+same, hopefully correct, answer, or, if something's wrong, the same wrong answer
+
+78
+00:03:24,415 --> 00:03:27,832
+keeps recurring, because a repeatable failure is one you can actually target.
+
+79
+00:03:28,457 --> 00:03:29,457
+What was actually given:
+
+80
+00:03:29,873 --> 00:03:33,498
+the project's own local-model adapter defaults to temperature zero and a fixed
+
+81
+00:03:33,498 --> 00:03:34,298
+seed of
+
+82
+00:03:34,332 --> 00:03:37,582
+forty-two, that part is confirmed straight from the adapter's source code.
+
+83
+00:03:38,123 --> 00:03:41,790
+Whether this specific run used those defaults unmodified isn't independently
+
+84
+00:03:41,790 --> 00:03:43,082
+confirmed from this checkout,
+
+85
+00:03:43,457 --> 00:03:45,165
+flagged plainly, not glossed over.
+
+86
+00:03:45,540 --> 00:03:48,707
+What happened: four of the five runs converged on the same invented
+
+87
+00:03:48,707 --> 00:03:51,873
+pair of ratios, off by one digit in the last decimal place.
+
+88
+00:03:52,373 --> 00:03:55,415
+The original debt-to-equity number, the one from the first run, never came
+
+89
+00:03:55,415 --> 00:03:56,540
+back across the other four.
+
+90
+00:03:56,957 --> 00:04:00,415
+What it means: fixing temperature and seed narrows the model's behavior,
+
+91
+00:04:00,998 --> 00:04:04,707
+but doesn't collapse it to one single deterministic answer, there's still an
+
+92
+00:04:04,707 --> 00:04:05,507
+outlier.
+
+93
+00:04:05,623 --> 00:04:09,040
+And the outlier was exactly the fabrication this video is about.
+
+94
+00:04:09,498 --> 00:04:12,415
+Seen only once, it would have looked like the model's normal behavior
+
+95
+00:04:12,415 --> 00:04:14,915
+instead of the one time it strayed furthest from it.
+
+96
+00:04:15,510 --> 00:04:19,010
+Test three: the project's own consistency probe, a separate mechanism from
+
+97
+00:04:19,010 --> 00:04:21,510
+determinism, built for exactly this situation.
+
+98
+00:04:22,135 --> 00:04:24,843
+What it is: run a second, fully independent pass on the same
+
+99
+00:04:24,843 --> 00:04:28,718
+input, then score how much the two conclusions actually overlap, words, weighted
+
+100
+00:04:28,718 --> 00:04:32,802
+lightly at point four, specific numbers, weighted heavily at point six, because
+
+101
+00:04:32,802 --> 00:04:36,052
+a real number is much harder to fabricate identically twice than a
+
+102
+00:04:36,052 --> 00:04:37,052
+general phrase is.
+
+103
+00:04:37,510 --> 00:04:41,135
+Why it exists: unlike verification, it needs no external source at all,
+
+104
+00:04:41,343 --> 00:04:45,010
+genuine reasoning from real evidence should converge across independent runs on its
+
+105
+00:04:45,010 --> 00:04:45,810
+own.
+
+106
+00:04:45,927 --> 00:04:48,468
+What a clean result looks like: high agreement, and, this is the
+
+107
+00:04:48,468 --> 00:04:51,677
+important part, a specific hard flag the moment any number shows up
+
+108
+00:04:51,677 --> 00:04:54,260
+in one run and never in the other, no scoring required.
+
+109
+00:04:54,802 --> 00:04:58,135
+What it was given: the same subject, the same agent identity, a
+
+110
+00:04:58,135 --> 00:04:59,177
+fresh independent run,
+
+111
+00:04:59,593 --> 00:05:02,427
+weights of point four on word overlap and point six on number
+
+112
+00:05:02,427 --> 00:05:03,227
+overlap.
+
+113
+00:05:03,177 --> 00:05:06,552
+What happened: the debt-to-equity figure appeared exactly once across every run
+
+114
+00:05:06,552 --> 00:05:08,135
+collected, never a second time.
+
+115
+00:05:08,593 --> 00:05:12,302
+The hard divergence flag fires exactly the way it's designed to. What
+
+116
+00:05:12,302 --> 00:05:14,927
+it means: of all five tests here, this is the one that
+
+117
+00:05:14,927 --> 00:05:17,677
+worked precisely as intended, with no workaround needed.
+
+118
+00:05:18,052 --> 00:05:20,093
+It didn't need to know anything about the real world.
+
+119
+00:05:20,593 --> 00:05:24,302
+It only needed the fabrication to fail at being consistent with itself,
+
+120
+00:05:24,677 --> 00:05:25,477
+and it did.
+
+121
+00:05:25,930 --> 00:05:28,680
+Test four: a guardrail stress test, and it's the odd one out,
+
+122
+00:05:28,722 --> 00:05:30,347
+it isn't testing whether the agents are right.
+
+123
+00:05:30,805 --> 00:05:33,513
+It's testing whether they can even speak the required format at all.
+
+124
+00:05:33,888 --> 00:05:36,347
+Why that matters on its own: every other test here assumes the
+
+125
+00:05:36,347 --> 00:05:39,847
+response actually parsed into a valid structure to begin with. If that
+
+126
+00:05:39,847 --> 00:05:41,763
+layer breaks, nothing downstream even runs.
+
+127
+00:05:42,138 --> 00:05:45,472
+What a clean result looks like: a first-attempt parse success rate at
+
+128
+00:05:45,472 --> 00:05:47,972
+or near a hundred percent, and zero forced halts,
+
+129
+00:05:48,430 --> 00:05:51,305
+proof the format-enforcement layer holds up against real, not
+
+130
+00:05:51,763 --> 00:05:55,555
+fixture-generated, model output. What it was given: twenty-four real calls across
+
+131
+00:05:55,555 --> 00:05:58,805
+the live batch, the same directive version each time, first attempt only
+
+132
+00:05:58,805 --> 00:06:00,930
+counted, a retry wouldn't count as a clean pass.
+
+133
+00:06:01,430 --> 00:06:05,430
+What happened: twenty-four for twenty-four. Zero retries triggered. Zero halts. What
+
+134
+00:06:05,430 --> 00:06:07,930
+it means: whatever else is wrong this week, it isn't the format
+
+135
+00:06:07,930 --> 00:06:09,555
+layer. That part held perfectly,
+
+136
+00:06:10,263 --> 00:06:11,888
+at least at this sample size.
+
+137
+00:06:12,305 --> 00:06:15,847
+The failure lives entirely in what the model reasoned, not in whether
+
+138
+00:06:15,847 --> 00:06:19,013
+it could describe that reasoning in the shape the pipeline requires.
+
+139
+00:06:19,880 --> 00:06:23,297
+Test five: breadth. What it is: run the same two-producer comparison across
+
+140
+00:06:23,463 --> 00:06:26,422
+twelve different real companies, not just the one from the first live
+
+141
+00:06:26,422 --> 00:06:27,222
+run.
+
+142
+00:06:27,380 --> 00:06:30,213
+Why: one company could be a fluke, an unusual filing, a missing
+
+143
+00:06:30,213 --> 00:06:33,755
+field, anything. Testing across a spread of real companies is what tells
+
+144
+00:06:33,755 --> 00:06:36,547
+you whether a pattern is general or a one-off. What a clean
+
+145
+00:06:36,547 --> 00:06:37,463
+result looks like:
+
+146
+00:06:37,838 --> 00:06:40,297
+flags that correlate with actual factual contradictions,
+
+147
+00:06:40,963 --> 00:06:41,763
+a low
+
+148
+00:06:41,630 --> 00:06:45,505
+false-positive rate across a genuinely diverse batch of real filings. What it
+
+149
+00:06:45,505 --> 00:06:49,338
+was given: twelve real tickers, real SEC filings pulled for each, both
+
+150
+00:06:49,338 --> 00:06:52,963
+producers run per company, the existing contradiction flag left completely
+
+151
+00:06:52,963 --> 00:06:53,763
+unmodified.
+
+152
+00:06:54,047 --> 00:06:57,463
+What happened: eleven of twelve got flagged. The one exception was the
+
+153
+00:06:57,463 --> 00:07:00,880
+single company where neither agent cited a number at all, nothing to
+
+154
+00:07:00,880 --> 00:07:04,630
+compare, so nothing to flag. And manually checking one of those eleven
+
+155
+00:07:04,672 --> 00:07:08,880
+flagged cases showed both agents were completely correct, one reported assets and
+
+156
+00:07:08,880 --> 00:07:13,130
+revenue, the other reported earnings per share. Different concepts, zero actual
+
+157
+00:07:13,130 --> 00:07:15,005
+conflict, and the flag fired anyway.
+
+158
+00:07:15,380 --> 00:07:17,963
+What it means, and this is the part that actually redirected the
+
+159
+00:07:17,963 --> 00:07:21,505
+project this week: eleven out of twelve looked like an alarming contradiction
+
+160
+00:07:21,505 --> 00:07:22,713
+rate at first glance.
+
+161
+00:07:23,422 --> 00:07:26,547
+It was actually revealing that the flag can't yet tell the difference
+
+162
+00:07:26,547 --> 00:07:31,047
+between two agents disagreeing and two agents simply talking about different things.
+
+163
+00:07:31,860 --> 00:07:35,693
+Five tests. One upstream extraction gap, one informative outlier,
+
+164
+00:07:36,068 --> 00:07:38,443
+one mechanism that worked exactly as designed,
+
+165
+00:07:38,902 --> 00:07:41,235
+one clean structural pass, and one real,
+
+166
+00:07:41,818 --> 00:07:44,235
+project-redirecting flaw in what the flag actually measures.
+
+167
+00:07:45,000 --> 00:07:48,375
+The missing-number problem turned out to be duplicated in three separate files,
+
+168
+00:07:48,625 --> 00:07:49,425
+not one.
+
+169
+00:07:49,583 --> 00:07:52,792
+The same regex, copied three times, all with the same blind spot.
+
+170
+00:07:53,250 --> 00:07:56,333
+All three got widened the same way, an unfixed duplicate left behind
+
+171
+00:07:56,333 --> 00:07:58,042
+would have been worse than not fixing it at all.
+
+172
+00:07:58,500 --> 00:08:01,000
+The flag problem needed an actual decision, not a patch.
+
+173
+00:08:01,375 --> 00:08:04,667
+The honest constraint: nothing in this system currently knows which real-world
+
+174
+00:08:04,708 --> 00:08:07,208
+concept a number came from, only that a number exists.
+
+175
+00:08:07,958 --> 00:08:11,458
+So a genuinely complete fix wasn't available without much bigger changes.
+
+176
+00:08:11,875 --> 00:08:15,042
+The decision that shipped: a number cited by only one side no
+
+177
+00:08:15,042 --> 00:08:17,000
+longer counts as a contradiction by itself.
+
+178
+00:08:17,417 --> 00:08:20,458
+That fixes the case where one agent simply wasn't asked about something.
+
+179
+00:08:20,792 --> 00:08:24,000
+It does not fix two agents citing real, correct, unrelated numbers.
+
+180
+00:08:24,375 --> 00:08:26,833
+That gap is named in the code, tested as a known limit,
+
+181
+00:08:27,042 --> 00:08:29,500
+and left open on purpose, not quietly dropped.
+
+182
+00:08:30,120 --> 00:08:32,453
+The fix wasn't just tested against hand-built examples.
+
+183
+00:08:32,870 --> 00:08:36,578
+It was checked against the same twelve real companies, recalculated, not re-run.
+
+184
+00:08:37,078 --> 00:08:39,453
+Under the old rule: eleven of twelve flagged. Under the new rule:
+
+185
+00:08:39,578 --> 00:08:43,120
+seven of twelve. Four companies, where one agent simply hadn't quantified anything,
+
+186
+00:08:43,287 --> 00:08:44,328
+stopped being false alarms.
+
+187
+00:08:44,828 --> 00:08:47,745
+The other seven, where both agents cited real numbers about different things,
+
+188
+00:08:47,745 --> 00:08:51,287
+are still flagged. That's the honest, measured size of the fix. Not
+
+189
+00:08:51,287 --> 00:08:52,087
+everything.
+
+190
+00:08:52,495 --> 00:08:54,412
+Something specific and countable.
+
+191
+00:08:55,100 --> 00:08:57,017
+Two separate questions, two separate answers.
+
+192
+00:08:57,475 --> 00:09:01,100
+Does the machinery work? Real filings, real independent reasoning, a full audit
+
+193
+00:09:01,100 --> 00:09:04,058
+trail, a guardrail that held on every one of twenty-four real calls.
+
+194
+00:09:04,600 --> 00:09:06,100
+Yes. Provably, not just theoretically.
+
+195
+00:09:06,850 --> 00:09:10,392
+Does the flag reliably mean these two agents disagree? Not yet. Most
+
+196
+00:09:10,392 --> 00:09:13,600
+of what it flags right now is agents discussing different things, not
+
+197
+00:09:13,600 --> 00:09:15,100
+agents contradicting each other.
+
+198
+00:09:15,683 --> 00:09:19,100
+And the one real fabrication this system produced was caught by a
+
+199
+00:09:19,100 --> 00:09:20,308
+person reading the output,
+
+200
+00:09:20,725 --> 00:09:21,975
+not by the system itself.
+
+201
+00:09:22,830 --> 00:09:26,830
+A system built specifically to distrust fluent, confident answers just produced one,
+
+202
+00:09:27,122 --> 00:09:29,830
+and then measured exactly how wrong it was, instead of hiding it.
+
+203
+00:09:30,163 --> 00:09:31,288
+That's not a finished detector.
+
+204
+00:09:31,705 --> 00:09:34,288
+It's a detector that's now told on itself, twice, in two days,
+
+205
+00:09:34,288 --> 00:09:37,122
+once about a number, once about what its own flag actually measures.
+
+206
+00:09:37,580 --> 00:09:40,330
+The smallest true claim, not the biggest: this proved the plumbing.
+
+207
+00:09:40,705 --> 00:09:41,997
+It did not yet prove the judgment.
+
+208
+00:09:42,690 --> 00:09:45,065
+The number that wasn't there was caught by a person, not the
+
+209
+00:09:45,065 --> 00:09:45,865
+system.
+
+210
+00:09:45,857 --> 00:09:46,657
+Signing off, Divij Pawar.

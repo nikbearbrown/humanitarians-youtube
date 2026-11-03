@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "title": "What the Baseline Found",
+    "slug": "patent-agent-video12-baseline-results",
+    "topic": "Claude Code · Patent Intelligence",
+    "register": "Pragmatist",
+    "voice": "claude-hai",
+    "voice_kokoro": "af_bella",
+    "engine": "kokoro",
+    "palette": "humanitarians",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "channel": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "note": "Mycroft patent intelligence progress video 12. Real session: labeled 50 independent claims from 16 patents by hand (46 narrow / 4 broad; 50 defensive), ran eval_classifier.py baseline once (50 calls to claude-sonnet-5, cost upper bound $0.32; actual not recorded). Results over 50 claims: breadth acc 0.66, kappa 0.08 (majority baseline 0.92); posture acc 0.60, kappa 0.00 (majority baseline 1.00); no collapse; 11 broad/offensive predictions, 10 of them labeled narrow. Three claims on US-11766760-B2 refused (stop_reason=refusal; claims 1 and 7 recorded, claim 5 same failure); fixed claim_classifier.py to treat refusal as declined. Commit 3bcf1b1 on nikbearbrown/mycroft. Phase 4 prompt fix not started.",
+    "total_estimated_duration_seconds": 143,
+    "build": {
+      "at": "2026-10-29T13:50:58",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00A",
+      "act": "INTRO",
+      "role_note": "presenter executive summary",
+      "narration_text": "Hi, I'm Aishwarya from the Mycroft team. This video covers the first real evaluation of our patent claim classifier: fifty hand-labeled claims, one baseline run, and a result that went the opposite way from what we expected.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "What the Baseline Found",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Hi, I'm Aishwarya",
+            "runningText": "from the Mycroft team",
+            "output": [
+              "Fifty hand-labeled claims, one baseline run,",
+              "and a result that went the other way."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00A.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B00A.mp3",
+      "actual_duration_s": 14.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00A.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T13:50:58"
+      }
+    },
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW",
+      "narration_text": "For weeks, the classifier's readings looked narrow and defensive, and we suspected it was stuck on one answer. When we finally measured it against human labels, it wasn't stuck there. It was leaning the other way.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "What the Baseline Found",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Suspected:",
+            "runningText": "stuck on one answer…",
+            "output": [
+              "expected:  narrow / defensive",
+              "measured:  leaning broad / offensive"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 12.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T13:50:58"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SETUP",
+      "role_note": "recap: harness + one $0.92 query (last week); 50 claims from 16 patents labeled by hand (this week)",
+      "narration_text": "Last week I built the evaluation harness and pulled the test set: one BigQuery query, ninety-two cents, one hundred sixty patents. From those I selected fifty independent claims across sixteen patents, two from each of the eight patent classification sections. This week I labeled all fifty by hand, breadth and posture, with a note on each explaining why.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_LabeledTestSet",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 22.83,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_LabeledTestSet",
+        "at": "2026-10-29T13:50:58"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "METHOD",
+      "role_note": "baseline run: accuracy vs majority baseline; kappa 0.08 / 0.00",
+      "narration_text": "Then I ran the classifier on all fifty, for at most thirty-two cents. Breadth accuracy was 0.66, posture accuracy 0.60. Accuracy alone is misleading here. Forty-six of my fifty labels are narrow, so a model that always says narrow would score ninety-two percent. Cohen's kappa corrects for that: 0.08 on breadth and 0.00 on posture, which is barely better than chance.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_AccuracyVsKappa",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 23,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 26.43,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_AccuracyVsKappa",
+        "at": "2026-10-29T13:50:58"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FINDING",
+      "role_note": "11 broad/offensive predictions, 10 labeled narrow; functional wording read as broad; all-defensive label caveat",
+      "narration_text": "The surprise is the direction. The classifier called eleven claims broad and offensive, and I had labeled ten of those eleven narrow. Its reasoning kept treating functional wording, like \"configured to\" or \"a protrusion\", as broad, while I read the named parts and specific limits as narrow. One caveat: every one of my labels is defensive, so this test set can't measure posture agreement well. That needs offensive and broad examples.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_LeansTheOtherWay",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 27,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 26.39,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_LeansTheOtherWay",
+        "at": "2026-10-29T13:50:58"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "BUG FIX",
+      "role_note": "3 refusals on one grinding patent; mid-answer refusal broke parser; stop_reason fix; 50/50 scored; prompt fix next",
+      "narration_text": "Three claims on one patent, a cryogenic grinding process, kept failing. Raising the token limit didn't help. One diagnostic call showed why: the model was refusing partway through its answer, leaving half a JSON reply that the parser couldn't read. The code only handled empty refusals. I fixed it to treat any refusal as declined, and all fifty claims now score. The prompt fix comes next.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_RefusalBug",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 25,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 25.26,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_RefusalBug",
+        "at": "2026-10-29T13:50:58"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW",
+      "narration_text": "Your turn. Before you trust any classifier's accuracy, score a fake model that always gives the most common answer. If your real model can't beat it, accuracy is telling you about your data, not your model.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"score a fake model that always predicts my most common label, and compare it with my classifier's accuracy\"",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "What the Baseline Found",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "beat the baseline first…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 12.82,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T13:50:58"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW",
+      "narration_text": "What the Baseline Found. Built with Claude, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "What the Baseline Found.",
+            "handle": "@HumanitariansAI",
+            "subline": "beat the baseline before you trust the score"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 4,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 4.27,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T13:50:58"
+      }
+    }
+  ]
+}

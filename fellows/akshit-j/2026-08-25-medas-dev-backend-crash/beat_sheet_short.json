@@ -1,0 +1,842 @@
+{
+  "metadata": {
+    "title": "Tracing a Crash-Looping Backend",
+    "slug": "2026-08-25-medas-dev-backend-crash-vertical",
+    "narrator": "Akshit",
+    "series": "MEDAS · Backend",
+    "source": "Incident 01 notes (Dev Backend Crash-Looping: Stale MONGODB_URI, week of 2026-08-25); Cloud Run request log 2026-08-27T23:29:21Z (sanitized); MEDAS login screenshot (pantry/medas-login-ui-after-fix.png)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "brand": "claude-hai",
+    "topic": "Irreducibly Human",
+    "audience": "Humanitarians AI",
+    "register": "Plain",
+    "palette": "claude",
+    "hello": "Hi",
+    "aspect": "16:9",
+    "description": "A MEDAS 2.0 (pre-release) project update: the dev backend on Cloud Run returned Service Unavailable on every request, including /health. Traced through Cloud Run logs to a stale MONGODB_URI secret pointing at a terminated cluster; because init_database() runs at import time, the failed connection crashed every worker boot. Fixed with a new dev Atlas cluster under the institutional account, a new secret version picked up via :latest, and verified with /health plus a real login query.",
+    "note": "Evidence handling: the dev database holds example test data only, no real patient data. Log shown in B12 is sanitized (client IP, instance ID, trace/span IDs, project ID and full service URLs removed). B04/B06 are reconstructions from the incident notes, labeled as such on screen; B08 is a labeled illustration of the pattern, not MEDAS source. Dev URLs returning 503 since 2026-09-20 is a separate billing issue and is not part of this story.",
+    "build": {
+      "at": "2026-09-23T16:02:30",
+      "cut": "master",
+      "filled": 16,
+      "of": 16,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B15: palette=claude but the outro is 'FormACard916' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "aspect_ratio": "9:16",
+    "fit": "pad",
+    "kind": "vertical",
+    "reformat": "full-length; native portrait graphics; preserve source framing",
+    "derived_from": "2026-08-25-medas-dev-backend-crash",
+    "dropped_beats": [],
+    "total_estimated_duration_seconds": 253.92,
+    "short_validation": {
+      "status": "ready",
+      "errors": [],
+      "resolved": "blocked beats rewired to registered portrait compositions (FormBCard916, FormACard916) in this vertical sheet; no crops"
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude composer, ask shown answered; FELLOWS-SUBMISSION intro line + AI narration disclosure",
+      "narration_text": "Hi, I am Akshit and this video is about tracing a crash-looping backend on MEDAS, a diagnostic advising system for emergency physicians. One week in August, every request to our dev backend came back Service Unavailable. A quick note: the voice you're hearing is an AI narrator reading my script.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "Our Cloud Run backend answers every request, even /health, with Service Unavailable. Where do I start?",
+            "topic": "MEDAS · CLOUD RUN · MONGODB",
+            "segment": "Crash-Looping Backend",
+            "greeting": "Hi, Akshit",
+            "runningText": "tracing the crash loop…",
+            "output": [
+              "Service Unavailable: the container never answered",
+              "check Cloud Run → Logs before the app code",
+              "look for a worker that boots, then dies"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-23T17:39:27.295318+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.79,
+      "render_duration_s": 16.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "OVERVIEW",
+      "role_note": "EXECUTIVE-SUMMARY LAW -- hesitant writer; the correction IS the misconception the body dismantles",
+      "narration_text": "Our backend was down because its startup needed a database that no longer existed. Not a bug in a route. One stale setting took the whole service down with it.",
+      "lead_silence_s": 0.8,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer typing bookend (EXECUTIVE-SUMMARY LAW): the overview accumulates token by token, so mid-beat frames are mostly cream by design."
+      },
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter916",
+          "props": {
+            "text": "Our backend was down\nbecause of a bug\nin our code.",
+            "triggerWords": "code",
+            "replacementWords": "config",
+            "seed": "akshit-medas-dev-crash-2026-08-25",
+            "fontSize": 190
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-23T19:25:14.629651+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 9.28,
+      "render_duration_s": 9.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CONTEXT",
+      "role_note": "what MEDAS is, before any detail",
+      "narration_text": "MEDAS is built with emergency medicine services. A doctor describes a case by speech or text. A super-learner of AI agents and an early sepsis predictor weigh in, and an aggregation layer merges them into one ranked list of possible diagnoses with probabilities. It's a second opinion; the doctor still decides. MEDAS 2.0 is in pre-release, and my part is the backend that carries it.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "What MEDAS does",
+            "items": [
+              {
+                "label": "Doctor's case",
+                "sub": "speech or text",
+                "icon": "BOX"
+              },
+              {
+                "label": "Superlearner",
+                "sub": "multiple AI agents",
+                "icon": "BOX"
+              },
+              {
+                "label": "Sepsis model",
+                "sub": "early warning",
+                "icon": "BOX"
+              },
+              {
+                "label": "Aggregation",
+                "sub": "one ranked answer",
+                "icon": "BOX"
+              },
+              {
+                "label": "Doctor decides",
+                "sub": "a second opinion",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-23T19:00:23.205727+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 21.48,
+      "render_duration_s": 21.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FRAMEWORK",
+      "role_note": "FRAMEWORK beat -- the boot path every request depends on, shown before the example",
+      "narration_text": "Here's the path every request depends on. Cloud Run starts a container. Gunicorn binds to port eighty-eighty. The app imports its routes, and that import calls init database, which asks MongoDB's client to resolve the cluster's address through DNS. Every link has to hold before even the health check can answer.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The boot path",
+            "items": [
+              {
+                "label": "Cloud Run",
+                "sub": "starts a container",
+                "icon": "BOX"
+              },
+              {
+                "label": "gunicorn",
+                "sub": "binds :8080",
+                "icon": "BOX"
+              },
+              {
+                "label": "routes.py",
+                "sub": "init_database()",
+                "icon": "BOX"
+              },
+              {
+                "label": "MongoClient",
+                "sub": "resolves DNS",
+                "icon": "BOX"
+              },
+              {
+                "label": "Atlas",
+                "sub": "must answer",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-23T17:42:52.251397+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.43,
+      "render_duration_s": 17.458333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SYMPTOM",
+      "role_note": "worked example begins -- reconstruction from incident notes, labeled",
+      "narration_text": "The symptom. Both dev URLs were live: DNS resolved, and Cloud Run showed the service as deployed. But every request, even slash health, returned Service Unavailable. That detail matters. A missing route gets you a four-oh-four from the app. This page means the container itself never answered.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The symptom",
+            "items": [
+              {
+                "label": "GET /health",
+                "sub": "Service Unavailable",
+                "icon": "BOX"
+              },
+              {
+                "label": "POST /auth/login",
+                "sub": "Service Unavailable",
+                "icon": "BOX"
+              },
+              {
+                "label": "DNS",
+                "sub": "resolves fine",
+                "icon": "BOX"
+              },
+              {
+                "label": "Deployment",
+                "sub": "shows as live",
+                "icon": "BOX"
+              },
+              {
+                "label": "Container",
+                "sub": "never answered",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-23T17:52:32.410509+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 16.58,
+      "render_duration_s": 16.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "DIAGNOSIS",
+      "role_note": "first suspect ruled out",
+      "narration_text": "First suspect: a secret that was never created. In Secret Manager for the dev project, both JWT secret and MongoDB URI existed. So that was ruled out. The next stop was the one this error points to: the Cloud Run logs.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Suspect 1: secrets",
+            "items": [
+              {
+                "label": "Secret Manager",
+                "sub": "dev project",
+                "icon": "BOX"
+              },
+              {
+                "label": "JWT_SECRET",
+                "sub": "exists",
+                "icon": "BOX"
+              },
+              {
+                "label": "MONGODB_URI",
+                "sub": "exists",
+                "icon": "BOX"
+              },
+              {
+                "label": "Verdict",
+                "sub": "ruled out",
+                "icon": "BOX"
+              },
+              {
+                "label": "Next stop",
+                "sub": "Cloud Run logs",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-23T17:54:39.068846+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.36,
+      "render_duration_s": 14.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "DIAGNOSIS",
+      "role_note": "the crash-loop pattern -- reconstruction from incident notes, labeled",
+      "narration_text": "The logs showed a loop. Gunicorn starts and binds to eighty-eighty. A few seconds later the worker crashes, the worker fails to boot, and the master shuts down. Then it repeats, on every single request, because with no healthy instance Cloud Run starts a fresh one each time. At the bottom of the traceback: pymongo trying to resolve the cluster's DNS records, and failing.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Logs, reconstructed",
+            "items": [
+              {
+                "label": "gunicorn",
+                "sub": "listening on :8080",
+                "icon": "BOX"
+              },
+              {
+                "label": "Worker",
+                "sub": "exception at boot",
+                "icon": "BOX"
+              },
+              {
+                "label": "Traceback",
+                "sub": "MongoClient DNS",
+                "icon": "BOX"
+              },
+              {
+                "label": "Worker",
+                "sub": "failed to boot",
+                "icon": "BOX"
+              },
+              {
+                "label": "Then",
+                "sub": "repeat per request",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-23T17:56:56.969375+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 19.01,
+      "render_duration_s": 19.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ROOT CAUSE",
+      "role_note": "the framework from B03 again, now with the broken link lit",
+      "narration_text": "So I opened the secret's actual value. The MongoDB URI pointed at an old cluster, a personal one from before the project consolidated onto Professor Tayyar's institutional Atlas account. That cluster had been terminated. The DNS lookup had nothing left to find, and the chain broke at its very first database call.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Root cause",
+            "items": [
+              {
+                "label": "routes.py",
+                "sub": "init_database()",
+                "icon": "BOX"
+              },
+              {
+                "label": "MongoClient",
+                "sub": "DNS lookup fails",
+                "icon": "BOX"
+              },
+              {
+                "label": "MONGODB_URI",
+                "sub": "stale secret",
+                "icon": "BOX"
+              },
+              {
+                "label": "Old cluster",
+                "sub": "personal, terminated",
+                "icon": "BOX"
+              },
+              {
+                "label": "Result",
+                "sub": "every boot crashes",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-23T17:59:11.512703+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.22,
+      "render_duration_s": 18.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "WHY IT WAS TOTAL",
+      "role_note": "labeled illustration of the import-time pattern, not MEDAS source",
+      "narration_text": "Why did one bad setting take down everything, even the health check? Because init database runs at module import time, before Flask can serve a single request. The failed connection doesn't break one route. It breaks the boot. No healthy worker means no response at all, and Cloud Run just tries again on the next request.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Why it was total",
+            "items": [
+              {
+                "label": "Import time",
+                "sub": "DB call runs first",
+                "icon": "BOX"
+              },
+              {
+                "label": "Dead cluster",
+                "sub": "exception",
+                "icon": "BOX"
+              },
+              {
+                "label": "Worker",
+                "sub": "fails to boot",
+                "icon": "BOX"
+              },
+              {
+                "label": "Flask",
+                "sub": "never serves",
+                "icon": "BOX"
+              },
+              {
+                "label": "Every route",
+                "sub": "unreachable",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-23T18:01:19.436542+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 17.34,
+      "render_duration_s": 17.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "FIX",
+      "role_note": "resolution steps from the incident notes",
+      "narration_text": "The fix. A new, properly owned dev cluster under the institutional Atlas account, seeded with example test data, with no real patient records. Seeding it surfaced a separate index-name issue, a story for another video. Then a new version of the MongoDB URI secret. No redeploy needed: the service reads that secret's latest version, so the next container to boot picked it up.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The fix",
+            "items": [
+              {
+                "label": "New dev cluster",
+                "sub": "institutional Atlas",
+                "icon": "BOX"
+              },
+              {
+                "label": "Seed",
+                "sub": "example test data",
+                "icon": "BOX"
+              },
+              {
+                "label": "MONGODB_URI",
+                "sub": "new version",
+                "icon": "BOX"
+              },
+              {
+                "label": "Deploy",
+                "sub": "reads :latest",
+                "icon": "BOX"
+              },
+              {
+                "label": "Next boot",
+                "sub": "picks it up",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-23T18:03:44.010496+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 20.2,
+      "render_duration_s": 20.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "PROOF",
+      "role_note": "FALSIFIABILITY beat -- why a passing /health alone is not proof",
+      "narration_text": "How do you know it's actually fixed? A healthy health check only proves the process boots. It doesn't prove the database works. So the second check was a login with wrong credentials. Getting back invalid credentials means the backend looked up a user in the database and answered. That's a real query, end to end.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Two proofs",
+            "items": [
+              {
+                "label": "GET /health",
+                "sub": "healthy JSON",
+                "icon": "BOX"
+              },
+              {
+                "label": "Proves",
+                "sub": "the process boots up",
+                "icon": "BOX"
+              },
+              {
+                "label": "Wrong password",
+                "sub": "login attempt",
+                "icon": "BOX"
+              },
+              {
+                "label": "Response",
+                "sub": "Invalid credentials",
+                "icon": "BOX"
+              },
+              {
+                "label": "Proves",
+                "sub": "a real database query",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-23T18:27:24.869583+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 16.28,
+      "render_duration_s": 16.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "EVIDENCE",
+      "role_note": "fellow's own screen capture (media/B11.png, original in pantry/) -- the working dev frontend after the fix",
+      "narration_text": "And the dev frontend was loading again. This is the MEDAS login screen, with its four language options, talking to the repaired backend.",
+      "shot": {
+        "type": "STILL",
+        "motion": "kenburns",
+        "source": "pantry/medas-login-ui-after-fix.png"
+      },
+      "estimated_duration_s": 9,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 8.17,
+      "render_duration_s": 8.208333333333334,
+      "build": {
+        "status": "STILL",
+        "src": "media/B11.png",
+        "filled_by": "still",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "EVIDENCE",
+      "role_note": "real Cloud Run request log, 2026-08-27, sanitized",
+      "narration_text": "Here's the receipt from Cloud Run's request log on August twenty-seventh: a post to auth login, status two hundred, answered in about fifty-four milliseconds by revision twelve of the dev service. A successful login, with the database behind it doing its job.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "August 27 log",
+            "items": [
+              {
+                "label": "POST /auth/login",
+                "sub": "status 200",
+                "icon": "BOX"
+              },
+              {
+                "label": "Latency",
+                "sub": "0.054 s",
+                "icon": "BOX"
+              },
+              {
+                "label": "Revision",
+                "sub": "dev-00012",
+                "icon": "BOX"
+              },
+              {
+                "label": "Severity",
+                "sub": "INFO",
+                "icon": "BOX"
+              },
+              {
+                "label": "Sanitized",
+                "sub": "IP, IDs removed",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-09-23T19:02:11.470089+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 15.08,
+      "render_duration_s": 15.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "VERDICT",
+      "role_note": "the lessons from the incident notes, one page",
+      "narration_text": "Three lessons. Service Unavailable, not a four-oh-four, means the container itself isn't answering, so check the Cloud Run logs first. A personal database cluster was a single point of failure; every environment now lives under the institutional account. And Secret Manager's latest alias applies on the next container start, so updating a secret doesn't need a redeploy.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Three lessons",
+            "items": [
+              {
+                "label": "Service Unavailable",
+                "sub": "not a 404",
+                "icon": "BOX"
+              },
+              {
+                "label": "Check first",
+                "sub": "Cloud Run logs",
+                "icon": "BOX"
+              },
+              {
+                "label": "Personal cluster",
+                "sub": "single failure point",
+                "icon": "BOX"
+              },
+              {
+                "label": "Now",
+                "sub": "institutional Atlas",
+                "icon": "BOX"
+              },
+              {
+                "label": "Secret :latest",
+                "sub": "no redeploy needed",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-09-23T17:44:34.330338+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 20.16,
+      "render_duration_s": 20.166666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "YOUR TURN",
+      "role_note": "HANDOFF LAW -- suggested prompt, read aloud verbatim and discussed",
+      "narration_text": "Your turn. Paste this into Claude: Here is my app's startup code. List every external service it contacts before it can answer a health check. For each one, tell me what error I'd see in the logs if it disappeared, and a request that proves it's really working. That last part matters most. It turns a vague outage into a checklist, and it tells you which check actually proves the fix.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "Here is my app's startup code. List every external service it contacts before it can answer a health check. For each one, tell me what error I'd see in the logs if it disappeared, and a request that proves it's really working.",
+            "topic": "MEDAS · CLOUD RUN · MONGODB",
+            "segment": "Crash-Looping Backend",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-09-23T18:09:18.881544+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 26,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 19.03,
+      "render_duration_s": 19.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-09-23T16:02:30"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "OUTRO",
+      "role_note": "title restate on the Humanitarians AI outro (OutroCTA), not the locked @NikBearBrown ClaudeTitleOutro",
+      "narration_text": "Tracing a Crash-Looping Backend. I'm Akshit, thanks for watching.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormACard916",
+          "props": {
+            "lines": [
+              "Tracing a Crash-Looping Backend",
+              "@HUMANITARIANSAI"
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": "2026-09-23T17:38:46.872953+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 7,
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 4.25,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Title-restate outro card (OUTRO LAW) on OutroCTA, the Humanitarians AI outro named in fellows/SKILL.md; ClaudeTitleOutro is locked to @NikBearBrown (OUTRO-LOCK.md)."
+      },
+      "render_duration_s": 4.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "remotion:FormACard916",
+        "at": "2026-09-23T16:02:30"
+      }
+    }
+  ]
+}

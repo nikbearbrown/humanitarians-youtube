@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "title": "One Run, Two Readers",
+    "slug": "runway-risk-scorer-week-2",
+    "brand": "claude-liam",
+    "channel": "@HumanitariansAI",
+    "series": "Weekly Progress",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "hello": "Hello Amruta",
+    "description": "Week 2 progress on the AI-Vendor Runway-Risk Scorer: hardening a rough prototype into three named steps and giving it a second output. The teach is 'two customers' — the same run serves a human who reads and a machine that parses.",
+    "aspect": "16:9",
+    "date": "2026-08-14",
+    "build": {
+      "at": "2026-08-28T14:07:43",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hello Amruta. Last week I had a rough script that printed a runway-risk brief for a person to read. This week I gave it a second reader that isn't a person at all. Same run, same numbers — but now one output for human eyes, and one for a machine. This is week two, and the idea is called 'two customers.'",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "RUNWAY-RISK SCORER · WEEK 2 · CORE PIPELINE",
+            "segment": "One Run, Two Readers",
+            "greeting": "Hello Amruta",
+            "command": "python runway_risk_score.py signals.json --json-out reports",
+            "runningText": "one run → a human brief AND a machine-readable JSON",
+            "output": [
+              "Week 2: harden the prototype into clean steps",
+              "Split into: ingest → validate_shape → score",
+              "Add a second output: machine-readable JSON",
+              "Principle: two customers (P5) — human + machine"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 16.28,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "problem",
+      "narration_text": "Here's the problem with a tool that only prints for humans. The moment you want another program to use its output — to sort ten companies, feed a dashboard, chain into the next tool — it can't. A formatted brief with dollar signs and headers is easy for a person and painful for a machine. If the only reader is a human, the tool is a dead end.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "THE PROBLEM · A HUMAN-ONLY TOOL IS A DEAD END",
+            "segment": "Why one output isn't enough",
+            "greeting": "The limit",
+            "command": "# another program tries to read the brief...",
+            "runningText": "'$45,000,000' is text — a machine has to guess where the number is",
+            "output": [
+              "Human brief: great for a person, painful for code",
+              "Can't sort, filter, or chain formatted text reliably",
+              "A tool no other tool can consume is a dead end",
+              "Fix: emit a second, structured output"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ask",
+      "narration_text": "So the ask to the build agent was two things. First, stop being one big script — split the logic into three named steps: ingest the signals, validate their shape and drop the unvalidated ones, then score. Second, keep the human brief exactly as it is, but also emit the same result as structured JSON. Same numbers, two shapes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "THE ASK · THREE STEPS + A SECOND OUTPUT",
+            "segment": "Structure the code, add machine output",
+            "greeting": "The ask",
+            "command": "claude \"split into ingest/validate_shape/score. keep the human brief. also emit structured JSON with full provenance.\"",
+            "runningText": "same numbers — one human brief, one machine JSON",
+            "output": [
+              "ingest() — load the declared signals",
+              "validate_shape() — required fields + drop unvalidated (P2)",
+              "score() — compute the five metrics",
+              "report — human brief + JSON (two customers, P5)"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "code",
+      "narration_text": "This is the shape-validation step — the middle of the three. It walks every signal and sorts it into one of three buckets: usable, malformed, or unvalidated. The key line is the middle one: a signal with no human sign-off doesn't get used, and it doesn't get a warning label either. It's dropped, and only its count survives. Structure, not judgment.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "validate_shape() — the middle step, three buckets",
+            "code": "def validate_shape(signals):\n    usable, malformed, unvalidated = [], [], []\n    for s in signals:\n        missing = [f for f in REQUIRED_FIELDS if not s.get(f)]\n        if missing:\n            malformed.append({\"signal\": s, \"missing\": missing})\n        elif not is_validated(s):     # P2: no validated_by ->\n            unvalidated.append(s)      #     dropped, not flagged\n        else:\n            usable.append(s)\n    return usable, malformed, unvalidated\n\n# only usable signals reach score(). the rest survive as counts."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "output",
+      "narration_text": "And here's the payoff — the same run, two outputs. On the left, the human brief you already know: five metrics, each with its source. On the right, the machine-readable JSON: the exact same numbers, but now every value is a field a program can read directly. Total-raised is a number, not a dollar-signed string. One run served a person and a machine at once.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "one run, two outputs — brief (left) + JSON (right)",
+            "code": "# HUMAN BRIEF                        # MACHINE JSON\nRUNWAY-RISK BRIEF — harbor-ai        {\n1. Total raised: $45,000,000           \"company_id\": \"harbor-ai\",\n2. Months since last raise: 29         \"metrics\": {\n3. Funding-stage trend: Series B         \"total_raised_usd\": 45000000.0,\n4. Distress indicators: 1                \"months_since_last_raise\": 29,\n5. Freshness: 93 days ago                \"distress_indicator_count\": 1\n--- HUMAN GATE (P1) ---                 },\nit did not decide anything.            \"gate\": \"HALT-AWAITING-HUMAN\" }\n\n# same numbers. one for eyes, one for code."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 18.92,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "change",
+      "narration_text": "One more change, and it's about honesty, not code. The recipe has a status label — it started as DRAFT, just an idea. Now that it runs in clean steps and produces both outputs, I moved it to SPECIFIED. But only because a logged run proves it. The rule I'm holding: the label goes up when the evidence exists, never because I feel done.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "status earned by evidence — DRAFT → SPECIFIED",
+            "code": "# recipes/runway-risk-scorer.md (frontmatter)\n---\nstatus: SPECIFIED        # was: DRAFT\nlast_gate: 2026-08-14\ntodos_open: 3            # was: 5\n---\n\n# the status only moves because logs/RUN_LOG.md records a\n# real run: 4 companies scored, JSON written, all halted at\n# the gate. evidence first, label second — never the reverse."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "So what does week two teach? That a good tool serves two customers at once — a human who reads and a machine that parses — from a single run. And that maturity is a claim you have to earn: you move the status label because a logged run backs it, not because you're confident. Structure first, evidence first.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "One Run, Two Readers",
+            "artifactHeading": "The reusable pattern",
+            "artifactLines": [
+              "Two customers: one run serves a human brief AND a machine JSON.",
+              "Name your steps: ingest → validate → score reads like the spec.",
+              "Drop, don't flag: unvalidated data survives as a count, never a value.",
+              "Earn the status: DRAFT → SPECIFIED only when a logged run proves it."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 15.91,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff",
+      "narration_text": "Your turn. Take any script you've written that prints a nice report. Ask it one question: could another program use this output? If the answer is no, add a structured version alongside the pretty one. Same data, machine-readable. You've just turned a dead end into a building block.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "YOUR TURN",
+            "segment": "Give your tool a second reader",
+            "greeting": "Your turn.",
+            "command": "# find a script that only prints for humans",
+            "runningText": "could another program consume its output?",
+            "output": [
+              "1. Take a tool that prints a formatted report",
+              "2. Add a --json output with the same data",
+              "3. Keep the human version — you now serve both",
+              "4. A dead end becomes a building block"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 14.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "One run, two readers. Next week: making sure I'm not building something that already exists. Hello Amruta.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "One Run, Two Readers",
+            "handle": "@HumanitariansAI",
+            "subline": "Weekly progress — runway-risk scorer, week 2: core pipeline."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 6.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-28T14:07:43"
+      }
+    }
+  ]
+}

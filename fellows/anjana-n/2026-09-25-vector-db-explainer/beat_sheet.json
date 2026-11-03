@@ -1,0 +1,514 @@
+{
+  "metadata": {
+    "title": "What Vector Databases Do That SQL Cannot",
+    "slug": "vector-db-explainer",
+    "topic": "VECTOR DATABASES · SIMILARITY SEARCH",
+    "aspect_ratio": "16:9",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-anjana",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "color_semantics": "Claude fidelity UI beats (B00 ask, B06 verdict, B07 handoff, B08 outro) stay cream/ink/terracotta per CLAUDE-BRAND.md. Body beats (B01-B05) illustrate the mechanism — dark stage (#0a0a0f), same PEDAGOGY-approved deviation as the ECIS episodes and embeddings-explainer. PALETTE: channel dark-stage values per the precedent the author set for embeddings-explainer — every brief ROLE preserved, rendered in the established values. Vectors / SQL-side blue #3E7CB1, query gold #D4A853, success green #4A9C6D, failure red #C0392B, muted grey #7F8C8D. ONE DELIBERATE REMAP: the briefs assign BLUE to B02's positive-sentiment cluster, which would collide with blue meaning 'a vector' in the sibling video and with the green-positive/red-negative convention that video already established for exactly this scatter. Resolved to green-positive / red-negative, blue reserved for vectors — logged in PEDAGOGY.md.",
+    "greeting": "Hello, Anjana",
+    "greeting_note": "Plain English hello, narrator is Anjana; no channel handle or brand chip on this build.",
+    "note": "",
+    "tags": [
+      "vector databases",
+      "embeddings",
+      "similarity search",
+      "cosine similarity",
+      "ANN",
+      "HNSW",
+      "semantic search",
+      "RAG",
+      "SQL",
+      "Claude"
+    ],
+    "build": {
+      "at": "2026-09-25T14:38:48",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Every database you have ever used answers the same kind of question: which rows match. Vector databases answer a different one, and the difference is not a feature — it is a different shape of question. I'm Anjana.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "runningText 'asking a different question…'"
+          },
+          {
+            "at": 0.75,
+            "event": "output lines resolve, already answered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hello, Anjana",
+            "topic": "VECTOR DATABASES · SIMILARITY SEARCH",
+            "segment": "What Vector Databases Do That SQL Cannot",
+            "command": "SQL is very good at “which rows match this condition”. What does a vector database do that it structurally cannot, and how does it stay fast when the answer means comparing against everything?",
+            "runningText": "asking a different question…",
+            "folderLabel": "",
+            "output": [
+              "no WHERE clause — a query is a point",
+              "results ranked by distance, not filtered",
+              "a graph index, so you skip most of the data"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 13.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SQL'S LIMIT",
+      "narration_text": "Hello, Anjana here. A SQL database answers exact questions. Give me every row where the status equals active. Give me every order above fifty dollars. But what if the question is: find me something similar to this? SQL has no operator for similar. That is where vector databases start.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the first query types itself: SELECT * FROM products WHERE status = 'active'"
+          },
+          {
+            "at": 0.24,
+            "event": "a green check lands; three matching rows drop in beneath it"
+          },
+          {
+            "at": 0.46,
+            "event": "the second query types out and stops at the operator: WHERE ??? similar to this"
+          },
+          {
+            "at": 0.66,
+            "event": "the ??? pulses red; no check, no rows"
+          },
+          {
+            "at": 0.82,
+            "event": "the right half stays empty — a dotted box with a question mark in it"
+          }
+        ],
+        "remotion": {
+          "pattern": "VdbSqlLimit",
+          "props": {
+            "sparkLine": "There is no operator for similar."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "STORING",
+      "narration_text": "A vector database does not store rows and columns. It stores embeddings. Each record is converted into a high-dimensional vector, a list of hundreds of numbers that encode its meaning. Text, images, audio, anything that can be embedded becomes a point in space. Similar items land near each other. Different items land far apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the dotted box from B01 resolves into an empty vector space"
+          },
+          {
+            "at": 0.14,
+            "event": "green dots arrive in the upper right, each labelled with its sentence"
+          },
+          {
+            "at": 0.46,
+            "event": "red dots fill the lower left"
+          },
+          {
+            "at": 0.72,
+            "event": "an annotation lands on one dot: each of these is 768 numbers"
+          },
+          {
+            "at": 0.86,
+            "event": "a dashed line runs between the two clusters"
+          }
+        ],
+        "remotion": {
+          "pattern": "VdbStoring",
+          "props": {
+            "sparkLine": "Meaning becomes position."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 21,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 21.58,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "QUERYING",
+      "narration_text": "When you query a vector database, you do not write a WHERE clause. You give it a vector and ask: what is closest? The database computes the distance between your query vector and every stored vector. Cosine similarity measures the angle between them. Small angle, high similarity. The results come back ranked by proximity, not filtered by a condition.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "a gold query dot drops in near the green cluster with a pulse"
+          },
+          {
+            "at": 0.18,
+            "event": "rings ripple outward from it"
+          },
+          {
+            "at": 0.34,
+            "event": "the nearest dot lights; #1 writes itself into the ranked list — 0.94"
+          },
+          {
+            "at": 0.5,
+            "event": "#2 lights and lands — 0.89"
+          },
+          {
+            "at": 0.62,
+            "event": "#3 lights and lands — 0.83"
+          },
+          {
+            "at": 0.76,
+            "event": "an inset draws the angle between two vectors"
+          },
+          {
+            "at": 0.88,
+            "event": "the red cluster sits inside the outer ring, visible and dim — ranked low, not excluded"
+          }
+        ],
+        "remotion": {
+          "pattern": "VdbQuerying",
+          "props": {
+            "sparkLine": "Ranked by distance, not filtered."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 21.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MAKING IT FAST",
+      "narration_text": "Comparing your query against every stored vector works, but it is slow. A million vectors means a million distance calculations per query. Vector databases solve this with approximate nearest-neighbor indexes. One common approach builds a graph where each vector connects to its nearby neighbors. To search, you enter the graph at a random point, hop to the closest neighbor, and repeat. In a few hops, you reach the neighborhood of the true nearest match without scanning the full dataset.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "left: a query dot fires thin red lines to every stored dot"
+          },
+          {
+            "at": 0.14,
+            "event": "the counter spins up to 1,000,000; the clock crawls; 'slow'"
+          },
+          {
+            "at": 0.4,
+            "event": "right: the same dots wire into a sparse neighbour graph"
+          },
+          {
+            "at": 0.56,
+            "event": "the query enters at a random node on the edge"
+          },
+          {
+            "at": 0.64,
+            "event": "four gold hops, each landing closer"
+          },
+          {
+            "at": 0.84,
+            "event": "the last hop lands on the green target; counter reads 47; 'fast'"
+          },
+          {
+            "at": 0.92,
+            "event": "underneath both: approximate nearest neighbor"
+          }
+        ],
+        "remotion": {
+          "pattern": "VdbFast",
+          "props": {
+            "sparkLine": "A few dozen hops, not a million."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 27,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 27.67,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLOSE",
+      "narration_text": "SQL answers what matches. Vector databases answer what is similar. Semantic search, recommendation engines, retrieval-augmented generation, duplicate detection. Anywhere the question is about meaning rather than exact values, vectors are the right storage.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "four use-case panels fade in together"
+          },
+          {
+            "at": 0.24,
+            "event": "semantic search glows gold"
+          },
+          {
+            "at": 0.4,
+            "event": "recommendations glows"
+          },
+          {
+            "at": 0.54,
+            "event": "retrieval-augmented generation glows"
+          },
+          {
+            "at": 0.68,
+            "event": "duplicate detection glows"
+          },
+          {
+            "at": 0.8,
+            "event": "all settle; the title takes the bottom of the frame"
+          }
+        ],
+        "remotion": {
+          "pattern": "VdbClose",
+          "props": {
+            "sparkLine": "Meaning, not exact values."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration_text": "Let's recap with Claude. A vector database stores meaning as position, so “similar” becomes a distance you can actually compute. A query is not a filter, it is a point — and what comes back is everything, ranked, rather than the subset that passed a test. Doing that honestly against a million vectors would be a million comparisons, so the index gives up exactness on purpose: it walks a graph of near neighbours and gets close enough in a few dozen hops.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.5s lead pause, then ClaudeVerdictArtifact card builds in"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1: position is the meaning"
+          },
+          {
+            "at": 0.4,
+            "event": "line 2: a query is a point, results are ranked"
+          },
+          {
+            "at": 0.62,
+            "event": "line 3: cosine similarity is an angle"
+          },
+          {
+            "at": 0.82,
+            "event": "line 4: ANN trades exactness for speed"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "vector databases",
+            "artifactHeading": "Similar is a distance, not a condition.",
+            "artifactLines": [
+              "Records are stored as embeddings — position in the space is the meaning.",
+              "A query is a vector, not a condition; results come back ranked by distance.",
+              "Cosine similarity scores the angle between two vectors, not their length.",
+              "ANN indexes trade exactness for speed — a graph walk reaches the right neighbourhood without scanning everything."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 26.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Look at something you currently search with exact matches — tags, a category dropdown, a keyword field — and ask what people are actually trying to find when they use it. Then ask whether ranking everything by similarity would serve them better than filtering to whatever happened to match, and be honest about where an approximate answer would not be good enough.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Your turn.'; prompt types itself"
+          },
+          {
+            "at": 0.6,
+            "event": "runningText 'ranking, not filtering…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "VECTOR DATABASES · SIMILARITY SEARCH",
+            "segment": "What Vector Databases Do That SQL Cannot",
+            "command": "I have a search or lookup that works on exact matches — tags, categories, keyword fields. Can you help me: one, work out what people are actually trying to find when they use it, versus what the exact match returns; two, say whether ranking everything by similarity would genuinely serve them better than filtering, or whether I'd just be adding fuzziness to something that works; and three, tell me honestly where in my case an APPROXIMATE nearest-neighbour answer would not be good enough, and what I'd have to do instead there?",
+            "runningText": "ranking, not filtering…",
+            "folderLabel": ""
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 21.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Anjana here, thanks for watching.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeTitleOutro: title 'What Vector Databases Do' in serif, terracotta period"
+          },
+          {
+            "at": 0.8,
+            "event": "subline fades in: 'similar is a distance · not a condition'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "What Vector Databases Do",
+            "handle": "",
+            "subline": "similar is a distance · not a condition"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 2.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T14:38:48"
+      }
+    }
+  ]
+}

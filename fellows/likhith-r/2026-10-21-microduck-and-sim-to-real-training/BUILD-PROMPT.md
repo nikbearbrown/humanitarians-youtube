@@ -1,0 +1,5 @@
+# BUILD-PROMPT — Microduck and Sim-to-Real Training
+
+Paste into Claude Code at the toolkit root:
+
+> Rebuild youtube/brutalist/claude-hai-microduck-sim-to-real as a review cut in 16:9 and 9:16. Regenerate audio only if narration changed (`.venv/bin/python runtime/scripts/generate_audio_kokoro.py <reel> --speed 1.2`; B00 from its `spoken_as` via a temp `--sheet`; then trim B07/B11 tails so the per-beat ceil(duration × 24) sums to 1440), set each beat's `durationSeconds` to its `actual_duration_s`, render with `python3 runtime/scripts/remotion_scenes.py <reel> --force`, compile with `./art run <reel>`, then `./art vertical <reel>` (re-apply "Hey, Likhith", B01 4-line text at 300 / 2.25 / charMs 22 + its qc.sparse_by_design, B02 short title, and copy FACTCHECK/SHOTLIST/PROMPTS into vertical/), render the vertical sheet, and compile it with `--height 3840`. Sample frames into `_qc/`, read them, fix any BLOCKER/MAJOR, and log it in `_qc/REPORT.md`. Masters: `./art final <reel>` and `./art final <reel>/vertical --height 3840`, then rename to renders/H-/V-MicroduckSimToRealTraining_LikhithR.mp4 with their .verified.json receipts. Never publish.

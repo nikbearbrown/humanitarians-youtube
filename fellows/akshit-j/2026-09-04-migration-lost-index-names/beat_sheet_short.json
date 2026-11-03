@@ -1,0 +1,822 @@
+{
+  "metadata": {
+    "title": "The Migration That Lost Its Index Names",
+    "slug": "2026-09-04-migration-lost-index-names-vertical",
+    "narrator": "Akshit",
+    "series": "MEDAS · Lessons",
+    "source": "Akshit's account of migrating MEDAS live data to a team-owned MongoDB; the fix commit message 'Make MongoDB init resilient to a pre-existing Atlas cluster'; Incident 02 notes (MongoDB index name mismatch)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "brand": "claude-hai",
+    "topic": "Irreducibly Human",
+    "audience": "Humanitarians AI",
+    "register": "Plain",
+    "palette": "claude",
+    "hello": "Hi",
+    "aspect": "16:9",
+    "description": "A learning video from MEDAS 2.0 (beta). Moving live data from a personal-account database to a team-owned one, a hand-written migration script copied every document but recreated every index under MongoDB's default name. Weeks later a fresh instance of the live service failed to boot: the app asked for its named index on the same keys and MongoDB refused (IndexOptionsConflict, code 85). The old database was already deactivated, so the fix went into code: an idempotent index helper used for every collection. Lessons: mongodump/mongorestore, compare indexes before retiring the source, keep the source until verified, log skipped conflicts, versioned migrations.",
+    "note": "No people are named. Code and log views are labeled illustrations of the pattern, not the original script or a captured log. MEDAS is in beta with a small number of clinical users; the dev database holds example test data only.",
+    "build": {
+      "at": "2026-09-24T18:27:29",
+      "cut": "master",
+      "filled": 15,
+      "of": 15,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B14: palette=claude but the outro is 'FormACard916' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "aspect_ratio": "9:16",
+    "fit": "pad",
+    "kind": "vertical",
+    "reformat": "full-length; native portrait graphics; preserve source framing",
+    "derived_from": "2026-09-04-migration-lost-index-names",
+    "dropped_beats": [],
+    "total_estimated_duration_seconds": 224.58,
+    "short_validation": {
+      "status": "ready",
+      "errors": [],
+      "resolved": "blocked beats rewired to registered portrait compositions (FormBCard916, FormACard916) in this vertical sheet; no crops"
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- composer, ask shown answered; FELLOWS-SUBMISSION intro line + AI narration disclosure",
+      "narration_text": "Hi, I am Akshit, and this video is about a database migration that copied every document perfectly, and still stopped our app from starting weeks later. It's a lesson in what a migration really has to move. A quick note: the voice you're hearing is an AI narrator reading my script.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "We migrated our database and every document arrived intact. Why did the app stop booting weeks later?",
+            "topic": "HUMANITARIANS AI | MEDAS",
+            "segment": "Lost Index Names",
+            "greeting": "Hi, Akshit",
+            "runningText": "checking what the migration moved…",
+            "output": [
+              "the data was fine; the index names were not",
+              "the app asked for its named index, MongoDB refused",
+              "migrate with mongodump, then compare indexes"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-24T20:43:31.184141+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.38,
+      "render_duration_s": 15.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "OVERVIEW",
+      "role_note": "EXECUTIVE-SUMMARY LAW -- hesitant writer; single-word trigger (the component matches single words only)",
+      "narration_text": "The migration moved all of our documents, but not everything that makes a database work. The index names stayed behind, and weeks later, that stopped our app from starting.",
+      "lead_silence_s": 0.8,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer typing bookend (EXECUTIVE-SUMMARY LAW): the overview accumulates token by token, so mid-beat frames are mostly cream by design."
+      },
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter916",
+          "props": {
+            "text": "The migration moved\nall of our data.",
+            "triggerWords": "data",
+            "replacementWords": "documents",
+            "seed": "akshit-lost-index-names-2026-09-04",
+            "fontSize": 190,
+            "accent": "#A44A32"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-24T20:44:20.533772+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 9.83,
+      "render_duration_s": 9.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "GOAL",
+      "role_note": "problem statement and goal, before any detail",
+      "narration_text": "Some context. Our live data sat in a database under the personal account of a teammate who had moved on. That's a single point of failure, so the goal was to move everything into one team-owned database. MEDAS is in beta, used by a handful of clinicians, so this was the right time to do it.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The goal",
+            "items": [
+              {
+                "label": "Live data",
+                "sub": "in a personal account",
+                "icon": "BOX"
+              },
+              {
+                "label": "Owner",
+                "sub": "a former teammate",
+                "icon": "BOX"
+              },
+              {
+                "label": "Risk",
+                "sub": "one point of failure",
+                "icon": "BOX"
+              },
+              {
+                "label": "Migrate",
+                "sub": "data and indexes",
+                "icon": "BOX"
+              },
+              {
+                "label": "Target",
+                "sub": "team-owned database",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-24T20:45:55.109004+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.94,
+      "render_duration_s": 15.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FRAMEWORK",
+      "role_note": "FRAMEWORK beat -- the one idea the story turns on: an index has keys AND a name",
+      "narration_text": "First, the one idea this story turns on. A MongoDB index has two separate properties: what it indexes, meaning the field and its sort order, and its name, which is just a label. If you don't pass a name, MongoDB makes one up from the field, like username underscore l c underscore one. Same index, different label.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Index anatomy",
+            "items": [
+              {
+                "label": "Keys",
+                "sub": "what it indexes",
+                "icon": "BOX"
+              },
+              {
+                "label": "Name",
+                "sub": "just a label",
+                "icon": "BOX"
+              },
+              {
+                "label": "Custom name",
+                "sub": "idx_users_username_lc",
+                "icon": "BOX"
+              },
+              {
+                "label": "No name given",
+                "sub": "MongoDB makes one",
+                "icon": "BOX"
+              },
+              {
+                "label": "Default",
+                "sub": "username_lc_1",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-24T20:47:33.388837+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.64,
+      "render_duration_s": 17.666666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE RULE",
+      "role_note": "the MongoDB rule that turns a label into a crash",
+      "narration_text": "And here's the rule that matters. If an index already exists on a field, and you ask for another index on the same field under a different name, MongoDB refuses. It won't guess whether you meant a duplicate. It raises an error: Index Options Conflict, code eighty-five.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The rule",
+            "items": [
+              {
+                "label": "Exists",
+                "sub": "username_lc_1",
+                "icon": "BOX"
+              },
+              {
+                "label": "Request",
+                "sub": "idx_users_username_lc",
+                "icon": "BOX"
+              },
+              {
+                "label": "Same keys",
+                "sub": "username_lc, ascending",
+                "icon": "BOX"
+              },
+              {
+                "label": "Other name",
+                "sub": "a conflict",
+                "icon": "BOX"
+              },
+              {
+                "label": "MongoDB",
+                "sub": "refuses: code 85",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-24T20:49:11.359623+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.87,
+      "render_duration_s": 14.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "MY CHOICE",
+      "role_note": "labeled illustration of the migration-script pattern (not the original script)",
+      "narration_text": "Now the migration. I looked for guidance and didn't find a clear answer, so I wrote a reusable script: copy every document, then recreate every index from the source. It ran cleanly. Every collection arrived, and the document counts matched. It looked like a success.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "My script",
+            "items": [
+              {
+                "label": "Found",
+                "sub": "no clear guidance",
+                "icon": "BOX"
+              },
+              {
+                "label": "Wrote",
+                "sub": "a reusable script",
+                "icon": "BOX"
+              },
+              {
+                "label": "Step 1",
+                "sub": "copy every document",
+                "icon": "BOX"
+              },
+              {
+                "label": "Step 2",
+                "sub": "recreate every index",
+                "icon": "BOX"
+              },
+              {
+                "label": "Result",
+                "sub": "counts matched",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-24T20:50:52.926849+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.63,
+      "render_duration_s": 14.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE FLAW",
+      "role_note": "the one missing argument",
+      "narration_text": "The flaw was one missing argument. In index information, the name is the dictionary key, not part of the definition. My script read it, and never passed it on. So every index was recreated under MongoDB's default name. The data was perfect. Only the labels were lost, and nothing complained.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The flaw",
+            "items": [
+              {
+                "label": "Index name",
+                "sub": "the dict key",
+                "icon": "BOX"
+              },
+              {
+                "label": "Script",
+                "sub": "read it, never used it",
+                "icon": "BOX"
+              },
+              {
+                "label": "create_index",
+                "sub": "no name passed",
+                "icon": "BOX"
+              },
+              {
+                "label": "MongoDB",
+                "sub": "default names",
+                "icon": "BOX"
+              },
+              {
+                "label": "Fix",
+                "sub": "pass name=idx_name",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-24T20:52:38.452689+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 16.21,
+      "render_duration_s": 16.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "WHY NOBODY NOTICED",
+      "role_note": "why the bug stayed dormant",
+      "narration_text": "Why did nobody notice? Queries only care what an index covers, not what it's called, so everything kept working. The names only matter when the app starts, because that's when it creates its indexes. As long as no fresh instance booted, the problem stayed hidden.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Why nobody noticed",
+            "items": [
+              {
+                "label": "Queries",
+                "sub": "use keys, work fine",
+                "icon": "BOX"
+              },
+              {
+                "label": "Names",
+                "sub": "never checked",
+                "icon": "BOX"
+              },
+              {
+                "label": "App startup",
+                "sub": "creates indexes",
+                "icon": "BOX"
+              },
+              {
+                "label": "Warm instance",
+                "sub": "no fresh boot",
+                "icon": "BOX"
+              },
+              {
+                "label": "Result",
+                "sub": "bug stays dormant",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-24T20:54:23.683391+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 13.74,
+      "render_duration_s": 13.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "THE CRASH",
+      "role_note": "labeled illustration of the startup failure (not a captured log)",
+      "narration_text": "Weeks later, the live service started a fresh instance. On boot, the app asked for its named index on the username field. MongoDB found that field already indexed as username underscore l c underscore one, and refused. Because index setup runs at startup, the worker failed to boot. With only a few users in beta, the impact was small, but the cause was weeks old.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The crash",
+            "items": [
+              {
+                "label": "Fresh instance",
+                "sub": "live service boots",
+                "icon": "BOX"
+              },
+              {
+                "label": "App asks",
+                "sub": "named username index",
+                "icon": "BOX"
+              },
+              {
+                "label": "MongoDB",
+                "sub": "already indexed",
+                "icon": "BOX"
+              },
+              {
+                "label": "Error",
+                "sub": "code 85, conflict",
+                "icon": "BOX"
+              },
+              {
+                "label": "Worker",
+                "sub": "failed to boot",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-24T20:56:20.272269+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.54,
+      "render_duration_s": 19.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "WHY NOT REDO IT",
+      "role_note": "the source was gone, so the fix had to live in code",
+      "narration_text": "The obvious fix would be to redo the migration properly, with mongodump and mongorestore, which keep indexes and their names. But by then, the old database had been deactivated. There was no clean source left to migrate from. So the fix had to happen in the code.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Why not redo it",
+            "items": [
+              {
+                "label": "Right tool",
+                "sub": "mongodump, restore",
+                "icon": "BOX"
+              },
+              {
+                "label": "Keeps",
+                "sub": "indexes and names",
+                "icon": "BOX"
+              },
+              {
+                "label": "Needs",
+                "sub": "the old source",
+                "icon": "BOX"
+              },
+              {
+                "label": "Old database",
+                "sub": "deactivated",
+                "icon": "BOX"
+              },
+              {
+                "label": "So",
+                "sub": "fix it in code",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-24T20:58:09.950458+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 14.46,
+      "render_duration_s": 14.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "THE FIX",
+      "role_note": "the idempotent index helper; the log line is the recommended addition, labeled as such",
+      "narration_text": "Together with a teammate, I made index setup idempotent. One helper creates every index, and it treats already-exists conflicts, codes eighty-five and eighty-six, as well as thirteen and sixty-seven, as no-ops instead of crashing. Every collection's indexes now go through it, not just some. It's safe to run on every boot.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The fix",
+            "items": [
+              {
+                "label": "One helper",
+                "sub": "creates every index",
+                "icon": "BOX"
+              },
+              {
+                "label": "Codes 85, 86",
+                "sub": "already exists",
+                "icon": "BOX"
+              },
+              {
+                "label": "Codes 13, 67",
+                "sub": "also skipped",
+                "icon": "BOX"
+              },
+              {
+                "label": "All collections",
+                "sub": "go through it",
+                "icon": "BOX"
+              },
+              {
+                "label": "Result",
+                "sub": "safe to run every boot",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-24T22:09:31.960216+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 17.6,
+      "render_duration_s": 17.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "THE CAVEAT",
+      "role_note": "FALSIFIABILITY beat -- where the fix itself is weak",
+      "narration_text": "One honest caveat. Skipping errors has a cost. If someone later changes an index on purpose, a silent skip would hide that too. So every skip should log a warning, and a mature system handles index changes as versioned, reviewed migrations, not as startup code.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "The caveat",
+            "items": [
+              {
+                "label": "Silent skip",
+                "sub": "hides real changes",
+                "icon": "BOX"
+              },
+              {
+                "label": "Minimum",
+                "sub": "log every skip",
+                "icon": "BOX"
+              },
+              {
+                "label": "Mature",
+                "sub": "versioned migrations",
+                "icon": "BOX"
+              },
+              {
+                "label": "Reviewed",
+                "sub": "applied once",
+                "icon": "BOX"
+              },
+              {
+                "label": "Goal",
+                "sub": "no silent drift",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-09-24T21:02:15.633706+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.74,
+      "render_duration_s": 14.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "LESSONS",
+      "role_note": "the checklist; narration discusses the order, does not recite the card",
+      "narration_text": "If I did this migration again, the order would change. Use the tool built for it. Check the indexes, not just the document counts, while the source still exists. Only then retire the old database. The code fix protects you when things go wrong, but the checklist is what stops it from happening.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormBCard916",
+          "props": {
+            "title": "Checklist",
+            "items": [
+              {
+                "label": "Migrate with",
+                "sub": "mongodump, restore",
+                "icon": "BOX"
+              },
+              {
+                "label": "Compare",
+                "sub": "indexes: names, keys",
+                "icon": "BOX"
+              },
+              {
+                "label": "Keep source",
+                "sub": "until it matches",
+                "icon": "BOX"
+              },
+              {
+                "label": "Startup code",
+                "sub": "idempotent, logged",
+                "icon": "BOX"
+              },
+              {
+                "label": "Long term",
+                "sub": "versioned migrations",
+                "icon": "BOX"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-09-24T21:04:29.449724+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 15.36,
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:FormBCard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "YOUR TURN",
+      "role_note": "HANDOFF LAW -- prompt read aloud verbatim and discussed",
+      "narration_text": "Your turn. Paste this into Claude: I'm about to migrate a MongoDB database to a new cluster. Give me a step-by-step plan that preserves indexes and their names, a script that compares every collection's indexes between source and target, and a checklist for when it's safe to retire the old database. The comparison script is the part to keep. Run it before you delete anything.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "command": "I'm about to migrate a MongoDB database to a new cluster. Give me a step-by-step plan that preserves indexes and their names, a script that compares every collection's indexes between source and target, and a checklist for when it's safe to retire the old database.",
+            "topic": "HUMANITARIANS AI | MEDAS",
+            "segment": "Lost Index Names",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-09-24T21:05:19.805898+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 19.56,
+      "render_duration_s": 19.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-09-24T18:27:29"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "OUTRO",
+      "role_note": "title restate on the Humanitarians AI outro (OutroCTA); handle in capitals clears the GATE T size floor",
+      "narration_text": "The Migration That Lost Its Index Names. I'm Akshit, thanks for watching.",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Title-restate outro card (OUTRO LAW) on OutroCTA, the Humanitarians AI outro named in fellows/SKILL.md; ClaudeTitleOutro is locked to @NikBearBrown (OUTRO-LOCK.md)."
+      },
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "FormACard916",
+          "props": {
+            "lines": [
+              "The Migration That Lost Its Index Names",
+              "@HUMANITARIANSAI"
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-09-24T21:06:51.113078+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 7,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 4.76,
+      "render_duration_s": 4.791666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:FormACard916",
+        "at": "2026-09-24T18:27:29"
+      }
+    }
+  ]
+}

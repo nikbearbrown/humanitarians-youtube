@@ -1,0 +1,379 @@
+{
+  "metadata": {
+    "title": "Bond Pricing and Duration — Price-Yield Curve with Claude",
+    "slug": "hussain-bond-pricing-duration",
+    "topic": "COMPUTATIONAL FINANCE — BOND PRICING AND DURATION",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "channel": "hussain",
+    "folderLabel": "Hussain",
+    "aspect_ratio": "16:9",
+    "note": "CLI video spine: B00 INTRO · B01 PROBLEM(manim) · B02 CLI · B03 CODE · B04 OUTPUT(manim) · B05 CLI(change) · B06 CODE(diff) · B07 OUTPUT2(manim) · B08 SUMMARY(verdict) · B09 NEXT STEPS(handoff) · B10 OUTRO",
+    "build": {
+      "at": "2026-08-30T23:14:31",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "cold open — ClaudeComposerAsk, ask lands answered",
+      "narration_text": "Hi, I am Hussain, and this video is about bond pricing and duration — how a bond's price moves against its yield, and by how much.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"Explain how bond price and yield move together, then build the pricer.\"",
+            "topic": "COMPUTATIONAL FINANCE · BOND PRICING AND DURATION",
+            "segment": "Bond Pricing and Duration — Price-Yield Curve with Claude",
+            "greeting": "Hello, Hussain",
+            "runningText": "loading the bond model…",
+            "output": [
+              "Bond: 5% coupon, 10-year maturity, $1,000 face value",
+              "At YTM = 5%: price = $1,000.00 (par)",
+              "Modified duration: 7.72 years",
+              "Convexity: 75.0"
+            ],
+            "folderLabel": "Hussain"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 9.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why care",
+      "role_note": "the stakes, before any prompt",
+      "narration_text": "A bond is a loan with a fixed schedule of payments — a coupon every year, and the face value back at maturity. Its price is the present value of those payments, discounted at the yield to maturity. Raise the yield and every future payment is worth less today, so the price falls. Duration measures how fast: for this bond, a one percent yield rise costs about seven point seven percent in price.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "visual_intent": "cash-flow timeline (10 annual coupon arrows + face value at year 10) above the price formula; a small inverse-relationship indicator (yield up, arrow; price down, arrow)",
+      "shot": {
+        "type": "MANIM",
+        "manim": {
+          "scene_class": "B01_ProblemSetup",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 21.7,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_ProblemSetup",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLI — the ask",
+      "role_note": "terminal (Claude)",
+      "narration_text": "Type the ask: a five percent coupon bond, ten-year maturity, one thousand dollar face value. Compute price across yields from two to ten percent, plus Macaulay and modified duration. One built-in check — at a five percent yield, the price should land exactly at par, one thousand dollars.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"Write bond_pricer.py: face=1000, coupon_rate=0.05,\nmaturity=10 years, YTM=range(0.02,0.11,0.01). Compute price,\nMacaulay duration, modified duration. Verify: price=1000\nat YTM=5%%. Print table: YTM | Price | Mac Duration | Mod Duration.\"",
+            "topic": "COMPUTATIONAL FINANCE · BOND PRICING AND DURATION",
+            "segment": "BOND PRICER",
+            "greeting": "The ask,",
+            "runningText": "generating pricer…",
+            "folderLabel": "Hussain"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.69,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "the actual generated source",
+      "narration_text": "Read it. Price sums the discounted coupons plus the discounted face value. Macaulay duration is the weighted-average time to each payment, weighted by present value — eight point one one years here. Modified duration divides that by one plus the yield: seven point seven two. That is the number that predicts how much price moves.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "bond_pricer.py",
+            "code": "# bond_pricer.py  —  Claude Code output\ndef bond_price(face, coupon, ytm, T):\n    cf = [coupon/(1+ytm)**t for t in range(1, T+1)]\n    cf[-1] += face/(1+ytm)**T\n    return sum(cf)\n\ndef macaulay_duration(face, coupon, ytm, T, price):\n    pv = [coupon*t/(1+ytm)**t for t in range(1, T+1)]\n    pv[-1] += T*face/(1+ytm)**T\n    return sum(pv) / price\n\ndef modified_duration(mac_dur, ytm):\n    return mac_dur / (1 + ytm)\n\n# At YTM=5%: price = 1000.00 (par) -- verified\n# MacDur = 8.11 years\n# ModDur = MacDur / (1.05) = 7.72 years",
+            "sparkLine": "Price first. Duration follows."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 19.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run",
+      "role_note": "Manim animation",
+      "narration_text": "Run it. The curve is price against yield — convex, falling from about twelve sixty-nine at two percent to six ninety-three at ten percent. The dashed line is par, one thousand dollars, where yield equals the coupon rate. The tangent at five percent has slope negative seven point seven two — a one percent yield rise costs about that many percent in price. The real curve bends above that line.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "visual_intent": "Manim: price-yield curve (terracotta), par line (dashed), tangent line at YTM=5%, ATM dot and label",
+      "shot": {
+        "type": "MANIM",
+        "manim": {
+          "scene_class": "B04_PriceYieldCurve",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 22.59,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_PriceYieldCurve",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLI — the change",
+      "role_note": "terminal (Claude) — required revision",
+      "narration_text": "The duration line is straight. The actual curve bends. Ask Claude to add convexity, and measure how far the straight-line estimate misses, for a two percent yield move in each direction.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"update bond_pricer.py:\n  -> add a convexity measure\n  -> compare duration-only vs duration+convexity approximation\n  -> for a 2%% yield shock (up and down), show the approximation error\"",
+            "topic": "COMPUTATIONAL FINANCE · BOND PRICING AND DURATION",
+            "segment": "BOND PRICER",
+            "greeting": "The change,",
+            "runningText": "adding convexity…",
+            "folderLabel": "Hussain"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 10.35,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE — the diff",
+      "role_note": "the revised source",
+      "narration_text": "Convexity is the curve's curvature — the second-order term. Half of convexity, times the yield change squared, times price, added to the duration term. At par, this bond's convexity is seventy-five.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "bond_pricer.py — convexity",
+            "code": "# bond_pricer.py  —  Claude Code output (revised)\ndef convexity(face, coupon, ytm, T, price):\n    terms = [coupon*t*(t+1)/(1+ytm)**(t+2) for t in range(1, T+1)]\n    terms[-1] += face*T*(T+1)/(1+ytm)**(T+2)\n    return sum(terms) / price\n\ndef price_change_estimate(mod_dur, convexity, dy, price):\n    linear = -mod_dur * dy * price\n    curvature = 0.5 * convexity * dy**2 * price\n    return linear + curvature\n\n# At par: convexity = 75.0",
+            "sparkLine": "The curve corrects the line."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 13.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — better",
+      "role_note": "Manim animation",
+      "narration_text": "For a two percent yield rise, duration alone predicts eight forty-six — fourteen dollars short of the actual eight sixty. Add convexity: eight sixty-one, within a dollar. For a two percent yield drop, duration alone undershoots the real price by sixteen dollars; convexity closes almost all of that gap. Same correction, both directions.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "visual_intent": "Manim: bar/table comparing actual vs duration-only vs duration+convexity price estimates for +2% and -2% yield shocks",
+      "shot": {
+        "type": "MANIM",
+        "manim": {
+          "scene_class": "B07_ConvexityCompare",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 19.16,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim:B07_ConvexityCompare",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "SUMMARY",
+      "role_note": "verdict recap",
+      "narration_text": "Duration is the straight-line estimate. Convexity is the correction. Because convexity is always positive for a plain bond, that correction helps in both directions — a rate rise hurts slightly less than duration predicts, a rate fall helps slightly more. That asymmetry is priced into every plain bond.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Bond Pricing and Duration",
+            "artifactHeading": "What the run showed",
+            "artifactLines": [
+              "Duration is the straight-line estimate; convexity is the curve correction.",
+              "Convexity is always positive for a plain bond — it helps both ways.",
+              "A rate rise hurts slightly less than duration alone predicts.",
+              "A rate fall helps slightly more. That asymmetry is priced in."
+            ]
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 17.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "NEXT STEPS",
+      "role_note": "handoff — read and discuss",
+      "narration_text": "Your turn — paste this: build a two-bond portfolio, a short bond and a long bond, compute its blended duration and convexity, then size a Treasury futures position that hedges that duration away. Watch what happens to the convexity you're left holding — it doesn't hedge as cleanly as duration does.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"Build a two-bond portfolio (a 2-year bond and a 10-year bond),\ncompute the portfolio's blended duration and convexity, then size a\n10-year Treasury futures position that neutralizes the portfolio's\nduration. Report the leftover convexity mismatch.\"",
+            "topic": "COMPUTATIONAL FINANCE · BOND PRICING AND DURATION",
+            "segment": "Bond Pricing and Duration — Price-Yield Curve with Claude",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "Hussain"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "OUTRO",
+      "role_note": "title-restate outro",
+      "narration_text": "I'm Hussain. Bond pricing and duration — built with Claude, then taken apart.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Bond Pricing and Duration.",
+            "handle": "Hussain",
+            "subline": "Built with Claude, then taken apart."
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 6.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-30T23:14:31"
+      }
+    }
+  ]
+}

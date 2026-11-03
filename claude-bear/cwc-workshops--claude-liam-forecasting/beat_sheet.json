@@ -1,0 +1,316 @@
+{
+  "metadata": {
+    "title": "Flags Decide The Path.",
+    "subtitle": "The Forecasting Skill (Compute vs. Delegate)",
+    "slug": "cwc-workshops--claude-liam-forecasting",
+    "topic": "FORECASTING · ANTHROPIC SKILL",
+    "purpose": "Answer one real question in the Plain register: when Claude forecasts demand for a SKU, does it always hand the job to a subagent, or does it sometimes just compute the number itself? Lands the carry-out that the flags decide the path, not guesswork, and the returned number is a computed estimate, never a fact about next month.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/cwc-workshops/youtube/claude-liam-forecasting/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - single worked example (the SKU forecast decision itself), named at B00 and present through NB01-NB03; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-09-01T00:33:32",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed Claude always spawns a subagent to run a forecast. It doesn't — only sometimes. So: does Claude sometimes spawn a subagent to forecast?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.9,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Does Claude always spawn a subagent to forecast?', hesitates on 'always', corrects to 'sometimes', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Does Claude\nalways spawn\na subagent\nto forecast?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "always",
+            "replacementWords": "sometimes",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 8,
+            "charMs": 42,
+            "jitter": 26,
+            "seed": "hai-forecasting"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.9 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('always' -> 'sometimes') lands on screen and the full corrected question finishes typing before the clip ends.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 9.24,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-01T00:33:32"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "A skill is a folder Claude reads before it acts. This one is forecasting — a demand forecast for one SKU. Inside are two small scripts: rolling_mean.py, for a single item, and batch_days_of_cover.py, for ranking many SKUs at once. The SKILL.md says which script to run, and when to skip both and hand the job to a subagent instead.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "A SKILL IS A FOLDER",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "A SKILL IS A FOLDER",
+          "chips": [
+            "single script",
+            "batch script",
+            "SKILL.md"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "SKILL.md says which script, and when to delegate",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "audio_file": "mp3/beat-NB01.mp3",
+      "actual_duration_s": 18.84,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-01T00:33:32"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "Two paths, and flags decide which one. Path A: compute it yourself, a rolling mean over recent sales — but only when the horizon is two weeks or less, the SKU isn't seasonal, there's no promo next month, and nothing suggests a trend break. One script, no subagent. Path B: hand it to a forecasting subagent whenever any one of those flags flips — a longer horizon, a seasonal item, a promo, a visible trend. Why delegate there? The subagent needs ninety days of sales history to spot the pattern, and loading that much history into your own context would crowd out the rest of the task — the subagent gets its own context window instead.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 34,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "FLAGS DECIDE THE PATH",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "FLAGS DECIDE THE PATH",
+          "chips": [
+            "4 flags",
+            "Path A",
+            "Path B"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "Path B gets its own context window",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "audio_file": "mp3/beat-NB02.mp3",
+      "actual_duration_s": 33.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-01T00:33:32"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "One more flag matters after the forecast comes back: confidence. Below 0.6, the rule downstream is escalate, don't auto-order — a low score doesn't mean the model is broken, it means a human should look before ordering. A high score doesn't guarantee the number is right either — it just means nothing in the inputs suggested otherwise. And the number itself, forecast_qty, is not a fact about next month. It's what the rolling mean, or the subagent's model, computed from the flags it was given. Same flags, same path, same number — every time.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "CONFIDENCE < 0.6 -> ESCALATE",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "CONFIDENCE < 0.6 -> ESCALATE",
+          "chips": [
+            "confidence < 0.6",
+            "escalate",
+            "not a fact"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "same flags, same path, same number",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "audio_file": "mp3/beat-NB03.mp3",
+      "actual_duration_s": 27.67,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-01T00:33:32"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Claude picks compute-it-yourself or hand-it-to-a-subagent by the flags, not by guesswork — and whichever path runs, the number it returns is a computed estimate, not a fact about next month.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Claude picks compute-it-yourself or hand-it-to-a-subagent by the flags, not by guesswork — and whichever path runs, the number it returns is a computed estimate, not a fact about next month.",
+            "attribution": "",
+            "sparkLine": "Flags decide. The number is an estimate."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "actual_duration_s": 10.82,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-09-01T00:33:32"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Paste this into Claude: I'm forecasting demand for a product with a promotion next month, a thirty-day horizon. Should you compute this yourself with a simple average, or delegate it — and why? Then walk me through what confidence score you'd attach, and whether that's high enough to auto-order or should escalate to a human instead. That's the actual test of a forecasting design.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "FORECASTING · ANTHROPIC SKILL",
+            "segment": "Flags Decide The Path.",
+            "command": "I'm forecasting demand for a product with a promotion next month, a 30-day horizon. Should you compute this yourself with a simple average, or delegate it — and why? Then tell me what confidence score you'd attach, and whether that's high enough to auto-order or should escalate to a human instead.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 19.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-01T00:33:32"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Flags Decide The Path. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "FORECASTING · @HumanitariansAI",
+            "line": "Flags Decide The Path."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.39,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-01T00:33:32"
+      }
+    }
+  ]
+}

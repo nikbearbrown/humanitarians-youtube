@@ -1,0 +1,351 @@
+{
+  "metadata": {
+    "title": "RAG: Caching (The Cheapest Token)",
+    "slug": "rag-caching",
+    "topic": "CLAUDE CODE · RAG SERIES · CACHING",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "deep-explainer",
+    "note": "RAG series extension: caching layers + invalidation. Grounded in PRODUCTION_NOTES.md §3 & §5, cache hit 0.002ms. Claude bookends + Manim body. Liam, in for Ameya (Onyx). @HumanitariansAI.",
+    "total_estimated_duration_seconds": 290,
+    "build": {
+      "at": "2026-09-07T22:14:54",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. In the project, a cold request took over a second. A cache hit took two microseconds — nearly a million times faster, because it skips the entire pipeline. The cheapest token is the one you never generate. Today: how to cache a RAG system without lying to your users.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain caching for RAG — exact, semantic, embedding, prompt — and cache invalidation\"",
+            "topic": "CLAUDE CODE · RAG SERIES · CACHING",
+            "segment": "The Cheapest Token",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "warming the cache…",
+            "output": [
+              "exact cache skips everything · semantic catches paraphrases",
+              "a loose semantic threshold answers the wrong question",
+              "invalidation is the actually-hard part"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 20.52,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "ACT I — The Waste",
+      "narration_text": "Start with the waste. Every question runs the whole pipeline — embed, search, rerank, then generate — and generation is the expensive second. But real traffic repeats: the same question asked again, or a paraphrase of one you answered an hour ago. Paying full price for a question you've already solved is the easiest money you'll ever leave on the table.",
+      "visual_intent": "pipeline embed→search→rerank→generate (~1.3s); repeats & paraphrases redo it all",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_Waste",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.35,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_Waste",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ACT II — Exact Cache",
+      "narration_text": "The first layer is the simplest. Key on the normalized question string; if the exact question comes back, return the stored answer. That single hit skips the entire pipeline — embed, search, rerank, generate, all of it. It only fires on identical repeats, but it costs almost nothing to add and it's your two-microsecond hit.",
+      "visual_intent": "exact cache: normalized query string → stored answer; skips ENTIRE pipeline; 0.002ms",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Exact",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.88,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Exact",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ACT III — Semantic Cache",
+      "narration_text": "The next layer is smarter. Embed the incoming question and compare it to past questions by similarity — if it's close enough to one you've answered, serve that answer. Now paraphrases hit too. It saves everything after the embedding step, which is nearly the whole cost. This is where most of the real savings live.",
+      "visual_intent": "semantic cache: embed query, similarity match to past Qs; catches paraphrases; saves all-after-embed",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Semantic",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.73,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Semantic",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "ACT IV — Two More Layers",
+      "narration_text": "Two quieter layers round it out. An embedding cache keys on a hash of the text, so you never re-embed a chunk you've seen. And the prompt cache lives on the provider's side: keep a stable prompt prefix and the input tokens are billed at a fraction on reads — often around ninety percent cheaper. Four layers, each catching a different kind of repeat.",
+      "visual_intent": "embedding cache (text hash → vector) + prompt/KV cache (stable prefix, ~90% cheaper reads)",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Layers",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 18.84,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Layers",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ACT V — The Danger",
+      "narration_text": "Now the trap, because semantic caching can quietly betray you. Set the similarity threshold too loose, and two questions that only look alike get the same answer — you confidently serve the response to a different question. A semantic cache needs the same evaluation rigor as retrieval itself: measure it, don't just switch it on.",
+      "visual_intent": "two similar-looking but different questions → same answer (WRONG); threshold too loose; needs eval",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Danger",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 18.77,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Danger",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "ACT VI — Invalidation",
+      "narration_text": "And the genuinely hard part: invalidation. When a document is amended, every cached answer that was built from it is now wrong — and your cache will happily keep serving the stale version. Two defenses: a time-to-live so entries expire, or tag each entry with the source document IDs it used and purge them the moment that document changes. Stale confidence is worse than a cache miss.",
+      "visual_intent": "doc_014 amended → cached answers from it now stale; TTL or tag-by-source-id → purge on update",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B06_Invalidate",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 21.18,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim:B06_Invalidate",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "ACT VII — The Real Code",
+      "narration_text": "In code it's small: check exact, then semantic, then fall through to the full pipeline — and tag what you store so you can purge it later. The shape is the lesson. Cheapest check first, most expensive path last, and never cache without a way to invalidate.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "cache.py — exact → semantic → pipeline",
+            "code": "if a := exact.get(norm(q)):        return a          # ~0.002 ms\nqv = embed(q)\nif a := semantic.near(qv, thresh=0.92):  return a     # paraphrase hit\nans, src_ids = rag_pipeline(q, qv)                     # full cost\nexact[norm(q)] = semantic[qv] = tag(ans, src_ids)     # store + tag to purge",
+            "sparkLine": "cheap first, purge-able"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 15.23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "ACT VIII — Cost Order",
+      "narration_text": "So where does caching sit among your options. First, cache — exact then semantic — to avoid the call entirely. Then route easy queries to a cheaper model. Then trim the retrieved context to fewer tokens. Then lean on the prompt cache. Caching is first for a reason: nothing is cheaper than work you simply don't do.",
+      "visual_intent": "cost levers ordered: cache → route → trim context → prompt cache; 'cache is first'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_CostOrder",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.05,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_CostOrder",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration_text": "So keep three things. An exact cache skips the whole pipeline; a semantic cache catches paraphrases and saves nearly as much. A loose semantic threshold will answer the wrong question, so evaluate it like retrieval. And invalidation is the hard part — tag by source, or serve stale answers with total confidence.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Caching for RAG",
+            "artifactLines": [
+              "Exact cache skips everything; semantic catches paraphrases.",
+              "A loose semantic threshold answers the wrong question.",
+              "Invalidation is the hard part — tag by source, or go stale."
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take this prompt to your own system: add an exact cache, then a semantic one, and measure your hit rate and latency on real repeated traffic — then deliberately test a too-loose threshold so you can see it serve the wrong answer. Once you've watched that failure, you'll set the threshold honestly.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"add an exact + semantic cache, measure hit rate and latency, and test a too-loose threshold for false hits\"",
+            "topic": "CLAUDE CODE · RAG SERIES · CACHING",
+            "segment": "The Cheapest Token",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 17.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T22:14:54"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration_text": "RAG — caching, the cheapest token. Skip the work, but never the invalidation. This is Liam, in for Ameya.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "RAG: Caching.",
+            "handle": "@HumanitariansAI",
+            "subline": "the cheapest token is the one you skip"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 7.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-09-07T22:14:54"
+      }
+    }
+  ]
+}

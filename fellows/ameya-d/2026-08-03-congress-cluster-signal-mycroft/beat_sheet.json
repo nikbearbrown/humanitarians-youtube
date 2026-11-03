@@ -1,0 +1,367 @@
+{
+  "metadata": {
+    "title": "Congress Doesn't Beat the Market. The Cluster Does.",
+    "slug": "congress-cluster-signal",
+    "topic": "CLAUDE CODE · CONGRESSIONAL TRADES",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "cli",
+    "note": "CLI video in the REQUIRED spine: B00 cold open (ClaudeComposerAsk, ask answered) · B01 PROBLEM (STOCK Act, 13,877 trades, the copy-Congress question) · B02 ASK · B03 CODE (market_adjusted.py, the ACTUAL code) · B04 OUTPUT(manim, aggregate alpha +0.13%) · B05 CHANGE (cluster tiering revision) · B06 CODE (backtest.py tag_signal) · B07 OUTPUT(manim, tier table) · B08 SUMMARY (manim recap) · B09 NEXT STEPS (handoff, 'Your turn.') · B10 outro (ClaudeTitleOutro). All numbers sourced from RESEARCH_REPORT.md — see SOURCES.md. IN-FOR-BEAR LAW applies (Liam, Onyx).",
+    "total_estimated_duration_seconds": 214,
+    "build": {
+      "at": "2026-08-07T11:34:24",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — open on the Claude UI, ask shown answered; IN-FOR-BEAR LAW in narration",
+      "narration_text": "Namaste — this is Liam, in for Ameya. Build it with Claude, then take it apart. Today: thirteen thousand congressional stock trades, and the one signal inside them that isn't noise.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"backtest 13,877 congressional stock-trade disclosures — does copying Congress beat the market?\"",
+            "topic": "CLAUDE CODE · CONGRESSIONAL TRADES",
+            "segment": "The Cluster Signal",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Namaste, Liam",
+            "runningText": "running backtest…",
+            "output": [
+              "pipeline: scrape → enrich → market-adjust → backtest",
+              "aggregate BUY alpha: +0.13% — Congress rides the market",
+              "cluster buys: +0.23% to +0.54% — the only tier above noise"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why care",
+      "role_note": "the stakes BEFORE the build; SHOW-DON'T-TELL — timeline + counters move",
+      "narration_text": "Since twenty-twelve, the STOCK Act has forced every member of Congress to disclose their stock trades within forty-five days. A law meant to deter insider trading quietly produced a public dataset of what powerful people do with their own money. I scraped it: thirteen thousand, eight hundred and seventy-seven trades from one hundred and eight members, across three years of filings. The popular story says Congress beats the market — whole apps exist to copy them trade for trade. So here is the narrow, testable question: follow every congressional buy mechanically, and do you beat the index?",
+      "visual_intent": "Manim: STOCK Act timeline (2012 → disclose within 45 days), stat cards animating in (13,877 trades · 108 members · May 2023–Jun 2026), then the question line in terracotta",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_StockAct",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 31.32,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_StockAct",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "role_note": "composer (ClaudeComposerAsk) — show and discuss the prompt",
+      "narration_text": "Ask for the strict version of the test. Into Claude: write market underscore adjusted dot pie. For every trade, measure the stock's return over the thirty days after the disclosure date — the first day a retail investor could actually act — and subtract SPY's return over the identical window. That subtraction is the whole methodology: a stock that merely rose with the index shows zero alpha.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write market_adjusted.py — for each trade: 30-day return from the DISCLOSURE date minus SPY over the identical window; per-trade alpha, no look-ahead\"",
+            "topic": "CLAUDE CODE · CONGRESSIONAL TRADES",
+            "segment": "The Cluster Signal",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "The ask,",
+            "runningText": "computing per-trade alpha…"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 21,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 20.84,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — ACTUAL-CODE LAW: real lines from market_adjusted.py, trimmed to what teaches",
+      "narration_text": "Read the code before trusting the result. One function fetches SPY at disclosure, and SPY thirty days later — the same window the trade gets. Then one line does the judging: abnormal return equals the stock's post-disclosure move, minus SPY's. No annualizing, no portfolio smoothing. Every single trade is benchmarked against the market it actually traded in.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "market_adjusted.py",
+            "code": "# market_adjusted.py — per-trade alpha vs SPY\ndef compute_spy_return(disclosure_date):\n    \"\"\"SPY return over the SAME 30-day window.\"\"\"\n    spy_at   = get_spy_close(disclosure_date)\n    post_dt  = disclosure_date + timedelta(days=30)\n    spy_post = get_spy_close(post_dt)\n    return round((spy_post - spy_at) / spy_at * 100, 4)\n\nvalid['spy_return_30d']  = valid['disclosure_date'].map(spy_returns)\nvalid['abnormal_return'] = (valid['pct_change_post_disclosure']\n                            - valid['spy_return_30d']).round(4)",
+            "sparkLine": "Minus the market."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 20.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run",
+      "role_note": "OPEN vox slot → Manim video; numbers from RESEARCH_REPORT.md §4.1",
+      "narration_text": "Run it on five thousand, one hundred and sixty-two priced buys. Raw return: plus two point two three percent — at first glance, Congress can pick stocks. Then the subtraction lands: SPY made plus two point one zero over the same windows. Alpha, plus zero point one three percent. Sells: essentially zero. In aggregate, Congress doesn't beat the market. Congress IS the market, with a rounding error on top.",
+      "visual_intent": "Manim: paired bars — congressional BUY raw +2.23% vs SPY +2.10% growing to near-identical heights; the +0.13% alpha residual isolated as a sliver; SELL −0.01% noted; verdict line 'Congress rides the market.'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_AggregateAlpha",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 21.72,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_AggregateAlpha",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE — check & revise",
+      "role_note": "composer (ClaudeComposerAsk) — THE REVISION LAW; SPARK-LINE LAW greeting 'The revision,'",
+      "narration_text": "But an average this flat can still hide structure. The revision: stop scoring trades alone, and look for convergence. Update the backtest: flag every buy where two or more members bought the same ticker inside a thirty-day window. Score it with entry-time information only — cluster size, times the group's maximum buy-conviction ratio — and tier every trade before its return is known. No look-ahead: the tier is fixed on the day you could have acted.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"update backtest.py — tier every BUY at entry: cluster = ≥2 politicians, same ticker, 30-day window; signal_score = cluster_size × max BCR; report alpha + win rate per tier\"",
+            "topic": "CLAUDE CODE · CONGRESSIONAL TRADES",
+            "segment": "The Cluster Signal",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "The revision,",
+            "runningText": "updating backtest…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 25,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 21.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE — revised",
+      "role_note": "ClaudeCodeBeat — real tag_signal lines from backtest.py; the diff that matters is entry-time-only tiering",
+      "narration_text": "The cluster test is a filter on disclosure dates: same ticker, thirty days either side, count the distinct politicians. The score multiplies that count by the most buy-heavy member's conviction ratio. And the honest part is what the tier function never touches: the realized return. Strong, watch, skip, solo — every tier is assigned from what a reader of the filings would have known at entry.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "backtest.py — tag_signal()",
+            "code": "# tier from ENTRY-TIME info only — never the return\nsame   = buys[buys[\"tkr\"] == row[\"tkr\"]]\nlo, hi = row[\"disc_dt\"] - timedelta(days=30), \\\n         row[\"disc_dt\"] + timedelta(days=30)\nwindow = same[(same[\"disc_dt\"] >= lo) & (same[\"disc_dt\"] <= hi)]\npols   = window[\"politician\"].unique()\nscore  = len(pols) * max(bcr.get(p, 0.5) for p in pols)\n\ndef tier(r):\n    if r[\"cluster_size\"] < 2:    return \"SOLO\"\n    if r[\"signal_score\"] >= 2.0: return \"STRONG\"\n    if r[\"signal_score\"] >= 1.0: return \"WATCH\"\n    return \"SKIP\"",
+            "sparkLine": "No look-ahead."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — revised",
+      "role_note": "OPEN vox slot → Manim video; numbers from RESEARCH_REPORT.md §4.2",
+      "narration_text": "Re-run, and the table splits. Clustered buys — strong and watch, about two thousand events — earn positive alpha: plus zero point two three, and plus zero point five four percent, winning just over half the time. Solo buys — three thousand of them — go negative, and win about forty-five percent. That five-point win-rate gap, across five thousand events, is the most robust result in the study. Ten thousand dollars spread across the strong tier finishes at ten thousand two hundred and forty-seven — twenty-three dollars ahead of the same money in SPY. Real, and tiny.",
+      "visual_intent": "Manim: tier table animating row by row — STRONG n=815 α+0.23% win 50.3% · WATCH n=1,212 α+0.54% win 50.6% · SKIP n=132 α−0.04% win 44.7% · SOLO n=3,003 α−0.05% win 44.9%; clustered rows boxed; bottom line: the ~5-point win gap",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B07_TierTable",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 32,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 30.83,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim:B07_TierTable",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "SUMMARY",
+      "role_note": "the lesson in one beat — Manim recap, moving per SHOW-DON'T-TELL",
+      "narration_text": "So what did the build actually show? The edge lives in cluster membership — independent members converging on one ticker — not in the conviction weighting: watch beat strong, so the score adds no ranking power inside a cluster. And one warning from the process: on sixty-four members, the effect looked inverted. It only stabilized at a hundred and eight. This signal is a noise filter, not a profit engine — its real value is the ninety-five percent of trades it tells you to ignore. Research, not investment advice.",
+      "visual_intent": "Manim: three verdict rows animating with check/cross marks — cluster membership ✓ carries the edge; conviction score ✗ doesn't rank (WATCH +0.54 > STRONG +0.23); small samples ✗ (64 members inverted → stable at 108); closing line 'a noise filter, not a profit engine'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B08_Recap",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 28,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 26.79,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim:B08_Recap",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — suggested prompt typed in, read aloud and discussed",
+      "narration_text": "Your turn. Take this prompt: pull the last ninety days of congressional buy disclosures, find every ticker with two or more distinct buyers inside a thirty-day window, and compare each cluster's thirty-day return to SPY. It's worth running because it tests the one claim that mattered here — that convergence, not congressional genius, is where the signal lives — on filings that didn't exist when this video was made.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"pull the last 90 days of congressional BUY disclosures, find tickers with ≥2 distinct buyers in a 30-day window, and compare each cluster's 30-day return to SPY\"",
+            "topic": "CLAUDE CODE · CONGRESSIONAL TRADES",
+            "segment": "The Cluster Signal",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 21.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-07T11:34:24"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — restate the episode title; IN-FOR-BEAR sign-off",
+      "narration_text": "Congress doesn't beat the market. The cluster does — barely. This is Liam, in for Ameya. Build it with Claude, then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Congress Doesn't Beat the Market. The Cluster Does.",
+            "handle": "@HumanitariansAI",
+            "subline": "built with Claude, taken apart"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 7.49,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-07T11:34:24"
+      }
+    }
+  ]
+}

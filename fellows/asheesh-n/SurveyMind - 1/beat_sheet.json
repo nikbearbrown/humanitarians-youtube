@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "title": "Does SurveyMind's Synthetic Data Actually Think Like a Human?",
+    "slug": "cli-surveymind-validator",
+    "topic": "CLAUDE CODE · SYNTHETIC DATA VALIDATION",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "cli",
+    "aspect": "16:9",
+    "note": "cli-explainer, Asheesh's own voice/persona (am_onyx). B04 and B06 are REAL screen-recording slots (media/B04.mp4, media/B06.mp4) — capture the actual terminal runs of pipeline.py, never re-simulate them. B01 and B07 use FormACard (house style) instead of gen-AI stock clips, since this toolkit has no AI video generation available. IMPORTANT: the human side (Open Psychometrics, n=603,322) is REAL; the synthetic side in this video is a SELF-GENERATED DUMMY STAND-IN, not real SurveyMind output — real SurveyMind data was never obtained. Narration must not imply otherwise.",
+    "total_estimated_duration_seconds": 158,
+    "build": {
+      "at": "2026-09-25T17:36:51",
+      "cut": "review",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN — open on the Claude UI, ask shown answered",
+      "narration_text": "Hi, I'm Asheesh, a Research Analyst. Build it with Claude, then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write pipeline.py — load real Open Psychometrics Big Five data, then test a synthetic dataset's correlation structure against it\"",
+            "topic": "CLAUDE CODE · SYNTHETIC DATA VALIDATION",
+            "segment": "Synthetic Personality Validator",
+            "greeting": "Hi, I'm Asheesh",
+            "runningText": "running validation…",
+            "output": [
+              "pipeline.py written",
+              "real human data loaded: n=603,322",
+              "dummy-good synthetic set: PASS",
+              "dummy-bad synthetic set: FAIL"
+            ]
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "actual_duration_s": 5.01,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 5.041666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why care",
+      "role_note": "the problem, the context, the stakes — BEFORE the CLI loop. FIXED: was an unfilled gen-AI slate; using FormACard house-style card instead.",
+      "narration_text": "Tools like SurveyMind generate synthetic survey respondents — AI personas standing in for real humans so researchers can skip recruiting. Fine, if the personas actually think like people. But nothing stops a model from generating Big Five scores that look plausible trait by trait while the relationships BETWEEN traits — the actual structure of a human personality — are quietly wrong. Ship that into a study and every downstream finding is built on a correlation matrix that was never real. SurveyMind's own paper admits this validation hasn't been run yet. So we built the test.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "isotype",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "AI-generated survey personas can look plausible",
+              "trait by trait — while the relationships",
+              "BETWEEN traits are quietly wrong.",
+              "SurveyMind's own paper admits this hasn't been tested."
+            ],
+            "meta": [
+              "the problem"
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-26T00:31:40.522113+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "actual_duration_s": 32.98,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 33.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:FormACard",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "role_note": "composer (ClaudeComposerAsk)",
+      "narration_text": "Ask for the validator. Into Claude: write pipeline dot py — load and clean the real Open Psychometrics Big Five dataset, compute the congruence coefficient between a human and a synthetic correlation matrix, run a Jennrich test on whether the matrices statistically differ, bootstrap a confidence interval on the similarity, and run a per-trait Kolmogorov-Smirnov test.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"write pipeline.py:\n  load and clean real Open Psychometrics Big Five data\n  congruence coefficient on correlation matrices\n  Jennrich test (do matrices differ?)\n  bootstrap CI on similarity\n  per-trait KS test\"",
+            "topic": "CLAUDE CODE · SYNTHETIC DATA VALIDATION",
+            "segment": "Synthetic Personality Validator",
+            "greeting": "The ask,",
+            "runningText": "generating script…"
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "actual_duration_s": 19.73,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 19.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — the ACTUAL generated code, trimmed to what teaches",
+      "narration_text": "Read it before trusting it. The congruence coefficient is Tucker's phi — cosine similarity between the two matrices' unique correlations, upper triangle only, so we're not double-counting. Above point-nine, the structures agree. The Jennrich test asks the sharper question: are these two matrices statistically distinguishable at all, not just visually close. And the bootstrap resamples the smaller, synthetic set two thousand times so the confidence interval isn't a lie built on one lucky draw.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "pipeline.py",
+            "code": "# pipeline.py — Claude Code output\nimport numpy as np, pandas as pd\nfrom scipy import stats\n\ndef tucker_congruence(r1, r2):\n    iu = np.triu_indices_from(r1, k=1)\n    v1, v2 = r1[iu], r2[iu]\n    return np.sum(v1 * v2) / np.sqrt(np.sum(v1**2) * np.sum(v2**2))\n\ndef bootstrap_congruence_ci(synth_df, human_corr, n_boot=2000):\n    # resample the SMALLER (synthetic) sample —\n    # that's where the real uncertainty lives\n    ...\n\n# Jennrich: are the two correlation matrices statistically distinguishable?\n# KS: per-trait, does the real vs synthetic SCORE DISTRIBUTION match?",
+            "sparkLine": "One real matrix, one synthetic guess, one test to check the match."
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "actual_duration_s": 28.96,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 29.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run (dummy-good scenario)",
+      "role_note": "REAL SCREEN RECORDING REQUIRED. Not fillable by me — you need to record your own terminal running pipeline.py and drop it in as media/B04.mp4. Real numbers to expect on screen: congruence 0.9831, Jennrich p=0.9771.",
+      "narration_text": "Real SurveyMind output isn't public yet, so first we stress-test the validator itself: a synthetic set we built by hand to match the real human structure. Congruence coefficient: point-nine-eight — the correlation structures line up. The Jennrich test can't reject that they're the same matrix. This is what a PASS looks like when the pipeline works correctly — not a claim about SurveyMind itself yet.",
+      "visual_intent": "screen recording of the real terminal: real human dataset preview and cleaning stats (n=603,322), then the correlation matrices side by side, congruence coefficient printed, Jennrich result, bootstrap CI, per-trait KS table, ending on a green PASS — caption on screen: 'synthetic data: self-generated stand-in, not real SurveyMind output'",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "hold",
+        "lane": "screen-recording",
+        "placeholder": "awaiting-user-capture"
+      },
+      "estimated_duration_s": 18,
+      "actual_duration_s": 21.25,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 21.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE — check & revise",
+      "role_note": "composer (ClaudeComposerAsk) — the REQUIRED revision. FIXED: empty spark line replaced per SPARK-LINE LAW warning.",
+      "narration_text": "A validator that only ever says pass isn't a validator. Check it: point it at a synthetic set we deliberately broke and see if it catches the fake. Into Claude: re-run pipeline dot py against a synthetic sample with a distorted trait relationship and report every gate.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"re-run pipeline.py against a synthetic sample with\ndistorted Neuroticism relationships —\nreport congruence, Jennrich, bootstrap CI, and per-trait KS for every gate\"",
+            "topic": "CLAUDE CODE · SYNTHETIC DATA VALIDATION",
+            "segment": "Synthetic Personality Validator",
+            "greeting": "Check it,",
+            "runningText": "updating…"
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "actual_duration_s": 15.47,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 15.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT — revised (dummy-bad scenario)",
+      "role_note": "REAL SCREEN RECORDING REQUIRED. Not fillable by me — you need to record your own terminal running pipeline.py on the distorted scenario and drop it in as media/B06.mp4. Real numbers to expect on screen: congruence 0.5946, Jennrich p<0.0001.",
+      "narration_text": "Same script, same real human data, now against a synthetic set with its Neuroticism relationships deliberately flattened. Congruence coefficient drops to point-five-nine. The Jennrich test rejects: these matrices are statistically different, not a rounding error. Bootstrap CI no longer touches point-nine. And two of the five traits fail their KS test outright. The validator catches exactly what it's supposed to catch — a synthetic respondent that looks fine trait by trait but got the relationships between traits wrong.",
+      "visual_intent": "same screen-recording layout as B04, now showing the deliberately-broken run — lower congruence number highlighted, Jennrich significant result in red, bootstrap CI shifted down, KS table with flagged rows, ending on a red FAIL",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": null,
+        "motion": "hold",
+        "lane": "screen-recording",
+        "placeholder": "awaiting-user-capture"
+      },
+      "estimated_duration_s": 17,
+      "actual_duration_s": 30.18,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 30.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "role_note": "the lesson — one beat, honest about scope. FIXED: was an unfilled gen-AI slate; using FormACard house-style card instead.",
+      "narration_text": "So the risk was never whether synthetic scores look plausible — they always do. It's whether the correlations between traits match a real human personality's structure. Congruence coefficient, Jennrich, bootstrap, and per-trait KS together catch what eyeballing a distribution never will. What we've proven here is that the test works: real human data in one hand, a synthetic set in the other, and a pipeline that correctly tells them apart when they should be told apart. The actual verdict on SurveyMind itself is still pending real data.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "isotype",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "The risk was never plausible-looking scores —",
+              "it's whether trait relationships match a real",
+              "human personality's structure.",
+              "The verdict on SurveyMind itself is still pending real data."
+            ],
+            "meta": [
+              "the lesson"
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-26T00:34:13.862655+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13,
+      "actual_duration_s": 29.86,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 29.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:FormACard",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — suggested prompt typed in, viewer-addressed",
+      "narration_text": "Your move: take this prompt and point it at whatever synthetic data your own pipeline generates — don't just trust that it looks human, make it prove the correlation structure survives against real comparison data.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"run congruence coefficient, Jennrich test, bootstrap CI,\nand per-trait KS test comparing my synthetic dataset's\ncorrelation structure against my real dataset's\"",
+            "topic": "CLAUDE CODE · SYNTHETIC DATA VALIDATION",
+            "segment": "Synthetic Personality Validator",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "actual_duration_s": 11.75,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 11.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — restate the episode title. FIXED: title/narration previously didn't match metadata.title — now corrected to match exactly.",
+      "narration_text": "Does SurveyMind's synthetic data actually think like a human? I'm Asheesh — build it with Claude, then take it apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Does SurveyMind's Synthetic Data Actually Think Like a Human?",
+            "handle": "@asheeshnellutla92",
+            "subline": "built with Claude, taken apart"
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "actual_duration_s": 7.13,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 7.166666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-25T17:36:51"
+      }
+    }
+  ]
+}

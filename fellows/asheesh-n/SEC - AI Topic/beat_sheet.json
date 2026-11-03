@@ -1,0 +1,397 @@
+{
+  "metadata": {
+    "title": "Financial Risk Classification using AI",
+    "slug": "ai-explainer-sec-risk-clause-detection",
+    "skill": "ai-explainer",
+    "channel": "claude-hai",
+    "persona": "HAI",
+    "topic": "Irreducibly Human",
+    "folder_chip": "@HumanitariansAI",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "register": "Plain",
+    "aspect": "16:9",
+    "note": "STEM/AI topic-of-interest video, based on the author's own project: 'Automated Financial Document Risk Classification and Clause Detection.' Reframed around the paper's actual stated objective (per its own Impact Statement): can AI help flag financial risk and catch important legal clauses at a scale manual review can't match, as an assistive decision-support tool, not a replacement for professional judgment. Task 1: Hierarchical BiLSTM on SEC 10-K/10-Q risk classification (95.2% macro-F1, +10.9 over TF-IDF baseline, 116 filings from 15 companies). Task 2: LegalBERT fine-tuned for clause detection on CUAD (80.1% macro-F1 vs 77.6% TF-IDF baseline, using only 5% of training data — with an honest and important limitation: a 43.3% miss rate on present clauses). Built using the same proven pattern set as prior videos: folderLabel set explicitly on ClaudeComposerAsk beats (@HumanitariansAI), OutroCTA used instead of ClaudeTitleOutro, BLUF lines kept short to avoid edge-bleed, no stale sparse_by_design flags except the legitimate BrutalistHesitantWriter typing-beat exemption.",
+    "total_estimated_duration_seconds": 148,
+    "build": {
+      "at": "2026-09-25T21:40:53",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B08: palette=claude but the outro is 'OutroCTA' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "role_note": "ClaudeComposerAsk — HAI persona, world-language hello (short form only)",
+      "narration_text": "Hi. Can AI actually help catch financial risk and legal clauses at a scale no human team could manually review?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"flag financial risk levels and legal clauses across a large set of SEC filings and contracts, to help a human review team prioritize\"",
+            "topic": "Irreducibly Human",
+            "segment": "Can AI Flag What Matters?",
+            "greeting": "Hi, HAI",
+            "runningText": "scanning the documents…",
+            "output": [
+              "116 SEC filings loaded",
+              "510 legal contracts loaded",
+              "risk levels flagged",
+              "clauses flagged for review"
+            ],
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-26T04:25:13.239297+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "actual_duration_s": 7.85,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 7.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "role_note": "MANDATORY — BrutalistHesitantWriter, executive summary, hesitation = the pedagogy",
+      "narration_text": "Here's the idea. AI can scan filings and contracts far faster than any human team. That sounds like a reason to let it replace manual review entirely. It isn't — it's built to assist that review, flagging what needs a human's attention first, not replacing the human who decides.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "none",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "AI can scan filings and contracts fast.\nThat sounds like a reason to replace review.\nIt isn't. It's built to assist, not replace.",
+            "triggerWords": "reason to replace review",
+            "replacementWords": "way to speed up review",
+            "seed": "6203",
+            "lead_silence_s": 0.8
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-26T04:26:25.029558+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "hesitant-writer typing bookend accumulates one line token by token — mid-beat frames are mostly cream by design (documented exemption case in final_frame_check.py)"
+      },
+      "actual_duration_s": 18.56,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 18.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CONCEPT — two real bottlenecks",
+      "role_note": "vox-style illustration (C2/C3), NOT a build-loop beat",
+      "narration_text": "There are two real bottlenecks here. SEC filings can run fourteen thousand words, with risk buried inside dense legal language. Contracts can hide any of forty one different clause types, each with real financial and legal weight. Manual review of either, at scale, doesn't hold up.",
+      "visual_intent": "two cards showing the scale problem in each domain",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "isotype",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "Two Real Bottlenecks",
+            "items": [
+              {
+                "label": "Risk Buried in Filings",
+                "sub": "up to 14,000 words per document"
+              },
+              {
+                "label": "Clauses Buried in Contracts",
+                "sub": "41 possible clause types"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-26T04:28:43.679811+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "actual_duration_s": 18.52,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 18.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:FormBCard",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "THE REAL PROBLEM — why this needs help, not automation",
+      "role_note": "C3 concept illustration",
+      "visual_intent": "simple description card framing the scale problem and the assistive goal",
+      "narration_text": "Every public company has to disclose risk in its filings. Every contract can hide clauses that matter financially and legally. Reviewing all of it by hand doesn't scale. The goal isn't to remove the human from that review — it's to flag what deserves their attention first.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "isotype",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "Every public company must disclose risk.",
+              "Every contract can hide dozens of clause types.",
+              "Manual review at this volume doesn't scale.",
+              "The goal: flag it for a human, not replace them."
+            ],
+            "meta": [
+              "the real problem"
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-26T04:30:59.925475+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "actual_duration_s": 17.17,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 17.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:FormACard",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "THE PIPELINE — how the flagging actually works",
+      "role_note": "SourceFlow-style diagram beat",
+      "narration_text": "As a pipeline: raw filings and contracts go in. Key sections get extracted. A model classifies risk level. A second model detects legal clauses. Everything flagged gets routed to a human reviewer — the output is a shortlist to check, not an automated final decision.",
+      "visual_intent": "four-stage flow diagram ending at a human reviewer, not a final verdict",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "drawon",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "THE SYSTEM",
+            "title": "AI Flags It, a Human Decides",
+            "inputLabel": "Filings + Contracts",
+            "outputLabel": "Analyst's Desk",
+            "phases": [
+              {
+                "label": "Extract Key Sections"
+              },
+              {
+                "label": "Classify Risk Level"
+              },
+              {
+                "label": "Detect Legal Clauses"
+              },
+              {
+                "label": "Flag for Review"
+              }
+            ],
+            "footerNote": "the output is a flagged shortlist, not a final decision",
+            "sparkLine": "AI narrows it down. A human decides."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-26T04:32:08.437856+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "actual_duration_s": 18.58,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 18.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "THE RESULT",
+      "role_note": "ILLUSTRATE LAW: UI appears because the interface IS the subject here",
+      "narration_text": "Here's what the system actually catches. On risk classification, it correctly flagged risk level with ninety five point two percent macro-F1 — well above a simple keyword baseline. On clause detection, it caught eighty point one percent macro-F1, even trained on just a small fraction of the available data.",
+      "visual_intent": "verdict artifact page with both task results, framed as catch rate not final judgment",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "kinetic",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "What the System Catches",
+            "items": [
+              {
+                "label": "Risk Classification",
+                "sub": "95.2% F1 — flags high-risk filings correctly"
+              },
+              {
+                "label": "Clause Detection",
+                "sub": "80.1% F1, even with limited training data"
+              }
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-26T04:34:32.049498+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "actual_duration_s": 20.18,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 20.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:FormBCard",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE HONEST LIMIT",
+      "role_note": "the lesson, honest about scope — this is where the real limitation lives",
+      "narration_text": "But here's the catch that matters most. The system still missed forty three percent of the clauses that were actually present in the contracts. In a legal document, a missed clause isn't a minor error — it can carry real consequences. That's exactly why this stays a tool that assists a human reviewer, not one that replaces them.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "isotype",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "It still missed 43% of real clauses present.",
+              "A missed clause can carry real consequences.",
+              "That's why a human still reviews every flag.",
+              "This assists review — it does not replace it."
+            ],
+            "meta": [
+              "the honest limit"
+            ],
+            "dark": false
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-26T04:37:00.693454+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17,
+      "actual_duration_s": 20.07,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 20.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:FormACard",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "HANDOFF",
+      "role_note": "HANDOFF LAW — ClaudeComposerAsk, greeting fixed to 'Your turn.', prompt read and discussed aloud",
+      "narration_text": "Your turn. If you're facing a pile of documents too large to manually review, don't try to replace your judgment with AI. Ask Claude to help you build something that flags what needs your attention first, so you can spend your time where it actually matters.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"help me build a model that flags high-risk\nsections in my documents for human review,\nnot automated decisions\"",
+            "topic": "Irreducibly Human",
+            "segment": "Can AI Flag What Matters?",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-26T04:38:36.497560+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "actual_duration_s": 15.15,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 15.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-25T21:40:53"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — title restate, HAI folder chip via OutroCTA (ClaudeTitleOutro is hardcoded to @NikBearBrown, cannot be used)",
+      "narration_text": "Financial risk classification using AI. At Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "OutroCTA",
+          "props": {
+            "line": "Financial Risk Classification using AI",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-26T04:38:51.575409+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 7,
+      "actual_duration_s": 4.82,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 4.833333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:OutroCTA",
+        "at": "2026-09-25T21:40:53"
+      }
+    }
+  ]
+}

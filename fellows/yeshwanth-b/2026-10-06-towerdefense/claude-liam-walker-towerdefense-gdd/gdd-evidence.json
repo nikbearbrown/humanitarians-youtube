@@ -1,0 +1,297 @@
+{
+ "schema_version": 1,
+ "document": {
+  "path": "../../Walker-Godot-TowerDefense/GDD.md",
+  "sha256": "08a36c02c4fb8d6e3d2f9ca8ceb827bd35d62160a67051003d8526cbb7d3af12",
+  "version": "v0.1 agent draft, unapproved",
+  "commit": "caf082c"
+ },
+ "sections": [
+  {
+   "heading": "Status vocabulary",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "1. Metadata",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "2. Vision",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "3. Pillars",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "4. Core loop",
+   "beat_ids": [
+    "B04"
+   ]
+  },
+  {
+   "heading": "5. Player-experience goals",
+   "beat_ids": [
+    "B05"
+   ]
+  },
+  {
+   "heading": "6. Mechanics",
+   "beat_ids": [
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12"
+   ]
+  },
+  {
+   "heading": "7. Systems",
+   "beat_ids": [
+    "B15"
+   ]
+  },
+  {
+   "heading": "8. Progression",
+   "beat_ids": [
+    "B12"
+   ]
+  },
+  {
+   "heading": "9. World",
+   "beat_ids": [
+    "B14"
+   ]
+  },
+  {
+   "heading": "10. Narrative",
+   "beat_ids": [
+    "B14"
+   ]
+  },
+  {
+   "heading": "11. Characters",
+   "beat_ids": [
+    "B14"
+   ]
+  },
+  {
+   "heading": "12. Features",
+   "beat_ids": [
+    "B15"
+   ]
+  },
+  {
+   "heading": "13. Out of scope",
+   "beat_ids": [
+    "B15"
+   ]
+  },
+  {
+   "heading": "14. Technical",
+   "beat_ids": [
+    "B15"
+   ]
+  },
+  {
+   "heading": "15. Risks",
+   "beat_ids": [
+    "B13"
+   ]
+  },
+  {
+   "heading": "16. Open questions",
+   "beat_ids": [
+    "B16"
+   ]
+  },
+  {
+   "heading": "Appendix A — Acceptance tests and traceability",
+   "beat_ids": [
+    "B16"
+   ]
+  },
+  {
+   "heading": "Appendix B — Provenance",
+   "beat_ids": [
+    "B16"
+   ]
+  },
+  {
+   "heading": "Appendix C — Conflicts between documents and HEAD",
+   "beat_ids": [
+    "B16"
+   ]
+  },
+  {
+   "heading": "Appendix D — Changes",
+   "beat_ids": [
+    "B16"
+   ]
+  }
+ ],
+ "excerpts": [
+  {
+   "beat_id": "B02",
+   "start_line": 23,
+   "end_line": 24,
+   "text": "A mechanic can be IMPLEMENTED and AUTO-VERIFIED while every player-experience\nclaim about it remains PENDING. That is the current state of the whole game."
+  },
+  {
+   "beat_id": "B03",
+   "start_line": 54,
+   "end_line": 56,
+   "text": "> Rebuild a recovered Unity tower-defense game in Godot 4, faithfully, from 27\n> surviving C# scripts. […] Reconstruct the systems from the source alone, invent\n> nothing, and record every place where invention was unavoidable."
+  },
+  {
+   "beat_id": "B05",
+   "start_line": 114,
+   "end_line": 116,
+   "text": "**No player-experience goals were ever approved.** The only player-facing intent\nin the repository is the 22-question playtest checklist (`PLAYTEST-LOG.md`),\nwhich an agent wrote as *questions*, not goals."
+  },
+  {
+   "beat_id": "B06",
+   "start_line": 309,
+   "end_line": 317,
+   "text": "  func take_damage(amount: float) -> void:\n  \tif finished:\n  \t\treturn\n  \thit_flash = 0.14\n  \thealth -= amount\n  \tif health <= 0.0:\n  \t\thealth = 0.0\n  \t\tfinished = true\n  \t\tdied.emit(self)"
+  },
+  {
+   "beat_id": "B09",
+   "start_line": 191,
+   "end_line": 193,
+   "text": "  if it is walkable and has no tower. **A placement is refused if, with the new\n  tower assumed, the spawn or any live monster's cell could no longer reach the\n  exit.** (`godot/features/grid/grid.gd:152-165`)"
+  },
+  {
+   "beat_id": "B11",
+   "start_line": 250,
+   "end_line": 254,
+   "text": "- **Rules (SOURCE, recovered):** wave *N* spawns *N*+1 monsters, the first\n  immediately and the rest 0.8 s apart. **Before each monster spawns, max health\n  increases by `wave × 0.05`.** In the Unity source this line sat inside the\n  per-monster loop, so it compounds: health after waves 0-5 runs\n  3.0 → 3.1 → 3.4 → 4.0 → 5.0 → 6.5. (`godot/features/waves/wave_tuning.gd:6-9, 29-33`)"
+  },
+  {
+   "beat_id": "B12",
+   "start_line": 366,
+   "end_line": 368,
+   "text": "  - Buy / upgrade / sell prices are **AUTHORED** — the source stored them in\n    Inspector fields that did not survive. Fire 20/30/10, Ice 25/35/12,\n    Poison 30/40/15, Storm 35/45/17. **DECIDED** O-02, 2026-09-21."
+  },
+  {
+   "beat_id": "B13",
+   "start_line": 596,
+   "end_line": 599,
+   "text": "Both failures were **HUMAN-OBSERVED** within minutes of the first person playing.\nNeither was caught by the 56 automated checks then passing (data 18 + mechanics 30\n+ full match 8 — receipts from before commit `51e4eec` show exactly these three\nsuites)."
+  },
+  {
+   "beat_id": "B14",
+   "start_line": 444,
+   "end_line": 446,
+   "text": "**One map, AUTHORED.** The original map, `Resources/Level.txt`, did not survive.\nThe source's loader (`LevelManager.cs:91-131`) reads a numbered level from that\nfile, so the original supported more than one level. This port ships one."
+  },
+  {
+   "beat_id": "B15",
+   "start_line": 527,
+   "end_line": 528,
+   "text": "**Scene and node structure.** `godot/game/main.tscn` is a stub: one `Node2D` named\n`WalkerTowerDefense` with `session.gd` attached. Everything else is built in code"
+  },
+  {
+   "beat_id": "B16",
+   "start_line": 631,
+   "end_line": 631,
+   "text": "Every item is a human decision. None is resolved by this document."
+  }
+ ],
+ "evidence": [
+  {
+   "path": "evidence/B03-opening-f40.png",
+   "sha256": "6648b01a19b020505f5196dac8bbfc62880b082589028db89aec91d3b1b492f0",
+   "method": "engine viewport frame 40 of take \"opening\" (scripted input, build caf082c), bars cropped",
+   "supports": "B03: Real frame: the game's menu card, same build, scripted-input capture"
+  },
+  {
+   "path": "evidence/B05-opening-f1400.png",
+   "sha256": "4cf70cec24c0805830588a4884f86a828d29244a63d22ff1b0b0eb47115feede",
+   "method": "engine viewport frame 1400 of take \"opening\" (scripted input, build caf082c), bars cropped",
+   "supports": "B05: Real frame: scripted Fire + Ice opening, run over at wave 3"
+  },
+  {
+   "path": "evidence/B12-opening-f1722.png",
+   "sha256": "274990ec446f69d4dcf3e3cc1e427c0749e24742a7a96de9ba5a0184ed73211e",
+   "method": "engine viewport frame 1722 of take \"opening\" (scripted input, build caf082c), bars cropped",
+   "supports": "B12: Real frame: an upgraded Fire tower — SELL 34, MAXED"
+  },
+  {
+   "path": "evidence/B14-opening-f112.png",
+   "sha256": "6d1e7d3fb456bcc45add0f8759015ddd5e00f18dbc231c2b6a927213343f570d",
+   "method": "engine viewport frame 112 of take \"opening\" (scripted input, build caf082c), bars cropped",
+   "supports": "B14: Real frame: the one authored map, \"Open Ground\", 12 × 8"
+  },
+  {
+   "path": "evidence/B15-poison-f300.png",
+   "sha256": "73654518de824553007b6b687aa504a76eae219e3ce285d72a2db40179582f26",
+   "method": "engine viewport frame 300 of take \"poison\" (scripted input, build caf082c), bars cropped",
+   "supports": "B15: Real frame: everything on screen is drawn in code"
+  },
+  {
+   "path": "capture/maze.mp4",
+   "sha256": "7dfbc5fc5605aacfcce235464a01b649a937e744d2586d5fb997b1b99a829d83",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30; padded to 16:9 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"maze\"; input log capture/maze-inputs.jsonl"
+  },
+  {
+   "path": "capture/opening.mp4",
+   "sha256": "a72332a7ecf1fe983c9a74e114b1d018ab307f533715f4a61189cd64183ebb46",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30; padded to 16:9 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"opening\"; input log capture/opening-inputs.jsonl"
+  },
+  {
+   "path": "capture/poison.mp4",
+   "sha256": "29eea7fb71bc52260cd84c346064c18acef3d95ee84214e0a2c75282d6fe9678",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30; padded to 16:9 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"poison\"; input log capture/poison-inputs.jsonl"
+  },
+  {
+   "path": "capture/storm.mp4",
+   "sha256": "222c33e8d1a89ddbe8c8658d042c45a91de759a9df420c4b647ec3490dbc7d82",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30; padded to 16:9 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"storm\"; input log capture/storm-inputs.jsonl"
+  },
+  {
+   "path": "media/B04.mp4",
+   "sha256": "9d65a12b2734b57057c283348647da12860a9ab8fe7553147a0730097a8d75f1",
+   "method": "exact-frame cut of take \"opening\": [{\"kind\": \"play\", \"source_start_frame\": 330, \"source_frames\": 598, \"factor\": 1, \"output_frames\": 598}]",
+   "supports": "B04: shown gameplay (4. Core loop)"
+  },
+  {
+   "path": "media/B07.mp4",
+   "sha256": "0a6c48f232db6228dd5509431e9dde91797fe63b1954f5dc8023854c03e1296b",
+   "method": "exact-frame cut of take \"poison\": [{\"kind\": \"play\", \"source_start_frame\": 196, \"source_frames\": 632, \"factor\": 1, \"output_frames\": 632}]",
+   "supports": "B07: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B08.mp4",
+   "sha256": "bc38ceaded16d04d1915a723fde53bb21cfcdaeaac9a03dbf39b40859ee1a284",
+   "method": "exact-frame cut of take \"storm\": [{\"kind\": \"play\", \"source_start_frame\": 129, \"source_frames\": 75, \"factor\": 1, \"output_frames\": 75}, {\"kind\": \"replay\", \"source_start_frame\": 173, \"source_frames\": 6, \"factor\": 8, \"output_frames\": 48}, {\"kind\": \"play\", \"source_start_frame\": 204, \"source_frames\": 221, \"factor\": 1, \"output_frames\": 221}, {\"kind\": \"hold\", \"output_frames\": 148}]",
+   "supports": "B08: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B10.mp4",
+   "sha256": "d7c49ee855b4c179965f1273f73998a0dff78b29b6775f8a53a8132efb681223",
+   "method": "exact-frame cut of take \"maze\": [{\"kind\": \"play\", \"source_start_frame\": 330, \"source_frames\": 554, \"factor\": 1, \"output_frames\": 554}]",
+   "supports": "B10: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "evidence/GDD.md",
+   "sha256": "08a36c02c4fb8d6e3d2f9ca8ceb827bd35d62160a67051003d8526cbb7d3af12",
+   "method": "byte copy of the source GDD at film build time",
+   "supports": "every excerpt"
+  }
+ ]
+}

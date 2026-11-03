@@ -1,0 +1,629 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-semantic-normalization",
+    "title": "The Formatting Trap",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper development log, Week 6 — replacing strict string equality with a semantic parser, so stylistically different spellings of the same quantity stop registering as hallucinations while genuine magnitude errors and malicious payloads still get caught.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners following the Provenance Gatekeeper build",
+    "playlist": "Fellows Research",
+    "source": "Week 6: Semantic Normalization & Regex Parsing — Video Script, Provenance Gatekeeper Development Log. Supplied 2026-10-08.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion, both explicitly required. Every pattern has a registered <Pattern>916 variant. ZERO new components; one prop (flagValues) added to GatekeeperCorpusTable so a PASS/FAIL column does not render PASS as an error. 9:16 is a different beat sheet, never a crop — RENDER-TARGETS.md §3.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script's red FAIL stamps map to terracotta; the green PASS verdicts are rendered as UNFILLED ink chips rather than a second accent colour, which also keeps pass/fail legible to colour-blind viewers.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "Provenance Gatekeeper",
+      "semantic normalization",
+      "regex parsing",
+      "false positives",
+      "float conversion",
+      "ChromaDB",
+      "evaluation logic",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-10-08T22:19:55",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Hi, I am Onkar Bhujbal, and this video is about teaching the Provenance Gatekeeper how to read. Until now our A.I. security layer used a strict equality check. If the ground truth was five million, and the model wrote five million with a dollar sign, the system flagged it as a hallucination. This week we fix that false positive by building a deterministic normalization engine.",
+      "new_visual_element": "Cold open — the same number, failed for spelling",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'comparing strings…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — two identical quantities, one verdict wrong"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names it: THE FORMATTING TRAP"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Formatting Trap",
+            "command": "Ground truth is 5000000. The model said $5.0M. Why did the Gatekeeper flag a hallucination?",
+            "runningText": "comparing strings…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "\"$5.0M\" == \"5000000\"   →   False",
+              "Same quantity. Different spelling. Flagged as a lie.",
+              "THE FORMATTING TRAP."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-09T01:57:18.888003+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The string comparison shown is literally false in Python — verified. It illustrates the false-positive class the script describes; no claimed false-positive RATE is given, because the script reports none.",
+      "actual_duration_s": 20.12,
+      "render_duration_s": 20.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "narration_text": "A verifier that cannot tell a formatting difference from a factual one is not strict. It is noisy — and a noisy verifier gets switched off. Week six taught the Gatekeeper to compare quantities instead of characters.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'A strict checker is a safe checker.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'safe' goes terracotta, deletes, retypes as 'noisy'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Compare quantities, not characters.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A strict checker is a safe checker.\nCompare quantities, not characters.",
+            "triggerWords": "safe",
+            "replacementWords": "noisy",
+            "seed": "semantic-normalization-2026-10-08",
+            "fontSize": 50,
+            "charMs": 30,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-09T01:58:50.150976+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Single-word trigger: BrutalistHesitantWriter matches whitespace-delimited word cores only. 'safe'->'noisy' is the reel's actual misconception — strictness reads as rigour until it produces false positives nobody trusts.",
+      "actual_duration_s": 11.97,
+      "render_duration_s": 12.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE PARSING LAYER",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "To build enterprise-grade evaluation logic you cannot rely on rigid string matching. We refactored the Python backend to include a dedicated semantic parser. Before comparing the model's claim to the ChromaDB ledger, the new code strips commas and dollar signs, maps text suffixes like M or K onto their multipliers, and converts both sides into standard float values.",
+      "new_visual_element": "Two stages — extract, then convert",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 REGEX EXTRACTION takes the terracotta top rule"
+          },
+          {
+            "at": 0.5,
+            "event": "connector draws; panel 02 FLOAT CONVERSION lights and holds"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands under the band: compare floats, never strings"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Two stages, before any comparison.",
+            "payloadLabel": "\"$5.0M\"",
+            "readyLine": "compare floats, never strings",
+            "stages": [
+              {
+                "index": "01",
+                "name": "REGEX EXTRACTION",
+                "detail": "pull the digits, keep the suffix — it carries the magnitude"
+              },
+              {
+                "index": "02",
+                "name": "FLOAT CONVERSION",
+                "detail": "both sides become numbers before anything is judged"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-09T02:00:15.952412+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "NARRATION CORRECTED FROM THE SCRIPT. The script says the parser 'strips out … text suffixes like M or K'. Stripping the M turns 5.0M into 5.0 — and the script's own Scene 4 requires 5.0M to PASS against a five-million ground truth, which is only possible if the suffix is MAPPED to a multiplier rather than removed. Narration now says 'maps text suffixes onto their multipliers'. See SOURCES.md.",
+      "actual_duration_s": 21.03,
+      "render_duration_s": 21.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "BASK",
+      "act": "SCENE 3 — ASK (the parser)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's write that parser, then throw the worst thing an attacker could send at it and see whether it refuses politely or takes the service down with it.",
+      "new_visual_element": "Ask micro-beat — the prompt that writes parse_financial_number",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'writing the parser…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Parse it,",
+            "topic": "Provenance Gatekeeper",
+            "segment": "parse_financial_number()",
+            "command": "Write parse_financial_number(text) -> float | None. It must read $5,000,000.00, 5.0M and \"exactly 5 million\" as the same value, and return None — never raise — for DROP TABLE or N/A.",
+            "runningText": "writing the parser…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BASK.mp4",
+            "at": "2026-10-09T02:02:15.603512+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BASK.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: BASK is the ask, B03 is the result (ASK→RESULT LAW). Added after the first audio pass, when the omission was caught.",
+      "actual_duration_s": 8.38,
+      "render_duration_s": 8.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BASK.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — TRAPPING THE RIGHT ERRORS",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "The beauty of this parser is what happens when it fails. If an adversarial user injects a S.Q.L. command, or the model hallucinates a non-numerical string like N slash A, the regex engine yields a clean, controlled null. The system categorizes that as a data type error and blocks the payload — without crashing the server.",
+      "new_visual_element": "The hostile input, the parser, and the controlled null",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the adversarial payload as received"
+          },
+          {
+            "at": 0.26,
+            "event": "on 'injects a SQL command', the command highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.34,
+            "event": "note lands beneath: no digits anywhere — nothing to extract"
+          },
+          {
+            "at": 0.46,
+            "event": "right panel reveals parse_financial_number line by line"
+          },
+          {
+            "at": 0.72,
+            "event": "stamp lands: None — a controlled refusal, not an exception"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Failing safely is a feature.",
+            "leftLabel": "ADVERSARIAL CLAIM",
+            "leftText": "DROP TABLE logs;",
+            "leftHot": "DROP TABLE",
+            "hotNote": "no digits anywhere — nothing to extract",
+            "rightLabel": "parse_financial_number()",
+            "code": "m = re.search(r'([\\d,]*\\.?\\d+)\\s*([KMB])?',\n              text, re.I)\nif not m:\n    return None          # controlled\n\nval = float(m.group(1).replace(',', ''))\nif m.group(2):\n    val *= SUFFIX[m.group(2).upper()]\nreturn val",
+            "stampText": "None → DATA TYPE ERROR",
+            "stampBlocked": true,
+            "stampSub": "payload blocked, server still running — a return value, not an exception"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-09T02:17:32.223090+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "Verified by execution: the parser returns None for 'DROP TABLE logs;' and for 'N/A', and does not raise. The script's claim that the regex 'yields a clean, controlled null' is accurate for this implementation.",
+      "actual_duration_s": 17.9,
+      "render_duration_s": 17.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — THE MIXED PAYLOAD TEST",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "When we run the updated stress test, the results hold. The Gatekeeper recognises stylistically different formats as mathematically identical, letting valid data through — while still intercepting genuine magnitude errors and malicious payloads. Four point five M is not a formatting difference. It is a different number, and it fails.",
+      "new_visual_element": "The stress-test verdict table — format in, verdict out",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "header rule snaps in: INPUT · PARSED · VS GROUND TRUTH · VERDICT"
+          },
+          {
+            "at": 0.15,
+            "event": "rows land in sequence, banded"
+          },
+          {
+            "at": 0.2,
+            "event": "the case counter climbs"
+          },
+          {
+            "at": "on the words 'magnitude errors'",
+            "event": "only the FAIL chips fill terracotta — PASS stays unfilled ink"
+          },
+          {
+            "at": 0.8,
+            "event": "counter settles and holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperCorpusTable",
+          "props": {
+            "sparkLine": "Same number, five spellings, one verdict.",
+            "headers": [
+              "INPUT",
+              "PARSED",
+              "GROUND TRUTH",
+              "VERDICT"
+            ],
+            "flagValues": [
+              "FAIL"
+            ],
+            "countTo": 48,
+            "countLabel": "STRESS-TEST CASES",
+            "rows": [
+              {
+                "id": "$5,000,000.00",
+                "claim": "5000000.0",
+                "ledger": "5000000.0",
+                "variance": "PASS"
+              },
+              {
+                "id": "5.0M",
+                "claim": "5000000.0",
+                "ledger": "5000000.0",
+                "variance": "PASS"
+              },
+              {
+                "id": "exactly 5 million",
+                "claim": "5000000.0",
+                "ledger": "5000000.0",
+                "variance": "PASS"
+              },
+              {
+                "id": "4.5M",
+                "claim": "4500000.0",
+                "ledger": "5000000.0",
+                "variance": "FAIL"
+              },
+              {
+                "id": "DROP TABLE logs;",
+                "claim": "None",
+                "ledger": "5000000.0",
+                "variance": "FAIL"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-09T02:05:13.273725+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "Every PARSED value in this table was produced by RUNNING the parser, not by hand. $5,000,000.00 / 5.0M / exactly 5 million -> 5000000.0 (PASS); 4.5M -> 4500000.0 (FAIL, magnitude); DROP TABLE logs; -> None (FAIL, data type). These are exactly the verdicts the script's Scene 4 asserts. The 48-case count is ILLUSTRATIVE — no real suite size was supplied.",
+      "actual_duration_s": 17.77,
+      "render_duration_s": 17.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:GatekeeperCorpusTable",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 18,
+      "narration_text": "So update your evaluation logic. Build a regex parser that sanitizes unpredictable model strings into strict data types before you run your comparative math. Deterministic security requires deterministic inputs.",
+      "new_visual_element": "The signature, and the two cases that define it",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the signature reveals — note the None in the return type"
+          },
+          {
+            "at": 0.55,
+            "event": "the suffix map lands — the line that separates 5.0 from 5,000,000"
+          },
+          {
+            "at": 0.76,
+            "event": "the closing rule lands last"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "main.py",
+            "code": "def parse_financial_number(\n        text: str) -> float | None:\n    ...\n\n# The line that does the real work:\nSUFFIX = {'K': 1e3, 'M': 1e6, 'B': 1e9}\n\n# Strip the $ and the commas.\n# MAP the suffix — never strip it.\n# Return None instead of raising.\n#\n# Deterministic security requires\n# deterministic inputs.",
+            "sparkLine": "Parse before you judge."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-09T02:06:06.147326+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "'MAP the suffix — never strip it' is the reel's addition, and it is the correction this whole reel turns on. The script's Scene 2 says strip; its Scene 4 expectations require map.",
+      "actual_duration_s": 13.46,
+      "render_duration_s": 13.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "And once your parser is in, here is the prompt worth running. Give a model your parser and your ground-truth values, and ask for claims that are factually WRONG but still parse to exactly the right float. Those are the hallucinations your new, smarter checker now waves straight through.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Formatting Trap",
+            "command": "Here is my number parser and my ground-truth value. Give me claims that are factually WRONG but parse to exactly the correct float — wrong period, wrong entity, wrong currency, right digits. Those are the ones loosening the check just let through.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-09T02:08:11.873194+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The handoff deliberately attacks the week's own improvement: every loosened check buys false-negative risk, and the reel should say so rather than end on a victory lap.",
+      "actual_duration_s": 14.4,
+      "render_duration_s": 14.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-08T22:19:55"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "A checker that cries wolf gets ignored. A checker that compares quantities gets used. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Formatting Trap",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper · Week 6",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-09T02:08:52.604345+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.02,
+      "render_duration_s": 8.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-08T22:19:55"
+      }
+    }
+  ]
+}

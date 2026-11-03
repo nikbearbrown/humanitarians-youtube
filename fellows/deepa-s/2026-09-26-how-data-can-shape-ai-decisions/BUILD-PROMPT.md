@@ -1,0 +1,3 @@
+# Build prompt — revised script
+
+Build only after human approval of the revised narration. Use the revised Beat Sheets and source/fact-check docs. Preserve narration verbatim and use the established voice at the existing speed. Create animated explanatory graphics for data composition, sampling, labels/measurements, deployment conditions, the explicitly fictional safety-equipment example, contextual evaluation, mitigation, and ongoing monitoring. Never present hypothetical images/results as real-world evidence. The 120–180 second target is Deepa’s personal preference, not an official HAI requirement; do not pad. Landscape and portrait must be independently composed.

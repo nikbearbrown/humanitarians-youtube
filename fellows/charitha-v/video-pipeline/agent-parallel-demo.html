@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Parallel specialist agents — demo board</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#121212; --red:#C8102E; --ochre:#C8860E; --muted:#545454; --border:#D4D4D4; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: #fff;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 48px 56px;
+      border-left: 12px solid var(--ochre);
+    }
+    .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 42px; font-weight: 800; line-height: 1.15; max-width: 1100px; }
+    .sub {
+      margin-top: 12px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 16px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      border: 2px solid var(--border);
+      padding: 20px 18px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .card.active {
+      border-color: var(--ochre);
+      background: #fffaf0;
+    }
+    .card .ch {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .card .name { font-size: 22px; font-weight: 700; margin-top: 8px; }
+    .card .status {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      color: var(--ochre);
+      margin-top: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .card.done .status { color: #1a7a3a; }
+    .mega {
+      margin-top: 40px;
+      border: 2px dashed var(--border);
+      padding: 28px;
+      max-width: 720px;
+    }
+    .mega.bad { border-color: var(--red); }
+    .mega h2 { font-size: 24px; margin-bottom: 8px; }
+    .mega p { color: var(--muted); font-size: 18px; line-height: 1.45; }
+  </style>
+</head>
+<body>
+  <div class="tag">Workflow</div>
+  <h1 id="headline">One mega-agent · seventeen chapters</h1>
+  <p class="sub" id="subtitle">Overloaded context · uneven chrome</p>
+
+  <div class="mega bad" id="mega">
+    <h2>Single agent prompt</h2>
+    <p>“Upgrade all embeds in ch01–ch17 to match Chapter 4.” Result: slider-only graphs, wrong bullseye clusters, missing Play, uneven quality.</p>
+  </div>
+
+  <div class="grid" id="grid" hidden>
+    <!-- filled by script -->
+  </div>
+
+  <script>
+    const chapters = [
+      ["Ch 5", "Newton's laws"],
+      ["Ch 6", "Applications"],
+      ["Ch 7", "Work & energy"],
+      ["Ch 8", "Potential energy"],
+      ["Ch 9", "Linear momentum"],
+      ["Ch 10", "Fixed-axis rotation"],
+      ["Ch 11", "Angular momentum"],
+      ["Ch 12", "Static equilibrium"],
+      ["Ch 13", "Gravitation"],
+      ["Ch 14", "Fluids"],
+      ["Ch 15", "Oscillations"],
+      ["Ch 16", "Waves"],
+      ["Ch 17", "Sound"],
+    ];
+    const grid = document.getElementById("grid");
+    chapters.forEach(([ch, name], i) => {
+      const el = document.createElement("div");
+      el.className = "card";
+      el.id = "c" + i;
+      el.innerHTML = `<div class="ch">${ch}</div><div class="name">${name}</div><div class="status">queued</div>`;
+      grid.appendChild(el);
+    });
+
+    async function runSpecialists() {
+      document.getElementById("headline").textContent = "Thirteen specialist agents · one chapter each";
+      document.getElementById("subtitle").textContent = "Shared Ch. 4 contract · parallel context";
+      document.getElementById("mega").hidden = true;
+      grid.hidden = false;
+      for (let i = 0; i < chapters.length; i++) {
+        const el = document.getElementById("c" + i);
+        el.classList.add("active");
+        el.querySelector(".status").textContent = "running";
+        await new Promise(r => setTimeout(r, 280));
+        el.classList.remove("active");
+        el.classList.add("done");
+        el.querySelector(".status").textContent = "done · Ch4 contract";
+      }
+    }
+    window.runSpecialists = runSpecialists;
+    // Auto-start after brief hold on mega view
+    setTimeout(runSpecialists, 2200);
+  </script>
+</body>
+</html>

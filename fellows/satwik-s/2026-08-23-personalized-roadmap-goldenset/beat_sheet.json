@@ -1,0 +1,686 @@
+{
+  "metadata": {
+    "title": "Which One Is Right? Scoring Taggers Against a Gold Set",
+    "slug": "reading-roadmap-gold-verdict",
+    "topic": "GOLD SET · SCORING THE TAGGERS",
+    "register": "Pragmatist / skeptical-explainer (PROOF)",
+    "audience": "HAI",
+    "brand": "claude-hai",
+    "persona": "Satwik (Humanitarians AI)",
+    "voice": "af_bella",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "body_palette": "humanitarians",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hello, fellows",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "in_for_bear": false,
+    "typography": {
+      "serif": "EB Garamond",
+      "sans": "Montserrat",
+      "mono": "system mono"
+    },
+    "source": "sources/week4_video_numbers.md + gold_scoring.md + week4_gold_set.md + week4_tagging_results.md. Verified only (no source, no verdict). Gold-set = provisional (grader 1).",
+    "playlist": "Humanitarians AI — Method Explainers",
+    "duration_target_s": [
+      120,
+      180
+    ],
+    "authors": "Satwik Reddy Sripathi, Riya Singh, Evin Gultepe, Srinivas Sridhar, Nik Bear Brown (Northeastern University)",
+    "sign_off": "This is Satwik for Humanitarians AI.",
+    "palette_note": "FIDELITY claude skin on UI beats (B00/B07/B08/B09); humanitarians tokens on body beats (B01-B06). PROOF: framework-first (B01 before any result); B04 = falsifiability (hybrid rejected); B06 = the honesty floor (one grader).",
+    "voice_note": "Kokoro af_bella. Run audio/render/compile under PYTHONUTF8=1 (Windows) or —/·/→ mojibake + Bella voices garbage. Use the toolkit venv python for kokoro.",
+    "gate_note": "GATE P not yet signed. DO NOT run generate_audio_kokoro.py until PEDAGOGY.md reads 'VERDICT: PASS' with a human signature. actual_duration_s (audio) is the master clock.",
+    "claims_guardrails": [
+      "No source, no verdict: every on-screen number quoted from week4_*.md / gold_scoring.md. Gold-set figures labeled PROVISIONAL (grader 1); second blind grading pending.",
+      "Precision & recall shown WITH F1 — never F1 alone (B03/B04). The split is the teach.",
+      "NO 'hybrid wins': the hybrid was a hypothesis, REJECTED this round (model loses recall too, 0.36 vs 0.91). Frame as hypothesis-tested, not a hybrid conclusion.",
+      "Do not conflate the two 333 splits: 191 literal / 142 inferred (present vs inferred) != 184 kept / 149 rejected (grader yes/no). Ordering dormant (0 edges); 26 Ch-27 links proposed, one faculty sign-off. Model named exactly (qwen2.5-coder:7b, temp 0, self-hosted). Arc: wk-02 n=4 -> wk-03 n=102 + ceiling -> wk-04 graded verdict."
+    ],
+    "build": {
+      "at": "2026-08-24T21:58:36",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hook / ASK",
+      "palette": "claude",
+      "narration_text": "Hello, fellows. Last week ended at a wall: an ablation can tell you the tagger choice matters — but not which tagger is actually right. That takes ground truth. This week the ground truth is in — one grader down, and it's already enough to move the verdict. So: how do you decide which option is correct, and what does one grader's answer really earn you?",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hello, fellows",
+            "topic": "GOLD SET · SCORING THE TAGGERS",
+            "segment": "Which One Is Right? Scoring Taggers Against a Gold Set",
+            "command": "Last week: an ablation says the tagger choice matters — not which is correct. That needs ground truth. This week the gold set is graded (grader 1). How do you decide correctness — and what does one grader earn?",
+            "runningText": "scoring against ground truth…",
+            "output": [
+              "Provisional verdict: dictionary F1 0.89 vs model 0.35 — wins precision AND recall.",
+              "The 'model = recall → hybrid' guess is rejected (the model loses recall too).",
+              "Why: rule-only tags 85% correct vs model-only 12%. Still one grader."
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": "greeting",
+            "event": "'Hello, fellows' + spark above composer"
+          },
+          {
+            "at": 0.15,
+            "event": "The recap+question ask types in; send arms terracotta"
+          },
+          {
+            "at": 0.55,
+            "event": "runningText 'scoring against ground truth…'"
+          },
+          {
+            "at": 0.72,
+            "event": "Three RESULT lines stagger — verdict / hybrid-rejected / why + provisional"
+          },
+          {
+            "at": 0.95,
+            "event": "@HumanitariansAI centered-bottom (first beat); HAI corner bug"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 21.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "the framework (4 steps)",
+      "palette": "humanitarians",
+      "narration_text": "Here's the method — four steps to decide which option is correct, not just which two agree. One: build a blind gold set — a human grades each tag against the text, blind to which tagger produced it. Two: score precision and recall per field — precision is the share of a tagger's tags that were kept; recall, the share of the correct tags it found. Three: read the split, not just the combined F1 — precision versus recall names the failure mode, and it's how you test a hypothesis. And four: trace where each tag came from — that shows why one wins, not just that it does.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "new_visual_element": "4-step method to decide correctness (blind gold set / precision+recall / read the split / trace provenance) — shown before any result",
+        "remotion": {
+          "pattern": "GoldScoringFramework",
+          "props": {
+            "sparkLine": "Decide correctness — not just agreement.",
+            "steps": [
+              {
+                "n": 1,
+                "name": "BLIND GOLD SET",
+                "q": "a human grades tags vs the text — blind to the source"
+              },
+              {
+                "n": 2,
+                "name": "PRECISION & RECALL",
+                "q": "per field: kept vs correct-found (F1 = both)"
+              },
+              {
+                "n": 3,
+                "name": "READ THE SPLIT",
+                "q": "P vs R = the failure mode; test your hypothesis"
+              },
+              {
+                "n": 4,
+                "name": "TRACE PROVENANCE",
+                "q": "model-only / rule-only / both → why one wins"
+              }
+            ],
+            "decision": "Agreement can't crown a winner; a blind gold set can — report the grader count."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Four step-cards land one per clause (1→4), teal"
+          },
+          {
+            "at": 0.9,
+            "event": "Decision rule settles beneath"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 33.79,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "the blind gold set",
+      "palette": "humanitarians",
+      "narration_text": "First, the gold set. Twenty content-bearing sections; three hundred thirty-three tags to grade, across materials, techniques, and mechanisms. A hundred ninety-one are literally there in the text; a hundred forty-two the model inferred, with no literal mention — those are the ones that need real judgment. The grading is blind, and a second person is grading the same sample independently — so the verdict you're about to see is one grader's, not the last word.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "new_visual_element": "gold-set card: 20 sections / 333 tags; 191 literal + 142 inferred; blind; grader 1 done / grader 2 pending",
+        "remotion": {
+          "pattern": "BlindGoldSet",
+          "props": {
+            "sparkLine": "Build the ground truth.",
+            "title": "Gold set",
+            "stats": [
+              {
+                "k": "sections",
+                "v": "20 content-bearing"
+              },
+              {
+                "k": "tags graded",
+                "v": "333 · materials · techniques · mechanisms"
+              },
+              {
+                "k": "literally present",
+                "v": "191 · quick to confirm"
+              },
+              {
+                "k": "model-inferred",
+                "v": "142 · need judgment"
+              }
+            ],
+            "method": "blind grading — the grader can't see which tagger produced a tag",
+            "graders": [
+              {
+                "who": "grader 1",
+                "done": true
+              },
+              {
+                "who": "grader 2 · independent",
+                "done": false
+              }
+            ],
+            "status": "the verdict below is provisional — one grader"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Gold-set card builds: 20 / 333; split 191 literal / 142 inferred"
+          },
+          {
+            "at": 0.5,
+            "event": "'blind grading' method line"
+          },
+          {
+            "at": 0.72,
+            "event": "two-grader row: grader 1 ✓, grader 2 in progress"
+          },
+          {
+            "at": 0.88,
+            "event": "crimson 'provisional — one grader' status"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 26.88,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "the F1 verdict",
+      "palette": "humanitarians",
+      "narration_text": "Now score it. Field by field, the deterministic dictionary is far more correct. Materials: F1 one-point-oh versus zero-point-two-seven. Techniques: zero-point-nine-two versus zero-point-three-seven. Mechanisms: zero-point-eight versus the same zero-point-three-seven. Overall — the dictionary at zero-point-eight-nine, the model at zero-point-three-five. The gold set did the one thing agreement couldn't: it named a winner.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "new_visual_element": "per-field F1 bars, rule vs model, side-by-side; overall 0.89 vs 0.35; provisional stamp",
+        "remotion": {
+          "pattern": "F1Verdict",
+          "props": {
+            "sparkLine": "Score it against truth.",
+            "metricLabel": "F1 vs human truth (higher = more correct)",
+            "ruleLabel": "rule-based dictionary",
+            "modelLabel": "open model",
+            "rows": [
+              {
+                "f": "materials",
+                "rule": 1.0,
+                "model": 0.27
+              },
+              {
+                "f": "techniques",
+                "rule": 0.92,
+                "model": 0.37
+              },
+              {
+                "f": "mechanisms",
+                "rule": 0.8,
+                "model": 0.37
+              }
+            ],
+            "overall": {
+              "rule": "0.89",
+              "model": "0.35"
+            },
+            "winner": "rule-based wins every field",
+            "provisional": "provisional · grader 1"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Paired F1 bars per field fill — teal rule vs muted model"
+          },
+          {
+            "at": 0.6,
+            "event": "Overall 0.89 vs 0.35 lands; 'wins every field'"
+          },
+          {
+            "at": 0.85,
+            "event": "crimson 'provisional · grader 1' stamp"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 27.48,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "read the split (falsifiability)",
+      "palette": "humanitarians",
+      "narration_text": "But read the split, not just the F1. Going in, the guess was that the dictionary buys precision and the model buys recall — trade them, and a hybrid wins. Ground truth says no. The dictionary wins precision, zero-point-eight-seven, and recall, zero-point-nine-one. The model loses both — recall included — down around zero-point-three-five. There's no recall advantage to harvest, so this round, the hybrid idea is dead.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "new_visual_element": "precision vs recall, rule vs model; the hybrid hypothesis stated then stamped REJECTED",
+        "remotion": {
+          "pattern": "ReadTheSplit",
+          "props": {
+            "sparkLine": "Read the split, not just F1.",
+            "hypothesis": "Hypothesis: dictionary = precision, model = recall → a hybrid wins.",
+            "rule": {
+              "p": "0.87",
+              "r": "0.91"
+            },
+            "model": {
+              "p": "0.34",
+              "r": "0.36"
+            },
+            "ruleLabel": "rule-based",
+            "modelLabel": "open model",
+            "verdict": "REJECTED — the model loses recall too. No recall to harvest → hybrid is dead (this round)."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Hypothesis banner appears (dictionary=P, model=R → hybrid)"
+          },
+          {
+            "at": 0.35,
+            "event": "Precision & recall dumbbells: rule 0.87/0.91 vs model 0.34/0.36"
+          },
+          {
+            "at": 0.8,
+            "event": "crimson 'REJECTED' stamp over the hypothesis"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 25.73,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "trace provenance",
+      "palette": "humanitarians",
+      "narration_text": "And here's why. Trace where each kept tag came from. Where both taggers agreed, the tag was correct ninety-four percent of the time. The tags only the dictionary produced were correct about eighty-five percent of the time. The tags only the model produced? Twelve percent. The model isn't surfacing real tags the lexicon missed — it's mostly adding wrong ones. That's the whole verdict in a single row.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "new_visual_element": "provenance × correctness: both-agreed 94% (50/53), rule-only 85% (117/138), model-only 12% (17/142)",
+        "remotion": {
+          "pattern": "TagProvenance",
+          "props": {
+            "sparkLine": "Where did each tag come from?",
+            "caption": "% of kept tags that are correct, by who produced them",
+            "rows": [
+              {
+                "k": "both agreed",
+                "pct": 94,
+                "frac": "50 / 53",
+                "kind": "good"
+              },
+              {
+                "k": "rule-only",
+                "pct": 85,
+                "frac": "117 / 138",
+                "kind": "good"
+              },
+              {
+                "k": "model-only",
+                "pct": 12,
+                "frac": "17 / 142",
+                "kind": "bad"
+              }
+            ],
+            "point": "the model isn't finding tags the lexicon missed — it's mostly adding wrong ones"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Three provenance bars fill with % + fraction"
+          },
+          {
+            "at": 0.5,
+            "event": "model-only 12% lands in crimson — the contrast"
+          },
+          {
+            "at": 0.85,
+            "event": "point line: 'mostly adding wrong ones'"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 23.89,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "the catch (provisional + pending)",
+      "palette": "humanitarians",
+      "narration_text": "One honest catch. This is one grader. The second blind grading is still coming, and the two get reconciled before anything is final — so call this provisional, not settled. And the ordering step is still waiting too: twenty-six proposed read-A-before-B links, zero in the graph today, one faculty sign-off away from switching on.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "illustrate",
+        "new_visual_element": "provisional: one grader → second grading → reconcile → final; + ordering pending (26 links, 0 edges, one sign-off)",
+        "remotion": {
+          "pattern": "ProvisionalCatch",
+          "props": {
+            "sparkLine": "One honest catch.",
+            "primary": "This is one grader.",
+            "pipeline": [
+              "grader 1 ✓",
+              "grader 2 (blind)",
+              "reconcile",
+              "final verdict"
+            ],
+            "detail": "provisional, not settled — the second grading can still move it",
+            "pendingLabel": "ALSO PENDING",
+            "pending": "26 proposed read-A-before-B links · 0 edges today · one faculty approve=yes switches ordering on"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "'This is one grader' lands large"
+          },
+          {
+            "at": 0.4,
+            "event": "pipeline chips: grader 1 ✓ → grader 2 → reconcile → final (only step 1 lit)"
+          },
+          {
+            "at": 0.8,
+            "event": "ALSO PENDING strip: ordering dormant (0 edges), one sign-off away"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "verdict",
+      "palette": "claude",
+      "lead_silence_s": 0.5,
+      "narration_text": "So — where it stands. Provisionally, the gold set decided what the ablation couldn't: the dictionary is the more correct tagger — F1 zero-point-eight-nine to zero-point-three-five — winning precision and recall. The hybrid guess didn't survive ground truth. And the reason is legible: the dictionary's own tags are right most of the time; the model's, rarely. A second grader, and faculty, come next.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Which One Is Right? — The Gold-Set Verdict",
+            "artifactHeading": "Provisional verdict (grader 1)",
+            "artifactLines": [
+              "The gold set decided what the ablation couldn't: the dictionary is the more correct tagger.",
+              "Overall F1 0.89 vs 0.35 — it wins precision (0.87) AND recall (0.91).",
+              "The 'model = recall → hybrid' hypothesis is rejected: the model loses recall too.",
+              "Why: rule-only tags are 85% correct; model-only, 12%; where both agree, 94%.",
+              "Provisional — one grader. A second blind grading, and faculty ordering, come next."
+            ]
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Claude artifact page opens; title + 'provisional' heading serif"
+          },
+          {
+            "at": 0.2,
+            "event": "Five lines stagger; terracotta on the 'provisional' line"
+          },
+          {
+            "at": 0.9,
+            "event": "Final line lands — no over-claim"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 24.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "your turn / handoff",
+      "palette": "claude",
+      "narration_text": "Your turn. For any \"which option is more correct\" question, don't crown a winner from a demo. Build a small blind gold set and grade it against the source. Score precision and recall, not just F1. Read the split to find the failure mode — and trace which system's unique answers are actually right. Then report how many graders you had. One is a start, not a finish.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GOLD SET · SCORING THE TAGGERS",
+            "segment": "Which One Is Right? Scoring Taggers Against a Gold Set",
+            "command": "For any 'which option is more correct' question: build a small blind gold set (grade vs the source). Score precision & recall, not just F1. Read the split to name the failure mode. Trace which system's unique answers are actually right. Then report your grader count — one is a start, not a finish.",
+            "runningText": "score against ground truth…",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": "greeting",
+            "event": "'Your turn.' greeting fades in"
+          },
+          {
+            "at": 0.15,
+            "event": "The blind-gold-set template types in while the voice summarizes it"
+          },
+          {
+            "at": "trace which system",
+            "event": "'trace which system's unique answers' highlights terracotta"
+          },
+          {
+            "at": 0.85,
+            "event": "runningText 'score against ground truth…'; composer holds"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 22.57,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "outro",
+      "palette": "claude",
+      "narration_text": "Which one is right — and how you'd know. This is Satwik for Humanitarians AI.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Which One Is Right? — The Gold-Set Verdict",
+            "handle": "@HumanitariansAI",
+            "subline": "This is Satwik for Humanitarians AI."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        },
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Title restates poster-style with terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "@HumanitariansAI + HAI mark full-size"
+          },
+          {
+            "at": 0.7,
+            "event": "Satwik sign-off subline"
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 4.93,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-24T21:58:36"
+      }
+    }
+  ]
+}

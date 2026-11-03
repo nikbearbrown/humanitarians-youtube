@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "title": "Starting the Lineage Agent",
+    "slug": "patent-agent-video6-starting-lineage-agent",
+    "topic": "Claude Code · Patent Intelligence",
+    "register": "Pragmatist",
+    "voice": "claude-hai",
+    "voice_kokoro": "af_bella",
+    "engine": "kokoro",
+    "palette": "humanitarians",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "channel": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "note": "Mycroft patent intelligence progress video 6. Real session: checked the citation field schema for free before writing code; scoped LineageAgent to backward citations only; built and tested against a real cached patent (12 citations); found a real bug (empty strings vs None for missing fields); fixed and verified correct even though the summary numbers stayed the same.",
+    "total_estimated_duration_seconds": 115,
+    "build": {
+      "at": "2026-09-11T14:59:06",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00A",
+      "act": "INTRO",
+      "role_note": "presenter executive summary",
+      "narration_text": "Hi, I'm Aishwarya from the Mycroft team. This video covers the real start of the second agent — the one that traces a patent's citation lineage, not just its claims.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "Starting the Lineage Agent",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Hi, I'm Aishwarya",
+            "runningText": "from the Mycroft team",
+            "output": [
+              "This video covers the real start of the second agent —",
+              "the one that traces a patent's citation lineage."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00A.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B00A.mp3",
+      "actual_duration_s": 10.73,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00A.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:59:06"
+      }
+    },
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW",
+      "narration_text": "Twelve real citations on one patent. The summary said one patent, eleven papers. The summary was right — but only after a real bug got caught first.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "python3 test_lineage_agent.py",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "Starting the Lineage Agent",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Hai,",
+            "runningText": "parsing citations…",
+            "output": [
+              "total_citations: 12",
+              "patent: 1 · non-patent literature: 11"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:59:06"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "checking the schema for free",
+      "narration_text": "Method: before writing anything, check what's actually there. The citation field is a real, repeated record — publication number, application number, free text for non-patent literature, a type, a category, a filing date. Free to look at. No query cost to check a schema.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_CheckingTheSchema",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.79,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim:B01_CheckingTheSchema",
+        "at": "2026-09-11T14:59:06"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "PROBLEM",
+      "role_note": "scoping it honestly",
+      "narration_text": "Two directions exist: backward, what a patent cites, and forward, who cites it back. Backward is a field on the row already being pulled. Forward means searching every other patent's citations for this one's number — a different, untested, likely expensive query. Backward first.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_ScopingItHonestly",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.83,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_ScopingItHonestly",
+        "at": "2026-09-11T14:59:06"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CHANGE",
+      "role_note": "the real bug",
+      "narration_text": "The first real test ran clean — twelve citations parsed, one patent, eleven papers. But the field that was supposed to say this is non-patent literature wasn't checking for empty text. It was checking for missing text. On this table, missing text isn't missing — it's an empty string. Every single citation was passing that check, whether it had a real patent number or not.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_TheRealBug",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 24.11,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim:B03_TheRealBug",
+        "at": "2026-09-11T14:59:06"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "role_note": "verifying the fix actually mattered",
+      "narration_text": "Fixed the check, re-ran it. Same twelve, same one, same eleven. Not because the fix did nothing — because this patent's real split genuinely was one patent citation and eleven real academic papers, verified by hand against every single line of raw text. The fix was correct. It just didn't change this particular patent's answer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_VerifyingTheFix",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 21.97,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_VerifyingTheFix",
+        "at": "2026-09-11T14:59:06"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW",
+      "narration_text": "Your turn. Before trusting a field's absence to mean anything, check what an empty value actually looks like in real output — a missing string and an empty string are not automatically the same thing, and assuming they are can pass a bug through completely unnoticed.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"my classification check compares a field to None to detect missing values — help me verify what this API actually returns for missing values before I trust it\"",
+            "topic": "Claude Code · Patent Intelligence",
+            "segment": "Starting the Lineage Agent",
+            "folderLabel": "@HumanitariansAI",
+            "greeting": "Your turn.",
+            "runningText": "check what 'empty' really means…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:59:06"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW",
+      "narration_text": "Starting the Lineage Agent. Built with Claude, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Starting the Lineage Agent.",
+            "handle": "@HumanitariansAI",
+            "subline": "empty is not the same as missing"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 4.57,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T14:59:06"
+      }
+    }
+  ]
+}

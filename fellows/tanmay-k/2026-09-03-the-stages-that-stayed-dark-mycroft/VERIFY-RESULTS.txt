@@ -1,0 +1,38 @@
+Repository: Week 21/work-video/zurich_clara_reference/zurich_clara
+
+  ok    W1   pipeline is 5 stages, Intake->Extraction->Coverage->Gate->Resolve
+              validate_intake -> extract -> check_coverage -> AuthorizationGate -> resolve
+  ok    W2   28 tests, 28 passing, stdlib unittest
+              counted 28 · executed 28 · files OK 6/6 · no pytest required
+  ok    W3   low extraction confidence halts with its own named reason
+              escalated / low_extraction_confidence
+  ok    W4   an output-only assertion passes on BOTH builds
+              correct: {'status': 'escalated', 'claim_id': 'CLAIM-LOW-EXTRACTION-001', 'reason': 'low_extraction_confidence', 'detail': 'document type=flight_notice extraction_confidence=0.4'}
+              broken : {'status': 'escalated', 'claim_id': 'CLAIM-LOW-EXTRACTION-001', 'reason': 'low_extraction_confidence', 'detail': 'document type=flight_notice extraction_confidence=0.4'}
+              identical: True
+  ok    W5   the break is +1/-1 — one line moved
+              + coverage_check(...) placed above the extraction halt
+              - coverage_check(...) removed from below it
+  ok    W6   broken build fetches the policy record; correct build does not
+              correct: fetched=False   broken: fetched=True
+  ok    W7   assert_not_called fails on the broken build
+              the single assertion that separates them
+  ok    W8   8 negative assertions across the suite
+              counted 8
+  ok    W9   malformed decision reaches NEITHER resolve nor escalate
+              raised ValueError · resolve called=False · escalate called=False
+  ok    W10  Zurich confirms an auditable trail of reasoning
+              case study contains the phrase: 'auditable trail of the reasoning behind decisions'
+  ok    W11  on the happy path both builds are indistinguishable
+              outputs equal and both fetch the record — the method sees nothing here
+  ok    W13  27 of 28 tests pass on the broken build; exactly 1 fails
+              correct: 28 run, 0 failing
+              broken : 28 run, 1 failing -> test_low_confidence_halts_before_coverage_check_and_gate_are_called
+  ok    W12  halt shadows are 3,2,1,2 and sum to the 8 assertions
+              incomplete_intake                  3  (extract, coverage, gate)
+              low_confidence                     2  (coverage, gate)
+              no_matching_policy                 1  (gate)
+              invalid_decision_fn_return_value   2  (resolve, escalate)
+              sum = 8
+
+13/13 claims verified.

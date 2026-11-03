@@ -1,0 +1,504 @@
+{
+  "metadata": {
+    "title": "What a Context Window Really Is",
+    "slug": "context-window-explainer",
+    "topic": "CONTEXT WINDOWS · TOKENS · RECALL",
+    "aspect_ratio": "16:9",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-anjana",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "color_semantics": "Claude fidelity UI beats (B00 ask, B06 verdict, B07 handoff, B08 outro) stay cream/ink/terracotta per CLAUDE-BRAND.md. Body beats (B01-B05) illustrate the mechanism — dark stage (#0a0a0f), same PEDAGOGY-approved deviation as the ECIS episodes and the other standalones. PALETTE: the README specifies its own hexes (#1A1A2E ground, #4A90D9, #F1C40F, #27AE60, #E74C3C, #95A5A6); every ROLE is preserved and rendered in the channel's established values per the precedent set on embeddings-explainer and ECIS 7-9. Primary blue #3E7CB1, token gold #D4A853, attention green #4A9C6D, warning red #C0392B, muted grey #7F8C8D.",
+    "greeting": "Hello, Anjana",
+    "greeting_note": "Plain English hello, narrator is Anjana; no channel handle or brand chip on this build.",
+    "note": "",
+    "tags": [
+      "context window",
+      "tokens",
+      "tokenization",
+      "KV cache",
+      "attention",
+      "lost in the middle",
+      "RAG",
+      "LLM",
+      "Claude"
+    ],
+    "build": {
+      "at": "2026-10-02T12:10:57",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Everyone knows the number — 128K, a million, whatever it is this month. Almost nobody knows what the number is counting, or what it costs, or why the middle of it is where things go to be forgotten. I'm Anjana.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "runningText 'counting what, exactly…'"
+          },
+          {
+            "at": 0.75,
+            "event": "output lines resolve, already answered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hello, Anjana",
+            "topic": "CONTEXT WINDOWS · TOKENS · RECALL",
+            "segment": "What a Context Window Really Is",
+            "command": "Models advertise a context window in tokens. What is actually being measured, what does holding it open cost the hardware, and does a bigger number really mean the model remembers more?",
+            "runningText": "counting what, exactly…",
+            "folderLabel": "",
+            "output": [
+              "tokens, not words — about 75% of the count",
+              "the KV cache is the real bill, paid in VRAM",
+              "open is not the same as recalled"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 14.47,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "THE BELT",
+      "narration_text": "Every time you talk to an LLM, it reads everything — your prompt, the conversation history, its own previous answers — all at once, from a fixed-size buffer. That buffer is the context window. Think of it as a conveyor belt: whatever fits on the belt, the model sees. Whatever falls off the end is gone.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the belt draws across the frame under a glowing bracket"
+          },
+          {
+            "at": 0.16,
+            "event": "blocks slide on from the right: system prompt, user message, assistant reply"
+          },
+          {
+            "at": 0.5,
+            "event": "the eye at the centre watches everything on the belt"
+          },
+          {
+            "at": 0.68,
+            "event": "a fourth block arrives and the belt is full"
+          },
+          {
+            "at": 0.84,
+            "event": "the oldest block tips off the left edge and falls away"
+          }
+        ],
+        "remotion": {
+          "pattern": "CtxBelt",
+          "props": {
+            "sparkLine": "Whatever falls off is gone."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.39,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "TOKENS",
+      "narration_text": "But the window isn't measured in words — it's measured in tokens. Tokenizers break text into subword pieces. The word “understanding” might be one token, but “tokenization” becomes three. On average, one token is about three-quarters of a word. So a 128K token window holds roughly 96,000 words — not 128,000.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "'understanding' lands under a single bracket — 1 token"
+          },
+          {
+            "at": 0.22,
+            "event": "'tokenization' splits into token · iz · ation, three brackets"
+          },
+          {
+            "at": 0.52,
+            "event": "the arithmetic resolves: 128,000 × 0.75 ≈ 96,000 words"
+          },
+          {
+            "at": 0.72,
+            "event": "two bars: 128K 'what people assume' above a visibly shorter 96K"
+          },
+          {
+            "at": 0.88,
+            "event": "the gap between them is called out"
+          }
+        ],
+        "remotion": {
+          "pattern": "CtxTokens",
+          "props": {
+            "sparkLine": "Tokens, not words."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 19,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 24.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "THE CACHE",
+      "narration_text": "Here's the engineering problem. Attention — the mechanism that lets the model relate every token to every other token — scales quadratically. Double the context length, quadruple the computation. The KV cache stores the key and value vectors for tokens already processed, so the model doesn't recompute them on every new token. But that cache lives in GPU memory. A 128K window on a large model can consume tens of gigabytes of VRAM just for the cache.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "a 1K × 1K attention grid appears"
+          },
+          {
+            "at": 0.2,
+            "event": "the length doubles to 2K and the grid's AREA quadruples"
+          },
+          {
+            "at": 0.44,
+            "event": "the grid compresses into two stacked blocks: K cache, V cache"
+          },
+          {
+            "at": 0.62,
+            "event": "a VRAM meter appears beside them"
+          },
+          {
+            "at": 0.78,
+            "event": "the context slider runs up to 128K and the meter fills"
+          },
+          {
+            "at": 0.9,
+            "event": "the label lands: ~40 GB, KV cache alone"
+          }
+        ],
+        "remotion": {
+          "pattern": "CtxCache",
+          "props": {
+            "sparkLine": "Paid for in VRAM."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 27,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 30.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "LOST IN THE MIDDLE",
+      "narration_text": "And here's the real catch: a 128K-token window doesn't mean 128K tokens of equal attention. Research shows LLMs attend strongly to the beginning and end of the context, but struggle with information buried in the middle. It's called the “lost in the middle” effect. The window is technically open, but recall degrades. Position matters as much as presence.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the full window draws as one long bar"
+          },
+          {
+            "at": 0.18,
+            "event": "it shades by attention: bright at both ends, dim through the middle"
+          },
+          {
+            "at": 0.42,
+            "event": "the U-shaped curve resolves above it"
+          },
+          {
+            "at": 0.64,
+            "event": "a drops into the middle looking for a fact"
+          },
+          {
+            "at": 0.8,
+            "event": "it comes up empty — a '?' floats above it"
+          },
+          {
+            "at": 0.9,
+            "event": "the label lands: lost in the middle"
+          }
+        ],
+        "remotion": {
+          "pattern": "CtxMiddle",
+          "props": {
+            "sparkLine": "Open is not the same as recalled."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 24.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "WORKING AROUND IT",
+      "narration_text": "So how do you work within these limits? Three strategies. Chunking: break long documents into pieces that fit. Summarization: compress prior conversation into a shorter recap. And RAG — retrieval-augmented generation — where you search a knowledge base only the relevant pieces into the window. The context window is a budget. Spend it on what matters.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "left: a long document splits into chunks that fit"
+          },
+          {
+            "at": 0.2,
+            "event": "centre: a tall conversation stack compresses into one recap block"
+          },
+          {
+            "at": 0.4,
+            "event": "right: a query hits a store and two relevant snippets fly out"
+          },
+          {
+            "at": 0.62,
+            "event": "the belt returns beneath all three"
+          },
+          {
+            "at": 0.76,
+            "event": "chunks, recap and snippets land on it, all inside the bracket"
+          },
+          {
+            "at": 0.9,
+            "event": "the closing line resolves: a budget — spend it on what matters"
+          }
+        ],
+        "remotion": {
+          "pattern": "CtxBudget",
+          "props": {
+            "sparkLine": "A budget. Spend it on what matters."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 23,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 22.34,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration_text": "Let's recap with Claude. The window is a buffer measured in tokens, so the advertised number is about a quarter larger than the words you actually get. Holding it open is not free — attention cost grows with the square of the length, and the cache that avoids recomputing it is paid for in gigabytes of GPU memory. And a window being open is not the same as the model recalling what is in it: the middle is where things get lost. Treat it as a budget.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.5s lead pause, then ClaudeVerdictArtifact card builds in"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1: tokens, not words"
+          },
+          {
+            "at": 0.4,
+            "event": "line 2: quadratic cost and the VRAM bill"
+          },
+          {
+            "at": 0.62,
+            "event": "line 3: recall is not uniform"
+          },
+          {
+            "at": 0.82,
+            "event": "line 4: the three workarounds"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "what a context window really is",
+            "artifactHeading": "A budget, not a memory.",
+            "artifactLines": [
+              "The window is a fixed buffer measured in tokens — roughly 0.75 words each.",
+              "Attention scales quadratically with length; the KV cache trades recomputation for VRAM, and at long contexts that bill is tens of gigabytes.",
+              "Recall is not uniform — the beginning and end are attended to far more strongly than the middle.",
+              "Chunking, summarization and retrieval all exist to spend a fixed budget on what matters."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 26.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take the longest prompt you regularly send a model and look at what is actually in it. How much of it is there because it earns its place, and how much because it was easier to paste everything. Then ask what you would put at the very start and the very end, if you knew the middle was the part least likely to be read.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Your turn.'; prompt types itself"
+          },
+          {
+            "at": 0.6,
+            "event": "runningText 'spending the budget…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CONTEXT WINDOWS · TOKENS · RECALL",
+            "segment": "What a Context Window Really Is",
+            "command": "I regularly send a model a long prompt — documents, history, instructions, examples. Can you help me: one, work out which parts of it are actually earning their place and which are there because pasting everything was easier; two, decide what belongs at the very beginning and the very end, given that the middle is the part least likely to be recalled; and three, tell me honestly whether I should be chunking, summarizing or retrieving instead of growing the prompt — and which one fits my case?",
+            "runningText": "spending the budget…",
+            "folderLabel": ""
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.55,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Anjana here, thanks for watching.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeTitleOutro: title in serif, terracotta period"
+          },
+          {
+            "at": 0.8,
+            "event": "subline fades in: 'a budget, not a memory'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "What a Context Window Really Is",
+            "handle": "",
+            "subline": "a budget, not a memory"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 2.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T12:10:57"
+      }
+    }
+  ]
+}

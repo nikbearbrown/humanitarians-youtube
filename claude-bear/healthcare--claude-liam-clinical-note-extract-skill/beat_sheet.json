@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "It Cites the Evidence. It Never Guesses.",
+    "subtitle": "The Clinical Note Extract Skill (Span-Level Provenance)",
+    "slug": "healthcare--claude-liam-clinical-note-extract-skill",
+    "topic": "CLINICAL-NOTE-EXTRACT-SKILL · SPAN-LEVEL EXTRACTION SKILL",
+    "purpose": "Answer one real question in the Plain register: when Claude pulls structured data out of a clinical note, does it guess at a value it can't find, or only report what's literally on the page? Lands the carry-out that clinical-note-extract-skill only writes down what the note actually says, citing the exact text, and marks everything else null instead of guessing.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/healthcare/youtube/claude-liam-clinical-note-extract-skill/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Claude Basics",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - single worked example (the clinical-note-extract-skill skill itself), named at B00 and present through NB01-NB03; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-09-02T03:51:17",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed Claude would guess a value missing from a clinical note. It doesn't — it only cites what's actually written, span by span. So: does Claude cite a note's values, not guess them?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'Does Claude guess a value from a clinical note?', hesitates on 'guess', corrects to 'cite', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Does Claude\nguess a value\nfrom a clinical\nnote?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "guess",
+            "replacementWords": "cite",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 8,
+            "charMs": 42,
+            "jitter": 26,
+            "seed": "hai-clinical-note-extract"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 1.0 to give the typing a >=9s window; verify media/B00.mp4 >= 8s and that the correction ('guess' -> 'cite') lands on screen and the full corrected question finishes typing before the clip ends. Rates reused from the financial-services--claude-liam-kyc-rules sibling's proven working configuration (42ms/char, 8% hesitateBetween, 4% mistakeRate, short 4-line text).",
+      "actual_duration_s": 10.47,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-02T03:51:17"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is called clinical-note-extract-skill. It has six files — SKILL.md holds the instructions, in plain language, and four folders hold assets, references, scripts, and workflows. Claude reads the file, then acts on what it says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "A SKILL IS A FOLDER",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "A SKILL IS A FOLDER",
+          "chips": [
+            "SKILL.md",
+            "6 files",
+            "plain language"
+          ],
+          "arrows": true,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "the file is the program",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BKNB01Scene"
+      },
+      "actual_duration_s": 15.72,
+      "audio_file": "mp3/beat-NB01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-02T03:51:17"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "Inside, the instructions run as four steps, in order: define a schema for what to pull, extract candidate values, validate each one — checking that its span actually appears in the note, then dispatching further checks by field type — and report the result. No branching, unless a step itself says so.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "FOUR-STEP PIPELINE",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "FOUR-STEP PIPELINE",
+          "chips": [
+            "define schema",
+            "extract",
+            "validate",
+            "report"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "validate = span check + field check",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BKNB02Scene"
+      },
+      "actual_duration_s": 16.19,
+      "audio_file": "mp3/beat-NB02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-02T03:51:17"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "This skill pulls values from a clinical note against a schema you define. For every field it finds, it cites the exact span of text that supports it. For every field it can't find, it returns an explicit null — never a guess. Same note, same schema, same output, every run. What it won't do is infer past what's on the page.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "CITES OR NULLS, NEVER GUESSES",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "CITES OR NULLS, NEVER GUESSES",
+          "chips": [
+            "schema-driven",
+            "span-cited",
+            "explicit-null"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "never a guess, never assumed",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BKNB03Scene"
+      },
+      "actual_duration_s": 18.26,
+      "audio_file": "mp3/beat-NB03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-09-02T03:51:17"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Clinical-note-extract-skill only writes down what the note actually says, citing the exact text — and marks everything else null instead of guessing.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Clinical-note-extract-skill only writes down what the note actually says, citing the exact text — and marks everything else null instead of guessing.",
+            "attribution": "",
+            "sparkLine": "Cites. Never guesses."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 8.53,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-09-02T03:51:17"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Paste this into Claude: I have a block of text with several facts I need pulled into fields. For each field, don't guess — show me the literal text you're using as evidence, and if you can't find it, tell me it's null instead of inferring. That's the same discipline clinical-note-extract-skill follows — cite the evidence, or say it's missing.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLINICAL-NOTE-EXTRACT-SKILL · SPAN-LEVEL EXTRACTION SKILL",
+            "segment": "It Cites the Evidence. It Never Guesses.",
+            "command": "I have a block of text with several facts I need pulled into fields. For each field, don't guess — show me the literal text you're using as evidence, and if you can't find it, tell me it's null instead of inferring.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 17.58,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-02T03:51:17"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "It Cites the Evidence. It Never Guesses. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "CLINICAL-NOTE-EXTRACT-SKILL · @HumanitariansAI",
+            "line": "It Cites the Evidence. It Never Guesses."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 4.18,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-02T03:51:17"
+      }
+    }
+  ]
+}

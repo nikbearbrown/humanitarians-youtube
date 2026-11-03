@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "title": "Claude, Cached.",
+    "slug": "claude-liam-kv-cache",
+    "brand": "claude-liam",
+    "channel": "@NikBearBrown",
+    "modifier": "concept-explainer",
+    "source_skill": "skills/make/ai-explainer/SKILL.md",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "hello": "Merhaba",
+    "description": "The KV-cache: why prefill (processing the prompt) feels slow and decode (generating tokens) streams fast. Real systems-level mechanism, not a UI trick. Falsifiability: the cache grows linearly with context, which is why long contexts get expensive.",
+    "aspect": "16:9",
+    "date": "2026-08-31",
+    "build": {
+      "at": "2026-08-31T10:06:33",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Merhaba — this is Liam, in for Bear. Ever notice a model pauses, then the words just stream out fast? That gap has a name: the KV-cache.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"explain why LLM generation speeds up after the first token — the KV-cache mechanism\"",
+            "topic": "SYSTEMS · KV-CACHE",
+            "segment": "Claude, Cached.",
+            "greeting": "Merhaba, Liam",
+            "runningText": "tracing prefill vs decode…",
+            "output": [
+              "Prefill: compute the whole prompt at once",
+              "Decode: reuse what's cached, add one token",
+              "Cache grows with context — the real cost"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 8.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary",
+      "narration_text": "Attention needs the Key and Value vectors of every past token. Those don't change once computed, so cache them. Each new token only computes its own K and V, then reuses everything before it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B01_BLUF",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 11.83,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim:B01_BLUF",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "framework",
+      "narration_text": "Every token produces a Key and a Value vector per layer. To generate the next token, attention compares its Query against all previous Keys. Compute those once — they're valid forever. The future never changes the past.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B02_Framework",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 12.89,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim:B02_Framework",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "worked example (prefill)",
+      "narration_text": "This is why the pause happens up front: prefill computes Key and Value for the whole prompt in one big parallel pass. Every token's cache entry lands at once — that's the 'thinking' delay you feel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B03_Prefill",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 10.9,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim:B03_Prefill",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "worked example (decode)",
+      "narration_text": "Decode adds one token at a time. Its Query attends to every cached Key — nothing recomputed. That single cheap step, repeated, is the fast streaming you actually see.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B04_Decode",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 10.18,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim:B04_Decode",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "falsifiability",
+      "narration_text": "The catch: the cache grows with every token, times every layer, times every attention head. Long conversations mean a bigger cache sitting in memory — that's the real reason very long contexts get slow and expensive.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "fade",
+        "manim": {
+          "scene_class": "B05_Growth",
+          "file": "scenes.py"
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 12.6,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim:B05_Growth",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "verdict",
+      "narration_text": "Verdict: the KV-cache is why decode is cheap and prefill is not. It trades compute for memory — each token's cache entry sits around for the rest of the conversation. That's exactly why paged attention and cache eviction exist.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"verdict: what does the KV-cache actually trade off?\"",
+            "topic": "SYSTEMS · KV-CACHE",
+            "segment": "Claude, Cached.",
+            "greeting": "The verdict,",
+            "runningText": "checking the mechanism…",
+            "output": [
+              "Decode is cheap: one new K/V, attend to the rest",
+              "Prefill is not: the whole prompt, one big pass",
+              "Trade-off: compute for memory — the cache never shrinks itself"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 13.49,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "next steps",
+      "narration_text": "Your turn: time a long prompt versus generating new tokens on the same model. Measure prefill latency against per-token decode latency as the prompt grows, and see which one actually scales with length.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"measure prefill time vs decode time-per-token as context length grows\"",
+            "topic": "SYSTEMS · KV-CACHE",
+            "segment": "Claude, Cached.",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "1. time a 2000-token prompt vs generating 20 tokens",
+              "2. plot latency per token as context grows",
+              "3. see which one scales with prompt length"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 12.05,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T10:06:33"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "outro",
+      "narration_text": "Claude, Cached. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Cached.",
+            "handle": "@NikBearBrown",
+            "subline": "Liam, in for Bear."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 2.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T10:06:33"
+      }
+    }
+  ]
+}

@@ -23,7 +23,7 @@ Delivered at 2:21. **Superseded by v2.**
 | B04: `ClaudeVerdictArtifact` → `StemSepBleedViz` | New purpose-built scene: vocal stem with ghost drum bleed + clean-vs-bleed comparison strip |
 | B06: `OutroCTA` → `ClaudeTitleOutro` | Matches first video's outro style (title · handle · presenter subline on cream ground) |
 | B00 narration: added "for Humanitarians AI" | Matches first video's intro convention |
-| B06 narration: "I'm Rohan Vijaykumar, for Humanitarians AI" | Matches first video's outro narration |
+| B06 narration: "I'm Rohan V., for Humanitarians AI" | Matches first video's outro narration |
 | B01/B02/B04 narration: references the visual directly | New narration written to match what's on screen |
 
 ### New components built

@@ -1,0 +1,3 @@
+# Visual prompts and constraints
+
+All visuals are original Remotion diagrams representing the verified local workflow. Use existing HAI typography, palette, marks, and outro. Build landscape and portrait as native compositions. Do not use generic AI imagery, fake online destinations, cloud-upload motifs, invented statistics, fake terminal output, or folder contents not supported by the local evidence. Content #7’s checksums may be shown as matching fingerprints without displaying a long fabricated hash; only actual values in `EVIDENCE.md` may be shown. Keep essential type and diagrams within 5% safe margins.

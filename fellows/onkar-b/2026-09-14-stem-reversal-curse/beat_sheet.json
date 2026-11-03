@@ -1,0 +1,612 @@
+{
+  "metadata": {
+    "slug": "claude-stem-reversal-curse",
+    "title": "The Reversal Curse",
+    "topic": "STEM & AI Architecture",
+    "purpose": "STEM & AI Architecture, Week 2 — why an LLM that knows A→B cannot answer B→A: the Autoregressive Probability Rule, the one-way weights it builds, and the bidirectional control experiment that proves the flaw is architectural.",
+    "skill": "ai-explainer",
+    "channel": "claude-stem",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners — smart technical viewers who use LLMs but have not read the architecture papers",
+    "playlist": "STEM & AI Architecture",
+    "source": "Week 2 STEM: The Reversal Curse in LLMs — 5-scene script (HOOK / FRAMEWORK / WORKED EXAMPLE / FALSIFIABILITY / SCAFFOLDED TASK), supplied 2026-09-13.",
+    "aspect": "16:9",
+    "runtime_target": "2:30",
+    "dual_render": "16:9 master + 9:16 companion. Every non-bookend visual has a registered <Pattern>916 portrait variant, and the new components are responsive (stacked layout in portrait) rather than cropped — 9:16 is a different beat sheet, never a crop (RENDER-TARGETS.md §3). Derive with ./art vertical.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The source script specifies a Brutalist red/green pair; a claude-explainer may not be retinted (CLAUDE-BRAND.md) and has exactly one accent, so the script's red→green arrow flip is carried by FORM instead — one arrowhead vs two, terracotta vs solid ink. That also survives colour-blind viewing, which red/green does not. See BUILD-LOG.md D2.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "Reversal Curse",
+      "LLM",
+      "autoregressive",
+      "BERT",
+      "bidirectional",
+      "next-token prediction",
+      "conditional probability",
+      "AI architecture",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-09-13T23:12:19",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 20,
+      "narration_text": "I am Onkar Bhujbal, a software engineer. If an AI knows Tom Cruise's mother is Mary Lee South, why doesn't it know Mary Lee South's son is Tom Cruise? Because large language models do not learn facts. They learn probabilities. This is a logic flaw called the Reversal Curse.",
+      "new_visual_element": "Cold open — the same fact, asked both ways",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the second question types itself into the composer"
+          },
+          {
+            "at": 0.45,
+            "event": "send button arms terracotta; running indicator reads 'asking it the other way round…'"
+          },
+          {
+            "at": 0.65,
+            "event": "output lands — the forward answer succeeds, the reverse answer is 'I don't know.'"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names the flaw: THE REVERSAL CURSE"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "STEM & AI Architecture",
+            "segment": "The Reversal Curse",
+            "command": "Who is Tom Cruise's mother? …and now: who is Mary Lee South's son?",
+            "runningText": "asking it the other way round…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "Q: Who is Tom Cruise's mother?   →   Mary Lee South.",
+              "Q: Who is Mary Lee South's son?  →   I don't know.",
+              "Same fact. One direction. THE REVERSAL CURSE."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-14T01:31:26.043744+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The Tom Cruise / Mary Lee South pair is the canonical published example of this failure and is used by the source script. The exchange shown is the script's own, not a transcript of a live model run — no specific model or version is named, so nothing here dates or misattributes.",
+      "actual_duration_s": 15.55,
+      "render_duration_s": 15.583333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "narration_text": "A language model doesn't store facts it can look up from either end. It stores which word tends to follow which. That is why A leads to B, but B never leads back to A.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'A language model stores facts.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'facts' goes terracotta, deletes, retypes as 'directions'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'A leads to B. B leads nowhere.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A language model stores facts.\nA leads to B. B leads nowhere.",
+            "triggerWords": "facts",
+            "replacementWords": "directions",
+            "seed": "reversal-curse-2026-09-13",
+            "fontSize": 54,
+            "charMs": 30,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-14T01:32:50.899526+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Single-word trigger: BrutalistHesitantWriter matches whitespace-delimited word cores only, so phrase-level correction cannot match. 'facts'->'directions' is the reel's actual misconception and corrects the sentence. Keep the typed text near 75 chars so it finishes inside the audio window.",
+      "actual_duration_s": 9.6,
+      "render_duration_s": 9.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE FRAMEWORK",
+      "lane": "remotion",
+      "estimated_duration_s": 22,
+      "narration_text": "To understand this, we use the Autoregressive Probability Rule. One: models are trained to predict the next word, strictly left to right. Two: every word's probability is conditionally dependent only on what precedes it. Three: training updates neural weights in one direction. A leads to B does not map the path from B back to A.",
+      "new_visual_element": "The Autoregressive Probability Rule — three columns, lit in narration order",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 LEFT-TO-RIGHT TRAINING takes the terracotta top rule on 'One'"
+          },
+          {
+            "at": 0.42,
+            "event": "connector draws; panel 02 CONDITIONAL PROBABILITY lights on 'Two'"
+          },
+          {
+            "at": 0.66,
+            "event": "connector draws; panel 03 UNIDIRECTIONAL WEIGHTS lights on 'Three' and holds"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands under the band: P(next | everything before it)"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "The rule, before the example.",
+            "payloadLabel": "next token",
+            "readyLine": "P(next | everything before it)",
+            "stages": [
+              {
+                "index": "01",
+                "name": "LEFT-TO-RIGHT TRAINING",
+                "detail": "predict the next word, strictly in order"
+              },
+              {
+                "index": "02",
+                "name": "CONDITIONAL PROBABILITY",
+                "detail": "each word depends only on what precedes it"
+              },
+              {
+                "index": "03",
+                "name": "UNIDIRECTIONAL WEIGHTS",
+                "detail": "the update runs one way and only one way"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-14T02:21:46.411342+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 17.6,
+      "render_duration_s": 17.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — ASK (the graph)",
+      "lane": "bookend",
+      "estimated_duration_s": 7,
+      "narration_text": "So let's draw what those billions of training pages actually build inside the model — not the facts we imagine are stored in there, but the directed graph the weights really encode.",
+      "new_visual_element": "Ask micro-beat — the prompt that generates the training graph",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the generation prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'drawing the weights…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Draw it,",
+            "topic": "STEM & AI Architecture",
+            "segment": "Learned weights",
+            "command": "Take one training sentence — \"Tom Cruise was born to Mary Lee South\" — and draw the directed graph the model actually learns from it.",
+            "runningText": "drawing the weights…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-14T01:36:36.562924+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: B03 is the ask, B04 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 10.09,
+      "render_duration_s": 10.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 3 — WORKED EXAMPLE",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Apply the framework to the training data. The model ingests billions of pages where Tom Cruise is the subject and Mary Lee South is the object. It strengthens the unidirectional weights from left to right. When you prompt with the mother's name first, the conditional probability chain is completely empty. The neural path literally does not exist in reverse.",
+      "new_visual_element": "Training document beside the one-way graph it builds",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.06,
+            "event": "TRAINING DOCUMENT card lands with the sentence"
+          },
+          {
+            "at": 0.22,
+            "event": "'Tom Cruise' highlights terracotta as the subject is named"
+          },
+          {
+            "at": 0.32,
+            "event": "'Mary Lee South' highlights as the object is named"
+          },
+          {
+            "at": 0.4,
+            "event": "LEARNED WEIGHTS panel appears; the two tokens become nodes"
+          },
+          {
+            "at": 0.5,
+            "event": "the forward edge draws top-to-bottom and lands an arrowhead — 'strengthened'"
+          },
+          {
+            "at": 0.76,
+            "event": "on 'the chain is completely empty', a dashed reverse edge reaches up the other side"
+          },
+          {
+            "at": 0.88,
+            "event": "the dashed edge retracts to nothing — 'never trained'. The path is not there."
+          }
+        ],
+        "remotion": {
+          "pattern": "ReversalTrainingGraph",
+          "props": {
+            "sparkLine": "One direction only.",
+            "docLabel": "TRAINING DOCUMENT",
+            "sentence": "Tom Cruise was born to Mary Lee South.",
+            "subject": "Tom Cruise",
+            "object": "Mary Lee South",
+            "graphLabel": "LEARNED WEIGHTS",
+            "forwardLabel": "strengthened",
+            "reverseLabel": "never trained"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-14T01:58:02.483249+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 18.56,
+      "render_duration_s": 18.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ReversalTrainingGraph",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4 — FALSIFIABILITY",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "So how do we prove this is an architectural flaw and not just bad data? We test a bidirectional model, like BERT. BERT doesn't read left to right. It masks words in the middle of sentences and reads from both ends at once. Bidirectional models pass the reversal test easily — which puts the flaw squarely in autoregressive, left-to-right training.",
+      "new_visual_element": "The control experiment — one arrowhead versus two",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "left column AUTOREGRESSIVE draws; its one-way terracotta edge lands"
+          },
+          {
+            "at": 0.32,
+            "event": "left result stamps: FAILS THE REVERSAL"
+          },
+          {
+            "at": 0.4,
+            "event": "right column BIDIRECTIONAL draws — 'masks the middle, reads both ends'"
+          },
+          {
+            "at": 0.55,
+            "event": "on 'from both ends at once' the right edge grows an arrowhead at BOTH ends — the only difference that matters"
+          },
+          {
+            "at": 0.72,
+            "event": "right result stamps: PASSES THE REVERSAL"
+          },
+          {
+            "at": 0.84,
+            "event": "terracotta verdict strip: THE FLAW IS THE TRAINING DIRECTION — NOT THE DATA"
+          }
+        ],
+        "remotion": {
+          "pattern": "ReversalBidirectionalTest",
+          "props": {
+            "sparkLine": "Change the architecture, pass the test.",
+            "leftTitle": "AUTOREGRESSIVE",
+            "leftSub": "reads left to right",
+            "rightTitle": "BIDIRECTIONAL",
+            "rightSub": "masks the middle, reads both ends",
+            "nodeA": "Tom Cruise",
+            "nodeB": "Mary Lee South",
+            "leftResult": "FAILS THE REVERSAL",
+            "rightResult": "PASSES THE REVERSAL",
+            "verdict": "THE FLAW IS THE TRAINING DIRECTION — NOT THE DATA"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-14T01:59:44.332120+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "BERT's masked-language-model objective and its bidirectional encoding are standard published architecture facts. No benchmark score is claimed — the script reports none, so none is shown.",
+      "actual_duration_s": 18.45,
+      "render_duration_s": 18.458333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ReversalBidirectionalTest",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 18,
+      "narration_text": "Test this on your own local models. Find a lesser-known indie film. Ask the AI who directed it — it will likely know. Then open a fresh chat and ask it to name a film by that specific director. Watch it fail.",
+      "new_visual_element": "The two asymmetrical prompts the viewer runs",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "PROMPT 1 reveals as the voice describes the forward question"
+          },
+          {
+            "at": 0.5,
+            "event": "PROMPT 2 reveals — note the fresh-chat instruction"
+          },
+          {
+            "at": 0.78,
+            "event": "TASK line lands: test a local LLM with asymmetrical facts"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "reversal_test.txt",
+            "code": "PROMPT 1:  Who directed [obscure indie film]?\n           → it will probably answer correctly\n\n# open a FRESH chat — no history, or you have\n# handed it the answer in the context window\n\nPROMPT 2:  Name a film directed by [that director].\n           → watch it fail\n\n# TASK: test a local LLM with asymmetrical facts.\n# The rarer the fact, the cleaner the result.",
+            "sparkLine": "Run it on yours."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-14T02:49:26.068761+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The 'fresh chat' caveat is added, not in the source script: asking both questions in one session puts the answer in the context window and the test silently passes for the wrong reason. Without it the scaffolded task does not actually falsify anything.",
+      "actual_duration_s": 12.25,
+      "render_duration_s": 12.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 20,
+      "narration_text": "And when it fails, here is the prompt worth running next. Ask a model to list every fact it knows about one obscure person, then ask which of those facts it could recover if you started from the other end. Make it mark each one. What you get back is a map of its own blind spots — written by the model that has them.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "STEM & AI Architecture",
+            "segment": "The Reversal Curse",
+            "command": "List 10 facts you know about [an obscure person]. Then, for each fact, mark whether you could recover it if I asked starting from the OTHER side of the relationship. Explain which ones break and why.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-09-14T01:43:30.407735+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 16.34,
+      "render_duration_s": 16.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-13T23:12:19"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Language models learn probabilities strictly left to right. A leads to B does not map the path from B back to A. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Reversal Curse",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · STEM & AI Architecture · Week 2",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-09-14T02:22:34.728557+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 9.37,
+      "render_duration_s": 9.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-09-13T23:12:19"
+      }
+    }
+  ]
+}

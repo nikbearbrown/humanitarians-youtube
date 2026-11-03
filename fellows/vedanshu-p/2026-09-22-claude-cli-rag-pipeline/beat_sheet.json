@@ -1,0 +1,750 @@
+{
+  "metadata": {
+    "title": "Watch A Bug Name Its Own Stage.",
+    "slug": "claude-cli-rag-pipeline",
+    "topic": "CLAUDE CODE · CHAPTER 7 DEMO",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "tool": "claude",
+    "persona": "Vedanshu Daxesh Patel",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Vanakkam, Vedanshu",
+    "greeting_note": "hello lexicon: Tamil (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Namaste/Aloha/Ciao/Hola/Bonjour/Ahoj/Merhaba/Shalom/Hej/Jambo/Sawubona/Konnichiwa/Annyeong, all used by the sibling reels in this series.",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "in_for_bear": false,
+    "playlist": "Claude Taught",
+    "source_book": "RAG Foundations — Vedanshu Daxesh Patel",
+    "source_file": "chapters/07-rag-pipeline-end-to-end.md",
+    "source_figures": [
+      "images/rag-pipeline-end-to-end-fig-01.png/.svg — the five-box horizontal pipeline with annotations of what moves between boxes. Rebuilt natively as B04 (PipelineTrace), carrying MEASURED artifacts from this reel's own run (13 chunks, 13x384 index, 615-char prompt) rather than illustrative labels — REBUILD LAW."
+    ],
+    "code_dir": "code/",
+    "note": "CLI explainer (cli-explainer skill — ADVANCED tier), built on D:\\ai1-cli-main per CLAUDE.md rule 3. Folder dated 2026-09-22 per explicit instruction. Follows the mandatory CLI spine with one revision cycle (THE REVISION LAW satisfied). ACTUAL-CODE LAW: code/ holds four REAL runnable scripts (corpus.py, encoder.py, pipeline.py, diagnose.py); both CODE beats quote them verbatim and every number on screen is captured stdout, saved as _run-pipeline.txt and _run-diagnose.txt. Retrieval is REAL all-MiniLM-L6-v2 (encoder.py carried over from the Chapter 6 reel — same hand-rolled safetensors loader and numpy BERT forward pass, since sentence-transformers is absent here). THE GENERATE STAGE IS NOT AN LLM and the reel says so out loud: it is a deterministic extractive reader that can only quote a sentence physically present in the prompt's CONTEXT block. That is a deliberate CONTROL, not a shortcut — a stochastic LLM could mask a retrieval fault by guessing correctly from prior knowledge, which would destroy the very stage-localisation this chapter is about. B01/B09 reuse RagExecutiveSummary and B08 reuses CliRunOutput, props-only. B04/B07 are two new bespoke components (PipelineTrace, FaultSignatureTable) — GATE L searched four ways; the closest lead, HaiBrutalistE01Pipeline, hardcodes its stage list as a module constant and exposes only sparkLine. B11 is TitleOutroChannel per OUTRO-LOCK.md §Scope.",
+    "tags": [
+      "RAG",
+      "pipeline",
+      "ingest",
+      "embed",
+      "retrieve",
+      "augment",
+      "generate",
+      "diagnosis"
+    ],
+    "build": {
+      "at": "2026-09-29T00:03:30",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": [
+        "B11: palette=claude but the outro is 'TitleOutroChannel' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — the ask lands answered.",
+      "narration_text": "Vanakkam — I'm Vedanshu Daxesh Patel. Four chapters have built four pieces: representation, chunking, indexing, retrieval. None of them, on its own, is RAG. Chapter seven bolts them together and runs one question all the way through — and then asks the question that actually matters in production: when the answer is wrong, which piece broke?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Composer greeting 'Vanakkam, Vedanshu' types in; spark ignites"
+          },
+          {
+            "at": "20%",
+            "event": "Command types: wire the five stages, trace one question, then break one"
+          },
+          {
+            "at": "52%",
+            "event": "Send arms; runningText 'wiring five stages…' plays"
+          },
+          {
+            "at": "66%",
+            "event": "Output line 1: ingest, embed, retrieve, augment, generate"
+          },
+          {
+            "at": "80%",
+            "event": "Output line 2: each stage's output is the next one's input"
+          },
+          {
+            "at": "94%",
+            "event": "Output line 3: which is why a symptom can name its stage"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Vanakkam, Vedanshu",
+            "topic": "CLAUDE CODE · CHAPTER 7 DEMO",
+            "segment": "Watch A Bug Name Its Own Stage.",
+            "command": "Wire the five stages into one pipeline, trace a single question end to end — then break exactly one stage and see whether the symptom tells me which one.",
+            "runningText": "wiring five stages…",
+            "output": [
+              "ingest · embed · retrieve · augment · generate",
+              "every stage's output is exactly the next one's input",
+              "which is what lets a symptom name the stage that broke"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 18.01,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why the seams matter",
+      "role_note": "Mandatory PROBLEM beat: the stakes, stated BEFORE any prompt.",
+      "narration_text": "Here is the problem, before we write a line. A finished RAG system gives you one output: an answer. When that answer is wrong, you have one symptom and four suspects. The pipeline's real value is not that it runs — it is that it has named seams, so a symptom at the end can be traced back to exactly one place where something specific went wrong.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: 'One symptom. Four suspects.'"
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: named seams are what make a bug locatable"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "note": "reused props-only from the sibling CLI reels",
+          "props": {
+            "headline": "One symptom. Four suspects.",
+            "subline": "A finished pipeline emits a single answer, so a wrong answer looks the same whatever caused it. Naming the seams is what turns one symptom back into one stage.",
+            "sparkLine": "Seams are the diagnosis."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:RagExecutiveSummary",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLI — the ask",
+      "narration_text": "The ask: five stages, five functions, one return value each. Ingest turns documents into chunks. Embed turns chunks into vectors. Retrieve turns a question into a short list. Augment turns that list into a prompt. Generate turns the prompt into an answer. And print what each stage hands to the next — because if I can't print the handoffs, the seams aren't real.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Spark greeting 'The ask,' holds"
+          },
+          {
+            "at": "26%",
+            "event": "Command types — five functions, and print every handoff"
+          },
+          {
+            "at": "82%",
+            "event": "Send arms; runningText 'generating pipeline…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The ask,",
+            "topic": "CLAUDE CODE · CHAPTER 7 DEMO",
+            "segment": "Watch A Bug Name Its Own Stage.",
+            "command": "claude \"write pipeline.py — ingest, embed, retrieve, augment, generate as FIVE separate functions, one return value each. Real MiniLM embeddings. Trace one question end to end and print what every stage hands to the next.\"",
+            "runningText": "generating pipeline…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.88,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ACTUAL-CODE LAW — verbatim from code/pipeline.py.",
+      "narration_text": "Read the shape, not the detail. Five functions. Ingest takes documents and returns chunks. Embed takes chunks and returns an index. Retrieve takes a question and returns a list. Augment takes that list and returns a string. Generate takes the string and returns an answer. Nothing reaches past its neighbour — and that discipline is the whole reason the next cycle works.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "Code card lands, filename in the title bar"
+          },
+          {
+            "at": "30%",
+            "event": "the five signatures read as a chain: documents → chunks → index"
+          },
+          {
+            "at": "65%",
+            "event": "augment builds ONE string — the prompt"
+          },
+          {
+            "at": "85%",
+            "event": "spark line settles: five functions, five seams"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "pipeline.py — Claude Code output",
+            "code": "def ingest(documents: dict) -> list:\n    \"\"\"Documents -> addressable chunks. Split on paragraph breaks (Ch. 4).\"\"\"\n\ndef embed(chunks: list, model: MiniLM) -> dict:\n    \"\"\"Chunks -> a searchable index. Vectors are L2-normalised.\"\"\"\n\ndef retrieve(question: str, index: dict, model: MiniLM, k=TOP_K) -> list:\n    \"\"\"Question -> a short list of chunks. SAME model as embed (Ch. 3).\"\"\"\n\ndef augment(question: str, hits: list, label_chunks=True) -> str:\n    \"\"\"Question + chunks + instruction -> ONE prompt string.\"\"\"\n\ndef generate(prompt: str, use_context=True) -> dict:\n    \"\"\"Prompt -> answer. Deterministic extractive reader — NOT an LLM.\"\"\"",
+            "sparkLine": "Five functions. Five seams."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 19.05,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — the trace",
+      "role_note": "Rebuilds the chapter's Fig. 01 from THIS reel's measured run. Real stdout — see _run-pipeline.txt.",
+      "narration_text": "Run it. Six documents become thirteen chunks. Thirteen chunks become a thirteen-by-three-eighty-four index. The question retrieves three chunks — all three from the vacation policy, because paragraphs of the same document sit close together. Those become a six-hundred-and-fifteen character prompt. And out falls: first-year employees accrue twelve paid vacation days, cited to V-A-one-oh-one.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "the five stage boxes lighting in sequence with the real artifact each emitted, handoff labels between them, and the final answer landing in terracotta",
+        "show": [
+          {
+            "at": "5%",
+            "event": "the question pins above the pipeline"
+          },
+          {
+            "at": "14%",
+            "event": "ingest lights — 13 chunks"
+          },
+          {
+            "at": "32%",
+            "event": "embed lights — 13x384 index"
+          },
+          {
+            "at": "50%",
+            "event": "retrieve lights — top-3 chunks"
+          },
+          {
+            "at": "60%",
+            "event": "augment lights — 615-char prompt"
+          },
+          {
+            "at": "68%",
+            "event": "the answer strip lands in terracotta, cited to VA-101#0"
+          }
+        ],
+        "remotion": {
+          "pattern": "PipelineTrace",
+          "props": {
+            "headline": "One Question, All Five Stages.",
+            "question": "How many vacation days do I get in my first year?",
+            "stages": [
+              {
+                "name": "ingest",
+                "emitted": "13 chunks"
+              },
+              {
+                "name": "embed",
+                "emitted": "13×384 index"
+              },
+              {
+                "name": "retrieve",
+                "emitted": "top-3 chunks"
+              },
+              {
+                "name": "augment",
+                "emitted": "615-char prompt"
+              },
+              {
+                "name": "generate",
+                "emitted": "1 answer"
+              }
+            ],
+            "flows": [
+              "6 documents → chunks",
+              "chunks → vectors",
+              "query vector → chunks",
+              "chunks → prompt"
+            ],
+            "answer": "First-year employees accrue 12 paid vacation days.",
+            "cited": "VA-101#0",
+            "caption": "Measured by this reel's own pipeline.py. Redrawn from the chapter's Fig. 01 — the boxes carry what the run actually emitted.",
+            "citation": "five-stage breakdown: this book's own teaching device (Ch. 7)",
+            "sparkLine": "Every handoff, printed.",
+            "beatSeconds": 20.5
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 20.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:PipelineTrace",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLI — check and revise",
+      "role_note": "THE REVISION LAW — the second cycle begins here.",
+      "narration_text": "Now the revision, and this is the part the chapter is really about. Break exactly one stage at a time. Hold everything else identical. Then record three things: did the right fact come back, did it cite anything, and was the answer even present in the prompt. If the three faults produce three different signatures, the pipeline is a diagnostic map. If any two look the same, it is decoration.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Spark greeting 'The change,' holds"
+          },
+          {
+            "at": "28%",
+            "event": "Revised command types — one fault at a time, three signals recorded"
+          },
+          {
+            "at": "84%",
+            "event": "Send arms; runningText 'updating…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The change,",
+            "topic": "CLAUDE CODE · CHAPTER 7 DEMO",
+            "segment": "Watch A Bug Name Its Own Stage.",
+            "command": "claude \"now write diagnose.py — break exactly ONE stage at a time (retrieve, augment, generate), hold the rest identical, and record three signals per run: did the right fact come back, what did it cite, was the answer grounded in the prompt. Report whether the signatures differ.\"",
+            "runningText": "updating…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 19.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE — revised",
+      "role_note": "ACTUAL-CODE LAW — verbatim from code/diagnose.py.",
+      "narration_text": "Three faults, each a single switch. Retrieve gets a filter bug that skips the right document entirely. Augment drops the chunk labels, so the context arrives unlabelled. Generate ignores the context and answers from a prior — the hallucination case. One trace function runs all three through the same pipeline and records what came back.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "Revised code card lands"
+          },
+          {
+            "at": "32%",
+            "event": "retrieve_wrong — the filter bug that skips the gold document"
+          },
+          {
+            "at": "62%",
+            "event": "trace() — one switch per stage, everything else held constant"
+          },
+          {
+            "at": "85%",
+            "event": "spark line settles: one switch per stage"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "diagnose.py — one fault at a time",
+            "code": "def retrieve_wrong(question, index, model, k=TOP_K):\n    \"\"\"FAULT (retrieve): a filter bug that skips the gold document.\"\"\"\n    full = retrieve(question, index, model, k=len(index[\"chunks\"]))\n    return [h for h in full if h[\"doc\"] != GOLD_DOC][:k]\n\n\ndef trace(label, index, model, *, broken_retrieve=False,\n          labels=True, context=True):\n    hits   = (retrieve_wrong if broken_retrieve else retrieve)(QUESTION, index, model)\n    prompt = augment(QUESTION, hits, label_chunks=labels)\n    out    = generate(prompt, use_context=context)\n    return {\"answer\": out[\"answer\"], \"cited\": out[\"cited\"],\n            \"grounded\": out[\"grounded\"],\n            \"has_fact\": GOLD_FACT in out[\"answer\"]}",
+            "sparkLine": "One switch per stage."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 18.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — three faults, three signatures",
+      "role_note": "FALSIFIABILITY — the chapter's diagnostic claim, tested. Real data from _run-diagnose.txt.",
+      "narration_text": "And the claim holds. Break retrieve: a real chunk comes back, correctly cited, grounded in the prompt — and it is about sick days. Break augment: the right fact comes back, grounded, citing nothing. Break generate: no fact, no citation, not grounded at all. Three faults. Three different signatures. Not one of them looks like another.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "one row per injected fault against three signal columns, with the distinctness verdict landing in terracotta beneath",
+        "show": [
+          {
+            "at": "7%",
+            "event": "column headers land: fact? · cited · grounded"
+          },
+          {
+            "at": "16%",
+            "event": "the healthy control row lands, quieter"
+          },
+          {
+            "at": "27%",
+            "event": "retrieve row — NO fact, but cited and grounded"
+          },
+          {
+            "at": "38%",
+            "event": "augment row — fact yes, cited none"
+          },
+          {
+            "at": "49%",
+            "event": "generate row — NO to all three"
+          },
+          {
+            "at": "68%",
+            "event": "verdict lands in terracotta: three signatures, all different"
+          }
+        ],
+        "remotion": {
+          "pattern": "FaultSignatureTable",
+          "props": {
+            "headline": "Three Faults. Three Signatures.",
+            "columns": [
+              "top chunk",
+              "right fact?",
+              "cited",
+              "grounded"
+            ],
+            "rows": [
+              {
+                "label": "none (healthy)",
+                "cells": [
+                  "VA-101#0",
+                  "yes",
+                  "VA-101#0",
+                  "yes"
+                ],
+                "baseline": true
+              },
+              {
+                "label": "retrieve",
+                "cells": [
+                  "SL-140#0",
+                  "NO",
+                  "SL-140#0",
+                  "yes"
+                ]
+              },
+              {
+                "label": "augment",
+                "cells": [
+                  "VA-101#0",
+                  "yes",
+                  "none",
+                  "yes"
+                ]
+              },
+              {
+                "label": "generate",
+                "cells": [
+                  "VA-101#0",
+                  "NO",
+                  "none",
+                  "NO"
+                ]
+              }
+            ],
+            "verdict": "No two faults share a signature — so the symptom names the stage.",
+            "caption": "One question, one fault at a time, every other stage held identical. Measured by this reel's own diagnose.py.",
+            "citation": "five-stage diagnostic map: Ch. 7; pipeline framing after Lewis et al., 2020",
+            "sparkLine": "The symptom names the stage.",
+            "beatSeconds": 17.15
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 17.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:FaultSignatureTable",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTPUT — what each fault actually said",
+      "role_note": "Real captured stdout — the answers in their own words. See _run-diagnose.txt.",
+      "narration_text": "And this is what makes it land. Read what the broken retriever returned: employees receive ten paid sick days per calendar year. Fluent. Correctly cited. Completely irrelevant. That is the failure mode nobody catches by reading answers — it looks like a good answer to a question nobody asked.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "the four returned answers as a transcript, the sick-leave one reading as confident and wrong",
+        "show": [
+          {
+            "at": "8%",
+            "event": "command line lands with the terracotta $"
+          },
+          {
+            "at": "26%",
+            "event": "healthy answer prints"
+          },
+          {
+            "at": "45%",
+            "event": "retrieve answer prints — the sick-days sentence"
+          },
+          {
+            "at": "66%",
+            "event": "augment and generate answers print"
+          },
+          {
+            "at": "88%",
+            "event": "verdict settles: fluent, cited, and about the wrong policy"
+          }
+        ],
+        "remotion": {
+          "pattern": "CliRunOutput",
+          "props": {
+            "title": "python diagnose.py",
+            "lines": [
+              "what each fault actually returned:",
+              "  [none]      First-year employees accrue 12 paid vacation days.",
+              "  [retrieve]  Employees receive 10 paid sick days per calendar year,",
+              "              available from the first day of employment.",
+              "  [augment]   First-year employees accrue 12 paid vacation days.",
+              "  [generate]  You get 20 vacation days in your first year."
+            ],
+            "verdict": {
+              "text": "fluent, correctly cited, and about the wrong policy",
+              "tone": "bad"
+            },
+            "sparkLine": "Read the wrong one."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 16.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:CliRunOutput",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SUMMARY",
+      "role_note": "Mandatory SUMMARY beat — the lesson, plus what this build does NOT prove.",
+      "narration_text": "So: five stages, five seams, and a symptom that points at exactly one of them. One honest limit, though. My generator is not a language model — it is a deterministic reader that can only quote the prompt. That is the reason the signatures came out this clean. A real model can guess right from prior knowledge and hide a retrieval fault, or guess wrong and imitate one. The map still works. It just gets harder to read.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 30,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: 'The seams are the instrument.'"
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: separation is what makes a symptom locatable"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "note": "reused props-only, second use in this reel",
+          "props": {
+            "headline": "The seams are the instrument.",
+            "subline": "Five stages that each hand on exactly one thing are what let a single wrong answer be traced back to a single place — and a deterministic reader is what makes that trace legible.",
+            "sparkLine": "Localise before you fix."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 20.84,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:RagExecutiveSummary",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "NEXT STEPS — handoff",
+      "role_note": "HANDOFF LAW — read aloud verbatim, then discussed.",
+      "narration_text": "Your turn. Paste this: 'Take my RAG system and log, for every answer it gives, three things — which chunks were retrieved, whether the answer text appears in those chunks, and what it cited. Then show me the answers where those three disagree.' That last sentence is the whole trick. You are not asking for an accuracy score; you are asking for the rows where the pipeline contradicts itself, because those are the ones where a stage is broken and the answer still looked fine.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 40,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · CHAPTER 7 DEMO",
+            "segment": "Watch A Bug Name Its Own Stage.",
+            "command": "Take my RAG system and log, for every answer it gives, three things — which chunks were retrieved, whether the answer text appears in those chunks, and what it cited. Then show me the answers where those three disagree.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 22.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-29T00:03:30"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — title restate. TitleOutroChannel per OUTRO-LOCK.md §Scope.",
+      "narration_text": "Watch A Bug Name Its Own Stage. Vedanshu Daxesh Patel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "TitleOutroChannel",
+          "props": {
+            "title": "Watch A Bug Name Its Own Stage.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel",
+            "polarity": "light"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-09-22T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 4.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "remotion:TitleOutroChannel",
+        "at": "2026-09-29T00:03:30"
+      }
+    }
+  ]
+}

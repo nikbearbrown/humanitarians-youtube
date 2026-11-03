@@ -1,0 +1,29 @@
+=== PRE-FIX (reconstructed: original impact_level-only bucketing) ===
+{
+  total_new: 3,
+  critical_count: 2,
+  high_count: 1,
+  item_ids: [ 'item-1', 'item-2', 'item-3' ]
+}
+
+=== POST-FIX (real, current jsCode from workflow.dev.json on disk) ===
+{
+  total_new: 3,
+  critical_count: 1,
+  high_count: 2,
+  item_ids: [ 'item-1', 'item-2', 'item-3' ]
+}
+
+=== Per-item bucket (post-fix, effectiveImpact) ===
+item-1: impact_level=Critical llm_reviewed=true llm_corrected_impact_level=High -> effective=High
+item-2: impact_level=High llm_reviewed=true llm_corrected_impact_level=High -> effective=High
+item-3: impact_level=Critical llm_reviewed=false llm_corrected_impact_level=(none) -> effective=Critical
+
+=== ASSERTIONS ===
+PASS — pre.critical_count === 2
+PASS — pre.high_count === 1
+PASS — post.critical_count === 1
+PASS — post.high_count === 2
+PASS — post.total_new === pre.total_new (3)
+
+ALL ASSERTIONS PASSED: item-1 (confirmed, recategorized Critical -> High) was counted Critical before the fix (bug) and High after (fixed). item-2 and item-3 are unchanged in both versions (no regression).

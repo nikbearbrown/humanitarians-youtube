@@ -1,0 +1,13 @@
+# Shotlist
+
+| Beat | Visual progression | Landscape / portrait treatment |
+|---|---|---|
+| B00 — Opening | A tactile stack of lesson pages resolves into Deepa / HAI title lockup; waveform and film frame introduce the learning journey. | Native landscape / Portrait-native centered title column; stacked lesson cards rise vertically into the identity lockup. |
+| B01 — Learning the toolkit | A source-tree map unfolds into a toolkit; dependency nodes light as setup/doctor readiness checks. Do not show fabricated terminal output. | Native landscape / Vertical tree of toolkit modules and prerequisite nodes; readiness indicators animate in a single column. |
+| B02 — Plan and review | A Beat Sheet expands into linked narration, beat, visual, timing, render lanes, then a human review gate. | Native landscape / Tall scorecard with five linked lanes; render node feeds an explicit human-review checkpoint. |
+| B03 — Compose to teach | Landscape and portrait canvases assemble side by side as distinct layouts; explanatory diagram replaces a repeating interface frame. | Native landscape / Two stacked, distinctly arranged 16:9 and 9:16 canvases; concept diagram animates through the portrait frame. |
+| B04 — Narrative and interface | Narrative cards (problem, ask, code, output, revision, improved output, summary, handoff, outro) travel across a rail while interface skins swap independently. | Native landscape / Vertical narrative spine; a separate interface-skin tile changes around a stable sequence of story cards. |
+| B05 — Depth and duration | Linked mechanisms connect as acts; a duration ruler grows to fit the content rather than snapping to a preset target. | Native landscape / Act nodes descend through connected mechanisms; organic timeline lengths reflect beat information. |
+| B06 — Narration clock | Narration waveform drives a master clock; one beat slot is replaced while neighboring slots remain fixed. | Native landscape / Vertical waveform and beat stack; one slot cycles to a revised version with surrounding slots held. |
+| B07 — Evidence and quality | Evidence cards connect directly to claims; automated QC checks measurable badges, then a human reviewer watches completed content. | Native landscape / Claim/evidence pairs feed a compact QC ladder, then a prominent human-review moment and finished-video pair. |
+| B08 — Closing | The learning path resolves into completed educational content, HAI end card, handle and Liam-for-Deepa disclosure. | Native landscape / Vertical learning path converges on completed content and established HAI outro, fully inside portrait safe area. |

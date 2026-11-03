@@ -1,4 +1,8 @@
-# Asavari (Ash) Shejwal — Videos
+# Asavari S.
+
+**Role:** AI Data Engineer  
+**Project:** Mycroft — SEC Filings Financial Metrics Agent  
+**GitHub:** [@Asavari24](https://github.com/Asavari24)
 
 Fellow on the **Mycroft** project (SEC Filings Financial Metrics Agent), Humanitarians AI.
 Explainer videos in the house Brutalist format, each produced in 16:9 and 9:16.
@@ -15,3 +19,12 @@ Explainer videos in the house Brutalist format, each produced in 16:9 and 9:16.
 | 2026-09-28 | [Ticker to Truth](2026-09-28-ticker-to-truth/) | Mycroft — SEC Filings Financial Metrics Agent |
 | 2026-09-28 | [What Are Embeddings?](2026-09-28-what-are-embeddings/) | AI / STEM |
 | 2026-10-31 | [Trust, but Verify](2026-10-31-trust-but-verify/) | Mycroft — SEC Filings Financial Metrics Agent |
+
+## Frictional log
+
+Every work subfolder here carries its own `FRICTIONAL.md` — a dated record of the process
+behind that specific piece of work, kept beside the evidence it describes: what was tried
+and expected, where it resisted and what was done next, what Claude or another person
+contributed and what was accepted, changed or rejected, and what is now understood or
+still open. Append as you go; never rewrite an earlier entry. It is not graded and not a
+performance review. See <https://www.humanitarians.ai/fellows> for what an entry contains.

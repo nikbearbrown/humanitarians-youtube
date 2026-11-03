@@ -1,0 +1,612 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-api-security",
+    "title": "The Gate Is Closed",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper development log, Week 8 — closing the open API: a bcrypt hashing pivot after passlib broke on Python 3.13, an OAuth2 token endpoint, and a stress test that now has to authenticate before it is allowed to attack.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners following the Provenance Gatekeeper build",
+    "playlist": "Fellows Research",
+    "source": "Week 8: API Security & JWT Authentication — Video Script, Provenance Gatekeeper Development Log. Supplied 2026-10-22.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script's red 401 shield and red error glitch map to terracotta; the successful authenticated run renders as unfilled ink rather than green.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "Provenance Gatekeeper",
+      "OAuth2",
+      "JWT",
+      "bcrypt",
+      "passlib",
+      "FastAPI",
+      "API security",
+      "stress testing",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-10-22T20:41:40",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 24,
+      "narration_text": "Hi, I am Onkar Bhujbal. The Provenance Gatekeeper can now intercept A.I. hallucinations and run regression tests automatically in a C.I. pipeline. But until this week the A.P.I. was completely open. Anyone with the U.R.L. could bombard our endpoint, poison our logs, and exhaust our vector database. This week we lock the perimeter with OAuth2 and JSON Web Tokens.",
+      "new_visual_element": "Cold open — the endpoint anyone could call",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'checking who can call /verify…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the answer is everyone"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names the fix: 401 UNAUTHORIZED"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Gate Is Closed",
+            "command": "Who is allowed to POST to /verify on the Gatekeeper right now?",
+            "runningText": "checking who can call /verify…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "Anyone with the URL. There is no auth layer.",
+              "Poison the logs, drain the vector DB, forge the ledger.",
+              "401 UNAUTHORIZED — the response it should have been giving."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-23T00:26:56.694206+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "No attack or abuse is claimed to have occurred — the script reports none. The beat states the exposure the open endpoint allowed.",
+      "actual_duration_s": 20.69,
+      "render_duration_s": 20.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 12,
+      "lead_silence_s": 0.8,
+      "narration_text": "Everything built in the last seven weeks assumed the caller was us. This week removes that assumption — and the first thing it cost was a library we thought was safe.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'The API was internal.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'internal' goes terracotta, deletes, retypes as 'unlocked'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Assume nothing about the caller.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "The API was internal.\nAssume nothing about the caller.",
+            "triggerWords": "internal",
+            "replacementWords": "unlocked",
+            "seed": "api-security-2026-10-22",
+            "fontSize": 88,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-23T00:28:24.390163+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "fontSize 88 to clear the underfill floor earlier reels tripped. 'internal' -> 'unlocked' is the reel's actual misconception: 'internal' is a deployment detail, not a security control.",
+      "actual_duration_s": 9.17,
+      "render_duration_s": 9.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE BCRYPT PIVOT",
+      "lane": "remotion",
+      "estimated_duration_s": 25,
+      "narration_text": "Security work rarely goes smoothly. We tried the standard Python passlib library to hash passwords and hit a wall immediately. On a modern Python three point thirteen environment, passlib tripped a fatal seventy-two byte truncation bug. So we pulled the deprecated library out entirely and wrote a small wrapper over raw bcrypt instead. Worth knowing why that limit exists: bcrypt itself only ever hashes the first seventy-two bytes. That is the algorithm, not the library.",
+      "new_visual_element": "The error, and the wrapper that replaced the library",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the passlib import and the fatal error"
+          },
+          {
+            "at": 0.26,
+            "event": "on 'seventy-two byte truncation bug', the ValueError highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.34,
+            "event": "note lands beneath: bcrypt hashes 72 bytes — the limit is the algorithm"
+          },
+          {
+            "at": 0.46,
+            "event": "right panel reveals the raw-bcrypt wrapper line by line"
+          },
+          {
+            "at": 0.72,
+            "event": "ink stamp lands: PASSLIB REMOVED — hashing under our own control"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "The library broke. The algorithm did not.",
+            "leftLabel": "passlib ON PYTHON 3.13",
+            "leftText": "ValueError: password cannot be longer than 72 bytes",
+            "leftHot": "72 bytes",
+            "hotNote": "bcrypt only ever hashes the first 72 — that is the algorithm",
+            "rightLabel": "raw bcrypt WRAPPER",
+            "code": "import bcrypt\n\ndef hash_pw(pw: str) -> bytes:\n    return bcrypt.hashpw(\n        pw.encode()[:72],\n        bcrypt.gensalt(),\n    )\n\ndef check_pw(pw, hashed) -> bool:\n    return bcrypt.checkpw(pw.encode()[:72], hashed)",
+            "stampText": "PASSLIB REMOVED",
+            "stampBlocked": false,
+            "stampSub": "truncation is now explicit and ours, not a surprise from a dependency"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-23T00:30:06.710494+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "ADDITION. The script frames the 72-byte limit as a passlib bug. The LIMIT is bcrypt's own — the algorithm hashes at most 72 bytes, and every correct implementation must decide what to do past it. What passlib contributed was failing hard on a modern runtime instead of handling it. The reel says both, because 'our library was buggy' alone would leave the viewer thinking the constraint went away with the dependency. The wrapper shown is illustrative of the pattern, not a copy of the project's file, which was not supplied.",
+      "actual_duration_s": 27.96,
+      "render_duration_s": 28.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — THE TOKEN EXCHANGE",
+      "lane": "remotion",
+      "estimated_duration_s": 22,
+      "narration_text": "With hashing fixed, we secured the verify route. Now a system that wants to reach the Gatekeeper has to hit the token endpoint first with valid credentials. If they match, the server issues a time-limited JSON Web Token — a cryptographic passport granting temporary access to the service.",
+      "new_visual_element": "Credentials in, token out, access granted",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 POST /token lights; the credentials enter the band"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 VERIFY + SIGN lights as the hash is checked"
+          },
+          {
+            "at": 0.7,
+            "event": "connector draws; panel 03 BEARER TOKEN lights and holds"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: time-limited · scoped · re-checked on every call"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Credentials once. Token thereafter.",
+            "payloadLabel": "credentials",
+            "readyLine": "time-limited · scoped · re-checked on every call",
+            "stages": [
+              {
+                "index": "01",
+                "name": "POST /token",
+                "detail": "username and password, over TLS, once"
+              },
+              {
+                "index": "02",
+                "name": "VERIFY + SIGN",
+                "detail": "bcrypt check, then the server signs a short-lived token"
+              },
+              {
+                "index": "03",
+                "name": "BEARER TOKEN",
+                "detail": "sent on every later call to /verify"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-23T00:31:31.514811+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 16.13,
+      "render_duration_s": 16.166666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "BASK",
+      "act": "SCENE 4 — ASK (attack the closed gate)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's point the stress test at the gate without credentials first, and then let it authenticate properly, and compare what the server does in each case.",
+      "new_visual_element": "Ask micro-beat — the prompt that runs both attempts",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'firing unauthenticated…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Test it,",
+            "topic": "Provenance Gatekeeper",
+            "segment": "stress_test.py vs the gate",
+            "command": "Fire the adversarial payloads at /verify with no token, then negotiate a Bearer token and fire them again. Show me both responses.",
+            "runningText": "firing unauthenticated…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BASK.mp4",
+            "at": "2026-10-23T00:33:43.006848+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BASK.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: BASK is the ask, B04 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 8.21,
+      "render_duration_s": 8.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BASK.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — ADVERSARIAL AUTHENTICATION",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "To prove the architecture holds, we updated the automated stress test. Fire adversarial payloads blindly and the server drops the connection immediately. The script now has to negotiate a Bearer token before it is permitted to run its normalization checks at all. The gate is closed — and note what that means for the test: it is no longer testing the parser, it is testing the parser plus the lock.",
+      "new_visual_element": "The unauthenticated attempt, and the authenticated one",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "the request log types itself across the left panel"
+          },
+          {
+            "at": 0.38,
+            "event": "the first row lands — no token, 401, connection dropped"
+          },
+          {
+            "at": 0.5,
+            "event": "the second row lands — token negotiated, payload accepted for evaluation"
+          },
+          {
+            "at": 0.58,
+            "event": "the token card drops into the right panel: Bearer granted, 30 min"
+          },
+          {
+            "at": 0.74,
+            "event": "both halves hold — refused without, admitted with"
+          }
+        ],
+        "remotion": {
+          "pattern": "AlertSplit",
+          "props": {
+            "sparkLine": "Refused without. Admitted with.",
+            "queryLabel": "stress_test.py → POST /verify",
+            "query": "{\"claim\": \"DROP TABLE logs;\"}   # no Authorization header",
+            "rows": [
+              {
+                "left": "no token",
+                "right": "401"
+              },
+              {
+                "left": "Bearer eyJhbGciOi…",
+                "right": "200 · EVALUATED"
+              }
+            ],
+            "rowNote": "illustrative request log — swap in your real stress_test.py output",
+            "alertLabel": "TOKEN ENDPOINT — POST /token",
+            "alertChannel": "OAuth2 password flow · FastAPI",
+            "alertTitle": "BEARER GRANTED",
+            "alertBody": "Time-limited. Required on every /verify call.",
+            "alertMeta": "bcrypt verified · signed · expires in 30 min"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-23T00:35:27.041302+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The two request rows are ILLUSTRATIVE and captioned as such on screen — no real stress_test.py output was supplied. The closing observation (the suite now tests the parser AND the lock) is the reel's addition: once auth is mandatory, a broken token flow fails every adversarial case for the wrong reason, which is worth knowing before the suite goes red.",
+      "actual_duration_s": 20.25,
+      "render_duration_s": 20.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:AlertSplit",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So never leave a service exposed, even internally. Implement stateless authentication so the infrastructure protects itself by default — and make the unauthenticated case a test, not an assumption.",
+      "new_visual_element": "The dependency that closes the route",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the FastAPI dependency reveals — one argument closes the route"
+          },
+          {
+            "at": 0.55,
+            "event": "the TASK line lands: implement stateless authentication"
+          },
+          {
+            "at": 0.76,
+            "event": "the test note lands last — assert the 401, do not assume it"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "main.py",
+            "code": "@app.post(\"/verify\")\nasync def verify(\n    claim: Claim,\n    user = Depends(require_token),   # the lock\n):\n    ...\n\n# TASK: implement stateless authentication.\n\n# Then test the NEGATIVE case:\n#   assert post(\"/verify\", no_token) == 401\n#\n# An unenforced dependency looks identical\n# to an enforced one until someone checks.",
+            "sparkLine": "Assert the 401."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-23T00:36:20.776611+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The negative-case test is the reel's addition, and follows the Week 7 reel's logic: a dependency that is wired but not enforced looks exactly like one that is, until a test asserts the refusal.",
+      "actual_duration_s": 11.82,
+      "render_duration_s": 11.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "And here is the prompt worth running once the gate is shut. Give a model your route list and ask which endpoints still answer without a token. Health checks, metrics, docs, the OpenAPI schema — the ones nobody thinks of as endpoints are usually the ones still standing open.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Gate Is Closed",
+            "command": "Here is my FastAPI route table. List every endpoint that still responds without a valid token — including /docs, /openapi.json, /health and /metrics — and tell me which of them leak information about the ones that are protected.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-23T00:38:44.298298+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 15.15,
+      "render_duration_s": 15.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-22T20:41:40"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Internal is a deployment detail, not a security control. Close the gate and test that it is shut. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Gate Is Closed",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper · Week 8",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-23T00:39:36.308883+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.62,
+      "render_duration_s": 8.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-22T20:41:40"
+      }
+    }
+  ]
+}

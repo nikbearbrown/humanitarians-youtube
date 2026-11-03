@@ -1,0 +1,708 @@
+{
+  "metadata": {
+    "title": "Meaning, As A Number.",
+    "slug": "claude-rag-embeddings",
+    "topic": "RAG · CHAPTER 3 — REPRESENTING TEXT",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "persona": "Vedanshu Daxesh Patel",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hej, Vedanshu",
+    "greeting_note": "hello lexicon: Swedish (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Namaste/Aloha/Ciao/Hola/Bonjour/Ahoj already used by the six sibling reels in this series.",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "in_for_bear": false,
+    "playlist": "Claude Taught",
+    "source_book": "RAG Foundations — Vedanshu Daxesh Patel",
+    "source_file": "chapters/03-representing-text-embeddings.md",
+    "source_figures": [
+      "images/representing-text-embeddings-fig-01.png/.svg — 2D word2vec cluster sketch. Rebuilt natively as B02 (EmbedScatterPlot), never embedded — REBUILD LAW.",
+      "images/representing-text-embeddings-fig-02.png/.svg — 2D embedding-space sketch, two question pairs. Rebuilt natively as B09 (EmbedRevealPairs), never embedded — REBUILD LAW."
+    ],
+    "note": "Concept explainer (vox-style ai-explainer), built on D:\\ai1-cli-main (the book's canonical repo, confirmed via metadata.yaml: title 'RAG Foundations', author Vedanshu Daxesh Patel) rather than the C:\\Users\\vedan\\Downloads copy used for Chapters 1-2's reels, per the human's explicit path this session and CLAUDE.md rule 4 (videos travel with their book). Folder dated 2026-08-26 per explicit instruction, independent of the chapter's own fact-check date (2026-08-13, see chapters/03-representing-text-embeddings.md.verified.json — verified_by Vedanshu Daxesh Patel, GATE 4, 0 discrepancies) and independent of the session's actual calendar date. ILLUSTRATE LAW: Claude UI appears only at B00 (ask+result), BHTF (handoff), BOUT (outro), and the BVDT verdict artifact. B01 and B07 reuse ProblemExecutiveSummary (built for the Chapter 2 ai-explainer reel) verbatim, props-only reuse; B08 reuses the shared PredictCard, unmodified. B02, B03, B04, B05, B06, B09 are six genuinely new bespoke components (EmbedIllu.tsx) — no shared library component fits a 2D vector scatter, a vector-arithmetic diagram, a before/after architecture card, a bar-comparison, or an angle-between-vectors diagram. No Manim/scenes.py used — this book's ai-explainer reels (Ch1, Ch2) are pure-Remotion by established convention, and Manim's run.sh render path has a known Windows-path bug (see the Ch2 deep-explainer's BUILD-LOG.md) that pure-Remotion sidesteps entirely.",
+    "tags": [
+      "RAG",
+      "embeddings",
+      "word2vec",
+      "BERT",
+      "Sentence-BERT",
+      "cosine similarity",
+      "semantic similarity",
+      "vector space"
+    ],
+    "build": {
+      "at": "2026-08-23T12:11:56",
+      "cut": "master",
+      "filled": 13,
+      "of": 13,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "role_note": "COLD OPEN LAW — ask shown answered",
+      "narration_text": "Hej — I'm Vedanshu Daxesh Patel. Chapter two ended on a requirement: hand the model the right text, chosen for the question being asked. 'Right' means 'about the same thing' — but a computer can't just read and tell. This chapter builds the one idea that makes that comparison possible: turning text into numbers.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Composer greeting 'Hej, Vedanshu' types in; spark ignites"
+          },
+          {
+            "at": "15%",
+            "event": "Command types: how does a computer decide 'about the same thing'?"
+          },
+          {
+            "at": "45%",
+            "event": "Send arms; runningText 'turning text into numbers…' plays"
+          },
+          {
+            "at": "65%",
+            "event": "Output line 1 lands: an embedding — text, turned into a vector"
+          },
+          {
+            "at": "80%",
+            "event": "Output line 2 lands: closeness in that space ≈ closeness in meaning"
+          },
+          {
+            "at": "95%",
+            "event": "Output line 3 lands: the idea everything from chapter four builds on"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hej, Vedanshu",
+            "topic": "RAG · CHAPTER 3 — REPRESENTING TEXT",
+            "segment": "Meaning, As A Number.",
+            "command": "Chapter two says the model needs 'the right text' for a question. How does a computer even decide what counts as 'about the same thing' — when it can't read?",
+            "runningText": "turning text into numbers…",
+            "output": [
+              "an embedding — text, turned into a vector",
+              "closeness in that space ≈ closeness in meaning",
+              "the idea everything from chapter four builds on"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 16.81
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary (BLUF)",
+      "narration_text": "Here's the whole idea in one breath: turn every piece of text into a list of numbers — a vector — learned so that similar meanings end up as similar numbers. Then comparing meaning becomes comparing distance. That's an embedding, and it's the foundation the rest of this book stands on.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: 'Meaning, turned into a number.'"
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: closeness between vectors stands in for closeness in meaning"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles: closeness, as a proxy for meaning"
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the Chapter 2 ai-explainer reel (props-only reuse, per its own starter-template contract)",
+          "props": {
+            "headline": "Meaning, turned into a number.",
+            "subline": "A computer can't compare 'about the same thing' by reading — so it compares vectors instead, and closeness between them stands in for closeness in meaning.",
+            "sparkLine": "Closeness, as a proxy for meaning."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 14.93
+    },
+    {
+      "beat_id": "B02",
+      "act": "text, turned into a vector",
+      "narration_text": "Word2vec started this: a network trained over one point six billion words learns, for every word, a few hundred numbers — not hand-assigned, discovered purely from which words appear near which other words. Words used in similar contexts land with similar vectors.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "plot frame draws"
+          },
+          {
+            "at": "30%",
+            "event": "'vacation', 'PTO', 'leave' dots land clustered together"
+          },
+          {
+            "at": "65%",
+            "event": "'printer' dot lands far away, alone"
+          },
+          {
+            "at": "85%",
+            "event": "caption settles: redrawn from the chapter's own Fig. 01"
+          }
+        ],
+        "remotion": {
+          "pattern": "EmbedScatterPlot",
+          "props": {
+            "headline": "Text, Turned Into A Vector",
+            "points": [
+              {
+                "label": "vacation",
+                "x": 0.28,
+                "y": 0.62
+              },
+              {
+                "label": "PTO",
+                "x": 0.36,
+                "y": 0.7
+              },
+              {
+                "label": "leave",
+                "x": 0.3,
+                "y": 0.78
+              },
+              {
+                "label": "printer",
+                "x": 0.86,
+                "y": 0.18,
+                "accent": true
+              }
+            ],
+            "caption": "Redrawn (simplified) from the chapter's own Fig. 01 — real embeddings hold hundreds of dimensions, not two.",
+            "sparkLine": "Learned, not assigned."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 15.1
+    },
+    {
+      "beat_id": "B03",
+      "act": "vector arithmetic, held loosely",
+      "narration_text": "A famous demonstration of how much structure these vectors capture: king, minus man, plus woman, lands close to queen. Hold this loosely — later replication work found this specific result depends on excluding the query word itself from the search; skip that step, and the closest vector to the equation is often just 'king' again.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "equation tokens land in sequence: king − man + woman ≈ queen"
+          },
+          {
+            "at": "55%",
+            "event": "'queen' settles in terracotta"
+          },
+          {
+            "at": "65%",
+            "event": "caveat line fades in: depends on excluding the query word from the search"
+          }
+        ],
+        "remotion": {
+          "pattern": "EmbedVectorArithmetic",
+          "props": {
+            "equation": [
+              "king",
+              "-",
+              "man",
+              "+",
+              "woman",
+              "≈",
+              "queen"
+            ],
+            "caveat": "Depends on excluding the query word from the search — without that step, the closest vector is often just \"king\" again (Mikolov, Yih & Zweig, 2013; later replication work).",
+            "sparkLine": "A famous illustration, held loosely."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 18.09
+    },
+    {
+      "beat_id": "B04",
+      "act": "from words to whole passages",
+      "narration_text": "Word2vec works word by word — a clean first example, but not what RAG actually embeds. A help-desk question is a whole passage. BERT learns deep contextual representations, but its raw output compares whole sentences poorly. Sentence-BERT restructures it so one vector stands for one whole passage, meaningfully comparable to another.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "left card lands: BERT, raw output — performs poorly for whole sentences"
+          },
+          {
+            "at": "40%",
+            "event": "arrow draws"
+          },
+          {
+            "at": "55%",
+            "event": "right card lands: Sentence-BERT — one vector = one sentence"
+          }
+        ],
+        "remotion": {
+          "pattern": "EmbedWordToPassage",
+          "props": {
+            "leftTitle": "BERT, raw output",
+            "leftSub": "performs poorly for comparing whole sentences",
+            "rightTitle": "Sentence-BERT",
+            "rightSub": "one vector = one sentence, meaningfully comparable",
+            "sparkLine": "Whole chunks, not single words."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 19.46
+    },
+    {
+      "beat_id": "B05",
+      "act": "the speed leap",
+      "narration_text": "And the gain isn't just cleaner comparisons — it's speed. Finding the most similar pair among ten thousand sentences took roughly sixty-five hours with raw BERT. Restructured as Sentence-BERT, the same task, at comparable accuracy, takes about five seconds.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "'raw BERT' bar rises to ~65 hours"
+          },
+          {
+            "at": "20%",
+            "event": "'Sentence-BERT' bar rises, barely visible, to ~5 seconds"
+          },
+          {
+            "at": "60%",
+            "event": "task detail line settles"
+          },
+          {
+            "at": "80%",
+            "event": "citation fades in"
+          }
+        ],
+        "remotion": {
+          "pattern": "EmbedSpeedLeap",
+          "props": {
+            "fromLabel": "raw BERT",
+            "fromValue": "~65 hours",
+            "toLabel": "Sentence-BERT",
+            "toValue": "~5 seconds",
+            "detail": "finding the most similar pair among 10,000 sentences",
+            "citation": "Reimers & Gurevych, 2019",
+            "sparkLine": "Same accuracy. Different physics."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 14.63
+    },
+    {
+      "beat_id": "B06",
+      "act": "closeness, measured",
+      "narration_text": "Once text is a vector, comparing meaning becomes geometry: how close are two vectors? The standard measure is cosine similarity — the angle between them — and it's older than embeddings themselves, borrowed straight from classical information retrieval.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "15%",
+            "event": "question vector draws"
+          },
+          {
+            "at": "30%",
+            "event": "passage vector draws in terracotta"
+          },
+          {
+            "at": "60%",
+            "event": "angle arc draws between them"
+          },
+          {
+            "at": "85%",
+            "event": "caption settles with citation"
+          }
+        ],
+        "remotion": {
+          "pattern": "EmbedCosineSimilarity",
+          "props": {
+            "headline": "Closeness, Measured",
+            "caption": "cosine similarity — the angle between two vectors (Manning, Raghavan & Schütze, 2008)",
+            "sparkLine": "An old tool. A richer vector."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 13.97
+    },
+    {
+      "beat_id": "B07",
+      "act": "the payoff",
+      "narration_text": "Here's the payoff. Before embeddings, comparing text meant comparing literal words. That fails constantly — people ask about the same thing in completely different words. Embeddings compare what the text is about, not its characters. The question doesn't need the manual's exact wording — it only needs to land near it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "headline types in: 'Meaning, not vocabulary.'"
+          },
+          {
+            "at": "45%",
+            "event": "subline resolves"
+          },
+          {
+            "at": "85%",
+            "event": "spark line settles: close in space, close in meaning"
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim (props-only reuse) — second use in this reel, different props",
+          "props": {
+            "headline": "Meaning, not vocabulary.",
+            "subline": "Two passages can share almost no words and still land close together — because what's compared is what the text is about.",
+            "sparkLine": "Close in space, close in meaning."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 16.55
+    },
+    {
+      "beat_id": "B08",
+      "act": "predict — which one means the same thing?",
+      "narration_text": "Predict before I show you: 'Can I carry over unused vacation days to next year?' Which of these two lands closest to it in meaning: 'What happens to my remaining PTO at year-end?' or 'Can I carry a laptop bag on a business trip?'",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "question types in: which one means the same thing?"
+          },
+          {
+            "at": "35%",
+            "event": "underline draws"
+          },
+          {
+            "at": "60%",
+            "event": "commit nudge fades in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemPredictCard",
+          "wraps": "PredictCard (illustrations/structural.tsx), wrapped for a spark line",
+          "props": {
+            "sparkLine": "Commit first.",
+            "question": "Which one means the same thing?",
+            "commit": "commit — the reveal is one beat away"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 12.82
+    },
+    {
+      "beat_id": "B09",
+      "act": "reveal — same meaning, different words",
+      "narration_text": "'How much vacation do I get' and 'what's the PTO policy' share almost no words — and land close together, because they're the same request. 'How do I request time off' and 'how do I request a new laptop' share the exact phrase 'how do I request' — and land far apart, because they're not the same request at all.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "plot frame draws"
+          },
+          {
+            "at": "25%",
+            "event": "'how much vacation do I get' and 'what's the PTO policy' land close together, linked"
+          },
+          {
+            "at": "55%",
+            "event": "'how do I request time off' and 'how do I request a new laptop' land far apart"
+          },
+          {
+            "at": "85%",
+            "event": "caption settles: redrawn from the chapter's own Fig. 02"
+          }
+        ],
+        "remotion": {
+          "pattern": "EmbedRevealPairs",
+          "props": {
+            "headline": "Same Meaning. Different Words.",
+            "points": [
+              {
+                "label": "how much vacation do I get",
+                "x": 0.18,
+                "y": 0.62,
+                "group": "close"
+              },
+              {
+                "label": "what's the PTO policy",
+                "x": 0.3,
+                "y": 0.5,
+                "group": "close"
+              },
+              {
+                "label": "how do I request time off",
+                "x": 0.78,
+                "y": 0.28,
+                "group": "far"
+              },
+              {
+                "label": "how do I request a new laptop",
+                "x": 0.7,
+                "y": 0.82,
+                "group": "far"
+              }
+            ],
+            "caption": "Redrawn (simplified) from the chapter's own Fig. 02 — shared wording (“how do I request”) does not mean shared meaning.",
+            "sparkLine": "Meaning, not vocabulary."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 17.07
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "lead_silence_s": 0.5,
+      "narration_text": "Let's recap. Text becomes a vector, learned so similar meanings land as similar numbers — word2vec proved the idea, Sentence-BERT made it work for whole passages, fast. Cosine similarity measures the closeness. And closeness in that space is a proxy for closeness in meaning — not perfect, but good enough that the rest of this book is built on it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Meaning, As A Number.",
+            "artifactHeading": "How a computer compares meaning",
+            "artifactLines": [
+              "Text becomes a vector — learned from patterns of usage, not hand-assigned (Mikolov et al., 2013).",
+              "Word-level vectors aren't enough for RAG — Sentence-BERT makes whole-passage comparison both accurate and fast (Reimers & Gurevych, 2019).",
+              "Cosine similarity — the angle between two vectors — measures that closeness, a tool older than embeddings themselves (Manning, Raghavan & Schütze, 2008).",
+              "Closeness in the vector space is a proxy for closeness in meaning: imperfect, but the foundation the rest of this book depends on."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 18.56
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Paste this: 'Take three short phrases I'll give you, and reason — without running any actual computation — about which two are most likely to land closest together in embedding space, and why. Then take one pair that shares a lot of words but means different things, and explain why they should land far apart anyway.' Bring your own three phrases, and check whether your intuition about meaning actually matches what a real embedding model would place close together.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "RAG · CHAPTER 3 — REPRESENTING TEXT",
+            "segment": "Meaning, As A Number.",
+            "command": "Take three short phrases I'll give you, and reason — without running any actual computation — about which two are most likely to land closest together in embedding space, and why. Then take one pair that shares a lot of words but means different things, and explain why they should land far apart anyway.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 22.8
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Meaning, As A Number. Vedanshu Daxesh Patel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Meaning, As A Number.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T12:11:56"
+      },
+      "actual_duration_s": 3.37
+    }
+  ]
+}

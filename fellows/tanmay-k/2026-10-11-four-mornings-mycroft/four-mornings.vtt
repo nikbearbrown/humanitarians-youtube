@@ -1,0 +1,258 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.616
+Here's a portfolio dashboard, the way
+its reader sees it over morning coffee.
+
+00:00:03.656 --> 00:00:08.928
+Five stocks. One total, $65,098,
+up 21%. It looks finished.
+
+00:00:09.321 --> 00:00:12.213
+But every number on this screen
+arrived through a few quiet hand-offs.
+
+00:00:12.253 --> 00:00:15.344
+Places where one part of the system
+takes another part's word for it.
+
+00:00:15.384 --> 00:00:17.082
+So let's spend four mornings
+with this dashboard,
+
+00:00:17.122 --> 00:00:20.004
+and on each one, let one
+of those hand-offs slip.
+
+00:00:20.217 --> 00:00:23.515
+Hi, this is Tanmay Kulkarni,
+in for Humanitarians AI.
+
+00:00:23.900 --> 00:00:25.537
+This week I contributed to Mycroft,
+
+00:00:25.557 --> 00:00:28.662
+which is both a book and a working
+repository for finance pipelines.
+
+00:00:28.702 --> 00:00:31.497
+It calls them recipes. Two of
+them sit behind this dashboard.
+
+00:00:31.517 --> 00:00:33.407
+One fetches the prices and does the math.
+
+00:00:33.447 --> 00:00:35.494
+The other calls it and draws the screen.
+
+00:00:35.534 --> 00:00:38.157
+My pull request, now merged,
+added checks to both,
+
+00:00:38.177 --> 00:00:40.749
+and rebuilt the math step
+so it runs on test data.
+
+00:00:40.789 --> 00:00:43.567
+Every price you'll see
+is invented, for testing.
+
+00:00:43.607 --> 00:00:44.482
+Morning one.
+
+00:00:44.975 --> 00:00:48.033
+The quote for one stock comes
+back with a price of zero.
+
+00:00:48.073 --> 00:00:50.071
+The workflow reads the price
+with a JavaScript "or",
+
+00:00:50.111 --> 00:00:52.713
+and to JavaScript, zero counts as missing.
+
+00:00:53.023 --> 00:00:55.495
+So it quietly uses the
+previous close, 590,
+
+00:00:55.515 --> 00:00:58.578
+and the dashboard looks perfectly
+normal. The math is right.
+
+00:00:58.618 --> 00:01:00.922
+The reader just doesn't know
+which price they're looking at.
+
+00:01:00.962 --> 00:01:03.675
+I kept that behaviour exactly,
+because it's the workflow's choice,
+
+00:01:03.695 --> 00:01:06.910
+not mine, and the recipe now
+notes it for the maintainers.
+
+00:01:06.950 --> 00:01:08.515
+What changed is the record.
+
+00:01:08.535 --> 00:01:11.476
+For every stock, it now
+says which price was used.
+
+00:01:12.233 --> 00:01:16.052
+Morning two. A response comes back for
+a symbol the portfolio doesn't hold.
+
+00:01:16.092 --> 00:01:19.085
+In the original, the calculation
+looks up how many shares you own,
+
+00:01:19.125 --> 00:01:21.288
+finds nothing, and stops with an error.
+
+00:01:21.328 --> 00:01:23.473
+Now the check before it
+catches the response first,
+
+00:01:23.493 --> 00:01:25.302
+and sets it aside with a reason.
+
+00:01:25.342 --> 00:01:28.851
+And the calculation refuses to run
+on anything that check turned away.
+
+00:01:28.891 --> 00:01:31.303
+Nothing half finished reaches the screen.
+
+00:01:31.741 --> 00:01:33.874
+Morning three, and this one surprised me.
+
+00:01:33.914 --> 00:01:36.381
+The portfolio, which stocks,
+how many shares, what you paid,
+
+00:01:36.401 --> 00:01:38.893
+is written out twice
+inside the same workflow.
+
+00:01:38.933 --> 00:01:42.207
+One copy decides which prices to
+fetch. The other one does the math.
+
+00:01:42.247 --> 00:01:45.020
+Edit the shares in the first,
+and the math keeps using the second.
+
+00:01:45.060 --> 00:01:47.387
+The total doesn't move,
+and nothing says why.
+
+00:01:47.427 --> 00:01:49.341
+So the first step now reads both copies,
+
+00:01:49.361 --> 00:01:52.302
+and stops if they disagree,
+naming the difference.
+
+00:01:52.666 --> 00:01:55.681
+Morning four. The dashboard
+doesn't hold any prices itself.
+
+00:01:55.721 --> 00:01:58.537
+It calls the price workflow,
+and it finds it by name.
+
+00:01:58.577 --> 00:02:01.206
+The ID that would pin it
+down is still a placeholder.
+
+00:02:01.246 --> 00:02:04.326
+So the dashboard's first step now
+checks that the name it calls is
+
+00:02:04.346 --> 00:02:07.522
+the price workflow's real
+name, and stops if it isn't.
+
+00:02:08.133 --> 00:02:10.150
+And then there was the
+morning it was my own check.
+
+00:02:10.190 --> 00:02:12.033
+To make sure these checks
+could actually fail,
+
+00:02:12.053 --> 00:02:15.724
+I broke my own calculation on purpose,
+and ran the test that's meant to catch it.
+
+00:02:15.764 --> 00:02:17.053
+It passed. All green.
+
+00:02:17.073 --> 00:02:19.000
+But the broken version
+had never run at all.
+
+00:02:19.040 --> 00:02:21.629
+My test was grading a file
+left over from the good run.
+
+00:02:21.669 --> 00:02:25.208
+A check that can't fail is worse than
+no check, because it looks like one.
+
+00:02:25.248 --> 00:02:28.778
+Now the test won't grade anything
+unless the broken version really ran.
+
+00:02:28.818 --> 00:02:30.382
+And then it catches the break,
+
+00:02:30.422 --> 00:02:32.090
+down to a single cent.
+
+00:02:32.850 --> 00:02:35.030
+So here's the same
+dashboard, on any morning.
+
+00:02:35.050 --> 00:02:36.476
+Nothing on the screen changed.
+
+00:02:36.516 --> 00:02:38.004
+What changed is behind it.
+
+00:02:38.044 --> 00:02:40.110
+Four hand-offs that now
+speak up when they slip.
+
+00:02:40.150 --> 00:02:43.253
+And some that still run on
+trust. Fetching live prices.
+
+00:02:43.293 --> 00:02:46.092
+Three more steps in one recipe,
+and five in the other.
+
+00:02:46.132 --> 00:02:48.897
+Both recipes are still
+drafts, and they say so.
+
+00:02:49.483 --> 00:02:51.320
+Pick one number you look at every morning.
+
+00:02:51.360 --> 00:02:53.243
+What is it quietly taking on trust?
+
+00:02:53.263 --> 00:02:55.397
+And if that trust slipped,
+what would tell you?
+
+00:02:55.437 --> 00:02:58.551
+A good answer names the hand-off,
+and the thing that would say so.
+
+00:02:58.591 --> 00:03:00.885
+"It's always been right" doesn't count.
+
+00:03:01.116 --> 00:03:05.665
+Four mornings. Tanmay Kulkarni,
+in for Humanitarians AI, signing off.

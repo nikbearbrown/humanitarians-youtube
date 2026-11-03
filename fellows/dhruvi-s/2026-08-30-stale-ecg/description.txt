@@ -1,0 +1,80 @@
+A Stale ECG Is Worse Than No ECG
+
+Adding a routine ECG to an in-hospital mortality model moves AUROC from 0.8574
+to 0.8595 across 144,668 cardiac admissions in MIMIC-IV. That +0.0021 looks like
+nothing — and it hides a sign change.
+
+Split those admissions by how old the ECG was at the moment of admission:
+
+  ≤ 1 day       +0.0046   (95% CI  0.0028 to  0.0061)   real gain
+  1–30 days     +0.0053   (95% CI -0.0002 to  0.0110)   underpowered
+  1–12 months   +0.0003   (95% CI -0.0042 to  0.0045)   underpowered
+  > 1 year      -0.0048   (95% CI -0.0079 to -0.0018)   real harm
+
+A same-day ECG helps. An ECG more than a year old makes the model worse than
+leaving the ECG out entirely. The decay is tested rather than eyeballed:
+fresh-minus-stale contrast +0.0092 (95% CI 0.0057 to 0.0126, bootstrap
+p < 0.001) and a slope of -0.0033 AUROC per decade of days. The contrast stays
+positive in 5 of 5 fold seeds, though its magnitude varies across them
+(+0.0061 to +0.0094) — the sign is what replicates, not the size.
+
+Patients with a same-day ECG are being actively worked up, so that comparison is
+confounded by case mix. To remove it, the analysis keeps only admissions where
+the patient had both a same-day ECG and older ones on file (40,764 admissions,
+16,157 patients, 1,262 deaths), then scores those same admissions repeatedly
+while feeding the model progressively older ECGs from that same patient. Rows,
+labels and EHR features stay fixed; only the ECG's age changes. The harm
+survives: +0.0056 at a median age of 0.2 days, -0.0051 at a median of 508 days.
+
+The mechanism is a train/deploy mismatch. The model learned to trust the ECG
+because most training ECGs were fresh, then applied that trust to an input whose
+reliability had changed. Train it on stale ECGs instead and it discounts them,
+landing back at EHR-only performance — so the harm is not intrinsic to old ECGs.
+
+The obvious fix did not clearly work. Supplying the ECG's age as a feature helps
+by +0.0007 to +0.0013 AUROC with every interval crossing zero. Matching the
+training age distribution to deployment is also inconclusive (+0.0032, 95% CI
+-0.0018 to 0.0078). Both are reported as negative results. Demonstrating the
+problem is the easy part.
+
+CHAPTERS
+00:00  The question
+00:08  The average is a mixture
+00:32  Bin by ECG age, resample patients
+00:52  The bootstrap loop
+01:17  The sign change
+01:51  But the groups aren't comparable
+02:14  Fit once, vary one input
+02:39  The harm survives
+03:05  The mechanism
+03:30  What didn't fix it
+03:53  Your turn
+
+SOURCE
+Code, data pipeline and full write-up:
+https://github.com/dhruvi/mimic-research
+PAPER.md has methods, tests and limitations. ANALYSIS.md is the plain-language
+version.
+
+LIMITATIONS
+Report and measurements, not waveform — a waveform model would likely find more,
+so these numbers bound ECG value from below. Absolute effects are small
+(~0.005–0.010 AUROC); the sign change is the finding, not the magnitude. Single
+centre, retrospective (BIDMC), so association rather than cause. The
+within-patient design removes case mix but not unmeasured time-varying
+confounding. Admissions with no pre-admission ECG (23.5%) are excluded
+throughout, and that exclusion is not random.
+
+DATA USE
+MIMIC-IV and MIMIC-IV-ECG are credentialed PhysioNet resources under a Data Use
+Agreement. Only aggregate results appear in this video. No patient-level data,
+no row-level records, no identifiers.
+
+Not medical advice. This is a video about model evaluation.
+
+—
+Built with the brutalist.art toolkit. Narration is Kokoro TTS running locally;
+every figure is rebuilt as native animation from the analysis JSON rather than
+screenshotted.
+
+@HumanitariansAI

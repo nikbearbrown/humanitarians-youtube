@@ -1,0 +1,483 @@
+{
+  "metadata": {
+    "title": "How Pitch Correction Works",
+    "slug": "pitch-correction-explainer",
+    "topic": "HUMANITARIANS AI · AUDIO CONCEPTS",
+    "register": "Pragmatist",
+    "audience": "Humanitarians AI",
+    "brand": "claude",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fps": 30,
+    "presenter": "Rohan V.",
+    "channel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "handoff_name": "PitchCorrection_RohanV",
+    "ai_disclosure": "Narration is an AI voice (Kokoro af_bella, Rohan V.'s persistent choice for the series); script and decisions by Rohan V.",
+    "note": "Audio-concept explainer: how pitch correction (Auto-Tune style) detects pitch, snaps it to a note and glides it there. EXECUTABLE EVIDENCE: pitch_demo.py synthesises a 7-note sung melody, detects pitch with YIN, snaps (chromatic or C major), glides with a retune time constant, shifts the audio with TD-PSOLA, then RE-MEASURES the result; every curve and number in B02-B06 comes from that run (evidence/pitch_demo.json). B04 and B05 end with listening clips from the same run (sung.wav, corrected_*.wav) appended to the narration track by mix_listen.py. MATH: B03's cents equation is typeset through runtime/scripts/typeset_math.py, no text fallback. The synthetic voice is labelled a test signal, never a real singer. Opening line follows docs/FELLOWS-SUBMISSION.md verbatim. NAME: narration spells 'Row-Haan'; on-screen text says 'Rohan V.'. WORD-CLOCK choreographed via cues.json + sync_cues.py.",
+    "tags": [
+      "Humanitarians AI",
+      "audio",
+      "pitch correction",
+      "Auto-Tune",
+      "singing",
+      "beginner",
+      "Lyrical Literacy"
+    ],
+    "build": {
+      "at": "2026-10-05T20:30:23",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Row-Haan and this video is about how pitch correction works: how a tool like Auto-Tune hears a note that's slightly off, and pulls it into tune. Every singer drifts a little, even good ones. The software can't hear the song the way you do. All it can do is measure, and it measures very fast.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Rohan",
+            "topic": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "segment": "How Pitch Correction Works",
+            "command": "How does Auto-Tune know a note is off, and how does it fix it?",
+            "runningText": "working it out…",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Claude",
+            "effortLabel": "Desktop",
+            "output": [
+              "measure the pitch, many times a second",
+              "snap it to the nearest allowed note",
+              "pull it there, as fast as you choose"
+            ],
+            "disclosure": "Narration: AI voice (Kokoro af_bella), script by Rohan V.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "drift": 0.5068,
+              "measure": 0.8302,
+              "fast": 0.9228
+            },
+            "durationSeconds": 18.35
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-05T22:08:25.512121+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 18.35,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 18.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BACKGROUND",
+      "narration_text": "A sung note is air vibrating. The faster the vibration repeats, the higher the note sounds. The A above middle C repeats four hundred and forty times every second: four hundred and forty hertz. Double that, and you're an octave higher. Between two neighbouring piano keys, musicians count a hundred tiny steps, called cents. Pitch correction works in cents.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "PitchCycles",
+          "props": {
+            "title": "A Note Is a Vibration That Repeats",
+            "sparkLine": "Faster repeats, higher note. Correction works in cents.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "air": 0.0362,
+              "faster": 0.1042,
+              "a440": 0.3412,
+              "double": 0.5405,
+              "cents": 0.8484,
+              "works": 0.9164
+            },
+            "durationSeconds": 22.08
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-05T21:29:32.392083+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 21,
+      "actual_duration_s": 22.08,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 22.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:PitchCycles",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "narration_text": "To measure the pitch, the software slides a copy of the sound along itself. When the copy has moved by exactly one cycle, the two line up, and the difference between them drops almost to zero. That shift is one period. Here it's two point three milliseconds, so the note is four hundred and thirty hertz. The first Auto-Tune found pitch with this same idea, called autocorrelation.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "PitchFindPeriod",
+          "props": {
+            "title": "Slide the Sound Along Itself",
+            "sparkLine": "Where the copy lines up, you have one period.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "slides": 0.0713,
+              "lineup": 0.3201,
+              "zero": 0.4219,
+              "period": 0.5078,
+              "hz": 0.7202,
+              "first": 0.7697
+            },
+            "durationSeconds": 22.91
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-05T19:05:59.302029+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "actual_duration_s": 22.91,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 22.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:PitchFindPeriod",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MATH",
+      "narration_text": "Next it turns that number into a note. Four hundred and thirty hertz sits just below A, which is four hundred and forty. How far below? Twelve hundred, times the base-two logarithm of the ratio between them: minus thirty-nine and a half cents. So the target is A, and the job is to raise this note by almost forty cents.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "PitchSnapCents",
+          "props": {
+            "title": "From Hertz to Cents",
+            "sparkLine": "The nearest note becomes the target.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "note": 0.018,
+              "below": 0.2,
+              "how": 0.3591,
+              "log": 0.5148,
+              "minus": 0.6526,
+              "target": 0.7739
+            },
+            "durationSeconds": 20.33
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-06T00:05:21.290464+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 20.33,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 20.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:PitchSnapCents",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MEASURED",
+      "narration_text": "So I wrote one. I synthesised seven sung notes, each a little off, with a scoop up into every note and vibrato on the long ones. On average, forty cents out. My detector measured the pitch every six milliseconds, and the corrector pulled each note to its target. Measured again afterwards, it's under three cents out. Listen: first as sung, then corrected.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "PitchMelodyFix",
+          "props": {
+            "title": "I Built One and Measured It",
+            "sparkLine": "Forty cents out, then under three.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "listen": [
+              {
+                "label": "AS SUNG",
+                "from": 0.6677,
+                "to": 0.8115
+              },
+              {
+                "label": "CORRECTED",
+                "from": 0.8323,
+                "to": 0.9761
+              }
+            ],
+            "cues": {
+              "wrote": 0.0,
+              "seven": 0.0656,
+              "scoop": 0.1362,
+              "average": 0.2357,
+              "measured": 0.3083,
+              "pulled": 0.4067,
+              "again": 0.4704,
+              "listen": 0.5529
+            },
+            "durationSeconds": 33.52
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-05T21:37:42.730879+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 34,
+      "actual_duration_s": 33.52,
+      "audio_file": "mp3/beat-B04-listen.mp3",
+      "narration_audio_file": "mp3/beat-B04.mp3",
+      "listen_clips": [
+        {
+          "label": "AS SUNG",
+          "file": "sung.wav",
+          "start_s": 22.381,
+          "end_s": 27.201,
+          "gain_db": -14.9
+        },
+        {
+          "label": "CORRECTED",
+          "file": "corrected_instant.wav",
+          "start_s": 27.901,
+          "end_s": 32.721,
+          "gain_db": -14.9
+        }
+      ],
+      "render_duration_s": 33.541666666666664,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:PitchMelodyFix",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "RETUNE SPEED",
+      "narration_text": "The setting that matters most is speed: how quickly the pitch is pulled to the target. Pull it instantly, and the slides and the vibrato vanish, leaving flat steps. That's the robotic sound Cher's song Believe made famous in 1998. Pull it slowly, over a quarter of a second, and the vibrato survives. It's nineteen cents from perfect, but it still moves like a voice. Instant, then slow.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "PitchRetuneSpeed",
+          "props": {
+            "title": "Speed Decides How Human It Sounds",
+            "sparkLine": "Instant is robotic. Slow keeps the voice.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "listen": [
+              {
+                "label": "INSTANT",
+                "from": 0.689,
+                "to": 0.8236
+              },
+              {
+                "label": "SLOW",
+                "from": 0.8431,
+                "to": 0.9777
+              }
+            ],
+            "cues": {
+              "speed": 0.0149,
+              "instantly": 0.1349,
+              "vanish": 0.1916,
+              "robotic": 0.28,
+              "slowly": 0.4112,
+              "survives": 0.4745,
+              "listen": 0.627,
+              "nineteen": 0.5312
+            },
+            "durationSeconds": 35.83
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-06T00:11:30.112310+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 34,
+      "actual_duration_s": 35.83,
+      "audio_file": "mp3/beat-B05-listen.mp3",
+      "narration_audio_file": "mp3/beat-B05.mp3",
+      "listen_clips": [
+        {
+          "label": "INSTANT",
+          "file": "corrected_instant.wav",
+          "start_s": 24.685,
+          "end_s": 29.505,
+          "gain_db": -15.1
+        },
+        {
+          "label": "SLOW",
+          "file": "corrected_natural.wav",
+          "start_s": 30.205,
+          "end_s": 35.025,
+          "gain_db": -15.1
+        }
+      ],
+      "render_duration_s": 35.833333333333336,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:PitchRetuneSpeed",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE CATCH",
+      "narration_text": "Here's what it can't do: know which note you meant. My last note is seventy-five cents below G, which puts it closer to F sharp. Let the corrector pick from every note, and it lands, perfectly in tune, on F sharp. The wrong note. Tell it the song is in C major, where F sharp isn't allowed, and it goes to G.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "PitchWrongNote",
+          "props": {
+            "title": "In Tune Isn't the Same as Right",
+            "sparkLine": "It picks the nearest note, not the one you meant.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "cant": 0.0153,
+              "closer": 0.3338,
+              "every": 0.4559,
+              "wrong": 0.6829,
+              "major": 0.7965,
+              "g": 0.9473,
+              "seventyfive": 0.2186
+            },
+            "durationSeconds": 19.67
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-06T00:14:48.072426+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 19.67,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 19.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:PitchWrongNote",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "WHAT TO DO",
+      "narration_text": "So if you tune a vocal for a Lyrical Literacy track, set the key and scale first. Keep the speed slow for a natural voice, and go fast only when you want the effect. Then listen all the way through. A corrector can put every note in tune. It can't make them the right notes.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "HaiApplyCard",
+          "props": {
+            "title": "Set the Key, Then Choose the Speed",
+            "lede": "Pitch correction measures and snaps. Choosing the note is still your job.",
+            "steps": [
+              "Set the key and scale before anything else.",
+              "Slow speed for a natural voice. Fast or instant only for the effect.",
+              "Listen all the way through: in tune is not the same as the right note."
+            ],
+            "sparkLine": "Key first, speed second, ears last.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "key": 0.1833,
+              "slow": 0.3088,
+              "listen": 0.6455,
+              "right": 0.9464
+            },
+            "durationSeconds": 16.73
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-05T19:29:28.401264+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "actual_duration_s": 16.73,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 16.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:HaiApplyCard",
+        "at": "2026-10-05T20:30:23"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Pitch correction measures, snaps and pulls. You decide which note, and how fast. I'm Row-Haan, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "How Pitch Correction Works",
+            "handle": "@HumanitariansAI",
+            "subline": "Rohan V.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "close": 0.3661
+            },
+            "durationSeconds": 7.83
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-05T19:31:42.062031+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "actual_duration_s": 7.83,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 7.833333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-05T20:30:23"
+      }
+    }
+  ]
+}

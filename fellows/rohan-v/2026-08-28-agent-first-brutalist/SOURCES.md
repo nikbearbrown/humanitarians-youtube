@@ -8,7 +8,7 @@ Nothing was inferred from memory.
 
 | # | Source | Date | What it establishes |
 |---|---|---|---|
-| S1 | Nina Harris, "Weekly videos: what to make, what to upload, due Fridays" (email to fellows) | 2026-08-20 | The requirement: two videos a week due Friday — one STEM/AI topic, one project progress — each in 16:9 and 9:16, four files total. Also the flexibility floor. |
+| S1 | Nina H., "Weekly videos: what to make, what to upload, due Fridays" (email to fellows) | 2026-08-20 | The requirement: two videos a week due Friday — one STEM/AI topic, one project progress — each in 16:9 and 9:16, four files total. Also the flexibility floor. |
 | S2 | "Re: Updated Drive folder for video submissions" (email to fellows) | 2026-08-24 | The two destinations: 4K 16:9 and 9:16 videos to the Drive folder; code to the `fellows/` path of the humanitarians-youtube repo. |
 | S3 | `brutalist.art` toolkit — working clone | cloned 2026-08-28 | Every mechanism claim: audio-first clocking, slot precedence, selective recompile, the Shorts derivation, the free/local voice engine. |
 | S4 | This build session | 2026-08-28 | The pipeline was executed end to end to produce this reel. Every step the video describes was actually performed, not described from documentation. |

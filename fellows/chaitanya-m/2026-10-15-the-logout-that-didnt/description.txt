@@ -1,0 +1,59 @@
+The Logout That Didn't — a Medhavi Hub postmortem
+
+A bug report: the Logout button logs nobody out. Every user, every time, and
+only in production. The same code, on a developer's laptop, logged out
+perfectly — and nothing in the logout code had changed for months.
+
+This is the postmortem. What broke, why it was invisible exactly where you would
+look for it, and the two things worth taking away.
+
+WHAT YOU WILL KNOW AFTER WATCHING
+What the button was actually doing — a server call, a sweep through every cookie
+it could see, local and session storage, then a redirect. What it never did: ask
+the identity provider to end the session. Why that worked for months and then
+stopped, when the project moved from the provider's development setup to its
+production one. Why a cookie marked HttpOnly on someone else's domain cannot be
+deleted by your page, and why that is the flag doing its job rather than a bug.
+And what the fix looks like when you write it carefully — a sign-out call raced
+against a five-second timer, so a slow third-party service cannot strand a user
+on a page that will not let them leave.
+
+CHAPTERS
+0:00  The report — the button that does nothing
+0:14  Every time, for everyone, in production only
+0:27  The twist — it works fine on a laptop
+0:42  What it was doing
+0:58  The omission
+1:11  The move — dev setup to production
+1:23  Root cause — HttpOnly, on another domain
+1:47  The survivor
+2:02  The fix, and why it has a timeout
+2:23  What stayed, and what hasn't landed
+2:40  The lesson
+3:02  Recap
+3:24  Your turn
+
+BE PRECISE ABOUT WHAT WAS FIXED
+Logging out always revoked textbook access correctly — that runs off a separate
+server-side check and was never affected. It was the hub's own session that
+survived. That half is fixed on main.
+
+TRY IT YOURSELF
+The prompt from the end of the video:
+
+"My logout clears cookies and local storage by hand instead of calling my auth
+provider's sign-out. Tell me what that breaks once the session cookie is
+HttpOnly and on the provider's own domain, and what else in my app might be
+assuming state lives somewhere it no longer does."
+
+That last clause is the one to push on. This was never really a bug about
+logout — it was a bug about an assumption that quietly stopped being true.
+
+NOTES
+Runtime 3:53. Narrated by Bella (Kokoro af_bella). Built with Brutalist.
+For Chaitanya M. and Humanitarians AI · @HumanitariansAI
+
+Every claim here was checked against the source on both branches after filming:
+eleven claims, eleven verified. The video says the fix had not reached the
+development branch at the time of recording. That was re-checked ten days later
+and was still true, so the warning in the video has not expired.

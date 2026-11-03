@@ -1,0 +1,443 @@
+1
+00:00:00,000 --> 00:00:03,133
+Hi — I'm Divij Pawar. This video is about why AI agents
+
+2
+00:00:03,133 --> 00:00:05,267
+fail silently, and what actually stops it.
+
+3
+00:00:05,700 --> 00:00:09,167
+Somewhere right now, an AI agent is stuck. Not broken. Not crashed.
+
+4
+00:00:09,400 --> 00:00:12,467
+Worse — it's still running, still confident, still absolutely sure it's making
+
+5
+00:00:12,467 --> 00:00:15,433
+progress, while it does the exact same thing over and over, burning
+
+6
+00:00:15,433 --> 00:00:18,933
+time, burning money, and reporting "success" the entire way through.
+
+7
+00:00:19,610 --> 00:00:21,977
+This is the part nobody puts in the demo video.
+
+8
+00:00:22,443 --> 00:00:25,743
+Today we're opening up the four ways agents actually fail — and
+
+9
+00:00:25,743 --> 00:00:28,577
+then we're going to fix one, live, so you can see exactly
+
+10
+00:00:28,577 --> 00:00:29,677
+what stops the bleeding.
+
+11
+00:00:30,663 --> 00:00:33,363
+An agent works in a cycle: look at the situation, decide what
+
+12
+00:00:33,363 --> 00:00:36,063
+to do, take an action, check what happened, repeat. That loop is
+
+13
+00:00:36,063 --> 00:00:36,863
+the whole engine.
+
+14
+00:00:37,063 --> 00:00:39,763
+The problem is, nothing built into that loop guarantees it ever stops.
+
+15
+00:00:40,063 --> 00:00:42,497
+Say you've got a coding agent trying to fix a failing test.
+
+16
+00:00:42,730 --> 00:00:45,163
+It runs the test, sees it fail, edits the code, runs the
+
+17
+00:00:45,163 --> 00:00:45,963
+test again.
+
+18
+00:00:46,097 --> 00:00:49,030
+Reasonable so far. But if its fix doesn't actually address the real
+
+19
+00:00:49,030 --> 00:00:51,897
+problem, the test fails again, in the exact same way. So it
+
+20
+00:00:51,897 --> 00:00:53,830
+tries again. Same failure. Again.
+
+21
+00:00:54,230 --> 00:00:57,197
+The agent has no built-in sense of "I've tried this three times,
+
+22
+00:00:57,397 --> 00:00:58,997
+something's fundamentally wrong here."
+
+23
+00:00:59,630 --> 00:01:02,963
+It just keeps observing the same failure, and reacting the same way,
+
+24
+00:01:02,963 --> 00:01:05,730
+forever — unless something outside the loop stops it.
+
+25
+00:01:06,330 --> 00:01:09,297
+Every AI model has something like a working memory — a limited
+
+26
+00:01:09,297 --> 00:01:12,063
+window of text it can actually pay attention to at once.
+
+27
+00:01:12,630 --> 00:01:15,330
+As a task runs longer, more and more gets stuffed into that
+
+28
+00:01:15,330 --> 00:01:19,563
+window: the original instructions, ten tool results, error messages, retries, side
+
+29
+00:01:19,563 --> 00:01:20,363
+conversations.
+
+30
+00:01:20,797 --> 00:01:23,430
+Eventually, older information starts getting crowded out, or just
+
+31
+00:01:24,030 --> 00:01:27,230
+deprioritized. The agent's original goal — the thing you actually asked for
+
+32
+00:01:27,230 --> 00:01:28,763
+— was three hundred messages ago.
+
+33
+00:01:29,397 --> 00:01:32,363
+What's left in its immediate attention is the last few tool calls
+
+34
+00:01:32,363 --> 00:01:33,163
+and errors.
+
+35
+00:01:33,297 --> 00:01:36,663
+So it starts optimizing for "make this error go away," instead of
+
+36
+00:01:36,663 --> 00:01:38,597
+"accomplish what the user actually wanted."
+
+37
+00:01:39,097 --> 00:01:42,863
+That's context drift. The agent hasn't forgotten in a dramatic way —
+
+38
+00:01:42,863 --> 00:01:44,897
+it's just lost the thread of what mattered most.
+
+39
+00:01:45,650 --> 00:01:48,183
+Every tool an agent can use has a strict shape it expects
+
+40
+00:01:48,183 --> 00:01:50,283
+— specific fields, specific formats.
+
+41
+00:01:50,717 --> 00:01:53,417
+Like a form that only accepts a date in one exact format,
+
+42
+00:01:53,650 --> 00:01:56,483
+or a function that only accepts a real, existing file name.
+
+43
+00:01:56,917 --> 00:02:00,383
+Sometimes the model predicts an argument that sounds exactly right — plausible,
+
+44
+00:02:00,917 --> 00:02:02,883
+well-formatted, confident — but it's just made up.
+
+45
+00:02:03,350 --> 00:02:06,183
+Maybe it's referencing a file that was deleted three steps ago.
+
+46
+00:02:06,783 --> 00:02:09,250
+Maybe it's inventing a setting the tool never supported.
+
+47
+00:02:09,617 --> 00:02:13,083
+The tool call either throws an error, or worse, silently does something
+
+48
+00:02:13,083 --> 00:02:14,583
+slightly different than intended.
+
+49
+00:02:15,017 --> 00:02:17,450
+And because language models are built to produce fluent,
+
+50
+00:02:17,917 --> 00:02:21,883
+confident-sounding text, a hallucinated argument doesn't look like a guess. It looks
+
+51
+00:02:21,883 --> 00:02:23,083
+exactly like a fact.
+
+52
+00:02:23,750 --> 00:02:26,583
+This is the failure mode that makes the other three dangerous, instead
+
+53
+00:02:26,583 --> 00:02:27,383
+of just annoying.
+
+54
+00:02:27,717 --> 00:02:30,283
+An agent has no built-in alarm bell for "I am stuck."
+
+55
+00:02:30,717 --> 00:02:34,217
+It doesn't experience frustration or doubt. So after ten failed attempts at
+
+56
+00:02:34,217 --> 00:02:37,117
+the same fix, it can still generate a final summary that reads:
+
+57
+00:02:37,450 --> 00:02:38,783
+"Task completed successfully."
+
+58
+00:02:39,450 --> 00:02:42,317
+That gap — between what actually happened, and what the agent reports
+
+59
+00:02:42,317 --> 00:02:45,583
+happened — is the single most dangerous thing about agent failures.
+
+60
+00:02:46,217 --> 00:02:48,383
+A human who's stuck usually looks stuck.
+
+61
+00:02:48,817 --> 00:02:52,050
+An agent that's stuck can look identical to an agent that succeeded,
+
+62
+00:02:52,417 --> 00:02:54,783
+right up until someone checks the actual result.
+
+63
+00:02:55,470 --> 00:02:58,303
+Let's walk through one, start to finish. You ask a coding agent
+
+64
+00:02:58,303 --> 00:03:01,103
+to deploy a small website update. Step one — it runs the
+
+65
+00:03:01,103 --> 00:03:04,103
+deploy command. Step two — the deploy fails, because of a missing
+
+66
+00:03:04,103 --> 00:03:05,070
+environment variable.
+
+67
+00:03:05,503 --> 00:03:07,737
+Step three — instead of asking you what that variable should be,
+
+68
+00:03:07,903 --> 00:03:10,037
+it guesses a value, and hallucinates it into the config.
+
+69
+00:03:10,503 --> 00:03:13,437
+Step four — the deploy runs again, fails differently now, because the
+
+70
+00:03:13,537 --> 00:03:14,337
+guessed value was wrong.
+
+71
+00:03:14,803 --> 00:03:16,703
+Step five — the agent, still in the loop,
+
+72
+00:03:17,137 --> 00:03:20,537
+tries a slightly different guess. Step six — same failure, different guess.
+
+73
+00:03:20,737 --> 00:03:24,237
+This repeats twelve times. By attempt twelve, the context window is packed
+
+74
+00:03:24,237 --> 00:03:28,237
+with failed deploy logs. The original instruction — "deploy this small update"
+
+75
+00:03:28,303 --> 00:03:30,637
+— has been buried under eleven rounds of error messages.
+
+76
+00:03:31,070 --> 00:03:34,237
+And the agent, unprompted, hasn't once said, "I don't actually know this
+
+77
+00:03:34,237 --> 00:03:35,337
+value. Can you tell me?"
+
+78
+00:03:35,960 --> 00:03:38,593
+So how do you actually stop this? Three guardrails — and they
+
+79
+00:03:38,593 --> 00:03:39,960
+work together. A turn limit.
+
+80
+00:03:40,393 --> 00:03:43,027
+Cap how many loop cycles the agent gets, before it's forced to
+
+81
+00:03:43,027 --> 00:03:45,493
+stop and report status instead of continuing silently.
+
+82
+00:03:45,927 --> 00:03:49,827
+Twelve failed deploy attempts becomes three, then a forced stop. A verifier
+
+83
+00:03:49,827 --> 00:03:50,627
+step.
+
+84
+00:03:50,593 --> 00:03:53,593
+Before the agent marks anything as done, a separate check — sometimes
+
+85
+00:03:53,593 --> 00:03:57,460
+a second model call, sometimes a hard rule — actually confirms the
+
+86
+00:03:57,693 --> 00:03:59,093
+real-world result matches the claim.
+
+87
+00:03:59,560 --> 00:04:02,627
+Did the website actually go live? Check. Don't just ask the agent
+
+88
+00:04:02,627 --> 00:04:05,793
+if it thinks it did. A human-in-the-loop gate. For anything with real
+
+89
+00:04:05,793 --> 00:04:09,227
+consequences — spending money, deleting a file, deploying to production — the
+
+90
+00:04:09,227 --> 00:04:12,060
+agent proposes the action and stops, and a person has to approve
+
+91
+00:04:12,060 --> 00:04:13,193
+it before it executes.
+
+92
+00:04:13,793 --> 00:04:17,527
+This turns "confidently wrong" from a silent disaster, into a visible pause
+
+93
+00:04:17,527 --> 00:04:18,327
+you can catch.
+
+94
+00:04:18,930 --> 00:04:20,763
+None of these fixes make an agent smarter.
+
+95
+00:04:21,163 --> 00:04:23,797
+They just make its failures visible, and its damage limited — which,
+
+96
+00:04:23,797 --> 00:04:26,697
+it turns out, is most of the actual engineering work behind building
+
+97
+00:04:26,697 --> 00:04:28,630
+agents that don't quietly wreck your afternoon.
+
+98
+00:04:29,097 --> 00:04:31,963
+So your turn. Here's the prompt: "Take an agent workflow I rely
+
+99
+00:04:31,963 --> 00:04:33,830
+on and find where it can fail silently."
+
+100
+00:04:34,463 --> 00:04:37,163
+Run it against something that touches money, files, or a deploy.
+
+101
+00:04:37,630 --> 00:04:39,897
+Then check the answer for three things — does it name a
+
+102
+00:04:39,897 --> 00:04:40,697
+turn limit,
+
+103
+00:04:40,930 --> 00:04:43,663
+does it name a verifier that checks the real result, and does
+
+104
+00:04:43,663 --> 00:04:45,797
+it name a human gate on the irreversible step?
+
+105
+00:04:46,163 --> 00:04:48,830
+If it comes back saying "write a better prompt" and stops there,
+
+106
+00:04:48,997 --> 00:04:50,197
+it missed the point entirely.
+
+107
+00:04:50,897 --> 00:04:53,497
+Next time an agent tells you it's done, ask yourself — did
+
+108
+00:04:53,497 --> 00:04:54,630
+anything actually check that?
+
+109
+00:04:54,997 --> 00:04:57,930
+If the answer's no, you're trusting a system that's never once had
+
+110
+00:04:57,930 --> 00:05:00,763
+to know the difference between succeeding, and just saying so.
+
+111
+00:05:01,400 --> 00:05:02,200
+Signing off — Divij Pawar.

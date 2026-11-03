@@ -1,0 +1,3 @@
+- [x] **Short Gate P PASS (first read):** signed by Tanmay Kulkarni, 2026-10-17, on the 7-line / 142-word sheet. Recorded by Claude on Tanmay's instruction; the read itself is Tanmay's.
+- [x] **Short Gate P PASS (S01 and S02, new wording):** signed by Tanmay Kulkarni, 2026-10-17. S03 to S07 unchanged since the first read. All 7 lines (142 words) are signed.
+- Any further narration change voids the sign-off for the lines touched.

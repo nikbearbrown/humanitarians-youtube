@@ -1,0 +1,91 @@
+diff --git a/viewer/src/lib/catalog.js b/viewer/src/lib/catalog.js
+index 6ddfa81..a2f47b0 100644
+--- a/viewer/src/lib/catalog.js
++++ b/viewer/src/lib/catalog.js
+@@ -18,12 +18,42 @@ export function chapterFromFile(filePath) {
+   return match ? match[1].padStart(2, '0') : '??'
+ }
+ 
+-export function loadFigures() {
+-  return Object.values(catalog).map((entry) => ({
++/** Turn a kebab/id-style string into a readable title, e.g. "cell-cycle-checkpoints" → "Cell cycle checkpoints". */
++function titleFromId(id) {
++  const spaced = id.replace(/[-_]+/g, ' ').trim()
++  return spaced.charAt(0).toUpperCase() + spaced.slice(1)
++}
++
++/**
++ * catalog entries come in two shapes:
++ * - chapter illustrations: { file, title, description, tags }
++ * - batch figures: { file_svg, file_png, object, category, synonyms, batch }
++ * Normalize both into one shape the UI can render.
++ */
++function normalizeEntry(entry) {
++  if (entry.file) {
++    return {
++      ...entry,
++      chapter: chapterFromFile(entry.file),
++      src: encodeImageSrc(entry.file),
++    }
++  }
++
++  const file = entry.file_png ?? entry.file_svg
++  return {
+     ...entry,
+-    chapter: chapterFromFile(entry.file),
+-    src: encodeImageSrc(entry.file),
+-  }))
++    title: entry.title ?? titleFromId(entry.id),
++    description:
++      entry.description ??
++      `${entry.object ?? entry.id} (${entry.category ?? 'uncategorized'})`,
++    tags: entry.tags ?? [...new Set([entry.category, entry.object, ...(entry.synonyms ?? [])].filter(Boolean))],
++    chapter: entry.batch ?? '??',
++    src: encodeImageSrc(file),
++  }
++}
++
++export function loadFigures() {
++  return Object.values(catalog).map(normalizeEntry)
+ }
+ 
+ export function collectTags(figures) {
+diff --git a/viewer/vite.config.js b/viewer/vite.config.js
+index 56841c6..aa81a69 100644
+--- a/viewer/vite.config.js
++++ b/viewer/vite.config.js
+@@ -17,13 +17,15 @@ function mimeFor(filePath) {
+   return 'application/octet-stream'
+ }
+ 
+-/** Serve ../images (and keep paths with spaces working via decodeURIComponent). */
++const SERVED_DIRS = ['/images/', '/figures/']
++
++/** Serve ../images and ../figures (and keep paths with spaces working via decodeURIComponent). */
+ function serveRepoImages() {
+   return {
+     name: 'serve-repo-images',
+     configureServer(server) {
+       server.middlewares.use((req, res, next) => {
+-        if (!req.url?.startsWith('/images/')) return next()
++        if (!SERVED_DIRS.some((dir) => req.url?.startsWith(dir))) return next()
+ 
+         const pathname = decodeURIComponent(req.url.split('?')[0])
+         const filePath = path.resolve(repoRoot, '.' + pathname)
+@@ -37,10 +39,12 @@ function serveRepoImages() {
+       })
+     },
+     closeBundle() {
+-      const src = path.join(repoRoot, 'images')
+-      const dest = path.join(__dirname, 'dist', 'images')
+-      if (fs.existsSync(src)) {
+-        fs.cpSync(src, dest, { recursive: true })
++      for (const dir of ['images', 'figures']) {
++        const src = path.join(repoRoot, dir)
++        const dest = path.join(__dirname, 'dist', dir)
++        if (fs.existsSync(src)) {
++          fs.cpSync(src, dest, { recursive: true })
++        }
+       }
+     },
+   }

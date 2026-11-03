@@ -1,0 +1,36 @@
+DEPTH       NOISE RMS dBFS    THEORY   DELTA     STEP SIZE
+----------------------------------------------------------
+8-bit               -53.14     -49.9    -3.2     7.812e-03
+16-bit             -100.75     -98.1    -2.7     3.052e-05
+24-bit             -149.56    -146.2    -3.3     1.192e-07
+
+signal RMS: -9.03 dBFS  (peak -6.0 dBFS)
+
+Dynamic range = how far below full scale a sound can sit and still be
+louder than the noise the format itself adds:
+   8-bit :   53.1 dB
+  16-bit :  100.8 dB
+  24-bit :  149.6 dB
+
+────────────────────────────────────────────────────────────────────────
+METHOD
+
+Run: python3 measure_bitdepth.py   (numpy only, no ffmpeg, no network)
+
+A 20 s 440 Hz sine at -6 dBFS peak is generated in float64, quantised to each
+depth by mid-tread rounding with NO dither, and the error (quantised minus
+original) is measured as RMS in dBFS relative to full scale.
+
+WHY NOT FFMPEG
+ffmpeg's filter graph is 32-bit float internally, which carries a 24-bit
+mantissa. A 24-bit round trip is therefore LOSSLESS to ffmpeg and it reports an
+error of -inf. That is a limit of the tool, not a property of 24-bit audio.
+The first attempt at this measurement hit exactly that; float64 numpy has the
+headroom to measure all three depths.
+
+ON THE ~3 dB OFFSET FROM THE TEXTBOOK FORMULA
+Every measured floor sits about 3 dB below 6.02b + 1.76. That formula assumes a
+full-scale sine and an idealised uniform error distribution; this signal peaks
+at -6 dBFS and is rounded rather than dithered. The offset is consistent across
+all three depths, which is what a systematic difference in assumptions looks
+like. The reel reports the MEASURED values.

@@ -1,0 +1,563 @@
+1
+00:00:00,000 --> 00:00:02,958
+Last video ended on a number. Zero for sixteen. Zero
+
+2
+00:00:03,000 --> 00:00:06,000
+real conflicts, out of sixteen flagged runs. This video, the
+
+3
+00:00:06,000 --> 00:00:09,375
+fix landed. Fifteen of those sixteen false positives, gone. But
+
+4
+00:00:09,375 --> 00:00:11,583
+the test built to prove that fix actually works found
+
+5
+00:00:11,583 --> 00:00:14,417
+something else instead. Two agents were given the exact same
+
+6
+00:00:14,417 --> 00:00:16,708
+data. One of them didn't read it. It invented a
+
+7
+00:00:16,708 --> 00:00:19,333
+different quarter for a filing that doesn't exist. It cited
+
+8
+00:00:19,333 --> 00:00:22,583
+a source URL nobody gave it. This is a model
+
+9
+00:00:22,583 --> 00:00:25,208
+that doesn't do the reading, not a comparator bug.
+
+10
+00:00:26,010 --> 00:00:29,093
+Quick recap, for anyone new. Sixteen of thirty-one real runs
+
+11
+00:00:29,093 --> 00:00:32,302
+this tool ever produced were false positives. Two agents were
+
+12
+00:00:32,302 --> 00:00:34,843
+flagged as disagreeing when they'd simply been asked about different
+
+13
+00:00:34,843 --> 00:00:38,135
+things. Zero were real conflicts. The diagnosis named two ways
+
+14
+00:00:38,135 --> 00:00:40,718
+forward. Link each number to the concept it came from.
+
+15
+00:00:41,135 --> 00:00:44,177
+Then the comparator stops comparing apples to someone else's oranges.
+
+16
+00:00:44,510 --> 00:00:46,843
+Or actually test whether two agents can ever be shown
+
+17
+00:00:46,843 --> 00:00:50,052
+the same fact. Nothing in thirty-one runs had put them
+
+18
+00:00:50,052 --> 00:00:53,093
+in that position. One day. Both threads. In that order.
+
+19
+00:00:53,850 --> 00:00:56,308
+The idea is simple to say. Every number a producer
+
+20
+00:00:56,475 --> 00:00:59,183
+cites gets tagged with the concept it came from: Assets,
+
+21
+00:00:59,475 --> 00:01:02,725
+Revenue, Diluted Earnings Per Share. If a number's concept could
+
+22
+00:01:02,725 --> 00:01:05,392
+never plausibly come from the other producer, its absence there
+
+23
+00:01:05,392 --> 00:01:08,475
+stops counting as a disagreement. The two producers' concept lists
+
+24
+00:01:08,475 --> 00:01:11,058
+don't overlap at all, by design. So a tagged number
+
+25
+00:01:11,058 --> 00:01:14,808
+is excluded from comparison entirely. Only the untagged ones, bare
+
+26
+00:01:14,850 --> 00:01:18,558
+ratios with no label nearby, still get compared the old
+
+27
+00:01:18,558 --> 00:01:18,850
+way.
+
+28
+00:01:19,620 --> 00:01:22,245
+Three bugs surfaced before the numbers could be trusted. A
+
+29
+00:01:22,245 --> 00:01:24,870
+decimal point inside a figure was mistaken for the end
+
+30
+00:01:24,870 --> 00:01:27,620
+of a sentence. That hid a concept label sitting earlier
+
+31
+00:01:27,620 --> 00:01:31,120
+in the same real sentence. The tagger only recognized natural-language
+
+32
+00:01:31,162 --> 00:01:34,537
+phrasing, like "diluted EPS." It missed that the actual prompt
+
+33
+00:01:34,537 --> 00:01:38,662
+format is the raw label itself, "EarningsPerShareDiluted," which models echo
+
+34
+00:01:38,662 --> 00:01:41,495
+back verbatim. And distance to a label was measured from
+
+35
+00:01:41,495 --> 00:01:44,662
+its start, not its end. That mis-matched two numbers named
+
+36
+00:01:44,662 --> 00:01:47,870
+together in one sentence, with the closest label winning for
+
+37
+00:01:47,870 --> 00:01:50,912
+the wrong one. All three were caught by tests before
+
+38
+00:01:50,912 --> 00:01:51,995
+the measurement was trusted.
+
+39
+00:01:52,670 --> 00:01:54,962
+Then the actual test. Not a new example built to
+
+40
+00:01:54,962 --> 00:01:57,962
+prove the point. The sixteen real runs already sitting in
+
+41
+00:01:57,962 --> 00:02:01,087
+last week's labeled record, the ones already flagged as false
+
+42
+00:02:01,087 --> 00:02:04,712
+positives. Replay all sixteen through the new rule. Count what's
+
+43
+00:02:04,712 --> 00:02:04,920
+left.
+
+44
+00:02:05,932 --> 00:02:08,640
+Fifteen stop flagging. The sixteenth doesn't. That's the one where
+
+45
+00:02:08,640 --> 00:02:11,307
+a number really was fabricated. It's supposed to still flag.
+
+46
+00:02:11,848 --> 00:02:14,682
+Zero new false positives anywhere else in the corpus. Checked
+
+47
+00:02:14,682 --> 00:02:17,765
+twice, not once. Once against the tagging logic by itself.
+
+48
+00:02:18,057 --> 00:02:20,723
+Then again through the exact function the live comparison route
+
+49
+00:02:20,723 --> 00:02:24,432
+actually calls. That confirms the wiring didn't quietly change the
+
+50
+00:02:24,432 --> 00:02:24,723
+answer.
+
+51
+00:02:25,732 --> 00:02:29,357
+Fifteen of sixteen real false positives, killed. The one survivor
+
+52
+00:02:29,357 --> 00:02:32,482
+is the one confirmed real catch on record. It's the
+
+53
+00:02:32,482 --> 00:02:35,273
+one fabricated number this tool has ever actually caught.
+
+54
+00:02:36,040 --> 00:02:38,790
+Here's the test nothing in thirty-one runs had ever performed.
+
+55
+00:02:39,040 --> 00:02:42,123
+Give both agents the exact same evidence. Not two different
+
+56
+00:02:42,123 --> 00:02:44,915
+lenses on one company. The identical numbers. Then see if
+
+57
+00:02:44,915 --> 00:02:47,540
+a real disagreement can even happen. Two local models. Same
+
+58
+00:02:47,540 --> 00:02:50,957
+prompt, same data, same directive. Four runs. Apple twice, with
+
+59
+00:02:50,957 --> 00:02:53,123
+the models swapped between roles to rule out a role
+
+60
+00:02:53,123 --> 00:02:55,457
+effect. Then Microsoft. Then Nvidia.
+
+61
+00:02:56,200 --> 00:02:58,700
+Four for four, flagged. The first time this flag has
+
+62
+00:02:58,700 --> 00:03:01,783
+ever fired on evidence both sides actually saw. But not
+
+63
+00:03:01,783 --> 00:03:04,617
+because the two models disagreed about a number. In three
+
+64
+00:03:04,617 --> 00:03:07,033
+of the four runs, one model cited zero of the
+
+65
+00:03:07,033 --> 00:03:10,117
+real figures. It invented a fiscal quarter that isn't in
+
+66
+00:03:10,117 --> 00:03:13,242
+the data. It cited a source URL nobody gave it.
+
+67
+00:03:13,820 --> 00:03:15,903
+In the fourth run, roles were swapped, so this isn't
+
+68
+00:03:15,903 --> 00:03:18,237
+about which seat the model sat in. It did read
+
+69
+00:03:18,237 --> 00:03:20,695
+the real numbers. It still turned a real one hundred
+
+70
+00:03:20,695 --> 00:03:23,903
+one billion, four hundred sixty-four million dollars of net income
+
+71
+00:03:23,903 --> 00:03:26,570
+into a "net income loss" of negative one hundred one
+
+72
+00:03:26,570 --> 00:03:29,862
+million. Wrong sign. Wrong by a factor of a thousand.
+
+73
+00:03:30,610 --> 00:03:33,152
+The other model got every real figure right, all four
+
+74
+00:03:33,152 --> 00:03:36,235
+times. It just wasn't clean either. It also added a
+
+75
+00:03:36,610 --> 00:03:39,068
+return-on-equity number that appears nowhere in what it was given.
+
+76
+00:03:39,443 --> 00:03:42,235
+So the mechanism works. It found a real problem. Just
+
+77
+00:03:42,235 --> 00:03:43,693
+not the one it was built to find.
+
+78
+00:03:44,460 --> 00:03:46,877
+A second session, same day, turned the measurement into a
+
+79
+00:03:46,877 --> 00:03:50,543
+decision: ship it. The live comparison route now runs the
+
+80
+00:03:50,918 --> 00:03:53,793
+concept-aware check by default, not the old rule. Two things
+
+81
+00:03:53,793 --> 00:03:54,877
+came along for free.
+
+82
+00:03:55,550 --> 00:03:58,050
+First, the old rule had its own quiet failure. It
+
+83
+00:03:58,050 --> 00:04:00,342
+required both agents to cite at least one number before
+
+84
+00:04:00,342 --> 00:04:03,467
+flagging anything. That's what suppressed the one confirmed true positive
+
+85
+00:04:03,467 --> 00:04:05,592
+in the first place. The new rule never had that
+
+86
+00:04:05,592 --> 00:04:08,508
+requirement. Switching to it fixed a second, separate bug, with
+
+87
+00:04:08,508 --> 00:04:11,717
+no extra code. Second: a real extraction bug, found while
+
+88
+00:04:11,717 --> 00:04:15,008
+building last week's corpus. A large number with commas and
+
+89
+00:04:15,008 --> 00:04:17,508
+no dollar sign was getting truncated to its last three
+
+90
+00:04:17,508 --> 00:04:22,092
+digits. Thirteen billion, nine hundred seventy-one million dollars was extracting
+
+91
+00:04:22,092 --> 00:04:26,258
+as the string zero-zero-zero point zero. It's fixed. It's
+
+92
+00:04:26,258 --> 00:04:29,217
+confirmed against the real historical case, not just a new
+
+93
+00:04:29,217 --> 00:04:30,383
+example built to pass.
+
+94
+00:04:31,180 --> 00:04:34,263
+And the fabrication check that already existed for single-agent chats
+
+95
+00:04:34,263 --> 00:04:37,388
+had never once been connected to this comparison route. It
+
+96
+00:04:37,388 --> 00:04:39,888
+extracts every claim a model makes. It checks each one
+
+97
+00:04:39,888 --> 00:04:43,013
+against its own cited source. It is now connected. Replayed
+
+98
+00:04:43,013 --> 00:04:46,055
+against the exact historic fabrication, not a clean example. The
+
+99
+00:04:46,055 --> 00:04:48,638
+citation supports none of the numbers under it. A real,
+
+100
+00:04:48,638 --> 00:04:52,097
+automatic signal. Not "this number is fake." It's "this source
+
+101
+00:04:52,097 --> 00:04:55,430
+doesn't back what's claimed here." That's what actually caught it.
+
+102
+00:04:55,990 --> 00:04:58,365
+True now that wasn't a week ago. Fifteen of sixteen
+
+103
+00:04:58,365 --> 00:05:01,782
+real false positives, gone. Measured against every run this tool
+
+104
+00:05:01,782 --> 00:05:04,865
+has ever produced, not four. Sixteen. The one suppressed true
+
+105
+00:05:04,865 --> 00:05:07,198
+positive fires again, as a side effect of the same
+
+106
+00:05:07,198 --> 00:05:10,865
+fix. A comma-formatted number extracts correctly instead of losing everything
+
+107
+00:05:10,865 --> 00:05:14,073
+but its last three digits. Claim verification runs on this
+
+108
+00:05:14,073 --> 00:05:16,782
+comparison route for the first time. It produces a real
+
+109
+00:05:16,782 --> 00:05:20,157
+signal against the one case that matters. Four ledger issues
+
+110
+00:05:20,157 --> 00:05:23,532
+closed in one day. The comparison route has automated tests
+
+111
+00:05:23,532 --> 00:05:26,198
+for the first time ever, three of them. Two hundred
+
+112
+00:05:26,240 --> 00:05:29,365
+forty-two tests, up from two hundred twenty-four, green at every
+
+113
+00:05:29,365 --> 00:05:29,740
+step.
+
+114
+00:05:30,360 --> 00:05:33,152
+Still not true. A legitimate ratio and a fabricated one
+
+115
+00:05:33,152 --> 00:05:36,193
+still look identical to this system. Both are just numbers
+
+116
+00:05:36,193 --> 00:05:39,318
+with no label nearby. Narrowing that gap from "any disconnected
+
+117
+00:05:39,318 --> 00:05:42,443
+number" to "any unlabeled one" does not close it. Whatever's
+
+118
+00:05:42,443 --> 00:05:44,568
+actually wrong with one of the two local models used
+
+119
+00:05:44,568 --> 00:05:47,193
+in this test hasn't been investigated. Maybe it's reading its
+
+120
+00:05:47,193 --> 00:05:50,152
+own input. Maybe it's a specific quantization. Maybe it's this
+
+121
+00:05:50,152 --> 00:05:53,402
+prompt shape. It's flagged, not fixed. It's a different kind
+
+122
+00:05:53,402 --> 00:05:55,818
+of problem than anything this tool was designed to catch.
+
+123
+00:05:56,360 --> 00:05:59,318
+The comparison route has three tests now. Every other route,
+
+124
+00:05:59,318 --> 00:06:02,110
+and every line of interface code, still has zero. The
+
+125
+00:06:02,110 --> 00:06:05,110
+four critical security findings from the original audit are exactly
+
+126
+00:06:05,110 --> 00:06:07,152
+as open as they were. And the pile of work
+
+127
+00:06:07,152 --> 00:06:10,860
+sitting outside version control got bigger again. Eleven more files,
+
+128
+00:06:10,860 --> 00:06:13,443
+on top of everything already sitting there uncommitted.
+
+129
+00:06:14,050 --> 00:06:16,508
+So here's the smallest true claim. The tool got better
+
+130
+00:06:16,508 --> 00:06:19,508
+at not crying wolf. Fifteen fewer false alarms, for free,
+
+131
+00:06:19,592 --> 00:06:21,758
+the same day they were measured. That's real. It did
+
+132
+00:06:21,758 --> 00:06:23,592
+not get better at telling a real number from a
+
+133
+00:06:23,592 --> 00:06:26,758
+convincing fake one. Those are different problems. A comparator that
+
+134
+00:06:26,758 --> 00:06:30,175
+stops over-flagging is one thing. A comparator that catches fabrication
+
+135
+00:06:30,175 --> 00:06:34,217
+is another. Zero-for-sixteen got solved for one reason, and stayed
+
+136
+00:06:34,217 --> 00:06:37,550
+unsolved for the other. Mixing those two up is exactly
+
+137
+00:06:37,550 --> 00:06:41,467
+the overclaim this format exists to catch. Fifteen of sixteen.
+
+138
+00:06:41,508 --> 00:06:44,175
+One left. And one model that, this week, showed it
+
+139
+00:06:44,175 --> 00:06:46,008
+can't be trusted to read its own homework.
+
+140
+00:06:47,063 --> 00:06:50,813
+Fifteen of sixteen. Written down, versioned, and executable. Signing off,
+
+141
+00:06:50,813 --> 00:06:51,313
+Divij Pawar.

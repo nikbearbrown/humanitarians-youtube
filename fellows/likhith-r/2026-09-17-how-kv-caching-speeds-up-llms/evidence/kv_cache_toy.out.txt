@@ -1,0 +1,18 @@
+seed=7 d=16 tokens=12
+max |uncached - cached| = 4.44e-16   (same outputs)
+K/V projections  uncached=78  cached=12
+query-key scores uncached=364  cached=78
+
+work for ONE new token at position t (query-key scores):
+     t    uncached t(t+1)/2   cached t
+    10                   55         10
+   100                5,050        100
+  1000              500,500      1,000
+
+KV cache = 2 (K and V) x layers x heads x head_dim x bytes x tokens
+Llama 2 7B shape: 2 x 32 x 32 x 128 x 2 B = 524,288 B = 0.50 MiB per token
+  1024 tokens -> 0.50 GiB
+  2048 tokens -> 1.00 GiB
+  4096 tokens -> 2.00 GiB
+numpy 2.5.3
+ef4b5d83b6cd9451fc1da6e8332e24db54ac1fb11edf79cd771f21fabf0657f3  kv_cache_toy.py

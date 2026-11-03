@@ -1,0 +1,236 @@
+{
+  "metadata": {
+    "title": "Encrypted Twice (9:16)",
+    "slug": "medhavy-credential-encryption-916",
+    "fps": 24,
+    "aspect_ratio": "9:16",
+    "canvas": "2160x3840",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "ground": "#0A0A0A",
+    "paper": "#F2F0EB",
+    "signal": "#E8452C",
+    "mute": "#6B6B6B",
+    "source_script": "script.md",
+    "build": {
+      "at": "2026-10-28T17:07:44",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": [
+        "NO RENDERABLE BEATS: no beat carries a shot.remotion.pattern or Manim annotation — the pipeline will render NOTHING and every slot becomes a YOU-slate. The sheet was authored without the scene contract."
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "Hi, I am Surya, and this video is about why a secret sitting in our database gets encrypted a second time, by us, after the database has already encrypted it.",
+      "shot": {
+        "type": "TITLE",
+        "source": "own",
+        "motion": "hard-snap",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "title snaps in, mono subtitle CREDENTIALS AT REST"
+          }
+        ]
+      },
+      "estimated_duration_s": 9.0,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 9.64,
+      "render_duration_s": 9.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "FRAME",
+      "narration_text": "The hub holds credentials for every platform it trusts. A signing key for the tool, and for older platforms a shared secret. They sit in a column, in Postgres, like any other value.",
+      "shot": {
+        "type": "TABLE",
+        "source": "own",
+        "motion": "hard-snap",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "one bordered row naming the table and its two credential fields"
+          }
+        ]
+      },
+      "estimated_duration_s": 9.9,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 10.5,
+      "render_duration_s": 10.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "FRAME",
+      "narration_text": "And the database does encrypt its storage. Supabase applies AES-256 at the storage layer. So the honest question is why bother doing it again.",
+      "shot": {
+        "type": "TABLE",
+        "source": "own",
+        "motion": "hard-snap",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "a mute storage-layer block, then the question in signal"
+          }
+        ]
+      },
+      "estimated_duration_s": 7.2,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 9.77,
+      "render_duration_s": 9.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "HERO",
+      "narration_text": "Because storage encryption answers exactly one threat. Somebody walks off with the disk. It does not help if a query runs. Anything that can read the table reads the value in clear, because decryption already happened underneath it.",
+      "shot": {
+        "type": "TABLE",
+        "source": "own",
+        "motion": "step-reveal",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "two outcomes, stolen disk protected and a running query not protected"
+          }
+        ]
+      },
+      "estimated_duration_s": 11.3,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.42,
+      "render_duration_s": 12.458333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MECHANISM",
+      "narration_text": "So the value is encrypted before it is ever written, with a key the database does not hold. AES-256-GCM, in the application. What lands in the column is four fields joined by colons: a version marker, the initialisation vector, the authentication tag, and the ciphertext.",
+      "shot": {
+        "type": "DIAGRAM",
+        "source": "own",
+        "motion": "step-reveal",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "the four-field format, each part labelled as it appears"
+          }
+        ]
+      },
+      "estimated_duration_s": 13.4,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 16.73,
+      "render_duration_s": 16.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "MECHANISM",
+      "narration_text": "GCM is the part worth naming. It does not only hide the value, it signs it. If one byte of that ciphertext is altered, decryption does not return wrong data. It fails. That difference matters: a credential you cannot trust is more dangerous than one you cannot read.",
+      "shot": {
+        "type": "TABLE",
+        "source": "own",
+        "motion": "hard-snap",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "two outcomes, encryption alone against authenticated encryption"
+          }
+        ]
+      },
+      "estimated_duration_s": 14.3,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 15.13,
+      "render_duration_s": 15.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "TURN",
+      "narration_text": "There was already data in that column when this shipped. So the decrypt path checks the format first. A value starting with the version marker is decrypted. Anything else is passed through unchanged, as a value written before the encryption existed. That is a deliberate transitional allowance, and it is the thing to remove once every row has been rewritten.",
+      "shot": {
+        "type": "DIAGRAM",
+        "source": "own",
+        "motion": "step-reveal",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "a two-branch decision on the format guard, with the transitional caption"
+          }
+        ]
+      },
+      "estimated_duration_s": 17.9,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 17.9,
+      "render_duration_s": 17.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration_text": "One layer for the disk, one layer for everything above it, and a key held outside the database for the second one. The second layer is not distrust of the database. It is the recognition that the database cannot defend a secret from a query it is required to answer.",
+      "shot": {
+        "type": "TITLE",
+        "source": "own",
+        "motion": "hard-snap",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "two layers named, then the title restated"
+          }
+        ]
+      },
+      "estimated_duration_s": 14.9,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 15.06,
+      "render_duration_s": 15.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-28T17:07:44"
+      }
+    }
+  ]
+}

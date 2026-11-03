@@ -1,0 +1,25 @@
+# BUILD-LOG
+
+- 2026-10-21 — Brief: 60 s, 12 beats, am_onyx, native 16:9 + 9:16 as separate outputs, fixed opening line, review cut only.
+- Branding: "Namaskaram, Likhith"; @HumanitariansAI (claude-hai, kicker "Irreducibly Human", Plain); default HaiOutro (not ClaudeTitleOutro — OUTRO-LOCK is @NikBearBrown-only). AI narration disclosed at B00 and B11.
+- GATE L: no dual-aspect graph/Cypher hit → new runtime/remotion/src/GraphDb.tsx (7 scenes × 16:9 + 916), registered in Root.tsx, `./art scene-index` rerun.
+- Executable evidence: evidence/graph_demo.py (Kuzu 0.11.3 + SQLite 3.53, `uv run --no-project`), output in evidence/graph_demo.out.txt. B02/B04/B06/B07 show its real tables, queries and results.
+- Duration: first draft 81.4 s → narration trimmed (words cut, audio never sped up) → 63.8 s (64.0 s compiled). Floor: fixed B00 line (4.7 s) + B01 ≥9 s writer window (9.3 s).
+- BrutalistHesitantWriter matches triggers WORD BY WORD (comma list); the phrase trigger "joins tables to" never fired. Fixed with positional single words: joins→walks, tables→edges. Final: "A graph database walks edges to find connections."
+- 16:9 fixes from frame review: B03 nodes/keys scaled up; B04 code larger; B05 visited card off the logo bug, note moved under title; B08 pills sized to labels, recommendation edge rerouted; white-on-terracotta fills → #A44A32.
+- 9:16 (vertical/, all 12 beats native <Pattern>916): portrait content kept above the Shorts band (spark at y 1330); B04/B05 re-laid out; B01 portrait text re-broken to 5 lines at 270px.
+- GATE V: 16:9 review 0 BLOCKER / 1 MAJOR; 9:16 scene frames 0 BLOCKER / 1 MAJOR. The one MAJOR in each is B01 at 50% (underfill) — the hesitant writer is mid-correction there by design; the 85% frame passes. Justified exception. The compiled 9:16 file trips edge-bleed only on the burned-in review label (same as sibling reels); the raw scene frames are clean.
+- Not run: GATE T (blocks ./art final only). No final master exported (review cut only, per brief). FACTCHECK sign-off pending Likhith.
+- 2026-10-21 (rev 2, Likhith's review):
+  - B01 narration vs screen read as contradictory (voice "doesn't join tables" over the typed misconception). Narration now names the misconception first: "You might think a graph database finds connections with joins. It doesn't. It walks the edges…". Screen: "A graph database finds connections with joins." → single swap `joins` → `stored edges` (the word-by-word two-swap version briefly showed "walks tables"). Word timings (faster-whisper) checked: "joins" on screen at "joins" (2.5 s), deleted on "It doesn't" (3.4 s), in both aspects. Portrait uses 4 lines (each \n adds a 400 ms pause) + charMs 22 to stay in sync. B01 audio 9.00 s.
+  - Disclosure: B00 line "narration: AI voice"; B11 note "Narrated by AI voice." (model name and "not Likhith" removed).
+  - B02 link labels offset along the edge normal by the label box extent — no label touches a node or arrow in either aspect.
+  - Result: 16:9 review GATE V 0/0. 9:16 scene frames (15/50/85% per beat) 0 BLOCKER; the 2 MAJOR are 15% opening-animation frames (B01 typing, B11 logo before title). Both cuts 63.75 s.
+- 2026-10-21 (masters): built on the latest toolkit release, origin/main a187fab (Remotion 4.0.535 / React 19, as pinned by that release; npm reports 4.0.537), in a separate git worktree so the main checkout's local edits were untouched.
+  - Intro line set verbatim: "Hi, I am Likhith, and this video is about Graph Databases and Cypher." Greeting: 16:9 "Namaskaram, Likhith"; 9:16 "Hey, Likhith".
+  - LOGO LAW (new in this release): B07 card heads are now "SQL" / "Cypher" (languages), so no product chip appears without a logo; Kuzu publishes no logo. Engines stay named in the small source caption.
+  - GATE T (this release): darker terracotta #A44A32 for accent strokes in B02/B03/B05/B06; portrait B08 panel labels 64→90 px serif, pills 44→56 px, note 60 px; portrait "next" pill moved off "Sam".
+  - Masters (./art final, receipts status=ready): renders/H-GraphDatabasesAndCypher_LikhithR.mp4 (3840×2160, 63.75 s, sha256 ff36ba393ffa…) and renders/V-GraphDatabasesAndCypher_LikhithR.mp4 (2160×3840, 63.75 s, sha256 cd080a063729…). Receipts renamed alongside with `renamed_from`.
+  - Spoken intro checked by transcription (whisper medium.en): "Hi, I am Likhith, and this video is about graph databases and Cypher."
+- 2026-10-21 — Sign-off recorded in FACTCHECK.md (Likhith's own words, first person) after reviewing the 16:9 and 9:16 cuts.
+- Disclosure wording standardised across the series: B00 result line "narrated by an AI voice" and B11 outro note "Narrated by an AI voice." (on-screen text only; narration and audio unchanged). B00 and B11 re-rendered in both aspects and the masters re-exported.

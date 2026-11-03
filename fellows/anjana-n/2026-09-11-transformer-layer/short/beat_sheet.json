@@ -1,0 +1,394 @@
+{
+  "metadata": {
+    "title": "What Happens Inside a Transformer Layer",
+    "slug": "transformer-layer-short",
+    "topic": "AI · NLP · TRANSFORMER ARCHITECTURE",
+    "aspect_ratio": "9:16",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-anjana",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "color_semantics": "Claude fidelity UI beats (B00 ask, B06 verdict, B07 handoff, B08 outro) stay cream/ink/terracotta per CLAUDE-BRAND.md. Body beats (B01-B05) illustrate the layer itself — dark stage (#0a0a0f), matching the attention-finance and temperature-finance companion pieces. Color law for the mechanism: the token 'revenue' is terracotta (#D97757); Q is gold (#D4A853), K is blue (#3E7CB1), V is green (#4A9C6D) throughout B02; the feed-forward strip is purple (#9B6FD1); residual bypass paths are dim ink. None of these four are reused for anything else. No company names anywhere — the running sentence is a generic construction.",
+    "greeting": "Hello, Anjana",
+    "greeting_note": "Plain English hello, narrator is Anjana; no channel handle or brand chip on this build.",
+    "note": "Build from the pre-authored examples/transformer-layer/script.md + narration/*.txt + visuals/*.md (the script was already populated; script.md restructured into the production format with bookends, body narration kept verbatim). Beats B00 (ask), B06 (verdict), B07 (your-turn handoff), B08 (title outro) added per the ai-explainer. Source voice was listed as am_onyx — overridden to af_bella (Anjana, no handle) per the series convention. GATE P signed (see PEDAGOGY.md — VERDICT: PASS): public architecture, no proprietary claims, so no confirmation round; two simplifications are flagged there rather than shipped silently (single-head attention; post-norm layer-norm placement, which is the original Vaswani arrangement but not modern practice). Narration-budget deviation on B02 (~115 words, ~42s) and B04 (~121 words, ~45s) logged and accepted; both components are built to fill their real audio spans. Delivery: rendered at 4K in both 16:9 (this beat sheet, 3840x2160) and 9:16 (short/beat_sheet.json, 2160x3840, via runtime/scripts/shorts.py --handle '').",
+    "tags": [
+      "transformer",
+      "self-attention",
+      "feed-forward",
+      "layer norm",
+      "residual connection",
+      "LLM",
+      "NLP",
+      "BERT",
+      "GPT",
+      "Claude"
+    ],
+    "build": {
+      "at": "2026-09-11T11:33:38",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "END: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "transformer-layer",
+    "dropped_beats": [
+      "B01",
+      "B06",
+      "B07"
+    ],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 176.01
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Every transformer layer does the same four things in the same order, and stacking enough of them gives you every modern language model. I'm Anjana — here's what one token actually sees on its way through one layer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "runningText 'opening one layer…'"
+          },
+          {
+            "at": 0.75,
+            "event": "output lines resolve: 'attention gathers context' / 'feed-forward processes it' / 'residual and layer norm hold it together'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Hello, Anjana",
+            "topic": "AI · NLP · TRANSFORMER ARCHITECTURE",
+            "segment": "Inside a Transformer Layer",
+            "command": "I keep hearing that a transformer is \"just attention plus a feed-forward network,\" but I've never seen what one layer actually does to a single word. Can you walk one token through one layer, step by step?",
+            "runningText": "opening one layer…",
+            "folderLabel": "",
+            "output": [
+              "attention gathers context",
+              "feed-forward processes it",
+              "residual and layer norm hold it together"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 13,
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T11:33:38"
+      },
+      "actual_duration_s": 12.91
+    },
+    {
+      "beat_id": "B02",
+      "act": "ATTENTION",
+      "narration_text": "Step one. Self-attention. The token \"revenue\" needs to understand its role in the sentence. It creates three vectors from itself: a query, a key, and a value. The query asks \"what should I pay attention to?\" Every other token in the sentence also has a key. The query compares against every key and computes a score. High score means high relevance. \"Revenue\" scores high against \"growth\" and \"moderate\" because they directly affect its meaning. It scores low against \"we\" and \"to\" because they add no context. The scores become weights. The weighted sum of all values produces a new, context-aware representation of \"revenue.\" The word has not changed. But now it knows what surrounds it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "inside the layer: 'revenue' center stage, the other five tokens in a row"
+          },
+          {
+            "at": 0.1,
+            "event": "three vectors split out of 'revenue' — gold Q ('What should I attend to?'), blue K, green V; the other tokens show dimmer K and V"
+          },
+          {
+            "at": 0.32,
+            "event": "the gold query reaches every key; scores land on each connection — growth 0.42, moderate 0.31, expect 0.15, we 0.07, to 0.05"
+          },
+          {
+            "at": 0.56,
+            "event": "the scores are shown summing to 1.00 — softmax"
+          },
+          {
+            "at": 0.68,
+            "event": "the value vectors scale by their weights and flow back into 'revenue'"
+          },
+          {
+            "at": 0.84,
+            "event": "'revenue' glows differently — it has absorbed context; label: 'Same word. New meaning. Context-aware.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "TransformerAttention916",
+          "props": {
+            "sparkLine": "Same word. New meaning."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 42,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T11:33:38"
+      },
+      "actual_duration_s": 42.1
+    },
+    {
+      "beat_id": "B03",
+      "act": "FEEDFORWARD",
+      "narration_text": "Step two. The feed-forward network. Attention told \"revenue\" what to look at. Now the feed-forward network decides what to do with that information. It is two linear transformations with a non-linearity in between. The vector expands to a higher dimension, passes through an activation function that introduces non-linearity, then compresses back down. This is where the model transforms raw attention patterns into useful features. Attention gathers context. The feed-forward network processes it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the context-aware 'revenue' vector enters a Feed-Forward Network box as a narrow color strip"
+          },
+          {
+            "at": 0.22,
+            "event": "the strip stretches to four times its width — 'Expand: d_model → 4× d_model'"
+          },
+          {
+            "at": 0.46,
+            "event": "it passes through a wave-shaped GELU gate; some cells brighten, others go dark"
+          },
+          {
+            "at": 0.68,
+            "event": "it compresses back to its original width — same size, transformed"
+          },
+          {
+            "at": 0.86,
+            "event": "the token exits with a different glow; label: 'Attention gathers. Feed-forward processes.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "TransformerFeedForward916",
+          "props": {
+            "sparkLine": "Attention gathers. Feed-forward processes."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 27,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T11:33:38"
+      },
+      "actual_duration_s": 29.74
+    },
+    {
+      "beat_id": "B04",
+      "act": "GLUE",
+      "narration_text": "Two more operations hold everything together. Residual connections. Before attention and before the feed-forward step, the original input was saved. After each operation, the original is added back to the result. This means the model can never completely forget what the token started as. If the layer learns nothing useful, the residual ensures the token passes through unchanged. No damage done. Layer normalization runs after each addition. It rescales the values so they stay in a stable range. Without it, values drift higher and higher through twelve layers and the model breaks. Residual connections protect the signal. Layer norm keeps the numbers in check. Together they are why you can stack twelve, twenty-four, or ninety-six layers and the model still trains.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "a side-view flow diagram; the token enters from the left and the path splits — main through the attention block, a curved bypass around it"
+          },
+          {
+            "at": 0.2,
+            "event": "the two paths merge at a '+' node — 'Original + transformed = protected'"
+          },
+          {
+            "at": 0.34,
+            "event": "brief flash: attention learns nothing, the bypass carries the token through unchanged"
+          },
+          {
+            "at": 0.48,
+            "event": "a Layer Norm box; the vector strip's extreme values visibly settle into a stable range"
+          },
+          {
+            "at": 0.62,
+            "event": "a drift warning: values climbing layer after layer without norm"
+          },
+          {
+            "at": 0.76,
+            "event": "the same residual + norm pattern repeats around the feed-forward block"
+          },
+          {
+            "at": 0.9,
+            "event": "the full structure reads: Input → Attention → Add & Norm → FFN → Add & Norm → Output"
+          }
+        ],
+        "remotion": {
+          "pattern": "TransformerGlue916",
+          "props": {
+            "sparkLine": "Residual protects. Norm stabilizes."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B04.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T11:33:38"
+      },
+      "actual_duration_s": 47.09
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLOSE",
+      "narration_text": "Four operations. Attention gathers context. Feed-forward processes it. Residual connections protect the signal. Layer norm keeps it stable. Stack twelve of these and you have BERT. Stack ninety-six and you have GPT. Same four steps, repeated. That is a transformer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the expanded layer collapses back into its block and rejoins the stack — microscope out"
+          },
+          {
+            "at": 0.15,
+            "event": "the four operations tick off beside the stack as they are named"
+          },
+          {
+            "at": 0.5,
+            "event": "on 'twelve' twelve blocks glow — 'BERT'"
+          },
+          {
+            "at": 0.66,
+            "event": "on 'ninety-six' the stack extends dramatically — 'GPT'"
+          },
+          {
+            "at": 0.84,
+            "event": "title lands: What Happens Inside a Transformer Layer / Four operations. One building block."
+          }
+        ],
+        "remotion": {
+          "pattern": "TransformerClose916",
+          "props": {
+            "sparkLine": "Same four steps, repeated."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B05.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T11:33:38"
+      },
+      "actual_duration_s": 18.67
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "That's the short version. The full video opens the whole twelve-layer stack, and closes with a prompt for running attention on a different token yourself. Watch What Happens Inside a Transformer Layer for the whole story. The link is right below.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeTitleOutro: title 'Inside a Transformer Layer' in serif, terracotta period"
+          },
+          {
+            "at": 0.8,
+            "event": "subline fades in: 'four operations · one building block'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "Inside a Transformer Layer",
+            "handle": "",
+            "subline": "four operations · one building block"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B08.mp3",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-09-11T11:33:38"
+      },
+      "actual_duration_s": 15.22,
+      "short_outro_rewritten": true
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "",
+        "next": "",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media/END.png",
+        "filled_by": "still",
+        "at": "2026-09-11T11:33:38"
+      }
+    }
+  ]
+}

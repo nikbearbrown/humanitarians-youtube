@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "title": "The Verifier Never Sees Your Thinking.",
+    "subtitle": "The Math-Olympiad Skill's Proof Check",
+    "slug": "claude-plugins-official--claude-liam-math-olympiad",
+    "topic": "ADVERSARIAL PROOF CHECK · CLAUDE PLUGINS",
+    "purpose": "Answer one real question in the Plain register: does Claude's math-olympiad skill check a proof using the reasoning that built it, or only the finished proof with the reasoning hidden? Lands the carry-out that Claude checks a competition proof only after hiding the reasoning that built it, from a verifier that would rather abstain than guess.",
+    "skill": "hai-simple",
+    "mode": "redo",
+    "source_sheet": "/Users/nik/Documents/books/anthropics/claude-plugins-official/youtube/claude-liam-math-olympiad/beat_sheet.json",
+    "register": "Plain",
+    "persona": "Liam (in for Bear)",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "humanitarians",
+    "style_preset": "humanitarians",
+    "ground": "#F3EBDD",
+    "folderLabel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "playlist": "Extending Claude — Skills, Plugins & Connectors",
+    "in_for_bear": true,
+    "clock": "narration",
+    "gate_c": "SIGNED - CARRY-OUT.md",
+    "gate_h": "N/A - hai-simple (BrutalistHesitantWriter, no puppet host)",
+    "anchor_pair": "N/A - single worked example (the math-olympiad skill's own proof-then-verify pipeline), named at B00 and present through NB01-NB03; no separate planted/paid-off case to pair (see SCRIPT.md six-move audit)",
+    "one_flag": "N/A - direct mechanism description throughout (see SCRIPT.md One-flag audit)",
+    "build": {
+      "at": "2026-08-31T03:41:57",
+      "cut": "master",
+      "filled": 7,
+      "of": 7,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "hesitant writer cold open",
+      "narration_text": "Someone assumed showing the checker everything would help it decide. It's the opposite — the checker only ever sees the finished proof. So: if you show it just the proof, does that work?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.8,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "Writer types 'If I show the checker everything, does that work?', hesitates on 'everything', corrects to 'just the proof', lands the real question",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "If I show the checker\neverything,\ndoes that\nwork?",
+            "face": "serif",
+            "fontSize": 72,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "everything",
+            "replacementWords": "just the proof",
+            "mistakeRate": 6,
+            "hesitateWithin": 2,
+            "hesitateBetween": 14,
+            "charMs": 48,
+            "jitter": 26,
+            "seed": "hai-math-olympiad"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "note": "B00 is Remotion (BrutalistHesitantWriter) per hai-simple SKILL.md WRITER LAW. TIMING LAW: 20-35 word narration + lead_silence_s 0.8 to give the typing a >=8s window; verify media/B00.mp4 >= 8s and that the correction ('everything' -> 'just the proof') lands on screen. NOTE: triggerWords must be a SINGLE token matching text.split(/(\\s+)/) core word (see BrutalistHesitantWriter.tsx buildActs) — a multi-word trigger like 'my reasoning' can never match and silently produces no correction at all.",
+      "actual_duration_s": 9.71,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T03:41:57"
+      }
+    },
+    {
+      "beat_id": "NB01",
+      "act": "3 mechanism",
+      "narration_text": "Before solving anything, Claude checks how the problem could be read — competition problems often bury an easy reading next to the hard one, and in past runs most errors came from solving the wrong reading entirely. Once the intended reading is settled, eight to twelve solvers tackle it in parallel. Each one iterates on its own — solve, self-check, revise — up to five rounds, with no calculator and no code, reasoning only.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "READ TWICE, THEN SOLVE MANY WAYS",
+        "media": "manim/NB01.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "READ TWICE, THEN SOLVE MANY WAYS",
+          "chips": [
+            "read the trap",
+            "8-12 solvers",
+            "no calculator"
+          ],
+          "arrows": true,
+          "accent": [
+            2
+          ],
+          "strike": [],
+          "caption": "most past errors were the wrong reading",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB01Scene"
+      },
+      "actual_duration_s": 21.93,
+      "audio_file": "mp3/beat-NB01.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB01.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T03:41:57"
+      }
+    },
+    {
+      "beat_id": "NB02",
+      "act": "3 mechanism",
+      "narration_text": "Before any proof reaches a verifier, everything except the finished argument is deleted — every false start, every scratch note. A verifier that saw the reasoning tends to agree with it, right or wrong; a verifier that sees only the clean proof has nothing to agree with except the logic itself. Fresh verifiers then attack the proof against a checklist of known mistakes, and the vote is asymmetric: four clean checks confirm it, but just two flagged holes are enough to send it back.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "HIDE THE REASONING, THEN ATTACK THE PROOF",
+        "media": "manim/NB02.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "HIDE THE REASONING, THEN ATTACK THE PROOF",
+          "chips": [
+            "strip the trace",
+            "attack the proof",
+            "4 confirm / 2 refute"
+          ],
+          "arrows": true,
+          "accent": [],
+          "strike": [],
+          "caption": "a verifier only ever sees the finished proof",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB02Scene"
+      },
+      "actual_duration_s": 25.26,
+      "audio_file": "mp3/beat-NB02.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB02.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T03:41:57"
+      }
+    },
+    {
+      "beat_id": "NB03",
+      "act": "3 mechanism",
+      "narration_text": "Here's why that matters. A verifier that reads a full page of confident reasoning starts nodding along before it reaches the last line — that's what happens when the reasoning stays visible. Show it only the bare proof instead, and it has to find the gap on its own, which is exactly when the pattern checklist catches something a nodding-along verifier would have waved through.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "new_visual_element": "WHY HIDING IT MATTERS",
+        "media": "manim/NB03.mp4"
+      },
+      "graphic": {
+        "production_viz": {
+          "label": "WHY HIDING IT MATTERS",
+          "chips": [
+            "sees reasoning",
+            "agrees",
+            "misses the gap"
+          ],
+          "arrows": false,
+          "accent": [
+            1
+          ],
+          "strike": [],
+          "caption": "a blind verifier has to find the gap on its own",
+          "colors": [
+            "#F3EBDD",
+            "#2F2A26",
+            "#E4572E"
+          ]
+        },
+        "manim": "BDNB03Scene"
+      },
+      "actual_duration_s": 19.26,
+      "audio_file": "mp3/beat-NB03.mp3",
+      "build": {
+        "status": "MANIM",
+        "src": "manim/NB03.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-31T03:41:57"
+      }
+    },
+    {
+      "beat_id": "BCRY",
+      "act": "6 CARRY-OUT",
+      "narration_text": "Claude checks a competition proof only after hiding the reasoning that built it — from a verifier that can't agree with logic it's never seen, and would rather say no confident solution than guess.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9,
+      "lead_silence_s": 0.6,
+      "shot": {
+        "type": "REMOTION",
+        "new_visual_element": "The carry-out sentence, alone",
+        "remotion": {
+          "pattern": "WantQuote",
+          "props": {
+            "quote": "Claude checks a competition proof only after hiding the reasoning that built it — from a verifier that can't agree with logic it's never seen, and would rather say no confident solution than guess.",
+            "attribution": "",
+            "sparkLine": "Hidden reasoning. Blind verifier."
+          },
+          "rendered": {
+            "out": "media/BCRY.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 11.03,
+      "audio_file": "mp3/beat-BCRY.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BCRY.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T03:41:57"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn. Paste this into Claude: Give me a tricky proof for a claim of your choosing, but write it in two passes. First, work out the reasoning however you like. Then hand me only the finished proof, with none of that reasoning attached, and check it fresh, as if you'd never seen how it was built. Tell me if the two passes agree.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "ADVERSARIAL PROOF CHECK · CLAUDE PLUGINS",
+            "segment": "The Verifier Never Sees Your Thinking.",
+            "command": "Give me a tricky proof for a claim of your choosing, but write it in two passes. First, work out the reasoning however you like. Then hand me only the finished proof, with none of that reasoning attached, and check it fresh, as if you'd never seen how it was built. Tell me if the two passes agree.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 16.02,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T03:41:57"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "The Verifier Never Sees Your Thinking. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "tail_silence_s": 1.0,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "OutroSeries",
+          "props": {
+            "eyebrow": "MATH OLYMPIAD · @HumanitariansAI",
+            "line": "The Verifier Never Sees Your Thinking."
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 3.97,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T03:41:57"
+      }
+    }
+  ]
+}

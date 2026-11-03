@@ -1,0 +1,54 @@
+Bug report: a 10% coupon takes $10 off instead of 10%.
+
+## STEP 1 — explore
+$ find . -name '*.py' -not -name '__init__.py' | sort
+./shop/cart.py
+./shop/emails.py
+./shop/inventory.py
+./shop/pricing.py
+./shop/shipping.py
+./shop/users.py
+./tests/test_cart.py
+./tests/test_pricing.py
+./tests/test_shipping.py
+
+## STEP 2 — targeted search
+$ grep -rn 'discount' --include='*.py' shop tests
+shop/cart.py:1:from shop.pricing import apply_discount
+shop/cart.py:6:    return apply_discount(subtotal, coupon_percent)
+shop/pricing.py:4:def apply_discount(price, percent):
+tests/test_pricing.py:1:from shop.pricing import apply_discount
+tests/test_pricing.py:4:def test_discount_rounds_to_cents():
+tests/test_pricing.py:5:    assert apply_discount(19.99, 15) == 16.99
+
+$ sed -n '4,6p' shop/pricing.py
+def apply_discount(price, percent):
+    """Take `percent` % off `price`."""
+    return price - percent
+
+## STEP 3 — scoped edit
+EDIT shop/pricing.py
+- return price - percent
++ return price * (1 - percent / 100)
+(1 line changed, 9 lines untouched)
+
+## STEP 4 — verify
+$ pytest -q --tb=line
+..F.                                                                     [100%]
+=================================== FAILURES ===================================
+tests/test_pricing.py:5: assert 16.9915 == 16.99
+=========================== short test summary info ============================
+FAILED tests/test_pricing.py::test_discount_rounds_to_cents - assert 16.9915 ...
+1 failed, 3 passed in 0.01s
+
+## STEP 5 — iterate
+EDIT shop/pricing.py
+- return price * (1 - percent / 100)
++ return round(price * (1 - percent / 100), 2)
+(1 line changed, 9 lines untouched)
+
+$ pytest -q --tb=line
+....                                                                     [100%]
+4 passed in 0.01s
+
+exit codes: first run 1, second run 0
