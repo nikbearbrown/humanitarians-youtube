@@ -1,5 +1,16 @@
 # Renewal request — Yatra Rawat
 
+## Summary
+
+I'm asking to renew from 1 Nov 2026 to 15 Feb 2027 as Social Media Manager on Homes of Hope & Humanitarians AI. Between 1 Aug and 31 Oct I:
+
+- built and ran the social media launch for the Homes of Hope documentary, with founder Paul Wilkes
+- gave a guest lecture on Humanitarians AI at MCPHS (13 Oct)
+- wrote three Substack articles on our own AI tools
+- made 12 Brutalist explainer videos, each with a fact-check file and a Frictional log
+
+I worked 20+ hours every week (see [HOURS.md](HOURS.md)). Next period I'll publish a Homes of Hope YouTube video and two Brutalist videos every week, and study how one documentary should be messaged differently on each platform.
+
 ## Request
 
 - **Name:** Yatra Rawat · GitHub [@yatrarawat](https://github.com/yatrarawat)
@@ -27,26 +38,26 @@ Hours for 19–31 Oct are from my bi-weekly report for Oct 19–30 _(TODO: add t
 
 ## Weekly evidence index
 
-Weeks run Monday to Sunday. STEM/AI = topic video; Progress = weekly update video. Rendered videos are in the [Google Drive folder](https://drive.google.com/drive/folders/1YqeYdGtrWtMbRa6_gHnsh5jSYS3X8GPb); each link below opens the video's source folder.
+In 1–16 Aug and 14 Sep – 18 Oct my time went to Homes of Hope, marketing Humanitarians AI tools, and Substack, so I made no Brutalist videos in those weeks. From 1 Nov I'm making two Brutalist videos every week (see Next period).
 
-Every Frictional log before 29 Oct was written on 3 Nov 2026 from that folder's build records, and says so at the top.
+Weeks run Monday to Sunday. Rendered videos are in the [Google Drive folder](https://drive.google.com/drive/folders/1YqeYdGtrWtMbRa6_gHnsh5jSYS3X8GPb); each video link opens its source folder. Every Frictional log before 29 Oct was written on 3 Nov 2026 from that folder's build records, and says so at the top.
 
-| Week | Hours | STEM/AI video | Progress video | Log and work evidence |
+| Week | Hours | What I did | Videos (STEM/AI or Progress) | Log and evidence |
 |---|---|---|---|---|
-| 1–2 Aug | 20 | — | — | Homes of Hope · Humanitarians AI tools marketing · Substack articles _(TODO: link)_ |
-| 3–9 Aug | 20 | — | — | Homes of Hope · Humanitarians AI tools marketing · Substack articles _(TODO: link)_ |
-| 10–16 Aug | 20 | — | — | Homes of Hope · Humanitarians AI tools marketing · Substack articles _(TODO: link)_ |
-| 17–23 Aug | 20 | [The Bottleneck Moved](./2026-08-20-the-bottleneck-moved/) (20 Aug) · [Assisted, Not Automated](./2026-08-21-assisted-not-automated/) (21 Aug) · [The Judgment Is the Job](./2026-08-21-the-judgment-is-the-job/) (21 Aug) | [Every Tool, Every Week](./2026-08-21-every-tool-every-week/) (21 Aug) | [log](./2026-08-20-the-bottleneck-moved/FRICTIONAL.md) · [log](./2026-08-21-assisted-not-automated/FRICTIONAL.md) · [log](./2026-08-21-the-judgment-is-the-job/FRICTIONAL.md) · [log](./2026-08-21-every-tool-every-week/FRICTIONAL.md) |
-| 24–30 Aug | 20 | — | [One Tool a Week](./2026-08-30-one-tool-a-week-brandy/) (30 Aug) | [log](./2026-08-30-one-tool-a-week-brandy/FRICTIONAL.md) · [Substack: AI copywriting coach](https://humanitariansai.substack.com/p/i-told-an-ai-copywriting-coach-i) (28 Aug) · [Substack: brand-audit tool](https://humanitariansai.substack.com/p/i-ran-our-own-brand-audit-tool-on) (29 Aug) |
-| 31 Aug – 6 Sep | 20 | [Nobody Wrote This](./2026-09-01-nobody-wrote-this/) (1 Sep) | [This Week, Gordy](./2026-09-03-this-week-gordy/) (3 Sep) | [log](./2026-09-01-nobody-wrote-this/FRICTIONAL.md) · [log](./2026-09-03-this-week-gordy/FRICTIONAL.md) · [LinkedIn: Gordy artist branding](https://www.linkedin.com/feed/update/urn:li:activity:7501661136711319552) (4 Sep) |
-| 7–13 Sep | 20 | [Interest Media](./2026-09-07-interest-media/) (7 Sep) | — | [log](./2026-09-07-interest-media/FRICTIONAL.md) · [Substack: What Gordy Taught Me About Branding](https://humanitariansai.substack.com/p/what-gordy-taught-me-about-branding) (10 Sep) |
-| 14–20 Sep | 20 | — | — | Homes of Hope · Humanitarians AI tools marketing · Substack articles _(TODO: link)_ |
-| 21–27 Sep | 20 | — | — | Homes of Hope · Humanitarians AI tools marketing · Substack articles _(TODO: link)_ |
-| 28 Sep – 4 Oct | 20 | — | — | Homes of Hope · Humanitarians AI tools marketing · Substack articles _(TODO: link)_ |
-| 5–11 Oct | 20 | — | — | Homes of Hope · Humanitarians AI tools marketing · Substack articles _(TODO: link)_ |
-| 12–18 Oct | 20 | — | — | [LinkedIn: MCPHS guest lecture](https://www.linkedin.com/feed/update/urn:li:activity:7515828471005171712) (13 Oct) · Homes of Hope · Humanitarians AI tools marketing |
-| 19–25 Oct | 22 | [Both Sides of the Table](./2026-10-21-both-sides-of-the-table/) (21 Oct) · [The Mask Slips](./2026-10-21-the-mask-slips/) (21 Oct) | — | [log](./2026-10-21-both-sides-of-the-table/FRICTIONAL.md) · [log](./2026-10-21-the-mask-slips/FRICTIONAL.md) · Homes of Hope strategy, meeting with Paul Wilkes, graphics, posts |
-| 26–31 Oct | 20 | [Ads in the Picture](./2026-10-29-ads-in-the-picture/) (29 Oct) · [No Default Winner](./2026-10-30-no-default-winner/) (30 Oct) | — | [log](./2026-10-29-ads-in-the-picture/FRICTIONAL.md) · [log](./2026-10-30-no-default-winner/FRICTIONAL.md) · Homes of Hope graphics, posts, YouTube strategy |
+| 1–2 Aug | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
+| 3–9 Aug | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
+| 10–16 Aug | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
+| 17–23 Aug | 20 | 4 Brutalist videos | [The Bottleneck Moved](./2026-08-20-the-bottleneck-moved/) (STEM/AI, 20 Aug) · [Assisted, Not Automated](./2026-08-21-assisted-not-automated/) (STEM/AI, 21 Aug) · [The Judgment Is the Job](./2026-08-21-the-judgment-is-the-job/) (STEM/AI, 21 Aug) · [Every Tool, Every Week](./2026-08-21-every-tool-every-week/) (Progress, 21 Aug) | [log](./2026-08-20-the-bottleneck-moved/FRICTIONAL.md) · [log](./2026-08-21-assisted-not-automated/FRICTIONAL.md) · [log](./2026-08-21-the-judgment-is-the-job/FRICTIONAL.md) · [log](./2026-08-21-every-tool-every-week/FRICTIONAL.md) |
+| 24–30 Aug | 20 | 2 Substack articles on our own tools · 1 Brutalist video | [One Tool a Week](./2026-08-30-one-tool-a-week-brandy/) (Progress, 30 Aug) | [log](./2026-08-30-one-tool-a-week-brandy/FRICTIONAL.md) · [Substack: AI copywriting coach](https://humanitariansai.substack.com/p/i-told-an-ai-copywriting-coach-i) (28 Aug) · [Substack: brand-audit tool](https://humanitariansai.substack.com/p/i-ran-our-own-brand-audit-tool-on) (29 Aug) |
+| 31 Aug – 6 Sep | 20 | 2 Brutalist videos · LinkedIn post on Gordy | [Nobody Wrote This](./2026-09-01-nobody-wrote-this/) (STEM/AI, 1 Sep) · [This Week, Gordy](./2026-09-03-this-week-gordy/) (Progress, 3 Sep) | [log](./2026-09-01-nobody-wrote-this/FRICTIONAL.md) · [log](./2026-09-03-this-week-gordy/FRICTIONAL.md) · [LinkedIn: Gordy artist branding](https://www.linkedin.com/feed/update/urn:li:activity:7501661136711319552) (4 Sep) |
+| 7–13 Sep | 20 | Substack article on Gordy · 1 Brutalist video | [Interest Media](./2026-09-07-interest-media/) (STEM/AI, 7 Sep) | [log](./2026-09-07-interest-media/FRICTIONAL.md) · [Substack: What Gordy Taught Me About Branding](https://humanitariansai.substack.com/p/what-gordy-taught-me-about-branding) (10 Sep) |
+| 14–20 Sep | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
+| 21–27 Sep | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
+| 28 Sep – 4 Oct | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
+| 5–11 Oct | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
+| 12–18 Oct | 20 | Guest lecture at MCPHS · Homes of Hope · Humanitarians AI tools marketing | None this week | [LinkedIn: MCPHS guest lecture](https://www.linkedin.com/feed/update/urn:li:activity:7515828471005171712) (13 Oct) |
+| 19–25 Oct | 22 | Homes of Hope strategy, meeting with Paul Wilkes and team, graphics, LinkedIn and Instagram posts · 2 Brutalist videos | [Both Sides of the Table](./2026-10-21-both-sides-of-the-table/) (STEM/AI, 21 Oct) · [The Mask Slips](./2026-10-21-the-mask-slips/) (STEM/AI, 21 Oct) | [log](./2026-10-21-both-sides-of-the-table/FRICTIONAL.md) · [log](./2026-10-21-the-mask-slips/FRICTIONAL.md) |
+| 26–31 Oct | 20 | Homes of Hope graphics, posts and YouTube strategy · 2 Brutalist videos | [Ads in the Picture](./2026-10-29-ads-in-the-picture/) (STEM/AI, 29 Oct) · [No Default Winner](./2026-10-30-no-default-winner/) (STEM/AI, 30 Oct) | [log](./2026-10-29-ads-in-the-picture/FRICTIONAL.md) · [log](./2026-10-30-no-default-winner/FRICTIONAL.md) |
 
 ## Next period: 1 Nov 2026 — 15 Feb 2027
 
@@ -61,7 +72,7 @@ Every Frictional log before 29 Oct was written on 3 Nov 2026 from that folder's 
 
 ## Outstanding issues
 
-- No Brutalist videos for 1–16 Aug or 14 Sep – 18 Oct. Those weeks went to Homes of Hope, marketing Humanitarians AI tools, and Substack articles.
-- Several weeks have no progress video, and 24–30 Aug has no STEM/AI video.
-- Hours for 1 Aug – 18 Oct have no dated records from the time; they were written down on 3 Nov 2026.
-- Frictional logs before 29 Oct were written after the fact (3 Nov 2026), not week by week.
+- No Brutalist videos for 1–16 Aug or 14 Sep – 18 Oct; that time went to Homes of Hope, Humanitarians AI tools marketing and Substack. Two videos a week resume from 1 Nov.
+- Not every video week had both a STEM/AI and a progress video. From 1 Nov each week will have one of each.
+- Hours for 1 Aug – 18 Oct have no dated records from the time; they were written down on 3 Nov 2026. From 1 Nov hours go into [HOURS.md](HOURS.md) each week.
+- Frictional logs before 29 Oct were written after the fact (3 Nov 2026), not week by week. From 1 Nov each log is written the week of the work.
