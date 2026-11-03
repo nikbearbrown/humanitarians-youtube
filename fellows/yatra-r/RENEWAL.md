@@ -25,7 +25,7 @@ I worked 20+ hours every week (see [HOURS.md](HOURS.md)). Next period I'll publi
 
 1. **Homes of Hope documentary launch.** I built the social media strategy for the new Homes of Hope documentary and reviewed it with founder Paul Wilkes and his team. With my team I designed the graphics, posted on LinkedIn and Instagram, and planned a YouTube video strategy. My part: the strategy, the review meeting, graphics, posting, and the YouTube plan.
    Evidence: _TODO link to the strategy doc, graphics, and the LinkedIn / Instagram posts_
-2. **Guest lecture at MCPHS.** My graduate professor invited me to give a guest lecture at MCPHS on Humanitarians AI. My part: I prepared and gave the lecture.
+2. **Guest lecture at MCPHS.** My graduate professor invited me to give a guest lecture at MCPHS on Humanitarians AI. My part: I prepared the presentation and gave the one-hour lecture.
    Evidence: [LinkedIn: MCPHS guest lecture](https://www.linkedin.com/feed/update/urn:li:activity:7515828471005171712) · Lecture date: 13 Oct 2026
 3. **Humanitarians AI tools marketing and the Brutalist explainer series.** I wrote three Substack articles for Humanitarians AI, each a first-hand run of one of our own tools: an AI copywriting coach, our brand-audit tool, and Gordy, the AI music brand strategist. I also posted about them on LinkedIn. I made 12 videos on AI in marketing, hiring and content creation. 11 have a 9:16 cut, and 3 have 4K masters. Every video has a fact-check file listing what it claims, what it does not claim, and where each figure comes from. My part: the topic, the source material and figures, and review of each build. Claude Code on the brutalist.art toolkit drafted the beat sheets and scenes, rendered, and ran QC.
    Evidence: [Substack: AI copywriting coach](https://humanitariansai.substack.com/p/i-told-an-ai-copywriting-coach-i) (28 Aug) · [Substack: brand-audit tool](https://humanitariansai.substack.com/p/i-ran-our-own-brand-audit-tool-on) (29 Aug) · [Substack: What Gordy Taught Me About Branding](https://humanitariansai.substack.com/p/what-gordy-taught-me-about-branding) (10 Sep) · [LinkedIn: Gordy artist branding](https://www.linkedin.com/feed/update/urn:li:activity:7501661136711319552) (4 Sep) · [episode index](README.md) · [all videos (Google Drive)](https://drive.google.com/drive/folders/1YqeYdGtrWtMbRa6_gHnsh5jSYS3X8GPb) · links per week below
@@ -38,7 +38,7 @@ Hours for 19–31 Oct are from my bi-weekly report for Oct 19–30 _(TODO: add t
 
 ## Weekly evidence index
 
-In 1–16 Aug and 14 Sep – 18 Oct my time went to Homes of Hope, marketing Humanitarians AI tools, and Substack, so I made no Brutalist videos in those weeks. From 1 Nov I'm making two Brutalist videos every week (see Next period).
+In 1–16 Aug and 14 Sep – 18 Oct my time went to Homes of Hope, marketing Humanitarians AI tools, and Substack, so I made no Brutalist videos in those weeks. In 5–18 Oct the Homes of Hope documentary was released and most of my time went to its launch: building the strategy, meeting with Paul Wilkes and his team, and 2–3 project meetings a week. In the same stretch I prepared and gave a one-hour guest lecture at MCPHS (13 Oct). That is why those two weeks' videos were finished late. From 1 Nov I'm making two Brutalist videos every week (see Next period).
 
 Weeks run Monday to Sunday. Rendered videos are in the [Google Drive folder](https://drive.google.com/drive/folders/1YqeYdGtrWtMbRa6_gHnsh5jSYS3X8GPb); each video link opens its source folder. Every Frictional log before 29 Oct was written on 3 Nov 2026 from that folder's build records, and says so at the top.
 
@@ -54,10 +54,10 @@ Weeks run Monday to Sunday. Rendered videos are in the [Google Drive folder](htt
 | 14–20 Sep | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
 | 21–27 Sep | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
 | 28 Sep – 4 Oct | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
-| 5–11 Oct | 20 | Homes of Hope · Humanitarians AI tools marketing · Substack articles | None this week | _TODO: link_ |
-| 12–18 Oct | 20 | Guest lecture at MCPHS · Homes of Hope · Humanitarians AI tools marketing | None this week | [LinkedIn: MCPHS guest lecture](https://www.linkedin.com/feed/update/urn:li:activity:7515828471005171712) (13 Oct) |
-| 19–25 Oct | 22 | Homes of Hope strategy, meeting with Paul Wilkes and team, graphics, LinkedIn and Instagram posts · 2 Brutalist videos | [Both Sides of the Table](./2026-10-21-both-sides-of-the-table/) (STEM/AI, 21 Oct) · [The Mask Slips](./2026-10-21-the-mask-slips/) (STEM/AI, 21 Oct) | [log](./2026-10-21-both-sides-of-the-table/FRICTIONAL.md) · [log](./2026-10-21-the-mask-slips/FRICTIONAL.md) |
-| 26–31 Oct | 20 | Homes of Hope graphics, posts and YouTube strategy · 2 Brutalist videos | [Ads in the Picture](./2026-10-29-ads-in-the-picture/) (STEM/AI, 29 Oct) · [No Default Winner](./2026-10-30-no-default-winner/) (STEM/AI, 30 Oct) | [log](./2026-10-29-ads-in-the-picture/FRICTIONAL.md) · [log](./2026-10-30-no-default-winner/FRICTIONAL.md) |
+| 5–11 Oct | 20 | Homes of Hope launch, as the documentary was released: building the social media strategy, meetings with Paul Wilkes and his team, 2–3 project meetings a week | None this week; this week's video, [Ads in the Picture](./2026-10-29-ads-in-the-picture/), was made late on 29 Oct | _TODO: link_ |
+| 12–18 Oct | 20 | Prepared the presentation for, and gave, a one-hour guest lecture at MCPHS (13 Oct) · Homes of Hope launch, as the documentary was released: building the social media strategy, meetings with Paul Wilkes and his team, 2–3 project meetings a week | None this week; this week's video, [Both Sides of the Table](./2026-10-21-both-sides-of-the-table/), was made late on 21 Oct | [LinkedIn: MCPHS guest lecture](https://www.linkedin.com/feed/update/urn:li:activity:7515828471005171712) (13 Oct) |
+| 19–25 Oct | 22 | Homes of Hope strategy, meeting with Paul Wilkes and team, graphics, LinkedIn and Instagram posts · 2 Brutalist videos | [Both Sides of the Table](./2026-10-21-both-sides-of-the-table/) (STEM/AI, made 21 Oct, the video for 12–18 Oct) · [The Mask Slips](./2026-10-21-the-mask-slips/) (STEM/AI, 21 Oct) | [log](./2026-10-21-both-sides-of-the-table/FRICTIONAL.md) · [log](./2026-10-21-the-mask-slips/FRICTIONAL.md) |
+| 26–31 Oct | 20 | Homes of Hope graphics, posts and YouTube strategy · 2 Brutalist videos | [Ads in the Picture](./2026-10-29-ads-in-the-picture/) (STEM/AI, made 29 Oct, the video for 5–11 Oct) · [No Default Winner](./2026-10-30-no-default-winner/) (STEM/AI, 30 Oct) | [log](./2026-10-29-ads-in-the-picture/FRICTIONAL.md) · [log](./2026-10-30-no-default-winner/FRICTIONAL.md) |
 
 ## Next period: 1 Nov 2026 — 15 Feb 2027
 
@@ -73,6 +73,7 @@ Weeks run Monday to Sunday. Rendered videos are in the [Google Drive folder](htt
 ## Outstanding issues
 
 - No Brutalist videos for 1–16 Aug or 14 Sep – 18 Oct; that time went to Homes of Hope, Humanitarians AI tools marketing and Substack. Two videos a week resume from 1 Nov.
+- Two videos were made late: Both Sides of the Table (for 12–18 Oct, made 21 Oct) and Ads in the Picture (for 5–11 Oct, made 29 Oct). Both weeks went to the Homes of Hope launch, as the documentary was released, and to preparing and giving the MCPHS guest lecture. They are listed under the weeks they were made.
 - Not every video week had both a STEM/AI and a progress video. From 1 Nov each week will have one of each.
 - Hours for 1 Aug – 18 Oct have no dated records from the time; they were written down on 3 Nov 2026. From 1 Nov hours go into [HOURS.md](HOURS.md) each week.
 - Frictional logs before 29 Oct were written after the fact (3 Nov 2026), not week by week. From 1 Nov each log is written the week of the work.
