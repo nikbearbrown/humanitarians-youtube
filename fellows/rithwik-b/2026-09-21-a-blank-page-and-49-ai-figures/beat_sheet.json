@@ -1,0 +1,370 @@
+{
+  "metadata": {
+    "title": "Cloning a Repo, Fixing a Blank Page, and Auditing 49 AI Figures",
+    "slug": "bio-art-session",
+    "topic": "CLAUDE CODE · SESSION REPLAY",
+    "register": "Teardown",
+    "voice": "NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "cli",
+    "note": "CLI-explainer spine, direct-compile path (no Manim): B00 cold open (ClaudeComposerAsk) - B01 PROBLEM (ChipGrid) - B02 ASK - B03 CODE - B04 OUTPUT (ChipGrid, the crash cause) - B05 CHANGE - B06 OUTPUT (LayerStack, the fix chain) - B07 SUMMARY (ClaudeWindow verdict) - B08 NEXT STEPS - B09 outro.",
+    "total_estimated_duration_seconds": 185,
+    "build": {
+      "at": "2026-09-21T13:53:02",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW",
+      "narration_text": "Hola, this is Liam, in for Bear. One student, one git clone, and a blank white page. Let's take it apart.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "git clone https://github.com/Medhavy/bio-art.git",
+            "topic": "CLAUDE CODE · SESSION REPLAY",
+            "segment": "Bio-Art Figure Browser",
+            "greeting": "Hola, Bear",
+            "runningText": "authenticating…",
+            "output": [
+              "remote: Invalid username or token.",
+              "fatal: Authentication failed"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 6.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why care",
+      "role_note": "the stakes, before the build",
+      "narration_text": "GitHub killed password auth years ago, so the clone bounced off a login prompt. That got fixed with a personal access token. But the real story starts after the clone: a React viewer that opened to a completely blank page, with no error banner in sight. Under the hood, four separate bugs were stacked on top of each other — a corrupted npm cache from an old sudo install, a dev server that only knew how to serve one image folder, and a data loader that assumed every entry in the catalog looked the same. Each one hid the next.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Four bugs, stacked.",
+            "items": [
+              "Password auth dead",
+              "npm cache root-owned",
+              "Vite can't reach /figures",
+              "245 figures, 1 field missing"
+            ],
+            "cols": 2,
+            "caption": "each one hid the next"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 27.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "role_note": "composer — the diagnostic prompt",
+      "narration_text": "Into Claude: the viewer's index point html is a Vite React app, it renders nothing, and the console shows no error. Find out why, and fix it without adding anything the app doesn't already need.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"viewer/index.html renders a blank page, no console error — find the root cause in catalog.js and fix it\"",
+            "topic": "CLAUDE CODE · SESSION REPLAY",
+            "segment": "Bio-Art Figure Browser",
+            "greeting": "The ask,",
+            "runningText": "reading catalog.js…"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 11.24,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — the actual crashing line",
+      "narration_text": "The crash was one property read. Every figure in the catalog got mapped through chapter-from-file of entry dot file. Two-hundred-thirty-four of the two-hundred-forty-five entries don't have a file field at all — they use file svg and file png instead. That's a TypeError, at module load, before React ever gets to render a single pixel.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "src/lib/catalog.js — before",
+            "code": "export function loadFigures() {\n  return Object.values(catalog).map((entry) => ({\n    ...entry,\n    chapter: chapterFromFile(entry.file),   // <- entry.file is undefined\n    src: encodeImageSrc(entry.file),         // for 234 of 245 entries\n  }))\n}\n\n// TypeError: Cannot read properties of undefined (reading 'match')\n// thrown at module load — before ReactDOM ever renders.",
+            "sparkLine": "One field, 234 crashes."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.69,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run",
+      "role_note": "moving visualization of the crash's blast radius",
+      "narration_text": "Here's the blast radius. Two data shapes were living in one file: eleven chapter illustrations with a proper file and title field, and two-hundred-thirty-four batch figures with file svg, file png, object, and category instead. The loader assumed everybody looked like the first group. They didn't.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeScienceChipGrid",
+          "props": {
+            "sparkLine": "Two shapes, one loader.",
+            "items": [
+              "11 entries: file + title",
+              "234 entries: file_svg / file_png",
+              "0 entries: any chemical structure",
+              "1 crash, before React mounts"
+            ],
+            "cols": 2,
+            "caption": "the loader only knew shape one"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.28,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE — check & revise",
+      "role_note": "composer — the required revision",
+      "narration_text": "The fix: normalize both shapes into one, and while we're in the dev server, serve the figures folder too — Vite was only exposing images, so even a fixed loader would have hit four-oh-fours. And once the viewer actually rendered, look hard at what it's rendering: audit every molecule and drug figure for whether it's any good.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"normalize both catalog shapes in loadFigures(), serve /figures/* in vite.config.js, then audit all 49 molecule/drug figures for scientific usefulness\"",
+            "topic": "CLAUDE CODE · SESSION REPLAY",
+            "segment": "Bio-Art Figure Browser",
+            "greeting": "The change,",
+            "runningText": "normalizing + rendering + auditing…"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT — revised",
+      "role_note": "moving visualization — the audit's real finding",
+      "narration_text": "The viewer came back. But looking at all forty-nine molecule and drug figures side by side, one image at a time, surfaced something bigger than a rendering bug: sixteen of them — base excision repair, nucleotide excision repair, mismatch repair, double-strand breaks, and eight separate p-fifty-three pathway figures — are pixel-identical. Fifteen more, spanning nucleosome structure, SWI-SNF remodeling, and four apoptosis panels, share a second identical template. Thirty-one of forty-nine figures, sixty-three percent, are one of five recycled shapes wearing completely different labels.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeScienceLayerStack",
+          "props": {
+            "sparkLine": "31 of 49, five shapes.",
+            "layers": [
+              {
+                "title": "Template B — 16 figures",
+                "sub": "BER, NER, MMR, DSB repair, p53 x8 — identical",
+                "accent": true
+              },
+              {
+                "title": "Template C — 15 figures",
+                "sub": "nucleosome, SWI/SNF, apoptosis x4 — identical"
+              },
+              {
+                "title": "8 partially useful, 3 mistagged",
+                "sub": "no labels, but topology is defensible"
+              }
+            ],
+            "caption": "0 useful · 8 partial · 38 not useful · 3 incorrect"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 32.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "role_note": "the lesson, one beat — ClaudeWindow verdict",
+      "narration_text": "Zero of the two-hundred-forty-five figures in this repo attempt an actual chemical structure — confirmed by grepping every annotation for skeletal formula, bond angle, and chemical structure, not by assuming it. So the small-molecule risk the original document warned about never even fires here. The real defect sits one level up: a generative pipeline that cannot tell double-strand break repair apart from mismatch repair, because underneath the prompt it is reusing the same five templates across dozens of named mechanisms. Fix that collapse before worrying about bond diagrams.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeWindow",
+          "props": {
+            "view": "artifact",
+            "artifactTitle": "audit-molecule-drug-figures.pdf",
+            "artifactHeading": "The verdict",
+            "artifactLines": [
+              "0 chemical structures attempted — grep-confirmed",
+              "31 / 49 figures are one of 5 recycled templates",
+              "Fix the template-collapse bug before touching molecules"
+            ],
+            "sparkLine": "Duplication, not bad bonds."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 31.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW",
+      "narration_text": "Your move: point Claude at your own repo's asset pipeline and ask it to diff every generated output against its own prompt — not just for crashes, for duplication. If five prompts produce one image, that's a pipeline bug worth finding before you ship a single one of them.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "claude \"hash every generated asset in this pipeline, group identical hashes, and tell me which distinct prompts collapsed onto the same output\"",
+            "topic": "CLAUDE CODE · SESSION REPLAY",
+            "segment": "Bio-Art Figure Browser",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 16,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 14.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW",
+      "narration_text": "From a failed clone to a blank page to a five-template duplication bug — built with Claude, then taken apart. This is Liam, in for Bear.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Cloning a Repo, Fixing a Blank Page, and Auditing 49 AI Figures.",
+            "handle": "@NikBearBrown",
+            "subline": "built with Claude, taken apart"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 8.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-09-21T13:53:02"
+      }
+    }
+  ]
+}
