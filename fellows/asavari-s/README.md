@@ -14,3 +14,4 @@ Explainer videos in the house Brutalist format, each produced in 16:9 and 9:16.
 | 2026-09-11 | [Deterministic vs. Probabilistic AI](2026-09-11-deterministic-vs-probabilistic-ai/) | AI / STEM |
 | 2026-09-28 | [Ticker to Truth](2026-09-28-ticker-to-truth/) | Mycroft — SEC Filings Financial Metrics Agent |
 | 2026-09-28 | [What Are Embeddings?](2026-09-28-what-are-embeddings/) | AI / STEM |
+| 2026-10-31 | [Trust, but Verify](2026-10-31-trust-but-verify/) | Mycroft — SEC Filings Financial Metrics Agent |
