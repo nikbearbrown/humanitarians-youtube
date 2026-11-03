@@ -23,11 +23,11 @@ Rendered videos are not committed. Each folder below holds the video's sources a
 
 | Week | Videos |
 |---|---|
-| 17–23 Aug | [The Bottleneck Moved](./2026-08-20-the-bottleneck-moved/) · [Assisted, Not Automated](./2026-08-21-assisted-not-automated/) · [Every Tool, Every Week](./2026-08-21-every-tool-every-week/) · [The Judgment Is the Job](./2026-08-21-the-judgment-is-the-job/) |
-| 24–30 Aug | [One Tool a Week](./2026-08-30-one-tool-a-week-brandy/) |
-| 31 Aug – 6 Sep | [Nobody Wrote This](./2026-09-01-nobody-wrote-this/) · [This Week, Gordy](./2026-09-03-this-week-gordy/) |
-| 7–13 Sep | [Interest Media](./2026-09-07-interest-media/) |
-| 19–25 Oct | [Both Sides of the Table](./2026-10-21-both-sides-of-the-table/) · [The Mask Slips](./2026-10-21-the-mask-slips/) |
+| 17–23 Aug | [The Bottleneck Moved](./2026-08-20-the-bottleneck-moved/) ([log](./2026-08-20-the-bottleneck-moved/FRICTIONAL.md)) · [Assisted, Not Automated](./2026-08-21-assisted-not-automated/) ([log](./2026-08-21-assisted-not-automated/FRICTIONAL.md)) · [Every Tool, Every Week](./2026-08-21-every-tool-every-week/) ([log](./2026-08-21-every-tool-every-week/FRICTIONAL.md)) · [The Judgment Is the Job](./2026-08-21-the-judgment-is-the-job/) ([log](./2026-08-21-the-judgment-is-the-job/FRICTIONAL.md)) |
+| 24–30 Aug | [One Tool a Week](./2026-08-30-one-tool-a-week-brandy/) ([log](./2026-08-30-one-tool-a-week-brandy/FRICTIONAL.md)) |
+| 31 Aug – 6 Sep | [Nobody Wrote This](./2026-09-01-nobody-wrote-this/) ([log](./2026-09-01-nobody-wrote-this/FRICTIONAL.md)) · [This Week, Gordy](./2026-09-03-this-week-gordy/) ([log](./2026-09-03-this-week-gordy/FRICTIONAL.md)) |
+| 7–13 Sep | [Interest Media](./2026-09-07-interest-media/) ([log](./2026-09-07-interest-media/FRICTIONAL.md)) |
+| 19–25 Oct | [Both Sides of the Table](./2026-10-21-both-sides-of-the-table/) ([log](./2026-10-21-both-sides-of-the-table/FRICTIONAL.md)) · [The Mask Slips](./2026-10-21-the-mask-slips/) ([log](./2026-10-21-the-mask-slips/FRICTIONAL.md)) |
 | 26 Oct – 1 Nov | [Ads in the Picture](./2026-10-29-ads-in-the-picture/) ([log](./2026-10-29-ads-in-the-picture/FRICTIONAL.md)) · [No Default Winner](./2026-10-30-no-default-winner/) ([log](./2026-10-30-no-default-winner/FRICTIONAL.md)) |
 
 Folder index: [README.md](README.md)
@@ -40,5 +40,5 @@ Folder index: [README.md](README.md)
 ## Open items
 
 - No videos for the weeks of 14 Sep – 18 Oct.
-- No Frictional logs for the videos before 29 Oct.
+- Frictional logs for the videos before 29 Oct were written on 3 Nov 2026 from each folder's build and QC notes, not kept week by week. Each one says so at the top.
 - No HOURS.md yet.
