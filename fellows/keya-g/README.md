@@ -10,6 +10,10 @@
 
 Work folders, one per report or video:
 
+- [2026-10-13-how-ai-draws-anime-frames](2026-10-13-how-ai-draws-anime-frames/README.md): Week 1 explainer, How AI Draws Anime Frames
+- [2026-10-13-week-1-progress](2026-10-13-week-1-progress/README.md): Week 1 progress video
+- [HOURS.md](HOURS.md): weekly hours
+
 
 ## Frictional log
 
