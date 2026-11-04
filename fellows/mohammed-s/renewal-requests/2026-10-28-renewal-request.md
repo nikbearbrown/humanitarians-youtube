@@ -8,7 +8,7 @@
 
 **Current Project:** Legacy Application Migration Using AI 
 
-**Repository:** <https://github.com/mdhussainshariff/snowshift> (database migration, current period) · <https://github.com/mdhussainshariff/mycroft-nikbearbrown/tree/jboss-migrator> (JBoss migrator, branch `jboss-migrator`)
+**Repository:** <https://github.com/mdhussainshariff/snowshift> (database migration, current period) · <https://github.com/mdhussainshariff/jboss-migrator> (JBoss migrator; also [PR #75](https://github.com/nikbearbrown/mycroft/pull/75) into `nikbearbrown/mycroft`)
 
 **Request date:** 2026-10-29
 
@@ -36,10 +36,12 @@ figure here traces to a commit, a test or a QC record in those folders, not to a
 - **JBoss EAP 7 → 8 / Java 8 → 17 migrator — design and first code.** A six-stage pipeline built
   from existing tools (Red Hat MTA, OpenRewrite, Eclipse Transformer, JBoss CLI / WildFly Server
   Migration Tool), an LLM step that may only propose fixes, and characterization tests plus a
-  diff guard as the proof. A config-driven upgrade orchestrator is committed
-  ([55c4dcb](https://github.com/mdhussainshariff/mycroft-nikbearbrown/commit/55c4dcb)); it has not yet been run on an application.
-- **Eleven STEM explainers** on finance, data engineering, data quality, RAG, AI agents and
-  migration. Nine have rendered 4K masters in 16:9 and 9:16 on Drive; one is published on
+  diff guard as the proof. It is now working code in a public repository
+  ([jboss-migrator](https://github.com/mdhussainshariff/jboss-migrator)): six stage modules, five of them unit-tested, and batch mode for
+  migrating a portfolio of apps from one file with each failure isolated ([41d62af](https://github.com/mdhussainshariff/jboss-migrator/commit/41d62aff2c06b62e384a2aacea969d15d3487bdd)).
+  23 of 23 unit tests pass. **Not yet run end to end on a real JBoss application.**
+- **Thirteen STEM explainers** on finance, data engineering, data quality, RAG, AI agents,
+  AI developer tools and migration. Eleven have rendered 4K masters on Drive; one is published on
   YouTube. Each has a fact-check and a visual QC record.
 
 ## Evidence
@@ -51,6 +53,7 @@ figure here traces to a commit, a test or a QC record in those folders, not to a
 | snowshift — restructure, lint, deploy, parity | [eb342d4](https://github.com/mdhussainshariff/snowshift/commit/eb342d4) | [drive](https://drive.google.com/file/d/1ahafItD4roNI5A0nX4XRpwvl1RLJxWrL/view) | [watch](https://youtu.be/KXX2EEeFhV8) | [log](../2026-10-05-hussain-snowshift-migration-overview/FRICTIONAL.md) |
 | snowshift — duplicate-key fix | [7ba5900](https://github.com/mdhussainshariff/snowshift/commit/7ba5900) | [drive](https://drive.google.com/file/d/1ahafItD4roNI5A0nX4XRpwvl1RLJxWrL/view) | [watch](https://youtu.be/KXX2EEeFhV8) | [log](../2026-10-05-hussain-snowshift-migration-overview/FRICTIONAL.md) |
 | JBoss migrator — design and orchestrator | [55c4dcb](https://github.com/mdhussainshariff/mycroft-nikbearbrown/commit/55c4dcb) | [drive](https://drive.google.com/file/d/1x3qaq8DK7e7wsPWpLcXuouCnvzPYp0fU/view) | - | [log](../2026-10-19-jboss-migrator-overview/FRICTIONAL.md) |
+| jboss-migrator — public repository and batch mode | [41d62af](https://github.com/mdhussainshariff/jboss-migrator/commit/41d62aff2c06b62e384a2aacea969d15d3487bdd) | [drive](https://drive.google.com/file/d/1i0hmrU8h4Kf1W9MCT9Yj-9YoiupJpfFO/view) | - | [log](../2026-10-26-jboss-migrator-update/FRICTIONAL.md) |
 
 ## Stem Topics
 
@@ -67,10 +70,12 @@ figure here traces to a commit, a test or a QC record in those folders, not to a
 | 5–11 Oct | Database migration | [video](https://youtu.be/KXX2EEeFhV8) | [drive](https://drive.google.com/file/d/1ahafItD4roNI5A0nX4XRpwvl1RLJxWrL/view) | [log](../2026-10-05-hussain-snowshift-migration-overview/FRICTIONAL.md) |
 | 19–25 Oct | Application migration: JBoss and Java | - | [drive](https://drive.google.com/file/d/1x3qaq8DK7e7wsPWpLcXuouCnvzPYp0fU/view) | [log](../2026-10-19-jboss-migrator-overview/FRICTIONAL.md) |
 | 19–25 Oct | Personal AI agents: Meta's Muse | - | [drive](https://drive.google.com/file/d/1vTD4MOc3M4aL8AkJuA_JLMgVMpR7xSlv/view) | [log](../2026-10-19-muse/FRICTIONAL.md) |
+| 26 Oct – 1 Nov | JBoss migrator update: batch mode | - | [drive](https://drive.google.com/file/d/1i0hmrU8h4Kf1W9MCT9Yj-9YoiupJpfFO/view) | [log](../2026-10-26-jboss-migrator-update/FRICTIONAL.md) |
+| 26 Oct – 1 Nov | Spec-driven AI IDEs: Amazon's Kiro | - | [drive](https://drive.google.com/file/d/1XBUPVLg_xhwwyR3bB8Ao_JWWsx9BxZBB/view) | [log](../2026-10-26-kiro-spec-ide/FRICTIONAL.md) |
 
 Weekly hours: [HOURS.md](../HOURS.md). Weekly Frictional logs: one per work folder, listed in [README.md](../README.md).
 
-**Coverage.** Weekly records run from 3 Aug to 25 Oct. 26–31 Oct is the current week, still to be recorded.
+**Coverage.** Weekly records run from 3 Aug to 1 Nov.
 
 ## Why migration
 
@@ -87,7 +92,8 @@ configuration is used.
 
 ## Plan for the requested period
 
-Sprints 1–5 build the Java migrator; each one gates the next.
+Sprints 1–5 build the Java migrator; each one gates the next. Starting point:
+[jboss-migrator at 41d62af](https://github.com/mdhussainshariff/jboss-migrator/commit/41d62aff2c06b62e384a2aacea969d15d3487bdd) — six stages, batch mode, 23 unit tests, never yet run on a real app.
 
 1. **Baseline before touching anything (2–6 Nov).** Pick a public JBoss EAP 7 / Java 8 sample
    application with real persistence and security, and get it building and deploying. Write
