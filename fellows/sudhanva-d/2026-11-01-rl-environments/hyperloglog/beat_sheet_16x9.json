@@ -1,0 +1,315 @@
+{
+  "metadata": {
+    "title": "How HyperLogLog Counts.",
+    "slug": "stem-hyperloglog",
+    "topic": "STEM · DATA STRUCTURES",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "persona": "Sudhanva",
+    "in_for_bear": false,
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hi, I'm Sudhanva",
+    "folderLabel": "@HumanitariansAI",
+    "pronounce": {
+      "Sudhanva": "sˈʊdənvə"
+    },
+    "fps": 24,
+    "evidence": "evidence/results.json (python3 evidence/run_evidence.py)"
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hi — I'm Sudhanva. Claude fed three million visits from a million different visitors into a counter seven hundred sixty-eight bytes big. It answered nine hundred eighty-one thousand. Two percent off.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.1,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "STEM · DATA STRUCTURES",
+            "segment": "How HyperLogLog Counts",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "greeting": "Hi, I'm Sudhanva",
+            "command": "Count the distinct visitors in 3,000,000 visits using less than a kilobyte. How close can you get?",
+            "runningText": "running hll.py…",
+            "output": [
+              "1,000,000 distinct visitors · 3,000,000 visits",
+              "HyperLogLog · 1,024 registers · 768 bytes → 981,148 (−1.9%)",
+              "exact list of 64-bit fingerprints: 8,000,000 bytes"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-01T21:57:39.783338+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 11.01,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "hesitant writer — BLUF",
+      "speed": 0.88,
+      "narration_text": "To count unique visitors, you don't remember every visitor. You remember how rare the rarest hash was. Rarity tells you how many. That's HyperLogLog.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.5,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "To count unique visitors\nremember every visitor\nrarity tells you how many",
+            "face": "serif",
+            "fontSize": 120,
+            "lineSpacing": 1.45,
+            "align": "center",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5",
+            "triggerWords": "every visitor",
+            "replacementWords": "only rare hashes",
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 4,
+            "charMs": 34,
+            "jitter": 18,
+            "seed": "stem-hyperloglog",
+            "brandLabel": "@HumanitariansAI",
+            "contextTitle": "How HyperLogLog Counts"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-01T21:58:25.936043+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 9.22
+    },
+    {
+      "beat_id": "B02",
+      "act": "framework: rarity",
+      "narration_text": "Hash every visitor to random bits. Half the hashes start with a zero, a quarter with two zeros, one in a thousand with ten. So if the longest run of zeros you've seen is ten, you've seen about a thousand visitors.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.1,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B02_Rarity",
+        "source": "own",
+        "sparkLine": "Rare means many.",
+        "new_visual_element": "Hashes stream in; leading zeros highlighted; 1/2, 1/4 … 1/1024 ladder; longest run → 2^k",
+        "visual_intent": "SHOW: real BLAKE2b hashes of visitor ids",
+        "show": [
+          {
+            "at": "Hash",
+            "event": "hash bits stream"
+          },
+          {
+            "at": "Half",
+            "event": "1/2"
+          },
+          {
+            "at": "ten",
+            "event": "1/1024 → about 1,000"
+          }
+        ]
+      },
+      "actual_duration_s": 12.16,
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "act": "framework: registers",
+      "narration_text": "One record is noisy, so split the hashes. The first bits pick a register, and each register keeps its own longest run. A harmonic mean turns the registers into one count.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.1,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B03_Registers",
+        "source": "own",
+        "sparkLine": "Many small records.",
+        "new_visual_element": "4-register worked example with real words; formula E = α m² / Σ 2^(−M_j)",
+        "visual_intent": "SHOW: evidence worked (p = 2, eight words) + typeset estimator",
+        "show": [
+          {
+            "at": "first bits",
+            "event": "register index"
+          },
+          {
+            "at": "harmonic mean",
+            "event": "MathTex formula"
+          }
+        ]
+      },
+      "actual_duration_s": 10.15,
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "act": "at scale",
+      "narration_text": "A million visitors, each seen three times, into a thousand registers — seven hundred sixty-eight bytes. Off by two percent. Four times the registers halves the error, right on the theory's curve.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B04_Scale",
+        "source": "own",
+        "sparkLine": "768 bytes, 2% off.",
+        "new_visual_element": "Estimate vs truth; measured error vs 1.04/√m on a log axis",
+        "visual_intent": "SHOW: evidence headline + accuracy rows (30 trials each)",
+        "show": [
+          {
+            "at": "million",
+            "event": "981,148 vs 1,000,000"
+          },
+          {
+            "at": "Four times",
+            "event": "error curve"
+          }
+        ]
+      },
+      "actual_duration_s": 11.16,
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "act": "merge",
+      "narration_text": "Sketches merge. Adding Monday's count to Tuesday's double-counts the overlap. Take the larger value in each register instead, and the union comes out right — without storing a single visitor.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B05_Merge",
+        "source": "own",
+        "sparkLine": "Max, not plus.",
+        "new_visual_element": "Two register rows merge by max; naive sum 1.18M vs merged 0.98M vs true 1.0M",
+        "visual_intent": "SHOW: evidence merge",
+        "show": [
+          {
+            "at": "Adding",
+            "event": "naive sum"
+          },
+          {
+            "at": "larger value",
+            "event": "register-wise max"
+          }
+        ]
+      },
+      "actual_duration_s": 10.69,
+      "audio_file": "mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "act": "where it breaks",
+      "narration_text": "Its weak spot is small numbers. Ten visitors, and the raw formula says seven hundred forty-two. Counting empty registers instead fixes it: ten.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B06_Small",
+        "source": "own",
+        "sparkLine": "Small counts break it.",
+        "new_visual_element": "Raw vs corrected estimates at 10…10,000 visitors",
+        "visual_intent": "SHOW: evidence small",
+        "show": [
+          {
+            "at": "Ten visitors",
+            "event": "raw 742"
+          },
+          {
+            "at": "fixes it",
+            "event": "corrected 10"
+          }
+        ]
+      },
+      "actual_duration_s": 9.09,
+      "audio_file": "mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn: 'Build a HyperLogLog in Python and count the distinct words in a book. Then double the registers twice and measure the error.' Check that the error roughly halves.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8.8,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "STEM · DATA STRUCTURES",
+            "segment": "How HyperLogLog Counts",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "command": "Build a HyperLogLog in Python and count the distinct words in a book. Then double the registers twice and measure the error."
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-01T21:59:25.733714+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 9.58,
+      "audio_file": "mp3/beat-BHTF.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "How HyperLogLog Counts. Humanitarians AI.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 1.5,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "BOUT_Title",
+        "source": "own",
+        "sparkLine": "",
+        "new_visual_element": "Title + @HumanitariansAI logo",
+        "visual_intent": "outro card",
+        "show": [
+          {
+            "at": "start",
+            "event": "title"
+          },
+          {
+            "at": "Humanitarians",
+            "event": "handle + logo"
+          }
+        ]
+      },
+      "kind": "outro_voice",
+      "actual_duration_s": 3.88,
+      "audio_file": "mp3/beat-BOUT.mp3"
+    }
+  ]
+}
