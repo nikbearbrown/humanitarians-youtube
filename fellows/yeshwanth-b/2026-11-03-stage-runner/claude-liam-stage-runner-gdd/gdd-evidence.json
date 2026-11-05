@@ -1,0 +1,260 @@
+{
+ "schema_version": 1,
+ "document": {
+  "path": "GDD.md",
+  "sha256": "6905e6a63d4f7ad1da10921edd7872c5e810825a588936975744b11b5705d825",
+  "version": "v0.1 agent draft, unapproved",
+  "build_id": "d90fa194817a81e9dae3223ce3d7495d326226fc94fb3a8993cd69724c136aeb"
+ },
+ "sections": [
+  {
+   "heading": "Status vocabulary",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "1. Metadata",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "2. Vision",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "3. Pillars (PROPOSED)",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "4. Core loop (IMPLEMENTED, OBSERVED)",
+   "beat_ids": [
+    "B04"
+   ]
+  },
+  {
+   "heading": "5. Player-experience goals (PROPOSED, all PENDING a human playtest)",
+   "beat_ids": [
+    "B05"
+   ]
+  },
+  {
+   "heading": "6. Mechanics",
+   "beat_ids": [
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14",
+    "B15",
+    "B16",
+    "B17"
+   ]
+  },
+  {
+   "heading": "7. World (AUTHORED)",
+   "beat_ids": [
+    "B18"
+   ]
+  },
+  {
+   "heading": "8. Art and audio",
+   "beat_ids": [
+    "B18"
+   ]
+  },
+  {
+   "heading": "9. UI (IMPLEMENTED)",
+   "beat_ids": [
+    "B19"
+   ]
+  },
+  {
+   "heading": "10. Out of scope",
+   "beat_ids": [
+    "B19"
+   ]
+  },
+  {
+   "heading": "11. Technical",
+   "beat_ids": [
+    "B19"
+   ]
+  },
+  {
+   "heading": "12. Risks and known defects",
+   "beat_ids": [
+    "B20"
+   ]
+  },
+  {
+   "heading": "13. Acceptance tests (OBSERVED)",
+   "beat_ids": [
+    "B20"
+   ]
+  },
+  {
+   "heading": "14. Provenance",
+   "beat_ids": [
+    "B20"
+   ]
+  },
+  {
+   "heading": "15. Open questions (PENDING)",
+   "beat_ids": [
+    "B20"
+   ]
+  }
+ ],
+ "excerpts": [
+  {
+   "beat_id": "B02",
+   "start_line": 8,
+   "end_line": 8,
+   "text": "- No human has signed off any section, and nobody has playtested the game by hand."
+  },
+  {
+   "beat_id": "B03",
+   "start_line": 37,
+   "end_line": 37,
+   "text": "**PROPOSED vision statement:** *Fly a lone wisp up three ruined streets, thin out a monster army that keeps marching, and win the city back from the Cerberus at its gate.*"
+  },
+  {
+   "beat_id": "B05",
+   "start_line": 61,
+   "end_line": 62,
+   "text": "| PX-01 | A first-time player clears stage 1 on the first or second try | Observe 5 new players |\n| PX-02 | Stage 2 feels like a step up, not a wall | Compare lives lost per stage over 10 runs |"
+  },
+  {
+   "beat_id": "B06",
+   "start_line": 70,
+   "end_line": 70,
+   "text": "- **IMPLEMENTED** (`player.gd`): 5 units/s, where one Unity unit is 72 px (orthographic size 5 on a 720 px view), so 360 px/s. Clamped to the 640 px playfield, not the whole screen. Holding `Shift` (AUTHORED) halves the speed and shows a dot over the 13 px hitbox."
+  },
+  {
+   "beat_id": "B08",
+   "start_line": 96,
+   "end_line": 96,
+   "text": "- The per-monster values are AUTHORED. Unity's per-prefab values lived in prefabs that were not delivered, apart from the script defaults (3 HP, 100 points, speed −1 = 72 px/s)."
+  },
+  {
+   "beat_id": "B10",
+   "start_line": 100,
+   "end_line": 100,
+   "text": "- Unity ended the game on the first touch (`gameOverScreen.SetActive(true); Time.timeScale = 0`)."
+  },
+  {
+   "beat_id": "B13",
+   "start_line": 112,
+   "end_line": 112,
+   "text": "- **SOURCE:** `GameManager.cs` loads FinishStageOne when `score >= goalScore` in stage 0, otherwise ClearTheGame. `goalScore` is an inspector value, and the scenes were not delivered, so **the 2000 and 4000 goals are AUTHORED**."
+  },
+  {
+   "beat_id": "B14",
+   "start_line": 116,
+   "end_line": 116,
+   "text": "- 110 HP and worth 5000 points. It walks in from the top over 2.6 s, shielded: shots are absorbed."
+  },
+  {
+   "beat_id": "B16",
+   "start_line": 126,
+   "end_line": 126,
+   "text": "  - Unity's `RestartGame()` always loaded StageOne."
+  },
+  {
+   "beat_id": "B18",
+   "start_line": 138,
+   "end_line": 138,
+   "text": "- **Scrolling street:** the stage painting scrolls down at 70, 95 or 45 px/s. It alternates with a vertically mirrored copy, so the seam always matches."
+  },
+  {
+   "beat_id": "B19",
+   "start_line": 170,
+   "end_line": 170,
+   "text": "- All 7 scenes are thin; their nodes are built in code. The three stage scenes are seven lines each and set only `stage_id` on `game.gd`."
+  },
+  {
+   "beat_id": "B20",
+   "start_line": 181,
+   "end_line": 181,
+   "text": "| R-04 | The code comment and README say monsters spawn within ±4.5 Unity units; the code uses ±288 px, which is 4 units. |"
+  }
+ ],
+ "evidence": [
+  {
+   "path": "capture/campaign.mp4",
+   "sha256": "a905a6015c4f5d9fa23b5439bdba915365a07a8f8c9930f9fabe37a56647f883",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30, native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"campaign\"; input log capture/campaign-inputs.jsonl"
+  },
+  {
+   "path": "capture/defeat.mp4",
+   "sha256": "8cc5f78dbf699f9b48c9599f0b763b72b16a063632b8da0caa51c163937480e3",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30, native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"defeat\"; input log capture/defeat-inputs.jsonl"
+  },
+  {
+   "path": "capture/extras.mp4",
+   "sha256": "c248b6dc136bc3e02449cd37ee35f7f45196bda04ac13e3ac1c52b708d1cc26a",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30, native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"extras\"; input log capture/extras-inputs.jsonl"
+  },
+  {
+   "path": "media/B04.mp4",
+   "sha256": "a33d2f8d6821ee4c4332b366f93a0daba54af5a6b27caa82fe03e0df68bb5137",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 350, \"source_frames\": 75, \"factor\": 1, \"output_frames\": 75}, {\"kind\": \"play\", \"source_start_frame\": 880, \"source_frames\": 90, \"factor\": 1, \"output_frames\": 90}, {\"kind\": \"play\", \"source_start_frame\": 1325, \"source_frames\": 90, \"factor\": 1, \"output_frames\": 90}, {\"kind\": \"play\", \"source_start_frame\": 1430, \"source_frames\": 169, \"factor\": 1, \"output_frames\": 169}]",
+   "supports": "B04: shown gameplay (4. Core loop (IMPLEMENTED, OBSERVED))"
+  },
+  {
+   "path": "media/B07.mp4",
+   "sha256": "c1a7e226fccf6c7a667e95d5c5b43d83b86cf346bb21c9e09dc6cf0048a274b8",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 558, \"source_frames\": 401, \"factor\": 1, \"output_frames\": 401}]",
+   "supports": "B07: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B09.mp4",
+   "sha256": "dccec0e443fc7ef70fe1a370b739288caa6f7aacbe5385f9b9aa2d54aaaab14a",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 1760, \"source_frames\": 364, \"factor\": 1, \"output_frames\": 364}]",
+   "supports": "B09: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B11.mp4",
+   "sha256": "2088083604f00448e14809fba16d72f83c925347fc16774b3dc9cd141cb5f4d1",
+   "method": "exact-frame cut of take \"defeat\": [{\"kind\": \"play\", \"source_start_frame\": 185, \"source_frames\": 185, \"factor\": 1, \"output_frames\": 185}, {\"kind\": \"play\", \"source_start_frame\": 470, \"source_frames\": 204, \"factor\": 1, \"output_frames\": 204}]",
+   "supports": "B11: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B12.mp4",
+   "sha256": "eb0e5f26cdfbdc0dca4b9f5d2c6731d0fd4aff17ff930397899c6da0740bdbba",
+   "method": "exact-frame cut of take \"extras\": [{\"kind\": \"play\", \"source_start_frame\": 1440, \"source_frames\": 45, \"factor\": 1, \"output_frames\": 45}, {\"kind\": \"play\", \"source_start_frame\": 1950, \"source_frames\": 226, \"factor\": 1, \"output_frames\": 226}, {\"kind\": \"hold\", \"output_frames\": 59}]",
+   "supports": "B12: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B15.mp4",
+   "sha256": "91daec005e2bc5fafc3bccbb66a81c17884ee715fcbc66036a7886459b34ca44",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 3130, \"source_frames\": 60, \"factor\": 1, \"output_frames\": 60}, {\"kind\": \"play\", \"source_start_frame\": 3225, \"source_frames\": 110, \"factor\": 1, \"output_frames\": 110}, {\"kind\": \"play\", \"source_start_frame\": 3735, \"source_frames\": 75, \"factor\": 1, \"output_frames\": 75}, {\"kind\": \"play\", \"source_start_frame\": 4005, \"source_frames\": 85, \"factor\": 1, \"output_frames\": 85}]",
+   "supports": "B15: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B17.mp4",
+   "sha256": "0417b22dd2bff4921402558885c4cb5406eeb017a2d8b0d6cc7e6d44182e28e9",
+   "method": "exact-frame cut of take \"extras\": [{\"kind\": \"play\", \"source_start_frame\": 955, \"source_frames\": 377, \"factor\": 1, \"output_frames\": 377}]",
+   "supports": "B17: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "evidence/GDD.md",
+   "sha256": "6905e6a63d4f7ad1da10921edd7872c5e810825a588936975744b11b5705d825",
+   "method": "byte copy of the source GDD at film build time",
+   "supports": "every excerpt"
+  }
+ ]
+}
