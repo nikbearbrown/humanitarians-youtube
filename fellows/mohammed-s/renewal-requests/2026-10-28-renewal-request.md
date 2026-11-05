@@ -2,7 +2,7 @@
 
 **Current agreement:** 1 Aug 2026 — 31 Oct 2026
 
-**Requested period:** 1 Nov 2026 — 31 Jan 2027
+**Requested period:** 1 Nov 2026 — 25 Nov 2026
 
 **Project:** Mycroft
 
@@ -105,21 +105,11 @@ Sprints 1–5 build the Java migrator; each one gates the next. Starting point:
 3. **Mechanical migration (16–20 Nov).** Apply the OpenRewrite recipes and Eclipse Transformer.
    Report how many mandatory issues the tools close, against the frozen list. The diff guard
    must show zero changes to protected code, and the characterization tests must still pass.
-4. **What needs a human (23–27 Nov).** Handle the remaining issues: an LLM step proposes fixes,
+4. **What needs a human (23–25 Nov).** Handle the remaining issues: an LLM step proposes fixes,
    and a human reviews every one. Regenerate the server config with JBoss CLI or the WildFly
    Server Migration Tool, and deploy on EAP 8 / Java 17. Publish what needed a human, with
    time spent — including "could not migrate" if that is the result.
-5. **Package (30 Nov – 4 Dec).** The migrator on its branch, runnable, with a README for two audiences: a
-   developer running it on one application, and a reviewer checking the proof.
 
-**Next technologies (7 Dec – 31 Jan).** The same baseline → inventory → mechanical → human →
-proof method, applied to the next stack common in bank internal applications. Candidates,
-in likely order:
-- Spring Framework 4/5 → Spring Boot 3;
-- Struts → Spring MVC;
-- WebLogic / WebSphere → JBoss EAP or containers;
-- .NET Framework → .NET 8;
-- Oracle PL/SQL / Sybase → PostgreSQL or Snowflake, extending snowshift.
 
 The next stack is chosen by which one the Java work makes most reusable; the choice is
 proposed in writing before it starts.
