@@ -23,6 +23,7 @@ sheets that describe them.
 | `InterestMedia.tsx` / `…916.tsx` | Interest Media. — three-claim BLUF, attribution card with rename, feed comparison with signal rail, the post flood, the sorter whose key is swapped mid-beat, gated vs. ungated reach tracks, retired/current job cards, claims-vs-refusals ledger |
 | `TableSides.tsx` / `…916.tsx` | Both Sides of the Table. — two-sided adoption, the hiring table, interview-rate rise, walk-away bar, the two-trust columns (each with its own citation), prompt-injection panel |
 | `MaskSlips.tsx` / `…916.tsx` | The Mask Slips. — the virality spike, the reported payout card, the persona arc, the reveal, the engagement drop, the turn |
+| `AiCitedAuthority.tsx` | Be the Sentence. — results page vs quoted AI answer, reach ring, cited-share columns, blind-spot bracket (label, no number), pillars on the SEO foundation slab, evidence boost bars, 30-day freshness strip, own-site vs third-party split. One component per scene lays out both aspects (registered as `GeoX` and `GeoX916`). |
 | `Root.registrations.tsx` | The `<Composition>` registrations for the above, extracted from the toolkit's shared `Root.tsx`. Not standalone. |
 
 `…916.tsx` files are the 9:16 portrait variants. They are **re-banded, not scaled**: the
