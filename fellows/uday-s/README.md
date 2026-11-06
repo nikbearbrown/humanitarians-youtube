@@ -104,6 +104,14 @@ measured clock — see that episode's `BUILD-LOG.md`, "REVISION 2".
   topic explainer on process supervision and multi-hop reasoning: a model can
   reach the right answer through a chain that does not support it, and whether
   grading the steps actually helps. 11 beats · ~4:12.
+- [2026-11-05 — The Lucky Case](./2026-11-05-mycroft-weekly-the-lucky-case/) —
+  weekly work report on `mycroft` @ `0358ab9`, **episode 11**: a flags field that
+  either crashes cleanly or is silently absorbed — the crash being the lucky one.
+  85 defects down to 5. 12 beats · ~3:25.
+- [2026-11-05 — Likely False, Likely True](./2026-11-05-likely-false-likely-true/) —
+  topic explainer on algorithmic trading: two papers reach opposite conclusions
+  about the same literature, and what survives is the part neither contests.
+  11 beats · ~4:01.
 
 The two 2026-08-27 folders carry a `short/` subfolder: a derivative 1080×1920 cut
 for YouTube Shorts, reusing the parent's audio with only the funnel outro
@@ -121,7 +129,7 @@ closes on "gate 2 cannot clear"; ep 2 resolves two rows of that list; ep 3's
 falsifiability beat lands back on ep 1's frozen corpus; ep 4 closes the ledger
 at six of six steps and finds the same ep-1 defect one level up (a gate with
 nothing to fail). Watch them in order:
-`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6` → `d85106b` → `93485c4` → `6428457`.
+`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6` → `d85106b` → `93485c4` → `6428457` → `0358ab9`.
 
 **Dual-use note:** *The Gap You Can Actually Close* is a security topic handled
 defensively. It explains what the term names, reports published statistics, and
