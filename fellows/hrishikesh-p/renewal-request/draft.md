@@ -3,6 +3,8 @@
 
 **Request:** Please renew my fellowship from **October 1, 2026** through **October 31, 2026**. My current agreement ends **September 30, 2026**. This summary covers the reporting period **August 22, 2026 to October 30, 2026**.
 
+For the next documented week, see the [Week 10 frictional log](../2026-11-06%20-%20RamanEffect/FRICTIONAL.md).
+
 ## Completed
 
 - **Established the Raman spectroscopy project context.** Defined the Raman Effect and Raman spectroscopy, documented the use of AI/ML in Raman spectroscopy, and reviewed previous project work. Evidence: [Week 1 frictional log](../2026-09-04%20-%20RamanEffect/FRICTIONAL.md), including the linked 16:9 and 9:16 videos and task materials.
