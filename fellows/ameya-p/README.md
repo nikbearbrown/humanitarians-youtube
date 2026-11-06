@@ -102,6 +102,22 @@
   Hypothesis 2 compares Random 5-View Masking against a Systematic $3 \times 3$
   Covering Grid with a Two-Round Minority Check (extending _PatchCleanser_ to
   closed-loop visuomotor control).
+- `2026-11-02-vla-adversarial-attack-research-setup/` — Security & Exploitation in Physical AI: Cloud-Offloaded
+  VLA Inference Infrastructure & Closed-Loop Simulation Setup. A Week 7 execution
+  report (`work_report.md`) under the Security & Exploitation vertical, moving the
+  VLA adversarial robustness plan from design to runnable infrastructure.
+  Documents the one-command cross-platform `LIBERO` setup on Windows
+  (`common/setup.py` with automated `core.longpaths`, editable-package,
+  `weights_only=False`, and `mujoco.dll` rendering fixes), the offload of both
+  15 GB `OpenVLA-7B` fine-tuned checkpoints to persistent Kaggle Datasets served
+  by a FastAPI `POST /act` endpoint on free `T4 x2` GPUs behind an auto-discovered
+  Cloudflare Quick Tunnel (`ntfy.sh` discovery), the RAM page-cache pre-warming
+  that cut shard loading from 3m 36s to 41.2s, the single-model-per-session
+  sharding (~7 GiB per 14.56 GiB GPU) adopted after a dual-model
+  `OutOfMemoryError`, and the local `OpenVLAClient` + self-configuring smoke
+  tests + shared `run_closed_loop_rollout` engine (saving `trajectory.npz`,
+  `metadata.json`, `video.mp4`) that the baseline trajectory collection, patch
+  attacks, and consistency-shield defenses will reuse.
 
 ## Frictional log
 
