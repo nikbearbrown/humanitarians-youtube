@@ -13,12 +13,33 @@
 ---
  
 ## About the Video
+ECIS reads earnings calls and predicts changes to companies' financial guidance.
+
 Phase 19: Uncertainty quantification (conformal prediction, Monte Carlo dropout, ensemble disagreement), selective abstention, cross-company contagion modeling, supply chain language propagation, and the agentic conversational layer.
 
-Episode 13 introduced signal contradiction detection with severity scoring, SHAP explainability with natural language explanations, and out-of-distribution detection. 
+This episode covers four new abilities:
+- **Uncertainty measures:** showing how sure each prediction is.
+- **Choosing not to predict:** holding back predictions that are too uncertain.
+- **Language spread:** tracking wording that spreads between companies.
+- **Agent:** answering questions in plain language.
 
-Episode 14 adds uncertainty quantification around every prediction, the ability to abstain when confidence is low, cross-company intelligence that tracks language shifts propagating across sectors and supply chains, and a conversational agent layer for natural language querying.
+---
 
+## Video Outline
+| # | Section |
+|---|---|
+| 1 | Opening |
+| 2 | Recap |
+| 3 | Uncertainty |
+| 4 | Choosing Not to Predict |
+| 5 | Language Spread |
+| 6 | Agent |
+| 7 | Closing |
+| 8 | Summary |
+| 9 | Your Turn |
+| 10 | Outro |
+
+---
 ## Project Structure
  
 ```
@@ -31,3 +52,8 @@ short/beat_sheet.json   — scene plan for the short version
 FRICTIONAL.md           — friction log
 REPORT.md               — video report
 ```
+---
+
+## Links
+- **GitHub:** https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-06-ecis-explained
+- **Drive:** https://drive.google.com/drive/folders/1ysPtFvku6cnpYUk8tTwBoHPfHQzjCOAn
