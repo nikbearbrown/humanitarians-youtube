@@ -1,0 +1,606 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-false-positive",
+    "title": "The Test That Lied",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper Development Log, Week 10 — a success message printed by code that never made the request, the GitHub Actions pipeline built to stop trusting manual testing, and the uncomfortable fact that CI would not have caught this particular bug either.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows following the Provenance Gatekeeper build",
+    "playlist": "Provenance Gatekeeper Development Log",
+    "source": "Week 10: Continuous Integration & GitHub Actions — 5-scene script, supplied 2026-11-05.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. GitHub renders as a generic PULL REQUEST panel — shape and label only, never its marks or chrome.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal. Kokoro am_onyx is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "series_note": "Week 7 (claude-gatekeeper-ci-pipeline, 'Unautomated Security') already built the pytest harness and the GitHub Actions pipeline. This reel is NOT that reel again: it is organised around the false positive named in the Week 10 hook — a webhook that reported success without ever sending a request — and it ends on the fact that a weak test passes that bug straight through a green pipeline. The runner and pytest beats are compressed to make room for it. The bug also retracts a claim made in Week 9 (claude-gatekeeper-n8n-incident); that retraction is stated out loud in B00.",
+    "tags": [
+      "continuous integration",
+      "GitHub Actions",
+      "pytest",
+      "false positive",
+      "test assertions",
+      "FastAPI",
+      "Provenance Gatekeeper",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-11-05T19:55:06",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 27,
+      "narration_text": "Hi, I am Onkar Bhujbal. Last week I told you the Provenance Gatekeeper fired a webhook to our n8n server, and I showed you the terminal saying so. That was not true. I had written the success message and forgotten to write the HTTP request underneath it. The code printed a checkmark and did nothing. My manual testing watched it happen and agreed. So this week I am taking manual testing away from myself.",
+      "new_visual_element": "Cold open — the retraction",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself in"
+          },
+          {
+            "at": 0.48,
+            "event": "send arms terracotta; running indicator reads 'checking what actually left the box…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the checkmark was a print statement"
+          },
+          {
+            "at": 0.85,
+            "event": "the last line names it: FALSE POSITIVE"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Test That Lied",
+            "command": "The terminal printed \"Webhook triggered\". n8n has no execution for it. Which one of them is wrong?",
+            "runningText": "checking what actually left the box…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "outbound requests on that code path: 0",
+              "the checkmark was a print statement",
+              "FALSE POSITIVE."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-06T00:40:18.130384+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "This beat RETRACTS a claim made in the Week 9 reel (claude-gatekeeper-n8n-incident), which reported the webhook delivery as working. The retraction is stated in Onkar's own voice rather than quietly dropped.",
+      "actual_duration_s": 20.59,
+      "render_duration_s": 20.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "narration_text": "The bug was not the missing request. The bug was that something reported success without checking anything — and for a week, so did I. That is the failure worth fixing.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'The code lied.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'code' goes terracotta, deletes, retypes as 'check'"
+          },
+          {
+            "at": 0.85,
+            "event": "corrected overview holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "The code lied.\nIt was never asked anything.",
+            "triggerWords": "code",
+            "replacementWords": "check",
+            "seed": "false-positive-2026-11-05",
+            "fontSize": 90,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-06T00:41:45.294667+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Both readings are true sentences: 'The code lied.' and, corrected, 'The check lied.' — the correction moves the blame from the code to the verification, which is the reel's thesis.",
+      "actual_duration_s": 9.09,
+      "render_duration_s": 9.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 1b — THE ACTUAL BUG",
+      "lane": "remotion",
+      "estimated_duration_s": 22,
+      "narration_text": "Here is what the function looked like. It built the payload. It logged a checkmark. And then it returned. There is no request in it. Every human who read this function, including me, read the checkmark and stopped. The string said the thing had happened, so we believed the thing had happened.",
+      "new_visual_element": "The function, with nothing in it",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the function reveals — payload built, message printed"
+          },
+          {
+            "at": 0.6,
+            "event": "the missing line lands as a comment where the POST should be"
+          },
+          {
+            "at": 0.78,
+            "event": "the closing note lands: the string was the only evidence"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "alerts.py — as shipped",
+            "code": "def fire_webhook(incident: dict) -> None:\n    payload = {\n        \"claim_id\": incident[\"claim_id\"],\n        \"severity\": incident[\"severity\"],\n    }\n\n    # <- the POST that was never written\n\n    print(\"[ok] Webhook triggered!\")\n\n# The payload was correct.\n# It was correct, and it stayed here.",
+            "sparkLine": "A checkmark is a string."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-06T00:42:41.493290+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "Reconstructed to the shape Onkar describes in the script — payload built, success printed, request absent. Not a verbatim paste of the shipped file.",
+      "actual_duration_s": 14.19,
+      "render_duration_s": 14.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 2+3 — THE AUTOMATED RUNNER",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "So the fix is to stop being the one who checks. A workflow file now sits in the repository, and on every push to main, a clean Ubuntu machine in the cloud starts from nothing. It checks out the code, installs Python and the dependencies, and runs the Pytest suite against FastAPI's test client — including the adversarial payloads and the token authentication cases. None of it is on my laptop, and none of it waits for me.",
+      "new_visual_element": "A machine that has never met this project",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the commit token enters the band"
+          },
+          {
+            "at": 0.2,
+            "event": "panel 01 CLEAN RUNNER lights"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 BUILD FROM SOURCE lights"
+          },
+          {
+            "at": 0.7,
+            "event": "panel 03 PYTEST SUITE lights"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: nothing here is my laptop"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Somebody else's computer. On purpose.",
+            "payloadLabel": "a push",
+            "readyLine": "steps that run on my laptop = 0",
+            "stages": [
+              {
+                "index": "01",
+                "name": "CLEAN RUNNER",
+                "detail": "fresh Ubuntu; no local state, no cached luck"
+              },
+              {
+                "index": "02",
+                "name": "BUILD FROM SOURCE",
+                "detail": "install Python and deps from the lockfile"
+              },
+              {
+                "index": "03",
+                "name": "PYTEST SUITE",
+                "detail": "TestClient, JWT auth, adversarial payloads"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-06T00:44:11.945629+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Scenes 2 and 3 of the supplied script are merged into one band. Week 7's reel already walked the runner and the pytest harness in detail; repeating that beat for beat would be the same video twice. The room goes to B05.",
+      "actual_duration_s": 21.95,
+      "render_duration_s": 21.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — THE GREEN CHECKMARK",
+      "lane": "remotion",
+      "estimated_duration_s": 22,
+      "narration_text": "If one test fails, or the container refuses to build because two dependencies disagree, the run goes red and the merge button stops working. That is the part that matters. Not the notification — the fact that I cannot click past it. The branch protection rule is the whole mechanism; without it a red pipeline is just a red icon next to a merge that happened anyway.",
+      "new_visual_element": "The button that stops working",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "PR panel reveals; the dependency conflict is visible in the log"
+          },
+          {
+            "at": 0.3,
+            "event": "checks count up"
+          },
+          {
+            "at": 0.62,
+            "event": "the count stops short of the total"
+          },
+          {
+            "at": 0.78,
+            "event": "the button stays MERGE BLOCKED and never arms"
+          }
+        ],
+        "remotion": {
+          "pattern": "CiGateSplit",
+          "props": {
+            "sparkLine": "The point is that I cannot click it.",
+            "fileName": "run #118 — build",
+            "code": "ERROR: Cannot install -r requirements.txt\n  pydantic==2.9.2 (from fastapi)\n  pydantic==1.10.13 (from the old client)\n\nThe conflict is caused by:\n  two pins that cannot both be true\n\n# container never built\n# 0 tests ran",
+            "prLabel": "PULL REQUEST",
+            "prTitle": "#118",
+            "prSub": "required check: ci / gauntlet",
+            "checksTo": 41,
+            "checksLabel": "CHECKS COMPLETE",
+            "mergeBlocked": "MERGE BLOCKED",
+            "mergeReady": "ALL CHECKS PASSED",
+            "neverArms": true
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-06T00:45:53.764369+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "neverArms is set because the beat narrates a BLOCKED merge. The script's visual asks for the green checkmark and the glowing Merge button; the reel shows the red case instead, because a pipeline that has never said no has not been tested. The branch-protection point is added: a failing check only blocks a merge if it is configured as REQUIRED.",
+      "authoring_note": "Run number and version pins are illustrative of a real dependency-conflict failure, not a captured log.",
+      "actual_duration_s": 19.5,
+      "render_duration_s": 19.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:CiGateSplit",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4b — FALSIFIABILITY (added)",
+      "lane": "remotion",
+      "estimated_duration_s": 29,
+      "narration_text": "And now the uncomfortable part. C.I. would not have caught the bug I opened this video with. A test that calls fire_webhook and checks that it did not raise an exception passes perfectly against a function that only prints. The pipeline would be green, the merge would be allowed, and the alert would still never arrive. The only test that catches it is one that asserts the request actually left — that the transport was called, with that U.R.L., carrying that payload. Automation does not add rigour. It repeats whatever rigour you already had.",
+      "new_visual_element": "Two tests. One of them is furniture.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the test that passes against the lying function"
+          },
+          {
+            "at": 0.3,
+            "event": "on 'passes perfectly', the assertion-free line highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.38,
+            "event": "note lands beneath: this passes against a function that does nothing"
+          },
+          {
+            "at": 0.5,
+            "event": "right panel reveals the test that asserts the side effect"
+          },
+          {
+            "at": 0.74,
+            "event": "ink stamp lands: ASSERT THE EFFECT"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Both of these are green.",
+            "leftLabel": "THE TEST I HAD",
+            "leftText": "def test_webhook():\n    fire_webhook(incident)\n    assert True",
+            "leftHot": "assert True",
+            "hotNote": "passes against a function whose whole body is a print",
+            "rightLabel": "THE TEST THAT CATCHES IT",
+            "code": "def test_webhook(httpx_mock):\n    httpx_mock.add_response(status_code=200)\n\n    fire_webhook(incident)\n\n    req = httpx_mock.get_request()\n    assert req is not None\n    assert req.url.path == \"/webhook/incident\"\n    assert req.read()[\"claim_id\"] == \"claim_042\"",
+            "stampText": "ASSERT THE EFFECT",
+            "stampBlocked": false,
+            "stampSub": "the request left the process, or the test fails"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-06T00:47:36.280252+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "BEAT ADDED, and it is the reel's point. The supplied script treats the pipeline as the fix for the hook's bug; it is not. A test with no assertion about the side effect passes against the broken function, so the pipeline would have shipped it green. Mock-transport assertion is the actual fix.",
+      "actual_duration_s": 28.56,
+      "render_duration_s": 28.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So: never trust your own manual testing, and do not trust a green pipeline either. Trust assertions about effects that left the process. Automate your paranoia — but write the paranoia first.",
+      "new_visual_element": "The workflow the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the workflow reveals — the gauntlet, then the branch rule"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: automate your paranoia"
+          },
+          {
+            "at": 0.78,
+            "event": "the last note lands — the part that is not in the YAML"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": ".github/workflows/ci.yml",
+            "code": "on: [push, pull_request]\n\njobs:\n  gauntlet:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: pip install -r requirements.txt\n      - run: pytest -q\n\n# TASK: automate your paranoia.\n\n# Then mark 'gauntlet' a REQUIRED check —\n# otherwise red is just a colour.",
+            "sparkLine": "Let the robots test the robots."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-06T00:48:30.786440+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The required-check note is the reel's addition and the same correction made in an earlier week: an unenforced check blocks nothing.",
+      "actual_duration_s": 10.58,
+      "render_duration_s": 10.583333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Here is the prompt worth running against your own suite. Ask a model to delete the body of one function and tell you which tests still pass. Anything that survives that is decoration. I ran it on mine, and that is how I found out what I had actually been testing.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.'"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'paste this into Claude…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Test That Lied",
+            "command": "Replace the body of this function with `pass`, then tell me which of my tests still pass. For each one, name the side effect it should have asserted and never did.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-06T00:50:39.281472+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 14.08,
+      "render_duration_s": 14.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-05T19:55:06"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Let the robots test the robots — but check that the robots are asserting something. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Test That Lied",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper Dev Log · Week 10",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-11-06T00:51:23.254893+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 7.62,
+      "render_duration_s": 7.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-11-05T19:55:06"
+      }
+    }
+  ]
+}
