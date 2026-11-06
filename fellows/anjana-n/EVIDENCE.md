@@ -4,7 +4,7 @@ ECIS (Earnings Call Intelligence Signals) is a financial intelligence system tha
 
 **Project:** [Mycroft — ECIS](https://github.com/nikbearbrown/mycroft/tree/main/projects/ecis)
 
-**Period:** June 29 – October 31, 2026 (Weeks 1–18)
+**Reporting period:** June 29 – November 7, 2026 (Weeks 1–19)
 
 ---
 
@@ -28,6 +28,7 @@ ECIS (Earnings Call Intelligence Signals) is a financial intelligence system tha
 | **Week 16** · Oct 11 – Oct 17, 2026 | 37 | **Weekly implementation:** ECIS EP11 — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-16-ecis-explained) · [Drive](https://drive.google.com/drive/folders/1nhuXcSs3NBvBfnIoYChnB1pp2Ih_J6ll)<br>**STEM/AI:** What a Retrieval Pipeline Looks Like in Production — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-16-retrieval-pipeline-explainer) · [Drive](https://drive.google.com/drive/folders/12lmxHJh3ymFt53A_vrxpRrEOYg4OmM2h) | [2026-10-16-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-16-weekly-work-progress) |
 | **Week 17** · Oct 18 – Oct 24, 2026 | 33 | **Weekly implementation:** ECIS EP12 — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-23-ecis-explained) · [Drive](https://drive.google.com/drive/folders/1C3bVEFbFXSPx_5HNcWsR8mjMULJ6WKLW)<br>**STEM/AI:** Multimodal RAG Explainer — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-23-multimodal-rag-explainer) · [Drive](https://drive.google.com/drive/folders/1IDobtpnYhC_zRlGh6yAqbD65gmPp7OBE) | [2026-10-23-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-23-weekly-work-progress) |
 | **Week 18** · Oct 25 – Oct 31, 2026 | 32.5 | **Weekly implementation:** ECIS EP13 — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-30-ecis-explained) · [Drive](https://drive.google.com/drive/folders/1klBky8EUmX9enNkT9Oogro15lO03a5n_)<br>**STEM/AI:** Distributed Training Explainer — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-30-distributed-training-explainer) · [Drive](https://drive.google.com/drive/folders/1KzVPPTFcm3LRt-pdS2RzfmoMEkXQ6ofM) | [2026-10-30-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-30-weekly-work-progress) |
-| **Total** | **547** | | |
+| **Week 19** · Nov 1 – Nov 7, 2026 | 30.75 | **Weekly implementation:** ECIS EP14 — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-06-ecis-explained) · [Drive](https://drive.google.com/drive/folders/1ysPtFvku6cnpYUk8tTwBoHPfHQzjCOAn)<br>**STEM/AI:** MoE Explainer — [GitHub](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-06-moe-explainer) · [Drive](https://drive.google.com/drive/folders/1uyryieZQ6wX4oC7eCjpFrt3nNW86yCSc) | [2026-11-06-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-06-weekly-work-progress) |
+| **Total** | **577.75** | | 
 
 ---

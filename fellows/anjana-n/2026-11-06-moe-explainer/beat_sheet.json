@@ -1,0 +1,424 @@
+{
+ "metadata": {
+  "title": "Mixture of Experts — Sparse Activation, Massive Capacity",
+  "slug": "moe-explainer",
+  "topic": "MIXTURE OF EXPERTS",
+  "aspect_ratio": "16:9",
+  "register": "Pragmatist",
+  "audience": "Claude",
+  "brand": "claude-anjana",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "color_semantics": "",
+  "gate_p": "PASS",
+  "build": {
+   "at": "2026-11-03T19:32:23",
+   "cut": "master",
+   "filled": 9,
+   "of": 9,
+   "slates": []
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "narration_text": "Every few months a model appears with a parameter count that sounds impossible to run. Usually it is a Mixture of Experts, and the headline number is not the number that matters. I'm Anjana.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "type-on",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+     },
+     {
+      "at": 0.55,
+      "event": "runningText 'separating the two numbers…'"
+     },
+     {
+      "at": 0.75,
+      "event": "output lines resolve, already answered"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hello, Anjana",
+      "topic": "MIXTURE OF EXPERTS",
+      "segment": "Mixture of Experts",
+      "command": "Models keep shipping with parameter counts that look impossible to serve, and then people serve them. Can you show me what a Mixture of Experts actually does — what the router is choosing, why the model can be enormous and cheap at the same time, and which of the two numbers on the box I should be budgeting for?",
+      "runningText": "separating the two numbers…",
+      "folderLabel": "",
+      "output": [
+       "total parameters and active parameters are different numbers",
+       "a router picks two experts per token, and must be forced to spread",
+       "the headline count is almost never the one you budget for"
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 14,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 12.26,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "THE SCALING PROBLEM",
+   "narration_text": "Bigger models perform better — that pattern has held for years. But in a dense transformer, every token activates every parameter. A seven-billion-parameter model does seven billion operations per token. Scale to seventy billion and the compute bill scales with it. The parameters are the compute. So the question becomes: does every token really need every parameter, or could most of them sit this one out?",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "MoeScaling builds in"
+     },
+     {
+      "at": 0.9,
+      "event": "resting state holds"
+     }
+    ],
+    "remotion": {
+     "pattern": "MoeScaling",
+     "props": {
+      "sparkLine": "The parameters are the compute."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 28,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 24.43,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "ROUTER AND EXPERTS",
+   "narration_text": "Mixture of Experts replaces the single large feed-forward network inside each transformer block with multiple smaller ones — called experts. A learned router sits at the input and decides which experts handle each token. It computes a probability over all experts, picks the top two, and sends the token only to those. Their outputs are weighted by the router's scores and combined. Eight experts, two active — the block has eight times the capacity but only runs two experts' worth of compute.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "MoeRouter builds in"
+     },
+     {
+      "at": 0.9,
+      "event": "resting state holds"
+     }
+    ],
+    "remotion": {
+     "pattern": "MoeRouter",
+     "props": {
+      "sparkLine": "Eight experts, two active."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 34,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 30.14,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "SPARSE ACTIVATION",
+   "narration_text": "This is the core insight: total parameters and active parameters are different numbers. A dense thirteen-billion-parameter model activates all thirteen billion on every token. An MoE model with eight experts of six and a half billion each holds around fifty-two billion parameters total — but only activates thirteen billion per token, the same as the dense model. Four times the knowledge capacity, same compute budget. The model is massive, but any single forward pass through it is small.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "MoeSparse builds in"
+     },
+     {
+      "at": 0.9,
+      "event": "resting state holds"
+     }
+    ],
+    "remotion": {
+     "pattern": "MoeSparse",
+     "props": {
+      "sparkLine": "Total and active are different numbers."
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 34,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 29.42,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B04",
+   "act": "ROUTING COLLAPSE",
+   "narration_text": "There's a catch. Left to its own devices, the router learns to send almost everything to one or two favorite experts. The rest go unused — routing collapse. The fix is an auxiliary loss that penalizes uneven distribution. It nudges the router toward spreading tokens across all experts roughly equally. Each expert also gets a capacity factor — a maximum number of tokens it can accept per batch. Tokens that exceed the cap get routed to their second choice. Simple guardrails, but without them, the architecture falls apart.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "MoeBalance builds in"
+     },
+     {
+      "at": 0.9,
+      "event": "resting state holds"
+     }
+    ],
+    "remotion": {
+     "pattern": "MoeBalance",
+     "props": {
+      "sparkLine": "Without guardrails it falls apart."
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 36,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 31.7,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "WHY IT WORKS",
+   "narration_text": "This is why the largest open models use Mixture of Experts. You can scale a model's total knowledge — its parameter count — without proportionally scaling the cost of running it. A model with a hundred and forty billion total parameters that activates only thirty-nine billion per token can match or outperform a dense seventy-billion-parameter model at roughly half the inference cost. Massive capacity, sparse compute. That's the tradeoff MoE unlocks.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "MoeWhy builds in"
+     },
+     {
+      "at": 0.9,
+      "event": "resting state holds"
+     }
+    ],
+    "remotion": {
+     "pattern": "MoeWhy",
+     "props": {
+      "sparkLine": "Massive capacity, sparse compute."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 32,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 26.64,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B06",
+   "act": "VERDICT",
+   "narration_text": "Let's recap with Claude. In a dense model the parameters are the compute — every token pays for every weight, which is why scaling gets expensive so fast. Mixture of Experts breaks that link by replacing one big feed-forward network with several smaller ones and a router that picks two of them per token. The model holds far more than it uses: total parameters and active parameters stop being the same number. The catch is that a router left alone will funnel everything to the same two experts, so you need a balancing loss and a cap per expert or the whole thing collapses. And the headline parameter count on the box is almost never the number you should be budgeting for.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "stagger",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "0.5s lead pause, then ClaudeVerdictArtifact card builds in"
+     },
+     {
+      "at": 0.14,
+      "event": "line 1: parameters are compute"
+     },
+     {
+      "at": 0.32,
+      "event": "line 2: top-2 routing"
+     },
+     {
+      "at": 0.5,
+      "event": "line 3: total vs active"
+     },
+     {
+      "at": 0.68,
+      "event": "line 4: routing collapse"
+     },
+     {
+      "at": 0.86,
+      "event": "line 5: the headline number"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "sparkLine": "",
+      "artifactTitle": "mixture of experts",
+      "lines": [
+       "in a dense model, the parameters are the compute",
+       "a router sends each token to two experts out of eight",
+       "total parameters and active parameters come apart",
+       "left alone the router collapses onto its favourites",
+       "the headline count is not the one you budget for"
+      ]
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 32,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 40.08,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B06.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B07",
+   "act": "YOUR TURN",
+   "narration_text": "Your turn. Next time you see a model with an enormous parameter count, work out what it actually activates before you work out whether you can run it. Paste this into Claude with the model you are considering and ask it to separate the two numbers for you — because the one that fits in your memory budget and the one that fits in your compute budget are not the same number, and almost every announcement quotes the wrong one.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "type-on",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "ClaudeComposerAsk: greeting 'Your turn.'; prompt types itself"
+     },
+     {
+      "at": 0.6,
+      "event": "runningText 'costing the real numbers…'"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "MIXTURE OF EXPERTS",
+      "segment": "Mixture of Experts",
+      "command": "I'm looking at a model with a large parameter count and I want to know whether I can actually run it. Can you help me: one, separate its total parameters from its active parameters per token, and tell me which of those drives memory and which drives compute; two, work out what that means for the hardware I have, because a model that fits in my compute budget may still not fit in my memory; and three, tell me what the naming convention is hiding — if it is called something by N, what is actually replicated N times and what is shared?",
+      "runningText": "costing the real numbers…",
+      "folderLabel": "",
+      "output": []
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 24,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 23.21,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B07.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  },
+  {
+   "beat_id": "B08",
+   "act": "OUTRO",
+   "narration_text": "Anjana here, thanks for watching.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "ClaudeTitleOutro: title in serif, terracotta period"
+     },
+     {
+      "at": 0.8,
+      "event": "subline fades in"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Mixture of Experts",
+      "handle": "",
+      "subline": "massive capacity, sparse compute"
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 3,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 2.16,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B08.mp4",
+    "filled_by": "media",
+    "at": "2026-11-03T19:32:23"
+   }
+  }
+ ]
+}
