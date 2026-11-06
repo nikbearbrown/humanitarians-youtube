@@ -25,6 +25,8 @@ These cover the six steps of `market-sentiment-analysis-part-1` in
 | 2026-10-30 | [Recipe lifecycle frontmatter](./2026-10-30-lifecycle-frontmatter.md) | `6428457`, on `chore/recipe-lifecycle-frontmatter` |
 | 2026-10-30 | [Making `check` status-aware](./2026-10-30-check-status-awareness.md) | same branch |
 | 2026-10-30 | [Conformance over data and Python](./2026-10-30-conformance-data-python.md) | same branch |
+| 2026-11-05 | [The flag contract](./2026-11-05-flag-contract.md) | `0358ab9`, on `chore/recipe-lifecycle-frontmatter` |
+| 2026-11-05 | [Rebase and TODO drift](./2026-11-05-rebase-todos-drift.md) | same branch |
 
 ## Where the video work's logs are
 
