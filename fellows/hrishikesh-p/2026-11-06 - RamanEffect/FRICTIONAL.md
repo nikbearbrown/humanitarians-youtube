@@ -9,6 +9,10 @@ While an LLM agent's capabilities depend heavily on its **execution harness**—
 
 **HARNESS²** solves both challenges by coupling **Task-Level Recursion** (refining the current task's execution harness $\mathcal{H}$ via a contrastive **Propose–Probe–Compose** step) with **Harnessing-Level Recursion** (updating a continual **improvement harness** $\mathcal{R}_t$ and its indexed `EXPERIENCE.md` library across tasks).
 
+## Video Links
+
+- [9:16 video](https://drive.google.com/file/d/1VBUZb-NMxAoKXNZ0ztnmC0PI_OpbApAM/view?usp=sharing)
+- [16:9 video](https://drive.google.com/file/d/1FuHXb5F76U08jhcEM8od00z1rfNBvmts/view?usp=sharing)
 ---
 
 ## Key Architectural & Methodological Contributions
