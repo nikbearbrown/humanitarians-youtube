@@ -23,6 +23,7 @@ build assets.
 | [`2026-10-16-ai-same-prompt-different-answer`](2026-10-16-ai-same-prompt-different-answer) | educational (STEM / AI) | The model draws rather than picks; temperature reshapes the distribution, and even temperature 0 is only as stable as the arithmetic |
 | [`2026-10-23-ai-it-was-still-learning`](2026-10-23-ai-it-was-still-learning) | educational (STEM / AI) | A network can memorise its training set thousands of steps before it learns the rule — and every held-out signal says failure in between |
 | [`2026-10-30-ai-both-sides-passed`](2026-10-30-ai-both-sides-passed) | educational (STEM / AI) | A record can be valid leaving one service and valid entering the next, and still mean something different at each end |
+| [`2026-11-06-ai-significant-on-tuesday`](2026-11-06-ai-significant-on-tuesday) | educational (STEM / AI) | Checking an A/B test until it reads significant turns a 5% error rate into 25% — and every test stopped early overstates the effect by construction |
 
 **Video files are not in this repo.** They are delivered separately. Everything
 here is the record of how they were built and why each claim in them holds.
