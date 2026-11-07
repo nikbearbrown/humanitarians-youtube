@@ -1,0 +1,800 @@
+{
+ "metadata": {
+  "slug": "BuildingAnMCPServer_AdwaitChangan_2026-10-09",
+  "folder": "2026-10-09-building-an-mcp-server",
+  "title": "Building a Tool Server",
+  "date": "October 9, 2026",
+  "report_type": "fellow-weekly-stem-video",
+  "fellow": "Adwait Changan",
+  "fellow_folder": "adwait-c",
+  "series": "Humanitarians AI Fellows — Agentic AI",
+  "channel": "@HumanitariansAI",
+  "audience": "Students and mid-career learners getting started with AI",
+  "persona": "Adwait Changan (fellow, first person) — voiced by Kokoro am_onyx",
+  "engine": "kokoro",
+  "voice": "am_onyx",
+  "voice_kokoro": "am_onyx",
+  "intro_line": "Hi, I am Adwait Changan, and this video is about building a tool server an AI agent can discover on its own.",
+  "standalone": "No back-references. Nothing assumes the viewer has seen anything before.",
+  "no_numbering": "No episode or week number is spoken or shown anywhere.",
+  "register": "Teardown",
+  "aspect": "16:9 (9:16 derived via ./art shorts)",
+  "builder": "ai-explainer",
+  "one_idea": "A tool server is three calls, and the descriptions an agent reads come from docstrings — so a comment for the next developer became a machine-readable contract.",
+  "source_root": "fellows/adwait-c/2026-10-09-building-an-mcp-server",
+  "source_document": "server.py (authored and run for this video; B02, B05 and B07 show real printed output, B04 shows describe() verbatim)",
+  "render_state": "plan-approved-required",
+  "gates": {
+   "plan": "PENDING HUMAN APPROVAL",
+   "factcheck": "PENDING HUMAN APPROVAL",
+   "narration": "PENDING HUMAN APPROVAL",
+   "audio_lock": "NOT STARTED",
+   "previz": "NOT STARTED",
+   "publish": "NOT AUTHORIZED"
+  },
+  "lane_histogram": {
+   "total_beats": 13,
+   "remotion": 13,
+   "manim": 0,
+   "vox": 0,
+   "note": "All beats use existing Remotion patterns; zero slates expected."
+  },
+  "source_status": "Original teaching material. Every figure printed by server.py. It is the protocol's SHAPE reduced to discovery, description and invocation — not the MCP wire format, and the file says so in its docstring.",
+  "build": {
+   "at": "2026-10-26T19:41:41",
+   "cut": "master",
+   "filled": 13,
+   "of": 13,
+   "slates": [],
+   "skin_warnings": []
+  }
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "content_type": "structure",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Hi, I am Adwait Changan, and this video is about building a tool server an AI agent can discover on its own. Today we are going to learn the three calls that make that work, by writing one small enough to read in full. The surprising part is how little there is to it.",
+   "estimated_duration_s": 20,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.00",
+      "event": "composer on cream; the fellow names himself and the topic"
+     },
+     {
+      "at": "0.32",
+      "event": "the ask types itself in"
+     },
+     {
+      "at": "0.54",
+      "event": "running indicator: 'starting the server…'"
+     },
+     {
+      "at": "0.70",
+      "event": "three output lines land"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Today,",
+      "topic": "HUMANITARIANS AI · AGENTIC AI",
+      "segment": "Building a Tool Server",
+      "command": "What does a server have to do before an agent can find and use its tools?",
+      "runningText": "starting the server…",
+      "output": [
+       "Three calls: list what exists, describe one, run one.",
+       "The client is told nothing in advance. It asks.",
+       "Everything else a real server adds is transport, not concept."
+      ],
+      "folderLabel": "@HumanitariansAI"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 14.74,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B00.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B01",
+   "act": "ACT 1 — THREE CALLS",
+   "content_type": "mechanism",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "A tool server does three things and the order matters. It lists what it offers, because the client arrives knowing nothing. It describes any one of those in full, so the client can decide. And it runs one when asked. Discovery, description, invocation.",
+   "estimated_duration_s": 17,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.12",
+      "event": "'List what exists' slides in"
+     },
+     {
+      "at": "0.38",
+      "event": "'Describe one in full' stacks on"
+     },
+     {
+      "at": "0.64",
+      "event": "'Run it' lands in terracotta"
+     },
+     {
+      "at": "0.88",
+      "event": "caption settles"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeScienceLayerStack",
+     "props": {
+      "sparkLine": "Discovery, description, invocation.",
+      "layers": [
+       {
+        "title": "List what exists",
+        "sub": "the client arrives knowing nothing and asks"
+       },
+       {
+        "title": "Describe one in full",
+        "sub": "name, description, parameter schema"
+       },
+       {
+        "title": "Run it",
+        "sub": "and refuse anything that was not on the list",
+        "accent": true
+       }
+      ],
+      "caption": "Everything else a production server adds is transport, not concept."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 13.5,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B01.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B02",
+   "act": "ACT 1 — THREE CALLS",
+   "content_type": "evidence",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "So here is a client connecting to a server it was told nothing about. It asks what exists and gets back two tools it had never heard of, each with a one-line summary. Nobody configured that list. The server generated it from the functions it had registered.",
+   "estimated_duration_s": 19,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.26",
+      "event": "the first discovered tool writes on"
+     },
+     {
+      "at": "0.62",
+      "event": "the second lands"
+     },
+     {
+      "at": "0.86",
+      "event": "both hold, neither one configured"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "server.py — the client asks what exists",
+      "artifactHeading": "Nothing was configured in advance",
+      "artifactLines": [
+       "column_names   List the column headers of a CSV file, in order.",
+       "row_count      Count data rows in a CSV file, excluding the header."
+      ],
+      "sparkLine": "It had never heard of these.",
+      "numbered": false,
+      "width": 1620,
+      "fontSize": 26
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 14.31,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B02.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B03",
+   "act": "ACT 2 — WHERE THE DESCRIPTION COMES FROM",
+   "content_type": "framing",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Which raises the obvious question. If nobody wrote that list, where did the descriptions come from? And the answer is the thing I would most want a beginner to take away from this.",
+   "estimated_duration_s": 13,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.00",
+      "event": "eyebrow ACT TWO draws in"
+     },
+     {
+      "at": "0.28",
+      "event": "serif title types on"
+     },
+     {
+      "at": "0.60",
+      "event": "body copy fades up"
+     },
+     {
+      "at": "0.88",
+      "event": "spark line settles"
+     }
+    ],
+    "remotion": {
+     "pattern": "CwcConceptCard",
+     "props": {
+      "eyebrow": "ACT TWO",
+      "title": "Where Did the Words Come From?",
+      "body": "Nobody wrote the tool list by hand. So where did the descriptions the agent reads actually come from?",
+      "sparkLine": "Nobody wrote the list."
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 9.83,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B03.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B04",
+   "act": "ACT 2 — WHERE THE DESCRIPTION COMES FROM",
+   "content_type": "code",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "From the docstring. The server reads the function's own documentation and the signature, and that becomes the contract the agent sees. Which means the comment you wrote for the next developer is now the thing a machine uses to decide whether to call your code.",
+   "estimated_duration_s": 19,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.06",
+      "event": "Onda code block opens"
+     },
+     {
+      "at": "0.26",
+      "event": "the registry lookup and refusal write on"
+     },
+     {
+      "at": "0.56",
+      "event": "getdoc lands as the voice says 'docstring'"
+     },
+     {
+      "at": "0.86",
+      "event": "the schema construction holds last"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeCodeBeat",
+     "props": {
+      "title": "server.py — describe()",
+      "code": "def describe(name: str) -> dict[str, Any]:\n    \"\"\"The contract for one tool: name, description, parameter schema.\"\"\"\n    if name not in REGISTRY:\n        raise KeyError(f\"no such tool: {name}\")\n    fn = REGISTRY[name]\n    params = inspect.signature(fn).parameters.values()\n    return {\n        \"name\": name,\n        \"description\": inspect.getdoc(fn),\n        \"input_schema\": {\n            \"type\": \"object\",\n            \"properties\": {p.name: {\"type\": \"string\"} for p in params},\n            \"required\": [p.name for p in params],\n        },\n    }",
+      "sparkLine": "Your docstring is the contract.",
+      "fit": true
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 14.23,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B04.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B05",
+   "act": "ACT 2 — WHERE THE DESCRIPTION COMES FROM",
+   "content_type": "evidence",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "And in full it looks like this. The name from the function. The description straight from the docstring, including the line telling the agent what not to use it for. And a parameter schema built from the signature. Three things, none of them written twice.",
+   "estimated_duration_s": 19,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.16",
+      "event": "the name writes on"
+     },
+     {
+      "at": "0.40",
+      "event": "the description lands, docstring and all"
+     },
+     {
+      "at": "0.74",
+      "event": "the do-not line holds in terracotta"
+     },
+     {
+      "at": "0.90",
+      "event": "the schema lands last"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "server.py — one contract, in full",
+      "artifactHeading": "Everything the agent will ever see",
+      "artifactLines": [
+       "\"name\": \"row_count\",",
+       "\"description\": \"Count data rows in a CSV file, excluding",
+       "                the header. Use this when you need the size",
+       "                of a file. Do NOT use it to read values.\",",
+       "\"input_schema\": { \"path\": string },  required: [\"path\"]"
+      ],
+      "sparkLine": "None of it written twice.",
+      "numbered": false,
+      "width": 1700,
+      "fontSize": 24
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 13.25,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B05.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B06",
+   "act": "ACT 3 — WHAT THE SERVER REFUSES",
+   "content_type": "falsifiability",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Then the test that matters more than any successful call. Ask the server for a tool that does not exist and it refuses by name. It does not guess, does not find something similar, and does not invent a result. The list it published is the complete set of things it will do.",
+   "estimated_duration_s": 20,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.16",
+      "event": "'a real tool runs' lands"
+     },
+     {
+      "at": "0.38",
+      "event": "'refused by name' lands"
+     },
+     {
+      "at": "0.60",
+      "event": "'no substitution' lands"
+     },
+     {
+      "at": "0.82",
+      "event": "'no invented result' completes the grid"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeScienceChipGrid",
+     "props": {
+      "sparkLine": "The list is the whole set.",
+      "items": [
+       "A real tool runs and returns",
+       "An unknown tool is refused by name",
+       "No similar tool is substituted",
+       "No result is invented"
+      ],
+      "cols": 2,
+      "caption": "Discovery is only meaningful if the published list is exhaustive."
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 14.36,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B06.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B07",
+   "act": "ACT 3 — WHAT THE SERVER REFUSES",
+   "content_type": "evidence",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Both outcomes, side by side. A known tool runs and returns three. An unknown one comes back as a refusal naming exactly what was asked for. That second line is what makes the first one trustworthy, because a server that improvises when it does not recognise something cannot be reasoned about at all.",
+   "estimated_duration_s": 21,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.22",
+      "event": "the successful call writes on and returns 3"
+     },
+     {
+      "at": "0.62",
+      "event": "the unknown call lands as a named refusal, in terracotta"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeWindow",
+     "props": {
+      "view": "artifact",
+      "artifactTitle": "server.py — known and unknown",
+      "artifactHeading": "The refusal is what makes the success meaningful",
+      "artifactLines": [
+       "row_count(path='sales.csv')   ->  3",
+       "",
+       "delete_everything()           ->  no such tool: delete_everything"
+      ],
+      "sparkLine": "Refusal makes success legible.",
+      "numbered": false,
+      "width": 1700,
+      "fontSize": 25
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 16.68,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B07.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B08",
+   "act": "ACT 3 — WHAT THE SERVER REFUSES",
+   "content_type": "mechanism",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "One more thing the server enforces, and it is a small cruelty I would recommend. A function with no docstring cannot be registered at all. Not a warning, not an empty description. If you cannot say what it does, the agent has no way to decide whether to call it, so it does not get offered.",
+   "estimated_duration_s": 21,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.10",
+      "event": "'A function' appears at the source"
+     },
+     {
+      "at": "0.30",
+      "event": "the two branches light in order"
+     },
+     {
+      "at": "0.60",
+      "event": "arc completes toward the published list"
+     },
+     {
+      "at": "0.88",
+      "event": "settle line lands"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeScienceSourceFlow",
+     "props": {
+      "sparkLine": "No docstring, no tool.",
+      "sourceLabel": "A function",
+      "feeds": [
+       {
+        "label": "has a docstring — registered"
+       },
+       {
+        "label": "has none — refused at registration"
+       },
+       {
+        "label": "never offered, never callable"
+       }
+      ],
+      "destApp": "The published list",
+      "destTitle": "contains only tools that can describe themselves",
+      "arcCaption": "an undescribed tool is worse than a missing one",
+      "settleLine": "Refused at the door."
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 15.51,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B08.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "B09",
+   "act": "ACT 3 — WHAT THE SERVER REFUSES",
+   "content_type": "judgment",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "What this file is not is a production server. There is no transport, no session, no authentication, and no error semantics beyond raising. Those are real work. But none of them change the three calls, and the three calls are the part worth understanding first.",
+   "estimated_duration_s": 19,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.00",
+      "event": "eyebrow THE LIMIT draws in"
+     },
+     {
+      "at": "0.28",
+      "event": "serif title types on"
+     },
+     {
+      "at": "0.60",
+      "event": "body copy fades up"
+     },
+     {
+      "at": "0.88",
+      "event": "spark line settles"
+     }
+    ],
+    "remotion": {
+     "pattern": "CwcConceptCard",
+     "props": {
+      "eyebrow": "THE LIMIT",
+      "title": "This Is Not a Production Server",
+      "body": "No transport, no session, no authentication, no error semantics. All real work — and none of it changes the three calls underneath.",
+      "sparkLine": "The shape, not the plumbing."
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-B09.mp3",
+   "actual_duration_s": 14.23,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/B09.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "BVDT",
+   "act": "VERDICT",
+   "content_type": "verdict",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "So, the verdict. A tool server does three things: it lists what it offers to a client that was told nothing, it describes any one of them in full, and it runs one when asked. The descriptions are not configured anywhere; they are read from the functions' own docstrings, which means the comment you wrote for the next developer is what a machine now uses to decide whether to call your code. A function without a docstring is refused at registration rather than offered with an empty description. And an unknown tool comes back as a refusal naming what was asked, because a server that improvises cannot be reasoned about. Transport, sessions and authentication are real work that none of this replaces.",
+   "estimated_duration_s": 41,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.05",
+      "event": "verdict page opens"
+     },
+     {
+      "at": "0.15",
+      "event": "each line writes on"
+     },
+     {
+      "at": "0.54",
+      "event": "the docstring-as-contract line holds in terracotta"
+     },
+     {
+      "at": "0.92",
+      "event": "the page settles"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Verdict",
+      "artifactHeading": "Three calls, and a docstring that became a contract",
+      "artifactLines": [
+       "List what exists, describe one in full, run one. The client arrives knowing nothing.",
+       "Descriptions are read from the functions' docstrings. Nothing is configured twice.",
+       "The comment you wrote for the next developer is what a machine uses to decide.",
+       "No docstring means no registration. An undescribed tool is worse than a missing one.",
+       "Unknown tools are refused by name. A server that improvises cannot be reasoned about."
+      ]
+     },
+     "rendered": {
+      "out": "media/BVDT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BVDT.mp3",
+   "actual_duration_s": 35.07,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BVDT.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "BHTF",
+   "act": "YOUR TURN",
+   "content_type": "handoff",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "Your turn. Here is the prompt. Take three functions from my codebase and write the tool contract an agent would receive for each: the name, the description from the docstring, and the parameter schema. Then tell me which of the three an agent could not safely choose between, and why. Run it on code you already have. The pair it confuses will be the pair whose docstrings you wrote in the same five minutes.",
+   "estimated_duration_s": 30,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.00",
+      "event": "greeting flips to 'Your turn.'"
+     },
+     {
+      "at": "0.10",
+      "event": "the prompt types itself in"
+     },
+     {
+      "at": "0.66",
+      "event": "running indicator"
+     },
+     {
+      "at": "0.84",
+      "event": "two hint lines land"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "HUMANITARIANS AI · AGENTIC AI",
+      "segment": "Run This Yourself",
+      "command": "Take three functions from my codebase and write the tool contract an agent would receive for each: name, description from the docstring, parameter schema. Then tell me which of the three an agent could not safely choose between, and why.",
+      "runningText": "paste this into Claude…",
+      "output": [
+       "The pair it confuses is usually the pair whose docstrings you wrote together.",
+       "If a docstring was written for a human skimming, it will not survive being a contract."
+      ],
+      "folderLabel": "@HumanitariansAI"
+     },
+     "rendered": {
+      "out": "media/BHTF.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BHTF.mp3",
+   "actual_duration_s": 19.82,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BHTF.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  },
+  {
+   "beat_id": "BOUT",
+   "act": "OUTRO",
+   "content_type": "outro",
+   "engine": "kokoro",
+   "voice": "am_onyx",
+   "narration_text": "That was building a tool server. Next time, what goes wrong once an agent can both use tools and read text it did not write. Adwait Changan, for Humanitarians AI.",
+   "estimated_duration_s": 12,
+   "lane": "REMOTION",
+   "shot": {
+    "type": "REMOTION",
+    "source": "own",
+    "show": [
+     {
+      "at": "0.05",
+      "event": "poster-serif title restates the topic"
+     },
+     {
+      "at": "0.45",
+      "event": "handle settles"
+     },
+     {
+      "at": "0.72",
+      "event": "subline names the fellow"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Building a Tool Server",
+      "handle": "@HumanitariansAI",
+      "subline": "Adwait Changan · Humanitarians AI"
+     },
+     "rendered": {
+      "out": "media/BOUT.mp4",
+      "at": ""
+     }
+    }
+   },
+   "audio_file": "mp3/beat-BOUT.mp3",
+   "actual_duration_s": 9.77,
+   "build": {
+    "status": "VIDEO",
+    "src": "media/BOUT.mp4",
+    "filled_by": "media",
+    "at": "2026-10-26T19:41:41"
+   }
+  }
+ ]
+}
