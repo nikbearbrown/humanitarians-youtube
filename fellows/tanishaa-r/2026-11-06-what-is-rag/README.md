@@ -42,11 +42,11 @@ STEM/AI explainer, week of 2026-11-06. Narrated by Bella (Kokoro `af_bella`, an 
 ## Watch and review
 | Version | Drive link | Resolution | Duration | SHA-256 |
 |---|---|---|---|---|
-| Landscape `WhatIsRAG_TanishaaR.mp4` | _pending upload_ | 3840×2160 | 2:36.9 | `174e935eda1937315b62c66480ee9160ecfe5429ecce95453e671565dd7a9c3f` |
-| Vertical `WhatIsRAG_TanishaaR.mp4` | _pending upload_ | 2160×3840 | 2:36.9 | `f1362df8688b4db868fa215f393b9a920f95a820202cb32db648421a5dcdd5c5` |
+| Landscape `WhatIsRAG_TanishaaR.mp4` | [Drive week folder](https://drive.google.com/drive/folders/1geJdM10Z4t4LpzdO1paOjdDmPXwWdNlC) (`landscape/`) | 3840×2160 | 2:36.9 | `174e935eda1937315b62c66480ee9160ecfe5429ecce95453e671565dd7a9c3f` |
+| Vertical `WhatIsRAG_TanishaaR.mp4` | [Drive week folder](https://drive.google.com/drive/folders/1geJdM10Z4t4LpzdO1paOjdDmPXwWdNlC) (`vertical/`) | 2160×3840 | 2:36.9 | `f1362df8688b4db868fa215f393b9a920f95a820202cb32db648421a5dcdd5c5` |
 
 - Review status: pending
 - YouTube 4K check: pending
 - Publication decision: pending
 
-Video and audio files are on Drive, not in this repository.
+Video and audio files are on Drive, not in this repository: [week folder](https://drive.google.com/drive/folders/1geJdM10Z4t4LpzdO1paOjdDmPXwWdNlC).
