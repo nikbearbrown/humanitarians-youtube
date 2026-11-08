@@ -1,0 +1,101 @@
+{
+  "_": "AI Debt Tracker, WEEK 4. Every number here is transcribed from the author's own saved results as published in pantry/*.svg and in narration_script.md's source table. Each bar's geometry in those SVGs was recomputed as a ratio and had to agree with its printed fraction before the value was accepted. Nothing in this file is estimated, rounded for the frame, or typed from memory.",
+
+  "reader": {
+    "_geom": "track 280px. B1 236.2/280 = 0.8436 = 135/160. Reader 263.2/280 = 0.9400 = 157/167. B2 280.0/280 = 1.0 = 160/160.",
+    "docs": 24,
+    "instruments": 66,
+    "check_rule": "beat B1 on field accuracy",
+    "check_set_when": "fixed in the design in week 1, before any of the three methods ran",
+    "methods": [
+      { "key": "b1",     "label": "B1 regex rules",    "what": "patterns over the raw text",                       "got": 135, "of": 160, "extra": 1,  "hot": false },
+      { "key": "reader", "label": "The event reader",  "what": "code picks passages, the model points, code parses", "got": 157, "of": 167, "extra": 29, "hot": true  },
+      { "key": "b2",     "label": "B2 one model call", "what": "the model types every value itself",                "got": 160, "of": 160, "extra": 9,  "hot": false }
+    ],
+    "extra_means": "an instrument reported that the filing does not announce",
+    "composition": { "new_notes": 62, "other": 4, "other_what": "loans, amendments and redemptions" },
+    "dev_set": "developed only on the week 1 bake-off documents, which are not in this set — three rounds, then frozen, then run once on the 24"
+  },
+
+  "grounding": {
+    "_geom": "shared linear scale 1.1023 px per copy. 227 -> 250.2, 3 -> 3.3, 24 -> 26.5.",
+    "rule": "Every value must be found, word for word, in the passage the model cites",
+    "filing": "Alphabet 8-K, 6 May 2025",
+    "passage_id": "d0:s6",
+    "passage": "…closed its underwritten public offering of €1,500,000,000 aggregate principal amount of 2.500% notes due 2029…",
+    "copied": "$1,500,000,000",
+    "verdict": "not in the passage",
+    "outcome": "refused",
+    "copies": { "in_cited": 227, "in_other": 3, "refused": 24 },
+    "refused_kinds": [
+      { "what": "currency signs rewritten (€ or CHF → $)", "count": 8,  "hot": true  },
+      { "what": "the word \"null\" written out as text",   "count": 16, "hot": false }
+    ],
+    "null_note": "a bookkeeping bug with no effect on any score, fixed in code afterwards",
+    "trade": "A refused value is missing, not wrong. Code parses every number that survives."
+  },
+
+  "triage": {
+    "_geom": "track 300px. Fresh 266.7/300 = 0.889 = 8/9. Last week 300/300 = 1.0 = 24/24. Pass line x=485 -> (485-200)/300 = 0.95.",
+    "labelled": 50,
+    "pass_line": 0.95,
+    "rows": [
+      { "key": "fresh",     "label": "Fresh set",        "got": 8,  "of": 9,  "hot": true  },
+      { "key": "last_week", "label": "Last week's set",  "got": 24, "of": 24, "hot": false }
+    ],
+    "miss": {
+      "who": "IBM euro notes",
+      "doc": "preliminary prospectus",
+      "cover": "€   % Notes due",
+      "why": "blank even where the year's \"20\" should be, so last week's fix for blank covers never fired — and \"Preferred Stock\" in its contents read as a share sale",
+      "defect": "P46"
+    },
+    "false_alarms": 4,
+    "false_alarm_note": {
+      "who": "Applied Digital",
+      "what": "an earnings release that does announce a $150m Macquarie financing — the label missed it",
+      "rule": "labels are not changed after a run"
+    },
+    "duplicate": { "defect": "P45", "what": "one document was in both labelled sets, filed twice under two co-issuers" }
+  },
+
+  "handcheck": {
+    "_geom": "track 170px. Last week 170/170 = 1.0 = 3/3. Fresh 34/170 = 0.2 = 1/5.",
+    "last_week": { "label": "Last week's 5, fixed", "got": 3, "of": 3, "qualifier": "gradable" },
+    "fresh":     { "label": "5 fresh reports",      "got": 1, "of": 5 },
+    "drawn_how": "drawn by seed, chosen before reading",
+    "agreed": { "who": "Amazon", "what": "five totals agree exactly" },
+    "defects": [
+      { "who": "Constellation",   "what": "total debt built from half a pair",         "id": "P41" },
+      { "who": "Marvell",         "what": "one bond tagged under two names",           "id": "P42" },
+      { "who": "Intel",           "what": "a range of years read as one bond",         "id": "P43" },
+      { "who": "Applied Digital", "what": "graded bond by bond with no bond to grade",  "id": "P44" }
+    ],
+    "left_open": "Defects are logged for next week, not fixed against these."
+  },
+
+  "truthcheck": {
+    "_": "the machine check on the labels — not a person reading them",
+    "labeller": "Claude",
+    "labeller_note": "a different model from the one being tested, but not a person",
+    "written_when": "before any of the three methods ran; the label file has the same hash before and after",
+    "bonds":     { "got": 51, "of": 51, "what": "labelled new bonds with a coupon and a year appear in the next quarterly report's XBRL with the same coupon and year" },
+    "principal": { "got": 19, "of": 19, "what": "the labelled principal agrees where the key states one in the same currency" }
+  },
+
+  "reader_defects_open": {
+    "_": "FRICTIONAL.md names three and gives no defect ids for them, unlike P41-P46. None is invented here, and no beat shows an id for these.",
+    "why_open": "Fixing them against the 24 filings would turn the evaluation set into a calibration set, so they go to week 5.",
+    "items": [
+      "the currency sign rewritten while claiming to copy",
+      "a \"$500 million term loan facility\" sentence scored below the passage threshold, so one filing had no passages at all",
+      "a blank preliminary prospectus, where the model listed the company's table of existing notes as if they were new"
+    ]
+  },
+
+  "next": [
+    "fix what the fresh checks found",
+    "check again on new filings",
+    "connect the reader to a ledger, so whole quarters run end to end"
+  ]
+}

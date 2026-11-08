@@ -1,0 +1,79 @@
+Reading Debt Announcements into Cited Facts — AI Debt Tracker, week 4
+
+Last week the agent learned to find the debt news. This week it reads it: a filing becomes
+structured bonds and loans, each with an amount, a currency, a coupon and a due year, and every
+value pointing back to the sentence it came from. It passed the check it was set. A simpler
+baseline still read more fields right.
+
+THE READER. The rule from week 1 is that the model never types a number, so the reader works in
+three steps. Code picks out the passages that state debt terms. The model lists each bond and
+loan and, for every value, copies the exact words and names the passage they came from. Then code
+checks those words really are in that passage, and parses the number itself. The model is
+bracketed by code on both sides: it chooses what to point at, never what a number is.
+
+THE COPY CHECK. For Alphabet's euro notes the filing says €1,500,000,000. The model reported
+copying "$1,500,000,000" — it rewrote the currency sign while claiming to copy. Those words are
+not in the cited passage, so the values were refused: missing, rather than wrong. Across the set
+254 values were copied; 227 were found in the passage the model cited, 3 in a different one, and
+24 were refused. Eight of the 24 were currency signs like Alphabet's. The other sixteen were the
+model writing the word "null" — bookkeeping, with no effect on any score.
+
+THE RESULT. Tested on 24 filings whose 66 instruments were labelled before any method ran:
+
+  B1, regex rules      135 of 160 fields      84%     1 extra instrument
+  The event reader     157 of 167 fields      94%    29 extra instruments
+  B2, one model call   160 of 160 fields     100%     9 extra instruments
+
+The week's check, fixed in the design back in week 1, was to beat B1. The reader did. But the
+third row is the honest one: asking the same small model to type every value itself read all of
+them. The three bars do not share a denominator, and the reader reports more instruments the
+filings never announce than either baseline. On clean pricing documents — and 62 of the 66
+instruments were new notes in pricing documents — a 4B model reads numbers well. What the reader
+adds is not accuracy. It is a cited sentence behind every value, and a number that is not in the
+filing gets refused instead of used.
+
+TRIAGE, CHECKED AGAIN. 50 new filings, labelled before the run, after last week's two rule fixes.
+Triage found 8 of the 9 that were about debt — 89%, below the 95% line. That is a failed check.
+The miss was an IBM euro prospectus whose cover is blank even where the year's "20" should be, so
+last week's fix for blank covers never fired, and "Preferred Stock" in its contents read as a
+share sale. Logged as P46 and not tuned away. Nine positives is a small check. One of the four
+false alarms is probably a labelling error — an Applied Digital earnings release does announce a
+$150m Macquarie financing — but labels are not changed after a run.
+
+THE ANSWER KEY. Last week's three reports now agree, but those are the reports the fixes were
+made against, so that is a calibration. Five fresh reports, drawn by seed before reading: one
+agreed, Amazon, whose five totals match exactly. Four new defects, each in a different company's
+tagging — Constellation's total built from half a pair (P41), one Marvell bond tagged under two
+names (P42), a range of years read as a single bond at Intel (P43), and Applied Digital graded
+bond by bond with no bond to grade (P44). All logged for next week rather than fixed against the
+reports that found them. One slip is disclosed: the key's totals for those five reports were
+printed once before the transcriptions were written.
+
+NOT REVIEWED BY A PERSON. The week was handed to Claude end to end before it started. The labels,
+the reader truth and the transcriptions are a model's reading — machine-checked, in that all 51
+labelled new bonds with a coupon and a year appear in the next quarterly report's XBRL with the
+same coupon and year, but not read by anyone. manifests/week4_gate.json records the week as
+DELEGATED, not CLEARED.
+
+NEXT. Fix what the fresh checks found, check again on new filings, and connect the reader to a
+ledger so whole quarters run end to end.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is a prop injected from figdata.json at build time, not typed by hand. The
+build asserts the key relationships and fails rather than let a number drift — including that the
+one-call baseline stays ABOVE the event reader (otherwise the argument this video is built on
+would be empty), that the reader's extra instruments stay the largest of the three, that the
+fresh triage score stays BELOW the 95% line it missed, that the four answer-key defects stay in
+four different companies, and that 8 + 16 = 24 refusals out of 227 + 3 + 24 copies. Three claims
+in the video are not measured in figdata.json: the gate record, who did the labelling, and that
+the check and the pass line were fixed in week 1. Each is attributed on screen. See FACTCHECK.md
+in the project folder for what still needs confirmation before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#AIDebt #SEC #LocalLLM #Provenance #Evaluation #Baselines #HumanitariansAI #Mycroft
