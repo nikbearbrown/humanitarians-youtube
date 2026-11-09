@@ -6,7 +6,7 @@
 
 ## What's in this folder
 
-20 work folders, one per report or video:
+22 work folders, one per report or video:
 
 - `2026-08-21-every-image-earns-its-place/` — every image earns its place (2026-08-21)
 - `2026-08-21-model-to-the-bill/` — model to the bill (2026-08-21)
@@ -28,6 +28,8 @@
 - `2026-10-19-wildlife-beyond-loons/` — seals pass, seabirds wait (2026-10-19)
 - `2026-10-23-inside-the-black-box-part-2/` — inside the black box, part 2 (2026-10-23)
 - `2026-10-23-same-app-new-animal/` — same app, new animal (2026-10-23)
+- `2026-10-30-every-three-seconds/` — every three seconds: Gavia listens for loon calls (2026-10-30)
+- `2026-11-06-same-app-new-plants/` — same app, new plants: Vegnet and the native look-alikes (2026-11-06)
 
 ## Frictional log
 
