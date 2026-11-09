@@ -12,6 +12,9 @@
 - [Week 2: November 1](2026-11-01-rl-environments/): first code and results for the RL Environments project (two foraging worlds, six multi-agent learners, and a check of what the 12/12 result actually measures) and a HyperLogLog explainer. [Frictional log](2026-11-01-rl-environments/FRICTIONAL.md)
   - [ant-head-rl-research/](2026-11-01-rl-environments/ant-head-rl-research/): project-update beat sheets, 16:9 and 9:16
   - [hyperloglog/](2026-11-01-rl-environments/hyperloglog/): explainer beat sheets, 16:9 and 9:16
+- [Week 3: November 8](2026-11-08-rl-environments/): the RL Environments ants without the scripted cue (a timeout bug fixed and longer training; pairs of ants learn to carry pieces home, 11.77/12 on the grid) and an IPPO explainer. [Frictional log](2026-11-08-rl-environments/FRICTIONAL.md)
+  - [ant-head-rl-research/](2026-11-08-rl-environments/ant-head-rl-research/): project-update beat sheets, 16:9 and 9:16
+  - [ippo/](2026-11-08-rl-environments/ippo/): explainer beat sheets, 16:9 and 9:16
 
 ## Voice
 
