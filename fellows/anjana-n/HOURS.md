@@ -2,7 +2,7 @@
 
 ECIS (Earnings Call Intelligence Signals) is a financial intelligence system that transforms raw earnings call transcripts into structured, confidence-scored guidance signals, and then holds itself accountable by grading every prediction against real market outcomes.
 
-**Period:** June 29 – October 31, 2026 (Weeks 1–18)
+**Period:** June 29 – November 7, 2026 (Weeks 1–19)
 
 **Project:** [Mycroft — ECIS](https://github.com/nikbearbrown/mycroft/tree/main/projects/ecis)
 
@@ -28,6 +28,7 @@ ECIS (Earnings Call Intelligence Signals) is a financial intelligence system tha
 | 16 | Oct 11 – Oct 17 | 37 | [2026-10-16-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-16-weekly-work-progress) |
 | 17 | Oct 18 – Oct 24 | 33 | [2026-10-23-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-23-weekly-work-progress) |
 | 18 | Oct 25 – Oct 31 | 32.5 | [2026-10-30-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-30-weekly-work-progress) |
-| **Total** | | **547** | |
+| 19 | Nov 1 – Nov 7 | 30.75 | [2026-11-06-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-06-weekly-work-progress) |
+| **Total** | | **577.75** | |
 
 ---
