@@ -12,6 +12,8 @@ Work folders, one per report or video:
 
 - [2026-10-13-how-ai-draws-anime-frames](2026-10-13-how-ai-draws-anime-frames/README.md): Week 1 explainer, How AI Draws Anime Frames
 - [2026-10-13-week-1-progress](2026-10-13-week-1-progress/README.md): Week 1 progress video
+- [2026-10-19-will-ai-replace-my-test-scripts](2026-10-19-will-ai-replace-my-test-scripts/README.md): Week 2 explainer, Will AI Replace My Test Scripts?
+- [2026-10-19-week-2-progress](2026-10-19-week-2-progress/README.md): Week 2 progress video
 - [2026-11-02-how-your-phone-types-japanese](2026-11-02-how-your-phone-types-japanese/README.md): Week 4 explainer, How Your Phone Types Japanese
 - [2026-11-02-week-4-progress](2026-11-02-week-4-progress/README.md): Week 4 progress video
 - [HOURS.md](HOURS.md): weekly hours
