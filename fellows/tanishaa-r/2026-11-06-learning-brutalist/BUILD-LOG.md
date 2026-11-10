@@ -1,0 +1,22 @@
+# BUILD-LOG — Learning Brutalist
+
+**2026-11-06**
+- Script v2 approved by Tanishaa in chat ("Yes, build it"). The topic changed from a weeks 1–2 recap (v1) to learning Brutalist and its tools, at her request. The folder was renamed from youtube/progress-update to youtube/learning-brutalist.
+- Audio: Kokoro `af_bella` at speed 0.95, 9 beats, 119 s of narration, cost $0.00. Voice-only respellings: "eff eff em peg" (ffmpeg) and "lay-tek" (LaTeX). faster-whisper word times are in mp3/words.json, and every reveal is cued 0.2 s before its measured word, the method from the What Is RAG sync fix.
+- Library-first: `./art scenes` searches for a checklist, tool cards, a step pipeline, side-by-side frames and pass/fail gates only found scenes hardcoded for other reels. Wrote `runtime/remotion/src/LbScenes.tsx` with six parameterized scenes: LbPipeline, LbChecklist, LbToolCards, LbGates, LbTwoFrames, LbSyncFix. They are registered in Root.tsx under the "LearningBrutalist" folder. Reused ClaudeComposerAsk, ClaudeVerdictArtifact and HaiTitleOutro.
+- LOGO LAW: the logos for Claude Code, Remotion, ffmpeg, Python, Node and LaTeX were copied into public/logos. Kokoro and Manim have no logo in icons/logos, so Kokoro gets a drawn waveform and Manim is named as text. This is still open.
+- Real evidence: the B05 and B06 frames come from the What Is RAG masters at 57 s and 118 s. The B06 timeline is schematic.
+- Machine fix: Remotion's own headless shell hung ("Waiting for root component"), and Playwright isn't installed. Rendering works with `ART_CHROME=/Applications/Google Chrome.app/... ART_CHROME_MODE=chrome-for-testing`.
+- Preflight stills: fixed the B05 callout overlapping its footnote by dropping the footnote. B07 pages to its third line on "watch every preview".
+- GATE T: the first run failed contrast on B03 (the Claude Code logo, which is terracotta, plus the waveform) and B05 (terracotta inside the real RAG frames). The waveform and frame border moved to ACC_TEXT. LbToolCards and LbTwoFrames were added to type_check.py's structural-accent exemptions, with reasons. Beat lint: the kicker must be "Irreducibly Human" for claude-hai, so B00 was re-rendered.
+- `./art final`: GATE T PASS, GATE V 0 BLOCKER / 0 MAJOR (18 frames), 9/9 slots. The skin-lint note about HaiTitleOutro is deliberate (ClaudeTitleOutro is locked to @NikBearBrown), same as What Is RAG.
+- Master: `learning-brutalist.mp4`, 3840×2160, 24 fps, 119.4 s, SHA-256 `dfd6ac281729f24d0f61ffaeaf8c515f26842535c3f3bc550dbc4835293c8652`.
+- My frame review (contact sheet, two frames per beat): every reveal is in order, and the B06 lag→fix and B07 page flip land as planned.
+- Tanishaa watched the landscape cut: "Looks good, do vertical".
+- 9:16 vertical companion (`./art vertical` → `vertical/`, all 9 beats, no drops):
+  - Wrote native portrait layouts `<Name>916` for the six Lb scenes in LbScenes.tsx, with phone-size type (serif ≥ 92, sans ≥ 72 design px). SHOW LESS: no spark lines or sub-labels, short fields (`short`, `noteShort`, `calloutShort`) for long labels.
+  - B07: ClaudeVerdictArtifact916 renders its lines at about 40 design px (the RAG vertical has the same small card). Added `LbTakeaway916` (heading + three lines, each cued to its spoken words) and set it directly in the derived `vertical/beat_sheet.json`. Re-running `./art vertical` puts back ClaudeVerdictArtifact916, so this edit has to be redone.
+  - GATE T: B05 and B06 embed real RAG screenshots whose own small text failed min-size. Declared `qc.typography_regions` in `vertical/beat_sheet.json` (the toolkit's opt-in for mixed source imagery), so only the designed text is measured. Gate V still checks full frames. The B06 portrait marks use ACC_TEXT. LbToolCards916 and LbTwoFrames916 joined the structural-terracotta list, and LbTakeaway916 joined the bookend list (it takes the verdict card's role).
+- `./art final vertical --height 3840`: GATE T PASS, GATE V 0 BLOCKER / 0 MAJOR (18 frames), 9/9 slots. Skin-lint notes about the 916 cold open and the HAI outro are expected, same as RAG.
+- Master `vertical/learning-brutalist-vertical.mp4`: 2160×3840, 119.4 s, SHA-256 `cd02736ae4103867403bf858c7147baff4f42e4fcb0d68fac766a41faefdb5a9`. My review: one frame every 6 s, all beats in order, and B06 shows the lag and then the fix.
+- Open: loudness is -20.8 LUFS in both versions (quiet, same as RAG). Tanishaa hasn't watched the vertical yet. The README still needs her "Human and AI work" section.
