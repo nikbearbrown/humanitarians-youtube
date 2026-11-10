@@ -1,0 +1,6 @@
+const fs=require('fs'),path=require('path');const p=process.argv[2];const modules=path.join(process.env.HOME,'Downloads/brutalist.art-main/runtime/remotion/node_modules');
+const {bundle}=require(modules+'/@remotion/bundler');const {selectComposition,renderStill,renderMedia}=require(modules+'/@remotion/renderer');const browserExecutable=modules+'/.remotion/chrome-headless-shell/mac-arm64/chrome-headless-shell-mac-arm64/chrome-headless-shell';
+(async()=>{const serveUrl=await bundle({entryPoint:p+'/src/redesign/Preview.tsx',outDir:p+'/_qc/redesign/bundle',publicDir:p+'/public',webpackOverride:c=>({...c,resolve:{...c.resolve,modules:[modules,...(c.resolve.modules||[])]},resolveLoader:{...c.resolveLoader,modules:[modules,'node_modules']}})});
+for(const id of ['LandscapeDraft','PortraitDraft',...(p.includes('clever-hans')?['HorseDraft']:[])]){const composition=await selectComposition({serveUrl,id,browserExecutable});await renderStill({serveUrl,composition,browserExecutable,frame:100,output:p+'/_qc/redesign/'+id+'.png'});console.log('STILL '+p+' '+id);
+if(process.argv.includes('--sample')&&id==='LandscapeDraft')await renderMedia({serveUrl,composition,browserExecutable,codec:'h264',crf:18,concurrency:3,outputLocation:p+'/_qc/redesign/'+id+'-silent.mp4'});
+}})().catch(e=>{console.error(e);process.exit(1)});

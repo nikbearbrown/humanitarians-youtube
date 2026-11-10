@@ -1,7 +1,7 @@
 # Weekly hours — Deepa S.
 
 **Original reporting period (Weeks 1–4):** 25 Aug — 30 Sep 2026
-**Cumulative scope:** Weeks 1–7; Week 7 is October 19–25, 2026. Week 5–6 calendar boundaries are not established.
+**Cumulative scope:** Weeks 1–9 (Weeks 8–9 estimated allocations confirmed by Deepa); Week 7 is October 19–25, 2026. Week 5–6 calendar boundaries are not established.
 **Project:** Brutalist Videos
 
 Hours for the original Weeks 1–4 reporting period are reconstructed estimates based on documented project activity and my recollection of the time spent. Exact contemporaneous time records were not maintained. These figures are not Git-derived measurements, independently verified time logs, automated timer output, or previously approved hour totals.
@@ -20,6 +20,9 @@ Weeks 1–4 use the labels and project pairings in [README.md](README.md) and th
 | **Historical subtotal (Weeks 1–6)** | | **83** | | **76** | **159** |
 | Week 7 — Oct 19–25, 2026 (estimated) | [Reviews, publishing preparation, progress production and GitHub documentation](2026-10-26_week7_update.md) | 18 | [Claude Skills research and STEM production](2026-10-26-how-claude-skills-work/README.md) | 10 | 28 |
 | **Cumulative total (Weeks 1–7, including estimates)** | | **101** | | **86** | **187** |
+| Week 8 — Oct 26–Nov 1, 2026 (estimated) | [Behind the Upload: Preparing AI Videos for YouTube](2026-11-08-week-8-behind-the-upload/README.md) | 18 | [When AI Cheats to Win: The Hidden Problem of Reward Hacking](2026-11-08-week-8-reward-hacking/README.md) | 12 | 30 |
+| Week 9 — Nov 2–8, 2026 (estimated) | [From AI Research to YouTube: Two Weeks of Publishing Support](2026-11-08-week-9-two-weeks-of-publishing-support/README.md) | 18 | [The Clever Hans Effect: When AI Gets the Right Answer for the Wrong Reason](2026-11-08-week-9-clever-hans-effect/README.md) | 12 | 30 |
+| **Cumulative total (Weeks 1–9, estimated)** | | **137** | | **110** | **247** |
 
 Weeks 5–6 hours were supplied by Deepa for this submission: 31 progress/workflow hours and 28 STEM hours, totaling 59. Their contemporaneous logging has not been established; they are user-reported hours, not independently verified time records. The cumulative total combines these with the reconstructed Weeks 1–4 estimates and must not be presented as an exact contemporaneous time log. The 100-hour historical subtotal is not an additional week: 100 + 29 + 30 = 159. No separate hours are added for the Week 6 YouTube reviews, either video format, or correction renders; no activity-level allocation is inferred.
 
@@ -46,3 +49,27 @@ Week 7 hours are approximate estimates supplied by Deepa, based on documented pr
 For continuity with the existing columns, reviews (6), publishing preparation (5), weekly progress production (4), and GitHub documentation (3) are grouped as progress/workflow: 18. Claude Skills research (4) and STEM production (6) are grouped as STEM: 10. This reporting classification does not add any work or hours. Both formats, existing production corrections and review work are included once, not separately charged.
 
 Arithmetic: 6 + 5 + 4 + 6 + 4 + 3 = 28; 83 + 18 = 101 progress/workflow; 76 + 10 = 86 STEM; 159 + 28 = 187 overall. The historical subtotal rows are checkpoints, not additional hours. Earlier Weeks 1–6 figures and their original provenance remain unchanged.
+
+## Week 8 estimated breakdown — October 26–November 1, 2026
+
+| Activity | Estimated hours |
+|---|---:|
+| Progress/workflow: contributor titles, descriptions and metadata; submission coordination; progress-video production, QC and documentation | 18 |
+| STEM: research, narration/script and Beat Sheet preparation; educational-video production, QC and documentation | 12 |
+| **Total** | **30** |
+
+No finer activity-level or daily allocation was supplied, so none is inferred. These grouped estimates cover the documented work without assigning separate hours to individual tasks, formats or corrections. See the [Week 8 report](2026-11-08_week8_update.md).
+
+## Week 9 estimated breakdown — November 2–8, 2026
+
+| Activity | Estimated hours |
+|---|---:|
+| Progress/workflow: contributor titles, descriptions and metadata; submission coordination; progress-video production, QC and documentation | 18 |
+| STEM: research, narration/script and Beat Sheet preparation; educational-video production, QC and documentation | 12 |
+| **Total** | **30** |
+
+No finer activity-level or daily allocation was supplied, so none is inferred. These grouped estimates cover the documented work without assigning separate hours to individual tasks, formats or corrections. See the [Week 9 report](2026-11-08_week9_update.md).
+
+I confirmed the previously provisional Weeks 8–9 allocations as **18 progress/workflow + 12 STEM = 30 estimated hours per week**. Together they add 60 hours. The finalized Weeks 1–9 cumulative estimate is **137 progress/workflow + 110 STEM = 247 hours** (101 + 36; 86 + 24; 187 + 60). The historical Weeks 1–7 record remains 187 hours. Confirmation records my acceptance of these estimated allocations; it does not establish independently verified time records or organizational approval. These are estimates, not exact contemporaneous records. Both formats, contributor support, documentation and corrections are counted within each weekly estimate, not added separately.
+
+Arithmetic: **30 + 30 = 60; 187 + 60 = 247; 101 + 18 + 18 = 137; 86 + 12 + 12 = 110; 137 + 110 = 247**. Subtotal and breakdown tables describe the same hours, not additional work. These figures were supplied and confirmed as estimates by Deepa; no contemporaneous daily records were supplied. No hour measurements are inferred from render time, Git activity, video length or contributor counts. Production and redesign documentation extends beyond the reporting intervals; no precise work dates or extra hours are inferred. The earlier weekly reports retain their hours-pending checkpoints; this file records the later confirmed estimated allocations.
