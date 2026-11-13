@@ -1,0 +1,35 @@
+MADE-UP SERVICE: 1600 songs in 8 Western genres, 3000 listeners, 228,797 plays (seed 2026). Not Spotify data.
+  the top 10% of songs get 46% of all plays
+
+1. ACCURACY (20% of each listener's songs hidden; 10 recommendations each)
+  taste vectors (ALS, 24 numbers each): 74.1% of listeners get at least one hidden song back; recall@10 0.179
+  most popular:                         65.3%; recall@10 0.137
+  random:                               6.4%; recall@10 0.008
+
+2. WHAT THE TASTE VECTORS LEARNED (genre labels never shown to the model)
+  a song's 5 nearest songs (cosine) share its genre 83.7% of the time (chance: 12.5%)
+  by genre: pop 68%, rock 62%, indie 89%, hip-hop 93%, jazz 88%, country 92%, electronic 89%, classical 88%
+  example: song 833 (jazz, popularity rank 562 of 1600) -> nearest: #959 jazz 0.795, #949 jazz 0.789, #822 jazz 0.756, #837 jazz 0.748, #233 rock 0.716
+
+3. POPULARITY BIAS
+  median popularity rank of a recommended song: 43; of a song actually played: 233 (1 = biggest hit)
+  share of recommendations from the less popular half of the catalogue: 5.9% (share of plays: 25.8%)
+  catalogue ever recommended: taste vectors 70%, most popular 2%
+
+4. THE FEEDBACK LOOP (listeners play what they're shown; the model retrains; 8 rounds)
+  round 0: catalogue recommended  69.1% (with exploration  99.5%), top 10% of songs get 76.4% of slots (63.4%), genres per list 4.05 (4.65)
+  round 1: catalogue recommended  70.6% (with exploration  99.8%), top 10% of songs get 74.1% of slots (61.4%), genres per list 4.33 (4.87)
+  round 2: catalogue recommended  72.8% (with exploration  99.8%), top 10% of songs get 72.0% of slots (59.1%), genres per list 4.39 (4.95)
+  round 3: catalogue recommended  72.6% (with exploration  99.8%), top 10% of songs get 70.7% of slots (57.8%), genres per list 4.46 (4.96)
+  round 4: catalogue recommended  75.3% (with exploration  99.8%), top 10% of songs get 68.5% of slots (56.2%), genres per list 4.51 (5.05)
+  round 5: catalogue recommended  75.4% (with exploration  99.9%), top 10% of songs get 67.1% of slots (54.4%), genres per list 4.55 (5.07)
+  round 6: catalogue recommended  77.6% (with exploration  99.8%), top 10% of songs get 65.1% of slots (53.5%), genres per list 4.57 (5.09)
+  round 7: catalogue recommended  77.2% (with exploration  99.8%), top 10% of songs get 64.1% of slots (52.5%), genres per list 4.60 (5.12)
+  round 8: catalogue recommended  76.2% (with exploration 100.0%), top 10% of songs get 63.2% of slots (51.9%), genres per list 4.66 (5.18)
+
+5. COLD START
+  a brand-new song with zero plays: its taste vector is all zeros, score 0 for everyone; it ranks on average 1174 of 1601 and appears in 0 of 3000 top-10 lists
+  a brand-new listener with no plays: only popularity to go on -> top 10 = the 10 most-played songs (genres: classical, electronic, hip-hop, indie, pop)
+
+EXAMPLE LISTENER 1451: tastes jazz 46%, electronic 54%; 42 songs heard, 11 hidden
+  recommended: #805 jazz, #1559 classical, #869 jazz, #1234 electronic, #995 jazz, #1315 electronic (hidden hit), #1295 electronic, #878 jazz, #18 pop, #1479 classical

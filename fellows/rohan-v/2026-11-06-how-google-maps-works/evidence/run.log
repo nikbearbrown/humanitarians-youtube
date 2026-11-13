@@ -1,0 +1,36 @@
+1. WHERE AM I (simulated GPS: ranges to satellites; the phone's clock is 1 ms off)
+  a 1 ms clock error is 300 km of range error, so the phone solves for its clock as a 4th unknown
+  open sky, 8 satellites, 3 m ranging noise: median error 5.3 m, 95% within 15.0 m
+  street between tall buildings, 5 high satellites + reflections: median 68.8 m, 95% within 294.2 m
+  3 satellites: 3 equations for 4 unknowns (x, y, z, clock): no unique answer
+  example fix: 8 satellites, error 2.7 m, clock error recovered 1.0000 ms (true 1.0000)
+
+2. THE ROUTE (a 30 x 30 grid city: local streets 30 km/h, avenues 50, a highway 90; 1670 road segments)
+  from (3, 4) to (26, 25), 5.0 km apart as the crow flies
+  Dijkstra: explored 826 of 900 intersections; best route 6.8 min, 44 segments
+  A*:       explored 547 intersections (aims at the destination); same route: True, 6.8 min
+  the fastest route uses highway on 22 segments, avenues on 21, local streets on 1
+
+3. LIVE TRAFFIC (rush hour: downtown slow, inbound highway jammed, a crash on one avenue)
+      0 phones:  0.0% of roads have live data; speed error median  7.4%; colour right on 87.4% of roads; crash shown red on   0% of its segments
+    100 phones:  7.4% of roads have live data; speed error median  7.1%; colour right on 88.4% of roads; crash shown red on  50% of its segments
+    500 phones: 22.6% of roads have live data; speed error median  6.5%; colour right on 89.8% of roads; crash shown red on 100% of its segments
+   2000 phones: 45.2% of roads have live data; speed error median  5.5%; colour right on 90.6% of roads; crash shown red on 100% of its segments
+   8000 phones: 75.1% of roads have live data; speed error median  3.4%; colour right on 93.1% of roads; crash shown red on 100% of its segments
+
+4. ARRIVAL TIME (237 rush-hour trips over 1.5 km; error = |predicted - actual| / actual)
+  example trip (30 segments): actual 8.25 min; speed limits said 6.08, history 7.68, history + live 7.72
+  speed limits only       : median error  18.7%, within 10% on  13.1% of trips
+  history (20 past days)  : median error   3.7%, within 10% on  91.1% of trips
+  live phones (2,000)     : median error   3.0%, within 10% on  94.9% of trips
+  history + live          : median error   3.1%, within 10% on  94.1% of trips
+
+5. HOW BUSY (a cafe, 8 Fridays; 25% of visitors' phones counted; Laplace noise, epsilon 1.0)
+  real visitors 2,276; counted 565
+  popular-times bars vs the real crowd: correlation 0.988; busiest hour 13:00 (real 13:00)
+  a quiet shop: 31 counted visits in 8 weeks; with a 100-visit minimum it shows no chart
+
+6. HOW CROWDED (one bus route, 32 trips a day, 40 seats; 3% of riders answer; 30 days of answers)
+  631 answers; a prediction for 32 of 32 trips (3+ answers needed)
+  predicted level matches the next day's real crowding on 81.2% of trips
+  misses: 7:00 said seats, was few seats, 7:30 said standing, was few seats, 9:00 said standing, was few seats, 9:30 said seats, was few seats

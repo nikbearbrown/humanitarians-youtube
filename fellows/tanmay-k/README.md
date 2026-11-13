@@ -107,6 +107,8 @@ the standing choice, and `af_bella` is the one carried as history.
 | 2026-10-25 | [`2026-10-25-the-sum-behind-the-number-mycroft`](./2026-10-25-the-sum-behind-the-number-mycroft/) | The Sum Behind the Number — a stress-test percentage taken apart block by block, and my Python copy of the engine run beside the original |
 | 2026-11-01 | [`2026-11-01-the-rally-has-a-clock-stem-video`](./2026-11-01-the-rally-has-a-clock-stem-video/) | The Rally Has a Clock — when "no perfect defense" is true in Pong: one checkable ratio, and a ball that speeds up so every rally has a clock |
 | 2026-11-01 | [`2026-11-01-two-customers-one-run-mycroft`](./2026-11-01-two-customers-one-run-mycroft/) | Two Customers, One Run — one run's results written twice from the same facts, an agent log for the next program and a report for the person deciding, and the mistake found by reading both |
+| 2026-11-08 | [`2026-11-08-where-the-eighty-lives-stem-video`](./2026-11-08-where-the-eighty-lives-stem-video/) | Where the Eighty Lives — why a smaller model can run far slower: two tiny models with the same weights and the same arithmetic, timed against one dial, how much the chip can do at once |
+| 2026-11-08 | [`2026-11-08-ask-whether-never-what-mycroft`](./2026-11-08-ask-whether-never-what-mycroft/) | Ask Whether, Never What — checking a pipeline's keys without reading them: one source's row filled field by field, and a test that builds its own dummy keys |
 
 ## Two lanes
 
