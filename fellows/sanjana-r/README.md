@@ -34,3 +34,5 @@
 | [11-04-2026-pm-progress-update/](11-04-2026%20pm-progress-update/README.md) | PM progress report |
 | [11-11-2026-AB-test-is-the-lift-real/](11-11-2026%20AB-test-is-the-lift-real/README.md) | Explainer, A/B test significance — "is the lift real?" (product management) |
 
+## Frictional Logs
+**Weekly diaries:** Each week’s running diary (what got done and what didn’t) lives in that week’s PM Progress Update folder — either as the folder’s README.md or as a dedicated FRICTIONAL.md. Please check both files in the progress-update folder for the week you’re after.
