@@ -48,6 +48,8 @@ All videos: [Google Drive folder](https://drive.google.com/drive/folders/1evtv1v
 | 25–31 Oct | Weekly recap: brand check | Recap | [folder](./2026-10-31-weekly-recap-brand-check/) | [log](./2026-10-31-weekly-recap-brand-check/FRICTIONAL.md) |
 | 8–14 Nov | Foundation search research | Topic | [folder](./2026-11-11-foundation-search-research/) | [log](./2026-11-11-foundation-search-research/FRICTIONAL.md) |
 | 8–14 Nov | Weekly recap: foundation search | Recap | [folder](./2026-11-11-weekly-recap-foundation-search/) | [log](./2026-11-11-weekly-recap-foundation-search/FRICTIONAL.md) |
+| 8–14 Nov | Real Art, New Light | Topic | [folder](./2026-11-12-real-art-new-light/) | [log](./2026-11-12-real-art-new-light/FRICTIONAL.md) |
+| 8–14 Nov | Weekly recap: real art | Recap | [folder](./2026-11-13-weekly-recap-real-art/) | [log](./2026-11-13-weekly-recap-real-art/FRICTIONAL.md) |
 
 ## Next steps
 
