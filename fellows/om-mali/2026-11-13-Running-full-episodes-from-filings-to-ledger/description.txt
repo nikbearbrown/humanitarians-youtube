@@ -1,0 +1,114 @@
+Running Full Episodes from Filings to Ledger — AI Debt Tracker, week 5
+
+Weeks 1 to 4 built the pieces one at a time: an answer key, a do-nothing baseline, triage, and an
+event reader. This week they run as one system. For one company and one quarter, the agent goes
+from the filings in the window to a ledger of that company's bonds — and then checks its own
+result. It finds the new bonds that doing nothing cannot find. It also adds some that are not
+there.
+
+THE GRAPH. One LangGraph run per company-quarter. A timeline node lists the filings, triage keeps
+the ones about debt, and a reader branch runs on each of those at the same time — a Send fan-out,
+not a queue. Then plain code merges what the readers found, retires bonds that have matured,
+applies the rest to the opening ledger, and runs the self-checks. Every step is checkpointed, so
+a stopped run picks up where it left off; midway through, the laptop ran out of memory, and
+nothing had to be re-read. Across all 95 development quarters: 882 filings listed, 245 kept by
+triage — 174 of them read by the model and 71 readings reused by a later quarter — and 53 open
+questions raised. All 95 of 95 episodes ran end to end.
+
+THE LEDGER ENGINE, AND A BORROWED START. The second half of the graph is code, not a model. It
+merges events from different filings that describe the same bond, sweeps matured bonds by the
+same rule the baseline uses, and applies new issues, add-ons and redemptions. Anything it cannot
+place — a repayment of a bond the ledger does not hold, a new bond with no maturity — becomes an
+open question rather than a guess. One thing is worth saying plainly: the opening ledger is
+BORROWED from the answer key, exactly the one the baseline carries forward. That is deliberate,
+because with the same starting point any difference from the baseline is what reading added. It
+is also the largest limit on every number below. Reading the opening ledger from the filings is
+next week.
+
+AGAINST DOING NOTHING. The baseline is carrying last quarter's debt forward. On the 45 quarters
+graded bond by bond, from the same opening ledger:
+
+  Bond recall        90.9%  →  97.8%     (+6.9 points, paired, +4.7 to +9.4)
+  Bond precision     92.8%  →  90.2%
+  New bonds caught   0 of 34  →  30 of 34
+
+Recall rises because reading is the only way to see a new bond: a bond first issued this quarter
+is not in last quarter's report, so carrying forward finds none of them. Precision falls because
+a system that adds things will add some wrong things. That trade, in both directions, is the
+week.
+
+WHAT IT ADDED, CHECKED ONE BY ONE. In the quarters whose report itemises its bonds, the tracker
+added 66 bonds. 40 are in the report — the new bonds it was built to find. 26 are not:
+
+  10   existing notes read from a prospectus as if new                       (P56)
+  10   launch notices with no coupon yet, so not merged with the priced bond (P57)
+   4   the banks' option to buy more — "up to an additional $45 million"     (P58)
+   2   plain misreads, with no shared cause and no defect id
+
+All three named kinds are fixes to the merge step, logged for week 6 and not fixed against this
+run. The diagnosis of each wrong addition is Claude's reading of it after scoring — a judgment,
+not a measurement, and it is labelled as such on screen.
+
+THE TIMING BUG (P55). The filing window runs up to the day the target report is filed, weeks
+after the quarter ends, and the first run applied everything in it — so bonds sold after the
+quarter closed landed inside that quarter's ledger. The design keeps the ledger by settlement
+date. The fix was made on development data (only events filed by the quarter end are applied) and
+the run was repeated from the saved readings. Both runs are reported: precision was 89.2% before
+the fix and 90.2% after, and recall and new bonds caught were the same in both. The fix is
+partial — filing date still stands in for settlement date, so a bond priced in the last days of a
+quarter can still land on the wrong side.
+
+CHECKED AGAIN, ON FILINGS NOBODY HAD READ. Each set drawn and labelled before the run it scores.
+
+  Triage: debt found       15 of 15      (last week it FAILED this check at 8 of 9)
+  Reader: fields read      91%
+  Regex rules, B1          74%
+  One model call, B2       96%
+  Answer key               3 of 4 gradable, of 5 drawn
+
+Triage passes this time, after two rule fixes — but 15 positives is still small: one miss would
+have been 93%, below the line. Two of its three false alarms are new rule weaknesses (P53, P54).
+The reader beat pattern matching again, and a single model call still reads more numbers than the
+reader does — with 15 instruments that are not in the filings, and not one sentence behind any of
+its values. The reader is not the most accurate thing measured here; what it has is provenance.
+On the answer key, Applied Digital could not be graded (P44, P48) and TeraWulf is the one
+disagreement (P47). Only 2 of the 25 companies had never been hand-checked, so the draw had to be
+extended: three of the five reports are from companies checked before, in other quarters.
+
+LIMITS. 95 of 95 is on development quarters; the test split has not been touched. Every quarter
+started from the answer key's ledger, so none of this shows what happens when the tracker reads
+its own opening. Repayments barely work — 3 of 14 removed bonds were removed, and 24 repayments
+matched nothing in the ledger at all. A merge rule that drops launch notices could also drop a
+real bond announced only once, so the fixes may cost recall.
+
+NOT REVIEWED BY A PERSON. The week was handed to Claude end to end before it started; the one
+decision taken during it was to resume the runs after the memory stop. The triage labels, the
+reader truth, the hand-check transcriptions and the diagnosis of the 26 wrong additions are a
+model's reading, not a person's. manifests/week5_gate.json records the week as DELEGATED, not
+CLEARED.
+
+NEXT. The three merge fixes, reading the opening ledger from the filings instead of borrowing it,
+and investigators for the 53 questions the checks raised.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on his own work.
+Every figure on screen is a prop injected from figdata.json at build time, not typed by hand. The
+build asserts the key relationships and fails rather than let a number drift — including that
+recall stays ABOVE the baseline AND precision stays BELOW it (either half alone would be a
+different video), that the baseline's new-bond count stays exactly zero while the tracker's stays
+short of all 34, that the five segments of the addition census sum to 66 both ways, that the
+first run's precision stays below the fixed run's and that the fixed run is the one every other
+figure quotes, that the triage line which passes this week is the same line that failed last
+week, and that the one-call baseline stays above the event reader. Three claims in the video are
+not measured in figdata.json: the gate record, who produced the labels and the diagnosis, and
+that the opening ledger was deliberately borrowed. Each is attributed on screen. No defect id is
+invented — the two plain misreads among the 26 additions have none in the source, and get none
+here. See FACTCHECK.md in the project folder for what still needs confirmation before publishing.
+
+Built with brutalist.art — free and local throughout: Kokoro TTS, Remotion, ffmpeg. $0.00
+spent, no API key used.
+
+@HumanitariansAI
+
+#AIDebt #SEC #LangGraph #LocalLLM #Evaluation #Baselines #HumanitariansAI #Mycroft

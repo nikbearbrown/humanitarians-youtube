@@ -1,0 +1,334 @@
+{
+  "_": "AI Debt Tracker, WEEK 5. Every number here is transcribed from the author's own saved results as published in pantry/*.svg and in narration_script.md's source table and notes. Each bar's geometry in those SVGs was recomputed as a ratio and had to agree with its printed fraction before the value was accepted. Nothing in this file is estimated, rounded for the frame, or typed from memory.",
+  "graph": {
+    "_geom": "no bars. Node counts read off the rects: timeline 882 filings, triage 245 kept, checks 53 questions; footer 174 read + 71 reused = 245, which is the triage count exactly.",
+    "episodes_run": 95,
+    "episodes_of": 95,
+    "episodes_what": "development company-quarters",
+    "nodes": [
+      {
+        "key": "timeline",
+        "name": "timeline",
+        "count": "882 filings",
+        "what": "code lists every filing in the quarter's window",
+        "hot": false
+      },
+      {
+        "key": "triage",
+        "name": "triage",
+        "count": "245 kept",
+        "what": "keeps the ones about debt",
+        "hot": false
+      },
+      {
+        "key": "read",
+        "name": "read",
+        "count": "one per filing",
+        "what": "a reader runs on each kept filing, all at the same time",
+        "hot": true
+      },
+      {
+        "key": "ledger",
+        "name": "ledger",
+        "count": "merge · sweep · apply",
+        "what": "code merges what they found, retires matured bonds, applies the rest",
+        "hot": false
+      },
+      {
+        "key": "checks",
+        "name": "checks",
+        "count": "53 questions",
+        "what": "the graph checks its own result",
+        "hot": false
+      }
+    ],
+    "fanout": "in parallel (Send)",
+    "filings_listed": 882,
+    "filings_kept": 245,
+    "read_by_model": 174,
+    "reused": 71,
+    "reused_what": "readings reused by a later quarter",
+    "questions": 53,
+    "checkpointed": "Every step is checkpointed, so a stopped run picks up where it left off.",
+    "stop": "The run was stopped once when the laptop ran low on memory, and resumed from its checkpoints. Nothing was re-read.",
+    "built_with": "LangGraph: a timeline node, triage, one reader branch per relevant filing as a Send fan-out, then the ledger engine and the self-checks"
+  },
+  "engine": {
+    "_": "what the code does with what the readers found — no model runs in this half of the graph",
+    "opening": "the opening ledger",
+    "opening_from": "borrowed from the answer key — exactly the ledger B0 carries forward",
+    "opening_why": "With the same starting point, any difference from B0 is what reading the filings added.",
+    "opening_next": "Reading the opening ledger from the filings is next week.",
+    "closing": "the quarter's ledger of bonds",
+    "ops": [
+      {
+        "op": "merge",
+        "what": "events from different filings that describe the same bond become one bond",
+        "hot": false
+      },
+      {
+        "op": "sweep",
+        "what": "bonds that have matured are retired, by the same rule B0 uses",
+        "hot": false
+      },
+      {
+        "op": "apply",
+        "what": "new issues, add-ons and redemptions are applied to the opening ledger",
+        "hot": false
+      },
+      {
+        "op": "ask",
+        "what": "anything it cannot place becomes an open question, never a guess",
+        "hot": true
+      }
+    ],
+    "unplaceable_examples": [
+      "a repayment of a bond the ledger does not hold",
+      "a new bond with no maturity"
+    ],
+    "questions": 53,
+    "cite_rule": "Every change cites the passage it came from.",
+    "removed": {
+      "got": 3,
+      "of": 14,
+      "what": "bonds removed in the quarter that the tracker also removed"
+    },
+    "unmatched_repayments": 24,
+    "closing_what2": "What comes out is graded bond by bond against the bonds the company's own next report lists."
+  },
+  "episodes": {
+    "_geom": "track 260px at x=230. recall tracker 254.3/260 = 0.9781 = 97.8%; recall B0 236.3/260 = 0.9089 = 90.9%; precision tracker 234.5/260 = 0.9019 = 90.2%; precision B0 241.3/260 = 0.9281 = 92.8%. All four printed figures agree with their bar.",
+    "graded": 45,
+    "graded_what": "development quarters graded bond by bond",
+    "same_start": "both start from the same opening ledger",
+    "baseline_label": "B0 · carry the last report forward",
+    "tracker_label": "the tracker",
+    "metrics": [
+      {
+        "key": "recall",
+        "name": "Bond recall",
+        "what": "of the bonds the report lists, how many the ledger holds",
+        "tracker": 0.978,
+        "baseline": 0.909,
+        "tracker_s": "97.8%",
+        "baseline_s": "90.9%",
+        "direction": "up",
+        "hot": true
+      },
+      {
+        "key": "precision",
+        "name": "Bond precision",
+        "what": "of the bonds the ledger holds, how many the report lists",
+        "tracker": 0.902,
+        "baseline": 0.928,
+        "tracker_s": "90.2%",
+        "baseline_s": "92.8%",
+        "direction": "down",
+        "hot": true
+      }
+    ],
+    "recall_delta": "+6.9 points, paired, +4.7 to +9.4",
+    "new_bonds": {
+      "caught": 30,
+      "issued": 34,
+      "baseline_caught": 0
+    },
+    "new_bonds_what": "bonds first issued in those quarters",
+    "why": "Recall rises because reading is the only way to see a new bond. Precision falls because a system that adds things adds some wrong things.",
+    "baseline_short": "B0 · carry forward"
+  },
+  "additions": {
+    "_geom": "620px spans 66 bonds = 9.3939 px per bond. 375.8 -> 40.0, 93.9 -> 10.0, 93.9 -> 10.0, 37.6 -> 4.0, 18.8 -> 2.0. The five segments sum to 620.0 and to 66.",
+    "total": 66,
+    "total_what": "bonds the tracker added, in the quarters whose report itemises its bonds",
+    "diagnosis_by": "Claude's reading of each one after scoring — a judgment, labelled as such in the author's own figure",
+    "segments": [
+      {
+        "key": "real",
+        "count": 40,
+        "label": "in the report",
+        "what": "the new bonds it was built to find",
+        "id": "",
+        "hot": false,
+        "legend": true
+      },
+      {
+        "key": "notes",
+        "count": 10,
+        "label": "existing notes",
+        "what": "read from a prospectus as if new",
+        "id": "P56",
+        "hot": true,
+        "legend": true
+      },
+      {
+        "key": "launch",
+        "count": 10,
+        "label": "launch notices",
+        "what": "no coupon yet, so not merged with the priced bond that follows",
+        "id": "P57",
+        "hot": true,
+        "legend": true
+      },
+      {
+        "key": "options",
+        "count": 4,
+        "label": "bank options",
+        "what": "\"up to an additional $45 million\" read as a bond of its own",
+        "id": "P58",
+        "hot": true,
+        "legend": true
+      },
+      {
+        "key": "misread",
+        "count": 2,
+        "label": "misreads",
+        "what": "no kind, and no defect id — the source gives none",
+        "id": "",
+        "hot": false,
+        "legend": false
+      }
+    ],
+    "legend_note": "The author's figure legends four of the five segments; the two misreads are named only in its footnote and carry no defect id. The reel draws all five and names the fifth.",
+    "fix_where": "All three kinds are fixes to the merge step, logged for week 6 and not fixed against this run."
+  },
+  "timing": {
+    "_": "the one bug found by the first run and fixed before the second — both runs are reported",
+    "defect": "P55",
+    "what": "The window runs up to the day the target report is filed, weeks after the quarter ends, and the engine applied everything in it. Bonds sold after the quarter ended landed in that quarter's ledger.",
+    "design": "The design keeps the ledger by settlement date.",
+    "fix": "Only events filed by the quarter end are applied.",
+    "fixed_on": "development data, re-run from the saved readings",
+    "runs": [
+      {
+        "key": "first",
+        "label": "first run",
+        "precision": 0.892,
+        "precision_s": "89.2%",
+        "hot": false
+      },
+      {
+        "key": "fixed",
+        "label": "after the fix",
+        "precision": 0.902,
+        "precision_s": "90.2%",
+        "hot": true
+      }
+    ],
+    "unchanged": "Recall and new bonds caught were the same in both runs.",
+    "residual": "Filing date still stands in for settlement date until settlement dates are parsed, so a bond priced in the last days of a quarter can still land on the wrong side."
+  },
+  "fresh": {
+    "_geom": "track 270px at x=210. triage 270.0/270 = 1.0 = 15/15; reader 244.5/270 = 0.9056 = 91%; B1 198.7/270 = 0.7359 = 74%; B2 259.8/270 = 0.9622 = 96%; key 202.5/270 = 0.75 = 3/4. Pass line x=466.5 -> (466.5-210)/270 = 0.95.",
+    "drawn_how": "Each set drawn and labelled before the run it scores.",
+    "pass_line": 0.95,
+    "rows": [
+      {
+        "key": "triage",
+        "label": "Triage: debt found",
+        "value_s": "15 of 15",
+        "share": 1.0,
+        "got": 15,
+        "of": 15,
+        "kind": "frac",
+        "hot": true
+      },
+      {
+        "key": "reader",
+        "label": "Reader: fields",
+        "value_s": "91%",
+        "share": 0.9056,
+        "got": 0,
+        "of": 0,
+        "kind": "pct",
+        "hot": true
+      },
+      {
+        "key": "b1",
+        "label": "Regex B1",
+        "value_s": "74%",
+        "share": 0.7359,
+        "got": 0,
+        "of": 0,
+        "kind": "pct",
+        "hot": false
+      },
+      {
+        "key": "b2",
+        "label": "One call B2",
+        "value_s": "96%",
+        "share": 0.9622,
+        "got": 0,
+        "of": 0,
+        "kind": "pct",
+        "hot": false
+      },
+      {
+        "key": "key",
+        "label": "Answer key",
+        "value_s": "3 of 4",
+        "share": 0.75,
+        "got": 3,
+        "of": 4,
+        "kind": "frac",
+        "hot": true
+      }
+    ],
+    "triage": {
+      "got": 15,
+      "of": 15,
+      "last_week": {
+        "got": 8,
+        "of": 9
+      },
+      "small": "Fifteen positives is still a small check: one miss would have been 93%, below the line.",
+      "false_alarms": 3,
+      "new_weaknesses": [
+        {
+          "what": "a tender for shares read as a debt tender",
+          "id": "P53"
+        },
+        {
+          "what": "a share term sheet that mentions notes",
+          "id": "P54"
+        }
+      ]
+    },
+    "reader": {
+      "pct_s": "91%",
+      "b1_s": "74%",
+      "b2_s": "96%",
+      "b2_extra": 15,
+      "b2_caveat": "B2 reads more numbers, and reports 15 instruments that are not in the filings — and not one of its numbers has a sentence behind it."
+    },
+    "key": {
+      "got": 3,
+      "of": 4,
+      "drawn": 5,
+      "ungradable": {
+        "who": "Applied Digital",
+        "ids": "P44, P48"
+      },
+      "disagreement": {
+        "who": "TeraWulf",
+        "what": "a total tagged in a way the key does not read",
+        "id": "P47"
+      },
+      "draw_note": "Only 2 of the 25 companies had never been hand-checked, so the draw had to be extended: three of the five reports are from companies checked before, in other quarters."
+    }
+  },
+  "truthcheck": {
+    "_": "who produced the labels, the truth and the diagnosis — not a person",
+    "labeller": "Claude",
+    "labeller_note": "a different model from the one being tested, but not a person",
+    "covers": "the triage labels, the reader truth, the hand-check transcriptions and the diagnosis of the 26 wrong additions",
+    "written_when": "sets were drawn by seed before reading, and labels and truth were written and hashed before the runs",
+    "tests": 166,
+    "tests_what": "offline tests, all passing"
+  },
+  "next": [
+    "the three merge fixes, P56 to P58",
+    "read the opening ledger from the filings instead of borrowing it",
+    "investigators for the 53 questions the checks raised"
+  ]
+}
