@@ -1,0 +1,295 @@
+{
+  "metadata": {
+    "title": "Week 8 Technical Learnings — Terraform & Cloud Run Billing Fundamentals",
+    "slug": "terraform-cloudrun-billing-learning",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied 7-slide narration script (Infrastructure as Code with Terraform; Cloud Run's request-based billing model and cost levers), provided 2026-10-29. The supplied text had several garbled/cut-off fragments (mid-sentence corruption, likely a copy-paste glitch, same pattern as medas-stage-pipeline-validation and medas-fullstack-integration-validation's scripts) -- repaired to complete sentences preserving the evident intended meaning; every repair is logged verbatim in FACTCHECK.md. A STEM/learning-only week: no separate project-update video was supplied alongside this one.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "aspect": "16:9",
+    "description": "Infrastructure as Code with Terraform (what it solves, its provider/resource/plan/apply model, idempotency via state) paired with how Cloud Run's request-based billing actually works and the concrete cost levers it exposes -- min/max instances, concurrency, and CPU/memory sizing -- closing on why defining infrastructure as code is what makes cost optimization a reviewable decision rather than an unexamined default.",
+    "note": "GitHub-dark skin for the five mechanics beats (GitHubCallChain diagrams, matching the supplied slide structure), Claude-cream skin for the INTRO bookend, the closing card, and the OUTRO. Narration text is the fellow-supplied script with garbled fragments repaired -- see FACTCHECK.md for the exact before/after of each repair.",
+    "total_estimated_duration_seconds": 265
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, slide 1 title card",
+      "narration_text": "This week's learning focus was Infrastructure as Code with Terraform, and understanding exactly how Cloud Run's billing model works — which is what makes real cost optimization possible.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "terraform plan -out=tfplan && terraform show tfplan",
+            "topic": "INFRASTRUCTURE AS CODE · TERRAFORM · CLOUD RUN BILLING · COST LEVERS",
+            "segment": "Week 8 Technical Learnings — Terraform & Cloud Run Billing Fundamentals",
+            "greeting": "Darshil Shah",
+            "runningText": "Infrastructure as Code → Terraform core concepts → idempotency → billing → cost levers…",
+            "output": [
+              "this week: STEM/learning topic",
+              "Terraform (Infrastructure as Code) + Cloud Run's billing model",
+              "what makes real cost optimization possible"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-13T04:37:30.675681+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 11.05
+    },
+    {
+      "beat_id": "B01",
+      "act": "WHAT INFRASTRUCTURE AS CODE SOLVES",
+      "role_note": "slide 2 -- manual setup vs. version-controlled, reviewable config",
+      "narration_text": "Infrastructure as Code means defining cloud resources in version-controlled configuration files instead of creating them by hand. The core benefit is that infrastructure changes become reviewable, like a code change — proposed in a pull request, reviewed before it ships, and rolled back if needed, rather than existing only as a memory of steps someone once ran manually.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Manual setup",
+                "d": "undocumented, inconsistent — a memory of steps someone once ran"
+              },
+              {
+                "k": "Infrastructure as Code",
+                "d": "version-controlled, reviewable — proposed in a PR, rolled back if needed",
+                "hi": true
+              }
+            ],
+            "caption": "An infrastructure change becomes reviewable, like any other code change."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-13T04:38:15.011632+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.86
+    },
+    {
+      "beat_id": "B02",
+      "act": "TERRAFORM CORE CONCEPTS",
+      "role_note": "slide 3 -- provider, resources, plan-then-apply",
+      "narration_text": "Terraform works through a few core concepts: providers, which represent a cloud platform like Google Cloud; resources, which are the individual things being managed, like a registry or an IAM binding; and a plan-then-apply workflow, where Terraform first shows exactly what will change before anything actually happens — removing the guesswork from infrastructure changes.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Provider",
+                "d": "a cloud platform, e.g. Google Cloud"
+              },
+              {
+                "k": "Resources",
+                "d": "individual things managed — a registry, an IAM binding"
+              },
+              {
+                "k": "terraform plan",
+                "d": "preview — shows exactly what will change",
+                "hi": true
+              },
+              {
+                "k": "terraform apply",
+                "d": "execute — only after the plan is reviewed"
+              }
+            ],
+            "caption": "Removes the guesswork from infrastructure changes — nothing happens before it's previewed."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-13T04:38:59.084877+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 50,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 19.14
+    },
+    {
+      "beat_id": "B03",
+      "act": "IDEMPOTENCY & STATE",
+      "role_note": "slide 4 -- applying repeatedly converges, never duplicates",
+      "narration_text": "A key property of Terraform is idempotency — applying the same configuration multiple times always converges to the same result, rather than creating duplicate resources. It achieves this by maintaining a state file that records what already exists, which it compares against the configuration on every run.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "terraform apply (run 1)",
+                "d": "creates the resources"
+              },
+              {
+                "k": "State file",
+                "d": "records what already exists",
+                "hi": true
+              },
+              {
+                "k": "terraform apply (run 2+)",
+                "d": "compares state vs. config — same end result, no duplicates"
+              }
+            ],
+            "caption": "Idempotency: running it again never creates a second copy of what already exists."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-13T04:39:42.150263+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.86
+    },
+    {
+      "beat_id": "B04",
+      "act": "HOW CLOUD RUN ACTUALLY BILLS",
+      "role_note": "slide 5 -- request-based billing, not idle time",
+      "narration_text": "Cloud Run's default billing model charges for CPU and memory only while an instance is actively handling a request — not for idle time. Understanding this is essential, because it means the real cost levers aren't abstract — they're concrete settings: how many instances can scale to zero, how much concurrency each instance handles, and how generously memory is allocated per instance.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Idle",
+                "d": "no requests being handled — no charge"
+              },
+              {
+                "k": "Request arrives",
+                "d": "CPU + memory billed for the duration",
+                "hi": true
+              },
+              {
+                "k": "Request completes",
+                "d": "billing stops"
+              }
+            ],
+            "caption": "The real cost levers are concrete settings, not abstract traffic patterns."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T04:40:22.075790+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 50,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 20.46
+    },
+    {
+      "beat_id": "B05",
+      "act": "KEY COST LEVERS",
+      "role_note": "slide 6 -- min/max instances, concurrency, right-sizing",
+      "narration_text": "The practical levers are: minimum instances, which trades cost for eliminating cold starts; maximum instances, which caps runaway scaling cost; concurrency, which determines how many requests one instance serves at once; and right-sizing CPU and memory so you're not paying for capacity the application never uses.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Min instances",
+                "d": "trades cost for eliminating cold starts"
+              },
+              {
+                "k": "Max instances",
+                "d": "caps runaway scaling cost",
+                "hi": true
+              },
+              {
+                "k": "Concurrency",
+                "d": "requests served per instance, at once"
+              },
+              {
+                "k": "CPU / memory sizing",
+                "d": "don't pay for capacity never used"
+              }
+            ],
+            "caption": "Four concrete settings — not abstractions — are what actually control the bill."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T04:40:57.342960+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.66
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLOSING",
+      "role_note": "slide 7 -- the closing line, Claude cream skin",
+      "narration_text": "Put together, Terraform and Cloud Run's billing model connect because when infrastructure is defined as code, cost settings become explicit, reviewable decisions — not defaults left unexamined.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Week 8 Technical Learnings — Terraform & Cloud Run Billing Fundamentals",
+            "artifactHeading": "You optimize what you can measure — and what you can measure, you can define in code.",
+            "artifactLines": [
+              "Infrastructure as Code: cloud resources defined in version-controlled, reviewable configuration.",
+              "Terraform: provider → resources → plan (preview) → apply (execute) — no guesswork.",
+              "Idempotency: a state file means re-applying the same config never duplicates resources.",
+              "Cloud Run bills by request, not idle time — min/max instances, concurrency, and sizing are the real levers.",
+              "When infrastructure is code, cost settings become explicit decisions, not unexamined defaults."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T04:42:39.257300+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 11.46
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Terraform and Cloud Run Billing Fundamentals. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Week 8 Technical Learnings — Terraform & Cloud Run Billing Fundamentals",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T04:43:02.832357+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 4.2
+    }
+  ]
+}
