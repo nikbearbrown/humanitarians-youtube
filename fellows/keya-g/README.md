@@ -16,6 +16,8 @@ Work folders, one per report or video:
 - [2026-10-19-week-2-progress](2026-10-19-week-2-progress/README.md): Week 2 progress video
 - [2026-11-02-how-your-phone-types-japanese](2026-11-02-how-your-phone-types-japanese/README.md): Week 4 explainer, How Your Phone Types Japanese
 - [2026-11-02-week-4-progress](2026-11-02-week-4-progress/README.md): Week 4 progress video
+- [2026-11-09-how-duolingo-decides-what-you-practice](2026-11-09-how-duolingo-decides-what-you-practice/README.md): Week 5 explainer, How Duolingo Decides What You Practice Next
+- [2026-11-09-week-5-progress](2026-11-09-week-5-progress/README.md): Week 5 progress video
 - [HOURS.md](HOURS.md): weekly hours
 
 
