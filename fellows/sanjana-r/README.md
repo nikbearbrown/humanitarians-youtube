@@ -2,7 +2,7 @@
 
 **Role:** YouTube Content Project Manager  
 **Project:** Fellows YouTube pipeline, content review and video essays  
-**Group:** Marketing 
+**Group:** Marketing  
 **GitHub:** [@SanjanaGRao](https://github.com/SanjanaGRao)  
 **Last updated:** 11/13/2026
 
