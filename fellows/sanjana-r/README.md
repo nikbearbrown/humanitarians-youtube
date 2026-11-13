@@ -4,7 +4,7 @@
 **Project:** Fellows YouTube pipeline, content review and video essays  
 **Group:** Brutalist team  
 **GitHub:** [@SanjanaGRao](https://github.com/SanjanaGRao)  
-**Last updated:** 2026-10-11
+**Last updated:** 2026-11-11
 
 ## Quick Review
 
@@ -27,4 +27,10 @@
 | [10-03-2026-ai-status-reports/](https://github.com/nikbearbrown/humanitarians-youtube/blob/sanjana-rao/fellows/sanjana-r/10-03-2026%20ai-status-reports/README.md) | Explainer, trusting AI-written project status reports — the sign-off (verify sourced, current, and complete before you send) |
 | [10-10-2026-pm-progress-update/](https://github.com/nikbearbrown/humanitarians-youtube/tree/sanjana-rao/fellows/sanjana-r/10-10-2026%20pm-progress-update) | PM progress report |
 | [10-10-2026-ai-risk-management/](https://github.com/nikbearbrown/humanitarians-youtube/tree/sanjana-rao/fellows/sanjana-r/10-10-2026%20ai-risk-management) | Explainer, using AI for risk management in Project Management |
+| [10-13-2026-critical-path-method/](10-13-2026%20critical-path-method/README.md) | Explainer, AI + the Critical Path Method — the longest chain of dependent tasks that sets your deadline, and how to find it without being misled |
+| [10-28-2026-WSJF-project-management-methods/](10-28-2026%20WSJF-project-management-methods/README.md) | Explainer, WSJF (Weighted Shortest Job First) — AI-assisted backlog prioritization by cost of delay ÷ job size |
+| [10-28-2026-progress-update-weekly/](10-28-2026%20progress-update-weekly/README.md) | PM progress report |
+| [11-04-2026-GenAI-action-items/](11-04-2026%20GenAI-action-items/README.md) | Explainer, Gen AI for management — turning a meeting transcript into ranked, owned, dated action items |
+| [11-04-2026-pm-progress-update/](11-04-2026%20pm-progress-update/README.md) | PM progress report |
+| [11-11-2026-AB-test-is-the-lift-real/](11-11-2026%20AB-test-is-the-lift-real/README.md) | Explainer, A/B test significance — "is the lift real?" (product management) |
 
