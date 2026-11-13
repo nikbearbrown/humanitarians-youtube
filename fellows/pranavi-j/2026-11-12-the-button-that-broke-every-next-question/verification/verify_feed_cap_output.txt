@@ -1,0 +1,30 @@
+[ok] real post-fix handleToggle/handleSelectAll confirmed verbatim in App.jsx (1 match each)
+[ok] real post-fix error-reason extraction confirmed verbatim in ChatInterface.jsx (1 match)
+
+=== TEST 1: handleSelectAll against a 411-feed list ===
+post-fix: selected 10 of 411
+pre-fix (bug): selected 411 of 411
+
+=== TEST 2: 15 individual handleToggle calls in sequence ===
+post-fix: selected 10 after 15 toggles (should stop at 10)
+
+=== TEST 3: untoggle at the cap, then add a new feed ===
+post-fix: selected 10, contains feed-99: true
+
+=== TEST 4: error-reason extraction, real 422 body for 15 feed_ids ===
+pre-fix (bug): "Failed to get response: Request failed with status code 422"
+post-fix:      "Failed to get response: List should have at most 10 items after validation, not 15"
+
+=== TEST 5: error-reason extraction with no response.data.detail ===
+post-fix fallback: "Failed to get response: Network Error"
+
+=== ASSERTIONS ===
+PASS — test1: post-fix selects exactly 10 of 411
+PASS — test1: post-fix selects the first 10 feed ids
+PASS — test2: 15 sequential toggles stop adding at 10
+PASS — test3: untoggle-then-add frees a slot and stays capped at 10, containing the new feed
+PASS — test4: pre-fix (bug) reproduces the generic "Request failed with status code 422"
+PASS — test4: post-fix reproduces the real backend reason, "List should have at most 10 items after validation, not 15"
+PASS — test5: with no response.data.detail, falls back to error.message unchanged
+
+ALL 7 ASSERTIONS PASSED across 5 behavioral checks: the real, current handleToggle/handleSelectAll logic (post-fix) caps selection at 10 regardless of path (button or individual clicks) and correctly frees/refills a slot on untoggle; the real, current error-reason extraction (post-fix) surfaces the real backend validation message instead of axios's generic one, and still falls back safely when no detail is present. The reconstructed pre-fix versions reproduce the real, documented bug exactly: unbounded selection and the generic "Request failed with status code 422" message.
