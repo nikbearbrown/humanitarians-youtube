@@ -2,14 +2,14 @@
 
 **Role:** YouTube Content Project Manager  
 **Project:** Fellows YouTube pipeline, content review and video essays  
-**Group:** Brutalist team  
+**Group:** Marketing 
 **GitHub:** [@SanjanaGRao](https://github.com/SanjanaGRao)  
-**Last updated:** 2026-11-11
+**Last updated:** 11/13/2026
 
 ## Quick Review
 
 - [Weekly hours and evidence index](weekly-hours/README.md).
-- [Renewal requests](renewal-requests/README.md).
+- [Renewal request]([renewal-requests/README.md](https://github.com/nikbearbrown/humanitarians-youtube/blob/sanjana-rao/fellows/sanjana-r/RENEWAL.md)).
 - **Supervisor(s):** Professor Nik Bear Brown and Professor Nina, Humanitarians AI.
 
 ## Folder Guide and Evidence
