@@ -20,7 +20,7 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 - [Renewal request](./RENEWAL.md) (sent 2026-09-28, approved) · [renewal index](./renewal-requests/README.md)
 - [Weekly hours](./weekly-hours/README.md): one file per week · [summary table](./HOURS.md)
 - [Research and project plan](./research-plan.md), with status
-- Latest week: [2026-10-30](#week-of-2026-10-30)
+- Latest week: [2026-11-13](#week-of-2026-11-13)
 
 ## How this folder is built
 
@@ -31,6 +31,29 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders (narration, beat clips and the 4K masters) go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx, evidence data) is committed beside it, per the [fellows README](../README.md).
 
 Every master is 4K: `./art final <reel>` (3840×2160) and `./art final <reel>/vertical --height 3840` (2160×3840).
+
+## Week of 2026-11-13
+
+Two explainers, one on streaming and one on audio, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built
+on a program I wrote and measured. Both are built in HyperFrames with three.js scenes (3D stages drawn frame by
+frame), the series' first use of three.js. Built Mon 9 – Tue 10 Nov.
+Masters in Drive, [`2026-11-13/`](https://drive.google.com/drive/folders/1-uAjo4J-IYMqy1g1zPEVzG7pNngYFUbn) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-09-weekly-hours.md).
+
+- [How Netflix Streams](./2026-11-13-how-netflix-streams/): the quality ladder, the VMAF score, a ladder per title, the player choosing chunk by chunk, and servers inside your provider, each measured on real encodes and a simulated player (`NetflixStreaming_RohanV.mp4`)
+- [How Spatial Audio Works](./2026-11-13-how-spatial-audio-works/): the timing gap between your ears, your head's shadow, front-or-behind, filters for every direction, head tracking and ear scans, measured on a textbook head model, with a binaural clip to hear on headphones (`SpatialAudio_RohanV.mp4`)
+
+## Week of 2026-11-06
+
+Two tech explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a simulation I wrote and
+measured. The Google Maps video is the series' first built in HyperFrames, in a night-mode look. Built Mon 9 Nov.
+Masters in Drive, [`2026-11-06/`](https://drive.google.com/drive/folders/1B6U2I7MnL4-X35Q-RXDuGdnMHd0Is2f4) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-02-weekly-hours.md).
+
+- [How Spotify Picks Songs](./2026-11-06-how-spotify-picks-songs/): taste numbers from plays and skips, the genres they find on their own, the lean toward hits and cold start, on a recommender I built and tested on a made-up service (`SpotifyRecs_RohanV.mp4`)
+- [How Google Maps Works](./2026-11-06-how-google-maps-works/): GPS, routing, live traffic, arrival times, popular times and bus crowding, each simulated and measured on a city I built (`GoogleMaps_RohanV.mp4`)
 
 ## Week of 2026-10-30
 
