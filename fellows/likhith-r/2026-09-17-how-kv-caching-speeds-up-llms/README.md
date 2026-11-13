@@ -1,6 +1,6 @@
 # How KV Caching Speeds Up LLMs
 
-**Fellow:** Likhith R. · **Week:** 2026-09-17 · **Builder:** `ai-explainer` on `claude-hai` · **Voice:** Kokoro `am_onyx` (AI narration)
+**Fellow:** Likhith R. · **Week:** 2026-09-14 to 2026-09-20 · **Builder:** `ai-explainer` on `claude-hai` · **Voice:** Kokoro `am_onyx` (AI narration)
 
 A 60-second explainer on the KV cache: each new token reuses the stored keys and values of earlier tokens instead of recomputing them, which is why text streams quickly after the first word, and why long contexts cost memory.
 
@@ -33,7 +33,7 @@ A 60-second explainer on the KV cache: each new token reuses the stored keys and
 
 ## Reproduce
 - **Brutalist version/commit:** nikbearbrown/brutalist.art `6a8380a`.
-- **Source commit used for this export:** not committed — `6a8380a` plus local changes: `scenes/KvCache.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx` added under `runtime/remotion/src/`, each exported component registered in `Root.tsx` as `<Name>` (1920×1080) and `<Name>916` (1080×1920), and `durationSeconds` hooks added to `ClaudeComposerAsk916`, `BrutalistHesitantWriter916`, `ClaudeVerdictArtifact916`. `type_check.py` is the unmodified toolkit version.
+- **Source commit used for this export:** not committed — `6a8380a` plus local changes: `scenes/KvCache.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx` added under `runtime/remotion/src/`, each exported component registered in `Root.tsx` twice: under its own name at 1920×1080, and with a `916` suffix at 1080×1920, and `durationSeconds` hooks added to `ClaudeComposerAsk916`, `BrutalistHesitantWriter916`, `ClaudeVerdictArtifact916`. `type_check.py` is the unmodified toolkit version.
 - **Beat sheet and custom scene files:** `beat_sheet.json` (16:9), `vertical/beat_sheet.json` (9:16), `scenes/KvCache.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx`.
 - **Commands** (toolkit root, Python 3.12 venv, MacTeX on PATH; reel at `youtube/brutalist/claude-hai-kv-caching/`):
   ```bash

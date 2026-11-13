@@ -1,6 +1,6 @@
 # Mixture of Experts
 
-**Fellow:** Likhith R. · **Week:** 2026-09-18 · **Builder:** `ai-explainer` on `claude-hai` · **Voice:** Kokoro `am_onyx` (AI narration)
+**Fellow:** Likhith R. · **Week:** 2026-09-14 to 2026-09-20 · **Builder:** `ai-explainer` on `claude-hai` · **Voice:** Kokoro `am_onyx` (AI narration)
 
 A 60-second explainer on Mixture of Experts: a router sends each token to a few small expert blocks, so a model can hold far more parameters than it runs per token, at the cost of keeping every expert in memory.
 
@@ -33,7 +33,7 @@ A 60-second explainer on Mixture of Experts: a router sends each token to a few 
 
 ## Reproduce
 - **Brutalist version/commit:** nikbearbrown/brutalist.art `6a8380a`.
-- **Source commit used for this export:** not committed — `6a8380a` plus local changes: `scenes/MoeExplainer.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx` added under `runtime/remotion/src/`, each exported component registered in `Root.tsx` as `<Name>` (1920×1080) and `<Name>916` (1080×1920), and `durationSeconds` hooks added to `ClaudeComposerAsk916`, `BrutalistHesitantWriter916`, `ClaudeVerdictArtifact916`. `type_check.py` is the unmodified toolkit version.
+- **Source commit used for this export:** not committed — `6a8380a` plus local changes: `scenes/MoeExplainer.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx` added under `runtime/remotion/src/`, each exported component registered in `Root.tsx` twice: under its own name at 1920×1080, and with a `916` suffix at 1080×1920, and `durationSeconds` hooks added to `ClaudeComposerAsk916`, `BrutalistHesitantWriter916`, `ClaudeVerdictArtifact916`. `type_check.py` is the unmodified toolkit version.
 - **Beat sheet and custom scene files:** `beat_sheet.json` (16:9), `vertical/beat_sheet.json` (9:16), `scenes/MoeExplainer.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx`.
 - **Commands** (toolkit root, Python 3.12 venv, MacTeX on PATH; reel at `youtube/brutalist/claude-hai-mixture-of-experts/`):
   ```bash

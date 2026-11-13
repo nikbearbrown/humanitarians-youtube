@@ -1,0 +1,270 @@
+{
+ "schema_version": 1,
+ "document": {
+  "path": "../../GDD.md",
+  "sha256": "6bf0ac73c7672d8193d4f2ad69cc6971c65f2da34e669314859dbb19e91b88bb",
+  "version": "v0.1 agent draft, unapproved",
+  "build_id": "8f86cc812e234160bb7f95e65f7150d29662426a460f387d9a7ed77fd59248d5"
+ },
+ "sections": [
+  {
+   "heading": "Status vocabulary",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "1. Metadata",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "2. Vision",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "3. Pillars",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "4. Core loop",
+   "beat_ids": [
+    "B04"
+   ]
+  },
+  {
+   "heading": "5. Player-experience goals",
+   "beat_ids": [
+    "B05"
+   ]
+  },
+  {
+   "heading": "6. Mechanics",
+   "beat_ids": [
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11"
+   ]
+  },
+  {
+   "heading": "7. Systems",
+   "beat_ids": [
+    "B12"
+   ]
+  },
+  {
+   "heading": "8. Progression",
+   "beat_ids": [
+    "B13",
+    "B14"
+   ]
+  },
+  {
+   "heading": "9. World and levels",
+   "beat_ids": [
+    "B13",
+    "B14"
+   ]
+  },
+  {
+   "heading": "10. Narrative and characters",
+   "beat_ids": [
+    "B15"
+   ]
+  },
+  {
+   "heading": "11. UI and controls",
+   "beat_ids": [
+    "B15",
+    "B16"
+   ]
+  },
+  {
+   "heading": "12. Audio and art",
+   "beat_ids": [
+    "B17"
+   ]
+  },
+  {
+   "heading": "13. Out of scope",
+   "beat_ids": [
+    "B17"
+   ]
+  },
+  {
+   "heading": "14. Technical",
+   "beat_ids": [
+    "B12"
+   ]
+  },
+  {
+   "heading": "15. Risks and known defects",
+   "beat_ids": [
+    "B16",
+    "B18"
+   ]
+  },
+  {
+   "heading": "16. Open questions",
+   "beat_ids": [
+    "B18"
+   ]
+  },
+  {
+   "heading": "Appendix A — Acceptance tests",
+   "beat_ids": [
+    "B18"
+   ]
+  },
+  {
+   "heading": "Appendix B — Provenance",
+   "beat_ids": [
+    "B18"
+   ]
+  },
+  {
+   "heading": "Appendix C — Changes",
+   "beat_ids": [
+    "B18"
+   ]
+  }
+ ],
+ "excerpts": [
+  {
+   "beat_id": "B02",
+   "start_line": 25,
+   "end_line": 25,
+   "text": "A mechanic can be IMPLEMENTED and OBSERVED while its player-experience claim stays PENDING. That is the state of the whole game: it runs end to end, and no person has playtested it."
+  },
+  {
+   "beat_id": "B03",
+   "start_line": 45,
+   "end_line": 47,
+   "text": "**PROPOSED vision statement:** *A short, loud arena shooter. You are Mr. Block with a basketball gun. Grab every egg while chickens pour out of pipes.*\n\nThe README describes a port and its additions. No document says who the game is for or why someone should play it. The vision is therefore PENDING (OQ-01)."
+  },
+  {
+   "beat_id": "B05",
+   "start_line": 77,
+   "end_line": 82,
+   "text": "**Counter-evidence from the film captures (OBSERVED, scripted, not a playtest):**\n\n- An autopilot that steers to the nearest egg and shoots whatever is near collected every egg in 12.6 s (arena 1), 13.6 s (arena 2) and 18.7 s (arena 3) of game time.\n- Holding one spot in arena 1 and fighting for 25.6 s earned 10 kills and one mega kill, cost one life, and collected no eggs.\n\nOn this build, rushing the eggs beats fighting. That challenges PX-02 and PX-03."
+  },
+  {
+   "beat_id": "B06",
+   "start_line": 104,
+   "end_line": 106,
+   "text": "**AUTHORED / README:** \"Unity shipped the jetpack sprite and a `FrameInput.Jetpack` field but never wired them up.\"\n\n**SOURCE:** `PlayerInput.cs:44` declares `public bool Jetpack;` and no Unity script reads it."
+  },
+  {
+   "beat_id": "B08",
+   "start_line": 175,
+   "end_line": 177,
+   "text": "- Three or more chickens dying before the next physics frame triggers \"MEGA KILL!\", the megakill sound and a shake (`game.gd:470-479`).\n\n**OBSERVED** in `campaign`: one mega kill from a grenade in arena 1 (frame 1795)."
+  },
+  {
+   "beat_id": "B10",
+   "start_line": 151,
+   "end_line": 153,
+   "text": "- Touching a chicken (within 58 px) costs 1 of 3 health, knocks you back and gives 1 s of invulnerability.\n- At 0 health you lose 1 of 3 lives. The screen fades to black and you respawn at the gate with 2 s of invulnerability.\n- Chickens within 260 px of the gate are removed so the respawn is fair (`game.gd:521-525`)."
+  },
+  {
+   "beat_id": "B12",
+   "start_line": 257,
+   "end_line": 258,
+   "text": "- Chickens are found through the `chickens` group, and contact damage is a distance check, not a physics collision (`game.gd:481-489`).\n- Automated tests: **none exist** in the project. The only machine checks are the film's smoke run (all 8 scenes load and run, no script errors) and the capture assertions."
+  },
+  {
+   "beat_id": "B13",
+   "start_line": 194,
+   "end_line": 198,
+   "text": "| Arena | Width | Pipes | Spawn every | Cap | Chicken HP | Eggs |\n|---|---|---|---|---|---|---|\n| 1 Street Court | 36 tiles | 2 | 3.0 s | 10 | 3 | 5 |\n| 2 Sunset Rooftops | 40 | 3 | 2.6 s | 14 | 3 | 6 |\n| 3 Fowl Play Finals | 44 | 4 | 2.2 s | 18 | 4 | 7 |"
+  },
+  {
+   "beat_id": "B15",
+   "start_line": 214,
+   "end_line": 216,
+   "text": "**AUTHORED:** an eight-line pre-game briefing (`intro_briefing.gd`). COACH explains the controls; MR. BLOCK replies.\n\nThere is no other story, and the arenas have no dialogue. Characters: Mr. Block (player), the Coach (briefing portrait), the chickens."
+  },
+  {
+   "beat_id": "B17",
+   "start_line": 233,
+   "end_line": 239,
+   "text": "- **README:** every sound and the music loop were synthesized for the port; the Unity export had no audio files.\n- **Art:** reused from the Unity project and cropped, downscaled and sliced (README \"Asset notes\"). That includes:\n  - Mr. Block, the gun and grenade;\n  - the chicken sheets, pipe and nest;\n  - the gate, spotlight and tiles;\n  - the title, victory and game-over art.\n- Rights and authorship of that art are not recorded anywhere in this folder: PENDING (OQ-05)."
+  },
+  {
+   "beat_id": "B18",
+   "start_line": 264,
+   "end_line": 268,
+   "text": "- **D-01:** the briefing prompt says \"ENTER / CLICK TO CONTINUE\", but clicking never advances it.\n  - A full-screen shade `ColorRect` (mouse filter STOP) consumes every click (`intro_briefing.gd:65-68`).\n  - Enter and Esc work.\n- **D-02:** the HUD hint labels \"RMB / G\" and \"SHIFT\" overlap the grenade and fuel bars.\n  - The bars render taller than their 14 px size."
+  }
+ ],
+ "evidence": [
+  {
+   "path": "evidence/B13-campaign-f4300.png",
+   "sha256": "d80817b93bb7a996a29a904dca56e5338d1827483a2580ada943476639f30333",
+   "method": "engine viewport frame 4300 of take \"campaign\" (scripted input, build 8f86cc8)",
+   "supports": "B13: Real frame: arena 3, Fowl Play Finals"
+  },
+  {
+   "path": "capture/campaign.mp4",
+   "sha256": "025ff8566ac1850311f0ab1b03144277f73a6239d4e117f4601fb21da7dbf469",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30, native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"campaign\"; input log capture/campaign-inputs.jsonl"
+  },
+  {
+   "path": "capture/defeat.mp4",
+   "sha256": "8c1b6ced1ace1d15aeea6bc1237aefa97422f97822a20e5eaf123598ef9dbea9",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30, native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"defeat\"; input log capture/defeat-inputs.jsonl"
+  },
+  {
+   "path": "media/B04.mp4",
+   "sha256": "bc7f2385738f510e799533b816f0e4791ca518c232e5ef05c24b7f1c32fe2b33",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 2440, \"source_frames\": 520, \"factor\": 1, \"output_frames\": 520}]",
+   "supports": "B04: shown gameplay (4. Core loop)"
+  },
+  {
+   "path": "media/B07.mp4",
+   "sha256": "9a8d90091df7a439c11049387ce3424e1ef3bcb1da225a1732b55ce87bfed204",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 1226, \"source_frames\": 577, \"factor\": 1, \"output_frames\": 577}]",
+   "supports": "B07: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B09.mp4",
+   "sha256": "d4d9af4f12ea9a3259d22a4b73e659d36303ccbbc8ba5a47ee3dc30ab84ed923",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 1680, \"source_frames\": 120, \"factor\": 1, \"output_frames\": 120}, {\"kind\": \"replay\", \"source_start_frame\": 1780, \"source_frames\": 24, \"factor\": 4, \"output_frames\": 96}, {\"kind\": \"play\", \"source_start_frame\": 1800, \"source_frames\": 282, \"factor\": 1, \"output_frames\": 282}]",
+   "supports": "B09: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B11.mp4",
+   "sha256": "3699e1a191e7f4b72a5738ba691228089f58b9cacda18897b20b73993cac0a5c",
+   "method": "exact-frame cut of take \"defeat\": [{\"kind\": \"play\", \"source_start_frame\": 485, \"source_frames\": 665, \"factor\": 1, \"output_frames\": 665}]",
+   "supports": "B11: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B14.mp4",
+   "sha256": "54f63d865d72bc3664e56d4fc2c8d04629c8d7d2afa05aa96b1bad0d9f9f45eb",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 3398, \"source_frames\": 170, \"factor\": 1, \"output_frames\": 170}, {\"kind\": \"play\", \"source_start_frame\": 3977, \"source_frames\": 204, \"factor\": 1, \"output_frames\": 204}]",
+   "supports": "B14: shown gameplay (8. Progression)"
+  },
+  {
+   "path": "media/B16.mp4",
+   "sha256": "6b83fd40ea0a37100b2dc909d3e636431208a56a99b0d2976cf4910c60dc354a",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 440, \"source_frames\": 489, \"factor\": 1, \"output_frames\": 489}]",
+   "supports": "B16: shown gameplay (11. UI and controls)"
+  },
+  {
+   "path": "evidence/GDD.md",
+   "sha256": "6bf0ac73c7672d8193d4f2ad69cc6971c65f2da34e669314859dbb19e91b88bb",
+   "method": "byte copy of the source GDD at film build time",
+   "supports": "every excerpt"
+  }
+ ]
+}

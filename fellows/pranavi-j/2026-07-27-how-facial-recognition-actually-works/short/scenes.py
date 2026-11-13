@@ -117,7 +117,7 @@ class B01_ExecSummary(Scene):
         self.play(FadeIn(avatar_group, scale=1.15), run_time=0.6)
         self.wait(0.2)
 
-        name = fit(Text("Sai Pranavi Jeedigunta", color=PALETTE["ink"],
+        name = fit(Text("Sai Pranavi J.", color=PALETTE["ink"],
                          font_size=34, weight="BOLD"), 3.4)
         name.next_to(avatar_group, DOWN, buff=0.35)
         self.play(Write(name), run_time=0.7)
@@ -153,9 +153,10 @@ class B01_ExecSummary(Scene):
         summary = VGroup(summary_line1, summary_line2, summary_line3).arrange(DOWN, buff=0.2)
         summary.next_to(role_chip, DOWN, buff=0.5)
         self.play(Write(summary), run_time=1.1)
-        # tuned to the measured Kokoro duration of mp3/beat-B01.mp3 (11.66s,
-        # reused unchanged from the parent — B01 was not cut).
-        self.wait(7.9)
+        # retimed 2026-10-20: narration shortened to 11.06s ("Sai Pranavi J."
+        # retrofit, was 11.66s) — shifted this hold by the same -0.6s delta
+        # (was 7.9s), all preceding play/wait timings unchanged.
+        self.wait(7.3)
 
 
 # --------------------------------------------------------------------------- #
@@ -654,7 +655,7 @@ class B11_BrandOutro(Scene):
 
         handle = fit(Text("@HumanitariansAI", color=PALETTE["slate"], font_size=36), 3.6)
         accent = Line(LEFT * 1.9, RIGHT * 1.9, color=PALETTE["gold"], stroke_width=3.5)
-        tagline = fit(Text("In for Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=22), 3.6)
+        tagline = fit(Text("In for Sai Pranavi J.", color=PALETTE["ink"], font_size=22), 3.6)
         # buff bumped 0.4 -> 1.9 (first pass at 1.7 measured 54%, just
         # under the 55% floor — one more small bump for margin), accent
         # widened 2.4 -> 3.8: GATE V measured this card at only 16% canvas

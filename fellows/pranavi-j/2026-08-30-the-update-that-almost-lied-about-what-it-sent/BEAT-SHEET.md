@@ -1,6 +1,6 @@
 # Beat Sheet (APPROVED — Gate P, 2026-08-30): "The Update That Almost Lied About What It Sent"
 
-**Creator:** Sai Pranavi Jeedigunta | Weekly work report
+**Creator:** Sai Pranavi J. | Weekly work report
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Phase:** 2 — approved for narration lock / audio generation. Both open FACTCHECK items resolved
 2026-08-30: B05's forward-looking framing approved as written; the "12" count was re-verified live
@@ -39,7 +39,7 @@ fix) are candidates for a future report, not this one.
 | B04 Discovery | `determineImpactLevel()` snippet, the `isEnforcement` bypass line highlighted | The exact line that lets impact_level outrun urgency_score |
 | B05 Proof | Live query + row count (12) + one real example row on screen | Number and query both visible, not narration-only |
 | B06 Fix | Before/after SQL, `id = ANY($1::int[])` highlighted | Full before AND after query visible together |
-| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi J. |
 
 ---
 
@@ -49,7 +49,7 @@ fix) are candidates for a future report, not this one.
 Visual: title card — "The Update That Almost Lied About What It Sent" + @HumanitariansAI. No narration.
 
 **B01. Exec summary (~0:04–0:18)**
-VO: "Hi, I'm Sai Pranavi Jeedigunta. This video is about a database update in the same regulatory
+VO: "Hi, I'm Sai Pranavi J.. This video is about a database update in the same regulatory
 pipeline from last week — one that could mark high-priority alerts 'emailed' even when no email
 had actually gone out for them — and the fix that scoped it to only what was actually sent."
 Visual: name card, one-line summary text on screen as it's spoken.
@@ -103,7 +103,7 @@ Visual: statement card.
 **B08. Sign-off (~2:03–2:08)**
 VO: "Fixed with Claude Code, verified against the live table before it ever ran again in
 production."
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
 
 ---
 
@@ -136,5 +136,5 @@ Audio locked, `scenes.py` authored (9 Manim scenes), 4K master rendered and GATE
 (0 BLOCKER, 0 MAJOR), 9:16 short built with hand-authored portrait relayouts and GATE V clean
 (0 BLOCKER, 2 MAJOR — both on the toolkit's auto-generated silent END card only). See
 `BUILD-LOG.md` for the full build record and `README.md` for the production-state summary.
-Deliverables: `Mycroft_SaiPranaviJeedigunta_20260830_16x9.mp4`,
-`Mycroft_SaiPranaviJeedigunta_20260830_9x16.mp4`. Publishing NOT authorized (per task scope).
+Deliverables: `Mycroft_SaiPranaviJ_20260830_16x9.mp4`,
+`Mycroft_SaiPranaviJ_20260830_9x16.mp4`. Publishing NOT authorized (per task scope).

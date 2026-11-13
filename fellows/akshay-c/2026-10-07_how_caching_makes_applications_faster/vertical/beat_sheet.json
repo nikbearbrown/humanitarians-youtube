@@ -1,0 +1,363 @@
+{
+  "metadata": {
+    "title": "How Caching Makes Applications Faster",
+    "slug": "how-caching-makes-applications-faster",
+    "topic": "Irreducibly Human",
+    "register": "Teardown-warm",
+    "audience": "backend engineers, software engineers, technical learners",
+    "brand": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "creator": "Akshay Chavan",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "voice_kokoro": "am_onyx",
+    "voice_policy": "fellow-selected",
+    "voice_approval": "PENDING_REVIEW",
+    "aspect_ratio": "9:16",
+    "source_resolution": "2160x3840",
+    "delivery_resolution": "2160x3840",
+    "youtube_required_min_height": 2160,
+    "fps": 24,
+    "note": "4K UHD portrait master. Clean caching diagrams with protected title, diagram, and caption zones.",
+    "tags": [
+      "caching",
+      "cache",
+      "cache hit",
+      "cache miss",
+      "TTL",
+      "backend engineering",
+      "system design",
+      "performance",
+      "scalability",
+      "Humanitarians AI"
+    ],
+    "total_estimated_duration_seconds": 52,
+    "build": {
+      "at": "2026-10-07T23:01:45",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B08: palette=claude but the outro is 'ClaudeTitleOutro916' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "Establish the repeated-work problem.",
+      "narration_text": "Applications often request the same data again and again. Fetching it from the database every time adds latency and unnecessary work.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "THE SAME DATA. AGAIN AND AGAIN.",
+          "concept": "Repeated requests travel through an application to the database.",
+          "layout": "Three fixed horizontal zones: USERS on left, APPLICATION in center, DATABASE on right.",
+          "safety": "All connectors terminate at box edges. Keep arrows away from labels and preserve the lower caption zone."
+        }
+      },
+      "estimated_duration_s": 7,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true,
+        "sparse_by_design": true,
+        "sparse_reason": "Intentional sparse system diagram uses separated user, application, and database components to clearly show the repeated request path."
+      },
+      "actual_duration_s": 8.55,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 8.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B00.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "role_note": "Show the cost of repeatedly querying the database.",
+      "narration_text": "As traffic grows, those repeated database queries can become expensive and slow down the application.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "REPEATED QUERIES ADD UP",
+          "concept": "Multiple requests converge on the database and increase its workload.",
+          "layout": "Requests occupy the left zone and database the right zone. Keep a wide, unobstructed traffic lane between them.",
+          "safety": "Request arrows must terminate at the database edge and must not overlap one another excessively."
+        }
+      },
+      "estimated_duration_s": 6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true
+      },
+      "actual_duration_s": 6.34,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 6.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SOLUTION",
+      "role_note": "Introduce the cache and its role.",
+      "narration_text": "Caching helps by keeping frequently accessed data closer to the application.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "ADD A CACHE",
+          "concept": "A cache appears between the application and database.",
+          "layout": "Use three clearly separated boxes: APPLICATION on left, CACHE in center, DATABASE on right.",
+          "safety": "Maintain generous horizontal gaps. All arrows connect edge-to-edge and no connector crosses text."
+        }
+      },
+      "estimated_duration_s": 5,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true,
+        "sparse_by_design": true,
+        "sparse_reason": "Intentional sparse system diagram uses separated application, cache, and database components to clearly introduce the cache layer."
+      },
+      "actual_duration_s": 4.67,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 4.708333333333333,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CACHE MISS",
+      "role_note": "Explain what happens when requested data is absent from the cache.",
+      "narration_text": "When data is not in the cache, it's a cache miss. The application retrieves the data from the database.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "CACHE MISS",
+          "concept": "The application checks the cache, receives MISS, then continues to the database.",
+          "layout": "APPLICATION, CACHE, and DATABASE remain in three fixed columns. MISS annotation sits below the cache, outside traffic paths.",
+          "safety": "Animate the cache lookup before the database lookup. Do not place MISS over a box or arrow."
+        }
+      },
+      "estimated_duration_s": 7,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true
+      },
+      "actual_duration_s": 6.34,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 6.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "STORE",
+      "role_note": "Show the database result being placed into the cache.",
+      "narration_text": "The database returns the result, and a copy is stored in the cache for future requests.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "STORE THE RESULT",
+          "concept": "Data returned by the database is copied into the cache.",
+          "layout": "Keep CACHE center and DATABASE right. Use a dedicated return path and show a compact STORED indicator adjacent to the cache.",
+          "safety": "The return arrow must terminate at the cache boundary. STORED must not overlap the cache label or connector."
+        }
+      },
+      "estimated_duration_s": 6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true
+      },
+      "actual_duration_s": 5.4,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 5.416666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CACHE HIT",
+      "role_note": "Demonstrate the fast path after data has been cached.",
+      "narration_text": "The next request finds the data in the cache. That's a cache hit, so the database doesn't need to be queried again.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "CACHE HIT",
+          "concept": "The application requests the same data and receives it directly from the cache while the database remains untouched.",
+          "layout": "APPLICATION left, CACHE center, DATABASE right. Highlight only the application-to-cache path.",
+          "safety": "Do not draw an active arrow to the database. Keep HIT annotation outside the primary traffic path."
+        }
+      },
+      "estimated_duration_s": 7,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true,
+        "sparse_by_design": true,
+        "sparse_reason": "Portrait cache-hit diagram intentionally uses open space to clearly separate the application, cache, and bypassed database."
+      },
+      "actual_duration_s": 6.63,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 6.666666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "EXPIRATION",
+      "role_note": "Explain TTL and why cached data does not necessarily live forever.",
+      "narration_text": "Cached data can expire after a time to live, or T T L, helping applications avoid serving stale information forever.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "CACHE ENTRIES EXPIRE",
+          "concept": "A cached item has a TTL countdown and eventually becomes expired.",
+          "layout": "Use one large cache box in the center with the cached item and TTL displayed as separate readable elements.",
+          "safety": "Do not crowd the cache box. TTL and EXPIRED indicators must occupy separate visual zones."
+        }
+      },
+      "estimated_duration_s": 7,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true,
+        "sparse_by_design": true,
+        "sparse_reason": "Portrait TTL explainer intentionally isolates the cached item and changing expiration state for visual clarity."
+      },
+      "actual_duration_s": 7.79,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 7.791666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "PAYOFF",
+      "role_note": "Summarize the performance and scalability benefits.",
+      "narration_text": "With more requests served from the cache, applications reduce database load and respond faster. That's the power of caching.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate",
+        "visual": {
+          "title": "LESS WORK. FASTER RESPONSES.",
+          "concept": "Many incoming requests reach the cache. Most return as hits while only a small fraction continue to the database.",
+          "layout": "Incoming requests left, CACHE center, DATABASE right. Finish with two separated benefit labels: FASTER RESPONSES and LESS DATABASE LOAD.",
+          "safety": "Keep request markers sparse. Avoid crossing arrows. Benefit labels remain outside the architecture and inside safe margins."
+        }
+      },
+      "estimated_duration_s": 7,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true
+      },
+      "actual_duration_s": 7.62,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 7.625,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-07T23:01:45"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "role_note": "Branded Humanitarians AI closing card.",
+      "narration_text": "For more explainers on the systems behind modern software, follow Humanitarians AI.",
+      "visual_intent": "Humanitarians AI branded title outro.",
+      "shot": {
+        "type": "VIDEO",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "How Caching Makes Applications Faster",
+            "handle": "@HumanitariansAI",
+            "subline": "with Akshay Chavan | Backend Engineering"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-08T01:48:02.936596+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "qc": {
+        "full_bleed": true
+      },
+      "actual_duration_s": 5.91,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 5.916666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro916",
+        "at": "2026-10-07T23:01:45"
+      }
+    }
+  ]
+}

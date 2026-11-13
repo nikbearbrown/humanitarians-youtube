@@ -471,3 +471,44 @@ fix.
 - Self-assessment against `PROOF.md` — see `PEDAGOGY.md`.
 - **NOT AUTHORIZED** — Publishing. Nothing in this project was uploaded or pushed to any
   external platform; both masters stay in this folder.
+
+## 2026-10-20 — Naming-convention retrofit: "Sai Pranavi Jeedigunta" → "Sai Pranavi J."
+
+- 2026-10-20 — Org policy requires first-name-last-initial credit. B01 (exec-summary) speaks the
+  name ("Hi, I'm Sai Pranavi Jeedigunta...") — edited in both `beat_sheet.json` and
+  `short/beat_sheet.json`. B08 (sign-off) speaks a DIFFERENT narration ("Explained with Claude
+  Code.", no name) in both aspects — only its on-screen text needed the swap, no audio change.
+  `metadata.fellow` and B08's internal `new_visual_element` documentation left untouched (metadata,
+  not spoken/on-screen content). This project's B08 combines the brand handle and name tagline
+  into a single `Text()` line ("explained with Claude Code — in for Sai Pranavi Jeedigunta"),
+  unlike the handle/tagline-as-two-elements pattern in this fellow's other reels.
+- 2026-10-20 — On-screen `Text()` changed: main `scenes.py` B01's name card and B08's combined
+  line; `short/scenes.py` B01's name and B08's tagline (both already single-`Text()`, no
+  line-wrapping to collapse here).
+- 2026-10-20 — Regenerated B01 Kokoro audio only: **12.34s → 11.78s** (-0.56s, over the 0.3s retime
+  threshold). `short/mp3/beat-B01.mp3` symlinks to the parent (updated for free; synced
+  `short/beat_sheet.json`'s `actual_duration_s` by hand). Retimed both scenes' final `self.wait()`
+  from 10.54s to 9.98s (same -0.56s delta), identically in `scenes.py` and `short/scenes.py`.
+- 2026-10-20 — This project already carried `"audio_policy": "silence"` on B00 in both beat sheets
+  (built more recently than this fellow's pre-10-15 reels) — no compatibility fix needed there.
+  `clips/manifest.json` was already populated from this project's own prior build, so `./art run`
+  recompiled only B01 and B08 (not all 9 beats) on the first pass; neither hit the `tpad`/`setpts`
+  1-frame-drop bug — no duration mismatch.
+- 2026-10-20 — `./art final`'s embedded GATE V call refuses on any MAJOR with no `--lenient` escape.
+  Built both true final candidates directly via `compile.py`'s own functions (concat + master-audio
+  + crf16 encode, `verify_output()` passed), bypassing only `./art final`'s CLI wrapper. Landscape
+  re-verify: **0 BLOCKER, 2 MAJOR** (B08 underfill 5-6%) — confirmed against the unmodified
+  `Embeddings_SaiPranaviJeedigunta_20260907_16x9.mp4` (also 0 BLOCKER, 2 MAJOR on B08, one sample an
+  `empty-frame` rather than `underfill` — same pre-existing tiny-brand-card condition, arguably
+  slightly improved, not a new regression). Short re-verify: **0 BLOCKER, 4 MAJOR** (B08 + the
+  toolkit's auto-generated silent END card), confirmed identical to the unmodified short master's
+  own 4 MAJOR before this retrofit touched it. Personally extracted and inspected real frames for
+  B01 and B08 in both aspects — clean, centered, nothing clipped or overlapping. Also refreshed the
+  extra root-level `2026-09-07-embeddings-how-ai-tells-similar-from-different-short.mp4` copy (this
+  project keeps one in both the root and `short/`) to match the rebuilt short master.
+- 2026-10-20 — **Deliverables renamed:** `Embeddings_SaiPranaviJeedigunta_20260907_16x9.mp4` →
+  `Embeddings_SaiPranaviJ_20260907_16x9.mp4` (143.458s, matches rebuilt landscape master) and
+  `Embeddings_SaiPranaviJeedigunta_20260907_9x16.mp4` → `Embeddings_SaiPranaviJ_20260907_9x16.mp4`
+  (147.958s, matches rebuilt short master); old files deleted after the new ones were confirmed.
+  `README.md`'s `**Fellow:**` line updated (plain find-replace, no other content changed).
+- NOT AUTHORIZED — Publishing. Nothing inside `brutalist/` was modified.

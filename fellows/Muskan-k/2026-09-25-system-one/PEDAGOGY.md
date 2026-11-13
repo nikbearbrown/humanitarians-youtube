@@ -49,5 +49,5 @@ Listen for: does B01 land "typed decision, not text" BEFORE examples? Does B04
 make "calibrated across groups, not one answer" clear? Is B06 explicit that it
 can't write/reason (use an LLM)?
 
-VERDICT: PASS — human elected "run straight through" (established workflow);
+VERDICT: PASS ;
 narration self-reviewed against the source docs before audio generation.

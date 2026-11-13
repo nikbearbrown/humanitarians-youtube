@@ -18,7 +18,7 @@ tuned to these exact numbers — see that file's per-scene comments.
 | B05 | FALSIFIABILITY | manim | GRAPHIC | `B05_RetrievalWorksFalsifiability` | 25.39s | "No retrieval" (invented, wrong) vs. "with retrieval" (correct, grounded) — two bordered panels with a visible gap, both clearly labeled, fair same-mechanism comparison |
 | B06 | SCAFFOLDED-TASK | manim | GRAPHIC | `B06_AuditChecklist` | 18.86s | The 3 questions restated as a literal checkbox checklist card — visually distinct from B03's numbered rubric |
 | B07 | TAKEAWAY | manim | GRAPHIC | `B07_Statement` | 9.48s | 3-line statement card, dark background |
-| B08 | SIGN-OFF | manim | GRAPHIC | `B08_BrandOutro` | 1.51s | @HumanitariansAI, in for Sai Pranavi Jeedigunta — very short beat, single combined reveal |
+| B08 | SIGN-OFF | manim | GRAPHIC | `B08_BrandOutro` | 1.51s | @HumanitariansAI, in for Sai Pranavi J. — very short beat, single combined reveal |
 
 ## Side-by-side / split-screen legibility check
 

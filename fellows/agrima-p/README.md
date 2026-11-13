@@ -1,74 +1,61 @@
-# Agrima P.
+# Agrima Parmar — Humanitarians AI Fellow
 
-**Role:** Social Media Marketing Manager  
-**Project:** _to be filled in_  
-**GitHub:** [@AGRIMAPARMAR4-SUDO](https://github.com/AGRIMAPARMAR4-SUDO)
+- **Role:** Social Media Marketing Manager
+- **Project:** Loon Project / Homes of Hope
+- **GitHub:** @AGRIMAPARMAR4-SUDO
+- **Group / supervisor:** Homes of Hope / Nina Harris
+- **Agreement period:** 8 Aug — 31 Oct 2026
 
-Fellow videos built with the Brutalist toolkit — AI-explainer and CLI-explainer
-reports.
+## Focus
 
-## Voice choice
+How can a clear content strategy and short AI explainer videos help nonprofit projects like Homes of Hope and the Loon Project reach more people?
 
-**Voice:** Bella (`af_bella`)
-**Register:** Conversational-Balanced — first-person, reflective, honest and
-straightforward.
+## Project work
 
-This voice was selected and will be kept consistent across this series unless
-an explicit, documented re-voice decision is made.
+| Work | Result | Evidence |
+|---|---|---|
+| Content strategy | Planned what content to make and where to post it for Homes of Hope and the Loon Project | ADD LINK |
+| Documentary promotion | Created presentations and helped promote the Homes of Hope documentary film | ADD LINK |
+| Guest lecture | Gave a guest lecture at MCPHS on behalf of Humanitarians AI | ADD LINK |
+| Drone licensing research | Researched drone licensing requirements for the project | ADD LINK |
 
-## Reports
+## Weekly videos
 
-- `2026-08-26-ai-support-shift/` — From Phone Trees to Chatbots: What Actually
-  Changed. A CLI-explainer built around a keyword-matching support bot (v1)
-  revised into an intent+urgency-aware bot (v2) — both scripts real, both
-  actually run to capture the OUTPUT beats' transcripts. 16:9 + 9:16 cuts.
-- `2026-08-26-two-threads-one-week/` — Two Threads, One Week: The Work Log.
-  A CLI-explainer weekly log built around a real weekly_log_v1.py, revised
-  into weekly_log_v2.py to add a per-thread standout highlight — both scripts
-  real, both actually run. 16:9 + 9:16 cuts.
-- `2026-08-29-death-of-the-generic-resume/` — AI and the Death of the
-  'Generic' Resume. A reflective, first-person AI-explainer on AI-hiring
-  rejection patterns, built on the ai-explainer chassis (no code/CLI beats).
-  16:9 + 9:16 cuts.
-- `2026-08-29-weekly-recap/` — This Week: What Shipped, What's Next. A
-  CLI-explainer weekly recap built around a real weekly_recap_v1.py, revised
-  into weekly_recap_v2.py to split DONE-THIS-WEEK from STARTING-NEXT-WEEK —
-  both scripts real, both actually run. 16:9 + 9:16 cuts. Content: the AI
-  nonprofit marketing article + research, producing the accompanying video,
-  and a Suffolk University speaking engagement.
-- `2026-09-03-ai-nonprofit-marketing/` — The Nonprofit Marketing Problem AI Is
-  Quietly Solving. An AI-explainer sourced from a user-written article on AI
-  in nonprofit marketing (donor personalization, donation-form optimization,
-  fundraising ROI), built on the ai-explainer chassis. 16:9 + 9:16 cuts.
-- `2026-09-12-rescue-reinvented/` — Rescue, Reinvented: How Artificial
-  Intelligence Is Reshaping Rescue Work. An AI-explainer sourced from a
-  user-written article on AI in animal shelters (Finding Rover lost-pet
-  matching, AI-assisted notes-to-content, Doobert coordination), built on
-  the ai-explainer chassis. Presenter self-intro lives in its own dedicated
-  beat. 16:9 + 9:16 cuts.
-- `2026-09-12-weekly-recap-catbot/` — This Week: What Shipped, What's Next
-  (cat-bot edition). A CLI-explainer weekly recap — a separate week's log
-  from `2026-08-29-weekly-recap/` — built around a real weekly_recap_v1.py,
-  revised into weekly_recap_v2.py to split DONE-THIS-WEEK from
-  STARTING-NEXT-WEEK — both scripts real, both actually run. 16:9 + 9:16
-  cuts (9:16 is a full-parity reformat, no beats dropped). Content: publishing
-  the Rescue, Reinvented article, producing two Brutalist videos, and a new
-  "cat bot" project idea with early cat-shelter research.
-- `2026-09-19-no-face-no-problem/` — No Face, No Problem: Inside the Rise of
-  AI Accounts Nobody's Ever Seen — and Why We Might Trust Them Anyway. An
-  AI-explainer sourced from a user-written article on faceless AI content
-  accounts, built on the ai-explainer chassis. The hook beat (B01) is styled
-  as an abstract stock-footage/caption card rather than a composer card, per
-  an explicit request to perform the article's own subject; two of the
-  article's own hedged stats (creator-venture share, trust-over-personality)
-  are carried with on-screen skepticism flags, not presented as settled
-  fact. 16:9 + 9:16 cuts (9:16 drops 3 middle beats to fit the Shorts cap).
+All videos: [Google Drive folder](https://drive.google.com/drive/folders/1evtv1vUhOi02hwsLzp7csc75p_iG1LSJ). Videos still under review on YouTube are shared through this folder.
 
-## Frictional log
+| Week | Video | Type | Folder | Log |
+|---|---|---|---|---|
+| 24–29 Aug | AI support shift | Topic | [folder](./2026-08-26-ai-support-shift/) | [log](./2026-08-26-ai-support-shift/FRICTIONAL.md) |
+| 24–29 Aug | Two threads one week | Topic | [folder](./2026-08-26-two-threads-one-week/) | [log](./2026-08-26-two-threads-one-week/FRICTIONAL.md) |
+| 24–29 Aug | Death of the generic resume | Topic | [folder](./2026-08-29-death-of-the-generic-resume/) | [log](./2026-08-29-death-of-the-generic-resume/FRICTIONAL.md) |
+| 24–29 Aug | Weekly recap | Recap | [folder](./2026-08-29-weekly-recap/) | [log](./2026-08-29-weekly-recap/FRICTIONAL.md) |
+| 31 Aug – 5 Sep | AI nonprofit marketing | Topic | [folder](./2026-09-03-ai-nonprofit-marketing/) | [log](./2026-09-03-ai-nonprofit-marketing/FRICTIONAL.md) |
+| 7–12 Sep | Rescue reinvented | Topic | [folder](./2026-09-12-rescue-reinvented/) | [log](./2026-09-12-rescue-reinvented/FRICTIONAL.md) |
+| 7–12 Sep | Weekly recap: catbot | Recap | [folder](./2026-09-12-weekly-recap-catbot/) | [log](./2026-09-12-weekly-recap-catbot/FRICTIONAL.md) |
+| 14–19 Sep | No face no problem | Topic | [folder](./2026-09-19-no-face-no-problem/) | [log](./2026-09-19-no-face-no-problem/FRICTIONAL.md) |
+| 14–19 Sep | Weekly recap: Suffolk | Recap | [folder](./2026-09-19-weekly-recap-suffolk/) | [log](./2026-09-19-weekly-recap-suffolk/FRICTIONAL.md) |
+| 21–26 Sep | AI that never forgets | Topic | [folder](./2026-09-26-ai-that-never-forgets/) | [log](./2026-09-26-ai-that-never-forgets/FRICTIONAL.md) |
+| 21–26 Sep | Weekly recap: never forgets | Recap | [folder](./2026-09-26-weekly-recap-never-forgets/) | [log](./2026-09-26-weekly-recap-never-forgets/FRICTIONAL.md) |
+| 28 Sep – 4 Oct | Tutor they never had | Topic | [folder](./2026-10-04-tutor-they-never-had/) | [log](./2026-10-04-tutor-they-never-had/FRICTIONAL.md) |
+| 28 Sep – 4 Oct | Weekly recap: tutor | Recap | [folder](./2026-10-04-weekly-recap-tutor/) | [log](./2026-10-04-weekly-recap-tutor/FRICTIONAL.md) |
+| 5–12 Oct | AI done right | Topic | [folder](./2026-10-11-ai-done-right/) | [log](./2026-10-11-ai-done-right/FRICTIONAL.md) |
+| 5–12 Oct | Weekly recap: MCPHS | Recap | [folder](./2026-10-12-weekly-recap-mcphs/) | [log](./2026-10-12-weekly-recap-mcphs/FRICTIONAL.md) |
+| 13–19 Oct | Hotel phone helper | Topic | [folder](./2026-10-19-hotel-phone-helper/) | [log](./2026-10-19-hotel-phone-helper/FRICTIONAL.md) |
+| 13–19 Oct | Weekly recap: hotel | Recap | [folder](./2026-10-19-weekly-recap-hotel/) | [log](./2026-10-19-weekly-recap-hotel/FRICTIONAL.md) |
+| 20–24 Oct | AI colleague quota | Topic | [folder](./2026-10-24-ai-colleague-quota/) | [log](./2026-10-24-ai-colleague-quota/FRICTIONAL.md) |
+| 20–24 Oct | Weekly recap: quota | Recap | [folder](./2026-10-24-weekly-recap-quota/) | [log](./2026-10-24-weekly-recap-quota/FRICTIONAL.md) |
+| 25–31 Oct | Chatbot brand check | Topic | [folder](./2026-10-31-chatbot-brand-check/) | [log](./2026-10-31-chatbot-brand-check/FRICTIONAL.md) |
+| 25–31 Oct | Weekly recap: brand check | Recap | [folder](./2026-10-31-weekly-recap-brand-check/) | [log](./2026-10-31-weekly-recap-brand-check/FRICTIONAL.md) |
+| 8–14 Nov | Foundation search research | Topic | [folder](./2026-11-11-foundation-search-research/) | [log](./2026-11-11-foundation-search-research/FRICTIONAL.md) |
+| 8–14 Nov | Weekly recap: foundation search | Recap | [folder](./2026-11-11-weekly-recap-foundation-search/) | [log](./2026-11-11-weekly-recap-foundation-search/FRICTIONAL.md) |
 
-Every work subfolder here carries its own `FRICTIONAL.md` — a dated record of the process
-behind that specific piece of work, kept beside the evidence it describes: what was tried
-and expected, where it resisted and what was done next, what Claude or another person
-contributed and what was accepted, changed or rejected, and what is now understood or
-still open. Append as you go; never rewrite an earlier entry. It is not graded and not a
-performance review. See <https://www.humanitarians.ai/fellows> for what an entry contains.
+## Next steps
+
+- **Homes of Hope (Nov 2026 – Jan 2027):** continue the content strategy and keep promoting the Homes of Hope documentary.
+- **Weekly videos (every week):** one topic video and one weekly recap, each with a Frictional log written the same week.
+- **New projects (from Dec 2026):** join a new Humanitarians AI project, agreed with my Project Manager.
+
+## Hours and renewal
+
+- [Weekly hours](HOURS.md)
+- [Renewal request](RENEWAL.md)

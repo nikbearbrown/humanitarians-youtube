@@ -29,6 +29,15 @@ Channel chip on these cuts: `Komal`. House channel: `@HumanitariansAI`.
 - [2026-09-18 Madison Weekly — Sep 18.](./2026-09-18-madison-weekly/)
 - [2026-09-25 The Persona File.](./2026-09-25-brand-personas/)
 - [2026-09-25 Madison Weekly — Sep 25.](./2026-09-25-madison-weekly/)
+- [2026-10-03 The Agent's Cart.](./2026-10-03-agentic-commerce/)
+- [2026-10-03 Madison Weekly — Oct 3.](./2026-10-03-madison-weekly/)
+- [2026-10-09 The Query That Looks.](./2026-10-09-image-search/)
+- [2026-10-09 Madison Weekly — Oct 9.](./2026-10-09-madison-weekly/)
+- [2026-10-16 The Open File.](./2026-10-16-open-file/)
+- [2026-10-16 Madison Weekly — Oct 16.](./2026-10-16-madison-weekly/)
+- [2026-10-23 The Empty Frame.](./2026-10-23-empty-frame/)
+- [2026-11-06 The Bought Room.](./2026-11-06-bought-room/)
+- [2026-11-06 Madison Weekly — Nov 6.](./2026-11-06-madison-weekly/)
 
 ## Frictional log
 

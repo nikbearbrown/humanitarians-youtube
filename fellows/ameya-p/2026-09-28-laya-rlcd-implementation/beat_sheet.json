@@ -1,0 +1,313 @@
+{
+  "metadata": {
+    "title": "Implementation Report: Laya & RLCD",
+    "slug": "week2-sep28",
+    "topic": "HUMANITARIANS AI \u00b7 LAYA RL",
+    "register": "Teardown",
+    "audience": "Humanitarians AI fellows",
+    "brand": "claude",
+    "persona": "Liam",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "playlist": "Brutalist",
+    "captions": false,
+    "channel": "@NikBearBrown",
+    "build": {
+      "at": "2026-10-03T14:03:39",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Ameya Padwad just shipped the implementation of Reinforcement Learning with Calibrated Decisions for the Laya model family. Let's see how they turned the design into an executable, verified training pipeline.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Ciao, Liam",
+            "topic": "LAYA MODEL \u00b7 IMPLEMENTATION",
+            "segment": "RL Fine-Tuning Runtime",
+            "command": "Explain the new Reinforcement Learning with Calibrated Decisions implementation for Laya.",
+            "runningText": "reviewing the codebase\u2026",
+            "folderLabel": "@NikBearBrown",
+            "output": [
+              "modular RL fine-tuning pipeline",
+              "group relative policy optimization",
+              "proper scoring calibration rewards"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-03T19:04:05.748315+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 12.25,
+      "render_duration_s": 12.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-03T14:03:39"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "The goal was to build a complete, self-contained RL loop that ingests typed-decision benchmarks, explores using GRPO, rewards proper scoring, and exports production-ready artifacts. All verified by smoke tests.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "This report\ncovers the RL\npipeline: GRPO\nlogit exploration,\nproper scoring\nrewards, L-BFGS\ntemperature\ncalibration,\nand smoke\ntests.",
+            "face": "serif",
+            "fontSize": 140,
+            "lineSpacing": 1.15
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-03T22:05:52.482200+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 13.14,
+      "render_duration_s": 13.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-03T14:03:39"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CONCEPT",
+      "narration_text": "The architecture is split into four core modules. We have helper dot py for data ingestion, models dot py for adapting datasets to Laya's encoder-head format and handling choice, score, and binary decisions.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "ls -l rlcd/",
+            "topic": "LAYA MODEL \u00c2\u00b7 IMPLEMENTATION",
+            "segment": "Code Output",
+            "runningText": "tree rlcd",
+            "output": [
+              "rlcd/",
+              "\u251c\u2500\u2500 helper.py",
+              "\u251c\u2500\u2500 models.py"
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-03T20:55:10.530405+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 12.67,
+      "render_duration_s": 12.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:NikBearBrownTerminalAsk",
+        "at": "2026-10-03T14:03:39"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CONCEPT",
+      "narration_text": "Next is the reward strategy. Using strictly proper scoring rules, like the Brier score, ensures the agent's reward is maximized only when its reported confidence exactly matches the true probability of correctness.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "cat rlcd/reward_strategies/brier.py",
+            "topic": "LAYA MODEL \u00c2\u00b7 IMPLEMENTATION",
+            "segment": "Code Output",
+            "runningText": "grep 'reward' rlcd/reward_strategies/brier.py",
+            "output": [
+              "def reward(confidence, outcome):",
+              "    return -(confidence - outcome)**2"
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-03T20:57:28.405895+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.99,
+      "render_duration_s": 13.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:NikBearBrownTerminalAsk",
+        "at": "2026-10-03T14:03:39"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CONCEPT",
+      "narration_text": "The engine itself, rl_training dot py, handles the optimization step. It runs the forward pass, applies Group Relative Policy Optimization logit perturbations, calculates the calibration reward, and updates the parameters with decoupled learning rates.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "head rlcd/rl_training.py",
+            "topic": "LAYA MODEL \u00c2\u00b7 IMPLEMENTATION",
+            "segment": "Code Output",
+            "runningText": "tail -n 5 rlcd/rl_training.py",
+            "output": [
+              "loss_rl = -adv * log_p",
+              "loss_ce = -y * log_softmax(logits)",
+              "loss = (loss_rl + w_ce * loss_ce) / accum"
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-03T20:59:54.015158+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.45,
+      "render_duration_s": 15.458333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:NikBearBrownTerminalAsk",
+        "at": "2026-10-03T14:03:39"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CONCEPT",
+      "narration_text": "Finally, before export, a post-training temperature calibration fits an optimal temperature on a held-out calibration slice using L-BFGS, clamping the results so the agent is ready for production inference.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "NikBearBrownTerminalAsk",
+          "props": {
+            "command": "run calibration",
+            "topic": "LAYA MODEL \u00c2\u00b7 IMPLEMENTATION",
+            "segment": "Code Output",
+            "runningText": "python rlcd/smoke_tests.py",
+            "output": [
+              "Fitting L-BFGS temperature...",
+              "[OK] Helper",
+              "[OK] Models"
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-03T21:02:16.865013+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 12.63,
+      "render_duration_s": 12.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:NikBearBrownTerminalAsk",
+        "at": "2026-10-03T14:03:39"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HANDOFF",
+      "narration_text": "Now you know how Laya gets trained. Try running the smoke tests yourself to trace the GRPO perturbations and reward calculations.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "LAYA \u00b7 EXPLORE",
+            "segment": "Try the Engine",
+            "command": "Run `python rlcd/smoke_tests.py` and inspect how the Brier score penalizes overconfidence on a sample batch.",
+            "runningText": "waiting for input\u2026",
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-03T19:10:04.556329+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 8.34,
+      "render_duration_s": 8.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-03T14:03:39"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration_text": "This has been an implementation report on the Laya model. See you next time.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Laya Model & RLCD",
+            "handle": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-03T19:10:54.008501+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 4.74,
+      "render_duration_s": 4.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-10-03T14:03:39"
+      }
+    }
+  ]
+}

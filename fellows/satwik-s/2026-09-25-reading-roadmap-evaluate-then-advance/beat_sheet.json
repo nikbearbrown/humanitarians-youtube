@@ -1,0 +1,505 @@
+{
+ "metadata": {
+  "title": "Evaluate, Then Advance",
+  "slug": "evaluation-pipeline",
+  "topic": "STUDENT EVALUATION · RUNNING THE GATE",
+  "register": "Pragmatist / skeptical-explainer (PROOF)",
+  "audience": "HAI",
+  "brand": "claude-hai",
+  "persona": "Satwik (Humanitarians AI)",
+  "voice": "af_bella",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "body_palette": "humanitarians",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Hello, fellows",
+  "folderLabel": "@HumanitariansAI",
+  "channel_title": "@HumanitariansAI",
+  "in_for_bear": false,
+  "typography": {
+   "serif": "EB Garamond",
+   "sans": "Montserrat",
+   "mono": "system mono"
+  },
+  "source": "sources/ (weekly_report_2026-09-27.md, evaluation_pipeline.md, evaluation_example.md, example_checkpoint_gate_result.csv, topic_graph_run_gate_result.csv, evaluate_gate.py, build_item_bank.py). Verified only. MCQ grading is live; scale item text is stubs; open-ended is a seam; edges pending faculty.",
+  "playlist": "Humanitarians AI — Method Explainers",
+  "duration_target_s": [
+   180,
+   210
+  ],
+  "authors": "Satwik Reddy Sripathi, Jash Shah, Evin Gultepe, Srinivas Sridhar, Nik Bear Brown (Northeastern University)",
+  "sign_off": "This is Satwik for Humanitarians AI.",
+  "palette_note": "FIDELITY claude skin on UI beats (B00/B07/B08/B09); humanitarians tokens on body beats (B01-B06). PROOF: framework-first (B01 the rule before any example). TEAL = pass/advance/prune, CRIMSON = fail/hold/remediate + the draft caveats, GOLD = the key upgrade (evaluate-don't-assume) + hard emphasis, SAGE = soft/diagnostic, SLATE = the pipeline/scale substrate. B06 = falsifiability.",
+  "voice_note": "Kokoro af_bella. Run under PYTHONUTF8=1; venv python for kokoro. RENDER: temp on D: (TMPDIR/TEMP/TMP=d:/_remotion_tmp) — C: near-full. ASSEMBLY: use concat FILTER for BOTH video and audio (beats span render sessions; stream-copy concat silently truncates on param mismatch; demuxer re-encode balloons duration). Verify VIDEO stream duration + volumedetect ~ -20 dB.",
+  "gate_note": "GATE P signed (NARRATION-GATE-P.md + PEDAGOGY.md VERDICT: PASS). actual_duration_s (audio) is the master clock; durationInFrames = round(actual_duration_s * 30).",
+  "claims_guardrails": [
+   "No source, no verdict: every figure traces to sources/.",
+   "Engine is REAL and running (evaluate_gate.py): grade -> pass-prune / fail-descend -> advance/remediate + gap. STRICTER than the wk-07 demo: nothing assumed, every skip earned by a passing answer.",
+   "Worked example (real CSV rows): STU-A target CH25-S02 -> remediate 'The basics of cancer treatment', diag weak 'The tumor microenvironment', 6 administered / 4 nodes / 2 pruned / closure 6; STU-B advance, 5 / 3 / 3 / 6.",
+   "Scale run (real): 220 concepts, 248 edges, 536-item pool; STU-SIM target CH05-S03 -> remediate 'Mutations: Types and Consequences', 5 administered / 3 nodes / 5 pruned / closure 8.",
+   "HONEST BOUNDARY: MCQ grading live (offline exact-match). Scale item text = template STUBS (real questions next: LLM-draft + faculty-approve). Open-ended = a SEAM (defer/keywords/llm), off until a gold set. Edges pending faculty. No learning-outcome claim.",
+   "Grounded: KST (Doignon & Falmagne 1985), BKT (Corbett & Anderson 1995), mastery threshold (Zhang et al. EDM 2025), SINKT 2024, LLM-as-judge (Xu et al. 2026)."
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "hook / ASK",
+   "palette": "claude",
+   "narration_text": "Hello, fellows. Two weeks ago we designed the gate that tests a learner before advancing them. Last week we built the prerequisite graph it runs on. This week it runs — for real. The pipeline grades a learner, decides advance or send back, and names the exact gap. The question — how do you do that without wasting questions, and without assuming what a learner already knows?",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 26,
+   "audio_file": "mp3/beat-B00.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "the ask: gate designed (wk7) + graph built (wk8) -> now it runs; evaluate without wasting questions or assuming",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hello, fellows",
+      "topic": "STUDENT EVALUATION · RUNNING THE GATE",
+      "segment": "Evaluate, Then Advance",
+      "command": "We designed the gate, then built the prerequisite graph it runs on. This week it runs for real: grade a learner, decide advance or send back, name the exact gap. How do you do that without wasting questions — and without assuming what a learner already knows?",
+      "runningText": "running the evaluation pipeline…",
+      "output": [
+       "One rule: evaluate, never assume · pass earns a prune, a fail descends · hard gates, soft diagnose.",
+       "STU-A held (6 questions), STU-B advanced (5) — foundations never tested, because the top passed.",
+       "At scale: 536-item pool, a learner saw 5 items. MCQ live; questions + faculty sign-off next."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     }
+    }
+   },
+   "actual_duration_s": 22.7
+  },
+  {
+   "beat_id": "B01",
+   "act": "the framework (the rule)",
+   "palette": "humanitarians",
+   "narration_text": "The whole pipeline follows one rule, in three moves. One: evaluate, never assume — every prerequisite is tested; nothing is taken on trust. Two: a pass earns a prune, a fail makes you descend — pass a prerequisite and we skip everything beneath it; fail, and we dig into its own prerequisites to find how deep the gap runs. Three: hard prerequisites gate, soft ones only diagnose — and we test the connection, not just the concept. Evaluate, prune or descend, block only on the hard links.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 33,
+   "audio_file": "mp3/beat-B01.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the evaluation rule in three moves — before any example (framework-first)",
+    "remotion": {
+     "pattern": "EvalThreeMoves",
+     "props": {
+      "sparkLine": "The rule, in three moves.",
+      "moves": [
+       {
+        "n": 1,
+        "name": "EVALUATE, NEVER ASSUME",
+        "q": "every prerequisite is tested — nothing is taken on trust"
+       },
+       {
+        "n": 2,
+        "name": "PASS → PRUNE, FAIL → DESCEND",
+        "q": "a pass skips the subtree; a fail digs deeper to find the gap"
+       },
+       {
+        "n": 3,
+        "name": "HARD GATES, SOFT DIAGNOSE",
+        "q": "block only on hard links · and test the connection, not just the concept"
+       }
+      ],
+      "rule": "Evaluate, prune or descend, block only on the hard links."
+     }
+    }
+   },
+   "actual_duration_s": 29.23
+  },
+  {
+   "beat_id": "B02",
+   "act": "the loop",
+   "palette": "humanitarians",
+   "narration_text": "Here's the loop, top down from the learner's goal. For each hard prerequisite: grade the node. Pass? Then grade the connection — do they see how it supports the target? Both pass, it's satisfied, and we prune its whole subtree. If the node fails, we descend into its prerequisites and recurse. Soft prerequisites are tested as diagnostics only. At the end: advance if every hard prerequisite is satisfied, otherwise hold and remediate to the gap. The cost tracks the size of the gap near the goal, not the length of the chain.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 33,
+   "audio_file": "mp3/beat-B02.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the top-down loop: node -> connection -> prune (pass) / descend (fail) -> advance / remediate; cost ~ gap",
+    "remotion": {
+     "pattern": "EvalLoop",
+     "props": {
+      "sparkLine": "The loop: top down from the goal.",
+      "steps": [
+       {
+        "k": "GRADE THE NODE",
+        "v": "test the hard prerequisite itself"
+       },
+       {
+        "k": "GRADE THE CONNECTION",
+        "v": "do they see how it supports the target?"
+       },
+       {
+        "k": "PASS → PRUNE",
+        "v": "satisfied — trust & skip its whole subtree",
+        "kind": "pass"
+       },
+       {
+        "k": "FAIL → DESCEND",
+        "v": "recurse into its prerequisites to localise the gap",
+        "kind": "fail"
+       }
+      ],
+      "soft": "soft prerequisites — tested as diagnostics only, never gate",
+      "decision": "ADVANCE if every hard prereq is satisfied · else HOLD + remediate to the gap",
+      "point": "cost tracks the gap near the goal, not the length of the chain"
+     }
+    }
+   },
+   "actual_duration_s": 30.78
+  },
+  {
+   "beat_id": "B03",
+   "act": "evaluate, don't assume",
+   "palette": "humanitarians",
+   "narration_text": "Here's what changed this week. The earlier demo pruned against a list of what the learner said they knew. Now nothing is assumed — every skip is earned by a passing answer. If a learner claims a topic but can't answer for it, we don't skip it; we test it. Trust is earned, question by question, not declared up front.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 22,
+   "audio_file": "mp3/beat-B03.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the upgrade: BEFORE prune against a declared knows-list (x) -> NOW every skip earned by a passing answer",
+    "remotion": {
+     "pattern": "EvaluateDontAssume",
+     "props": {
+      "sparkLine": "What changed: trust is earned, not declared.",
+      "before": {
+       "label": "EARLIER DEMO",
+       "body": "pruned against a list of what the learner said they knew",
+       "tag": "assumed"
+      },
+      "after": {
+       "label": "NOW",
+       "body": "every skip is earned by a passing answer — claimed but can't answer? we test it",
+       "tag": "evaluated"
+      },
+      "point": "trust is earned, question by question, not declared up front"
+     }
+    }
+   },
+   "actual_duration_s": 19.24
+  },
+  {
+   "beat_id": "B04",
+   "act": "item pools, one per learner",
+   "palette": "humanitarians",
+   "narration_text": "And the questions come from a pool. Each concept and each connection can carry several. The engine samples one item per learner, deterministically — so different learners get different questions from the same approved pool, and no two sit an identical test. We don't hand-write a test per student; we author one pool tied to the graph, and the engine assembles each learner's test from it. Multiple choice is graded offline against the key — free and reproducible; open-ended answers are wired in as a seam for later.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 31,
+   "audio_file": "mp3/beat-B04.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "one approved pool per concept/edge -> engine samples one item per learner (deterministic); MCQ live, open-ended a seam",
+    "remotion": {
+     "pattern": "ItemPools",
+     "props": {
+      "sparkLine": "One pool. A different test per learner.",
+      "pool": "one approved pool per concept & connection",
+      "learners": [
+       {
+        "id": "learner A",
+        "item": "item 2"
+       },
+       {
+        "id": "learner B",
+        "item": "item 5"
+       },
+       {
+        "id": "learner C",
+        "item": "item 1"
+       }
+      ],
+      "note": "one item sampled per learner, deterministically — no two sit an identical test",
+      "grading": [
+       {
+        "k": "MULTIPLE CHOICE",
+        "v": "graded offline against the key — free, reproducible",
+        "kind": "live"
+       },
+       {
+        "k": "OPEN-ENDED",
+        "v": "wired as a seam — turns on with a gold set",
+        "kind": "seam"
+       }
+      ]
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "actual_duration_s": 29.74
+  },
+  {
+   "beat_id": "B05",
+   "act": "worked example (two learners)",
+   "palette": "humanitarians",
+   "narration_text": "Two learners, same goal: immune checkpoint inhibitors. Student A knows the immunology — that passes, so we prune its whole subtree — but fails the basics of cancer treatment. We descend, find they do know what cancer is, so the gap is exactly the basics of cancer treatment, and we send them there: six questions, two subtrees pruned. Student B passes both hard branches, so both subtrees prune, and advances after five questions. Foundational cell biology was never tested for either — because the topics above it passed.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 33,
+   "audio_file": "mp3/beat-B05.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "STU-A hold (immunology pass->prune, treatment fail->descend->gap) vs STU-B advance; counts from gate_result.csv",
+    "remotion": {
+     "pattern": "TwoLearnersEval",
+     "props": {
+      "sparkLine": "Two learners, one goal — immune checkpoint inhibitors.",
+      "goal": "GOAL · CH25-S02 — Immune Checkpoint Inhibitors",
+      "stu1": {
+       "id": "STU-A",
+       "verdict": "HOLD",
+       "rows": [
+        {
+         "c": "immune system fights tumors",
+         "r": "PASS → prune its subtree",
+         "kind": "pass"
+        },
+        {
+         "c": "basics of cancer treatment",
+         "r": "FAIL → descend",
+         "kind": "fail"
+        },
+        {
+         "c": "→ what cancer is",
+         "r": "PASS → gap localised",
+         "kind": "pass"
+        },
+        {
+         "c": "tumor microenvironment (soft)",
+         "r": "weak · diagnostic only",
+         "kind": "soft"
+        }
+       ],
+       "decision": "remediate → basics of cancer treatment",
+       "counts": "6 administered · 2 pruned · closure 6"
+      },
+      "stu2": {
+       "id": "STU-B",
+       "verdict": "ADVANCE",
+       "rows": [
+        {
+         "c": "immune system fights tumors",
+         "r": "PASS → prune",
+         "kind": "pass"
+        },
+        {
+         "c": "basics of cancer treatment",
+         "r": "PASS → prune",
+         "kind": "pass"
+        },
+        {
+         "c": "both hard branches satisfied",
+         "r": "✓",
+         "kind": "pass"
+        }
+       ],
+       "decision": "advance → target",
+       "counts": "5 administered · 3 pruned · closure 6"
+      },
+      "point": "foundational cell biology was never tested — the topics above it passed"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "actual_duration_s": 31.1
+  },
+  {
+   "beat_id": "B06",
+   "act": "at scale · the honest boundary",
+   "palette": "humanitarians",
+   "narration_text": "Then we ran it on the real graph: two hundred twenty concepts, two hundred forty-eight edges, a five-hundred-thirty-six-item pool. A learner heading for oncogene activation, weak on mutations, saw just five of those items — and the gap was pinned to mutations. What's honest about it: multiple-choice grading is done and running, but the item text at scale is still template stubs; real questions are next, drafted then faculty-approved. Open-ended grading is wired but off until we have a gold set. And the whole thing waits on faculty approving the edges. The engine is real; the questions and the sign-off are the work ahead.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 35,
+   "audio_file": "mp3/beat-B06.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "scale: 220 concepts / 248 edges / 536-item pool -> 5 items seen (gap: Mutations); REAL (engine, MCQ) vs DRAFT (stub items, open seam, faculty)",
+    "remotion": {
+     "pattern": "AtScaleBoundary",
+     "props": {
+      "sparkLine": "At full scale — and what's still a draft.",
+      "scale": [
+       {
+        "v": "220",
+        "k": "concepts"
+       },
+       {
+        "v": "248",
+        "k": "edges"
+       },
+       {
+        "v": "536",
+        "k": "item pool"
+       }
+      ],
+      "headline": "a learner saw 5 of 536 items — gap pinned to “Mutations”",
+      "real": [
+       {
+        "k": "the engine runs",
+        "v": "grade · prune-on-pass · descend-on-fail · advance/remediate"
+       },
+       {
+        "k": "MCQ grading",
+        "v": "offline exact-match — free, reproducible"
+       }
+      ],
+      "draft": [
+       {
+        "k": "item text at scale",
+        "v": "template stubs — real questions next (LLM-draft + faculty-approve)"
+       },
+       {
+        "k": "open-ended + edges",
+        "v": "grader off until a gold set · edges pending faculty approval"
+       }
+      ],
+      "stamp": "THE ENGINE IS REAL — THE QUESTIONS & SIGN-OFF ARE NEXT"
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "actual_duration_s": 38.14
+  },
+  {
+   "beat_id": "B07",
+   "act": "verdict",
+   "palette": "claude",
+   "narration_text": "So — where it stands. The gate runs end to end: it grades, it prunes what a learner has earned, it descends only where they fail, and it names the exact gap — in five questions out of five hundred, not the whole chain. Multiple-choice is live; open-ended is a seam; the real questions and the faculty sign-off are next.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "audio_file": "mp3/beat-B07.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "verdict artifact: runs end to end; earned pruning; descend on fail; names the gap; 5 of 500; MCQ live, rest next",
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "artifactTitle": "Evaluate, Then Advance",
+      "artifactHeading": "The evaluation pipeline — where it stands",
+      "artifactLines": [
+       "RUNS END TO END: grade, decide advance or remediate, and name the exact gap.",
+       "NOTHING ASSUMED: every skip is earned by a passing answer — prune on a pass.",
+       "DESCEND ON FAIL: dig deeper only where the learner fails, to localise the gap.",
+       "MEASURES THE GAP: a learner saw 5 items out of a 536-item pool, not the whole chain.",
+       "MCQ is live; open-ended is a seam; the real questions + faculty sign-off are next."
+      ]
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": ""
+     }
+    }
+   },
+   "actual_duration_s": 20.59
+  },
+  {
+   "beat_id": "B08",
+   "act": "your turn / handoff",
+   "palette": "claude",
+   "narration_text": "Your turn. When you build an assessment on a prerequisite structure: test before you trust — earn every skip with a passing answer; prune on a pass, descend on a fail; and pull questions from one approved pool, not a hand-written test per learner. Measure the gap, not the chain.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 22,
+   "audio_file": "mp3/beat-B08.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "CTA scaffold: test before you trust -> prune on pass, descend on fail -> one approved pool -> measure the gap",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "STUDENT EVALUATION · RUN ONE GATE",
+      "segment": "Evaluate, Then Advance",
+      "command": "Building an assessment on a prerequisite structure? Test before you trust: earn every skip with a passing answer; prune on a pass, descend on a fail; and pull questions from one approved pool, not a hand-written test per learner. Measure the gap, not the chain.",
+      "runningText": "evaluate → prune or descend…",
+      "output": [
+       "Never assume a prerequisite — evaluate it; only a pass earns the skip.",
+       "One approved pool per concept & connection; sample one item per learner.",
+       "Cost tracks the gap near the goal, not the length of the chain."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": ""
+     }
+    }
+   },
+   "actual_duration_s": 17.15
+  },
+  {
+   "beat_id": "B09",
+   "act": "outro",
+   "palette": "claude",
+   "narration_text": "Design the gate, build the graph, then let it run. This is Satwik for Humanitarians AI.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 8,
+   "audio_file": "mp3/beat-B09.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "title restate + handle + sign-off",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Evaluate, Then Advance",
+      "handle": "@HumanitariansAI",
+      "subline": "This is Satwik for Humanitarians AI."
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": ""
+     }
+    }
+   },
+   "actual_duration_s": 5.8
+  }
+ ]
+}

@@ -1,7 +1,34 @@
 # CAPTURE.md — How the Tutor Stays Grounded in Your Textbook
 
-**Status: PLANNED. Nothing has been captured. The masking wrapper is designed, not written.**
-Replace the planned sections with observed facts after each run. Everything stays local: no `git add`, commit, push, PR, merge, publish or upload.
+**Status: CAPTURE COMPLETE (2026-09-24). Footage locked.**
+
+## Observed result (what actually happened)
+
+**Wrapper.** `capture/capture_masked.py` was built to the design below and passed its offline self-test, 11/11 checks, with the dummy term `Testname`, before any Medhavy run.
+
+**Runs, all through the wrapper:**
+
+| Run | Settings | Result |
+|---|---|---|
+| `run-signin` | `--no-session`, 1600×900 @2.4 | Signed out; nothing typed. Feeds B02 in both versions. |
+| `run-pilot` | 1600×900 @2.4 | Discovery only; not in the cut. Confirmed the 5.4.2 card; showed the follow-up was off-screen (fixed in the plan). V7 "Thanks!" verified here. |
+| `run-book` | 1600×900 @2.4 | Corrected landscape capture, locked. Hub tab → B03; book tab → B04–B12. |
+| `run-portrait-test` | 1280×720 @3 | Layout test with no tutor requests. Passed. |
+| `run-portrait` | 1280×720 @3 | Portrait-source capture, 2 tutor requests, locked. Feeds vertical B03–B12. |
+
+`run-signin-916src` (optional) was **not** run. Vertical B02 reuses `run-signin`.
+
+**Redaction reviews passed for every run.**
+- The hub header reads "Admin account" from its first rendered frame.
+- No personal name, email or `CLS-` code is visible.
+- No wrapper abort, leak or canary occurred.
+- The temporary contact sheets were deleted after review.
+
+**Other outcomes:**
+- **Tutor memory:** never cleared. No visible interference from earlier turns in any run.
+- **Credentials:** Prarthana signed in herself (`save_session.py`) and set `MW_MASK_TEXT` privately in her own shell for each signed-in run. The agent typed no credentials.
+
+Everything below is the **planned design** as reviewed before capture. It is kept for the record. Where the plan and the result differ, the result above and FACTCHECK.md are authoritative.
 
 ## Source
 
@@ -9,7 +36,7 @@ Replace the planned sections with observed facts after each run. Everything stay
 |---|---|
 | Textbook app | `medhavi-cancer@b8b6c21` |
 | Hub | `medhavi-hub@efcc3f5` |
-| Hub `build_id` | Record at capture (SHA-256 of `git archive HEAD`) |
+| Hub `build_id` | `b179d0bba0a1bac2b78a5209d305c80ac9cd7359fd6e508512fe0ce1a2f73fc6` (SHA-256 of `git archive HEAD` of `medhavi-hub@efcc3f5`; recorded in `coverage.json`). The live deploy commit isn't verifiable. |
 | Sites | `https://hub.medhavy.com` → `https://cancer.medhavy.com` |
 
 If production behaves differently from AI-TUTOR-SOURCE.md, record what actually happened and revise the narration. Never stage the expected behaviour.
@@ -22,7 +49,7 @@ If production behaves differently from AI-TUTOR-SOURCE.md, record what actually 
 
 ---
 
-## Redaction wrapper: `capture/capture_masked.py` (approved in principle; NOT YET WRITTEN)
+## Redaction wrapper: `capture/capture_masked.py` (design; built 2026-09-24, self-test passed)
 
 ### Why it is needed (from source)
 
@@ -89,7 +116,7 @@ A DOM check can't see pixels. So for the pilot and every real run:
 
 **Self-test before any Medhavy run.**
 
-`capture_masked.py --self-test` runs headless Chromium against a local `data:` page, with no network and no Medhavy. The page contains a synthetic test term in a nav span, a button, and a text node updated in place after 500 ms. The self-test must show all of the following:
+`capture_masked.py --self-test` runs headless Chromium against local `file://` pages, with no network and no Medhavy. The design said `data:`; the build uses `file://`, so it can drive the toolkit's own `main()` end to end. The page contains a synthetic test term in a nav span, a button, and a text node updated in place after 500 ms. The self-test must show all of the following:
 - masked → no hit
 - an unmaskable injected hit → abort with deletion
 - an unset `MW_MASK_TEXT` → refusal
@@ -129,7 +156,7 @@ unset MW_MASK_TEXT
 
 ---
 
-## Landscape capture order (runs first; 1600×900 CSS at DPR 2.4 → 3840×2160)
+## Landscape capture order (planned; executed as listed, see "Observed result")
 
 1. **`save_session.py`.** Prarthana signs in manually. This browser is not recorded.
 2. **`run-signin`**, `plan-signin.json`, `--no-session`, through the wrapper. Signed out; no mask term needed. Feeds B02.
@@ -145,7 +172,7 @@ unset MW_MASK_TEXT
 8. **Corrected landscape capture `run-book`,** through the wrapper. Repeat the redaction review.
 9. **Stop for review.** Fill in timings, promote or delete conditional lines, and update FACTCHECK statuses.
 
-## Portrait-source test (only after landscape behaviour is confirmed; NO tutor requests)
+## Portrait-source test (planned; run 2026-09-24 and PASSED)
 
 **Plan:** `capture/plan-portrait-test.json`, run through the wrapper with `--css-size 1280x720 --dpr 3` (1280×3 = 3840, 720×3 = 2160). The plan navigates the same route and opens the tutor panel. It **types nothing into the tutor**. It takes these stills:
 
@@ -168,9 +195,9 @@ unset MW_MASK_TEXT
 
 **If any criterion fails:** stop and report with the stills. Send no tutor requests.
 
-## Portrait capture order (after the test passes)
+## Portrait capture order (planned; `run-portrait` executed, `run-signin-916src` skipped)
 
-1. **`run-signin-916src`** (optional, no tutor use): `plan-signin.json`, `--no-session`, at 1280×720 DPR 3. Gives a portrait-friendly sign-in card for vertical B02.
+1. **`run-signin-916src`** (optional, no tutor use; **not run**): `plan-signin.json`, `--no-session`, at 1280×720 DPR 3. Gives a portrait-friendly sign-in card for vertical B02.
 2. **`run-portrait`:** `plan-portrait.json` through the wrapper at 1280×720 DPR 3. Same route, **Q1 and Q2 only**. That is **2 tutor requests**, because "Thanks!" was already verified in landscape. The card title in steps 18 and 21 is the one confirmed in the landscape run.
 3. **Review:**
    - Redaction (Layer 4).

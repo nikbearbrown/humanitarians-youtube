@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "title": "Loud by Default.",
+    "slug": "vendor-intel-logging-config-short",
+    "topic": "Vendor Intelligence",
+    "register": "Pragmatist",
+    "audience": "HAI",
+    "brand": "claude-hai-muskan",
+    "channel": "claude-hai-muskan",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "9:16",
+    "greeting": "Hey, Muskan",
+    "note": "Weekly update (changelog framing). Narrator Muskan, @HumanitariansAI, banner 'Vendor Intelligence'. Two tickets: (1) replace print with structured logging — 225 print() calls, zero logging; a silent print hid a broken Langfuse handler (plus phantom traces + fail-open check); 76 prints → logging across 9 files; 83 CLI report-prints kept; levels by what the code does next (WARNING degraded/continuing, ERROR work lost, INFO progress); automated pass got levels wrong (37 err/29 info), fixed by hand; LOG_LEVEL=WARNING drops noise. (2) Validated Settings class — 36 scattered os.getenv with inline defaults → silent wrong config; new collector/settings.py (149 lines); blank = absent; require() reports all missing keys at once; grouped by concern; absorbed and DELETED collector/models.py (committed 72a97a5 last week — intentional, reverses prior work). Verified: 12 modules import cleanly (both import styles), 17 unit tests pass. Bookends render; body B01-B04 are house-style 4K PIL cards (make_cards.py). DOUBLE-CHECK LAW: figures from the creator's change log; dual-path-import ugliness and the stale BEDROCK_MODEL landmine noted in PEDAGOGY, kept off the cards to stay tight.",
+    "tags": [
+      "vendor intelligence",
+      "logging",
+      "observability",
+      "configuration",
+      "12-factor",
+      "fail loud",
+      "Humanitarians AI"
+    ],
+    "build": {
+      "at": "2026-10-19T10:37:09",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B07: palette=claude but the outro is 'ClaudeTitleOutro916' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "vendor-intel-logging-config",
+    "dropped_beats": [],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 166.1
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hey, I'm Muskan. This one starts with a real incident. Our observability was broken for who knows how long, and nobody noticed, because the warning was a print statement that scrolled past in a terminal no one was watching. So this week: two fixes that make problems actually show up. Real logging, and config that fails loudly.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Hey, Muskan",
+            "topic": "Vendor Intelligence",
+            "segment": "Loud by Default",
+            "command": "A warning nobody saw broke our observability for weeks — how do I make problems actually show up?",
+            "runningText": "turning up the signal…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "a print is invisible to alerts",
+              "1 · real structured logging",
+              "2 · config that fails loudly"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 20.95,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-19T10:37:09"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "T1-PROBLEM",
+      "narration_text": "First, the logging. The codebase had two hundred twenty-five print statements and zero logging. And a print is invisible, you can't filter it, alert on it, or ship it to a dashboard. That one blind spot didn't just hide the Langfuse bug, it also hid the phantom traces and the fail-open entity check from earlier. Three bugs, one root cause: nobody could see the warnings.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "still",
+        "motion": "hold",
+        "show": [
+          {
+            "at": "two hundred twenty-five",
+            "event": "the four problem cards snap in"
+          },
+          {
+            "at": "see the warnings",
+            "event": "the 'also hid' card lands"
+          }
+        ],
+        "card": {
+          "kind": "grid",
+          "title": "225 Prints, Zero Logs.",
+          "subtitle": "a print is invisible",
+          "items": [
+            {
+              "tag": "225 PRINTS",
+              "quote": "and zero logging calls"
+            },
+            {
+              "tag": "INVISIBLE",
+              "quote": "no filter, no alert, no dashboard"
+            },
+            {
+              "tag": "THE INCIDENT",
+              "quote": "Langfuse broke — the warning was a print"
+            },
+            {
+              "tag": "ALSO HID",
+              "quote": "phantom traces · fail-open check"
+            }
+          ],
+          "caption": "a warning nobody can filter is a warning nobody sees",
+          "footer": "ONE BLIND SPOT, THREE HIDDEN BUGS"
+        }
+      },
+      "estimated_duration_s": 32,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 22.81,
+      "build": {
+        "status": "STILL",
+        "src": "media/B01.png",
+        "filled_by": "still",
+        "at": "2026-10-19T10:37:09"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "T1-FIX",
+      "narration_text": "So I converted seventy-six prints to real logging across nine files. I kept eighty-three, the CLI tools, where the printed report is the actual product, not a diagnostic. And levels were set by what the code does next, not the words in the message: WARNING means degraded but continuing, ERROR means this work was lost, INFO is just progress. An automated pass got this badly wrong, so I fixed every level by hand. Now, log level WARNING drops the noise and keeps the problems.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "still",
+        "motion": "hold",
+        "show": [
+          {
+            "at": "set by what the code does next",
+            "event": "the level cards snap in"
+          },
+          {
+            "at": "keeps the problems",
+            "event": "the 'kept 83' card lands"
+          }
+        ],
+        "card": {
+          "kind": "grid",
+          "title": "Levels by What It Does.",
+          "subtitle": "76 prints → logging, across 9 files",
+          "items": [
+            {
+              "tag": "WARNING",
+              "quote": "degraded, but continuing"
+            },
+            {
+              "tag": "ERROR",
+              "quote": "this unit of work was lost"
+            },
+            {
+              "tag": "INFO",
+              "quote": "progress + summaries"
+            },
+            {
+              "tag": "KEPT 83",
+              "quote": "CLI prints — the report IS the product"
+            }
+          ],
+          "caption": "level set by what the code does next, not the words in the message",
+          "footer": "LOG_LEVEL=WARNING: DROPS NOISE, KEEPS PROBLEMS"
+        }
+      },
+      "estimated_duration_s": 36,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 31.97,
+      "build": {
+        "status": "STILL",
+        "src": "media/B02.png",
+        "filled_by": "still",
+        "at": "2026-10-19T10:37:09"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "T2-PROBLEM",
+      "narration_text": "Second, configuration. There were thirty-six scattered get-env calls, each with its own inline default. So a missing or wrong value would surface wherever it happened to get read, usually deep in some tool call, as a confusing error about something unrelated. And a mistyped key? It silently fell back to the default, and the whole system ran on wrong configuration, quietly.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "still",
+        "motion": "hold",
+        "show": [
+          {
+            "at": "thirty-six scattered",
+            "event": "the four problem cards snap in"
+          },
+          {
+            "at": "quietly",
+            "event": "the 'wrong config' card lands"
+          }
+        ],
+        "card": {
+          "kind": "grid",
+          "title": "36 Scattered Getenvs.",
+          "subtitle": "config with no guardrails",
+          "items": [
+            {
+              "tag": "36 os.getenv",
+              "quote": "inline defaults, everywhere"
+            },
+            {
+              "tag": "FAILS DEEP",
+              "quote": "a confusing error about something else"
+            },
+            {
+              "tag": "A TYPO",
+              "quote": "silently falls back to the default"
+            },
+            {
+              "tag": "RESULT",
+              "quote": "runs on wrong configuration"
+            }
+          ],
+          "caption": "a wrong value surfaced wherever it got read — often far from the real cause",
+          "footer": "SCATTERED CONFIG = SILENT, MISLOCATED FAILURES"
+        }
+      },
+      "estimated_duration_s": 32,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 23.87,
+      "build": {
+        "status": "STILL",
+        "src": "media/B03.png",
+        "filled_by": "still",
+        "at": "2026-10-19T10:37:09"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "T2-FIX",
+      "narration_text": "The fix is one validated settings file. Every environment value lives in one place now. A blank value counts as missing, not as a valid empty string. And instead of failing halfway through a run, it checks everything up front, require reports every missing key at once, so a misconfigured run stops before it writes a single row. It also absorbed last week's models file, so config lives in one module, not two.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "still",
+        "motion": "hold",
+        "show": [
+          {
+            "at": "one validated settings",
+            "event": "the before/after columns build"
+          },
+          {
+            "at": "writes a single row",
+            "event": "the after column resolves (accent)"
+          }
+        ],
+        "card": {
+          "kind": "versus",
+          "title": "One Validated Settings.",
+          "subtitle": "fail at startup, not halfway",
+          "left_title": "Before",
+          "left_flow": [
+            "36 os.getenv calls",
+            "silent fallback to default",
+            "fails deep, mid-run"
+          ],
+          "left_note": "wrong config, quietly",
+          "right_title": "After",
+          "right_flow": [
+            "one settings.py",
+            "require(): all missing at once",
+            "blank counts as absent"
+          ],
+          "right_note": "fails at startup, loudly",
+          "caption": "require() reports every missing key up front — so a bad run stops before it writes rows",
+          "footer": "ONE MODULE · GROUPED BY CONCERN · ABSORBED models.py"
+        }
+      },
+      "estimated_duration_s": 34,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 26.35,
+      "build": {
+        "status": "STILL",
+        "src": "media/B04.png",
+        "filled_by": "still",
+        "at": "2026-10-19T10:37:09"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "VERDICT",
+      "narration_text": "The theme, again: make problems visible. A warning you can't filter is a warning you won't see, and config that fails silently fails at the worst possible time. Log by what the code does, validate config up front, and fail loud.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact916",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "This week — vendor intelligence",
+            "artifactHeading": "Make problems visible",
+            "artifactLines": [
+              "225 print() calls, zero logging — a silent print hid a broken Langfuse handler for an unknown time.",
+              "76 prints → structured logging across 9 files (CLI report-prints kept); levels by what the code does next.",
+              "36 scattered os.getenv → one validated settings.py; blank = absent; require() reports every missing key at once.",
+              "Note: this absorbs and deletes models.py from last week — intentional; settings.py supersedes it."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "lead_silence_s": 0.5,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 15.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-19T10:37:09"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Find one print in your code that's really a warning or an error, something you'd want to be alerted on. And find one get-env with an inline default. Then ask: if that value were missing or mistyped, would I find out at startup, or deep in a run, disguised as some unrelated error? Loud and early beats silent and late.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Vendor Intelligence",
+            "segment": "Find the silent one",
+            "command": "Find one print() that's really a warning/error, and one os.getenv with an inline default. If that value were missing or mistyped, would I find out at startup — or deep in a run as an unrelated error?",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "a print is invisible to alerts",
+              "set level by what the code does next",
+              "validate config up front, fail loud"
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.65,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-19T10:37:09"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration_text": "Loud by default. See the problems early. Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "Loud by Default.",
+            "handle": "@HumanitariansAI",
+            "subline": "see the problems · catch bad config early"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 4.35,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-19T10:37:09"
+      }
+    }
+  ]
+}

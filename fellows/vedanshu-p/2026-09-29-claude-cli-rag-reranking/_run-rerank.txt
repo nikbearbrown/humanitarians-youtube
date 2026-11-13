@@ -1,0 +1,36 @@
+corpus
+  28 chunks, gold = RE-410#0
+
+stage 1 — bi-encoder, the whole corpus embedded once
+  index built: 28 chunks in 2448 ms
+  per chunk:   87.4 ms
+
+the structural limit, checked (not asserted)
+  same document, encoded beside two different queries
+  max elementwise difference: 0.00e+00
+  the document vector does not know the query. that is the whole
+  speed trick, and the whole blind spot.
+
+re-ranking the top-5, on every question
+
+  question                                           before  after  effect
+  Can I still get my old benefits back?                   1      1  unchanged
+  How do I get my laptop back after I returned it?        1      1  unchanged
+  When am I allowed to change my health plan?          None   None  unchanged
+  Will the company pay for a certification course?        1      1  unchanged
+  Is the transit subsidy still open to join?              1      1  unchanged
+  What does the company actually offer as benefit…        1      1  unchanged
+
+  totals
+    answer already first before re-ranking: 5/6
+    answer first after re-ranking:          5/6
+    promoted 0   demoted 0   unchanged 6
+
+why stage 2 only ever sees the shortlist
+  measured joint pass: 86 ms per query-document pair
+  on a 5-chunk shortlist:   428 ms
+  on all 28 chunks:        2398 ms
+  on 1,000,000 chunks:     23.8 hours per query
+
+  stage 1 embeds the corpus ONCE: 2448 ms total, and every
+  later query costs one pass plus 28 dot products.

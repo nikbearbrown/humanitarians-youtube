@@ -392,3 +392,119 @@ import {ItmBluf916, ItmSource916, ItmFeed916, ItmVolume916, ItmQuestion916, ItmM
 <Composition id="ItmLimits916" component={ItmLimits916}
         durationInFrames={372} fps={30} width={1080} height={1920}
         defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />
+
+
+// ============================================================================
+// Added 2026-10-21 — Both Sides of the Table. + The Mask Slips.
+//
+// Citation discipline in both families, enforced by the types:
+//   * TblSide / TblInterview / TblWalk / TblInject each REQUIRE a `source`.
+//   * TblTrust requires a SEPARATE source on each of its two figures — the 26%
+//     (Greenhouse) and the 66% (Pew) are different studies of different
+//     populations, so there is no shared source field that could merge them.
+//   * MskSpike / MskMoney / MskDrop each REQUIRE a `source`; every value is a
+//     verbatim string, so "roughly 50%" keeps its hedge and $13,700 is never
+//     reformatted.
+// ============================================================================
+
+import {MskBluf, MskSpike, MskMoney, MskArc, MskReveal, MskDrop, MskTurn, MskLimits} from './scenes/MaskSlips';
+import {MskBluf916, MskSpike916, MskMoney916, MskArc916, MskReveal916, MskDrop916, MskTurn916, MskLimits916} from './scenes/MaskSlips916';
+import {TblBluf, TblSide, TblTable, TblInterview, TblWalk, TblTrust, TblInject, TblLimits} from './scenes/TableSides';
+import {TblBluf916, TblSide916, TblTable916, TblInterview916, TblWalk916, TblTrust916, TblInject916, TblLimits916} from './scenes/TableSides916';
+
+<Composition id="MskBluf" component={MskBluf}
+        durationInFrames={400} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', firstHead: '', firstLines: [], secondHead: '', secondLines: [], closer: ''}}} />
+<Composition id="MskSpike" component={MskSpike}
+        durationInFrames={381} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', lead: {value: '', label: ''}, figures: [], source: '', note: ''}}} />
+<Composition id="MskMoney" component={MskMoney}
+        durationInFrames={378} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', value: '', qualifier: '', stamp: '', source: '', note: ''}}} />
+<Composition id="MskArc" component={MskArc}
+        durationInFrames={350} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', riseLabel: '', markerLabel: '', fallLabel: '', axisNote: '', note: ''}}} />
+<Composition id="MskReveal" component={MskReveal}
+        durationInFrames={382} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', leftLabel: '', rightBefore: '', rightAfter: '', wireLabel: '', verdict: '', note: ''}}} />
+<Composition id="MskDrop" component={MskDrop}
+        durationInFrames={438} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', cases: [{label: '', value: '', detail: ''}], beforeLabel: '', afterLabel: '', source: '', note: ''}}} />
+<Composition id="MskTurn" component={MskTurn}
+        durationInFrames={417} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', ruledOut: [], survivor: '', closer: '', note: ''}}} />
+<Composition id="MskLimits" component={MskLimits}
+        durationInFrames={496} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />
+<Composition id="MskBluf916" component={MskBluf916}
+        durationInFrames={400} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', firstHead: '', firstLines: [], secondHead: '', secondLines: [], closer: ''}}} />
+<Composition id="MskSpike916" component={MskSpike916}
+        durationInFrames={381} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', lead: {value: '', label: ''}, figures: [], source: '', note: ''}}} />
+<Composition id="MskMoney916" component={MskMoney916}
+        durationInFrames={378} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', value: '', qualifier: '', stamp: '', source: '', note: ''}}} />
+<Composition id="MskArc916" component={MskArc916}
+        durationInFrames={350} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', riseLabel: '', markerLabel: '', fallLabel: '', axisNote: '', note: ''}}} />
+<Composition id="MskReveal916" component={MskReveal916}
+        durationInFrames={382} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', leftLabel: '', rightBefore: '', rightAfter: '', wireLabel: '', verdict: '', note: ''}}} />
+<Composition id="MskDrop916" component={MskDrop916}
+        durationInFrames={438} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', cases: [{label: '', value: '', detail: ''}], beforeLabel: '', afterLabel: '', source: '', note: ''}}} />
+<Composition id="MskTurn916" component={MskTurn916}
+        durationInFrames={417} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', ruledOut: [], survivor: '', closer: '', note: ''}}} />
+<Composition id="MskLimits916" component={MskLimits916}
+        durationInFrames={496} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />
+<Composition id="TblBluf" component={TblBluf}
+        durationInFrames={354} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', claims: [{label: '', align: 'left'}], hotIndex: 0, closer: ''}}} />
+<Composition id="TblSide" component={TblSide}
+        durationInFrames={367} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', side: 'left', head: '', value: '', bar: 0, label: '', qualifier: '', source: '', note: ''}}} />
+<Composition id="TblTable" component={TblTable}
+        durationInFrames={340} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', leftOuter: '', leftInner: '', rightInner: '', rightOuter: '', trafficLabel: '', verdict: '', note: ''}}} />
+<Composition id="TblInterview" component={TblInterview}
+        durationInFrames={327} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', value: '', bar: 0, label: '', delta: '', deltaNote: '', source: '', note: ''}}} />
+<Composition id="TblWalk" component={TblWalk}
+        durationInFrames={327} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', value: '', bar: 0, label: '', verdict: '', source: '', note: ''}}} />
+<Composition id="TblTrust" component={TblTrust}
+        durationInFrames={395} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', left: {value: '', bar: 0, label: '', source: ''}, right: {value: '', bar: 0, label: '', source: ''}, note: ''}}} />
+<Composition id="TblInject" component={TblInject}
+        durationInFrames={418} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', value: '', bar: 0, label: '', stamp: '', visibleLines: [], hiddenLabel: '', source: '', note: ''}}} />
+<Composition id="TblLimits" component={TblLimits}
+        durationInFrames={400} fps={30} width={1920} height={1080}
+        defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />
+<Composition id="TblBluf916" component={TblBluf916}
+        durationInFrames={354} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', claims: [{label: '', align: 'left'}], hotIndex: 0, closer: ''}}} />
+<Composition id="TblSide916" component={TblSide916}
+        durationInFrames={367} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', side: 'left', head: '', value: '', bar: 0, label: '', qualifier: '', source: '', note: ''}}} />
+<Composition id="TblTable916" component={TblTable916}
+        durationInFrames={340} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', leftOuter: '', leftInner: '', rightInner: '', rightOuter: '', trafficLabel: '', verdict: '', note: ''}}} />
+<Composition id="TblInterview916" component={TblInterview916}
+        durationInFrames={327} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', value: '', bar: 0, label: '', delta: '', deltaNote: '', source: '', note: ''}}} />
+<Composition id="TblWalk916" component={TblWalk916}
+        durationInFrames={327} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', value: '', bar: 0, label: '', verdict: '', source: '', note: ''}}} />
+<Composition id="TblTrust916" component={TblTrust916}
+        durationInFrames={395} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', left: {value: '', bar: 0, label: '', source: ''}, right: {value: '', bar: 0, label: '', source: ''}, note: ''}}} />
+<Composition id="TblInject916" component={TblInject916}
+        durationInFrames={418} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', value: '', bar: 0, label: '', stamp: '', visibleLines: [], hiddenLabel: '', source: '', note: ''}}} />
+<Composition id="TblLimits916" component={TblLimits916}
+        durationInFrames={400} fps={30} width={1080} height={1920}
+        defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />

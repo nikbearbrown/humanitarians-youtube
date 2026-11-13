@@ -9,7 +9,7 @@
 | B03 | FALSIFIABILITY | manim | GRAPHIC | B03_FalsifiabilityCase (scenes.py, not yet authored) | 20s | Date-formatter function next to rubric, "low stakes" annotation |
 | B04 | CTA | manim | GRAPHIC | B04_ScaffoldedTask (scenes.py, not yet authored) | 20s | 3-step checklist as copyable text, held ≥3s |
 | B05 | CLOSE | manim | GRAPHIC | B05_Close (scenes.py, not yet authored) | 10s | Callback to B00's crash log, now with a correction checkmark |
-| B06 | SIGN-OFF | manim | GRAPHIC | B06_BrandOutro (scenes.py, not yet authored) | 5s | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B06 | SIGN-OFF | manim | GRAPHIC | B06_BrandOutro (scenes.py, not yet authored) | 5s | @HumanitariansAI, in for Sai Pranavi J. |
 
 ## Open items
 - ~~No channel/fellow sign-off beat~~ RESOLVED 2026-08-17 — B06 added per fellow decision.

@@ -11,7 +11,7 @@
 | B05 | PROOF | manim | GRAPHIC | B05_FiveFeedResultsTable (scenes.py) | 29.42s | All 5 live-feed rows: CFTC 12/12, term-search 83/146, SEC/FINRA/Investment-Advisor 0 changed; CFTC row (gold) and zero-regression rows (teal) boxed |
 | B06 | FIX | manim | GRAPHIC | B06_BeforeAfterClassifier (scenes.py) | 13.94s | Before/after `identifySource()` branch side by side, the new `dc:creator`-based checks highlighted gold |
 | B07 | TAKEAWAY | manim | GRAPHIC | B07_Statement (scenes.py) | 10.56s | "A safeguard that's never once tested against real input isn't protecting anything." |
-| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 6.26s | @HumanitariansAI brand card, "in for Sai Pranavi Jeedigunta" |
+| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 6.26s | @HumanitariansAI brand card, "in for Sai Pranavi J." |
 
 ## Lane summary
 - MANIM: all 9 beats, self-contained in this reel's own `scenes.py`. No

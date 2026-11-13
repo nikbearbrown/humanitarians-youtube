@@ -30,7 +30,7 @@
 
 ## Synthesis
 
-- `AI-TUTOR-SOURCE.md` (this folder): approved source of truth, with line references.
+- `AI-TUTOR-SOURCE.md` (this folder): the approved pre-capture source-research snapshot, with line references.
 - `FACTCHECK.md` addendum: the suggestion chips are page-title templates.
 
 ## Reference only (not a source of claims)
@@ -39,10 +39,24 @@
 
 Its claims that the answer "uses this chapter as context" and "SQLite memory keyed by session" are contradicted by current code and are not reused.
 
-## Live sites (to be captured; not yet observed for this reel)
+## Live sites (captured and observed 2026-09-24)
 
-- `https://hub.medhavy.com`
-- `https://cancer.medhavy.com`
+- `https://hub.medhavy.com`: the admin view, through the masking wrapper.
+- `https://cancer.medhavy.com`: Chapter 5 and the "Ask this textbook" tutor.
+
+**Captures:**
+
+| Run | What it is | Status |
+|---|---|---|
+| `run-signin` | signed out | kept as footage |
+| `run-pilot` | discovery | not in the cut |
+| `run-book` | landscape source | locked |
+| `run-portrait-test` | layout test | not in the cut |
+| `run-portrait` | vertical source | locked |
+
+- **On-screen answers:** these are the live tutor's own output, shown unedited.
+- **Recorded observations:** in FACTCHECK.md.
+- **Where the captures live:** locally, excluded from GitHub.
 
 ## Toolkit
 

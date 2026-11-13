@@ -1,0 +1,667 @@
+{
+  "metadata": {
+    "title": "Finding Is Not Grading.",
+    "slug": "hai-liam-evaluation-layer",
+    "topic": "Irreducibly Human",
+    "series_name": "Irreducibly Human",
+    "series": "Provenance Gatekeeper Development Log",
+    "episode": "Week 3",
+    "episode_subject": "Week 3 · Evaluation Layer & n8n Integration",
+    "purpose": "Show that retrieval and grading are different systems: the Variance Matrix (three axes, forced choice), the JSON verdict contract with n8n, and the directional case similarity search cannot catch.",
+    "register": "Plain-direct (Teardown judgment on the failure mode)",
+    "audience": "Students and early-career engineers following the Gatekeeper dev log",
+    "brand": "claude-hai",
+    "persona": "Liam (narrating for Onkar Bhujbal)",
+    "author": "Onkar Bhujbal",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Namaste, Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "clock": "narration",
+    "aspect_ratio": "16:9",
+    "duration_target_s": 165,
+    "word_budget": 527,
+    "duration_note": "Narration written to the MEASURED Kokoro am_onyx rate (3.29 w/s) so the first audio pass lands on target; actual_duration_s is the master clock.",
+    "outro_scene": "HaiTitleOutro",
+    "outro_note": "OUTRO-LOCK.md scopes ClaudeTitleOutro (hardcoded @NikBearBrown) to claude-liam reels. This is an @HumanitariansAI reel, so the outro is HaiTitleOutro.",
+    "branding_note": "topic is the channel-locked kicker for claude-hai (runtime/qc/brand_labels.json); the episode subject lives in episode_subject and in each beat's segment title.",
+    "reuse_note": "Zero new components and zero portrait builds. The Provenance Gatekeeper series' own components carry the body: GatekeeperTaxonomy (Scene 2), GatekeeperVerifyLoop (Scene 3), GatekeeperDirectionalBlindspot (Scene 4), GatekeeperScoreboard (verdict), GatekeeperTitleOutro (outro, via the HaiTitleOutro alias). GatekeeperTaxonomy916 was the one missing portrait id and was registered during this build.",
+    "metrics_note": "No similarity figure is printed on screen: GatekeeperDirectionalBlindspot's own header warns that a cosine score shown without a source is an invented metric (DOUBLE-CHECK LAW). simValue stays empty; the bar shows near-identical qualitatively.",
+    "build": {
+      "at": "2026-09-19T20:28:07",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B08: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "estimated_duration_s": 30,
+      "new_visual_element": "Composer: the retrieval match, and what it does not prove",
+      "narration_text": "Namaste. This is Liam, narrating for Onkar Bhujbal, a software engineer. Week three of the Provenance Gatekeeper. Last week's retrieval works — it reaches into the vector database and comes back with the right row from the immutable ledger. But look hard at what that actually proves. It proves we found a document. It does not prove the model told the truth about it. A match is a search result. It is not a verdict. Finding is not grading. So this week we built the Evaluation Layer: it categorises the hallucination and hands a structured verdict back to n8n.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "composer-ask",
+        "visual_intent": "The gap the episode closes, performed in the interface: a successful retrieval that answers nothing about truth. Script's Scene 1 terminal becomes the composer — this brand's cold open is always ClaudeComposerAsk (no dark terminals).",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "Cream page, serif greeting 'Namaste, Onkar' above the composer card"
+          },
+          {
+            "at": "0.15",
+            "event": "The question types itself: retrieval matched doc_01 — does that prove the claim?"
+          },
+          {
+            "at": "0.45",
+            "event": "Send arms terracotta; running indicator appears"
+          },
+          {
+            "at": "0.6",
+            "event": "First output line lands: MATCH doc_01, ledger row retrieved"
+          },
+          {
+            "at": "0.75",
+            "event": "Second line lands: that is a search result, not a verdict"
+          },
+          {
+            "at": "0.9",
+            "event": "Third line lands: nothing here compared the claim to the ledger"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Irreducibly Human",
+            "segment": "Finding Is Not Grading",
+            "command": "RETRIEVAL MATCH: \"doc_01\" — does that prove the claim is true?",
+            "runningText": "checking what the match proves…",
+            "output": [
+              "MATCH: doc_01 · ledger row retrieved.",
+              "That is a search result, not a verdict.",
+              "Nothing in this step compared the claim against the ledger."
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-20T00:15:15.638556+00:00"
+          }
+        }
+      },
+      "render_duration_s": 31.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-19T20:28:07"
+      },
+      "actual_duration_s": 30.99,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary (BLUF)",
+      "estimated_duration_s": 12,
+      "lead_silence_s": 0.8,
+      "new_visual_element": "Hesitant writer: the misconception typed, then corrected",
+      "narration_text": "Here is the whole idea in one breath. Retrieval locates a claim; it never judges one. Something separate has to compare the claim against the ledger and name the error. That separate thing is the Evaluation Layer.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "hesitant-writer",
+        "visual_intent": "The episode's actual misconception — that a good retrieval verifies the claim — typed, marked, deleted, and replaced with the claim the body proves. Single-word trigger: the component matches triggerWords per word token, so a phrase never fires.",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "Silence; caret blinks on empty cream page (lead_silence_s 0.8)"
+          },
+          {
+            "at": "0.1",
+            "event": "Line one types: Retrieval verifies."
+          },
+          {
+            "at": "0.25",
+            "event": "'verifies' turns terracotta - the word about to be deleted"
+          },
+          {
+            "at": "0.35",
+            "event": "Deleted and replaced: Retrieval locates."
+          },
+          {
+            "at": "0.5",
+            "event": "Grading judges."
+          },
+          {
+            "at": "0.65",
+            "event": "Two systems."
+          },
+          {
+            "at": "0.8",
+            "event": "Two failure modes. - the corrected claim fills the frame and holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Retrieval verifies.\nGrading judges.\nTwo systems.\nTwo failure modes.",
+            "triggerWords": "verifies",
+            "replacementWords": "locates",
+            "face": "serif",
+            "fontSize": 178,
+            "lineSpacing": 1.3,
+            "align": "center",
+            "seed": "hai-liam-evaluation-layer-b01",
+            "charMs": 5,
+            "mistakeRate": 3,
+            "hesitateBetween": 4,
+            "hesitateWithin": 1
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-19T23:11:44.749832+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 11.82,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 11.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-19T20:28:07"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "the framework",
+      "estimated_duration_s": 22,
+      "new_visual_element": "The variance taxonomy — three axes, each with a worked claim/truth pair",
+      "narration_text": "We grade every output against the Variance Matrix, and the logic must pick exactly one axis. Supported: the claim matches the ledger. Magnitude Error: the direction is right, but the number is hallucinated. Directional Error: the number is close, and the polarity is inverted — growth reported as loss. One claim, one axis, no hedging. That forced choice is the whole design.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "concept-illustration",
+        "visual_intent": "The three axes as stacked rows — the script's art direction — each carrying its rule and a worked claim-versus-truth pair, so the axis is defined by an example, not a label.",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "Row 01 SUPPORTED snaps in: claim and truth agree"
+          },
+          {
+            "at": "0.32",
+            "event": "Row 02 MAGNITUDE snaps in: up 15% against up 12%"
+          },
+          {
+            "at": "0.56",
+            "event": "Row 03 DIRECTIONAL snaps in: down 12% against up 12%"
+          },
+          {
+            "at": "0.80",
+            "event": "Spark line lands: One claim. One axis."
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperTaxonomy",
+          "props": {
+            "sparkLine": "One claim. One axis.",
+            "classes": [
+              {
+                "index": "01",
+                "name": "SUPPORTED",
+                "rule": "Claim matches the ledger.",
+                "claim": "revenue up 12%",
+                "truth": "revenue up 12%"
+              },
+              {
+                "index": "02",
+                "name": "MAGNITUDE",
+                "rule": "Right direction. Wrong size.",
+                "claim": "revenue up 15%",
+                "truth": "revenue up 12%"
+              },
+              {
+                "index": "03",
+                "name": "DIRECTIONAL",
+                "rule": "Right metric. Wrong sign.",
+                "claim": "revenue down 12%",
+                "truth": "revenue up 12%"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-19T21:39:48.392268+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 19.65,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 19.666666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:GatekeeperTaxonomy",
+        "at": "2026-09-19T20:28:07"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ask → result (the ask)",
+      "estimated_duration_s": 7,
+      "new_visual_element": "Composer micro-beat: the prompt that lays out the contract",
+      "narration_text": "So I asked Claude to lay out the contract itself — what n8n sends in, and exactly what the Gatekeeper sends back.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "composer-ask",
+        "visual_intent": "ASK→RESULT LAW: the generated contract figure in B04 is preceded by the actual prompt that produces it.",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "Serif cue lands above the card: 'The contract.'"
+          },
+          {
+            "at": "0.55",
+            "event": "Send arms; runningText 'laying out the contract…'"
+          },
+          {
+            "at": "0.8",
+            "event": "One output line confirms what will be shown"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The contract.",
+            "topic": "Irreducibly Human",
+            "segment": "The Verdict Contract",
+            "command": "Show the claim payload n8n posts in, beside the strict JSON verdict the Gatekeeper returns.",
+            "runningText": "laying out the contract…",
+            "output": [
+              "Rendering both payloads — the claim as received, and the graded verdict as returned."
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-19T21:46:46.156192+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 6.81,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 6.833333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-19T20:28:07"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "worked example",
+      "estimated_duration_s": 22,
+      "new_visual_element": "The verify loop — n8n to FastAPI to ChromaDB to strict JSON verdict",
+      "narration_text": "Here is the contract. n8n posts the claim payload to a FastAPI webhook. The webhook pulls the matching ledger row out of ChromaDB, hands claim and truth to the grader, and the grader must return exactly one axis. It goes back as strict JSON — because the next node branches on a field, not on a sentence.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "concept-illustration",
+        "visual_intent": "The round trip performed: the claim payload enters at n8n, travels the stages, meets the ledger row, and leaves as a graded verdict. The model is nowhere in the loop — it is being graded.",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "The claim payload appears at the n8n node"
+          },
+          {
+            "at": "0.28",
+            "event": "It advances to FastAPI /verify"
+          },
+          {
+            "at": "0.48",
+            "event": "ChromaDB lights; the retrieved ledger row docks below"
+          },
+          {
+            "at": "0.68",
+            "event": "VERDICT node lands — strict JSON returning to the orchestrator"
+          },
+          {
+            "at": "0.85",
+            "event": "Loop holds complete and readable to the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperVerifyLoop",
+          "props": {
+            "sparkLine": "Strict JSON, not prose.",
+            "nodes": [
+              {
+                "label": "n8n",
+                "sub": "ORCHESTRATOR"
+              },
+              {
+                "label": "FastAPI",
+                "sub": "POST /verify"
+              },
+              {
+                "label": "ChromaDB",
+                "sub": "GROUND-TRUTH LEDGER"
+              },
+              {
+                "label": "VERDICT",
+                "sub": "STRICT JSON → n8n"
+              }
+            ],
+            "payload": "\"Q3 revenue decreased 15%\"",
+            "contextLabel": "RETRIEVED GROUND-TRUTH CONTEXT",
+            "contextLine": "doc_01 — actual Q3 growth was 12% · DIRECTIONAL"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-19T21:50:44.961020+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 17.58,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 17.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:GatekeeperVerifyLoop",
+        "at": "2026-09-19T20:28:07"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "falsifiability",
+      "estimated_duration_s": 20,
+      "new_visual_element": "The directional blindspot — one word apart, near-identical to a vector",
+      "narration_text": "So why a dedicated layer, instead of leaning on the similarity search? Because of the directional case. Minus twelve percent and plus twelve percent are almost the same string — vector math scores them as near-identical and passes the claim. The tokens match. The meaning is inverted. Similarity cannot see a sign flip, and a sign flip is the difference between growth and loss.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "concept-illustration",
+        "visual_intent": "The two sentences sit one above the other with only one word differing in colour, and the similarity bar fills almost full underneath — the eye sees why the search passes it.",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "AI CLAIM lands; 'decreased' burns in as the hot word"
+          },
+          {
+            "at": "0.30",
+            "event": "LEDGER line lands beneath it; 'growth' burns in opposite"
+          },
+          {
+            "at": "0.52",
+            "event": "Vector similarity bar fills to near-full — no figure printed"
+          },
+          {
+            "at": "0.72",
+            "event": "Caption: near-identical, metric and figure both match"
+          },
+          {
+            "at": "0.85",
+            "event": "Verdict: similarity cannot see a sign flip"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperDirectionalBlindspot",
+          "props": {
+            "sparkLine": "Same words. Opposite sign.",
+            "claimLabel": "AI CLAIM",
+            "claimText": "Q3 revenue decreased 12%",
+            "claimHot": "decreased",
+            "ledgerLabel": "LEDGER — doc_01",
+            "ledgerText": "Actual Q3 growth was 12%",
+            "ledgerHot": "growth",
+            "simLabel": "VECTOR SIMILARITY",
+            "simValue": "",
+            "simFillTo": 0.94,
+            "simCaption": "near-identical — the metric and the figure both match",
+            "verdict": "SIMILARITY CANNOT SEE A SIGN FLIP",
+            "verdictSub": "the evaluation layer must compute directional polarity"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-19T21:20:41.960473+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 18.88,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 18.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:GatekeeperDirectionalBlindspot",
+        "at": "2026-09-19T20:28:07"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "verdict",
+      "estimated_duration_s": 15,
+      "new_visual_element": "Week three scoreboard — what shipped",
+      "narration_text": "Where week three landed. The grader takes three axes and must choose one. The transport is a FastAPI endpoint. The ground truth is a ledger row. The orchestrator branches on the axis field, not on a sentence. Retrieval finds, grading judges, and they are two different systems with two different failure modes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "scoreboard",
+        "visual_intent": "The week's delivery as a scoreboard the viewer can screenshot — the series' own recap form.",
+        "show": [
+          {
+            "at": "0.12",
+            "event": "GRADER row lands"
+          },
+          {
+            "at": "0.34",
+            "event": "TRANSPORT row lands"
+          },
+          {
+            "at": "0.54",
+            "event": "GROUND TRUTH row lands"
+          },
+          {
+            "at": "0.72",
+            "event": "OUTPUT row lands"
+          },
+          {
+            "at": "0.88",
+            "event": "RESULT fills: GRADING LAYER LIVE"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperScoreboard",
+          "props": {
+            "sparkLine": "Where week three landed.",
+            "rows": [
+              {
+                "key": "GRADER",
+                "value": "evaluate_variance() — 3 AXES, FORCED CHOICE"
+              },
+              {
+                "key": "TRANSPORT",
+                "value": "POST /verify  (FASTAPI)"
+              },
+              {
+                "key": "GROUND TRUTH",
+                "value": "CHROMADB LEDGER ROW"
+              },
+              {
+                "key": "OUTPUT",
+                "value": "STRICT JSON VERDICT → n8n"
+              }
+            ],
+            "finalKey": "RESULT",
+            "finalValue": "GRADING LAYER LIVE"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-19T21:22:29.625774+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.92,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 16.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:GatekeeperScoreboard",
+        "at": "2026-09-19T20:28:07"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "handoff (your turn)",
+      "estimated_duration_s": 28,
+      "new_visual_element": "Your turn — the cURL audit, typed and discussed",
+      "narration_text": "Your turn — audit the endpoint yourself. Post this to your local server: claim id test zero one, generated claim, Q3 revenue decreased fifteen percent. That claim is false; the ledger says revenue grew. Watch two things in the response. First, which axis it picks — it should be directional error, not magnitude. Second, the shape: every field the orchestrator needs, and nothing it has to dig out of a sentence. If the axis comes back wrong, your grader is wrong, and you found it in one request. And if it comes back as magnitude instead of directional, your grader is collapsing a sign flip into a size error — which is the exact bug this layer exists to catch.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "composer-ask",
+        "visual_intent": "HANDOFF LAW: a prompt worth running, typed out, read aloud verbatim and then discussed — what to look for in the response — before the invitation to pause. The script's terminal command block lives here, in the brand's composer.",
+        "show": [
+          {
+            "at": "0.1",
+            "event": "Greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": "0.2",
+            "event": "The cURL command types itself as it is read aloud"
+          },
+          {
+            "at": "0.6",
+            "event": "Send arms; runningText 'run this against your local server…'"
+          },
+          {
+            "at": "0.75",
+            "event": "Expected verdict lands as output: axis DIRECTIONAL_ERROR"
+          },
+          {
+            "at": "0.9",
+            "event": "Second output line: the two figures, on the record"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Irreducibly Human",
+            "segment": "Audit The Endpoint",
+            "command": "curl -X POST \"http://localhost:8000/verify\" -d '{\"claim_id\": \"test_01\", \"generated_claim\": \"Q3 Revenue decreased 15%\"}'",
+            "runningText": "run this against your local server…",
+            "output": [
+              "{\"axis\": \"DIRECTIONAL_ERROR\", \"claim\": -15, \"truth\": +12}",
+              "— inspect the JSON verdict: the axis, and the two figures it was graded on."
+            ],
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-19T21:25:53.095328+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 35.19,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 35.208333333333336,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-19T20:28:07"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "outro",
+      "estimated_duration_s": 10,
+      "new_visual_element": "Title restate — @HumanitariansAI card",
+      "narration_text": "Finding is not grading. Retrieval finds the record; the Evaluation Layer is what judges the claim. That is week three. Liam, for Onkar Bhujbal and Humanitarians AI.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "scene_type": "outro",
+        "visual_intent": "OUTRO LAW: exact title restate, poster serif with the terracotta period, handle beneath, HAI mark full size.",
+        "show": [
+          {
+            "at": "0.1",
+            "event": "HAI mark fades up full size"
+          },
+          {
+            "at": "0.35",
+            "event": "Title restate 'Finding Is Not Grading' with the terracotta period"
+          },
+          {
+            "at": "0.6",
+            "event": "Rule draws; @HumanitariansAI lands beneath"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Finding Is Not Grading",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper · Week 3",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-19T22:32:45.384722+00:00"
+          }
+        }
+      },
+      "render_duration_s": 10.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-09-19T20:28:07"
+      },
+      "actual_duration_s": 10.3,
+      "audio_file": "mp3/beat-B08.mp3"
+    }
+  ]
+}

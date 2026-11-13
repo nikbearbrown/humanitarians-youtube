@@ -4,20 +4,109 @@
 **Project:** Lyrical Literacy  
 **GitHub:** [@rohanvijaykumar](https://github.com/rohanvijaykumar)  
 **Supervisor:** Nina H.  
-**Agreement period:** 11 Aug — 30 Sep 2026
+**Agreement period:** 1 Oct 2026 — 31 Jan 2027 (renewal approved; previous agreement 11 Aug — 30 Sep 2026)
 
-Project Manager for Lyrical Literacy: I coordinate the project and build its onboarding material, the Suno and
-Midjourney tutorial series for new volunteers. I also make two Brutalist videos a week (STEM and progress).
+## Executive summary
 
-**Renewal request:** [RENEWAL.md](./RENEWAL.md) · **Weekly hours:** [HOURS.md](./HOURS.md)
+Project Manager for Lyrical Literacy. I coordinate the project and build its onboarding
+material: the Suno (3 parts) and Midjourney (6 parts) tutorial series and, since 30 Sep, the
+Lyrical Literacy Fellows Handbook (v1.0, item 1 of my renewal plan, delivered a month early).
+I also make two Brutalist videos a week, one STEM and one progress, each in 16:9 and native
+9:16 at 4K, with a Frictional log in every work folder. Next: testing AI video editors for
+Lyrical Literacy (November), then an editing pipeline (by mid-December).
 
-- **Voice:** Kokoro `af_bella`, the same AI narrator on every episode
+## Quick review
+
+- [Renewal request](./RENEWAL.md) (sent 2026-09-28, approved) · [renewal index](./renewal-requests/README.md)
+- [Weekly hours](./weekly-hours/README.md): one file per week · [summary table](./HOURS.md)
+- [Research and project plan](./research-plan.md), with status
+- Latest week: [2026-11-13](#week-of-2026-11-13)
+
+## How this folder is built
+
+- **Voice:** Kokoro `af_bella`, my one narration voice for every episode
 - **Channel chip:** `@HumanitariansAI`
 - **Builder:** `ai-explainer` on the `claude-hai` brand (Pragmatist register)
 
-Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders — narration, beat clips and the 4K masters — go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx) is committed beside it, per the [fellows README](../README.md).
+Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders (narration, beat clips and the 4K masters) go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx, evidence data) is committed beside it, per the [fellows README](../README.md).
 
 Every master is 4K: `./art final <reel>` (3840×2160) and `./art final <reel>/vertical --height 3840` (2160×3840).
+
+## Week of 2026-11-13
+
+Two explainers, one on streaming and one on audio, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built
+on a program I wrote and measured. Both are built in HyperFrames with three.js scenes (3D stages drawn frame by
+frame), the series' first use of three.js. Built Mon 9 – Tue 10 Nov.
+Masters in Drive, [`2026-11-13/`](https://drive.google.com/drive/folders/1-uAjo4J-IYMqy1g1zPEVzG7pNngYFUbn) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-09-weekly-hours.md).
+
+- [How Netflix Streams](./2026-11-13-how-netflix-streams/): the quality ladder, the VMAF score, a ladder per title, the player choosing chunk by chunk, and servers inside your provider, each measured on real encodes and a simulated player (`NetflixStreaming_RohanV.mp4`)
+- [How Spatial Audio Works](./2026-11-13-how-spatial-audio-works/): the timing gap between your ears, your head's shadow, front-or-behind, filters for every direction, head tracking and ear scans, measured on a textbook head model, with a binaural clip to hear on headphones (`SpatialAudio_RohanV.mp4`)
+
+## Week of 2026-11-06
+
+Two tech explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a simulation I wrote and
+measured. The Google Maps video is the series' first built in HyperFrames, in a night-mode look. Built Mon 9 Nov.
+Masters in Drive, [`2026-11-06/`](https://drive.google.com/drive/folders/1B6U2I7MnL4-X35Q-RXDuGdnMHd0Is2f4) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-02-weekly-hours.md).
+
+- [How Spotify Picks Songs](./2026-11-06-how-spotify-picks-songs/): taste numbers from plays and skips, the genres they find on their own, the lean toward hits and cold start, on a recommender I built and tested on a made-up service (`SpotifyRecs_RohanV.mp4`)
+- [How Google Maps Works](./2026-11-06-how-google-maps-works/): GPS, routing, live traffic, arrival times, popular times and bus crowding, each simulated and measured on a city I built (`GoogleMaps_RohanV.mp4`)
+
+## Week of 2026-10-30
+
+Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a program I wrote and
+measured on this series' own narrator voice and caption model, with listening clips. Built Sun 1 Nov. Masters
+in Drive, [`2026-10-30/`](https://drive.google.com/drive/folders/1_qj0XWilWw5mLy8kPWws-jyWFEGN7BOv) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-10-26-weekly-hours.md).
+
+- [How AI Voices Read a Script](./2026-10-30-how-ai-voices-read-a-script/): text clean-up, letters to sounds, and where our narrator misreads (heteronyms, prices, names), tested on its own G2P (`AIVoices_RohanV.mp4`)
+- [How Auto-Captions Find Each Word](./2026-10-30-how-auto-captions-find-each-word/): the spectrogram, word timing and the noise cliff, on Whisper tested with sentences whose true word times are known (`AutoCaptions_RohanV.mp4`)
+
+## Week of 2026-10-23
+
+Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a program I wrote and
+measured, with listening clips. Masters in Drive, [`2026-10-23/`](https://drive.google.com/drive/folders/1AY5DOJuUvMLFiJPpuiCOuQAmDVdbEfGO) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-10-19-weekly-hours.md).
+
+- [How Apps Find a Song's Key](./2026-10-23-how-apps-find-a-songs-key/): chroma, key profiles and the relative-key catch, on a key detector I built and tested on 60 Western songs (`KeyDetection_RohanV.mp4`)
+- [How Noise-Cancelling Headphones Work](./2026-10-23-how-noise-cancelling-headphones-work/): anti-noise, the timing race and why lows cancel and highs don't, on a headphone I simulated and measured (`NoiseCancelling_RohanV.mp4`)
+
+## Week of 2026-10-16
+
+A STEM explainer and a progress update, both 16:9 (3840×2160) and native 9:16 (2160×3840). Masters in
+Drive, [`2026-10-16/`](https://drive.google.com/drive/folders/17pJ6dCN9-GP_vnSmeY3U5a4KKg59V85g) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-10-12-weekly-hours.md).
+
+- [How Apps Find a Song's Tempo](./2026-10-16-how-apps-find-a-songs-tempo/): onsets, autocorrelation and the octave error, on a tempo detector I built and tested on 40 Western grooves, cross-checked against librosa (`TempoDetection_RohanV.mp4`)
+- [Homes of Hope Songs: Proof of Concept Progress](./2026-10-16-homes-of-hope-song-proof-of-concept/): the English + Hindi proof of concept for Lyrical Literacy × Homes of Hope, under 90 s (`HomesOfHopePoC_RohanV.mp4`)
+
+## Week of 2026-10-09
+
+Two STEM explainers this week (no progress video), both 16:9 (3840×2160) and native 9:16
+(2160×3840), each built on a program I wrote and measured, with listening clips. Masters in Drive,
+[`2026-10-09/`](https://drive.google.com/drive/folders/1JXFqKVB5WenIxrkxeeEGG_0JOfO8Z0_b) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-10-05-weekly-hours.md).
+
+- [How Shazam Finds a Song](./2026-10-09-how-shazam-finds-a-song/): spectrogram peaks, hashes and offset voting, on a fingerprinter I built and tested in cafe noise (`SongFingerprinting_RohanV.mp4`)
+- [How AI Music Generators Turn Text Into Audio](./2026-10-09-how-ai-music-turns-text-into-audio/): audio tokens, a codec and a next-token model I built and measured; how the prompt steers (`AIMusicTokens_RohanV.mp4`)
+
+## Week of 2026-10-02
+
+**Submitted late:** built and sent on Monday 5 Oct; I forgot to submit on Friday 2 Oct. One
+STEM explainer and one progress update, both 16:9 (3840×2160) and native 9:16 (2160×3840).
+Masters in Drive, [`2026-10-02/`](https://drive.google.com/drive/folders/1P5rUqd8BM9Y9-MWwsTVTNtMLx_0FmiEe) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-09-28-weekly-hours.md).
+
+- [How Pitch Correction Works](./2026-10-02-how-pitch-correction-works/): detection, snapping and retune speed, on a corrector I wrote and re-measured, with listening clips (`PitchCorrection_RohanV.mp4`)
+- [Writing the Lyrical Literacy Fellows Handbook](./2026-10-02-writing-the-lyrical-literacy-fellows-handbook/): weekly progress: the handbook v1.0, shown through crops of the real document (`FellowsHandbookUpdate_RohanV.mp4`)
 
 ## Week of 2026-09-25
 

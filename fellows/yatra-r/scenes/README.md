@@ -21,6 +21,9 @@ sheets that describe them.
 | `NobodyWroteThis.tsx` / `…916.tsx` | Nobody Wrote This. — kinetic BLUF, three-bin frame, hero stat, platform ladder, disproportion tracks, all-or-nothing bins, opposed-policy collision, pressure axis |
 | `WeekGordy.tsx` / `…916.tsx` | This Week, Gordy. — week-in-one-breath with status chips, five-stage pipeline, tool card, status board, deliverable route, withheld-articles review track, claiming/not-claiming ledger |
 | `InterestMedia.tsx` / `…916.tsx` | Interest Media. — three-claim BLUF, attribution card with rename, feed comparison with signal rail, the post flood, the sorter whose key is swapped mid-beat, gated vs. ungated reach tracks, retired/current job cards, claims-vs-refusals ledger |
+| `TableSides.tsx` / `…916.tsx` | Both Sides of the Table. — two-sided adoption, the hiring table, interview-rate rise, walk-away bar, the two-trust columns (each with its own citation), prompt-injection panel |
+| `MaskSlips.tsx` / `…916.tsx` | The Mask Slips. — the virality spike, the reported payout card, the persona arc, the reveal, the engagement drop, the turn |
+| `AiCitedAuthority.tsx` | Be the Sentence. — results page vs quoted AI answer, reach ring, cited-share columns, blind-spot bracket (label, no number), pillars on the SEO foundation slab, evidence boost bars, 30-day freshness strip, own-site vs third-party split. One component per scene lays out both aspects (registered as `GeoX` and `GeoX916`). |
 | `Root.registrations.tsx` | The `<Composition>` registrations for the above, extracted from the toolkit's shared `Root.tsx`. Not standalone. |
 
 `…916.tsx` files are the 9:16 portrait variants. They are **re-banded, not scaled**: the
@@ -69,6 +72,17 @@ behind it at all:
   `stamp` renders `PARAPHRASED — NOT A QUOTE` directly beneath the attribution.
 - `ItmLimits` **requires** both a `provenance` and a `falsifier` string, so its
   falsifiability beat cannot be authored without telling the viewer how to check the claim.
+
+`TableSides.tsx` adds a discipline the others did not need: **separating figures that
+come from different publishers.** Eight figures from five sources read as one dataset
+unless the components stop them. `TblTrust` therefore requires a source on *each* of its
+two figures and has no shared `source` field — the 26% (Greenhouse) and the 66% (Pew)
+are different studies of different populations and can never be merged into one claim.
+
+`MaskSlips.tsx` enforces **verbatim wording**: every `value` is a string printed as
+supplied, so `roughly 50%` keeps its hedge, `$13,700` is never rounded, and `2.2 million`
+is never expanded. The payout additionally carries a `reported` chip, because that is how
+the source states it.
 
 `AssistedNotAutomated.tsx` inverts this deliberately, because that episode was supplied
 seven verified figures to cite. There, `SeoStat`, `SeoCompare`, `SeoDrop` and `SeoShare`

@@ -1,0 +1,506 @@
+{
+  "metadata": {
+    "title": "How AI Music Generators Turn Text Into Audio",
+    "slug": "ai-music-tokens-explainer",
+    "topic": "HUMANITARIANS AI · AUDIO CONCEPTS",
+    "register": "Pragmatist",
+    "audience": "Humanitarians AI",
+    "brand": "claude",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fps": 30,
+    "presenter": "Rohan V.",
+    "channel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "handoff_name": "AIMusicTokens_RohanV",
+    "ai_disclosure": "Narration is an AI voice (Kokoro af_bella, Rohan V.'s persistent choice for the series); script and decisions by Rohan V.",
+    "note": "Audio/AI explainer: how published music generators work on audio TOKENS. EXECUTABLE EVIDENCE: codec.py builds a residual-vector-quantization codec (MDCT frames, 12 k-means codebooks of 1,024) and a trigram next-token model on synthetic music (synth.py; no copyrighted audio), measures both on unseen music, and generates 6 s per prompt (coarse token predicted, finer tokens filled in); every number and picture in B01-B06 comes from that run (evidence/codec.json, evidence/run.log). B04 and B06 end with listening clips from the same run appended by mix_listen.py. MATH: B03's residual sum and token-rate arithmetic are typeset through runtime/scripts/typeset_math.py. FACTS: week-07/_research/facts.md (Suno's method is UNPUBLISHED and is never described; MusicGen numbers verified against its paper). Opening line follows docs/FELLOWS-SUBMISSION.md verbatim. NAME: narration spells 'Row-Haan'; on-screen text says 'Rohan V.'. No person icons. WORD-CLOCK via cues.json + sync_cues.py; props.durationSeconds written after audio.",
+    "tags": [
+      "Humanitarians AI",
+      "AI music",
+      "audio tokens",
+      "Suno",
+      "MusicGen",
+      "codec",
+      "beginner",
+      "Lyrical Literacy"
+    ],
+    "build": {
+      "at": "2026-10-11T00:50:47",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Row-Haan and this video is about how AI music generators turn text into audio. You type a few words, and a minute later there's a song. Suno hasn't published how its own model works. But many published music generators share one idea: turn sound into tokens, and predict them one at a time, the way a chatbot writes words.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Rohan",
+            "topic": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "segment": "How AI Music Generators Turn Text Into Audio",
+            "command": "How does an AI music generator turn a text prompt into a song?",
+            "runningText": "working it out…",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Claude",
+            "effortLabel": "Desktop",
+            "output": [
+              "squeeze the sound into tokens",
+              "predict the next token, again and again",
+              "let the words tilt each prediction"
+            ],
+            "disclosure": "Narration: AI voice (Kokoro af_bella), script by Rohan V.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "type": 0.2762,
+              "suno": 0.4324,
+              "tokens": 0.7402,
+              "predict": 0.8318
+            },
+            "durationSeconds": 21.12
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 21.12,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 21.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BACKGROUND",
+      "narration_text": "Here's the problem. Digital audio is a long list of numbers, one for every tiny moment. A CD stores forty-four thousand one hundred of them every second, for each ear. A three-minute song is almost sixteen million numbers. That's far too many to predict one by one. So first, the sound has to be squeezed into a much shorter list.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "TokSampleCount",
+          "props": {
+            "title": "Audio Is a Lot of Numbers",
+            "sparkLine": "Sixteen million numbers is too many to predict.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "problem": 0.0,
+              "list": 0.1199,
+              "cd": 0.2933,
+              "song": 0.5186,
+              "many": 0.7033,
+              "squeezed": 0.901
+            },
+            "durationSeconds": 20.57
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 20.57,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 20.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "narration_text": "That's the job of a codec. It cuts the sound into short frames, about a hundredth of a second each. It compares each frame with a codebook: a list of one thousand and twenty-four typical sound shapes, learned from music. Then it writes down only the number of the closest one. That number is a token. A whole frame of sound becomes one number between zero and one thousand and twenty-three.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "TokCodebook",
+          "props": {
+            "title": "A Frame Becomes a Token",
+            "sparkLine": "Find the closest shape. Keep its number.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "codec": 0.0098,
+              "frames": 0.1236,
+              "codebook": 0.2724,
+              "learned": 0.5223,
+              "closest": 0.6417,
+              "token": 0.7175,
+              "range": 0.8846
+            },
+            "durationSeconds": 23.74
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-11T04:30:47.273094+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "actual_duration_s": 23.74,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 23.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:TokCodebook",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MATH",
+      "narration_text": "One guess is rough, so a second codebook codes what the first one missed, and a third codes what's still left. Add the pieces together, and you get closer each time. My codec makes about ninety-four frames a second. With four codebooks, that's three hundred and seventy-five tokens a second: nearly four hundred times less data than a CD.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "TokResidual",
+          "props": {
+            "title": "Each Codebook Fixes the Last One's Error",
+            "sparkLine": "Add the pieces. Get closer each time.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "rough": 0.0,
+              "second": 0.0712,
+              "third": 0.2088,
+              "add": 0.3335,
+              "frames": 0.5699,
+              "four": 0.6589,
+              "cd": 0.8677
+            },
+            "durationSeconds": 20.59
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-11T01:26:37.189140+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "actual_duration_s": 20.59,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 20.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:TokResidual",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MEASURED",
+      "narration_text": "So I built one, and trained its codebooks on thirty-six short pieces of music I generated. Then I coded a piece it had never heard. With one codebook, it's dull and smeared: the treble is down by seventeen decibels. With four, clearer. With twelve, the treble is down by less than six. Listen: one codebook, four, twelve, then the original.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "TokCodecQuality",
+          "props": {
+            "title": "I Built a Codec and Measured It",
+            "sparkLine": "More tokens, closer sound. The treble goes first.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "listen": [
+              {
+                "label": "1 CODEBOOK",
+                "from": 0.5945,
+                "to": 0.6762
+              },
+              {
+                "label": "4 CODEBOOKS",
+                "from": 0.6952,
+                "to": 0.7769
+              },
+              {
+                "label": "12 CODEBOOKS",
+                "from": 0.7959,
+                "to": 0.8775
+              },
+              {
+                "label": "ORIGINAL",
+                "from": 0.8966,
+                "to": 0.9782
+              }
+            ],
+            "cues": {
+              "built": 0.0,
+              "never": 0.1805,
+              "one": 0.2141,
+              "treble": 0.2812,
+              "four": 0.3492,
+              "twelve": 0.3955,
+              "listen": 0.4834
+            },
+            "durationSeconds": 36.75
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-11T02:45:16.814468+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 34,
+      "actual_duration_s": 36.75,
+      "audio_file": "mp3/beat-B04-listen.mp3",
+      "narration_audio_file": "mp3/beat-B04.mp3",
+      "listen_clips": [
+        {
+          "label": "1 CODEBOOK",
+          "file": "codec_01_books.wav",
+          "clip_from_s": 2.0,
+          "start_s": 21.848,
+          "end_s": 24.848,
+          "gain_db": -0.8
+        },
+        {
+          "label": "4 CODEBOOKS",
+          "file": "codec_04_books.wav",
+          "clip_from_s": 2.0,
+          "start_s": 25.548,
+          "end_s": 28.548,
+          "gain_db": -2.1
+        },
+        {
+          "label": "12 CODEBOOKS",
+          "file": "codec_12_books.wav",
+          "clip_from_s": 2.0,
+          "start_s": 29.248,
+          "end_s": 32.248,
+          "gain_db": -2.3
+        },
+        {
+          "label": "ORIGINAL",
+          "file": "original.wav",
+          "clip_from_s": 2.0,
+          "start_s": 32.948,
+          "end_s": 35.948,
+          "gain_db": -2.5
+        }
+      ],
+      "render_duration_s": 36.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:TokCodecQuality",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "PREDICT",
+      "narration_text": "Now the model. A music model reads tokens and guesses the next one. Mine is tiny: it just counts which token tends to follow each pair. On music it had never heard, it guessed the next token right sixteen and a half percent of the time. A blind guess would be right one time in a thousand. That's the whole trick, at a vastly bigger scale: learn what comes next.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "TokNextGuess",
+          "props": {
+            "title": "Guess the Next Token",
+            "sparkLine": "Learning music is learning what comes next.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "model": 0.0,
+              "reads": 0.0836,
+              "tiny": 0.2113,
+              "right": 0.5016,
+              "blind": 0.6673,
+              "trick": 0.8102
+            },
+            "durationSeconds": 21.93
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-11T02:48:01.105423+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "actual_duration_s": 21.93,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 21.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:TokNextGuess",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "THE TEXT",
+      "narration_text": "And the text? In published systems, a text encoder turns your prompt into numbers that tilt every prediction. Meta's MusicGen does this: four codebooks, fifty frames a second, and a text encoder called T5 steering the model. In my toy, the words only pick which music it learned from. Calm piano, then busy drums. Neither is copied: the longest stretch it repeats from its training music is a quarter of a second.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "TokTextSteer",
+          "props": {
+            "title": "The Words Tilt the Odds",
+            "sparkLine": "The prompt steers. It doesn't write the notes.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "listen": [
+              {
+                "label": "CALM PIANO",
+                "from": 0.7325,
+                "to": 0.8451
+              },
+              {
+                "label": "BUSY DRUMS",
+                "from": 0.8648,
+                "to": 0.9775
+              }
+            ],
+            "cues": {
+              "text": 0.0,
+              "encoder": 0.0676,
+              "musicgen": 0.1821,
+              "t5": 0.3361,
+              "toy": 0.4008,
+              "calm": 0.4975,
+              "copied": 0.5679
+            },
+            "durationSeconds": 35.51
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-11T01:47:50.664724+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 34,
+      "actual_duration_s": 35.51,
+      "audio_file": "mp3/beat-B06-listen.mp3",
+      "narration_audio_file": "mp3/beat-B06.mp3",
+      "listen_clips": [
+        {
+          "label": "CALM PIANO",
+          "file": "generated_piano.wav",
+          "clip_from_s": 0.0,
+          "start_s": 26.008,
+          "end_s": 30.008,
+          "gain_db": -6.5
+        },
+        {
+          "label": "BUSY DRUMS",
+          "file": "generated_drums.wav",
+          "clip_from_s": 0.0,
+          "start_s": 30.708,
+          "end_s": 34.708,
+          "gain_db": -4.8
+        }
+      ],
+      "render_duration_s": 35.541666666666664,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:TokTextSteer",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "WHAT TO DO",
+      "narration_text": "So when you prompt Suno for a Lyrical Literacy track, remember: the words shift the odds, they don't write the notes. Generate a few versions and choose. Name the instruments, the mood and the tempo, because those are what the text can steer. And check the treble on headphones: when sound is squeezed into tokens, the high end is the first thing to go.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "HaiApplyCard",
+          "props": {
+            "title": "Prompting Shifts the Odds",
+            "lede": "The model predicts sound one token at a time. Your words steer the guesses.",
+            "steps": [
+              "Generate a few versions, then choose.",
+              "Name the instruments, the mood and the tempo.",
+              "Check the treble on headphones."
+            ],
+            "sparkLine": "Steer, generate, listen, choose.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "odds": 0.1724,
+              "versions": 0.3254,
+              "name": 0.443,
+              "treble": 0.6895
+            },
+            "durationSeconds": 20.69
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-11T01:53:24.255449+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 20.69,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 20.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:HaiApplyCard",
+        "at": "2026-10-11T00:50:47"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Sound becomes tokens, a model predicts the next one, and the words tilt the odds. I'm Row-Haan, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "How AI Music Generators Turn Text Into Audio",
+            "handle": "@HumanitariansAI",
+            "subline": "Rohan V.",
+            "eyebrow": "HUMANITARIANS AI · AUDIO CONCEPTS",
+            "cues": {
+              "close": 0.4293
+            },
+            "durationSeconds": 8.23
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-11T01:56:19.001499+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "actual_duration_s": 8.23,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 8.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-11T00:50:47"
+      }
+    }
+  ]
+}

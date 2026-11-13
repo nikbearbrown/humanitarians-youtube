@@ -64,6 +64,54 @@ measured clock — see that episode's `BUILD-LOG.md`, "REVISION 2".
   topic explainer on quantum AI: the demonstrated wins run the other way — machine
   learning improving quantum error correction, not qubits speeding up pattern
   finding. 11 beats · ~3:49.
+- [2026-10-02 — The Status Is A Claim](./2026-10-02-mycroft-weekly-the-status-is-a-claim/) —
+  weekly work report on `mycroft` @ `8c13b87`, **episode 6**: three questions for
+  any status field, and what it costs to write down the evidence behind one.
+  12 beats · ~3:15.
+- [2026-10-02 — Levels, Not Layers](./2026-10-02-hope-nested-learning/) —
+  topic explainer on HOPE and nested learning. The brief called it a training
+  method; it is an architecture, and the video corrects that on screen.
+  11 beats · ~3:27.
+- [2026-10-09 — Green Because It Wasn't Looking](./2026-10-09-mycroft-weekly-green-because-it-wasnt-looking/) —
+  weekly work report on `mycroft` @ `fbd30b6`, **episode 7**: a conformance check
+  that was passing because of what it never opened — 187 files before, 743 after.
+  12 beats · ~3:38.
+- [2026-10-09 — One Model, Three Numbers](./2026-10-09-small-models-coding-rl/) —
+  topic explainer on small models, coding agents and RL: one model posts four
+  different scores on the same benchmark, and which one gets quoted decides
+  whether it looks state of the art. 11 beats · ~3:31.
+- [2026-10-15 — Two Hundred Percent](./2026-10-15-mycroft-weekly-two-hundred-percent/) —
+  weekly work report on `mycroft` @ `d85106b`, **episode 8**: building the
+  `snickerdoodle` command the recipes always documented, then asking what its
+  first percentages actually mean. 12 beats · ~3:29.
+- [2026-10-15 — Three Things Called Recycling](./2026-10-15-energy-recycling-photonics/) —
+  topic explainer on energy-recycling photonics. The phrase names three different
+  things; the video separates them rather than pretending there is one result.
+  11 beats · ~3:39.
+- [2026-10-22 — It Looked Complete](./2026-10-22-mycroft-weekly-it-looked-complete/) —
+  weekly work report on `mycroft` @ `93485c4`, **episode 9**: three questions for
+  any record that claims something was checked, and a record that looked complete
+  while five fields were absent. 12 beats · ~3:17.
+- [2026-10-22 — Refusal Is One Direction](./2026-10-22-refusal-is-one-direction/) —
+  topic explainer on what "abliteration" actually is. Deliberately
+  non-operational: the practical guidance is defensive, about evaluating a
+  third-party edited model. 11 beats · ~4:22.
+- [2026-10-30 — Unbuilt Is Not Broken](./2026-10-30-mycroft-weekly-unbuilt-is-not-broken/) —
+  weekly work report on `mycroft` @ `6428457`, **episode 10**: a step that was
+  never built is not a step that is broken. 725 findings down to 80 defects, and
+  90 of 97 recipes now clean. 12 beats · ~3:24.
+- [2026-10-30 — Right Answer, Wrong Chain](./2026-10-30-right-answer-wrong-chain/) —
+  topic explainer on process supervision and multi-hop reasoning: a model can
+  reach the right answer through a chain that does not support it, and whether
+  grading the steps actually helps. 11 beats · ~4:12.
+- [2026-11-05 — The Lucky Case](./2026-11-05-mycroft-weekly-the-lucky-case/) —
+  weekly work report on `mycroft` @ `0358ab9`, **episode 11**: a flags field that
+  either crashes cleanly or is silently absorbed — the crash being the lucky one.
+  85 defects down to 5. 12 beats · ~3:25.
+- [2026-11-05 — Likely False, Likely True](./2026-11-05-likely-false-likely-true/) —
+  topic explainer on algorithmic trading: two papers reach opposite conclusions
+  about the same literature, and what survives is the part neither contests.
+  11 beats · ~4:01.
 
 The two 2026-08-27 folders carry a `short/` subfolder: a derivative 1080×1920 cut
 for YouTube Shorts, reusing the parent's audio with only the funnel outro
@@ -81,7 +129,7 @@ closes on "gate 2 cannot clear"; ep 2 resolves two rows of that list; ep 3's
 falsifiability beat lands back on ep 1's frozen corpus; ep 4 closes the ledger
 at six of six steps and finds the same ep-1 defect one level up (a gate with
 nothing to fail). Watch them in order:
-`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e`.
+`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6` → `d85106b` → `93485c4` → `6428457` → `0358ab9`.
 
 **Dual-use note:** *The Gap You Can Actually Close* is a security topic handled
 defensively. It explains what the term names, reports published statistics, and

@@ -1,0 +1,3 @@
+- [x] **First Gate P PASS (draft 1):** signed by Tanmay Kulkarni, 2026-10-16, on the 18-beat / 796-word sheet (`READ-ALOUD-v1-signed.md`). Recorded by Claude on Tanmay's instruction; the read itself is Tanmay's.
+- [x] **Gate P PASS (draft 2):** signed by Tanmay Kulkarni, 2026-10-16, on the 18-beat / 943-word sheet: 12 re-read beats (B02, B04, B06, B07, B08, B09, B12, B13, B15, B16, B17, B18) plus 6 unchanged signed beats (B01, B03, B05, B10, B11, B14). No beats flagged. Recorded by Claude on Tanmay's instruction; the read itself is Tanmay's.
+- Any further narration change voids the sign-off for the beats touched.

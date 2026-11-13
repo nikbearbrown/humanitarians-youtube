@@ -6,7 +6,7 @@
 
 ## What's in this folder
 
-10 work folders, one per report or video:
+24 work folders, one per report or video:
 
 - `2026-08-21-every-image-earns-its-place/` — every image earns its place (2026-08-21)
 - `2026-08-21-model-to-the-bill/` — model to the bill (2026-08-21)
@@ -18,6 +18,20 @@
 - `2026-09-11-what-it-stopped-needing/` — what it stopped needing (2026-09-11)
 - `2026-09-18-what-it-promised-and-what-it-shipped/` — what it promised and what it shipped (2026-09-18)
 - `2026-09-18-what-the-measure-was-hiding/` — what the measure was hiding (2026-09-18)
+- `2026-09-25-the-model-that-doesnt-write-back/` — the model that doesnt write back (2026-09-25)
+- `2026-09-25-the-weights-were-never-the-risk/` — the weights were never the risk (2026-09-25)
+- `2026-10-02-refuse-dont-guess/` — refuse dont guess (2026-10-02)
+- `2026-10-02-the-model-didnt-change-the-world-did/` — the model didnt change the world did (2026-10-02)
+- `2026-10-09-small-enough-to-stay-offline/` — small enough to stay offline (2026-10-09)
+- `2026-10-09-who-is-testing-who/` — who is testing who (2026-10-09)
+- `2026-10-19-inside-the-black-box/` — inside the black box, part 1 (2026-10-19)
+- `2026-10-19-wildlife-beyond-loons/` — seals pass, seabirds wait (2026-10-19)
+- `2026-10-23-inside-the-black-box-part-2/` — inside the black box, part 2 (2026-10-23)
+- `2026-10-23-same-app-new-animal/` — same app, new animal (2026-10-23)
+- `2026-10-30-every-three-seconds/` — every three seconds: Gavia listens for loon calls (2026-10-30)
+- `2026-10-30-every-input-not-just-some/` — every input, not just some: formal verification at scale (2026-10-30)
+- `2026-11-06-same-app-new-plants/` — same app, new plants: Vegnet and the native look-alikes (2026-11-06)
+- `2026-11-06-ten-words-apart/` — ten words apart: a creativity test as a reward (2026-11-06)
 
 ## Frictional log
 

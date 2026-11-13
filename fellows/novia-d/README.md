@@ -1,7 +1,7 @@
 # Novia D.
 
 **Role:** Data Scientist  
-**Project:** _to be filled in_  
+**Project:** Medhavi cancer-textbook fact-check  
 **GitHub:** [@Novia-Dsilva](https://github.com/Novia-Dsilva)
 
 Fellow videos for the Medhavi cancer-textbook fact-check CLI series (Humanitarians AI).
@@ -19,17 +19,19 @@ Greeting on the Claude bookend: **Hello Novia**. Channel handle: **@Medhavy**.
 
 - `2026-08-25-chapter14-fact-check-generation/` — **Video 1.** Fact-Check Generation for cancer textbook Chapter 14 (TME). Four-move workbook: count, split, editorial, reread of the AI-only pile.
 - `2026-08-26-chapter28-fact-check-generation/` — Fact-Check Generation for Chapter 28 (Nanotechnology in Cancer). Same workbook on a new chapter.
-- `2026-09-06-chapter14-json-fix/` — **Video 2 (this week).** One Sentence, Many Sources. Does not replace video 1. After the fact-check, the record moved from a one-row Excel/Markdown workbook to nested JSON `evidence[]`.
+- `2026-09-06-chapter14-json-fix/` — **Video 2.** One Sentence, Many Sources. Does not replace video 1. After the fact-check, the record moved from a one-row Excel/Markdown workbook to nested JSON `evidence[]`.
+- `2026-10-12-factcheck-handoff/` — **The Handoff.** What was added on top of the original prompt, so the next person can run the pipeline. Does not replace videos 1 or 2.
 
-## This week (2026-09-06)
+## Status (as of 2026-10-12)
 
-The sentence-by-sentence fact-check was already done (138 sentences, 46 flagged, 115 evidence entries, approved sites only). This week is the **data-model change** after review with the professor.
+**36 packages done, all current format:** 14, 23, 25, 30, 1, 6, 9, 10, 13, 19, 27, 31, 32, 2, 4, 5, 7, 12, 16, 28, 29, 33, 3, 11, 15, 26, 8, 20, 21, 22, 24, 34, 35, 36, 37, 38
 
-The original workbook was the record: one row per assertion, one **Sites Visited** cell. That works for a single source. The standard became multiple independent sources per claim (usually 2–4, sometimes disagreeing). A spreadsheet row holds one value per column, so sources flattened into that one cell — you could not tell which source produced which verdict. This was not one bad row: **4 / 18 / 21 / 3** assertions had 1 / 2 / 3 / 4 sources. **42 of 46** flagged assertions hit the same wall.
+This week is the **handoff reel**: the eight additions on top of Prof. Evin Gultepe's original prompt (one chapter at a time, bullet = sentence, approved sites only, JSON as the record, one sentence / many sources, four-file package, required AI-Only second read, completeness + classification-bypass), how one sentence moves, and the 36-done count above.
 
-**JSON is the record. The Excel workbook is generated from it.** Nested `evidence[]` keeps one assertion and many evidence entries: sentence and overall verdict stored once; each source keeps its own URL and verdict. Fix a verdict once, regenerate. Rows are a view, not storage. Overall verdict is a judgment, not a vote (assertion 21 Warburg: three CONFIRMED → TRUE; assertion 129: CONFIRMED + OUTDATED → FLAGGED).
+JSON is still the record. The Excel workbook is generated from it. Nested `evidence[]` keeps one assertion and many evidence entries. Overall verdict is a judgment, not a vote. FALSE or FLAGGED always means expert review.
 
-- **Video (16:9 + 9:16):** [Google Drive folder](https://drive.google.com/drive/folders/1VKL-SXi5Zetkg1Os_A3Vd0qVJJQpcZ_C?usp=sharing)
+- **Handoff video (16:9 4K + 9:16 4K):** masters stay local (gitignored). Source in `2026-10-12-factcheck-handoff/`.
+- **Earlier videos (16:9 + 9:16):** [Google Drive folder](https://drive.google.com/drive/folders/1VKL-SXi5Zetkg1Os_A3Vd0qVJJQpcZ_C?usp=sharing)
 - **Methodology report:** [OneDrive](https://1drv.ms/t/c/b194bf3e40fce876/IQDlgwNSfLCQS6huw3mgrwQLAasS39sJQ5Y8qIgUoq4bPGo?e=arpKMk)
 
 Rebuild with the free local toolkit (`git clone https://github.com/nikbearbrown/brutalist.art.git`), then `./art run <episode>`. Masters and mp3s stay local; they are gitignored.

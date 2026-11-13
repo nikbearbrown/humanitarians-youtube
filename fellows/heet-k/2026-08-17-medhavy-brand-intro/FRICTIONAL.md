@@ -62,5 +62,32 @@ thumbnails at small sizes, because I never tested it there. I also do not know
 whether `medhavy-08` was the right hero; I chose it on a contact sheet, not against
 any stated criterion.
 
-*TODO — Heet: if the professor gave specific feedback on the intros during this
-period, append it as a new dated entry below rather than editing this one.*
+*Answered 2026-10-17 — see the entry below.*
+
+---
+
+## 2026-10-17 — the feedback that came back on these intros
+
+> Written 2026-10-17, well after the week it describes. Appended; the entry
+> above stands as written.
+
+The professor did give specific feedback on this first intro set, and I worked
+on it the following week. It was about **length, the use of colour, the
+background**, and similar presentation choices — the surface of the thing
+rather than the concept.
+
+**This is where my palette guess got answered.** The entry above records that no
+brand colour had been specified, so I picked `#15151c` ink and `#2A6FB0` accent
+and wrote them down as a labelled default rather than a decision. Colour use
+coming back as feedback is exactly the correction that note was there to make
+cheap. Writing the guess down as a guess worked — it gave the review something
+explicit to push against instead of something assumed.
+
+**Length too.** The reel ran ~118s across 80 beats, which I had treated as a
+showcase length. For a brand sting that is long, and the feedback said so.
+
+**What I still cannot say precisely** is which specific changes I made in
+response — the revisions happened in the following week and I did not log them
+against this feedback at the time. The result is in
+[Week 14](../2026-09-04-medhavy-brand-outro/), where the intros were confirmed
+final.

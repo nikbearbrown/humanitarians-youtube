@@ -1,5 +1,5 @@
 # Beat Sheet: "Why AI-Generated Code Still Needs a Human Who Understands the System"
-**Creator:** Sai Pranavi Jeedigunta | Film 1 (general-AI-topic series)
+**Creator:** Sai Pranavi J. | Film 1 (general-AI-topic series)
 **Phase:** 2 — BUILD (per PROOF protocol)
 
 ---
@@ -72,8 +72,8 @@ Visual: return to the hook's crash log, now with a checkmark over the corrected 
 VO: "The code that looks right and the code that is right aren't always the same thing. That gap is where you're still the one doing the job."
 
 **7. Sign-off (2:53–2:58)**
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
-VO: "This is Bella, in for Sai Pranavi Jeedigunta, for Humanitarians AI."
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
+VO: "This is Bella, in for Sai Pranavi J., for Humanitarians AI."
 *[Added 2026-08-17 per the fellowship's compliance requirement that videos demonstrably come from the volunteer, matching this fellow's other two videos]*
 
 ---

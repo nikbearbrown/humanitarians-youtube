@@ -1,0 +1,377 @@
+1
+00:00:00,000 --> 00:00:02,327
+Hi — this is Bella, for Chaitanya.
+
+2
+00:00:02,367 --> 00:00:03,100
+A bug report:
+
+3
+00:00:03,567 --> 00:00:05,833
+the Logout button logs nobody out.
+
+4
+00:00:06,300 --> 00:00:08,933
+Every user, every time,
+and only in production.
+
+5
+00:00:09,633 --> 00:00:13,660
+This is the postmortem — what broke,
+and why it was invisible where you'd
+
+6
+00:00:13,700 --> 00:00:14,040
+look.
+
+7
+00:00:14,080 --> 00:00:15,573
+Someone clicks Logout.
+
+8
+00:00:15,613 --> 00:00:16,947
+The page redirects.
+
+9
+00:00:17,147 --> 00:00:18,447
+And they're still signed in.
+
+10
+00:00:19,047 --> 00:00:23,173
+Not a rare edge case, not a flaky one —
+every time, for everyone, on the
+
+11
+00:00:23,213 --> 00:00:23,913
+live site.
+
+12
+00:00:24,547 --> 00:00:27,113
+The button does something;
+it just doesn't do what it says.
+
+13
+00:00:27,430 --> 00:00:28,963
+And here's what makes it interesting.
+
+14
+00:00:29,697 --> 00:00:33,397
+The same code, on a developer's
+laptop, logged out perfectly.
+
+15
+00:00:33,930 --> 00:00:37,497
+It had worked for months, and nothing
+in the logout code had changed.
+
+16
+00:00:37,930 --> 00:00:39,663
+So before you read a line of it:
+
+17
+00:00:39,897 --> 00:00:42,097
+whatever's wrong here
+probably isn't the code.
+
+18
+00:00:42,280 --> 00:00:44,113
+On paper the button did a thorough job.
+
+19
+00:00:44,647 --> 00:00:47,213
+It called the server to
+record that you'd logged out.
+
+20
+00:00:47,747 --> 00:00:51,347
+Then it walked every cookie it could
+see and deleted it — plain domain,
+
+21
+00:00:52,047 --> 00:00:54,347
+parent domain, localhost.
+
+22
+00:00:54,413 --> 00:00:58,613
+Cleared local storage, cleared session
+storage, and redirected you home.
+
+23
+00:00:58,860 --> 00:01:02,387
+What it never did was ask the
+identity provider to actually end the
+
+24
+00:01:02,427 --> 00:01:03,127
+session.
+
+25
+00:01:03,293 --> 00:01:07,087
+It cleaned up every piece of evidence
+that you were logged in, by hand,
+
+26
+00:01:07,127 --> 00:01:09,260
+and assumed that was the same thing.
+
+27
+00:01:09,727 --> 00:01:11,027
+For months, it was.
+
+28
+00:01:11,340 --> 00:01:14,767
+Then the project moved from the
+provider's development setup to its
+
+29
+00:01:14,807 --> 00:01:15,673
+production one.
+
+30
+00:01:16,173 --> 00:01:19,273
+Different infrastructure — and a
+different place to keep the session.
+
+31
+00:01:19,907 --> 00:01:21,673
+Nobody touched the logout code.
+
+32
+00:01:22,307 --> 00:01:23,573
+The ground moved under it.
+
+33
+00:01:23,690 --> 00:01:27,057
+On the development setup the session
+cookie lived on the app's own domain.
+
+34
+00:01:27,923 --> 00:01:31,557
+Page JavaScript could see it,
+so deleting it by hand worked.
+
+35
+00:01:32,057 --> 00:01:35,690
+On production the session lives on a
+different domain — the provider's own
+
+36
+00:01:35,823 --> 00:01:38,557
+— and it's marked HttpOnly.
+
+37
+00:01:38,657 --> 00:01:41,257
+Page JavaScript cannot
+read it or delete it.
+
+38
+00:01:41,623 --> 00:01:43,923
+That's not a bug;
+that's the point of the flag.
+
+39
+00:01:44,523 --> 00:01:47,190
+It's what stops a malicious
+script stealing your session.
+
+40
+00:01:47,410 --> 00:01:51,737
+So the loop ran, deleted everything
+it could reach, reported success — and
+
+41
+00:01:51,777 --> 00:01:54,477
+the one cookie that mattered
+sat there untouched.
+
+42
+00:01:55,110 --> 00:01:57,877
+Reload, and the provider
+helpfully signs you back in.
+
+43
+00:01:58,510 --> 00:01:59,577
+The code wasn't wrong.
+
+44
+00:02:00,243 --> 00:02:02,443
+Its assumption about where
+the session lived was.
+
+45
+00:02:02,660 --> 00:02:04,327
+The fix is one line in spirit:
+
+46
+00:02:04,793 --> 00:02:07,253
+actually call the provider's sign-out.
+
+47
+00:02:07,293 --> 00:02:08,327
+But look at how it's written.
+
+48
+00:02:09,027 --> 00:02:13,353
+The call is raced against a five-second
+timer, and if it loses, the code
+
+49
+00:02:13,393 --> 00:02:14,527
+redirects you anyway.
+
+50
+00:02:15,293 --> 00:02:19,253
+Signing out is a network call to
+someone else's service — if that service
+
+51
+00:02:19,293 --> 00:02:23,087
+is slow, you don't want a user
+stranded on a page that won't let them
+
+52
+00:02:23,127 --> 00:02:23,630
+leave.
+
+53
+00:02:23,670 --> 00:02:27,463
+The cookie loop stayed, by the way —
+it isn't what fixes this, but it's
+
+54
+00:02:27,503 --> 00:02:29,437
+harmless and it covers the local case.
+
+55
+00:02:30,103 --> 00:02:32,037
+And one thing is still live as I record.
+
+56
+00:02:32,703 --> 00:02:33,837
+The fix is on main.
+
+57
+00:02:34,503 --> 00:02:38,063
+The development branch does not have
+it yet, so the next release cut from
+
+58
+00:02:38,103 --> 00:02:40,270
+development would bring
+the bug straight back.
+
+59
+00:02:40,540 --> 00:02:41,707
+Two things to take away.
+
+60
+00:02:42,373 --> 00:02:46,073
+Don't reimplement what a library
+already does, especially security.
+
+61
+00:02:46,773 --> 00:02:50,773
+The manual cleanup looked more thorough
+than one function call; it wasn't,
+
+62
+00:02:51,040 --> 00:02:52,440
+it was more code doing less.
+
+63
+00:02:53,107 --> 00:02:56,967
+And this bug could not be found in
+development — the environments differed
+
+64
+00:02:57,007 --> 00:02:59,840
+in exactly the way the broken
+assumption depended on.
+
+65
+00:03:00,373 --> 00:03:01,807
+That's the dangerous kind.
+
+66
+00:03:02,090 --> 00:03:03,357
+Let's recap with Claude.
+
+67
+00:03:03,923 --> 00:03:07,217
+The button deleted every trace of
+the session it could reach, and never
+
+68
+00:03:07,257 --> 00:03:08,757
+asked the provider to end it.
+
+69
+00:03:09,257 --> 00:03:12,923
+That worked until the session moved
+to a domain the page can't touch.
+
+70
+00:03:13,257 --> 00:03:15,057
+And be precise about what's fixed:
+
+71
+00:03:15,590 --> 00:03:18,423
+logging out always revoked
+textbook access correctly.
+
+72
+00:03:19,057 --> 00:03:22,857
+It was the hub's own session that
+survived, and that half is fixed on main
+
+73
+00:03:23,123 --> 00:03:24,623
+— development is still waiting.
+
+74
+00:03:24,870 --> 00:03:25,570
+Your turn.
+
+75
+00:03:25,837 --> 00:03:26,970
+Take this into Claude:
+
+76
+00:03:27,437 --> 00:03:31,430
+My logout clears cookies and local
+storage by hand instead of calling my
+
+77
+00:03:31,470 --> 00:03:33,497
+auth provider's sign-out.
+
+78
+00:03:33,537 --> 00:03:37,897
+Tell me what that breaks once the
+session cookie is HttpOnly and on the
+
+79
+00:03:37,937 --> 00:03:41,530
+provider's own domain, and what else
+in my app might be assuming state
+
+80
+00:03:41,570 --> 00:03:43,303
+lives somewhere it no longer does.
+
+81
+00:03:43,937 --> 00:03:46,003
+That last clause is the one to push on.
+
+82
+00:03:46,603 --> 00:03:48,703
+This was never really
+a bug about logout.
+
+83
+00:03:48,810 --> 00:03:49,977
+The Logout That Didn't.
+
+84
+00:03:50,343 --> 00:03:52,410
+For Chaitanya and Humanitarians AI.

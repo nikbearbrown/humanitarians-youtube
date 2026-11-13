@@ -1,0 +1,675 @@
+{
+  "metadata": {
+    "slug": "claude-stem-webhooks",
+    "title": "The Polling Problem",
+    "topic": "STEM & AI Architecture",
+    "purpose": "STEM & AI Architecture, Week 9 — event-driven architecture: why polling wastes compute on slow AI work, what a webhook actually is, how one POST fans out through an orchestrator, and the delivery guarantee you give up to get decoupling.",
+    "skill": "ai-explainer",
+    "channel": "claude-stem",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners — engineers wiring slow AI work into responsive systems",
+    "playlist": "STEM & AI Architecture",
+    "source": "Week 9: Webhooks & Event-Driven Architecture — 5-scene script, supplied 2026-10-29.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script's Slack / email / database destinations render as GENERIC labelled panels, never as those products' marks or chrome — a fidelity brand may not wear another product's interface.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "webhooks",
+      "event-driven architecture",
+      "polling",
+      "n8n",
+      "async",
+      "HTTP POST",
+      "idempotency",
+      "AI architecture",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-10-29T21:45:43",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Hi, I am Onkar Bhujbal. If you have two systems that need to talk to each other, the worst thing you can do is have one constantly ask the other for updates. That is polling, and it wastes enormous amounts of compute. Today we are looking at event-driven architecture, and why A.I. applications rely on the don't-call-us-we'll-call-you approach known as webhooks.",
+      "new_visual_element": "Cold open — the cost of asking repeatedly",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'counting the empty replies…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the ratio of useful answers to wasted ones"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names it: THE POLLING PROBLEM"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "STEM & AI Architecture",
+            "segment": "The Polling Problem",
+            "command": "My app asks the model service \"are you done yet?\" every two seconds. Why am I hitting rate limits?",
+            "runningText": "counting the empty replies…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "A 40-second job, polled every 2s → 20 requests.",
+              "19 of them return: not yet.",
+              "THE POLLING PROBLEM."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-30T01:06:34.896490+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The 40s / 2s / 20 requests figures are ARITHMETIC from the script's own framing (it cites AI jobs taking 30 seconds to several minutes), not a measurement of any system. 19 of 20 returning empty follows directly.",
+      "actual_duration_s": 18.39,
+      "render_duration_s": 18.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 12,
+      "lead_silence_s": 0.8,
+      "narration_text": "Polling asks a question over and over until the answer changes. An event tells you once, when it changes. Everything else in this video is a consequence of that one swap.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Ask until the answer changes.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'Ask' goes terracotta, deletes, retypes as 'Subscribe'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Be told once instead.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Ask repeatedly, or be told once.\nOnly one of those scales.",
+            "triggerWords": "Ask",
+            "replacementWords": "Poll",
+            "seed": "webhooks-2026-10-29",
+            "fontSize": 92,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-30T01:40:04.459617+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "fontSize 92 to clear the underfill floor. 'Ask' -> 'Subscribe' is the reel's actual misconception.",
+      "actual_duration_s": 9.75,
+      "render_duration_s": 9.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — PUSH VS PULL",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "In a polling model, the client pulls — pinging the server over and over to see whether the task is finished. But A.I. models can take thirty seconds, or several minutes, to produce an answer. Poll that whole time and you will exhaust your rate limits long before the work completes. A webhook flips it into a push. You hand the server a U.R.L. and say: take your time, POST to this address when you are done.",
+      "new_visual_element": "Twenty requests against one",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the polling log, request after request"
+          },
+          {
+            "at": 0.26,
+            "event": "on 'exhaust your rate limits', the nineteen empty replies highlight terracotta IN PLACE"
+          },
+          {
+            "at": 0.34,
+            "event": "note lands beneath: 19 of 20 carried no information"
+          },
+          {
+            "at": 0.46,
+            "event": "right panel reveals the push registration — one call, then silence"
+          },
+          {
+            "at": 0.72,
+            "event": "ink stamp lands: 1 REQUEST — the client sleeps until told"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Twenty questions, or one answer.",
+            "leftLabel": "PULL — POLLING",
+            "leftText": "GET /status -> not yet\nGET /status -> not yet\nGET /status -> not yet (x19)\nGET /status -> done",
+            "leftHot": "not yet (x19)",
+            "hotNote": "19 of 20 carried no information at all",
+            "rightLabel": "PUSH — WEBHOOK",
+            "code": "POST /jobs\n{\n  \"input\": \"...\",\n  \"callback_url\":\n     \"https://me/hooks/done\"\n}\n\n# then nothing.\n# the server calls you.",
+            "stampText": "1 REQUEST",
+            "stampBlocked": false,
+            "stampSub": "the client sleeps until there is something to say"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-30T01:42:04.256760+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 19.31,
+      "render_duration_s": 19.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "BASK",
+      "act": "SCENE 3 — ASK (open the webhook)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's look at what a webhook actually is on the wire, because the answer is much less impressive than the word makes it sound.",
+      "new_visual_element": "Ask micro-beat — the prompt that shows the raw request",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'dumping the request…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Show me,",
+            "topic": "STEM & AI Architecture",
+            "segment": "Anatomy of a webhook",
+            "command": "Print the exact HTTP request a webhook sends — target, headers, body — with nothing abbreviated.",
+            "runningText": "dumping the request…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BASK.mp4",
+            "at": "2026-10-30T01:11:40.813966+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BASK.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: BASK is the ask, B03 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 7.13,
+      "render_duration_s": 7.166666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BASK.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — THE ANATOMY OF A WEBHOOK",
+      "lane": "remotion",
+      "estimated_duration_s": 22,
+      "narration_text": "A webhook is almost disappointingly simple. It is an automated HTTP POST, triggered by an event. A target U.R.L., a few headers, a JSON body. The sender does not care what you do with it — it fires the payload and forgets. That forgetting is exactly what keeps the two systems decoupled. It is also, as we are about to see, the problem.",
+      "new_visual_element": "The whole thing, on the wire",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the request reveals line by line — target, then headers, then body"
+          },
+          {
+            "at": 0.6,
+            "event": "the signature header lands — the line that proves who sent it"
+          },
+          {
+            "at": 0.78,
+            "event": "the closing note lands: the sender fires and forgets"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "the whole protocol",
+            "code": "POST /hooks/done HTTP/1.1\nHost: your-app.example\nContent-Type: application/json\nX-Signature: sha256=9f2c...   # who sent it\n\n{\n  \"event\": \"job.completed\",\n  \"id\":    \"evt_01HQ…\",\n  \"result\": { \"total\": 4500000 }\n}\n\n# That is the entire mechanism.\n# The sender fires it and forgets.",
+            "sparkLine": "That is all it is."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-30T01:12:36.390406+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The signature header and the event id are shown deliberately: the script's Scene 3 mentions headers and auth in the visual but the VO does not explain them, and both become load-bearing in the falsifiability beat (signature proves the sender, id enables idempotent retries). The request shown is illustrative.",
+      "actual_duration_s": 18.84,
+      "render_duration_s": 18.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — AUTOMATION ENGINES",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "This is why webhooks are the backbone of modern automation. Pair them with an orchestrator like n8n or Zapier and one POST request triggers a cascade — alert the team in chat, email the client, update a database — all at once, all asynchronously, without your main application waiting for any of it.",
+      "new_visual_element": "One payload, three destinations, no waiting",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the payload parks centred above the band — one event, no chain"
+          },
+          {
+            "at": 0.2,
+            "event": "panel 01 CHAT ALERT lights"
+          },
+          {
+            "at": 0.45,
+            "event": "panel 02 CLIENT EMAIL lights — no connector; nothing is handed along"
+          },
+          {
+            "at": 0.68,
+            "event": "panel 03 DATABASE WRITE lights; all three hold, fired in parallel"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: one POST · three actions · zero blocking"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "One event. Three consequences.",
+            "payloadLabel": "one POST",
+            "connectors": false,
+            "readyLine": "one POST · three actions · zero blocking",
+            "stages": [
+              {
+                "index": "01",
+                "name": "CHAT ALERT",
+                "detail": "the on-call channel, within seconds"
+              },
+              {
+                "index": "02",
+                "name": "CLIENT EMAIL",
+                "detail": "fired in parallel, not after"
+              },
+              {
+                "index": "03",
+                "name": "DATABASE WRITE",
+                "detail": "none of them blocks your main app"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-30T01:14:03.940378+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Uses connectors:false — the three destinations fire in PARALLEL, and connectors would assert a sequence the beat denies. Destinations are labelled generically (CHAT ALERT, CLIENT EMAIL) rather than using Slack or Gmail marks: a fidelity brand may not wear another product's chrome, and the point is the fan-out, not the vendor.",
+      "actual_duration_s": 16.41,
+      "render_duration_s": 16.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4b — FALSIFIABILITY (added)",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "So where does this break? The sender forgets. That is the whole design — and it means nobody is tracking whether the message arrived. If your endpoint is down for thirty seconds, that event is simply gone, unless the sender retries. And if it does retry, you may now process the same event twice. Worse: an open webhook U.R.L. accepts a POST from anyone who finds it. Which is why the signature header is not decoration, and why every handler needs an event id it can recognise as a duplicate.",
+      "new_visual_element": "The delivery nobody guaranteed",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 EVENT FIRED lights; the payload enters the band"
+          },
+          {
+            "at": 0.4,
+            "event": "connector draws toward the delivery step"
+          },
+          {
+            "at": 0.56,
+            "event": "on 'that event is simply gone', panel 02 takes the terracotta wash, border and ✕"
+          },
+          {
+            "at": 0.62,
+            "event": "the payload STOPS there — nothing retried it, nothing noticed"
+          },
+          {
+            "at": 0.74,
+            "event": "the mitigations land: verify the signature · retry · dedupe on event id"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Fire and forget. Mostly forget.",
+            "payloadLabel": "an event",
+            "failIndex": 1,
+            "failLine": "verify the signature · retry with backoff · dedupe on event id",
+            "readyLine": "one POST · three actions · zero blocking",
+            "stages": [
+              {
+                "index": "01",
+                "name": "EVENT FIRED",
+                "detail": "the sender POSTs once and moves on"
+              },
+              {
+                "index": "02",
+                "name": "YOU WERE DOWN",
+                "detail": "no retry, no queue, no error anyone sees"
+              },
+              {
+                "index": "03",
+                "name": "YOU FIND OUT",
+                "detail": "never — there is no record that it was sent"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-30T01:15:33.444198+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "BEAT ADDED — the script has no falsifiability scene (HOOK / PUSH VS PULL / ANATOMY / AUTOMATION / TASK). The ai-explainer arc requires one, and the genuine cost of fire-and-forget is that the decoupling which makes webhooks good is the same property that removes any delivery guarantee. Covers all three real consequences: silent loss, duplicate delivery on retry, and forged events against an open URL.",
+      "actual_duration_s": 27.88,
+      "render_duration_s": 27.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So stop burning compute on empty requests. Build systems that react to events instead of waiting for them — and write the handler as though the same event will arrive twice, because one day it will.",
+      "new_visual_element": "The handler the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the handler reveals — signature check first, before anything else"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: stop polling, start pushing"
+          },
+          {
+            "at": 0.78,
+            "event": "the idempotency note lands last — the line most handlers are missing"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "hook.py",
+            "code": "@app.post(\"/hooks/done\")\ndef on_event(req):\n    verify_signature(req)        # first, always\n    if seen(req.json[\"id\"]):     # idempotency\n        return 200               # already handled\n    handle(req.json)\n    return 200\n\n# TASK: stop polling. start pushing.\n\n# Return 200 fast. Do the slow work\n# after — senders time out and retry.",
+            "sparkLine": "Assume it arrives twice."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-30T01:16:27.422157+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The signature check, the idempotency guard and the return-200-fast note are the reel's additions. The script's task is a slogan; these are the three things that separate a webhook handler that works from one that looks like it works.",
+      "actual_duration_s": 11.26,
+      "render_duration_s": 11.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "And here is the prompt worth running against your own handler. Ask a model what happens if the same event arrives three times, out of order, while your database is briefly unavailable. The answer tells you whether you built an event handler or just an endpoint that usually works.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "STEM & AI Architecture",
+            "segment": "The Polling Problem",
+            "command": "Here is my webhook handler. Walk through what happens if the same event is delivered three times, out of order, while my database is briefly down — and tell me which of those cases silently corrupts state rather than erroring.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-30T01:18:34.990600+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 14.59,
+      "render_duration_s": 14.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-29T21:45:43"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Stop asking. Start listening — and assume the message arrives twice, or not at all. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Polling Problem",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · STEM & AI Architecture · Week 9",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-30T01:19:16.074214+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 7.72,
+      "render_duration_s": 7.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-29T21:45:43"
+      }
+    }
+  ]
+}

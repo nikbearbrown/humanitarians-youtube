@@ -1,0 +1,736 @@
+{
+  "metadata": {
+    "slug": "claude-hai-gatekeeper-ground-truth",
+    "title": "The Gatekeeper Needs Ground Truth",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper development log, Week 2 — the ingestion and retrieval engine: the Intercept Framework, a hand-labeled ground-truth corpus, HuggingFace embeddings into ChromaDB, the n8n/FastAPI intercept, and the directional blind spot semantic search cannot close.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners following the Provenance Gatekeeper build",
+    "playlist": "Fellows Research",
+    "source": "G:/Onkar/Week2.md — 'Week 2: Data Ingestion & Orchestration — Video Script', revision 2 (5-scene cut: HOOK / FRAMEWORK / WORKED EXAMPLE / FALSIFIABILITY / SCAFFOLDED TASK). Supplied 2026-09-13.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "color_semantics": "Claude FIDELITY skin throughout — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The source script specifies the dark Brutalist palette (#0A0A0A / #E8452C); that is the nbb/teardown skin, and a claude-explainer may not be retinted (CLAUDE-BRAND.md). The source's INTENT — visible grid, exposed labels, zero border-radius, hard cuts, one accent reserved for the single most important thing — is preserved in the Claude palette. See BUILD-LOG.md D1.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, the engineer whose work this reports — not by the Liam stand-in persona. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice. Chip is @HumanitariansAI. OUTRO-LOCK.md scopes ClaudeTitleOutro to claude-liam / @NikBearBrown reels only, so this reel carries its own card (GatekeeperTitleOutro).",
+    "tags": [
+      "Provenance Gatekeeper",
+      "ChromaDB",
+      "HuggingFace",
+      "vector retrieval",
+      "RAG",
+      "AI hallucination",
+      "n8n",
+      "FastAPI",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-09-13T23:11:04",
+      "cut": "review",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'GatekeeperTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 18,
+      "narration_text": "I am Onkar Bhujbal, a software engineer. When an AI hallucinates a financial claim, you cannot ask the AI to verify it. You have to intercept the claim and cross-reference it against an immutable ledger. This week, we built the ingestion and retrieval engine to do exactly that.",
+      "new_visual_element": "Cold open — the claim, and the question it cannot answer about itself",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar' in serif; the claim types itself into the composer"
+          },
+          {
+            "at": 0.5,
+            "event": "send button arms terracotta; running indicator reads 'asking the thing under test…'"
+          },
+          {
+            "at": 0.72,
+            "event": "three output lines land — the last one names the week's job"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Gatekeeper Needs Ground Truth",
+            "command": "An AI just told me: \"Q3 revenue increased 15%.\" How do I prove it?",
+            "runningText": "asking the thing under test…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "You cannot ask the model — it is the thing under test.",
+              "Intercept the claim. Cross-reference an immutable ledger.",
+              "That is an engineering problem sitting on a data problem."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-14T00:45:32.678388+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 15.66,
+      "render_duration_s": 15.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "narration_text": "The Provenance Gatekeeper doesn't catch hallucinations with intuition. It catches them with receipts — claims checked against a ledger a human labeled. Week two was about building that ledger.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'The Gatekeeper catches hallucinations with intuition.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'intuition' goes terracotta, deletes, retypes as 'receipts'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Data is the hard part.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "The Gatekeeper catches hallucinations with intuition.\nData is the hard part.",
+            "triggerWords": "intuition",
+            "replacementWords": "receipts",
+            "seed": "gatekeeper-ground-truth-2026-09-13",
+            "fontSize": 52,
+            "charMs": 30,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-14T00:46:54.912959+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ONE single-word correction by necessity, twice over: BrutalistHesitantWriter matches whitespace-delimited word cores only, so the SKILL.md's phrase-level correction cannot match; and the ~10.5s audio window only fits ~75 chars of typing plus one delete/retype. intuition->receipts still corrects the SENTENCE and is the reel's actual misconception. Verified on frame: correction lands and the full overview settles before the cut.",
+      "actual_duration_s": 10.5,
+      "render_duration_s": 10.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE FRAMEWORK",
+      "lane": "remotion",
+      "estimated_duration_s": 19,
+      "narration_text": "We grade retrieval systems on the Intercept Framework. First, you need hand-labeled ground-truth data. Second, a mathematical representation of that data — the embedding. Third, a webhook that intercepts live claims and performs a similarity search against the vectors.",
+      "new_visual_element": "The Intercept Framework — three columns, lit in narration order",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 GROUND-TRUTH CORPUS takes the terracotta top rule on 'First'"
+          },
+          {
+            "at": 0.4,
+            "event": "connector draws; panel 02 VECTOR EMBEDDING lights on 'Second'"
+          },
+          {
+            "at": 0.65,
+            "event": "connector draws; panel 03 SEMANTIC INTERCEPT lights on 'Third' and holds"
+          },
+          {
+            "at": 0.85,
+            "event": "mono line lands under the band: THE INTERCEPT FRAMEWORK"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperIngestFlow",
+          "props": {
+            "sparkLine": "The framework, before the code.",
+            "readyLine": "THE INTERCEPT FRAMEWORK",
+            "stages": [
+              {
+                "index": "01",
+                "name": "GROUND-TRUTH CORPUS",
+                "detail": "hand-labeled financial variance notes"
+              },
+              {
+                "index": "02",
+                "name": "VECTOR EMBEDDING",
+                "detail": "a mathematical representation of that data"
+              },
+              {
+                "index": "03",
+                "name": "SEMANTIC INTERCEPT",
+                "detail": "webhook + similarity search on live claims"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-14T02:14:46.692162+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 15.19,
+      "render_duration_s": 15.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:GatekeeperIngestFlow",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — WORKED EXAMPLE (the corpus)",
+      "lane": "remotion",
+      "estimated_duration_s": 18,
+      "narration_text": "Applying the framework. We built a fifty-row evaluation corpus of financial variance notes. Every row pairs a claim against what the ledger actually says, and a human wrote the label in the last column. Doc oh-one: actual Q3 growth was twelve percent.",
+      "new_visual_element": "The evaluation corpus — rows land, VARIANCE fills, counter runs",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "header rule snaps in: ID · CLAIM · LEDGER · VARIANCE"
+          },
+          {
+            "at": 0.15,
+            "event": "rows slide in left-to-right, doc_01 first"
+          },
+          {
+            "at": 0.2,
+            "event": "row counter climbs toward 50+"
+          },
+          {
+            "at": "on the word 'label'",
+            "event": "VARIANCE cells fill terracotta — the one accent moment"
+          },
+          {
+            "at": 0.8,
+            "event": "counter settles at 50+ HAND-LABELED ROWS and holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperCorpusTable",
+          "props": {
+            "sparkLine": "A human wrote that column.",
+            "countTo": 50,
+            "countLabel": "HAND-LABELED ROWS",
+            "rows": [
+              {
+                "id": "doc_01",
+                "claim": "Q3 revenue increased 15%",
+                "ledger": "Actual Q3 growth was 12%",
+                "variance": "MAGNITUDE"
+              },
+              {
+                "id": "doc_02",
+                "claim": "Opex fell quarter on quarter",
+                "ledger": "Opex rose quarter on quarter",
+                "variance": "DIRECTIONAL"
+              },
+              {
+                "id": "doc_03",
+                "claim": "Margin gain driven by pricing",
+                "ledger": "Margin gain driven by mix",
+                "variance": "CAUSAL"
+              },
+              {
+                "id": "doc_04",
+                "claim": "Headcount flat year on year",
+                "ledger": "Headcount flat year on year",
+                "variance": "NONE"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-14T02:16:14.799969+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "doc_01 is verbatim from the source script. doc_02/03/04 are ILLUSTRATIVE rows demonstrating the label classes — not claimed as real corpus entries. Replace with four real rows before publish (SOURCES.md).",
+      "actual_duration_s": 14.7,
+      "render_duration_s": 14.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:GatekeeperCorpusTable",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 3 — ASK (ingest.py)",
+      "lane": "bookend",
+      "estimated_duration_s": 6,
+      "narration_text": "Then the script that turns all of that text into something a machine can search by meaning, instead of by string match.",
+      "new_visual_element": "Ask micro-beat — the generation prompt for ingest.py",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the generation prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'writing ingest.py…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Build,",
+            "topic": "Provenance Gatekeeper",
+            "segment": "ingest.py",
+            "command": "Write ingest.py: chunk the labeled variance CSV, embed each chunk with HuggingFace all-MiniLM, and push the vectors into a local ChromaDB collection.",
+            "runningText": "writing ingest.py…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-14T00:51:59.617222+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: B04 is the ask, B05 is the result (ASK→RESULT LAW — the composer is never shown alone as decoration).",
+      "actual_duration_s": 6.44,
+      "render_duration_s": 6.458333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 3 — RESULT (the code)",
+      "lane": "remotion",
+      "estimated_duration_s": 16,
+      "narration_text": "We chunked the text, ran it through HuggingFace's all-MiniLM model, and pushed it into a local ChromaDB collection. Notice what isn't in here — no fine-tuning, no training run, no GPU. The intelligence in this step is the labeling that already happened.",
+      "new_visual_element": "ingest.py listing (AWAITING REAL SOURCE — slate)",
+      "shot": {
+        "type": "SLATE",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Claude code card opens, traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "ingest.py listing reveals line by line as the voice walks it"
+          },
+          {
+            "at": 0.8,
+            "event": "spark line holds: 'No training. Just filing.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ingest.py",
+            "code": "PIPELINE → fill media/B05.code.txt with the REAL ingest.py\n\n# BLOCKED: the actual ingest.py was not supplied with the source\n# script (Week2.md describes it; the file itself is not on disk).\n# DOUBLE-CHECK LAW forbids inventing a listing and presenting it\n# as the project's code.\n#\n# To fill: paste the real ingest.py into media/B05.code.txt, set\n# this prop from it, and re-render. Trim to ~16 lines — the read\n# path, the encode call, the collection.add call.",
+            "sparkLine": "No training. Just filing."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-14T00:52:58.886481+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-13T23:11:04"
+      },
+      "actual_duration_s": 14.85,
+      "render_duration_s": 14.875
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 3 — WORKED EXAMPLE (the intercept)",
+      "lane": "remotion",
+      "estimated_duration_s": 15,
+      "narration_text": "When our n8n orchestrator fires a webhook to our FastAPI endpoint, the system pulls doc oh-one out of the database and proves the fifteen percent claim is a magnitude error.",
+      "new_visual_element": "n8n → FastAPI /verify → ChromaDB → quarantine chain",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.06,
+            "event": "claim card appears above the chain: \"Q3 revenue increased 15%\""
+          },
+          {
+            "at": 0.12,
+            "event": "node n8n ORCHESTRATOR draws; arrow draws right as the claim card travels"
+          },
+          {
+            "at": 0.3,
+            "event": "FastAPI /verify draws; then ChromaDB SIMILARITY SEARCH"
+          },
+          {
+            "at": 0.62,
+            "event": "retrieved ground-truth line lands with a terracotta rule: doc_01 — actual Q3 growth was 12% · MAGNITUDE"
+          },
+          {
+            "at": "on the words 'magnitude error'",
+            "event": "final node flips to solid terracotta — QUARANTINE / MAGNITUDE ERROR"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperVerifyLoop",
+          "props": {
+            "sparkLine": "Caught before it ships.",
+            "payload": "\"Q3 revenue increased 15%\"",
+            "nodes": [
+              {
+                "label": "n8n",
+                "sub": "ORCHESTRATOR"
+              },
+              {
+                "label": "FastAPI",
+                "sub": "/verify"
+              },
+              {
+                "label": "ChromaDB",
+                "sub": "SIMILARITY SEARCH"
+              },
+              {
+                "label": "QUARANTINE",
+                "sub": "MAGNITUDE ERROR"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-14T02:17:42.630840+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 10.75,
+      "render_duration_s": 10.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:GatekeeperVerifyLoop",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SCENE 4 — FALSIFIABILITY",
+      "lane": "remotion",
+      "estimated_duration_s": 22,
+      "narration_text": "So where does semantic search break? Directional errors. If the AI claims revenue decreased by twelve percent, but the text says it grew by twelve percent, the vector similarity is nearly identical — the numbers and the topics match perfectly. Retrieval alone isn't enough. The downstream evaluation layer has to calculate the directional polarity.",
+      "new_visual_element": "The directional blind spot — high similarity, opposite sign",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "left card lands: AI CLAIM — 'Q3 revenue decreased 12%'"
+          },
+          {
+            "at": 0.2,
+            "event": "right card lands: LEDGER doc_01 — 'Actual Q3 growth was 12%'"
+          },
+          {
+            "at": 0.4,
+            "event": "similarity bar fills almost to full on 'nearly identical' — deliberately unnumbered"
+          },
+          {
+            "at": 0.66,
+            "event": "'decreased' and 'growth' both light terracotta — the ONLY difference between the two vectors"
+          },
+          {
+            "at": 0.78,
+            "event": "terracotta verdict block drops: RETRIEVAL ALONE CANNOT CATCH THIS"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperDirectionalBlindspot",
+          "props": {
+            "sparkLine": "Same words. Opposite sign.",
+            "claimLabel": "AI CLAIM",
+            "claimText": "Q3 revenue decreased 12%",
+            "ledgerLabel": "LEDGER — doc_01",
+            "ledgerText": "Actual Q3 growth was 12%",
+            "simLabel": "VECTOR SIMILARITY",
+            "simCaption": "near-identical — the metric and the figure both match",
+            "verdict": "RETRIEVAL ALONE CANNOT CATCH THIS",
+            "verdictSub": "the evaluation layer must compute directional polarity",
+            "claimHot": "decreased",
+            "ledgerHot": "growth"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-14T03:08:05.715993+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The similarity bar carries NO number. The source says the vectors are 'nearly identical' and publishes no cosine figure, so none is shown (DOUBLE-CHECK LAW).",
+      "actual_duration_s": 18.54,
+      "render_duration_s": 18.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:GatekeeperDirectionalBlindspot",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 15,
+      "narration_text": "So test your own database. Send this exact JSON payload to your local verify endpoint. If ChromaDB does not return the exact ground-truth ledger line, your embedding model is misaligned.",
+      "new_visual_element": "The JSON payload the viewer POSTs to /verify",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the JSON payload reveals line by line as the voice reads the instruction"
+          },
+          {
+            "at": 0.75,
+            "event": "TASK line lands under the block: POST to /verify"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "payload.json",
+            "code": "{\n  \"claim_id\": \"test_1\",\n  \"generated_claim\": \"Q3 Revenue increased 15%\"\n}\n\n# TASK: POST to /verify\n#\n# Expected: ChromaDB returns doc_01 —\n#   \"Actual Q3 growth was 12%\"  ·  MAGNITUDE\n#\n# Anything else and your embedding model is misaligned.",
+            "sparkLine": "Run it against yours."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-14T00:57:03.515069+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 11.67,
+      "render_duration_s": 11.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "And when it comes back wrong, here is the prompt worth running. Take the twenty claims your own tooling produced this week, write the ground-truth line that would settle each one, then label the gap — magnitude, directional, or causal. Then name the class you have no ground truth for at all. That last answer is the one that matters. The class you cannot label is the class your verifier will never catch.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Gatekeeper Needs Ground Truth",
+            "command": "Take the 20 factual claims my tooling produced this week. For each, write the ground-truth line that would settle it, then label the gap: magnitude, directional, or causal. Then tell me which claim type I have no ground truth for at all.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-09-14T00:59:16.643355+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 19.35,
+      "render_duration_s": 19.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-13T23:11:04"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "High-quality, ground-truth data is the absolute foundation of any reliable AI verification engine. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "GatekeeperTitleOutro",
+          "props": {
+            "title": "The Gatekeeper Needs Ground Truth",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper · Week 2",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-09-14T02:20:14.348266+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 9.73,
+      "render_duration_s": 9.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:GatekeeperTitleOutro",
+        "at": "2026-09-13T23:11:04"
+      }
+    }
+  ]
+}

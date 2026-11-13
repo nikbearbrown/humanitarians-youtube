@@ -213,7 +213,7 @@ class B01_ExecSummary(Scene):
         initials.move_to(badge.get_center())
         badge_group = VGroup(badge, initials)
 
-        name = fit(Text("Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=42, weight="BOLD"), 9.0)
+        name = fit(Text("Sai Pranavi J.", color=PALETTE["ink"], font_size=42, weight="BOLD"), 9.0)
         role = fit(Text("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=22), 7.0)
         name_block = VGroup(name, role).arrange(DOWN, buff=0.15)
         header_row = VGroup(badge_group, name_block).arrange(RIGHT, buff=0.4)
@@ -243,12 +243,10 @@ class B01_ExecSummary(Scene):
         self.play(Create(badge), FadeIn(initials), run_time=0.4)
         self.play(FadeIn(name_block, shift=UP * 0.1), run_time=0.5)
         self.play(FadeIn(summary, shift=UP * 0.1), Create(bottom_rule), run_time=0.6)
-        # everything settled well before the mid-beat QC sample point (the
-        # 4 self.play() calls above sum to 1.8s); the remainder is a clean
-        # static hold tuned to the measured 11.04s Kokoro length for B01
-        # (see beat_sheet.json actual_duration_s / BUILD-LOG.md v4 entry) —
-        # 11.04 - 1.8 = 9.24s exact.
-        self.wait(9.24)
+        # retimed 2026-10-20: narration shortened to 10.61s ("Sai Pranavi J."
+        # retrofit, was 11.04s) — shifted this hold by the same -0.43s delta
+        # (was 9.24s).
+        self.wait(8.81)
 
 
 # --------------------------------------------------------------------------- #
@@ -802,7 +800,7 @@ class B07_Close(Scene):
 
 
 # --------------------------------------------------------------------------- #
-# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi Jeedigunta
+# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi J.
 # measured audio: 4.92s (unchanged from v2's B06 — renamed only)
 # v4 (2026-08-25): renamed from B07 -> B08 (new B01 exec-summary beat inserted).
 # --------------------------------------------------------------------------- #
@@ -813,7 +811,7 @@ class B08_BrandOutro(Scene):
         handle = Text("@HumanitariansAI", color=PALETTE["slate"], font_size=34)
         accent = Line(LEFT * 1.6, RIGHT * 1.6, color=PALETTE["gold"], stroke_width=3)
         tagline = fit(Text(
-            "in for Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=20
+            "in for Sai Pranavi J.", color=PALETTE["ink"], font_size=20
         ), 8.0)
         VGroup(handle, accent, tagline).arrange(DOWN, buff=0.35).move_to(ORIGIN)
 
@@ -826,4 +824,6 @@ class B08_BrandOutro(Scene):
             tagline.get_corner(DL) + DOWN * 0.12, tagline.get_corner(DR) + DOWN * 0.12
         )
         self.play(Create(tagline_underline), run_time=0.3)
-        self.wait(3.12)
+        # retimed 2026-10-20: narration shortened to 4.46s ("Sai Pranavi J."
+        # retrofit, was 4.92s) — shifted this hold by the same -0.46s delta.
+        self.wait(2.66)

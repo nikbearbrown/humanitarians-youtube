@@ -1,6 +1,6 @@
 # General-AI-Topic Explainer: Prompt Injection — The Vulnerability Hiding in Plain Text
 
-**Fellow:** Sai Pranavi Jeedigunta
+**Fellow:** Sai Pranavi J.
 **Date:** August 30, 2026
 **Format:** `ai-explainer` (short-form, runtime 147.94s), general AI/STEM topic explainer — distinct from this
 fellow's weekly work-report series (e.g. `2026-08-30-the-update-that-almost-lied-about-what-it-sent/`).
@@ -8,6 +8,11 @@ Same framework-first genre and shape as `2026-08-17-why-ai-generated-code-still-
 (this fellow's closest sibling video).
 **Source status:** General AI/STEM topic explainer, not a report of the fellow's own engineering
 work. Both worked examples are generic and hypothetical — see `FACTCHECK.md`.
+
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=189MxqDMMrj_bmDkBZw3iWzmh2l594dvg)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=12HUPahxANQ_KcICcbMN22jChG8jGlVWC)
 
 This video opens on a silent title card, then teaches a reusable 3-question rubric —
 "Source / Instruction-or-Data / Consequence" — for deciding whether text an AI agent reads from
@@ -85,8 +90,8 @@ for the full diagnostic trail.
 
 ## Deliverables (fellowship naming convention)
 
-- `PromptInjection_SaiPranaviJeedigunta_20260830_16x9.mp4` — copy of the 16:9 master
-- `PromptInjection_SaiPranaviJeedigunta_20260830_9x16.mp4` — copy of the 9:16 short master
+- `PromptInjection_SaiPranaviJ_20260830_16x9.mp4` — copy of the 16:9 master
+- `PromptInjection_SaiPranaviJ_20260830_9x16.mp4` — copy of the 9:16 short master
 
 ## Useful project files
 

@@ -31,7 +31,7 @@ B07_NistEvidence      — NIST FRVT: real gap for most, near-zero for the best; 
 B08_FluencyTrap       — a fluent paragraph and a match score both look certain (FRAMEWORK-CALLBACK)
 B09_WorkedExample     — the lens applied live to a retail loss-prevention case (WORKED-EXAMPLE)
 B10_YourTurn          — a real scaffolded task, not a vague pointer (CTA)
-B11_BrandOutro        — @HumanitariansAI, in for Sai Pranavi Jeedigunta (SIGN-OFF)
+B11_BrandOutro        — @HumanitariansAI, in for Sai Pranavi J. (SIGN-OFF)
 
 Palette: humanitarians (runtime/remotion/src/tokens/humanitarians.ts) —
 this reel uses the hai/Bella persona, not the Claude-branded palette.
@@ -156,7 +156,7 @@ class B01_ExecSummary(Scene):
         self.play(FadeIn(avatar_group, scale=1.15), run_time=0.6)
         self.wait(0.2)
 
-        name = fit(Text("Sai Pranavi Jeedigunta", color=PALETTE["ink"],
+        name = fit(Text("Sai Pranavi J.", color=PALETTE["ink"],
                          font_size=38, weight="BOLD"), 10.5)
         name.next_to(avatar_group, DOWN, buff=0.35)
         self.play(Write(name), run_time=0.7)
@@ -168,7 +168,7 @@ class B01_ExecSummary(Scene):
         self.play(Create(underline), run_time=0.35)
 
         role_chip = RoundedRectangle(width=3.6, height=0.55, corner_radius=0.15,
-                                      fill_color=PALETTE["slate"], fill_opacity=0.18,
+                                      fill_color=PALETTE["slate"], fill_opacity=0.06,
                                       stroke_color=PALETTE["slate"], stroke_width=2)
         role_chip.next_to(underline, DOWN, buff=0.3)
         role_txt = Text("Fellow, Humanitarians AI", color=PALETTE["ink"],
@@ -187,10 +187,10 @@ class B01_ExecSummary(Scene):
         summary = VGroup(summary_line1, summary_line2).arrange(DOWN, buff=0.22)
         summary.next_to(role_chip, DOWN, buff=0.55)
         self.play(Write(summary), run_time=1.1)
-        # tuned to the measured Kokoro duration of mp3/beat-B01.mp3 (11.66s) —
-        # 0.6+0.7+0.35+0.6+1.1 play-time + this wait = 11.66s native runtime,
-        # settled well before the 50% GATE V sample point.
-        self.wait(8.31)
+        # retimed 2026-10-20: narration shortened to 11.06s ("Sai Pranavi J."
+        # retrofit, was 11.66s) — shifted this hold by the same -0.6s delta
+        # (was 8.31s), all preceding play/wait timings unchanged.
+        self.wait(7.71)
 
 
 class B02_EverywhereHook(Scene):
@@ -658,7 +658,7 @@ class B11_BrandOutro(Scene):
 
         handle = Text("@HumanitariansAI", color=PALETTE["slate"], font_size=36)
         accent = Line(LEFT * 1.8, RIGHT * 1.8, color=PALETTE["gold"], stroke_width=3)
-        tagline = Text("In for Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=22)
+        tagline = Text("In for Sai Pranavi J.", color=PALETTE["ink"], font_size=22)
         VGroup(handle, accent, tagline).arrange(DOWN, buff=0.4).move_to(ORIGIN)
 
         tagline_underline = Line(color=PALETTE["sage"], stroke_width=1)
@@ -670,4 +670,6 @@ class B11_BrandOutro(Scene):
             tagline.get_corner(DL) + DOWN * 0.12, tagline.get_corner(DR) + DOWN * 0.12
         )
         self.play(Create(tagline_underline), run_time=0.3)
-        self.wait(2.7)
+        # retimed 2026-10-20: narration shortened to 4.46s ("Sai Pranavi J."
+        # retrofit, was 4.92s) — shifted this hold by the same -0.46s delta.
+        self.wait(2.24)

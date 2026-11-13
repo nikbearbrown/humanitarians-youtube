@@ -49,7 +49,7 @@ for what actually happens when it fails.
 ## Compliance
 
 **RESOLVED 2026-08-17:** B06 sign-off card added ("in for Sai Pranavi
-Jeedigunta"), matching the pattern in this fellow's other two videos and the
+J."), matching the pattern in this fellow's other two videos and the
 fellowship's requirement that videos demonstrably come from the volunteer.
 
 ## Friction protected
@@ -111,7 +111,7 @@ VERDICT: PASS
 Applied three pieces of program feedback: (1) confirmed 4K (3840x2160) —
 this reel was already 4K since v3, re-verified after rebuilding on the
 updated toolkit; (2) added a new **B01 EXECUTIVE SUMMARY** beat right after
-the B00 title card — "Hi, I'm Sai Pranavi Jeedigunta. This video is about
+the B00 title card — "Hi, I'm Sai Pranavi J.. This video is about
 why a fix that looks right isn't always a fix that's actually right — and
 the three questions to ask before you trust one." All prior content beats
 shifted down by one (old B01-B07 -> B02-B08). Act structure above predates

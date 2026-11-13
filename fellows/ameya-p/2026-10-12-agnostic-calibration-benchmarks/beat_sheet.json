@@ -1,0 +1,415 @@
+{
+  "metadata": {
+    "title": "week4 (Oct 12)",
+    "slug": "week4-oct-12",
+    "topic": "FINE-TUNING PLATFORM",
+    "register": "Plain",
+    "audience": "general",
+    "brand": "claude",
+    "persona": "Bella",
+    "engine": "kokoro",
+    "voice": "af_bella",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "greeting": "Hi, Bella",
+    "note": "Week 4 implementation report reel: agnostic model/dataset architecture (rlcd/processing.py & rlcd/models.py) and empirical multi-dataset calibration benchmarks across Typical-small and Decision 1.0.",
+    "tags": [
+      "RLCD",
+      "Decision 1.0",
+      "Typical-small",
+      "Brier score",
+      "ECE calibration",
+      "dataset-agnostic"
+    ],
+    "source_doc": "D:/Ameya/Career/Humanitarians AI/reports/report docs/week4 (Oct 12).md",
+    "build": {
+      "at": "2026-10-16T16:08:46",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": [
+        "B07: palette=claude but the outro is 'TitleRestateOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Last week we proved our R L C D calibration pipeline worked on a single model and dataset. This week, the question is bigger: can we make the pipeline completely model and dataset agnostic, and does calibration hold up across different architectures?",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B00.mp3",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Bella",
+            "topic": "FINE-TUNING PLATFORM",
+            "segment": "week4 (Oct 12)",
+            "command": "Can we make the RLCD pipeline model- and dataset-agnostic, and how do Typical-small and Decision 1.0 perform across four diverse benchmarks?",
+            "runningText": "benchmarking across 4 datasets...",
+            "output": [
+              "auto-inferred choice, score, and noul schemas",
+              "8/8 runs improved Brier score; 7/8 cut ECE",
+              "causal vs. bidirectional head bottleneck identified"
+            ],
+            "folderLabel": "Fine-Tuning Platform"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-16T22:56:38.756938+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.62,
+      "render_duration_s": 16.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-16T16:08:46"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Here is the bottom line. When you attach a proper scoring reward to any decision model, calibration reliably improvesâ€”even when a model's backbone cannot improve raw accuracy. Instead of guessing with ninety percent confidence, an uncertain model learns to admit it is fifty-fifty.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 17,
+      "audio_file": "mp3/beat-B01.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "BrutalistHesitantWriter typing bookend â€” a centered short line on an empty cream ground is the documented canonical sparse-by-design case (final_frame_check.py sparse_by_design_beats docstring)."
+      },
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A pipeline that\nboosts accuracy.",
+            "triggerWords": "boosts accuracy",
+            "replacementWords": "calibrates any\ndecision model",
+            "seed": "week4-oct12-b01",
+            "face": "serif",
+            "fontSize": 160,
+            "lineSpacing": 1.4,
+            "align": "center",
+            "charMs": 16,
+            "jitter": 14,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-16T22:31:52.849719+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 18.75,
+      "render_duration_s": 18.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-16T16:08:46"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "EXHIBIT",
+      "narration_text": "To get there, we rebuilt the ingestion and model layers. Processing dot py now samples any incoming dataset, infers context, options, and target columns, and maps rows into choice, score, or binary noul primitives. Models dot py wraps five different model families under one unified marker-readout interface.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B02.mp3",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "AGNOSTIC ARCHITECTURE",
+            "title": "Any Dataset. Any Decision Model.",
+            "inputLabel": "raw HF dataset",
+            "outputLabel": "calibrated agent",
+            "phases": [
+              {
+                "label": "Auto schema inference",
+                "desc": "Detects context, options & target columns"
+              },
+              {
+                "label": "Primitive mapping",
+                "desc": "Routes to choice, score, or noul"
+              },
+              {
+                "label": "Tokenizer packing",
+                "desc": "Inserts [MASK] / marker_token_id"
+              },
+              {
+                "label": "Unified model wrapper",
+                "desc": "Laya Â· Von Â· Typical Â· Decision 1.0",
+                "accent": true
+              }
+            ],
+            "footerNote": "rlcd/processing.py + rlcd/models.py",
+            "sparkLine": "Zero manual dataset adapters required."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-16T22:34:24.410331+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 20.95,
+      "render_duration_s": 20.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:SkillTeardownPipeline",
+        "at": "2026-10-16T16:08:46"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CONCEPT",
+      "narration_text": "We tested Typical-small and Decision one point zero across four benchmarks: toxic-chat, tweet sentiment, Anthropic H H R L H F, and NexusRaven tool evaluation. On toxic-chat ordinal scoring, both models jumped from under ten percent baseline accuracy to nearly ninety-five percent.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B03.mp3",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "BarChart",
+          "props": {
+            "title": "Toxic-Chat Accuracy (%)",
+            "data": [
+              {
+                "label": "Typical baseline",
+                "value": 1
+              },
+              {
+                "label": "Typical RLCD",
+                "value": 95
+              },
+              {
+                "label": "Decision 1.0 base",
+                "value": 10
+              },
+              {
+                "label": "Decision 1.0 RLCD",
+                "value": 95
+              }
+            ],
+            "accentIndex": 3,
+            "unit": ""
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-16T22:35:12.931042+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 20.33,
+      "render_duration_s": 20.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:BarChart",
+        "at": "2026-10-16T16:08:46"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "TWIST",
+      "narration_text": "But the real story is what happened when accuracy did not move. Typical-small uses a causal Qwen backbone, so our bidirectional marker head created a bottleneck on sentiment and safety pairs. Even with flat accuracy, Brier reward cut calibration error down to half a percentâ€”teaching the model to output honest probabilities.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Calibration vs. Architecture",
+            "terms": [
+              {
+                "term": "8 of 8 runs",
+                "definition": "Improved Mean Brier Score across every model and dataset."
+              },
+              {
+                "term": "0.36% ECE",
+                "definition": "Typical-small calibration error on HH-RLHF despite flat 50% accuracy."
+              },
+              {
+                "term": "Causal bottleneck",
+                "definition": "Marker readout fits bidirectional encoders best; causal models need last-token pooling."
+              }
+            ],
+            "durationSeconds": 18,
+            "startCue": 0.4,
+            "rowGap": 36,
+            "dark": false,
+            "folderLabel": "Fine-Tuning Platform"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-16T22:37:51.795035+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 21.44,
+      "render_duration_s": 21.458333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ClaudeDefinitions",
+        "at": "2026-10-16T16:08:46"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "VERDICT",
+      "narration_text": "That gives us two concrete engineering priorities for next week: first, build architecture-aware decision heads so causal models pool from the final token while masked encoders gather at markers; and second, tune temperature scaling and cross-entropy weights so sharp accuracy jumps never hurt calibration.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B05.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "ClaudeVerdictArtifact is a FIDELITY-brand UI card (CLAUDE-BRAND.md) replicating the real Claude desktop app's artifact window proportions on a cream page â€” it is not meant to fill the frame."
+      },
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "week4 (Oct 12) - next steps",
+            "artifactHeading": "Two engineering priorities",
+            "artifactLines": [
+              "Architecture-aware heads: use last-token pooling for causal backbones (Typical) and bidirectional marker readout for masked encoders (Laya, Decision 1.0).",
+              "Calibration stability: refine post-hoc L-BFGS temperature scaling and balance ce_weight against Brier RL weight on multi-class tasks.",
+              "Full benchmark suite: verify accuracy and ECE together across choice, score, and noul primitives."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-16T23:00:44.118032+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 20.03,
+      "render_duration_s": 20.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-16T16:08:46"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Take your own dataset, run auto prepare dataset, and compare how a causal backbone and a bidirectional encoder calibrate under Brier reward.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 11,
+      "audio_file": "mp3/beat-B06.mp3",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "FINE-TUNING PLATFORM",
+            "segment": "week4 (Oct 12)",
+            "command": "Run auto_prepare_dataset() on a new benchmark and compare Brier score and ECE between a causal model and a bidirectional encoder.",
+            "runningText": "comparing decision heads...",
+            "output": [],
+            "folderLabel": "Fine-Tuning Platform"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-16T23:04:00.978966+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 9.79,
+      "render_duration_s": 9.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-16T16:08:46"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration_text": "Week four: agnostic architecture and multi-dataset calibration benchmarks.",
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "voice_kokoro": "af_bella",
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Title-restate outro card â€” centered title + subline on an empty ground, same minimal density as the locked ClaudeTitleOutro it stands in for (OUTRO-LOCK.md scopes that component to claude-liam reels only)."
+      },
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "TitleRestateOutro",
+          "props": {
+            "title": "week4 (Oct 12).",
+            "subline": "Fine-Tuning Platform"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-16T22:46:12.936322+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 5.1,
+      "render_duration_s": 5.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:TitleRestateOutro",
+        "at": "2026-10-16T16:08:46"
+      }
+    }
+  ]
+}

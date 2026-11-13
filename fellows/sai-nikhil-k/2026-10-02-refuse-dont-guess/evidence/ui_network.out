@@ -1,0 +1,17 @@
+# ui_network — every internet socket the Gavia 0.3.1 process held during the B01 + B05 takes
+# method: 'lsof -nP -i -a -p <pid>' sampled every ~0.3 s from launch to exit (rec/take_batch.sh), 2026-10-02 UTC
+# samples: 407, from 17:56:39.906 to 17:58:39.518 UTC
+# photos checked between 17:57:06 and 17:57:09 UTC (evidence/ui_batch.out / app log)
+
+## samples that showed a socket
+  17:56:40.466  gavia   48099 nikhilkunapareddy   14u  IPv4 0x411e320743fc7494      0t0  TCP 10.0.0.102:60795->140.82.114.4:443 (ESTABLISHED)
+
+## who 140.82.114.4 is
+  gh api meta -> GitHub web/api range: 140.82.112.0/20
+  updater endpoint (tauri.conf.json @ v0.3.1): https://github.com/nikhil-kunapareddy/gavia/releases/latest/download/latest.json
+
+## result
+  one TCP connection, to GitHub :443, seen only in the samples at launch (the update check).
+  no socket at all in any sample while the 25 photos were checked, or afterwards.
+  limit: a socket opened and closed between two samples (~0.3 s) would not be seen.
+  samples taken while the photos were checked (17:57:06–17:57:10 UTC): 14, all empty.

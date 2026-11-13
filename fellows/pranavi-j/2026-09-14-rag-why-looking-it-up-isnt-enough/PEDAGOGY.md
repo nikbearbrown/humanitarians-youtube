@@ -1,6 +1,6 @@
 # PEDAGOGY — self-assessment against PROOF.md
 
-**Film:** "RAG: Why 'Looking It Up' Doesn't Guarantee It's True" — Sai Pranavi Jeedigunta
+**Film:** "RAG: Why 'Looking It Up' Doesn't Guarantee It's True" — Sai Pranavi J.
 **Genre:** framework-first STEM/AI explainer (same register as the closest sibling reel, `2026-08-17-why-ai-generated-code-still-needs-a-human`, which scored 11/12 against this same rubric — cited here for calibration, not as a target to match)
 **Reviewed against:** `PROOF.md` (copied into this folder), self-scored by the builder, not an external reviewer session — flagged here as `[ASSUMPTION: self-scored]` per PROOF's own `/silent` convention.
 

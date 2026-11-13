@@ -162,9 +162,8 @@ class B01_ExecSummary(Scene):
     def construct(self):
         self.camera.background_color = PALETTE["bg"]
 
-        name = fit(Text("Sai Pranavi", color=PALETTE["ink"], font_size=40, weight="BOLD"), 3.6)
-        name2 = fit(Text("Jeedigunta", color=PALETTE["ink"], font_size=40, weight="BOLD"), 3.6)
-        name_grp = VGroup(name, name2).arrange(DOWN, buff=0.12)
+        name = fit(Text("Sai Pranavi J.", color=PALETTE["ink"], font_size=40, weight="BOLD"), 3.6)
+        name_grp = VGroup(name)
         role = fit(Text("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=20), 3.6)
         accent = Line(LEFT * 1.5, RIGHT * 1.5, color=PALETTE["gold"], stroke_width=3)
 
@@ -187,8 +186,9 @@ class B01_ExecSummary(Scene):
             summary.get_corner(DL) + DOWN * 0.12, summary.get_corner(DR) + DOWN * 0.12
         )
         self.play(Create(summary_underline), run_time=0.3)
-        # animation sum = 2.8s; measured narration = 15.60s
-        self.wait(12.80)
+        # retimed 2026-10-20: narration shortened to 15.05s ("Sai Pranavi J."
+        # retrofit, was 15.60s) — shifted this hold by the same -0.55s delta.
+        self.wait(12.25)
 
 
 # --------------------------------------------------------------------------- #
@@ -606,9 +606,8 @@ class B08_BrandOutro(Scene):
 
         handle = fit(Text("@HumanitariansAI", color=PALETTE["slate"], font_size=34), 3.6)
         accent = Line(LEFT * 1.4, RIGHT * 1.4, color=PALETTE["gold"], stroke_width=3)
-        tagline1 = fit(Text("in for Sai Pranavi", color=PALETTE["ink"], font_size=22), 3.6)
-        tagline2 = fit(Text("Jeedigunta", color=PALETTE["ink"], font_size=22), 3.6)
-        tagline = VGroup(tagline1, tagline2).arrange(DOWN, buff=0.08)
+        tagline1 = fit(Text("in for Sai Pranavi J.", color=PALETTE["ink"], font_size=22), 3.6)
+        tagline = VGroup(tagline1)
         # buff solved for (not scaled after) — same fix as B00/B01/B07 above.
         card = arrange_fill_height([handle, accent, tagline], target_h=6.0)
         card.move_to(ORIGIN)

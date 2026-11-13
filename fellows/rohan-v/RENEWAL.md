@@ -1,5 +1,7 @@
 # Renewal request — Rohan V.
 
+> **Status:** approved (reported 2026-10-05); agreement 1 Oct 2026 — 31 Jan 2027. The plan's progress is tracked in [research-plan.md](research-plan.md). The request below is unchanged from what was sent on 2026-09-28.
+
 - **Current agreement:** 11 Aug — 30 Sep 2026
 - **Requested period:** 1 Oct 2026 — 31 Jan 2027
 - **Project:** Lyrical Literacy — Project Manager

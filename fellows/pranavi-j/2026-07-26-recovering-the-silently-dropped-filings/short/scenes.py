@@ -108,19 +108,23 @@ class B01_ExecSummary(Scene):
         self.camera.background_color = PALETTE["bg"]
 
         name = fit(Text(
-            "Sai Pranavi\nJeedigunta", color=PALETTE["ink"], font_size=48,
+            "Sai Pranavi J.", color=PALETTE["ink"], font_size=62,
             weight="BOLD", line_spacing=1.0,
         ))
-        role = Text(
-            "Humanitarians AI Fellow", color=PALETTE["slate"], font_size=24,
-        )
+        role = fit(Text(
+            "Humanitarians AI Fellow", color=PALETTE["slate"], font_size=30,
+        ))
         accent = Line(LEFT * 1.3, RIGHT * 1.3, color=PALETTE["gold"], stroke_width=3)
         summary = fit(Text(
             "Recovering silently-dropped\nSEC and exchange filings",
-            color=PALETTE["ink"], font_size=28, line_spacing=1.0,
+            color=PALETTE["ink"], font_size=34, line_spacing=1.0,
         ))
 
-        VGroup(name, role, accent, summary).arrange(DOWN, buff=0.75).move_to(ORIGIN)
+        # buff raised 0.75->1.15 and font sizes enlarged (2026-10-20): the
+        # "Sai Pranavi J." retrofit shortened `name` from two lines to one,
+        # which dropped real measured canvas-fill coverage below GATE V's
+        # 55% floor (measured 51%) — recovered with bigger type + spacing.
+        VGroup(name, role, accent, summary).arrange(DOWN, buff=1.15).move_to(ORIGIN)
         summary_underline = Line(color=PALETTE["sage"], stroke_width=1)
 
         self.play(FadeIn(name, shift=UP * 0.2), run_time=0.7)
@@ -131,7 +135,10 @@ class B01_ExecSummary(Scene):
             summary.get_corner(DL) + DOWN * 0.12, summary.get_corner(DR) + DOWN * 0.12
         )
         self.play(Create(summary_underline), run_time=0.3)
-        self.wait(11.07)
+        # retimed 2026-10-20: narration shortened to 13.22s after the
+        # "Sai Pranavi J." retrofit (was 13.87s) — 2.8s of animation above,
+        # remaining hold is 10.42s.
+        self.wait(10.42)
 
 
 class B02_CalmDashboard(Scene):

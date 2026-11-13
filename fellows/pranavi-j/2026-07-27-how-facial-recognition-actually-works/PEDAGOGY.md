@@ -54,7 +54,7 @@ policy position" brief.
 
 ## Compliance
 Narration is first-person ("I"), attributed to the fellow by name in the
-sign-off beat (B07: "in for Sai Pranavi Jeedigunta") — per the fellowship's
+sign-off beat (B07: "in for Sai Pranavi J.") — per the fellowship's
 explicit requirement that reports demonstrably come from the volunteer, not
 a generic persona.
 

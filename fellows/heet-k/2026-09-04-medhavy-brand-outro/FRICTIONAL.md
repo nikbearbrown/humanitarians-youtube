@@ -7,7 +7,7 @@
 
 - **Drive:** https://drive.google.com/drive/folders/15BtMVhwD9_A7J0Pt2pc2DHLcuF9RWxl7
 - **Preceding work:** [logo reel and ident](../2026-08-17-medhavy-brand-intro/)
-- **Hours:** 6 hrs this thread — [HOURS.md](../HOURS.md)
+- **Hours:** Week 14 total 20.0 — 6.0 on this thread — [HOURS.md](../HOURS.md)
 
 **What I was working on.** Making the outro counterpart to the now-final intros,
 and sending it into the same review loop.

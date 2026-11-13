@@ -1,9 +1,14 @@
 # Weekly Research Report: The Check That Never Once Fired
 
-**Fellow:** Sai Pranavi Jeedigunta
+**Fellow:** Sai Pranavi J.
 **Week ending:** August 30, 2026
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Source status:** Real engineering work. Every claim traces to `B2-VERIFICATION.md` (2026-08-30) and `logs/RUN_LOG.md`'s 2026-08-30 B2 entry — a live test run against all 5 real regulatory-intel feeds as they existed today, explicitly not a claim about the pipeline's full historical run log. See `SOURCES.md` and `FACTCHECK.md`.
+
+## Watch
+
+- Landscape (4K 16:9): [Drive link](https://drive.google.com/open?id=1BxtUm8agM9_tH3iLNAp52cUdRicCPwWT)
+- Vertical (4K 9:16): [Drive link](https://drive.google.com/open?id=1CG-y6XlwvAXR6-4KMVK8gNWuwXjLepTt)
 
 This ~2-minute AI-generated video asks: **what happens when a safeguard is never actually tested against real input?** It dramatizes a second fix from this week's continued Layer 1 hardening pass on the same regulatory-intel pipeline as the two prior reports: the source classifier had a rule specifically written to catch CFTC filings and route them to a `CFTC Regulations` label — and when tested against every live CFTC item available today, it matched **zero of them**.
 
@@ -27,10 +32,10 @@ The classifier's `identifySource()` heuristic checks whether a feed item's link 
 
 ## Deliverables
 
-- `Mycroft_SaiPranaviJeedigunta_20260830b_16x9.mp4` — 4K (3840x2160) master, 133.32s
-- `Mycroft_SaiPranaviJeedigunta_20260830b_9x16.mp4` — portrait (1080x1920) short, 137.83s
+- `Mycroft_SaiPranaviJ_20260830b_16x9.mp4` — 4K (3840x2160) master, 133.32s
+- `Mycroft_SaiPranaviJ_20260830b_9x16.mp4` — portrait (1080x1920) short, 137.83s
 
-(The `b` suffix disambiguates this video from another Mycroft video already published for the same date, `Mycroft_SaiPranaviJeedigunta_20260830_16x9.mp4`, from a different fix in the same pipeline.)
+(The `b` suffix disambiguates this video from another Mycroft video already published for the same date, `Mycroft_SaiPranaviJ_20260830_16x9.mp4`, from a different fix in the same pipeline.)
 
 <!-- BEGIN BRUTALIST REBUILD GUIDE -->
 

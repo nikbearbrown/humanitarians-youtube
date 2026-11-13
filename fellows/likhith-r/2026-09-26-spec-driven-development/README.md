@@ -1,6 +1,6 @@
 # Spec-Driven Development
 
-**Fellow:** Likhith R. · **Week:** 2026-09-26 · **Builder:** `ai-explainer` on `claude-hai` · **Voice:** Kokoro `am_onyx` (AI narration)
+**Fellow:** Likhith R. · **Week:** 2026-09-21 to 2026-09-27 · **Builder:** `ai-explainer` on `claude-hai` · **Voice:** Kokoro `am_onyx` (AI narration)
 
 A 60-second explainer on why spec-driven development makes AI-assisted coding maintainable: write the spec first, treat it (not the prompt history) as the source of truth, and use it to cut guesswork, review changes, keep context, and catch scope drift.
 
@@ -32,7 +32,7 @@ A 60-second explainer on why spec-driven development makes AI-assisted coding ma
 
 ## Reproduce
 - **Brutalist version/commit and date checked:** nikbearbrown/brutalist.art `6a8380a` (2026-09-20), checked 2026-09-26.
-- **Source commit used for this export:** not committed — `6a8380a` plus local changes: `scenes/SpecDriven.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx` added under `runtime/remotion/src/`, each exported component registered in `Root.tsx` as `<Name>` (1920×1080) and `<Name>916` (1080×1920), and `durationSeconds` hooks added to `ClaudeComposerAsk916`, `BrutalistHesitantWriter916`, `ClaudeVerdictArtifact916`.
+- **Source commit used for this export:** not committed — `6a8380a` plus local changes: `scenes/SpecDriven.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx` added under `runtime/remotion/src/`, each exported component registered in `Root.tsx` twice: under its own name at 1920×1080, and with a `916` suffix at 1080×1920, and `durationSeconds` hooks added to `ClaudeComposerAsk916`, `BrutalistHesitantWriter916`, `ClaudeVerdictArtifact916`.
 - **Beat sheet and custom scene files:** `beat_sheet.json` (16:9), `vertical/beat_sheet.json` (9:16), `scenes/SpecDriven.tsx`, `scenes/JevExplainer.tsx`, `scenes/HaiOutro.tsx`.
 - **Commands** (toolkit root, Python 3.12 venv, MacTeX on PATH; reel at `youtube/brutalist/claude-hai-spec-driven-development/`):
   ```bash

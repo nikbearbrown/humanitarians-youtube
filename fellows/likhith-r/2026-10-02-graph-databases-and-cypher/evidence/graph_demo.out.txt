@@ -1,0 +1,12 @@
+kuzu 0.11.3
+MATCH (a:Person {name: 'Ana'})-[:FRIENDS_WITH]->(b:Person) RETURN b.name ORDER BY b.name
+  -> [['Ben'], ['Cai']]
+MATCH (a:Person {name: 'Ana'})-[:FRIENDS_WITH*3]->(c:Person) RETURN DISTINCT c.name
+  -> [['Fay']]
+sqlite 3.53.2
+SELECT DISTINCT p.name FROM friendships f1
+JOIN friendships f2 ON f2.person_id = f1.friend_id
+JOIN friendships f3 ON f3.person_id = f2.friend_id
+JOIN people p ON p.id = f3.friend_id
+WHERE f1.person_id = (SELECT id FROM people WHERE name = 'Ana')
+  -> [('Fay',)]

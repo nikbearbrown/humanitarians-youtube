@@ -142,7 +142,7 @@ class B01_ExecSummary(Scene):
     def construct(self):
         self.camera.background_color = PALETTE["bg"]
 
-        name = fit(Text("Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=60, weight="BOLD"), 11.0)
+        name = fit(Text("Sai Pranavi J.", color=PALETTE["ink"], font_size=60, weight="BOLD"), 11.0)
         role = Text("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=30)
         # accent span widened 2.2->4.0 each side (8.0 total, ~63% of the
         # 12.6 safe width) — canvas-fill is a bbox AREA ratio, so a narrow
@@ -175,8 +175,9 @@ class B01_ExecSummary(Scene):
             summary.get_corner(DL) + DOWN * 0.12, summary.get_corner(DR) + DOWN * 0.12
         )
         self.play(Create(summary_underline), run_time=0.3)
-        # animation sum = 2.8s; measured narration = 15.60s
-        self.wait(12.80)
+        # retimed 2026-10-20: narration shortened to 15.05s ("Sai Pranavi J."
+        # retrofit, was 15.60s) — shifted this hold by the same -0.55s delta.
+        self.wait(12.25)
 
 
 # --------------------------------------------------------------------------- #
@@ -644,7 +645,7 @@ class B07_Statement(Scene):
 
 
 # --------------------------------------------------------------------------- #
-# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi J..
 # Very short beat (1.51s measured — narration is just "Explained with Claude
 # Code."), so the card lands in two quick beats rather than a staged reveal.
 # --------------------------------------------------------------------------- #
@@ -658,7 +659,7 @@ class B08_BrandOutro(Scene):
         # combination clears it, same fix the sibling reel's own B08 used.
         handle = Text("@HumanitariansAI", color=PALETTE["slate"], font_size=92)
         accent = Line(LEFT * 3.2, RIGHT * 3.2, color=PALETTE["gold"], stroke_width=3)
-        tagline = fit(Text("in for Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=46), 9.7)
+        tagline = fit(Text("in for Sai Pranavi J.", color=PALETTE["ink"], font_size=46), 9.7)
         VGroup(handle, accent, tagline).arrange(DOWN, buff=2.4).move_to(ORIGIN)
 
         tagline_underline = Line(color=PALETTE["sage"], stroke_width=1)

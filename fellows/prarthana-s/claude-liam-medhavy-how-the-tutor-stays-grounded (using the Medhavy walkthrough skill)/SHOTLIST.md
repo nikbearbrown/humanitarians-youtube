@@ -1,132 +1,76 @@
 # SHOTLIST.md — How the Tutor Stays Grounded in Your Textbook
 
 - **Skill:** `medhavy-walkthrough`, textbook mode, book "Cancer textbook" (cancer.medhavy.com), **admin account**.
-- **Voice:** Kokoro `am_onyx` (Liam), AI narration.
-- **Target:** about 180 s.
-- **Narration:** 451 words at base. The budget is 430–460 once conditionals are resolved (see "Word budget").
+- **Voice:** Kokoro `am_onyx` (Liam), AI narration. 434 words in landscape, 431 in vertical (B11 wording differs).
+- **Runtime:** 167.93 s for both versions (shared narration clock).
 
-**Status: PLANNED.** Windows are TBD until capture. "Est." is the narration estimate. Footage windows are longer, and the gaps are silence so the UI can breathe.
+**Status: FINAL / LOCKED (2026-09-29).**
+- The windows below are the frame-exact cuts used in the finals.
+- Landscape windows come from `beat_sheet.json`; vertical windows come from `vertical-windows.json`.
+- Footage windows are longer than their narration, and the gaps are silence so the UI can breathe.
 
 ## Beats
 
-| Beat | Act | Lane | Source | Est. | On screen | Gates / V-checks |
-|---|---|---|---|---|---|---|
-| B00 | INTRO | Remotion `ClaudeComposerAsk` | — | 10 s | Central question; "AI narration (Kokoro am_onyx)" running text | — |
-| B01 | QUESTION | Remotion `BrutalistHesitantWriter` | — | 12 s | "The sources **prove** the answer." → "…**supply context for**…" | — |
-| B02 | BODY | **SCREEN** | run-signin | 5 s | Sign-in card, signed out, nothing typed | — |
-| B03 | BODY | **SCREEN** | run-book (hub tab) | 9 s | Admin Dashboard (name masked) → View All Textbooks → Cancer textbook → Open Textbook → new tab | R1 |
-| B04 | BODY | **SCREEN** | run-book-p2 (book tab) | 6 s | Sidebar "5. Oncogenes" → "5.1 Introduction to Oncogenes" | — |
-| B05 | BODY | **SCREEN** | run-book-p2 | 5 s | Open AI chat: "Ask this textbook", chips, footer | M1, V10 |
-| B06 | BODY | **SCREEN** | run-book-p2 | 10 s | Question typed live and sent; "AI is thinking…"; cards arrive | V1, V5 |
-| B07 | BODY | **SCREEN** | run-book-p2 | 7 s | Answer streams under the cards (mostly un-narrated) | V8 |
-| B08 | BODY | **SCREEN**, *only if V2* | run-book-p2 | 4 s | "Dive deeper into all sources (N)" expands | V2 |
-| B09 | BODY | **SCREEN**, *only if V3* | run-book-p2 | 8 s | Card → textbook page; panel closed; On-this-page link to the section; silent hold on the passage | V3, V4 |
-| B10 | MECHANISM | Remotion **`GroundingFlow`** (local to this folder, not yet built) | — | 21 s | Six plain steps light in turn: question → search the textbook → relevant passages → given to the model as context [passages · tutor instructions · recent conversation] → answer → you inspect the passages | — |
-| B11 | BODY | **SCREEN** | run-book-p2 | 14 s | Follow-up typed live (not read aloud); reply and cards, or none; answer streams | V6 |
-| B12 | BODY | **SCREEN** | run-book-p2 | 6 s | Hold; footer "AI can make mistakes. Please verify important information." | V9 |
-| B13 | VERDICT | Remotion `ClaudeVerdictArtifact` | — | 17 s | "Grounded, Not Guaranteed." | — |
-| B14 | NEXT STEPS | Remotion `ClaudeComposerAsk` | — | 9 s | Your Turn | — |
-| B15 | OUTRO | Remotion `ClaudeTitleOutro` | — | 6 s | Spoken title + "At Nik Bear Brown"; no jingle (skill-required, decided) | — |
+| Beat | Act | Dur. | Landscape source (window, s) | Vertical source (window, s) | On screen |
+|---|---|---|---|---|---|
+| B00 | INTRO | 11.73 | Remotion `ClaudeComposerAsk` | `ClaudeComposerAsk916` | Central question; "AI narration (Kokoro am_onyx)" running text |
+| B01 | QUESTION | 10.87 | Remotion `BrutalistHesitantWriter` | `BrutalistHesitantWriter916` (card removed, 165 px line) | "The sources **prove** the answer." → "…**supply context for**…" |
+| B02 | BODY | 5.50 | `run-signin` [13.5, 19.0] | `run-signin` [13.5, 19.0] · "Signed in off camera" | Sign-in card, signed out, nothing typed |
+| B03 | BODY | 9.50 | `run-book` hub tab [5.5, 15.0] | `run-portrait` hub tab [3.0, 12.5] · "The textbook shelf" | Admin Dashboard (header "Admin account") → View All Textbooks → Cancer textbook → Open Textbook |
+| B04 | BODY | 4.80 | `run-book-p2` [9.0, 13.8] | `run-portrait-p2` [9.9, 14.7] · "Chapter 5 · Oncogenes" | Sidebar "5. Oncogenes" → "5.1 Introduction to Oncogenes" |
+| B05 | BODY | 13.70 | `run-book-p2` [13.8, 27.5] | `run-portrait-p2` [14.7, 28.4] · "Ask this textbook" | Panel opens; chips from the page title; question typed |
+| B06 | BODY | 9.00 | `run-book-p2` [27.5, 36.5] | `run-portrait-p2` [28.4, 37.4] · "Retrieved passages" | "AI is thinking…"; cards + "Dive deeper (10)" arrive just before the answer text |
+| B07 | BODY | 4.20 | `run-book-p2` [36.5, 40.7] | `run-portrait-p2` [37.4, 41.6] · "The answer" | Answer under the cards |
+| B08 | BODY | 5.40 | `run-book-p2` [40.7, 46.1] | `run-portrait-p2` [41.6, 47.0] · "All ten sources" | "Dive deeper (10)" expands; ends before the 5.4 page loads |
+| B09 | BODY | 17.90 | `run-book-p2` [46.1, 64.0] | `run-portrait-p2` [47.0, 64.9] · "Open a source" | 5.4.2 card → 5.4 → "On this page" → 5.4.2 section and figure |
+| B10 | MECHANISM | 17.13 | Reel-local `GroundingFlow` | Reel-local `GroundingFlow916` (via `pantry/B10-916.mp4`) | Six plain steps: question → search → relevant passages → given to the model as context (passages · tutor instructions · recent conversation) → answer → you inspect |
+| B11 | BODY | 22.00 | `run-book-p2` [75.0, 97.0] | `run-portrait-p2` [73.8, 95.8] · "A follow-up" | Follow-up typed; new cards (Angiopoietin, Two-Hit) + "Dive deeper (10)". Landscape also shows the reply building on the first answer. |
+| B12 | BODY | 6.67 | `run-book-p2` [97.0, 103.65] | `run-portrait-p2` [95.8, 102.467] · "The site's own warning" | Footer "AI can make mistakes. Please verify important information." |
+| B13 | VERDICT | 18.10 | Remotion `ClaudeVerdictArtifact` | `ClaudeVerdictArtifact916` | "Grounded, Not Guaranteed." |
+| B14 | NEXT STEPS | 6.13 | Remotion `ClaudeComposerAsk` | `ClaudeComposerAsk916` | Your Turn |
+| B15 | OUTRO | 5.30 | Remotion `ClaudeTitleOutro` | `ClaudeTitleOutro916` | Spoken title + "At Nik Bear Brown"; no jingle |
 
-- **SCREEN (real Medhavy footage):** B02–B09, B11, B12. That is 10 beats, 2 of them conditional.
-- **Remotion:** B00, B01, B10, B13, B14, B15.
+**Real Medhavy footage:** B02–B09, B11 and B12, 10 beats in each version. B08 and B09 were conditional in the plan; both were confirmed live and kept.
 
-## Landscape strategy (16:9, 3840×2160)
+**Remotion:** B00, B01, B10, B13, B14, B15.
+
+## Landscape strategy (16:9, 3840×2160), as executed
 
 1. **The real product is the evidence.**
    - Footage beats are full-bleed native 4K captures (1600×900 CSS at DPR 2.4), `treatment: none`.
-   - No zooms, re-timing or overlays on product footage.
-   - The site's own UI text carries the evidence.
+   - No zooms, re-timing or overlays.
+   - `qc.full_bleed: true` is declared for these beats.
 2. **Breathing room.**
-   - The narration is shorter than each footage window.
-   - The silence falls where the UI is doing something: typing, "AI is thinking…", the stream, the page load, the passage hold.
-   - Cut frame-exact. Pad the narration with silence, never stretch it.
-   - End each window at its last screenshot, before the next navigation, so no white load frame shows.
-3. **Hub as front door only.** B03 stays on the Admin Dashboard for just the click path, about 9 s.
-4. **Remotion only where the browser can't show it:**
-   - intro
-   - misconception
-   - how it works (`GroundingFlow`, the only new scene)
-   - verdict
-   - Your Turn
-   - outro
-5. **QC gates:**
-   - The name mask holds on every hub frame (R1).
-   - The footer warning is legible in B05 and B12.
-   - Card text is checked on a 4K contact sheet.
-   - The last frame of B01 shows the correction.
-6. **Conditional beats.**
-   - If V2 or V3 fail, B08 or B09 are dropped, not faked, and the Verdict's "Observed" line says what was seen.
-   - If production contradicts the code (for example cards never appear), the story is revised from the footage.
+   - Narration is shorter than each window and padded with silence, never stretched.
+   - Windows end before the next navigation. B08 ends at 46.1 s, one frame before the 5.4 page switches in.
+3. **Hub as front door only.** B03 is 9.5 s of click path.
+4. **Remotion only where the browser can't show it:** intro, misconception, how it works (`GroundingFlow`), verdict, Your Turn, outro.
+5. **GroundingFlow** is drawn in ink, not terracotta, so it passes GATE T §8.3 contrast.
+6. **Result:** exported with `./art final`. GATE T PASS; Gate V 0 BLOCKER / 0 MAJOR (QC-REPORT.md).
 
-## Vertical strategy (9:16, 2160×3840): a separate composition
+## Vertical strategy (9:16, 2160×3840), as executed
 
-The vertical version is its **own beat sheet and its own layouts**.
+The vertical is its **own beat sheet and its own layouts**. It is never a squeeze or crop of the landscape master.
 
-- **Not allowed:** squeezing or cropping the finished landscape master.
-- **Not assumed:** that landscape framing stays legible on a phone.
-- **Kept:** the same beats, in the same order, with the same claims and narration audio, and the same outro.
+- **Kept from landscape:** the same beats, order and claims. Only B11 differs, to match the portrait footage.
+- **Source footage:** a dedicated portrait-friendly capture, `run-portrait` (1280×720 CSS at DPR 3, native 3840×2160).
+  - It ran after the landscape capture was reviewed and after `run-portrait-test` passed.
+  - `run-signin-916src` was not run, so B02 reuses the landscape `run-signin` capture.
+- **`PanelFocus916`** (reel-local) plays a frame-exact window of the raw capture at real speed. It frames a region under a caption band; captions only label what is on screen.
+  - **Framing rule:** no text line may cross a crop edge.
+  - **Panel beats** (B05–B08, B11) show only the tutor-panel column, source x 2580–3840, via `clipX`.
+  - **B04** shows only the sidebar column (x 0–802).
+  - **B03** fits the whole hub page.
+  - **B09** fits the content column, then widens to the full page with the figure.
+- **`GroundingFlow916`** (reel-local): six steps stacked vertically, with every text run at or above the GATE T §8.1 floor (Inter 68 / EB Garamond 90).
+  - Step numbers are removed; the connectors carry the order.
+  - The pills wrap to two rows.
+  - The side note is omitted because it can't fit the title-safe box at the floor size. B05's narration carries that point.
+- **Bookends:** the registered portrait scenes. For B01, the small "What I Checked" card is removed and the line enlarged, in the vertical only.
+- **Result:** exported with a direct `compile.py --height 3840`, not `./art final`.
+  - GATE T fails only on **B15**, the locked `ClaudeTitleOutro916` handle (49 px vs 72 px floor). It was checked by eye at phone width and is readable.
+  - B01 and B13 carry `qc.sparse_by_design` underfill waivers.
+  - Gate V: 0 BLOCKER / 0 MAJOR.
+  - Details in QC-REPORT.md.
 
-**Source footage (decided 2026-09-23: option B).** The vertical is built from a **dedicated portrait-friendly capture**:
-- `run-portrait`: 1280×720 CSS at DPR 3, recorded natively at 3840×2160.
-- `run-signin-916src`: an optional sign-in card at the same settings.
-
-It runs **after** the landscape capture has been reviewed, and only if the layout test `run-portrait-test` passes (CAPTURE.md). Each beat is composed from these raw captures, never from the landscape master.
-
-**Useful geometry (device px in the capture):**
-
-| Element | Landscape pass (1600×900 @2.4) | Portrait-source pass (1280×720 @3) |
-|---|---|---|
-| Tutor panel | about 1008 × 2160 | about 1260 × 2160 |
-| One source card | about 432 × 264 | about 540 × 330 |
-| Card body text | about 24 px | about 30 px |
-| Answer text | about 34 px | about 42 px |
-| Upscale to fill 2160 px portrait width with the panel | about 2.1× | **about 1.7×** |
-
-**The portrait take is a different tutor session.** It gets new answer wording and possibly different cards. So the vertical narration may only claim what the portrait footage itself shows. Every promoted conditional (V1, V2, V3, V4, V6) is re-checked against `run-portrait`. If a behaviour doesn't reappear, that line is dropped or reworded for the vertical. The facts and their order stay the same as the landscape.
-
-**Layouts (all reel-local, to be authored later; brutalist.art is not modified):**
-
-- `PanelFocus916`: plays a keyframed crop region of the raw capture, with a native-rendered caption band above or below.
-  - The caption names the step ("The question", "Retrieved passages", "Open a source", "The warning").
-  - It never adds claims beyond the landscape narration.
-- `GroundingFlow916`: the six steps stacked one per row.
-- Bookends use the registered portrait scenes: `ClaudeComposerAsk916`, `BrutalistHesitantWriter916`, `ClaudeVerdictArtifact916`, `ClaudeTitleOutro916`.
-
-**Per-beat reframing:**
-
-| Beat | Portrait composition |
-|---|---|
-| B00, B01, B13, B14, B15 | Registered `*916` scenes, same props |
-| B02 | Sign-in card crop, centred; caption band "Signed in off camera" |
-| B03 | Two holds: shelf crop around the Cancer textbook card → Open Textbook button. Header region excluded from the crop *and* masked at capture. |
-| B04 | Sidebar crop following the "5. Oncogenes" → "5.1" clicks, then the page title |
-| B05 | Tutor panel crop: header, chips, footer warning |
-| B06 | Panel crop; the question typed; then a punch-in on the card row so cards fill the width (about 2×) |
-| B07 | Panel crop reframed on the answer text as it streams, scrolling the crop window down with the text |
-| B08 | Card-row crop while it expands (if V2) |
-| B09 | Crop of the textbook passage under its heading, so the passage fills the frame; the panel is out of frame (if V3) |
-| B10 | `GroundingFlow916` |
-| B11 | Panel crop: follow-up question, then the new card row, then the answer |
-| B12 | Panel-bottom crop so the footer warning is large and legible |
-
-**Build path:**
-1. Run `./art vertical <reel>` to plan `vertical/` with its own beat sheet.
-2. Author each SCREEN beat's portrait clip as `vertical/pantry/Bxx-916.mp4`, rendered by `PanelFocus916` from the raw capture. That is the toolkit's explicit replacement slot, and the pipeline never centre-cuts it.
-3. Render native at `--height 3840`.
-
-**Legibility QC.** Review a phone-size contact sheet (about 390 CSS px wide). Every card title, the question, the answer text and the footer must be readable, or the crop is tightened.
-
-**Known limitation.** Even from the portrait-source pass, filling 2160 px of portrait width with the panel upscales it about 1.7×, and card punch-ins upscale more. This will be flagged to the PM as a source limitation, per FELLOWS-SUBMISSION.md. Native-rendered caption bands and Remotion scenes are sharp at 2160×3840.
-
-## Word budget for conditionals
-
-The base is 451 words. When a conditional line is promoted, trim to stay at 460 or under.
-
-| Promoted line | Trim |
-|---|---|
-| V10 (B05, +23) | Delete B10's "The page you have open doesn't decide that search." (−9) and B04's second sentence (−9) |
-| V1 (B06, +7) | No trim needed alone |
-| Any V6 line (B11, +8 to +15) | Delete ", so check which sources, if any, come back" and end the sentence at "new words." (−8) |
-| V4 (B09, +13) | Delete B14's last sentence (−7) |
-| B08/B09 dropped | Frees 11 / 26 words; don't re-fill them |
+**Known limitation (flag to PM):** the portrait panel crops upscale the 1260-px source panel about 1.7×, and B02 is upscaled more because it comes from the landscape capture. The Remotion scenes and caption bands are native 2160×3840.

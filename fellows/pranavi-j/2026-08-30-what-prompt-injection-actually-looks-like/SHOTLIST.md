@@ -11,7 +11,7 @@
 | B05 | FALSIFIABILITY | manim | GRAPHIC | B05_RecipeBlogFalsifiability (scenes.py) | 27.65s | Recipe-blog line quoted verbatim ("Preheat your oven to four hundred degrees."), same 3 questions resolved differently (Source: same page / Instruction: content not directive / Consequence: none) — verdict: BENIGN. Light theme + teal/sage accents, visually distinct from B04's dark/crimson treatment |
 | B06 | SCAFFOLDED-TASK | manim | GRAPHIC | B06_AuditChecklist (scenes.py) | 22.68s | The 3 questions restated as a checkbox-style checklist card — distinct layout from B03's numbered-badge rubric card |
 | B07 | TAKEAWAY | manim | GRAPHIC | B07_Statement (scenes.py) | 9.17s | "An AI agent doesn't know the difference between a sentence and a command unless something teaches it to ask. The three questions are how you teach it." |
-| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 1.51s | @HumanitariansAI brand card, "in for Sai Pranavi Jeedigunta" |
+| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 1.51s | @HumanitariansAI brand card, "in for Sai Pranavi J." |
 
 ## Lane summary
 - MANIM: all 9 beats, self-contained in this reel's own `scenes.py`. No

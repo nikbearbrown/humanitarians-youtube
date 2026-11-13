@@ -23,15 +23,19 @@ Shorts/Reels." That cut was built here, six weeks later.
 
 A production video was not visible. Diagnosed and corrected it, uploaded the
 corrected video to YouTube, and added the YouTube link into the relevant Medhavy
-codebase so the video is referenced from the project rather than living only as a
-file. Fix, upload and code link are all completed, self-verifiable actions.
+codebase so the video is referenced from the project rather than living only as
+a file. Fix, upload and code link are all completed actions.
 
-**The YouTube URL and the codebase commit are NOT RECORDED here** — which is the
-weak point of an otherwise verifiable task. See [FRICTIONAL.md](FRICTIONAL.md).
+**The video is [Cancer Biology and Therapeutics – Guided Tutorial](https://www.youtube.com/watch?v=tnxC6LATugU)**
+— identified 2026-10-17. This is the render that sat in Drive as
+`Medhavy_Cancer_Tutorial_1_4K.mp4` (185.7 MB) with no source and no link; it is
+the video that was not visible, and this is where it ended up.
+
+The codebase commit that added the link is still unrecorded.
 
 ## PM change
 
-From Week 16 the project manager is [Jash S.](../jash-s/); [Clafacio L.](../clafacio-l/)
+From Week 16 the project manager is [Jash S.](../../jash-s/); [Clafacio L.](../../clafacio-l/)
 was PM for Weeks 4–15. Recorded for continuity.
 
 ## Hours

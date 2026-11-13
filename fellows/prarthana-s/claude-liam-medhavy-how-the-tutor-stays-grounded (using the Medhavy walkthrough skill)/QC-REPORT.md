@@ -1,6 +1,11 @@
 # QC-REPORT.md — How the Tutor Stays Grounded in Your Textbook
 
-This report records the QC on the final exports, run on 2026-09-29. Nothing has been committed, pushed, merged, published or uploaded.
+This report records the QC on the final exports, run on 2026-09-29.
+
+**Lifecycle, as of the source cleanup on 2026-09-29:**
+- Both final videos were uploaded to Google Drive by Prarthana.
+- The final source and docs are being prepared for manual upload to GitHub by Prarthana. The videos themselves are not in GitHub.
+- Nothing has been published to YouTube. The YouTube 4K processing check applies only if and when the videos are published.
 
 ## Landscape
 

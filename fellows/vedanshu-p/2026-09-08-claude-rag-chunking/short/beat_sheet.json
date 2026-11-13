@@ -1,0 +1,561 @@
+{
+  "metadata": {
+    "title": "Where You Cut The Page.",
+    "slug": "claude-rag-chunking-short",
+    "topic": "RAG · CHAPTER 4 — CHUNKING DOCUMENTS",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "persona": "Vedanshu Daxesh Patel",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Jambo, Vedanshu",
+    "greeting_note": "hello lexicon: Swahili (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Namaste/Aloha/Ciao/Hola/Bonjour/Ahoj/Merhaba/Shalom/Hej, all already used by the nine sibling reels in this series.",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "in_for_bear": false,
+    "playlist": "Claude Taught",
+    "source_book": "RAG Foundations — Vedanshu Daxesh Patel",
+    "source_file": "chapters/04-chunking-documents.md",
+    "source_figures": [
+      "images/chunking-documents-fig-01.png/.svg — 'The same page, cut three ways' (fixed character count severing a sentence | paragraph & heading breaks | meaning-shift detection). Rebuilt natively as B05 (ChunkThreeStrips) in the Claude fidelity palette, never embedded — REBUILD LAW."
+    ],
+    "note": "Concept explainer (ai-explainer, the Claude cut), built on D:\\ai1-cli-main — the book's canonical repo — per CLAUDE.md rule 3 (videos travel with their book). Folder dated 2026-08-26 per explicit instruction, independent of the chapter's own fact-check date (2026-08-13; see chapters/04-chunking-documents.md.verified.json — verified_by Vedanshu Daxesh Patel, GATE 4, 0 discrepancies) and independent of the session's calendar date. ILLUSTRATE LAW: the Claude UI appears only at B00 (ask+result), BHTF (handoff) and the BVDT verdict artifact — every inner beat illustrates its concept instead. B01 is BrutalistHesitantWriter per the current EXECUTIVE-SUMMARY LAW (the predecessor Ch3 reel used the older static ProblemExecutiveSummary card; that rendering rule has since been superseded). B07 reuses ProblemPredictCard unmodified. B02–B06 and B08 are six genuinely new bespoke components (ChunkIllu family) — GATE L searched six ways ('document split into chunks', 'chunk size tradeoff too small too large', 'overlapping windows at a boundary', 'three strips of text cut different ways', 'prioritized separator fallback ladder', 'whole document collapsed into one vector') and every one was a genuine miss — each discharged by BUILDING the component and indexing it (./art scene-index), never by slating. TEMPLATE-MISSES.md is not written: that auto-log fires only with --reel, and nothing is outstanding once the components exist and are registered. All six sit on the shared EmbedChrome FigureFrame rather than inventing new chrome. BOUT is TitleOutroChannel, NOT ClaudeTitleOutro: OUTRO-LOCK.md §Scope restricts the locked @NikBearBrown card to claude-liam-* slugs and states other channels never get that card, handle or mascot — TitleOutroChannel is the sanctioned own-channel outro and carries the author signature as its subline. VOX LAW: this chapter's evidence is text and diagrams, so the reel has ZERO pantry stills by design — that is the correct outcome, not a gap. No Manim (this book's ai-explainer reels are pure-Remotion by established convention; LaTeX is absent on this machine, which only blocks Manim equation beats).",
+    "tags": [
+      "RAG",
+      "chunking",
+      "chunk size",
+      "overlap",
+      "structure-aware chunking",
+      "semantic chunking",
+      "recursive splitter",
+      "retrieval"
+    ],
+    "build": {
+      "at": "2026-09-17T12:21:57",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "END: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "kind": "short",
+    "reformat": "center-cut, focus-aware; pantry/<bid>-916.* is the human replacement slot; -916 overrides honored",
+    "derived_from": "claude-rag-chunking",
+    "dropped_beats": [
+      "B04",
+      "B06",
+      "B07",
+      "BVDT"
+    ],
+    "playlist_short": "Shorts",
+    "total_estimated_duration_seconds": 160.11
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "role_note": "COLD OPEN LAW — the ask is shown already answered",
+      "narration_text": "Jambo — I'm Vedanshu Daxesh Patel. Chapter three gave us embeddings: text compared by meaning instead of by wording. But it left one question wide open. A piece of text — of what size? A sentence, a page, the whole document? The model doesn't care. Retrieval cares enormously.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Composer greeting 'Jambo, Vedanshu' types in; spark ignites"
+          },
+          {
+            "at": "18%",
+            "event": "Command types: a piece of text of WHAT SIZE?"
+          },
+          {
+            "at": "48%",
+            "event": "Send arms; runningText 'deciding where to cut…' plays"
+          },
+          {
+            "at": "64%",
+            "event": "Output line 1 lands: chunking — how a document is split before embedding"
+          },
+          {
+            "at": "80%",
+            "event": "Output line 2 lands: the cut decides what retrieval can find"
+          },
+          {
+            "at": "94%",
+            "event": "Output line 3 lands: a design decision, not a preprocessing step"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Jambo, Vedanshu",
+            "topic": "RAG · CHAPTER 4 — CHUNKING DOCUMENTS",
+            "segment": "Where You Cut The Page.",
+            "command": "Chapter three says embed the text so meaning can be compared. Fine — but a piece of text of WHAT SIZE? A sentence, a page, the whole 40-page manual?",
+            "runningText": "deciding where to cut…",
+            "output": [
+              "chunking — how a document is split before embedding",
+              "the cut decides what retrieval can find",
+              "a design decision, not a preprocessing step"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-09-17T12:21:57"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary (BLUF)",
+      "role_note": "EXECUTIVE-SUMMARY LAW — the hesitant writer, not a card. The correction IS the chapter's own misconception: its closing line contrasts 'a mechanical preprocessing step' with 'a real design decision with consequences'.",
+      "lead_silence_s": 0.8,
+      "narration_text": "Here is the whole idea in one breath. Chunking is a design decision — where you cut a document decides what retrieval can find. Cut badly, and the answer sits in your store, unreachable.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Writer types line 1: 'Chunking is preprocessing.'"
+          },
+          {
+            "at": "35%",
+            "event": "'preprocessing' turns terracotta — the writer stops, reconsiders"
+          },
+          {
+            "at": "45%",
+            "event": "It is deleted and replaced: 'a design decision'"
+          },
+          {
+            "at": "60%",
+            "event": "Line 2 types: 'Where you cut a document'"
+          },
+          {
+            "at": "85%",
+            "event": "Line 3 lands: 'decides what retrieval can find.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter916",
+          "props": {
+            "text": "Chunking is preprocessing.\nWhere you cut a document\ndecides what retrieval can find.",
+            "triggerWords": "preprocessing",
+            "replacementWords": "a design decision",
+            "face": "serif",
+            "fontSize": 100,
+            "lineSpacing": 1.34,
+            "align": "center",
+            "mistakeRate": 4,
+            "hesitateWithin": 2,
+            "hesitateBetween": 14,
+            "charMs": 52,
+            "jitter": 28,
+            "seed": "claude-rag-chunking-b01"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 11.01,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter916",
+        "at": "2026-09-17T12:21:57"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "why a whole document loses precision",
+      "narration_text": "Embed a forty-page benefits manual as one vector, and that vector carries everything at once — vacation, health coverage, retirement, parental leave, travel. A question about vacation days can only match it approximately, because the same vector is also encoding everything that has nothing to do with vacation. Pack more topics into one chunk and you are averaging them.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "the whole-document collapse: five topic bands in one manual converge into a single averaged point",
+        "show": [
+          {
+            "at": "10%",
+            "event": "manual card draws; five topic bands stack inside it"
+          },
+          {
+            "at": "40%",
+            "event": "all five bands converge inward and collapse into ONE dot"
+          },
+          {
+            "at": "70%",
+            "event": "the query 'how many vacation days?' arrives and matches the dot only weakly — the match bar fills part-way"
+          },
+          {
+            "at": "88%",
+            "event": "caption settles: one vector, averaged across every topic"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChunkWholeDocVector916",
+          "props": {
+            "headline": "One Document, One Vector",
+            "docLabel": "40-page benefits manual",
+            "topics": [
+              "vacation policy",
+              "health coverage",
+              "retirement contributions",
+              "parental leave",
+              "travel reimbursement"
+            ],
+            "queryLabel": "how many vacation days?",
+            "matchLabel": "approximate match",
+            "caption": "One vector has to represent every topic at once — so the signal for any one of them is an average across all of them.",
+            "sparkLine": "Everything at once, so nothing sharply.",
+            "beatSeconds": 20.14
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 20.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ChunkWholeDocVector916",
+        "at": "2026-09-17T12:21:57"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "the size tradeoff runs both ways",
+      "narration_text": "So cut it smaller. But this tradeoff runs in both directions. Too small, and a chunk loses the context that gave it meaning — \"five days per year\" is useless if you cannot tell five days of what. Too large, and you have rebuilt the whole-document problem in miniature. There is no correct number to look up.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "a size axis with a failure mode at each end — chunks shrinking to a context-less fragment on the left, growing to a diluted block on the right",
+        "show": [
+          {
+            "at": "12%",
+            "event": "size axis draws, 'smaller' to 'larger'"
+          },
+          {
+            "at": "30%",
+            "event": "left end: chunks shrink; the fragment '…five days per year…' is left stranded, terracotta"
+          },
+          {
+            "at": "58%",
+            "event": "right end: chunks grow into one fat block, its one fact diluted among the rest"
+          },
+          {
+            "at": "82%",
+            "event": "the middle stays deliberately unmarked — no number is offered"
+          },
+          {
+            "at": "92%",
+            "event": "caption settles: the right size depends on the document"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChunkSizeTradeoff916",
+          "props": {
+            "headline": "Too Small. Too Large.",
+            "axisLeft": "smaller chunks",
+            "axisRight": "larger chunks",
+            "leftFailTitle": "loses context",
+            "leftFailBody": "“five days per year” — five days of what?",
+            "rightFailTitle": "loses precision",
+            "rightFailBody": "one fact, diluted among everything around it",
+            "middleNote": "no universally correct setting — it depends on the structure and density of the document",
+            "caption": "Practitioner guidance suggests testing a range rather than assuming one size fits every use case (Pinecone, “Chunking Strategies for LLM Applications”).",
+            "sparkLine": "A tradeoff, not a number.",
+            "beatSeconds": 16.0
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ChunkSizeTradeoff916",
+        "at": "2026-09-17T12:21:57"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "structure-aware chunking (the chapter's own figure, redrawn)",
+      "role_note": "REBUILD LAW — chapters/images/chunking-documents-fig-01 rebuilt natively, never embedded.",
+      "narration_text": "Here is the chapter's own figure, redrawn. Cut at a fixed character count and you slice straight through a sentence, mid-word. Cut at paragraph and heading boundaries, and the text stays intact. Or use embeddings to detect where the meaning actually shifts, and split there. Same page, three cuts — only two of them respect what is written.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "the chapter's Fig. 01 — three strips of the same page, cut three ways, the arbitrary one visibly severing a sentence",
+        "show": [
+          {
+            "at": "8%",
+            "event": "three page cards draw side by side, identical text lines in each"
+          },
+          {
+            "at": "30%",
+            "event": "panel 1: a terracotta rule drops at a fixed count and severs a line mid-word"
+          },
+          {
+            "at": "55%",
+            "event": "panel 2: two ink boundaries land on real paragraph breaks — nothing is cut"
+          },
+          {
+            "at": "78%",
+            "event": "panel 3: one boundary lands where meaning shifts, marked by a dot"
+          },
+          {
+            "at": "92%",
+            "event": "redraw caption settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChunkThreeStrips916",
+          "props": {
+            "headline": "The Same Page, Cut Three Ways",
+            "panels": [
+              {
+                "title": "Fixed character count",
+                "note": "severs a sentence mid-word",
+                "mode": "fixed"
+              },
+              {
+                "title": "Paragraph & heading breaks",
+                "note": "boundaries sit at real breaks",
+                "mode": "structure"
+              },
+              {
+                "title": "Meaning-shift detection",
+                "note": "boundary where meaning shifts",
+                "mode": "semantic"
+              }
+            ],
+            "caption": "Redrawn (simplified) from the chapter's own Fig. 01 — retinted to the Claude palette; the severing cut is the one accent.",
+            "sparkLine": "Cut where the writing cuts.",
+            "beatSeconds": 17.24
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.24,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ChunkThreeStrips916",
+        "at": "2026-09-17T12:21:57"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "reveal — one manual, chunked three ways",
+      "role_note": "WORKED EXAMPLE — the chapter's own, run against its own question.",
+      "narration_text": "Whole document: the question matches one vector carrying the entire manual — you retrieve everything, or you cannot tell this manual from the next one. Fixed count: the vacation table splits mid-row, and the sentence naming the policy lands in a different chunk from the number it refers to. Structure-aware: the vacation section stays whole, second-year increase included.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "visual_intent": "three rows, one per chunking choice, each resolving to its retrieval outcome for the identical question — side by side, held",
+        "show": [
+          {
+            "at": "8%",
+            "event": "the question pins to the top, unchanged across all three rows"
+          },
+          {
+            "at": "24%",
+            "event": "row 1 resolves: whole document — too large, or indistinguishable from other manuals"
+          },
+          {
+            "at": "48%",
+            "event": "row 2 resolves: fixed count — the answer exists but is split across two chunks"
+          },
+          {
+            "at": "72%",
+            "event": "row 3 resolves: structure-aware — one coherent, self-contained chunk, marked in terracotta"
+          },
+          {
+            "at": "90%",
+            "event": "all three outcomes held side by side"
+          }
+        ],
+        "remotion": {
+          "pattern": "ChunkThreeWays916",
+          "props": {
+            "headline": "Same Document. Three Outcomes.",
+            "question": "How many vacation days do I get in my second year?",
+            "rows": [
+              {
+                "label": "One whole document",
+                "outcome": "returns the entire 40-page manual, or fails to distinguish it from any other broad manual in the store",
+                "verdict": "fail"
+              },
+              {
+                "label": "Fixed character count",
+                "outcome": "the table splits mid-row; the sentence naming the policy lands apart from the number it refers to",
+                "verdict": "partial"
+              },
+              {
+                "label": "Paragraph & heading boundaries",
+                "outcome": "the “Vacation Policy” section stays together — one chunk holds the complete, self-contained answer",
+                "verdict": "win"
+              }
+            ],
+            "caption": "The same document, chunked three different ways, produces three different retrieval outcomes for the identical question.",
+            "sparkLine": "The cut decides the answer.",
+            "beatSeconds": 19.22
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.22,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ChunkThreeWays916",
+        "at": "2026-09-17T12:21:57"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "role_note": "HANDOFF LAW — the prompt is read aloud verbatim, then discussed.",
+      "narration_text": "Your turn. Paste this: \"Here is a document I actually work with. I'll describe its structure. Propose a chunking strategy — approximate size, whether to use overlap, and where the boundaries should fall. Then argue the opposite case as strongly as you can, and tell me which failure would cost me more: a chunk too small to carry its context, or one too large to match precisely.\" That second half is the part that matters. Anything will hand you a confident first answer; making it argue against itself is how you find out whether the recommendation was reasoned or reflexive. Bring a document whose structure you already know, and see whether its boundaries match the ones you would have drawn.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 40,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "RAG · CHAPTER 4 — CHUNKING DOCUMENTS",
+            "segment": "Where You Cut The Page.",
+            "command": "Here is a document I actually work with. I'll describe its structure. Propose a chunking strategy — approximate size, whether to use overlap, and where the boundaries should fall. Then argue the opposite case as strongly as you can, and tell me which failure would cost me more: a chunk too small to carry its context, or one too large to match precisely.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 34.28,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-09-17T12:21:57"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "role_note": "OUTRO LAW — title restate. TitleOutroChannel, not the claude-liam-locked ClaudeTitleOutro (OUTRO-LOCK.md §Scope). SHORT CUT: narration hand-written. shorts.py's auto-rewrite built its topic list by truncating each dropped beat's narration_text, which produced 'also covers Should neighbouring chunks share a…, How the tooling actually does… and Predict before I show you.…' — unreadable. Replaced with the dropped beats named as topics.",
+      "narration_text": "That's the short version. The full video also asks whether neighbouring chunks should overlap — and why that one isn't settled — plus how the tooling actually picks its split points. Watch Where You Cut The Page for the whole story. The link is right below.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "TitleOutroChannel916",
+          "props": {
+            "title": "Where You Cut The Page.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel",
+            "polarity": "light"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-08-26T10:00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 13.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:TitleOutroChannel916",
+        "at": "2026-09-17T12:21:57"
+      },
+      "short_outro_rewritten": true
+    },
+    {
+      "beat_id": "END",
+      "narration_text": "",
+      "actual_duration_s": 4.5,
+      "audio_file": "mp3/beat-END.mp3",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "motion": "hold",
+        "treatment": "none"
+      },
+      "card": {
+        "handle": "@VedanshuDaxeshPatel",
+        "next": "Full video: overlap, tooling, the verdict.",
+        "silent": true
+      },
+      "build": {
+        "status": "STILL",
+        "src": "media\\END.png",
+        "filled_by": "still",
+        "at": "2026-09-17T12:21:57"
+      }
+    }
+  ]
+}

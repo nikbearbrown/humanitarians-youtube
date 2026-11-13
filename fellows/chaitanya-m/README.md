@@ -11,6 +11,7 @@ correctly is going unused. Video projects live in one dated lowercase-kebab
 folder per reel, `YYYY-MM-DD-slug/`.
 
 **Renders:** [Google Drive](https://drive.google.com/drive/folders/17fbvQu3dP4PzBrAFZpMxKRLyIzHInZ_v)
+**Renewal:** [RENEWAL.md](RENEWAL.md) · **Hours:** [HOURS.md](HOURS.md)
 — masters, narration and beat clips. Source, beat sheets, scripts, subtitles,
 build inputs and checks stay here in git, per `fellows/README.md`.
 
@@ -49,6 +50,8 @@ Two formats so far, and the series has moved from one to the other:
 | Concept Map | Brutalist | `brutalist-script` | `#0A0A0A` / `#F2F0EB` / `#E8452C` / `#6B6B6B` | Helvetica Neue Bold + Menlo |
 | Memory API | Brutalist | `brutalist-deck` | `#000` / `#fff` / `#FFE500` / `#FF3B00` | Archivo Black + IBM Plex Mono |
 | Who Can Open What | `ai-explainer` | `claude` | Claude fidelity | house |
+| Lookup, Not Training | `ai-explainer` | `claude` | Claude fidelity | house |
+| The Logout That Didn't | `ai-explainer` | `claude` | Claude fidelity | house |
 | One Sign-In, Many Books | `ai-explainer` | `claude` | Claude fidelity | house |
 
 **The first two reels are Brutalist and deliberately not Claude-branded** — no
@@ -78,12 +81,14 @@ cut reproducible rather than an accident.
 
 | Date | Title | Subject | Runtime | Status |
 |---|---|---|---|---|
+| 2026-10-15 | [The Logout That Didn't](2026-10-15-the-logout-that-didnt/) | Postmortem — the Logout button that logged nobody out in production, and the HttpOnly cookie on another domain that explains it | 3:53 | Built · QC'd · fact-checked · GATE P signed · not published |
+| 2026-10-01 | [Lookup, Not Training](2026-10-01-lookup-not-training/) | How the AI tutor knows the textbook — nothing is trained; it searches the book at question time and answers from the passages it was handed | 3:27 | Built · QC'd · fact-checked · GATE P signed · not published |
 | 2026-09-21 | [One Sign-In, Many Books](2026-09-21-one-sign-in-many-books/) | How a separate textbook site lets you in without knowing you — the signed ticket, the call back to the hub, and the one logout timestamp that retires every ticket | 3:28 | Built · QC'd · GATE P signed · not published |
 | 2026-09-17 | [Who Can Open What](2026-09-17-who-can-open-what/) | Hub access — the three kinds of permission, the two ways in, and what the model implies | 3:48 | Built · QC'd · GATE P signed · not published |
 | 2026-09-13 | [Memory API](2026-09-13-memory-api/) | Cross-book learner memory — two tables, the `memory_subject` convention, and the fact that no textbook calls it yet | 2:51 | Built · fact-checked · GATE P signed · not published |
 | 2026-08-28 | [What Is a Concept Map](2026-08-28-what-is-a-concept-map/) | Concept Map subsystem audit — schema, S3 layer, review gate, and the verified output's zero consumers | 3:49 | Built · QC'd · fact-checked · GATE P signed · not published |
 
-GATE P is signed on all four reels. That signature covers the **narration** — it
+GATE P is signed on all six reels. That signature covers the **narration** — it
 is not a QC sign-off and not a fact-check sign-off; each reel's README lists what
 remains open.
 

@@ -22,8 +22,8 @@ and keeping that process simple enough to repeat.
 - **Commands:** BUILD-PROMPT.md. **Checks:** CHECKS-REPORT.md, FACTCHECK.md, TYPECHECK.md, vertical/TYPECHECK.md. No approvals are claimed.
 
 ## Watch and review
-- Landscape — 3840×2160 — 1:56.0 — SHA-256 `b2dfd960aa10ed626155bd18863604a80f53e1be0f3623095bfc83dd33f7e05e` — Drive link: _pending upload_
-- Vertical — 2160×3840 — 1:56.0 — SHA-256 `1bfb6751312204c29032841a01ca68ecf052cc80e0e4ff7e8f1667e866e1333f` — Drive link: _pending upload_
+- Landscape — 3840×2160 — 1:56.0 — SHA-256 `b2dfd960aa10ed626155bd18863604a80f53e1be0f3623095bfc83dd33f7e05e` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
+- Vertical — 2160×3840 — 1:56.0 — SHA-256 `1bfb6751312204c29032841a01ca68ecf052cc80e0e4ff7e8f1667e866e1333f` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
 - PM review status: pending
-- YouTube 4K processing check: pending upload
+- YouTube 4K processing check: pending YouTube upload
 - Professors' publication decision: pending

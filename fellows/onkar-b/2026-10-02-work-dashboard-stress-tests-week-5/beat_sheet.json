@@ -1,0 +1,615 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-dashboard-stress",
+    "title": "Expose The Ledger",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper development log, Week 5 — production hardening: a FastAPI HTML dashboard over the SQLite ledger, an adversarial stress-test suite, and the human-fatigue failure mode that makes visibility an architectural requirement.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners following the Provenance Gatekeeper build",
+    "playlist": "Fellows Research",
+    "source": "Week 5: Dashboard & Stress Testing — Video Script, Provenance Gatekeeper Development Log. Supplied 2026-10-02.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion, both explicitly required. Every pattern has a registered <Pattern>916 variant. ZERO new components — AlertSplit, ThreeStageBand, ClaudeCodeBeat and the bookends all existed. 9:16 is a different beat sheet, never a crop — RENDER-TARGETS.md §3.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script's 'red' maps to terracotta: EXPOSE THE LEDGER, the intercepted payload, the VERDICT: FAIL card, and the failing human-audit stage.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal, matching the script's own Scene 1 VO. The Kokoro am_onyx voice is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "tags": [
+      "Provenance Gatekeeper",
+      "FastAPI",
+      "dashboard",
+      "SQLite",
+      "stress testing",
+      "adversarial payloads",
+      "Docker Compose",
+      "observability",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-10-02T22:00:11",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Hi, I am Onkar Bhujbal, and this video is about moving the Provenance Gatekeeper into production — with visual dashboards and adversarial stress testing. A system that catches A.I. lies is useless if human operators refuse to look at the logs. This week we pulled the data out of the terminal, and pushed the pipeline to its breaking point.",
+      "new_visual_element": "Cold open — a ledger nobody is reading",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself into the composer"
+          },
+          {
+            "at": 0.48,
+            "event": "send button arms terracotta; running indicator reads 'checking who has read it…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the ledger is full, and untouched"
+          },
+          {
+            "at": 0.85,
+            "event": "the last output line names the fix: EXPOSE THE LEDGER"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Expose The Ledger",
+            "command": "The Gatekeeper has logged every failure for four weeks. Who on the team has actually read it?",
+            "runningText": "checking who has read it…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "evaluation_logs: 1,240 rows. Queries run by humans: 0.",
+              "A ledger behind a CLI is a ledger nobody audits.",
+              "EXPOSE THE LEDGER."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The 1,240 rows / 0 queries figures are ILLUSTRATIVE — no real usage telemetry was supplied. They dramatise the failure class the script names (operators not reading logs), and the reel claims no measured adoption number.",
+      "actual_duration_s": 18.33,
+      "render_duration_s": 18.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "lead_silence_s": 0.8,
+      "narration_text": "Week five was not about catching more errors. It was about making the ones we already catch impossible to ignore — and then attacking our own endpoint hard enough to find where it gives way.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke — the writer is thinking"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Week 5 improved detection.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'detection' goes terracotta, deletes, retypes as 'visibility'"
+          },
+          {
+            "at": 0.8,
+            "event": "line 2 'Then we attacked it ourselves.' lands uncorrected"
+          },
+          {
+            "at": 0.92,
+            "event": "corrected overview holds on screen through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Week 5 improved detection.\nThen we attacked it ourselves.",
+            "triggerWords": "detection",
+            "replacementWords": "visibility",
+            "seed": "dashboard-stress-2026-10-02",
+            "fontSize": 54,
+            "charMs": 30,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Single-word trigger: BrutalistHesitantWriter matches whitespace-delimited word cores only. 'detection'->'visibility' is the reel's actual misconception — week 5 added no new detection at all.",
+      "actual_duration_s": 10.41,
+      "render_duration_s": 10.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE FRAMEWORK",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Our production leap required two additions. First, a lightweight FastAPI HTML dashboard that queries the SQLite ledger in real time, eliminating the need for command-line access. Second, an adversarial testing suite — we deliberately bombarded our own evaluation endpoint with edge-case syntax, null values and malicious injections, to map our false-positive limits.",
+      "new_visual_element": "Two additions — see it, then attack it",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.14,
+            "event": "panel 01 VISUAL DASHBOARD takes the terracotta top rule on 'First'"
+          },
+          {
+            "at": 0.5,
+            "event": "connector draws; panel 02 ADVERSARIAL PAYLOADS lights on 'Second' and holds"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands under the band: visible, then deliberately attacked"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Two additions. Neither is a feature.",
+            "payloadLabel": "a verdict",
+            "readyLine": "visible, then deliberately attacked",
+            "stages": [
+              {
+                "index": "01",
+                "name": "VISUAL DASHBOARD",
+                "detail": "FastAPI HTML over the SQLite ledger, no CLI required"
+              },
+              {
+                "index": "02",
+                "name": "ADVERSARIAL PAYLOADS",
+                "detail": "edge-case syntax, nulls and injections, fired at ourselves"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 21.01,
+      "render_duration_s": 21.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — ASK (the attack)",
+      "lane": "bookend",
+      "estimated_duration_s": 9,
+      "narration_text": "So let's fire a deliberately hostile payload at our own endpoint, and watch what the dashboard does with it in real time.",
+      "new_visual_element": "Ask micro-beat — the prompt that fires the stress test",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "composer already framed; the prompt types in"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'firing the stress test…'; no output lines — the next beat IS the output"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Attack it,",
+            "topic": "Provenance Gatekeeper",
+            "segment": "stress_test.py",
+            "command": "Fire a SQL injection attempt mixed with unstructured text at /verify, and show me both what the normalizer does and what lands on the dashboard.",
+            "runningText": "firing the stress test…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "ASK → RESULT pair: B03 is the ask, B04 is the result (ASK→RESULT LAW).",
+      "actual_duration_s": 7.1,
+      "render_duration_s": 7.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 3 — WORKED EXAMPLE",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "Watch the pipeline handle an attack. The stress test fires a deliberate S.Q.L. injection attempt, mixed with unstructured text like approx five million instead of a clean integer. Our evaluation normalizer intercepts it, safely strips the malicious characters, performs the mathematical variance check against the ChromaDB ground truth, and writes the failure straight to the dashboard.",
+      "new_visual_element": "The payload fires, the verdict lands on the dashboard",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "the stress-test payload types itself across the left panel"
+          },
+          {
+            "at": 0.38,
+            "event": "on 'intercepts it', the first intercepted row lands with its terracotta rule"
+          },
+          {
+            "at": 0.5,
+            "event": "the second row lands beneath it"
+          },
+          {
+            "at": 0.58,
+            "event": "on 'writes the failure', the dashboard card drops into the right panel — VERDICT: FAIL"
+          },
+          {
+            "at": 0.74,
+            "event": "both halves hold — intercepted at the endpoint, visible on the web route"
+          }
+        ],
+        "remotion": {
+          "pattern": "AlertSplit",
+          "props": {
+            "sparkLine": "Attacked on purpose. Flagged in public.",
+            "queryLabel": "stress_test.py → POST /verify",
+            "query": "{\"claim\": \"DROP TABLE logs;\"}",
+            "rows": [
+              {
+                "left": "DROP TABLE logs;",
+                "right": "INJECTION"
+              },
+              {
+                "left": "approx five million",
+                "right": "UNPARSEABLE"
+              }
+            ],
+            "rowNote": "illustrative payloads — swap in your real stress_test.py cases",
+            "alertLabel": "DASHBOARD — localhost:8000/logs",
+            "alertChannel": "auto-refresh · FastAPI + SQLite",
+            "alertTitle": "VERDICT: FAIL",
+            "alertBody": "Injection intercepted and logged.",
+            "alertMeta": "normalizer stripped · variance checked · row written"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The two payload rows are ILLUSTRATIVE and captioned as such on screen — no real stress_test.py case list was supplied. The dashboard panel is a GENERIC verdict card, not a screenshot or reproduction of the project's actual HTML dashboard, which was not provided.",
+      "actual_duration_s": 20.2,
+      "render_duration_s": 20.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4 — FALSIFIABILITY",
+      "lane": "remotion",
+      "estimated_duration_s": 25,
+      "narration_text": "So where does the overall architecture fail? Human fatigue. If you force project managers to write S.Q.L. queries to audit the model's accuracy, they simply will not do it. The error ledger sits in the dark. By serving the SQLite data directly to a web route, you force the failures into the light.",
+      "new_visual_element": "The chain that breaks at the human, not the machine",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 THE LEDGER WRITES lights — the machine half works perfectly"
+          },
+          {
+            "at": 0.4,
+            "event": "connector draws toward the human step"
+          },
+          {
+            "at": 0.56,
+            "event": "on 'human fatigue', panel 02 takes the terracotta wash, border and ✕"
+          },
+          {
+            "at": 0.62,
+            "event": "the verdict token STOPS at the human step — it never reaches anyone"
+          },
+          {
+            "at": 0.74,
+            "event": "the diagnosis lands underneath: HUMAN FATIGUE"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "The machine half never failed.",
+            "payloadLabel": "a verdict",
+            "failIndex": 1,
+            "failLine": "HUMAN FATIGUE — the ledger sits in the dark",
+            "readyLine": "visible, then deliberately attacked",
+            "stages": [
+              {
+                "index": "01",
+                "name": "THE LEDGER WRITES",
+                "detail": "every failure captured, perfectly, forever"
+              },
+              {
+                "index": "02",
+                "name": "A HUMAN WRITES SQL",
+                "detail": "to read it — so nobody ever reads it"
+              },
+              {
+                "index": "03",
+                "name": "THE FAILURE IS SEEN",
+                "detail": "never reached, until the data is served to a web route"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-03T01:55:06.878372+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Reuses ThreeStageBand's failure mode with failIndex 1 of 3 — the middle stage, which exercises the travel-scaling fix made on the Week 4 reel (the token must STOP at the human step, not sail past it). The point of the beat is that the broken link is a person, not a service.",
+      "actual_duration_s": 16.19,
+      "render_duration_s": 16.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 17,
+      "narration_text": "So deploy the system. Spin up the Gatekeeper with our persistent Docker Compose configuration, open the local dashboard port, and fire the adversarial test script. Watch how quickly the ledger fills with intercepted errors.",
+      "new_visual_element": "The two commands that stand the whole thing up",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the compose + stress-test command reveals"
+          },
+          {
+            "at": 0.55,
+            "event": "the dashboard URL lands beneath it"
+          },
+          {
+            "at": 0.76,
+            "event": "the real test lands last — watch a person read it unprompted"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "deploy.sh",
+            "code": "docker-compose up -d && python tests/stress_test.py\n\n# then open:\n#   http://localhost:8000/logs\n\n# TASK: watch the ledger fill.\n\n# The real test is not the row count.\n# It is whether anyone opens that URL\n# tomorrow without being asked.",
+            "sparkLine": "Stand it up. Attack it."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-03T01:55:58.889060+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The closing comment is the reel's addition — it ties the task back to Scene 4's human-fatigue failure, which is the actual thesis. Without it the task measures throughput rather than the thing that broke.",
+      "actual_duration_s": 12.99,
+      "render_duration_s": 13.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "And once it is running, here is the prompt worth handing a model. Give it your stress-test case list and ask what categories of hostile input you have not written a case for yet. The attacks you thought of are already handled. The gap is the ones you did not.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.' — the one greeting that drops the persona"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "typing completes; running indicator reads 'paste this into Claude…' while the voice says what to look for"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Expose The Ledger",
+            "command": "Here is my stress_test.py case list. Group my cases into categories of hostile input, then tell me which categories I have NO case for — and for each gap, write the payload that would expose it.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-03T01:58:03.091042+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 13.27,
+      "render_duration_s": 13.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-02T22:00:11"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "A ledger nobody opens is a ledger nobody has. Put the failures where people will trip over them. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Expose The Ledger",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper · Week 5",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-03T01:58:43.654874+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.75,
+      "render_duration_s": 8.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-10-02T22:00:11"
+      }
+    }
+  ]
+}

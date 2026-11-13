@@ -67,5 +67,29 @@ on this build, and the 10⁻²⁰ ratio and the sodium worked example are assert
 checked against a source. I also do not know which of the two looks is better; I
 shipped both because I could not decide, which is a deferral, not an answer.
 
-*TODO — Heet: if a factcheck was run, or if the professor preferred one look over
-the other, append a new dated entry rather than editing this one.*
+*Partly answered 2026-10-17 — see the entry below.*
+
+---
+
+## 2026-10-17 — a factcheck was run
+
+> Written 2026-10-17, well after the week it describes. Appended; the entry
+> above stands as written.
+
+Confirmed: **a factcheck was run** on this build. The entry above says the
+numbers were "asserted, not checked against a source" and names that as the
+thing it did not know. It was checked.
+
+That matters for the register. The skill's fifth property is golden-test
+honesty on every number shown — the 10⁻²⁰ Rayleigh-Jeans/Planck ratio and the
+sodium worked example each got screen time on that basis. Showing a derivation
+and verifying it are different acts, and the entry above was right to separate
+them; this closes the second one.
+
+**No FACTCHECK document was committed**, so the check happened but its record
+did not survive. Same shape as the rest of this period: the work was done, the
+artifact was not kept.
+
+On the two looks: both were rendered and both shipped. No preference between
+cream/parchment and the dark Notebook was recorded, and the question was never
+put to a decision — the pair stands as the deliverable.

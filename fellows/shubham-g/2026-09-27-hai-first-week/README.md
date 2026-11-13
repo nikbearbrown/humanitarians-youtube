@@ -26,8 +26,8 @@ content, with people at the center.
 - **Checks:** CHECKS-REPORT.md, FACTCHECK.md, TYPECHECK.md, vertical/TYPECHECK.md. No approvals are claimed.
 
 ## Watch and review
-- Landscape — 3840×2160 — 1:54.4 — SHA-256 `9eeb328ef514364b14216150ba1d396f421079c86a9200c66ac6f7b80e3c6b9e` — Drive link: _pending upload_
-- Vertical — 2160×3840 — 1:54.4 — SHA-256 `dee4d55cc70d2e20edb5302351262faeda48778bc64f53e6adc2e5a57106de2a` — Drive link: _pending upload_
+- Landscape — 3840×2160 — 1:54.4 — SHA-256 `9eeb328ef514364b14216150ba1d396f421079c86a9200c66ac6f7b80e3c6b9e` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
+- Vertical — 2160×3840 — 1:54.4 — SHA-256 `dee4d55cc70d2e20edb5302351262faeda48778bc64f53e6adc2e5a57106de2a` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
 - PM review status: pending
-- YouTube 4K processing check: pending upload
+- YouTube 4K processing check: pending YouTube upload
 - Professors' publication decision: pending

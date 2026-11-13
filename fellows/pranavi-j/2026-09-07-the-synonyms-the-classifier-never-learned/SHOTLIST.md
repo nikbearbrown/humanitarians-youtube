@@ -11,7 +11,7 @@
 | B05 | FIX-PROOF | manim | GRAPHIC | B05_FixAndProofTable (scenes.py) | 22.70s | All 5 live-feed rows (Federal Register-Securities 146/0/0, CFTC 12/0/0, SEC 25/0/0, FINRA 100/6/4, Investment Advisor 100/12/4); FINRA/Investment Advisor rows and the 18->8 total boxed |
 | B06 | HONEST-LIMIT | manim | GRAPHIC | B06_HonestLimit (scenes.py) | 20.69s | The 2 remaining-failure categories (no named regulator; out-of-scope regulator) named, one real example title each; framed "LEFT OPEN -- BY DESIGN" |
 | B07 | TAKEAWAY | manim | GRAPHIC | B07_Statement (scenes.py) | 8.02s | "Not every fix should chase a hundred percent." |
-| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 4.22s | @HumanitariansAI brand card, "in for Sai Pranavi Jeedigunta" |
+| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 4.22s | @HumanitariansAI brand card, "in for Sai Pranavi J." |
 
 ## Lane summary
 - MANIM: all 9 beats, self-contained in this reel's own `scenes.py`. No

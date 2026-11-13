@@ -1,0 +1,34 @@
+MEASUREMENTS — How Pitch Correction Works
+Every figure shown or spoken, with where it comes from. Re-run: python pitch_demo.py && python export_pitch_data.py
+
+evidence/run.log (verbatim):
+  pitch_demo.py  python 3.12.10  numpy 2.5.2  Windows-11-10.0.26200-SP0
+  sung melody: 4.82 s at 22050 Hz, 7 notes
+  detector: 774 voiced frames of 823; median error vs synthesised pitch 1.70 cents, 95th pct 7.15 cents
+  worked example: t=2.560s measured 430.1 Hz -> nearest A4 (440.0 Hz), -39.5 cents
+  before correction: mean 39.9 cents off the nearest C-major note, max 99.4
+  instant   tau=  0 ms C major  : re-measured after correction mean 2.8 cents, median 1.7 from target; last note lands on G4
+  fast      tau= 40 ms C major  : re-measured after correction mean 10.6 cents, median 8.2 from target; last note lands on G4
+  natural   tau=250 ms C major  : re-measured after correction mean 19.2 cents, median 15.7 from target; last note lands on G4
+  chromatic tau=  0 ms chromatic: re-measured after correction mean 4.6 cents, median 1.9 from target; last note lands on F#4
+  wrote pitch_demo.json sha256 3b4d5d257a954115...  (8.5 s)
+
+worked frame (B02/B03): t = 2.56 s, period 51.27 samples = 2.325 ms, f = 430.08 Hz, nearest A4 440.0 Hz, -39.49 cents
+YIN difference at the period (B02 'almost to zero'): 0.002
+hop: 128 samples / 22050 Hz = 5.80 ms (B04 'every six milliseconds')
+before (B04): mean 39.9 cents; detector vs synthesised truth: median 1.7 cents
+run instant: tau 0 ms, C major: re-measured mean 2.8 cents, median 1.7; last note on G4
+run fast: tau 40 ms, C major: re-measured mean 10.6 cents, median 8.2; last note on G4
+run natural: tau 250 ms, C major: re-measured mean 19.2 cents, median 15.7; last note on G4
+run chromatic: tau 0 ms, chromatic: re-measured mean 4.6 cents, median 1.9; last note on F#4
+
+files (SHA-256):
+  pitch_demo.py  fcf6a2e9a3d8a501d3047265fb90aabd0daa745c6636c4a79bf00fed8387ae42
+  evidence/pitch_demo.json  3b4d5d257a954115083451422c1ce9037d2c3057e909fffd06eb2d962023eec4
+  evidence/sung.wav  5b6a23e2f25a830c96ad3cb5812608ca442dfb43d78f869f554f3584f6b4152e
+  evidence/corrected_instant.wav  1a5dbc0e74a6129b96ab0b1f96881cb036f6937b5a49ee4a89c98af6e86877cf
+  evidence/corrected_natural.wav  04462149dfc1be893b23e526e62262371da5c73002a98d313bb0c47a030aeac1
+  evidence/corrected_fast.wav  6756735a019fd27538c12038cfc43c9da3decb6aefdae47d65ddec348c2a67cd
+  evidence/corrected_chromatic.wav  19b40bd449f4811a8cf7200327add68908e937a3533269398a0174aaaa16d88a
+  mp3/beat-B04-listen.mp3  acc4d7d302252b93be31a39d5739981a8d373df52a61088239f7a0f287f5f720
+  mp3/beat-B05-listen.mp3  b944dab1cab8b6647638cb94b0dada6576e62aa65cddda212ac08e871f78b240

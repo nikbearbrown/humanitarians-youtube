@@ -1,6 +1,6 @@
 # Beat Sheet (APPROVED — Gate P, 2026-09-17): "RAG: Why 'Looking It Up' Doesn't Guarantee It's True"
 
-**Creator:** Sai Pranavi Jeedigunta | Weekly STEM video (general AI/STEM topic explainer,
+**Creator:** Sai Pranavi J. | Weekly STEM video (general AI/STEM topic explainer,
 distinct from the weekly work report)
 **Format:** `ai-explainer`, framework-first teaching structure (same register as the prior 3 STEM
 videos in this series)
@@ -45,7 +45,7 @@ example is a generic, illustrative support-bot scenario.
 | B04 Worked example | The retrieved (outdated) document AND the model's confident answer shown together | Not narration-only — the mismatch between source and answer must be visible |
 | B05 Falsifiability | A case where retrieval genuinely resolves an otherwise-unanswerable question, legible, visibly different resolution from B04 | Side-by-side or sequential-but-both-legible comparison to B04 |
 | B06 Task | The 3 questions restated as an audit checklist | Actionable, distinct from B03's framework card |
-| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi J. |
 
 ---
 
@@ -56,7 +56,7 @@ Visual: title card — "RAG: Why 'Looking It Up' Doesn't Guarantee It's True" + 
 No narration.
 
 **B01. Exec summary (~0:04–0:20)**
-VO: "Hi, I'm Sai Pranavi Jeedigunta. This video is about Retrieval-Augmented Generation — giving an
+VO: "Hi, I'm Sai Pranavi J.. This video is about Retrieval-Augmented Generation — giving an
 AI model a search step so it can look things up instead of guessing — and three questions that
 catch the difference between an answer that's actually grounded in what it found, and one that
 just sounds like it is."
@@ -108,7 +108,7 @@ Visual: statement card.
 
 **B08. Sign-off (~2:22–2:27)**
 VO: "Explained with Claude Code."
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
 
 ---
 

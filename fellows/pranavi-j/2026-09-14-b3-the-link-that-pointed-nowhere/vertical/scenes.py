@@ -169,7 +169,7 @@ class B01_ExecSummary(Scene):
         self.camera.background_color = PALETTE["bg"]
 
         name = fit(T(
-            "Sai Pranavi\nJeedigunta", color=PALETTE["ink"], font_size=42,
+            "Sai Pranavi J.", color=PALETTE["ink"], font_size=42,
             weight="BOLD", line_spacing=1.0,
         ))
         role = fit(T("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=20))
@@ -669,7 +669,7 @@ class B08_Statement(Scene):
 
 # --------------------------------------------------------------------------- #
 # B09 — SIGN-OFF: @HumanitariansAI, fixed with Claude Code, in for Sai
-# Pranavi Jeedigunta. Already a single vertical column.
+# Pranavi J.. Already a single vertical column.
 # --------------------------------------------------------------------------- #
 class B09_BrandOutro(Scene):
     def construct(self):
@@ -681,7 +681,7 @@ class B09_BrandOutro(Scene):
             "fixed with Claude Code", color=PALETTE["ink"], font_size=28, weight="BOLD",
         ))
         tagline2 = fit(T(
-            "in for Sai Pranavi\nJeedigunta", color=PALETTE["ink"], font_size=24, line_spacing=1.1,
+            "in for Sai Pranavi J.", color=PALETTE["ink"], font_size=24, line_spacing=1.1,
         ))
         tagline = VGroup(tagline1, tagline2).arrange(DOWN, buff=0.22)
         VGroup(handle, accent, tagline).arrange(DOWN, buff=1.7).move_to(ORIGIN)

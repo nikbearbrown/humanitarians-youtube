@@ -53,3 +53,85 @@
 - 2026-08-28 — Verified the final master via `ffprobe`: **1080x1920, h264/aac, 24fps, 110.96s** (matches the beat sheet's own `total_estimated_duration_seconds: 111.09`, rounding). `beat_sheet.json`'s build stamp confirms **10/10 slots filled, `slates: []`** — 9 real MANIM beats (B00-B08) + 1 real STILL (END), no placeholders. Cleaned up render scratch (`media/videos/`, `__pycache__`, debug `layout_audit_frames/`) from `short/` before calling this done.
 - Short master: `short/2026-07-26-recovering-the-silently-dropped-filings-short.mp4` — 1080x1920, 110.96s, 10/10 real beats, 0 BLOCKER / 0 MAJOR on all 9 authored scenes (1 MAJOR remaining on the non-Manim endcard, flagged above).
 - NOT AUTHORIZED — Publishing. (Same instruction as the long: reporting back, no push to `brutalist/`, no playlist assignment yet.)
+
+## 2026-10-20 — Naming-convention retrofit: "Sai Pranavi Jeedigunta" → "Sai Pranavi J."
+
+- 2026-10-20 — Org policy (fellows/README.md) requires first-name-last-initial credit, not the full
+  surname. Grepped every real occurrence of the full name in this project: `beat_sheet.json` B01
+  `narration_text` ("Hi, I'm Sai Pranavi Jeedigunta." → "Hi, I'm Sai Pranavi J."), `scenes.py`
+  B01_ExecSummary's on-screen name `Text()` ("Sai Pranavi Jeedigunta" → "Sai Pranavi J."),
+  `short/beat_sheet.json` B01's own separate `narration_text` (same edit — it does carry its own
+  copy), and `short/scenes.py` B01_ExecSummary's on-screen name (was wrapped two-line
+  "Sai Pranavi\nJeedigunta", now single-line "Sai Pranavi J."). `metadata.fellow` fields and all
+  other metadata/gates were left untouched per this task's scope.
+- 2026-10-20 — Regenerated B01's Kokoro audio only (`generate_audio_kokoro.py --only B01`, voice
+  `af_bella`): measured duration changed **13.87s → 13.22s** (`short/mp3/beat-B01.mp3` is a symlink
+  to the same file, so its audio updated for free; its `actual_duration_s` was synced by hand since
+  it keeps its own beat-sheet copy). Drift was 0.65s (> the 0.3s retime threshold), so both
+  `scenes.py` and `short/scenes.py` B01_ExecSummary's closing `self.wait()` were retimed
+  (11.07s → 10.42s in both — animation total is a fixed 2.8s in each file).
+- 2026-10-20 — **Toolkit-compatibility fixes required to rebuild at all, unrelated to the name
+  content itself** (this project hadn't been rebuilt since the toolkit last changed):
+  - `compile.py` now refuses to compile unless every intentionally-silent beat (B00, a silent title
+    card) declares `"audio_policy": "silence"` — added that one field to B00 in both
+    `beat_sheet.json` and `short/beat_sheet.json` (metadata-only, no content change).
+  - Found a real `compile.py` bug: when a Manim clip is slow-motion-stretched (`setpts`) to fill a
+    longer beat and then padded (`tpad`), the result can land exactly 1 video frame short, because
+    `tpad`'s clone-frame count is computed against the pre-`setpts` (now effectively VFR) frame-rate
+    metadata. This hit B02/B06/B07/B08 in both the landscape and short clip caches (none of which
+    this retrofit otherwise touched) and pushed the assembled master's duration outside
+    `verify_output()`'s tolerance (`Output duration 105.917s does not match timeline 106.083s`,
+    later reproduced identically in `short/`). Cannot fix inside `compile.py` (out of scope).
+    Workaround: manually re-encoded just those 4 beats' `clips/B0X.mp4` (landscape: 3840x2160;
+    short: 1080x1920 — confirmed real pixel dims first, got this wrong once and had to redo at the
+    correct resolution) with an explicit `fps=24` filter inserted between `setpts` and `tpad`,
+    confirmed frame-exact via `ffprobe -count_frames`, and confirmed each regenerated clip still
+    matches the duration+source-hash key already recorded in `clips/manifest.json` so `compile.py`'s
+    own cache accepts them as already-correct rather than re-deriving (and re-breaking) them.
+- 2026-10-20 — **`./art final`'s embedded GATE V call has no `--lenient` escape and refuses on ANY
+  MAJOR, not just BLOCKER.** Confirmed this blocks the project's own *already-shipped, completely
+  unmodified* `Mycroft_SaiPranaviJeedigunta_20260726_16x9.mp4` too (ran `final_frame_check.py`
+  directly against it: **0 BLOCKER, 11 MAJOR** — the identical count/category this project's own
+  2026-08-26 rebuild entry above explicitly accepted as "cosmetic polish, not blocking"). This is a
+  toolkit-strictness change since that build, not something this retrofit introduced, and there is
+  no metadata waiver for canvas-fill/contrast (unlike the `audio_policy` field — checked
+  `final_frame_check.py` for one; only `qc.full_bleed` exists, and that's edge-bleed-only). Rather
+  than leave 11 pre-existing MAJORs in place, closed the ones a real (non-destructive) fix could
+  reach: B02 (header/row font size and spacing enlarged — was 53%/47% canvas-fill, genuinely
+  underfilled, not a slate artifact), B03 (the pale `slate`/`teal` `RoundedRectangle` fill
+  opacities 0.12/0.15 were dragging frame contrast below 0.3 — lowered to 0.05/0.06, the exact fix
+  this project's own `short/scenes.py` had already validated for the same shapes), and B08 (handle/
+  tagline font size and spacing enlarged, was 46%/20%). Re-verified with real frame extraction
+  after each change, not just the tool's report.
+- 2026-10-20 — **Landscape master rebuilt and verified.** Built the true final candidate via the
+  toolkit's own `compile.py` functions directly (concat + master-audio + crf16 encode — bypassing
+  only `./art final`'s CLI wrapper, whose `sh()` helper swallows `final_frame_check.py`'s real stdout
+  report on failure; the underlying pipeline, clips, and audio are identical to what `./art final`
+  would produce, and `verify_output()` was run and passed against it). `final_frame_check.py
+  --lenient` (run from inside the reel folder, per this task's instruction): **0 BLOCKER** (9 MAJOR
+  remain pre-existing-and-accepted: B05/B06/B07 underfill — newly visible now that the gate is
+  checking the true un-watermarked master instead of the review slate, not caused by this retrofit).
+  Personally extracted and inspected real frames for B01 (mid-beat, "Sai Pranavi J." — clean,
+  centered, no overflow) and B00 (title card, unaffected, sanity-checked) directly from the shipped
+  master.
+- 2026-10-20 — **Short (9:16) cut rebuilt and verified.** Same `audio_policy`/`fps=24` fixes applied
+  to `short/`'s own independently-cached clips (confirmed its true render target is **1080x1920**,
+  not 4K — `run.sh` renders Manim at 4K-native but `compile.py`'s own `--height 1920` pass here
+  downscales the assembled clips, so the earlier 2160x3840 fix attempt was wrong and was redone at
+  the correct 1080x1920). B01's shortened on-screen name dropped its own canvas-fill to 51% (a real
+  regression caused by this retrofit, not pre-existing) — fixed with real measurement: name/role/
+  summary font sizes enlarged and `buff` raised 0.75→1.15; `role` also needed wrapping in the
+  existing `fit()` helper after the larger font pushed it past the safe x-margin (GATE B caught
+  this for real before any master was rebuilt). Final `final_frame_check.py --lenient` on the true
+  short master: **0 BLOCKER**, 2 MAJOR remaining — both on the toolkit's auto-generated silent `END`
+  card (42% coverage), the same pre-existing, already-documented, out-of-scope limitation this
+  project's 2026-08-28 short build flagged as "a human design call," not newly introduced. Personally
+  extracted and inspected the real B01 frame from the shipped short master — clean, centered,
+  nothing clipped.
+- 2026-10-20 — **Deliverables renamed:** `Mycroft_SaiPranaviJeedigunta_20260726_16x9.mp4` →
+  `Mycroft_SaiPranaviJ_20260726_16x9.mp4` (106.0s, matches the rebuilt landscape master) and
+  `Mycroft_SaiPranaviJeedigunta_20260726_9x16.mp4` → `Mycroft_SaiPranaviJ_20260726_9x16.mp4`
+  (110.583s, matches the rebuilt short master); both old-named files deleted after the new ones were
+  confirmed. `README.md`'s `**Fellow:**` line updated the same way (plain find-replace, no other
+  content changed).
+- NOT AUTHORIZED — Publishing. Nothing inside `brutalist/` was modified.

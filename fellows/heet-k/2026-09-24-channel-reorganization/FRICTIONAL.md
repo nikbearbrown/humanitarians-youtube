@@ -6,8 +6,8 @@
 > Week 17 report; not a contemporaneous entry.
 
 - **Channel:** https://www.youtube.com/@MedhavyAI
-- **Evidence:** NOT PROVIDED — see [README.md](README.md#evidence-gap--stated-plainly)
-- **Hours:** 10 hrs reorganization + 8 hrs planning — [HOURS.md](../HOURS.md)
+- **Evidence:** the [three unlisted videos](README.md#what-was-unlisted), named in the entry below
+- **Hours:** Week 17 total 21.0 — 10.0 reorganization + 8.0 planning on this thread — [HOURS.md](../HOURS.md)
 
 **What I was working on.** Stepping back from making individual videos to shaping
 the container they go in: cleaning up what was already on the Medhavy channel, and
@@ -38,8 +38,10 @@ stalled, because I could not settle the structure in the abstract.
 
 **What Claude contributed, and what I accepted, changed or rejected.**
 
-*TODO — Heet: if this week was largely manual channel work, say so here. If
-Claude helped draft the content plan, name what you kept and what you dropped.*
+Not recorded at the time, and I will not reconstruct it. On the branding thread
+the pattern was Claude proposing and me revising (see
+[the Brutalist pass](../2026-10-01-intro-outro-brutalist-pass/FRICTIONAL.md)),
+but I cannot honestly claim the same split applied here without having logged it.
 
 **What I understand now, and what I still do not.**
 
@@ -55,3 +57,83 @@ to fix, and it is more important than the plan itself: a plan nobody can read is
 not a plan anyone can disagree with.
 
 I also do not know whether the structure is right, because no one has seen it.
+
+---
+
+## 2026-10-04 — still deciding, a week later
+
+> Written 2026-10-03, within the week it describes, from the Week 18 report.
+> Appended to this folder rather than opening a new one: this is the same
+> Phase 1 thread continuing, not a separate piece of work.
+
+- **Evidence:** the [channel](https://www.youtube.com/@MedhavyAI) as it now stands
+- **Hours:** Week 18 total 22.0 — 8.0 on this thread — [HOURS.md](../HOURS.md)
+- **This week's other thread:** [intro/outro via the Brutalist skill](../2026-10-01-intro-outro-brutalist-pass/)
+
+**What I was working on.** The same question as last week: what types of video
+the Medhavy channel should hold.
+
+**What I tried, and what I expected.** Last week I thought the plan would fall
+out once the channel was tidied. It didn't, so I expected a second week on it
+to close it. It did not close either.
+
+**Where it resisted, and what I did next.**
+
+- **The question is harder than it looks because it is not really about
+  videos.** Choosing content types means deciding who the channel is for. The
+  existing material spans quantum-mechanics chapter explainers, brand stings,
+  and textbook walkthroughs — those imply different audiences, and I cannot pick
+  content types without picking between them first. I did not resolve that.
+- **Two weeks in, still labelled Phase 1.** The honest move was to log it as
+  continuing rather than manufacture a conclusion to make the week look finished.
+  But a plan that stays in progress for two weeks with nothing written down is
+  drifting, not deliberating, and I should treat the next week on it differently.
+- **I still wrote nothing down.** Last week's entry named this as the thing to
+  fix and said a plan nobody can read is not a plan anyone can disagree with.
+  I then spent another eight hours not fixing it. Recording that plainly is the
+  only useful thing I can do with it here.
+
+**What Claude contributed, and what I accepted, changed or rejected.**
+
+Not recorded at the time, and I will not reconstruct it. On the branding thread
+the pattern was Claude proposing and me revising (see
+[the Brutalist pass](../2026-10-01-intro-outro-brutalist-pass/FRICTIONAL.md)),
+but I cannot honestly claim the same split applied here without having logged it.
+
+**What I understand now, and what I still do not.**
+
+I understand that "continue planning" is not a task with an end condition, and
+that is why two weeks produced no artifact. The next session on this needs a
+deliverable named in advance — a written list of content types, even a wrong one
+— rather than more deciding.
+
+I do not know who the channel is for, and I now think that is the actual blocker
+rather than a detail to settle later. I also still have nothing a reader can open.
+
+---
+
+## 2026-10-17 — which three videos
+
+> Written 2026-10-17. Appended; the entries above stand as written.
+
+Three videos were unlisted:
+
+- [Build a Hydrogen Radial Probability Sim with Claude Code](https://www.youtube.com/watch?v=0QcyNKNNQVI)
+- [The Photoelectric Effect: One Photon, One Electron, and the End of Wave Theory](https://www.youtube.com/watch?v=tWhCp6N4ACM)
+- [Build a Quantum Harmonic Oscillator Ladder with Claude Code](https://www.youtube.com/watch?v=POoBlBjRMtc)
+
+Unlisted rather than deleted, so all three are still reachable by link — which
+is why they can be named at all a month later. Had they been removed there would
+be nothing to point at.
+
+**What the list shows that my memory did not.** Two of the three are
+Claude-Code-plus-Manim build reels. Looking at them together, the curation was
+selecting against build-process content and keeping finished explainers — which
+is a content-type decision, the exact thing I spent Weeks 17 and 18 failing to
+articulate in the abstract. I had already made it; I just made it by unlisting
+rather than by deciding.
+
+**One caveat.** The reasoning at the time was not written down. I can now see a pattern in what I
+removed, but I am reading it off the result, not recalling it. That is inference
+about my own past judgement, and I would rather label it as such than present it
+as a decision I remember making.

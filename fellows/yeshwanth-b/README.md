@@ -1,7 +1,7 @@
 # Yeshwanth B.
 
 **Role:** AI Engineer  
-**Project:** _to be filled in_  
+**Project:** Walker      
 **GitHub:** [@YeshwanthBalaji0412](https://github.com/YeshwanthBalaji0412)
 
 ## What's in this folder

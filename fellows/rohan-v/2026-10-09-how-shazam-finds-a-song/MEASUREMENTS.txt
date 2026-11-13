@@ -1,0 +1,35 @@
+MEASUREMENTS — How Shazam Finds a Song
+Every figure shown or spoken comes from this run. Re-run: python fingerprint.py && python export_shazam_data.py
+(recorded on Windows-11-10.0.26200-SP0, python 3.12.10)
+
+evidence/run.log (verbatim):
+  library: 6 synthetic songs x 40 s at 11025 Hz; 13772 hashes (2092, 2259, 2192, 2671, 2269, 2289); 12.5 peaks/s; 57 hashes/s; 10055 distinct hash values; built in 2.4 s
+  query: Song C from 12.0 s, 5 s long, cafe noise at +0 dB SNR, 150-4000 Hz: 305 hashes; search 9 ms
+    Song C: 112 hash matches, best offset bin 33 votes at 12.00 s
+    Song E: 18 hash matches, best offset bin 2 votes at 3.95 s
+    Song B: 10 hash matches, best offset bin 1 votes at -0.33 s
+    Song F: 3 hash matches, best offset bin 1 votes at 20.09 s
+    Song A: 2 hash matches, best offset bin 1 votes at 16.51 s
+    Song D: 1 hash matches, best offset bin 1 votes at 23.61 s
+  => Song C at 12.00 s (correct); 33 votes vs 2 for the runner-up
+  peaks in the 3 s picture: 40 clean, 44 in the noisy phone clip; 24 of the 40 clean peaks are still there (within 1 column and 2 bins)
+  worked hash: anchor 786 Hz at 1.02 s -> target 1174 Hz, dt 0.05 s; packed value 4791106
+  sweep +10 dB: 30/30 named correctly, 0 wrong, 0 no match (start time within 0.1 s on 30 of the 30); median top score 38
+  sweep +5 dB: 30/30 named correctly, 0 wrong, 0 no match (start time within 0.1 s on 30 of the 30); median top score 42
+  sweep +0 dB: 29/30 named correctly, 0 wrong, 1 no match (start time within 0.1 s on 25 of the 29); median top score 24
+  sweep -5 dB: 22/30 named correctly, 0 wrong, 8 no match (start time within 0.1 s on 20 of the 22); median top score 12
+  sweep -10 dB: 9/30 named correctly, 0 wrong, 21 no match (start time within 0.1 s on 7 of the 9); median top score 6
+  sweep -15 dB: 0/30 named correctly, 0 wrong, 30 no match (start time within 0.1 s on 0 of the 0); median top score 2
+  variant 'same recording' (+10 dB SNR): Song C 52 votes, best other 6 -> MATCH
+  variant 'one semitone higher' (+10 dB SNR): Song C 1 votes, best other 2 -> no match
+  variant '6% faster' (+10 dB SNR): Song C 4 votes, best other 2 -> no match
+  variant 'melody only, hummed' (+10 dB SNR): Song C 1 votes, best other 1 -> no match
+
+files (SHA-256):
+  fingerprint.py  26705c7aac733aff3effdab4cc45d3dafa6fe45d4bbe0aace10767e81e6aa7e0
+  synth.py  6bc311ec0dcf3cef170766879a1d36f16d1c282d76b883625e557b63e090a22d
+  export_shazam_data.py  5f69a133d930d2727166e6abf7e250fae837c90e8d957be7f0537161cbb74c9b
+  evidence/clip_cafe.wav  69c3219c4356e0fdd7bd7b5d4d14266f04803a63fbfcb64e6a9d44ca33d9c2d2
+  evidence/fingerprint.json  8272fde105f65388a0cbcb9b46feb002b8482291a3b9bbb58fd1af14ce708e23
+  evidence/original_segment.wav  6115ed9f3a38d6fd50cf79f138bb55e7c6e31eca0cf111edf049064f373b4b2d
+  evidence/run.log  2ba989c6da59d3ee59b7b8543df5e3865799ccb3a2093256b90d2030852bb675

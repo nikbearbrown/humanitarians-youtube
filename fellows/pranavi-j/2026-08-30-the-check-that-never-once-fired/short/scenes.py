@@ -155,7 +155,7 @@ class B01_ExecSummary(Scene):
         self.camera.background_color = PALETTE["bg"]
 
         name = fit(Text(
-            "Sai Pranavi\nJeedigunta", color=PALETTE["ink"], font_size=44,
+            "Sai Pranavi J.", color=PALETTE["ink"], font_size=44,
             weight="BOLD", line_spacing=1.0,
         ))
         role = Text("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=22)
@@ -177,8 +177,9 @@ class B01_ExecSummary(Scene):
             summary.get_corner(DL) + DOWN * 0.12, summary.get_corner(DR) + DOWN * 0.12
         )
         self.play(Create(summary_underline), run_time=0.3)
-        # animation sum = 2.8s; measured narration = 18.74s
-        self.wait(15.94)
+        # retimed 2026-10-20: narration shortened to 18.29s ("Sai Pranavi J."
+        # retrofit, was 18.74s) — shifted this hold by the same -0.45s delta.
+        self.wait(15.49)
 
 
 # --------------------------------------------------------------------------- #
@@ -591,8 +592,12 @@ class B08_BrandOutro(Scene):
 
         handle = fit(Text("@HumanitariansAI", color=PALETTE["slate"], font_size=68))
         accent = Line(LEFT * 1.8, RIGHT * 1.8, color=PALETTE["gold"], stroke_width=3)
-        tagline = fit(Text("in for Sai Pranavi\nJeedigunta", color=PALETTE["ink"], font_size=36, line_spacing=1.05))
-        VGroup(handle, accent, tagline).arrange(DOWN, buff=1.4).move_to(ORIGIN)
+        tagline = fit(Text("in for Sai Pranavi J.", color=PALETTE["ink"], font_size=36, line_spacing=1.05))
+        # buff 1.4->1.85 (2026-10-20): the "Sai Pranavi J." retrofit
+        # collapsed the tagline from 2 lines to 1, dropping real measured
+        # canvas-fill to 47% (just under the 55% floor) — raised buff for
+        # real coverage, not just to appease the checker.
+        VGroup(handle, accent, tagline).arrange(DOWN, buff=1.85).move_to(ORIGIN)
 
         tagline_underline = Line(color=PALETTE["sage"], stroke_width=1)
 

@@ -1,123 +1,132 @@
 # BUILD-PROMPT.md — How the Tutor Stays Grounded in Your Textbook
 
-**Not run yet.**
-- **Environment:** WSL Ubuntu, plain `python3`. Do not use `brutalist.art/.venv`.
-- **Gates:** every phase ends at a review stop.
-- **Repos untouched:** `brutalist.art`, `medhavi-cancer` and `medhavi-hub` are not modified.
-- **No git:** no `git add`, commit, push, PR, merge, publish or upload at any point.
+**Build / reproduction record. Everything below ran between 2026-09-24 and 2026-09-29, except where marked.**
+
+- **Environment:** WSL Ubuntu, plain `python3` (3.10.12). `brutalist.art/.venv` is not used.
+- **Repos:** `brutalist.art`, `medhavi-cancer` and `medhavi-hub` were not modified. The only toolkit side effect is the git-ignored render index `runtime/remotion/_bench/consumers.json`, which was accepted.
+- **Git:** no git command was run during production. GitHub upload of source and docs is Prarthana's manual step. The videos are on Google Drive.
 
 ```bash
 cd /mnt/c/Users/prart/HumanitarianAI/MedhavyAITutorVideo/brutalist.art
 REEL=/mnt/c/Users/prart/HumanitarianAI/MedhavyAITutorVideo/humanitarians-youtube/fellows/prarthana-s/how-the-tutor-stays-grounded
-W=$REEL/capture/capture_masked.py      # reel-local wrapper (design: CAPTURE.md; not yet written)
+W=$REEL/capture/capture_masked.py      # reel-local redaction wrapper (built + self-tested)
+export PYTHONDONTWRITEBYTECODE=1       # never write __pycache__ into brutalist.art
 ```
 
-## Phase 0: wrapper (after Prarthana reviews the design)
+## 1. Wrapper (ran)
 
-1. Write `$W` to the CAPTURE.md spec. **Stop.** Show Prarthana the exact source and a walkthrough of the leak check.
-2. Run the self-test. It uses local headless Chromium, a dummy term and a `data:` page, with no network and no Medhavy.
-   ```bash
-   python3 $W --self-test
-   ```
+```bash
+python3 $W --self-test          # offline, file:// pages, dummy term "Testname": 11/11 PASS
+```
 
-## Phase 1: landscape (first)
+The wrapper loads the toolkit's `capture_admin.py` as a module and extends its `MASK` JavaScript in memory. It then calls the unmodified `main()`. The design and the leak-check layers are in CAPTURE.md.
 
-3. Prarthana saves the session, signing in herself.
-   ```bash
-   python3 skills/make/medhavy-walkthrough/scripts/save_session.py
-   ```
-4. Signed-out sign-in capture.
-   ```bash
-   python3 $W $REEL --run run-signin --plan $REEL/capture/plan-signin.json --css-size 1600x900 --dpr 2.4 --no-session
-   ```
-5. Prarthana sets the mask term. It isn't echoed and isn't saved to shell history.
-   ```bash
-   read -rs MW_MASK_TEXT && export MW_MASK_TEXT
-   ```
-6. Landscape pilot.
-   ```bash
-   python3 $W $REEL --run run-pilot --plan $REEL/capture/plan-book.json --css-size 1600x900 --dpr 2.4
-   ```
-7. Review the pilot:
-   - redaction (Layers 1–4)
-   - tutor memory state
-   - live tutor behaviour
-   - the real card titles
-   - which conditional beats survive
-   **Stop and report.** Any memory clear waits for Prarthana's decision.
-8. Corrected landscape capture.
-   ```bash
-   python3 $W $REEL --run run-book --plan $REEL/capture/plan-book.json --css-size 1600x900 --dpr 2.4
-   ```
-   Then repeat the redaction review.
-9. Clear the mask term.
-   ```bash
-   unset MW_MASK_TEXT
-   ```
-   Fill in the timings. Promote or delete the conditional lines using the word budget. Update FACTCHECK. **Stop for review.**
+## 2. Captures (ran)
 
-## Phase 2: portrait source (only after the landscape capture is reviewed)
+Prarthana did these steps herself:
+- signed in with `save_session.py`
+- set the mask term privately with `read -rs MW_MASK_TEXT && export MW_MASK_TEXT`
+- ran each signed-in capture in her own shell, then ran `unset MW_MASK_TEXT`
 
-10. Set the mask term again, then run the layout test. It sends no tutor requests.
-    ```bash
-    read -rs MW_MASK_TEXT && export MW_MASK_TEXT
-    python3 $W $REEL --run run-portrait-test --plan $REEL/capture/plan-portrait-test.json --css-size 1280x720 --dpr 3
-    ```
-    Check it against the pass criteria in CAPTURE.md. **If it fails, stop and report. Send no tutor requests.**
-11. Optional portrait-friendly sign-in card.
-    ```bash
-    python3 $W $REEL --run run-signin-916src --plan $REEL/capture/plan-signin.json --css-size 1280x720 --dpr 3 --no-session
-    ```
-12. Update `plan-portrait.json` steps 18 and 21 with the confirmed title. Then run the portrait capture, which sends 2 tutor requests.
-    ```bash
-    python3 $W $REEL --run run-portrait --plan $REEL/capture/plan-portrait.json --css-size 1280x720 --dpr 3
-    ```
-    Then `unset MW_MASK_TEXT`. Review redaction, memory interference, and whether each behaviour the narration relies on also appears in this take. **Stop for review.**
+```bash
+python3 skills/make/medhavy-walkthrough/scripts/save_session.py
+python3 $W $REEL --run run-signin        --plan $REEL/capture/plan-signin.json        --css-size 1600x900 --dpr 2.4 --no-session
+python3 $W $REEL --run run-pilot         --plan $REEL/capture/plan-book.json          --css-size 1600x900 --dpr 2.4   # pilot plan version; discovery only
+python3 $W $REEL --run run-book          --plan $REEL/capture/plan-book.json          --css-size 1600x900 --dpr 2.4   # corrected plan; landscape source
+python3 $W $REEL --run run-portrait-test --plan $REEL/capture/plan-portrait-test.json --css-size 1280x720 --dpr 3     # no tutor requests
+python3 $W $REEL --run run-portrait      --plan $REEL/capture/plan-portrait.json      --css-size 1280x720 --dpr 3     # portrait source
+```
 
-## Phase 3: reel-local scenes (not implemented yet)
+- **Plan edits.** `plan-book.json` was edited between the pilot and `run-book`:
+  - the 5.4.2 card was confirmed
+  - a scroll-to-bottom step and early screenshots were added before the follow-up
+  - the "Thanks!" steps were removed
+- **Redaction review.** After each run, frame contact sheets were built with `python3 $W --review-sheet $REEL --run <run>`, reviewed, and deleted.
+- **Not run:** `run-signin-916src`.
+- **Tutor memory:** never cleared.
 
-These live in this folder, using the same approach as `../what-is-medhavy/` (`MedhavyExplainerScenes.tsx`, `Root.tsx`, theme):
+## 3. Narration (ran)
 
-| Scene | Size | Used for |
+```bash
+python3 runtime/scripts/generate_audio_kokoro.py $REEL                         # landscape, am_onyx
+python3 runtime/scripts/generate_audio_kokoro.py $REEL/vertical --only B11     # vertical-only B11 wording
+```
+
+Durations are the master clock. The vertical B11 take (15.53 s) was padded with silence to its 22.0 s window. The raw take is kept at `vertical/mp3/beat-B11.take.mp3`.
+
+## 4. Landscape media (ran)
+
+**Frame-exact footage cuts.** The toolkit's `prepare_media.py` calls `hashlib.file_digest`, which needs Python 3.11, and WSL has 3.10. So it was run unmodified, with an in-memory backport:
+
+```bash
+python3 -c "
+import hashlib, runpy, sys
+if not hasattr(hashlib, 'file_digest'):
+    def file_digest(f, name):
+        h = hashlib.new(name)
+        for c in iter(lambda: f.read(1<<20), b''): h.update(c)
+        return h
+    hashlib.file_digest = file_digest
+s = 'skills/make/medhavy-walkthrough/scripts/prepare_media.py'
+sys.argv = [s, '$REEL']
+runpy.run_path(s, run_name='__main__')"
+```
+
+**Library bookends** (B00, B01, B13, B14, B15) use the Playwright Chromium already installed in WSL:
+
+```bash
+export ART_CHROME=$HOME/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome ART_CHROME_MODE=chrome-for-testing
+python3 runtime/scripts/remotion_scenes.py $REEL
+```
+
+## 5. Reel-local Remotion scenes (built and rendered)
+
+**Project:** `remotion/` in this folder.
+- **Source files:** `src/index.ts`, `src/Root.tsx`, `src/theme.ts`, `src/GroundingFlow.tsx` (`GroundingFlow`, `GroundingFlow916`), `src/PanelFocus916.tsx`, plus a stub `package.json`.
+- **Symlinks (read only, not in the upload):** `remotion/node_modules` points to `brutalist.art/runtime/remotion/node_modules`, and `remotion/public/fonts` to `brutalist.art/runtime/fonts`. `remotion/public/capture` points to `../../capture`. Recreate them with:
+  ```bash
+  cd $REEL/remotion && ln -sfn $PWD/../../../../../brutalist.art/runtime/remotion/node_modules node_modules
+  mkdir -p public && ln -sfn $PWD/../../../../../brutalist.art/runtime/fonts public/fonts && ln -sfn ../../capture public/capture
+  ```
+- **Render command** (one render at a time: parallel 4K renders exhausted memory once). Retry once on the known intermittent "Timed out … trying to connect to the browser" start-up failure.
+  ```bash
+  B=$HOME/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome
+  npx remotion render src/index.ts <Comp> <out.mp4> --props=<props.json> --scale=2 --image-format=png --crf=16 \
+      --concurrency=2 --bundle-cache=false --browser-executable=$B --chrome-mode=chrome-for-testing
+  ```
+
+| Output | Composition | Props |
 |---|---|---|
-| `GroundingFlow` | 3840×2160 | landscape B10 |
-| `GroundingFlow916` | 2160×3840 | vertical B10 |
-| `PanelFocus916` | 2160×3840 | portrait reframes of the `run-portrait` footage |
+| `media/B10.mp4` | `GroundingFlow` | `{"durationSeconds": 17.133}` |
+| `pantry/B10-916.mp4` | `GroundingFlow916` | the same |
+| `pantry/B02-916.mp4`, `pantry/B03-916.mp4` … `pantry/B12-916.mp4` (every SCREEN beat) | `PanelFocus916` | each beat's `panelfocus_props` in `vertical-windows.json` |
 
-## Phase 4: landscape build (after the narration is final and the voice approval is recorded)
+## 6. Landscape final (ran)
 
-13. Run `./art approvals $REEL --fingerprints`. Prarthana records her own sign-off; it is never invented for her.
-14. Generate narration audio, prepare media and render the scenes.
-    ```bash
-    python3 runtime/scripts/generate_audio_kokoro.py $REEL
-    python3 skills/make/medhavy-walkthrough/scripts/prepare_media.py $REEL
-    python3 runtime/scripts/remotion_scenes.py $REEL
-    ```
-    Also render the reel-local `GroundingFlow` to `media/B10.mp4`.
-15. Run the walkthrough check, then the review compile, then the final-frame check.
-    ```bash
-    ./art medhavy-walkthrough --check $REEL
-    python3 runtime/scripts/compile.py $REEL --review --fps 30 --height 2160
-    ```
-    Then run `runtime/qc/final_frame_check.py` and look at the frames yourself.
-16. Limit each beat to −1 dBTP, then export the landscape master.
-    ```bash
-    ./art final $REEL --height 2160 --fps 30 --out $REEL/exports/landscape
-    ```
+```bash
+python3 skills/make/medhavy-walkthrough/scripts/limit_audio.py $REEL
+./art medhavy-walkthrough --check $REEL                  # PASS
+./art final $REEL --height 2160 --fps 30 --out $REEL/exports/landscape
+```
 
-## Phase 5: vertical build (separate composition)
+**Output:** `exports/landscape/claude-liam-medhavy-how-the-tutor-stays-grounded.mp4` (3840×2160, 167.93 s). GATE T PASS; Gate V clean.
 
-17. Create the separate portrait beat sheet.
-    ```bash
-    ./art vertical $REEL
-    ```
-    This plans `vertical/`. Its SCREEN beats come from `run-portrait` (and `run-signin-916src`), reframed with `PanelFocus916` into `vertical/pantry/Bxx-916.mp4`. B10 uses `GroundingFlow916`, and the bookends use the registered `*916` scenes. It is never a crop of the landscape master.
-18. Review the phone-size contact sheet for legibility.
-19. Render the vertical preview and the final master.
-    ```bash
-    python3 runtime/scripts/remotion_scenes.py $REEL/vertical
-    ./art run $REEL/vertical --height 1920
-    ./art final $REEL/vertical --height 3840 --out $REEL/exports/vertical
-    ```
+## 7. Vertical final (ran, via the documented direct-compile exception)
 
-Handoff to GitHub and Drive is Prarthana's own step, per FELLOWS-SUBMISSION.md, and happens outside this plan.
+```bash
+./art vertical $REEL                                      # plans vertical/ with its own beat sheet
+for f in $REEL/pantry/B??-916.mp4; do b=$(basename $f -916.mp4); cp -f $f $REEL/vertical/media/$b.mp4; done   # portrait clips into the vertical slots
+python3 runtime/scripts/remotion_scenes.py $REEL/vertical         # *916 bookends
+python3 skills/make/medhavy-walkthrough/scripts/limit_audio.py $REEL/vertical
+python3 runtime/scripts/compile.py $REEL/vertical --height 3840 --fps 30 --out $REEL/exports/vertical
+```
+
+**Output:** `exports/vertical/claude-liam-medhavy-how-the-tutor-stays-grounded-vertical.mp4` (2160×3840, 167.93 s).
+
+- **Why not `art final`:** it runs GATE T first with no bypass. GATE T fails only on B15, the locked `ClaudeTitleOutro916` handle, which can't be changed.
+- **What still ran:** `compile.py` still runs Gate V on the candidate and writes the `.verified.json` receipt.
+- **Approval and waivers:** approved by Prarthana on 2026-09-29. B01 and B13 carry `qc.sparse_by_design` underfill waivers. See QC-REPORT.md.
+
+## 8. Handoff
+
+Prarthana uploaded both finals to Google Drive. She is uploading the source and docs to GitHub manually. Nothing was published to YouTube.

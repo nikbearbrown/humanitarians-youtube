@@ -1,0 +1,545 @@
+{
+  "metadata": {
+    "slug": "progressive-tool-router",
+    "title": "Why Giving an AI Agent More Tools Can Make It Worse — Build a Progressive Tool Router with Claude",
+    "alternative_titles": [
+      "1,000 AI Tools vs. 3 — Why More Context Can Make an Agent Worse",
+      "Build a Smart MCP Tool Router with Claude: Load Only the Tools Your AI Needs"
+    ],
+    "presenter": "Dhrumil Shah",
+    "series": "AI · STEM · Computer Science explainers",
+    "central_question": "If an AI agent has access to 1,000 tools, should all 1,000 be placed in its context?",
+    "answer": "No — read the intent, retrieve and rank candidate tools, load only the top few.",
+    "framework": "DISCOVER → FILTER → RANK → LOAD → EXECUTE",
+    "aspect_ratio": "9:16",
+    "design_canvas": {
+      "width": 1080,
+      "height": 1920
+    },
+    "master_resolution": "2160x3840",
+    "masters": [
+      "2160x3840",
+      "1080x1920",
+      "720x1280",
+      "540x960"
+    ],
+    "fps": 30,
+    "target_seconds": 118,
+    "duration_range_seconds": [
+      90,
+      120
+    ],
+    "clock": "measured narration — regenerate audio and re-time if any line changes",
+    "palette": {
+      "bg": "#0B0D11",
+      "surface": "#141821",
+      "ink": "#E8E6E1",
+      "muted": "#9BA1AC",
+      "accent": "#D97757",
+      "positive": "#3E7C74",
+      "caution": "#B8912F",
+      "code_bg": "#0E1117"
+    },
+    "safe_area_design_px": {
+      "left": 72,
+      "right": 72,
+      "top": 150,
+      "content_top": 260,
+      "content_bottom": 1330,
+      "source_line": 1340,
+      "caption_band": [
+        1372,
+        1540
+      ],
+      "note": "keep essential content out of x>940 (interaction rail) and below y 1540 (platform UI)"
+    },
+    "caption_highlight_terms": [
+      "AI Agent",
+      "Tool Calling",
+      "MCP",
+      "Context Window",
+      "Progressive Discovery",
+      "Tool Registry",
+      "Semantic Search",
+      "Ranking",
+      "Top-K",
+      "Latency",
+      "Token Usage",
+      "Context Engineering"
+    ],
+    "claim_policy": "No measured token/latency/cost/accuracy numbers until the benchmark (blueprint section E) is run. Illustrative values must carry an on-screen ILLUSTRATIVE EXAMPLE plate for their full life. Never claim that more tools make a model less intelligent.",
+    "human_review": "Fact-check rows F1-F11 must be re-verified against official Anthropic and MCP documentation on the publish date.",
+    "end_hold_seconds": 2.0,
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "voice": "am_onyx",
+    "composition_id": "ProgressiveToolRouter9x16",
+    "narration_total_seconds": 117.987,
+    "video_total_seconds": 119.987,
+    "narration_word_count": 320
+  },
+  "beats": [
+    {
+      "id": "S01",
+      "section": "PRESENTER OPEN",
+      "target_seconds": 7,
+      "pipeline_stage": null,
+      "music_section": "intro",
+      "narration": "Hi, I am Dhrumil Shah, and this video is about why giving an AI agent more tools can actually make it worse — and how we can build a smarter progressive tool router with Claude.",
+      "on_screen_text": [
+        "DHRUMIL SHAH",
+        "PROGRESSIVE TOOL ROUTER",
+        "AI · AGENTS · CONTEXT ENGINEERING"
+      ],
+      "visual": "Terminal caret types the name; terracotta underline sweeps; five ghosted pipeline chips preview the film.",
+      "citation_ids": [],
+      "human_review_required": true,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.1,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 35,
+      "narration_duration": 10.389,
+      "audio_file": "audio/beat_s01.wav"
+    },
+    {
+      "id": "S02",
+      "section": "THE QUESTION",
+      "target_seconds": 7,
+      "pipeline_stage": null,
+      "music_section": "intro",
+      "narration": "If an AI agent has access to a thousand tools, does it really need all thousand in its context just to analyze one CSV file?",
+      "on_screen_text": [
+        "1,000 tools",
+        "1 CSV file",
+        "?"
+      ],
+      "visual": "1,000-dot tool cloud (25x40) pulses left; single CSV glyph right; large terracotta question mark snaps in on the word really.",
+      "citation_ids": [
+        "F9"
+      ],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "swish"
+          },
+          {
+            "at": 4.6,
+            "type": "impact"
+          }
+        ]
+      },
+      "narration_word_count": 25,
+      "narration_duration": 8.222,
+      "audio_file": "audio/beat_s02.wav"
+    },
+    {
+      "id": "S03",
+      "section": "WHAT ONE TOOL COSTS",
+      "target_seconds": 9,
+      "pipeline_stage": "PROBLEM",
+      "music_section": "problem",
+      "narration": "Every tool costs context before the work even starts — a name, a description, an input schema, parameters, permissions.",
+      "on_screen_text": [
+        "ONE TOOL DEFINITION",
+        "name",
+        "description",
+        "inputSchema",
+        "parameters",
+        "annotations / permissions"
+      ],
+      "visual": "Tool card expands into five metadata rows, each highlighting on its spoken word; context bar starts filling in the definitions colour.",
+      "citation_ids": [
+        "F1",
+        "F2"
+      ],
+      "human_review_required": true,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.3,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 19,
+      "narration_duration": 7.301,
+      "audio_file": "audio/beat_s03.wav"
+    },
+    {
+      "id": "S04",
+      "section": "THE CASCADE",
+      "target_seconds": 9,
+      "pipeline_stage": "PROBLEM",
+      "music_section": "problem",
+      "narration": "Multiply that by a thousand and the context fills with menu instead of meal — bigger search space, more latency, more cost, more chances to pick the wrong tool.",
+      "on_screen_text": [
+        "1,000 TOOLS",
+        "HUGE CATALOG",
+        "MORE CONTEXT TOKENS",
+        "LARGER SEARCH SPACE",
+        "HIGHER LATENCY",
+        "HIGHER COST",
+        "POSSIBLE WRONG TOOL SELECTION"
+      ],
+      "visual": "Seven-link vertical chain builds with down-arrows; final link flashes amber with a warning glyph.",
+      "citation_ids": [
+        "F2",
+        "F3",
+        "F11"
+      ],
+      "human_review_required": true,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          },
+          {
+            "at": 6.8,
+            "type": "warn"
+          }
+        ]
+      },
+      "narration_word_count": 29,
+      "narration_duration": 9.394,
+      "audio_file": "audio/beat_s04.wav"
+    },
+    {
+      "id": "S05",
+      "section": "CONCRETE REQUEST",
+      "target_seconds": 11,
+      "pipeline_stage": "PROBLEM",
+      "music_section": "problem",
+      "narration": "Take a real request: analyze this CSV and create a chart. The agent loads a thousand definitions, searches them all, and ends up using three.",
+      "on_screen_text": [
+        "USER: Analyze this CSV and create a chart.",
+        "LOADS 1,000",
+        "SEARCHES 1,000",
+        "USES 3",
+        "CSV Reader",
+        "Data Analyzer",
+        "Chart Generator"
+      ],
+      "visual": "Dot cloud flows into the agent node; magnifier sweeps; exactly three dots light teal and rise as named chips while 997 stay grey.",
+      "citation_ids": [
+        "F9"
+      ],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 2.0,
+            "type": "search"
+          },
+          {
+            "at": 7.4,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 25,
+      "narration_duration": 9.002,
+      "audio_file": "audio/beat_s05.wav"
+    },
+    {
+      "id": "S06",
+      "section": "PROGRESSIVE DISCOVERY",
+      "target_seconds": 9,
+      "pipeline_stage": "SOLUTION",
+      "music_section": "turn",
+      "narration": "Progressive discovery flips it. Read the intent first, search a tool registry, and load only what the task needs.",
+      "on_screen_text": [
+        "INTENT ROUTER",
+        "TOOL SEARCH / RETRIEVAL",
+        "TOP RELEVANT TOOLS",
+        "AI AGENT"
+      ],
+      "visual": "Four-stage vertical flow lights in order; 997 irrelevant dots dissolve downward; the three chips continue into the agent.",
+      "citation_ids": [
+        "F6"
+      ],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "swish"
+          },
+          {
+            "at": 5.0,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 19,
+      "narration_duration": 7.419,
+      "audio_file": "audio/beat_s06.wav"
+    },
+    {
+      "id": "S07",
+      "section": "ROUTER ARCHITECTURE",
+      "target_seconds": 10,
+      "pipeline_stage": "SOLUTION",
+      "music_section": "build",
+      "narration": "Claude can help you build each piece: intent classification, a tool registry, semantic search, ranking, top-K selection, then execution.",
+      "on_screen_text": [
+        "USER QUERY",
+        "INTENT CLASSIFICATION",
+        "TOOL REGISTRY",
+        "SEMANTIC SEARCH",
+        "RANKING",
+        "TOP-K SELECTION",
+        "AGENT CONTEXT",
+        "TOOL EXECUTION"
+      ],
+      "visual": "Eight-stage stack builds in sync with narration; a data pulse travels the completed chain.",
+      "citation_ids": [],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          },
+          {
+            "at": 8.4,
+            "type": "pulse"
+          }
+        ]
+      },
+      "narration_word_count": 19,
+      "narration_duration": 8.328,
+      "audio_file": "audio/beat_s07.wav"
+    },
+    {
+      "id": "S08",
+      "section": "THE CODE",
+      "target_seconds": 10,
+      "pipeline_stage": "IMPLEMENTATION",
+      "music_section": "build",
+      "narration": "The code stays small: search the registry, rank against the query, keep the top three, and hand those to Claude.",
+      "on_screen_text": [
+        "query = analyze this CSV and create a chart",
+        "tools = search_tool_registry(query)",
+        "selected_tools = rank_tools(query, tools)[:3]",
+        "response = claude.run(prompt=query, tools=selected_tools)",
+        "TOP-K = 3"
+      ],
+      "visual": "Code types line by line on a dark card; on [:3] three chips snap in and a counter ticks 1,000 to 3.",
+      "code_reference": "src/progressive_tool_router.py",
+      "citation_ids": [],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          },
+          {
+            "at": 6.5,
+            "type": "rank"
+          }
+        ]
+      },
+      "narration_word_count": 20,
+      "narration_duration": 6.311,
+      "audio_file": "audio/beat_s08.wav"
+    },
+    {
+      "id": "S09",
+      "section": "A/B COMPARISON",
+      "target_seconds": 10,
+      "pipeline_stage": "IMPLEMENTATION",
+      "music_section": "build",
+      "narration": "Same thousand tools. Method A exposes a thousand. Method B exposes three. Same job, far less overhead.",
+      "on_screen_text": [
+        "ILLUSTRATIVE EXAMPLE",
+        "METHOD A — load entire catalog",
+        "exposed 1,000 · relevant 3 · context overhead HIGH · routing complexity HIGH",
+        "METHOD B — progressive discovery",
+        "exposed 3 · relevant 3 · context overhead LOW · routing complexity LOWER"
+      ],
+      "visual": "Two stacked cards with vertically aligned rows; ILLUSTRATIVE EXAMPLE plate visible for the whole scene.",
+      "citation_ids": [
+        "F8",
+        "F9"
+      ],
+      "human_review_required": true,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.3,
+            "type": "swish"
+          }
+        ]
+      },
+      "narration_word_count": 17,
+      "narration_duration": 8.877,
+      "audio_file": "audio/beat_s09.wav"
+    },
+    {
+      "id": "S10",
+      "section": "STEM STACK",
+      "target_seconds": 7,
+      "pipeline_stage": "CONTEXT",
+      "music_section": "build",
+      "narration": "This is information retrieval, ranking algorithms, software architecture, distributed systems and context engineering, in one build.",
+      "on_screen_text": [
+        "INFORMATION RETRIEVAL",
+        "ALGORITHMS",
+        "SOFTWARE ENGINEERING",
+        "DISTRIBUTED SYSTEMS",
+        "CONTEXT ENGINEERING",
+        "LLM AGENTS"
+      ],
+      "visual": "Six chips land in a 2x3 grid, each with a small glyph.",
+      "citation_ids": [],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 16,
+      "narration_duration": 8.005,
+      "audio_file": "audio/beat_s10.wav"
+    },
+    {
+      "id": "S11",
+      "section": "MCP AND THE ECOSYSTEM",
+      "target_seconds": 12,
+      "pipeline_stage": "CONTEXT",
+      "music_section": "build",
+      "narration": "This matters as ecosystems grow. Anthropic's tool search tool already defers loading until Claude needs a tool, and the MCP roadmap calls progressive discovery a priority — check the official docs before you quote any specifics.",
+      "on_screen_text": [
+        "MCP · MODEL CONTEXT PROTOCOL",
+        "tools/list → paginated catalog",
+        "defer_loading: true",
+        "CURRENT-DEVELOPMENT INFO — VERIFY AGAINST OFFICIAL DOCS"
+      ],
+      "visual": "Three MCP server nodes connect to one client; only matched tool chips travel the wire into the agent.",
+      "citation_ids": [
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F10"
+      ],
+      "human_review_required": true,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "swish"
+          },
+          {
+            "at": 6.0,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 36,
+      "narration_duration": 13.944,
+      "audio_file": "audio/beat_s11.wav"
+    },
+    {
+      "id": "S12",
+      "section": "THE LOOP",
+      "target_seconds": 6,
+      "pipeline_stage": "SOLUTION",
+      "music_section": "turn",
+      "narration": "Discover, filter, rank, load, execute.",
+      "on_screen_text": [
+        "DISCOVER",
+        "FILTER",
+        "RANK",
+        "LOAD",
+        "EXECUTE"
+      ],
+      "visual": "Five words light one per spoken word, then compress into a rotating ring.",
+      "citation_ids": [
+        "F6"
+      ],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.1,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 5,
+      "narration_duration": 2.954,
+      "audio_file": "audio/beat_s12.wav"
+    },
+    {
+      "id": "S13",
+      "section": "TAKEAWAY",
+      "target_seconds": 8,
+      "pipeline_stage": "TAKEAWAY",
+      "music_section": "resolve",
+      "narration": "The goal isn't to give an AI agent every tool at once. The goal is to give it the right tools at the right time.",
+      "on_screen_text": [
+        "NOT every tool at once",
+        "THE RIGHT TOOLS AT THE RIGHT TIME"
+      ],
+      "visual": "First line greys and strikes through; second line scales up in terracotta; background dims to isolate the type.",
+      "citation_ids": [],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 3.4,
+            "type": "chime"
+          }
+        ]
+      },
+      "narration_word_count": 25,
+      "narration_duration": 6.888,
+      "audio_file": "audio/beat_s13.wav"
+    },
+    {
+      "id": "S14",
+      "section": "CLOSE",
+      "target_seconds": 8,
+      "pipeline_stage": "TAKEAWAY",
+      "music_section": "resolve",
+      "narration": "Progressive tool discovery can make agent systems more focused, efficient and easier to scale. I'm Dhrumil Shah, and this is how smarter tool routing helps us build better AI agents.",
+      "on_screen_text": [
+        "DISCOVER → FILTER → RANK → LOAD → EXECUTE",
+        "DHRUMIL SHAH",
+        "progressive-tool-router"
+      ],
+      "visual": "Pipeline redraws as a ribbon, then the end card settles with title, presenter and repo folder.",
+      "end_hold_seconds": 2.0,
+      "citation_ids": [],
+      "human_review_required": false,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "whoosh"
+          },
+          {
+            "at": 5.6,
+            "type": "chime"
+          }
+        ]
+      },
+      "narration_word_count": 30,
+      "narration_duration": 10.95,
+      "audio_file": "audio/beat_s14.wav"
+    }
+  ]
+}

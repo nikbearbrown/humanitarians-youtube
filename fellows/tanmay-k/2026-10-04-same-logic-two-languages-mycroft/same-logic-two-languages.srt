@@ -1,0 +1,426 @@
+1
+00:00:00,000 --> 00:00:02,627
+Here's one number. 0.625.
+
+2
+00:00:02,667 --> 00:00:07,002
+Ask JavaScript to round it to two
+decimal places, and you get 0.63.
+
+3
+00:00:07,042 --> 00:00:10,585
+Ask Python the same thing, the
+everyday way, and you get 0.62.
+
+4
+00:00:10,625 --> 00:00:12,625
+Same number. Same request. Two answers.
+
+5
+00:00:12,792 --> 00:00:14,335
+I had just rewritten a finance detector
+
+6
+00:00:14,375 --> 00:00:16,333
+from one of those
+languages into the other.
+
+7
+00:00:16,375 --> 00:00:18,375
+So the question I couldn't
+put down was this.
+
+8
+00:00:18,625 --> 00:00:21,625
+If my version had quietly done that
+somewhere, would I have noticed?
+
+9
+00:00:22,383 --> 00:00:25,717
+Hi, this is Tanmay Kulkarni,
+in for Humanitarians AI.
+
+10
+00:00:26,092 --> 00:00:28,010
+This week I worked on a
+contribution to Mycroft,
+
+11
+00:00:28,050 --> 00:00:32,467
+which describes itself as "both a book and
+a working agentic repository" for finance.
+
+12
+00:00:32,758 --> 00:00:34,633
+Its recipes are reusable pipelines.
+
+13
+00:00:34,883 --> 00:00:36,635
+I picked one, a contradiction detector,
+
+14
+00:00:36,675 --> 00:00:39,927
+and rewrote its core logic from the
+original workflow's JavaScript into
+
+15
+00:00:39,967 --> 00:00:42,217
+Python, so the recipe
+has scripts that run.
+
+16
+00:00:42,592 --> 00:00:44,217
+This video is about one thing.
+
+17
+00:00:44,633 --> 00:00:47,593
+How I checked that my version
+still says the same thing.
+
+18
+00:00:47,633 --> 00:00:49,258
+It came down to three matches.
+
+19
+00:00:50,183 --> 00:00:53,350
+Here's what it does. It reads five
+kinds of evidence about a company.
+
+20
+00:00:53,475 --> 00:00:56,102
+The guidance it gives on earnings
+calls, the risks it admits,
+
+21
+00:00:56,142 --> 00:00:59,808
+the questions analysts pressed on, news
+sentiment, and engineering activity.
+
+22
+00:01:00,142 --> 00:01:02,393
+Six patterns look for places
+where two of those disagree,
+
+23
+00:01:02,433 --> 00:01:05,475
+and every disagreement becomes
+a flag for a person to review.
+
+24
+00:01:05,600 --> 00:01:07,808
+To test it, I invented sixteen companies.
+
+25
+00:01:07,892 --> 00:01:09,977
+Every name ends in "Fixture Co."
+
+26
+00:01:10,017 --> 00:01:12,308
+No real company is judged in this video.
+
+27
+00:01:12,983 --> 00:01:15,483
+The first match is my own
+reading against the original.
+
+28
+00:01:15,608 --> 00:01:18,567
+Before writing a single line of
+Python, I did something slower.
+
+29
+00:01:18,942 --> 00:01:21,527
+I went through the original
+JavaScript, pattern by pattern,
+
+30
+00:01:21,567 --> 00:01:24,942
+and wrote down the flags it should raise
+for each of those sixteen companies.
+
+31
+00:01:24,983 --> 00:01:27,067
+Thirteen flags, written down first.
+
+32
+00:01:27,108 --> 00:01:30,150
+Because if I write the expected
+answers after my code exists,
+
+33
+00:01:30,192 --> 00:01:33,317
+I'll just write down whatever
+my code says, mistakes included.
+
+34
+00:01:34,117 --> 00:01:36,117
+The second match is the real comparison.
+
+35
+00:01:36,450 --> 00:01:38,117
+My parity check takes the original
+
+36
+00:01:38,200 --> 00:01:40,200
+JavaScript straight out
+of the workflow file.
+
+37
+00:01:40,242 --> 00:01:42,993
+It runs it right beside my Python,
+on the same sixteen companies,
+
+38
+00:01:43,033 --> 00:01:45,075
+and compares the two, field by field.
+
+39
+00:01:45,117 --> 00:01:47,908
+Every flag, every sentence
+of evidence, word for word.
+
+40
+00:01:47,992 --> 00:01:50,993
+Sixteen out of sixteen agreed. And
+that felt good for about a minute.
+
+41
+00:01:51,033 --> 00:01:52,492
+Then it started to bother me.
+
+42
+00:01:52,575 --> 00:01:55,367
+A match only tells you something
+if a mismatch could have shown up.
+
+43
+00:01:55,742 --> 00:01:57,867
+So where could these two actually differ?
+
+44
+00:01:58,625 --> 00:02:01,668
+Some places, I knew about. JavaScript
+and Python don't always agree.
+
+45
+00:02:01,708 --> 00:02:06,502
+That rounding tie is one. Another:
+JavaScript prints 1.0 as just "one,"
+
+46
+00:02:06,542 --> 00:02:08,627
+while Python prints "1.0."
+
+47
+00:02:08,667 --> 00:02:12,168
+And a fallback written with two vertical
+bars keeps an empty list in JavaScript,
+
+48
+00:02:12,208 --> 00:02:14,125
+where Python's "or" skips past it.
+
+49
+00:02:14,167 --> 00:02:16,208
+A flag's wording carries
+numbers like these,
+
+50
+00:02:16,250 --> 00:02:19,917
+so I made my Python copy JavaScript's
+behavior on each one, on purpose.
+
+51
+00:02:20,675 --> 00:02:22,550
+Here's the part I want to be honest about.
+
+52
+00:02:22,592 --> 00:02:24,552
+To see whether my comparison
+would notice a difference,
+
+53
+00:02:24,592 --> 00:02:26,633
+I made small changes to my own copy.
+
+54
+00:02:26,842 --> 00:02:30,718
+I moved one threshold from 0.6 to 0.61.
+
+55
+00:02:30,758 --> 00:02:32,552
+I swapped in Python's own rounding.
+
+56
+00:02:32,592 --> 00:02:34,550
+And the comparison said
+everything still agreed.
+
+57
+00:02:34,592 --> 00:02:38,008
+It was doing its job. My test
+companies just never stood on the line.
+
+58
+00:02:38,092 --> 00:02:43,092
+Not one of them sat at exactly 0.6, and
+no news average landed exactly on a tie.
+
+59
+00:02:43,767 --> 00:02:46,600
+So I added two companies
+built to stand exactly there.
+
+60
+00:02:46,767 --> 00:02:51,393
+Romeo Fixture Co gives guidance
+at a confidence of exactly 0.6.
+
+61
+00:02:51,433 --> 00:02:55,685
+Quebec Fixture Co has a news
+average of exactly 0.625.
+
+62
+00:02:55,725 --> 00:02:59,227
+Run the same two changes again, and each
+one fails on the company placed for it.
+
+63
+00:02:59,267 --> 00:03:01,975
+The threshold, on Romeo.
+The rounding, on Quebec.
+
+64
+00:03:02,017 --> 00:03:04,725
+The fix wasn't new code.
+It was better test data.
+
+65
+00:03:05,400 --> 00:03:08,525
+The third match was closer to
+home, because both sides were mine.
+
+66
+00:03:08,942 --> 00:03:12,360
+At the last review, I put the human
+report side by side with its machine log,
+
+67
+00:03:12,400 --> 00:03:15,275
+for the run that's designed
+to stop early on bad data.
+
+68
+00:03:15,358 --> 00:03:17,483
+The report said thirteen
+rows were rejected.
+
+69
+00:03:17,650 --> 00:03:21,608
+The log said zero. Same run, two different
+stories, and I wrote both of them.
+
+70
+00:03:21,733 --> 00:03:24,650
+The log was only counting a later
+step, one that never got to run.
+
+71
+00:03:24,858 --> 00:03:27,775
+Mycroft's own rules say
+no artifact silently wins.
+
+72
+00:03:28,192 --> 00:03:30,233
+So now one list feeds both files,
+
+73
+00:03:30,317 --> 00:03:35,150
+anything that wasn't checked says "not
+checked," and a new test compares the two.
+
+74
+00:03:35,200 --> 00:03:37,492
+Everything you've seen
+ran on invented data.
+
+75
+00:03:37,658 --> 00:03:40,992
+No database, no news feed, and
+no AI model was ever called.
+
+76
+00:03:41,283 --> 00:03:44,993
+Live data, the model's answers, what
+happens when a real service times out:
+
+77
+00:03:45,033 --> 00:03:48,993
+none of that is tested. So at the approval
+step, I declined live mode, on the record,
+
+78
+00:03:49,033 --> 00:03:51,408
+and wrote down what would
+need to be true first.
+
+79
+00:03:51,533 --> 00:03:53,950
+That call belongs to the
+people with live access.
+
+80
+00:03:54,750 --> 00:03:58,208
+And because this is a shared
+repository, I held myself to one rule.
+
+81
+00:03:58,375 --> 00:04:01,875
+Add, never remove. Every change
+is a new file for this one recipe,
+
+82
+00:04:01,958 --> 00:04:04,208
+or an update to this recipe's own page.
+
+83
+00:04:04,333 --> 00:04:07,333
+Plus a few lines added to
+the end of two shared files.
+
+84
+00:04:07,375 --> 00:04:09,292
+Nothing deleted. Nothing renamed.
+
+85
+00:04:10,133 --> 00:04:14,052
+So if you've ever rewritten something you
+depend on, in a new language, a new tool,
+
+86
+00:04:14,092 --> 00:04:17,258
+or just a cleaner version, here's
+the question I'd leave you with.
+
+87
+00:04:17,342 --> 00:04:19,758
+Where would your two versions
+most likely disagree?
+
+88
+00:04:19,925 --> 00:04:23,883
+Find that one spot, and make sure a
+single test is standing exactly on it.
+
+89
+00:04:24,558 --> 00:04:26,308
+Same Logic, Two Languages.
+
+90
+00:04:26,558 --> 00:04:28,977
+Tanmay Kulkarni, in for Humanitarians AI.
+
+91
+00:04:29,017 --> 00:04:30,267
+Signing off.

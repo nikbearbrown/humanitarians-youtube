@@ -11,7 +11,7 @@
 | B05 | FALSIFIABILITY | manim | GRAPHIC | B05_ExactnessFalsifiability (scenes.py) | 26s | Same diagram style, "Section 4.12"/"Section 4.13" (fictional placeholders) plotted close together — a warning, not a win |
 | B06 | SCAFFOLDED-TASK | manim | GRAPHIC | B06_AuditChecklist (scenes.py) | 20s | 3 questions restated as a checkbox checklist, visually distinct from B03's rubric card |
 | B07 | TAKEAWAY | manim | GRAPHIC | B07_Statement (scenes.py) | 15s | Statement card |
-| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 5s | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 5s | @HumanitariansAI, in for Sai Pranavi J. |
 
 ## Open items
 - None — all 9 beats are self-contained Manim scenes; no pantry stills, no Remotion assets.

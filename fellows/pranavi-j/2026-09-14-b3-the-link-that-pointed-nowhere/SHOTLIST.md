@@ -12,7 +12,7 @@
 | B06 | PROOF | manim | GRAPHIC | B06_ThreeRoundProof (scenes.py) | 23.54s | All 3 escalating verification rounds (20/20 script, 16/16 exact code ported, 6/6 real node live run) plus the final round's 6 real resolved domains and the "all 6 still correctly labeled" line |
 | B07 | HONEST-LIMITS | manim | GRAPHIC | B07_HonestLimits (scenes.py) | 24.58s | Two limitation cards at full weight, side by side ("not yet verified on live n8n" / "~400 extra requests/run, by design, not parallelized"), plus the visibility log-line format |
 | B08 | TAKEAWAY | manim | GRAPHIC | B08_Statement (scenes.py) | 7.87s | "A fix that works today isn't finished." |
-| B09 | SIGN-OFF | manim | GRAPHIC | B09_BrandOutro (scenes.py) | 5.78s | @HumanitariansAI brand card, "fixed with Claude Code", "in for Sai Pranavi Jeedigunta" |
+| B09 | SIGN-OFF | manim | GRAPHIC | B09_BrandOutro (scenes.py) | 5.78s | @HumanitariansAI brand card, "fixed with Claude Code", "in for Sai Pranavi J." |
 
 ## Lane summary
 - MANIM: all 10 beats, self-contained in this reel's own `scenes.py`. No

@@ -1,0 +1,882 @@
+{
+  "metadata": {
+    "title": "Compiling Is Not Migrating.",
+    "youtube_title": "Compiling Is Not Migrating — An Overview of My SQL Server to Snowflake Migration",
+    "slug": "hussain-snowshift-migration-overview",
+    "topic": "SNOWSHIFT · SQL SERVER → SNOWFLAKE",
+    "kind": "explainer",
+    "skill": "ai-explainer",
+    "brand": "claude",
+    "audience": "Data engineers and analysts planning or running a database migration",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "contain",
+    "captions": false,
+    "presenter": "Mohammed Hussain",
+    "persona": "Mohammed Hussain",
+    "folderLabel": "Mohammed Hussain",
+    "in_for_bear": false,
+    "greeting": "Salaam, Hussain",
+    "greeting_note": "hello lexicon: Salaam (Arabic/Farsi, one word) — not used by the presenter's earlier reels (Namaste, Konnichiwa, Jambo).",
+    "persona_note": "PRESENTER OVERRIDE (human request): B00 opens 'Hi, I am Hussain, and this video is about …'. IN-FOR-BEAR LAW does not apply — no Liam, no @NikBearBrown chip. folderLabel and the outro handle read 'Mohammed Hussain', following hussain-snowflake-cortex-triage. The outro uses CortexTitleOutro because ClaudeTitleOutro is locked to @NikBearBrown (OUTRO-LOCK.md).",
+    "source": "C:/Users/Hussain/Desktop/Project/snowshift (commits eb342d4, 7ba5900)",
+    "deliverables": "Dual 4K masters: 3840x2160 (16:9) and 2160x3840 (9:16). The 9:16 is a native reflow via ./art vertical — never a centre-crop.",
+    "tags": [
+      "Snowflake",
+      "SQL Server",
+      "database migration",
+      "data engineering",
+      "T-SQL",
+      "Snowflake Scripting",
+      "data parity",
+      "SQL linting"
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "lane": "ask",
+      "narration_text": "Hi, I am Hussain, and this video is about my current migration project: moving a SQL Server financial planning database onto Snowflake, and building the tools that prove the move actually worked, not just that it compiled.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "composer card settles, greeting 'Salaam, Hussain' fades in"
+          },
+          {
+            "at": "0.30",
+            "event": "the ask types into the composer"
+          },
+          {
+            "at": "0.70",
+            "event": "send arms terracotta; running indicator reads 'reading Main.sql…'"
+          },
+          {
+            "at": "0.85",
+            "event": "three result lines stagger in beneath — the ask lands answered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Salaam, Hussain",
+            "topic": "SNOWSHIFT · SQL SERVER → SNOWFLAKE",
+            "segment": "Compiling Is Not Migrating",
+            "command": "I am moving a SQL Server financial planning database to Snowflake. The converted script is one 1,244-line file. Split it into something deployable, find what will not run on Snowflake, and tell me how I will prove the data and the procedures still behave the same.",
+            "runningText": "reading Main.sql…",
+            "folderLabel": "Mohammed Hussain",
+            "output": [
+              "29 files · 8 stages · deployed in order",
+              "a linter for SQL Server habits, with fixes",
+              "parity checks on both engines"
+            ],
+            "durationSeconds": 13.29
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-07T15:12:56.205100+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "role_note": "COLD OPEN LAW — opens on the Claude UI; the ask lands answered. The intro line follows the human's requested pattern.",
+      "actual_duration_s": 13.29
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "lane": "bookend",
+      "narration_text": "Here is the whole idea. A migration is not a translation, it is a proof that nothing changed. Getting the SQL to compile is where the work starts, not where it ends.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "line one types: 'Migrating is translating.'"
+          },
+          {
+            "at": "0.30",
+            "event": "'translating' turns terracotta, deletes, 'proving' types in"
+          },
+          {
+            "at": "0.55",
+            "event": "'Compiling is done.' types"
+          },
+          {
+            "at": "0.75",
+            "event": "'done' turns terracotta and corrects to 'the start'"
+          },
+          {
+            "at": "0.92",
+            "event": "the corrected overview holds complete: Migrating is proving. Compiling is the start."
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Migrating is translating.\nCompiling is done.",
+            "triggerWords": "translating, done",
+            "replacementWords": "proving, the start",
+            "face": "serif",
+            "fontSize": 140,
+            "align": "center",
+            "seed": "snowshift-overview-01",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5",
+            "lineSpacing": 1.22,
+            "charMs": 6,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 4,
+            "jitter": 10,
+            "durationSeconds": 10.46
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-07T15:43:43.196931+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "lead_silence_s": 0.8,
+      "role_note": "EXECUTIVE-SUMMARY LAW — corrects the misconception (migration as translation; compile = done) to the claim the body argues (a proof; compiling is the start).",
+      "actual_duration_s": 9.66
+    },
+    {
+      "beat_id": "B02",
+      "act": "PROBLEM",
+      "lane": "remotion",
+      "narration_text": "It started as one file. Twelve hundred and forty four lines of converted SQL, plus a folder of procedures that had drifted out of sync with it. So I split it. One object per file, eight stages, numbered in the order they have to deploy. Then I checked nothing was lost. Thirty two create statements went in, thirty two came out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0.02",
+            "event": "a tall Main.sql card; its line counter runs up to 1,244"
+          },
+          {
+            "at": "0.26",
+            "event": "a dashed tag lands beneath it: 'procedures/ — drifted out of sync'"
+          },
+          {
+            "at": "0.38",
+            "event": "eight stage folders fill in deploy order with file counts; the file's lines thin as they go"
+          },
+          {
+            "at": "0.82",
+            "event": "the verdict lands under a terracotta rule: '32 of 32 CREATE statements · each exactly once'"
+          }
+        ],
+        "remotion": {
+          "pattern": "SnowMonolith",
+          "props": {
+            "sparkLine": "One file, eight stages.",
+            "fileName": "Main.sql",
+            "lineCount": 1244,
+            "driftLabel": "procedures/ — drifted out of sync",
+            "stages": [
+              {
+                "dir": "00_setup",
+                "files": 3
+              },
+              {
+                "dir": "10_tables",
+                "files": 8
+              },
+              {
+                "dir": "20_staging",
+                "files": 3
+              },
+              {
+                "dir": "30_views",
+                "files": 2
+              },
+              {
+                "dir": "40_functions",
+                "files": 4
+              },
+              {
+                "dir": "50_procedures",
+                "files": 6
+              },
+              {
+                "dir": "60_seed",
+                "files": 1
+              },
+              {
+                "dir": "90_tests",
+                "files": 2
+              }
+            ],
+            "verdict": "32 of 32 CREATE statements · each exactly once",
+            "footnote": "Source: snowshift repo · sql/ and manifest.yaml",
+            "chip": "Mohammed Hussain",
+            "durationSeconds": 17.3
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-10-07T15:16:06.439321+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.3
+    },
+    {
+      "beat_id": "B03",
+      "act": "LINT",
+      "lane": "remotion",
+      "narration_text": "The first tool is a linter. Twenty seven rules, each one a SQL Server habit that Snowflake either rejects outright or quietly reads differently, and every rule carries the fix, not just the complaint. It paid for itself on day one. A select top ten, hiding in the sample data script, that would have failed the moment it ran.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0.02",
+            "event": "'27' lands large with 'DIALECT RULES · EACH WITH ITS FIX' and three severity chips"
+          },
+          {
+            "at": "0.14",
+            "event": "four T-SQL habits appear one by one; each is struck and its Snowflake fix appears beside it"
+          },
+          {
+            "at": "0.62",
+            "event": "a terracotta-bordered card rises: the real catch in the seed script"
+          },
+          {
+            "at": "0.80",
+            "event": "'SELECT TOP 10 …' is struck in terracotta; 'ORDER BY … LIMIT 10' lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "SnowLintCatch",
+          "props": {
+            "sparkLine": "Rules that carry fixes.",
+            "ruleCount": 27,
+            "severities": [
+              "error",
+              "warning",
+              "info"
+            ],
+            "pairs": [
+              {
+                "from": "GETDATE()",
+                "to": "CURRENT_TIMESTAMP()"
+              },
+              {
+                "from": "ISNULL(a, 0)",
+                "to": "COALESCE(a, 0)"
+              },
+              {
+                "from": "NVARCHAR(50)",
+                "to": "VARCHAR(50)"
+              },
+              {
+                "from": "INT IDENTITY(1,1)",
+                "to": "INT AUTOINCREMENT"
+              }
+            ],
+            "catchFile": "sql/60_seed/01_sample_data.sql",
+            "catchFrom": "SELECT TOP 10 …",
+            "catchTo": "ORDER BY … LIMIT 10",
+            "catchLabel": "Found on day one · would fail on execution",
+            "footnote": "Source: snowshift lint · src/snowshift/lint/rules.py",
+            "chip": "Mohammed Hussain",
+            "durationSeconds": 17.47
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-07T15:47:20.401181+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.47
+    },
+    {
+      "beat_id": "B04",
+      "act": "ASK",
+      "lane": "ask",
+      "narration_text": "Then deployment. Here is the ask: run the files in order, dry run first, stop at the first failure, and never load sample data into production.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "0.00",
+            "event": "composer returns; greeting slot reads 'The ask,'"
+          },
+          {
+            "at": "0.20",
+            "event": "the deploy prompt types itself in"
+          },
+          {
+            "at": "0.75",
+            "event": "send arms terracotta; running indicator reads 'planning the deployment…'"
+          },
+          {
+            "at": "0.90",
+            "event": "no output lines — the result is the next beat (ASK then RESULT)"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The ask,",
+            "topic": "SNOWSHIFT · SQL SERVER → SNOWFLAKE",
+            "segment": "Deploy In Order",
+            "command": "Deploy these 29 files to Snowflake in manifest order. Dry-run first. If a file fails, stop there and mark everything after it skipped. Never load the sample data in a production run.",
+            "runningText": "planning the deployment…",
+            "folderLabel": "Mohammed Hussain",
+            "durationSeconds": 8.45
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-07T15:19:10.401176+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 8.45
+    },
+    {
+      "beat_id": "B05",
+      "act": "RESULT",
+      "lane": "remotion",
+      "narration_text": "And this is what comes back. Six required stages run in dependency order, setup through procedures. Seed data and tests are optional, so a production cutover can never load sample rows by accident. And when a file fails, the run stops right there. In an ordered deploy, everything after the first failure is just noise.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0.06",
+            "event": "six required stage cards tick 'ok' in manifest order"
+          },
+          {
+            "at": "0.50",
+            "event": "the two optional stages turn dashed: 'not in prod'"
+          },
+          {
+            "at": "0.62",
+            "event": "the run replays: 'views' is stamped FAIL"
+          },
+          {
+            "at": "0.74",
+            "event": "everything after it greys to 'skipped'"
+          },
+          {
+            "at": "0.84",
+            "event": "the rule lands under a terracotta dash"
+          }
+        ],
+        "remotion": {
+          "pattern": "SnowDeployRail",
+          "props": {
+            "sparkLine": "In order, then stop.",
+            "stages": [
+              {
+                "name": "setup",
+                "files": 3
+              },
+              {
+                "name": "tables",
+                "files": 8
+              },
+              {
+                "name": "staging",
+                "files": 3
+              },
+              {
+                "name": "views",
+                "files": 2
+              },
+              {
+                "name": "functions",
+                "files": 4
+              },
+              {
+                "name": "procedures",
+                "files": 6
+              },
+              {
+                "name": "seed",
+                "files": 1,
+                "optional": true
+              },
+              {
+                "name": "tests",
+                "files": 2,
+                "optional": true
+              }
+            ],
+            "failIndex": 3,
+            "optionalLabel": "optional · never in a production run",
+            "rule": "Stop at the first failure. The rest is noise.",
+            "footnote": "The failure shown is illustrative · snowshift deploy",
+            "chip": "Mohammed Hussain",
+            "durationSeconds": 17.58
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-10-07T15:50:48.790956+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.58
+    },
+    {
+      "beat_id": "B06",
+      "act": "PARITY",
+      "lane": "remotion",
+      "narration_text": "Then parity. For every table, row counts plus count, sum, min and max on the columns that matter, using only aggregates that mean the same thing on both engines. And the columns are declared, not discovered. A decimal that quietly landed as a float looks identical if you only introspect. Then it drifts, one rounding error at a time.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0.06",
+            "event": "three aggregate rows land pairwise — SQL Server value, tick, Snowflake value"
+          },
+          {
+            "at": "0.50",
+            "event": "a fourth row lands: CostCenter · SUM(AllocationPercentage)"
+          },
+          {
+            "at": "0.60",
+            "event": "its Snowflake value diverges; the ≠ mark and border turn terracotta"
+          },
+          {
+            "at": "0.72",
+            "event": "two lenses: introspected passes, declared fails — DECIMAL(19,4) → FLOAT"
+          }
+        ],
+        "remotion": {
+          "pattern": "SnowParity",
+          "props": {
+            "sparkLine": "Declared, not discovered.",
+            "leftLabel": "SQL Server",
+            "rightLabel": "Snowflake",
+            "rows": [
+              {
+                "metric": "BudgetLineItem · COUNT(*)",
+                "left": "250",
+                "right": "250"
+              },
+              {
+                "metric": "BudgetLineItem · SUM(FinalAmount)",
+                "left": "48,213,907.52",
+                "right": "48,213,907.52"
+              },
+              {
+                "metric": "FiscalPeriod · MIN(PeriodStartDate)",
+                "left": "2024-01-01",
+                "right": "2024-01-01"
+              }
+            ],
+            "driftMetric": "CostCenter · SUM(AllocationPercentage)",
+            "driftLeft": "7.4000",
+            "driftRight": "7.399999999999999",
+            "declared": "DECIMAL(19,4)",
+            "landed": "FLOAT",
+            "lensIntrospect": "Introspected: FLOAT matches FLOAT, so it passes.",
+            "lensDeclared": "Declared, so it fails:",
+            "footnote": "Worked example · illustrative values",
+            "chip": "Mohammed Hussain",
+            "durationSeconds": 17.92
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-07T15:54:22.829217+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 17.92
+    },
+    {
+      "beat_id": "B07",
+      "act": "GAP",
+      "lane": "remotion",
+      "narration_text": "This is the one that worried me most. Snowflake lets you declare primary keys and unique constraints, and then does not enforce them. SQL Server rejected a duplicate budget line the moment you wrote it. Snowflake just stores it. So run the same import twice, and the budget doubles. No error, anywhere.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0.03",
+            "event": "the real natural-key constraint types into a code strip"
+          },
+          {
+            "at": "0.20",
+            "event": "two panels: SQL Server 'enforced at write time' · Snowflake 'declared · not enforced'"
+          },
+          {
+            "at": "0.36",
+            "event": "import run 1 lands on both sides, ticked"
+          },
+          {
+            "at": "0.52",
+            "event": "run 2: SQL Server stamps REJECTED; Snowflake stamps STORED"
+          },
+          {
+            "at": "0.72",
+            "event": "Snowflake's budget total grows from 1× to 2× in terracotta"
+          }
+        ],
+        "remotion": {
+          "pattern": "SnowConstraintGap",
+          "props": {
+            "sparkLine": "Declared, not enforced.",
+            "constraint": "ALTER TABLE Planning.BudgetLineItem ADD CONSTRAINT idx_BudgetLineItem_NaturalKey UNIQUE (BudgetHeaderID, GLAccountID, CostCenterID, FiscalPeriodID);",
+            "leftLabel": "SQL Server",
+            "rightLabel": "Snowflake",
+            "leftNote": "enforced at write time",
+            "rightNote": "declared · not enforced",
+            "run1": "import · run 1",
+            "run2": "import · run 2",
+            "rejected": "rejected",
+            "stored": "stored",
+            "totalLabel": "budget total",
+            "footnote": "Budget multiple is illustrative · sql/10_tables/06_BudgetLineItem.sql",
+            "chip": "Mohammed Hussain",
+            "durationSeconds": 16.26
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-10-07T15:57:38.817508+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 16.26
+    },
+    {
+      "beat_id": "B08",
+      "act": "FIX",
+      "lane": "remotion",
+      "narration_text": "So the procedures now check for themselves. Codes resolve to real I Ds. A key repeated inside one payload is rejected. A line that already exists is either refused, or deliberately overwritten, all inside one transaction. And the smoke tests prove it. Import three lines, import the same three again, and the budget does not move.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "four checks tick in narration order"
+          },
+          {
+            "at": "0.50",
+            "event": "smoke run 1 lands: 'Import 3 lines' → 3 written"
+          },
+          {
+            "at": "0.62",
+            "event": "run 2: 'The same 3 again' → 3 rejected · budget unchanged, border terracotta"
+          },
+          {
+            "at": "0.74",
+            "event": "run 3: 'Unknown code + repeated key' → 3 rejected"
+          }
+        ],
+        "remotion": {
+          "pattern": "SnowSmokeProof",
+          "props": {
+            "sparkLine": "Check it yourself.",
+            "checksTitle": "the import now checks",
+            "checks": [
+              "codes resolve to real IDs",
+              "repeated keys in a payload: rejected",
+              "existing line: REJECT or UPDATE",
+              "all in one transaction"
+            ],
+            "runsTitle": "smoke test",
+            "runs": [
+              {
+                "label": "Import 3 lines",
+                "mode": "UPDATE",
+                "result": "3 written"
+              },
+              {
+                "label": "The same 3 again",
+                "mode": "REJECT",
+                "result": "3 rejected · budget unchanged",
+                "key": true
+              },
+              {
+                "label": "Unknown code + repeated key",
+                "mode": "UPDATE",
+                "result": "3 rejected"
+              }
+            ],
+            "footnote": "Source: sql/90_tests/02_procedure_smoke_tests.sql",
+            "chip": "Mohammed Hussain",
+            "durationSeconds": 18.52
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-07T16:01:21.674863+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 18.52
+    },
+    {
+      "beat_id": "B09",
+      "act": "TEARDOWN",
+      "lane": "remotion",
+      "narration_text": "Now the honest part. One. None of this has run against a live Snowflake account yet. A hundred and three tests pass, and not one of them touches a database. Two. Two imports into the same budget at the same moment can still both slip through. Three. Two converted procedures are still placeholders.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "three empty cards; card one fills: 'Not run live yet'"
+          },
+          {
+            "at": "0.33",
+            "event": "card two fills: 'Concurrent imports'"
+          },
+          {
+            "at": "0.55",
+            "event": "card three fills: 'Placeholders remain'"
+          },
+          {
+            "at": "0.90",
+            "event": "all three hold for the read"
+          }
+        ],
+        "remotion": {
+          "pattern": "CortexWhereItBites",
+          "props": {
+            "sparkLine": "Where it still bites.",
+            "items": [
+              {
+                "head": "Not run live yet",
+                "body": "103 tests pass, and none of them touches a database. The first real deploy is still ahead."
+              },
+              {
+                "head": "Concurrent imports",
+                "body": "Two imports into one budget at the same moment can both pass the existence check."
+              },
+              {
+                "head": "Placeholders remain",
+                "body": "Two converted procedures are still stubs; their tests only pin counts."
+              }
+            ],
+            "durationSeconds": 15.98
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-10-07T15:29:42.407782+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "role_note": "FALSIFIABILITY — what has not been proven yet, stated on screen.",
+      "actual_duration_s": 15.98
+    },
+    {
+      "beat_id": "B10",
+      "act": "VERDICT",
+      "lane": "bookend",
+      "narration_text": "Let me recap. Compiling on Snowflake is where a migration starts. The linter catches what Snowflake rejects. Parity catches what it quietly changes. Constraints are declared, not enforced, so the code has to enforce them. And the test for all of it: run it twice. If anything doubles, it is not migrated yet.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "0.10",
+            "event": "artifact card springs in"
+          },
+          {
+            "at": "0.25",
+            "event": "heading settles"
+          },
+          {
+            "at": "0.40",
+            "event": "four verdict lines stagger in, one per spoken clause"
+          },
+          {
+            "at": "0.92",
+            "event": "the card holds full for the read"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Compiling Is Not Migrating — one page",
+            "brandLabel": "Mohammed Hussain",
+            "artifactLines": [
+              "Compiling on Snowflake is where a migration starts, not where it ends.",
+              "Lint catches what Snowflake rejects; parity catches what it quietly changes.",
+              "Constraints are declared, not enforced — so the code has to enforce them.",
+              "The test: run it twice. If anything doubles, it is not migrated."
+            ],
+            "durationSeconds": 17.18
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-10-07T15:33:14.719814+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "lead_silence_s": 0.5,
+      "actual_duration_s": 16.68
+    },
+    {
+      "beat_id": "B11",
+      "act": "HANDOFF",
+      "lane": "bookend",
+      "narration_text": "Your turn. Take one stored procedure from your own migration, and paste this. List every place it relies on the old engine to enforce something the new engine only declares: a unique key, a foreign key, a check, an identity value. For each one, show me what happens if the procedure runs twice. That last line is the one that matters. Running it twice is the cheapest test there is, and it is the one migrations skip.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "0.08",
+            "event": "greeting reads 'Your turn.'"
+          },
+          {
+            "at": "0.25",
+            "event": "the handoff prompt types in as the narration reads it aloud"
+          },
+          {
+            "at": "0.75",
+            "event": "'runs twice' lands as the voice discusses it"
+          },
+          {
+            "at": "0.92",
+            "event": "send arms; the prompt holds to be read"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "SNOWSHIFT · SQL SERVER → SNOWFLAKE",
+            "segment": "Your Turn",
+            "command": "Here is one stored procedure from a database I am migrating. List every place it relies on the old engine to enforce something the new engine only declares: a unique key, a foreign key, a check, an identity value. For each one, show me what happens if the procedure runs twice.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "Mohammed Hussain",
+            "durationSeconds": 20.44
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-10-07T15:38:34.406569+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "role_note": "HANDOFF LAW — prompt read aloud verbatim, then discussed.",
+      "actual_duration_s": 20.44
+    },
+    {
+      "beat_id": "B12",
+      "act": "OUTRO",
+      "lane": "bookend",
+      "narration_text": "Compiling is not migrating. I am Hussain. Thanks for watching.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "show": [
+          {
+            "at": "0.15",
+            "event": "title restates poster-style, terracotta period"
+          },
+          {
+            "at": "0.45",
+            "event": "'Mohammed Hussain' settles beneath"
+          },
+          {
+            "at": "0.70",
+            "event": "subline fades in last"
+          }
+        ],
+        "remotion": {
+          "pattern": "CortexTitleOutro",
+          "props": {
+            "title": "Compiling Is Not Migrating.",
+            "handle": "Mohammed Hussain",
+            "subline": "snowshift · SQL Server to Snowflake",
+            "slug": "hussain-snowshift-migration-overview",
+            "durationSeconds": 4.25
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-10-07T15:40:01.105900+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "role_note": "OUTRO LAW — title restate. Own card: ClaudeTitleOutro is locked to @NikBearBrown (OUTRO-LOCK.md).",
+      "actual_duration_s": 4.25
+    }
+  ]
+}

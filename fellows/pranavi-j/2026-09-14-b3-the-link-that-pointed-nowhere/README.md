@@ -1,6 +1,6 @@
 # Weekly Research Report: The Link That Pointed Nowhere
 
-**Fellow:** Sai Pranavi Jeedigunta
+**Fellow:** Sai Pranavi J.
 **Week ending:** September 14, 2026
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo,
 `scripts/regulatory-intel/`)
@@ -8,6 +8,10 @@
 `B3-VERIFICATION.md` (2026-08-31) — a reverse-engineered Google News link decoder, a
 classification-ordering near-miss caught before deploying, and three escalating live
 verification rounds (20/20, 16/16, 6/6). See `SOURCES.md` and `FACTCHECK.md`.
+
+## Watch
+
+- Folder (landscape + vertical 4K deliverables): [Drive link](https://drive.google.com/open?id=1cQ5xt_bs14AGbVy4HNgD61kXYp-0fAGA) — open the GoogleNewsLinkFix subfolder inside.
 
 This ~2.7-minute AI-generated video asks: **what does it take to actually resolve a Google
 News redirect link, and what almost broke while fixing it?** It is the fifth report in the
@@ -65,8 +69,8 @@ This is the first video in this fellow's series built under the toolkit's NEW su
 
 ## Deliverables
 
-- `deliverables/landscape/GoogleNewsLinkFix_SaiPranaviJeedigunta.mp4` — 4K (3840x2160), 161.125s
-- `deliverables/vertical/GoogleNewsLinkFix_SaiPranaviJeedigunta.mp4` — 4K full-length vertical
+- `deliverables/landscape/GoogleNewsLinkFix_SaiPranaviJ.mp4` — 4K (3840x2160), 161.125s
+- `deliverables/vertical/GoogleNewsLinkFix_SaiPranaviJ.mp4` — 4K full-length vertical
   (2160x3840), 161.125s
 - Both ship with a matching `.verified.json` receipt (SHA-256 of the output plus every input
   clip/audio file hashed).

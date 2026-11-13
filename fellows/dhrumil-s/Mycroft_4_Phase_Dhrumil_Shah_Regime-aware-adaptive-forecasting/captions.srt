@@ -1,0 +1,446 @@
+1
+00:00:00,100 --> 00:00:02,445
+Hi, I am Dhrumil Shah,
+and this video is
+
+2
+00:00:02,445 --> 00:00:04,556
+about Mycroft Phase
+4, where I added
+
+3
+00:00:04,556 --> 00:00:06,901
+market-regime discovery
+and regime-aware
+
+4
+00:00:06,901 --> 00:00:09,364
+thresholds so the system
+reports where its
+
+5
+00:00:09,364 --> 00:00:11,650
+forecasts hold up,
+instead of one score
+
+6
+00:00:11,650 --> 00:00:13,147
+for every market.
+
+7
+00:00:13,147 --> 00:00:15,696
+Phase 3 ended with
+an honest result.
+
+8
+00:00:15,696 --> 00:00:17,155
+Across a hundred
+and twenty
+
+9
+00:00:17,155 --> 00:00:18,885
+tickers, five-day
+direction came
+
+10
+00:00:18,885 --> 00:00:20,436
+out close to
+a coin flip.
+
+11
+00:00:20,436 --> 00:00:23,064
+One number, for every
+market condition.
+
+12
+00:00:23,064 --> 00:00:25,148
+That single number
+hides something.
+
+13
+00:00:25,148 --> 00:00:26,868
+A calm market
+and a crash are
+
+14
+00:00:26,868 --> 00:00:28,314
+not the same problem.
+
+15
+00:00:28,314 --> 00:00:30,126
+Phase 4 asks
+whether the model's
+
+16
+00:00:30,126 --> 00:00:31,994
+weakness depends
+on the regime it
+
+17
+00:00:31,994 --> 00:00:33,457
+is predicting in.
+
+18
+00:00:33,457 --> 00:00:35,394
+The input is unchanged.
+
+19
+00:00:35,394 --> 00:00:37,377
+One hundred and
+eighty-four thousand
+
+20
+00:00:37,377 --> 00:00:39,416
+rows, one hundred
+and twenty tickers,
+
+21
+00:00:39,416 --> 00:00:42,426
+January twenty-twenty to
+February twenty-twenty-six.
+
+22
+00:00:42,426 --> 00:00:44,610
+Same data, new question.
+
+23
+00:00:44,610 --> 00:00:46,583
+The pipeline
+gains a layer.
+
+24
+00:00:46,583 --> 00:00:48,859
+Daily prices become
+a market table; the
+
+25
+00:00:48,859 --> 00:00:51,193
+market table becomes
+regimes; the regime
+
+26
+00:00:51,193 --> 00:00:53,469
+label joins the
+features; and the model
+
+27
+00:00:53,469 --> 00:00:57,004
+learns a separate decision
+threshold for each regime.
+
+28
+00:00:57,004 --> 00:00:58,717
+First, I collapse
+every ticker
+
+29
+00:00:58,717 --> 00:01:00,116
+into one row per day.
+
+30
+00:01:00,116 --> 00:01:02,639
+Market return,
+cross-sectional volatility,
+
+31
+00:01:02,639 --> 00:01:05,042
+median twenty-day
+return and volatility,
+
+32
+00:01:05,042 --> 00:01:07,205
+advance rate, and
+rolling twenty-day
+
+33
+00:01:07,205 --> 00:01:08,847
+volatility and momentum.
+
+34
+00:01:08,847 --> 00:01:10,374
+Seven numbers
+that describe
+
+35
+00:01:10,374 --> 00:01:11,834
+the whole market.
+
+36
+00:01:11,834 --> 00:01:13,837
+Then K-means
+splits those days
+
+37
+00:01:13,837 --> 00:01:15,239
+into four regimes.
+
+38
+00:01:15,239 --> 00:01:17,460
+The clustering is fit
+only on the training
+
+39
+00:01:17,460 --> 00:01:19,417
+dates and then
+applied forward, so no
+
+40
+00:01:19,417 --> 00:01:21,256
+future day shapes
+the clusters.
+
+41
+00:01:21,256 --> 00:01:22,892
+Each cluster
+gets a readable
+
+42
+00:01:22,892 --> 00:01:24,735
+name from its centroid.
+
+43
+00:01:24,735 --> 00:01:25,816
+Here is the map.
+
+44
+00:01:25,816 --> 00:01:27,629
+Stressed bear is
+almost entirely
+
+45
+00:01:27,629 --> 00:01:30,492
+the early twenty-twenty
+crash, twenty-four days.
+
+46
+00:01:30,492 --> 00:01:32,816
+High volatility,
+ninety-seven.
+
+47
+00:01:32,816 --> 00:01:34,681
+The market spends
+most of its life
+
+48
+00:01:34,681 --> 00:01:36,162
+in calm bull,
+eight hundred
+
+49
+00:01:36,162 --> 00:01:38,082
+twenty-one days,
+or sideways mixed,
+
+50
+00:01:38,082 --> 00:01:39,898
+five hundred fifty-four.
+
+51
+00:01:39,898 --> 00:01:42,510
+The model is an Extra
+Trees classifier over
+
+52
+00:01:42,510 --> 00:01:45,182
+nineteen price and volume
+features, plus the
+
+53
+00:01:45,182 --> 00:01:46,901
+regime identifier
+itself.
+
+54
+00:01:46,901 --> 00:01:49,087
+Train, validation
+and test are split by
+
+55
+00:01:49,087 --> 00:01:51,328
+date, and missing
+values are filled with
+
+56
+00:01:51,328 --> 00:01:53,061
+training medians only.
+
+57
+00:01:53,061 --> 00:01:54,907
+The headline is
+still honest.
+
+58
+00:01:54,907 --> 00:01:57,243
+Test ROC-AUC is
+point five one eight,
+
+59
+00:01:57,243 --> 00:01:59,642
+and the Brier score
+is point two five,
+
+60
+00:01:59,642 --> 00:02:01,546
+what a coin
+flip gives you.
+
+61
+00:02:01,546 --> 00:02:03,228
+Regime awareness
+did not make
+
+62
+00:02:03,228 --> 00:02:04,946
+the model predictive.
+
+63
+00:02:04,946 --> 00:02:06,355
+But split it
+by regime and
+
+64
+00:02:06,355 --> 00:02:07,585
+something shows up.
+
+65
+00:02:07,585 --> 00:02:09,434
+In high
+volatility, AUC is
+
+66
+00:02:09,434 --> 00:02:10,772
+point five four.
+
+67
+00:02:10,772 --> 00:02:13,018
+Sideways mixed,
+point five two.
+
+68
+00:02:13,018 --> 00:02:15,522
+In calm bull, the most
+common regime, it is
+
+69
+00:02:15,522 --> 00:02:17,469
+point four nine,
+below chance.
+
+70
+00:02:17,469 --> 00:02:19,377
+The model is least
+useful exactly
+
+71
+00:02:19,377 --> 00:02:21,323
+when the market
+is quiet.
+
+72
+00:02:21,323 --> 00:02:23,603
+Permutation
+importance agrees.
+
+73
+00:02:23,603 --> 00:02:25,343
+The regime
+identifier is the
+
+74
+00:02:25,343 --> 00:02:27,393
+single most useful
+feature, by an
+
+75
+00:02:27,393 --> 00:02:28,774
+order of magnitude.
+
+76
+00:02:28,774 --> 00:02:30,780
+Most technical
+indicators contribute
+
+77
+00:02:30,780 --> 00:02:32,729
+nothing, or
+slightly hurt.
+
+78
+00:02:32,729 --> 00:02:34,449
+So the thresholds adapt.
+
+79
+00:02:34,449 --> 00:02:36,837
+Each regime gets its
+own cut-off, tuned on
+
+80
+00:02:36,837 --> 00:02:39,224
+validation for balanced
+accuracy, and only
+
+81
+00:02:39,224 --> 00:02:41,555
+names that clear it
+by eight points enter
+
+82
+00:02:41,555 --> 00:02:42,835
+the research queue.
+
+83
+00:02:42,835 --> 00:02:44,487
+On the latest
+day, a calm bull
+
+84
+00:02:44,487 --> 00:02:46,363
+day, two names
+qualified.
+
+85
+00:02:46,363 --> 00:02:47,891
+Phase 4's
+accomplishment is
+
+86
+00:02:47,891 --> 00:02:49,166
+not a better score.
+
+87
+00:02:49,166 --> 00:02:50,911
+It is a system
+that knows where
+
+88
+00:02:50,911 --> 00:02:52,406
+it is weak and says so.
+
+89
+00:02:52,406 --> 00:02:54,278
+Next: more history
+behind the rare
+
+90
+00:02:54,278 --> 00:02:56,094
+regimes, calibration
+measured per
+
+91
+00:02:56,094 --> 00:02:57,966
+regime, and a
+stressed-bear sample
+
+92
+00:02:57,966 --> 00:02:59,817
+large enough to
+actually test.
+
+93
+00:02:59,817 --> 00:03:01,265
+I'm Dhrumil Shah.
+
+94
+00:03:01,265 --> 00:03:02,512
+Thank you for watching.

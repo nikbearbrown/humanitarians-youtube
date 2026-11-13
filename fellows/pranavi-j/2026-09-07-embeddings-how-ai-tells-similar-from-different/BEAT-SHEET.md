@@ -1,6 +1,6 @@
 # Beat Sheet (APPROVED — Gate P, 2026-08-31): "Embeddings: How AI Tells Similar From Different (When Keyword Matching Can't)"
 
-**Creator:** Sai Pranavi Jeedigunta | Weekly STEM video (general AI/STEM topic explainer,
+**Creator:** Sai Pranavi J. | Weekly STEM video (general AI/STEM topic explainer,
 distinct from the weekly work report)
 **Format:** `ai-explainer`, framework-first teaching structure (same register as
 `2026-08-30-what-prompt-injection-actually-looks-like/`, which scored 11/12 against `PROOF.md`)
@@ -49,7 +49,7 @@ generic and hypothetical, matching the pattern used in the 2026-08-17 and 2026-0
 | B04 Worked example | The keyword rule, the missed input, and the embedding-similarity comparison all shown together | Not narration-only — the actual "close in meaning space" idea must be visualized, not just asserted |
 | B05 Falsifiability | The exact-match-is-correct counter-example (matching a specific ID/code), legible, visibly different resolution from B04 | Side-by-side or sequential-but-both-legible comparison to B04 |
 | B06 Task | The 3 questions restated as an audit checklist | Actionable, distinct from B03's framework card |
-| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi J. |
 
 ---
 
@@ -60,7 +60,7 @@ Visual: title card — "Embeddings: How AI Tells Similar From Different (When Ke
 Can't)" + @HumanitariansAI. No narration.
 
 **B01. Exec summary (~0:04–0:20)**
-VO: "Hi, I'm Sai Pranavi Jeedigunta. This video is about why keyword-matching rules quietly break
+VO: "Hi, I'm Sai Pranavi J.. This video is about why keyword-matching rules quietly break
 over time — and what embeddings actually do differently, so you know when you need them and when
 you don't."
 Visual: name card, one-line summary text on screen as it's spoken.
@@ -117,7 +117,7 @@ Visual: statement card.
 
 **B08. Sign-off (~2:22–2:27)**
 VO: "Explained with Claude Code."
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
 
 ---
 
@@ -151,10 +151,10 @@ resolved (see `FACTCHECK.md`). Cleared to generate Kokoro audio and proceed to p
 - `scenes.py` authored (9 Manim classes matching this beat sheet's `shot.manim.scene` names
   exactly); GATE A (static pre-flight) and GATE W (WCAG margin check) clean on all 9 before
   every render pass.
-- **16:9 master**: `Embeddings_SaiPranaviJeedigunta_20260907_16x9.mp4` — 3840x2160 @24fps,
+- **16:9 master**: `Embeddings_SaiPranaviJ_20260907_16x9.mp4` — 3840x2160 @24fps,
   143.819s. GATE V (frame QC) on the true clean master: 0 BLOCKER, 165 MAJOR (cosmetic-only,
   reviewed by eye via `_qc/contact_sheet_4k_16x9.png`).
-- **9:16 short**: `Embeddings_SaiPranaviJeedigunta_20260907_9x16.mp4` — 1080x1920 @24fps,
+- **9:16 short**: `Embeddings_SaiPranaviJ_20260907_9x16.mp4` — 1080x1920 @24fps,
   148.36s. Full reformat (parent is under the 180s Shorts cap, no beats dropped); every beat
   hand-redesigned for portrait in `short/scenes.py` — B04/B05's meaning-space diagrams rebuilt
   as tall/narrow vertical scatters. GATE V: 0 BLOCKER, 98 MAJOR (cosmetic-only, reviewed by eye

@@ -168,7 +168,7 @@ class B01_ExecSummary(Scene):
         self.camera.background_color = PALETTE["bg"]
 
         name = fit(T(
-            "Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=56, weight="BOLD",
+            "Sai Pranavi J.", color=PALETTE["ink"], font_size=56, weight="BOLD",
         ), 11.0)
         role = T("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=26)
         accent = Line(LEFT * 1.8, RIGHT * 1.8, color=PALETTE["gold"], stroke_width=3)
@@ -667,7 +667,7 @@ class B08_Statement(Scene):
 
 # --------------------------------------------------------------------------- #
 # B09 — SIGN-OFF: @HumanitariansAI, fixed with Claude Code, in for Sai
-# Pranavi Jeedigunta.
+# Pranavi J..
 # --------------------------------------------------------------------------- #
 class B09_BrandOutro(Scene):
     def construct(self):
@@ -679,7 +679,7 @@ class B09_BrandOutro(Scene):
             "fixed with Claude Code", color=PALETTE["ink"], font_size=40, weight="BOLD",
         ), 9.5)
         tagline2 = fit(T(
-            "in for Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=32,
+            "in for Sai Pranavi J.", color=PALETTE["ink"], font_size=32,
         ), 9.5)
         tagline = VGroup(tagline1, tagline2).arrange(DOWN, buff=0.22)
         # buff 1.5->2.3: matches the proven value from the sibling reel's own

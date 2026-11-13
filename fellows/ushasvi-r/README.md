@@ -1,7 +1,7 @@
 # Ushasvi R.
 
 **Role:** Data Analyst, Project Manager  
-**Project:** _to be filled in_  
+**Project:** Causal Couture 
 **GitHub:** [@ushasvirachelp](https://github.com/ushasvirachelp)
 
 ## What's in this folder

@@ -1,0 +1,398 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.409
+Here's a puzzle from a textbook.
+
+00:00:01.449 --> 00:00:02.470
+Four squares in a row.
+
+00:00:02.510 --> 00:00:05.886
+Start on the left, reach the goal on
+the right, and every step costs a point.
+
+00:00:05.926 --> 00:00:07.811
+Two buttons, left and right. Easy.
+
+00:00:07.851 --> 00:00:09.640
+Except in the second square,
+the buttons are swapped.
+
+00:00:09.660 --> 00:00:11.013
+And you're blindfolded.
+
+00:00:11.074 --> 00:00:14.328
+Every square gives you the same reading,
+and you can't keep count of your steps.
+
+00:00:14.368 --> 00:00:18.468
+So whatever you do in one square, you do
+in all three. Which button do you press?
+
+00:00:18.508 --> 00:00:21.752
+Hi, this is Tanmay Kulkarni,
+in for Humanitarians AI.
+
+00:00:22.202 --> 00:00:25.676
+This video is about one example from
+Sutton and Barto's Reinforcement Learning:
+
+00:00:25.716 --> 00:00:29.100
+An Introduction, a textbook about
+machines that learn by trial and error.
+
+00:00:29.140 --> 00:00:30.501
+Here's the key to the puzzle.
+
+00:00:30.541 --> 00:00:32.108
+Any rule you could pick is really a coin:
+
+00:00:32.128 --> 00:00:34.368
+how often it presses right,
+from never to always.
+
+00:00:34.388 --> 00:00:38.308
+So every answer gets a spot on this line,
+and a score. We'll try them one at a time.
+
+00:00:38.328 --> 00:00:41.131
+By the end you'll know the
+best answer. It isn't a button.
+
+00:00:41.171 --> 00:00:43.760
+It's a biased coin,
+set to one exact number.
+
+00:00:44.767 --> 00:00:46.341
+First answer: always press right.
+
+00:00:46.381 --> 00:00:49.212
+Square one, right, you move to
+square two. Square two, right.
+
+00:00:49.252 --> 00:00:53.266
+But it's swapped, so you slide back to
+square one. Right. Square two. Back again.
+
+00:00:53.306 --> 00:00:55.707
+You never reach the goal.
+Your score doesn't just get bad.
+
+00:00:55.727 --> 00:00:57.138
+It never stops counting.
+
+00:00:57.942 --> 00:01:01.256
+Always press left? In the first square,
+left walks you into the wall.
+
+00:01:01.296 --> 00:01:02.766
+You stand there. Forever.
+
+00:01:03.533 --> 00:01:04.901
+So no fixed button works.
+
+00:01:04.941 --> 00:01:06.533
+Let's give the problem
+to a learning algorithm,
+
+00:01:06.553 --> 00:01:09.999
+a classic from the earlier
+chapters of the book, called Sarsa.
+
+00:01:10.039 --> 00:01:12.296
+It learns a score for each
+button from experience.
+
+00:01:12.336 --> 00:01:15.128
+Just one score per button,
+since every square reads the same.
+
+00:01:15.168 --> 00:01:16.679
+Then it mostly presses the higher one.
+
+00:01:16.719 --> 00:01:19.675
+One time in ten it presses a random
+button, just to keep exploring.
+
+00:01:19.715 --> 00:01:22.476
+That's what gets it out of the
+loops. I ran it thirty times.
+
+00:01:22.516 --> 00:01:25.516
+All thirty settled on the
+same thing. Mostly right.
+
+00:01:25.917 --> 00:01:28.542
+And mostly right is worth about −44.
+
+00:01:28.818 --> 00:01:30.486
+The book reports the same number.
+
+00:01:30.526 --> 00:01:35.077
+The only other place this learner can
+land, mostly left, is worse: about −82.
+
+00:01:35.420 --> 00:01:36.830
+Those are its two options.
+
+00:01:36.870 --> 00:01:40.760
+It's built to find a best button,
+and in this corridor there isn't one.
+
+00:01:40.800 --> 00:01:44.275
+Then I tried something that felt
+almost insulting. No learning at all.
+
+00:01:44.315 --> 00:01:48.374
+Flip a fair coin every step. Heads,
+right. Tails, left. Minus twelve.
+
+00:01:48.783 --> 00:01:52.015
+A coin beat the learning algorithm
+by more than three and a half times.
+
+00:01:52.055 --> 00:01:54.937
+And that's not a lucky run.
+It's the exact value.
+
+00:01:55.392 --> 00:01:56.672
+Now, the coin isn't clever.
+
+00:01:56.692 --> 00:01:58.212
+It wins for a plain reason.
+
+00:01:58.252 --> 00:02:00.186
+The swapped square punishes commitment.
+
+00:02:00.226 --> 00:02:03.431
+Lean hard on either button and
+you pay for it, bouncing or stuck.
+
+00:02:03.471 --> 00:02:06.355
+The coin doesn't commit at all.
+Which raises a question.
+
+00:02:06.395 --> 00:02:08.630
+Is 50/50 actually the best you can do?
+
+00:02:09.483 --> 00:02:12.164
+So let's bias the coin.
+At one end it never says right.
+
+00:02:12.204 --> 00:02:15.748
+At the other, it always does. And here's
+the score for every setting in between.
+
+00:02:15.788 --> 00:02:17.141
+Both ends never finish.
+
+00:02:17.364 --> 00:02:19.745
+The learner's two options
+sit way down here.
+
+00:02:19.785 --> 00:02:22.241
+The fair coin is near the
+top. But it isn't the top.
+
+00:02:22.281 --> 00:02:24.928
+The best setting leans
+a little toward right.
+
+00:02:25.158 --> 00:02:27.963
+The best setting works out to 2 − √2.
+
+00:02:28.218 --> 00:02:32.266
+About 58.6% right, for a score of −11.66.
+
+00:02:32.942 --> 00:02:37.477
+The book rounds it to 59% and leaves the
+exact form as an exercise for the reader.
+
+00:02:37.517 --> 00:02:39.503
+And that exact form is irrational.
+
+00:02:39.543 --> 00:02:43.960
+The best way through this corridor is
+a coin no one could ever mint exactly.
+
+00:02:44.000 --> 00:02:46.087
+And this is what the book
+is really getting at.
+
+00:02:46.127 --> 00:02:50.773
+Almost everything before chapter 13 learns
+the way Sarsa did, by scoring actions.
+
+00:02:50.813 --> 00:02:54.574
+Chapter thirteen opens with, quote,
+in this chapter we consider something new.
+
+00:02:54.614 --> 00:02:56.643
+Learners that don't score buttons at all.
+
+00:02:56.683 --> 00:02:58.498
+They learn the coin's bias directly,
+
+00:02:58.538 --> 00:03:01.479
+shifting the odds toward
+whatever the runs reward.
+
+00:03:01.758 --> 00:03:03.935
+The simplest one is called REINFORCE.
+
+00:03:03.991 --> 00:03:07.499
+I started it at the worst
+setting I had, mostly left, −82.
+
+00:03:07.853 --> 00:03:10.814
+Within 400 episodes it
+was averaging about −13.
+
+00:03:11.257 --> 00:03:15.694
+Across thirty runs, the average
+setting it settled on was 58.6%.
+
+00:03:15.714 --> 00:03:17.652
+It found 2 − √2 on its own.
+
+00:03:18.558 --> 00:03:19.979
+The book says it plainly.
+
+00:03:20.019 --> 00:03:24.782
+Methods that score actions have no natural
+way of finding the best random policy.
+
+00:03:24.822 --> 00:03:26.922
+Methods that learn the probabilities can.
+
+00:03:26.962 --> 00:03:28.695
+But that leaves a fair question.
+
+00:03:28.735 --> 00:03:31.618
+Why did the best answer
+have to be random at all?
+
+00:03:31.942 --> 00:03:34.169
+Here's how to find out.
+Take off the blindfold.
+
+00:03:34.209 --> 00:03:38.308
+Same Sarsa learner as before, but now it
+keeps a separate score for each square.
+
+00:03:38.348 --> 00:03:41.142
+Thirty runs out of thirty, it learned
+right, left, right. Three steps.
+
+00:03:41.162 --> 00:03:43.935
+Minus three. Nearly four times
+better than the best coin.
+
+00:03:43.975 --> 00:03:45.692
+And the book says that's no accident.
+
+00:03:45.732 --> 00:03:49.565
+When the player knows exactly where it is,
+there's always a fixed rule that's best.
+
+00:03:49.605 --> 00:03:52.285
+The coin was covering
+for what it couldn't see.
+
+00:03:52.325 --> 00:03:54.568
+But randomness doesn't always disappear.
+
+00:03:54.608 --> 00:03:55.582
+The book's own example is poker,
+
+00:03:55.622 --> 00:03:58.911
+where the best play is often to
+bluff with a specific probability.
+
+00:03:58.951 --> 00:04:00.188
+Here's a simpler one I ran.
+
+00:04:00.228 --> 00:04:02.965
+Rock, paper, scissors, against an
+opponent that learns your habits.
+
+00:04:02.985 --> 00:04:05.975
+Nothing is hidden. Always rock
+lost essentially every round.
+
+00:04:06.015 --> 00:04:07.863
+Leaning toward rock still came out behind.
+
+00:04:07.903 --> 00:04:09.953
+The even three-way split broke even.
+
+00:04:09.993 --> 00:04:12.165
+Now swap in an opponent
+that just plays at random,
+
+00:04:12.185 --> 00:04:14.597
+and always rock does as well as anything.
+
+00:04:14.864 --> 00:04:18.805
+That randomness is there because
+someone is watching for a pattern.
+
+00:04:19.250 --> 00:04:22.016
+So that's the test, and you
+can carry it to other problems.
+
+00:04:22.056 --> 00:04:25.017
+When the best move is random,
+give the player more information.
+
+00:04:25.057 --> 00:04:28.645
+If the randomness disappears, it was
+covering for what the player couldn't see.
+
+00:04:28.685 --> 00:04:31.287
+If it survives, look for
+someone who'd exploit a pattern.
+
+00:04:31.327 --> 00:04:32.944
+The corridor is the first kind.
+
+00:04:32.984 --> 00:04:35.102
+Rock, paper, scissors is the second.
+
+00:04:36.050 --> 00:04:39.699
+Now try it on a goalkeeper facing a
+penalty, choosing which way to dive.
+
+00:04:39.739 --> 00:04:40.452
+Run the test.
+
+00:04:40.492 --> 00:04:43.583
+Does more information make the
+randomness disappear, or does it survive?
+
+00:04:43.623 --> 00:04:45.429
+Put your answer in the comments.
+
+00:04:45.469 --> 00:04:47.010
+A strong answer names
+the missing information,
+
+00:04:47.030 --> 00:04:49.088
+or the person who'd exploit the pattern.
+
+00:04:49.128 --> 00:04:51.467
+Saying it's random because
+it's uncertain doesn't count.
+
+00:04:51.507 --> 00:04:54.073
+And if you code, the corridor
+script is linked below.
+
+00:04:54.113 --> 00:04:56.525
+Run it, and watch the blindfold come off.
+
+00:04:56.975 --> 00:04:58.183
+Two minus root two.
+
+00:04:58.364 --> 00:05:01.741
+Tanmay Kulkarni, in for
+Humanitarians AI, signing off.

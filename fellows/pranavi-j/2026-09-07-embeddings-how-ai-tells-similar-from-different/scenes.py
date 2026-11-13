@@ -265,7 +265,7 @@ class B01_ExecSummary(Scene):
         initials.move_to(badge.get_center())
         badge_group = VGroup(badge, initials)
 
-        name = fit(Text("Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=50, weight="BOLD"), 9.6)
+        name = fit(Text("Sai Pranavi J.", color=PALETTE["ink"], font_size=50, weight="BOLD"), 9.6)
         role = fit(Text("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=27), 7.6)
         name_block = VGroup(name, role).arrange(DOWN, buff=0.18)
         header_row = VGroup(badge_group, name_block).arrange(RIGHT, buff=0.5)
@@ -288,9 +288,9 @@ class B01_ExecSummary(Scene):
         self.play(Create(badge), FadeIn(initials), run_time=0.4)
         self.play(FadeIn(name_block, shift=UP * 0.1), run_time=0.5)
         self.play(FadeIn(summary, shift=UP * 0.1), Create(bottom_rule), run_time=0.6)
-        # 4 self.play() calls above sum to 1.8s; remainder is a clean hold
-        # tuned to the measured 12.34s Kokoro length for B01.
-        self.wait(10.54)
+        # retimed 2026-10-20: narration shortened to 11.78s ("Sai Pranavi J."
+        # retrofit, was 12.34s) — shifted this hold by the same -0.56s delta.
+        self.wait(9.98)
 
 
 # --------------------------------------------------------------------------- #
@@ -835,7 +835,7 @@ class B07_Statement(Scene):
 
 
 # --------------------------------------------------------------------------- #
-# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi J..
 # measured audio: 1.51s — a very short narration line ("Explained with
 # Claude Code."), so this beat builds fast: nothing spends time mid-`Write()`
 # past the QC sample points.
@@ -847,7 +847,7 @@ class B08_BrandOutro(Scene):
         handle = Text("@HumanitariansAI", color=PALETTE["slate"], font_size=32)
         accent = Line(LEFT * 1.5, RIGHT * 1.5, color=PALETTE["gold"], stroke_width=3)
         tagline = fit(Text(
-            "explained with Claude Code — in for Sai Pranavi Jeedigunta",
+            "explained with Claude Code — in for Sai Pranavi J.",
             color=PALETTE["ink"], font_size=17
         ), 9.5)
         VGroup(handle, accent, tagline).arrange(DOWN, buff=0.3).move_to(ORIGIN)

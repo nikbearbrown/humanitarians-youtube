@@ -18,6 +18,11 @@ build assets.
 | [`2026-09-25-dae-your-test-set-saw-the-future`](2026-09-25-dae-your-test-set-saw-the-future) | independent research (ML evaluation) | A random split on time-ordered data trains on the future and tests on the past — silently |
 | [`2026-10-02-ai-lost-in-the-middle`](2026-10-02-ai-lost-in-the-middle) | educational (STEM / AI) | Where a fact sits in a long context changes how reliably it is used — the middle is the weakest position |
 | [`2026-10-02-dae-your-feature-importance-is-lying`](2026-10-02-dae-your-feature-importance-is-lying) | independent research (ML interpretability) | Importance measures what a model would miss, not what matters — duplicate a signal and you hide it |
+| [`2026-10-09-ai-only-half-the-curve`](2026-10-09-ai-only-half-the-curve) | educational (STEM / AI) | The overfitting curve you were taught is the left half — past the interpolation threshold, test error spikes and then falls below the classical best |
+| [`2026-10-16-ai-the-tails-go-first`](2026-10-16-ai-the-tails-go-first) | educational (STEM / AI) | Train a model on its own output and the average stays fine while the rare cases vanish — permanently |
+| [`2026-10-16-ai-same-prompt-different-answer`](2026-10-16-ai-same-prompt-different-answer) | educational (STEM / AI) | The model draws rather than picks; temperature reshapes the distribution, and even temperature 0 is only as stable as the arithmetic |
+| [`2026-10-23-ai-it-was-still-learning`](2026-10-23-ai-it-was-still-learning) | educational (STEM / AI) | A network can memorise its training set thousands of steps before it learns the rule — and every held-out signal says failure in between |
+| [`2026-10-30-ai-both-sides-passed`](2026-10-30-ai-both-sides-passed) | educational (STEM / AI) | A record can be valid leaving one service and valid entering the next, and still mean something different at each end |
 
 **Video files are not in this repo.** They are delivered separately. Everything
 here is the record of how they were built and why each claim in them holds.

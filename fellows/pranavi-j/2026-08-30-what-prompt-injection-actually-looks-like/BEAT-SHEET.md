@@ -1,6 +1,6 @@
 # Beat Sheet (APPROVED — Gate P, 2026-08-30): "Prompt Injection: The Vulnerability Hiding in Plain Text"
 
-**Creator:** Sai Pranavi Jeedigunta | Weekly STEM video (general AI/STEM topic explainer,
+**Creator:** Sai Pranavi J. | Weekly STEM video (general AI/STEM topic explainer,
 distinct from the weekly work report)
 **Format:** `ai-explainer`, framework-first teaching structure (same register as
 `2026-08-17-why-ai-generated-code-still-needs-a-human/`, which scored 11/12 against `PROOF.md`)
@@ -49,7 +49,7 @@ work. See `FACTCHECK.md`.
 | B04 Worked example | The hidden-instruction text itself, legible, plus all 3 rubric answers shown together | The exact injected sentence must be readable on screen, not just described in narration |
 | B05 Falsifiability | The recipe-blog counter-example's text, legible, plus its 3 rubric answers — visibly different verdict from B04 | Side-by-side or sequential-but-both-legible comparison to B04 |
 | B06 Task | The 3 questions restated as an audit checklist | Actionable, not just a restatement of the framework |
-| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi J. |
 
 ---
 
@@ -60,7 +60,7 @@ Visual: title card — "Prompt Injection: The Vulnerability Hiding in Plain Text
 No narration.
 
 **B01. Exec summary (~0:04–0:18)**
-VO: "Hi, I'm Sai Pranavi Jeedigunta. This video is about prompt injection — what happens when an
+VO: "Hi, I'm Sai Pranavi J.. This video is about prompt injection — what happens when an
 AI agent reads text that was never meant to be a command, and treats it like one anyway — and
 three questions that catch it before it causes harm."
 Visual: name card, one-line summary text on screen as it's spoken.
@@ -122,7 +122,7 @@ Visual: statement card.
 
 **B08. Sign-off (~2:13–2:18)**
 VO: "Explained with Claude Code."
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
 
 ---
 
@@ -156,6 +156,6 @@ Audio locked, `scenes.py` authored (9 Manim scenes), 4K master rendered and GATE
 hand-authored portrait relayouts and GATE V clean (0 BLOCKER, 2 MAJOR — both on the toolkit's
 auto-generated silent END card only). See `BUILD-LOG.md` for the full build record (including a
 discovered-and-fixed toolkit-level Manim portrait `frame_width` bug) and `README.md` for the
-production-state summary. Deliverables: `PromptInjection_SaiPranaviJeedigunta_20260830_16x9.mp4`,
-`PromptInjection_SaiPranaviJeedigunta_20260830_9x16.mp4`. Publishing NOT authorized (per task
+production-state summary. Deliverables: `PromptInjection_SaiPranaviJ_20260830_16x9.mp4`,
+`PromptInjection_SaiPranaviJ_20260830_9x16.mp4`. Publishing NOT authorized (per task
 scope).

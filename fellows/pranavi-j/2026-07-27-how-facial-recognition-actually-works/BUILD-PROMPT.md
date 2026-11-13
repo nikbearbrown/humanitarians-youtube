@@ -5,7 +5,7 @@ from `/Users/pranavijs/humanitarians-youtube/` to rebuild or extend this reel.
 
 ```
 Build (or rebuild) the ai-explainer reel "How Facial Recognition Actually
-Works (And When It Shouldn't)" for fellow Sai Pranavi Jeedigunta.
+Works (And When It Shouldn't)" for fellow Sai Pranavi J..
 
 Original brief (scoped down from a 5-minute deep-explainer to a 3-minute
 ai-explainer): first-person narration ("I", not "we"), balanced tone, not

@@ -1,6 +1,6 @@
 # Beat Sheet (APPROVED — Gate P, 2026-08-31): "The Synonyms the Classifier Never Learned"
 
-**Creator:** Sai Pranavi Jeedigunta | Weekly work report
+**Creator:** Sai Pranavi J. | Weekly work report
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Phase:** 2 — approved for narration lock / audio generation. Both FACTCHECK items resolved
 2026-08-31: B06's "deliberate tradeoff" framing kept as drafted; the "eighteen" count confirmed
@@ -45,7 +45,7 @@ See `SOURCES.md` for the full claim → source mapping.
 | B04 Discovery | Two real title examples, one recoverable ("RIA"/"adviser") one not (different regulator/no named regulator) | Both shown together, contrast is the point |
 | B05 Proof/Fix | Full before/after table, all 5 feeds, 18→8 total | All 5 feed rows visible, not just the improved ones |
 | B06 Honest Limit | The 8 remaining items' two failure categories, named | Not glossed over — shown as a real, reasoned tradeoff |
-| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi J. |
 
 ---
 
@@ -55,7 +55,7 @@ See `SOURCES.md` for the full claim → source mapping.
 Visual: title card — "The Synonyms the Classifier Never Learned" + @HumanitariansAI. No narration.
 
 **B01. Exec summary (~0:04–0:20)**
-VO: "Hi, I'm Sai Pranavi Jeedigunta. This video is about eighteen items that were falling through
+VO: "Hi, I'm Sai Pranavi J.. This video is about eighteen items that were falling through
 this pipeline's source classifier into 'Unknown Source' — and an honest partial fix that
 recovered ten of them, while leaving eight open on purpose."
 Visual: name card, one-line summary text on screen as it's spoken.
@@ -111,7 +111,7 @@ Visual: statement card.
 
 **B08. Sign-off (~2:25–2:30)**
 VO: "Fixed with Claude Code — ten recovered, eight left open, on the record."
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
 
 ---
 

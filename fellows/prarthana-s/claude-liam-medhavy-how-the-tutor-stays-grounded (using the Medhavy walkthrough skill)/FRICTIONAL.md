@@ -118,3 +118,68 @@ The reference reel's "uses this chapter as context" line is contradicted.
 - Verified behaviours are locked into the narration.
 - The off-topic cards are described modestly.
 - "Thanks!" is dropped from the corrected run.
+
+## 2026-09-24 to 2026-09-29: production (wrapper, captures, render, exports)
+
+**Wrapper.**
+- `capture/capture_masked.py` was built to the reviewed design.
+- It loads the toolkit's `capture_admin.py` as a module and extends its `MASK` in memory, so there is no Playwright patching and no toolkit edit.
+- It passed its offline self-test, 11/11, against `file://` pages with the dummy term `Testname`.
+- A control run confirmed the stock mask alone would have left the single-word header name visible.
+
+**Captures.**
+- Prarthana signed in herself and set the mask term privately for each signed-in run.
+- Runs, all masked and all with clean redaction reviews: `run-signin`, `run-pilot`, `run-book`, `run-portrait-test`, `run-portrait`.
+- **Pilot fixes carried into `run-book`:**
+  - the follow-up had been off-screen
+  - the "three cards" claim was false on screen
+  - "Thanks!" was dropped
+- **Portrait take:**
+  - The layout test passed before any tutor request was sent.
+  - The take showed the follow-up question and its drifted cards, but not the reply body, which sat below the 720-px panel edge.
+  - Vertical B11 was therefore worded from the code ("still receives recent conversation context") rather than from footage.
+- Tutor memory was never cleared.
+
+**Portrait framing and QC fixes.**
+- The first PanelFocus916 crops cut text lines at the frame edges, which the frame QC flagged.
+- Crops were reworked so no text line crosses an edge:
+  - `clipX` panel-column masks for B05–B08 and B11
+  - a sidebar-column mask for B04
+  - full-page fits for B03 and B09
+- `vertical-windows.json` records the final framing.
+
+**Remotion browser start-up.**
+- Remotion intermittently failed with "Timed out … trying to connect to the browser" under WSL, and each time the render retried once and succeeded.
+- One portrait clip (B03) failed with a compositor SIGKILL. The cause was two 4K render jobs running at once. After that, all renders ran strictly one at a time, and B03 re-rendered cleanly on its own.
+- A second, self-inflicted problem: an edit and a still render once ran as parallel tool calls, so the still showed old code. It was diagnosed with a visible marker, and from then on every render ran only after the edit was verified on disk.
+
+**Python 3.10 compatibility.** The toolkit's `prepare_media.py` calls `hashlib.file_digest` (Python 3.11+), and WSL has 3.10.12. It was run unmodified with an in-memory backport of that one function (BUILD-PROMPT.md §4).
+
+**Contrast and type-gate fixes.**
+- **Landscape:** GATE T flagged GroundingFlow's terracotta border and connectors as low-contrast accent text (2.74:1). They became ink and ink-soft, and GATE T then passed.
+- **Vertical text sizes:** GATE T §8.1 (72 px floor at 3840) failed B01, B10 and B15.
+  - **B01:** the "What I Checked" card was removed and the line enlarged, in the vertical only.
+  - **B10:** portrait text was raised to Inter 68 / EB Garamond 90, the step numbers removed, and the pills wrapped.
+- **Vertical overlap:** GATE T's measurements passed but a visual check caught the footnote overlapping step 06. The portrait side note was dropped to fit the title-safe box; B05's narration keeps that point.
+- **Vertical underfill:** Gate V then flagged underfill on B01 (19%) and B13 (51%). Both got documented `qc.sparse_by_design` waivers.
+
+**Vertical B15 locked-outro exception.**
+- GATE T still fails on B15, because `ClaudeTitleOutro916`'s "@NikBearBrown" handle measures 49 px against the 72 px floor.
+- The component is locked (OUTRO-LOCK.md) and Prarthana isn't permitted to modify it.
+- With her approval, the vertical was exported by direct `compile.py`. Gate V still ran on the candidate, and the file was accepted after a phone-width by-eye check showed the handle is readable.
+- The automated vertical type gate is **not** reported as passing.
+
+**Final exports.**
+- **Landscape:** `claude-liam-medhavy-how-the-tutor-stays-grounded.mp4` (3840×2160, 167.93 s), via `./art final`, all gates passing.
+- **Vertical:** `claude-liam-medhavy-how-the-tutor-stays-grounded-vertical.mp4` (2160×3840, 167.93 s), with the exception above.
+- Hashes are in QC-REPORT.md.
+
+**Handoff.**
+- Prarthana uploaded both finals to Google Drive.
+- Source and docs were then cleaned up locally for her manual GitHub upload.
+- No git command was run by the agent, and nothing was published to YouTube.
+- PM review and the professors' publication decision are pending.
+
+**Contribution:**
+- Claude Code built the wrapper and scenes, ran the renders, QC and fixes, and drafted these docs.
+- Prarthana made every approval and exception decision, ran the signed-in captures, and handled the uploads.

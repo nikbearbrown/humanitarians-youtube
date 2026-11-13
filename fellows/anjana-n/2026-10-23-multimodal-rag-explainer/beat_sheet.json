@@ -1,0 +1,497 @@
+{
+ "metadata": {
+  "title": "Multi-Modal RAG: Retrieving Images, Tables, and Code",
+  "slug": "multimodal-rag-explainer",
+  "topic": "MULTI-MODAL RAG",
+  "aspect_ratio": "16:9",
+  "register": "Teardown",
+  "audience": "Claude",
+  "brand": "claude-anjana",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "color_semantics": "Claude fidelity UI beats (B00 ask, B06 verdict, B07 handoff, B08 outro) stay cream/ink/terracotta per CLAUDE-BRAND.md. Body beats (B01-B05) use the brief's OWN palette exactly as written - a standalone explainer, so no series palette constrains it. Ground #1A1A2E, text #EAEAEA, text content #4A90D9, table #27AE60, image/chart #E67E22, code #9B59B6, extraction #1ABC9C, vector store #F1C40F, failure #E74C3C, grey #95A5A6. Two implied values added: panel #16161F, inert border #2C3E50. No real company names.",
+  "greeting": "Hello, Anjana",
+  "greeting_note": "Plain English hello, narrator is Anjana; no channel handle or brand chip on this build.",
+  "note": "",
+  "tags": [
+   "RAG",
+   "multi-modal",
+   "retrieval",
+   "layout-aware chunking",
+   "vision-language model",
+   "AST",
+   "table extraction",
+   "embeddings",
+   "vector store",
+   "Claude"
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "COLD OPEN",
+   "narration_text": "Retrieval is built on an assumption nobody says out loud: that a document is text. Most of the documents worth retrieving aren't. They're tables, charts and code — and the standard pipeline destroys precisely those. I'm Anjana.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "type-on",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+     },
+     {
+      "at": 0.55,
+      "event": "runningText 'reading the whole page…'"
+     },
+     {
+      "at": 0.75,
+      "event": "output lines resolve, already answered"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hello, Anjana",
+      "topic": "MULTI-MODAL RAG",
+      "segment": "Multi-Modal RAG",
+      "command": "Standard RAG embeds text and retrieves text. But the documents I actually care about are full of tables, charts and code blocks. What happens to those in a normal pipeline, and what would it take to retrieve them as what they are rather than as flattened text?",
+      "runningText": "reading the whole page…",
+      "folderLabel": "",
+      "output": [
+       "the chunker classifies before it splits",
+       "each non-text type gets its own translation step",
+       "one index, four modalities"
+      ]
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 15,
+   "audio_file": "mp3/beat-B00.mp3",
+   "actual_duration_s": 15.62
+  },
+  {
+   "beat_id": "B01",
+   "act": "TEXT-ONLY FAILURE",
+   "narration_text": "Most RAG systems treat every document as a wall of text. They strip out formatting, flatten tables into rows of words, ignore charts entirely, and turn code blocks into paragraphs. The information is still there — technically — but the structure that gave it meaning is gone. A revenue table becomes a jumble of numbers without column headers. A flowchart becomes nothing. A code function loses its indentation and syntax. Text-only chunking destroys exactly the content that's hardest to reconstruct.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "the source document appears with four colour-coded regions"
+     },
+     {
+      "at": 0.18,
+      "event": "an arrow draws into the text-only chunker"
+     },
+     {
+      "at": 0.3,
+      "event": "the paragraph comes out intact, ticked"
+     },
+     {
+      "at": 0.46,
+      "event": "the table comes out as one flat string of numbers, no headers"
+     },
+     {
+      "at": 0.62,
+      "event": "the chart comes out as an empty gap — image removed"
+     },
+     {
+      "at": 0.78,
+      "event": "the code comes out unindented, one paragraph"
+     },
+     {
+      "at": 0.9,
+      "event": "the three failure marks pulse together"
+     }
+    ],
+    "remotion": {
+     "pattern": "MmRagTextOnly",
+     "props": {
+      "sparkLine": "It fails without erroring."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B01.mp3",
+   "actual_duration_s": 31.42
+  },
+  {
+   "beat_id": "B02",
+   "act": "LAYOUT-AWARE CHUNKING",
+   "narration_text": "Layout-aware chunking solves the first problem: it sees the page as a human does. Instead of splitting on token count alone, it detects content boundaries — where a paragraph ends and a table begins, where a code block starts, where a figure sits. Each content type becomes its own chunk with a type label attached. A table chunk preserves rows, columns, and headers. A code chunk keeps indentation and language tags. The chunker doesn't just split text — it classifies what it's splitting.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "the same page appears"
+     },
+     {
+      "at": 0.12,
+      "event": "a fixed-token grid overlays it, cutting through the table and the code"
+     },
+     {
+      "at": 0.24,
+      "event": "the grid is struck out"
+     },
+     {
+      "at": 0.36,
+      "event": "dashed boxes draw around each content region, following its edges"
+     },
+     {
+      "at": 0.52,
+      "event": "type labels stamp on: text, table, image, code"
+     },
+     {
+      "at": 0.66,
+      "event": "arrows run to four chunk cards on the right"
+     },
+     {
+      "at": 0.8,
+      "event": "each card appears with its content intact and its type tag"
+     },
+     {
+      "at": 0.94,
+      "event": "the type tags pulse"
+     }
+    ],
+    "remotion": {
+     "pattern": "MmRagChunking",
+     "props": {
+      "sparkLine": "Classify, then split."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B02.mp3",
+   "actual_duration_s": 28.15
+  },
+  {
+   "beat_id": "B03",
+   "act": "STRUCTURED EXTRACTION",
+   "narration_text": "Non-text content needs a translation step before it can be embedded. Tables go through structured extraction — the raw grid becomes a schema-aware representation with column types, row relationships, and summary statistics. Charts and diagrams are processed by a vision-language model that generates a text description capturing the visual's key information: axes, trends, labels, relationships. Code blocks are parsed into an abstract syntax tree, then summarized as a natural language description of what the function does, its inputs, and its outputs. Each extraction creates a retrievable text representation without losing the original.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "three lanes appear: table, chart, code"
+     },
+     {
+      "at": 0.14,
+      "event": "the table flows into structured extraction"
+     },
+     {
+      "at": 0.26,
+      "event": "a schema-aware JSON emerges with column types and a summary"
+     },
+     {
+      "at": 0.4,
+      "event": "the chart flows into the vision-language model"
+     },
+     {
+      "at": 0.52,
+      "event": "a text description emerges naming axes and trends"
+     },
+     {
+      "at": 0.64,
+      "event": "the code flows into the AST parser"
+     },
+     {
+      "at": 0.76,
+      "event": "a summary emerges with inputs, outputs and behaviour"
+     },
+     {
+      "at": 0.88,
+      "event": "'original preserved' resolves on all three lanes"
+     }
+    ],
+    "remotion": {
+     "pattern": "MmRagExtraction",
+     "props": {
+      "sparkLine": "A key, not a replacement."
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B03.mp3",
+   "actual_duration_s": 40.46
+  },
+  {
+   "beat_id": "B04",
+   "act": "EMBED & RETRIEVE",
+   "narration_text": "Now each chunk has a text representation that can be embedded — but not all embeddings are equal. Text chunks use a standard text embedding model. Table summaries may use the same model or a specialized one trained on structured data. Image descriptions embed alongside their source metadata. Code summaries can use a code-aware embedding model that understands programming semantics. At retrieval time, the query matches against all modalities. A question about revenue trends might retrieve a text paragraph, a revenue table, and a bar chart — all from different pages, all relevant, all preserving their original format for the language model.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "four embedding lanes appear, each with its chunk type"
+     },
+     {
+      "at": 0.18,
+      "event": "the code lane routes to a different, code-aware embedder"
+     },
+     {
+      "at": 0.3,
+      "event": "all four vectors converge into the unified index"
+     },
+     {
+      "at": 0.44,
+      "event": "the index fills with mixed-colour vectors"
+     },
+     {
+      "at": 0.54,
+      "event": "a query enters: what drove revenue growth in Q3?"
+     },
+     {
+      "at": 0.66,
+      "event": "three cards fan out — a paragraph, the table, the chart"
+     },
+     {
+      "at": 0.8,
+      "event": "relevance scores resolve on each card"
+     },
+     {
+      "at": 0.9,
+      "event": "the cards feed the model, which answers from all three"
+     }
+    ],
+    "remotion": {
+     "pattern": "MmRagRetrieval",
+     "props": {
+      "sparkLine": "One index, four modalities."
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B04.mp3",
+   "actual_duration_s": 39.53
+  },
+  {
+   "beat_id": "B05",
+   "act": "THE FULL PIPELINE",
+   "narration_text": "The full multi-modal RAG pipeline: a document enters. Layout detection identifies content regions. Each region is chunked by type. Non-text chunks go through structured extraction. All chunks are embedded — text, table summaries, image descriptions, code summaries — into a unified index. At query time, retrieval pulls the most relevant chunks regardless of their original format. The language model receives structured context: tables as tables, code as code, charts as descriptions with source images. The answer is grounded in the full document, not just the parts that happened to be plain text.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "build",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "a document enters at the left"
+     },
+     {
+      "at": 0.1,
+      "event": "layout detection splits it into four colour-coded streams"
+     },
+     {
+      "at": 0.28,
+      "event": "the three non-text streams enter extraction; the text stream bypasses it"
+     },
+     {
+      "at": 0.46,
+      "event": "all four converge into embedding"
+     },
+     {
+      "at": 0.58,
+      "event": "vectors flow into the unified index"
+     },
+     {
+      "at": 0.68,
+      "event": "a query enters retrieval"
+     },
+     {
+      "at": 0.78,
+      "event": "structured context assembles three cards"
+     },
+     {
+      "at": 0.86,
+      "event": "the model answers"
+     },
+     {
+      "at": 0.94,
+      "event": "the title card resolves over the dimmed pipeline"
+     }
+    ],
+    "remotion": {
+     "pattern": "MmRagPipeline",
+     "props": {
+      "sparkLine": "Tables as tables, code as code."
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 13,
+   "audio_file": "mp3/beat-B05.mp3",
+   "actual_duration_s": 40.03
+  },
+  {
+   "beat_id": "B06",
+   "act": "VERDICT",
+   "narration_text": "Let's recap with Claude. The failure that starts all of this is quiet: a text-only chunker doesn't error on a table, it just returns something worse than nothing — numbers with no columns. So the fix begins earlier than embedding. The chunker has to classify what it is splitting before it splits it, which is the move the whole architecture rests on. Then each non-text type earns its own translation: a schema for tables, a vision model for charts, a parse tree for code. And the translation is a key, not a replacement — the original is kept, so the model finally sees a table as a table.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "stagger",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "0.5s lead pause, then ClaudeVerdictArtifact card builds in"
+     },
+     {
+      "at": 0.14,
+      "event": "line 1: the silent failure"
+     },
+     {
+      "at": 0.32,
+      "event": "line 2: classify before splitting"
+     },
+     {
+      "at": 0.52,
+      "event": "line 3: three translations"
+     },
+     {
+      "at": 0.72,
+      "event": "line 4: key, not replacement"
+     },
+     {
+      "at": 0.88,
+      "event": "line 5: one index, four modalities"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeVerdictArtifact",
+     "props": {
+      "sparkLine": "",
+      "artifactTitle": "multi-modal RAG",
+      "artifactHeading": "The chunker decides what survives.",
+      "artifactLines": [
+       "Text-only chunking fails silently: a flattened table is still retrievable and still wrong, which is harder to catch than an error.",
+       "Layout-aware chunking detects content boundaries and attaches a type label — it classifies what it is splitting, not just where to split.",
+       "Each non-text type gets its own translation: schema-aware extraction for tables, a vision-language model for charts, an AST parse and summary for code.",
+       "The text representation is a retrieval key, not a replacement; the original format is preserved alongside it.",
+       "One index holds all four modalities, so a single query can return a paragraph, a table and a chart together."
+      ]
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 36,
+   "audio_file": "mp3/beat-B06.mp3",
+   "actual_duration_s": 33.79
+  },
+  {
+   "beat_id": "B07",
+   "act": "YOUR TURN",
+   "narration_text": "Your turn. Go and look at what your own ingestion actually does to a document — not what the docs say it does. Find a PDF with a table in it, run it through, and read the chunk. Most people have never looked. Paste this into Claude and pay attention to the third part, because knowing which of your content types is being silently is worth more than any amount of retrieval tuning on the parts that already work.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "type-on",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "ClaudeComposerAsk: greeting 'Your turn.'; prompt types itself"
+     },
+     {
+      "at": 0.6,
+      "event": "runningText 'inspecting your chunks…'"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Your turn.",
+      "topic": "MULTI-MODAL RAG",
+      "segment": "Multi-Modal RAG",
+      "command": "I have a retrieval system over my own documents. Can you help me: one, work out what my current ingestion does to a table, a chart and a code block — specifically, what the chunk looks like after it runs; two, decide which of those content types actually matter for the questions my users ask, so I don't build extraction I don't need; and three, tell me honestly how I'd detect that a content type is being silently, given that a flattened table still retrieves and still looks like an answer?",
+      "runningText": "inspecting your chunks…",
+      "folderLabel": ""
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B07.mp3",
+   "actual_duration_s": 24.05
+  },
+  {
+   "beat_id": "B08",
+   "act": "OUTRO",
+   "narration_text": "Anjana here, thanks for watching.",
+   "shot": {
+    "type": "GRAPHIC",
+    "source": "remotion",
+    "motion": "fade",
+    "show": [
+     {
+      "at": 0.0,
+      "event": "ClaudeTitleOutro: title in serif, terracotta period"
+     },
+     {
+      "at": 0.8,
+      "event": "subline fades in"
+     }
+    ],
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Multi-Modal RAG",
+      "handle": "",
+      "subline": "tables as tables, code as code"
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": ""
+     }
+    }
+   },
+   "estimated_duration_s": 3,
+   "audio_file": "mp3/beat-B08.mp3",
+   "actual_duration_s": 2.16
+  }
+ ]
+}

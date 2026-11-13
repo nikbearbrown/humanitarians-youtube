@@ -1,0 +1,24 @@
+# BUILD-LOG
+
+- 2026-10-21 — Brief: 60 s, 12 beats, am_onyx, native 16:9 (3840×2160) + 9:16 (2160×3840) as separate outputs, fixed opening line, review cut only.
+- Branding: "Namaskaram, Likhith"; @HumanitariansAI (claude-hai, kicker "Irreducibly Human", Plain); default dual-aspect HaiOutro; AI narration disclosed on screen at B00 (first result line) and B11 (outro note).
+- GATE L: no dual-aspect library hit for the body → new runtime/remotion/src/MonoPoly.tsx (7 scenes × 16:9 + 916), registered in Root.tsx, `./art scene-index` rerun.
+- Executable evidence: evidence/mono_demo.sh (toy monorepo, git 2.52.0: atomic commit a8f51ce across 3 projects; sparse checkout = 102 of 403 files) and evidence/build_cache_toy.py (8/0 → 0/8 → 4/4 built/reused). Output in evidence/mono_demo.out.txt.
+- Duration: first draft measured 81.4 s; narration trimmed twice (words cut, audio never sped up) → 68.7 s audio / 68.9 s cut. Stopped there: the fixed B00 line (5.1 s), B01's ≥9 s writer window (9.2 s), the B10 read-aloud handoff (7.2 s) and the outro (4.3 s) are floors; the evidence numbers moved on screen only (B07).
+- 16:9 QC fixes: B07/B08 path labels overflowed tiles → two-line `services/` + `billing` labels; B08 source caption collided with the "reused" counter; B07/B08 grids enlarged for fill; B01 edge-bleed → 3 lines at 180; B04/B05/B08 low-contrast tile fills lightened (borders carry the state); B06 note/spark collision (caught by eye, not by the gate).
+- 16:9 review: claude-hai-monorepos-polyrepos-slate.mp4 — 3840×2160, 68.9 s; GATE F pass, GATE V 0/0.
+- 9:16 QC fixes (vertical sheet / portrait branches only): B03/B04/B08 shorter titles (wrapped and clipped); B05 compacted (polyrepo note dropped in portrait); B07/B08 counters moved above the grid (collided with the spark line); B08 tiles 150 px (3 text lines overflowed); B03 horizontal wall inset to SAFE (edge-bleed); B01 4 lines at 280 / spacing 2.8 (underfill).
+- 9:16 review: vertical/claude-hai-monorepos-polyrepos-vertical-slate.mp4 — 2160×3840, 68.9 s, compiled --height 3840; all 12 beats native <Pattern>916. GATE V on the label-free portrait scene join 0/0; the compiled review file trips edge-bleed only on the burned-in review label.
+- Not run: GATE T (blocks ./art final only). No masters exported (review cut only, per brief). FACTCHECK.md awaits Likhith's sign-off.
+- 2026-10-21 — **Masters on the latest weekly release.** Built in an isolated git worktree `../brutalist.art-weekly` at origin/main `a187fab` (Remotion 4.0.535 / React 19, fresh `npm ci`), because other sessions were rendering in the shared checkout. Carried over: MonoPoly.tsx, HaiOutro.tsx, JevExplainer.tsx (stage helpers), registered in that tree's Root.tsx; Kokoro model symlinked.
+- Requester changes: B00 narration is now the exact line "Hi, I am Likhith, and this video is about monorepos versus polyrepos." (spoken correctly, checked by transcription); greeting "Namaskaram, Likhith" on 16:9 and "Hey, Likhith" on 9:16.
+- Release rule applied: LOGO LAW — Google logo (icons/logos/google/google-01.svg → public/logos/google/) on B02, both aspects.
+- GATE T fixes (MASTER-PLAN step 2): B02 "≈" removed ("billion lines of code, approx."), caption 34→38 / 40→46; B06 accent bars #A44A32; B07 selected-tile border #A44A32; portrait B06 labels enlarged (serif 88, sans 70, mono 66, "running…") and its note moved under the title.
+- All 24 scenes re-rendered on the new Remotion. GATE T PASS (16:9 and 9:16); GATE V 0/0 (16:9 cut; 9:16 label-free scene join).
+- First export (renders/16x9/, renders/9x16/) superseded and removed: it still carried the old disclosure wording and "A I".
+- Standing corrections applied: disclosure is exactly "Narrated by an AI voice." (B00 result line + B11 note, both aspects); B11 narration "At Humanitarians AI." (not "A I"); B00/B11 re-rendered, B11 audio regenerated (4.35 s).
+- GATE T PASS both aspects; GATE V 0/0 (16:9 cut; 9:16 label-free join).
+- Masters: renders/H-MonoreposVsPolyrepos_LikhithR.mp4 (3840×2160, 69.0 s, sha256 1d77a6afdec2…) and renders/V-MonoreposVsPolyrepos_LikhithR.mp4 (2160×3840, 69.0 s, sha256 bf73d087063c…), `ready` receipts renamed alongside with `renamed_from`.
+- FACTCHECK.md still unsigned — masters exported on Likhith's explicit request.
+- 2026-10-21 — Likhith signed off FACTCHECK.md (both cuts reviewed, claims approved as spoken and shown) for the final masters.
+- Disclosure wording standardised across the series: B00 result line "narrated by an AI voice" and B11 outro note "Narrated by an AI voice." (on-screen text only; narration and audio unchanged). B00 and B11 re-rendered in both aspects and the masters re-exported.

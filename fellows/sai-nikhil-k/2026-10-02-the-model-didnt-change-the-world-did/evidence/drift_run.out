@@ -1,0 +1,43 @@
+# drift_run — ELEC2, a frozen model vs the world
+# python 3.11.5 · numpy 1.24.4 · pandas 2.2.3 · scipy 1.11.1 · scikit-learn 1.8.0 · arm64
+# data: electricity.arff md5 8ca97867d960ae029ae3a9ac2c923d34 (matches OpenML) · rows 45,312 · weeks 135
+# vicprice/vicdemand/transfer are one constant fill until row 17,424 (week 51.9) — Victoria's data only starts then
+# date column decreases at rows [25487, 34895, 35231, 36239, 40703] — not used
+# frozen model: features ['day', 'period', 'nswprice', 'nswdemand'], trained on weeks 0–51 (17,472 rows), training accuracy 0.874
+
+## every full 4-week block after the freeze (accuracy; KS statistic D)
+after_wk  frozen  retrained  majority  persistence  KS_score  KS_price
+     1-4   0.838      0.838     0.608        0.862     0.142     0.220
+     5-8   0.629      0.648     0.507        0.871     0.431     0.505
+    9-12   0.702      0.732     0.657        0.816     0.669     0.712
+   13-16   0.673      0.750     0.616        0.833     0.665     0.721
+   17-20   0.667      0.704     0.611        0.864     0.736     0.799
+   21-24   0.702      0.711     0.592        0.862     0.565     0.667
+   25-28   0.663      0.731     0.587        0.884     0.521     0.586
+   29-32   0.625      0.660     0.584        0.905     0.562     0.604
+   33-36   0.624      0.699     0.606        0.890     0.779     0.879
+   37-40   0.651      0.710     0.632        0.872     0.778     0.885
+   41-44   0.607      0.706     0.582        0.856     0.781     0.897
+   45-48   0.548      0.693     0.544        0.865     0.781     0.878
+   49-52   0.614      0.687     0.598        0.877     0.809     0.923
+   53-56   0.829      0.717     0.696        0.839     0.518     0.612
+   57-60   0.753      0.722     0.648        0.857     0.489     0.601
+   61-64   0.810      0.623     0.563        0.860     0.084     0.141
+   65-68   0.810      0.751     0.533        0.847     0.185     0.224
+   69-72   0.849      0.797     0.545        0.827     0.153     0.169
+   73-76   0.845      0.792     0.539        0.864     0.189     0.206
+   77-80   0.789      0.718     0.614        0.832     0.325     0.399
+
+## summary
+  first block after the freeze: frozen 0.838
+  worst block (weeks 45-48 after): frozen 0.548, majority-class 0.544, retrained 0.693, persistence 0.865
+  blocks with frozen < 0.75: 12 of 20 (weeks 5-8 … 49-52 after)
+  retrained beats frozen in 12 of 20 blocks; frozen beats retrained in 7
+  persistence range 0.816–0.905 (beats frozen in 19 of 20 blocks)
+  KS on frozen scores: first block 0.142, max 0.809, last block 0.325
+  Pearson r(KS_score, frozen accuracy) over 20 blocks = -0.853 (p = 1.7e-06)
+
+## robustness: the same protocol with all seven columns (Victoria included)
+  all-seven model: Victoria columns reset to their training fill moves its score by up to 0.48 -> it DID learn from the one day of Victoria data in its training year
+  all-seven frozen accuracy by block: 0.831 0.632 0.698 0.671 0.666 0.711 0.666 0.624 0.624 0.653 0.608 0.550 0.612 0.833 0.759 0.804 0.804 0.835 0.845 0.795
+  all-seven: first 0.831, worst 0.550, r(KS_score, acc) = -0.846, retrained wins 12 of 20

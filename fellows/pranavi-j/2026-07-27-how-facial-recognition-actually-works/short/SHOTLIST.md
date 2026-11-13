@@ -25,7 +25,7 @@ backbone (the NIST FRVT demographic-accuracy findings). Re-ran with
 | B09 | WORKED-EXAMPLE | — | — | 0s (DROPPED) | Cut by the auto-plan (protected B07 instead) to fit the 180s cap. No scene authored — the beat is not in this short. |
 | B10 | CTA | manim | B10_YourTurn (short/scenes.py) | 17.30s | Reuses parent's mp3. Re-indented checklist, 2nd/3rd questions wrapped to 2 lines. |
 | B11 | SIGN-OFF | manim | B11_BrandOutro (short/scenes.py) | 11.95s | **Narration REWRITTEN** by shorts.py (was 4.92s "in for..." sign-off; now explains what B09 covered and points to the long). Same brand card, narrowed, self.wait() re-tuned to the new duration. |
-| END | — | card (silent) | media/END.png | 4.5s | Silent branded endcard, "Next:" line = the worked-example teaser text (--next override), handle @nikbearbrown. |
+| END | — | card (silent) | media/END.png | 4.5s | Silent branded endcard, "Next:" line = the worked-example teaser text (--next override), handle @HumanitariansAI. |
 
 ## Geometry note (why every beat's scene.py class differs from the parent, not just a resize)
 

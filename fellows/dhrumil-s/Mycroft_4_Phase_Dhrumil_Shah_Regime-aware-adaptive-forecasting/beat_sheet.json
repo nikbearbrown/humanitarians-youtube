@@ -1,0 +1,465 @@
+{
+  "project": "Mycroft Phase 4 — Regime-Aware Adaptive Forecasting",
+  "title": "Mycroft Phase 4 — Teaching a Forecasting Model Where It Is Wrong",
+  "aspect": "9:16",
+  "design_canvas": [
+    1080,
+    1920
+  ],
+  "master_resolution": [
+    2160,
+    3840
+  ],
+  "fps": 30,
+  "planned_total_seconds": 182.91,
+  "presenter": "Dhrumil Shah",
+  "status": "RENDERED",
+  "source_materials": {
+    "notebook": "Mycroft_Phase4_Regime_Aware.ipynb",
+    "executed_output": "docs/NOTEBOOK-OUTPUT.txt",
+    "figures": [
+      "assets/figures/fig1_regime_map.png",
+      "assets/figures/fig2_feature_importance.png"
+    ],
+    "reference_film_style_only": "Mycroft_Thesisguard_9x16_4k(Dhrumil_Shah).mp4 (2160x3840, 24 fps, 180.01 s)"
+  },
+  "numbers_policy": "Every figure is quoted from the author's executed notebook run. The notebook was not re-run and the dataset is not in this package, so nothing was recomputed. See docs/FACTCHECK.md.",
+  "key_results_shown": {
+    "rows": 184138,
+    "tickers": 120,
+    "date_range": [
+      "2020-01-03",
+      "2026-02-11"
+    ],
+    "regime_day_counts": {
+      "calm_bull": 821,
+      "sideways_mixed": 554,
+      "high_volatility": 97,
+      "stressed_bear": 24
+    },
+    "test": {
+      "n": 26760,
+      "roc_auc": 0.5178,
+      "brier": 0.2501
+    },
+    "test_by_regime": {
+      "high_volatility": {
+        "n": 1080,
+        "roc_auc": 0.5359
+      },
+      "sideways_mixed": {
+        "n": 9600,
+        "roc_auc": 0.5239
+      },
+      "calm_bull": {
+        "n": 16080,
+        "roc_auc": 0.4909
+      }
+    },
+    "stressed_bear_not_scored": "fewer than 100 test rows",
+    "latest_day": "2026-02-11",
+    "latest_regime": "calm_bull",
+    "calm_bull_threshold": 0.5,
+    "queue_signals": [
+      {
+        "ticker": "INTU",
+        "prob_up_5d": 0.6315,
+        "signal_strength": 0.1315,
+        "research_signal": "positive_watch"
+      },
+      {
+        "ticker": "SPGI",
+        "prob_up_5d": 0.583,
+        "signal_strength": 0.083,
+        "research_signal": "positive_watch"
+      }
+    ]
+  },
+  "advisory_line": "Educational research output. Not financial advice.",
+  "beats": [
+    {
+      "id": "S01",
+      "title": "Opening",
+      "index": "01/14",
+      "start": 0.0,
+      "duration": 13.05,
+      "narration": "Hi, I am Dhrumil Shah, and this video is about Mycroft Phase 4, where I added market-regime discovery and regime-aware thresholds so the system reports where its forecasts hold up, instead of one score for every market.",
+      "visual": "Title card; four-chip stack: Market regimes, Regime-aware model, Adaptive thresholds, Research queue",
+      "factcheck_refs": [],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.15,
+            "type": "swish"
+          }
+        ]
+      },
+      "narration_word_count": 37,
+      "narration_duration": 13.047,
+      "audio_file": "audio/beat_s01.wav",
+      "music_section": "intro"
+    },
+    {
+      "id": "S02",
+      "title": "Where Phase 3 left off",
+      "index": "02/14",
+      "start": 13.05,
+      "duration": 9.92,
+      "narration": "Phase 3 ended with an honest result. Across a hundred and twenty tickers, five-day direction came out close to a coin flip. One number, for every market condition.",
+      "visual": "One verdict card splitting into four ghost cards",
+      "factcheck_refs": [],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 28,
+      "narration_duration": 9.918,
+      "audio_file": "audio/beat_s02.wav",
+      "music_section": "problem"
+    },
+    {
+      "id": "S03",
+      "title": "The Phase 4 question",
+      "index": "03/14",
+      "start": 22.96,
+      "duration": 10.39,
+      "narration": "That single number hides something. A calm market and a crash are not the same problem. Phase 4 asks whether the model's weakness depends on the regime it is predicting in.",
+      "visual": "Two sparkline cards (calm vs crash) with a question mark between",
+      "factcheck_refs": [],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.3,
+            "type": "swish"
+          }
+        ]
+      },
+      "narration_word_count": 31,
+      "narration_duration": 10.393,
+      "audio_file": "audio/beat_s03.wav",
+      "music_section": "problem"
+    },
+    {
+      "id": "S04",
+      "title": "The data",
+      "index": "04/14",
+      "start": 33.36,
+      "duration": 11.15,
+      "narration": "The input is unchanged. One hundred and eighty-four thousand rows, one hundred and twenty tickers, January twenty-twenty to February twenty-twenty-six. Same data, new question.",
+      "visual": "2x2 stat grid: 184,138 rows / 120 tickers / 2020-01-03 / 2026-02-11",
+      "factcheck_refs": [
+        "F1",
+        "F2",
+        "F3"
+      ],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 24,
+      "narration_duration": 11.153,
+      "audio_file": "audio/beat_s04.wav",
+      "music_section": "build"
+    },
+    {
+      "id": "S05",
+      "title": "Architecture",
+      "index": "05/14",
+      "start": 44.51,
+      "duration": 12.39,
+      "narration": "The pipeline gains a layer. Daily prices become a market table; the market table becomes regimes; the regime label joins the features; and the model learns a separate decision threshold for each regime.",
+      "visual": "Nine-box vertical pipeline, four boxes badged NEW IN PHASE 4",
+      "factcheck_refs": [],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "swish"
+          }
+        ]
+      },
+      "narration_word_count": 33,
+      "narration_duration": 12.394,
+      "audio_file": "audio/beat_s05.wav",
+      "music_section": "pipeline"
+    },
+    {
+      "id": "S06",
+      "title": "Building the market table",
+      "index": "06/14",
+      "start": 56.91,
+      "duration": 14.83,
+      "narration": "First, I collapse every ticker into one row per day. Market return, cross-sectional volatility, median twenty-day return and volatility, advance rate, and rolling twenty-day volatility and momentum. Seven numbers that describe the whole market.",
+      "visual": "Code card A + seven feature chips",
+      "factcheck_refs": [
+        "F5"
+      ],
+      "code_segment": "A",
+      "tts_text": "First, I collapse every ticker into one row per day. Market return, cross-sectional volatility, median twenty-day return and volatility, advance rate, and rolling twenty-day volatility and momentum. Seven numbers that describe the whole market.",
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 34,
+      "narration_duration": 14.831,
+      "audio_file": "audio/beat_s06.wav",
+      "music_section": "build"
+    },
+    {
+      "id": "S07",
+      "title": "Discovering the regimes",
+      "index": "07/14",
+      "start": 71.74,
+      "duration": 12.9,
+      "narration": "Then K-means splits those days into four regimes. The clustering is fit only on the training dates and then applied forward, so no future day shapes the clusters. Each cluster gets a readable name from its centroid.",
+      "visual": "Code card B + train/validate/test timeline with the fit arrow on train only",
+      "factcheck_refs": [
+        "F6",
+        "F7",
+        "F8",
+        "F10"
+      ],
+      "code_segment": "B",
+      "tts_text": "Then K means splits those days into four regimes. The clustering is fit only on the training dates and then applied forward, so no future day shapes the clusters. Each cluster gets a readable name from its centroid.",
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.25,
+            "type": "search"
+          }
+        ]
+      },
+      "narration_word_count": 37,
+      "narration_duration": 12.901,
+      "audio_file": "audio/beat_s07.wav",
+      "music_section": "build"
+    },
+    {
+      "id": "S08",
+      "title": "The regime map",
+      "index": "08/14",
+      "start": 84.64,
+      "duration": 15.16,
+      "narration": "Here is the map. Stressed bear is almost entirely the early twenty-twenty crash, twenty-four days. High volatility, ninety-seven. The market spends most of its life in calm bull, eight hundred twenty-one days, or sideways mixed, five hundred fifty-four.",
+      "visual": "assets/figures/fig1_regime_map.png + four count chips",
+      "factcheck_refs": [
+        "F9"
+      ],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "swish"
+          }
+        ]
+      },
+      "narration_word_count": 38,
+      "narration_duration": 15.163,
+      "audio_file": "audio/beat_s08.wav",
+      "music_section": "turn"
+    },
+    {
+      "id": "S09",
+      "title": "The regime-aware model",
+      "index": "09/14",
+      "start": 99.8,
+      "duration": 13.16,
+      "narration": "The model is an Extra Trees classifier over nineteen price and volume features, plus the regime identifier itself. Train, validation and test are split by date, and missing values are filled with training medians only.",
+      "visual": "Code card C with + [\"regime_id\"] underlined",
+      "factcheck_refs": [
+        "F11",
+        "F12",
+        "F14"
+      ],
+      "code_segment": "C",
+      "tts_text": "The model is an Extra Trees classifier over nineteen price and volume features, plus the regime identifier itself. Train, validation and test are split by date, and missing values are filled with training medians only.",
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "tick"
+          }
+        ]
+      },
+      "narration_word_count": 35,
+      "narration_duration": 13.163,
+      "audio_file": "audio/beat_s09.wav",
+      "music_section": "model"
+    },
+    {
+      "id": "S10",
+      "title": "The honest headline",
+      "index": "10/14",
+      "start": 112.96,
+      "duration": 11.88,
+      "narration": "The headline is still honest. Test ROC-AUC is point five one eight, and the Brier score is point two five, what a coin flip gives you. Regime awareness did not make the model predictive.",
+      "visual": "Two stat cards + full-width terracotta verdict card",
+      "factcheck_refs": [
+        "F16",
+        "F17",
+        "F18"
+      ],
+      "code_segment": null,
+      "tts_text": "The headline is still honest. Test R O C A U C is point five one eight, and the Brier score is point two five, what a coin flip gives you. Regime awareness did not make the model predictive.",
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.35,
+            "type": "warn"
+          }
+        ]
+      },
+      "narration_word_count": 34,
+      "narration_duration": 11.885,
+      "audio_file": "audio/beat_s10.wav",
+      "music_section": "problem"
+    },
+    {
+      "id": "S11",
+      "title": "The real finding",
+      "index": "11/14",
+      "start": 124.85,
+      "duration": 16.38,
+      "narration": "But split it by regime and something shows up. In high volatility, AUC is point five four. Sideways mixed, point five two. In calm bull, the most common regime, it is point four nine, below chance. The model is least useful exactly when the market is quiet.",
+      "visual": "Three diverging bars centred on the 0.50 chance line; calm_bull extends left",
+      "factcheck_refs": [
+        "F19",
+        "F20",
+        "F21",
+        "F22"
+      ],
+      "code_segment": null,
+      "tts_text": "But split it by regime and something shows up. In high volatility, A U C is point five four. Sideways mixed, point five two. In calm bull, the most common regime, it is point four nine, below chance. The model is least useful exactly when the market is quiet.",
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.3,
+            "type": "warn"
+          }
+        ]
+      },
+      "narration_word_count": 47,
+      "narration_duration": 16.377,
+      "audio_file": "audio/beat_s11.wav",
+      "music_section": "turn"
+    },
+    {
+      "id": "S12",
+      "title": "What the model actually uses",
+      "index": "12/14",
+      "start": 141.22,
+      "duration": 11.41,
+      "narration": "Permutation importance agrees. The regime identifier is the single most useful feature, by an order of magnitude. Most technical indicators contribute nothing, or slightly hurt.",
+      "visual": "assets/figures/fig2_feature_importance.png with the regime_id bar outlined",
+      "factcheck_refs": [
+        "F23",
+        "F24",
+        "F25",
+        "F26",
+        "F27"
+      ],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "rank"
+          }
+        ]
+      },
+      "narration_word_count": 25,
+      "narration_duration": 11.406,
+      "audio_file": "audio/beat_s12.wav",
+      "music_section": "turn"
+    },
+    {
+      "id": "S13",
+      "title": "Adaptive thresholds and the queue",
+      "index": "13/14",
+      "start": 152.63,
+      "duration": 13.63,
+      "narration": "So the thresholds adapt. Each regime gets its own cut-off, tuned on validation for balanced accuracy, and only names that clear it by eight points enter the research queue. On the latest day, a calm bull day, two names qualified.",
+      "visual": "Threshold rule card + two queue rows (INTU, SPGI) + advisory strip",
+      "factcheck_refs": [
+        "F28",
+        "F29",
+        "F30",
+        "F31",
+        "F33",
+        "F34",
+        "F35",
+        "F36"
+      ],
+      "code_segment": "D",
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.25,
+            "type": "rank"
+          }
+        ]
+      },
+      "narration_word_count": 40,
+      "narration_duration": 13.635,
+      "audio_file": "audio/beat_s13.wav",
+      "music_section": "build"
+    },
+    {
+      "id": "S14",
+      "title": "Accomplishment and next steps",
+      "index": "14/14",
+      "start": 166.27,
+      "duration": 16.65,
+      "narration": "Phase 4's accomplishment is not a better score. It is a system that knows where it is weak and says so. Next: more history behind the rare regimes, calibration measured per regime, and a stressed-bear sample large enough to actually test. I'm Dhrumil Shah. Thank you for watching.",
+      "visual": "Shipped / Still open lists, then the end card",
+      "factcheck_refs": [
+        "W1",
+        "W2",
+        "W3",
+        "W4"
+      ],
+      "code_segment": null,
+      "sound_design": {
+        "sfx": [
+          {
+            "at": 0.2,
+            "type": "swish"
+          }
+        ]
+      },
+      "narration_word_count": 48,
+      "narration_duration": 16.649,
+      "audio_file": "audio/beat_s14.wav",
+      "music_section": "resolve"
+    }
+  ],
+  "metadata": {
+    "end_hold_seconds": 2.0,
+    "voice_kokoro": "am_onyx",
+    "voice_rationale": "The film opens 'Hi, I am Dhrumil Shah' - a male voice matches the presenter.",
+    "composition_id": "MycroftPhase4-9x16",
+    "cover_id": "MycroftPhase4Cover9x16",
+    "style_reference": "Mycroft ThesisGuard 9x16 - cream ground, serif headline, terracotta reserved for honest limits",
+    "narration_total_seconds": 182.912,
+    "video_total_seconds": 184.91,
+    "narration_word_count": 491
+  }
+}

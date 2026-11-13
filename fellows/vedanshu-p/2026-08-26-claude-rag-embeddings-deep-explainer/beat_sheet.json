@@ -1,0 +1,1561 @@
+{
+  "metadata": {
+    "slug": "claude-rag-embeddings-deep-explainer",
+    "title": "The Geometry Of Meaning.",
+    "topic": "RAG · DEEP EXPLAINER · CHAPTER 3",
+    "purpose": "deep-explainer treatment of RAG Foundations Chapter 3 — the multi-act version of claude-rag-embeddings (ai-explainer) and claude-cli-rag-embeddings (cli-explainer)",
+    "skill": "deep-explainer",
+    "channel": "personal-author",
+    "persona": "Vedanshu Daxesh Patel",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "greeting": "Shalom, Vedanshu",
+    "greeting_note": "hello lexicon: Hebrew (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Ahoj/Aloha/Bonjour/Ciao/Hej/Hola/Merhaba/Namaste already used by the sibling reels in this series.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "clock": "narration",
+    "audience": "CS students prepping for foundational AI/ML interviews (this book's stated reader)",
+    "playlist": "Claude Taught",
+    "source": "RAG Foundations, chapters/03-representing-text-embeddings.md (same source as claude-rag-embeddings and claude-cli-rag-embeddings)",
+    "total_estimated_duration_seconds": 433,
+    "acts": [
+      "I — From Words To Numbers",
+      "II — The Trick That Almost Works",
+      "III — From Words To Whole Passages",
+      "IV — Closeness As Meaning, An Old Idea",
+      "V — The Worked Example: Same Words, Different Meaning",
+      "VI — Meaning Over Vocabulary"
+    ],
+    "lane_histogram_plan": {
+      "vox": 7,
+      "manim": 8,
+      "remotion": 12,
+      "card": 3,
+      "ask_exempt": 0,
+      "body_total": 30,
+      "vox_share": 0.233,
+      "manim_share": 0.267,
+      "remotion_share": 0.4,
+      "card_share": 0.1
+    },
+    "notes": "Tier note: deep-explainer is ADVANCED (Bear-only) per CLAUDE.md rule 8 — built on the requester's direct, explicit instruction, applying the same precedent already confirmed for cli-explainer and this book's own Chapter 1/2 deep-explainer siblings. REMOTION beats reuse ProblemExecutiveSummary (11x, generic headline/subline/sparkLine, props-only reuse from the Chapter 2 sibling), DeepActCard (3x, same sibling), and EmbedSpeedLeap (1x, from this chapter's own ai-explainer sibling, runtime/remotion/src/EmbedIllu.tsx) — zero new Remotion components needed for this build. MANIM beats (8, new scenes in this reel's own scenes.py) carry the genuinely mathematical moments: word2vec clustering (B04), vector arithmetic + its replication caveat (B08/B09), word-to-passage framing (B11), BERT→Sentence-BERT restructuring (B13), cosine geometry (B19), the closeness premise (B21), and the combined worked-example map (B26, rebuild of the chapter's Fig. 02, callback to B19's geometry). VOX beats (7: two 2-beat runs R1/R2 + three single stills) are all Tier 1 generic/illustrative — no real named person/object/event — so no rights escalation; SHOPPING.md written after audio lock per Gate D2. Honesty notes: B09's replication caveat states only the qualitative finding from the chapter (excluding the query word matters), no invented replication statistics; B24/B26's worked-example placement is stated qualitatively per the chapter's own caveat that no embedding model was actually run to produce a precise score for this example — the film never puts an invented cosine number on screen. GATE P: content not yet reviewed — VERDICT is PENDING in PEDAGOGY.md; no audio generated, no beat rendered, no Manim rendered.",
+    "build": {
+      "at": "2026-08-23T16:48:20",
+      "cut": "master",
+      "filled": 34,
+      "of": 34,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "OPEN",
+      "role_note": "COLD OPEN LAW — ask answered, Vedanshu signs in",
+      "narration_text": "Shalom — I'm Vedanshu Daxesh Patel. Chapter two left one requirement unmet: hand the model the right text. This film is about the word hiding inside that sentence — \"right.\" A computer can't tell if two pieces of text mean the same thing just by reading them. Six acts: word vectors, a famous trick that almost works, whole passages, an old idea called cosine similarity, a worked example that decides everything, and why none of it needs matching words.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27.2,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Shalom, Vedanshu",
+            "topic": "RAG · DEEP EXPLAINER · CHAPTER 3",
+            "segment": "The Geometry Of Meaning.",
+            "command": "Explain how a computer decides whether two pieces of text mean the same thing — from raw word vectors, through a famous trick that almost works, to the worked example that proves meaning beats vocabulary.",
+            "runningText": "loading chapter three…",
+            "output": [
+              "word2vec: 1.6B words, learned not assigned",
+              "vector arithmetic — with a real caveat",
+              "cosine similarity: older than embeddings",
+              "worked example: same words, different meaning"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 22.95,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "I — From Words To Numbers",
+      "role_note": "ACT I open — substantive claim beat (no bare card, matches sibling precedent)",
+      "narration_text": "Act one: a computer doesn't understand words, sentences, or meaning — only numbers. So the first move in modern language processing is turning text into a vector: a list of numbers, not arbitrary, but learned, so the numbers carry something real about what the text means.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.9,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"Turn text into numbers — learned, not assigned.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: A computer can't read for meaning. The first move is a vector: numbers that carry something real about the text."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: Learned, not arbitrary."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "Turn text into numbers — learned, not assigned.",
+            "subline": "A computer can't read for meaning. The first move is a vector: numbers that carry something real about the text.",
+            "sparkLine": "Learned, not arbitrary."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 14.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "I — From Words To Numbers",
+      "role_note": "VOX run R1 beat 1 of 2",
+      "narration_text": "Picture a vocabulary the size of a library — every word a system will ever need to represent, learned not from a dictionary, but from reading an enormous amount of ordinary text.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.0,
+      "shot": {
+        "type": "STILL",
+        "source": "ai",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.45
+        ],
+        "show": [
+          {
+            "at": 0.15,
+            "event": "wide establishing shot: rows of library shelves, warm light"
+          }
+        ],
+        "prompt": "Tier 1 (generic, no real referent). See SHOPPING.md.",
+        "vox_run": "R1",
+        "handoff": {
+          "camera": {
+            "x": 0.5,
+            "y": 0.45,
+            "scale": 1.3
+          },
+          "objects": [
+            {
+              "id": "library-shelves",
+              "x": 0.5,
+              "y": 0.5,
+              "scale": 1.0,
+              "opacity": 1.0
+            }
+          ]
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 10.54,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B02.png",
+        "filled_by": "still",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "I — From Words To Numbers",
+      "role_note": "VOX run R1 beat 2 of 2 (handoff)",
+      "narration_text": "Zoom into a single page. Word2vec trains a neural network over a corpus of 1.6 billion words — Mikolov and colleagues, 2013 — learning, for every word, a few hundred numbers.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.7,
+      "shot": {
+        "type": "STILL",
+        "source": "ai",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "show": [
+          {
+            "at": 0.2,
+            "event": "tight shot: an open book, dense printed text, shallow focus"
+          }
+        ],
+        "prompt": "Tier 1 (generic, no real referent) — same plate family as B02. See SHOPPING.md.",
+        "vox_run": "R1"
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 11.35,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B03.png",
+        "filled_by": "still",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "I — From Words To Numbers",
+      "role_note": "MANIM — B04_VocabularyToVectors",
+      "narration_text": "Nobody hand-assigns these numbers — the network discovers them from which words appear near which others. Plotted in two dimensions: \"vacation,\" \"PTO,\" \"leave\" cluster together; \"printer\" sits far off. A teaching simplification — real embeddings use hundreds of dimensions.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "words drift in as loose points on a blank plane"
+          },
+          {
+            "at": 0.5,
+            "event": "'vacation'/'PTO'/'leave' pull together into a tight cluster"
+          },
+          {
+            "at": 0.8,
+            "event": "'printer' settles alone, far from the cluster; caption: teaching simplification (Fig. 01)"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B04_VocabularyToVectors",
+        "production_viz": {
+          "label": "vocabulary points self-organizing by context, rebuild of the chapter's Fig. 01",
+          "mechanic": "points drifting from random scatter into a topic cluster + one isolated outlier",
+          "note": "Mikolov et al. 2013; two dimensions only for teaching, real vectors have hundreds"
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.06,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "I — From Words To Numbers",
+      "role_note": "REMOTION — mechanism close",
+      "narration_text": "Similar contexts, similar vectors — that's the entire mechanism. No one decided what any dimension means. The pattern falls out of the statistics of ordinary language, at a scale no person could track by hand.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.1,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"Similar contexts, similar vectors.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: No one decided what any dimension means — the pattern falls out of statistics, at a scale no person could track by hand."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: The mechanism is the whole trick."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "Similar contexts, similar vectors.",
+            "subline": "No one decided what any dimension means — the pattern falls out of statistics, at a scale no person could track by hand.",
+            "sparkLine": "The mechanism is the whole trick."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 12.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "II — The Trick That Almost Works",
+      "role_note": "ACT II card (bare)",
+      "narration_text": "Act two: a famous trick that reveals just how much structure these learned vectors capture — and exactly why it shouldn't be trusted blindly.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8.3,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "card",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "'ACT II' kicker fades in"
+          },
+          {
+            "at": 0.35,
+            "event": "terracotta rule draws"
+          },
+          {
+            "at": 0.5,
+            "event": "'The Trick That Almost Works' title types in"
+          }
+        ],
+        "remotion": {
+          "pattern": "DeepActCard",
+          "note": "reused verbatim from the Chapter-2 sibling deep-explainer (props-only reuse)",
+          "props": {
+            "index": "II",
+            "title": "The Trick That Almost Works"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 8.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "II — The Trick That Almost Works",
+      "role_note": "REMOTION — setup",
+      "narration_text": "Take the vector for \"king.\" Subtract \"man.\" Add \"woman.\" The result lands close to the vector for \"queen\" — Mikolov, Yih, and Zweig, 2013. Not the raw positions — the *directions* between vectors encode relationships.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.1,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"king − man + woman ≈ queen\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: Not the raw positions — the directions between vectors encode relationships (Mikolov, Yih & Zweig, 2013)."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: Directions carry meaning too."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "king − man + woman ≈ queen",
+            "subline": "Not the raw positions — the directions between vectors encode relationships (Mikolov, Yih & Zweig, 2013).",
+            "sparkLine": "Directions carry meaning too."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 13.57,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "II — The Trick That Almost Works",
+      "role_note": "MANIM — B08_VectorArithmetic",
+      "narration_text": "Watch it as geometry: an arrow from \"man\" to \"king,\" redrawn starting at \"woman.\" Where it lands is the claim — near \"queen.\" A genuinely useful intuition about what these spaces encode.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "four points appear: man, king, woman, queen"
+          },
+          {
+            "at": 0.45,
+            "event": "arrow man→king draws, then translates to start at woman"
+          },
+          {
+            "at": 0.8,
+            "event": "translated arrow tip lands near queen; label 'king − man + woman'"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B08_VectorArithmetic",
+        "production_viz": {
+          "label": "king − man + woman ≈ queen, shown as a translated arrow",
+          "mechanic": "vector subtraction/addition drawn as arrow translation in a 2D plane",
+          "note": "Mikolov, Yih & Zweig 2013; illustrative geometry, not a literal 2D embedding"
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 11.14,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "II — The Trick That Almost Works",
+      "role_note": "MANIM — B09_ExcludeTheQuery",
+      "narration_text": "Here's the honest part: run the naive search for the nearest vector, and it often lands back on \"king\" itself. Later replication work found the trick only works once you exclude the query word from the search.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "naive nearest-vector search runs; arrow points right back at 'king'"
+          },
+          {
+            "at": 0.5,
+            "event": "'king' greys out — excluded from the search — label: 'exclude the query word'"
+          },
+          {
+            "at": 0.85,
+            "event": "search re-runs; nearest remaining vector lands on 'queen'"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B09_ExcludeTheQuery",
+        "production_viz": {
+          "label": "the replication caveat — nearest-vector search returns 'king' unless it's excluded",
+          "mechanic": "before/after search result switching once the query vector is excluded from candidates",
+          "note": "the chapter's own caveat: no invented replication statistics, only the qualitative finding"
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 11.73,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B09.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "II — The Trick That Almost Works",
+      "role_note": "REMOTION — lesson",
+      "narration_text": "So: a famous illustrative example of how relationships can live in these spaces — not a guaranteed computation that works out of the box every time someone tries it. Hold it loosely.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.0,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"A famous example, not a guarantee.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: Relationships can live in these spaces — but this specific arithmetic isn't guaranteed to work out of the box every time."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: Hold it loosely."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "A famous example, not a guarantee.",
+            "subline": "Relationships can live in these spaces — but this specific arithmetic isn't guaranteed to work out of the box every time.",
+            "sparkLine": "Hold it loosely."
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 10.88,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "III — From Words To Whole Passages",
+      "role_note": "MANIM — B11_WordToPassage (ACT III open, substantive)",
+      "narration_text": "Word2vec operates one word at a time — clean, but not what a RAG system actually embeds. A help-desk question is a whole passage, and a passage's meaning is more than the sum of its words.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "a single word-point highlighted alone: 'word2vec: one word at a time'"
+          },
+          {
+            "at": 0.5,
+            "event": "a full sentence of word-points appears beside it, loosely scattered"
+          },
+          {
+            "at": 0.85,
+            "event": "the sentence's points pull toward one new combined point: 'a passage, one vector'"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B11_WordToPassage",
+        "production_viz": {
+          "label": "the word-level to passage-level gap the chapter opens Act III on",
+          "mechanic": "individual word-points contrasted with, then merged into, one whole-passage point",
+          "note": "framing beat only — no invented numbers, sets up BERT/Sentence-BERT"
+        }
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 11.8,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "III — From Words To Whole Passages",
+      "role_note": "VOX single still",
+      "narration_text": "Getting from word-level vectors to whole-passage vectors took a further step. Transformer models like BERT learn deep, contextual representations of text — Devlin and colleagues, 2019.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.0,
+      "shot": {
+        "type": "STILL",
+        "source": "ai",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.45
+        ],
+        "show": [
+          {
+            "at": 0.15,
+            "event": "wide shot: a research desk, monitor showing dense text/diagrams, notebook open"
+          }
+        ],
+        "prompt": "Tier 1 (generic, no real referent). See SHOPPING.md."
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 11.54,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B12.png",
+        "filled_by": "still",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "III — From Words To Whole Passages",
+      "role_note": "MANIM — B13_BertToSbert",
+      "narration_text": "But BERT's raw output, used directly, compares whole sentences poorly. Sentence-BERT restructures the same network so a passage becomes one vector, meaningful to compare directly against others — Reimers and Gurevych, 2019.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "'BERT' state-card; two sentence-vectors compared directly, marked poor/unreliable"
+          },
+          {
+            "at": 0.5,
+            "event": "card restructures — 'Sentence-BERT' label draws over the same network shape"
+          },
+          {
+            "at": 0.85,
+            "event": "two sentence-vectors compared again, marked reliable, direct comparison arrow"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B13_BertToSbert",
+        "production_viz": {
+          "label": "BERT's raw output vs. Sentence-BERT's restructured output for sentence comparison",
+          "mechanic": "one state-card morphing into a second, same architecture rewired for a different comparison",
+          "note": "Devlin et al. 2019 (BERT); Reimers & Gurevych 2019 (Sentence-BERT)"
+        }
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 13.99,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B13.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "III — From Words To Whole Passages",
+      "role_note": "REMOTION — reused EmbedSpeedLeap data-viz",
+      "narration_text": "The efficiency case is not subtle: finding the most similar pair among ten thousand sentences takes roughly sixty-five hours with raw BERT. With Sentence-BERT: about five seconds, at comparable accuracy.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.3,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "bar 1 rises: 'raw BERT — ~65 hours'"
+          },
+          {
+            "at": 0.55,
+            "event": "bar 2 lands tiny: 'Sentence-BERT — ~5 seconds'"
+          },
+          {
+            "at": 0.85,
+            "event": "detail line: 'most similar pair among 10,000 sentences'"
+          }
+        ],
+        "remotion": {
+          "pattern": "EmbedSpeedLeap",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "leftLabel": "raw BERT",
+            "leftValue": "~65 hours",
+            "rightLabel": "Sentence-BERT",
+            "rightValue": "~5 seconds",
+            "detail": "finding the most similar pair among 10,000 sentences"
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 12.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B14.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "III — From Words To Whole Passages",
+      "role_note": "REMOTION — close",
+      "narration_text": "This is the level a RAG system actually works at — whole chunks of text, each one a single vector, never individual words compared one at a time.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.7,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"Whole chunks, not words.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: This is the level a RAG system actually works at — each chunk one vector, never individual words compared one at a time."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: Chunks in. Vectors out."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "Whole chunks, not words.",
+            "subline": "This is the level a RAG system actually works at — each chunk one vector, never individual words compared one at a time.",
+            "sparkLine": "Chunks in. Vectors out."
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 9.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B15.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "IV — Closeness As Meaning, An Old Idea",
+      "role_note": "ACT IV card (bare)",
+      "narration_text": "Act four: once text is a vector, comparing meaning becomes geometry. The tool that measures it is older than embeddings themselves.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.2,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "card",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "'ACT IV' kicker fades in"
+          },
+          {
+            "at": 0.35,
+            "event": "terracotta rule draws"
+          },
+          {
+            "at": 0.5,
+            "event": "'Closeness As Meaning, An Old Idea' title types in"
+          }
+        ],
+        "remotion": {
+          "pattern": "DeepActCard",
+          "note": "reused verbatim from the Chapter-2 sibling deep-explainer (props-only reuse)",
+          "props": {
+            "index": "IV",
+            "title": "Closeness As Meaning, An Old Idea"
+          },
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 7.96,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B16.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "IV — Closeness As Meaning, An Old Idea",
+      "role_note": "VOX run R2 beat 1 of 2",
+      "narration_text": "Long before neural embeddings, information retrieval already represented documents and queries as vectors — a card catalog for meaning, built out of raw term counts.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8.6,
+      "shot": {
+        "type": "STILL",
+        "source": "ai",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.45
+        ],
+        "show": [
+          {
+            "at": 0.15,
+            "event": "wide shot: a wall of old library card-catalog drawers"
+          }
+        ],
+        "prompt": "Tier 1 (generic, no real referent). See SHOPPING.md.",
+        "vox_run": "R2",
+        "handoff": {
+          "camera": {
+            "x": 0.5,
+            "y": 0.45,
+            "scale": 1.3
+          },
+          "objects": [
+            {
+              "id": "card-catalog",
+              "x": 0.5,
+              "y": 0.5,
+              "scale": 1.0,
+              "opacity": 1.0
+            }
+          ]
+        }
+      },
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 9.86,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B17.png",
+        "filled_by": "still",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "IV — Closeness As Meaning, An Old Idea",
+      "role_note": "VOX run R2 beat 2 of 2 (handoff)",
+      "narration_text": "Pull one drawer. Cosine similarity — the cosine of the angle between two vectors — was already the standard way to score how alike two of these vectors were, independent of length. Manning, Raghavan, and Schütze, 2008.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.8,
+      "shot": {
+        "type": "STILL",
+        "source": "ai",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "show": [
+          {
+            "at": 0.2,
+            "event": "tight shot: one open drawer, index cards fanned, hand pulling one card"
+          }
+        ],
+        "prompt": "Tier 1 (generic, no real referent) — same plate family as B17. See SHOPPING.md.",
+        "vox_run": "R2"
+      },
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 13.01,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B18.png",
+        "filled_by": "still",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "act": "IV — Closeness As Meaning, An Old Idea",
+      "role_note": "MANIM — B19_CosineGeometry",
+      "narration_text": "The geometry itself: two vectors, an angle between them. Small angle, cosine near one, close in meaning. Wide angle, cosine near zero, unrelated. Embeddings didn't invent this measure — they gave it a far richer vector to work on.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "two vectors draw from the origin; angle θ arcs between them"
+          },
+          {
+            "at": 0.5,
+            "event": "θ shrinks; label 'cos θ → 1, close in meaning'"
+          },
+          {
+            "at": 0.85,
+            "event": "θ widens toward 90°; label 'cos θ → 0, unrelated'"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B19_CosineGeometry",
+        "production_viz": {
+          "label": "cosine similarity as the angle between two vectors",
+          "mechanic": "an animated angle sweep between two vectors with cos θ labeled at each extreme",
+          "note": "Manning, Raghavan & Schütze 2008; the formula, not a computed example"
+        }
+      },
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 13.53,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B19.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "IV — Closeness As Meaning, An Old Idea",
+      "role_note": "REMOTION — pedigree",
+      "narration_text": "That's the honest lineage: cosine similarity predates embeddings by decades. What changed is not how closeness gets measured — it's what kind of vector gets fed into the measurement.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.0,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"An old tool, a new vector.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: Cosine similarity predates embeddings by decades. What changed is the vector fed into it, not the measurement itself."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: The ruler didn't change. What it measures did."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "An old tool, a new vector.",
+            "subline": "Cosine similarity predates embeddings by decades. What changed is the vector fed into it, not the measurement itself.",
+            "sparkLine": "The ruler didn't change. What it measures did."
+          },
+          "rendered": {
+            "out": "media/B20.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B20.mp3",
+      "actual_duration_s": 10.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B20.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "IV — Closeness As Meaning, An Old Idea",
+      "role_note": "MANIM — B21_ClosenessPremise",
+      "narration_text": "The premise retrieval runs on: train the model well, and close vectors mean similar meaning, far vectors mean different meaning — regardless of whether the underlying words overlap at all.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.3,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "two labeled points drift close together: 'similar meaning'"
+          },
+          {
+            "at": 0.5,
+            "event": "two other points drift apart: 'different meaning'"
+          },
+          {
+            "at": 0.85,
+            "event": "caption settles: 'regardless of whether the words overlap at all'"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B21_ClosenessPremise",
+        "production_viz": {
+          "label": "the premise retrieval depends on, stated as a quote-card/geometry hybrid",
+          "mechanic": "two point-pairs demonstrating close=similar and far=different independent of wording",
+          "note": "framing beat bridging Act IV's geometry to Act V's worked example"
+        }
+      },
+      "audio_file": "mp3/beat-B21.mp3",
+      "actual_duration_s": 10.65,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B21.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "V — The Worked Example: Same Words, Different Meaning",
+      "role_note": "REMOTION — ACT V open, substantive",
+      "narration_text": "Act five: before embeddings, comparing text meant comparing its words. That fails constantly, because people ask about the same thing in completely different words — every single day.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.7,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"Same question. Different words. Every day.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: Before embeddings, comparing text meant comparing words — and that fails constantly, because people phrase the same question differently."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: The payoff starts here."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "Same question. Different words. Every day.",
+            "subline": "Before embeddings, comparing text meant comparing words — and that fails constantly, because people phrase the same question differently.",
+            "sparkLine": "The payoff starts here."
+          },
+          "rendered": {
+            "out": "media/B22.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B22.mp3",
+      "actual_duration_s": 10.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B22.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "V — The Worked Example: Same Words, Different Meaning",
+      "role_note": "VOX single still",
+      "narration_text": "Two employees at two different desks, typing two different questions into the same chat window. What happens next to each one is the whole chapter's argument, made concrete.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.7,
+      "shot": {
+        "type": "STILL",
+        "source": "ai",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.45
+        ],
+        "show": [
+          {
+            "at": 0.15,
+            "event": "wide office shot: two desks, two monitors, two people typing"
+          }
+        ],
+        "prompt": "Tier 1 (generic, no real referent). See SHOPPING.md."
+      },
+      "audio_file": "mp3/beat-B23.mp3",
+      "actual_duration_s": 9.94,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B23.png",
+        "filled_by": "still",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B24",
+      "act": "V — The Worked Example: Same Words, Different Meaning",
+      "role_note": "REMOTION — paraphrase pair",
+      "narration_text": "\"How much vacation do I get?\" and \"What's the PTO policy?\" — almost no shared words, the same real request. A model trained on paraphrases should place them close together. Reasoned qualitatively — no specific number was actually computed for this pair.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.5,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"“How much vacation do I get?” ≈ “What's the PTO policy?”\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: Almost no shared words, the same real request — a paraphrase-trained model should place these close together. Reasoned qualitatively, not computed."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: Same request, different words."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "“How much vacation do I get?” ≈ “What's the PTO policy?”",
+            "subline": "Almost no shared words, the same real request — a paraphrase-trained model should place these close together. Reasoned qualitatively, not computed.",
+            "sparkLine": "Same request, different words."
+          },
+          "rendered": {
+            "out": "media/B24.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B24.mp3",
+      "actual_duration_s": 14.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B24.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B25",
+      "act": "V — The Worked Example: Same Words, Different Meaning",
+      "role_note": "REMOTION — shared-phrase trap pair",
+      "narration_text": "Now: \"How do I request time off?\" and \"How do I request a new laptop?\" Both literally \"how do I request ___.\" A word-overlap method might call these similar. They're about entirely different topics — and a good embedding should place them meaningfully farther apart.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.5,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"“How do I request time off?” vs. a new laptop.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: Both literally “how do I request ___.” Word overlap says similar; a good embedding should say meaningfully farther apart."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: Shared words, different topics."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "“How do I request time off?” vs. a new laptop.",
+            "subline": "Both literally “how do I request ___.” Word overlap says similar; a good embedding should say meaningfully farther apart.",
+            "sparkLine": "Shared words, different topics."
+          },
+          "rendered": {
+            "out": "media/B25.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B25.mp3",
+      "actual_duration_s": 13.67,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B25.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B26",
+      "act": "V — The Worked Example: Same Words, Different Meaning",
+      "role_note": "MANIM — B26_ParaphraseVsTrap",
+      "narration_text": "Put both pairs on the same map. The paraphrase pair sits close, different words, same region. The trap pair sits apart, shared words, different regions. Similar wording is not similar embedding. Dissimilar wording is not dissimilar embedding. The vector captures meaning, not vocabulary.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "lane": "manim",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "vacation/PTO points settle close together, labeled 'different words, same region'"
+          },
+          {
+            "at": 0.45,
+            "event": "time-off/laptop points settle far apart, labeled 'shared words, different regions'"
+          },
+          {
+            "at": 0.85,
+            "event": "caption: 'the vector captures meaning, not vocabulary' — rebuild of the chapter's Fig. 02"
+          }
+        ]
+      },
+      "graphic": {
+        "engine": "manim",
+        "manim": "B26_ParaphraseVsTrap",
+        "production_viz": {
+          "label": "both worked-example pairs plotted on one map — the chapter's central payoff (Fig. 02)",
+          "mechanic": "two point-pairs at contrasting distances, callback to B19's cosine geometry",
+          "note": "qualitative placement only, matching the chapter's own caveat about no computed score"
+        }
+      },
+      "audio_file": "mp3/beat-B26.mp3",
+      "actual_duration_s": 15.96,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B26.mp4",
+        "filled_by": "manim",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B27",
+      "act": "VI — Meaning Over Vocabulary",
+      "role_note": "ACT VI card (bare)",
+      "narration_text": "Act six: state the payoff plainly, and be honest about exactly how far it reaches.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5.2,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "card",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "'ACT VI' kicker fades in"
+          },
+          {
+            "at": 0.35,
+            "event": "terracotta rule draws"
+          },
+          {
+            "at": 0.5,
+            "event": "'Meaning Over Vocabulary' title types in"
+          }
+        ],
+        "remotion": {
+          "pattern": "DeepActCard",
+          "note": "reused verbatim from the Chapter-2 sibling deep-explainer (props-only reuse)",
+          "props": {
+            "index": "VI",
+            "title": "Meaning Over Vocabulary"
+          },
+          "rendered": {
+            "out": "media/B27.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B27.mp3",
+      "actual_duration_s": 5.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B27.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B28",
+      "act": "VI — Meaning Over Vocabulary",
+      "role_note": "REMOTION — payoff",
+      "narration_text": "A retrieval system doesn't need a user to phrase a question using the manual's exact words. It only needs the question and the right passage to land near each other in the space.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.4,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"Near in space, not matched in words.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: A retrieval system doesn't need the user's exact wording — only that the question and the right passage land near each other."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: That's the whole payoff."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "Near in space, not matched in words.",
+            "subline": "A retrieval system doesn't need the user's exact wording — only that the question and the right passage land near each other.",
+            "sparkLine": "That's the whole payoff."
+          },
+          "rendered": {
+            "out": "media/B28.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B28.mp3",
+      "actual_duration_s": 10.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B28.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B29",
+      "act": "VI — Meaning Over Vocabulary",
+      "role_note": "VOX single still",
+      "narration_text": "A stack of paper on a desk — a policy manual, a whole document, waiting to become something a machine can search.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.6,
+      "shot": {
+        "type": "STILL",
+        "source": "ai",
+        "lane": "vox",
+        "motion": "kenburns",
+        "focus": [
+          0.5,
+          0.5
+        ],
+        "show": [
+          {
+            "at": 0.2,
+            "event": "close shot: a thick stack of printed pages on a desk, soft light"
+          }
+        ],
+        "prompt": "Tier 1 (generic, no real referent). See SHOPPING.md."
+      },
+      "audio_file": "mp3/beat-B29.mp3",
+      "actual_duration_s": 6.72,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B29.png",
+        "filled_by": "still",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "VI — Meaning Over Vocabulary",
+      "role_note": "REMOTION — bridge to Chapter 4",
+      "narration_text": "Embeddings operate on whatever's handed to them — one sentence, one paragraph, a forty-page manual. What gets handed in as one chunk turns out to matter enormously. That's chapter four's question, not this one's answer.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.1,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Headline types in: \"One chunk. That choice matters enormously.\""
+          },
+          {
+            "at": 0.45,
+            "event": "Subline resolves: Embeddings operate on whatever's handed to them — a sentence or a forty-page manual. What counts as one chunk is chapter four's question."
+          },
+          {
+            "at": 0.85,
+            "event": "Spark line settles: Not this film's answer."
+          }
+        ],
+        "remotion": {
+          "pattern": "ProblemExecutiveSummary",
+          "note": "reused verbatim from the sibling ai-explainer build (props-only reuse)",
+          "props": {
+            "headline": "One chunk. That choice matters enormously.",
+            "subline": "Embeddings operate on whatever's handed to them — a sentence or a forty-page manual. What counts as one chunk is chapter four's question.",
+            "sparkLine": "Not this film's answer."
+          },
+          "rendered": {
+            "out": "media/B30.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B30.mp3",
+      "actual_duration_s": 12.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B30.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "role_note": "VERDICT recap (ClaudeVerdictArtifact)",
+      "narration_text": "Let's recap the whole film. Text becomes a vector, learned from patterns in ordinary language, not assigned by hand — word2vec proved it at scale (Mikolov et al., 2013). Vector arithmetic hints at real structure, but only once you exclude the query word from the search. Whole passages need Sentence-BERT, not raw BERT, to compare well (Reimers and Gurevych, 2019). Cosine similarity, the tool that measures closeness, predates embeddings by decades (Manning, Raghavan, and Schütze, 2008). And the whole point: two questions can share almost no words and mean the same thing, or share a whole phrase and mean nothing alike. The vector captures meaning. Not vocabulary.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 36.9,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "The Geometry Of Meaning.",
+            "artifactHeading": "Meaning, measured — not matched",
+            "artifactLines": [
+              "Word vectors are learned from context, not assigned by hand (Mikolov et al., 2013).",
+              "Vector arithmetic is real structure, but only once the query word is excluded from the search.",
+              "Whole passages need Sentence-BERT, not raw BERT, to compare well (Reimers & Gurevych, 2019).",
+              "Cosine similarity predates embeddings by decades (Manning, Raghavan & Schütze, 2008)."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 36.74,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "role_note": "HANDOFF LAW — read aloud, discussed",
+      "narration_text": "Your turn. Paste this: 'Give me three short phrases about the same general topic, written so two of them mean nearly the same thing in very different words, and one of them shares a lot of literal wording with one of the first two but means something different. Tell me, using reasoning about meaning and not any computation, which two you'd expect to land closest together in embedding space, and why.' Try it on a topic you actually know well, and see if Claude's reasoning matches your own intuition about what 'means the same thing' actually requires.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 33.4,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "RAG · DEEP EXPLAINER · CHAPTER 3",
+            "segment": "The Geometry Of Meaning.",
+            "command": "Give me three short phrases about the same general topic, written so two of them mean nearly the same thing in very different words, and one of them shares a lot of literal wording with one of the first two but means something different. Tell me, using reasoning about meaning and not any computation, which two you'd expect to land closest together in embedding space, and why.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 27.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "role_note": "OUTRO LAW — title restate",
+      "narration_text": "The Geometry Of Meaning. Vedanshu Daxesh Patel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 2.4,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "The Geometry Of Meaning.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T16:48:20"
+      }
+    }
+  ]
+}

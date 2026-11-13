@@ -1,0 +1,85 @@
+Lookup, Not Training — how the AI tutor actually knows the textbook
+
+Most people assume we fed the textbook to an AI and it learned it. That is not
+what happens, and the difference changes how you judge the whole system.
+
+Nothing is trained on the textbook. The model is OpenAI's, off the shelf, and it
+never changes. When a student asks a question, the system searches the book
+first, takes the handful of most relevant passages, and sends those along with
+the question. The model answers from what it was handed.
+
+That design buys three things: you can fix a mistake in a chapter and the tutor
+is fixed too, the tutor can point at the section it used, and a question costs
+about a cent instead of the hundreds of dollars a month a self-hosted model
+would cost sitting idle.
+
+It also has one catch, and this video ends on it.
+
+CHAPTERS
+0:00 The question everyone gets wrong
+0:14 The assumption: we trained it
+0:29 The model is rented off the shelf
+0:42 It searches the book first
+0:56 The pages ride along
+1:11 Reason one: you can fix it
+1:26 Reason two: it can cite
+1:37 Reason three: cents not hundreds
+1:51 The one catch: the index
+2:03 When the index goes stale
+2:19 The short version
+2:37 Verdict
+2:52 Your turn
+
+TRY IT YOURSELF
+The prompt from the end of the video:
+
+"My product answers questions about a document set by looking passages up at
+question time instead of training on them. Walk me through what that buys me and
+what it costs — especially how I stop the search index drifting out of step with
+the content, and how I'd tell whether an answer came from my documents or from
+the model's own prior knowledge."
+
+The second half is the part worth pushing on. A lookup system that quietly falls
+back on what the model already knew looks exactly like one that is working.
+
+NOTES
+Runtime 3:27. Narrated by Bella (Kokoro af_bella). Built with Brutalist.
+For Chaitanya and Humanitarians AI · @HumanitariansAI
+
+Sources checked for this video: medhavi-hub docs/how-the-tutor-uses-the-textbook.md,
+docs/ai-models.md, and the per-book architecture docs. The claim that the search
+index is rebuilt when the book is built is stated in the video as "by default" —
+the documentation describes it as automatic during a build, but it was not
+possible to confirm the trigger against the book repositories' own build
+configuration, so the video does not state it unconditionally.
+
+---
+# BUILD NOTES — not part of the published description
+#
+# CHAPTER LIST PROVENANCE (author's requirement: run chapters.py BEFORE writing
+# this file, and confirm no segment is under 10 seconds).
+#
+#   python3 chapters.py --sheet beat_sheet.json --names "…"
+#
+# Run on 2026-10-01, after audio lock, against measured actual_duration_s —
+# never estimates. Result: 13 chapters, shortest 11.86s, all six of the script's
+# rules passed:
+#   [ok] first chapter starts at 00:00
+#   [ok] at least 3 chapters
+#   [ok] every chapter >= 10s
+#   [ok] timestamps ascending
+#   [ok] chapter total == reel length
+#   [ok] no two chapters share a timestamp
+#
+# B13 (the outro) measures 4.05s and CANNOT stand as its own chapter — a single
+# sub-10s chapter silently disables the entire chapter list on YouTube. The
+# script merged it forward into B12, which is why the last chapter is "Your
+# turn" at 2:52 running 34.64s rather than a separate outro chapter.
+#
+# Gotcha for next time: chapters.py splits --names on commas, so a chapter label
+# cannot contain one. "The model is rented, not built" silently became two names
+# and the script exited with "got 14 names for 13 chapters". Renamed to "The
+# model is rented off the shelf".
+#
+# The chapter labels deliberately avoid the phrase the script wants landed once
+# ("open-book exam, not a study session") so the written list cannot dilute it.

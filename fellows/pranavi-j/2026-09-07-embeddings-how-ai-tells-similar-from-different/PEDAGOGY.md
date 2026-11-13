@@ -1,6 +1,6 @@
 # PEDAGOGY — self-assessment against `PROOF.md`
 
-# Feedback: "Embeddings: How AI Tells Similar From Different (When Keyword Matching Can't)" — Sai Pranavi Jeedigunta
+# Feedback: "Embeddings: How AI Tells Similar From Different (When Keyword Matching Can't)" — Sai Pranavi J.
 
 **Verdict (by PROOF's own rubric):** clear-for-public. **11/12**. Production gate **PASS**.
 **This project's own publish authorization remains NOT AUTHORIZED** regardless of this verdict —

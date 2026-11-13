@@ -11,7 +11,7 @@
 | B05 | PROOF | manim | GRAPHIC | B05_LiveQueryProof (scenes.py) | 21.55s | Live query + count "12" + example row (id 153, SEC insider-trading case) all on screen together |
 | B06 | FIX | manim | GRAPHIC | B06_BeforeAfterFix (scenes.py) | 7.97s | Before/after SQL side by side, `id = ANY($1::int[])` highlighted |
 | B07 | TAKEAWAY | manim | GRAPHIC | B07_Statement (scenes.py) | 10.61s | "Copying someone else's rule isn't wrong today. It's wrong the day the two drift apart." |
-| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 5.62s | @HumanitariansAI brand card, "in for Sai Pranavi Jeedigunta" |
+| B08 | SIGN-OFF | manim | GRAPHIC | B08_BrandOutro (scenes.py) | 5.62s | @HumanitariansAI brand card, "in for Sai Pranavi J." |
 
 ## Lane summary
 - MANIM: all 9 beats, self-contained in this reel's own `scenes.py`. No

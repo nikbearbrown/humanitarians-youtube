@@ -1,6 +1,6 @@
 # Beat Sheet (APPROVED — Gate P, 2026-09-17): "The Link That Pointed Nowhere"
 
-**Creator:** Sai Pranavi Jeedigunta | Weekly work report
+**Creator:** Sai Pranavi J. | Weekly work report
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Phase:** 2 — approved for narration lock / audio generation. FACTCHECK items resolved
 2026-09-17: B04 gets an added on-screen "reverse-engineered, not official" caveat label; B07's
@@ -51,7 +51,7 @@ tradeoff, not glossed over.
 | B05 Near-miss | The classification-ordering bug: `identifySource()` keys off `news.google.com`, called AFTER unwrapping would break it | The before/after call order shown side by side |
 | B06 Proof | The live verification counts (100% across 3 escalating test rounds) plus the final 6/6 end-to-end result | All 3 rounds visible, not just the best one |
 | B07 Honest limits | The 2 named unverified/accepted-tradeoff items | Framed as flagged limitations, not glossed over |
-| B09 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B09 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi J. |
 
 ---
 
@@ -61,7 +61,7 @@ tradeoff, not glossed over.
 Visual: title card — "The Link That Pointed Nowhere" + @HumanitariansAI. No narration.
 
 **B01. Exec summary (~0:04–0:20)**
-VO: "Hi, I'm Sai Pranavi Jeedigunta. This video is about a link that looked like a real article URL
+VO: "Hi, I'm Sai Pranavi J.. This video is about a link that looked like a real article URL
 but wasn't — every Google News item in this pipeline was storing a dead-end redirect — and the fix
 that had to reverse-engineer how Google News resolves its own links."
 Visual: name card, one-line summary text on screen as it's spoken.
@@ -131,7 +131,7 @@ Visual: statement card.
 **B09. Sign-off (~2:50–2:55)**
 VO: "Fixed with Claude Code, verified across three escalating rounds before it ever touched
 production."
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
 
 ---
 

@@ -18,10 +18,10 @@ Six STEM explainers, each rendered natively in 16:9 (3840×2160) and 9:16 (2160�
 5. **System One Models and Jev** — [work report](../2026-09-26-system-one-models-and-jev/README.md) · [Frictional log](../2026-09-26-system-one-models-and-jev/FRICTIONAL.md) · video: [landscape](https://drive.google.com/file/d/1nxV_JQcHsPwBnky3fB3ENPdZzyK9q4Cf/view?usp=sharing) · [vertical](https://drive.google.com/file/d/1OZtmR40iJ4lzRANqn3Ah3NmRsVekl4BJ/view?usp=sharing)
 6. **Spec-Driven Development** — [work report](../2026-09-26-spec-driven-development/README.md) · [Frictional log](../2026-09-26-spec-driven-development/FRICTIONAL.md) · video: [landscape](https://drive.google.com/file/d/1lGf3de61dugTHalNJzNHDWfG9TZdGgIM/view?usp=sharing) · [vertical](https://drive.google.com/file/d/16_B1_t10yiRFcdwV7STkAypsUV6Hqw2t/view?usp=sharing)
 
-Work started: a meeting with Sanjana and Vikya on automating the YouTube review pipeline (2 hours, recorded in the [week of 2026-09-23](../weekly-hours/2026-09-23-weekly-hours.md)).
+Work started: Meeting with Sanjana and Vikhyat on automating the YouTube review pipeline (2 hours, recorded in the [week of 2026-09-21](../weekly-hours/2026-09-21-weekly-hours.md)).
 
 ## Hours
-Actual hours per week: [weekly-hours](../weekly-hours/README.md) — 22 (2026-09-09–09-15), 21 (2026-09-16–09-22), 23 (2026-09-23–09-29); 66 total. No week below 20 hours; no missing records. 2026-09-30, the last day of the agreement, is not yet recorded. These hours are toolkit study, video production and one meeting; time spent reviewing other Brutalist videos was not recorded as a separate activity.
+Actual hours per week: [weekly-hours](../weekly-hours/README.md) — 22 (2026-09-09–09-13), 21 (2026-09-14–09-20), 23 (2026-09-21–09-27); 66 total. No week below 20 hours; no missing records. 2026-09-30, the last day of the agreement, is not yet recorded. These hours are toolkit study, video production and one meeting; time spent reviewing other Brutalist videos was not recorded as a separate activity.
 
 ## Next Steps
 Main project: automate the YouTube video review pipeline, so fellow-submitted videos are checked against the compliance requirements (current Brutalist format, native 4K, both aspects supplied, legible text, the required intro line, a clear takeaway) before human review.

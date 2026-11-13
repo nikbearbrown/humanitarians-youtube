@@ -3,7 +3,11 @@
 **Central question:** When I ask Medhavy's tutor a question, what connects its answer back to the textbook?
 
 **Fellow:** Prarthana Shetty · **Narration:** Kokoro `am_onyx` (Liam), AI voice, disclosed
-**Status:** source research only. Nothing has been captured, rendered or voiced, and no product code has been changed.
+**Status:** PRE-CAPTURE SOURCE-RESEARCH SNAPSHOT (2026-09-23, approved).
+- This is the code research that informed the finished video.
+- It was written before any capture, render or narration existed, and it is preserved unchanged as that snapshot.
+- No product code was changed.
+- What the live site actually showed, and how each claim was reconciled, is in FACTCHECK.md. The production record is in README.md and QC-REPORT.md.
 
 ## 0. What was read
 

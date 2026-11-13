@@ -24,8 +24,8 @@ brand's social-media visibility, and the limit that keeps it honest.
 - **Checks:** CHECKS-REPORT.md, FACTCHECK.md, TYPECHECK.md, vertical/TYPECHECK.md. No approvals are claimed.
 
 ## Watch and review
-- Landscape — 3840×2160 — 2:58.5 — SHA-256 `3be7de2a3d59d45c0e25615cb53ac39916c4fe14f001cab118238f6f2f9c8c67` — Drive link: _pending upload_
-- Vertical — 2160×3840 — 2:58.5 — SHA-256 `4aa414d2fd41973289fcf356c91d41010b77b6f986321d06b9e8dfabf6abf889` — Drive link: _pending upload_
+- Landscape — 3840×2160 — 2:58.5 — SHA-256 `3be7de2a3d59d45c0e25615cb53ac39916c4fe14f001cab118238f6f2f9c8c67` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
+- Vertical — 2160×3840 — 2:58.5 — SHA-256 `4aa414d2fd41973289fcf356c91d41010b77b6f986321d06b9e8dfabf6abf889` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
 - PM review status: pending
-- YouTube 4K processing check: pending upload
+- YouTube 4K processing check: pending YouTube upload
 - Professors' publication decision: pending

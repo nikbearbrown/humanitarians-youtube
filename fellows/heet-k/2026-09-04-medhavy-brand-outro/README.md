@@ -28,12 +28,19 @@ wordmark at 0.28em tracking, and the mark treatment established in
 
 Logged at 6 hrs in [HOURS.md](../HOURS.md).
 
-## Evidence gap
+## Where the outro can be seen
 
-**No outro source is committed here.** The outro scene code and beat sheet are not
-in the local source tree — only the rendered outros exist, in Drive. This folder
-therefore points at renders without the inputs that produced them, which is the
-inverse of what the [repo rule](../../README.md#github-for-source-and-assets-drive-for-renders)
-asks for.
+[Did She Lose Five-Sixths Of Her Mass?](https://www.youtube.com/shorts/byO4NcbLcXc)
+— a published Short carrying the outro.
 
-*TODO — Heet: if the outro `.py` / beat sheet exists somewhere, add it here.*
+## What is here, and what is not
+
+No outro scene code or beat sheet was kept. The outro can be watched in the Short
+above and in the other
+[branded videos](../2026-10-15-first-branded-videos/), but it cannot be rebuilt
+from this repository.
+
+From [Week 18](../2026-10-01-intro-outro-brutalist-pass/) onward the stings were
+regenerated through [`logo-motion`](../2026-10-01-intro-outro-brutalist-pass/#attribution--correcting-the-weekly-reports),
+so the later versions at least have a named generator — though the Medhavy props
+fed into it were not committed either.

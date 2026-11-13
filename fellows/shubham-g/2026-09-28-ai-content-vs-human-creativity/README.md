@@ -23,8 +23,8 @@ social assets — clips, captions, a blog post, a carousel, social posts — and
 - **Checks:** CHECKS-REPORT.md, FACTCHECK.md, TYPECHECK.md, vertical/TYPECHECK.md. No approvals are claimed.
 
 ## Watch and review
-- Landscape — 3840×2160 — 2:40.4 — SHA-256 `da61193dccec0b95750e686866e9435f8148bde5dd33f5f81abc05c61457715f` — Drive link: _pending upload_
-- Vertical — 2160×3840 — 2:40.4 — SHA-256 `833ea4cf657725414ccd5ddc054bf833351c74ac188a6a5d177165e65e464bf4` — Drive link: _pending upload_
+- Landscape — 3840×2160 — 2:40.4 — SHA-256 `da61193dccec0b95750e686866e9435f8148bde5dd33f5f81abc05c61457715f` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
+- Vertical — 2160×3840 — 2:40.4 — SHA-256 `833ea4cf657725414ccd5ddc054bf833351c74ac188a6a5d177165e65e464bf4` — Drive: [folder](https://drive.google.com/drive/folders/1jaMH-evfMVNSUNBv1dTEjlj8meVvyngm?usp=sharing)
 - PM review status: pending
-- YouTube 4K processing check: pending upload
+- YouTube 4K processing check: pending YouTube upload
 - Professors' publication decision: pending

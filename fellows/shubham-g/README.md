@@ -10,6 +10,10 @@
 - [`2026-09-27-hai-first-week/`](2026-09-27-hai-first-week/) — "My First Week at Humanitarians AI." — 1:54 ai-explainer, 16:9 + 9:16, source only (renders on Drive).
 - [`2026-09-28-hai-second-week/`](2026-09-28-hai-second-week/) — "My Second Week at Humanitarians AI." — 1:56 ai-explainer, 16:9 + 9:16, source only (renders on Drive).
 - [`2026-09-28-ai-content-vs-human-creativity/`](2026-09-28-ai-content-vs-human-creativity/) — "AI Content vs. Human Creativity: What Works Better?" — 2:40 ai-explainer, 16:9 + 9:16, source only (renders on Drive).
+- [`2026-09-29-one-piece-of-content-into-ten/`](2026-09-29-one-piece-of-content-into-ten/) — "How to Turn 1 Piece of Content Into 10?" — 2:25 ai-explainer, 16:9 + 9:16, source only (renders on Drive).
+- [`2026-09-30-hai-third-week-midjourney/`](2026-09-30-hai-third-week-midjourney/) — "Week 3 Learning: How to Use Midjourney?" — 2:30 ai-explainer, 16:9 + 9:16, source only (renders on Drive).
+- [`2026-09-30-why-great-content-doesnt-perform/`](2026-09-30-why-great-content-doesnt-perform/) — "Why Great Content Doesn't Always Perform?" — 2:57 ai-explainer, 16:9 + 9:16, source only (renders on Drive).
+- [`2026-09-30-hai-fourth-week-reverse-engineer/`](2026-09-30-hai-fourth-week-reverse-engineer/) — "Week 4 Learning: Build It, Then Reverse Engineer It" — 2:45 ai-explainer, 16:9 + 9:16, source only (renders on Drive).
 
 **Voice:** Kokoro `af_bella` (Bella), used across the series.
 

@@ -5,7 +5,7 @@ from `/Users/pranavijs/humanitarians-youtube/` to rebuild or extend this reel.
 
 ```
 Build (or rebuild) the ai-explainer reel "Why AI-Generated Code Still Needs a
-Human Who Understands the System" for fellow Sai Pranavi Jeedigunta — Film 1
+Human Who Understands the System" for fellow Sai Pranavi J. — Film 1
 of a new general-AI-topic series.
 
 Original brief: teach a reusable rubric for how much scrutiny an AI-suggested

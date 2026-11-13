@@ -74,7 +74,7 @@ was approved on narrative content, not against this specific rubric).
 
 ## Compliance
 
-Sign-off card present (B08: "@HumanitariansAI, in for Sai Pranavi Jeedigunta"), matching this
+Sign-off card present (B08: "@HumanitariansAI, in for Sai Pranavi J."), matching this
 fellow's other videos and the fellowship's requirement that videos demonstrably come from the
 volunteer.
 

@@ -1,6 +1,6 @@
 # Beat Sheet (APPROVED — Gate P, 2026-08-30): "The Check That Never Once Fired"
 
-**Creator:** Sai Pranavi Jeedigunta | Weekly work report
+**Creator:** Sai Pranavi J. | Weekly work report
 **Project:** Project 29 — Financial Regulatory Intelligence System (`mycroft` repo, `scripts/regulatory-intel/`)
 **Phase:** 2 — approved for narration lock / audio generation. Both FACTCHECK items resolved
 2026-08-30: the "today's live test" framing confirmed sufficient as written; confirmed no real
@@ -37,7 +37,7 @@ for a future report, not this one.
 | B04 Discovery | A real CFTC feed item's actual link + title side by side with the condition it's supposed to trip | Both visible together, not narrated only |
 | B05 Proof | Live test result table: feed name, items tested, items reclassified | All 5 feed rows visible, not just the CFTC one |
 | B06 Fix | Before/after `identifySource()` snippet, the `dc:creator` line highlighted | Full before AND after both visible |
-| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B08 Sign-off | Brand card | @HumanitariansAI, in for Sai Pranavi J. |
 
 ---
 
@@ -47,7 +47,7 @@ for a future report, not this one.
 Visual: title card — "The Check That Never Once Fired" + @HumanitariansAI. No narration.
 
 **B01. Exec summary (~0:04–0:18)**
-VO: "Hi, I'm Sai Pranavi Jeedigunta. This video is about a classifier in the same regulatory
+VO: "Hi, I'm Sai Pranavi J.. This video is about a classifier in the same regulatory
 pipeline I've been working on — a check specifically written to catch CFTC filings that,
 tested against real data, never once matched — and the fix that reads the actual source instead
 of guessing."
@@ -102,7 +102,7 @@ Visual: statement card.
 **B08. Sign-off (~2:15–2:20)**
 VO: "Fixed with Claude Code, verified against all five live feeds before it ever ran again in
 production."
-Visual: brand card — @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+Visual: brand card — @HumanitariansAI, in for Sai Pranavi J..
 
 ---
 

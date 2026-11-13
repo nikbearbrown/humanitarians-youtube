@@ -175,7 +175,7 @@ class B01_ExecSummary(Scene):
         self.camera.background_color = PALETTE["bg"]
 
         name = fit(Text(
-            "Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=56, weight="BOLD",
+            "Sai Pranavi J.", color=PALETTE["ink"], font_size=56, weight="BOLD",
         ), 11.0)
         role = Text("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=26)
         accent = Line(LEFT * 1.8, RIGHT * 1.8, color=PALETTE["gold"], stroke_width=3)
@@ -194,7 +194,12 @@ class B01_ExecSummary(Scene):
         ), 11.5)
         summary = VGroup(summary_l1, summary_l2, summary_l3).arrange(DOWN, buff=0.18)
 
-        VGroup(name, role, accent, summary).arrange(DOWN, buff=1.4).move_to(ORIGIN)
+        # buff 1.4->1.46 (2026-10-20): the "Sai Pranavi J." retrofit
+        # shortened the name, dropping real measured canvas-fill to 54%
+        # (just under the 55% floor) — nudged buff up for real coverage
+        # (1.5/1.65 both overflowed the safe area top/bottom; 1.46 is the
+        # largest that still fits inside +/-3.4).
+        VGroup(name, role, accent, summary).arrange(DOWN, buff=1.46).move_to(ORIGIN)
         summary_underline = Line(color=PALETTE["sage"], stroke_width=1)
 
         self.play(FadeIn(name, shift=UP * 0.2), run_time=0.7)
@@ -205,8 +210,9 @@ class B01_ExecSummary(Scene):
             summary.get_corner(DL) + DOWN * 0.12, summary.get_corner(DR) + DOWN * 0.12
         )
         self.play(Create(summary_underline), run_time=0.3)
-        # animation sum = 2.8s; measured narration = 15.02s
-        self.wait(12.22)
+        # retimed 2026-10-20: narration shortened to 14.59s ("Sai Pranavi J."
+        # retrofit, was 15.02s) — shifted this hold by the same -0.43s delta.
+        self.wait(11.79)
 
 
 # --------------------------------------------------------------------------- #
@@ -682,7 +688,7 @@ class B07_Statement(Scene):
 
 
 # --------------------------------------------------------------------------- #
-# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi Jeedigunta.
+# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi J..
 # Same simple custom brand-card pattern as this fellow's sibling reels — this
 # series does NOT use the toolkit's locked ClaudeTitleOutro (OUTRO-LOCK.md
 # scopes to claude-liam/@NikBearBrown reels only; not applicable here).
@@ -694,7 +700,7 @@ class B08_BrandOutro(Scene):
         handle = Text("@HumanitariansAI", color=PALETTE["slate"], font_size=90)
         accent = Line(LEFT * 3.0, RIGHT * 3.0, color=PALETTE["gold"], stroke_width=3)
         tagline = fit(Text(
-            "in for Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=44,
+            "in for Sai Pranavi J.", color=PALETTE["ink"], font_size=44,
         ), 9.5)
         VGroup(handle, accent, tagline).arrange(DOWN, buff=2.3).move_to(ORIGIN)
 

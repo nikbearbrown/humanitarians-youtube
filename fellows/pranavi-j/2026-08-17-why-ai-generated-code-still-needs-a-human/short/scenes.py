@@ -223,7 +223,7 @@ class B01_ExecSummary(Scene):
         initials.move_to(badge.get_center())
         badge_group = VGroup(badge, initials)
 
-        name = fit(Text("Sai Pranavi Jeedigunta", color=PALETTE["ink"], font_size=24, weight="BOLD"), MAX_W)
+        name = fit(Text("Sai Pranavi J.", color=PALETTE["ink"], font_size=24, weight="BOLD"), MAX_W)
         role = fit(Text("Humanitarians AI Fellow", color=PALETTE["slate"], font_size=18), MAX_W)
         name_block = VGroup(name, role).arrange(DOWN, buff=0.15)
 
@@ -251,7 +251,9 @@ class B01_ExecSummary(Scene):
         self.play(Create(badge), FadeIn(initials), run_time=0.4)
         self.play(FadeIn(name_block, shift=UP * 0.1), run_time=0.5)
         self.play(FadeIn(summary, shift=UP * 0.1), Create(bottom_rule), run_time=0.6)
-        self.wait(9.24)
+        # retimed 2026-10-20: narration shortened to 10.61s ("Sai Pranavi J."
+        # retrofit, was 11.04s) — shifted this hold by the same -0.43s delta.
+        self.wait(8.81)
 
 
 # --------------------------------------------------------------------------- #
@@ -789,7 +791,7 @@ class B07_Close(Scene):
 
 
 # --------------------------------------------------------------------------- #
-# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi Jeedigunta. Same
+# B08 — SIGN-OFF: @HumanitariansAI, in for Sai Pranavi J.. Same
 # centered composition as the parent; only the rule length and the tagline
 # wrap (1 line -> 2) change for the narrower column. Timing identical to
 # the parent (measured 4.92s Kokoro track).
@@ -800,15 +802,15 @@ class B08_BrandOutro(Scene):
 
         handle = fit(Text("@HumanitariansAI", color=PALETTE["slate"], font_size=36), MAX_W)
         accent = Line(LEFT * 1.8, RIGHT * 1.8, color=PALETTE["gold"], stroke_width=3)
-        tagline_lines = ["in for Sai Pranavi", "Jeedigunta"]
+        tagline_lines = ["in for Sai Pranavi J."]
         tagline = VGroup(*[
             fit(Text(l, color=PALETTE["ink"], font_size=24), MAX_W) for l in tagline_lines
         ]).arrange(DOWN, buff=0.18)
-        # buff=1.8 (this card has only 3 elements — same GATE V canvas-fill
-        # lesson as B00_TitleCard above: a real render at the original
-        # buff=0.35/smaller fonts measured only 17% safe-area coverage
-        # (MAJOR underfill) — see BUILD-LOG.md.
-        VGroup(handle, accent, tagline).arrange(DOWN, buff=1.8).move_to(ORIGIN)
+        # buff 1.8->2.3 (2026-10-20): the "Sai Pranavi J." retrofit shortened
+        # the tagline from 2 lines to 1, dropping real measured canvas-fill
+        # to 53% (just under the 55% floor) — raised buff for real coverage,
+        # not just to appease the checker.
+        VGroup(handle, accent, tagline).arrange(DOWN, buff=2.3).move_to(ORIGIN)
 
         tagline_underline = Line(color=PALETTE["sage"], stroke_width=1)
 
@@ -819,4 +821,6 @@ class B08_BrandOutro(Scene):
             tagline.get_corner(DL) + DOWN * 0.1, tagline.get_corner(DR) + DOWN * 0.1
         )
         self.play(Create(tagline_underline), run_time=0.3)
-        self.wait(3.12)
+        # retimed 2026-10-20: narration shortened to 4.46s ("Sai Pranavi J."
+        # retrofit, was 4.92s) — shifted this hold by the same -0.46s delta.
+        self.wait(2.66)

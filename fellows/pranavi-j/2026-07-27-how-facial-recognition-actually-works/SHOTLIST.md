@@ -21,7 +21,7 @@ this table is now the authoritative one).
 | B08 | FRAMEWORK-CALLBACK | manim | GRAPHIC | B08_FluencyTrap (scenes.py) | 12.77s | Split panel: fluent paragraph vs. match score, both "looks certain" |
 | B09 | WORKED-EXAMPLE | manim | GRAPHIC | B09_WorkedExample (scenes.py) | 26.86s | The 3-question lens applied live to a retail loss-prevention case |
 | B10 | CTA | manim | GRAPHIC | B10_YourTurn (scenes.py) | 17.30s | YOUR TURN — the literal 3-question checklist the viewer can run |
-| B11 | SIGN-OFF | manim | GRAPHIC | B11_BrandOutro (scenes.py) | 4.92s | @HumanitariansAI, in for Sai Pranavi Jeedigunta |
+| B11 | SIGN-OFF | manim | GRAPHIC | B11_BrandOutro (scenes.py) | 4.92s | @HumanitariansAI, in for Sai Pranavi J. |
 
 ## QC plan (as actually run for the 2026-08-25/26 4K rebuild)
 - Pre-flight (before any render): `runtime/qc/static_scene_check.py` (GATE A)

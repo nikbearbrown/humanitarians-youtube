@@ -1,0 +1,577 @@
+{
+  "metadata": {
+    "title": "Watch Embeddings Beat The Wrong Words.",
+    "slug": "claude-cli-rag-embeddings",
+    "topic": "CLAUDE CODE · CHAPTER 3 DEMO",
+    "register": "Teardown",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "cli",
+    "tool": "claude",
+    "persona": "Vedanshu Daxesh Patel",
+    "ground": "#FAF9F5",
+    "greeting": "Merhaba, Vedanshu",
+    "greeting_note": "hello lexicon: Turkish (one word). Personal author channel — IN-FOR-BEAR LAW does not apply. Rotated away from Ahoj/Aloha/Bonjour/Ciao/Hej/Hola/Namaste already used by the sibling reels in this series.",
+    "folderLabel": "@VedanshuDaxeshPatel",
+    "in_for_bear": false,
+    "playlist": "Claude Taught",
+    "source_book": "RAG Foundations — Vedanshu Daxesh Patel",
+    "source_file": "chapters/03-representing-text-embeddings.md",
+    "note": "cli-explainer build (Claude skin, --tool claude default). Tier note: cli-explainer is ADVANCED (Bear-only) per CLAUDE.md rule 8 — built on the requester's direct, explicit instruction, matching the precedent already set by the two sibling cli-explainer reels in this book (claude-cli-rag-introduction, claude-cli-rag-the-problem). Required spine: B00 INTRO (cold open, ask answered) -> B01 PROBLEM -> cycle 1 [B02 CLI(ASK) -> B03 CODE -> B04 OUTPUT] -> cycle 2 = required revision [B05 CLI(CHANGE) -> B06 CODE -> B07 OUTPUT] -> B08 SUMMARY -> B09 NEXT STEPS (handoff) -> B10 OUTRO. THE ACTUAL-CODE LAW: code/naive_similarity.py and code/embedding_similarity.py in this reel folder are REAL, runnable Python, actually executed before authoring B04/B07 — their `lines` are verbatim (trimmed) captured stdout, not invented. embedding_similarity.py depends on the free, local `sentence-transformers` package (all-MiniLM-L6-v2, a real Sentence-BERT model per Reimers & Gurevych 2019, already cited in this chapter's SOURCES.md via the sibling ai-explainer reel) — no API key, downloaded once from Hugging Face's public model hub. Build note: this package was installed and run inside an ISOLATED venv (not the toolkit's shared system Python), because sentence-transformers pulls a numpy version that conflicts with kokoro-onnx's own numpy pin — installing it system-wide broke `kokoro_onnx` import until reverted. Anyone re-running code/embedding_similarity.py should use its own venv (`python -m venv <env>` + `pip install sentence-transformers`), never the toolkit's own Python. Honesty note: the chapter's own Figure 02 is captioned as 'a 2-dimensional embedding-space sketch' (a teaching simplification, like Fig 01) — it is not a literal claim that any specific embedding model separates the exact four short quoted phrases by a wide margin. Tested directly: several general-purpose Sentence-BERT models (all-MiniLM-L6-v2, paraphrase-MiniLM-L6-v2, all-mpnet-base-v2, paraphrase-mpnet-base-v2) do NOT cleanly reproduce that exact separation on those four bare 5-7 word fragments in isolation — short, decontextualized questions are genuinely hard even for real embeddings. What DOES reproduce cleanly and honestly, and is what this reel actually shows, is the retrieval framing the chapter itself is building toward: given a realistic small set of FAQ passages and one real question, word-overlap retrieval gets fooled by a literally shared phrase ('how do i request') and returns the wrong passage, while all-MiniLM-L6-v2 embeddings correctly rank the semantically right passage first. Verified directly — see code/ and the captured stdout in B04/B07.",
+    "tags": [
+      "RAG",
+      "embeddings",
+      "Sentence-BERT",
+      "Reimers and Gurevych 2019",
+      "cosine similarity",
+      "Claude Code",
+      "CLI demo",
+      "Python"
+    ],
+    "build": {
+      "at": "2026-08-23T14:28:00",
+      "cut": "master",
+      "filled": 11,
+      "of": 11,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW — open on the Claude UI, ask shown answered",
+      "narration_text": "Merhaba — I'm Vedanshu Daxesh Patel. Chapter three's worked example hides a trap: two questions that share almost every word, but mean something completely different. Let's build a retrieval script that gets fooled by the shared words, then fix it with real sentence embeddings.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Composer greeting 'Merhaba, Vedanshu' types in; spark ignites"
+          },
+          {
+            "at": "20%",
+            "event": "Command types: build a retrieval script, watch it get fooled, then fix it with embeddings"
+          },
+          {
+            "at": "50%",
+            "event": "Send arms; runningText 'running experiment…' plays"
+          },
+          {
+            "at": "70%",
+            "event": "Output line 1 lands: 'naive_similarity.py written'"
+          },
+          {
+            "at": "85%",
+            "event": "Output line 2 lands: 'wrong passage — fooled by a shared phrase'"
+          },
+          {
+            "at": "95%",
+            "event": "Output line 3 lands: \"embeddings fix: right passage wins\""
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Vedanshu",
+            "topic": "CLAUDE CODE · CHAPTER 3 DEMO",
+            "segment": "Watch Embeddings Beat The Wrong Words.",
+            "command": "Build a tiny FAQ-retrieval script that ranks passages by literal word overlap, ask it a question that shares a whole phrase with the wrong passage, then fix it with real sentence embeddings and check whether that actually works.",
+            "runningText": "running experiment…",
+            "output": [
+              "naive_similarity.py written",
+              "wrong passage — fooled by a shared phrase",
+              "embeddings fix: right passage wins"
+            ],
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM — why care",
+      "role_note": "the problem, the context, the stakes — BEFORE the CLI loop; no prompt yet",
+      "narration_text": "Six short FAQ passages, one real question. One passage shares almost every word with it; another shares almost none — and is actually the right answer. Counting shared words can't tell the difference. Let's watch it get fooled, then fix it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: \"Shared words aren't shared meaning.\""
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: 'one passage shares almost every word — and is still the wrong answer'"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles: 'overlap ≠ meaning'"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "note": "reused verbatim from the sibling reels (props-only reuse, per its own starter-template contract)",
+          "props": {
+            "headline": "Shared words aren't shared meaning.",
+            "subline": "One FAQ passage shares almost every word with the question. Another shares almost none — and is the actual answer.",
+            "sparkLine": "Overlap ≠ meaning."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 13.63,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLI — the ask",
+      "role_note": "composer (ClaudeComposerAsk); SPARK-LINE LAW greeting 'The ask,'",
+      "narration_text": "The ask: six FAQ passages — three on leave and time off, three on IT equipment — one real question, and a retrieval script that ranks every passage by how many words it shares with the question.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Command types: write naive_similarity.py, rank 6 FAQ passages by word overlap"
+          },
+          {
+            "at": "70%",
+            "event": "runningText 'generating script…' plays"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The ask,",
+            "topic": "CLAUDE CODE · CHAPTER 3 DEMO",
+            "segment": "Watch Embeddings Beat The Wrong Words.",
+            "command": "claude \"write naive_similarity.py — six FAQ passages (3 HR, 3 IT), rank them against the question 'How do I request time off?' by literal word overlap, and print the top match\"",
+            "runningText": "generating script…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 11.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "role_note": "ClaudeCodeBeat — the ACTUAL generated code (code/naive_similarity.py), trimmed to what teaches",
+      "narration_text": "Read the ranking function first. It scores every passage by the fraction of words it shares with the question — nothing about meaning, only overlap. And the question, 'how do I request time off,' shares the phrase 'how do I request' word for word with the passage about ordering a new laptop.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Code card rises; PASSAGES highlighted — HR-01 (vacation/PTO) and IT-01 (laptop request)"
+          },
+          {
+            "at": "60%",
+            "event": "word_overlap() reveals — shared words ÷ all words, nothing else"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "source_file": "code/naive_similarity.py",
+          "props": {
+            "title": "naive_similarity.py — Claude Code output",
+            "code": "# naive_similarity.py — retrieve an FAQ passage by literal word overlap\nPASSAGES = {\n    \"HR-01\": \"Vacation and PTO: full-time employees accrue 15 paid days \"\n             \"off per year, usable for vacation, personal time, or \"\n             \"appointments.\",\n    \"IT-01\": \"How do I request a new laptop? Submit a hardware ticket \"\n             \"through the IT service desk portal.\",\n    # ...4 more passages (HR-02/03, IT-02/03)\n}\nQUERY = \"How do I request time off?\"\n\ndef word_overlap(a, b):\n    wa, wb = tokenize(a), tokenize(b)\n    return len(wa & wb) / len(wa | wb)   # shared words ÷ all words",
+            "sparkLine": "\"How do I request…\" — shared word for word."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 15.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT — run",
+      "role_note": "OPEN vox slot → moving output beat (CliRunOutput), REAL captured stdout from `python code/naive_similarity.py`",
+      "narration_text": "Run it. IT-01, the laptop-request passage, wins — purely because it shares the most literal words with the question. HR-01, the actual vacation and PTO passage that answers it, scores five times lower. Same words in the question. Wrong passage retrieved.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "'$ python naive_similarity.py' title lands"
+          },
+          {
+            "at": "25%",
+            "event": "Ranking reveals — IT-01 on top at 0.148"
+          },
+          {
+            "at": "55%",
+            "event": "HR-01 reveals far below at 0.030"
+          },
+          {
+            "at": "80%",
+            "event": "Verdict stamps in plain ink: '✗ wrong passage — fooled by a shared phrase'"
+          }
+        ],
+        "remotion": {
+          "pattern": "CliRunOutput",
+          "provenance": "real stdout, captured via `python code/naive_similarity.py` in this reel folder",
+          "props": {
+            "title": "python naive_similarity.py",
+            "lines": [
+              "query: 'How do I request time off?'",
+              "0.148  IT-01",
+              "0.030  HR-01",
+              "top match: IT-01 (score 0.148)"
+            ],
+            "verdict": {
+              "text": "wrong passage — fooled by a shared phrase",
+              "tone": "bad"
+            },
+            "sparkLine": "Run it."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 16.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CLI — check & revise",
+      "role_note": "composer (ClaudeComposerAsk) — the REQUIRED revision; SPARK-LINE LAW greeting 'The revision,'",
+      "narration_text": "The revision: same six passages, same question. Swap the word-overlap scorer for a real, local sentence-embedding model, and rank by cosine similarity between the embeddings instead.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Command types: swap word overlap for real sentence embeddings"
+          },
+          {
+            "at": "75%",
+            "event": "runningText 'updating script…' plays"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "The revision,",
+            "topic": "CLAUDE CODE · CHAPTER 3 DEMO",
+            "segment": "Watch Embeddings Beat The Wrong Words.",
+            "command": "claude \"word overlap keeps picking IT-01 — same 6 passages, same question, but rank them by cosine similarity between real sentence embeddings instead\"",
+            "runningText": "updating script…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 11.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "CODE — revised",
+      "role_note": "ClaudeCodeBeat — the ACTUAL revised code (code/embedding_similarity.py), trimmed to the diff that matters",
+      "narration_text": "Same PASSAGES, same QUERY. The one real change: sentence-transformers encodes every passage and the question into vectors, and cosine similarity ranks them. No API key — the model runs locally, downloaded once from Hugging Face's free public model hub.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "10%",
+            "event": "Code card rises; model load highlighted — all-MiniLM-L6-v2, free, local"
+          },
+          {
+            "at": "60%",
+            "event": "cosine() reveals — ranks passages by embedding similarity, not word count"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "source_file": "code/embedding_similarity.py",
+          "props": {
+            "title": "embedding_similarity.py — Claude Code output",
+            "code": "# embedding_similarity.py — same query, same 6 passages, real Sentence-BERT\nfrom sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer(\"all-MiniLM-L6-v2\")  # free, local, no API key\n\npassage_embeddings = model.encode(texts)\nquery_embedding = model.encode(QUERY)\n\ndef cosine(a, b):\n    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))\n\n# rank PASSAGES by cosine(query_embedding, passage_embedding)",
+            "sparkLine": "One scorer swapped. Nothing else."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 15.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTPUT — revised",
+      "role_note": "OPEN vox slot → moving output beat (CliRunOutput), REAL captured stdout from `python code/embedding_similarity.py`",
+      "narration_text": "Run it. HR-01, vacation and PTO, now wins — and the laptop-request passage drops to third. The words in the question didn't change. What changed is that meaning, not overlap, decided the ranking.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "5%",
+            "event": "'$ python embedding_similarity.py' title lands"
+          },
+          {
+            "at": "25%",
+            "event": "Ranking reveals — HR-01 on top at 0.334"
+          },
+          {
+            "at": "55%",
+            "event": "IT-01 reveals dropped to third at 0.229"
+          },
+          {
+            "at": "80%",
+            "event": "Verdict stamps in plain ink: '✓ correct passage — meaning, not wording'"
+          }
+        ],
+        "remotion": {
+          "pattern": "CliRunOutput",
+          "provenance": "real stdout, captured via `python code/embedding_similarity.py` (isolated venv, sentence-transformers) in this reel folder",
+          "props": {
+            "title": "python embedding_similarity.py",
+            "lines": [
+              "query: 'How do I request time off?'",
+              "0.334  HR-01",
+              "0.277  HR-03",
+              "0.229  IT-01",
+              "top match: HR-01 (score 0.334)"
+            ],
+            "verdict": {
+              "text": "correct passage — meaning, not wording",
+              "tone": "good"
+            },
+            "sparkLine": "Fixed."
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 12.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "SUMMARY",
+      "role_note": "the lesson — one beat",
+      "narration_text": "Same six passages, same question, same shared phrase trying to trick it. Counting words picked the wrong one; comparing meaning picked the right one. That's the whole case for embeddings in one script: not a bigger vocabulary, a better notion of 'similar.'",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20,
+      "shot": {
+        "type": "REMOTION",
+        "show": [
+          {
+            "at": "0%",
+            "event": "Headline types in: \"A better 'similar,' not a bigger vocabulary.\""
+          },
+          {
+            "at": "45%",
+            "event": "Subline resolves: 'counting words picked the wrong passage; comparing meaning picked the right one'"
+          },
+          {
+            "at": "85%",
+            "event": "Spark line settles: 'same words — different verdict'"
+          }
+        ],
+        "remotion": {
+          "pattern": "RagExecutiveSummary",
+          "note": "reused verbatim (props-only reuse)",
+          "props": {
+            "headline": "A better 'similar,' not a bigger vocabulary.",
+            "subline": "Counting shared words picked the wrong FAQ passage. Comparing real embeddings picked the right one — same query, same six passages.",
+            "sparkLine": "Same words — different verdict."
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 13.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW — suggested prompt typed in, viewer-addressed, read-and-discuss",
+      "narration_text": "Your turn. Paste this: 'Write two short passages about different topics that happen to share several literal words, plus a question that should only match one of them. Show me a word-overlap script picking the wrong passage, then fix it with real sentence embeddings and show the ranking flip.' Try it on your own notes, and watch exactly where the ranking changes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · CHAPTER 3 DEMO",
+            "segment": "Watch Embeddings Beat The Wrong Words.",
+            "command": "Write two short passages about different topics that happen to share several literal words, plus a question that should only match one of them. Show me a word-overlap script picking the wrong passage, then fix it with real sentence embeddings and show the ranking flip.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@VedanshuDaxeshPatel",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 17.81,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW — restate the episode title",
+      "narration_text": "Watch Embeddings Beat The Wrong Words. Vedanshu Daxesh Patel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Watch Embeddings Beat The Wrong Words.",
+            "handle": "@VedanshuDaxeshPatel",
+            "subline": "Vedanshu Daxesh Patel"
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 4.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-08-23T14:28:00"
+      }
+    }
+  ]
+}

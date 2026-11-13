@@ -1,12 +1,27 @@
 # Varun N.
 
 **Role:** AI Engineer  
-**Project:** _to be filled in_  
-**GitHub:** [@OMEGA-84](https://github.com/OMEGA-84)
+**Project:** Medhavy  
+**GitHub:** [@Omega-84](https://github.com/Omega-84)  
+**Voice:** Kokoro `bm_george` (UK male) -- chosen 2026-09-30 from a six-voice test render; not used by any other fellow on the build machine. Used for every video; any change is a logged re-voice decision.
 
 ## What's in this folder
 
-No work in this folder yet. Each piece of work gets its own dated,
+Weekly progress reels for Project Medhavy (16:9 and 9:16, 4K, 30fps). Each
+week's video is linked from its folder README.
+
+| Week | Folder |
+|---|---|
+| 1 (Aug 1-7) | [2026-08-07-progress-starting-over](2026-08-07-progress-starting-over/) |
+| 2 (Aug 8-14) | [2026-08-14-progress-white-background](2026-08-14-progress-white-background/) |
+| 3 (Aug 15-21) | [2026-08-21-progress-captions-that-froze](2026-08-21-progress-captions-that-froze/) |
+| 4 (Aug 22-28) | [2026-08-28-progress-chapter-four-and-4k](2026-08-28-progress-chapter-four-and-4k/) |
+| 5 (Aug 29-Sep 4) | [2026-09-04-progress-chapter-five-batch](2026-09-04-progress-chapter-five-batch/) |
+| 6 (Sep 5-11) | [2026-09-11-progress-a-holiday-week](2026-09-11-progress-a-holiday-week/) |
+| 7 (Sep 12-18) | [2026-09-18-progress-rejected-and-reframed](2026-09-18-progress-rejected-and-reframed/) |
+| 8 (Sep 19-25) | [2026-09-25-progress-format-approved](2026-09-25-progress-format-approved/) |
+
+Each piece of work gets its own dated,
 lowercase-kebab subfolder — `YYYY-MM-DD-short-slug/` — holding its
 `beat_sheet.json`, README, sources and build assets.
 

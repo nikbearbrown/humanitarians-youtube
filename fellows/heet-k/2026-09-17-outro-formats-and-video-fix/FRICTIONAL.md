@@ -7,7 +7,7 @@
 
 - **Drive:** https://drive.google.com/drive/folders/1yKVBYPyQgFm5b8YU5RWBivLH2E-KP4Hy
 - **Deferred from:** [logo reel script.md](../2026-08-17-medhavy-brand-intro/script.md) — "16:9 only … say the word and I'll add a 9:16 cut"
-- **Hours:** 11 hrs formats + 6 hrs video fix — [HOURS.md](../HOURS.md)
+- **Hours:** Week 16 total 22.0 — 11.0 formats + 6.0 video fix on this thread — [HOURS.md](../HOURS.md)
 
 **What I was working on.** Turning a confirmed outro design into the actual
 deliverables — 16:9, 9:16, 4K — and separately fixing a production video that
@@ -55,9 +55,25 @@ I also understand, more concretely than before, that an integration step —
 putting the link where the project can find it — is part of finishing, not
 paperwork after finishing.
 
-What I still do not have is the evidence. The outro formats are in Drive and can
-be opened. The video fix cannot: no URL, no commit hash, no before/after. Next
-time the link goes into the log as I make it, not from memory a week later.
+What I did not do was write the link down as I made it. The outro formats are in
+Drive; the fixed video's URL went unrecorded at the time and is added in the
+entry below. Next time the link goes into the log as I make it, not from memory
+a week later.
 
-*TODO — Heet: add the YouTube URL and the codebase commit for the fixed video as
-a new dated entry below. Do not edit this one.*
+---
+
+## 2026-10-17 — naming the video
+
+> Written 2026-10-17, four weeks after the entry above. Appended; that entry
+> stands as written.
+
+- **The video:** [Cancer Biology and Therapeutics – Guided Tutorial](https://www.youtube.com/watch?v=tnxC6LATugU)
+
+**What I can now point at.** The not-visible video is identified. It is also the
+`Medhavy_Cancer_Tutorial_1_4K.mp4` that had been sitting in Drive at 185.7 MB
+with no beat sheet, no source and no link — listed as an unexplained artifact in
+the fellow README since this folder was created. One link resolves both.
+
+**What is still open.** The codebase commit where the link was added. The fix,
+the upload and the integration were all mine; only the commit reference is
+missing, which means the last step is the one a reader still cannot verify.

@@ -1,0 +1,253 @@
+{
+ "title": "Where the Eighty Lives: Why a Smaller Model Can Run Far Slower",
+ "voice": "Kokoro am_onyx",
+ "format": "16:9, 3840x2160, 30 fps",
+ "duration_s": 226.311,
+ "beats": [
+  {
+   "beat_id": "B00",
+   "title": "THE OBSERVATION",
+   "narration_text": "A small model that runs eighty times slower than a bigger one. I read that, and it stuck with me. By its parameter count, the small one should be the fast one. So where does the extra time go? I wanted to find the eighty, and see where it lives.",
+   "word_count": 50,
+   "visual_intent": "Title card of the library film (`claude-for-computer-science/claude-liam-lstm-ops`, 'The Smaller Model That Was Eighty Times Slower'), the 'eighty' marked 'as reported there'. Under it, from frame one and unnarrated, the three-panel frame: PARAMETERS (stores) | OPERATIONS (computes) | OVERLAP (waits), all empty. Two model icons, small and large, labelled '80x slower' and '1x baseline'. 'My model, my laptop' tag in a corner all film.",
+   "status": "LIB (one claim, with its title on screen, held at least 2 s) + the empty frame",
+   "start_s": 0.0,
+   "duration_s": 13.901,
+   "reveals_s": [
+    0.5,
+    0.9,
+    2.78,
+    4.68,
+    6.57,
+    8.46,
+    10.36
+   ]
+  },
+  {
+   "beat_id": "B01",
+   "title": "THE SETUP",
+   "narration_text": "I built two tiny models that share the same weights, and I gave them the same job. I'm Tanmay Kulkarni, in for Humanitarians AI. One reads a sequence the way a recurrent model does. The other spreads the same weights across the whole sequence at once. Everything you see comes from my own measurements.",
+   "word_count": 54,
+   "visual_intent": "Two tiny models drawn side by side, one chain, one stack of rows, a single weight block drawn once between them. Settings chip stays from here: 'my laptop · one thread · compiled code · 0.2M weights'.",
+   "status": "MODEL (stated setup)",
+   "start_s": 13.901,
+   "duration_s": 16.941,
+   "reveals_s": [
+    3.22,
+    6.44,
+    9.65,
+    12.87
+   ]
+  },
+  {
+   "beat_id": "B02",
+   "title": "ONE STEP",
+   "narration_text": "Start with a single step of the recurrent model. It takes the next input, and it takes its own memory from the step before. It multiplies both by one block of weights, and out comes a new memory. That multiplication is the part we count. About two hundred thousand operations, one for each weight.",
+   "word_count": 54,
+   "visual_intent": "One step drawn large: input and memory feed one weight block; out comes a new memory. Counter climbs to 'about 200,000' (199,680 = 4 x 128 x (128 + 262)). PARAMETERS panel fills with '0.2M' as the first number.",
+   "status": "MODEL (first-principles count: one multiply-add per weight per step; `MEASUREMENTS.md`)",
+   "start_s": 30.842,
+   "duration_s": 16.195,
+   "reveals_s": [
+    1.92,
+    3.84,
+    5.75,
+    7.67,
+    9.59,
+    11.51,
+    13.43
+   ]
+  },
+  {
+   "beat_id": "B03",
+   "title": "THE OTHER WAY",
+   "narration_text": "Now the other model. Same block of weights, but the inputs are all known up front, so nothing waits for anything. It applies that block at every position of the sequence. Same weights. Same two hundred thousand operations per position. The only thing that changed is whether a position has to wait for the one before it.",
+   "word_count": 57,
+   "visual_intent": "The same weight block now across a column of positions, all lit together. A dotted dependency arrow runs between steps on the left model and is absent on the right. Same '200,000 per position' counter on both.",
+   "status": "MODEL",
+   "start_s": 47.037,
+   "duration_s": 17.005,
+   "reveals_s": [
+    2.69,
+    5.38,
+    8.08,
+    10.77,
+    13.46
+   ]
+  },
+  {
+   "beat_id": "B04",
+   "title": "MATCHED",
+   "narration_text": "So the arithmetic matches. A hundred positions is twenty million operations on each side. Not roughly. Exactly the same. If time follows arithmetic, these two should take the same time. Let me find out.",
+   "word_count": 34,
+   "visual_intent": "Two counters side by side, '20 million' and '20 million' (19,968,000 each), held at least 2 s. OPERATIONS panel fills with '20M, equal'. A question mark over a shared clock: 'same time?'",
+   "status": "MODEL (199,680 x 100 positions)",
+   "start_s": 64.042,
+   "duration_s": 13.205,
+   "reveals_s": [
+    2.51,
+    4.72,
+    6.93,
+    9.14
+   ]
+  },
+  {
+   "beat_id": "B05",
+   "title": "DIAL AT ZERO",
+   "narration_text": "Here is the dial. It says how much the chip can do at once. I turned it all the way down, plain loops, one thing at a time. The recurrent model took six point one milliseconds. The other took six point four. The same, within five percent. In this test, with nothing to overlap, the eighty is not there.",
+   "word_count": 59,
+   "visual_intent": "The dial appears, set to ZERO, labelled 'how much the chip can do at once'. Two bars grow: 6.11 ms and 6.37 ms, each labelled with its model, 'plain loops' beneath. Ratio '1.0x' lands after the bars. The dial stays in frame from here.",
+   "status": "MEAS (`measure_scalar.c`, T = 100, median of 21 runs)",
+   "start_s": 77.247,
+   "duration_s": 17.48,
+   "reveals_s": [
+    7.01,
+    9.12,
+    11.22,
+    13.32
+   ]
+  },
+  {
+   "beat_id": "B06",
+   "title": "WHAT A CHIP CAN DO",
+   "narration_text": "So what does turning the dial up buy? Mostly one specific thing. Load a weight once, and use it on many positions before putting it down. The second model can do that, because its positions do not depend on each other. The recurrent model cannot. Step two needs the answer from step one, so it fetches the weights again, every single step.",
+   "word_count": 62,
+   "visual_intent": "Close view of the weight block. Right model: the block loads once, many row-lights fire across it. Left model: the block loads, one row fires, the block is put down, and loads again for the next step. The word 'weights' on the block, spelled out, every time it is spoken.",
+   "status": "MODEL (mechanism) + MEAS (the reuse series 1.00x, 1.33x, 1.34x, 1.34x is the evidence; the 3.7x is not attributed to reuse alone)",
+   "start_s": 94.727,
+   "duration_s": 18.008,
+   "reveals_s": [
+    1.14,
+    2.29,
+    3.43,
+    4.58,
+    5.72,
+    6.86,
+    8.01,
+    9.15,
+    10.29,
+    11.44,
+    12.58,
+    13.73,
+    14.87,
+    16.01
+   ]
+  },
+  {
+   "beat_id": "B07",
+   "title": "TURN IT UP",
+   "narration_text": "I turned the dial up a notch, eight positions per weight load. The gap opened to one point three times. Then I used a proper optimized matrix multiply. Three point seven times. Same weights. Same twenty million operations. The arithmetic never changed. The waiting did.",
+   "word_count": 45,
+   "visual_intent": "Dial steps up twice (all three notches labelled: ZERO, 8 ROWS, MATRIX UNIT; the dial is the chip, drawn in violet). Notch one, '8 rows per load': bars 1.3x. Notch two, 'optimized matrix multiply': 3.7x (0.362 ms and 0.098 ms). The '20 million' counters stay beside the bars, unchanged, held at least 2 s each.",
+   "status": "MEAS (`measure_reuse.c` RB = 8; `measure_dependency.c` T = 100)",
+   "start_s": 112.735,
+   "duration_s": 16.948,
+   "reveals_s": [
+    1.8,
+    3.61,
+    8.09,
+    9.2,
+    10.31,
+    12.45
+   ]
+  },
+  {
+   "beat_id": "B08",
+   "title": "THE OTHER AXIS",
+   "narration_text": "There is a second axis, the length of the sequence. From twenty-five steps to four hundred, sixteen times more steps, and the recurrent time grew sixteen times. Steady, no surprises. The ratio between the two models stayed in the same range. So length makes the loop longer. It is the chip that decides how much the loop costs.",
+   "word_count": 58,
+   "visual_intent": "A second axis appears under the dial: sequence length. Two bars of true relative length: 25 steps at 0.09 ms and 400 steps at 1.5 ms (the first about 6% of the second), with '16x the steps, 16x the time' beneath. The OVERLAP panel reads '1.0x to 3.7x' from B07 on. A box shows the ratio at 25, 50, 100, 200 and 400 steps (3.3x, 3.5x, 3.7x, 3.8x, 3.8x), so the 'between 3.3x and 3.8x' claim has its receipt on screen.",
+   "status": "MEAS (`measure_dependency.c`, T = 25 to 400; the T = 10 row (2.0x) is excluded because per-call overhead dominates)",
+   "start_s": 129.683,
+   "duration_s": 19.316,
+   "reveals_s": [
+    3.51,
+    4.23,
+    5.64,
+    7.06,
+    8.47,
+    9.89,
+    11.31,
+    12.72,
+    14.14,
+    15.55
+   ]
+  },
+  {
+   "beat_id": "B09",
+   "title": "WHERE THE EIGHTY LIVES",
+   "narration_text": "Here is what surprised me. Not one number lives in the model. The gap lives between the model and the chip. On my laptop, the most I could make was about four times. On a small chip, where the weights may sit in slow memory and be read again every step, I would expect more room. I have not measured one, so I will not give you a number. But now I know where to look.",
+   "word_count": 76,
+   "visual_intent": "A map with two circles, MODEL (white) and CHIP (violet), overlapping, colours chosen so amber and teal keep their one meaning; the gap is drawn where they meet. On the right, a small memory sketch (weights in slow memory, read again each step) with the library film's memory-map beat as the visible source and 'NOT MEASURED ON A CHIP' on screen. 'Most I could make: about 4x' beside a 3.7x bar.",
+   "status": "MEAS (3.7x) + LIB (memory-map beat, source on screen); the 'would expect' line is flagged as expectation, not result",
+   "start_s": 148.999,
+   "duration_s": 19.648,
+   "reveals_s": [
+    1.46,
+    2.92,
+    4.38,
+    5.84,
+    7.3,
+    8.76,
+    10.22,
+    12.11,
+    14.01,
+    15.9
+   ]
+  },
+  {
+   "beat_id": "B10",
+   "title": "THREE NUMBERS",
+   "narration_text": "So I have three numbers for a model now. Parameters tell you what it stores. Operations tell you what it computes. And overlap tells you how long it waits. A model can be small, cheap to count, and still do its work in a line.",
+   "word_count": 45,
+   "visual_intent": "The three-panel frame, which has been filling all film, completes: PARAMETERS 0.2M stores | OPERATIONS 20M computes | OVERLAP waits. Then the opening title card returns small in a corner, captioned 'this film grows from it'.",
+   "status": "MODEL + MEAS",
+   "start_s": 168.647,
+   "duration_s": 14.047,
+   "reveals_s": [
+    2.92,
+    5.85,
+    8.77
+   ]
+  },
+  {
+   "beat_id": "B11",
+   "title": "WHAT THIS DOES NOT CLAIM",
+   "narration_text": "One boundary, because I would rather say it than have you find it. This is my laptop, not a microcontroller. A dense recurrent model, one input at a time. My ratios are smaller than eighty, and I make no claim about any particular chip or product. It shows where the time can come from.",
+   "word_count": 54,
+   "visual_intent": "The boundary as plain on-screen text, four lines: laptop not a microcontroller; dense recurrent model, one input at a time; ratios smaller than eighty; no claim about any chip or product. Held at least 4 s.",
+   "status": "Boundary",
+   "start_s": 182.694,
+   "duration_s": 16.408,
+   "reveals_s": [
+    2.59,
+    5.19,
+    7.78,
+    10.37,
+    12.96
+   ]
+  },
+  {
+   "beat_id": "B12",
+   "title": "YOUR TURN",
+   "narration_text": "Your turn. The cost of one step is four times the hidden size, times the hidden size plus the inputs. Take sixty-four hidden units and sixty-four inputs. Thirty-two thousand, seven hundred sixty-eight operations per step, about three point three million over a hundred steps. Now the question to ask of any model: which of its steps have to wait for another one? A recurrent model across time does. One convolution across positions does not. I'm Tanmay Kulkarni, in for Humanitarians AI.",
+   "word_count": 81,
+   "visual_intent": "The formula large: 4 x h x (h + x). The sixty-four case worked in three lines to 32,768 per step and about 3.3 million over a hundred steps, answer held for the check. Last card: two prompts, 'recurrent across time: waits' and 'one convolution across positions: does not'.",
+   "status": "MODEL (4 x 64 x 128 = 32,768; x 100 = 3,276,800)",
+   "start_s": 199.102,
+   "duration_s": 27.209,
+   "reveals_s": [
+    5.17,
+    7.94,
+    10.71,
+    12.73,
+    14.75,
+    16.77,
+    18.8,
+    20.82,
+    22.84
+   ]
+  }
+ ],
+ "voice_kokoro": "am_onyx"
+}

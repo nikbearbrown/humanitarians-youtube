@@ -1,0 +1,611 @@
+{
+  "metadata": {
+    "title": "How Google Maps Works",
+    "slug": "google-maps-explainer",
+    "topic": "HUMANITARIANS AI · TECH CONCEPTS",
+    "register": "Pragmatist",
+    "audience": "Humanitarians AI",
+    "brand": "claude",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fps": 30,
+    "presenter": "Rohan V.",
+    "channel": "@HumanitariansAI",
+    "channel_title": "@HumanitariansAI",
+    "handoff_name": "GoogleMaps_RohanV",
+    "renderer": "B01-B07 HyperFrames (hyperframes/), the rest Remotion",
+    "ai_disclosure": "Narration is an AI voice (Kokoro af_bella, Rohan V.'s persistent choice for the series); script and decisions by Rohan V.",
+    "note": "Tech explainer: how a maps app finds you, routes you, sees traffic and predicts crowds. EXECUTABLE EVIDENCE: maps.py simulates GPS ranging, a 30 x 30 grid city (Dijkstra and A*), rush-hour traffic from phone speeds, arrival-time prediction, opted-in visit counts with Laplace noise, and rider crowding reports; every measured number in B01 and B03-B07 comes from that run. Facts about Google Maps: week-11/_research/facts-maps.md. Opening line follows docs/FELLOWS-SUBMISSION.md verbatim. NAME: 'Row-Haan' in narration; 'Rohan V.' on screen. LOGO LAW: Google Maps' mark beside its name. WORD-CLOCK via cues.json.",
+    "tags": [
+      "Humanitarians AI",
+      "Google Maps",
+      "GPS",
+      "routing",
+      "traffic",
+      "algorithms",
+      "beginner",
+      "Lyrical Literacy"
+    ],
+    "build": {
+      "at": "2026-11-09T18:42:45",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hi, I am Row-Haan and this video is about how Google Maps works: how it finds you, picks a route, sees traffic, and knows how busy a cafe or a bus will be. I built a small version of each part to see how.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Rohan",
+            "topic": "HUMANITARIANS AI · TECH CONCEPTS",
+            "segment": "How Google Maps Works",
+            "command": "How does Google Maps know where I am, the fastest way, and how busy it is?",
+            "runningText": "working it out…",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Claude",
+            "effortLabel": "Desktop",
+            "output": [
+              "find you from satellite timing",
+              "search the road graph for a route",
+              "pool phones for traffic, crowds and buses"
+            ],
+            "disclosure": "Narration: AI voice (Kokoro af_bella), script by Rohan V.",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "finds": 0.3041,
+              "route": 0.3924,
+              "busy": 0.5789,
+              "built": 0.7972
+            },
+            "durationSeconds": 13.59
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-09T20:59:09.616719+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "actual_duration_s": 13.59,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 13.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "WHERE AM I",
+      "narration_text": "First, where are you. Your phone times signals from at least four satellites. Three pin down where you are, and the fourth corrects your phone's clock, which matters: one millisecond off is three hundred kilometres. In my simulation, open sky gave about five metres. Between tall buildings, about seventy. That's the blue circle: how unsure it is.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "hyperframes",
+        "motion": "choreographed",
+        "hyperframes": {
+          "composition": "gps",
+          "project": "hyperframes"
+        },
+        "remotion": {
+          "props": {
+            "title": "Four Satellites and a Clock",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "where": 0.023,
+              "four": 0.1443,
+              "three": 0.2241,
+              "clock": 0.3161,
+              "milli": 0.4343,
+              "open": 0.6384,
+              "tall": 0.7766,
+              "circle": 0.8947
+            },
+            "durationSeconds": 21.72
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "actual_duration_s": 21.72,
+      "audio_file": "mp3/beat-B01.mp3",
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.06,
+              0.06,
+              0.6,
+              0.17
+            ]
+          },
+          {
+            "label": "hud",
+            "box": [
+              0.625,
+              0.2,
+              0.95,
+              0.84
+            ]
+          }
+        ],
+        "contrast_reason": "Night-map look: dim roads fill the frame by design; contrast is checked where the text is (title + HUD), regions tested on the rendered clips."
+      },
+      "render_duration_s": 21.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "THE MAP",
+      "narration_text": "The map itself is built from Street View cars, satellite and aerial photos, data partners and people's edits, with AI reading signs and house numbers in the images. More than two billion people use it every month.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "hyperframes",
+        "motion": "choreographed",
+        "hyperframes": {
+          "composition": "build",
+          "project": "hyperframes"
+        },
+        "remotion": {
+          "props": {
+            "title": "Built From Photos and People",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "street": 0.1019,
+              "photos": 0.2655,
+              "edits": 0.4718,
+              "ai": 0.5287,
+              "billion": 0.8487
+            },
+            "durationSeconds": 14.06
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "actual_duration_s": 14.06,
+      "audio_file": "mp3/beat-B02.mp3",
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.06,
+              0.06,
+              0.6,
+              0.17
+            ]
+          },
+          {
+            "label": "hud",
+            "box": [
+              0.625,
+              0.2,
+              0.95,
+              0.84
+            ]
+          }
+        ],
+        "contrast_reason": "Night-map look: dim roads fill the frame by design; contrast is checked where the text is (title + HUD), regions tested on the rendered clips."
+      },
+      "render_duration_s": 14.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "THE ROUTE",
+      "narration_text": "To find a route, the roads become a graph: corners joined by streets, each with a travel time. I built a city with nine hundred corners. Dijkstra's algorithm checked eight hundred and twenty-six of them. A-star, which aims at the destination, checked five hundred and forty-seven, and found the same route. Google doesn't publish its exact recipe.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "hyperframes",
+        "motion": "choreographed",
+        "hyperframes": {
+          "composition": "route",
+          "project": "hyperframes"
+        },
+        "remotion": {
+          "props": {
+            "title": "Roads Become a Graph",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "graph": 0.0567,
+              "corners": 0.1212,
+              "built": 0.288,
+              "dijkstra": 0.4155,
+              "astar": 0.5949,
+              "same": 0.831,
+              "recipe": 0.9459
+            },
+            "durationSeconds": 21.18
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "actual_duration_s": 21.18,
+      "audio_file": "mp3/beat-B03.mp3",
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.06,
+              0.06,
+              0.6,
+              0.17
+            ]
+          },
+          {
+            "label": "hud",
+            "box": [
+              0.625,
+              0.2,
+              0.95,
+              0.84
+            ]
+          }
+        ],
+        "contrast_reason": "Night-map look: dim roads fill the frame by design; contrast is checked where the text is (title + HUD), regions tested on the rendered clips."
+      },
+      "render_duration_s": 21.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "TRAFFIC",
+      "narration_text": "Traffic comes from phones. Since two thousand nine, phones with location on have sent anonymous speeds, compared with how each road usually behaves. In my city, history alone coloured eighty-seven percent of roads right, but missed a crash. Five hundred phones were enough to turn it red.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "hyperframes",
+        "motion": "choreographed",
+        "hyperframes": {
+          "composition": "traffic",
+          "project": "hyperframes"
+        },
+        "remotion": {
+          "props": {
+            "title": "Traffic From Phones",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "phones": 0.0,
+              "since": 0.1047,
+              "usually": 0.444,
+              "history": 0.5992,
+              "crash": 0.7941,
+              "five": 0.85,
+              "red": 0.9511
+            },
+            "durationSeconds": 18.47
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "actual_duration_s": 18.47,
+      "audio_file": "mp3/beat-B04.mp3",
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.06,
+              0.06,
+              0.6,
+              0.17
+            ]
+          },
+          {
+            "label": "hud",
+            "box": [
+              0.625,
+              0.2,
+              0.95,
+              0.84
+            ]
+          }
+        ],
+        "contrast_reason": "Night-map look: dim roads fill the frame by design; contrast is checked where the text is (title + HUD), regions tested on the rendered clips."
+      },
+      "render_duration_s": 18.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "ARRIVAL TIME",
+      "narration_text": "Arrival times use both. From speed limits alone, my estimates were off by nineteen percent. History plus live phones: three percent. Google says its arrival times are accurate for over ninety-seven percent of trips.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "hyperframes",
+        "motion": "choreographed",
+        "hyperframes": {
+          "composition": "eta",
+          "project": "hyperframes"
+        },
+        "remotion": {
+          "props": {
+            "title": "History Plus Live",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "both": 0.0596,
+              "limits": 0.1629,
+              "live": 0.4451,
+              "google": 0.6859
+            },
+            "durationSeconds": 14.53
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "actual_duration_s": 14.53,
+      "audio_file": "mp3/beat-B05.mp3",
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.06,
+              0.06,
+              0.6,
+              0.17
+            ]
+          },
+          {
+            "label": "hud",
+            "box": [
+              0.62,
+              0.36,
+              0.95,
+              0.84
+            ]
+          }
+        ],
+        "contrast_reason": "Night-map look: dim roads fill the frame by design; contrast is checked where the text is (title + HUD), regions tested on the rendered clips."
+      },
+      "render_duration_s": 14.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HOW BUSY",
+      "narration_text": "Popular times come from people who opted in, pooled and privacy-protected, and shown only when enough people visit. I counted a quarter of one cafe's visitors and added privacy noise. The bars still matched the real crowd, busiest at one o'clock. A quiet shop had too little data, so it got no chart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "hyperframes",
+        "motion": "choreographed",
+        "hyperframes": {
+          "composition": "busy",
+          "project": "hyperframes"
+        },
+        "remotion": {
+          "props": {
+            "title": "How Busy, Without Names",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "opted": 0.0928,
+              "enough": 0.2922,
+              "quarter": 0.3971,
+              "noise": 0.5192,
+              "matched": 0.6223,
+              "one": 0.7581,
+              "shop": 0.832
+            },
+            "durationSeconds": 19.39
+          }
+        }
+      },
+      "estimated_duration_s": 21,
+      "actual_duration_s": 19.39,
+      "audio_file": "mp3/beat-B06.mp3",
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.06,
+              0.06,
+              0.6,
+              0.17
+            ]
+          },
+          {
+            "label": "hud",
+            "box": [
+              0.545,
+              0.235,
+              0.925,
+              0.53
+            ]
+          }
+        ],
+        "contrast_reason": "Night-map look: dim roads fill the frame by design; contrast is checked where the text is (title + HUD), regions tested on the rendered clips."
+      },
+      "render_duration_s": 19.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "HOW CROWDED",
+      "narration_text": "For buses and trains, agencies publish timetables and live vehicle data in an open format called GTFS. Crowding comes from riders answering a quick question. With three in a hundred riders answering, my predictions were right for eighty-one percent of trips.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "hyperframes",
+        "motion": "choreographed",
+        "hyperframes": {
+          "composition": "bus",
+          "project": "hyperframes"
+        },
+        "remotion": {
+          "props": {
+            "title": "How Full the Bus Is",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "agencies": 0.0998,
+              "gtfs": 0.3653,
+              "riders": 0.525,
+              "three": 0.6846,
+              "eighty": 0.9242
+            },
+            "durationSeconds": 16.7
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "actual_duration_s": 16.7,
+      "audio_file": "mp3/beat-B07.mp3",
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.06,
+              0.06,
+              0.6,
+              0.17
+            ]
+          },
+          {
+            "label": "hud",
+            "box": [
+              0.525,
+              0.45,
+              0.95,
+              0.84
+            ]
+          }
+        ],
+        "contrast_reason": "Night-map look: dim roads fill the frame by design; contrast is checked where the text is (title + HUD), regions tested on the rendered clips."
+      },
+      "render_duration_s": 16.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "WHAT TO DO",
+      "narration_text": "So: when the blue circle is big, trust your eyes. Report crashes and closures. And answer the crowding question. That's how the next rider knows.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "HaiApplyCard",
+          "props": {
+            "title": "Help the Map Help You",
+            "lede": "Much of what Maps knows comes from people like you.",
+            "steps": [
+              "When the blue circle is big, trust your eyes.",
+              "Report crashes and closures.",
+              "Answer the crowding question."
+            ],
+            "sparkLine": "Your phone is one of the sensors.",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "circle": 0.0659,
+              "report": 0.3586,
+              "answer": 0.6111
+            },
+            "durationSeconds": 9.11
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-11-09T21:01:50.287823+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 11,
+      "actual_duration_s": 9.11,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 9.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:HaiApplyCard",
+        "at": "2026-11-09T18:42:45"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "narration_text": "Satellites find you, a graph finds the route, and millions of phones fill in the rest. I'm Row-Haan, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "choreographed",
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "How Google Maps Works",
+            "handle": "@HumanitariansAI",
+            "subline": "Rohan V.",
+            "eyebrow": "HUMANITARIANS AI · TECH CONCEPTS",
+            "cues": {
+              "close": 0.3622
+            },
+            "durationSeconds": 8.19
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-11-09T21:02:52.031683+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "actual_duration_s": 8.19,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 8.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-11-09T18:42:45"
+      }
+    }
+  ]
+}
