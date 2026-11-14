@@ -1,0 +1,301 @@
+{
+  "metadata": {
+    "title": "How Consistent Hashing Scales Distributed Systems",
+    "slug": "how-consistent-hashing-scales-distributed-systems-vertical",
+    "topic": "Irreducibly Human",
+    "register": "Teardown-warm",
+    "audience": "backend engineers, software engineers, technical learners",
+    "brand": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "creator": "Akshay Chavan",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "voice_kokoro": "am_onyx",
+    "voice_policy": "fellow-selected",
+    "voice_approval": "PENDING_REVIEW",
+    "aspect_ratio": "9:16",
+    "source_resolution": "2160x3840",
+    "delivery_resolution": "2160x3840",
+    "youtube_required_min_height": 3840,
+    "fps": 24,
+    "total_estimated_duration_seconds": 65,
+    "build": {
+      "at": "2026-11-13T12:43:39",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'un-annotated' Ã¢â‚¬â€ COLD OPEN LAW wants ClaudeComposerAsk",
+        "B08: palette=claude but the outro is 'ClaudeTitleOutro916' Ã¢â‚¬â€ OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "PROBLEM",
+      "narration_text": "In standard distributed systems, naive key distribution uses hash of key modulo N to map data across N servers. But when a single server is added or crashes, N changes, instantly remapping nearly all keys to wrong nodes and triggering a catastrophic cache stampede.",
+      "visual_intent": "Naive modulo hashing failure: server count change remaps all keys, crashing downstream database.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 9,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B00.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Modulo hashing breakdown showing sudden key reshuffling when server count changes."
+      },
+      "actual_duration_s": 16.13,
+      "render_duration_s": 16.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B00.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "HASH_RING",
+      "narration_text": "Consistent hashing solves this by mapping both data keys and server nodes onto the same circular hash ring. Using a uniform hash function like MD5 or MurmurHash, the output space wraps seamlessly from zero to two to the thirty-second power minus one.",
+      "visual_intent": "Consistent hash ring: circular 360-degree keyspace mapping servers around the perimeter.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B01.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Clean 360-degree hash ring showing server nodes distributed along the perimeter."
+      },
+      "actual_duration_s": 15.55,
+      "render_duration_s": 15.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "KEY_ROUTING",
+      "narration_text": "To locate where any key belongs, hash its identifier to a point on the ring, then travel clockwise until reaching the first active server node. That node becomes the authoritative custodian for that data partition.",
+      "visual_intent": "Clockwise key routing: key hashes to ring position and moves clockwise to nearest server node.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B02.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Clockwise routing visual demonstrating deterministic key-to-server assignment."
+      },
+      "actual_duration_s": 12.44,
+      "render_duration_s": 12.458333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "NODE_ADDITION",
+      "narration_text": "When scale requires adding a new server, the new node claims only an incremental slice of the ring. Only keys between its predecessor and itself move to the new server, while the rest of the cluster remains completely undisturbed.",
+      "visual_intent": "Node addition: new server D inserted on the ring, remapping only K over N keys without touching other servers.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B03.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Incremental node addition demonstrating localized key remapping."
+      },
+      "actual_duration_s": 13.21,
+      "render_duration_s": 13.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "NODE_REMOVAL",
+      "narration_text": "If a server experiences hardware failure, its assigned keys simply spill clockwise to the next available neighbor node. No full-cluster rehash occurs, preserving cache warmness and preventing database overload.",
+      "visual_intent": "Graceful node removal: server B fails, its keys route clockwise to server C without affecting server A.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B04.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Server failure failover showing orderly clockwise handoff without cluster disruption."
+      },
+      "actual_duration_s": 12.54,
+      "render_duration_s": 12.541666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "HOTSPOTS",
+      "narration_text": "With a small number of physical nodes, random hash placement creates uneven arc lengths. One server may inherit a disproportionate share of the keyspace, creating dangerous CPU and memory hotspots.",
+      "visual_intent": "Hotspot imbalance: non-uniform server placement results in one overloaded node taking 60 percent of traffic.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B05.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Uneven ring distribution illustrating the cluster hotspot dilemma."
+      },
+      "actual_duration_s": 11.67,
+      "render_duration_s": 11.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VIRTUAL_NODES",
+      "narration_text": "Virtual nodes solve hot-spotting by mapping each physical machine to dozens of virtual tokens scattered across the ring. Keys distribute evenly across fine-grained slices, balancing load proportionally across all hardware.",
+      "visual_intent": "Virtual nodes distribution: physical servers replicated as multiple vnodes across the ring, producing uniform load.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B06.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Fine-grained virtual node interleaved ring delivering balanced key distribution."
+      },
+      "actual_duration_s": 13.42,
+      "render_duration_s": 13.458333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "PAYOFF",
+      "narration_text": "By bounding key movement to K over N when cluster topology changes, consistent hashing powers petabyte-scale distributed systems like Amazon Dynamo, Apache Cassandra, and global content delivery networks.",
+      "visual_intent": "Distributed architecture payoff: four core pillars of consistent hashing resilience and horizontal scale.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "hold"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B07.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Summary architectural framework showing the four pillars of consistent hashing scale."
+      },
+      "actual_duration_s": 12.97,
+      "render_duration_s": 13.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-13T12:43:39"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "For more deep dives into the systems behind high-performance software, subscribe to Humanitarians AI.",
+      "visual_intent": "Branded Humanitarians AI closing card.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "How Consistent Hashing Scales Distributed Systems",
+            "handle": "@HumanitariansAI",
+            "subline": "with Akshay Chavan | Distributed Systems"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-11-13T19:40:10.888453+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B08.mp3",
+      "qc": {
+        "full_bleed": true
+      },
+      "actual_duration_s": 6.66,
+      "render_duration_s": 6.666666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro916",
+        "at": "2026-11-13T12:43:39"
+      }
+    }
+  ]
+}

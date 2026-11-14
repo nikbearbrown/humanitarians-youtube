@@ -13,6 +13,15 @@ Each Brutalist video has its own work folder containing the supporting project f
 including beat sheets, prompts, fact-checking notes, scene definitions, shot lists,
 and portrait-specific configuration where applicable.
 
+## Week of 2026-11-11
+
+- Reviewed 9 videos from the Claude_bear folder and published them to the Humanitarians AI
+  Extending Claude playlist.
+- Created [How Consistent Hashing Scales Distributed Systems](./2026-11-11_consistent_hashing_scales_distributed_systems/)
+  as a Brutalist technical explainer.
+- Humanitarians AI YoTube Publication Notification Pipeline: Worked on the prototype and architecture POC that validates the logic for Phases 1 through 3 (data normalization, publication detection, and duplicate prevention) of the project proposal using Python and SQLite.
+- Created 2 weekly update videos in 16:9 and 9:16 aspect rations and 4K resolution
+
 ## Week of 2026-11-04
 
 - Reviewed 14 videos from the Claude_bear folder and published them to the Humanitarians AI
