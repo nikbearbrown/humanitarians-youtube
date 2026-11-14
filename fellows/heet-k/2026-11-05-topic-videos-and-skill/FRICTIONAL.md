@@ -1,0 +1,106 @@
+# Frictional log — QC&I videos, and the skill behind them
+
+## 2026-11-08 — building the generator while building the thing
+
+> Written 2026-11-14, after the week it describes. Reconstructed from the Week 23
+> report, not captured as it happened.
+
+- **Topic source:** [the repository analysis](../2026-10-29-video-repo-analysis/), Week 22
+- **Hours:** Week 23 total 23.0 — 10.0 videos, 10.0 skill — [HOURS.md](../HOURS.md)
+
+**What I was working on.** A few videos on the topic the analysis picked, and a
+skill that will make more of that type.
+
+**What I tried, and what I expected.** I expected to make the videos first and
+think about tooling afterwards, the way the branding went — build it by hand
+several times, then notice it should be a tool. I started doing the opposite
+almost immediately, and that is the actual change this week. The hours say it
+plainly: ten on the videos, ten on the skill. An even split between output and
+capability was not the plan; it is what the work turned into.
+
+**Where it resisted, and what I did next.**
+
+- **Writing the skill while writing the first instances is harder than either
+  alone.** You do not yet know which parts of the format are the format and
+  which are this particular video. Generalising too early bakes in a guess;
+  generalising too late means rebuilding. I went back and forth rather than
+  finishing one then the other — slower per video, but the skill should reflect
+  something real rather than an assumption.
+- **I already made this mistake's opposite in August.** `sri-explainer` was
+  built as a skill before it had a real test, and the first chapter build is
+  what exposed the gaps — the chassis was wrong, the register was a vibe rather
+  than a spec. Building instances alongside the generator this time is a direct
+  response to that.
+- **I held both.** Neither the videos nor the skill went to the professor. The
+  videos because they were still changing; the skill because an untested
+  generator is not something to present as a capability.
+
+**What Claude contributed, and what I accepted, changed or rejected.**
+
+Claude did the video creation through the skill-based pipeline, as in
+[Week 21](../2026-10-22-twenty-shorts-upload/FRICTIONAL.md). What is mine is the
+topic choice — derived from [the repository analysis](../2026-10-29-video-repo-analysis/) —
+and the skill itself, which I am authoring rather than using.
+
+**What I understand now, and what I still do not.**
+
+I understand the difference between producing output and producing capability,
+and that this folder has swung between them. The branding weeks built capability
+that did not look like output; Week 21 was output only possible because of it.
+This week is deliberately both, which is the first time I have aimed for that
+rather than discovered it afterwards.
+
+I do not know whether the skill survives contact with the second and third
+video. `sri-explainer` did not survive its first test unchanged, and there is no
+reason to expect better here.
+
+---
+
+## 2026-11-15 — five videos, named, still being refined
+
+> Written 2026-11-14, within the week it describes. The week is not over and the
+> work is not finished; this entry describes an in-progress state.
+
+- **Topic:** Quantum Computing & Information — **5 videos**
+- **Hours:** Week 24 total 22.0 — 11.0 videos, 8.0 skill — [HOURS.md](../HOURS.md)
+
+**What I was working on.** Refining the five Quantum Computing & Information
+videos, and continuing the skill.
+
+**What I tried, and what I expected.** I expected last week's set to be close to
+done and this week to be mostly skill work. It went the other way — eleven hours
+on the videos against eight on the skill, where the previous week was an even
+ten and ten.
+
+**Where it resisted, and what I did next.**
+
+- **Refinement took more than making did.** The first pass produced five videos;
+  getting them to a state I would show took longer than producing them. That is
+  the same shape as the Week 21 lesson about upload — the step after "it exists"
+  keeps being the one I underestimate.
+- **I did not share them, for the second week running.** The honest reason is
+  that they are still changing, and showing a moving target invites feedback on
+  something that will not exist by the time it arrives. The less comfortable
+  reason is that holding work has become a habit in this folder, and Week 19
+  already taught me that "held pending a check I am not performing" is just a
+  slower way of not shipping. I do not think that is what this is — but I
+  noticed the resemblance, which is why it is written down.
+- **The skill slowed rather than finished.** Eight hours and it is still in
+  progress. Refining five real videos kept changing what the skill needed to
+  encode, which is the cost of building both at once and is the trade I chose
+  last week knowingly.
+
+**What Claude contributed, and what I accepted, changed or rejected.**
+
+Same split as last week: Claude produced the videos through the pipeline; the
+topic, the refinement judgements, and the skill are mine.
+
+**What I understand now, and what I still do not.**
+
+I understand that "created" and "ready to show" are separated by more work than
+the word *refining* suggests, and that I keep sizing that gap wrong — at upload
+in Week 21, at formats in Week 16, and here.
+
+I do not know whether the skill is converging or whether each new video keeps
+moving it. Two weeks in it is still in progress, and I cannot yet say which of
+those two it is. Nobody outside has seen either the videos or the skill.
