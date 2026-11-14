@@ -76,6 +76,9 @@ ECIS turns that language into structured intelligence, not by trusting a single 
 * `2026-11-06-ecis-explained/` — ecis explained (2026-11-06)
 * `2026-11-06-moe-explainer/` — moe explainer (2026-11-06)
 * `2026-11-06-weekly-work-progress/` — weekly work progress (2026-11-06)
+* `2026-11-13-ecis-explained/` — ecis explained (2026-11-13)
+* `2026-11-13-time-series-explainer/` — time series explainer (2026-11-13)
+* `2026-11-13-weekly-work-progress/` — weekly work progress (2026-11-13)
 
 ## Frictional log
 
