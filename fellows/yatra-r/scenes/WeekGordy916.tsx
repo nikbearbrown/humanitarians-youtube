@@ -305,7 +305,13 @@ export const WkShip916: React.FC<{data: ShipData}> = ({data}) => {
       {node(TOP, data.made, leftIn)}
       {node(T2, data.destination, rightIn)}
       <div style={{position: 'absolute', left: BOX.x + BOX.w / 2 - 1, top: TOP + NODE_H, width: 2, height: WIRE_H * wireIn, backgroundColor: MUTE, opacity: 0.7}} />
-      <Chip text={data.chip} left={BOX.x + BOX.w / 2 - 58} top={TOP + NODE_H + WIRE_H / 2 - 22} hot opacity={chipIn} size={21} />
+      {/* opaque backing so the wire stops at the chip; centred for any word length */}
+      <div style={{position: 'absolute', left: BOX.x + BOX.w / 2, top: TOP + NODE_H + WIRE_H / 2 - 22, transform: 'translateX(-50%)', backgroundColor: STAGE, opacity: chipIn}}>
+        <div style={{position: 'relative', width: 'max-content', height: 44}}>
+          <Chip text={data.chip} left={0} top={0} hot opacity={1} size={21} />
+          <div style={{visibility: 'hidden', fontFamily: CLAUDE_FONT.ui, fontSize: 21, fontWeight: 600, letterSpacing: '.16em', textTransform: 'uppercase', padding: '8px 14px', border: '1px solid transparent', whiteSpace: 'nowrap'}}>{data.chip}</div>
+        </div>
+      </div>
       <Note note={data.note} opacity={win(p, 0.88, 0.98)} />
     </Stage>
   );
