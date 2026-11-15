@@ -40,7 +40,7 @@ This week I mapped images into three chapters of the textbook (Chapters 11, 16 a
 
 ## Hours
 
-[FILL IN: hours for this week]
+28 hours
 
 ## Videos this week
 
