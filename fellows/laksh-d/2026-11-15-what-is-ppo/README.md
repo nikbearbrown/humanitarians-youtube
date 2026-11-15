@@ -4,7 +4,7 @@
 - **Type:** STEM explainer, told on my project's environment
 - **Code:** [lakshdhamija/rl-autoscaler](https://github.com/lakshdhamija/rl-autoscaler), commit [8b126bd](https://github.com/lakshdhamija/rl-autoscaler/commit/8b126bd); Stable-Baselines3 2.9.2
 - **Frictional log:** [FRICTIONAL.md](FRICTIONAL.md)
-- **This week's project update:** [Can PPO Beat Yesterday?](../2026-11-15-week2-project-update/README.md)
+- **This week's project update:** [Can PPO Beat Yesterday?](../2026-11-15-can-ppo-beat-yesterday/README.md)
 - **Beat sheets:** [landscape](beat_sheet.json) · [vertical](vertical/beat_sheet.json)
 
 ## This week's contribution

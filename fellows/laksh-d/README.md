@@ -19,7 +19,7 @@ Threshold autoscalers, such as the Kubernetes Horizontal Pod Autoscaler, react t
 | Week | Work | Result | Evidence | Log |
 |---|---|---|---|---|
 | 2–8 Nov | Environment, real Azure traffic, baselines | "Same time yesterday" cut late requests from 5.47% (Kubernetes rule) to 1.17% on 5 held-out apps | [Week 1 update](2026-11-08-week1-project-update/README.md) · [code](https://github.com/lakshdhamija/rl-autoscaler/commit/8b126bd) | [Frictional](2026-11-08-week1-project-update/FRICTIONAL.md) |
-| 9–15 Nov | PPO agents, plain and residual, 30 runs on Modal | No agent beats "same time yesterday" at equal cost; the best ties it. The data has a weekly shape, so next comes multi-week data | [Week 2 update](2026-11-15-week2-project-update/README.md) · [code](https://github.com/lakshdhamija/rl-autoscaler/commit/35e922d) | [Frictional](2026-11-15-week2-project-update/FRICTIONAL.md) |
+| 9–15 Nov | PPO agents, plain and residual, 30 runs on Modal | No agent beats "same time yesterday" at equal cost; the best ties it. The data has a weekly shape, so next comes multi-week data | [Week 2 update](2026-11-15-can-ppo-beat-yesterday/README.md) · [code](https://github.com/lakshdhamija/rl-autoscaler/commit/35e922d) | [Frictional](2026-11-15-can-ppo-beat-yesterday/FRICTIONAL.md) |
 
 ## Topic explainers
 

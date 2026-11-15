@@ -6,7 +6,7 @@ Reconstructed after each week from dated work records (commits, documents, messa
 |---|---|---|---|---|---|
 | 28 Oct – 1 Nov | Onboarding and project research | 12.0 | | 1.5 | 13.5 |
 | 2–8 Nov | [Project week 1: environment, real traffic, baselines](2026-11-08-week1-project-update/README.md) | 21.5 | [What real cloud traffic looks like](2026-11-08-what-real-cloud-traffic-looks-like/README.md) | 3.0 | 24.5 |
-| 9–15 Nov | [Project week 2: PPO agents, weekly pattern](2026-11-15-week2-project-update/README.md) | 16.5 | [What PPO is, in plain words](2026-11-15-what-is-ppo/README.md) | 3.5 | 20.0 |
+| 9–15 Nov | [Project week 2: PPO agents, weekly pattern](2026-11-15-can-ppo-beat-yesterday/README.md) | 16.5 | [What PPO is, in plain words](2026-11-15-what-is-ppo/README.md) | 3.5 | 20.0 |
 | **To date** | | **50.0** | | **8.0** | **58.0** |
 
 **Eng. hrs** is engineering, research and onboarding for the predictive autoscaling project. **Reporting hrs** is the weekly progress video, explainer production and documentation.
