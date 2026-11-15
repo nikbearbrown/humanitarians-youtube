@@ -19,6 +19,7 @@ Threshold autoscalers, such as the Kubernetes Horizontal Pod Autoscaler, react t
 | Week | Work | Result | Evidence | Log |
 |---|---|---|---|---|
 | 2–8 Nov | Environment, real Azure traffic, baselines | "Same time yesterday" cut late requests from 5.47% (Kubernetes rule) to 1.17% on 5 held-out apps | [Week 1 update](2026-11-08-week1-project-update/README.md) · [code](https://github.com/lakshdhamija/rl-autoscaler/commit/8b126bd) | [Frictional](2026-11-08-week1-project-update/FRICTIONAL.md) |
+| 9–15 Nov | PPO agents, plain and residual, 30 runs on Modal | No agent beats "same time yesterday" at equal cost; the best ties it. The data has a weekly shape, so next comes multi-week data | [Week 2 update](2026-11-15-can-ppo-beat-yesterday/README.md) · [code](https://github.com/lakshdhamija/rl-autoscaler/commit/35e922d) | [Frictional](2026-11-15-can-ppo-beat-yesterday/FRICTIONAL.md) |
 
 ## Topic explainers
 
@@ -27,13 +28,14 @@ Narration voice: Kokoro `af_bella`, kept for the whole series.
 | Week | Topic | Evidence | Log |
 |---|---|---|---|
 | 2–8 Nov | What real cloud traffic looks like | [Explainer](2026-11-08-what-real-cloud-traffic-looks-like/README.md) | [Frictional](2026-11-08-what-real-cloud-traffic-looks-like/FRICTIONAL.md) |
+| 9–15 Nov | What PPO is, in plain words | [Explainer](2026-11-15-what-is-ppo/README.md) | [Frictional](2026-11-15-what-is-ppo/FRICTIONAL.md) |
 
 ## Next steps
 
 - Week of 2 Nov: environment, baselines, real traffic, fitted synthetic traffic, tests (done).
-- Week of 9 Nov: PPO with Stable-Baselines3, trained on fitted synthetic and real training days. Its bar: beat "same time yesterday" at equal cost.
-- Week of 16 Nov: reward tuning; cost against late requests across reward weights; boot delays of 1, 3 and 5 minutes.
-- Week of 23 Nov: final tests on unseen days and held-out apps, report and `SKILL.md`.
+- Week of 9 Nov: PPO with Stable-Baselines3 on Modal, plain and residual (done).
+- Week of 16 Nov: real traces several weeks long with weekday and weekend patterns; a "same time last week" baseline; test the baselines on them first.
+- Week of 23 Nov: PPO on the new traces, with a validation split for choosing settings; final tests, report and `SKILL.md`.
 
 ## Hours
 
