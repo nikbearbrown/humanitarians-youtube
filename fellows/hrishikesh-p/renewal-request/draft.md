@@ -5,6 +5,8 @@
 
 For the next documented week, see the [Week 10 frictional log](../2026-11-06%20-%20RamanEffect/FRICTIONAL.md).
 
+For the latest documented work, see the [November 13 frictional log](../2026-11-13%20-%20RamanEffect/FRICTIONAL.md).
+
 ## Completed
 
 - **Established the Raman spectroscopy project context.** Defined the Raman Effect and Raman spectroscopy, documented the use of AI/ML in Raman spectroscopy, and reviewed previous project work. Evidence: [Week 1 frictional log](../2026-09-04%20-%20RamanEffect/FRICTIONAL.md), including the linked 16:9 and 9:16 videos and task materials.

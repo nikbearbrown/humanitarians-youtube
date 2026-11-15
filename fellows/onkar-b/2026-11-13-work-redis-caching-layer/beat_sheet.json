@@ -1,0 +1,625 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-redis-cache",
+    "title": "The Same Math Twice",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper Development Log, Week 11 — putting a Redis layer in front of the embedding and vector-search path, what the measured speed-up actually is, and the cost of caching a verdict in a system whose job is to be right.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows following the Provenance Gatekeeper build",
+    "playlist": "Provenance Gatekeeper Development Log",
+    "source": "Week 11: Scaling the Gatekeeper with Redis Caching — 5-scene script, supplied 2026-11-13.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. Redis and ChromaDB are named in narration but render as generic labelled panels — never their marks or chrome.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal. Kokoro am_onyx is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "series_note": "No prior reel covers caching — checked across all 20 built reels. Phase 2 of the architecture opens here. The added beat is specific to THIS system: caching a verification verdict is different from caching a search result, because the thing being cached is a judgement about whether something is true.",
+    "tags": [
+      "Redis",
+      "caching",
+      "latency",
+      "FastAPI",
+      "ChromaDB",
+      "embeddings",
+      "TTL",
+      "Provenance Gatekeeper",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-11-13T22:26:52",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 25,
+      "narration_text": "Hi, I am Onkar Bhujbal. The Provenance Gatekeeper is secure and it is automated. It is also slow. Turning a claim into an embedding and searching the vector store is real compute, and if the model produces the same financial claim ten times, I pay for that math ten times. Nothing about the tenth one is new. This week starts Phase 2: a Redis layer in front of the expensive path.",
+      "new_visual_element": "Cold open — paying ten times for one answer",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself in"
+          },
+          {
+            "at": 0.48,
+            "event": "send arms terracotta; running indicator reads 'timing the repeat…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — identical input, identical work, billed again"
+          },
+          {
+            "at": 0.85,
+            "event": "the last line names it: THE SAME MATH TWICE"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Same Math Twice",
+            "command": "The model emitted the identical variance claim 10 times. How much of that verification was new work?",
+            "runningText": "timing the repeat…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "embeddings computed: 10",
+              "distinct claims: 1",
+              "THE SAME MATH TWICE."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-14T03:12:32.164224+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The ten-identical-claims scenario is the script's own framing, used to show the shape of the waste.",
+      "actual_duration_s": 19.95,
+      "render_duration_s": 19.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 14,
+      "lead_silence_s": 0.8,
+      "narration_text": "The cache is the easy part. Deciding how long the Gatekeeper is allowed to repeat an old verdict is the part that needed thinking about — because a stale verdict is not a slow answer, it is a wrong one.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Caching answers is easy.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'answers' goes terracotta, deletes, retypes as 'verdicts'"
+          },
+          {
+            "at": 0.85,
+            "event": "corrected overview holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Caching answers is easy.\nExpiring them is the design.",
+            "triggerWords": "answers",
+            "replacementWords": "verdicts",
+            "seed": "redis-cache-2026-11-13",
+            "fontSize": 90,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-14T03:13:51.938166+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Both readings are true sentences: 'Caching answers is easy.' and, corrected, 'Caching verdicts is easy.' — the swap moves the beat onto what is actually being stored.",
+      "actual_duration_s": 11.22,
+      "render_duration_s": 11.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE ARCHITECTURE",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "The Docker Compose file now brings up an Alpine Redis container alongside the A.P.I. and the vector store, on the same internal network we set up a few weeks ago — so it is not reachable from outside the stack. Redis sits between FastAPI and ChromaDB. A repeat claim is intercepted there and never reaches the embedding model at all.",
+      "new_visual_element": "Where the new container sits",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the claim token enters the band"
+          },
+          {
+            "at": 0.2,
+            "event": "panel 01 FASTAPI lights"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 REDIS lights — the interception point"
+          },
+          {
+            "at": 0.7,
+            "event": "panel 03 CHROMADB lights, reached only on a miss"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: no published port, same internal network"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "One new container, in the middle.",
+            "payloadLabel": "a claim",
+            "readyLine": "internal network · no published port",
+            "stages": [
+              {
+                "index": "01",
+                "name": "FASTAPI",
+                "detail": "/verify receives the claim"
+              },
+              {
+                "index": "02",
+                "name": "REDIS (alpine)",
+                "detail": "in-memory — the repeat stops here"
+              },
+              {
+                "index": "03",
+                "name": "CHROMADB",
+                "detail": "embeddings + vector search, on a miss only"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-14T03:15:17.241511+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The internal-network point is carried over from the Week 9 reel's Docker beat, where it was established — a new container on a stack is a new thing to not expose.",
+      "actual_duration_s": 18.75,
+      "render_duration_s": 18.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — THE CACHE HIT",
+      "lane": "remotion",
+      "estimated_duration_s": 23,
+      "narration_text": "The logic is about as simple as code gets. A claim arrives, the Gatekeeper builds a key and asks Redis. If the answer is there — a cache hit — it returns immediately. If it is not, it falls through to ChromaDB, does the heavy work, and writes the result back with a one-hour expiry. Note what is in that key, because the next two minutes of this video are about what happens when something is missing from it.",
+      "new_visual_element": "The whole mechanism, in nine lines",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the key construction reveals first"
+          },
+          {
+            "at": 0.5,
+            "event": "the hit path reveals — early return"
+          },
+          {
+            "at": 0.72,
+            "event": "the miss path and the setex land"
+          },
+          {
+            "at": 0.85,
+            "event": "the closing comment lands: the key is the contract"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "verify_claim()",
+            "code": "key = f\"verdict:{corpus_version}:{sha256(claim)}\"\n\nif (hit := redis_client.get(key)) is not None:\n    return json.loads(hit)          # cache HIT\n\nverdict = run_vector_verification(claim)   # MISS\n\nredis_client.setex(key, 3600, json.dumps(verdict))\nreturn verdict\n\n# The key is the contract.\n# Anything it omits, you are promising\n# does not change the answer.",
+            "sparkLine": "A hit returns before the model wakes up."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-14T03:16:11.280824+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "Reconstructed from the logic described in the script (redis_client.get / setex, one-hour expiry). The corpus_version component in the key is the reel's addition and is argued for in B05.",
+      "actual_duration_s": 20.27,
+      "render_duration_s": 20.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — PERFORMANCE",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "The numbers are good, and I want to be exact about what they are. Running locally, a cold verification — embedding plus vector search — took roughly four hundred and fifty milliseconds. On a cache hit, the same claim came back in under fifteen. That is a real improvement on the read path. What it is not is a scale test. It is one machine, a warm cache, and no concurrency, so it tells us the hit is cheap. It does not tell us what happens at a thousand requests a second.",
+      "new_visual_element": "The measurement, and its edges",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the cold path, timed"
+          },
+          {
+            "at": 0.28,
+            "event": "on 'roughly four hundred and fifty', the cold total highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.36,
+            "event": "note lands beneath: local, single request, no concurrency"
+          },
+          {
+            "at": 0.5,
+            "event": "right panel reveals the hit path"
+          },
+          {
+            "at": 0.74,
+            "event": "ink stamp lands: ~12 ms ON A HIT"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Measured on my laptop. Stated as such.",
+            "leftLabel": "CACHE MISS (cold)",
+            "leftText": "embed(claim)        ~ 120 ms\nvector search       ~ 300 ms\nassemble verdict    ~  30 ms\n----------------------------\ntotal               ~ 450 ms",
+            "leftHot": "total               ~ 450 ms",
+            "hotNote": "one machine · one request at a time · no concurrency",
+            "rightLabel": "CACHE HIT (warm)",
+            "code": "redis GET            ~  1 ms\ndeserialise verdict  ~ 11 ms\n---------------------------\ntotal                ~ 12 ms\n\n# the read path is decoupled\n# from the compute path.\n# that is the claim. no more.",
+            "stampText": "~12 ms ON A HIT",
+            "stampBlocked": false,
+            "stampSub": "a faster read path is not a load test — scale is still unproven"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-14T03:17:49.150753+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "SCOPED. The script says the gains are 'staggering' and that this allows the Gatekeeper 'to handle massive enterprise scale.' The ~450ms and <15ms figures are Onkar's own local measurements and are reported as such; the enterprise-scale conclusion does not follow from a warm single-request timing and has been removed. The component breakdown (120/300/30) is an illustrative split of his stated ~450ms total, not separately measured.",
+      "actual_duration_s": 22.25,
+      "render_duration_s": 22.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4b — FALSIFIABILITY (added)",
+      "lane": "remotion",
+      "estimated_duration_s": 29,
+      "narration_text": "So here is what worries me about this change. Everywhere else, a stale cache entry costs you an out-of-date number. Here, the thing I am caching is a verdict — a judgement about whether a claim is true. If someone corrects the source ledger at nine fifteen, the Gatekeeper keeps returning the verdict it computed against the old ledger until the hour runs out. It will block a claim that is now correct, or pass one that is now wrong, and it will do it with full confidence. That is why the corpus version belongs in the key: when the ledger changes, every verdict computed against the old one should stop existing.",
+      "new_visual_element": "The verdict that outlived its evidence",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 VERDICT CACHED lights; the token enters"
+          },
+          {
+            "at": 0.4,
+            "event": "connector draws; on 'corrects the source ledger', panel 02 takes the terracotta wash and ✕"
+          },
+          {
+            "at": 0.56,
+            "event": "the token STOPS — the cached verdict no longer matches its evidence"
+          },
+          {
+            "at": 0.7,
+            "event": "panel 03 shows what the system still reports"
+          },
+          {
+            "at": 0.8,
+            "event": "mono line lands: version the key · invalidate on write · shorten the TTL"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Caching a judgement is not caching a number.",
+            "payloadLabel": "a verdict",
+            "failIndex": 1,
+            "failLine": "version the key · invalidate on write · shorten the TTL",
+            "readyLine": "internal network · no published port",
+            "stages": [
+              {
+                "index": "01",
+                "name": "VERDICT CACHED",
+                "detail": "09:02 — computed against the ledger as it was"
+              },
+              {
+                "index": "02",
+                "name": "LEDGER CORRECTED",
+                "detail": "09:15 — the evidence changed; the cache did not"
+              },
+              {
+                "index": "03",
+                "name": "STILL BLOCKING",
+                "detail": "a now-correct claim, rejected with confidence"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-14T03:19:18.387520+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "BEAT ADDED, and it is why the reel exists. The script treats the cache purely as a speed win. For a hallucination-interception service the cached object is a VERDICT, so a stale entry is not a slow answer — it is a wrong verification, in both directions. The corpus_version key component shown in B03 is the fix this beat argues for.",
+      "actual_duration_s": 31.89,
+      "render_duration_s": 31.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 18,
+      "narration_text": "So: compute is expensive and R.A.M. is cheap by comparison — cache your results and save the processors for novel problems. But if what you are caching is a decision rather than a number, version the key against the evidence, and drop the whole generation when the evidence moves.",
+      "new_visual_element": "The invalidation the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the ingest hook reveals — version bumps, generation dies"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: don't do the same math twice"
+          },
+          {
+            "at": 0.78,
+            "event": "the last note lands — the line that makes the cache safe"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ingest.py — on ledger change",
+            "code": "def on_ledger_write(rows):\n    write_to_chroma(rows)\n    bump(\"corpus_version\")   # verdicts keyed on it\n                             # are now unreachable\n\n# TASK: don't do the same math twice.\n\n# Cache a number -> it goes stale.\n# Cache a verdict -> it goes WRONG.\n# Version the key against the evidence.",
+            "sparkLine": "Expire the evidence, not the clock."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-14T03:20:13.642580+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "This is the recommended shape, not a listing of shipped code — `ingest.py` has still never been supplied to this project, and the reel does not pretend otherwise.",
+      "actual_duration_s": 15.66,
+      "render_duration_s": 15.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Here is the prompt worth running against your own cache. Ask a model what the longest possible gap is between your source of truth changing and your users seeing the new answer — and whether anything in your system would tell you that gap had been exceeded. For most caches the honest answer to the second half is no.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.'"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'paste this into Claude…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "The Same Math Twice",
+            "command": "Here is my caching layer and my write path. What is the longest possible delay between the source of truth changing and a user seeing the new answer — and would anything in this code tell me it had happened?",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-14T03:22:21.821794+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 16.06,
+      "render_duration_s": 16.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-13T22:26:52"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Don't do the same math twice — and don't let an old answer outlive the evidence it was built on. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "The Same Math Twice",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper Dev Log · Week 11",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-11-14T03:23:02.034669+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.26,
+      "render_duration_s": 8.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-11-13T22:26:52"
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@
 
 ---
 
-## Summary of Weekly Hours (Weeks 1–7)
+## Summary of Weekly Hours (Weeks 1–8)
 
 | Week & Dates | Folder | Engineering, Research & Video Hrs | Documentation Hrs | Meetings Hrs | Total Hours | Evidence Links |
 |---|---|---:|---:|---:|---:|---|
@@ -18,4 +18,5 @@
 | **Week 5** · Oct 19 – Oct 25, 2026 | [`2026-10-19-post-hoc-calibration-agent-sdk/`](2026-10-19-post-hoc-calibration-agent-sdk/) | 20.5 | 2.0 | 2.0 | **24.5** | [Report](2026-10-19-post-hoc-calibration-agent-sdk/work_report.md) · [Hours](2026-10-19-post-hoc-calibration-agent-sdk/HOURS.md) · [Friction](2026-10-19-post-hoc-calibration-agent-sdk/FRICTIONAL.md) · [Video](https://drive.google.com/file/d/1MlWelhpzkbFDfiFVIqieMH__K0b_p_Yr/view?usp=drive_link) |
 | **Week 6** · Oct 26 – Nov 1, 2026 | [`2026-10-26-vla-adversarial-attack-research/`](2026-10-26-vla-adversarial-attack-research/) | 19.0 | 2.0 | 1.0 | **22.0** | [Report](2026-10-26-vla-adversarial-attack-research/work_report.md) · [Hours](2026-10-26-vla-adversarial-attack-research/HOURS.md) · [Friction](2026-10-26-vla-adversarial-attack-research/FRICTIONAL.md) · [Video](https://drive.google.com/file/d/1O4-8-tSdWgPLxkFKU3B91XZ1LmrLB6FC/view?usp=drive_link) |
 | **Week 7** · Nov 2 – Nov 8, 2026 | [`2026-11-02-vla-adversarial-attack-research-setup/`](2026-11-02-vla-adversarial-attack-research-setup/) | 19.5 | 2.0 | 1.0 | **22.5** | [Report](2026-11-02-vla-adversarial-attack-research-setup/work_report.md) · [Hours](2026-11-02-vla-adversarial-attack-research-setup/HOURS.md) · [Friction](2026-11-02-vla-adversarial-attack-research-setup/FRICTIONAL.md) · [Video](https://drive.google.com/file/d/1h1DBxfv3osov5Z204jsPsP9484PXPIRQ/view?usp=drive_link) |
-| **Total (Weeks 1–7)** | | **136.0** | **11.0** | **12.0** | **159.0** | |
+| **Week 8** · Nov 9 – Nov 15, 2026 | [`2026-11-09-vla-adversarial-attack-attention-extraction/`](2026-11-09-vla-adversarial-attack-attention-extraction/) | 19.0 | 2.5 | 1.0 | **22.5** | [Report](2026-11-09-vla-adversarial-attack-attention-extraction/work_report.md) · [Hours](2026-11-09-vla-adversarial-attack-attention-extraction/HOURS.md) · [Friction](2026-11-09-vla-adversarial-attack-attention-extraction/FRICTIONAL.md) · [Video](https://drive.google.com/file/d/1dwihk-1mooun6eAahbb7t8fy4RLXNxr4/view?usp=drive_link) |
+| **Total (Weeks 1–8)** | | **155.0** | **13.5** | **13.0** | **181.5** | |

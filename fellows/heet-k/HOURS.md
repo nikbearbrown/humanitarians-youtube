@@ -13,7 +13,10 @@ weekly reports generated via Addams (Frictional Learning Journal).
 | 19 | 5–11 Oct | Intro & outro modified to final, professor-confirmed (12) · a few new YouTube video suggestions (7) · self-review (1) | 20.0 | 2.0 | **22.0** |
 | 20 | 12–18 Oct | Video plan created with a teammate (9) · a few new videos using the confirmed intro/outro (10) · self-review (1) | 20.0 | 2.0 | **22.0** |
 | 21 | 19–25 Oct | Created and uploaded 20 YouTube Shorts with [Varun N.](../varun-n/) | 20.0 | 2.0 | **22.0** |
-| **Total** | | | **153.0** | **19.0** | **172.0** |
+| 22 | 26 Oct – 1 Nov | Analysed the 200+ video repository — what video types to add (18) · self-review (1) | 19.0 | 2.0 | **21.0** |
+| 23 | 2–8 Nov | Created the first Quantum Computing & Information videos (10) · built a skill to generate more of the type (10) · self-review (1) | 21.0 | 2.0 | **23.0** |
+| 24 | 9–15 Nov | Created and refined 5 QC&I videos (11) · continued the skill (8) · self-review (1) | 20.0 | 2.0 | **22.0** |
+| **Total** | | | **213.0** | **25.0** | **238.0** |
 
 Each week meets the 20-hour requirement at the stated split.
 

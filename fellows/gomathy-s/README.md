@@ -4,13 +4,16 @@
 **Project:** Brutalist Videos  
 **GitHub:** [@GomathySelvamuthiah](https://github.com/GomathySelvamuthiah)
 
+**Current project:** the Mycroft insider-trading signal agent. See the [research plan](research-plan.md).
+
 ## What's in this folder
 
-3 work folders, one per video:
+4 work folders, one per video:
 
 - `2026-09-28-context-window-isnt-memory/` — The Context Window Isn't Memory (2026-09-28)
 - `2026-10-07-what-is-a-knowledge-cutoff/` — What Is a Knowledge Cutoff? (2026-10-07)
 - `2026-10-15-what-does-a-p-value-mean/` — What Does a P-Value Actually Mean? (2026-10-15)
+- `2026-11-10-most-insider-trades-arent-buys/` — Most Insider Trades Aren't Buys (2026-11-10)
 
 Each holds the 16:9 source and a `vertical/` folder for the 9:16 cut.
 Renders are in the shared Drive.
