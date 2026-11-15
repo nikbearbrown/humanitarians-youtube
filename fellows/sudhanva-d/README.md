@@ -15,6 +15,9 @@
 - [Week 3: November 8](2026-11-08-rl-environments/): the RL Environments ants without the scripted cue (a timeout bug fixed and longer training; pairs of ants learn to carry pieces home, 11.77/12 on the grid) and an IPPO explainer. [Frictional log](2026-11-08-rl-environments/FRICTIONAL.md)
   - [ant-head-rl-research/](2026-11-08-rl-environments/ant-head-rl-research/): project-update beat sheets, 16:9 and 9:16
   - [ippo/](2026-11-08-rl-environments/ippo/): explainer beat sheets, 16:9 and 9:16
+- [Week 4: November 15](2026-11-15-rl-environments/): all six RL Environments learners compared in both worlds, a count of pieces ants carry in pairs, and how paired ants coordinate (IPPO 11.75/12 on the grid), plus a value-decomposition explainer. [Frictional log](2026-11-15-rl-environments/FRICTIONAL.md)
+  - [ant-head-rl-research/](2026-11-15-rl-environments/ant-head-rl-research/): project-update beat sheets, 16:9 and 9:16
+  - [value-decomposition/](2026-11-15-rl-environments/value-decomposition/): explainer beat sheets, 16:9 and 9:16
 
 ## Voice
 
