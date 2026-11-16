@@ -1,8 +1,8 @@
 # Friction Log: Week 4 (09-28-26 to 10-02-26): Visual tracker
 
 Project: Medhavy cancer textbook (CAJAL figure workflow)
-Collaborative Project Repository: [link to the textbook repository]
-Report: Week4_09-28-26.mp4 (Drive link below)
+Collaborative Project Repository: (https://github.com/Medhavy/medhavi-cancer)
+Report: Week4_09-28-26.mp4 (https://drive.google.com/file/d/15YD_lUKasZ7B8oKdGvM-lx81CsTJ58Cx/view?usp=drive_link)
 Hours Log: HOURS.md
 Report Week: 09-28-26 to 10-02-26
 
@@ -10,9 +10,9 @@ Report Week: 09-28-26 to 10-02-26
 
 ### 1. Focus of the week
 
-- A new tracker for all the textbook's visuals, requested by Evin: one Google Sheet instead of separate tables per chapter. [CONFIRM: which parts you did this week, and anything else you worked on]
+- A new tracker for all the textbook's visuals, requested by Evin: one Google Sheet instead of separate tables per chapter. 
 - Importing the real figure data (187 figures) and cleaning free-typed values.
-- Making the report video about it (11-15-26).
+- Making the report video about it.
 
 ### 2. What was tried, and what was expected
 
@@ -24,7 +24,7 @@ Report Week: 09-28-26 to 10-02-26
 
 - The existing data had free-typed values. "good to upload", "ready to upload" and "done good to upload" all had to become one status, Good to Upload (10 figures). "chart", "graph" and "bar chart" became Chart, and "risa" became "Risa".
 - 140 approved figures had an owner but no status. I set them to Not Started.
-- Questions only the team could answer: Figure 1.6 had "good to upload" but no decision; Figure 1.5 was rejected but still assigned to Shishir; Figures 14.4 and 16.10 had no information, so they are marked Suggested. I also assumed "Good to Upload" means Evin approved and "Done" means placed in the document, and flagged that to check. [CONFIRM: did you check with Evin, and what did he say?]
+- Questions only the team could answer: Figure 1.6 had "good to upload" but no decision; Figure 1.5 was rejected but still assigned to Shishir; Figures 14.4 and 16.10 had no information, so they are marked Suggested. I also assumed "Good to Upload" means Evin approved and "Done" means placed in the document, and flagged that to check. 
 
 ### 4. AI and other contributions: accepted, changed, rejected
 
@@ -42,4 +42,4 @@ Unresolved
 
 **Evidence**
 - Reel folder in the Brutalist toolkit (`week4-visual-tracker`): `beat_sheet.json`
-- Final video, 4K 16:9: [add Drive link, sharing set to Anyone with the link can view]
+- Final video, 4K 16:9: https://drive.google.com/file/d/15YD_lUKasZ7B8oKdGvM-lx81CsTJ58Cx/view?usp=drive_link
