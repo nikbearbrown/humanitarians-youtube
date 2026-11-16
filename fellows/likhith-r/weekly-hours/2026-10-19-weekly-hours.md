@@ -14,4 +14,4 @@
 | RAG vs. the Open Knowledge Format — documentation and work report | 1 | [Work report](../2026-10-22-rag-vs-the-open-knowledge-format/README.md) · [Frictional log](../2026-10-22-rag-vs-the-open-knowledge-format/FRICTIONAL.md) |
 | **Total** | **22** | **13 Microduck + 9 RAG vs. OKF** |
 
-Week in progress: recorded through 2026-10-22. Per-video totals are actual; the split within each video is estimated.
+Per-video totals are actual; the split within each video is estimated.

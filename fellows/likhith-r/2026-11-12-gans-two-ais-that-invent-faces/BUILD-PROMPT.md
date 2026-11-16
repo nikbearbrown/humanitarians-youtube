@@ -1,0 +1,5 @@
+# BUILD-PROMPT — GANs: Two AIs That Invent Faces
+
+Paste into Claude Code at the toolkit root:
+
+> Rebuild youtube/brutalist/claude-hai-gans as a review cut in 16:9 and 9:16. Re-run `.venv/bin/python -I youtube/brutalist/claude-hai-gans/evidence/gan_toy.py` (about 15 s) and `evidence/make_scene_data.py`, which regenerates runtime/remotion/src/gansData.ts, the only source of numbers for Gans.tsx. Narration lives in `evidence/build_sheets.py` (writes both sheets). If narration changed: regenerate those beats with `generate_audio_kokoro.py <reel> --speed 1.25 --only <id>`, delete their `mp3/_raw/` copies, then `python3 <reel>/evidence/balance_audio.py` (frames sum to 1440, B10 gets a 0.15 s lead-in, B00 is held to 4.35 s so its result lines land, copies mp3/ to vertical/). Whisper every regenerated beat. Render with `python3 runtime/scripts/remotion_scenes.py <reel>[/vertical] --force`, compile with `./art run <reel>` and `./art run <reel>/vertical --height 3840`, sample frames into `_qc/`, read them, fix any BLOCKER/MAJOR and log it in `_qc/REPORT.md`. Never publish.

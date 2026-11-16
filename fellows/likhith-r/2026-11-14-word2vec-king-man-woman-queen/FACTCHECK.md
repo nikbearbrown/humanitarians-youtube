@@ -1,0 +1,18 @@
+# FACTCHECK — Word2Vec: King − Man + Woman ≈ Queen
+
+Status: claims checked by Claude Code against SOURCES.md and the evidence run. Signed off by Likhith: I watched both the 16:9 and 9:16 cuts, went through each claim below against the linked sources, and I'm satisfied the video is accurate and looks good.
+
+| # | Beat | Claim (as spoken / shown) | Verdict | Source / derivation | Fix / note |
+|---|---|---|---|---|---|
+| 1 | B02 | King − man + woman? A computer says queen; nobody taught it royalty or gender | PASS | Mikolov, Yih & Zweig 2013 (NAACL); our toy: nearest other word = queen, similarity 0.709 (w2v_toy.out.txt) | the toy number is labelled "our toy model"; "never labeled" holds for the toy (its input is plain sentences) and for Word2Vec (raw text) |
+| 2 | B03 | To computers, words were ID numbers; cat and kitten as unrelated as cat and carburetor | PASS | one-hot encoding; our toy: ids cat 21, kitten 15, carburetor 13 in a 173-word vocabulary; one-hot similarity 0 for both pairs | "were" = the one-hot / ID representation before learned embeddings |
+| 3 | B04 | Linguist J. R. Firth, 1957: "You shall know a word by the company it keeps." | PASS | Firth 1957, p. 11 (Quote Investigator; arXiv:2205.07750) | wording matches the source word for word; the printed original ends with "!", the screen uses a period (punctuation only, meaning unchanged). Toy shares: 92 % of kitten's neighbors are also cat's; carburetor 9 % |
+| 4 | B05 | 2013, Tomas Mikolov's team at Google trained a network to predict nearby words across billions of words; by-product: 300 numbers per word | PASS | Mikolov et al. 2013a (arXiv:1301.3781), 2013b (arXiv:1310.4546: Google News, ~100 B words; released vectors 300-d) | narration dropped "about" (exactly 300 for the released vectors). The screen shows our toy's real 300-number vector for "king", labelled so |
+| 5 | B06 | Similar words land close; relationships become directions: man→woman roughly matches king→queen; Paris→France, Tokyo→Japan | PASS (toy) | our toy: cat·kitten 0.803, cat·carburetor 0.276; step cosines 0.406 (people) and 0.975 (places); maps are PCA of our vectors | "roughly" is deliberate (0.406). 2-D maps are labelled PCA; the map keeps 46 % of the variance, the panels 85 % / 99.5 % |
+| 6 | B07 | The catch: queen only wins with the inputs excluded | PASS | Nissim, van Noord & van der Goot 2020 (the original analogy code never returns an input word); our toy: inputs included → king 0.710, queen 0.709; excluded → queen 0.709 | the toy's margin is 0.001 and depends on how much non-royal company "king" has (sweep/SWEEP.md: at 0.3–0.5 queen wins either way) |
+| 7 | B07 | A 2016 study found bias: man is to computer programmer as woman is to homemaker | PASS | Bolukbasi et al. 2016 (arXiv:1607.06520), on the Google News Word2Vec vectors | paper title shown verbatim on its card |
+| 8 | B08 | ChatGPT, Claude, every modern model still starts by turning words into vectors | PASS (soft) | standard transformer architecture: token embedding layer first | small on-screen note: today's models learn their own vectors, for word pieces; "Word2Vec, 2013: made the idea famous" is the user's framing, a reasonable historical summary |
+| 9 | B09 | Meaning, learned without one definition, just from the company words keep | PASS | our toy: 0 definitions, 30,000 sentences read | — |
+| 10 | B10 | Viewer prompt: "Which words in my field share company but mean different things?" | EXEMPT | handoff prompt, not a factual claim | — |
+
+All toy numbers come from one run (seed 2026); re-running `evidence/w2v_toy.py` reproduces them exactly (checked by diff).
