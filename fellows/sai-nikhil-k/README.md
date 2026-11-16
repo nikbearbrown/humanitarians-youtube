@@ -6,7 +6,7 @@
 
 ## What's in this folder
 
-24 work folders, one per report or video:
+26 work folders, one per report or video:
 
 - `2026-08-21-every-image-earns-its-place/` — every image earns its place (2026-08-21)
 - `2026-08-21-model-to-the-bill/` — model to the bill (2026-08-21)
@@ -32,6 +32,8 @@
 - `2026-10-30-every-input-not-just-some/` — every input, not just some: formal verification at scale (2026-10-30)
 - `2026-11-06-same-app-new-plants/` — same app, new plants: Vegnet and the native look-alikes (2026-11-06)
 - `2026-11-06-ten-words-apart/` — ten words apart: a creativity test as a reward (2026-11-06)
+- `2026-11-13-same-app-new-look/` — same app, new look: Gavia's proposed redesign, measured (2026-11-13)
+- `2026-11-13-same-idea-different-words/` — same idea, different words: testing "jagged AGI" in Mollick's Portals code (2026-11-13)
 
 ## Frictional log
 
