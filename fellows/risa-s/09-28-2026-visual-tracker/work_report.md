@@ -9,7 +9,7 @@
 
 ## Summary
 
-A new tracker for all the textbook's visuals, requested by Evin: one Google Sheet with every figure in one table, in place of separate tables per chapter. [CONFIRM: what you did on it this week in your own words]
+A new tracker for all the textbook's visuals, requested by Evin: one Google Sheet with every figure in one table, in place of separate tables per chapter. 
 
 ## What was built
 
@@ -37,4 +37,4 @@ A new tracker for all the textbook's visuals, requested by Evin: one Google Shee
 
 ## Videos this week
 
-- Progress update: the visual tracker (cli-explainer, Bella). [Drive link]
+- Progress update: the visual tracker (cli-explainer, Bella). https://drive.google.com/file/d/15YD_lUKasZ7B8oKdGvM-lx81CsTJ58Cx/view?usp=drive_link
