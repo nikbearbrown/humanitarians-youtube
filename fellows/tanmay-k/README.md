@@ -109,6 +109,8 @@ the standing choice, and `af_bella` is the one carried as history.
 | 2026-11-01 | [`2026-11-01-two-customers-one-run-mycroft`](./2026-11-01-two-customers-one-run-mycroft/) | Two Customers, One Run — one run's results written twice from the same facts, an agent log for the next program and a report for the person deciding, and the mistake found by reading both |
 | 2026-11-08 | [`2026-11-08-where-the-eighty-lives-stem-video`](./2026-11-08-where-the-eighty-lives-stem-video/) | Where the Eighty Lives — why a smaller model can run far slower: two tiny models with the same weights and the same arithmetic, timed against one dial, how much the chip can do at once |
 | 2026-11-08 | [`2026-11-08-ask-whether-never-what-mycroft`](./2026-11-08-ask-whether-never-what-mycroft/) | Ask Whether, Never What — checking a pipeline's keys without reading them: one source's row filled field by field, and a test that builds its own dummy keys |
+| 2026-11-15 | [`2026-11-15-reading-a-twentieth-of-a-pixel-stem-video`](./2026-11-15-reading-a-twentieth-of-a-pixel-stem-video/) | Reading a Twentieth of a Pixel — a galaxy's speed read to a twentieth of a pixel, and the price is photons: the error is the line's width over the square root of the photons counted |
+| 2026-11-15 | [`2026-11-15-what-draft-is-waiting-for-mycroft`](./2026-11-15-what-draft-is-waiting-for-mycroft/) | What Draft Is Waiting For — a status word is a claim: the five-rung ladder, the records behind a rung, and the record that aged while the status stayed put |
 
 ## Two lanes
 
