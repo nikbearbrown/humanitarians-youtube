@@ -5,7 +5,7 @@
 **Repository:**(https://github.com/nikbearbrown/mycroft/commit/f7981c7922dc83a51a6042dd381f2614b965e2e4)
 
 - **Video:** TO FILL
-- **Drive:** [TO FILL](https://drive.google.com/drive/u/1/folders/18Qh0yaNu-Y_naWIw3ht5mMRL_ECXiovd)
+- **Drive:** (https://drive.google.com/drive/u/1/folders/18Qh0yaNu-Y_naWIw3ht5mMRL_ECXiovd)
 - **Frictional log:** [FRICTIONAL.md](FRICTIONAL.md)
 - **Commit:**(https://github.com/nikbearbrown/mycroft/commit/f7981c7922dc83a51a6042dd381f2614b965e2e4)
 
