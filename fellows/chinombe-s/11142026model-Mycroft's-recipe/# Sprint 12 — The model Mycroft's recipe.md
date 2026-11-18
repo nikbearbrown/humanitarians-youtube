@@ -1,13 +1,13 @@
 # Sprint 12 — The model Mycroft's recipes name cannot be bought
 
-**Week:** 16–20 Nov 2026 · work done 17 Nov
+**Week:**  9-14Nov 2026 · 
 **Project:** Mycroft — Adaptive Model Routing & Inference Gateway
-**Repository:** https://github.com/nikbearbrown/mycroft
+**Repository:**(https://github.com/nikbearbrown/mycroft/commit/f7981c7922dc83a51a6042dd381f2614b965e2e4)
 
 - **Video:** TO FILL
-- **Drive:** TO FILL
+- **Drive:** [TO FILL](https://drive.google.com/drive/u/1/folders/18Qh0yaNu-Y_naWIw3ht5mMRL_ECXiovd)
 - **Frictional log:** [FRICTIONAL.md](FRICTIONAL.md)
-- **Commit:** TO FILL
+- **Commit:**(https://github.com/nikbearbrown/mycroft/commit/f7981c7922dc83a51a6042dd381f2614b965e2e4)
 
 ## What this sprint was for
 
