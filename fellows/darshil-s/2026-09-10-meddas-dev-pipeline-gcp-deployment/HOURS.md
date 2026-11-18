@@ -2,7 +2,7 @@
 
 **Project:** MEDAS Aggregation Frontend — CI/CD & Rollback Pipeline
 **Friction Log:** [FICTIONAL.md](FICTIONAL.md)
-**Report Week:** Oct 9, 2026
+**Report Week:** 10 September, 2026
 **Total Hours:** 22.0 hrs
 
 ---
