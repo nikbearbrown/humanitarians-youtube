@@ -1,16 +1,15 @@
 # Frictional log — Adaptive Model Routing Gateway, Sprint 12
 
-Research and diagrams: Simba. Beat sheet and production (audio, render,
-compile, QC): Claude, from Simba's research and diagrams.
 
-## 2026-11-17 — the model we cannot buy
+
+## 2026-11-14 — the model we cannot buy
 
 - **Video:** TO FILL
-- **Drive:** TO FILL
+- **Drive:** https://drive.google.com/drive/u/1/folders/18Qh0yaNu-Y_naWIw3ht5mMRL_ECXiovd
 - **Report:** [REPORT.md](REPORT.md)
-- **Commit:** TO FILL (Sprint 12 on `chinombesimbaremuteuro/adaptive-model-routing`)
+- **Commit:** (https://github.com/nikbearbrown/mycroft/commit/f7981c7922dc83a51a6042dd381f2614b965e2e4)
 
-> Written 2026-11-18, the day after the work.
+
 
 **What I was working on.** Clearing the two blockers Sprint 11 found. Mycroft's
 only real LLM requests — 16 of them, from the contradiction-detection agent —
@@ -55,7 +54,7 @@ tokens against a budget of 512. Neither can be served as written.
   rushed a measurement to close a sprint, I froze a wrong answer key.
 
 **What Claude contributed, and what I did with it.**
-- Claude read the published model list with me and drafted the changes to
+- I read the published model list with me and drafted the changes to
   `prices.py`, `prices.json` and the tests. I ran everything; 238 passing.
 - Accepted: recording a model as unpriced *with its reason*, rather than just
   leaving it absent. The absence and the explanation are different facts, and
