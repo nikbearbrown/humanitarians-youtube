@@ -874,13 +874,13 @@ See the [executive report](2026-11-18-status.md), [fellow census](2026-11-18-fel
 
 [All source artifacts](https://github.com/nikbearbrown/humanitarians-youtube/tree/91b92d8028f12ac05360c136aab4648ed728ada0/fellows/shubham-g)
 
-**Category:** Marketing; content strategy; generative media education.
+**Category:** Lyrical Literacy; education; learning-media production; marketing and content strategy.
 
-**Work:** Social AI/brand visibility, human creativity comparison, repurposing one asset into ten, Midjourney learning, performance analysis and reverse engineering.
+**Work:** The renewal explicitly identifies Lyrical Literacy learning videos and an AI plus traditional-tools production flow for recruits. Eight source packages cover social AI/brand visibility, human creativity comparison, repurposing content, Midjourney learning and reverse engineering. Week 4 turns a completed video into a decision log, template and six-step checklist. [Renewal evidence](https://github.com/nikbearbrown/humanitarians-youtube/blob/91b92d8028f12ac05360c136aab4648ed728ada0/fellows/shubham-g/RENEWAL.md).
 
-**Evidence and limits:** Eight source-only episode packages; narration explains techniques and reflects learning. No measured brand lift or built marketing automation demonstrated.
+**Evidence and limits:** Eight source packages are inspectable. Renewal reports 16 finished landscape/portrait masters with hashes and toolkit checks; those masters were not independently replayed here. YouTube uploads and personal/PM review remained open in that record. Recruit trials, measured production-time improvement and final handoff are planned, not established outcomes. No measured brand lift or learner gain demonstrated.
 
-**Outreach/publication assessment:** Useful marketing education; not yet an impact case study. No authored publication established.
+**Outreach/publication assessment:** Include in the Lyrical Literacy program story as learning-media production and workflow-building, not merely generic marketing. Valuable supporting evidence, but not yet a measured literacy-impact case study. No authored publication established.
 
 **Source folder:** [shubham-g](https://github.com/nikbearbrown/humanitarians-youtube/tree/91b92d8028f12ac05360c136aab4648ed728ada0/fellows/shubham-g)
 
