@@ -37,3 +37,14 @@ _Reconstructed on 2026-11-03 from this folder's build record (git history, `beat
 ## Your own notes
 
 _Add what you remember: what surprised you, what you rejected, what you would do differently._
+
+## 2026-11-18 — narration corrected and re-rendered
+
+- **What changed:** four overstatements fixed in the beat sheet.
+  - "One company had changed its tag" → three filers.
+  - "I fixed each one" → Verizon's liabilities were rebuilt from its components; Walmart's stay UNKNOWN.
+  - "46 of 46 metrics" → 46 of 46 *scored* values, with two rows unscored.
+  - "Specified to verified" → toward verified. The recipe is still SPECIFIED.
+- **Who did what:** Writing this log caught the first three. Claude found the fourth while editing; I approved the re-cut.
+- **Result:** re-rendered with 0 failures: 16:9 is 2:16 and 9:16 is 2:21 (up from 2:03 and 2:08, because the corrected lines are longer). The narration now matches the benchmark results and PR #13.
+- **Still open:** the earlier upload of this video, if anyone has it, carries the old narration and should be replaced.
