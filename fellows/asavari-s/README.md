@@ -22,6 +22,11 @@ Explainer videos in the house Brutalist format, each produced in 16:9 and 9:16.
 | 2026-11-16 | [Progress Update — Week of Nov 16](2026-11-16-progress-update/) | Progress update |
 | 2026-11-18 | [What Makes an AI Agent?](2026-11-18-what-makes-an-ai-agent/) | AI / STEM |
 
+## Other work folders
+
+- [SEC agent handoff and next-project exploration, Nov 2–15](2026-11-02-sec-handoff-and-next-project/)
+- [SEC agent as a tool other agents can call, from Nov 19](2026-11-19-secfma-agent-tool/)
+
 ## Reports
 
 - [Renewal request, 2026-11-19](renewal-requests/2026-11-19-renewal-request.md)
