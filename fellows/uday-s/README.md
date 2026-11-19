@@ -112,6 +112,14 @@ measured clock — see that episode's `BUILD-LOG.md`, "REVISION 2".
   topic explainer on algorithmic trading: two papers reach opposite conclusions
   about the same literature, and what survives is the part neither contests.
   11 beats · ~4:01.
+- [2026-11-13 — Every Row Was True](./2026-11-13-mycroft-weekly-every-row-was-true/) —
+  weekly work report on `mycroft` @ `b425b19`, **episode 12**: nothing in the map
+  was false, and it was still partial — ten subsystems and 1,005 files the
+  checker never looked at. 12 beats · ~3:49.
+- [2026-11-13 — Counting The Wrong Words](./2026-11-13-counting-the-wrong-words/) —
+  topic explainer on market sentiment: 73.8% of negative word counts in filings
+  are words that are not negative in finance, and seven words carry a quarter of
+  them. 11 beats · ~3:43.
 
 The two 2026-08-27 folders carry a `short/` subfolder: a derivative 1080×1920 cut
 for YouTube Shorts, reusing the parent's audio with only the funnel outro
@@ -129,7 +137,7 @@ closes on "gate 2 cannot clear"; ep 2 resolves two rows of that list; ep 3's
 falsifiability beat lands back on ep 1's frozen corpus; ep 4 closes the ledger
 at six of six steps and finds the same ep-1 defect one level up (a gate with
 nothing to fail). Watch them in order:
-`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6` → `d85106b` → `93485c4` → `6428457` → `0358ab9`.
+`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6` → `d85106b` → `93485c4` → `6428457` → `0358ab9` → `b425b19`.
 
 **Dual-use note:** *The Gap You Can Actually Close* is a security topic handled
 defensively. It explains what the term names, reports published statistics, and
