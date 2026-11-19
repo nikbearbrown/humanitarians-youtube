@@ -30,7 +30,7 @@ and mailing modifications back to creators.
 *Artifact:* [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1518806315#gid=1518806315).
 
 **Result B — Automated the resolution gate (4K auto-check) and scoped the pipeline
-beyond it.** I built and shipped an Apps Script 4K auto-check that reads each uploaded
+beyond it.** The development team(Vikhyat and Likhith) and I built and shipped an Apps Script 4K auto-check that reads each uploaded
 video's resolution and flags anything below 4K, onboarded and trained 2 new reviewers,
 and scoped the next stages (auto-upload to YouTube after the check; fellow publish
 notifications). The week of Nov 17 was the first fully clean week (48 reviewed, 0 sent
@@ -59,7 +59,7 @@ automation (Google Apps Script), and data/statistics explainers (Monte Carlo, A/
 significance, effort estimation) — applies product-management, analytics, and
 communication skills directly relevant to my program of study. Supervised by **Professor
 Nik Bear Brown** and **Professor Nina**; review and feedback evidence is in the Video
-Review Logs and the weekly progress reports. *
+Review Logs and the weekly progress reports. 
 
 ## 5. Videos and Frictional logs
 
@@ -85,8 +85,7 @@ on branch [`sanjana-rao`](https://github.com/nikbearbrown/humanitarians-youtube/
 
 **Unresolved issues:** auto-upload v1 not yet built; fellow publish notifications in
 progress; watermark check still manual; no solo-clear criterion yet for the 2 new
-reviewers; a new project (Causal Couture) just entered the pipeline and needs a
-naming/convention checklist.
+reviewers.
 
 ## 7. Weekly evidence index
 
