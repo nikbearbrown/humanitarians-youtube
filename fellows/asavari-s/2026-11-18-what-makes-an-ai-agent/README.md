@@ -5,7 +5,7 @@
 What turns a model into an agent is the loop: plan a step toward a goal, act with a tool, observe the result, decide again, and stop on a rule. That loop is what makes agents useful. It is also what makes them risky, because errors compound across steps. So the parts that must be exact still belong in deterministic tools the agent calls. This is the week-of-November-16 STEM explainer, made as I move to the Agents & Jobs team. It connects to the SEC agent's no-LLM-in-the-critical-path design.
 
 **Formats:** 16:9 (3840×2160, 1:51) and 9:16 (2160×3840, 1:56), both rendered and checked.
-**Watch:** _[add the direct viewing link after upload]_
+**Watch:** [16:9](https://drive.google.com/file/d/14JT29ixdfJDJXuEi_AhxQarH9g9dapPj/view) · [9:16](https://drive.google.com/file/d/1H-PAgE09yy_Sc28XGXK565L_iK8bnMVe/view) (Google Drive, anyone with the link)
 **Source:** [`beat_sheet.json`](beat_sheet.json) — rendered through the brutalist.art runtime (Remotion beats + Kokoro `af_bella`). The 9:16 version is a portrait re-render, not a crop.
 **Frictional log:** [`FRICTIONAL.md`](FRICTIONAL.md)
 
