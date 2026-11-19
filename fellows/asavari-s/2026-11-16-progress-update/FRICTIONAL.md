@@ -34,3 +34,30 @@
 ## Your own notes
 
 _Add what you remember: what surprised you, what you rejected, what you would do differently._
+
+## 2026-11-19 — choosing my first Agents & Jobs project
+
+**What I was working on.** Picking a next project now that I'm on the Agents & Jobs team, and finishing Tanmay's three deliverables (due Nov 20).
+
+**What I tried, and what I expected.** I asked Claude to survey [nikbearbrown/mycroft](https://github.com/nikbearbrown/mycroft) for work I could pick up. I expected to find open issues to choose from.
+
+**Where it resisted, and what I did next.**
+- The repo has **no open issues**; work moves through PMs and open pull requests instead. The survey found:
+  - six projects on main
+  - several agent-related folders
+  - eight open PRs, including my [#13](https://github.com/nikbearbrown/mycroft/pull/13)
+- Four options came out of it:
+  1. Package my SEC agent as a deterministic tool that other Mycroft agents can call.
+  2. Join the Agentic Runway-Risk Pipeline (most active, last commit Nov 16).
+  3. Help with insider signals ([PR #86](https://github.com/nikbearbrown/mycroft/pull/86), SEC Form 4).
+  4. Work on the provenance-gatekeeper / verification layer.
+- I checked [humanitarians.ai/agents](https://www.humanitarians.ai/agents): Mycroft is one of the Agents projects, so option 1 is Agents & Jobs work.
+- Uploading the last three videos: after I uploaded, the shared Drive folder still didn't show them, and Trust, but Verify was still the Nov 3 file. Being re-checked.
+
+**What Claude contributed, and what I did with it.**
+- **Claude:** ran the survey and recommended option 1.
+- **Me:** chose option 1. I'll take it to Tanmay, who decides.
+
+**What I understand now, and what I still do not.**
+- **Understood:** the shortest path to my "first PR by Nov 30" deliverable is building on my own SEC agent rather than starting over.
+- **Not resolved:** Tanmay's confirmation of the project.
