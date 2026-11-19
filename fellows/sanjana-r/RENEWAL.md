@@ -1,17 +1,12 @@
 # Renewal request — Sanjana R.
 
-> Markdown renewal report, saved in my own fellows folder, per the Fellows renewal
-> process. Email (to hr@humanitarians.ai and bear@humanitarians.ai, CC my Project
-> Manager) carries a short summary and a direct link to this file. A ready-to-send
-> email draft is at the end.
-
 ## 1. Your request
 
 - **Name:** Sanjana R. ([@SanjanaGRao](https://github.com/SanjanaGRao))
 - **Role / Project:** YouTube Content Project Manager — Fellows YouTube pipeline
   (content review and video essays), Marketing group
 - **Current agreement ends:** 30 Nov 2026
-- **Reporting period:** 29 Jul — 30 Nov 2026
+- **Reporting period:** 01 Sept — 30 Nov 2026
 - **Requested renewal dates:** 1 Dec 2026 — 31 Jan 2027
 - **Supervisor(s):** Professor Nik Bear Brown and Professor Nina, Humanitarians AI
 - **Repository:** [nikbearbrown/humanitarians-youtube](https://github.com/nikbearbrown/humanitarians-youtube) ·
@@ -64,8 +59,7 @@ automation (Google Apps Script), and data/statistics explainers (Monte Carlo, A/
 significance, effort estimation) — applies product-management, analytics, and
 communication skills directly relevant to my program of study. Supervised by **Professor
 Nik Bear Brown** and **Professor Nina**; review and feedback evidence is in the Video
-Review Logs and the weekly progress reports. *(Degree/program specifics to confirm with
-my advisor; authorization details sent privately to HR, not in this public log.)*
+Review Logs and the weekly progress reports. *
 
 ## 5. Videos and Frictional logs
 
@@ -122,44 +116,3 @@ and the [Drive folder](https://drive.google.com/drive/folders/13ukeZn2VRVlnGXP7O
 | 12 – 18 Nov | 22 | [RAID log](11-18-2026%20raid-log-nameIt-ownIt-rateIt/README.md) · [PM progress (Nov 17)](11-18-2026%20pm-progress-update/README.md) | Review Logs; weekly-hours |
 
 ---
-
-## Ready-to-send email (copy, confirm the dates, send Mon–Wed business hours)
-
-```
-To: hr@humanitarians.ai; bear@humanitarians.ai
-CC (required): <my current Project Manager — the person I report to>
-
-Subject: Fellowship renewal — Sanjana R. — Fellows YouTube pipeline — 1 Dec 2026 to 31 Jan 2027
-
-Markdown renewal report:
-https://github.com/nikbearbrown/humanitarians-youtube/blob/sanjana-rao/fellows/sanjana-r/RENEWAL.md
-
-Request: Please renew my fellowship from 1 Dec 2026 through 31 Jan 2027. My current
-agreement ends 30 Nov 2026. This summary covers 29 Jul – 30 Nov 2026.
-
-Completed:
- - Ran the Fellows review gate: 656 videos reviewed (+25 to publish) — Video Review Logs.
- - Built the 4K auto-check + trained 2 reviewers; scoped auto-upload & publish
-   notifications — Week-of-Nov-17 report in the repo.
- - Produced 20 explainer/tutorial/progress pieces — Folder Guide in the repo.
-
-Hours status: 20+ hours documented for every reported week (~381h total; no week below 20),
-in weekly-hours/README.md.
-
-Degree relevance and supervision: content PM, video-review systems, light automation, and
-data/stats explainers relevant to my program; supervised by Prof. Nik Bear Brown and Prof.
-Nina (feedback evidence in the review logs and progress reports).
-
-Authorization: <authorization type and dates; current agreement 29 Jul – 30 Nov 2026 —
-sensitive details sent privately to HR, not in the public log>.
-
-Next period: auto-upload v1 (mid-Dec), fellow publish notifications (late Dec, in progress),
-watermark auto-check (late Dec), reviewer calibration rubric (mid-Jan).
-
-Outstanding issues: auto-upload v1 not yet built; publish notifications in progress;
-watermark check still manual; reviewer solo-clear criterion pending.
-```
-
-*Note: confirm the current agreement end date (30 Nov 2026) and requested dates against
-your signed agreement before sending — renewals are not backdated, so send at least 7 days
-ahead. Send authorization specifics to HR privately, not in this public file.*
