@@ -22,6 +22,12 @@ Explainer videos in the house Brutalist format, each produced in 16:9 and 9:16.
 | 2026-11-16 | [Progress Update — Week of Nov 16](2026-11-16-progress-update/) | Progress update |
 | 2026-11-18 | [What Makes an AI Agent?](2026-11-18-what-makes-an-ai-agent/) | AI / STEM |
 
+## Reports
+
+- [Renewal request, 2026-11-19](renewal-requests/2026-11-19-renewal-request.md)
+- [Weekly hours and evidence, one row per week](weekly-hours/README.md)
+- [Research and project plan, next period](research-plan.md)
+
 ## Frictional log
 
 Every work subfolder here carries its own `FRICTIONAL.md` — a dated record of the process
