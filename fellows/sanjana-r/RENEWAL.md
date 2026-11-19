@@ -87,13 +87,16 @@ keep the review volume up, and keep shipping weekly content.
    video passes the 4K check, queue it for YouTube — with professor review kept as the
    gate before anything goes public. "Don't auto-publish" is a hard constraint, not a
    nice-to-have.
-2. **Extend the auto-check to the watermark gate (Dec).** The 4K check is automated;
+2. **Fellow publish notifications (in progress).** Close the loop on the pipeline:
+   automatically notify each fellow once their YouTube video is published, so creators
+   hear it from the system instead of a manual message. Already in works.
+3. **Extend the auto-check to the watermark gate (Dec).** The 4K check is automated;
    the watermark check is still manual. Automate it next so both gates run without a
    person.
-3. **Reviewer calibration (Dec–Jan).** A light rubric for when a newly trained
+4. **Reviewer calibration (Dec–Jan).** A light rubric for when a newly trained
    reviewer is calibrated enough to clear videos solo, so review capacity scales past
    one person.
-4. **Keep the pipeline running (ongoing).** Continue weekly fellow-video reviews
+5. **Keep the pipeline running (ongoing).** Continue weekly fellow-video reviews
    through the gate, a weekly PM progress report (stats only, no names), and a weekly
    explainer, each in 16:9 + 9:16 at native 4K with PROOF self-review.
 
@@ -103,6 +106,8 @@ Reporting continues as it has: a dated Frictional log per work folder, weekly ho
 ## Open items I am carrying
 
 - Auto-upload to YouTube — v1 not yet built (plan scoped the week of Nov 17).
+- Fellow publish notifications — automatic notification to each fellow once their
+  YouTube video is published (in progress).
 - Watermark check — still manual; next automation target after 4K.
 - Reviewer calibration rubric — 2 reviewers trained, no solo-clear criterion yet.
 - New project onboarding — Causal Couture entered the pipeline; a naming/convention
