@@ -5,7 +5,7 @@
 When guessing isn't good enough: probabilistic AI gives its best guess and can shift run to run; deterministic code gives the exact same, traceable answer every time. The skill is drawing the line — put the parts that must be exact (money, identity, safety) in deterministic code, and keep a guess out of the critical path. Ties directly to the Mycroft SEC agent's no-LLM-in-the-critical-path design.
 
 **Formats:** 16:9 (3840×2160) and 9:16 (2160×3840) — both rendered and checked.
-**YouTube:** _pending upload_
+**Watch:** [16:9](https://drive.google.com/file/d/1tRtSrRjgBAxJU11OgB8U6rTPHp68Bn_g/view) · [9:16](https://drive.google.com/file/d/1FL__fGKd7nPu-A-cUrQALmedn6B1zYAz/view) (Google Drive, anyone with the link) · YouTube: pending
 **Video source:** [`beat_sheet.json`](beat_sheet.json) — the official Brutalist source. Rendered through the brutalist.art runtime (Remotion beats + Kokoro `af_bella` narration); the 9:16 is a portrait re-render via the `916` compositions, not a crop.
 **Rendered masters** (git-ignored, per house convention — published to YouTube, not committed):
 - `deterministic-vs-probabilistic-ai.mp4` (16:9)

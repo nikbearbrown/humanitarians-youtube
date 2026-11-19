@@ -53,7 +53,7 @@ I'm requesting renewal to continue on the Agents & Jobs team. During this period
 
 ## Missing Evidence / Decision
 
-- Video viewing links: direct links posted for the week of Nov 16. Per-video links for the ten earlier videos are still to be added; those files are in the shared Drive folder.
+- Video viewing links: every video has a public direct link (16:9) in its folder README. The 9:16 versions are linked for four videos so far; the rest are still to be uploaded.
 - Hours after Jul 24 are self-reported. Several of those weeks have no repository evidence (listed in the weekly index).
 - **This request is late.** My agreement ended 2026-10-31, and I'm sending this on 2026-11-19. It asks for coverage starting 2026-11-01, so Nov 1–19 would be retroactive. Weeks after Oct 31 were worked without an active agreement.
 - Progress-update videos before 2026-11-16: none

@@ -2,10 +2,10 @@
 
 **Fellow:** Asavari (Ash) Shejwal &nbsp;·&nbsp; **Track:** Mycroft — SEC Filings Financial Metrics Agent &nbsp;·&nbsp; **Date:** 2026-10-31
 
-How an accuracy benchmark moved the SEC Filings Financial Metrics Agent from SPECIFIED toward VERIFIED. Scaling the independently-sourced golden set from 2 companies to 10 caught three real extraction bugs that were invisible at two — XBRL tag migration across years, a ticker resolving to an empty shell entity, and filers with no aggregate total-liabilities tag. After the fixes: 46 of 46 values match within a 0.5% relative tolerance across 10 companies.
+How an accuracy benchmark moved the SEC Filings Financial Metrics Agent from SPECIFIED toward VERIFIED. Scaling the independently-sourced golden set from 2 companies to 10 caught three real extraction bugs that were invisible at two — XBRL tag migration across years, a ticker resolving to an empty shell entity, and filers with no aggregate total-liabilities tag. After the fixes: all 46 scored values match within a 0.5% relative tolerance across 10 companies (two rows are not yet scored).
 
 **Formats:** 16:9 (3840×2160) and 9:16 (2160×3840) — both rendered and checked.
-**YouTube:** _pending upload_
+**Watch:** [16:9](https://drive.google.com/file/d/1HOfqBKIFSTnhIFefYyJKSzIQUNg_wflX/view) · 9:16 to be added (Google Drive, anyone with the link) · YouTube: pending
 **Video source:** [`beat_sheet.json`](beat_sheet.json) — the official Brutalist source. Rendered through the brutalist.art runtime (Remotion beats + Kokoro `af_bella` narration); the 9:16 is a portrait re-render via the `916` compositions, not a crop.
 **Code:** [nikbearbrown/mycroft PR #13](https://github.com/nikbearbrown/mycroft/pull/13)
 
