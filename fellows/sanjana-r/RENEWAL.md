@@ -1,114 +1,165 @@
 # Renewal request — Sanjana R.
 
-- **Current agreement:** 29 Jul — 30 Nov 2026
-- **Requested period:** 1 Dec 2026 — 31 Jan 2027
+> Markdown renewal report, saved in my own fellows folder, per the Fellows renewal
+> process. Email (to hr@humanitarians.ai and bear@humanitarians.ai, CC my Project
+> Manager) carries a short summary and a direct link to this file. A ready-to-send
+> email draft is at the end.
 
-- **Role:** YouTube Content Project Manager — Fellows YouTube pipeline (content review and video essays)
-- **Group:** Marketing
+## 1. Your request
+
+- **Name:** Sanjana R. ([@SanjanaGRao](https://github.com/SanjanaGRao))
+- **Role / Project:** YouTube Content Project Manager — Fellows YouTube pipeline
+  (content review and video essays), Marketing group
+- **Current agreement ends:** 30 Nov 2026
+- **Reporting period:** 29 Jul — 30 Nov 2026
+- **Requested renewal dates:** 1 Dec 2026 — 31 Jan 2027
 - **Supervisor(s):** Professor Nik Bear Brown and Professor Nina, Humanitarians AI
-- **Repository:** https://github.com/nikbearbrown/humanitarians-youtube
-- **Branch:** `sanjana-rao` · **Folder:** [`fellows/sanjana-r`](https://github.com/nikbearbrown/humanitarians-youtube/tree/sanjana-rao/fellows/sanjana-r)
-- **GitHub:** [@SanjanaGRao](https://github.com/SanjanaGRao)
+- **Repository:** [nikbearbrown/humanitarians-youtube](https://github.com/nikbearbrown/humanitarians-youtube) ·
+  branch [`sanjana-rao`](https://github.com/nikbearbrown/humanitarians-youtube/tree/sanjana-rao/fellows/sanjana-r)
 
-## Necessary links
+### Necessary links (one click to the evidence)
 
 | What | Link |
 |---|---|
-| Google Drive — videos | https://drive.google.com/drive/folders/13ukeZn2VRVlnGXP7Ohg_Flc-D9jyGW3B |
+| Google Drive — all videos | https://drive.google.com/drive/folders/13ukeZn2VRVlnGXP7Ohg_Flc-D9jyGW3B |
 | Video Review Logs (tracker) | https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1518806315#gid=1518806315 |
-| Weekly hours & evidence index | [weekly-hours/README.md](weekly-hours/README.md) |
+| Weekly hours (per-week record) | [weekly-hours/README.md](weekly-hours/README.md) |
 | Folder Guide & Evidence (all pieces) | [README.md](README.md) |
 
-## What the current period produced
+## 2. Completed results (what I delivered, my contribution, artifact each)
 
-Four months running the Fellows YouTube pipeline end to end — reviewing fellow
-videos through a consistent quality gate, building the channel's structure, shipping
-explainer and progress content, and automating the parts of the review that a script
-can do better than a person. Every figure below traces to a logged row in the
+**Result A — Ran the Fellows review gate at scale.** I personally reviewed **656 fellow
+videos** (plus 25 taken all the way to publish) against a consistent quality gate —
+clean finish, portrait holds, code-on-GitHub, 4K and watermark — logging each decision
+and mailing modifications back to creators.
+*Artifact:* [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1518806315#gid=1518806315).
+
+**Result B — Automated the resolution gate (4K auto-check) and scoped the pipeline
+beyond it.** I built and shipped an Apps Script 4K auto-check that reads each uploaded
+video's resolution and flags anything below 4K, onboarded and trained 2 new reviewers,
+and scoped the next stages (auto-upload to YouTube after the check; fellow publish
+notifications). The week of Nov 17 was the first fully clean week (48 reviewed, 0 sent
+back) that the automated gate was built to produce.
+*Artifact:* [Week-of-Nov-4 report](11-04-2026%20pm-progress-update/README.md) ·
+[Week-of-Nov-17 report](11-18-2026%20pm-progress-update/README.md).
+
+**Result C — Produced 20 explainer / tutorial / progress pieces.** Each rendered in
+16:9 and 9:16 at native 4K with on-screen sources and a PROOF self-review, watermarked
+@HumanitariansAI — covering the channel's process (playlist architecture, submission/
+review, GitHub tutorial) and a run of project/product-management explainers.
+*Artifact:* [Folder Guide — all pieces](README.md) ·
+[RAID-log explainer (latest)](11-18-2026%20raid-log-nameIt-ownIt-rateIt/README.md).
+
+## 3. Hours status
+
+Every reported week is **≥ 20 hours and documented**, logged week by week in
+[weekly-hours/README.md](weekly-hours/README.md): **~381 hours** to date across review &
+PM work and production, most weeks 20–25 hours (monthly average well above 20). **No
+week below 20 hours; no missing weeks** in the reporting period.
+
+## 4. Degree relevance and supervision
+
+The work — content project management, building a repeatable video-review system, light
+automation (Google Apps Script), and data/statistics explainers (Monte Carlo, A/B
+significance, effort estimation) — applies product-management, analytics, and
+communication skills directly relevant to my program of study. Supervised by **Professor
+Nik Bear Brown** and **Professor Nina**; review and feedback evidence is in the Video
+Review Logs and the weekly progress reports. *(Degree/program specifics to confirm with
+my advisor; authorization details sent privately to HR, not in this public log.)*
+
+## 5. Videos and Frictional logs
+
+Direct links to each piece are in the [Folder Guide](README.md); rendered videos are in
+the [Google Drive folder](https://drive.google.com/drive/folders/13ukeZn2VRVlnGXP7Ohg_Flc-D9jyGW3B).
+Weekly **Frictional logs** (what got done and what didn't) live in each week's progress
+folder — as its `README.md` or a dedicated `FRICTIONAL.md`. Supporting commits/PRs are
+on branch [`sanjana-rao`](https://github.com/nikbearbrown/humanitarians-youtube/tree/sanjana-rao/fellows/sanjana-r).
+
+## 6. Next steps (plan, deliverables, target dates)
+
+1. **Auto-upload v1 — by mid-Dec 2026.** On a 4K PASS, queue the video for YouTube, with
+   professor review kept as the gate before anything goes public ("don't auto-publish"
+   is a hard constraint).
+2. **Fellow publish notifications — in progress, v1 by late Dec 2026.** Automatically
+   notify each fellow once their YouTube video is published.
+3. **Watermark auto-check — by late Dec 2026.** Automate the one remaining manual gate.
+4. **Reviewer calibration rubric — by mid-Jan 2027.** A criterion for when a trained
+   reviewer can clear videos solo, so review capacity scales past one person.
+5. **Keep the pipeline running — ongoing.** Weekly fellow-video reviews, a weekly PM
+   progress report (stats only, no names), and a weekly explainer, each in 16:9 + 9:16
+   at native 4K with a PROOF self-review.
+
+**Unresolved issues:** auto-upload v1 not yet built; fellow publish notifications in
+progress; watermark check still manual; no solo-clear criterion yet for the 2 new
+reviewers; a new project (Causal Couture) just entered the pipeline and needs a
+naming/convention checklist.
+
+## 7. Weekly evidence index
+
+One row per week in the reporting period. Hours link to the per-week record in
+[weekly-hours/README.md](weekly-hours/README.md); review evidence is in the
 [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1518806315#gid=1518806315)
-or a dated folder in the repository, not an estimate.
+and the [Drive folder](https://drive.google.com/drive/folders/13ukeZn2VRVlnGXP7Ohg_Flc-D9jyGW3B).
 
-- **656 fellow videos reviewed** (plus 25 taken all the way to publish) across the
-  review gate — clean finish, portrait holds, code-on-GitHub, 4K and watermark — with
-  modifications logged and mailed back to each creator.
-- **~381 hours** across review & PM work and production, week by week in
-  [weekly-hours/README.md](weekly-hours/README.md) — most weeks 20–25 hours, scaling
-  with review load.
-- **Channel & process architecture:** separate channel playlists, the YouTube
-  submission/review process, and a Fellows GitHub submission tutorial.
-- **A quality gate that got more automatic:** built and shipped the **4K auto-check**
-  (Apps Script) that reads each uploaded video's resolution and flags anything below
-  4K, closing the gap that previously needed a manual eyeball; **onboarded and trained
-  2 new reviewers**; and scoped the next stage — **automatic YouTube upload triggered
-  once a video clears the 4K check**, with professor review kept as the gate before
-  anything goes public.
-- **20 explainer / tutorial / progress pieces**, each rendered in 16:9 and 9:16 at
-  native 4K with on-screen sources and a self-review (PROOF), watermarked
-  @HumanitariansAI.
+| Week | Hours | Video(s) produced | Log & work evidence |
+|---|---|---|---|
+| 29 Jul – 2 Aug | 21 | — (onboarding + reviews) | Review Logs; weekly-hours |
+| 3 – 9 Aug | 21 | — (reviews; office hours 7 Aug) | Review Logs; weekly-hours |
+| 10 – 16 Aug | 20 | — (channel playlists, 10 Aug) | Review Logs; weekly-hours |
+| 17 – 23 Aug | 23 | — (toolkit training; reviews) | Review Logs; weekly-hours |
+| 24 – 30 Aug | 25 | [Playlist Architecture](08-24-2026-playlist-architecture-as-product-strategy/README.md) · [YouTube process](08-24-2026-youtube-process/README.md) · [GitHub tutorial](08-26-2026-fellows-github-tutorial/README.md) | Review Logs; weekly-hours |
+| 31 Aug – 6 Sep | 25 | [Monte Carlo schedule-risk](09-02-2026-monte-carlo-schedule-risk-explainer/README.md) | Review Logs; weekly-hours |
+| 7 – 13 Sep | 23 | — (research & scripting; reviews) | Review Logs; weekly-hours |
+| 14 – 20 Sep | 24 | [AI effort-estimation](09-19-2026%20ai-effort-estimation/README.md) · [weekly progress](09-19-2026%20weekly-progress-update/README.md) | Review Logs; weekly-hours |
+| 21 – 27 Sep | 20 | [AI project-management tools](09-26-2026%20ai-project-management-tools/README.md) | Review Logs; weekly-hours |
+| 28 Sep – 3 Oct | 22 | [The Review Gate](10-03-2026%20the-review-gate/README.md) · [AI status reports](10-03-2026%20ai-status-reports/README.md) | Review Logs; weekly-hours |
+| 4 – 10 Oct | 24 | — (weekly upload set, 4 videos, 8 Oct) | Review Logs; weekly-hours |
+| 11 – 17 Oct | 21 | [Critical Path Method](10-13-2026%20critical-path-method/README.md) · [AI risk management](10-10-2026%20ai-risk-management/README.md) · [PM progress](10-10-2026%20pm-progress-update/README.md) | Review Logs; weekly-hours |
+| 18 – 24 Oct | 20 | — (WSJF research & scripting) | Review Logs; weekly-hours |
+| 25 – 31 Oct | 24 | [WSJF](10-28-2026%20WSJF-project-management-methods/README.md) · [weekly progress](10-28-2026%20progress-update-weekly/README.md) | Review Logs; weekly-hours |
+| 1 – 7 Nov | 24 | [Gen AI action items](11-04-2026%20GenAI-action-items/README.md) · [PM progress (Nov 4)](11-04-2026%20pm-progress-update/README.md) | Review Logs; weekly-hours |
+| 8 – 11 Nov | 22 | [A/B test significance](11-11-2026%20AB-test-is-the-lift-real/README.md) | Review Logs; weekly-hours |
+| 12 – 18 Nov | 22 | [RAID log](11-18-2026%20raid-log-nameIt-ownIt-rateIt/README.md) · [PM progress (Nov 17)](11-18-2026%20pm-progress-update/README.md) | Review Logs; weekly-hours |
 
-### Evidence — explainers & tutorials
+---
 
-| Date | Piece | Folder |
-|---|---|---|
-| 08-24 | Playlist Architecture as Product Strategy | [folder](08-24-2026-playlist-architecture-as-product-strategy/README.md) |
-| 08-24 | YouTube submission & review process | [folder](08-24-2026-youtube-process/README.md) |
-| 08-26 | Fellows GitHub submission tutorial | [folder](08-26-2026-fellows-github-tutorial/README.md) |
-| 09-02 | Monte Carlo schedule-risk explainer | [folder](09-02-2026-monte-carlo-schedule-risk-explainer/README.md) |
-| 09-19 | AI for software effort estimation | [folder](09-19-2026%20ai-effort-estimation/README.md) |
-| 09-26 | AI-native project-management tools | [folder](09-26-2026%20ai-project-management-tools/README.md) |
-| 10-03 | AI status reports — trust, but verify | [folder](10-03-2026%20ai-status-reports/README.md) |
-| 10-10 | AI for risk management | [folder](10-10-2026%20ai-risk-management/README.md) |
-| 10-13 | AI + the Critical Path Method | [folder](10-13-2026%20critical-path-method/README.md) |
-| 10-28 | WSJF — AI-assisted backlog prioritization | [folder](10-28-2026%20WSJF-project-management-methods/README.md) |
-| 11-04 | Gen AI — meeting → ranked action items | [folder](11-04-2026%20GenAI-action-items/README.md) |
-| 11-11 | A/B test significance — "is the lift real?" | [folder](11-11-2026%20AB-test-is-the-lift-real/README.md) |
-| 11-18 | The RAID log — name it, own it, date it | [folder](11-18-2026%20raid-log-nameIt-ownIt-rateIt/README.md) |
+## Ready-to-send email (copy, confirm the dates, send Mon–Wed business hours)
 
-### Evidence — PM progress reports (stats only, no names)
+```
+To: hr@humanitarians.ai; bear@humanitarians.ai
+CC (required): <my current Project Manager — the person I report to>
 
-| Date | Report | Folder |
-|---|---|---|
-| 09-19 | Weekly progress update | [folder](09-19-2026%20weekly-progress-update/README.md) |
-| 10-03 | The Review Gate (progress record) | [folder](10-03-2026%20the-review-gate/README.md) |
-| 10-10 | PM progress update | [folder](10-10-2026%20pm-progress-update/README.md) |
-| 10-28 | Weekly progress update | [folder](10-28-2026%20progress-update-weekly/README.md) |
-| 11-04 | PM progress update (Week of Nov 4) | [folder](11-04-2026%20pm-progress-update/README.md) |
-| 11-18 | PM progress update (Week of Nov 17) | [folder](11-18-2026%20pm-progress-update/README.md) |
+Subject: Fellowship renewal — Sanjana R. — Fellows YouTube pipeline — 1 Dec 2026 to 31 Jan 2027
 
-Weekly Frictional logs (what got done and what didn't) live in each week's progress
-folder — as its `README.md` or a dedicated `FRICTIONAL.md`.
+Markdown renewal report:
+https://github.com/nikbearbrown/humanitarians-youtube/blob/sanjana-rao/fellows/sanjana-r/RENEWAL.md
 
-## Plan for the requested period
+Request: Please renew my fellowship from 1 Dec 2026 through 31 Jan 2027. My current
+agreement ends 30 Nov 2026. This summary covers 29 Jul – 30 Nov 2026.
 
-The through-line continues: make the review gate do more of the work automatically,
-keep the review volume up, and keep shipping weekly content.
+Completed:
+ - Ran the Fellows review gate: 656 videos reviewed (+25 to publish) — Video Review Logs.
+ - Built the 4K auto-check + trained 2 reviewers; scoped auto-upload & publish
+   notifications — Week-of-Nov-17 report in the repo.
+ - Produced 20 explainer/tutorial/progress pieces — Folder Guide in the repo.
 
-1. **Auto-upload v1 (Dec).** Turn the scoped plan into a first working version: when a
-   video passes the 4K check, queue it for YouTube — with professor review kept as the
-   gate before anything goes public. "Don't auto-publish" is a hard constraint, not a
-   nice-to-have.
-2. **Fellow publish notifications (in progress).** Close the loop on the pipeline:
-   automatically notify each fellow once their YouTube video is published, so creators
-   hear it from the system instead of a manual message. Already in works.
-3. **Extend the auto-check to the watermark gate (Dec).** The 4K check is automated;
-   the watermark check is still manual. Automate it next so both gates run without a
-   person.
-4. **Reviewer calibration (Dec–Jan).** A light rubric for when a newly trained
-   reviewer is calibrated enough to clear videos solo, so review capacity scales past
-   one person.
-5. **Keep the pipeline running (ongoing).** Continue weekly fellow-video reviews
-   through the gate, a weekly PM progress report (stats only, no names), and a weekly
-   explainer, each in 16:9 + 9:16 at native 4K with PROOF self-review.
+Hours status: 20+ hours documented for every reported week (~381h total; no week below 20),
+in weekly-hours/README.md.
 
-Reporting continues as it has: a dated Frictional log per work folder, weekly hours in
-`weekly-hours/README.md`, and every video count reconciling to the Video Review Logs.
+Degree relevance and supervision: content PM, video-review systems, light automation, and
+data/stats explainers relevant to my program; supervised by Prof. Nik Bear Brown and Prof.
+Nina (feedback evidence in the review logs and progress reports).
 
-## Open items I am carrying
+Authorization: <authorization type and dates; current agreement 29 Jul – 30 Nov 2026 —
+sensitive details sent privately to HR, not in the public log>.
 
-- Auto-upload to YouTube — v1 not yet built (plan scoped the week of Nov 17).
-- Fellow publish notifications — automatic notification to each fellow once their
-  YouTube video is published (in progress).
-- Watermark check — still manual; next automation target after 4K.
-- Reviewer calibration rubric — 2 reviewers trained, no solo-clear criterion yet.
-- New project onboarding — Causal Couture entered the pipeline; a naming/convention
-  checklist would let it ride the same gate cleanly.
+Next period: auto-upload v1 (mid-Dec), fellow publish notifications (late Dec, in progress),
+watermark auto-check (late Dec), reviewer calibration rubric (mid-Jan).
+
+Outstanding issues: auto-upload v1 not yet built; publish notifications in progress;
+watermark check still manual; reviewer solo-clear criterion pending.
+```
+
+*Note: confirm the current agreement end date (30 Nov 2026) and requested dates against
+your signed agreement before sending — renewals are not backdated, so send at least 7 days
+ahead. Send authorization specifics to HR privately, not in this public file.*
