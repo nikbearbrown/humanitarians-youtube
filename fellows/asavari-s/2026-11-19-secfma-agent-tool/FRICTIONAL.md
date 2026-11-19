@@ -25,3 +25,20 @@
   - Should the identity check use total equity (including NCI) when it's available?
   - Which agent should call the tool first?
   - The recipe doesn't list the tool yet, and my Project Manager hasn't confirmed the task.
+
+## 2026-11-19 (later) — documenting the tool
+
+**What I tried, and what I expected.** I wanted the tool documented wherever a reviewer would look: the Mycroft recipe, the package README, and this folder. I expected that to be write-up only.
+
+**Where it resisted, and what I did next.**
+- **The recipe was stale.** It didn't mention the tool, the 2026-10-31 fixes, or the open issues.
+- **It also overstated the verification.** `verified_against` said "Microsoft FY2020–2025 … balance sheet balances to the dollar." The package README said the same. The golden set was never FY2020–2025: it's FY2023–25, and it now covers 10 companies with 46/46 scored rows. I corrected both and bumped the recipe to v0.3.0 ([79a6435](https://github.com/nikbearbrown/mycroft/commit/79a6435)).
+- **The example response was checked, not copied.** The README example was verified against a real `--sample` run (6 PASS, gross margin 0.6167).
+
+**What Claude contributed, and what I did with it.**
+- **Claude:** wrote the recipe and README changes and this folder's reviewer page, and found the stale claim.
+- **Me:** asked for the work to be documented. Claude made the correction; reviewing it is part of my code review before the pull request.
+
+**What I understand now, and what I still do not.**
+- **Understood:** an overstated claim in a recipe is worse than in a video, because other agents and people treat the recipe as the record.
+- **Not resolved:** the same open items as above.
