@@ -28,7 +28,8 @@ Logged weekly, in the week it happened. These are hours worked, from the start d
 | 25 – 31 Oct | Week-of-Oct-25 QA: **47 videos handled** — 22 reviewed → professor approval, 25 taken to publish; ~10 creators; pre-review pipeline with dev team; progress sheet & revisions; flagged 8 below-4K + 4 missing watermark | 19 | WSJF explainer (28 Oct) · weekly progress reel (9:16 + 16:9) | 5 | 24 |
 | 1 – 7 Nov | Week-of-Nov-4 QA: **28 reviewed** — 24 cleared, 4 sent back (not 4K); ~9 creators; 4K auto-check (AppScript) built, tested & live; 2 new reviewers onboarded & trained | 19 | Gen-AI meeting→action-items explainer (4 Nov) · PM progress reel (9:16 + 16:9) | 5 | 24 |
 | 8 – 11 Nov | Reviews; ramp the 2 new reviewers onto live videos; extend the auto-check toward the watermark gate | 17 | A/B-test significance explainer — "is the lift real?" (11 Nov, 9:16 + 16:9) | 5 | 22 |
-| **To date** | **608 fellow videos reviewed** (+ 25 taken to publish) | **284** | **18 explainer / progress / tutorial pieces + channel & toolkit work** | **75** | **359** |
+| 12 – 18 Nov | Week-of-Nov-17 QA: **48 reviewed** — all cleared, 0 sent back (first fully clean week); 7 creators · 2 projects; meeting to scope auto-upload to YouTube after the 4K check | 17 | RAID-log explainer (project management, 9:16 + 16:9) · weekly progress reel | 5 | 22 |
+| **To date** | **656 fellow videos reviewed** (+ 25 taken to publish) | **301** | **20 explainer / progress / tutorial pieces + channel & toolkit work** | **80** | **381** |
 
 **Review & PM hrs** is fellow-video review (watch / spot-check, the review gate — clean finish, portrait holds, code on GitHub — logging, and emailing modifications) plus PM work (channel playlists, office hours, planning calls, the pre-review pipeline). **Prod hrs** is explainer research, scripting, narration, render and QC, plus channel/playlist architecture and toolkit learning.
 
