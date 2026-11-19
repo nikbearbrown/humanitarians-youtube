@@ -5,7 +5,7 @@
 How AI turns words, images, or whole documents into lists of numbers that capture meaning — so "close in meaning" becomes "close in space." Covers what an embedding is, why it powers search and RAG (the nearest-neighbor retrieval step), and where it misleads: an embedding only reflects its training data, and "similar" is not "correct." Companion to the RAG explainer.
 
 **Formats:** 16:9 (3840×2160) and 9:16 (2160×3840) — both rendered and checked.
-**YouTube:** _pending upload_
+**Watch:** [16:9](https://drive.google.com/file/d/1mc6UEd0FFsmbSiCaM2h7y4LlwtLX69yx/view) (Google Drive, anyone with the link) · 9:16 to be added · YouTube: pending
 **Video source:** [`beat_sheet.json`](beat_sheet.json) — the official Brutalist source. Rendered through the brutalist.art runtime (Remotion beats + Kokoro `af_bella` narration); the 9:16 is a portrait re-render via the `916` compositions, not a crop.
 **Rendered masters** (git-ignored, per house convention — published to YouTube, not committed):
 - `what-are-embeddings.mp4` (16:9)

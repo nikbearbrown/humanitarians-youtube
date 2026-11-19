@@ -5,7 +5,7 @@
 An end-to-end overview of the SEC Filings Financial Metrics Agent: how a ticker becomes verified financial metrics in five deterministic steps — resolve (ticker → CIK), fetch official XBRL from EDGAR, normalize concepts by explicit tag mapping, derive ratios/margins/growth keyed to the reporting period, and validate (PASS/FAIL/UNKNOWN) with provenance. The through-line for the three deep-dive Mycroft videos; shows why there is no LLM in the critical path.
 
 **Formats:** 16:9 (3840×2160) and 9:16 (2160×3840) — both rendered and checked.
-**YouTube:** _pending upload_
+**Watch:** [16:9](https://drive.google.com/file/d/1QHlAcevbU79Y337nNCKJPi9cpR1ICqkp/view) (Google Drive, anyone with the link) · 9:16 to be added · YouTube: pending
 **Video source:** [`beat_sheet.json`](beat_sheet.json) — the official Brutalist source. Rendered through the brutalist.art runtime (Remotion beats + Kokoro `af_bella` narration); the 9:16 is a portrait re-render via the `916` compositions, not a crop.
 **Rendered masters** (git-ignored, per house convention — published to YouTube, not committed):
 - `ticker-to-truth.mp4` (16:9)
