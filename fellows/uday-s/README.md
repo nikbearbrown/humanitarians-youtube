@@ -120,6 +120,14 @@ measured clock — see that episode's `BUILD-LOG.md`, "REVISION 2".
   topic explainer on market sentiment: 73.8% of negative word counts in filings
   are words that are not negative in finance, and seven words carry a quarter of
   them. 11 beats · ~3:43.
+- [2026-11-18 — It Never Ran](./2026-11-18-mycroft-weekly-it-never-ran/) —
+  weekly work report on `mycroft` @ `08b92d3`, **episode 13** and a direct sequel
+  to episode 12: why the multi-document YAML fix produced no output at all.
+  12 beats · ~3:44.
+- [2026-11-18 — Twenty Percent, Or Five](./2026-11-18-twenty-percent-or-five/) —
+  explainer on AI music-practice tools: deliberate practice explains twenty
+  percent of performance variance in some domains and five in others, and what
+  that means for a practice app. 11 beats · ~4:07.
 
 The two 2026-08-27 folders carry a `short/` subfolder: a derivative 1080×1920 cut
 for YouTube Shorts, reusing the parent's audio with only the funnel outro
@@ -137,7 +145,7 @@ closes on "gate 2 cannot clear"; ep 2 resolves two rows of that list; ep 3's
 falsifiability beat lands back on ep 1's frozen corpus; ep 4 closes the ledger
 at six of six steps and finds the same ep-1 defect one level up (a gate with
 nothing to fail). Watch them in order:
-`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6` → `d85106b` → `93485c4` → `6428457` → `0358ab9` → `b425b19`.
+`9ef4e7f` → `bdc1bc1` → `253ee74` → `aa0c0fe` → `4157a8e` → `8c13b87` → `fbd30b6` → `d85106b` → `93485c4` → `6428457` → `0358ab9` → `b425b19` → `08b92d3`.
 
 **Dual-use note:** *The Gap You Can Actually Close* is a security topic handled
 defensively. It explains what the term names, reports published statistics, and
