@@ -1,5 +1,45 @@
 # Fellows
 
+## Requirements at a glance
+
+The full rules are on the [Fellows page](https://www.humanitarians.ai/fellows). In short:
+
+**Professor Bear is not HR.** Do not email Professor Bear about HR things. Email HR
+at hr@humanitarians.ai if you are looking for a fellowship or want to become a
+Fellow, if you need an experience letter, or if you have questions about your
+agreement, its dates, or your OPT paperwork. The one exception is a renewal
+request: it goes to HR and Professor Bear together, with your Project Manager on CC.
+
+**Due every week, from your first week to your last.** This is your evidence for
+OPT: a dated record, made at the time, that your work is real and related to your
+degree. A record written each week is worth far more than one reconstructed at
+renewal time.
+
+- **Hours.** At least 20 hours of work, with a dated record for each week.
+- **Two videos made with Brutalist.** One on any STEM or AI topic you choose, and
+  one progress update on that week's work. Each one must open from a direct link
+  that anyone with the link can view.
+- **Your Frictional log.** A dated entry in the `FRICTIONAL.md` of every work folder
+  you worked in that week. See [Frictional logs](#frictional-logs) below.
+- **Code in the project repository.** If your project has its own GitHub repository,
+  commit your code there as you work, not in one batch at the end, and link from
+  your Frictional log to the specific commits or pull requests. Code that exists
+  only in this repository, or only on your own machine, doesn't count as evidence.
+- **Your weekly team meeting and presentation.** Meet with your team at least once
+  a week and present that week's work as an HTML slide deck. Missing meetings and
+  showing up unprepared are not OK. **Starting December 1, 2026, upload each weekly
+  presentation deck to your fellows folder**, in its own dated folder like every
+  other piece of work. Name the file `slides.html`: this repository's `.gitignore`
+  skips any file named `deck*.html`, so a file called `deck.html` will never be
+  committed.
+
+**Renewals are your responsibility.** Request your renewal at least one week
+(7 days) before your current agreement ends. Send it to hr@humanitarians.ai and
+bear@humanitarians.ai with your Project Manager on CC, Monday to Wednesday during
+business hours. Agreements are never backdated, and no one will remind you. Save
+the renewal report as a Markdown file in your fellows folder and email a direct
+link to it. The example below shows the structure.
+
 ## Example of a month-one renewal report
 
 Start with [Example Fellow — Brutalist team](example-f/README.md) for a complete
@@ -19,12 +59,16 @@ code** lives—and where a film becomes evidence of the work behind it rather th
 just a finished upload.
 
 Use one lowercase-kebab folder per fellow, named `first-name-last-initial`, then
-one dated weekly-report folder per video:
+one dated folder per piece of work: each video, and from December 1, 2026, each
+weekly presentation deck:
 
 ```text
 fellows/
   maya-r/
     2026-07-10-building-the-verified-data-gate/
+    2026-12-02-weekly-presentation/
+      slides.html
+      FRICTIONAL.md
 ```
 
 Profile introduction videos live under
