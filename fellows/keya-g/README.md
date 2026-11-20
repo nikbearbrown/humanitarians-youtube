@@ -20,6 +20,8 @@ Work folders, one per report or video:
 - [2026-11-02-week-4-progress](2026-11-02-week-4-progress/README.md): Week 4 progress video
 - [2026-11-09-how-duolingo-decides-what-you-practice](2026-11-09-how-duolingo-decides-what-you-practice/README.md): Week 5 explainer, How Duolingo Decides What You Practice Next
 - [2026-11-09-week-5-progress](2026-11-09-week-5-progress/README.md): Week 5 progress video
+- [2026-11-16-how-websites-know-im-not-a-robot](2026-11-16-how-websites-know-im-not-a-robot/README.md): Week 6 explainer, How Do Websites Know I'm Not a Robot?
+- [2026-11-16-week-6-progress](2026-11-16-week-6-progress/README.md): Week 6 progress video
 - [HOURS.md](HOURS.md): weekly hours
 
 
