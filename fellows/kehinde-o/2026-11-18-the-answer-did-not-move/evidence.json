@@ -1,0 +1,44 @@
+{
+ "model": "resnet18, torchvision weights=None, opset 13, do_constant_folding=False",
+ "runtime_vs_onnxruntime_max_abs_diff": 2.384185791015625e-06,
+ "argmax_runtime_equals_onnxruntime": true,
+ "nodes_before": 141,
+ "nodes_after": 32,
+ "ops_before": {
+  "Identity": 72,
+  "Conv": 20,
+  "BatchNormalization": 20,
+  "Relu": 17,
+  "MaxPool": 1,
+  "Add": 8,
+  "GlobalAveragePool": 1,
+  "Flatten": 1,
+  "Gemm": 1
+ },
+ "ops_after": {
+  "Conv": 20,
+  "MaxPool": 1,
+  "Add": 8,
+  "GlobalAveragePool": 1,
+  "Flatten": 1,
+  "Gemm": 1
+ },
+ "report": {
+  "identity_removed": 72,
+  "constants_folded": 0,
+  "conv_bn_fused": 20,
+  "relu_fused": 17,
+  "dead_nodes_removed": 0,
+  "dead_initializers_removed": 8,
+  "bytes_freed": 7680
+ },
+ "raw_vs_optimized_max_abs_diff": 1.1920928955078125e-06,
+ "argmax_raw_equals_optimized": true,
+ "output_abs_max": 4.680983543395996,
+ "fold_check_first_conv_bn": {
+  "conv": "/conv1/Conv",
+  "bn": "/bn1/BatchNormalization",
+  "epsilon": 9.999999747378752e-06,
+  "max_abs_gap_float64": 3.552713678800501e-15
+ }
+}
