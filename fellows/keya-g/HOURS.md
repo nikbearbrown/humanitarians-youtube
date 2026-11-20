@@ -10,6 +10,7 @@
 | Week 3 | Week 3 progress video, going through Brutalist videos and the film-as-code workflow, researching and choosing topics, learning how scripts and fact checks work | 10 | [How Google Docs Lets Two People Type in the Same Sentence](2026-10-26-how-google-docs-lets-two-people-type/README.md) | 10 | 20 |
 | Week 4 | Week 4 progress video, watching and reviewing Brutalist videos | 10 | [How Your Phone Types Japanese](2026-11-02-how-your-phone-types-japanese/README.md) | 10 | 20 |
 | Week 5 | Week 5 progress video, watching Brutalist videos, learning how vertical video creation differs from landscape | 10 | [How Duolingo Decides What You Practice Next](2026-11-09-how-duolingo-decides-what-you-practice/README.md) | 10 | 20 |
-| **Total so far** | | **50** | | **50.5** | **100.5** |
+| Week 6 | Week 6 progress video, learning film as code in more depth, how landscape and vertical videos are built and how the gates treat 16:9 and 9:16 differently | 10 | [How Do Websites Know I'm Not a Robot?](2026-11-16-how-websites-know-im-not-a-robot/README.md) | 11 | 21 |
+| **Total so far** | | **60** | | **61.5** | **121.5** |
 
 
