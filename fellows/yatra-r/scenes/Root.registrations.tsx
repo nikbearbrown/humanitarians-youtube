@@ -553,3 +553,42 @@ import {TblBluf916, TblSide916, TblTable916, TblInterview916, TblWalk916, TblTru
         durationInFrames={469} fps={30} width={1080} height={1920}
         defaultProps={{data: {} as any}} />
       {/* ── PQ-END ── */}
+
+      {/* ── FT-BEGIN yatra-film-the-impossible — Ft* scenes, each registered at 1920×1080 and as <id>916 at 1080×1920. durationInFrames = MEASURED Kokoro length × 30fps. No numeric props exist. ── */}
+      <Composition id="FtBluf" component={FtBluf as any}
+        durationInFrames={358} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtBluf916" component={FtBluf as any}
+        durationInFrames={358} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtAnatomy" component={FtAnatomy as any}
+        durationInFrames={337} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtAnatomy916" component={FtAnatomy as any}
+        durationInFrames={337} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtScenes" component={FtScenes as any}
+        durationInFrames={551} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtScenes916" component={FtScenes as any}
+        durationInFrames={551} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtTracker" component={FtTracker as any}
+        durationInFrames={382} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtTracker916" component={FtTracker as any}
+        durationInFrames={382} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtShift" component={FtShift as any}
+        durationInFrames={504} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtShift916" component={FtShift as any}
+        durationInFrames={504} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtLimits" component={FtLimits as any}
+        durationInFrames={399} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtLimits916" component={FtLimits as any}
+        durationInFrames={399} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      {/* ── FT-END ── */}
