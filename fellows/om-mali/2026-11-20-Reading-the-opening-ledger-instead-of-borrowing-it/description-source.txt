@@ -1,0 +1,74 @@
+Reading the Opening Ledger Instead of Borrowing It — AI Debt Tracker, week 6
+
+Last week the tracker ran whole quarters, from filings to a ledger of a company's bonds, but every quarter started
+from a ledger borrowed from the answer key. This week it reads that starting ledger itself, from the company's last
+report, and the cost of doing so is measured. First, last week's wrong additions are mostly gone.
+
+THE MERGE FIXES. Week 5 added 26 bonds the target report does not hold, in three kinds. All three are fixed in the
+merge step, which is code, not a model:
+
+  21   launch notices folded into the priced bond that followed               (P57)
+  25   bonds named with no amount held as questions, not added                (P56)
+   4   the banks' option to buy more recorded, not added                      (P58)
+
+On the same readings and the same 45 quarters graded bond by bond, the wrong additions fell from 26 to 3, and
+precision rose from 90.2% to 93.3% — level with carrying last quarter forward (92.8%; paired +0.5 points, −0.2 to
++1.4). Recall is 97.9%, still 7.0 points above it. New bonds caught: 31 of 34; carrying forward catches none. Loans
+are now handled too: a drawn amount counts as debt, a new commitment does not, and a repayment reduces it.
+
+THE OPENING-LEDGER READER. Code scores the report's tables and keeps the ones that look like a debt note. qwen3:4b
+points at the rows that are one bond or loan, and at their kind; it types no number. Code reads every value from the
+cited cell and the row's own label, and the header decides which column is the period end when it can. On the 94
+opening reports of the development quarters:
+
+  Model points, code reads    recall 89.7%   precision 98.8%
+  Rules only, no model        recall 83.8%   precision 97.9%
+
+The first pass found two code defects — a rate column read as the amount, and a unit lost from a caption the parser
+cut short — fixed on development data, with both passes reported (P61). Re-asking the model for nine reports showed
+its pointing is not the same from run to run: Broadcom's January 2025 report gave 36 bonds once and 22 the next time.
+
+THE WEEK 6 CHECK: A BORROWED START AGAINST A READ ONE. The same 45 quarters, three ways:
+
+                        recall    precision
+  Oracle start          97.9%     93.3%      (borrowed from the answer key)
+  Agent start           90.1%     95.5%      (read from the last report)
+  Carry forward (B0)    90.9%     92.8%
+
+Reading the start costs 7.9 points of recall (paired, 2.0 to 15.3). Precision goes the other way: fewer bonds held,
+fewer held wrongly. Most of the gap is a few companies — Broadcom, where the reader found 23 instruments in two
+quarters whose reports hold 39 and 40; Snowflake's and Super Micro's convertible notes, not found; and Core
+Scientific, whose opening reports the point-in-time rule refuses to the agent because they were filed the same day
+as the report being predicted (P60). The weak spot is total debt: within 2% on 26 of 79 quarters at agent start,
+against 44 at oracle start.
+
+DOES IT KNOW WHEN IT IS WRONG? Of the 50 agent-start quarters that ended wrong, the self-checks flagged 17 (34%); they
+also flagged 11 of the 36 that ended right. Investigators now run inside the graph, one per open question, at most two
+rounds: 67 questions, 21 settled — 17 bonds the opening ledger already held, 2 the model judged not offered, 2
+repayments matched on a looser key. All 24 maturity questions stayed open. No graded bond changed.
+
+CHECKED AGAIN, ON REPORTS NOBODY HAD READ. A fresh held-out hand-check of the answer key, five reports drawn by seed
+before reading: 4 of 5 agree. Alphabet's euro notes are keyed at their dollar carrying amount — logged as P59, not
+fixed against the set that found it. The triage fixes (P53, P54) were re-run over all 593 filings; every labelled set
+still at full recall. There was no fresh triage set this week, so all three are now calibrations.
+
+LIMITS. Everything here is on development quarters; the test split has not been touched. The opening-ledger reader
+was graded against the same answer key that supplies the oracle start. The investigators do not yet search older
+filings, which is where the 15 unknown repayments would be explained.
+
+NOT REVIEWED BY A PERSON. The week was handed to Claude end to end before it started; the one decision taken during it
+was to resume the runs after the laptop ran low on memory. The hand-check transcriptions are a model's reading, not
+a person's. manifests/week6_gate.json records the week as DELEGATED, not CLEARED.
+
+NEXT. The opening reader's misses, investigators that search older filings, then version 1: freeze, scale up, and run
+the whole development window unattended.
+
+—
+
+Om Mali is a Humanitarians AI fellow. These are real weekly research reports on Om's own work. Every number in the
+figures is read from the project's generated reports at build time, and the build fails if any differs from the
+recorded value.
+
+@HumanitariansAI
+
+#AIDebt #SEC #LangGraph #LocalLLM #Evaluation #Baselines #HumanitariansAI #Mycroft

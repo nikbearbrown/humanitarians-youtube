@@ -1,0 +1,268 @@
+{
+  "_": "AI Debt Tracker, WEEK 6. Every number here is transcribed from the author's own saved results as published in pantry/*.svg and in narration_script.md's source table and notes. Each bar's geometry in those SVGs was recomputed as a ratio and had to agree with its printed fraction before the value was accepted. Nothing in this file is estimated, rounded for the frame, or typed from memory.",
+  "merge": {
+    "_geom": "shared linear scale, 6.0 px per bond. Week 5 bar 156.0/6.0 = 26. Week 6 bar 18.0/6.0 = 3. Same unit, same baseline x=250.",
+    "what": "bonds the tracker added that the target report does not hold",
+    "same": "same readings, same 45 quarters, B0's opening ledger",
+    "before": {
+      "label": "Week 5: wrong additions",
+      "count": 26,
+      "hot": false
+    },
+    "after": {
+      "label": "Week 6: wrong additions",
+      "count": 3,
+      "hot": true
+    },
+    "undiagnosed": "The three that are left are not yet diagnosed.",
+    "_actions_note": "These are counts of what the merge step DID across the run. They are NOT a breakdown of the 26 — week 5's 26 broke down as 10 + 10 + 4 + 2. Conflating the two would be a real error, so the frame labels them as actions.",
+    "actions": [
+      {
+        "n": 21,
+        "what": "launch notices folded into the priced bond that followed",
+        "id": "P57"
+      },
+      {
+        "n": 25,
+        "what": "bonds named with no amount held as questions, not added",
+        "id": "P56"
+      },
+      {
+        "n": 4,
+        "what": "the banks' option to buy more recorded, not added",
+        "id": "P58"
+      }
+    ],
+    "is_code": "The merge step is code, not a model.",
+    "precision": {
+      "before": 0.902,
+      "after": 0.933,
+      "b0": 0.928,
+      "before_s": "90.2%",
+      "after_s": "93.3%",
+      "b0_s": "92.8%"
+    },
+    "precision_verdict": "level with B0, not better",
+    "precision_paired": "+0.5 points against B0, -0.2 to +1.4",
+    "recall_s": "97.9%",
+    "recall_b0_s": "90.9%",
+    "recall_over_b0": "+7.0 points",
+    "new_bonds": {
+      "caught": 31,
+      "of": 34,
+      "b0": 0
+    },
+    "loans": "Loans are handled now too: a drawn amount counts as debt, a new commitment does not, and a repayment reduces it."
+  },
+  "opening": {
+    "_": "the opening-ledger reader — the crutch this week removes",
+    "steps": [
+      {
+        "who": "CODE",
+        "what": "scores the report's tables and keeps the ones that look like a debt note",
+        "hot": false
+      },
+      {
+        "who": "THE MODEL",
+        "what": "points at the rows that are one bond or loan, and at their kind — it types no number",
+        "hot": true
+      },
+      {
+        "who": "CODE",
+        "what": "reads every value from the cited cell and the row's own label; the header decides which column is the period end when it can",
+        "hot": false
+      }
+    ],
+    "model": "qwen3:4b",
+    "rule": "The model points. Code reads.",
+    "rule_from": "the same rule the event reader has followed since week 1",
+    "was": "Until now every quarter started from a ledger taken from the answer key.",
+    "was_called": "oracle start (ablation A4)",
+    "was_light": "That is cheating a little, and it was deliberate."
+  },
+  "score": {
+    "_geom": "track 260px. model recall 233.2/260 = 0.8969 = 89.7%. rules recall 217.9/260 = 0.8381 = 83.8%. model precision 256.9/260 = 0.9881 = 98.8%. rules precision 254.5/260 = 0.9788 = 97.9%.",
+    "reports_read": 94,
+    "reports_read_what": "opening reports of the development quarters",
+    "graded_on": 43,
+    "graded_note": "The figure's own source line says GRADED AT L1, 43 REPORTS. The 94 is how many were read; 43 is the denominator the two percentages are measured on, and the frame says so.",
+    "metrics": [
+      {
+        "key": "recall",
+        "name": "Bonds found",
+        "qualifier": "recall",
+        "model": 0.897,
+        "rules": 0.838,
+        "model_s": "89.7%",
+        "rules_s": "83.8%"
+      },
+      {
+        "key": "precision",
+        "name": "Right when found",
+        "qualifier": "precision",
+        "model": 0.988,
+        "rules": 0.979,
+        "model_s": "98.8%",
+        "rules_s": "97.9%"
+      }
+    ],
+    "model_label": "model points, code reads",
+    "rules_label": "rules only, no model",
+    "verdict": "The model adds recall, not precision.",
+    "defects": {
+      "id": "P61",
+      "what": "Two code defects on the first pass: a rate column read as the amount, and a unit lost from a caption the parser cut short.",
+      "fixed_on": "development data; every report was re-read and both passes are reported"
+    }
+  },
+  "variance": {
+    "_": "the same report, asked twice, answered differently — no bar, because the point is that there is no single number",
+    "who": "Broadcom",
+    "doc": "January 2025 report",
+    "runs": [
+      {
+        "label": "first ask",
+        "count": 36,
+        "hot": false
+      },
+      {
+        "label": "asked again",
+        "count": 22,
+        "hot": true
+      }
+    ],
+    "why": "The first pass stored only the first 3,000 characters of each model answer, so nine long answers could not be reused and were asked again.",
+    "what_it_means": "The model's pointing is not the same from run to run. That variance is part of what the reader is, and it is reported rather than averaged away.",
+    "unknown": "One run per report cannot say how often a swing like this happens."
+  },
+  "gap": {
+    "_geom": "track 260px. recall: oracle 254.5/260 = 0.9788 = 97.9%, agent 234.3/260 = 0.9012 = 90.1%, B0 236.3/260 = 0.9088 = 90.9%. precision: oracle 242.6/260 = 0.9331 = 93.3%, agent 248.3/260 = 0.9550 = 95.5%, B0 241.3/260 = 0.9281 = 92.8%.",
+    "graded": 45,
+    "graded_what": "development quarters graded bond by bond",
+    "check": "the week 6 check (ablation A4)",
+    "starts": [
+      {
+        "key": "oracle",
+        "label": "Oracle start",
+        "note": "borrowed from the answer key",
+        "recall": 0.979,
+        "precision": 0.933,
+        "recall_s": "97.9%",
+        "precision_s": "93.3%",
+        "hot": false
+      },
+      {
+        "key": "agent",
+        "label": "Agent start",
+        "note": "read from the last report",
+        "recall": 0.901,
+        "precision": 0.955,
+        "recall_s": "90.1%",
+        "precision_s": "95.5%",
+        "hot": true
+      },
+      {
+        "key": "b0",
+        "label": "B0 carry forward",
+        "note": "still borrows the answer key's start",
+        "recall": 0.909,
+        "precision": 0.928,
+        "recall_s": "90.9%",
+        "precision_s": "92.8%",
+        "hot": false
+      }
+    ],
+    "cost": "-7.9 points of recall, paired, -2.0 to -15.3",
+    "cost_s": "7.9 points",
+    "why_precision_rose": "Fewer bonds held means fewer held wrongly.",
+    "vs_b0": "Against B0: recall -0.9 points (-9.4 to +6.0) — level. Precision +2.6 points.",
+    "the_point": "The +7.0 points of recall over doing nothing was the borrowed ledger. Reading its own start, the agent is level with B0 on recall and ahead on precision."
+  },
+  "where": {
+    "_": "the gap is concentrated, not spread — which is why it can be worked on",
+    "cases": [
+      {
+        "who": "Broadcom",
+        "what": "the opening reader found 23 instruments across two quarters whose reports hold 39 and 40",
+        "id": ""
+      },
+      {
+        "who": "Snowflake",
+        "what": "convertible note table not found",
+        "id": ""
+      },
+      {
+        "who": "Super Micro",
+        "what": "convertible note table not found",
+        "id": ""
+      },
+      {
+        "who": "Core Scientific",
+        "what": "its opening reports were filed the same day as the report being predicted, so the point-in-time rule refuses them to the agent",
+        "id": "P60"
+      }
+    ],
+    "refused_count": 4,
+    "refused_what": "opening reports the point-in-time rule refuses — Core Scientific's amendments and two late Super Micro reports",
+    "rule_doing_its_job": "That is the rule doing its job, and it is counted in the gap rather than worked around."
+  },
+  "catch": {
+    "_geom": "track 240px. 81.6/240 = 0.340 = 17/50. 73.3/240 = 0.3054 = 11/36. 75.2/240 = 0.3133 = 21/67.",
+    "wrong": {
+      "label": "ended wrong, and the checks flagged it",
+      "got": 17,
+      "of": 50,
+      "hot": true
+    },
+    "right": {
+      "label": "ended right, and the checks flagged it anyway",
+      "got": 11,
+      "of": 36,
+      "hot": false
+    },
+    "rate_s": "34%",
+    "oracle_rate": {
+      "got": 16,
+      "of": 39,
+      "s": "41%"
+    },
+    "questions": {
+      "settled": 21,
+      "of": 67
+    },
+    "settled_what": "Most of them were bonds the opening ledger already held, so dropping the question confirms the ledger rather than changing it.",
+    "_settled_conflict": "FRICTIONAL.md breaks the 21 down as 19 + 2; description.txt as 17 + 2 + 2. Both sum to 21 and they disagree on the split, so NO breakdown is drawn — only the 21, and the part both sources agree on. FACTCHECK records the conflict.",
+    "no_change": "No graded bond changed.",
+    "still_open": "All 24 maturity questions stayed open, because the passages the model pointed at gave no due date. 15 repayments are still unexplained.",
+    "investigators": "Investigators now run inside the graph, one per open question, at most two rounds."
+  },
+  "limits": {
+    "total_debt": {
+      "agent": 26,
+      "oracle": 44,
+      "of": 79,
+      "what": "quarters whose total debt lands within 2% of the report"
+    },
+    "same_key": "The opening-ledger reader was graded against the same answer key that supplies the oracle start.",
+    "no_fresh_triage": "There was no fresh triage set this week, so all three triage sets are now calibrations.",
+    "handcheck": {
+      "got": 4,
+      "of": 5,
+      "defect": "P59",
+      "what": "Alphabet's euro notes are keyed at their dollar carrying amount — logged, not fixed against the set that found it"
+    },
+    "test_split": "Everything here is on development quarters; the test split has not been touched.",
+    "tests": 182
+  },
+  "truthcheck": {
+    "_": "who produced the judgments — not a person",
+    "labeller": "Claude",
+    "model_judgments": "Which table rows are instruments, and which passage states a missing value, are qwen3:4b's judgments, flagged in every record. Every number in a ledger was parsed by code.",
+    "handcheck_by": "The hand-check transcriptions are a model's reading, not a person's."
+  },
+  "next": [
+    "fix the opening reader's misses",
+    "investigators that search older filings",
+    "then version 1: freeze, scale up, run the whole development window unattended"
+  ]
+}
