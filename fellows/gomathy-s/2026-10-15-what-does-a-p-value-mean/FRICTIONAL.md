@@ -55,3 +55,10 @@ p-Values (Wasserstein & Lazar, 2016).
 
 **Sign-off.** Pedagogy gate: reviewed and approved by me, with five known
 weaknesses accepted. Both 4K masters passed GATE T and GATE V.
+
+## 2026-11-20 — links to the commits and pull requests
+
+Added during a check of this folder against `fellows/README.md`; earlier entries are unchanged.
+
+- Source: [`c5d2730e`](https://github.com/nikbearbrown/humanitarians-youtube/commit/c5d2730e7fc9b00f6ea4151eb5b1acc207d7a284) (add p-value reel), merged in [PR #251](https://github.com/nikbearbrown/humanitarians-youtube/pull/251).
+- This log: [`8ae5fbea`](https://github.com/nikbearbrown/humanitarians-youtube/commit/8ae5fbea2c6327312725580891bb8aed2648b522) (renewal summary and FRICTIONAL logs), merged in [PR #278](https://github.com/nikbearbrown/humanitarians-youtube/pull/278).
