@@ -30,6 +30,7 @@ and its paperwork; the rendered mp4s are not committed.
 | [`2026-11-05-be-the-sentence`](2026-11-05-be-the-sentence/) | Be the Sentence. | 14 | 2:52.3 | 16:9 + 9:16, both 4K |
 | [`2026-11-13-what-we-ask-for`](2026-11-13-what-we-ask-for/) | What We Ask For. | 18 | 4:13.7 | 16:9 + 9:16, both 4K |
 | [`2026-11-14-four-threads`](2026-11-14-four-threads/) | Four Threads. | 12 | 2:39.8 | 16:9 + 9:16, both 4K |
+| [`2026-11-21-paid-to-be-quoted`](2026-11-21-paid-to-be-quoted/) | Paid to Be Quoted. | 12 | 2:43.3 | 16:9 + 9:16, both 4K |
 
 ## What a beat sheet is
 
