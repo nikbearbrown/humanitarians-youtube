@@ -38,6 +38,8 @@ Channel chip on these cuts: `Komal`. House channel: `@HumanitariansAI`.
 - [2026-10-23 The Empty Frame.](./2026-10-23-empty-frame/)
 - [2026-11-06 The Bought Room.](./2026-11-06-bought-room/)
 - [2026-11-06 Madison Weekly — Nov 6.](./2026-11-06-madison-weekly/)
+- [2026-11-13 The Same Question.](./2026-11-13-same-question/)
+- [2026-11-20 Madison Weekly — Nov 20.](./2026-11-20-madison-weekly/)
 
 ## Frictional log
 
