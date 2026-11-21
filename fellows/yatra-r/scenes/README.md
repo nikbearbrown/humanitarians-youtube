@@ -24,6 +24,7 @@ sheets that describe them.
 | `TableSides.tsx` / `…916.tsx` | Both Sides of the Table. — two-sided adoption, the hiring table, interview-rate rise, walk-away bar, the two-trust columns (each with its own citation), prompt-injection panel |
 | `MaskSlips.tsx` / `…916.tsx` | The Mask Slips. — the virality spike, the reported payout card, the persona arc, the reveal, the engagement drop, the turn |
 | `AiCitedAuthority.tsx` | Be the Sentence. — results page vs quoted AI answer, reach ring, cited-share columns, blind-spot bracket (label, no number), pillars on the SEO foundation slab, evidence boost bars, 30-day freshness strip, own-site vs third-party split. One component per scene lays out both aspects (registered as `GeoX` and `GeoX916`). |
+| `WhatWeAskFor.tsx` | What We Ask For. — BLUF strike-through, act cards, expected-vs-found earnings schematic (no data plotted), 1-in-4 vs 1-in-5 isotype rows, ideas → explore → judgment steps, AI-skills premium bar with +20%/+40% band, 58/100 disclosure grid with Article 50 card, bypassed-human workflow lanes, five human layers over the draft, definition fork, show/don't-show limits. One component per scene lays out both aspects (registered as `WwaX` and `WwaX916`). |
 | `Root.registrations.tsx` | The `<Composition>` registrations for the above, extracted from the toolkit's shared `Root.tsx`. Not standalone. |
 
 `…916.tsx` files are the 9:16 portrait variants. They are **re-banded, not scaled**: the
