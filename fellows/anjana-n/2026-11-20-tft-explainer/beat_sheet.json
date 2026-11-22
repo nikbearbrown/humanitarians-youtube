@@ -1,0 +1,425 @@
+{
+  "metadata": {
+    "title": "What a Temporal Fusion Transformer Actually Does",
+    "slug": "tft-explainer",
+    "topic": "TEMPORAL FUSION TRANSFORMER",
+    "aspect_ratio": "16:9",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-anjana",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "color_semantics": "",
+    "gate_p": "PASS",
+    "total_estimated_duration_seconds": 286,
+    "build": {
+      "at": "2026-11-18T22:59:22",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "COLD OPEN",
+      "narration_text": "Every forecasting model has to decide which of its inputs matter, and most of them never do. This one decides out loud, and then shows you what it decided. I'm Anjana.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Hello, Anjana'; ask types itself"
+          },
+          {
+            "at": 0.55,
+            "event": "runningText 'selecting what matters…'"
+          },
+          {
+            "at": 0.75,
+            "event": "output lines resolve, already answered"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hello, Anjana",
+            "topic": "TEMPORAL FUSION TRANSFORMER",
+            "segment": "What a TFT Actually Does",
+            "command": "I have a time series problem where the inputs are nothing alike. Some never change, some I know in advance, and some I only ever see after the fact. Most models take all of that as one flat vector. What does an architecture look like that decides which inputs matter, at each step, and can tell me what it decided afterwards?",
+            "runningText": "selecting what matters…",
+            "folderLabel": "",
+            "output": [
+              "it scores every input and suppresses the weak ones",
+              "every block can fall back to doing nothing",
+              "and it tells you which steps it looked at"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.92,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "THE PROBLEM WITH FLAT INPUTS",
+      "narration_text": "Time series forecasting sounds straightforward until you look at the inputs. Some are static — a product category or a region that never changes. Some are known in advance — the day of the week, whether next Monday is a holiday. And some are only observed historically — actual sales, actual temperature, things you can't see into the future. Most models flatten all of these into a single vector and hope for the best. But not all inputs matter equally, and the ones that matter change depending on when you're looking. The Temporal Fusion Transformer was built to handle exactly this problem.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "TftFlatInputs builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "TftFlatInputs",
+          "props": {
+            "sparkLine": "Not all inputs are alike."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 33.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "VARIABLE SELECTION",
+      "narration_text": "The first thing the TFT does is decide which inputs matter. A variable selection network sits at the front of the architecture. It takes every input — static, known future, and observed past — and assigns each one a learned importance weight using a softmax over all candidates. High-scoring variables pass through at full strength. Low-scoring ones get suppressed before they even enter the model. And this selection happens per time step, so the same variable can matter a lot at one point in time and barely register at another. Noise gets filtered at the door instead of leaking into the forecast.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "TftSelection builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "TftSelection",
+          "props": {
+            "sparkLine": "Noise filtered at the door."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 35.76,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "GATED RESIDUAL NETWORKS",
+      "narration_text": "Once the inputs are selected, they flow through gated residual networks — the TFT's core processing block. Each GRN applies a nonlinear transformation, then passes the result through a gating layer. The gate is a learned sigmoid that controls how much of the transformation to keep. If the transformation is useful, the gate opens. If it isn't, the gate closes and the original input passes through on a skip connection, unchanged. This means the network can add complexity where it helps and stay simple where it doesn't. The skip connection guarantees that at worst, the block does nothing — it can never make the signal worse than what came in.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "TftGated builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "TftGated",
+          "props": {
+            "sparkLine": "At worst, it does nothing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 43,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 38.42,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "INTERPRETABLE ATTENTION",
+      "narration_text": "After an LSTM encoder processes the sequence, the TFT applies multi-head attention over the temporal dimension. Each prediction at each horizon can look back across all historical time steps and learn which ones are most relevant. A forecast five quarters out might attend heavily to the same quarter last year while ignoring adjacent months. The key difference from a standard transformer: these attention weights are designed to be interpretable. You can read them directly — which time steps did the model focus on for this specific prediction? It's not a black box. The model shows you where it looked.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "TftAttention builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "TftAttention",
+          "props": {
+            "sparkLine": "It shows you where it looked."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 39,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 36.22,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "WHY IT BEATS LSTMS",
+      "narration_text": "This is why the TFT outperforms LSTMs on longer horizons. An LSTM compresses the entire history into a fixed-size hidden state. That works for one or two steps ahead, but five or ten steps out, too much information is lost to compression. The TFT avoids this in three ways. Variable selection keeps irrelevant inputs from entering. Gated residual networks prevent noise from propagating through the layers. And attention lets the model skip directly to the historical time steps that matter, no matter how far back they are. The result is a probabilistic forecast — not just a point estimate, but a full distribution at every horizon — that holds up where recurrent models fall apart.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "build",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "TftHorizon builds in"
+          },
+          {
+            "at": 0.9,
+            "event": "resting state holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "TftHorizon",
+          "props": {
+            "sparkLine": "Compression is the bottleneck."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 43.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration_text": "Let's recap with Claude. The Temporal Fusion Transformer is really three refusals stacked on top of each other. It refuses to treat every input as equally relevant, so a selection network scores them and suppresses the ones below what an even split would give them. It refuses to force a transformation on data that does not need one, so every block carries a gate and a skip path and can fall back to doing nothing at all. And it refuses to squeeze the past into a fixed-size state, so attention reaches back and takes the steps it wants directly. Each of those is a small architectural decision. Together they are why the thing still works ten steps out, where a recurrent model has long since run out of room.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.5s lead pause, then ClaudeVerdictArtifact card builds in"
+          },
+          {
+            "at": 0.14,
+            "event": "line 1: variable selection"
+          },
+          {
+            "at": 0.32,
+            "event": "line 2: the gated residual guarantee"
+          },
+          {
+            "at": 0.5,
+            "event": "line 3: attention over the bottleneck"
+          },
+          {
+            "at": 0.68,
+            "event": "line 4: interpretability"
+          },
+          {
+            "at": 0.86,
+            "event": "line 5: the long-horizon result"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "sparkLine": "",
+            "artifactTitle": "temporal fusion transformer",
+            "lines": [
+              "inputs are scored, and the weak ones are suppressed",
+              "a gate lets any block fall back to the identity",
+              "attention reaches past the bottleneck entirely",
+              "the weights it used are readable afterwards",
+              "which is why it still holds up ten steps out"
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 42.34,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "YOUR TURN",
+      "narration_text": "Your turn. Take a model you already run and ask it the three questions this architecture answers — which inputs it is actually using, whether it is forced to transform things it should be passing through untouched, and how far back it can really see. Paste this into Claude with your own feature list and find out which of the three is your bottleneck.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Your turn.'; prompt types itself"
+          },
+          {
+            "at": 0.6,
+            "event": "runningText 'finding the bottleneck…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "TEMPORAL FUSION TRANSFORMER",
+            "segment": "What a TFT Actually Does",
+            "command": "",
+            "runningText": "finding the bottleneck…",
+            "folderLabel": "",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 20.38,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "Anjana here, thanks for watching.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeTitleOutro: title in serif, terracotta period"
+          },
+          {
+            "at": 0.8,
+            "event": "subline fades in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Temporal Fusion Transformer",
+            "handle": "",
+            "subline": "what it actually does"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 3,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 2.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-11-18T22:59:22"
+      }
+    }
+  ]
+}

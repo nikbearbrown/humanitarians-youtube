@@ -4,12 +4,12 @@
 **Project:** Fellows YouTube pipeline, content review and video essays  
 **Group:** Marketing  
 **GitHub:** [@SanjanaGRao](https://github.com/SanjanaGRao)  
-**Last updated:** 11/13/2026
+**Last updated:** 11/19/2026
 
 ## Quick Review
 
 - [Weekly hours and evidence index](weekly-hours/README.md).
-- [Renewal request]([renewal-requests/README.md](https://github.com/nikbearbrown/humanitarians-youtube/blob/sanjana-rao/fellows/sanjana-r/RENEWAL.md)).
+- [Renewal request](RENEWAL.md).
 - **Supervisor(s):** Professor Nik Bear Brown and Professor Nina, Humanitarians AI.
 
 ## Folder Guide and Evidence
@@ -33,6 +33,8 @@
 | [11-04-2026-GenAI-action-items/](11-04-2026%20GenAI-action-items/README.md) | Explainer, Gen AI for management — turning a meeting transcript into ranked, owned, dated action items |
 | [11-04-2026-pm-progress-update/](11-04-2026%20pm-progress-update/README.md) | PM progress report |
 | [11-11-2026-AB-test-is-the-lift-real/](11-11-2026%20AB-test-is-the-lift-real/README.md) | Explainer, A/B test significance — "is the lift real?" (product management) |
+| [11-18-2026-raid-log-nameIt-ownIt-rateIt/](11-18-2026%20raid-log-nameIt-ownIt-rateIt/README.md) | Explainer, the RAID log — turning a messy project status update into Risk / Assumption / Issue / Dependency, each item typed, owned, and dated (project management) |
+| [11-18-2026-pm-progress-update/](11-18-2026%20pm-progress-update/README.md) | PM progress report |
 
 ## Frictional Logs
 **Weekly diaries:** Each week’s running diary (what got done and what didn’t) lives in that week’s PM Progress Update folder — either as the folder’s README.md or as a dedicated FRICTIONAL.md. Please check both files in the progress-update folder for the week you’re after.

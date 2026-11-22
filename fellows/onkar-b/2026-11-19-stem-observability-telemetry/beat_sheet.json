@@ -1,0 +1,633 @@
+{
+  "metadata": {
+    "slug": "claude-stem-flying-blind",
+    "title": "Flying Blind",
+    "topic": "STEM & AI Architecture",
+    "purpose": "STEM & AI Architecture, Week 12 — observability for AI systems: the three pillars, why time-series storage exists, how silent model degradation shows up in metrics before it shows up in errors, and why a flat line is not the same thing as good news.",
+    "skill": "ai-explainer",
+    "channel": "claude-stem",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows and practitioners running AI services in production",
+    "playlist": "STEM & AI Architecture",
+    "source": "Week 12: Observability, Telemetry & Time-Series Metrics — 5-scene script, supplied 2026-11-19.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. Prometheus is named in narration but renders as a generic labelled panel — never its marks or chrome.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal. Kokoro am_onyx is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "series_note": "Overlap check run across all 22 built reels: Week 1's 'drift' is INFRASTRUCTURE drift (Docker/manifest), a different sense from this reel's model drift, and Week 5's dashboard reel argued human alert-fatigue. Neither is repeated here. The added beat is mechanical rather than human: a dead scraper is indistinguishable from a healthy system.",
+    "authoring_note": "ThreeStageBand spark lines are authored at or under 18 characters, and readyLine/failLine at or under 40, so the 16:9 and 9:16 cuts can share identical copy — this removes the portrait patch-and-re-render round that was needed in Weeks 9, 10 and 11.",
+    "tags": [
+      "observability",
+      "telemetry",
+      "metrics",
+      "Prometheus",
+      "time-series",
+      "model drift",
+      "SRE",
+      "AI monitoring",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-11-19T23:09:13",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 24,
+      "narration_text": "Hi, I am Onkar Bhujbal. Imagine flying a commercial jet with no altimeter, no airspeed, no fuel gauge — just a text log that prints engine failed, after you have already hit the ground. That is an A.I. microservice without observability. Today: telemetry, time-series metrics, and how engineers keep a production system visible while it is still flying.",
+      "new_visual_element": "Cold open — the instruments nobody installed",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself in"
+          },
+          {
+            "at": 0.48,
+            "event": "send arms terracotta; running indicator reads 'checking the instruments…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — what the service can actually report about itself"
+          },
+          {
+            "at": 0.85,
+            "event": "the last line names it: FLYING BLIND"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "STEM & AI Architecture",
+            "segment": "Flying Blind",
+            "command": "My service has been degrading for six days. What would have told me on day one?",
+            "runningText": "checking the instruments…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "error logs: clean — it never crashed",
+              "metrics emitted: none",
+              "FLYING BLIND."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-20T03:43:31.128248+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The six-day scenario is illustrative of the silent-degradation failure the script describes. No incident is being reported.",
+      "actual_duration_s": 19.54,
+      "render_duration_s": 19.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.8,
+      "narration_text": "Logs tell you why you crashed. Metrics tell you that you are descending — which is the only one of those two you can still act on, and the reason this is worth twelve minutes of setup.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Logs explain the crash.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'Logs' goes terracotta, deletes, retypes as 'Metrics'"
+          },
+          {
+            "at": 0.85,
+            "event": "corrected overview holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Logs are enough.\nThey only speak after the crash.",
+            "triggerWords": "enough",
+            "replacementWords": "history",
+            "seed": "flying-blind-2026-11-19",
+            "fontSize": 90,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-20T04:07:35.305850+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Both readings are true sentences: 'Logs explain the crash.' and, corrected, 'Metrics explain the crash.' — the second is also true, and the pairing with 'only one prevents it' is what makes the swap land.",
+      "actual_duration_s": 9.88,
+      "render_duration_s": 9.916666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE THREE PILLARS",
+      "lane": "remotion",
+      "estimated_duration_s": 25,
+      "narration_text": "Observability rests on three pillars, and they are peers — not stages of a pipeline. Logs record what happened at one moment: a single error, with its stack trace. Traces follow one request as it hops between services, so you can see which hop was slow. Metrics are numbers sampled over time — latency, errors per second, cache hit ratio. You need all three, and they answer different questions.",
+      "new_visual_element": "Three peers, no arrows",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the question token parks centred above the band — no chain is implied"
+          },
+          {
+            "at": 0.2,
+            "event": "panel 01 LOGS lights"
+          },
+          {
+            "at": 0.45,
+            "event": "panel 02 TRACES lights — no connector drawn between them"
+          },
+          {
+            "at": 0.7,
+            "event": "panel 03 METRICS lights; all three hold together"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: three questions, three instruments"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Three peers.",
+            "payloadLabel": "one incident",
+            "connectors": false,
+            "readyLine": "three questions, three instruments",
+            "stages": [
+              {
+                "index": "01",
+                "name": "LOGS",
+                "detail": "what happened, at one exact moment"
+              },
+              {
+                "index": "02",
+                "name": "TRACES",
+                "detail": "where one request spent its time"
+              },
+              {
+                "index": "03",
+                "name": "METRICS",
+                "detail": "numbers over time — the shape of the trend"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-20T03:46:34.335573+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "connectors:false — the script draws three PILLARS, not a pipeline. Connectors would assert that logs feed traces feed metrics, which is false and is exactly the misconception the beat is correcting.",
+      "actual_duration_s": 20.22,
+      "render_duration_s": 20.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — TIME-SERIES STORAGE",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "A general-purpose relational database is a poor fit for millions of rapid measurements. Time-series databases, like the one inside Prometheus, store every point as a timestamp, a value, and a set of labels — and that changes the question you are able to ask. A row store answers what happened to user forty-two. A time-series store answers whether the ninety-ninth percentile latency tripled in the last ten minutes, which is the question that actually wakes somebody up.",
+      "new_visual_element": "Two databases, two different questions",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the row-store query"
+          },
+          {
+            "at": 0.28,
+            "event": "on 'poor fit for millions of measurements', the per-row write cost highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.36,
+            "event": "note lands beneath: one row per measurement, indexed for the wrong question"
+          },
+          {
+            "at": 0.5,
+            "event": "right panel reveals the time-series query"
+          },
+          {
+            "at": 0.74,
+            "event": "ink stamp lands: ASK ABOUT TIME"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Same data. Different question.",
+            "leftLabel": "ROW STORE",
+            "leftText": "SELECT * FROM events\nWHERE user_id = 42;\n\n-- one row per measurement\n-- 2M writes/hour",
+            "leftHot": "-- 2M writes/hour",
+            "hotNote": "indexed for identity, not for shape over time",
+            "rightLabel": "TIME-SERIES STORE",
+            "code": "histogram_quantile(0.99,\n  rate(http_latency_bucket[10m])\n)\n\n# timestamp + value + labels\n\n# \"did p99 triple in ten minutes\"\n# is a cheap question here\n# and an expensive one there.",
+            "stampText": "ASK ABOUT TIME",
+            "stampBlocked": false,
+            "stampSub": "the storage model decides which questions are affordable"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-20T03:48:17.148446+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The script says SQL databases are 'terrible' at this. Scoped to the real mechanism: a row store CAN hold the data, but it is indexed for identity rather than for ranges over time, so the aggregate queries cost far more. The 2M writes/hour figure is illustrative.",
+      "actual_duration_s": 23.87,
+      "render_duration_s": 23.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — SILENT DEGRADATION",
+      "lane": "remotion",
+      "estimated_duration_s": 27,
+      "narration_text": "This is where it matters most for A.I. A model rarely fails with a five hundred error. It degrades quietly — it drifts, it gets more confident about things that are not true, and every request still returns two hundred O.K. So you track domain metrics, not just system ones: cache hit ratio, refusal rate, and how often your own guardrail is intercepting something. A rate that was flat at two percent for a month and is now at eighteen is a story your error log will never tell you.",
+      "new_visual_element": "The number that moved while nothing broke",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 BASELINE lights; the token enters"
+          },
+          {
+            "at": 0.4,
+            "event": "connector draws; panel 02 MODEL UPDATED lights"
+          },
+          {
+            "at": 0.6,
+            "event": "on 'now at eighteen', panel 03 takes the terracotta wash and ✕"
+          },
+          {
+            "at": 0.7,
+            "event": "the token STOPS — nothing errored, so nothing paged"
+          },
+          {
+            "at": 0.8,
+            "event": "mono line lands: HTTP 200 the entire time"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Nothing errored.",
+            "payloadLabel": "intercepts",
+            "failIndex": 2,
+            "failLine": "HTTP 200 the entire time",
+            "readyLine": "three questions, three instruments",
+            "stages": [
+              {
+                "index": "01",
+                "name": "FLAT AT 2%",
+                "detail": "intercept rate, steady for a month"
+              },
+              {
+                "index": "02",
+                "name": "MODEL UPDATED",
+                "detail": "a version bump; the diff looked harmless"
+              },
+              {
+                "index": "03",
+                "name": "CLIMBING TO 18%",
+                "detail": "no crash, no 500, no log line"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-20T03:49:45.769125+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "The 2% → 18% intercept rate is the script's own illustration, kept as such. No measurement is claimed.",
+      "actual_duration_s": 27.28,
+      "render_duration_s": 27.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4b — FALSIFIABILITY (added)",
+      "lane": "remotion",
+      "estimated_duration_s": 28,
+      "narration_text": "So where does this break? A flat line is ambiguous. It means the system is healthy, or it means the thing that reports the number stopped reporting. Those render identically — and the second one looks more reassuring, because a dead collector produces no spikes at all. The fix is unglamorous: alert on the absence of data, not only on bad data. And be careful what you label, because a label with one value per user turns a time-series database into millions of separate series and takes the monitoring down with it.",
+      "new_visual_element": "Two systems that draw the same graph",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the healthy service, flat at 2%"
+          },
+          {
+            "at": 0.3,
+            "event": "on 'stopped reporting', the identical flat series highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.4,
+            "event": "note lands beneath: same graph, no spikes, nothing firing"
+          },
+          {
+            "at": 0.52,
+            "event": "right panel reveals the rule that distinguishes them"
+          },
+          {
+            "at": 0.74,
+            "event": "terracotta stamp lands: SILENCE IS A SIGNAL"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Which of these is healthy?",
+            "leftLabel": "TWO FLAT LINES",
+            "leftText": "service A   2.0  2.0  2.0  2.0\nservice B   2.0  2.0  2.0  2.0\n\n# A is fine.\n# B stopped scraping on Tuesday.",
+            "leftHot": "# B stopped scraping on Tuesday.",
+            "hotNote": "a dead collector never spikes — it looks like your calmest service",
+            "rightLabel": "ALERT ON ABSENCE",
+            "code": "- alert: TargetDown\n  expr: up == 0\n  for: 2m\n\n- alert: NoFreshSamples\n  expr: time() -\n    timestamp(intercept_rate) > 300\n\n# and keep labels low-cardinality:\n# never label by user_id.",
+            "stampText": "SILENCE IS A SIGNAL",
+            "stampBlocked": true,
+            "stampSub": "monitor the monitoring, or the outage you miss is your own"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-20T03:51:27.907570+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "BEAT ADDED. The script presents metrics as the early-warning system and never asks what happens when the warning system itself fails. Two failures are named: no-data rendering as good news, and cardinality explosion from per-user labels — the most common way teams take down their own Prometheus.",
+      "actual_duration_s": 28.92,
+      "render_duration_s": 28.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 18,
+      "narration_text": "So instrument your blind spots. Pick the three numbers that would have told you something was wrong last time, emit them, and then write the alert that fires when they stop arriving at all.",
+      "new_visual_element": "The instrumentation the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the counters reveal — domain metrics, not just system ones"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: instrument your blind spots"
+          },
+          {
+            "at": 0.78,
+            "event": "the last note lands — the alert most teams never write"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "metrics.py",
+            "code": "INTERCEPTS = Counter(\n    \"guardrail_intercepts_total\",\n    \"claims blocked\",\n    [\"reason\"],          # low cardinality\n)                        # never [\"user_id\"]\n\nLATENCY = Histogram(\n    \"verify_seconds\", \"end-to-end verify\"\n)\n\n# TASK: instrument your blind spots.\n\n# Then alert on up == 0.\n# A dead exporter is an outage.",
+            "sparkLine": "Count what would have warned you."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-20T03:52:22.097182+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 10.18,
+      "render_duration_s": 10.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 21,
+      "narration_text": "Here is the prompt worth running against your own service. Ask a model which of your dashboards would look completely normal if the service stopped emitting metrics entirely. Whatever it lists is a panel that cannot tell you apart from a corpse.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.'"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'paste this into Claude…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "STEM & AI Architecture",
+            "segment": "Flying Blind",
+            "command": "Here are my dashboard panels and alert rules. Which panels would look completely normal if my service stopped emitting metrics altogether — and which alert, if any, would fire?",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-20T03:54:35.417938+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 13.21,
+      "render_duration_s": 13.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-19T23:09:13"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Logs tell you why you crashed. Metrics keep you in the air — as long as something is still checking that they arrive. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Flying Blind",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · STEM & AI Architecture · Week 12",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-11-20T03:55:21.125589+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.94,
+      "render_duration_s": 8.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-11-19T23:09:13"
+      }
+    }
+  ]
+}

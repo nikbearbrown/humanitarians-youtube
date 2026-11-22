@@ -1,0 +1,39 @@
+MEASUREMENTS — How Bluetooth Audio Works
+Every figure shown or spoken comes from this run. Re-run: python bluetooth.py
+(recorded on Windows-11-10.0.26300-SP0, python 3.12.10)
+
+evidence/run.log (verbatim):
+  BLUETOOTH AUDIO EVIDENCE (bluetooth.py): real codecs from ffmpeg + a simulated A2DP link
+  THE TRACK: synthetic pop (drums, bass, piano, lead), 60 s, 44.1 kHz, 16-bit stereo
+  1. TOO MUCH DATA: CD quality = 44,100 x 16 bits x 2 channels = 1,411.2 kbit/s
+    SBC     :  330.7 kbit/s measured from the encoded bytes = 1/4.3 of CD
+    aptX    :  352.8 kbit/s measured from the encoded bytes = 1/4.0 of CD
+    aptX HD :  529.2 kbit/s measured from the encoded bytes = 1/2.7 of CD
+    AAC     :  272.1 kbit/s measured from the encoded bytes = 1/5.2 of CD (ffmpeg's AAC encoder set to 256k; not Apple's encoder)
+    (no quality score: a waveform match ranks a perceptual codec unfairly, and no listening test was run)
+  
+  2. THE RADIO (simulated 120 s): 79 channels; Wi-Fi on channels 24-46 (23 of 79), busy 55% of the time;
+    16 body-blocking moments of 60-320 ms (a phone in a pocket as you turn); 14.5 ms of music per packet,
+    one try every 3.75 ms (hops to a new channel each try) = 267 tries/s for 69 packets/s
+    without adaptive hopping: 22.1% of tries lost (17.4% outside the body-blocking moments)
+    with adaptive hopping: 7.6% of tries lost (0.9% outside the body-blocking moments)
+  
+  3. THE BUFFER (adaptive hopping on): the headphones play each packet a fixed time after it was made
+    buffer   20 ms: 103 glitches in 120 s (  3643 ms of music missing)
+    buffer   50 ms:  30 glitches in 120 s (  1553 ms of music missing)
+    buffer  100 ms:  19 glitches in 120 s (   755 ms of music missing)
+    buffer  150 ms:   9 glitches in 120 s (   261 ms of music missing)
+    buffer  200 ms:   3 glitches in 120 s (    44 ms of music missing)
+    buffer  300 ms:   0 glitches in 120 s (     0 ms of music missing)
+  
+  LISTENING (window 2.0-8.0 s, picked as the 6 s whose glitch rate is closest to the 50 ms average: 2 glitches vs 1.5 expected)
+    small_buffer.wav: 50 ms buffer, 2 glitches;  large_buffer.wav: 200 ms buffer, 0 glitches (the same moments, 200 ms later)
+
+files (SHA-256):
+  bluetooth.py  bf1f05ee0f28450aba4c4545630f2196561b3382ca9d88ca9d879d4fe179678a
+  evidence/large_buffer.wav  840212b53ce2f8e5e3ee1c0c1d291597dbeedbab11342b59b211de5d23fe2b80
+  evidence/results.json  2a12d627102788da778a4e4bc7f1d2556934ddc6da3bfbb6391a2fd02b45e724
+  evidence/run.log  b737bb7acac41156573f8ba4b7d32a4ec5994326b12354c36b589e2a77127fe4
+  evidence/scene.json  bde7bc17ecc1a5a757d2bb38131c9ff0642ba2f449860ff846d19206ea647354
+  evidence/small_buffer.wav  905bafc37140fbb24bc699d9dcc377e66193ea1a89526d7e409e2260841dc5a4
+  evidence/track.wav  a3d7ce342e72d79cabd5af1dc06dabd52367c6a7c34c2a1979da1e0fbf2ad0af

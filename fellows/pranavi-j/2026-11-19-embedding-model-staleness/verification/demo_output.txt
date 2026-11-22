@@ -1,0 +1,181 @@
+==============================================================================
+EMBEDDING MODEL STALENESS -- REAL DEMO RUN
+==============================================================================
+Model A (OLD, simulates the original indexed model): sentence-transformers/all-MiniLM-L6-v2
+Model B (NEW, simulates a later swapped-in model):   sentence-transformers/multi-qa-MiniLM-L6-cos-v1
+Both loaded as real HuggingFace checkpoints via transformers AutoModel/AutoTokenizer, mean-pooled + L2-normalized by hand in this script.
+
+Loading Model A...
+Loading Model B...
+
+Corpus: 10 short sentences across unrelated topics (finance, retail, hiking, biology, HR, baking, software, health, privacy policy, astronomy).
+
+Model A embedding dimensionality: 384
+Model B embedding dimensionality: 384
+Both are unit-norm vectors (L2 norm of vec[0], Model A): 1.000000
+Both are unit-norm vectors (L2 norm of vec[0], Model B): 1.000000
+-> Same nominal dimensionality (both are 384-dim MiniLM-family models) and both produce valid unit vectors. Dimensionality alone does NOT make the two spaces comparable -- that is exactly the illusion this video is about.
+
+------------------------------------------------------------------------------
+PART 1 -- Same sentence, embedded by both models: how similar are the
+          two resulting vectors to EACH OTHER (cross-model, same text)?
+------------------------------------------------------------------------------
+Mean cosine similarity between Model-A and Model-B vectors of the IDENTICAL sentence, averaged over all 10 corpus docs: 0.7416
+  (min 0.6832, max 0.7801)
+If cross-model vectors lived in a shared, comparable geometry, this should be very high (close to the same-model self-similarity of 1.0, since it's the exact same text). Instead it's far from 1.0 -- the two models place even IDENTICAL text in incompatible regions of two different vector spaces.
+
+------------------------------------------------------------------------------
+PART 2 -- Aggregate similarity distributions over all 10x10 doc pairs
+------------------------------------------------------------------------------
+Model A <-> Model A (same-model, off-diagonal pairs):  mean=+0.0486  std=0.0731
+Model B <-> Model B (same-model, off-diagonal pairs):  mean=+0.0396  std=0.0847
+Model A <-> Model B (CROSS-model, all 100 pairs):      mean=+0.1033  std=0.2250
+The cross-model distribution is a real, independently measured set of numbers, not inferred -- shown here as evidence the two spaces don't share an origin or scale relative to each other in any way a nearest-neighbor search could exploit.
+
+------------------------------------------------------------------------------
+PART 3 -- The real failure mode: querying a partially-migrated index
+------------------------------------------------------------------------------
+Simulated history: this corpus was first fully indexed with Model A. Then the
+app's embedding call was switched to Model B for new documents -- but docs
+[0, 1, 2, 5, 6] were NEVER re-embedded, so they are still sitting in the
+index as stale Model-A vectors, mixed in with the Model-B vectors for everything
+else. All 3 queries below are embedded with Model B, since that's what the live
+app calls today.
+
+### Q1 (targets doc 1, refund policy)
+Query text: "How many days do I have to return something I bought?"
+Correct target doc index: 1 -> "Our refund policy allows returns within thirty days of purchase with a"
+  (a) CLEAN index -- all docs embedded with Model B (same-model search):
+    #1  sim=+0.6839  doc[1]: Our refund policy allows returns within thirty days of purchase with a
+    #2  sim=+0.1886  doc[5]: A sourdough starter needs to be fed flour and water every twenty four 
+    #3  sim=+0.1315  doc[8]: The company's data retention policy deletes inactive accounts after tw
+    #4  sim=+0.0343  doc[2]: The hiking trail gains two thousand feet of elevation over six miles.
+    #5  sim=+0.0209  doc[6]: The database migration script backs up the old schema before applying 
+    #6  sim=+0.0120  doc[0]: The quarterly earnings report shows revenue grew twelve percent year o
+    #7  sim=-0.0261  doc[3]: Photosynthesis converts sunlight, water, and carbon dioxide into gluco
+    #8  sim=-0.0433  doc[4]: The new employee onboarding checklist includes setting up payroll and 
+    #9  sim=-0.0644  doc[9]: Jupiter is the largest planet in the solar system and has dozens of mo
+    #10  sim=-0.1258  doc[7]: Regular exercise lowers resting heart rate and improves cardiovascular
+  -> top-1 result is doc[1] (CORRECT; target was doc[1])
+
+  (b) STALE/MIXED index -- some docs still in Model-A space (the broken case):
+    #1  sim=+0.5897  doc[1]: Our refund policy allows returns within thirty days of purchase with a
+    #2  sim=+0.1315  doc[8]: The company's data retention policy deletes inactive accounts after tw
+    #3  sim=+0.1299  doc[5]: A sourdough starter needs to be fed flour and water every twenty four 
+    #4  sim=+0.0693  doc[0]: The quarterly earnings report shows revenue grew twelve percent year o
+    #5  sim=+0.0318  doc[2]: The hiking trail gains two thousand feet of elevation over six miles.
+    #6  sim=-0.0116  doc[6]: The database migration script backs up the old schema before applying 
+    #7  sim=-0.0261  doc[3]: Photosynthesis converts sunlight, water, and carbon dioxide into gluco
+    #8  sim=-0.0433  doc[4]: The new employee onboarding checklist includes setting up payroll and 
+    #9  sim=-0.0644  doc[9]: Jupiter is the largest planet in the solar system and has dozens of mo
+    #10  sim=-0.1258  doc[7]: Regular exercise lowers resting heart rate and improves cardiovascular
+  -> top-1 result is doc[1] (CORRECT; target was doc[1], which is STALE (Model-A) in this index)
+
+### Q2 (targets doc 6, database migration)
+Query text: "Does the migration tool keep a backup of the schema before changing it?"
+Correct target doc index: 6 -> "The database migration script backs up the old schema before applying "
+  (a) CLEAN index -- all docs embedded with Model B (same-model search):
+    #1  sim=+0.7774  doc[6]: The database migration script backs up the old schema before applying 
+    #2  sim=+0.2228  doc[8]: The company's data retention policy deletes inactive accounts after tw
+    #3  sim=+0.1655  doc[4]: The new employee onboarding checklist includes setting up payroll and 
+    #4  sim=+0.1219  doc[1]: Our refund policy allows returns within thirty days of purchase with a
+    #5  sim=+0.1119  doc[3]: Photosynthesis converts sunlight, water, and carbon dioxide into gluco
+    #6  sim=+0.0072  doc[2]: The hiking trail gains two thousand feet of elevation over six miles.
+    #7  sim=+0.0011  doc[7]: Regular exercise lowers resting heart rate and improves cardiovascular
+    #8  sim=-0.0370  doc[0]: The quarterly earnings report shows revenue grew twelve percent year o
+    #9  sim=-0.0584  doc[5]: A sourdough starter needs to be fed flour and water every twenty four 
+    #10  sim=-0.0974  doc[9]: Jupiter is the largest planet in the solar system and has dozens of mo
+  -> top-1 result is doc[6] (CORRECT; target was doc[6])
+
+  (b) STALE/MIXED index -- some docs still in Model-A space (the broken case):
+    #1  sim=+0.6420  doc[6]: The database migration script backs up the old schema before applying 
+    #2  sim=+0.2228  doc[8]: The company's data retention policy deletes inactive accounts after tw
+    #3  sim=+0.1655  doc[4]: The new employee onboarding checklist includes setting up payroll and 
+    #4  sim=+0.1119  doc[3]: Photosynthesis converts sunlight, water, and carbon dioxide into gluco
+    #5  sim=+0.0869  doc[1]: Our refund policy allows returns within thirty days of purchase with a
+    #6  sim=+0.0011  doc[7]: Regular exercise lowers resting heart rate and improves cardiovascular
+    #7  sim=-0.0025  doc[5]: A sourdough starter needs to be fed flour and water every twenty four 
+    #8  sim=-0.0265  doc[2]: The hiking trail gains two thousand feet of elevation over six miles.
+    #9  sim=-0.0412  doc[0]: The quarterly earnings report shows revenue grew twelve percent year o
+    #10  sim=-0.0974  doc[9]: Jupiter is the largest planet in the solar system and has dozens of mo
+  -> top-1 result is doc[6] (CORRECT; target was doc[6], which is STALE (Model-A) in this index)
+
+### Q3 (targets doc 7, exercise/heart health)
+Query text: "What effect does regular physical activity have on your heart rate?"
+Correct target doc index: 7 -> "Regular exercise lowers resting heart rate and improves cardiovascular"
+  (a) CLEAN index -- all docs embedded with Model B (same-model search):
+    #1  sim=+0.5948  doc[7]: Regular exercise lowers resting heart rate and improves cardiovascular
+    #2  sim=+0.1042  doc[4]: The new employee onboarding checklist includes setting up payroll and 
+    #3  sim=+0.0988  doc[2]: The hiking trail gains two thousand feet of elevation over six miles.
+    #4  sim=+0.0416  doc[8]: The company's data retention policy deletes inactive accounts after tw
+    #5  sim=+0.0246  doc[3]: Photosynthesis converts sunlight, water, and carbon dioxide into gluco
+    #6  sim=-0.0281  doc[6]: The database migration script backs up the old schema before applying 
+    #7  sim=-0.0390  doc[0]: The quarterly earnings report shows revenue grew twelve percent year o
+    #8  sim=-0.0978  doc[5]: A sourdough starter needs to be fed flour and water every twenty four 
+    #9  sim=-0.1407  doc[1]: Our refund policy allows returns within thirty days of purchase with a
+    #10  sim=-0.1900  doc[9]: Jupiter is the largest planet in the solar system and has dozens of mo
+  -> top-1 result is doc[7] (CORRECT; target was doc[7])
+
+  (b) STALE/MIXED index -- some docs still in Model-A space (the broken case):
+    #1  sim=+0.5948  doc[7]: Regular exercise lowers resting heart rate and improves cardiovascular
+    #2  sim=+0.1042  doc[4]: The new employee onboarding checklist includes setting up payroll and 
+    #3  sim=+0.0436  doc[2]: The hiking trail gains two thousand feet of elevation over six miles.
+    #4  sim=+0.0416  doc[8]: The company's data retention policy deletes inactive accounts after tw
+    #5  sim=+0.0282  doc[0]: The quarterly earnings report shows revenue grew twelve percent year o
+    #6  sim=+0.0246  doc[3]: Photosynthesis converts sunlight, water, and carbon dioxide into gluco
+    #7  sim=+0.0192  doc[6]: The database migration script backs up the old schema before applying 
+    #8  sim=+0.0125  doc[5]: A sourdough starter needs to be fed flour and water every twenty four 
+    #9  sim=-0.0859  doc[1]: Our refund policy allows returns within thirty days of purchase with a
+    #10  sim=-0.1900  doc[9]: Jupiter is the largest planet in the solar system and has dozens of mo
+  -> top-1 result is doc[7] (CORRECT; target was doc[7], which is fresh (Model-B) in this index)
+
+------------------------------------------------------------------------------
+PART 3 SUMMARY
+------------------------------------------------------------------------------
+Top-1 retrieval accuracy, CLEAN (same-model) index: 3/3
+Top-1 retrieval accuracy, STALE/MIXED (cross-model) index: 3/3
+HONEST NOTE on this corpus: top-1 accuracy held at 3/3 in both conditions above --
+this 10-sentence corpus spans topics distinct enough that the correct answer's
+similarity margin over the next-best wrong answer (commonly 0.3-0.6) is larger than
+the cross-model degradation this run measured (roughly a 0.08-0.14 absolute drop in
+cosine similarity for a stale doc, consistent with Part 1/2's numbers above). The
+similarity SCORES are genuinely, measurably degraded by staleness in every case above
+(e.g. Q1 doc[1]: 0.6839 -> 0.5897; Q2 doc[6]: 0.7774 -> 0.6420) even though the ranking
+survived this particular corpus's wide topic margins. Part 4 below finds a real,
+reproducible case -- still real models, real embeddings, no fabricated numbers -- where
+two genuinely close, confusable documents exist, and the SAME mechanism demonstrated
+above (staleness suppressing a doc's effective similarity) is enough to flip which one
+wins the ranking: the exact silent failure this video is about.
+
+==============================================================================
+PART 4 -- A genuine top-1 RANK INVERSION, found on a closer, more confusable pair
+==============================================================================
+Two near-duplicate-topic documents, deliberately close enough to be a real
+retrieval contest (not two totally unrelated sentences):
+  doc[CORRECT]: "Our refund policy gives you your money back in cash within thirty days of purchase with a receipt."
+  doc[DISTRACTOR]: "Returns on sale items are only accepted for store credit, not a refund."
+  Query: "Can I get cash back for a return, or only credit?"
+  Scenario: doc[CORRECT] was indexed with Model A originally and NEVER re-embedded
+  after the app switched to Model B; doc[DISTRACTOR] was added later and IS a fresh
+  Model-B vector (the realistic shape of a real partial migration). The query is
+  embedded with Model B, since that's what the live app calls today.
+
+  CLEAN index (both docs embedded with Model B, same-model search):
+    doc[CORRECT]    sim=+0.6090
+    doc[DISTRACTOR] sim=+0.5859
+    -> top-1: doc[CORRECT] (right answer)
+  STALE/MIXED index (doc[CORRECT] still in Model-A space, never re-embedded):
+    doc[CORRECT]    sim=+0.5109  (same document, same query -- only its
+                                   embedding model changed between these two lines)
+    doc[DISTRACTOR] sim=+0.5859  (unchanged -- it's fresh Model-B both times)
+    -> top-1: doc[DISTRACTOR] (WRONG)
+
+  RESULT: a genuine rank inversion. The same two real documents and the same real
+  query; the ONLY variable that changed between the clean and stale runs is which
+  embedding model produced doc[CORRECT]'s stored vector. In the clean index the
+  right document wins. In the stale/mixed index -- the realistic state of a vector
+  store that was partially migrated to a new embedding model -- the WRONG document
+  wins instead, silently, with no error, no warning, and no change to the query or
+  the retrieval code itself.
+
+This run used two real, different, published sentence-transformer checkpoints and real mean-pooled, L2-normalized embeddings computed in this script -- every number above, in all 4 parts, came from this exact run, not from a hypothetical or hand-typed example.

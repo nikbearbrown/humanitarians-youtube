@@ -10,7 +10,7 @@
 - **Drive (renders):** [all weeks](https://drive.google.com/drive/folders/1f7r-1Iq3WEzqcWCu6B8TVNQvqt6fBLGo)
 - **Kokoro voice:** `am_onyx` ("Onyx") — declared in every `claude-sri` beat sheet as `voice_kokoro`.
   See [voice note](#voice) below.
-- **Reporting period covered here:** 17 Aug – 15 Nov 2026
+- **Reporting period covered here:** 17 Aug – 22 Nov 2026
 
 ## What this folder is
 
@@ -42,6 +42,7 @@ live in Drive and are linked per week below, per the repo's
 | [26 Oct – 1 Nov](./2026-10-29-video-repo-analysis/) | Analysed the 200+ video repository | Identified **Quantum Computing & Information** as the gap worth filling — derived from the corpus, not decided in discussion. No videos this week. | [what it produced](./2026-11-05-topic-videos-and-skill/) | [log](./2026-10-29-video-repo-analysis/FRICTIONAL.md) |
 | [2–8 Nov](./2026-11-05-topic-videos-and-skill/) | First QC&I videos, and a skill to generate more | Output and capability in one week, 10 hrs each. **Both held — not shared, not confirmed.** | [folder](./2026-11-05-topic-videos-and-skill/) | [log](./2026-11-05-topic-videos-and-skill/FRICTIONAL.md) |
 | [9–15 Nov](./2026-11-12-qci-videos-refined/) | 5 QC&I videos refined; skill continued | **Still in refinement and still held.** Refinement cost more than creation did — 11 hrs against 10. | [folder](./2026-11-12-qci-videos-refined/) | [log](./2026-11-12-qci-videos-refined/FRICTIONAL.md) |
+| [16–22 Nov](./2026-11-19-catalogue-segregated-and-videos/) | Catalogue segregated into sections; 5 new videos; automation skill planned | **Segregation and videos professor-confirmed.** The prompt-to-video skill is planned, not built. | [folder](./2026-11-19-catalogue-segregated-and-videos/) | [log](./2026-11-19-catalogue-segregated-and-videos/FRICTIONAL.md) |
 
 ## `sri-explainer` — chapter-to-video skill
 

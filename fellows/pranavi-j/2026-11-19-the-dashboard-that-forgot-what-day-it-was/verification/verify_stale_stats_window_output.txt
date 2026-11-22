@@ -1,0 +1,32 @@
+[ok] real post-fix severity SQL block confirmed verbatim in crud.py (1 match)
+
+=== fixture data range (real, live DB) ===
+{'min_created': datetime.datetime(2026, 7, 14, 16, 18, 57, 973647), 'max_created': datetime.datetime(2026, 7, 24, 13, 56, 56, 502384)}
+total_feeds (unwindowed COUNT(*), same as get_stats()'s total_feeds field): 411
+
+=== PRE-FIX (reconstructed: real 7-day WHERE clause re-added) ===
+pre-fix (7-day window): {'critical': 0, 'high': 0, 'medium': 0, 'low': 0}
+
+=== POST-FIX (real, current SQL from crud.py on disk) ===
+post-fix (unwindowed): {'critical': 33, 'high': 98, 'medium': 280, 'low': 0}
+
+=== list_feeds()'s actual default ordering/limit, no date filter ===
+(ORDER BY created_at DESC, urgency_score DESC -- crud.py; LIMIT 100 -- App.jsx's feedsAPI.listFeeds({ limit: 100 }))
+{'Critical': 24, 'High': 8, 'Medium': 68}
+
+=== ASSERTIONS ===
+PASS -- fixture min_created == 2026-07-14 (date part)
+PASS -- fixture max_created == 2026-07-24 (date part)
+PASS -- total_feeds == 411
+PASS -- pre.critical == 0
+PASS -- pre.high == 0
+PASS -- pre.medium == 0
+PASS -- pre.low == 0
+PASS -- post.critical == 33
+PASS -- post.high == 98
+PASS -- post.medium == 280
+PASS -- post.low == 0
+PASS -- top-100 slice Critical == 24
+PASS -- top-100 slice High == 8
+
+ALL ASSERTIONS PASSED: against the real, live mycroft_intelligence DB (411 rows, created_at 2026-07-14 to 2026-07-24), the pre-fix 7-day-windowed severity query returns 0/0/0/0 unconditionally, and the real, current post-fix unwindowed query returns Critical 33 / High 98 / Medium 280 / Low 0 -- exactly matching F1-VERIFICATION.md's reported numbers and D1-VERIFICATION.md's own independently-verified unwindowed impact_level counts. The same live DB's actual list_feeds()-equivalent top-100 slice (the one FeedList.jsx renders, no date filter) contains 24 real Critical- and 8 real High-tagged rows -- the concrete, zero-click contradiction between the two panels on the same page.

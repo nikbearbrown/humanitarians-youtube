@@ -139,8 +139,23 @@
   `1.14e-4` mean / `2.27e-3` max. Built on the `claude` palette with
   `ClaudeComposerAsk`, `BrutalistHesitantWriter`, `SkillTeardownPipeline`,
   `ClaudeDefinitions`, `ExecutedData`, `ClaudeVerdictArtifact`, and
+   `TitleRestateOutro`, narrated in Kokoro `af_bella` (Bella). 16:9 master cut
+   (2:48, 8 beats).
+- `2026-11-16-vla-native-coaster-patch-pipeline/` — Security & Exploitation in
+  Physical AI: Native `MuJoCo` Coaster-Patch Pipeline and First Patched
+  `LIBERO` Rollouts. A Week 9 execution report (`work_report.md`) establishing
+  the rendering and recording bridge required before adversarial-patch training:
+  `common/patch_projection.py` maps a trainable patch to the `16 x 16`
+  `OpenVLA` token grid through a differentiable `kornia` warp, `common/coaster.py`
+  adds a visual-only brown coaster with a 90%-area native texture face, and
+  `run_closed_loop_rollout(..., coaster_texture_path=...)` keeps that coaster
+  across hard resets. The report records 9/9 patch-and-coaster smoke tests and
+  six `LIBERO-Object` unoptimized-patch episodes, explicitly as rendering-path
+  validation rather than attack success. Built on the `claude` palette with
+  `ClaudeComposerAsk`, `BrutalistHesitantWriter`, `SkillTeardownPipeline`,
+  `ClaudeDefinitions`, `ExecutedData`, `ClaudeVerdictArtifact`, and
   `TitleRestateOutro`, narrated in Kokoro `af_bella` (Bella). 16:9 master cut
-  (2:48, 8 beats).
+  (2:44, 8 beats).
 
 ## Frictional log
 

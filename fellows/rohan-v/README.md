@@ -20,7 +20,7 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 - [Renewal request](./RENEWAL.md) (sent 2026-09-28, approved) · [renewal index](./renewal-requests/README.md)
 - [Weekly hours](./weekly-hours/README.md): one file per week · [summary table](./HOURS.md)
 - [Research and project plan](./research-plan.md), with status
-- Latest week: [2026-11-13](#week-of-2026-11-13)
+- Latest week: [2026-11-20](#week-of-2026-11-20)
 
 ## How this folder is built
 
@@ -31,6 +31,17 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders (narration, beat clips and the 4K masters) go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx, evidence data) is committed beside it, per the [fellows README](../README.md).
 
 Every master is 4K: `./art final <reel>` (3840×2160) and `./art final <reel>/vertical --height 3840` (2160×3840).
+
+## Week of 2026-11-20
+
+Two audio explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a program I wrote and
+measured, with clips to hear in each video. Both are built in HyperFrames with three.js scenes. Built Thu 19 – Fri 20 Nov.
+Masters in Drive, [`2026-11-20/`](https://drive.google.com/drive/folders/1GSgbVehCPoqnUpLeGhc6vR30pFa2JPpL) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-16-weekly-hours.md).
+
+- [How Auto-Tune Works](./2026-11-20-how-auto-tune-works/): finding the pitch, how far off a singer is, retune speed, shifting a note without a chipmunk voice, and three takes to hear, measured on a synthetic singer with my own detector and corrector (`AutoTune_RohanV.mp4`)
+- [How Bluetooth Audio Works](./2026-11-20-how-bluetooth-audio-works/): squeezing CD audio to a quarter, hopping around Wi-Fi, codecs, the buffer that makes it lag, lip sync and LE Audio, measured with real codecs and a simulated radio link, with a dropout to hear (`BluetoothAudio_RohanV.mp4`)
 
 ## Week of 2026-11-13
 
