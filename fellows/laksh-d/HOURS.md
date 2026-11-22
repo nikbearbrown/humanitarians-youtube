@@ -7,7 +7,8 @@ Reconstructed after each week from dated work records (commits, documents, messa
 | 28 Oct – 1 Nov | Onboarding and project research | 12.0 | | 1.5 | 13.5 |
 | 2–8 Nov | [Project week 1: environment, real traffic, baselines](2026-11-08-week1-project-update/README.md) | 21.5 | [What real cloud traffic looks like](2026-11-08-what-real-cloud-traffic-looks-like/README.md) | 3.0 | 24.5 |
 | 9–15 Nov | [Project week 2: PPO agents, weekly pattern](2026-11-15-can-ppo-beat-yesterday/README.md) | 16.5 | [What PPO is, in plain words](2026-11-15-what-is-ppo/README.md) | 3.5 | 20.0 |
-| **To date** | | **50.0** | | **8.0** | **58.0** |
+| 16–22 Nov | [Project week 3: multi-week traffic, RL against HPA](2026-11-22-when-to-keep-spare-servers/README.md) | 16.0 | [When history misleads](2026-11-22-when-history-misleads/README.md) | 4.0 | 20.0 |
+| **To date** | | **66.0** | | **12.0** | **78.0** |
 
 **Eng. hrs** is engineering, research and onboarding for the predictive autoscaling project. **Reporting hrs** is the weekly progress video, explainer production and documentation.
 
@@ -48,4 +49,17 @@ Evidence for each week's work (reports, videos, Frictional logs) is in [README.m
 | Learning PPO; reviewing the results (reward, late penalty, wait times of late requests) | 2.5 | [What PPO is](2026-11-15-what-is-ppo/README.md) |
 | Weekly RL meeting, demo prep, PM communication | 2.5 | |
 | Progress video and topic explainer | 3.5 | week folders |
+| **Total** | **20.0** | |
+
+### 16–22 Nov (project week 3)
+
+| Activity | Hours | Record / artifact |
+|---|---|---|
+| Multi-week data: Huawei Cloud traces, selection and steadiness filter | 3.0 | `scripts/prepare_huawei.py` |
+| Environment with 7 history days; rules seeing last week and an agent built on them (30 Modal runs), tried and set aside (not production autoscalers); tests | 2.5 | [rl-autoscaler commit a886c1b](https://github.com/lakshdhamija/rl-autoscaler/commit/a886c1b) |
+| PPO that sets HPA's target, misleading-history training, Modal batch (30 runs), tests | 4.0 | `src/rl_autoscaler/train.py`, `scripts/modal_train.py` |
+| Results against HPA at equal cost; misleading-history test; per-app analysis | 3.5 | [rl-autoscaler README](https://github.com/lakshdhamija/rl-autoscaler#rl-sets-hpas-target-week-of-16-nov), `scripts/stress.py` |
+| Research: traffic datasets beyond serverless; limits of the simulator | 1.5 | rl-autoscaler README Plan |
+| PM communication; reviewing results and planning next steps | 1.5 | |
+| Progress video and topic explainer | 4.0 | week folders |
 | **Total** | **20.0** | |
