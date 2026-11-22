@@ -20,14 +20,11 @@ linked from that README.
 - [`2026-11-17-delta/`](2026-11-17-delta/) — Delta (2026-11-17)
 - [`2026-11-22-night-yard/`](2026-11-22-night-yard/) — Night Yard (2026-11-22)
 
-### Explainers
+### AI topic videos (@HumanitariansAI)
 
 - [`2026-09-14-what-is-godot/`](2026-09-14-what-is-godot/) — What is Godot? — and why it fits building games with AI (2026-09-14)
 - [`2026-09-22-what-an-ai-actually-built/`](2026-09-22-what-an-ai-actually-built/) — What an AI Actually Built (2026-09-22)
 - [`2026-10-13-muse/`](2026-10-13-muse/) — Meet Muse: What It Is and Why It's Useful (2026-10-13)
-
-### AI topic videos (@HumanitariansAI)
-
 - [`2026-11-10-background-ai-agents/`](2026-11-10-background-ai-agents/) — Background AI Agents — How AI Works While You Don't (2026-11-10)
 - [`2026-11-22-llm-trust/`](2026-11-22-llm-trust/) — Can You Trust Your AI? How We Test Large Language Models (2026-11-22)
 
