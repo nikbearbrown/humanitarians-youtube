@@ -81,3 +81,12 @@ and expected, where it resisted and what was done next, what Claude or another p
 contributed and what was accepted, changed or rejected, and what is now understood or
 still open. Append as you go; never rewrite an earlier entry. It is not graded and not a
 performance review. See <https://www.humanitarians.ai/fellows> for what an entry contains.
+
+### Weekly logs
+
+One folder per week for the whole-week diary (videos, Homes of Hope, tools series), beside the
+per-episode logs above.
+
+| Week | Log |
+|---|---|
+| 16–22 Nov 2026 | [`2026-11-22-week-log`](2026-11-22-week-log/FRICTIONAL.md) |
