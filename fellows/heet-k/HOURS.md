@@ -16,12 +16,14 @@ weekly reports generated via Addams (Frictional Learning Journal).
 | 22 | 26 Oct – 1 Nov | Analysed the 200+ video repository — what video types to add (18) · self-review (1) | 19.0 | 2.0 | **21.0** |
 | 23 | 2–8 Nov | Created the first Quantum Computing & Information videos (10) · built a skill to generate more of the type (10) · self-review (1) | 21.0 | 2.0 | **23.0** |
 | 24 | 9–15 Nov | Created and refined 5 QC&I videos (11) · continued the skill (8) · self-review (1) | 20.0 | 2.0 | **22.0** |
-| **Total** | | | **213.0** | **25.0** | **238.0** |
+| 25 | 16–22 Nov | Segregated the 200+ video catalogue into sections (8) · created 5 new videos (8) — **both professor-confirmed** · planned the prompt-to-video automation skill (3) · self-review (1) | 20.0 | 2.0 | **22.0** |
+| **Total** | | | **233.0** | **27.0** | **260.0** |
 
 Each week meets the 20-hour requirement at the stated split.
 
 Professor confirmations (intros Week 14; intro+outro and the explainer Week 15;
-final outro Week 16; the Brutalist-skill intro/outro Week 19) are logged as
+final outro Week 16; the Brutalist-skill intro/outro Week 19; the catalogue
+segregation and five videos Week 25) are logged as
 results in [README.md](README.md), not as separate hours buckets.
 
 If actual hours differ from these figures they should replace them here — the
