@@ -1,0 +1,332 @@
+{
+  "metadata": {
+    "title": "Chasing Its Own Guess.",
+    "slug": "rl-environments-target-networks",
+    "topic": "STEM · MULTI-AGENT RL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "persona": "Sudhanva",
+    "in_for_bear": false,
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hi, I'm Sudhanva",
+    "folderLabel": "RL Environments",
+    "project": "RL Environments",
+    "series": "RL Environments · Week 5 · STEM",
+    "outro_handle": "@HumanitariansAI",
+    "pronounce": {
+      "Sudhanva": "sˈʊdənvə",
+      "RL": "ˈɑːɹ ˈɛl",
+      "VDN": "vˈiː dˈiː ˈɛn",
+      "QMIX": "kjˈuː mˈɪks",
+      "Q": "kjˈuː",
+      "DQN": "dˈiː kjˈuː ˈɛn"
+    },
+    "fps": 24,
+    "gate_p": "NARRATION APPROVED 2026-11-22 — Sudhanva: \"Ok on the recommended change, suggest other titles for the STEM\" (B04 opening changed to \"Here's prediction and target climbing together in our logs.\"). TITLE APPROVED 2026-11-22 — Sudhanva: \"go with Chasing Its Own Guess\" → \"Chasing Its Own Guess.\"",
+    "evidence": "evidence/results.json (evidence/tn_evidence.py: committed code and logs of Nenyax-AI/team-work @ c9369a8; no training)",
+    "repo": "Nenyax-AI/team-work @ c9369a8, projects/learning-environments/ant-foraging (branch ant-head-research)",
+    "sources": [
+      "Mnih et al. 2015, Human-level control through deep reinforcement learning, Nature (DQN, target network)",
+      "van Hasselt, Guez & Silver 2016, Deep Reinforcement Learning with Double Q-learning, AAAI (Double DQN)"
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hi — I'm Sudhanva, with this week's STEM explainer for the RL Environments project: target networks, and what our logs show when one moves too often.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.0,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "STEM · MULTI-AGENT RL",
+            "segment": "Chasing Its Own Guess",
+            "folderLabel": "RL Environments",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "greeting": "Hi, I'm Sudhanva",
+            "command": "Our QMIX value estimate ran away. Pull the prediction and target logs and show me what the target network was doing.",
+            "runningText": "running tn_evidence.py…",
+            "output": [
+              "grid, default sync: team value estimate 40 at 150k steps · team food 0.00",
+              "free world, seed 2: prediction 48 → 865,716 by 500k · target within 3.4%",
+              "sync every 2,000 updates: largest prediction 1.2–10.5 across 11 runs"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-22T21:28:08.894501+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 8.81,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "hesitant writer — BLUF",
+      "speed": 0.88,
+      "narration_text": "Q-learning trains toward its own next guess. If that guess moves every time the network learns, the network chases itself. So the guess comes from a frozen copy that only updates now and then.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.5,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Q-learning trains toward\nthe right answer\nso hold that guess still",
+            "face": "serif",
+            "fontSize": 120,
+            "lineSpacing": 1.45,
+            "align": "center",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5",
+            "triggerWords": "the right answer",
+            "replacementWords": "its own next guess",
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 4,
+            "charMs": 34,
+            "jitter": 18,
+            "seed": "rl-environments-target-networks",
+            "brandLabel": "RL Environments",
+            "contextTitle": "Chasing Its Own Guess"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-22T21:28:53.297858+00:00"
+          }
+        },
+        "words_on_card": {
+          "before_correction": 11,
+          "after_correction": 12
+        }
+      },
+      "actual_duration_s": 11.56,
+      "audio_file": "mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "act": "framework: the bootstrapped target",
+      "narration_text": "Here's the target in our code. The online network picks the next move; the frozen copy scores it. The team reward plus ninety-nine percent of that score is what the prediction is pulled toward.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.5,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B02_Target",
+        "source": "own",
+        "sparkLine": "Its own next guess.",
+        "new_visual_element": "Verbatim value_based.py lines (double Q: a_star from self.q, scored by q_next_target; target = team + gamma · not_done · mixer_target(...)) beside the typeset target y = r_team + γ(1 − d)·Q_tot,copy(s′, a′) with a′ chosen by the online network; γ = 0.99 from ValueConfig",
+        "visual_intent": "SHOW: evidence code.double_q_lines, code.target_line, code.config.gamma (team-work c9369a8)",
+        "show": [
+          {
+            "at": "target in our code",
+            "event": "verbatim code card: the three target lines from update()"
+          },
+          {
+            "at": "picks the next move",
+            "event": "a_star line highlights; typeset a′ = argmax Q_online(s′, a)"
+          },
+          {
+            "at": "frozen copy scores it",
+            "event": "q_next_target line highlights; typeset Q_copy(s′, a′)"
+          },
+          {
+            "at": "ninety-nine percent",
+            "event": "full target y = r_team + 0.99 (1 − d) Q_tot,copy(s′, a′) writes on; arrow from y to the prediction"
+          }
+        ]
+      },
+      "actual_duration_s": 11.05,
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "act": "framework: the hard sync",
+      "narration_text": "Every five hundred updates, the code overwrites the copy with the live network's weights. Between syncs the copy holds still, so the prediction has a fixed thing to catch up to.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.5,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B03_Sync",
+        "source": "own",
+        "sparkLine": "Hold it still.",
+        "new_visual_element": "Verbatim sync lines (updates % target_update == 0 → q_target.load_state_dict(q.state_dict()), mixer_target likewise); a constructed timeline: the live weights drift every update while the copy is a staircase that jumps only at syncs; labels from the config: every 500 updates = 1,000 env steps, 998 syncs per 1M-step run",
+        "visual_intent": "SHOW: evidence code.sync_lines, code.env_steps_per_sync, code.syncs_per_1M; timeline labelled 'illustration'",
+        "show": [
+          {
+            "at": "five hundred updates",
+            "event": "chip: target_update = 500 · every 1,000 environment steps"
+          },
+          {
+            "at": "overwrites the copy",
+            "event": "verbatim sync lines type in: q_target and mixer_target load_state_dict"
+          },
+          {
+            "at": "Between syncs",
+            "event": "timeline (labelled illustration): live line wiggles every update; copy staircase flat between sync ticks"
+          },
+          {
+            "at": "catch up",
+            "event": "between two ticks the live line settles toward the flat copy level; counter 998 syncs in a 1M-step run"
+          }
+        ]
+      },
+      "actual_duration_s": 9.98,
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "act": "the real demonstration",
+      "narration_text": "Here's prediction and target climbing together in our logs. In one free-world run, prediction and target climbed together, from forty-eight to over eight hundred thousand by five hundred thousand steps, never more than a few percent apart.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B04_Chase",
+        "source": "own",
+        "sparkLine": "Chasing itself.",
+        "new_visual_element": "Log-scale chart from qmix-diag/free-qmix-s2/metrics.csv: mean TD prediction and mean TD target per evaluation, 50k → 500k, the two lines nearly on top of each other (48.19 → 865,716 and 48.29 → 895,353; largest gap 3.4%); team food along the bottom stays 0–0.10; small inset: grid default seeds 0–1 peak 40 at 150k while scoring 0.00",
+        "visual_intent": "SHOW: evidence free_s2 (rows, max_rel_gap) + diag grid-qmix-s0/s1",
+        "show": [
+          {
+            "at": "in our logs",
+            "event": "log axes 10¹ … 10⁶ draw; source label qmix-diag, free world, seed 2, default settings"
+          },
+          {
+            "at": "climbed together",
+            "event": "prediction and target lines draw together, evaluation by evaluation"
+          },
+          {
+            "at": "eight hundred thousand",
+            "event": "end labels 865,716 and 895,353 at 500k"
+          },
+          {
+            "at": "few percent apart",
+            "event": "gap readout: largest 3.4%; team food stays at or below 0.10"
+          }
+        ]
+      },
+      "actual_duration_s": 12.93,
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "act": "in this project",
+      "narration_text": "In test runs that synced every two thousand updates, the prediction never passed about ten. Paired with half the learning rate, QMIX on the grid went from zero point one three to eight point four four.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.5,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B05_Slower",
+        "source": "own",
+        "sparkLine": "Sync less often.",
+        "new_visual_element": "Log-scale dot strip: largest prediction in each of the 11 screen runs with target_update 2000 (1.2–10.5) against the default runs' peaks (40 grid, 865,716 free s2 by 500k); then default → tuned grid QMIX, sampled, 3 seeds: 0.13 → 8.44, settings chip 'lr 2.5e-4 + sync every 2,000'",
+        "visual_intent": "SHOW: evidence screen_sync2000, screen, results (default/tuned sampled, tuned_settings)",
+        "show": [
+          {
+            "at": "two thousand updates",
+            "event": "11 dots land between 1.2 and 10.5 on the log strip; default peaks shown above them"
+          },
+          {
+            "at": "never passed about ten",
+            "event": "band at 10.5 highlights"
+          },
+          {
+            "at": "half the learning rate",
+            "event": "chip: lr 2.5e-4 (half of 5e-4) + sync every 2,000"
+          },
+          {
+            "at": "eight point four four",
+            "event": "bars: default 0.13 → tuned 8.44 (of 12, sampled, 3 seeds)"
+          }
+        ]
+      },
+      "actual_duration_s": 11.5,
+      "audio_file": "mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn: 'Here's my DQN training loop. Log the mean prediction and the mean target every few thousand steps, and plot both on a log scale.' Watch whether they climb together.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.5,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "STEM · MULTI-AGENT RL",
+            "segment": "Chasing Its Own Guess",
+            "folderLabel": "RL Environments",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "command": "Here's my DQN training loop. Log the mean prediction and the mean target every few thousand steps, and plot both on a log scale."
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-22T21:29:53.541141+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 10.05,
+      "audio_file": "mp3/beat-BHTF.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Chasing Its Own Guess. Humanitarians AI.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 3.5,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "BOUT_Title",
+        "source": "own",
+        "sparkLine": "",
+        "new_visual_element": "Title + HAI logo + @HumanitariansAI",
+        "visual_intent": "outro card",
+        "show": [
+          {
+            "at": "start",
+            "event": "title"
+          },
+          {
+            "at": "Humanitarians",
+            "event": "handle + logo"
+          }
+        ]
+      },
+      "kind": "outro_voice",
+      "actual_duration_s": 3.46,
+      "audio_file": "mp3/beat-BOUT.mp3"
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "metadata": {
+    "title": "Why QMIX Collapsed, and Why Sample over Greedy?",
+    "slug": "rl-environments-week-5",
+    "topic": "RL ENVIRONMENTS · PROJECT UPDATE",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "persona": "Sudhanva",
+    "in_for_bear": false,
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hi, I'm Sudhanva",
+    "folderLabel": "RL Environments",
+    "project": "RL Environments",
+    "pronounce": {
+      "Sudhanva": "sˈʊdənvə",
+      "RL": "ˈɑːɹ ˈɛl",
+      "IPPO": "ˈaɪ pˌiː pˌiː ˈoʊ",
+      "MAPPO": "ˈɛm ˈeɪ pˌiː pˌiː ˈoʊ",
+      "PPO": "pˌiː pˌiː ˈoʊ",
+      "IQL": "ˈaɪ kjˌuː ˈɛl",
+      "VDN": "vˈiː dˌiː ˈɛn",
+      "QMIX": "kjˈuː mˈɪks"
+    },
+    "fps": 24,
+    "evidence": "evidence/w5_film.json from w5_evidence.py (reads results/fix-compare at team-work c9369a8, read-only) + evidence/week5_results.json (the coordinator's verify_week5.py) + compare_sampled.txt / compare_greedy.txt (scripts/compare.py [--sample])",
+    "repo": "github.com/Nenyax-AI/team-work · projects/learning-environments/ant-foraging · branch ant-head-research · commit c9369a8",
+    "gate_p": {
+      "status": "approved",
+      "date": "2026-11-22",
+      "by": "Sudhanva Devanathan (relayed by the coordinator)",
+      "quote_script": "1. Ok",
+      "quote_title": "Why QMIX collapsed and why sample over greedy choice ?",
+      "edits": [
+        "title changed everywhere (sheet, composer + writer headers, verdict header, BOUT card and narration) to: Why QMIX Collapsed, and Why Sample over Greedy?"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hi — I'm Sudhanva, with week five of the RL Environments project update: why QMIX collapsed, and how we fixed it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.7,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "RL ENVIRONMENTS · PROJECT UPDATE",
+            "segment": "Week 5: Why QMIX Collapsed, and Why Sample over Greedy?",
+            "folderLabel": "RL Environments",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "greeting": "Hi, I'm Sudhanva",
+            "command": "Find out why QMIX collapsed, fix it with settings only, and rescore every learner the way it acts in training.",
+            "runningText": "reading the QMIX logs…",
+            "output": [
+              "QMIX team-value estimate: about 40 on the grid while the team scored 0",
+              "sync every 2,000 updates + half the learning rate: grid QMIX 0.13 to 8.44, VDN 6.05 to 8.55",
+              "sampled scores: free-world IPPO 9.59 (greedy 8.49)"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-22T15:59:36.505705+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 7.3,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "act": "executive summary (hesitant writer)",
+      "narration_text": "QMIX collapsed after its estimate overshot, and two settings fixed that. Retuned, VDN and IQL match PPO in the free world. Only the grid still tells them apart.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.1,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "QMIX collapsed because\nit can't learn the task",
+            "face": "serif",
+            "fontSize": 120,
+            "lineSpacing": 1.45,
+            "align": "center",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5",
+            "triggerWords": "because, it can't learn the task",
+            "replacementWords": "after, its estimate overshot",
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 4,
+            "charMs": 34,
+            "jitter": 18,
+            "seed": "rl-environments-week-5",
+            "brandLabel": "RL Environments",
+            "contextTitle": "Why QMIX Collapsed, and Why Sample over Greedy?"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-22T16:00:34.824761+00:00"
+          }
+        },
+        "visual_intent": "Writer types the arriving framing ('because it can't learn the task'), strikes 'because' → 'after' and 'it can't learn the task' → 'its estimate overshot'. Final: 'QMIX collapsed after / its estimate overshot' (7 words, lines ≤ 21 chars, fits 9:16). Two single-line triggers, comma-separated (component contract)."
+      },
+      "lead_silence_s": 0.8,
+      "actual_duration_s": 10.75,
+      "audio_file": "mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "act": "diagnosis: the overshoot",
+      "narration_text": "With the target network synced every five hundred updates, the QMIX team-value estimate overshoots: about forty on the grid while the team scores about zero. In one free-world seed it passes eight hundred thousand.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.5,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B02_Overshoot",
+        "source": "own",
+        "sparkLine": "The estimate overshoots.",
+        "new_visual_element": "QMIX (default settings) team-value estimate per evaluation: grid seeds 0-1 on a linear axis with team food beside; free seed 2 on a log axis with its mixer weight |W1|",
+        "visual_intent": "SHOW: w5_film.json qmix_diag (results/fix-compare/qmix-diag/*/metrics.csv: pred_mean, mix_w1, team_value)",
+        "show": [
+          {
+            "at": "synced every five hundred updates",
+            "event": "caption: 'target network synced every 500 updates (default)'"
+          },
+          {
+            "at": "about forty",
+            "event": "grid seeds 0-1 estimate curves draw; label '40 at 150k'"
+          },
+          {
+            "at": "team scores about zero",
+            "event": "chip: 'team food at 150k: 0.0'"
+          },
+          {
+            "at": "one free-world seed",
+            "event": "free seed 2 on a log axis: '865,716 at 500k'; mixer |W1| 1.54 → 301 noted"
+          }
+        ]
+      },
+      "actual_duration_s": 11.95,
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "act": "the fix (two settings)",
+      "narration_text": "The fix: sync four times less often and halve the learning rate. Grid QMIX climbs from nearly zero to eight point four, VDN to eight point six, and the overshoot is gone.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 11.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B03_Fix",
+        "source": "own",
+        "sparkLine": "Two settings.",
+        "new_visual_element": "Two settings cards (500 → 2,000 updates; 0.0005 → 0.00025); default vs tuned bars for grid QMIX and VDN (sampled, 3 seeds); largest estimate per run, default vs slower sync",
+        "visual_intent": "SHOW: w5_film.json scores (honest vs tuned grid-qmix, grid-vdn) and peaks (qmix-diag, screen, tuned)",
+        "show": [
+          {
+            "at": "sync four times less often",
+            "event": "card 1: target sync every 500 → 2,000 updates"
+          },
+          {
+            "at": "halve the learning rate",
+            "event": "card 2: learning rate 0.0005 → 0.00025"
+          },
+          {
+            "at": "Grid QMIX climbs",
+            "event": "bars: QMIX 0.13 → 8.44, VDN 6.05 → 8.55 (sampled, seeds 0-2)"
+          },
+          {
+            "at": "the overshoot is gone",
+            "event": "largest estimate in a run: default 40 (grid) and up to 4,000,000 (free); with the slower sync 2.7–10.5"
+          }
+        ]
+      },
+      "actual_duration_s": 10.28,
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "act": "sampled is the headline",
+      "narration_text": "Scores are now sampled, as the ants act in training. Greedy play can deadlock, and it understated free-world IPPO: nine point six sampled, eight point five greedy.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.9,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B04_Sampled",
+        "source": "own",
+        "sparkLine": "Score as trained.",
+        "new_visual_element": "Greedy vs sampled bars, free world, IPPO and MAPPO (5 seeds); caption on why greedy deadlocks",
+        "visual_intent": "SHOW: w5_film.json scores free-ippo/free-mappo greedy (metrics.csv final) vs sampled (eval_sampled.json); RESULTS.md §6.2",
+        "show": [
+          {
+            "at": "sampled",
+            "event": "label: 'sampled: each ant draws its action as in training'"
+          },
+          {
+            "at": "Greedy play can deadlock",
+            "event": "caption: 'greedy: two holders split, see nearly the same thing, split again'"
+          },
+          {
+            "at": "nine point six",
+            "event": "bars: IPPO greedy 8.49 → sampled 9.59; MAPPO 7.91 → 9.43"
+          }
+        ]
+      },
+      "actual_duration_s": 10.6,
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "act": "how the learners rank now",
+      "narration_text": "In the free world, tuned VDN and IQL now score level with PPO, and IQL, blind to its teammates, pairs about as many pieces as IPPO. The grid still separates them: PPO above eleven and a half, VDN and QMIX about eight and a half.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16.5,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "B05_Rank",
+        "source": "own",
+        "sparkLine": "Only the grid separates.",
+        "new_visual_element": "Free-world bars at 1M (IPPO, tuned VDN, tuned IQL, MAPPO) with paired counts; grid bars (IPPO, MAPPO, tuned VDN, tuned QMIX) with holder agreement; captions for 10M and training-time agreement",
+        "visual_intent": "SHOW: w5_film.json scores (sampled), agreement_mean, train_agreement_grid_sampled, free-*-10M",
+        "show": [
+          {
+            "at": "tuned VDN and IQL",
+            "event": "free bars: IPPO 9.59, VDN 9.48, IQL 9.45, MAPPO 9.43 (sampled, 1M)"
+          },
+          {
+            "at": "pairs about as many pieces",
+            "event": "paired pieces: IQL 2.18 vs IPPO 2.29; IQL tagged 'can't see its teammates'"
+          },
+          {
+            "at": "The grid still separates",
+            "event": "grid bars: IPPO 11.85, MAPPO 11.61, VDN 8.55, QMIX 8.44"
+          },
+          {
+            "at": "eight and a half",
+            "event": "holders pull the same way: PPO 93–94% vs VDN, QMIX 65–71%; IPPO during training 0.31 → 0.83 by 300k; free world at 10M: IPPO 11.49, MAPPO 11.41"
+          }
+        ]
+      },
+      "actual_duration_s": 15.62,
+      "audio_file": "mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Verdict: QMIX no longer collapses, and only the grid separates the learners. Next week: hiding one holder's home vector, still not run, and a sharper free-world test.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.4,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Why QMIX Collapsed, and Why Sample over Greedy?",
+            "artifactHeading": "What week five showed",
+            "artifactLines": [
+              "QMIX's estimate overshot with a 500-update sync; 2,000 updates and half the learning rate fixed it.",
+              "Grid, sampled: PPO 11.6–11.9 vs tuned VDN 8.55, QMIX 8.44; holders agree 93–94% vs 65–71%.",
+              "Free world, 1M: tuned VDN 9.48, IQL 9.45, level with IPPO 9.59, MAPPO 9.43. At 10M: 11.49, 11.41.",
+              "Next: hide one holder's home vector (still not run) · make the free world a sharper test."
+            ],
+            "brandLabel": "RL Environments"
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": "2026-11-22T16:01:45.250686+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "actual_duration_s": 9.88,
+      "audio_file": "mp3/beat-BVDT.mp3"
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn handoff",
+      "narration_text": "Your turn: 'My value estimates blow up in training. What should I log first?' Check that it suggests logging predictions and targets.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8.1,
+      "shot": {
+        "type": "REMOTION",
+        "lane": "bookend",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "topic": "RL ENVIRONMENTS · PROJECT UPDATE",
+            "segment": "Week 5: Why QMIX Collapsed, and Why Sample over Greedy?",
+            "folderLabel": "RL Environments",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High",
+            "greeting": "Your turn.",
+            "runningText": "paste this into Claude…",
+            "command": "My value estimates blow up in training. What should I log first?"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-22T16:03:03.496015+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 7.38,
+      "audio_file": "mp3/beat-BHTF.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Why QMIX Collapsed, and Why Sample over Greedy? RL Environments, project update.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 2.9,
+      "shot": {
+        "type": "GRAPHIC",
+        "lane": "manim",
+        "manim": "BOUT_Title",
+        "source": "own",
+        "sparkLine": "",
+        "new_visual_element": "Title + RL Environments + 'project update · week 5 · Sudhanva'",
+        "visual_intent": "outro card",
+        "show": [
+          {
+            "at": "start",
+            "event": "title"
+          },
+          {
+            "at": "RL",
+            "event": "project name"
+          }
+        ]
+      },
+      "kind": "outro_voice",
+      "actual_duration_s": 5.8,
+      "audio_file": "mp3/beat-BOUT.mp3"
+    }
+  ]
+}
