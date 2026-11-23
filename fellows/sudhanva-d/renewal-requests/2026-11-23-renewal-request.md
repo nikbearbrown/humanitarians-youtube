@@ -51,7 +51,7 @@ I also produced ten Brutalist videos, a project update and a STEM explainer each
 
 ## Degree Relevance and Supervision
 
-[MS in Computer Science, Northeastern University Boston, May 2026] The project applies my coursework in Reinforcement Learning, Machine Learning and Deep Learning directly: designing simulation environments and reward functions, implementing and debugging deep reinforcement learning algorithms (Q-learning with target networks, value decomposition, PPO with centralised and decentralised critics), and running reproducible experiments with held-out evaluation and tests.
+MS in Computer Science, Northeastern University Boston, May 2026. The project applies my coursework in Reinforcement Learning, Machine Learning and Deep Learning directly: designing simulation environments and reward functions, implementing and debugging deep reinforcement learning algorithms (Q-learning with target networks, value decomposition, PPO with centralised and decentralised critics), and running reproducible experiments with held-out evaluation and tests.
 
 **Supervisors:** Dhruv Patel and Dev Shah
 
