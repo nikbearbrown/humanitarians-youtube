@@ -101,7 +101,7 @@ Fellowship directly applies graduate PM methodology: stakeholder management, com
 
 ## 7. Outstanding Issues
 
-- **Brutalist videos:** 0 posted to date. Working on first 2 this week (Nov 25). Will post direct links and update this report.
+- **Brutalist videos:** 2 posted Nov 23, 2026. Links below in evidence index.
 - **PR #409:** Fellows folder pending merge by Nik into humanitarians-youtube.
 - **Ashby PR:** Pending Nik review on tanmay/feature-ashby-scraper.
 - **Mohan README:** Lists PM as Nina Harris — needs update to Tanmay Sangam.
@@ -117,4 +117,4 @@ Fellowship directly applies graduate PM methodology: stakeholder management, com
 | Oct 26–Nov 1 | ~22 | — | — | [link](https://github.com/TanmaySangam18/80-Days-to-Stay/blob/main/fellows/tanmay-s/2026-10-28-ashby-scraper/FRICTIONAL.md) | [Ashby branch](https://github.com/nikbearbrown/80-Days-to-Stay/tree/tanmay/feature-ashby-scraper) |
 | Nov 2–8 | ~10 | — | — | — | — |
 | Nov 9–15 | ~22 | — | — | [link](https://github.com/TanmaySangam18/humanitarians-youtube/blob/main/fellows/tanmay-s/2026-11-09-pm-role/FRICTIONAL.md) | [PM Dashboard](https://pm-dashboard-deploy.vercel.app) |
-| Nov 16–22 | ~18 | in progress | in progress | in progress | [PR #409](https://github.com/nikbearbrown/humanitarians-youtube/pull/409) |
+| Nov 16–22 | ~18 | [ATS Explainer](https://northeastern-my.sharepoint.com/:v:/r/personal/sangam_d_northeastern_edu/Documents/Humanatarians/Video%201%20-%20Why%20ATS%20Auto-Rejects%20International%20Students.mp4?d=w684c49553eb846d39fc84e2c3c4b236e&csf=1&web=1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=YA96FU) | [PM Week 2](https://northeastern-my.sharepoint.com/:v:/g/personal/sangam_d_northeastern_edu/IQBSlU9F5Or9TpR4I9FwyUT9ASzsK7z-wC9LXmpNchX3ux8) | in progress | [PR #409](https://github.com/nikbearbrown/humanitarians-youtube/pull/409) |
