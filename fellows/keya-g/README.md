@@ -23,6 +23,7 @@ Work folders, one per report or video:
 - [2026-11-16-how-websites-know-im-not-a-robot](2026-11-16-how-websites-know-im-not-a-robot/README.md): Week 6 explainer, How Do Websites Know I'm Not a Robot?
 - [2026-11-16-week-6-progress](2026-11-16-week-6-progress/README.md): Week 6 progress video
 - [HOURS.md](HOURS.md): weekly hours
+- [RENEWAL.md](RENEWAL.md): renewal request and weekly evidence index
 
 
 ## Frictional log
