@@ -3,7 +3,7 @@
 ## 1. Your request
 
 - **Name:** Usha S. ([@us-sharma1612](https://github.com/us-sharma1612))
-- **Role / Project:** Research Assistant — Brutalist; ESG Analysis using AI (research, STEM explainer videos, and research-progress videos)
+- **Role / Project:** Research Assistant — Brutalist (STEM explainer videos); ESG Analysis using AI (research and progress videos)
 - **Current agreement:** 13 Oct 2026 — 30 Nov 2026
 - **Reporting period:** 13 Oct — 30 Nov 2026 (logged through 22 Nov; final week to be added)
 - **Requested renewal dates:** 1 Dec 2026 — 31 Jan 2027 (2 months)
