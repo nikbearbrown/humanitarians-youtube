@@ -3,7 +3,7 @@
 - **Current agreement:** 16 Sep 2026 — 31 Oct 2026
 - **Requested period:** 1 Nov 2026 — 31 Jan 2027
 
-- **Project:** Brutalist Videos (first month, Sanjana Rao's team)
+- **Project:** Brutalist Videos (first month, Sanjana R.'s team)
 - **Repository:** https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/gomathy-s
 
 ## What the current period produced
