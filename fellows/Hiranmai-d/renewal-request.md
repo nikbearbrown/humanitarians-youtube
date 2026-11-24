@@ -24,8 +24,6 @@ Beyond this initial research, I am interested in exploring how ImmuneUnite could
 
 During the four-week reporting period, I worked on research exploration, literature review, dataset preparation, machine learning development, and validation.
 
-I recall working at least three hours daily, including weekends.
-
 The following figures are preliminary workload estimates based on the activities completed. They must be reconciled with actual time records before submission.
 
 | Week | Research Focus | Estimated Hours |
