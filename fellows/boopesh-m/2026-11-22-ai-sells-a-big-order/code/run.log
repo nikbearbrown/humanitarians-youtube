@@ -1,0 +1,44 @@
+execution_rl.py -- SYNTHETIC market (random walk + temporary impact). Not real data.
+python 3.13.18  numpy 2.5.5
+X=10000 shares  S0=$50.0  N=10 steps  lot=250  sigma=$0.1/step  eta=5e-05 $/share/share  lambda=0.0003 1/$
+seeds: train 20261122, held-out test 7; practice days 40,000,000; held-out days 20,000
+  practice days  2,000,000   greedy schedule: expected cost + risk penalty  22.964 bps   min visits/cell 188
+  practice days  4,000,000   greedy schedule: expected cost + risk penalty  27.242 bps   min visits/cell 406
+  practice days  6,000,000   greedy schedule: expected cost + risk penalty  23.749 bps   min visits/cell 627
+  practice days  8,000,000   greedy schedule: expected cost + risk penalty  23.749 bps   min visits/cell 860
+  practice days 10,000,000   greedy schedule: expected cost + risk penalty  23.749 bps   min visits/cell 1,088
+  practice days 12,000,000   greedy schedule: expected cost + risk penalty  23.749 bps   min visits/cell 1,329
+  practice days 14,000,000   greedy schedule: expected cost + risk penalty  23.749 bps   min visits/cell 1,533
+  practice days 16,000,000   greedy schedule: expected cost + risk penalty  23.750 bps   min visits/cell 1,767
+  practice days 18,000,000   greedy schedule: expected cost + risk penalty  23.750 bps   min visits/cell 1,980
+  practice days 20,000,000   greedy schedule: expected cost + risk penalty  23.750 bps   min visits/cell 2,217
+  practice days 22,000,000   greedy schedule: expected cost + risk penalty  22.649 bps   min visits/cell 2,443
+  practice days 24,000,000   greedy schedule: expected cost + risk penalty  23.434 bps   min visits/cell 2,661
+  practice days 26,000,000   greedy schedule: expected cost + risk penalty  23.750 bps   min visits/cell 2,895
+  practice days 28,000,000   greedy schedule: expected cost + risk penalty  23.750 bps   min visits/cell 3,105
+  practice days 30,000,000   greedy schedule: expected cost + risk penalty  23.750 bps   min visits/cell 3,339
+  practice days 32,000,000   greedy schedule: expected cost + risk penalty  22.782 bps   min visits/cell 3,569
+  practice days 34,000,000   greedy schedule: expected cost + risk penalty  23.157 bps   min visits/cell 3,812
+  practice days 36,000,000   greedy schedule: expected cost + risk penalty  22.799 bps   min visits/cell 4,018
+  practice days 38,000,000   greedy schedule: expected cost + risk penalty  22.424 bps   min visits/cell 4,225
+  practice days 40,000,000   greedy schedule: expected cost + risk penalty  22.424 bps   min visits/cell 4,482
+
+Almgren-Chriss kappa = 0.2443 per step  (kappa*N = 2.443)
+step:           1      2      3      4      5      6      7      8      9     10
+dump        10000      0      0      0      0      0      0      0      0      0
+twap         1000   1000   1000   1000   1000   1000   1000   1000   1000   1000
+rl           2500   1500   1000   1000   1000    750    750    500    500    500
+grid         2000   2000   1250   1000   1000    750    500    500    500    500
+ac           2205   1738   1374   1093    878    715    595    511    458    432
+RL - AC (shares): [294.7, -237.6, -374.2, -93.2, 122.1, 34.8, 154.6, -11.3, 42.1, 68.0]   max |dev| = 374.2
+RL schedule == exact grid optimum: False
+
+held-out simulated days: 20,000 (seed 7); cost = implementation shortfall
+strategy  mean bps  std bps  p95 bps    mean $  E+lam*V bps
+dump        100.00     0.00   100.00      5000      100.000
+twap          9.89    33.70    65.37       494       27.100
+rl           13.31    24.50    53.59       665       22.424
+ac           13.19    24.14    52.71       660       22.053
+grid         13.05    24.56    53.27       653       22.226
+RL objective vs AC closed form: +1.682%
+results sha256 (canonical, before this field): f62f4b8c4d016e63cfba87f24ab82f27acb40b74a2aeabe4003a912d62a2c712
