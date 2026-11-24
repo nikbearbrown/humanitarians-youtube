@@ -1,0 +1,810 @@
+{
+  "metadata": {
+    "title": "Softmax and Temperature, Explained",
+    "slug": "claude-liam-softmax-temperature",
+    "topic": "LANGUAGE MODELS · SOFTMAX AND TEMPERATURE",
+    "skill": "ai-explainer",
+    "brand": "claude-liam",
+    "channel": "claude-liam",
+    "audience": "makers and curious learners who use chat models",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "greeting": "Bonjour, Liam",
+    "persona": "Liam (in for Bear)",
+    "in_for_bear": true,
+    "folderLabel": "@NikBearBrown",
+    "captions": false,
+    "series_index": 2,
+    "evidence": "demo/softmax_demo.py -> demo/evidence.json, demo/RUN-LOG.txt (seed 2)",
+    "pronounce": {
+      "logit": "ˈloʊdʒɪt",
+      "logits": "ˈloʊdʒɪts",
+      "a logit": "ɐ ˈloʊdʒɪt"
+    },
+    "tags": [
+      "softmax",
+      "temperature",
+      "sampling",
+      "language models",
+      "greedy decoding",
+      "next-token prediction",
+      "probability"
+    ],
+    "build": {
+      "at": "2026-11-23T04:43:41",
+      "cut": "master",
+      "filled": 13,
+      "of": 13,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "lane": "remotion",
+      "narration_text": "Bonjour, this is Liam, in for Bear. The ask: why does the same prompt give me a different answer every time? Show me the math underneath, with real numbers.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.02,
+            "event": "composer card fades in on cream"
+          },
+          {
+            "at": 0.1,
+            "event": "greeting 'Bonjour, Liam' types above the composer"
+          },
+          {
+            "at": 0.3,
+            "event": "the ask types in"
+          },
+          {
+            "at": 0.72,
+            "event": "runningText 'working through the math…' appears"
+          },
+          {
+            "at": 0.84,
+            "event": "three result lines cascade in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Bonjour, Liam",
+            "topic": "LANGUAGE MODELS · SOFTMAX AND TEMPERATURE",
+            "segment": "Softmax and Temperature, Explained",
+            "command": "Why does the same prompt give me a different answer every time? Show me the math underneath, with real numbers.",
+            "runningText": "working through the math…",
+            "output": [
+              "the model scores every next token; softmax turns the scores into odds",
+              "temperature reshapes the odds: 'mat' is 98% at T = 0.2, 51% at 1, 35% at 2",
+              "then it rolls weighted dice: same odds, different rolls, different answers"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-23T08:35:25.614173+00:00"
+          }
+        }
+      },
+      "role_note": "COLD OPEN LAW — ask lands answered; Liam introduced in first breath.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 8.73,
+      "render_duration_s": 8.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "lane": "remotion",
+      "narration_text": "A language model rolls weighted dice for every word it writes. Softmax sets the weights. Temperature decides how lopsided they are. That's why the same prompt can come back different.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hesitant-type",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "cream page holds; caret blinks"
+          },
+          {
+            "at": 0.12,
+            "event": "types 'A language model / picks the likeliest word.'"
+          },
+          {
+            "at": 0.5,
+            "event": "'picks the likeliest word' turns terracotta, hesitates, backspaces"
+          },
+          {
+            "at": 0.65,
+            "event": "types 'rolls weighted dice'"
+          },
+          {
+            "at": 0.9,
+            "event": "final lines settle: 'A language model / rolls weighted dice.'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A language model\npicks the likeliest word.",
+            "triggerWords": "picks the likeliest word",
+            "replacementWords": "rolls weighted dice",
+            "seed": "claude-liam-softmax-temperature-b01",
+            "face": "serif",
+            "fontSize": 190,
+            "lineSpacing": 3.0,
+            "align": "center",
+            "charMs": 28,
+            "jitter": 18,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-23T08:53:19.688863+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "role_note": "EXECUTIVE-SUMMARY LAW — misconception corrected: a chat model does not simply pick the single likeliest word; by default it samples from weighted odds.",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 11.28,
+      "audio_pad": {
+        "lead_s": 0.8,
+        "tail_s": 0.0,
+        "from_s": 10.45,
+        "to_s": 11.28,
+        "sha256": "371d2bfdfd6771589d38df37d77f72a7f5695ad5930b288edfdc01646935b037"
+      },
+      "render_duration_s": 11.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "FRAMEWORK",
+      "content_type": "structure",
+      "lane": "manim",
+      "narration_text": "Here's the machine. You type a prompt: the cat sat on the. The model doesn't hand back a word. It hands back a score for every token it knows, called a logit. Here are five of them. Softmax turns those scores into probabilities. A sampler rolls against those probabilities, picks one token, appends it, and the loop runs again.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B02_Machine",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.03,
+            "event": "prompt chip 'The cat sat on the ___' draws on at left"
+          },
+          {
+            "at": 0.18,
+            "event": "arrow into a 'model' box"
+          },
+          {
+            "at": 0.32,
+            "event": "five logit bars grow out of the box: mat 3.2, floor 2.4, couch 1.9, bed 1.5, roof 0.3; caption 'logits (constructed) — 5 of the whole vocabulary'"
+          },
+          {
+            "at": 0.55,
+            "event": "the bars pass through a 'softmax' box and come out as probability bars that sum to 1"
+          },
+          {
+            "at": 0.72,
+            "event": "a 'sampler' die rolls; 'mat' lights terracotta and slides into the prompt chip"
+          },
+          {
+            "at": 0.88,
+            "event": "a loop arrow draws from the prompt back into the model: 'next token'"
+          }
+        ],
+        "visual_intent": "The next-token loop as a left-to-right machine: prompt → model → logits → softmax → probabilities → sampler → appended token → loop.",
+        "motion_claim": "Each stage draws on the word that names it; the chosen token physically travels back into the prompt."
+      },
+      "visual_notes": "Node-and-arrow diagram, NOT bars-as-hero; bars here are small. Spread across the full width (±6.0 x).",
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.05,
+      "render_duration_s": 17.083333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FRAMEWORK",
+      "content_type": "equation",
+      "lane": "manim",
+      "narration_text": "Softmax, written down. Take each token's logit and divide it by the temperature, T. Raise e to that power, so every score turns positive. Then divide by the same thing summed over every token, so the shares add up to exactly one. A bigger logit always means a bigger share. And temperature acts first, before the exponent.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B03_Formula",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.05,
+            "event": "MathTex typesets large: p_i = e^{z_i/T} / Σ_j e^{z_j/T}"
+          },
+          {
+            "at": 0.16,
+            "event": "box spotlight on z_i; label below: 'logit (a score)'"
+          },
+          {
+            "at": 0.27,
+            "event": "box spotlight on T; label: 'temperature (you choose it, T > 0)'"
+          },
+          {
+            "at": 0.4,
+            "event": "box spotlight on the numerator e^{z_i/T}; label: 'always positive'"
+          },
+          {
+            "at": 0.58,
+            "event": "box spotlight on the denominator Σ_j; label: 'same thing, summed over every token'"
+          },
+          {
+            "at": 0.72,
+            "event": "chip: 'all p_i add up to 1'"
+          },
+          {
+            "at": 0.86,
+            "event": "box spotlight returns to z_i/T: 'temperature acts first'"
+          }
+        ],
+        "visual_intent": "Softmax-with-temperature typeset with MathTex, a box spotlight walking the symbols with a glossary label each.",
+        "motion_claim": "The spotlight walks the formula in narration order and ends on z_i/T, where temperature enters."
+      },
+      "visual_notes": "Box spotlights only (never underlines). Equation ≥120 pt; labels spread to fill ≥55% of canvas.",
+      "mathtex": "p_i = \\frac{e^{z_i/T}}{\\sum_j e^{z_j/T}}",
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.86,
+      "render_duration_s": 17.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "WORKED_EXAMPLE",
+      "content_type": "mechanism",
+      "lane": "manim",
+      "narration_text": "Real numbers, at temperature one. Mat scores three point two; roof, zero point three. Raise e to each: mat becomes about twenty-four and a half, roof about one point three five. Add all five and you get about forty-eight. Divide each by forty-eight. Mat gets fifty-one percent, floor twenty-three, couch fourteen, bed nine, roof three. Those shares are the dice.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B04_WorkedT1",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.04,
+            "event": "compact formula top-left (from B03) with T = 1 substituted; table header token | z | e^z | p"
+          },
+          {
+            "at": 0.12,
+            "event": "logit column fills: mat 3.2, floor 2.4, couch 1.9, bed 1.5, roof 0.3"
+          },
+          {
+            "at": 0.3,
+            "event": "e^z column fills row by row: 24.53, 11.02, 6.69, 4.48, 1.35"
+          },
+          {
+            "at": 0.5,
+            "event": "the e^z column sums into a terracotta total: 48.07"
+          },
+          {
+            "at": 0.62,
+            "event": "each e^z divides by 48.07; p column fills: 51%, 22.9%, 13.9%, 9.3%, 2.8%"
+          },
+          {
+            "at": 0.88,
+            "event": "the p column tips over into five horizontal probability bars: 'the dice'"
+          }
+        ],
+        "visual_intent": "The B03 formula, visibly applied: an arithmetic table whose columns fill in formula order (exponentiate → sum → divide), executed values only.",
+        "motion_claim": "Each column fills on its spoken verb; the finished p column becomes the bars B05 will reshape."
+      },
+      "visual_notes": "Column headers z, e^z, p and the compact formula are MathTex, never plain-text carets.",
+      "mathtex": "p_i = \\frac{e^{z_i}}{\\sum_j e^{z_j}} \\quad (T = 1)",
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 19.09,
+      "render_duration_s": 19.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "MECHANISM",
+      "content_type": "mechanism",
+      "lane": "manim",
+      "narration_text": "Now turn the knob. At zero point two, every logit is divided by zero point two, so every gap grows five times, and mat takes ninety-eight percent. At two, the gaps shrink by half: mat falls to thirty-five, and roof climbs from almost nothing to eight. Low temperature sharpens. High temperature flattens. And watch the order: it never changes.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B05_TempSweep",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.03,
+            "event": "five probability bars at T = 1 (from B04); a temperature dial at right reads 1"
+          },
+          {
+            "at": 0.12,
+            "event": "dial turns to 0.2; bars morph: mat 98%, floor 1.8%, couch 0.1%, bed 0%, roof 0%"
+          },
+          {
+            "at": 0.28,
+            "event": "mat's bar lights terracotta at 98%"
+          },
+          {
+            "at": 0.45,
+            "event": "dial turns through 1 to 2; bars flatten: mat 35%, floor 23.5%, couch 18.3%, bed 15%, roof 8.2%"
+          },
+          {
+            "at": 0.62,
+            "event": "roof's counter climbs 0% → 8.2%"
+          },
+          {
+            "at": 0.75,
+            "event": "labels 'sharpens' (T < 1) and 'flattens' (T > 1) land at the dial's ends"
+          },
+          {
+            "at": 0.88,
+            "event": "rank numbers 1–5 above the bars stay fixed through a final sweep 0.2 ↔ 2: 'order never changes'"
+          }
+        ],
+        "visual_intent": "One set of five bars morphing live as a temperature dial sweeps 0.2 → 1 → 2, with percentage counters from evidence.json.",
+        "motion_claim": "The bars ARE the distribution; the dial is the only control; rank badges stay still while heights move."
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 18.71,
+      "render_duration_s": 18.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "MECHANISM",
+      "content_type": "mechanism",
+      "lane": "manim",
+      "narration_text": "Here's where the answers start to differ. Lay the probabilities end to end, from zero to one. A seeded random number lands somewhere on that line, and whichever token owns that stretch wins. Now the same twenty rolls at each temperature. At zero point two: mat, twenty times out of twenty. At one: four different words. At two: all five, even roof.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B06_Rolls",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.04,
+            "event": "the T = 1 bars lay end to end into one strip from 0 to 1, segments labelled by token"
+          },
+          {
+            "at": 0.22,
+            "event": "a terracotta tick drops at u = 0.2616; the segment it lands in lights: 'mat'"
+          },
+          {
+            "at": 0.42,
+            "event": "three strips stack (T = 0.2, 1, 2); the same 20 ticks drop on all three at once"
+          },
+          {
+            "at": 0.58,
+            "event": "row T = 0.2 fills with 20 word chips: all 'mat'"
+          },
+          {
+            "at": 0.72,
+            "event": "row T = 1 fills: 4 distinct words — mat 11, floor 7, couch 1, bed 1"
+          },
+          {
+            "at": 0.86,
+            "event": "row T = 2 fills: 5 distinct words — mat 8, floor 4, couch 6, bed 1, roof 1; 'roof' chip lights terracotta"
+          }
+        ],
+        "visual_intent": "Inverse-CDF sampling made visible: a probability strip, a seeded tick, and the same 20 rolls producing 1 / 4 / 5 distinct words at T = 0.2 / 1 / 2.",
+        "motion_claim": "The same ticks fall on three strips simultaneously, so the only thing that differs is the temperature."
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 18.07,
+      "render_duration_s": 18.083333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "FALSIFIABILITY",
+      "content_type": "data",
+      "lane": "manim",
+      "narration_text": "Twenty rolls prove very little, so test the claim. If softmax really sets the odds, ten thousand rolls should land on its predicted shares, and they could have missed. At temperature one, it predicts fifty-one percent mat; the count comes back fifty-one point three. Across all three temperatures and all five tokens, nothing misses by even one point.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B07_TenThousand",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.04,
+            "event": "header: 'prediction: softmax shares · test: 10,000 seeded rolls'"
+          },
+          {
+            "at": 0.18,
+            "event": "T = 1: hollow 'predicted' outlines for five bars draw on"
+          },
+          {
+            "at": 0.4,
+            "event": "solid 'counted' bars grow into them; mat counter: predicted 51% · counted 51.3%"
+          },
+          {
+            "at": 0.62,
+            "event": "two small panels slide in beside it: T = 0.2 and T = 2, outlines and solid bars"
+          },
+          {
+            "at": 0.82,
+            "event": "gap chips per temperature: T = 0.2: max gap 0.02 pts · T = 1.0: max gap 0.76 pts · T = 2.0: max gap 0.67 pts"
+          },
+          {
+            "at": 0.92,
+            "event": "terracotta verdict chip: 'prediction survives'"
+          }
+        ],
+        "visual_intent": "A falsifiable prediction tested: predicted outlines vs counted bars over 10,000 executed draws at three temperatures.",
+        "motion_claim": "Counted bars grow into the predicted outlines, so a miss would be visible as a gap; side-by-side held ≥ 2 s."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.3,
+      "render_duration_s": 18.333333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "MECHANISM",
+      "content_type": "mechanism",
+      "lane": "manim",
+      "narration_text": "Now push the knob toward zero. At zero point five, mat holds seventy-six percent. At zero point one, ninety-nine point nine seven. In the limit there's no roll at all: just take the top token. That's greedy decoding, and it's what temperature zero means, since the formula itself can't divide by zero. Same prompt, same answer, at least in principle.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B08_Greedy",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.04,
+            "event": "the 0-to-1 strip from B06; the dial reads 1, mat's segment 51.0%"
+          },
+          {
+            "at": 0.18,
+            "event": "dial clicks to 0.5: mat's segment widens to 76.19%"
+          },
+          {
+            "at": 0.32,
+            "event": "dial clicks to 0.1: mat fills 99.97%; the other four collapse to a hairline"
+          },
+          {
+            "at": 0.5,
+            "event": "the strip becomes solid terracotta 'mat'; the random tick disappears: 'argmax — no roll'"
+          },
+          {
+            "at": 0.66,
+            "event": "MathTex note: T = 0 is a rule (take the max), not a value plugged into z_i/T"
+          },
+          {
+            "at": 0.82,
+            "event": "20 chips fill: 'mat' ×20; caption 'same prompt, same answer (in principle)'"
+          }
+        ],
+        "visual_intent": "The strip from B06 collapsing as T → 0 until one token owns it: greedy decoding as the limit of softmax.",
+        "motion_claim": "The dial clicks down on each spoken value; the dice tick vanishes on 'no roll at all'."
+      },
+      "mathtex": "T \\to 0^{+}:\\quad p_i \\to \\begin{cases} 1 & \\text{if } i = \\arg \\max_j z_j \\\\ 0 & \\text{otherwise} \\end{cases}",
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.29,
+      "render_duration_s": 19.291666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "FALSIFIABILITY",
+      "content_type": "mechanism",
+      "lane": "manim",
+      "narration_text": "And here's what the knob can't do. Suppose a model ranks Sydney just above Canberra as Australia's capital. At temperature one, it's wrong two times in three. Turn it down to zero point two: wrong more than four times in five. Greedy: wrong every time. Turn it up to two, and Canberra actually slips; Melbourne and Perth take the extra. Temperature changes the spread, never the ranking.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "manim": {
+          "class": "B09_WrongRanking",
+          "file": "scenes.py"
+        },
+        "show": [
+          {
+            "at": 0.03,
+            "event": "prompt chip 'The capital of Australia is ___'; caption 'hypothetical model · constructed logits'; Canberra marked ✓ correct"
+          },
+          {
+            "at": 0.14,
+            "event": "four bars at T = 1: Sydney 45%, Canberra 33.3%, Melbourne 15%, Perth 6.7%; counter 'wrong 66.7%'"
+          },
+          {
+            "at": 0.36,
+            "event": "dial to 0.2: Sydney 81.5%, Canberra 18.2%, Melbourne 0.3%, Perth 0%; counter 'wrong 81.8%'"
+          },
+          {
+            "at": 0.5,
+            "event": "greedy: Sydney's bar fills to 100% terracotta; counter 'wrong 100%'"
+          },
+          {
+            "at": 0.64,
+            "event": "dial to 2: Sydney 35.4%, Canberra 30.5%, Melbourne 20.4%, Perth 13.7%; Canberra's counter slips 33.3% → 30.5%"
+          },
+          {
+            "at": 0.86,
+            "event": "rank badges 1–4 unchanged through the whole sweep: 'spread, not ranking'"
+          }
+        ],
+        "visual_intent": "A constructed wrong-ranking model: lowering T makes it consistently wrong, raising T spreads mass to other wrong cities.",
+        "motion_claim": "The 'wrong' counter climbs as the dial goes down; the rank badges never move."
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 19.88,
+      "render_duration_s": 19.916666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B09.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "VERDICT",
+      "lane": "remotion",
+      "narration_text": "Let's recap with Claude. A model scores every token it knows; those scores are logits. Softmax turns logits into probabilities that add up to one. Temperature divides the logits first: low sharpens, high flattens. Sampling rolls those odds, so the same prompt can come back different. Temperature zero is greedy: always the top token, no dice. Temperature changes the spread, never the ranking.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "artifact-in",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "verdict artifact card in on cream"
+          },
+          {
+            "at": 0.15,
+            "event": "heading types"
+          },
+          {
+            "at": 0.25,
+            "event": "lines 1–6 land on their spoken cue"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Softmax and temperature, in six lines",
+            "artifactLines": [
+              "A model scores every token it knows; those scores are logits.",
+              "Softmax turns logits into probabilities that add up to one.",
+              "Temperature divides the logits first: low sharpens, high flattens.",
+              "Sampling rolls those odds, so the same prompt can come back different.",
+              "Temperature zero is greedy: always the top token, no dice.",
+              "Temperature changes the spread, never the ranking."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": "2026-11-23T08:39:38.376172+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 21.69,
+      "audio_pad": {
+        "lead_s": 0.5,
+        "tail_s": 0.0,
+        "from_s": 21.16,
+        "to_s": 21.69,
+        "sha256": "48a2986161e8295f29f1a88bca406aacdbf8e55e4e3a5d558b6d4dba5303340e"
+      },
+      "render_duration_s": 21.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BVDT.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "YOUR_TURN",
+      "lane": "remotion",
+      "narration_text": "Your turn. Paste this into Claude: Write a short Python script, no M L libraries, that applies softmax with temperature to five logits: mat three point two, floor two point four, couch one point nine, bed one point five, roof zero point three. Print the probabilities at temperatures zero point two, one and two. Then draw one thousand seeded samples at each temperature and compare the counts with the probabilities. Finally, using only the printed numbers, explain what temperature can change and what it can't. Here's what to check. At temperature one, mat should come out at fifty-one percent. The thousand-draw counts should land near the probabilities, not exactly on them. And the ranking should hold at every temperature. If Claude says turning the temperature down makes answers more accurate, ask it to show you that in the numbers.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "show": [
+          {
+            "at": 0.02,
+            "event": "composer card in on cream"
+          },
+          {
+            "at": 0.08,
+            "event": "greeting 'Your turn.' types"
+          },
+          {
+            "at": 0.15,
+            "event": "the prompt types into the composer"
+          },
+          {
+            "at": 0.62,
+            "event": "runningText 'paste this into Claude…'"
+          },
+          {
+            "at": 0.72,
+            "event": "three check lines cascade in as each is spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · SOFTMAX AND TEMPERATURE",
+            "segment": "Roll the dice yourself",
+            "command": "Write a short Python script, no ML libraries, that applies softmax with temperature to five logits: mat 3.2, floor 2.4, couch 1.9, bed 1.5, roof 0.3. Print the probabilities at temperatures 0.2, 1 and 2. Then draw 1,000 seeded samples at each temperature and compare the counts with the probabilities. Finally, using only the printed numbers, explain what temperature can change and what it can't.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "check: at T = 1, mat ≈ 51%, floor ≈ 22.9%, roof ≈ 2.8%",
+              "check: 1,000-draw counts land near the odds, not exactly on them",
+              "check: the ranking holds at every T; 'lower T = more accurate' is not claimed"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-23T08:42:09.421525+00:00"
+          }
+        }
+      },
+      "role_note": "HANDOFF LAW — prompt read aloud verbatim (numbers spoken as words), then a 3-point rubric.",
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 41.89,
+      "render_duration_s": 41.916666666666664,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-23T04:43:41"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "OUTRO",
+      "lane": "remotion",
+      "narration_text": "Softmax and Temperature, Explained. At Nik Bear Brown.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "outro-card",
+        "show": [
+          {
+            "at": 0.02,
+            "event": "cream page; polarity seeded from slug"
+          },
+          {
+            "at": 0.1,
+            "event": "title types"
+          },
+          {
+            "at": 0.55,
+            "event": "handle @NikBearBrown"
+          },
+          {
+            "at": 0.7,
+            "event": "slug-seeded mascot animates under the handle"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Softmax and Temperature, Explained.",
+            "handle": "@NikBearBrown",
+            "slug": "claude-liam-softmax-temperature"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-11-23T08:42:46.207073+00:00"
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "role_note": "OUTRO-LOCK — exact title restate, hardcoded handle, spoken, no music.",
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 4.91,
+      "audio_pad": {
+        "lead_s": 0.0,
+        "tail_s": 1.0,
+        "from_s": 3.88,
+        "to_s": 4.91,
+        "sha256": "6d7f8110b2ffe3c3360fddfe9c5237b32018c6394991803457879968a0066487"
+      },
+      "render_duration_s": 4.916666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-11-23T04:43:41"
+      }
+    }
+  ]
+}
