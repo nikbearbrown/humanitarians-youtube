@@ -1,7 +1,7 @@
 # Tanmay K.
 
 **Role:** Financial Analyst  
-**Project:** _to be filled in_  
+**Project:** Mycroft  
 **GitHub:** [@Tanmay-Kulk](https://github.com/Tanmay-Kulk)
 
 Weekly work reports for the **Agentic AI in Financial Services** case-study
@@ -111,6 +111,8 @@ the standing choice, and `af_bella` is the one carried as history.
 | 2026-11-08 | [`2026-11-08-ask-whether-never-what-mycroft`](./2026-11-08-ask-whether-never-what-mycroft/) | Ask Whether, Never What — checking a pipeline's keys without reading them: one source's row filled field by field, and a test that builds its own dummy keys |
 | 2026-11-15 | [`2026-11-15-reading-a-twentieth-of-a-pixel-stem-video`](./2026-11-15-reading-a-twentieth-of-a-pixel-stem-video/) | Reading a Twentieth of a Pixel — a galaxy's speed read to a twentieth of a pixel, and the price is photons: the error is the line's width over the square root of the photons counted |
 | 2026-11-15 | [`2026-11-15-what-draft-is-waiting-for-mycroft`](./2026-11-15-what-draft-is-waiting-for-mycroft/) | What Draft Is Waiting For — a status word is a claim: the five-rung ladder, the records behind a rung, and the record that aged while the status stayed put |
+| 2026-11-22 | [`2026-11-22-the-cell-dies-rich-stem-video`](./2026-11-22-the-cell-dies-rich-stem-video/) | The Cell Dies Rich — a coin cell can be most of the way full and still finished for the device it powers: a model with a resistance that climbs as the cell is used, and the charge stranded when a burst meets the reset line |
+| 2026-11-22 | [`2026-11-22-step-two-was-the-last-one-i-built-mycroft`](./2026-11-22-step-two-was-the-last-one-i-built-mycroft/) | Step Two Was the Last One I Built — two recipe sentences that stood in for unbuilt steps, one deliberately wrong file, and the two questions the stand-in never asked |
 
 ## Two lanes
 
