@@ -1,0 +1,43 @@
+python 3.12.13 numpy 2.5.5 on Windows-11-10.0.26300-SP0
+
+setup: truth sin(pi x) on [-1,1], noise sd 0.2 (floor MSE 0.04), 16 train / 1000 test, seed 15
+   true curve itself scores: train 0.0483  test 0.0402
+   data hashes: train bc87dff8cdf7bbff  test ff1b37a661e82694
+1) worked example (same 16 points)
+   degree  1 ( 2 coefs): train MSE 0.28413      test MSE 0.2728     max|f| on grid 0.8118
+   degree  3 ( 4 coefs): train MSE 0.058558     test MSE 0.0471     max|f| on grid 1.0297
+   degree 15 (16 coefs): train MSE 0            test MSE 9882.6     max|f| on grid 1302.7929
+2) degree sweep, seed 15 (train MSE | test MSE)
+   d= 0  0.467904     0.5868
+   d= 1  0.28413      0.2728
+   d= 2  0.284129     0.2728
+   d= 3  0.058558     0.0471
+   d= 4  0.057186     0.0489
+   d= 5  0.039718     0.0466
+   d= 6  0.039542     0.0467
+   d= 7  0.025481     0.0888
+   d= 8  0.024707     0.0898
+   d= 9  0.024707     0.0898
+   d=10  0.015533     0.1689
+   d=11  0.013277     1.8297
+   d=12  0.012842     26.3814
+   d=13  0.000392     5807.08
+   d=14  0.000315     8251.08
+   d=15  0            9882.6
+   lowest test MSE at degree 5: 0.0466
+   500-dataset check: median test MSE by degree = [0.5604, 0.2626, 0.2876, 0.0586, 0.066, 0.069, 0.0948, 0.1833, 0.5658, 3.1963, 26.515, 332.0155, 5976.1208, 165252.6919, 12590708.7868, 8933162713.2993]
+   best degree by median: 3
+3) degree 15, more training data (test MSE on the same 1000 test points)
+   n=  16  train 0            test 9882.6
+   n=  20  train 0.006387     test 28.776
+   n=  30  train 0.017793     test 0.1298
+   n=  50  train 0.021269     test 0.0982
+   n= 100  train 0.033773     test 0.0476
+   n= 200  train 0.039476     test 0.0468
+   n=1000  train 0.041414     test 0.0413
+   n=200 sweep: lowest test MSE at degree 5 (0.0415); degree 15 = 0.0468
+4) choosing by a held-out score, 1000 trials (30 train, 20 validation, 20 test, 5000 fresh)
+   pick by validation, report validation        optimistic 69.6%  median reported 0.0439 vs real 0.0508  median ratio 0.825
+   pick by validation, report untouched test    optimistic 55.2%  median reported 0.0506 vs real 0.0508  median ratio 0.948
+   control: degree 3 fixed, report validation   optimistic 53.3%  median reported 0.0498 vs real 0.0503  median ratio 0.962
+   most picked degree 3

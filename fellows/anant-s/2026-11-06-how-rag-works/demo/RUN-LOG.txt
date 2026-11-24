@@ -1,0 +1,62 @@
+python 3.12.13 numpy 2.5.5 on Windows-11-10.0.26300-SP0
+script sha256 ef0b674237a9a11b3df5fb50f5eed3e1ba0f1805fcd71458ea9139e9d66226be
+inputs sha256 caf5a186dd1c63996296b980b26b664a86fcdb6d948a4dc66d31920a25d1c073
+
+question: 'How long do I have to return a laptop?'
+
+== run A_handbook: 3 docs -> 6 chunks -> 29-number embeddings
+   question tokens ['long', 'return', 'laptop']  (unknown to the store: ['long'])
+   #1  0.5774  returns#1    Laptops can be returned within 30 days of purchase.
+   #2  0.2494  warranty#1   Every laptop has a one year warranty.
+   #3  0.0000  returns#2    Bring the receipt and the charger to the service desk.
+   #4  0.0000  shipping#1   Orders ship within two business days.
+   #5  0.0000  shipping#2   Tracking numbers arrive by email.
+   #6  0.0000  warranty#2   The warranty covers parts and repairs, but not water damage.
+   prompt:
+     | Answer using only the notes below. If they don't say, say you don't know.
+     | 
+     | Notes:
+     | [1] Laptops can be returned within 30 days of purchase. (returns.txt)
+     | [2] Every laptop has a one year warranty. (warranty.txt)
+     | 
+     | Question: How long do I have to return a laptop?
+   answer (stand-in reader: regex copy from the rank-1 chunk (no LLM)): 30 days  [cites returns#1]
+
+== run B_plus_stale_faq: 4 docs -> 7 chunks -> 32-number embeddings
+   question tokens ['long', 'return', 'laptop']  (unknown to the store: none)
+   #1  0.6833  faq-2019#1   FAQ: How long do I have to return a laptop? 14 days.
+   #2  0.3846  returns#1    Laptops can be returned within 30 days of purchase.
+   #3  0.1660  warranty#1   Every laptop has a one year warranty.
+   #4  0.0000  returns#2    Bring the receipt and the charger to the service desk.
+   #5  0.0000  shipping#1   Orders ship within two business days.
+   #6  0.0000  shipping#2   Tracking numbers arrive by email.
+   #7  0.0000  warranty#2   The warranty covers parts and repairs, but not water damage.
+   prompt:
+     | Answer using only the notes below. If they don't say, say you don't know.
+     | 
+     | Notes:
+     | [1] FAQ: How long do I have to return a laptop? 14 days. (faq-2019.txt)
+     | [2] Laptops can be returned within 30 days of purchase. (returns.txt)
+     | 
+     | Question: How long do I have to return a laptop?
+   answer (stand-in reader: regex copy from the rank-1 chunk (no LLM)): 14 days  [cites faq-2019#1]
+
+== run C_stale_removed: 3 docs -> 6 chunks -> 29-number embeddings
+   question tokens ['long', 'return', 'laptop']  (unknown to the store: ['long'])
+   #1  0.5774  returns#1    Laptops can be returned within 30 days of purchase.
+   #2  0.2494  warranty#1   Every laptop has a one year warranty.
+   #3  0.0000  returns#2    Bring the receipt and the charger to the service desk.
+   #4  0.0000  shipping#1   Orders ship within two business days.
+   #5  0.0000  shipping#2   Tracking numbers arrive by email.
+   #6  0.0000  warranty#2   The warranty covers parts and repairs, but not water damage.
+   prompt:
+     | Answer using only the notes below. If they don't say, say you don't know.
+     | 
+     | Notes:
+     | [1] Laptops can be returned within 30 days of purchase. (returns.txt)
+     | [2] Every laptop has a one year warranty. (warranty.txt)
+     | 
+     | Question: How long do I have to return a laptop?
+   answer (stand-in reader: regex copy from the rank-1 chunk (no LLM)): 30 days  [cites returns#1]
+
+all self-checks passed
