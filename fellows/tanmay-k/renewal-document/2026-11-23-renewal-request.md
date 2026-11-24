@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Project** | Mycroft (Agentic AI in Financial Services) and the Humanitarians AI video series |
-| **Group** | Mycroft |
+| **Group** | Agents |
 | **Project Manager** | Durga Sai Tanmay S. |
 | **GitHub** | [@Tanmay-Kulk](https://github.com/Tanmay-Kulk) |
 | **Current agreement** | 1 September 2026 to 30 November 2026 |
