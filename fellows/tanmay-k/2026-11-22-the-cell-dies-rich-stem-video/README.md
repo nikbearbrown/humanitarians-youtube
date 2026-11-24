@@ -37,7 +37,7 @@ Narration is Kokoro `am_onyx` at natural speed. Visuals are original code-drawn 
 
 ## Records in this folder
 
-`TOPIC-DECISION.md`, `ANGLE.md`, `READ-ALOUD.md` and `READ-ALOUD-SHORT.md` (the signed narration), `beat_sheet.json` and `beat_sheet-short.json` (narration, picture plan and measured timing per beat; voice `am_onyx`), `FACTCHECK.md`, `MEASUREMENTS.md` with its code in `experiment/`, `PEDAGOGY.md`, `FRICTIONAL.md`, `PROOF-REVIEW.md`.
+`TOPIC-DECISION.md`, `ANGLE.md`, `READ-ALOUD.md` and `READ-ALOUD-SHORT.md` (the signed narration), `beat_sheet.json` and `beat_sheet-short.json` (narration, picture plan and measured timing per beat; voice `am_onyx`), `FACTCHECK.md`, `MEASUREMENTS.md` with its code in `experiment/`, `PEDAGOGY.md`, `FRICTIONAL.md`, `PROOF-REVIEW.md`. Also here: `the-cell-dies-rich-youtube.md` and `the-cell-dies-rich-short-youtube.md` (the YouTube descriptions), and `the-cell-dies-rich(.srt/.vtt)` and `the-cell-dies-rich-short(.srt/.vtt)` (captions, timed to the measured audio).
 
 ## Links
 
