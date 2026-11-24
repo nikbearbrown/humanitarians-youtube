@@ -17,6 +17,7 @@ ImmuneUnite is a healthcare AI research project exploring similarities and diffe
 The first phase involved reviewing existing research, identifying public gene-expression datasets, and using statistical analysis and a baseline machine learning model to compare patterns across the three diseases. The results showed some candidate similarities, but did not establish reliable cross-disease generalization or a confirmed shared biological mechanism.
 
 Beyond this initial research, I am interested in exploring how ImmuneUnite could help more people understand autoimmune diseases and how reinforcement learning environments might contribute to future healthcare AI research. 
+
 ---
 
 ## 2. Hours Status
