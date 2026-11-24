@@ -10,7 +10,7 @@
 - **Supervisor:** Professor Nik Bear Brown, Humanitarians AI
 - **Project manager:** Sanjana Rao
 - **Repository:** [nikbearbrown/humanitarians-youtube](https://github.com/nikbearbrown/humanitarians-youtube) ·
-  branch [`sanjana-rao`](https://github.com/nikbearbrown/humanitarians-youtube/tree/sanjana-rao/fellows/usha-s)
+
 
 ### Necessary links (one click to the evidence)
 
@@ -80,8 +80,7 @@ Rendered videos are in the
 and [STEM videos](https://drive.google.com/drive/folders/1sGUIfv6yckZSIB8tX0L_kh_gYrNV-Fx1)
 Drive folders. The beat sheets for each piece are in `STEM Videos/` and
 `Weekly Progress Videos/`. Weekly **Frictional logs** (what got done and where I got stuck)
-are in [frictional.md](frictional.md). Everything is on branch
-[`sanjana-rao`](https://github.com/nikbearbrown/humanitarians-youtube/tree/sanjana-rao/fellows/usha-s).
+are in [frictional.md](frictional.md). 
 
 ## 6. Next steps (plan, deliverables, target dates)
 
