@@ -1,6 +1,6 @@
 # Frictional notes: Week 30 work video (Ask Whether, Never What)
 
-**Record provenance:** drafted 2026-11-09 with Claude from this folder's own records (`ANGLE.md`, `FACTCHECK.md`, the proof reviews, `AUDIO-CHECK.md`, `check_video.out`, `proof_moments.out`), after the work was done rather than while it happened. **Awaiting Tanmay's review.** Each entry points at the record it comes from.
+**Record provenance:** drafted 2026-11-09 with Claude from this folder's own records (`ANGLE.md`, `FACTCHECK.md`, the proof reviews, `AUDIO-CHECK.md`, `check_video.out`, `proof_moments.out`), after the work was done rather than while it happened. **Reviewed by Tanmay.** Each entry points at the record it comes from.
 
 - **The angle audit missed a phrase until a second search.** The first narration search (Weeks 16 to 29) found no film about checking whether a credential exists; a later search for "fake / dummy / planted" found Week 29's "a planted fake key is caught by a new check". The turn here is different (the dummy values are assembled while the test runs, to prove a promise to keep a secret), and the scripts avoid the earlier wording. Record: `ANGLE.md`.
 - **The script review measured wording shared with Week 29.** Three beats (B01, B09, B10) reused that film's sentences almost word for word; they were rewritten before Gate P. Record: `PROOF-REVIEW.md`.

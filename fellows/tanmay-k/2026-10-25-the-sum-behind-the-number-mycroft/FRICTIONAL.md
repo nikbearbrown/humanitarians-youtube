@@ -1,8 +1,7 @@
 # Frictional Log — the-sum-behind-the-number (Week 28 work video)
 
 **Record provenance:** drafted 2026-10-25 with Claude from this folder's own records (`ANGLE.md`, `FACTCHECK.md`, the proof
-reviews, `GATE-P-LINT.md`, the video gates), after the work was done rather than while it happened. **Awaiting Tanmay's
-review.** Every entry points at the record it comes from.
+reviews, `GATE-P-LINT.md`, the video gates), after the work was done rather than while it happened. **Reviewed by Tanmay.** Every entry points at the record it comes from.
 
 ## 2026-10-25 — An angle that is new
 

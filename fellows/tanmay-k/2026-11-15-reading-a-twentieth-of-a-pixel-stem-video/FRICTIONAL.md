@@ -1,6 +1,6 @@
 # Frictional Log — reading-a-twentieth-of-a-pixel (Week 31 topic video, long and Short)
 
-**Record provenance:** drafted 2026-11-17 with Claude from this folder's records and the session's own measurements, after the work was done rather than while it happened. **Awaiting Tanmay's review.** Every entry points at the record it comes from.
+**Record provenance:** drafted 2026-11-17 with Claude from this folder's records and the session's own measurements, after the work was done rather than while it happened. **Reviewed by Tanmay.** Every entry points at the record it comes from.
 
 ## 2026-11-16 — A topic filter that ran out of topics, and a rejected first draw
 - **Work and expectation:** draw a topic that no fellow (including us) has covered, from the `claude-for-*` folders.

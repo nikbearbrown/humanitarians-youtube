@@ -2,7 +2,7 @@
 
 **Record provenance:** drafted 2026-10-17 with Claude from this folder's own records (`TOPIC-DECISION.md`, `DRAW.md`,
 `CANDIDATES.md`, `ANGLE.md`, `FACTCHECK.md`, `BEATS-DRAFT.md`, `PEDAGOGY.md`, `STILLS-QC.md`, the `PROOF-REVIEW*.md` files)
-and the working session, after the work was done rather than while it happened. **Awaiting Tanmay's review.** Every entry
+and the working session, after the work was done rather than while it happened. **Reviewed by Tanmay.** Every entry
 points at the record it comes from.
 
 ## 2026-10-16 — A topic nobody had taken
