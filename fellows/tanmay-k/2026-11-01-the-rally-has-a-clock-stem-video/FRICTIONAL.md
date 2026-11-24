@@ -1,7 +1,7 @@
 # Frictional Log — the-rally-has-a-clock (Week 29 topic video)
 
 **Record provenance:** drafted 2026-10-30 with Claude from this folder's own records (`TOPIC-DECISION.md`, `ANGLE.md`, `FACTCHECK.md`,
-`AUDIO-CHECK.md`, the proof reviews, the gate logs), after the work was done rather than while it happened. **Awaiting Tanmay's review.**
+`AUDIO-CHECK.md`, the proof reviews, the gate logs), after the work was done rather than while it happened. **Reviewed by Tanmay.**
 Every entry points at the record it comes from.
 
 ## 2026-10-30 — A topic nobody had taken, and a duplicate that looked unique

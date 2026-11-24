@@ -2,7 +2,7 @@
 
 **Record provenance:** drafted 2026-10-11 with Claude from this folder's own records (`ANGLE.md`, `FACTCHECK.md`,
 `SCRIPT.md`, `short/SCRIPT-SHORT.md`, `PEDAGOGY.md`, the `PROOF-REVIEW*.md` files), after the work was done rather
-than while it happened. **Awaiting Tanmay's review.** Every entry points at the record it comes from.
+than while it happened. **Reviewed by Tanmay.** Every entry points at the record it comes from.
 
 ## 2026-10-10 — A second recipe film that couldn't look like the first
 

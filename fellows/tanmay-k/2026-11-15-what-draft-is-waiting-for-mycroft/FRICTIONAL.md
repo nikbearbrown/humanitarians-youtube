@@ -1,6 +1,6 @@
 # Frictional Log: what-draft-is-waiting-for (Week 31 work video, long and Short)
 
-**Record provenance:** drafted 2026-11-17 with Claude from this folder's own records (`ANGLE.md`, `FACTCHECK.md`, `PEDAGOGY.md`, `PROOF-REVIEW.md`) and the session's measurements, after the work was done rather than while it happened. **Awaiting Tanmay's review.** Every entry points at the record it comes from.
+**Record provenance:** drafted 2026-11-17 with Claude from this folder's own records (`ANGLE.md`, `FACTCHECK.md`, `PEDAGOGY.md`, `PROOF-REVIEW.md`) and the session's measurements, after the work was done rather than while it happened. **Reviewed by Tanmay.** Every entry points at the record it comes from.
 
 ## 2026-11-17: a pull request with one rule, "edit no existing file"
 - **Work and expectation:** add steps 4 and 6 to the Portfolio Price Fetcher recipe and open the pull request ([nikbearbrown/mycroft#90](https://github.com/nikbearbrown/mycroft/pull/90), merged as `894be6c`).
