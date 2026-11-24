@@ -1,0 +1,500 @@
+{
+ "metadata": {
+  "title": "Reordering, Not Retrieval",
+  "slug": "reorder-not-retrieve",
+  "topic": "THE GRAPH-VS-RETRIEVAL ABLATION",
+  "register": "Pragmatist / skeptical-explainer (PROOF)",
+  "audience": "HAI",
+  "brand": "claude-hai",
+  "persona": "Satwik (Humanitarians AI)",
+  "voice": "af_bella",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "body_palette": "humanitarians",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Hello, fellows",
+  "folderLabel": "@HumanitariansAI",
+  "channel_title": "@HumanitariansAI",
+  "in_for_bear": false,
+  "typography": {
+   "serif": "EB Garamond",
+   "sans": "Montserrat",
+   "mono": "system mono"
+  },
+  "source": "sources/ (weekly_report_2026-10-31.md, ablation_reorder_not_retrieve.md, ablation_graph_vs_retrieval.md, ablation_graph_vs_retrieval.json, ablation_graph_vs_retrieval.png). Verified only; figures reconciled against the JSON (see FACT-CHECK.md). Prereq edges are faculty-review drafts; measures the mechanism, not approved content; no learning-outcome claim.",
+  "playlist": "Humanitarians AI — Method Explainers",
+  "duration_target_s": [
+   210,
+   260
+  ],
+  "authors": "Satwik Reddy Sripathi, Jash Shah, Evin Gultepe, Srinivas Sridhar, Nik Bear Brown (Northeastern University)",
+  "sign_off": "This is Satwik for Humanitarians AI.",
+  "palette_note": "FIDELITY claude skin on UI beats (B00/B09); humanitarians tokens on body beats (B01-B08). PROOF: framework-first (B01 the two arms + B02 the metrics before any number). CRIMSON = retrieval/broken order, TEAL = graph method/zero violations, SLATE = insertion/scale, GOLD = the reorder (Kendall tau), SAGE = robustness. B08 = falsifiability.",
+  "voice_note": "Kokoro af_bella. Run under PYTHONUTF8=1; .venv python for kokoro. RENDER: temp on D: (TMPDIR/TEMP/TMP=d:/_remotion_tmp). ART_REMOTION_SCALE=2; FREE RAM FIRST (close apps) + concurrency 1 under low RAM to beat the 25s Chrome connect timeout; top up with --only BXX. ASSEMBLY: concat FILTER for BOTH video and audio. Verify VIDEO stream duration + volumedetect ~ -20 dB.",
+  "gate_note": "GATE P signed (NARRATION-GATE-P.md + PEDAGOGY.md VERDICT: PASS). Fact-check signed (FACT-CHECK.md). actual_duration_s (audio) is the master clock; durationInFrames = round(actual_duration_s * 30).",
+  "claims_guardrails": [
+   "No source, no verdict: every figure traces to sources/ and is verified against ablation_graph_vs_retrieval.json (FACT-CHECK.md).",
+   "The challenge: is a reading roadmap just semantic search with extra steps? The fair test is an ablation: run it with and without the graph.",
+   "Setup: two arms, same project, same embeddings. Retrieval = top-K by similarity, ordered by similarity. Method = same core + required-prerequisite closure, ordered by topological sort. Only difference: the graph.",
+   "Four metrics: insertion; broken dependencies (missing + mis-ordered); Kendall-tau reordering; personalization (Jaccard).",
+   "K=20 insertion: graph pulls in 34 (LNP-siRNA) / 31 (photothermal) prerequisite sections top-k never reaches (foundations: cell biology, cell cycle, DNA/protein synthesis, signaling).",
+   "K=20 broken order: retrieval misses 17/12 prerequisites and mis-orders 3/2 -> 20/14 dependencies broken; the graph method breaks 0/0 by construction. (Chart 'dependencies broken' 20/14 = missing + mis-ordered.)",
+   "K=20 reorder: Kendall tau = -0.442 (LNP-siRNA, reversed) / 0.0 (photothermal, uncorrelated) between method order and similarity order -> a genuine reshuffle. Overturns week 5's 'insertion, not reshuffle' (which ran on a draft graph with 0 real edges).",
+   "Personalization: the two projects' core focus sets overlap only Jaccard 0.25; they share 0.615 once common biology foundations are counted (correct pedagogy).",
+   "Robust: swept K in {10,20,30}; at every K the method breaks 0, the graph inserts dozens, Kendall tau stays at or below zero. Not cherry-picked.",
+   "HONEST BOUNDARY: general-domain embedder (all-MiniLM-L6-v2) - a biomedical model shifts the ranking, not the structural result (retrieval cannot encode a dependency at any embedding quality). Prereq edges are faculty-review DRAFTS; measures the mechanism, not approved content. Reads required edges from the authoritative prereq CSV (Stage-3 graph.json since reconciled to it). No learning-outcome claim."
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "hook / ASK",
+   "palette": "claude",
+   "narration_text": "Hello, fellows. The fair challenge to this whole project is: isn't a reading roadmap just semantic search with extra steps? If you can embed the sections and rank them by similarity to a student's project, what is the dependency graph actually buying you? Back in week five I argued it was reordering, not retrieval, but the graph was a draft with zero real edges, so I could only show insertion, not reshuffle. The graph is real now, three tiers, audited. So this week I ran the ablation: delete the graph, and measure what breaks.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 31,
+   "audio_file": "mp3/beat-B00.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "the ask: is a roadmap just semantic search? the fair test is an ablation - run it with and without the graph, measure what breaks",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hello, fellows",
+      "topic": "THE GRAPH-VS-RETRIEVAL ABLATION",
+      "segment": "Reordering, Not Retrieval",
+      "command": "The fair challenge: isn't a reading roadmap just semantic search with extra steps? If you can embed the sections and rank by similarity, what is the dependency graph buying you? Week 5 argued reordering-not-retrieval, but on a draft graph with 0 real edges. The graph is real now - so this week I ran the ablation: delete the graph, and measure what breaks.",
+      "runningText": "running the graph-vs-retrieval ablation…",
+      "output": [
+       "Two arms, same project, same embeddings - the only difference is the graph.",
+       "The graph inserts 34 / 31 prerequisites top-k misses; retrieval breaks the order, the method breaks 0.",
+       "And it's a real reshuffle (Kendall tau <= 0), robust across K = 10, 20, 30."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 31.0
+  },
+  {
+   "beat_id": "B01",
+   "act": "the setup (two arms)",
+   "palette": "humanitarians",
+   "narration_text": "The test is an ablation: same student project, same embeddings, two arms. The retrieval arm is pure search: take the top-K sections by similarity, and order them by similarity. The method arm is the same core, plus the required-prerequisite closure, ordered by a topological sort of the dependency graph. The only difference between the two is the graph. So whatever changes, the graph caused.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 27,
+   "audio_file": "mp3/beat-B01.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "two arms, same project + embeddings: retrieval (top-k by similarity) vs method (core + prereq closure, topological sort); only difference is the graph",
+    "remotion": {
+     "pattern": "TwoArms",
+     "props": {
+      "sparkLine": "Same project, same embeddings - two arms.",
+      "arms": [
+       {
+        "name": "RETRIEVAL",
+        "gloss": "no graph",
+        "q": "top-K sections by similarity, ordered by similarity - pure search",
+        "accent": "crimson"
+       },
+       {
+        "name": "METHOD",
+        "gloss": "with graph",
+        "q": "the same core, plus the required-prerequisite closure, ordered by topological sort",
+        "accent": "teal"
+       }
+      ],
+      "rule": "The only difference is the graph - so whatever changes, the graph caused."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 24.92
+  },
+  {
+   "beat_id": "B02",
+   "act": "the metrics",
+   "palette": "humanitarians",
+   "narration_text": "I measured four things. One: insertion, how many prerequisite sections the graph pulls in that retrieval never reaches. Two: broken dependencies, prerequisites left unreachable, plus sections placed before something they depend on. Three: reordering, the Kendall-tau rank correlation between the method's order and the similarity order. And four: personalization, how much two different projects' plans actually differ. Reachability and order, not just overlap.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "audio_file": "mp3/beat-B02.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "four metrics before any number: insertion, broken dependencies, Kendall-tau reordering, personalization",
+    "remotion": {
+     "pattern": "FourMetrics",
+     "props": {
+      "sparkLine": "Four metrics - chosen for what the graph is for.",
+      "metrics": [
+       {
+        "n": 1,
+        "name": "INSERTION",
+        "q": "prerequisite sections the graph pulls in that retrieval never reaches",
+        "accent": "slate"
+       },
+       {
+        "n": 2,
+        "name": "BROKEN DEPENDENCIES",
+        "q": "prerequisites left unreachable + sections placed before what they depend on",
+        "accent": "crimson"
+       },
+       {
+        "n": 3,
+        "name": "REORDERING",
+        "q": "Kendall-tau rank correlation between the method order and the similarity order",
+        "accent": "gold"
+       },
+       {
+        "n": 4,
+        "name": "PERSONALIZATION",
+        "q": "how much two different projects' plans actually differ (Jaccard)",
+        "accent": "teal"
+       }
+      ],
+      "note": "reachability and order - not just overlap"
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 27.07
+  },
+  {
+   "beat_id": "B03",
+   "act": "insertion",
+   "palette": "humanitarians",
+   "narration_text": "First, insertion. For the LNP-siRNA project, the graph pulls in thirty-four prerequisite sections that top-K retrieval never reaches; for the photothermal project, thirty-one. These are the foundations: cell biology, the cell cycle, DNA and protein synthesis, signaling, the things you need before the frontier topic makes sense. Similarity ranking skips them, because a section on nanoparticle delivery doesn't look like a section on the cell cycle.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "audio_file": "mp3/beat-B03.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "insertion stat: graph pulls in 34 (LNP-siRNA) / 31 (photothermal) prerequisite sections top-k never reaches; the foundations (CH01 cell biology etc.)",
+    "remotion": {
+     "pattern": "Insertion",
+     "props": {
+      "sparkLine": "What the graph pulls in that search can't.",
+      "stats": [
+       {
+        "v": "34",
+        "k": "LNP-siRNA"
+       },
+       {
+        "v": "31",
+        "k": "photothermal"
+       }
+      ],
+      "caption": "prerequisite sections the graph inserts that top-k retrieval never reaches",
+      "examples": [
+       "Cellular Organelles and Their Functions",
+       "The Cell Cycle: Growth, Division, and Regulation",
+       "DNA, RNA, and Protein Synthesis",
+       "Cell Communication and Signaling Pathways"
+      ],
+      "note": "the foundations - similarity ranking skips them, because “nanoparticle delivery” doesn't look like “the cell cycle”"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 28.27
+  },
+  {
+   "beat_id": "B04",
+   "act": "the order is broken (the figure)",
+   "palette": "humanitarians",
+   "narration_text": "Second, the order. Pure retrieval doesn't just miss foundations, it breaks the learning order. For the two projects, it leaves seventeen and twelve prerequisites unreachable, and places three and two sections before prerequisites they depend on. Add those up, and that's twenty and fourteen broken dependencies. The graph method, by construction, breaks zero. Retrieval tall, method flat on the floor.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 27,
+   "audio_file": "mp3/beat-B04.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the figure: dependencies broken - retrieval 20/14 (missing 17/12 + mis-ordered 3/2) vs method 0/0",
+    "remotion": {
+     "pattern": "OrderBroken",
+     "props": {
+      "sparkLine": "Retrieval breaks the learning order; the graph doesn't.",
+      "projects": [
+       {
+        "name": "LNP-siRNA",
+        "retrieval": 20,
+        "method": 0,
+        "missing": 17,
+        "misordered": 3
+       },
+       {
+        "name": "photothermal",
+        "retrieval": 14,
+        "method": 0,
+        "missing": 12,
+        "misordered": 2
+       }
+      ],
+      "maxVal": 20,
+      "note": "dependencies broken = unreachable + placed before what they need · the method breaks 0 by construction"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 24.09
+  },
+  {
+   "beat_id": "B05",
+   "act": "it reorders, not just inserts (Kendall tau)",
+   "palette": "humanitarians",
+   "narration_text": "Third, and this is the one that surprised me. Does the graph just insert the foundations and otherwise keep the similarity order? No. The Kendall-tau correlation between the method's order and the similarity order is minus zero point four four for one project, and zero for the other. That means the final order is uncorrelated with similarity, even reversed from it. It's a genuine reshuffle. And that overturns my own week-five finding, which, on the draft graph, could only see insertion, not reordering.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B05.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "Kendall tau -0.44 / 0.00 between method order and similarity order -> reshuffle, not just insertion; overturns week 5",
+    "remotion": {
+     "pattern": "ReorderTau",
+     "props": {
+      "sparkLine": "Not just insertion - a genuine reshuffle.",
+      "taus": [
+       {
+        "v": "-0.44",
+        "k": "LNP-siRNA",
+        "note": "reversed from similarity"
+       },
+       {
+        "v": "0.00",
+        "k": "photothermal",
+        "note": "uncorrelated with similarity"
+       }
+      ],
+      "scaleNote": "Kendall tau: +1 = same order as similarity · 0 = unrelated · -1 = reversed",
+      "overturn": "overturns week 5's “insertion, not reshuffle” - which ran on a draft graph with 0 real edges"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 29.67
+  },
+  {
+   "beat_id": "B06",
+   "act": "it personalizes",
+   "palette": "humanitarians",
+   "narration_text": "Fourth, it personalizes. The two projects' core focus sections overlap by only a Jaccard of zero point two five, they're genuinely different plans. But once you count the common biology foundations both projects legitimately need, the overlap rises to zero point six two. That's correct pedagogy: different frontiers, shared groundwork.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 22,
+   "audio_file": "mp3/beat-B06.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "personalization: core focus Jaccard 0.25 (different plans) vs 0.615 with shared foundations (correct pedagogy)",
+    "remotion": {
+     "pattern": "Personalizes",
+     "props": {
+      "sparkLine": "Different frontiers, shared groundwork.",
+      "pairs": [
+       {
+        "v": "0.25",
+        "k": "core focus overlap",
+        "note": "the two projects are genuinely different plans",
+        "accent": "teal"
+       },
+       {
+        "v": "0.615",
+        "k": "with shared foundations",
+        "note": "the common biology both projects need - correct pedagogy",
+        "accent": "slate"
+       }
+      ],
+      "note": "personalized where it matters, shared where it should be"
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 22.14
+  },
+  {
+   "beat_id": "B07",
+   "act": "it's robust (K-sweep)",
+   "palette": "humanitarians",
+   "narration_text": "And none of this is cherry-picked. I swept K across ten, twenty, and thirty. At every size, the method breaks zero dependencies, the graph inserts dozens of foundations retrieval misses, and the Kendall-tau stays at or below zero. The effect is the structure, not the setting.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 22,
+   "audio_file": "mp3/beat-B07.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "K-sweep table (K=10/20/30): method breaks 0 at every K; graph inserts 32-42; Kendall tau stays <= 0",
+    "remotion": {
+     "pattern": "Robust",
+     "props": {
+      "sparkLine": "Not cherry-picked - swept across K.",
+      "cols": [
+       "K = 10",
+       "K = 20",
+       "K = 30"
+      ],
+      "rows": [
+       {
+        "label": "method breaks",
+        "vals": [
+         "0",
+         "0",
+         "0"
+        ],
+        "accent": "teal"
+       },
+       {
+        "label": "graph inserts",
+        "vals": [
+         "32",
+         "34",
+         "42"
+        ],
+        "accent": "slate"
+       },
+       {
+        "label": "Kendall tau",
+        "vals": [
+         "-0.33",
+         "-0.44",
+         "-0.34"
+        ],
+        "accent": "gold"
+       }
+      ],
+      "subnote": "LNP-siRNA shown; photothermal holds too (method 0 at every K)",
+      "note": "the effect is the structure, not the setting"
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 18.47
+  },
+  {
+   "beat_id": "B08",
+   "act": "the honest boundary",
+   "palette": "humanitarians",
+   "narration_text": "What's honest about it. The embedder is a general-domain model, not biomedical, so a better embedder would change the ranking, but not the structural result: retrieval cannot encode a dependency at any embedding quality. The prerequisite edges are still faculty-review drafts, so this measures the mechanism, not approved content, and makes no learning-outcome claim. And the ablation reads the required edges straight from the authoritative prerequisite file, which the pipeline's graph has since been reconciled to.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 29,
+   "audio_file": "mp3/beat-B08.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "honest boundary: measured + reproducible (swept) vs the limits (general embedder; draft edges; authoritative CSV; no learning claim)",
+    "remotion": {
+     "pattern": "AblationHonestBoundary",
+     "props": {
+      "sparkLine": "Measured and reproducible - and here are the limits.",
+      "done": [
+       {
+        "k": "measured + swept",
+        "v": "two arms, four metrics, K in {10,20,30} - reproducible from one script"
+       },
+       {
+        "k": "structural, not tuned",
+        "v": "retrieval cannot encode a dependency at any embedding quality"
+       }
+      ],
+      "draft": [
+       {
+        "k": "general-domain embedder",
+        "v": "all-MiniLM-L6-v2 shifts the ranking, not the structural result"
+       },
+       {
+        "k": "draft edges",
+        "v": "faculty-review prerequisites - measures the mechanism, not approved content"
+       }
+      ],
+      "stamp": "MEASURES THE MECHANISM - NOT APPROVED CONTENT · NO LEARNING CLAIM"
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 30.08
+  },
+  {
+   "beat_id": "B09",
+   "act": "outro / CTA",
+   "palette": "claude",
+   "narration_text": "Reordering, not retrieval. And the way to prove a graph earns its place isn't to argue for it, it's to delete it and measure what breaks. This is Satwik for Humanitarians AI.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 11,
+   "audio_file": "mp3/beat-B09.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "title restate + handle + sign-off",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Reordering, Not Retrieval",
+      "handle": "@HumanitariansAI",
+      "subline": "This is Satwik for Humanitarians AI."
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": "2026-10-31T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 11.29
+  }
+ ]
+}
