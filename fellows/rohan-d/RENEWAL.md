@@ -2,8 +2,8 @@
 
 - **Role:** AI Engineer
 - **Supervisor:** Nik Bear Brown
-- **Current agreement:** 6 Nov — 30 Nov (given as '6 November to 31st November'; November has 30 days, so confirm)
-- **Requested period:** 1 Dec — [add end date]
+- **Current agreement:** 6 November — 30 November
+- **Requested period:** 1 December — 31st January
 
 > DRAFT. The figures below come from the build records in this repository. Replace the bracketed parts with your own facts; nothing here claims approvals or Drive links that were not recorded.
 
