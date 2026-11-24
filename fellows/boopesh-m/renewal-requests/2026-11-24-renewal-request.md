@@ -12,9 +12,10 @@ guideline). Prepared with Claude (Claude Code) from my build records, hours and 
 - **Current agreement:** 2026-10-13 to **2026-11-30**
 - **Reporting period:** 2026-10-13 to 2026-11-30
 - **Requested renewal dates:** 2026-12-01 to 2027-01-31
-- **Project Manager:** Sanjana R.
-- **Programme lead:** Professor Nik Bear Brown
-- **Fellows folder:** [fellows/boopesh-m](../README.md)
+- **Supervision:** Project Manager Sanjana R.; fellows programme led by Professor Nik Bear Brown, Humanitarians AI
+- **Repository:** [nikbearbrown/humanitarians-youtube](https://github.com/nikbearbrown/humanitarians-youtube) ·
+  branch [`boopesh-m`](https://github.com/nikbearbrown/humanitarians-youtube/tree/boopesh-m/fellows/boopesh-m) ·
+  [pull request #446](https://github.com/nikbearbrown/humanitarians-youtube/pull/446)
 
 ### Open the evidence
 
@@ -93,7 +94,21 @@ Record: [weekly-hours/README.md](../weekly-hours/README.md).
   toolkit, so there is no separate project-repository code. The code behind each video lives with that
   video, in its folder here.
 
-## 4. Videos, decks and Frictional logs
+## 4. Degree relevance and supervision
+
+The work applies machine learning, financial modelling and data analysis to real questions in finance:
+- fraud detection;
+- credit-risk explanations;
+- trading strategy evaluation;
+- trade execution.
+
+Each answer comes as reproducible code, written up so a general audience can follow it. Alongside that I
+do structured technical review: checking other fellows' videos and code against clear criteria and
+instructions. Both are directly relevant to my degree program. My work is supervised through my Project
+Manager, Sanjana R., within the fellows programme led by Professor Nik Bear Brown. The review evidence is in
+the [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820), and the video evidence is in the weekly folders below.
+
+## 5. Videos, decks and Frictional logs
 
 | Week | STEM / AI video | Progress video |
 |---|---|---|
@@ -107,7 +122,7 @@ All renders (16:9 and 9:16 for each film) are in the
 [Google Drive folder](https://drive.google.com/drive/folders/1NSKnM6dnnNGqD1_srGPBfVaaS-EXPWXi?usp=sharing).
 **Presentation decks:** required from 2026-12-01. Each week's `slides.html` will go in its own dated folder.
 
-## 5. Next steps
+## 6. Next steps (plan, deliverables, target dates)
 
 1. **Keep the weekly pair going, ongoing.** One STEM / AI-in-finance explainer and one progress update each
    week, both 16:9 + 9:16 4K. Each comes with code, FACTCHECK, PROOF and a dated FRICTIONAL entry, committed
@@ -122,3 +137,21 @@ All renders (16:9 and 9:16 for each film) are in the
 **Unresolved issues:**
 - the weekly hours and work folders were committed at renewal time rather than week by week, because of the
   failed fork. This is fixed from the week of Nov 22.
+
+## 7. Weekly evidence index
+
+One row per week in the reporting period (13 Oct – 30 Nov 2026). Hours link to
+[weekly-hours/README.md](../weekly-hours/README.md); renders for every film (16:9 + 9:16) are in the
+[Google Drive folder](https://drive.google.com/drive/folders/1NSKnM6dnnNGqD1_srGPBfVaaS-EXPWXi?usp=sharing); review work is in the [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820). Presentation decks are
+required from 1 Dec 2026, so none are listed for this period.
+
+| Week / dates | Actual hours | Video links (STEM / AI · progress) | Log and work evidence |
+|---|---:|---|---|
+| 13–17 Oct 2026 | 20 | — none due yet (onboarding week) | Review: 29 videos (10 Raman Effect, 19 AI+1), [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820), entry of 17 Oct |
+| 18–24 Oct 2026 | 20 | [Deep Hedging (24 Oct)](../2026-10-24-deep-hedging/README.md) · [Brutalist, Shared (24 Oct)](../2026-10-24-brutalist-first-fellow-prs/README.md) | [STEM log](../2026-10-24-deep-hedging/FRICTIONAL.md) · [progress log](../2026-10-24-brutalist-first-fellow-prs/FRICTIONAL.md) · [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) · [PR #446](https://github.com/nikbearbrown/humanitarians-youtube/pull/446) |
+| 25–31 Oct 2026 | 20 | [The 99.9% Accuracy Trap (1 Nov)](../2026-11-01-fraud-accuracy-trap/README.md) · [One Week of Fellows (1 Nov)](../2026-11-01-one-week-of-fellows/README.md) | [STEM log](../2026-11-01-fraud-accuracy-trap/FRICTIONAL.md) · [progress log](../2026-11-01-one-week-of-fellows/FRICTIONAL.md) · [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) · [PR #446](https://github.com/nikbearbrown/humanitarians-youtube/pull/446) |
+| 1–7 Nov 2026 | 20 | [The Backtest Mirage (8 Nov)](../2026-11-08-backtest-mirage/README.md) · [What the Fellows Taught (8 Nov)](../2026-11-08-what-the-fellows-taught/README.md) | [STEM log](../2026-11-08-backtest-mirage/FRICTIONAL.md) · [progress log](../2026-11-08-what-the-fellows-taught/FRICTIONAL.md) · [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) · [PR #446](https://github.com/nikbearbrown/humanitarians-youtube/pull/446) |
+| 8–14 Nov 2026 | 20 | [Why Did the AI Say No? (15 Nov)](../2026-11-15-why-did-the-ai-say-no/README.md) · [What Got in the Way (15 Nov)](../2026-11-15-what-got-in-the-way/README.md) | [STEM log](../2026-11-15-why-did-the-ai-say-no/FRICTIONAL.md) · [progress log](../2026-11-15-what-got-in-the-way/FRICTIONAL.md) · [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) · [PR #446](https://github.com/nikbearbrown/humanitarians-youtube/pull/446) |
+| 15–21 Nov 2026 | 20 | [How an AI Sells a Big Order (22 Nov)](../2026-11-22-ai-sells-a-big-order/README.md) · [What a Finished Folder Looks Like (22 Nov)](../2026-11-22-what-a-finished-folder-looks-like/README.md) | [STEM log](../2026-11-22-ai-sells-a-big-order/FRICTIONAL.md) · [progress log](../2026-11-22-what-a-finished-folder-looks-like/FRICTIONAL.md) · [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) · [PR #446](https://github.com/nikbearbrown/humanitarians-youtube/pull/446) |
+| 22–28 Nov 2026 | in progress | this week's pair, in progress | logged in the week |
+| 29–30 Nov 2026 | to log | — | logged in the week |
