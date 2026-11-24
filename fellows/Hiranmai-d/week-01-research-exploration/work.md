@@ -43,3 +43,11 @@ This raised an important research question about whether computational models ca
 - [Week 1 — Research Progress Log](https://github.com/Nenyax-AI/team-work/blob/main/projects/causal-science/ImmuneUnite/research/shared-immune-mechanisms/reading-list.md)
 - [Week 1 — Progress Video](https://drive.google.com/drive/folders/1BUDsUfVwTn52JihDOslB4v9eCwBc_Pf5)
 
+
+## Challenges
+
+- Differences in the datasets and computational methods used across published studies.
+- Limited evidence establishing shared underlying mechanisms across all three diseases.
+- Need for a focused research question that could be evaluated using available data.
+
+
