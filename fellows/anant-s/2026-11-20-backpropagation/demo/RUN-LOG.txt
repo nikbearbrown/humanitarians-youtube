@@ -1,0 +1,11 @@
+python 3.12.13 numpy 2.5.5 on Windows-11-10.0.26300-SP0
+
+net: z = w1*x ; h = tanh(z) ; y = w2*h ; L = (y - t)^2   x=1.0 t=0.2 w1=0.5 w2=2.0
+1) forward: z=0.5  h=0.4621  y=0.9242  L=0.5245
+   backward: dL_dy=1.4485  dy_dh=2.0  dh_dz=0.7864  dz_dw1=1.0  dL_dw2=0.6694  dL_dh=2.8969  dL_dz=2.2783  dL_dw1=2.2783
+   chain for w1: 1.4485 x 2.0 x 0.7864 x 1.0 = 2.2783
+2) step lr=0.1: w1 0.5->0.2722  w2 2.0->1.9331  loss 0.5245 -> 0.0983
+3) finite-diff check eps=1e-05: w1 bp=2.27828974 fd=2.27828974 diff=2.68e-10
+   w2 bp=0.66936221 fd=0.66936221 diff=3.33e-12
+4) vanishing: 10 sigmoid layers, local slopes [0.235, 0.2273, 0.2253, 0.2248, 0.2247, 0.2247, 0.2247, 0.2247, 0.2247, 0.2247]
+   gradient reaching input = 3.483e-07

@@ -1,0 +1,24 @@
+python 3.12.13 numpy 2.5.5 on Windows-11-10.0.26300-SP0
+
+1) collapse (seed 0)  W1=[[3, 1], [1, -1]]  W2=[[-1, -2], [-2, -2]]  x=[-1, 2]
+   W1x=[-1, -3]  W2(W1x)=[7, 8]  |  W2W1=[[-5, 1], [-8, 0]]  (W2W1)x=[7, 8]  identical=True
+2) scale (seed 1)  1000 inputs: 2-layer max|diff|=4.44e-16  10-layer max|diff|=8.88e-15 (rel 3.15e-16)  with bias=8.88e-16
+   10 layers multiply to one matrix [[4.0138, -5.8373], [-0.5547, 0.8066]]
+3) XOR, 115560 lines tried: best = 3 of 4 correct
+   least-squares line: w=(0.0, 0.0) b=0.5  predicts [0.5, 0.5, 0.5, 0.5]  mse=0.25
+4) deep linear 2-2-1, seed 0, 5000 steps: loss=0.25 pred=[0.5, 0.5, 0.5, 0.5] correct=1/4
+   over 100 seeds: min loss=0.25 max correct=3 reached 4/4: 0
+5) hand-set ReLU  W=[[1, 1], [1, 1]] c=[0, -1] w=[1, -2]
+   x=[0, 0]  z=[0, -1]  h=relu(z)=[0, 0]  y=0  target=0
+   x=[0, 1]  z=[1, 0]  h=relu(z)=[1, 0]  y=1  target=1
+   x=[1, 0]  z=[1, 0]  h=relu(z)=[1, 0]  y=1  target=1
+   x=[1, 1]  z=[2, 1]  h=relu(z)=[2, 1]  y=0  target=0
+   hidden points [(0, 0), (1, 0), (2, 1)]; separating line h1 - 2*h2 = 0.5
+   same weights without ReLU -> [2, 1, 1, 0] = one line w=[-1, -1] b=2
+6) 2-unit ReLU trained, seeds 0-99: solved 18/100, failed 82 (69 with a dead unit), failed losses [0.125, 0.16667, 0.25]
+   e.g. seed 0: pred=[0.5, 0.5, 0.5, 0.5] loss=0.25 dead=1
+   e.g. seed 1: pred=[0.0, 1.0, 1.0, 0.0] loss=0.0
+   8-unit ReLU trained, seeds 0-99: solved 91/100
+7) kinks along x = (t, t): y = relu(2t) - 2 relu(2t - 1); kinks at t=[0.0, 0.5]
+   t=-1.0:0.0  t=-0.5:0.0  t=0.0:0.0  t=0.25:0.5  t=0.5:1.0  t=0.75:0.5  t=1.0:0.0  t=2.0:-2.0  t=3.0:-4.0
+   far away: {'(3,3)': -4.0, '(10,10)': -18.0, '(5,0)': -3.0}
