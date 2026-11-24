@@ -12,6 +12,7 @@
 - [Weekly hours and evidence index](weekly-hours/README.md).
 - **Videos:** [Google Drive folder](https://drive.google.com/drive/folders/1NSKnM6dnnNGqD1_srGPBfVaaS-EXPWXi?usp=sharing).
 - **Project Manager:** Sanjana R.
+- **Review records:** [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) (Raman Effect and AI+1).
 - **Narration:** every video uses an AI voice (Kokoro `am_onyx`), approved by Boopesh on 2026-10-24 and
   re-approved on 2026-11-23. The voice is disclosed in each video's opening and credits.
 

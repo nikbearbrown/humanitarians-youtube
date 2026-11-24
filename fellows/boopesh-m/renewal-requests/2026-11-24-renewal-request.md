@@ -14,6 +14,7 @@ later than the seven-day guideline.
 - **Reporting period:** 2026-10-13 to 2026-11-30
 - **Requested renewal dates:** 2026-12-01 to 2027-01-31
 - **Project Manager:** Sanjana R.
+- **Programme lead:** Professor Nik Bear Brown
 - **Fellows folder:** [fellows/boopesh-m](../README.md)
 
 ### Open the evidence
@@ -22,6 +23,7 @@ later than the seven-day guideline.
 |---|---|
 | Every work folder (10 videos, 5 weeks) | [Folder Guide](../README.md#folder-guide-and-evidence) |
 | Weekly hours, one row per week | [weekly-hours/README.md](../weekly-hours/README.md) |
+| Review records (Raman Effect, AI+1) | [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) |
 | Rendered videos | [Google Drive folder](https://drive.google.com/drive/folders/1NSKnM6dnnNGqD1_srGPBfVaaS-EXPWXi?usp=sharing) |
 | Submission pull request | [nikbearbrown/humanitarians-youtube#446](https://github.com/nikbearbrown/humanitarians-youtube/pull/446) |
 
@@ -52,8 +54,8 @@ Facts that could not be verified are marked ⚠️ in each FACTCHECK.md rather t
 29 videos in Oct 13–17 (10 Raman Effect, 19 AI+1). After that it took about half of each week: writing
 prompts and clear instructions, checking each video and the code behind it, and sending back what needed
 to change.
-*Artifact:* every review was logged by hand in the team's video-review Google Sheet at the end of each
-week (the first entry was on 2026-10-17).
+*Artifact:* [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) (Google Sheet, open to everyone in the organisation): every review
+logged by hand at the end of each week, the first entry on 2026-10-17.
 
 **Result D — Weekly measurements of the fellows programme itself.** The progress videos are built from
 scripts that read the fellows repository's git history: merged pull requests, new work folders, frictional
@@ -80,7 +82,7 @@ See [weekly-hours/README.md](../weekly-hours/README.md). **No week below 20 hour
 
 **Gaps, stated honestly:**
 - **Hours were entered here on 2026-11-24,** when this folder was first committed. The review work itself
-  was logged in the review Google Sheet at the end of each week. From the week of Nov 22 the hours are also
+  was logged in the [Video Review Logs](https://docs.google.com/spreadsheets/d/1ovAQ1N19bqlFgjhSuC8Aw4wnvSKzbTsFxt5qtOYzaY4/edit?gid=1576859820#gid=1576859820) at the end of each week. From the week of Nov 22 the hours are also
   logged here in the week they happen.
 - **Week 1 (Oct 13–17):** no videos were due yet; the week was review and onboarding.
 - **Nov 22–30:** the current week and the last two days of the agreement, logged as they happen.
