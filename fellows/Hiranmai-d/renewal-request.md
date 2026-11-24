@@ -40,10 +40,10 @@ The following figures are preliminary workload estimates based on the activities
 
 | Week / Dates | Actual Hours | Video Links | Log and Work Evidence |
 |---|---|---|---|
-| **Week 1** - October 23 to October 30 | [23] | [Progress Video](https://drive.google.com/drive/folders/1BUDsUfVwTn52JihDOslB4v9eCwBc_Pf5) | [Week 1 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-01-research-exploration/work.md)|
-| **Week 2** - October 31 to November 6 | [24] | [Progress Video](https://drive.google.com/drive/folders/16X-QPVS652EmjbDTiqbxRTN9EndfUhWa) | [Week 2 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-2-research-framework/work.md)|
-| **Week 3** - November 7 to November 13 | [27] | [Progress Video](https://drive.google.com/drive/folders/1ZciSuFjRzGNfLvbMj-87DXemn3o04VkQ) | [Week 3 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-03-dataset-discovery/work.md)|
-| **Week 4** - November 14 to November 20| [30] | [Progress Video](https://drive.google.com/drive/folders/1DTkCh6odPrf35cVPCxtu6sZan5bqCFSZ)| [Week 4 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-04-ml-baseline-evaluation/work.md)|
+| **Week 1** - October 23 to October 30 | 23 | [Progress Video](https://drive.google.com/drive/folders/1BUDsUfVwTn52JihDOslB4v9eCwBc_Pf5) | [Week 1 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-01-research-exploration/work.md)|
+| **Week 2** - October 31 to November 6 | 24 | [Progress Video](https://drive.google.com/drive/folders/16X-QPVS652EmjbDTiqbxRTN9EndfUhWa) | [Week 2 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-2-research-framework/work.md)|
+| **Week 3** - November 7 to November 13 | 27 | [Progress Video](https://drive.google.com/drive/folders/1ZciSuFjRzGNfLvbMj-87DXemn3o04VkQ) | [Week 3 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-03-dataset-discovery/work.md)|
+| **Week 4** - November 14 to November 20| 30 | [Progress Video](https://drive.google.com/drive/folders/1DTkCh6odPrf35cVPCxtu6sZan5bqCFSZ)| [Week 4 Research Log](https://github.com/Hiranmai28/humanitarians-youtube/blob/main/fellows/Hiranmai-d/week-04-ml-baseline-evaluation/work.md)|
 ---
 
 ## 4. Degree Relevance and Supervision
