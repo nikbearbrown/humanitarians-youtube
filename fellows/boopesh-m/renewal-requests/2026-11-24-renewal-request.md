@@ -48,10 +48,12 @@ it is deterministic:
 
 Facts that could not be verified are marked ⚠️ in each FACTCHECK.md rather than stated as fact.
 
-**Result C — Video and code review for the Raman Effect and AI+1 projects.** About half of each week
-went to reviewing fellows' videos and code for these two projects: writing prompts and clear instructions,
-checking each video and the code behind it, and sending back what needed to change.
-*Artifact:* review records not yet linked (see Unresolved issues).
+**Result C — Video and code review for the Raman Effect and AI+1 projects.** Review started in week 1:
+29 videos in Oct 13–17 (10 Raman Effect, 19 AI+1). After that it took about half of each week: writing
+prompts and clear instructions, checking each video and the code behind it, and sending back what needed
+to change.
+*Artifact:* every review was logged by hand in the team's video-review Google Sheet at the end of each
+week (the first entry was on 2026-10-17).
 
 **Result D — Weekly measurements of the fellows programme itself.** The progress videos are built from
 scripts that read the fellows repository's git history: merged pull requests, new work folders, frictional
@@ -70,19 +72,23 @@ squash merges, and recounts the previous week so late merges are disclosed rathe
 
 ## 3. Hours
 
-**100 hours from Oct 18 to Nov 21: 20 hours in each of five weeks**, split about evenly between review
-work (10 h) and making his own two videos (10 h). See [weekly-hours/README.md](../weekly-hours/README.md).
+**120 hours from Oct 13 to Nov 21: 20 hours in each of six weeks.**
+- Week 1 (Oct 13–17) was all review and onboarding: 29 videos reviewed.
+- From Oct 18, each week split about evenly between review (10 h) and making his own two videos (10 h).
+
+See [weekly-hours/README.md](../weekly-hours/README.md). **No week below 20 hours.**
 
 **Gaps, stated honestly:**
-- **Hours were not logged during the weeks.** They were reported by Boopesh on 2026-11-24, when this folder
-  was first committed. From the week of Nov 22 they are logged in the week they happen.
-- **Week 1 (Oct 13–17, onboarding):** no videos were due yet; hours for this week are not recorded.
+- **Hours were entered here on 2026-11-24,** when this folder was first committed. The review work itself
+  was logged in the review Google Sheet at the end of each week. From the week of Nov 22 the hours are also
+  logged here in the week they happen.
+- **Week 1 (Oct 13–17):** no videos were due yet; the week was review and onboarding.
 - **Nov 22–30:** the current week and the last two days of the agreement, logged as they happen.
 - **GitHub evidence arrived late.** All ten folders were delivered in their weeks but could not be committed
   then: the fork attempt failed, and push access only arrived on 2026-11-24.
-- **No code in the project repository yet.** No commits have been made to
-  [brutalist.art](https://github.com/nikbearbrown/brutalist.art) itself. The video code lives in this
-  fellows folder only, which the programme rules say does not count as project-repository evidence.
+- **Project-repository code:** my work is video production and review, not development of the Brutalist
+  toolkit, so there is no separate project-repository code. The code behind each video lives with that
+  video, in its folder here.
 
 ## 4. Videos, decks and Frictional logs
 
@@ -107,14 +113,13 @@ All renders (16:9 and 9:16 for each film) are in the
    `weekly-hours/`.
 3. **Weekly presentation decks, from 2026-12-01.** A `slides.html` in a dated folder each week.
 4. **Hours recorded weekly, from the week of Nov 22.** Written in the week, never reconstructed later.
-5. **First contribution to the project repository, by mid-December 2026 (proposed).** For example, turn the
-   weekly fellows git-statistics script into a reusable tool proposed to brutalist.art through a pull request.
+5. **Project repository, if the work moves there.** If the next period includes changes to the Brutalist
+   toolkit itself, commit them to [brutalist.art](https://github.com/nikbearbrown/brutalist.art) as the work
+   happens, and link the commits from the Frictional logs.
 
 **Unresolved issues:**
-- hours for Oct 18 – Nov 21 reported after the fact;
-- week 1 (Oct 13–17) hours not recorded;
-- review records still to link;
-- no project-repository commits yet.
+- the weekly hours were entered here at renewal time, not week by week (now fixed going forward);
+- the GitHub folders were committed late because of the failed fork.
 
 ## 6. Email to send
 
@@ -132,8 +137,8 @@ Monday to Wednesday during business hours, at least 7 days before the agreement 
 > https://github.com/nikbearbrown/humanitarians-youtube/blob/boopesh-m/fellows/boopesh-m/renewal-requests/2026-11-24-renewal-request.md
 >
 > In short: over five weeks I delivered ten Brutalist videos in 4K, an AI-in-finance explainer and a
-> progress update each week, each backed by code that was actually run. I also spent about half of each
-> week reviewing videos and code for the Raman Effect and AI+1 projects. The report links every video,
+> progress update each week, each backed by code that was actually run. I also reviewed videos and code
+> for the Raman Effect and AI+1 projects every week, starting with 29 videos in my first week. The report links every video,
 > Frictional log and weekly hours record, states the gaps I still need to close, and sets out my plan for
 > the next period.
 >
