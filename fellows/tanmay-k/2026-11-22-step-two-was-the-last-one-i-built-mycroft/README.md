@@ -38,7 +38,7 @@ Narration is Kokoro `am_onyx` (`beat_sheet.json` records the voice). Visuals are
 
 ## Records in this folder
 
-`ANGLE.md` (the contribution as the basis for the film, the uniqueness audit, the approved angle), `READ-ALOUD.md` and `READ-ALOUD-SHORT.md` (the signed narration), `beat_sheet.json` and `beat_sheet-short.json` (narration, picture plan and measured timing per beat), `FACTCHECK.md`, `PEDAGOGY.md`, `FRICTIONAL.md` (drafted after the fact, reviewed by Tanmay), `PROOF-REVIEW.md`.
+`ANGLE.md` (the contribution as the basis for the film, the uniqueness audit, the approved angle), `READ-ALOUD.md` and `READ-ALOUD-SHORT.md` (the signed narration), `beat_sheet.json` and `beat_sheet-short.json` (narration, picture plan and measured timing per beat), `FACTCHECK.md`, `PEDAGOGY.md`, `FRICTIONAL.md` (drafted after the fact, reviewed by Tanmay), `PROOF-REVIEW.md`. Also here: `step-two-was-the-last-one-i-built-youtube.md` and `step-two-was-the-last-one-i-built-short-youtube.md` (the YouTube descriptions), and `step-two-was-the-last-one-i-built(.srt/.vtt)` and `step-two-was-the-last-one-i-built-short(.srt/.vtt)` (captions, timed to the measured audio).
 
 ## Links
 

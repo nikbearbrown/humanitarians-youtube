@@ -1,0 +1,347 @@
+WEBVTT
+
+00:00:00.020 --> 00:00:01.950
+Step two was the last step I built.
+
+00:00:02.040 --> 00:00:03.430
+The recipe has six steps.
+
+00:00:03.540 --> 00:00:07.390
+I built step one, then three, then
+five, and only weeks later four and six.
+
+00:00:07.980 --> 00:00:10.790
+Step two, the one that runs
+second, was written last of all.
+
+00:00:11.000 --> 00:00:13.170
+So what were the other steps
+doing while it was missing?
+
+00:00:14.167 --> 00:00:16.797
+Tanmay Kulkarni, for Humanitarians AI.
+
+00:00:17.147 --> 00:00:18.817
+In Mycroft, a public repository,
+
+00:00:18.927 --> 00:00:21.517
+a recipe is a list of steps
+with a script behind each one.
+
+00:00:21.807 --> 00:00:24.657
+Mine fetches prices for five
+stocks and adds them up.
+
+00:00:24.747 --> 00:00:27.897
+In the recipe I wrote that step
+three reads the price files directly,
+
+00:00:27.917 --> 00:00:29.297
+since step two is still open.
+
+00:00:29.347 --> 00:00:33.137
+And that step five reads step three's
+output, since step four is still open.
+
+00:00:33.327 --> 00:00:35.997
+Those are my sentences, and when
+I wrote them they were true.
+
+00:00:36.447 --> 00:00:39.777
+Each is a stand-in: a shortcut
+for a step that did not exist yet.
+
+00:00:39.797 --> 00:00:41.357
+So I will put one check to each.
+
+00:00:41.377 --> 00:00:43.557
+What did it stand in
+for? What did it skip?
+
+00:00:43.747 --> 00:00:46.877
+And what happens when it and the
+real step get the same wrong input?
+
+00:00:47.900 --> 00:00:50.030
+This week the real step two was merged.
+
+00:00:50.220 --> 00:00:53.030
+It reads the run settings and the
+workflow, then each price file,
+
+00:00:53.050 --> 00:00:55.290
+and checks every file
+against the hash recorded in
+
+00:00:55.310 --> 00:00:57.210
+a manifest when the
+sample files were made.
+
+00:00:57.500 --> 00:00:59.390
+It keeps each file exactly as it came.
+
+00:00:59.740 --> 00:01:02.770
+A file goes to a reject list if
+the manifest does not list it,
+
+00:01:02.790 --> 00:01:06.010
+if its hash has changed, if it is
+missing, or if it is not valid JSON.
+
+00:01:06.340 --> 00:01:08.370
+It does not judge whether
+a price makes sense.
+
+00:01:08.500 --> 00:01:10.350
+That stays with steps three and four.
+
+00:01:11.267 --> 00:01:12.477
+First, the good news.
+
+00:01:12.667 --> 00:01:16.097
+I ran the stand-in and the real step
+on the same 6 sets of sample files,
+
+00:01:16.117 --> 00:01:18.077
+and they saw the same files every time.
+
+00:01:18.447 --> 00:01:20.797
+In the clean set, 5 files and 5 records.
+
+00:01:21.047 --> 00:01:22.917
+In the set of deliberately
+defective files,
+
+00:01:23.047 --> 00:01:24.917
+step two took in four and turned one away,
+
+00:01:24.937 --> 00:01:28.637
+while step three looked at the same 5 and
+rejected all of them, for its own reasons.
+
+00:01:28.657 --> 00:01:32.377
+6 sets out of 6: the shortcut was
+right about which files were there.
+
+00:01:33.233 --> 00:01:35.563
+Then I gave both a wrong
+file, deliberately,
+
+00:01:35.583 --> 00:01:38.263
+on a scratch copy that never
+went near the repository.
+
+00:01:38.833 --> 00:01:41.903
+In the NVDA price file I
+switched two digits around.
+
+00:01:42.513 --> 00:01:47.983
+504.5625 became 540.5625.
+It is still a number.
+
+00:01:48.133 --> 00:01:49.503
+It is still valid JSON.
+
+00:01:49.873 --> 00:01:52.163
+It is the kind of slip a
+person makes at a keyboard.
+
+00:01:53.167 --> 00:01:54.737
+Here is what the old route did.
+
+00:01:55.007 --> 00:01:57.517
+Step one checks the files against
+the manifest, and it stopped.
+
+00:01:57.947 --> 00:02:00.997
+Its message says: fixture changed
+since the manifest froze it.
+
+00:02:01.017 --> 00:02:05.017
+But step three, run on the same folder,
+said pass: 5 promoted, none rejected.
+
+00:02:05.267 --> 00:02:10.257
+And step five priced the
+portfolio at $66,898.13.
+
+00:02:10.277 --> 00:02:14.177
+The committed run says $65,098.13.
+
+00:02:14.197 --> 00:02:15.697
+That is $1,800 more,
+
+00:02:16.147 --> 00:02:21.497
+from two switched digits, and a
+return of 24.35% instead of 21%.
+
+00:02:22.633 --> 00:02:25.143
+I want to be careful
+here. Step one did stop.
+
+00:02:25.333 --> 00:02:28.023
+What step three, on its own, has
+no way to know is that it did.
+
+00:02:28.153 --> 00:02:29.603
+Each step is a separate command,
+
+00:02:29.623 --> 00:02:32.543
+and the stop was only a message
+in a file until someone read it.
+
+00:02:32.713 --> 00:02:34.723
+The stand-in never had
+to ask the question,
+
+00:02:34.743 --> 00:02:37.603
+because I had put the question
+somewhere else. Nobody was wrong.
+
+00:02:37.753 --> 00:02:41.703
+It was my sentence, since step two is
+still open, doing exactly what it said.
+
+00:02:42.600 --> 00:02:46.390
+Now the same folder, through the
+real step two. Four files taken in.
+
+00:02:46.680 --> 00:02:49.810
+One turned away, NVDA, with
+its reason written beside it:
+
+00:02:49.830 --> 00:02:51.970
+it differs from the hash
+recorded in the manifest.
+
+00:02:52.120 --> 00:02:54.070
+The same wrong file,
+through a different door,
+
+00:02:54.090 --> 00:02:56.850
+and this time it is stopped by
+the step whose job is to ask.
+
+00:02:57.120 --> 00:03:00.310
+Wiring step three to read what
+step two kept is the next change.
+
+00:03:00.330 --> 00:03:01.470
+I have not made it.
+
+00:03:02.300 --> 00:03:04.370
+So what did the stand-in
+skip? Two questions.
+
+00:03:04.660 --> 00:03:06.250
+Is this file one that was ever recorded?
+
+00:03:06.460 --> 00:03:08.390
+And is it the same file that was recorded?
+
+00:03:08.700 --> 00:03:10.390
+Step three asked whether a file parsed,
+
+00:03:10.410 --> 00:03:12.410
+named one of my five
+tickers, and had a price.
+
+00:03:12.920 --> 00:03:15.510
+It never asked whether it was
+the very file I had recorded.
+
+00:03:15.660 --> 00:03:17.750
+A hash can only say a file is unchanged.
+
+00:03:17.999 --> 00:03:19.550
+It cannot say the file is right.
+
+00:03:19.600 --> 00:03:21.850
+But unchanged was
+exactly what was missing.
+
+00:03:22.833 --> 00:03:25.523
+There is a second stand-in,
+and I have not paid it back.
+
+00:03:25.913 --> 00:03:29.283
+Step five still reads step three's
+output, and the recipe still says,
+
+00:03:29.303 --> 00:03:32.683
+since step four is still open,
+even though step four now exists.
+
+00:03:33.253 --> 00:03:36.663
+I have not compared the two yet, so I
+will not say anything about it here,
+
+00:03:36.683 --> 00:03:38.203
+except that I have it written down.
+
+00:03:39.200 --> 00:03:41.510
+If you build out of order,
+you have stand-ins too.
+
+00:03:41.780 --> 00:03:43.930
+Search your own notes for
+the words since and until.
+
+00:03:44.200 --> 00:03:46.670
+For each one, write down what
+it replaced and what it skipped.
+
+00:03:47.220 --> 00:03:48.710
+Then, when the real step arrives,
+
+00:03:48.740 --> 00:03:51.670
+hand the stand-in and the real
+step one deliberately wrong input,
+
+00:03:51.690 --> 00:03:52.890
+and read where they disagree.
+
+00:03:53.100 --> 00:03:55.790
+That one wrong file told me
+more than six clean sets.
+
+00:03:56.800 --> 00:03:58.250
+Here is what I did not check.
+
+00:03:58.360 --> 00:04:00.470
+This was sample mode,
+with invented prices:
+
+00:04:00.640 --> 00:04:02.990
+one swapped pair, in
+one file, in one recipe.
+
+00:04:03.440 --> 00:04:05.330
+Step one does catch it
+when it is run and read;
+
+00:04:05.380 --> 00:04:07.470
+my claim is only about
+step three on its own.
+
+00:04:07.720 --> 00:04:10.870
+No live call was made. The
+wrong file was a scratch copy,
+
+00:04:10.890 --> 00:04:14.470
+so none of it is in the repository,
+and the recipe's own text is unedited,
+
+00:04:14.540 --> 00:04:16.370
+so it still says step two is open.
+
+00:04:17.300 --> 00:04:19.250
+Step two was the last one I built.
+
+00:04:19.420 --> 00:04:21.470
+It was the one the others
+were standing in for.
+
+00:04:21.680 --> 00:04:25.290
+A stand-in is a loan, and this was
+the week I started paying it back.
