@@ -3,7 +3,7 @@
 **Fellow:** Kehinde Obidele
 **Project:** Medhavy Cancer Textbook Fact-Checking
 **Group:** Brutalist team
-**Last updated:** 2026-09-25
+**Last updated:** 2026-11-24
 
 ## Research Question
 
@@ -18,7 +18,8 @@ Every flagged claim in the Medhavy cancer textbook is verified through a structu
 3. Confirm whether the citation is real, the authors are correct, and the claim is supported.
 4. Record a Reviewer Decision (Approved, Needs Revision, or Rejected), Reviewer Comments with source URLs, and a Suggested Phrase with corrected text.
 5. Build an Evidence Document (Word format) with the full source chain for every claim checked.
-6. Submit text corrections as a pull request against the medhavi-cancer repository in exact .mdx format.
+6. Make the text corrections in exact .mdx format on the `text-edits` branch of the medhavi-cancer repository, one commit per chapter, and open a pull request into `development`.
+7. Color the edited rows orange in the workbook once the pull request is open, so the corrections that are in the repository are distinguishable from the ones that are not.
 
 ## Verification Sources
 

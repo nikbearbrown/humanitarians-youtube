@@ -4,7 +4,7 @@
 **Project:** Medhavy Cancer Textbook Fact-Checking
 **Group:** Brutalist team
 **GitHub:** [@khennyG](https://github.com/khennyG)
-**Last updated:** November 20, 2026
+**Last updated:** November 24, 2026
 
 > This folder contains my work as an HAI fellow. I fact-check an AI-generated cancer textbook (Medhavy) and produce weekly Brutalist videos documenting what I find.
 
@@ -19,7 +19,19 @@ I am reviewing the 38-chapter Medhavy cancer textbook for factual accuracy. The 
 - [Research plan](research-plan.md)
 - [Sources used](sources.md)
 - Video evidence: [Google Drive folder](https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp)
+- [Master fact-checking workbook](https://docs.google.com/spreadsheets/d/1_hV9aC_hmoOBr6t7NfbYNi8svCzRBH6W/edit?gid=1147770816#gid=1147770816) (Medhavy team access)
 - Supervision: Prof. Evin Gultepe, Project Manager, Medhavy
+
+## How I Work
+
+Every chapter goes through the same loop.
+
+1. A chapter arrives as a workbook in which a model has already read each sentence and marked it TRUE, FALSE or FLAGGED, split across a main tab and the AI-Only and Editorial tabs. The [master workbook](https://docs.google.com/spreadsheets/d/1_hV9aC_hmoOBr6t7NfbYNi8svCzRBH6W/edit?gid=1147770816#gid=1147770816) lists all 38 chapters, sets the review order, and records which ones are done.
+2. I verify the claims in scope against a primary source: PubMed and PMC, the FDA Orange and Purple Books, NCI SEER, CDC and WHO. I open every citation rather than trust it as written, because a lot of them point at the wrong paper or at a paper that was never published.
+3. I fill the workbook row by row: a Reviewer Decision of Approved, Needs Revision or Rejected, Reviewer Comments carrying the source URLs I used, and a Suggested Phrase with the corrected sentence.
+4. I write the chapter's Evidence Document, which holds the full source chain behind every claim I touched.
+5. I make the text edits in the textbook repository on the `text-edits` branch, one commit per chapter, and open a pull request into `development`. Once it is merged the changes go to the dev site, where they can be checked before anything reaches main.
+6. I go back to the workbook and color the rows I edited orange. That way Prof. Evin can tell at a glance which corrections are already in the repository and which are still only recorded in the sheet.
 
 ## Folder Guide and Evidence
 
@@ -71,11 +83,11 @@ I am reviewing the 38-chapter Medhavy cancer textbook for factual accuracy. The 
 
 ## Next Steps
 
+- Chapter 29 is next in the master workbook order, then the remaining chapters in turn
 - Continue fact-check reviews for remaining chapters (targeting 2-3 per week)
 - Submit text edit PRs for each completed chapter
 - Produce 2 Brutalist videos per week
 - Weekly YouTube engagement (comment on own videos + 5 other HAI videos)
-- Target: complete at least 4 additional chapters by end of October 2026
 
 ## Frictional Log Policy
 
