@@ -81,6 +81,12 @@ Every chapter goes through the same loop.
 - 24 Brutalist videos (12 STEM/AI explainers + 12 project updates) in both 16:9 and 9:16
 - Video masters on [Google Drive](https://drive.google.com/drive/folders/1V-BZnGQ8a2soQqO7zD2N_atkRd7OYYPp)
 
+## Open Pull Requests
+
+Every text correction on the textbook is merged, so nothing is pending there. The textbook repository is private to the Medhavy team, so those pull request links only open for people with access.
+
+On this repository, the weeks 8 to 12 work was still in review as of 24 November 2026: [#422](https://github.com/nikbearbrown/humanitarians-youtube/pull/422), [#423](https://github.com/nikbearbrown/humanitarians-youtube/pull/423), [#424](https://github.com/nikbearbrown/humanitarians-youtube/pull/424), [#425](https://github.com/nikbearbrown/humanitarians-youtube/pull/425) and [#426](https://github.com/nikbearbrown/humanitarians-youtube/pull/426). The current list is always at [my open pull requests](https://github.com/nikbearbrown/humanitarians-youtube/pulls?q=is%3Apr+author%3AkhennyG+is%3Aopen).
+
 ## Next Steps
 
 - Chapter 29 is next in the master workbook order, then the remaining chapters in turn
