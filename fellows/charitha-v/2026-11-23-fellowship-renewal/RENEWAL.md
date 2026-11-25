@@ -1,6 +1,6 @@
 # Fellowship renewal: Charitha Sree Veluru, MoE Causal Atlas (Medhavy)
 
-**Request:** please renew my fellowship from **12/01/2026 through 01/31/2027**. My current agreement runs 09/01/2026 – 11/30/2026 and ends **11/30/2026**. This report covers **Aug 31 – Nov 22, 2026**.
+**Request:** please renew my fellowship from **12/01/2026 through 02/20/2027**. My current agreement runs 09/01/2026 – 11/30/2026 and ends **11/30/2026**. This report covers **Aug 31 – Nov 22, 2026**.
 
 **Fellow:** Charitha Sree Veluru · Unique ID 271 · GitHub [@VelCharitha77](https://github.com/VelCharitha77) · fellows folder [`fellows/charitha-v`](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/charitha-v)
 
@@ -31,7 +31,7 @@ At least 20 hours worked in every reported week. Per-week evidence is in the ind
 
 The work is graduate-level machine learning research and engineering: experimental design, pre-registration, statistics (exact McNemar tests, rank correlation, power simulation), large-model evaluation on an HPC cluster, and interactive simulation software. It applies directly to my graduate degree at Northeastern University. Supervisor: Nik Bear Brown.
 
-## Next period (12/01/2026 – 01/31/2027)
+## Next period (12/01/2026 – 02/20/2027)
 
 | Deliverable | Target date |
 |---|---|
