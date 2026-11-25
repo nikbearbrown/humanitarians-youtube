@@ -1,0 +1,275 @@
+{
+ "schema_version": 1,
+ "document": {
+  "path": "GDD.md",
+  "sha256": "8e5d41cb492fb0b097a36bea9b434f897e169cf067a8f340ac5d61624110b059",
+  "version": "v0.1 agent draft, unapproved",
+  "build_id": "cffbb010b53686c92517a8df047786352e12f582137033b3caa1283f0be7bddc"
+ },
+ "sections": [
+  {
+   "heading": "Status vocabulary",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "1. Metadata",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "2. Vision",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "3. Pillars (PROPOSED)",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "4. Core loop (IMPLEMENTED, OBSERVED)",
+   "beat_ids": [
+    "B04"
+   ]
+  },
+  {
+   "heading": "5. Player-experience goals (PROPOSED, all PENDING a human playtest)",
+   "beat_ids": [
+    "B05"
+   ]
+  },
+  {
+   "heading": "6. Mechanics",
+   "beat_ids": [
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14",
+    "B15",
+    "B16",
+    "B17",
+    "B18",
+    "B19",
+    "B20"
+   ]
+  },
+  {
+   "heading": "7. World (AUTHORED)",
+   "beat_ids": [
+    "B21"
+   ]
+  },
+  {
+   "heading": "8. Art and audio",
+   "beat_ids": [
+    "B21"
+   ]
+  },
+  {
+   "heading": "9. UI (IMPLEMENTED)",
+   "beat_ids": [
+    "B22"
+   ]
+  },
+  {
+   "heading": "10. Out of scope",
+   "beat_ids": [
+    "B22"
+   ]
+  },
+  {
+   "heading": "11. Technical",
+   "beat_ids": [
+    "B22"
+   ]
+  },
+  {
+   "heading": "12. Risks and known defects",
+   "beat_ids": [
+    "B23"
+   ]
+  },
+  {
+   "heading": "13. Acceptance tests (OBSERVED)",
+   "beat_ids": [
+    "B23"
+   ]
+  },
+  {
+   "heading": "14. Provenance",
+   "beat_ids": [
+    "B23"
+   ]
+  },
+  {
+   "heading": "15. Open questions (PENDING)",
+   "beat_ids": [
+    "B23"
+   ]
+  }
+ ],
+ "excerpts": [
+  {
+   "beat_id": "B02",
+   "start_line": 8,
+   "end_line": 8,
+   "text": "- No human has signed off any section, and nobody has playtested the game by hand."
+  },
+  {
+   "beat_id": "B03",
+   "start_line": 37,
+   "end_line": 37,
+   "text": "**PROPOSED vision statement:** *Take Gino home through three hostile valleys with a sword, three knives and three hearts, learning to read each enemy's wind-up before it strikes.*"
+  },
+  {
+   "beat_id": "B05",
+   "start_line": 61,
+   "end_line": 63,
+   "text": "| PX-01 | A first-time player finishes Rocky Outskirts on the first try | Observe 5 new players |\n| PX-02 | Players learn to step back from a curled-up bat instead of slashing into it | Count bat hits per level over 10 runs |\n| PX-03 | The full four-hit combo is discovered without reading the README | Ask players after level 1 |"
+  },
+  {
+   "beat_id": "B06",
+   "start_line": 70,
+   "end_line": 70,
+   "text": "- **IMPLEMENTED** (`player.gd`): run 105 px/s (6.5 tiles/s, tuned up from Unity's 3 units/s), ground acceleration 1200 and deceleration 1600 px/s², jump speed 320 px/s with gravity 900. Releasing Space early cuts the jump to 45%. 0.1 s coyote time and a 0.12 s jump buffer are AUTHORED."
+  },
+  {
+   "beat_id": "B08",
+   "start_line": 74,
+   "end_line": 74,
+   "text": "- **IMPLEMENTED:** Attack1–3 deal 20 each; Attack4 deals 40 (AUTHORED), so a full combo defeats a 100 HP enemy. In the air J plays a jump attack (20). The combo only chains on the ground."
+  },
+  {
+   "beat_id": "B10",
+   "start_line": 78,
+   "end_line": 78,
+   "text": "- **IMPLEMENTED** (`knife.gd`): 420 px/s for 1.3 s (about 546 px), 30 damage, breaks on rock or an enemy. The knife leaves 0.15 s into the throw. Gino starts with none."
+  },
+  {
+   "beat_id": "B12",
+   "start_line": 88,
+   "end_line": 88,
+   "text": "- **SOURCE:** `EnemyAttack.cs` deals `dmg = 2`, one full heart. Unity's per-prefab health values were in prefabs that were not delivered; 100 HP and 25 points per enemy are AUTHORED."
+  },
+  {
+   "beat_id": "B14",
+   "start_line": 92,
+   "end_line": 92,
+   "text": "- **IMPLEMENTED:** an enemy hit costs 2 (a heart), spikes 1 (half a heart). A hit gives 1.1 s of invulnerability with a blink and 0.35 s of hurt knockback. A pit or zero health loses the level; Retry restarts it with the score and knives Gino entered it with."
+  },
+  {
+   "beat_id": "B17",
+   "start_line": 103,
+   "end_line": 103,
+   "text": "- Unity delivered no levels. All three are ASCII maps in `_tools/levels.py`, checked and route-simulated by that script, then written to `scripts/levels.gd` and `_tools/routes.json`."
+  },
+  {
+   "beat_id": "B19",
+   "start_line": 112,
+   "end_line": 112,
+   "text": "  - `Esc` or `P` pauses (Resume, Restart, Sound, Main Menu). R restarts from the pause or game-over menu. `M` toggles sound anywhere."
+  },
+  {
+   "beat_id": "B21",
+   "start_line": 126,
+   "end_line": 126,
+   "text": "- **Audio:** the Unity export had a SoundManager but no audio files. 23 sound effects and three music loops (menu, level, cave) are synthesized by `_tools/make_assets.py`, using the Unity sound names."
+  },
+  {
+   "beat_id": "B22",
+   "start_line": 149,
+   "end_line": 149,
+   "text": "- All 6 scenes are thin. Each level scene is one node running `level.gd` with a `level_id`; everything is built from the ASCII maps."
+  },
+  {
+   "beat_id": "B23",
+   "start_line": 157,
+   "end_line": 157,
+   "text": "| R-01 | **Level 3's second rope bridge stops one tile short.** The `B` is at column 91, so the 7-tile span covers columns 91–97, but the pit runs from column 92 to 98. That leaves a 16 px hole at x 1568–1584 over the spike pit. The route jumps it, so `levels.py` passes, but in capture trials a Gino fighting a bat on the bridge stepped into it and died. Moving the `B` one column right closes it. |"
+  }
+ ],
+ "evidence": [
+  {
+   "path": "capture/campaign.mp4",
+   "sha256": "521355573357844c033661208950a3801b2de9919174547ac7e69038ed0567eb",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30, native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"campaign\"; input log capture/campaign-inputs.jsonl"
+  },
+  {
+   "path": "capture/defeat.mp4",
+   "sha256": "3eea6e75fa6028061b900cef0ad9cb27d8f661934766b62ae9ba92808cc155ab",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 30, native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"defeat\"; input log capture/defeat-inputs.jsonl"
+  },
+  {
+   "path": "media/B04.mp4",
+   "sha256": "fff4c588d72c8dcfd621bc01212748d4875025389cf456e9cd23ecf1aa0a908b",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 318, \"source_frames\": 70, \"factor\": 1, \"output_frames\": 70}, {\"kind\": \"play\", \"source_start_frame\": 700, \"source_frames\": 140, \"factor\": 1, \"output_frames\": 140}, {\"kind\": \"play\", \"source_start_frame\": 1985, \"source_frames\": 40, \"factor\": 1, \"output_frames\": 40}, {\"kind\": \"play\", \"source_start_frame\": 2025, \"source_frames\": 228, \"factor\": 1, \"output_frames\": 228}]",
+   "supports": "B04: shown gameplay (4. Core loop (IMPLEMENTED, OBSERVED))"
+  },
+  {
+   "path": "media/B07.mp4",
+   "sha256": "2cda187267c12623782819dff37c75dda2d6c0a09a10f277d8044307ffbba80e",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 2380, \"source_frames\": 357, \"factor\": 1, \"output_frames\": 357}]",
+   "supports": "B07: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B09.mp4",
+   "sha256": "af63601fe664c26c1e907ef8a57a15f839e753e5f4e9e0e40f716f2ccc1ea5c7",
+   "method": "exact-frame cut of take \"defeat\": [{\"kind\": \"play\", \"source_start_frame\": 640, \"source_frames\": 393, \"factor\": 1, \"output_frames\": 393}]",
+   "supports": "B09: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B11.mp4",
+   "sha256": "7ba7a65726a81947ce1a6c2da84a0f3be1a7c38164d784337c354216bf6937bc",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 1590, \"source_frames\": 316, \"factor\": 1, \"output_frames\": 316}]",
+   "supports": "B11: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B13.mp4",
+   "sha256": "131e104c2e5c0b69d5b25ef8021f59861af2bb4b08462b0cb3a728a07b90eb2b",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 2880, \"source_frames\": 190, \"factor\": 1, \"output_frames\": 190}, {\"kind\": \"play\", \"source_start_frame\": 6320, \"source_frames\": 131, \"factor\": 1, \"output_frames\": 131}]",
+   "supports": "B13: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B15.mp4",
+   "sha256": "4d065e925b6ed00c30efc89faf0f42d233637ae6f9c07268f70a1f166b366be4",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 4795, \"source_frames\": 50, \"factor\": 1, \"output_frames\": 50}, {\"kind\": \"play\", \"source_start_frame\": 5345, \"source_frames\": 177, \"factor\": 1, \"output_frames\": 177}]",
+   "supports": "B15: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B16.mp4",
+   "sha256": "b3c02a3c40ff7b93f6c6793e796c92fa936e0d1f31b8cc52a8c7e87a2d7950c3",
+   "method": "exact-frame cut of take \"defeat\": [{\"kind\": \"play\", \"source_start_frame\": 1440, \"source_frames\": 309, \"factor\": 1, \"output_frames\": 309}]",
+   "supports": "B16: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B18.mp4",
+   "sha256": "aef9f8997d605de6f30a5d6184b6f19d8a97c85f3361712e2a404dcd26fa6204",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 2190, \"source_frames\": 60, \"factor\": 1, \"output_frames\": 60}, {\"kind\": \"play\", \"source_start_frame\": 4105, \"source_frames\": 60, \"factor\": 1, \"output_frames\": 60}, {\"kind\": \"play\", \"source_start_frame\": 5975, \"source_frames\": 301, \"factor\": 1, \"output_frames\": 301}]",
+   "supports": "B18: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B20.mp4",
+   "sha256": "b2d17c69a38f65f0033f2c62fbe460cf9500513b469a752808585455b4b78d30",
+   "method": "exact-frame cut of take \"defeat\": [{\"kind\": \"play\", \"source_start_frame\": 1724, \"source_frames\": 249, \"factor\": 1, \"output_frames\": 249}]",
+   "supports": "B20: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "evidence/GDD.md",
+   "sha256": "8e5d41cb492fb0b097a36bea9b434f897e169cf067a8f340ac5d61624110b059",
+   "method": "byte copy of the source GDD at film build time",
+   "supports": "every excerpt"
+  }
+ ]
+}

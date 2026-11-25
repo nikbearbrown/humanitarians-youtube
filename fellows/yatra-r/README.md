@@ -23,7 +23,15 @@ and its paperwork; the rendered mp4s are not committed.
 | [`2026-09-01-nobody-wrote-this`](2026-09-01-nobody-wrote-this/) | Nobody Wrote This. | 14 | 2:48.9 | 16:9 + 9:16 |
 | [`2026-09-03-this-week-gordy`](2026-09-03-this-week-gordy/) | This Week, Gordy. | 12 | 2:24.1 | 16:9 + 9:16 |
 | [`2026-09-07-interest-media`](2026-09-07-interest-media/) | Interest Media. | 13 | 2:29.6 | 16:9 + 9:16, both 4K |
+| [`2026-10-21-both-sides-of-the-table`](2026-10-21-both-sides-of-the-table/) | Both Sides of the Table. | 14 | 2:48.9 | 16:9 + 9:16 |
+| [`2026-10-21-the-mask-slips`](2026-10-21-the-mask-slips/) | The Mask Slips. | 13 | 2:48.3 | 16:9 + 9:16 |
 | [`2026-10-29-ads-in-the-picture`](2026-10-29-ads-in-the-picture/) | Ads in the Picture. | 13 | 2:54.0 | 16:9 + 9:16, both 4K |
+| [`2026-10-30-no-default-winner`](2026-10-30-no-default-winner/) | No Default Winner. | 13 | 2:42.4 | 16:9 + 9:16, both 4K |
+| [`2026-11-05-be-the-sentence`](2026-11-05-be-the-sentence/) | Be the Sentence. | 14 | 2:52.3 | 16:9 + 9:16, both 4K |
+| [`2026-11-13-what-we-ask-for`](2026-11-13-what-we-ask-for/) | What We Ask For. | 18 | 4:13.7 | 16:9 + 9:16, both 4K |
+| [`2026-11-14-four-threads`](2026-11-14-four-threads/) | Four Threads. | 12 | 2:39.8 | 16:9 + 9:16, both 4K |
+| [`2026-11-21-paid-to-be-quoted`](2026-11-21-paid-to-be-quoted/) | Paid to Be Quoted. | 12 | 2:43.3 | 16:9 + 9:16, both 4K |
+| [`2026-11-21-film-the-impossible`](2026-11-21-film-the-impossible/) | Film the Impossible. | 11 | 2:14.4 | 16:9 + 9:16, both 4K |
 
 ## What a beat sheet is
 
@@ -73,3 +81,12 @@ and expected, where it resisted and what was done next, what Claude or another p
 contributed and what was accepted, changed or rejected, and what is now understood or
 still open. Append as you go; never rewrite an earlier entry. It is not graded and not a
 performance review. See <https://www.humanitarians.ai/fellows> for what an entry contains.
+
+### Weekly logs
+
+One folder per week for the whole-week diary (videos, Homes of Hope, tools series), beside the
+per-episode logs above.
+
+| Week | Log |
+|---|---|
+| 16–22 Nov 2026 | [`2026-11-22-week-log`](2026-11-22-week-log/FRICTIONAL.md) |

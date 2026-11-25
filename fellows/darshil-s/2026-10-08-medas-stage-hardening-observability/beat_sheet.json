@@ -1,0 +1,295 @@
+{
+  "metadata": {
+    "title": "Hardening Staging — Revision Tracking, Logging & Monitoring",
+    "slug": "medas-stage-hardening-observability",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied 7-slide narration script (post-deploy smoke testing, Cloud Run revisions, traffic management, centralized logging, monitoring/alerting), provided 2026-10-08. Continues medas-stage-environment-provisioning, medas-stage-environment-security and medas-stage-pipeline-validation.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "aspect": "16:9",
+    "description": "Hardening the staging environment from merely functional into observable and self-verifying: an automated post-deploy smoke test gate, Cloud Run's immutable-revision model and what it enables, traffic splitting/pinning across revisions, centralized structured logging via Cloud Logging, and basic monitoring/alerting on latency, error rate and traffic volume -- closing on staging now meeting the same bar production will need to meet.",
+    "note": "GitHub-dark skin for the five mechanics beats (GitHubCallChain diagrams, matching the supplied slide structure), Claude-cream skin for the INTRO bookend, the outcome card, and the OUTRO. Narration text is the fellow-supplied script verbatim -- no garbling this time, no repairs needed.",
+    "total_estimated_duration_seconds": 280
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, slide 1 title card",
+      "narration_text": "With the staging pipeline fully functional, this week's focus shifted from just deploying successfully to deploying with confidence — adding the visibility and safety checks needed to treat staging like a real pre-production environment.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "gcloud run services describe medas-frontend-stage --region=us-east1 --format=\"value(status.traffic)\"",
+            "topic": "SMOKE TESTING · REVISIONS · TRAFFIC MANAGEMENT · LOGGING · MONITORING",
+            "segment": "Hardening Staging — Revision Tracking, Logging & Monitoring",
+            "greeting": "Darshil Shah",
+            "runningText": "smoke test → immutable revisions → traffic control → logging → monitoring…",
+            "output": [
+              "repo: TayyarH/medas-aggregation-frontend",
+              "from deploying successfully to deploying with confidence",
+              "staging now observable and self-verifying"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-13T02:13:49.397218+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 13.25
+    },
+    {
+      "beat_id": "B01",
+      "act": "POST-DEPLOY SMOKE TESTING",
+      "role_note": "slide 2 -- automated health check gate after every deploy",
+      "narration_text": "The pipeline now runs an automated smoke test immediately after every staging deployment — hitting the live service and confirming it responds correctly before the deployment is considered successful. This closes the gap between 'the deploy command finished' and 'the application is actually healthy,' catching issues the moment they happen instead of relying on someone noticing later.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Deploy step",
+                "d": "gcloud run deploy completes"
+              },
+              {
+                "k": "Automated health check",
+                "d": "hits the live service, confirms it responds correctly",
+                "hi": true
+              },
+              {
+                "k": "Pass / fail gate",
+                "d": "deploy isn't 'successful' until this passes"
+              }
+            ],
+            "caption": "Closes the gap between 'the command finished' and 'the application is actually healthy.'"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-13T02:14:44.965700+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.31
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLOUD RUN REVISIONS",
+      "role_note": "slide 3 -- immutable revisions, traffic pointer",
+      "narration_text": "Every deployment to Cloud Run creates a new, immutable revision rather than overwriting the running one. The service's traffic is then simply pointed at the new revision. This matters because old revisions aren't discarded — they remain available, which is what makes both rollback and controlled traffic shifting possible without rebuilding anything.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Deploy",
+                "d": "creates a new, immutable revision — never overwrites the running one"
+              },
+              {
+                "k": "Traffic pointer moves",
+                "d": "service traffic now points at the new revision",
+                "hi": true
+              },
+              {
+                "k": "Old revisions remain",
+                "d": "not discarded — available for rollback or traffic shifting"
+              }
+            ],
+            "caption": "Rollback and traffic shifting both work because nothing was rebuilt or overwritten to get here."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-13T02:15:25.222199+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 50,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.82
+    },
+    {
+      "beat_id": "B03",
+      "act": "TRAFFIC MANAGEMENT",
+      "role_note": "slide 4 -- split or pin traffic across revisions",
+      "narration_text": "Beyond simple all-or-nothing deploys, Cloud Run supports directing traffic across revisions — including pinning traffic back to a known-good revision instantly if needed. Building this awareness into the staging process now means the same traffic-control safety net is already understood and ready to extend into production.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "100% → latest revision",
+                "d": "the simple, all-or-nothing default"
+              },
+              {
+                "k": "Split across revisions",
+                "d": "e.g. 90/10 — a gradual rollout, not a switch flip",
+                "hi": true
+              },
+              {
+                "k": "Pin to known-good revision",
+                "d": "instant, without rebuilding anything"
+              }
+            ],
+            "caption": "Proven in staging now, so the same safety net is already understood before production needs it."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-13T02:16:17.067326+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.47
+    },
+    {
+      "beat_id": "B04",
+      "act": "CENTRALIZED LOGGING",
+      "role_note": "slide 5 -- Cloud Logging, searchable structured logs",
+      "narration_text": "All application and request logs from the staging service now flow into Cloud Logging automatically, giving a centralized, searchable view of exactly what the service is doing — without needing to SSH into anything or dig through container output manually.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Cloud Run service",
+                "d": "application + request logs, generated continuously"
+              },
+              {
+                "k": "Cloud Logging",
+                "d": "flows in automatically — no agent to configure",
+                "hi": true
+              },
+              {
+                "k": "Searchable, structured logs",
+                "d": "no SSH, no digging through container output"
+              }
+            ],
+            "caption": "Centralized by default — the logging pipeline isn't something that had to be separately built."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T02:17:09.257334+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.06
+    },
+    {
+      "beat_id": "B05",
+      "act": "MONITORING & ALERTING",
+      "role_note": "slide 6 -- Cloud Monitoring, key signals",
+      "narration_text": "On top of logging, I set up basic monitoring for the staging service — tracking key signals like request latency, error rate, and traffic volume. This gives a real-time, at-a-glance view of service health, turning staging into an environment that doesn't just run the application, but actively tells you how well it's running.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Cloud Monitoring dashboard",
+                "d": "built on top of the same logs and metrics"
+              },
+              {
+                "k": "Request latency",
+                "d": "how long responses actually take"
+              },
+              {
+                "k": "Error rate",
+                "d": "what fraction of requests fail",
+                "hi": true
+              },
+              {
+                "k": "Traffic volume",
+                "d": "request count over time"
+              }
+            ],
+            "caption": "Staging now tells you how well it's running, not just that it ran."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T02:17:55.113736+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.86
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTCOME",
+      "role_note": "slide 7 -- the verdict card, Claude cream skin",
+      "narration_text": "By the end of this week, staging isn't just a place deployments land — it's a self-verifying environment with automated health checks, revision-based safety, and real visibility into its own health. That's the same bar production will need to meet, and now it's already proven out here.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Hardening Staging — Revision Tracking, Logging & Monitoring",
+            "artifactHeading": "Staging: Observable, Self-Verifying, and Safer to Deploy To",
+            "artifactLines": [
+              "Smoke tested: every deploy is gated on an automated post-deploy health check.",
+              "Revision-safe: immutable revisions mean rollback and traffic shifting need no rebuild.",
+              "Traffic-controlled: the same split/pin safety net production will eventually need.",
+              "Logged: all application and request logs centralized and searchable in Cloud Logging.",
+              "Monitored: latency, error rate, and traffic volume visible at a glance, in real time."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T02:19:39.404765+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 15.36
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Hardening Staging. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Hardening Staging — Revision Tracking, Logging & Monitoring",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T02:20:14.013517+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 2.84
+    }
+  ]
+}

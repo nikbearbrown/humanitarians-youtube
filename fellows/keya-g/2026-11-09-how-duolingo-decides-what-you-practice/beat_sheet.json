@@ -1,0 +1,742 @@
+{
+  "metadata": {
+    "title": "How Duolingo Decides What You Practice Next",
+    "slug": "how-duolingo-decides-what-you-practice",
+    "skill": "ai-explainer",
+    "channel": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "folder_chip": "@HumanitariansAI",
+    "brand": "claude-hai",
+    "audience": "HAI",
+    "register": "Plain",
+    "engine": "kokoro",
+    "voice_kokoro": "af_bella",
+    "palette": "humanitarians",
+    "pronounce": {
+      "Keya": "kˈeɪjɛə",
+      "shimasu": "ʃiːmˈɑːs",
+      "mimasu": "miːmˈɑːs",
+      "Leitner": "lˈaɪtnɚ"
+    },
+    "fellow": "Keya G.",
+    "week": 5,
+    "topic": "Irreducibly Human",
+    "derived_from": "SCRIPT.md",
+    "narration_policy": "Narration is SCRIPT.md verbatim, one script section per beat. Beat IDs B01-B11 match script sections 1-11; BVDT, BHTF and BOUT are sections 12, 13 and 14. On-screen-only lines and source tags in SCRIPT.md are not narrated.",
+    "visual_policy": "Simple illustrative graphics only: a forgetting curve, flashcard boxes, a strength meter, a half-life curve, exercise difficulty. No Duolingo logo, owl mascot, app screenshots or other branding. Every meter, bar and tally is an illustration, not real data. The Claude composer, verdict page and channel mark are redrawn bookends, not screenshots.",
+    "fonts": {
+      "japanese": "Hiragino Sans",
+      "japanese_fallbacks": [
+        "Hiragino Kaku Gothic ProN",
+        "YuGothic",
+        "Noto Sans JP"
+      ],
+      "rule": "Every Manim Text containing kana sets font='Hiragino Sans' (or a listed fallback) explicitly; never the default font. Verify glyphs in the rendered frame, not the source."
+    },
+    "portrait_layout": {
+      "text_max_y_fraction": 0.86,
+      "rule": "In 9:16, all text and labels sit above 86% of the frame height (y < 0.86 * H), leaving the bottom 14% empty."
+    },
+    "library_check": "Searched with ./art scenes first, for: forgetting curve and decay, spaced repetition schedule, flashcard boxes (Leitner), strength meter and half-life curve, exercise difficulty band, typed-then-corrected overview, line chart of exponential decay, timeline of review gaps. Reused: ClaudeComposerAsk, BrutalistHesitantWriter, ClaudeVerdictArtifact, LogoOutro (and their 916 variants). No library match for a forgetting curve, Leitner boxes, a strength meter or a difficulty ladder, so B02 and B04-B11 are custom Manim scenes. Leads read and rejected: TtScaleDecay (reel-local, scale decay), K12Fig07ExpertiseReversal (reel-local, fixed chart), CwcMemoryTimeline (agent sessions), ThemeFactoryContrastMeter (contrast ratios).",
+    "build": {
+      "cut": "master",
+      "filled": 14,
+      "of": 14,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B01",
+      "act": "INTRO",
+      "script_section": 1,
+      "narration_text": "Hi, I am Keya, and this video is about how Duolingo decides what you should practice next. The voice you're hearing is an AI voice reading my script.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "lane": "bookend",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the ask types in under 'Hi, Keya'"
+          },
+          {
+            "at": 0.55,
+            "event": "three result lines land: memory fades, every word has a half-life, practice just before you forget"
+          },
+          {
+            "at": 0.85,
+            "event": "the AI-voice disclosure is spoken while the answered composer holds"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hi, Keya",
+            "topic": "Irreducibly Human",
+            "segment": "How Duolingo Decides What You Practice Next",
+            "command": "Explain how Duolingo decides which word I should practice next.",
+            "runningText": "thinking about memory and forgetting…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "Memory fades over time",
+              "Every word gets its own half-life",
+              "Practice lands just before you forget"
+            ]
+          }
+        }
+      },
+      "estimated_duration_s": 8.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 9.69,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 9.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "HOOK",
+      "script_section": 2,
+      "narration_text": "I've been learning Japanese on Duolingo for over a year. In my first days, I kept mixing up two words: shimasu, which means do, and mimasu, which means look. And Duolingo kept bringing them back, until I finally got them right. How did it decide when?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "Two word cards, します 'do' and みます 'look', sit side by side. A drawn practice lane of small ticks shows each word coming back again and again; the last ticks turn to checks. A question mark lands on the gaps: 'when?'. No app, logo or mascot.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "two cards slide in: します (shimasu) 'do' and みます (mimasu) 'look', in Hiragino Sans, easy to mix up"
+          },
+          {
+            "at": 0.35,
+            "event": "a lane of ticks fills in under each card as 'kept bringing them back' lands; early ticks are crosses"
+          },
+          {
+            "at": 0.6,
+            "event": "the last ticks turn to checks on 'until I finally got them right'"
+          },
+          {
+            "at": 0.85,
+            "event": "a question mark lands over the gaps between ticks: 'How did it decide when?'"
+          }
+        ],
+        "manim": {
+          "scene_class": "B02_Hook",
+          "file": "scenes.py",
+          "scene": "B02_Hook"
+        }
+      },
+      "estimated_duration_s": 15.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "note": "Keya's own experience (tagged in SCRIPT.md). Pronunciations of shimasu and mimasu are still to be chosen by ear.",
+      "actual_duration_s": 16.02,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 16.041666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_Hook"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "OVERVIEW",
+      "script_section": 3,
+      "narration_text": "Duolingo doesn't review words at random. It predicts when you'll forget each word, and brings it back just in time. Let's see how, step by step.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "lane": "bookend",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the writer types 'Duolingo shows everyone the same random review.' in terracotta"
+          },
+          {
+            "at": 0.4,
+            "event": "it pauses, then deletes the whole sentence"
+          },
+          {
+            "at": 0.55,
+            "event": "'Duolingo predicts when you'll forget each word.' types in ink"
+          },
+          {
+            "at": 0.9,
+            "event": "the corrected sentence holds while the voice says 'Let's see how, step by step'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Reviews are random.",
+            "face": "serif",
+            "fontSize": 200,
+            "lineSpacing": 1.25,
+            "align": "center",
+            "ink": "#2F2A26",
+            "accent": "#E4572E",
+            "bg": "#F3EBDD",
+            "triggerWords": "Reviews are random",
+            "replacementWords": "Duolingo predicts\nwhen you'll forget\neach word",
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "charMs": 22,
+            "jitter": 22,
+            "seed": "keya-how-duolingo-decides-what-you-practice"
+          }
+        }
+      },
+      "estimated_duration_s": 10.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "note": "Beat 3 per Keya: typed 'Reviews are random.' then corrected to 'Duolingo predicts when you'll forget each word.' The whole sentence is the trigger phrase so the correction replaces the sentence, not one word. No lead silence (matches the week 2 film): audio and typing start together. Keystrokes cannot go faster than one frame (33 ms), so the on-screen sentences are kept short.",
+      "actual_duration_s": 9.11,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 9.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "FORGETTING CURVE",
+      "script_section": 4,
+      "narration_text": "First, how do we forget? In 1885, Hermann Ebbinghaus studied his own memory and described the forgetting curve: without any effort to keep it, what we learn fades away over time.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "A drawn axis pair, 'what you remember' against 'time', no numbers. A curve starts high and slides down and flattens: the forgetting curve. A simple label names Hermann Ebbinghaus studying his own memory. The year is spoken, not shown.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the question 'How do we forget?' lands and the axes draw in"
+          },
+          {
+            "at": 0.3,
+            "event": "a small notebook outline and the name 'Hermann Ebbinghaus' land on 'studied his own memory'"
+          },
+          {
+            "at": 0.55,
+            "event": "the curve draws from high to low as 'fades away over time' is spoken"
+          },
+          {
+            "at": 0.85,
+            "event": "the curve is labelled 'the forgetting curve' and a note reads 'no effort to keep it'"
+          }
+        ],
+        "manim": {
+          "scene_class": "B04_ForgettingCurve",
+          "file": "scenes.py",
+          "scene": "B04_ForgettingCurve"
+        }
+      },
+      "estimated_duration_s": 14.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 12.31,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 12.333333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_ForgettingCurve"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SPACED REPETITION",
+      "script_section": 5,
+      "narration_text": "But reviewing at the right moments slows that fading. Short practices spread out over time work better than cramming, and gradually increasing the gaps between practices works even better. The best time to review is just before you're likely to forget. This is called spaced repetition.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "Two stacked memory curves on one time axis. Top: cramming, one tall block of practice, then a long slide down. Bottom: spaced practice, short blocks with growing gaps; each practice lifts the curve and each drop is flatter. A marker sits on the dip just before each next practice.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "top lane: one big block of practice labelled 'cramming'; the curve slides down after it"
+          },
+          {
+            "at": 0.3,
+            "event": "bottom lane: short practice blocks spread out; the curve lifts at each one and drops more slowly"
+          },
+          {
+            "at": 0.6,
+            "event": "the gaps between blocks visibly grow: 'gradually increasing the gaps'"
+          },
+          {
+            "at": 0.85,
+            "event": "a marker lands on the dip before the next block: 'just before you're likely to forget'; the label 'spaced repetition' settles"
+          }
+        ],
+        "manim": {
+          "scene_class": "B05_SpacedRepetition",
+          "file": "scenes.py",
+          "scene": "B05_SpacedRepetition"
+        }
+      },
+      "estimated_duration_s": 22.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 17.39,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 17.416666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim:B05_SpacedRepetition"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "LEITNER BOXES",
+      "script_section": 6,
+      "narration_text": "A simple version uses flashcards in boxes. This is the Leitner system. Get a card right, and it moves to a box you review less often. Get it wrong, and it moves to a box you review more often. But every card follows the same fixed rules.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "Three drawn boxes in a row, 'review often', 'review less often', 'review rarely'. A flashcard outline lands in the first box. A correct answer slides it one box right; a wrong answer slides it one box left. A rule badge reads 'same fixed rules for every card' while three cards follow the same moves.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "three boxes draw in, left to right, labelled by how often you review them"
+          },
+          {
+            "at": 0.3,
+            "event": "a card is answered correctly (check) and slides one box right"
+          },
+          {
+            "at": 0.5,
+            "event": "another card is answered wrongly (cross) and slides one box left"
+          },
+          {
+            "at": 0.8,
+            "event": "three cards follow the same rules at once; a badge lands: 'every card, the same fixed rules'"
+          }
+        ],
+        "manim": {
+          "scene_class": "B06_LeitnerBoxes",
+          "file": "scenes.py",
+          "scene": "B06_LeitnerBoxes"
+        }
+      },
+      "estimated_duration_s": 17.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 15.96,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 16.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim:B06_LeitnerBoxes"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "HALF-LIFE",
+      "script_section": 7,
+      "narration_text": "Duolingo goes further. It gives every word its own half-life: the time it takes for your memory strength to decrease by half. When the time since you last practiced a word equals its half-life, you have about a fifty-fifty chance of remembering it. And once a skill's strength meter slips to half-full, it's time to practice.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "A decay curve for one word with a vertical marker for 'time since you last practiced'. A second marker shows the half-life, where the curve has fallen to half; where they meet, a label reads 'about 50-50'. Then, as a separate drawing, a skill's strength meter slips to half-full and 'time to practice' lands. The meter belongs to a skill, not to the single word. Illustrative.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "a curve for one word draws in; 'its own half-life' labels a span on the time axis"
+          },
+          {
+            "at": 0.3,
+            "event": "the span closes where the curve is at half height: 'memory strength decreases by half'"
+          },
+          {
+            "at": 0.55,
+            "event": "a marker for 'time since you last practiced' slides along until it meets the half-life: 'about a fifty-fifty chance'"
+          },
+          {
+            "at": 0.8,
+            "event": "the curve fades to 40% and a separate drawn skill strength meter slips to half-full; 'time to practice' lands; 'illustrative meter' appears small"
+          }
+        ],
+        "manim": {
+          "scene_class": "B07_HalfLife",
+          "file": "scenes.py",
+          "scene": "B07_HalfLife"
+        }
+      },
+      "estimated_duration_s": 25.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "note": "Per Keya: the strength meter is per skill (an average over its words), so it is drawn as its own labelled illustration, not read off the single word's curve. See FACTCHECK.md.",
+      "actual_duration_s": 19.18,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 19.208333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B07.mp4",
+        "filled_by": "manim:B07_HalfLife"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "HALF-LIFE REGRESSION",
+      "script_section": 8,
+      "narration_text": "To predict each word's half-life, Duolingo combined machine learning and data science into a new statistical model, called half-life regression. It looks at your history with each word: how many times you've seen it, and how often you got it right or wrong. From that, it predicts how long each word will last in your memory.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "One generic word card on the left with three history tallies: seen, right, wrong. An arrow feeds them into a box labelled 'half-life regression'. A bar comes out the other side: 'predicted half-life'. Tallies are drawn marks, no real numbers.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "a word card appears; 'machine learning + data science' folds into a box labelled 'half-life regression'"
+          },
+          {
+            "at": 0.35,
+            "event": "three tallies tick up on the card: 'times seen', 'got it right', 'got it wrong'"
+          },
+          {
+            "at": 0.6,
+            "event": "the tallies flow into the box"
+          },
+          {
+            "at": 0.85,
+            "event": "a bar grows out of the box: 'predicted half-life: how long this word will last in your memory'"
+          }
+        ],
+        "manim": {
+          "scene_class": "B08_HalfLifeRegression",
+          "file": "scenes.py",
+          "scene": "B08_HalfLifeRegression"
+        }
+      },
+      "estimated_duration_s": 22.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 19.61,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 19.625,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim:B08_HalfLifeRegression"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "DID IT WORK",
+      "script_section": 9,
+      "narration_text": "Did it work? Duolingo reported that its prediction error was nearly half that of the Leitner system. But tests with real learners were more mixed.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "Two horizontal error bars: Leitner long, half-life regression nearly half as long (about the paper's ratio), no axis numbers, captioned 'as reported by Duolingo'. Then a second panel, 'tests with real learners: mixed': a flat line beside 'overall activity' and a down arrow beside 'practice sessions'. No up arrow, no percentages.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "'Did it work?' lands; two empty bars draw in, 'Leitner' and 'half-life regression'"
+          },
+          {
+            "at": 0.3,
+            "event": "the Leitner bar grows long; the half-life regression bar grows to nearly half its length: 'error rate'"
+          },
+          {
+            "at": 0.6,
+            "event": "the bars fade to 40% and a second panel opens: 'tests with real learners'"
+          },
+          {
+            "at": 0.8,
+            "event": "the word 'mixed' lands with a flat line ('overall activity') and a down arrow ('practice sessions'); no up arrow, no numbers"
+          }
+        ],
+        "manim": {
+          "scene_class": "B09_DidItWork",
+          "file": "scenes.py",
+          "scene": "B09_DidItWork"
+        }
+      },
+      "estimated_duration_s": 14.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "factcheck_status": "SUPPORTED (see FACTCHECK.md: 'mixed' summarizes Table 4; no engagement percentage is used)",
+      "actual_duration_s": 8.55,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 8.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B09.mp4",
+        "filled_by": "manim:B09_DidItWork"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "BIRDBRAIN",
+      "script_section": 10,
+      "narration_text": "Later, Duolingo added another model, called Birdbrain. It makes an educated guess about whether you'll get an exercise right. Then it helps pick exercises at just the right difficulty: not so hard that you're frustrated, and not so easy that you've already mastered them.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "A vertical ladder of exercise blocks from easy to hard. A small model box labelled 'Birdbrain' guesses 'will you get it right?' for each block. The easiest blocks are tagged 'already mastered' and the hardest 'frustrating', both held at 40% opacity or more; the middle blocks are highlighted as 'just right'.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "'Later: another model' lands; a second box labelled 'Birdbrain' appears"
+          },
+          {
+            "at": 0.35,
+            "event": "a ladder of exercise blocks draws in, easy at the bottom, hard at the top; the box guesses 'right?' on each"
+          },
+          {
+            "at": 0.6,
+            "event": "top blocks are tagged 'too hard: frustrated', bottom blocks 'too easy: already mastered', both held readable"
+          },
+          {
+            "at": 0.85,
+            "event": "the middle blocks are highlighted: 'just the right difficulty'"
+          }
+        ],
+        "manim": {
+          "scene_class": "B10_Birdbrain",
+          "file": "scenes.py",
+          "scene": "B10_Birdbrain"
+        }
+      },
+      "estimated_duration_s": 22.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 16.73,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 16.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim:B10_Birdbrain"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "WHERE IT FALLS SHORT",
+      "script_section": 11,
+      "narration_text": "But it has limits. In my view, the model only sees what I do inside the app. It doesn't know my interests, when I use Japanese somewhere else, or when I make a mistake while speaking.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "visual_intent": "A plain rounded rectangle labelled 'inside the app: what I do' with a few tick marks. Outside it, dashed outlines drift in: 'my interests', 'Japanese used somewhere else', 'a mistake while speaking', each marked 'not seen'. The words 'In my view' sit small at the top. No screenshots.",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "'In my view' lands; a rounded rectangle 'inside the app: what I do' draws in with tick marks"
+          },
+          {
+            "at": 0.35,
+            "event": "a dashed outline 'my interests' drifts in outside the rectangle and is marked 'not seen'"
+          },
+          {
+            "at": 0.55,
+            "event": "a second dashed outline 'Japanese I use somewhere else' joins it"
+          },
+          {
+            "at": 0.8,
+            "event": "a third, 'a mistake while speaking', joins; all three held at readable opacity"
+          }
+        ],
+        "manim": {
+          "scene_class": "B11_FallsShort",
+          "file": "scenes.py",
+          "scene": "B11_FallsShort"
+        }
+      },
+      "estimated_duration_s": 16.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "note": "Keya's own view (tagged in SCRIPT.md); the on-screen 'In my view' keeps it a view, not a claim about Duolingo.",
+      "actual_duration_s": 11.09,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 11.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B11.mp4",
+        "filled_by": "manim:B11_FallsShort"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "VERDICT",
+      "script_section": 12,
+      "narration_text": "The idea behind spaced repetition is over a hundred years old. Duolingo's AI didn't invent it. It made it personal, one word at a time. The best review isn't more practice. It's the right word, just before I forget it. That's how shimasu and mimasu finally stuck.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "lane": "bookend",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the artifact page opens on the title"
+          },
+          {
+            "at": 0.45,
+            "event": "the heading lands: the right word, just before I forget it"
+          },
+          {
+            "at": 0.8,
+            "event": "the closing line lands: shimasu and mimasu finally stuck"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "How Duolingo Decides What You Practice Next",
+            "artifactHeading": "The right word, just before I forget it",
+            "brandLabel": "@HumanitariansAI",
+            "artifactLines": [
+              "The idea behind spaced repetition is over a hundred years old.",
+              "Duolingo's AI didn't invent it. It made it personal, one word at a time.",
+              "The best review isn't more practice. It's the right word, just before I forget it.",
+              "That's how shimasu and mimasu finally stuck."
+            ]
+          }
+        }
+      },
+      "estimated_duration_s": 21.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 17.64,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 17.666666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "YOUR TURN",
+      "script_section": 13,
+      "narration_text": "Your turn. Paste this into Claude: Explain Duolingo's half-life regression using one word I'm learning. Show what its half-life means, and when I should practice it next. Use example numbers. And next time an old word comes back in a lesson, ask: was I just about to forget it?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "lane": "bookend",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the suggested prompt types into the composer"
+          },
+          {
+            "at": 0.7,
+            "event": "the prompt holds on screen while the voice discusses it"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN",
+            "segment": "How Duolingo Decides What You Practice Next",
+            "command": "Explain Duolingo's half-life regression using one word I'm learning. Show what its half-life means, and when I should practice it next. Use example numbers.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          }
+        }
+      },
+      "estimated_duration_s": 20.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 17.6,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 17.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "OUTRO",
+      "script_section": 14,
+      "narration_text": "How Duolingo Decides What You Practice Next. Built with Claude, for Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "lane": "bookend",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the Humanitarians AI mark springs in"
+          },
+          {
+            "at": 0.6,
+            "event": "the @HumanitariansAI handle settles beneath it"
+          }
+        ],
+        "remotion": {
+          "pattern": "LogoOutro",
+          "props": {
+            "title": "How Duolingo Decides What You Practice Next",
+            "svgFile": "logo-outro/humanitarians/humanitarians-logo-1.svg",
+            "animation": "springEntrance",
+            "aspectRatio": 0.845,
+            "bg": "#F3EBDD",
+            "accent": "#E4572E",
+            "handle": "@HumanitariansAI",
+            "subline": "",
+            "durationS": 5.85,
+            "_contract_note": "Same outro as Keya's earlier films. LogoOutro, not ClaudeTitleOutro, which hardcodes @NikBearBrown. title feeds bookend_check only and is not drawn."
+          }
+        }
+      },
+      "estimated_duration_s": 5.0,
+      "voice": "af_bella",
+      "engine": "kokoro",
+      "actual_duration_s": 5.85,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Minimal logo card: a centred logo and handle, small by design."
+      },
+      "render_duration_s": 5.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media"
+      }
+    }
+  ]
+}

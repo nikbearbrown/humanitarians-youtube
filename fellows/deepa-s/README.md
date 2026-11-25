@@ -5,15 +5,17 @@
 **GitHub:** [@ds2204](https://github.com/ds2204)
 
 **Team:** Sanjana's team
-**Reporting scope:** Weeks 1–7; original August–September record and subsequent contributions
+**Reporting scope:** Weeks 1–9; original August–September record and subsequent contributions
 
 ## Executive summary
 
-Through Week 7, I have documented 14 Humanitarians AI video projects: seven STEM/AI/data-analysis explainers and seven progress/workflow reports, each with landscape and portrait formats. My contributions combine video planning and production, technical quality checks, educational video reviews, YouTube publishing preparation, and evidence-based reporting with Sanjana's team. The cumulative record totals 187 estimated hours; technical completion, review submissions, human approvals and public publication are reported separately.
+Through Week 9, I have documented 18 Humanitarians AI video projects: nine STEM/AI/data-analysis explainers and nine progress/workflow reports, each with landscape and portrait formats. My contributions combine video planning and production, technical quality checks, educational video reviews, YouTube publishing preparation, and evidence-based reporting with Sanjana's team. The historical Weeks 1–7 record totals 187 estimated hours; the Weeks 8–9 estimated allocations, now confirmed by me, bring the cumulative total to 247 estimated hours. Technical completion, review submissions, human approvals and public publication are reported separately.
 
-## Work index — Weeks 1–7
+## Work index — Weeks 1–9
 
 Weeks 1–4 belong to the original August–September reporting record; their individual calendar boundaries are not documented. Weeks 5–6 are subsequent contributions with no independently established calendar boundaries. Folder dates are preparation dates, not inferred activity ranges. **Week 7 covers October 19–25, 2026; final technical preparation occurred October 26.** Its existing October 26 folder names are retained without backdating completion.
+
+Week 8 covers October 26–November 1, 2026; Week 9 covers November 2–8. Their November 8 folder dates identify production preparation, not earlier completion. Redesigned exports were verified and promoted on November 10; completion is not backdated into the reporting periods.
 
 ### Week 1
 
@@ -50,11 +52,23 @@ Weeks 1–4 belong to the original August–September reporting record; their in
 - **STEM:** [How Claude Skills Work: Automation vs. AI Judgment](2026-10-26-how-claude-skills-work/README.md) — four skill workflows, validation and human judgment.
 - **Progress:** [Humanitarians AI Weekly Progress | Video Reviews, Claude Skills & YouTube Publishing](2026-10-26-weekly-progress-video-reviews-and-claude-skills/README.md) — team reviews, Claude Bear metadata and coordination with Sanjana.
 
+### Week 8 — October 26–November 1, 2026
+
+- **STEM:** [When AI Cheats to Win: The Hidden Problem of Reward Hacking](2026-11-08-week-8-reward-hacking/README.md) — reward/proxy mismatch and unintended optimization.
+- **Progress:** [Behind the Upload: Preparing AI Videos for YouTube](2026-11-08-week-8-behind-the-upload/README.md) — metadata preparation for 14 contributor submissions.
+
+### Week 9 — November 2–8, 2026
+
+- **STEM:** [The Clever Hans Effect: When AI Gets the Right Answer for the Wrong Reason](2026-11-08-week-9-clever-hans-effect/README.md) — shortcut learning, spurious correlations and generalization.
+- **Progress:** [From AI Research to YouTube: Two Weeks of Publishing Support](2026-11-08-week-9-two-weeks-of-publishing-support/README.md) — 17 current-week submissions with a clearly labeled Week 8 comparison.
+
 ## Video production
 
 I used the existing Brutalist Film-as-Code workflow with AI/tool assistance; I did not create Brutalist. The project packages preserve scripts, narration plans, landscape and portrait Beat Sheets, sources, build instructions, production records and QC evidence. Portrait layouts are independently composed or reflowed rather than cropped.
 
 Weeks 5–6 include native 4K landscape/portrait production and documented troubleshooting. Week 7 combines a cinematic Remotion STEM explainer with a preserved progress landscape and separately reflowed portrait. The final Week 7 technical preparation reused existing narration and is documented on October 26.
+
+Weeks 8–9 add four original Remotion/React/SVG projects with warm illustrated environments, preserved narration and citations, updated Beat Sheets and documented redesign/QC. All eight local exports passed automated technical checks; final human approval remains pending.
 
 ## Video reviews
 
@@ -66,6 +80,8 @@ Weeks 5–6 include native 4K landscape/portrait production and documented troub
 For the two Week 6 Mycroft submissions, I prepared titles, descriptions and relevant metadata, uploaded them to the Humanitarians AI YouTube channel **for review**, and informed Sanjana. This is my documented work account; public publication and final team approval are not claimed.
 
 Week 7 support included structured titles/descriptions, hashtags and viewer exercises. I contacted Sanjana about the proposed Claude Basics playlist; confirmation is not recorded. My own four Week 7 video URLs remain **Pending YouTube upload by Deepa**.
+
+In Week 8, I prepared YouTube titles, descriptions and metadata and coordinated submissions for Sanjana’s approval workflow for 14 contributor submissions (Tanmay 4, Anjana 4, Mohammed 4, Uday 2). In Week 9, I supported 17 (Anjana 4, Tanmay 4, Om 4, Mohammed 3, Uday 2). The total is **14 + 17 = 31 submissions**, not published videos or additional original projects. Onkar’s October 19 work is excluded. This is my supplied work account; individual submission/topic mappings have not been independently verified. I did not perform technical source-code reviews or modify those contributor projects; final approval and public publication are not claimed.
 
 ## Hours — estimated cumulative record
 
@@ -79,10 +95,15 @@ Week 7 support included structured titles/descriptions, hashtags and viewer exer
 | Week 6 | 16 | 14 | 30 |
 | Week 7 | 18 | 10 | 28 |
 | **Weeks 1–7 total** | **101** | **86** | **187** |
+| Week 8 — Oct 26–Nov 1 (estimated) | 18 | 12 | 30 |
+| Week 9 — Nov 2–8 (estimated) | 18 | 12 | 30 |
+| **Weeks 1–9 total — estimated** | **137** | **110** | **247** |
 
-These are estimated/reported hours, not exact contemporaneous time logs. Weeks 1–4 are reconstructed from documented activity and recollection (100 hours); Weeks 5–6 are user-reported with contemporaneous logging unestablished (59 hours); Week 7 is an approximate user-supplied estimate (28 hours). The cumulative total is **100 + 59 + 28 = 187**, with no additional hours for review support, aspect ratios or correction renders. [HOURS.md](HOURS.md) remains the detailed record.
+These are estimated/reported hours, not exact contemporaneous time logs. Weeks 1–4 are reconstructed from documented activity and recollection (100 hours); Weeks 5–6 are user-reported with contemporaneous logging unestablished (59 hours); Week 7 is an approximate user-supplied estimate (28 hours). The historical Weeks 1–7 cumulative total is **100 + 59 + 28 = 187**, with no additional hours for review support, aspect ratios or correction renders. [HOURS.md](HOURS.md) remains the detailed record.
 
 Week 7 comprises reviews 6, publishing preparation 5, Claude Skills research 4, STEM production 6, progress production 4, and GitHub documentation 3. For the existing columns, reviews, publishing preparation, progress production and documentation total 18 progress/workflow hours; research and STEM production total 10 STEM hours. These are classifications of the same 28 hours, not additional charges.
+
+I confirmed the previously provisional Weeks 8–9 allocations as **18 progress/workflow + 12 STEM = 30 estimated hours per week**. Together they add 60 hours. The finalized Weeks 1–9 cumulative estimate is **137 progress/workflow + 110 STEM = 247 hours** (101 + 36; 86 + 24; 187 + 60). The historical Weeks 1–7 record remains 187 hours. Confirmation records my acceptance of these estimated allocations; it does not establish independently verified time records or organizational approval. These are estimates, not exact contemporaneous records. Both formats, contributor support, documentation and corrections are counted within each weekly estimate, not added separately.
 
 ## Evidence and review status
 
@@ -92,11 +113,21 @@ For Weeks 5–6, all eight local 4K masters have recorded technical QC PASS. Ori
 
 For Week 7, all four local 1080p exports have recorded technical QC PASS: STEM 177.708333 seconds and progress 235.833333 seconds per format. Final human approval is not recorded. Drive review submission, technical QC, human approval and YouTube publication are separate states.
 
+All eight Week 8–9 local redesigned MP4 exports passed automated technical QC: 1920×1080 landscape and independently reflowed 1080×1920 portrait, 24 fps, with matching original narration and durations per pair. The visual direction was approved, but **final human visual/video approval remains pending**. Local technical PASS does not establish Google Drive submission, team approval or YouTube publication. Original MP4 backups remain retained until all eight redesigned videos are approved.
+
+| Week / project | Seconds per format | Local technical evidence |
+|---|---:|---|
+| Week 8 STEM | 179.791667 | [QC](2026-11-08-week-8-reward-hacking/QC.md) · [Status](2026-11-08-week-8-reward-hacking/STATUS.md) · [Frictional log](2026-11-08-week-8-reward-hacking/FRICTIONAL.md) |
+| Week 8 Progress | 184.625000 | [QC](2026-11-08-week-8-behind-the-upload/QC.md) · [Status](2026-11-08-week-8-behind-the-upload/STATUS.md) · [Frictional log](2026-11-08-week-8-behind-the-upload/FRICTIONAL.md) |
+| Week 9 STEM | 183.875000 | [QC](2026-11-08-week-9-clever-hans-effect/QC.md) · [Status](2026-11-08-week-9-clever-hans-effect/STATUS.md) · [Frictional log](2026-11-08-week-9-clever-hans-effect/FRICTIONAL.md) |
+| Week 9 Progress | 181.750000 | [QC](2026-11-08-week-9-two-weeks-of-publishing-support/QC.md) · [Status](2026-11-08-week-9-two-weeks-of-publishing-support/STATUS.md) · [Frictional log](2026-11-08-week-9-two-weeks-of-publishing-support/FRICTIONAL.md) |
+
 ### Google Drive submissions
 
 - **Weeks 1–4:** individual project-to-Drive mappings are not documented.
 - **Weeks 5–6:** the [shared Drive folder](https://drive.google.com/drive/folders/1opTBwRSQ6-XVvomiUUw6-TD0tIwhxMH5) was accessible at the earlier submission check and listed eight expected files. Cloud hashes were not verified against the local masters. The [renewal evidence table](RENEWAL.md#submission-evidence) preserves the recorded subfolders and filenames.
 - **Week 7:** I report that I uploaded all four Week 7 MP4s to Google Drive for Sanjana's review. **This is my reported upload; Drive access, the four cloud files and their hashes have not been independently verified for this update.** No verified Week 7 folder/file URL is available in the inspected records, so none is invented or mapped to the earlier Week 5–6 folder. This report supersedes the earlier no-Drive-evidence checkpoint as a personal account, not as independently verified cloud evidence.
+- **Weeks 8–9:** no Drive upload or evidence URL is documented. The eight validated exports are local only.
 
 ### YouTube evidence
 
@@ -111,6 +142,8 @@ The September 29 report records Sanjana's team-level statement that remaining vi
 | STEM AI | Pending YouTube upload by Deepa | Pending YouTube upload by Deepa |
 | Weekly Progress | Pending YouTube upload by Deepa | Pending YouTube upload by Deepa |
 
+Week 8–9 YouTube URLs are not supplied; upload and public publication are not documented for any of the eight local exports.
+
 ## Frictional logs
 
 Every project in the work index has its own FRICTIONAL.md, linked from its README and the [renewal project table](RENEWAL.md#chronological-project-record). These logs preserve attempts, problems, corrections, AI/human contributions and open questions. Historical entries are retained rather than rewritten. Generated media remains outside Git.
@@ -120,6 +153,10 @@ Every project in the work index has its own FRICTIONAL.md, linked from its READM
 - [September 29 catch-up report](2026-09-29_update.md) — original August 25–September 30 reporting scope, recorded through September 29; no September 30 activity or earlier biweekly filing is inferred. Its Hours section was subsequently aligned with the reconstructed record.
 - [Weeks 5–6 report](2026-10-18_weeks5-6_update.md) — production, corrected Week 6 content and review support.
 - [Week 7 report](2026-10-26_week7_update.md) — October 19–25 work, prepared October 26; its earlier Drive-evidence checkpoint predates my reported upload above.
+- [Week 8 report](2026-11-08_week8_update.md) — October 26–November 1; 14 contributor submissions supported.
+- [Week 9 report](2026-11-08_week9_update.md) — November 2–8; 17 contributor submissions supported.
 - [Detailed hours](HOURS.md) and [renewal record](RENEWAL.md) — original request, chronological contributions, evidence and outstanding decisions.
+
+The Week 8–9 reports retain their earlier hours-pending checkpoints; [HOURS.md](HOURS.md) now records the subsequently supplied and confirmed estimated allocations. Their original checkpoints are preserved, with a subsequent confirmation note added.
 
 [PR #179](https://github.com/nikbearbrown/humanitarians-youtube/pull/179) and [PR #186](https://github.com/nikbearbrown/humanitarians-youtube/pull/186) merged the original project/reporting documentation. [PR #273](https://github.com/nikbearbrown/humanitarians-youtube/pull/273) merged Weeks 5–6. [PR #306](https://github.com/nikbearbrown/humanitarians-youtube/pull/306) carries Week 7. GitHub submission or merge is not video publication or renewal approval.

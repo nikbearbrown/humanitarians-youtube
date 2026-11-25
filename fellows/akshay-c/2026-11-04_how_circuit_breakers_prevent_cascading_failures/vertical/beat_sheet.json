@@ -1,0 +1,301 @@
+{
+  "metadata": {
+    "title": "How Circuit Breakers Prevent Cascading Failures in Distributed Systems",
+    "slug": "how-circuit-breakers-prevent-cascading-failures-vertical",
+    "topic": "Irreducibly Human",
+    "register": "Teardown-warm",
+    "audience": "backend engineers, software engineers, technical learners",
+    "brand": "claude-hai",
+    "channel_title": "@HumanitariansAI",
+    "creator": "Akshay Chavan",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "style": "claude-cli",
+    "voice_kokoro": "am_onyx",
+    "voice_policy": "fellow-selected",
+    "voice_approval": "PENDING_REVIEW",
+    "aspect_ratio": "9:16",
+    "source_resolution": "2160x3840",
+    "delivery_resolution": "2160x3840",
+    "youtube_required_min_height": 3840,
+    "fps": 24,
+    "total_estimated_duration_seconds": 65,
+    "build": {
+      "at": "2026-11-06T23:35:42",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'un-annotated' Ã¢â‚¬â€ COLD OPEN LAW wants ClaudeComposerAsk",
+        "B08: palette=claude but the outro is 'ClaudeTitleOutro916' Ã¢â‚¬â€ OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "PROBLEM",
+      "narration_text": "When a downstream service degrades or times out, calling services block worker threads waiting for responses. Thread pools exhaust rapidly, and unhandled latency cascades upstream, triggering a catastrophic total outage.",
+      "visual_intent": "Cascading failure: Downstream latency saturates upstream thread pool, triggering cluster collapse.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 9,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B00.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Architecture diagram illustrating uncontained downstream failure cascading to calling services."
+      },
+      "actual_duration_s": 13.48,
+      "render_duration_s": 13.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B00.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SOLUTION",
+      "narration_text": "A circuit breaker wraps remote calls with an automated safety switch. Modeled after electrical breakers, it monitors outbound requests and trips instantly when failure rates spike, shielding your system from collapse.",
+      "visual_intent": "Circuit breaker proxy wrapping outbound RPC calls between calling service and downstream dependency.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B01.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Clean architectural diagram showing the proxy placement of the circuit breaker wrapper."
+      },
+      "actual_duration_s": 12.63,
+      "render_duration_s": 12.666666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "CLOSED_STATE",
+      "narration_text": "In the Closed state, all requests pass through normally to the remote service. The breaker monitors health by logging successes and failures into a rolling statistical time window.",
+      "visual_intent": "Closed state: Healthy traffic flowing directly through circuit with rolling error metrics buffer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B02.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Normal operational flow in Closed state with rolling metrics telemetry."
+      },
+      "actual_duration_s": 10.52,
+      "render_duration_s": 10.541666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "TRIP_TRIGGER",
+      "narration_text": "When errors or slow timeouts exceed a designated threshold, the circuit breaker immediately trips open. It severs outbound network attempts to isolate the struggling downstream service.",
+      "visual_intent": "Threshold trip: High error rate triggers immediate transition from Closed to Open switch.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B03.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Threshold trip mechanism severing the communication pathway to failing downstream tier."
+      },
+      "actual_duration_s": 11.24,
+      "render_duration_s": 11.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OPEN_STATE",
+      "narration_text": "While Open, all incoming requests fail immediately in zero milliseconds without touching the remote network. The caller receives an instant fallback response, while the downstream service gets critical breathing room to recover.",
+      "visual_intent": "Open state: 0ms fail-fast deflection returning cached fallback and shielding downstream nodes.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B04.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Zero-millisecond fail-fast deflection routing requests to fallback handler."
+      },
+      "actual_duration_s": 13.01,
+      "render_duration_s": 13.041666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "HALF_OPEN",
+      "narration_text": "After a configurable reset timeout, the breaker transitions to Half-Open. It permits a limited stream of canary probe requests through to test whether the downstream dependency has stabilized.",
+      "visual_intent": "Half-Open state: Controlled canary probe requests testing downstream health after timeout.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B05.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Half-open canary testing state permitting limited probe traffic."
+      },
+      "actual_duration_s": 11.37,
+      "render_duration_s": 11.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "RECOVERY",
+      "narration_text": "If the probe requests succeed cleanly, the breaker resets to Closed, restoring full production traffic. But if any probe fails, it immediately re-trips to Open, resetting the recovery cooldown.",
+      "visual_intent": "Dual path recovery: Probe success restores Closed state; probe failure retrips to Open.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "annotate"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B06.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Dual outcome branching diagram contrasting recovery reset versus retrip."
+      },
+      "actual_duration_s": 11.29,
+      "render_duration_s": 11.291666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "PAYOFF",
+      "narration_text": "By combining circuit breakers with bulkheads, timeouts, and fallback caches, distributed architectures isolate failure domains and maintain ninety-nine point nine percent uptime under extreme stress.",
+      "visual_intent": "Summary architectural framework showing the four pillars of distributed system resilience.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "motion": "hold"
+      },
+      "estimated_duration_s": 8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B07.mp3",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Summary resilience architecture card outlining the four core stability patterns."
+      },
+      "actual_duration_s": 11.69,
+      "render_duration_s": 11.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-06T23:35:42"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "OUTRO",
+      "narration_text": "For more deep dives into the systems behind high-performance software, subscribe to Humanitarians AI.",
+      "visual_intent": "Branded Humanitarians AI closing card.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "hold",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "How Circuit Breakers Prevent Cascading Failures in Distributed Systems",
+            "handle": "@HumanitariansAI",
+            "subline": "with Akshay Chavan | Distributed Systems"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-11-07T06:55:01.801108+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "audio_file": "mp3/beat-B08.mp3",
+      "qc": {
+        "full_bleed": true
+      },
+      "actual_duration_s": 6.66,
+      "render_duration_s": 6.666666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro916",
+        "at": "2026-11-06T23:35:42"
+      }
+    }
+  ]
+}

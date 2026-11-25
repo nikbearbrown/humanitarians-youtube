@@ -1,0 +1,23 @@
+AUTO-TUNE EVIDENCE (autotune.py): a synthetic singer, a YIN pitch detector, a PSOLA pitch corrector
+THE TAKE: 7 notes in C major (E4 G4 A4 G4 E4 D4 C4), 3.89 s, vowel 'ah'
+  sung off-key on purpose; each note's detune (cents): +19, -32, +27, +24, -24, -36, -39
+  average detune 28.8 cents (100 cents = one semitone)
+
+1. PITCH DETECTION (YIN, 32 ms window, every 5 ms), 692 sung frames
+  error vs the true pitch: median 0.63 cents, 95th percentile 9.03 cents, worst 1450.1 cents; 93.1% of frames within 5 cents
+  misses (over 50 cents): 11 frames, all within 11 ms of a note's start (where the old note fades and the new one begins)
+  example frame at 1.26 s (the A4): best repeat after 2.231 ms -> 448.2 Hz (true 448.3 Hz; A4 = 440 Hz)
+
+2. HOW FAR OFF THE NOTES (measured from the detected pitch, middle of each note)
+  as sung: average 29.1 cents off; vibrato swing about +/-15 cents
+  as sung: within 5 cents of a note 4.5% of the sung time
+  gentle (retune speed 60 ms): average 6.5 cents off; vibrato about +/-14 cents; within 5 cents of a note 29.8% of the sung time
+  hard (retune speed 0 ms): average 0.4 cents off; vibrato about +/-8 cents; within 5 cents of a note 90.6% of the sung time
+
+3. SHIFTING A HELD NOTE UP 4 SEMITONES (C4 -> E4, x1.260); the vowel's resonances (its spectral envelope)
+  original                                    : 1.60 s, pitch 261.5 Hz, resonances moved x1.000 (+0.0%, match r=1.000)
+  plain resampling                            : 1.27 s, pitch 329.5 Hz, resonances moved x1.258 (+25.8%, match r=0.984)
+  resample + repeat cycles (the patent's way) : 1.60 s, pitch 329.5 Hz, resonances moved x1.278 (+27.8%, match r=0.955)
+  PSOLA                                       : 1.60 s, pitch 329.5 Hz, resonances moved x1.006 (+0.6%, match r=0.990)
+
+LISTENING: take.wav (as sung), gentle.wav (60 ms), hard.wav (0 ms); held_c4 / held_resampled / held_cycles / held_psola

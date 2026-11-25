@@ -1,0 +1,280 @@
+{
+  "metadata": {
+    "title": "End-to-End Validation — Triaging the First Staging Deployment",
+    "slug": "medas-stage-pipeline-validation",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied 7-slide narration script (end-to-end staging pipeline validation/triage), provided 2026-10-01. The supplied text had several garbled/cut-off fragments (mid-sentence corruption, likely a copy-paste glitch) -- repaired to complete sentences preserving the evident intended meaning; every repair is logged verbatim in FACTCHECK.md. Continues medas-stage-environment-provisioning and medas-stage-environment-security.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "aspect": "16:9",
+    "description": "A structured, checkpoint-by-checkpoint validation of the first real stage-v1.0.0 deployment: triggering the pipeline with a real release tag, triaging it stage by stage (auth, build, push, deploy) rather than as one black box, reading GitHub Actions' logs/step-summaries as the observability layer that makes that triage possible, and confirming the rollback path against that same deployed image before calling the pipeline verified end-to-end.",
+    "note": "GitHub-dark skin for the four pipeline-mechanics beats (GitHubCallChain diagrams, matching the supplied slide structure), Claude-cream skin for the INTRO bookend, the outcome/closing cards, and the OUTRO. Narration text is the fellow-supplied script with garbled fragments repaired -- see FACTCHECK.md for the exact before/after of each repair.",
+    "total_estimated_duration_seconds": 240
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, slide 1 title card",
+      "narration_text": "With staging fully configured, this week was about proving the pipeline by triggering a real deployment and methodically validating every stage of the process.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "git tag stage-v1.0.0 && git push origin stage-v1.0.0",
+            "topic": "PIPELINE TRIAGE · OBSERVABILITY · ROLLBACK VALIDATION",
+            "segment": "End-to-End Validation — Triaging the First Staging Deployment",
+            "greeting": "Darshil Shah",
+            "runningText": "trigger → auth → build → push → deploy → rollback check…",
+            "output": [
+              "repo: TayyarH/medas-aggregation-frontend",
+              "first real stage-v1.0.0 deployment",
+              "validated checkpoint by checkpoint, not as one black box"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-13T01:38:22.558122+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 9.22
+    },
+    {
+      "beat_id": "B01",
+      "act": "TRIGGERING THE PIPELINE",
+      "role_note": "slide 2 -- the real release tag",
+      "narration_text": "The validation started by pushing a staging release tag, which triggered the full deploy pipeline — authentication, build, push, and deploy — exactly as it would for any real release.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "git tag stage-v1.0.0 && push",
+                "d": "a real release tag, not a test run"
+              },
+              {
+                "k": "Deploy workflow starts",
+                "d": "authentication → build → push → deploy",
+                "hi": true
+              }
+            ],
+            "caption": "Exactly the same pipeline any real release would run -- nothing special-cased for this validation."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-13T01:39:21.439904+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 35,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 10.5
+    },
+    {
+      "beat_id": "B02",
+      "act": "STRUCTURED TRIAGE APPROACH",
+      "role_note": "slide 3 -- checkpoint-by-checkpoint validation",
+      "narration_text": "Rather than treating a deployment as one big black box, I validated it checkpoint by checkpoint. First, authentication — confirming GitHub Actions successfully exchanged its identity for Google Cloud access. Next, the build stage — confirming the application compiled with the correct staging configuration baked in. Then the push stage — confirming the image landed correctly in Artifact Registry. And finally, the deploy stage — confirming Cloud Run picked up the new image and became healthy. Breaking the pipeline into these checkpoints makes it possible to pinpoint exactly where a run succeeds or needs attention, rather than guessing from a single pass or fail result.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Auth",
+                "d": "GitHub Actions exchanged its identity for GCP access — pass"
+              },
+              {
+                "k": "Build",
+                "d": "compiled with the correct staging config baked in — pass",
+                "hi": true
+              },
+              {
+                "k": "Push",
+                "d": "image landed correctly in Artifact Registry — pass"
+              },
+              {
+                "k": "Deploy",
+                "d": "Cloud Run picked up the new image and became healthy — pass"
+              }
+            ],
+            "caption": "Four checkpoints, four signals -- pinpoint where a run needs attention, don't guess from one pass/fail result."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-13T01:40:39.786951+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 55,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 37.58
+    },
+    {
+      "beat_id": "B03",
+      "act": "OBSERVABILITY: READING THE PIPELINE",
+      "role_note": "slide 4 -- GitHub Actions logs + step summaries",
+      "narration_text": "GitHub Actions provides detailed logs and step summaries for every run, which is what makes this kind of structured triage possible. Each step's output — the resolved environment, the image URI, the deployment result or status — becomes a checkpoint of its own. Reading that output and confirming correctness at each checkpoint is fast and precise, rather than guesswork.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Run logs",
+                "d": "full output per step, per job"
+              },
+              {
+                "k": "Step summary",
+                "d": "resolved environment, image URI, deploy result",
+                "hi": true
+              },
+              {
+                "k": "Checkpoint confirmed",
+                "d": "fast, precise -- not guesswork"
+              }
+            ],
+            "caption": "Observability isn't a separate tool here -- it's the pipeline's own output, already there to read."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-13T01:41:54.979840+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 20.12
+    },
+    {
+      "beat_id": "B04",
+      "act": "CLOSING THE LOOP: ROLLBACK READINESS",
+      "role_note": "slide 5 -- rollback validated against the same deploy",
+      "narration_text": "As part of this same validation pass, I also confirmed the rollback workflow against the newly deployed staging image — verifying that the same version could be re-deployed on demand, so the recovery path is proven at the same time as the forward deployment path.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "stage-v1.0.0 deployed",
+                "d": "the forward path, already proven"
+              },
+              {
+                "k": "rollback.yaml — environment: stage",
+                "d": "same tag, re-deployed on demand",
+                "hi": true
+              },
+              {
+                "k": "Recovery path proven",
+                "d": "alongside the forward path, not after it"
+              }
+            ],
+            "caption": "A forward deploy and a proven rollback, validated in the same pass -- not two separate weeks of trust."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T01:43:12.150626+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 35,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.44
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTCOME",
+      "role_note": "slide 6 -- the verdict card, Claude cream skin",
+      "narration_text": "By the end of this validation pass, the staging pipeline was completely validated from tag to live deployment — with a clear, repeatable process in place for diagnosing any stage of the pipeline going forward, not just for this release, but for every one after it.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "End-to-End Validation — Triaging the First Staging Deployment",
+            "artifactHeading": "Staging Pipeline: Verified End-to-End",
+            "artifactLines": [
+              "Triggered with a real stage-v1.0.0 tag — the same pipeline every real release runs.",
+              "Validated checkpoint by checkpoint: auth, build, push, deploy — each with its own pass/fail signal.",
+              "Read, not guessed: GitHub Actions' own logs and step summaries confirmed each checkpoint.",
+              "Rollback proven in the same pass — the recovery path isn't a future unknown.",
+              "The result: tag to live deployment, fully validated, for this release and every one after it."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T01:46:06.341939+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.85
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLOSING",
+      "role_note": "slide 7 -- the closing line, Claude cream skin",
+      "narration_text": "The real outcome of this week wasn't just a successful deployment — it was a repeatable method for validating and triaging every deployment that follows.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "End-to-End Validation — Triaging the First Staging Deployment",
+            "artifactHeading": "A proven process is more valuable than a lucky deployment.",
+            "artifactLines": [
+              "Not a one-time success — a repeatable method for validating and triaging every deployment that follows."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T01:49:06.373214+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 8.87
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "End-to-End Validation. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "End-to-End Validation — Triaging the First Staging Deployment",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T01:49:52.481485+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 3.2
+    }
+  ]
+}

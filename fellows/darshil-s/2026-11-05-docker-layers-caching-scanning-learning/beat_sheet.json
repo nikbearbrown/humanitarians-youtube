@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "title": "Week 9 Technical Learnings — Docker Layers, Caching & Scanning",
+    "slug": "docker-layers-caching-scanning-learning",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied 7-slide narration script (Docker layer caching, multi-stage builds, CI-level dependency caching, container vulnerability scanning), provided 2026-11-05. The supplied text had several garbled/cut-off fragments (mid-sentence corruption, likely a copy-paste glitch, same pattern as prior weeks' scripts) -- repaired to complete sentences preserving the evident intended meaning; every repair is logged verbatim in FACTCHECK.md. A STEM/learning-only week: no separate project-update video was supplied alongside this one.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "aspect": "16:9",
+    "description": "What actually happens inside a Docker build: how per-instruction layer caching works and why instruction order matters, why multi-stage builds discard the heavy toolchain so only the final output ships, how CI-level dependency caching (keyed off a lockfile hash) differs from Docker's own layer cache, how container vulnerability scanning checks image layers against CVE databases, and why both caching and scanning have to be designed-in steps rather than afterthoughts.",
+    "note": "GitHub-dark skin for the five mechanics beats (GitHubCallChain diagrams, matching the supplied slide structure), Claude-cream skin for the INTRO bookend, the closing card, and the OUTRO. Narration text is the fellow-supplied script with garbled fragments repaired -- see FACTCHECK.md for the exact before/after of each repair.",
+    "total_estimated_duration_seconds": 265
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, slide 1 title card",
+      "narration_text": "This week's learning focus was understanding what actually happens inside a Docker build — how layers and caching work, and how container images are checked for security vulnerabilities.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "docker build --progress=plain -t app:latest . 2>&1 | grep CACHED",
+            "topic": "DOCKER LAYERS · CACHING · MULTI-STAGE BUILDS · VULNERABILITY SCANNING",
+            "segment": "Week 9 Technical Learnings — Docker Layers, Caching & Scanning",
+            "greeting": "Darshil Shah",
+            "runningText": "layer caching → multi-stage builds → CI caching → vulnerability scanning…",
+            "output": [
+              "this week: STEM/learning topic",
+              "what actually happens inside a Docker build",
+              "layers, caching, and image security together"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-13T05:02:17.236138+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.52
+    },
+    {
+      "beat_id": "B01",
+      "act": "HOW DOCKER LAYERS WORK",
+      "role_note": "slide 2 -- per-instruction caching, why order matters",
+      "narration_text": "Every instruction in a Dockerfile — each COPY, RUN, or FROM — caches each layer individually. If a layer's inputs haven't changed since the last build, Docker reuses the cached version instead of re-executing it. This is why instruction order matters: putting steps that change often, like copying source code, after steps that rarely change, maximizes how much of the build can be served from cache.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Dockerfile instruction",
+                "d": "each COPY, RUN, or FROM"
+              },
+              {
+                "k": "Cached layer",
+                "d": "reused if inputs haven't changed since last build",
+                "hi": true
+              },
+              {
+                "k": "Stacked on top of the last",
+                "d": "order matters — volatile steps go last"
+              }
+            ],
+            "caption": "Putting source code copies after rarely-changing steps maximizes what's served from cache."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-13T05:03:02.097768+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.89
+    },
+    {
+      "beat_id": "B02",
+      "act": "WHY MULTI-STAGE BUILDS MATTER",
+      "role_note": "slide 3 -- heavy toolchain discarded, only output ships",
+      "narration_text": "A multi-stage build lets you use a full toolchain — compilers, package managers, dev dependencies — in an early stage, and then copy only the final build output into a clean, minimal final stage. Everything from the earlier stage never ships, which is what keeps production images small and reduces what's exposed if the image is ever compromised.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Build stage",
+                "d": "full toolchain — compilers, package managers, dev deps"
+              },
+              {
+                "k": "Copy only final output",
+                "d": "into a clean, minimal final stage",
+                "hi": true
+              },
+              {
+                "k": "Build stage discarded",
+                "d": "never ships — smaller image, less exposed if compromised"
+              }
+            ],
+            "caption": "Only the final stage ships — everything used to build it is discarded."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-13T05:03:45.165538+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 19.46
+    },
+    {
+      "beat_id": "B03",
+      "act": "CI-LEVEL CACHING",
+      "role_note": "slide 4 -- dependency caching keyed off a lockfile hash",
+      "narration_text": "Beyond Docker's own layer caching, CI systems like GitHub Actions can cache dependency installations directly, usually keyed off a hash of the lockfile. If the lockfile hasn't changed, the cached dependencies are restored instantly instead of re-downloading everything — which is one of the highest-leverage ways to speed up a pipeline with very little added complexity.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Lockfile hash",
+                "d": "the cache key"
+              },
+              {
+                "k": "Cache hit",
+                "d": "dependencies restored instantly — no re-download",
+                "hi": true
+              },
+              {
+                "k": "Cache miss",
+                "d": "lockfile changed — install step actually runs"
+              }
+            ],
+            "caption": "High leverage, low complexity — one of the cheapest ways to speed up a pipeline."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-13T05:04:28.021490+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 20.16
+    },
+    {
+      "beat_id": "B04",
+      "act": "CONTAINER VULNERABILITY SCANNING",
+      "role_note": "slide 5 -- checking layers against CVE databases",
+      "narration_text": "Vulnerability scanning works by inspecting every package inside an image's layers — including the base OS and any system libraries — and checking them against databases of publicly known vulnerabilities, called CVEs. Most vulnerabilities in a container don't come from your own application code; they come from inherited base images and system packages that need to be kept current.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Image layers",
+                "d": "base OS, system libraries, packages"
+              },
+              {
+                "k": "Checked against CVE databases",
+                "d": "publicly known vulnerabilities",
+                "hi": true
+              },
+              {
+                "k": "Findings report",
+                "d": "usually traced to inherited base images, not app code"
+              }
+            ],
+            "caption": "Most container vulnerabilities are inherited, not written — and need to be kept current."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T05:05:10.886751+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 20.46
+    },
+    {
+      "beat_id": "B05",
+      "act": "WHY THIS BELONGS IN THE PIPELINE, NOT AFTER IT",
+      "role_note": "slide 6 -- designed-in, not an afterthought",
+      "narration_text": "The real insight this week was that caching and scanning both need to be designed-in steps, not afterthoughts — caching has to be designed into the build order from the start to be effective, and scanning has to run before deployment to actually prevent a vulnerable image from going live, rather than just reporting on one that already did.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Caching designed into build order",
+                "d": "from the start — not retrofitted"
+              },
+              {
+                "k": "Scan before deploy",
+                "d": "actually prevents a vulnerable image going live",
+                "hi": true
+              },
+              {
+                "k": "Not an audit after the fact",
+                "d": "reporting on an image that already shipped is too late"
+              }
+            ],
+            "caption": "Scan integrated before deploy, not as a separate audit later."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T05:05:53.348774+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.96
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLOSING",
+      "role_note": "slide 7 -- the closing line, Claude cream skin",
+      "narration_text": "Understanding layers, caching, and scanning together is what turns Docker from 'a way to package the app' into a deliberate, efficient, and secure part of the delivery pipeline.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Week 9 Technical Learnings — Docker Layers, Caching & Scanning",
+            "artifactHeading": "A well-designed container build is fast and safe by design.",
+            "artifactLines": [
+              "Layers: each Dockerfile instruction caches individually — instruction order decides what's reusable.",
+              "Multi-stage builds: the full toolchain is discarded — only the final, minimal output ships.",
+              "CI caching: dependencies restore instantly on a lockfile-hash cache hit, instead of re-downloading.",
+              "Scanning: image layers are checked against CVE databases — most findings are inherited, not written.",
+              "Both caching and scanning are designed-in steps, not afterthoughts bolted on later."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T05:07:39.998023+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 9.77
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Docker Layers, Caching, and Scanning. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Week 9 Technical Learnings — Docker Layers, Caching & Scanning",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T05:08:01.279779+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 3.56
+    }
+  ]
+}

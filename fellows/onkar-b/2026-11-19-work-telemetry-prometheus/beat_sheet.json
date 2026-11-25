@@ -1,0 +1,621 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-prometheus",
+    "title": "Nobody Is Awake At 3 AM",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper Development Log, Week 12 — closing Phase 2 with Prometheus: a /metrics endpoint and custom counters, a pull-model scrape over the internal network, the PromQL that makes a counter mean something, and the gap between collecting metrics and being told.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows following the Provenance Gatekeeper build",
+    "playlist": "Provenance Gatekeeper Development Log",
+    "source": "Week 12: Real-Time Telemetry & Metrics with Prometheus — 5-scene script, supplied 2026-11-19.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. Prometheus and Redis are named in narration but render as generic labelled panels — never their marks or chrome.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal. Kokoro am_onyx is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "series_note": "Overlap check run across all 22 built reels. Week 5 (claude-gatekeeper-dashboard-stress) built an HTML dashboard over the SQLite ledger and argued HUMAN alert-fatigue — that argument is deliberately NOT repeated. This reel's added beat is mechanical: collection is not notification, and `up == 0` is the alert nobody writes. It also closes the loop opened in Week 4, whose incident rows nobody read.",
+    "authoring_note": "ThreeStageBand spark lines are authored at or under 18 characters, and readyLine/failLine at or under 40, so 16:9 and 9:16 share identical copy and no portrait patch round is needed.",
+    "tags": [
+      "Prometheus",
+      "telemetry",
+      "metrics",
+      "PromQL",
+      "FastAPI",
+      "observability",
+      "alerting",
+      "Provenance Gatekeeper",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-11-19T23:14:28",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 26,
+      "narration_text": "Hi, I am Onkar Bhujbal. Last week Redis made the Provenance Gatekeeper fast. I know the cache works because I watched it work, in a terminal, with my own eyes — which is not a monitoring strategy, it is a habit. If the hallucination rate climbs at three in the morning, or Redis quietly stops hitting, nobody is staring at that terminal. This week closes Phase 2 with Prometheus and real metrics.",
+      "new_visual_element": "Cold open — the terminal nobody is watching",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself in"
+          },
+          {
+            "at": 0.48,
+            "event": "send arms terracotta; running indicator reads 'checking who was watching…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the cache hit ratio at 03:00, unknowable"
+          },
+          {
+            "at": 0.85,
+            "event": "the last line names it: NOBODY IS AWAKE AT 3 AM"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Nobody Is Awake At 3 AM",
+            "command": "What was the Redis hit ratio at 03:00 last Tuesday, and what was the intercept rate?",
+            "runningText": "checking who was watching…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "stored anywhere queryable: no",
+              "the terminal scrollback is gone",
+              "NOBODY IS AWAKE AT 3 AM."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-20T03:57:39.546600+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 20.39,
+      "render_duration_s": 20.416666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.8,
+      "narration_text": "Exposing metrics is the easy half. The half that decides whether any of this matters is whether something is configured to shout when the numbers go wrong, while I am asleep.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'Collecting is the work.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'Collecting' goes terracotta, deletes, retypes as 'Alerting'"
+          },
+          {
+            "at": 0.85,
+            "event": "corrected overview holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Collecting is the work.\nA graph cannot wake you.",
+            "triggerWords": "Collecting",
+            "replacementWords": "Alerting",
+            "seed": "prometheus-2026-11-19",
+            "fontSize": 90,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-20T03:59:09.740261+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Both readings are true sentences: 'Collecting is the work.' and, corrected, 'Alerting is the work.' — the swap is the reel's thesis, and the second line holds for either.",
+      "actual_duration_s": 9.54,
+      "render_duration_s": 9.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — THE METRICS ENDPOINT",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Giving the service a pulse took very little code. The Prometheus FastAPI instrumentator wires into the app and exposes a slash-metrics endpoint, which gets you request counts and latency histograms for free. The part worth more than the free part is underneath: custom counters for the things only this system knows — every cache hit, every miss, and every blocked claim, labelled by variance type.",
+      "new_visual_element": "The pulse, in a dozen lines",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the instrumentator line reveals — HTTP metrics for free"
+          },
+          {
+            "at": 0.52,
+            "event": "the custom counters reveal — the domain-specific half"
+          },
+          {
+            "at": 0.8,
+            "event": "the closing note lands: the label set is a design decision"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "app/main.py",
+            "code": "Instrumentator().instrument(app).expose(app)\n#   -> GET /metrics : counts + latency\n\nCLAIMS_EVALUATED = Counter(\n    \"gatekeeper_claims_evaluated_total\",\n    \"claims seen\", [\"verdict\", \"variance_type\"],\n)\nCACHE_EVENTS = Counter(\n    \"gatekeeper_cache_events_total\",\n    \"redis outcomes\", [\"result\"],   # hit | miss\n)\n\n# Labels are a schema. Keep them small,\n# and never label by claim_id.",
+            "sparkLine": "Free metrics, then the ones that matter."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-20T04:00:10.546864+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "Reconstructed from the counters the script names (CLAIMS_EVALUATED, CACHE_EVENTS) and the Instrumentator line it quotes. The low-cardinality warning is the reel's addition — labelling by claim_id would create one series per claim and is the standard way to take down a Prometheus.",
+      "actual_duration_s": 20.89,
+      "render_duration_s": 20.916666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — THE SCRAPE",
+      "lane": "remotion",
+      "estimated_duration_s": 24,
+      "narration_text": "Prometheus does not wait to be told. Unlike the webhook we built in Week nine, which pushes, Prometheus pulls: a container in the same Compose stack reaches across the internal Docker network every five seconds, reads slash-metrics, and writes the snapshot into its time-series database. One useful consequence — if the Gatekeeper goes down, the scrape fails, and that failure is itself a metric you can alert on.",
+      "new_visual_element": "Pull, not push",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the scrape token enters the band"
+          },
+          {
+            "at": 0.2,
+            "event": "panel 01 PROMETHEUS lights — it initiates"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 /metrics lights"
+          },
+          {
+            "at": 0.7,
+            "event": "panel 03 TSDB lights"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: a failed scrape is itself a signal"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "It pulls.",
+            "payloadLabel": "every 5s",
+            "readyLine": "a failed scrape is itself a signal",
+            "stages": [
+              {
+                "index": "01",
+                "name": "PROMETHEUS",
+                "detail": "container on the internal network"
+              },
+              {
+                "index": "02",
+                "name": "GET /metrics",
+                "detail": "the Gatekeeper answers; it never pushes"
+              },
+              {
+                "index": "03",
+                "name": "TIME-SERIES DB",
+                "detail": "snapshot stored with its timestamp"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-20T04:01:43.106103+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The pull-vs-push contrast is the script's own, and it lands harder here because this series built the push side in Week 9. The 'failed scrape is a signal' line sets up B05.",
+      "actual_duration_s": 21.7,
+      "render_duration_s": 21.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — QUERYING IT",
+      "lane": "remotion",
+      "estimated_duration_s": 27,
+      "narration_text": "Now I can ask questions instead of reading logs. One correction worth making, because it is the most common mistake with Prometheus: a counter only ever goes up. Graph claims-evaluated-total directly and you get a line that rises forever, which tells you nothing. You almost always want a rate over a window — and for the cache, a ratio of two rates. That is the difference between a chart that looks busy and a number you could actually alert on.",
+      "new_visual_element": "The query that looks right and is useless",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the raw counter query"
+          },
+          {
+            "at": 0.3,
+            "event": "on 'rises forever', the monotonic series highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.38,
+            "event": "note lands beneath: it has never once gone down"
+          },
+          {
+            "at": 0.52,
+            "event": "right panel reveals the rate and the ratio"
+          },
+          {
+            "at": 0.74,
+            "event": "ink stamp lands: RATE, NOT TOTAL"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Both of these are valid PromQL.",
+            "leftLabel": "THE OBVIOUS QUERY",
+            "leftText": "gatekeeper_claims_evaluated_total\n\n  12:00   84,114\n  12:05   84,902\n  12:10   85,780",
+            "leftHot": "gatekeeper_claims_evaluated_total",
+            "hotNote": "a counter only rises — this line cannot show you a problem",
+            "rightLabel": "THE USEFUL QUERY",
+            "code": "# claims per second, last 5 min\nrate(\n  gatekeeper_claims_evaluated_total[5m]\n)\n\n# cache hit ratio\nsum(rate(cache_events_total{result=\"hit\"}[5m]))\n/\nsum(rate(cache_events_total[5m]))",
+            "stampText": "RATE, NOT TOTAL",
+            "stampBlocked": false,
+            "stampSub": "a counter answers 'how many ever' — you asked 'what is happening now'"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-20T04:03:47.148156+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "CORRECTION to the supplied script, which shows `gatekeeper_claims_evaluated_total` rendering 'a clean line graph' of intercepts and hit-vs-miss. Graphed raw, a counter is monotonically increasing and shows neither. The counter values shown are illustrative.",
+      "actual_duration_s": 21.5,
+      "render_duration_s": 21.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4b — FALSIFIABILITY (added)",
+      "lane": "remotion",
+      "estimated_duration_s": 29,
+      "narration_text": "And here is what I have actually built, stated honestly. I can now answer the three A.M. question — in the morning, when I open the dashboard. Nothing yet wakes anyone. A metric sitting in a time-series database that no one queries is the same shape of failure as the incident rows I wrote to SQLite back in Week four: recorded, retrievable, and unread. Worse, if the Gatekeeper dies the graph simply stops, and a stopped graph looks calm. Until there are alerting rules — including one on the scrape itself — this is a better memory, not a better response.",
+      "new_visual_element": "The dashboard nobody opened",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 METRIC RECORDED lights; the token enters"
+          },
+          {
+            "at": 0.42,
+            "event": "connector draws; on 'nothing yet wakes anyone', panel 02 takes the terracotta wash and ✕"
+          },
+          {
+            "at": 0.58,
+            "event": "the token STOPS — the spike is stored, not delivered"
+          },
+          {
+            "at": 0.72,
+            "event": "panel 03 shows when it is actually seen"
+          },
+          {
+            "at": 0.82,
+            "event": "mono line lands: alert rules · up == 0 · a receiver"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "Stored, not sent.",
+            "payloadLabel": "a 3am spike",
+            "failIndex": 1,
+            "failLine": "alert rules · up == 0 · a receiver",
+            "readyLine": "a failed scrape is itself a signal",
+            "stages": [
+              {
+                "index": "01",
+                "name": "METRIC RECORDED",
+                "detail": "03:04 — the intercept rate triples"
+              },
+              {
+                "index": "02",
+                "name": "SOMEBODY TOLD",
+                "detail": "no rule, no receiver, no page"
+              },
+              {
+                "index": "03",
+                "name": "SEEN AT 09:20",
+                "detail": "when I happened to open the dashboard"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-20T04:05:47.503914+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "BEAT ADDED. The script's hook promises to solve the 3 AM problem and its Scene 4 delivers a dashboard, which does not. This states the gap plainly and ties it to Week 4's unread SQLite rows — the same failure in a nicer database. Deliberately NOT the human-fatigue argument from Week 5's reel: the point here is that no notification path exists at all yet.",
+      "actual_duration_s": 30.31,
+      "render_duration_s": 30.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 18,
+      "narration_text": "So: you cannot optimise what you cannot measure — expose your metrics and stop flying blind. Then write the rules, because a number nobody is told about is just a tidier way of not knowing.",
+      "new_visual_element": "The rules the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the alert rules reveal — the threshold, then the absence"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: measure everything that matters"
+          },
+          {
+            "at": 0.78,
+            "event": "the last note lands — the rule that catches the monitoring"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "alerts.yml",
+            "code": "- alert: InterceptRateSpike\n  expr: rate(claims{verdict=\"blocked\"}[10m])\n      > 3 * rate(claims{verdict=\"blocked\"}[6h])\n  for: 10m\n\n- alert: GatekeeperDown\n  expr: up{job=\"gatekeeper\"} == 0\n  for: 2m\n\n# TASK: measure everything that matters.\n# Then route it to something that rings.",
+            "sparkLine": "A number nobody is told is not monitoring."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-20T04:06:56.907595+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "These rules are the recommended next step, not shipped configuration — the reel is explicit in B05 that alerting does not exist yet.",
+      "actual_duration_s": 10.99,
+      "render_duration_s": 11.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Here is the prompt worth running against your own stack. Ask a model to trace the full path from a metric crossing a threshold to a human being interrupted, and to name every step that does not exist yet. For most projects that path stops at the dashboard, and the dashboard is not a step — it is a place you have to already be looking.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.'"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'paste this into Claude…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Nobody Is Awake At 3 AM",
+            "command": "Trace the full path from one of my metrics crossing a threshold to a human being interrupted. Name every step in that chain that does not exist in my config yet.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-20T04:09:41.639695+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 16.98,
+      "render_duration_s": 17.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-19T23:14:28"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Stop flying blind — then make sure something is willing to wake you. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Nobody Is Awake At 3 AM",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper Dev Log · Week 12",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-11-20T04:10:48.608114+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 6.72,
+      "render_duration_s": 6.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-11-19T23:14:28"
+      }
+    }
+  ]
+}

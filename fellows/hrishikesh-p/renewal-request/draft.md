@@ -3,6 +3,8 @@
 
 **Request:** Please renew my fellowship from **October 1, 2026** through **October 31, 2026**. My current agreement ends **September 30, 2026**. This summary covers the reporting period **August 22, 2026 to October 30, 2026**.
 
+For the latest documented work, see the [Week 12 frictional log](../2026-11-20-RamanEffect/FRICTIONAL.md).
+
 ## Completed
 
 - **Established the Raman spectroscopy project context.** Defined the Raman Effect and Raman spectroscopy, documented the use of AI/ML in Raman spectroscopy, and reviewed previous project work. Evidence: [Week 1 frictional log](../2026-09-04%20-%20RamanEffect/FRICTIONAL.md), including the linked 16:9 and 9:16 videos and task materials.
@@ -13,10 +15,13 @@
 - **Analyzed agent-scale software infrastructure.** Reviewed Anthropic's migration from Git to Scion and Antique, including changesets, recursive derived data, content-addressed checkout architecture, source-control benchmarks, and the use of Claude in development. Evidence: [Week 7 frictional log](../2026-10-16%20-%20RamanEffect/FRICTIONAL.md) and the linked videos.
 - **Evaluated clinical treatment-group classification.** Mapped 30 bacterial reference isolates into 8 empiric treatment groups, compared CNN and ResNet accuracy on 3,000 Raman spectra, and analyzed clinically benign versus cross-treatment errors. Evidence: [Week 8 frictional log](../2026-10-23%20-%20RamanEffect/FRICTIONAL.md), [Week 8 commit](https://github.com/hspgit/RAMAN-Effect/commit/23883ad3b3bc587d719f898efbe74101bef97bb0), and the linked videos.
 - **Analyzed CNN and ResNet architectures for Raman spectra.** Compared a shallow 6-stage CNN with a 25-layer 1D ResNet, documenting the effects of residual connections, pooling, receptive fields, parameter capacity, and overfitting on raw and processed bacterial Raman spectra. Evidence: [Week 9 frictional log](../2026-10-30%20-%20RamanEffect/FRICTIONAL.md), [Week 9 fact-check](../2026-10-30%20-%20RamanEffect/FACTCHECK.md), and the linked videos.
+- **Studied recursive agent harnessing for open-world tasks.** Reviewed HARNESS² task-level and harnessing-level recursion, contrastive Propose-Probe-Compose updates, reusable experience libraries, and benchmark improvements across code, web, office, professional-deliverable, and legal-agent tasks. Evidence: [Week 10 frictional log](../2026-11-06%20-%20RamanEffect/FRICTIONAL.md) and the linked videos.
+- **Explained latent world models with JEPA.** Compared I-JEPA and V-JEPA with pixel-reconstruction and vision-language models, covering latent prediction, EMA target encoders, stop-gradient training, masking, and results on ImageNet, CLEVR, and video benchmarks. Evidence: [Week 11 frictional log](../2026-11-13%20-%20RamanEffect/FRICTIONAL.md) and the linked videos.
+- **Summarized Raman spectroscopy in life sciences.** Reviewed how inelastic laser scattering enables label-free, non-destructive biomedical analysis across molecular diagnostics, protein folding, and in vivo oncology. Evidence: [Week 12 frictional log](../2026-11-20-RamanEffect/FRICTIONAL.md) and the linked 16:9 and 9:16 videos.
 
 ## Hours Status
 
-20 hours recorded for each documented week, for a total of **180 hours across nine documented weeks**.
+20 hours recorded for each documented week, for a total of **240 hours across twelve documented weeks**.
 
 ## Degree Relevance and Supervision
 
@@ -47,3 +52,6 @@ Proposed deliverable: document a reproducible comparison of the CNN, ResNet, Tra
 | Week 7: October 16, 2026 | 20 | [16:9](https://drive.google.com/file/d/1xz1x9fcxEY6vCJDcc-OE6IVJkftIRW4m/view?usp=sharing) · [9:16](https://drive.google.com/file/d/14iKqr9zQUYYMyc6btWhrs1l7shz42fl4/view?usp=drive_link) | [Dated log](../2026-10-16%20-%20RamanEffect/FRICTIONAL.md) · Source-control and agent-scale infrastructure review |
 | Week 8: October 23, 2026 | 20 | [16:9](https://drive.google.com/file/d/1ZEEaDkIRnRjdvGCCnVK9SCFeP7F39OVC/view?usp=drive_link) · [9:16](https://drive.google.com/file/d/1cfbvhZzKi9g0oPb6D0GtltLuKUWPqcNK/view?usp=drive_link) | [Dated log](../2026-10-23%20-%20RamanEffect/FRICTIONAL.md) · [Week 8 commit](https://github.com/hspgit/RAMAN-Effect/commit/23883ad3b3bc587d719f898efbe74101bef97bb0) |
 | Week 9: October 30, 2026 | 20 | [16:9](https://drive.google.com/file/d/1ZKckHZmxm6UxpkTayt2t3gr6t7ZN2UjD/view?usp=sharing) · [9:16](https://drive.google.com/file/d/10tM5jfvwokSynajs2lVfM1YthImbrA86/view?usp=sharing) | [Dated log](../2026-10-30%20-%20RamanEffect/FRICTIONAL.md) · [Fact-check](../2026-10-30%20-%20RamanEffect/FACTCHECK.md) |
+| Week 10: November 6, 2026 | 20 | [16:9](https://drive.google.com/file/d/1FuHXb5F76U08jhcEM8od00z1rfNBvmts/view?usp=sharing) · [9:16](https://drive.google.com/file/d/1VBUZb-NMxAoKXNZ0ztnmC0PI_OpbApAM/view?usp=sharing) | [Dated log](../2026-11-06%20-%20RamanEffect/FRICTIONAL.md) |
+| Week 11: November 13, 2026 | 20 | [16:9](https://drive.google.com/file/d/1KHqXXd_NWYdyKv5M6wlIne93B7nCBzjb/view?usp=sharing) · [9:16](https://drive.google.com/file/d/1BP96FAxCyYqGO2cVel5huAODRSPpo4IM/view?usp=sharing) | [Dated log](../2026-11-13%20-%20RamanEffect/FRICTIONAL.md) |
+| Week 12: November 20, 2026 | 20 | [16:9](https://drive.google.com/file/d/1AmiL71d6H3SQVy98p6bFxSdtdNXjrRmT/view?usp=sharing) · [9:16](https://drive.google.com/file/d/1dONPbcAdXwca5uA8HwA8kdWbl3foViuG/view?usp=sharing) | [Dated log](../2026-11-20-RamanEffect/FRICTIONAL.md) |

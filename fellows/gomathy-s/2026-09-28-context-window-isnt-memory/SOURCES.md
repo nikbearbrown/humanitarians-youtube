@@ -23,7 +23,7 @@ Beat IDs follow the final 12-beat `beat_sheet.json`.
 ## Persona / Channel Change (rebrand)
 
 Switched from `claude-liam` (Teardown, @NikBearBrown, Liam in for Bear, `am_onyx`) to
-`claude-hai` (Plain, @HumanitariansAI, Liam in for Gomathy, `af_bella`).
+`claude-hai` (Plain, @HumanitariansAI, Bella in for Gomathy, `af_bella`).
 No factual claims changed — only register, persona line, voice, and folder chip.
 
 - **Voice conflict found and flagged, not silently resolved:** three in-repo sources

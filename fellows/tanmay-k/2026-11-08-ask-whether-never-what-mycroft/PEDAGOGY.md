@@ -1,0 +1,11 @@
+# Pedagogy: Week 30 work video (draft 1)
+- **Takeaway:** for anything your pipeline reaches for (a key, a service, an account), keep three facts apart: is it there, who has to say yes, what is the value. Record the first two on a page and design the third so nothing after the check needs it.
+- **Move taught:** ask whether, never what. A presence check is a yes or a no, so it has nothing to leak and nothing to copy.
+- **Prior knowledge assumed:** that a program sometimes needs a key to call a service. No finance, no n8n, no Python. The word "environment" is introduced by use (B04: "a variable with this name set") and not defined further.
+- **One example, followed all the way:** one row (the model call) fills cell by cell; the other sources appear only as contrast in B06, so the viewer is never asked to hold four things at once.
+- **Order of difficulty:** puzzle (B00b) → what it is (B01) → why three facts (B02) → one row (B03) → fact one (B04) → why a yes/no (B04b) → fact two (B05) → contrast (B06) → the turn, a test that needs a secret (B07) → what you get (B08) → your turn (B09).
+- **The one hard idea:** B07, proving a promise to keep a secret needs a secret. Mitigation: it comes after the viewer has seen the promise (B04), and it is told as a puzzle with a one-sentence resolution ("a secret that is safe to lose").
+- **Check for understanding:** B09, the viewer writes three lines for one of their own pipeline's dependencies, fills the first two, and leaves the third closed.
+- **Short:** one idea only (check a key without looking at it), same row throughout, resolved by the test line and the ask in S07.
+- **Honest limits:** shown as design, not shortfall: sample mode makes no live call; going live is a person's decision; the recipe stays `DRAFT` on purpose.
+- **Register:** first person, curious, calm; no verdicts on anyone else's work.

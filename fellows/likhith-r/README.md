@@ -17,6 +17,27 @@ Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Ren
 - [weekly-hours/](weekly-hours/README.md) — weekly hours records
 - [renewal-requests/](renewal-requests/2026-09-28-renewal-request.md) — renewal request
 
+## Week of 2026-11-09
+
+Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840).
+
+- [GANs: Two AIs That Invent Faces](./2026-11-12-gans-two-ais-that-invent-faces/) — a forger and a detective trained against each other, and the cautions their fakes call for (`GANsTwoAIsThatInventFaces_LikhithR.mp4`)
+- [Word2Vec: King − Man + Woman ≈ Queen](./2026-11-14-word2vec-king-man-woman-queen/) — how predicting a word's neighbours turns meaning into geometry (`Word2VecKingManWomanQueen_LikhithR.mp4`)
+
+## Week of 2026-11-02
+
+Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840).
+
+- [Higgsfield and Claude: Directing AI Video](./2026-11-05-higgsfield-and-claude-directing-ai-video/) — Claude plans and directs, Higgsfield's video models shoot each clip (`HiggsfieldAndClaudeDirectingAIVideo_LikhithR.mp4`)
+- [Grokking: When AI Suddenly Understands](./2026-11-07-grokking-when-ai-suddenly-understands/) — a network memorizes first and generalizes suddenly, many steps later (`GrokkingWhenAISuddenlyUnderstands_LikhithR.mp4`)
+
+## Week of 2026-10-26
+
+Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840).
+
+- [Quantization: Big AI on a Laptop](./2026-10-29-quantization-big-ai-on-a-laptop/) — how rounding weights to 8 or 4 bits lets big models fit on a laptop (`QuantizationBigAIOnALaptop_LikhithR.mp4`)
+- [RLHF: How Chatbots Learned to Help](./2026-10-31-rlhf-how-chatbots-learned-to-help/) — how example answers, people's rankings and a reward model turned raw models into assistants (`RLHFHowChatbotsLearnedToHelp_LikhithR.mp4`)
+
 ## Week of 2026-10-19
 
 Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840).

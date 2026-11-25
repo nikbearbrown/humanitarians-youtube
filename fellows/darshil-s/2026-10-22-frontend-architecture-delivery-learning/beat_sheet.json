@@ -1,0 +1,295 @@
+{
+  "metadata": {
+    "title": "Week 7 Technical Learnings — Frontend Architecture & Delivery Concepts",
+    "slug": "frontend-architecture-delivery-learning",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied 7-slide narration script (frontend build-time config, SPA routing fallback, static serving, Vitest/RTL testing strategy, app versioning), provided 2026-10-22. No garbled fragments this time -- narration is verbatim throughout. A STEM/learning-only week: no separate project-update video was supplied alongside this one.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "aspect": "16:9",
+    "description": "Five frontend-specific delivery concepts: Vite's build-time (not runtime) environment-variable resolution and why each environment needs its own build, the SPA routing fallback that lets a client-side router take over from the web server, serving compiled static assets through a lightweight server like Nginx instead of Node/a dev server, the Vitest + React Testing Library testing strategy that checks behavior rather than implementation details, and baking a version identifier into the build so a running app can report exactly what's live.",
+    "note": "GitHub-dark skin for the five mechanics beats (GitHubCallChain diagrams, matching the supplied slide structure), Claude-cream skin for the INTRO bookend, the closing card, and the OUTRO. Narration text is the fellow-supplied script verbatim -- no repairs needed.",
+    "total_estimated_duration_seconds": 265
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, slide 1 title card",
+      "narration_text": "This week's learning focus turned to the frontend side specifically — how a modern React and Vite application is actually configured, built, served, and tested once it leaves your local machine.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "npm run build && ls dist/",
+            "topic": "BUILD-TIME CONFIG · SPA ROUTING · STATIC SERVING · VITEST · VERSIONING",
+            "segment": "Week 7 Technical Learnings — Frontend Architecture & Delivery Concepts",
+            "greeting": "Darshil Shah",
+            "runningText": "build-time config → SPA routing → static serving → testing → versioning…",
+            "output": [
+              "this week: STEM/learning topic",
+              "the frontend's own distinct deployment considerations",
+              "configured, built, served, and tested once it leaves your machine"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-13T04:11:19.812455+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 10.84
+    },
+    {
+      "beat_id": "B01",
+      "act": "BUILD-TIME VS. RUNTIME CONFIGURATION",
+      "role_note": "slide 2 -- Vite resolves env vars at build time, not runtime",
+      "narration_text": "A key concept here is that Vite resolves environment variables at build time, not at runtime. That means values like the backend API URL get compiled directly into the static JavaScript bundle during the build step — there's no server-side process reading environment variables when the app is running. This is different from a typical backend service, and it's why each environment needs its own build rather than one build that reconfigures itself later.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Source + env vars",
+                "d": "e.g. VITE_API_URL, present only at build time"
+              },
+              {
+                "k": "Vite build",
+                "d": "resolves and compiles values directly into the bundle",
+                "hi": true
+              },
+              {
+                "k": "Static bundle",
+                "d": "config baked in — nothing reads env vars at runtime"
+              }
+            ],
+            "caption": "Each environment needs its own build — there's no reconfiguring a running bundle later."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-13T04:11:53.211892+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 50,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 23.45
+    },
+    {
+      "beat_id": "B02",
+      "act": "SINGLE-PAGE APPLICATIONS & ROUTING",
+      "role_note": "slide 3 -- SPA fallback to index.html",
+      "narration_text": "Because this is a single-page application, all the routing logic lives in the browser, not on the server. That means the web server needs to be configured to serve index.html for any path it doesn't recognize as a static file, letting the client-side application take over from there. Without that fallback rule, refreshing the page on any route other than the home page would simply break.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Browser requests /any-path",
+                "d": "a client-side route, not a real file"
+              },
+              {
+                "k": "Nginx",
+                "d": "doesn't recognize the path as a static file"
+              },
+              {
+                "k": "Falls back to index.html",
+                "d": "the SPA fallback rule",
+                "hi": true
+              },
+              {
+                "k": "Client-side router takes over",
+                "d": "routing logic lives in the browser"
+              }
+            ],
+            "caption": "Without the fallback rule, refreshing any non-home route would simply break."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-13T04:12:33.661730+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 20.67
+    },
+    {
+      "beat_id": "B03",
+      "act": "SERVING STATIC ASSETS EFFICIENTLY",
+      "role_note": "slide 4 -- Nginx, not Node/a dev server, at runtime",
+      "narration_text": "Once built, a frontend application is just static files — HTML, JavaScript, and CSS. Serving those through a lightweight web server like Nginx, rather than through Node.js or a dev server, is both faster and more secure, since none of the build tooling or source code needs to exist in the running container at all.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Compiled static assets",
+                "d": "HTML, JavaScript, CSS — nothing else needed"
+              },
+              {
+                "k": "Nginx",
+                "d": "lightweight, faster and more secure than Node/a dev server",
+                "hi": true
+              },
+              {
+                "k": "Browser",
+                "d": "receives the same static files every time"
+              }
+            ],
+            "caption": "No build tooling or source code needs to exist in the running container at all."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-13T04:13:18.977493+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.24
+    },
+    {
+      "beat_id": "B04",
+      "act": "FRONTEND TESTING STRATEGY",
+      "role_note": "slide 5 -- Vitest + React Testing Library",
+      "narration_text": "On the testing side, the frontend uses Vitest alongside React Testing Library — Vitest as the fast test runner, and React Testing Library for rendering components and verifying behavior the way a real user would interact with them, rather than testing internal implementation details. This is what allows the CI pipeline to catch broken logic or broken UI behavior automatically, before it ever reaches staging.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Component / logic",
+                "d": "the code under test"
+              },
+              {
+                "k": "Vitest + React Testing Library",
+                "d": "fast runner + user-behavior-focused rendering",
+                "hi": true
+              },
+              {
+                "k": "Automated assertions",
+                "d": "catches broken logic/UI before it reaches staging"
+              }
+            ],
+            "caption": "Tests the way a real user interacts with the app — not internal implementation details."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T04:14:04.711304+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 23.0
+    },
+    {
+      "beat_id": "B05",
+      "act": "VERSIONING THE FRONTEND ITSELF",
+      "role_note": "slide 6 -- VITE_APP_VERSION baked in",
+      "narration_text": "The build process also bakes in a version identifier at build time, so the running application can report exactly which version is live. This small detail matters a lot operationally — it's what makes it possible to confidently confirm which release is actually running in any given environment, especially after a rollback.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "VITE_APP_VERSION",
+                "d": "resolved and baked in at build time"
+              },
+              {
+                "k": "Visible in the running app",
+                "d": "the version identifier is part of the bundle",
+                "hi": true
+              },
+              {
+                "k": "Confirms what's actually live",
+                "d": "especially valuable right after a rollback"
+              }
+            ],
+            "caption": "A small detail that matters a lot operationally -- confirm, don't assume, what's running."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T04:14:47.620392+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 17.81
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLOSING",
+      "role_note": "slide 7 -- the closing line, Claude cream skin",
+      "narration_text": "The throughline this week was recognizing that a frontend application has its own distinct deployment considerations — build-time configuration, routing fallback, and lightweight static serving — that are just as deliberate and important as anything on the backend.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Week 7 Technical Learnings — Frontend Architecture & Delivery Concepts",
+            "artifactHeading": "A frontend isn't just UI — it's a build artifact with its own deployment rules.",
+            "artifactLines": [
+              "Build-time config: Vite bakes env vars into the bundle — each environment needs its own build.",
+              "SPA routing: the server falls back to index.html; the browser's router takes it from there.",
+              "Static serving: a lightweight server like Nginx, no build tooling in the running container.",
+              "Testing: Vitest + React Testing Library check real user behavior, not implementation details.",
+              "Versioning: a build-time identifier lets a running app report exactly what's live."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T04:16:45.632784+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 14.55
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Frontend Architecture and Delivery Concepts. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Week 7 Technical Learnings — Frontend Architecture & Delivery Concepts",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T04:17:13.099248+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 4.12
+    }
+  ]
+}

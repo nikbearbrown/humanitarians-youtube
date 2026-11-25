@@ -1,0 +1,377 @@
+{
+  "metadata": {
+    "title": "Stage Environment: Provisioning GCP and GitHub",
+    "slug": "medas-stage-environment-provisioning",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied Week 2 implementation scope (Artifact Registry, WIF trust widening, scoped IAM binding, GitHub stage Environment, validation + rollback run), provided 2026-09-17. Continues medas-frontend-cicd, medas-ci-rollback, medas-trust-chain and meddas-dev-pipeline-gcp-deployment.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "hello": "Habari",
+    "aspect": "16:9",
+    "description": "The implementation detail of standing up a stage environment that mirrors dev exactly: a dedicated Artifact Registry repo, widening the existing Workload Identity Federation provider's trust condition (no new pool), an IAM binding scoped to the stage GitHub Environment's principal set specifically, a new GitHub stage Environment with its own secrets/variables, and two validation runs -- a real stage-v0.1.0 deploy, then a rollback against it. Implementation only; the underlying concepts (what WIF/IAM/CI-CD/Cloud Run are) are covered separately in the companion learning video, not re-explained here.",
+    "note": "GitHub-dark skin throughout the body beats (diegetic subject surface, matching medas-trust-chain/medas-frontend-cicd), Claude-cream skin for the bookends (INTRO, SUMMARY, NEXT STEPS, OUTRO). Every command, variable and resource name is drawn from the fellow-supplied Week 2 scope; the attribute-mapping precondition for the scoped IAM bind (B03) is called out as a dependency, not assumed silently.",
+    "total_estimated_duration_seconds": 215
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, ask shown answered",
+      "narration_text": "Habari — this is Darshil. Week two of the frontend's pipeline: provisioning a stage environment that mirrors dev exactly — a new Artifact Registry repo, a widened Workload Identity trust condition, a stage-scoped IAM binding, and a new GitHub Environment — then a real tag push to validate it, and a rollback run to prove the recovery path too.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "git tag stage-v0.1.0 && git push origin stage-v0.1.0",
+            "topic": "ARTIFACT REGISTRY · WORKLOAD IDENTITY · IAM · GITHUB ENVIRONMENTS",
+            "segment": "Stage Environment: Provisioning GCP and GitHub",
+            "greeting": "Habari, Darshil",
+            "runningText": "week 2: registry → trust widening → scoped IAM → GitHub stage env → validate…",
+            "output": [
+              "repo: TayyarH/medas-aggregation-frontend",
+              "mirrors dev, cryptographically separated from it",
+              "two proofs required: a real deploy, then a real rollback"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-12T23:57:09.955784+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 18.77
+    },
+    {
+      "beat_id": "B01",
+      "act": "ARTIFACT REGISTRY",
+      "role_note": "step 1 -- dedicated stage Docker repo",
+      "narration_text": "Step one, same shape as dev: somewhere for the staged image to live. Create a dedicated Artifact Registry repository for stage — medas-frontend-stage — in the same shared GCP project, following the existing medas-frontend naming convention, and kept distinct from the backend's medas-aggregation registries so builds never collide.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "TayyarH",
+              "medas-aggregation-frontend",
+              "terminal"
+            ],
+            "branch": "stage",
+            "lang": "bash",
+            "lines": [
+              "gcloud artifacts repositories create medas-frontend-stage \\",
+              "  --project=medas-499121 \\",
+              "  --repository-format=docker \\",
+              "  --location=us-east1 \\",
+              "  --description=\"Docker images for medas frontend stage environment\""
+            ],
+            "caption": "stage-v* images land here; dev-v* images stay in medas-frontend-dev -- never the same namespace."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-12T23:58:00.772010+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.46
+    },
+    {
+      "beat_id": "B02",
+      "act": "WORKLOAD IDENTITY FEDERATION",
+      "role_note": "step 2 -- widen the existing provider's trust condition",
+      "narration_text": "No new identity pool. Widen the same github-provider's trust condition so it also accepts stage-environment runs from this repo, alongside the backend and the dev environment it already trusts — one pool, now covering a third GitHub Environment.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "TayyarH",
+              "medas-aggregation-frontend",
+              "terminal"
+            ],
+            "branch": "stage",
+            "lang": "bash",
+            "lines": [
+              "gcloud iam workload-identity-pools providers update-oidc github-provider \\",
+              "  --project=medas-499121 \\",
+              "  --location=global \\",
+              "  --workload-identity-pool=github-pool \\",
+              "  --attribute-condition=\"assertion.repository=='TayyarH/medas-aggregation-backend' ||",
+              "                         (assertion.repository=='TayyarH/medas-aggregation-frontend' &&",
+              "                          (assertion.environment=='dev' || assertion.environment=='stage'))\"",
+              "",
+              "gcloud iam workload-identity-pools providers describe github-provider \\",
+              "  --format=\"value(attributeCondition)\"   # <- the week-one lesson: always re-run this"
+            ],
+            "caption": "Same lesson as week one: describe after update-oidc -- never trust that it took."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-12T23:58:50.337217+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 14.34
+    },
+    {
+      "beat_id": "B03",
+      "act": "IAM POLICY BINDING",
+      "role_note": "step 3 -- bind scoped to the stage principal set, not the whole repo",
+      "narration_text": "The binding this time is scoped tighter than dev's. Instead of trusting the whole repository, bind the role to the principal set for the stage GitHub Environment specifically — so a workflow run targeting dev still can't impersonate this service account through a stage-only grant, even though both environments share the one service account. That scoping only works if the provider's attribute mapping already exposes the environment claim — confirmed before writing this binding, not assumed.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "TayyarH",
+              "medas-aggregation-frontend",
+              "terminal"
+            ],
+            "branch": "stage",
+            "lang": "bash",
+            "lines": [
+              "# confirm the provider maps the environment claim before binding to it:",
+              "gcloud iam workload-identity-pools providers describe github-provider \\",
+              "  --format=\"value(attributeMapping)\"   # expect attribute.environment=assertion.environment",
+              "",
+              "gcloud iam service-accounts add-iam-policy-binding \\",
+              "  github-actions@medas-499121.iam.gserviceaccount.com \\",
+              "  --project=medas-499121 \\",
+              "  --role=\"roles/iam.workloadIdentityUser\" \\",
+              "  --member=\"principalSet://iam.googleapis.com/projects/994894911803/\\",
+              "locations/global/workloadIdentityPools/github-pool/\\",
+              "attribute.environment/stage\""
+            ],
+            "caption": "Dev's binding was scoped by repository; stage's is scoped by environment -- dev and stage stay cryptographically separated on one shared SA."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-12T23:59:43.019468+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 27.22
+    },
+    {
+      "beat_id": "B04",
+      "act": "GITHUB ENVIRONMENT",
+      "role_note": "step 4 -- new stage Environment, secrets + variables",
+      "narration_text": "On GitHub's side: a new Environment, stage, separate from dev. Same two secrets as dev — the provider path, the service account email. Six variables, with the three that actually differ from dev: a new repository, a new service name, and the staging backend's URL instead of dev's.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCodeViewer",
+          "props": {
+            "path": [
+              "Settings",
+              "Environments",
+              "stage"
+            ],
+            "branch": "stage",
+            "lang": "text",
+            "lines": [
+              "# Secrets -- identical to dev",
+              "WIF_PROVIDER         = projects/994894911803/locations/global/workloadIdentityPools/github-pool/providers/github-provider",
+              "WIF_SERVICE_ACCOUNT  = github-actions@medas-499121.iam.gserviceaccount.com",
+              "",
+              "# Variables -- only REPOSITORY, SERVICE and API_URL change from dev",
+              "PROJECT_ID = medas-499121      REGION = us-east1",
+              "REGISTRY   = us-east1-docker.pkg.dev",
+              "REPOSITORY = medas-frontend-stage   IMAGE = medas-frontend",
+              "SERVICE    = medas-frontend-stage",
+              "API_URL    = <staging backend's Cloud Run URL>"
+            ],
+            "caption": "Same six-field shape as dev's Environment -- diff this table against dev's before the first run, don't assume it matches."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T00:00:32.927319+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 22,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.91
+    },
+    {
+      "beat_id": "B05",
+      "act": "VALIDATION RUN -- DEPLOY",
+      "role_note": "step 5a -- the real stage-v0.1.0 tag push",
+      "narration_text": "First real test: tag stage-v0.1.0 and push it. The workflow has to resolve ENV=stage from that prefix, build with the staging API_URL baked in, push to the new registry, and deploy to a staging Cloud Run service — not dev's, not master's.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "git tag stage-v0.1.0 && push",
+                "d": "the only trigger"
+              },
+              {
+                "k": "setup job",
+                "d": "resolves env=stage, version=0.1.0"
+              },
+              {
+                "k": "build + push",
+                "d": "staging API_URL baked in, pushed to medas-frontend-stage",
+                "hi": true
+              },
+              {
+                "k": "gcloud run deploy",
+                "d": "medas-frontend-stage -- live"
+              }
+            ],
+            "caption": "Same deploy.yaml as dev and master -- only the resolved environment changes."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T00:01:21.492336+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.43
+    },
+    {
+      "beat_id": "B06",
+      "act": "VALIDATION RUN -- ROLLBACK",
+      "role_note": "step 5b -- rollback.yaml against that same tag, stage",
+      "narration_text": "Second test, same tag: run rollback.yaml once against stage-v0.1.0, with environment set to stage. If it redeploys that same image without rebuilding anything, the recovery path is proven for this environment too — not just inherited from dev by assumption. The week isn't complete until this run is green.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "rollback.yaml -- environment: stage",
+                "d": "manual trigger, same tag: stage-v0.1.0"
+              },
+              {
+                "k": "no rebuild",
+                "d": "redeploys the existing image",
+                "hi": true
+              },
+              {
+                "k": "medas-frontend-stage",
+                "d": "known-good version, live again"
+              }
+            ],
+            "caption": "A working deploy is not proof the rollback path works too -- this run is the actual proof."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T00:02:10.430447+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 18.82
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "role_note": "the lesson, one beat -- card, no new component",
+      "narration_text": "So here's what exists now that didn't before: an isolated stage registry, one widened trust condition instead of a second identity pool, an IAM binding scoped to the stage environment specifically, a GitHub Environment with its own secrets and variables, and two separate proofs — a real deploy and a real rollback — before calling the week complete.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Stage Environment: Provisioning GCP and GitHub",
+            "artifactHeading": "Provisioned. Trusted. Deployed. Rolled back.",
+            "artifactLines": [
+              "Registry: medas-frontend-stage -- isolated from dev and from the backend's registries.",
+              "Trust: one WIF pool widened to a third GitHub Environment -- no new provider.",
+              "IAM: bound to the stage principal set specifically, not the whole repository.",
+              "GitHub: a new stage Environment, same two secrets, six variables with three changed.",
+              "Proven twice: a real stage-v0.1.0 deploy, then a real rollback against it."
+            ]
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T00:04:43.649928+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 18.86
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS",
+      "role_note": "HANDOFF LAW -- suggested prompt, read and discussed",
+      "narration_text": "Your turn: before granting a new environment's principal access to a service account it already shares with another environment, check whether the identity provider's attribute mapping actually exposes the claim you plan to scope by — environment, not just repository — before you write the binding, not after it fails.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "gcloud iam workload-identity-pools providers describe <your-provider> --workload-identity-pool=<your-pool> --location=global --format=\"value(attributeMapping)\"",
+            "topic": "ARTIFACT REGISTRY · WORKLOAD IDENTITY · IAM · GITHUB ENVIRONMENTS",
+            "segment": "Stage Environment: Provisioning GCP and GitHub",
+            "greeting": "Your turn.",
+            "runningText": "paste this into your own shell…",
+            "output": [
+              "Before scoping a new IAM binding to an environment claim,",
+              "confirm the provider's attribute mapping actually exposes it.",
+              "A binding on a claim that was never mapped fails silently until a real deploy runs."
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-11-13T00:06:51.336155+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 17.02
+    },
+    {
+      "beat_id": "B09",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Stage environment: provisioned. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Stage Environment: Provisioning GCP and GitHub",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-11-13T00:07:42.397373+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 6,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 3.48
+    }
+  ]
+}

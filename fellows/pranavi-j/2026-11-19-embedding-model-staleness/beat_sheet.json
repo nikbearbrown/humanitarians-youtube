@@ -1,0 +1,356 @@
+{
+  "metadata": {
+    "slug": "2026-11-19-embedding-model-staleness",
+    "title": "Embedding Model Staleness: The Index That Quietly Split in Two",
+    "date": "November 19, 2026",
+    "report_type": "general-ai-topic-explainer",
+    "fellow": "Sai Pranavi J.",
+    "fellow_folder": "pranavi-j",
+    "series": "Humanitarians AI Fellows — Weekly STEM Video",
+    "channel": "@HumanitariansAI",
+    "audience": "Engineers building AI/data systems",
+    "persona": "hai",
+    "engine": "kokoro",
+    "voice": "af_bella",
+    "voice_kokoro": "af_bella",
+    "voice_policy": "Bella (af_bella) — persistent voice for this fellow's whole series. Unchanged for this episode.",
+    "voice_selection_basis": "Fellow-confirmed: matches @HumanitariansAI channel and hai/Pragmatist persona.",
+    "voice_approval": "CONFIRMED (carried over from prior episodes)",
+    "register": "Pragmatist",
+    "aspect": "16:9",
+    "builder": "ai-explainer",
+    "runtime_target_s": 180,
+    "source_status": "General AI/STEM topic explainer, not a report of the fellow's own engineering work. Describes a well-documented, generic fact about embedding-model geometry incompatibility qualitatively, backed by one real, reproducible local demo using two real, named, open models. See SOURCES.md and FACTCHECK.md.",
+    "render_state": "final-masters-built-pending-publish-review",
+    "gates": {
+      "plan": "APPROVED — 2026-11-19 (Gate P)",
+      "factcheck": "RESOLVED — 2026-11-19 (see FACTCHECK.md; real demo captured, mycroft rag.py read directly and confirmed, no bug claimed)",
+      "narration": "APPROVED — 2026-11-19, cleared for audio generation",
+      "audio_lock": "LOCKED — 2026-11-19, Kokoro af_bella, 9 spoken beats + B00 real silent mp3 (ffmpeg anullsrc), durations measured via ffprobe and written to actual_duration_s",
+      "shopping_list": "N/A — all beats are self-contained Manim scenes (scenes.py); no pantry stills or Remotion assets needed",
+      "previz": "COMPLETE — 10/10 beats real Manim (scenes.py landscape + vertical/scenes.py portrait), no slates, GATE A/B clean on both, GATE V clean on both true final masters",
+      "publish": "READY FOR REVIEW — not authorized; landscape + vertical 4K masters built and GATE V clean (0 BLOCKER/0 MAJOR each, frame-exact duration parity, 4860 frames/202.5s each), awaiting fellow/PM sign-off per FELLOWS-SUBMISSION.md"
+    },
+    "submission_format": "NEW toolkit spec (brutalist/docs/FELLOWS-SUBMISSION.md, effective 2026-09-07): deliverable naming ProjectName_VolunteerName.mp4 (no date/aspect suffix), separate landscape/vertical deliverable folders, full-length 4K 2160x3840 vertical companion via ./art vertical (not a Shorts-style cut).",
+    "lane_histogram": {
+      "body_beats": 10,
+      "vox": 0,
+      "vox_share": 0.0,
+      "manim": 10,
+      "remotion": 0,
+      "card": 0
+    },
+    "build": {
+      "at": "2026-11-19T13:23:03",
+      "cut": "master",
+      "filled": 10,
+      "of": 10,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "TITLE",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "",
+      "audio_policy": "silence",
+      "new_visual_element": "Opening title card: the video title and @HumanitariansAI, silent (no narration), before the executive summary",
+      "estimated_duration_s": 4,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B00_TitleCard",
+          "module": "scenes.py"
+        },
+        "note": "Silent beat, real silent mp3 via ffmpeg anullsrc. audio_policy: silence set explicitly per build_safety.py's silent-required-audio gate.",
+        "duration_source": "silent-beat: fixed target, not measured narration"
+      },
+      "actual_duration_s": 4.128,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 4.166666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B00.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "EXEC-SUMMARY",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Hi, I'm Sai Pranavi J. This video is about embedding model staleness, why swapping or upgrading the model that turns your documents into vectors can silently break similarity search, even when nothing ever throws an error, and three checks for catching it before your users do.",
+      "new_visual_element": "Personal-intro card: fellow's name + one-line summary of what the video covers, spoken",
+      "estimated_duration_s": 17,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B01_ExecSummary",
+          "module": "scenes.py"
+        },
+        "note": "Opens with the required FELLOWS-SUBMISSION.md intro line."
+      },
+      "actual_duration_s": 17.78,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 17.791666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "HOOK",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Every embedding model maps text into its own private geometry, shaped entirely by how it was trained. Two different models, even two versions of the same one, place the exact same sentence in spaces that don't line up with each other. Swap your embedding call mid flight, leave the old vectors sitting in the index, and you've quietly split your search into two incompatible geometries, mixed together in one store.",
+      "new_visual_element": "A generic vector-index panel showing docs from Model A and Model B at the same dimensionality, then an overlay posing the real question: two geometries, did anything notice?",
+      "estimated_duration_s": 22,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B02_SplitGeometryHook",
+          "module": "scenes.py"
+        },
+        "note": "Generic/hypothetical vector-index panel, no real model or vendor named, per FACTCHECK.md."
+      },
+      "actual_duration_s": 24.67,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 24.708333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "FRAMEWORK",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Here's the test, before any example, three questions. One, check the checkpoint: is every vector in this index, old and new, from the exact same embedding model and version, not just the same vendor name? Two, audit the whole index: when that model changed, was every existing vector actually recomputed, or only the documents added from that point on? Three, watch for silence: when two geometries get mixed in one index, does anything error, or does it just hand back worse neighbors and keep going?",
+      "new_visual_element": "Checklist card, all 3 tests shown together (Check the Checkpoint / Audit the Whole Index / Watch for Silence)",
+      "estimated_duration_s": 32,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B03_ThreeQuestionsFramework",
+          "module": "scenes.py"
+        },
+        "note": "Framework shown fully before any example, matching prior STEM videos' rubric beat."
+      },
+      "actual_duration_s": 29.23,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 29.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "WORKED-EXAMPLE",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Picture a document store, fully indexed with one embedding model. Months later, the team upgrades to a newer, cheaper model, and only points new documents at it. The old vectors stay exactly where they were. A query comes in, embedded with the new model, and searches the whole index at once, as if every vector still meant the same thing. The old documents are still in there. Their rankings just quietly get worse, sometimes they stop surfacing at all, sometimes the wrong document wins instead. No error. No crash. Just a steadily worse answer.",
+      "new_visual_element": "The corpus split (docs embedded with Model A vs Model B), a query arriving, and the old document's rank falling silently, tagged SPLIT GEOMETRY SILENTLY",
+      "estimated_duration_s": 30,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B04_SilentSplit",
+          "module": "scenes.py"
+        },
+        "note": "[Source: FACTCHECK.md #3/#4 -- generic illustration backed by this build's own real demo, no real model's production accuracy claimed as universal] The split, the query, and the thing that quietly falls must all be visible together so the mechanism reads without narration alone."
+      },
+      "actual_duration_s": 32.47,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 32.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "FALSIFIABILITY",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Now the case that would break this test if it were sloppy: the exact same upgrade, the exact same old corpus. But this time, before a single query is served, the team re-embeds every old document with the new model and rebuilds the index from scratch. Same switch, same corpus. The difference is there's only ever one geometry in the store, so there's nothing left to split.",
+      "new_visual_element": "The identical corpus and switch event as B04, with every document re-embedded before serving, tagged FULLY RE-EMBEDDED NOTHING TO MIX",
+      "estimated_duration_s": 24,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B05_FullReembedHolds",
+          "module": "scenes.py"
+        },
+        "note": "[Source: FACTCHECK.md #5 -- generic illustration] Stress-tests the framework: the only variable changed from B04 is whether a full re-embed happened before serving."
+      },
+      "actual_duration_s": 23.11,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 23.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "REAL-WORLD-NOTE",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Here's a real, honest illustration, not a bug report. This project's own retrieval code, rag dot py, in the Regulatory Q and A backend, rebuilds its entire vector store completely from scratch, on every single chat request, using a small, local embedding model, with no persisted index at all. That design sidesteps this entire class of bug by construction, there's never an old index sitting around to go stale. The real trade off, every request pays the full cost of re-embedding everything, all over again.",
+      "new_visual_element": "Verbatim-quoted lines from rag.py/config.py, cited by file and line, framed clearly as a design choice, not a bug",
+      "estimated_duration_s": 23,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B06_MycroftRealWorldNote",
+          "module": "scenes.py"
+        },
+        "note": "[Source: FACTCHECK.md #6 -- confirmed by direct read of mycroft's actual rag.py/config.py/routers/chat.py, read-only reference, no file inside mycroft modified] Named directly per this video's explicit build instruction; strictly framed as a design choice, never a bug."
+      },
+      "actual_duration_s": 32.02,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 32.041666666666664,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SCAFFOLDED-TASK",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Here's something to check today. If you've ever swapped, upgraded, or changed providers for an embedding model behind a search or retrieval feature, open the index and ask, does every vector in it come from the exact same model and version? If even one doesn't, there's no partial fix, appending new vectors won't save it. The only real fix is a full re-embed, rebuilding the index from scratch.",
+      "new_visual_element": "The 3-question rubric restated as a concrete, actionable checklist, distinct from B03's framework card",
+      "estimated_duration_s": 24,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B07_AuditChecklist",
+          "module": "scenes.py"
+        },
+        "note": "Concrete, runnable action distinct from B03's framework card."
+      },
+      "actual_duration_s": 24.22,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 24.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "TAKEAWAY",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "An embedding model's geometry isn't portable. Swap it, and the old vectors don't adapt, they just sit there, quietly wrong. The fix was never incremental. It's a full re-embed, every single time.",
+      "new_visual_element": "Takeaway statement card",
+      "estimated_duration_s": 14,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B08_Statement",
+          "module": "scenes.py"
+        },
+        "note": "Editorial summary, not a factual claim requiring citation."
+      },
+      "actual_duration_s": 13.1,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 13.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SIGN-OFF",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Explained with Claude Code.",
+      "new_visual_element": "@HumanitariansAI brand card, in for Sai Pranavi J.",
+      "estimated_duration_s": 2,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B09_BrandOutro",
+          "module": "scenes.py"
+        },
+        "note": "Same pattern as this fellow's other episodes' sign-off beat."
+      },
+      "actual_duration_s": 1.51,
+      "audio_file": "mp3/beat-B09.mp3",
+      "render_duration_s": 1.5416666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B09.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-19T13:23:03"
+      }
+    }
+  ]
+}

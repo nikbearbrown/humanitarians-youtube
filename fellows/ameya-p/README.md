@@ -102,6 +102,60 @@
   Hypothesis 2 compares Random 5-View Masking against a Systematic $3 \times 3$
   Covering Grid with a Two-Round Minority Check (extending _PatchCleanser_ to
   closed-loop visuomotor control).
+- `2026-11-02-vla-adversarial-attack-research-setup/` — Security & Exploitation in Physical AI: Cloud-Offloaded
+  VLA Inference Infrastructure & Closed-Loop Simulation Setup. A Week 7 execution
+  report (`work_report.md`) under the Security & Exploitation vertical, moving the
+  VLA adversarial robustness plan from design to runnable infrastructure.
+  Documents the one-command cross-platform `LIBERO` setup on Windows
+  (`common/setup.py` with automated `core.longpaths`, editable-package,
+  `weights_only=False`, and `mujoco.dll` rendering fixes), the offload of both
+  15 GB `OpenVLA-7B` fine-tuned checkpoints to persistent Kaggle Datasets served
+  by a FastAPI `POST /act` endpoint on free `T4 x2` GPUs behind an auto-discovered
+  Cloudflare Quick Tunnel (`ntfy.sh` discovery), the RAM page-cache pre-warming
+  that cut shard loading from 3m 36s to 41.2s, the single-model-per-session
+  sharding (~7 GiB per 14.56 GiB GPU) adopted after a dual-model
+  `OutOfMemoryError`, and the local `OpenVLAClient` + self-configuring smoke
+  tests + shared `run_closed_loop_rollout` engine (saving `trajectory.npz`,
+  `metadata.json`, `video.mp4`) that the baseline trajectory collection, patch
+  attacks, and consistency-shield defenses will reuse.
+- `2026-11-09-vla-adversarial-attack-attention-extraction/` — Security & Exploitation in Physical AI: OpenVLA
+  Text-to-Vision Attention Extraction. A Week 8 execution report (`work_report.md`)
+  under the Security & Exploitation vertical, adding the observability layer that
+  Hypothesis 1's Attention Magnet Patch depends on. Documents the move of the
+  Kaggle runtime out of the notebook into a reviewable `common/kaggle_utils.py`
+  (checkpoint resolution, page-cache pre-warming, dual-T4 loading, app
+  construction), the notebook's reduction to a thin session driver, and the new
+  `POST /attention` endpoint that runs a real forward pass with
+  `output_attentions=True`. Because `OpenVLA` uses a decoder-only `Llama-2`
+  backbone, the extractor measures causal self-attention from prompt-token
+  queries to the 256 visual-key positions inserted after `<BOS>`, normalizes the
+  visual mass, averages across heads and selected text tokens, and reshapes to
+  the native `16 x 16` grid—returning per-layer `(32, 16, 16)` maps plus a
+  layer-averaged map as a base64-compressed `.npz` rather than JSON floats. Also
+  covers the validated `OpenVLAClient.extract_attention(...)` path and the live
+  `ExtractLlamaAttentionMapsTests` run on a deterministic `224 x 224`
+  `LIBERO-Object` `agentview` frame: shapes `(32, 16, 16)`, per-layer mass `1.0`,
+  repeat maximum difference `0.000e+00`, and instruction sensitivity of
+  `1.14e-4` mean / `2.27e-3` max. Built on the `claude` palette with
+  `ClaudeComposerAsk`, `BrutalistHesitantWriter`, `SkillTeardownPipeline`,
+  `ClaudeDefinitions`, `ExecutedData`, `ClaudeVerdictArtifact`, and
+   `TitleRestateOutro`, narrated in Kokoro `af_bella` (Bella). 16:9 master cut
+   (2:48, 8 beats).
+- `2026-11-16-vla-native-coaster-patch-pipeline/` — Security & Exploitation in
+  Physical AI: Native `MuJoCo` Coaster-Patch Pipeline and First Patched
+  `LIBERO` Rollouts. A Week 9 execution report (`work_report.md`) establishing
+  the rendering and recording bridge required before adversarial-patch training:
+  `common/patch_projection.py` maps a trainable patch to the `16 x 16`
+  `OpenVLA` token grid through a differentiable `kornia` warp, `common/coaster.py`
+  adds a visual-only brown coaster with a 90%-area native texture face, and
+  `run_closed_loop_rollout(..., coaster_texture_path=...)` keeps that coaster
+  across hard resets. The report records 9/9 patch-and-coaster smoke tests and
+  six `LIBERO-Object` unoptimized-patch episodes, explicitly as rendering-path
+  validation rather than attack success. Built on the `claude` palette with
+  `ClaudeComposerAsk`, `BrutalistHesitantWriter`, `SkillTeardownPipeline`,
+  `ClaudeDefinitions`, `ExecutedData`, `ClaudeVerdictArtifact`, and
+  `TitleRestateOutro`, narrated in Kokoro `af_bella` (Bella). 16:9 master cut
+  (2:44, 8 beats).
 
 ## Frictional log
 

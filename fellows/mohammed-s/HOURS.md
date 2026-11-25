@@ -15,5 +15,6 @@ each week is described in that week's Frictional log, linked from the [README](R
 | 28 Sep – 4 Oct | 20 | [2026-09-28-snowflake-cortex-triage](2026-09-28-snowflake-cortex-triage/FRICTIONAL.md) |
 | 5–11 Oct | 20 | [2026-10-05-hussain-snowshift-migration-overview](2026-10-05-hussain-snowshift-migration-overview/FRICTIONAL.md) |
 | 19–25 Oct | 20 | [2026-10-19-jboss-migrator-overview](2026-10-19-jboss-migrator-overview/FRICTIONAL.md) · [2026-10-19-muse](2026-10-19-muse/FRICTIONAL.md) |
+| 26 Oct – 1 Nov | 20 | [2026-10-26-jboss-migrator-update](2026-10-26-jboss-migrator-update/FRICTIONAL.md) · [2026-10-26-kiro-spec-ide](2026-10-26-kiro-spec-ide/FRICTIONAL.md) |
 
 Hours above are the Fellow's own report and have not been verified by a supervisor.

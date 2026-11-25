@@ -1,0 +1,59 @@
+How Bluetooth Audio Works — Humanitarians AI
+
+How does music get from your phone to wireless earbuds, and why does it sometimes lag or cut out? I built a small
+version to see how. Explained from nothing: no technical background needed.
+
+Listen near the middle (about 1:31): the same few seconds of a test track played through my simulated Bluetooth
+link twice, with a small buffer and then a big one. Listen for one short stutter in the first.
+
+0:00 How does Bluetooth audio work?
+0:12 Too much data to send
+0:31 Seventy-nine channels
+0:50 Picking a codec
+1:10 Music in reserve (listening clip)
+1:40 Holding the picture back
+1:55 What comes next: LE Audio
+2:11 Better Bluetooth sound
+
+TOO MUCH DATA
+CD-quality stereo is about 1,400 kilobits a second: more than Bluetooth's audio link can reliably carry. So your
+phone squeezes the music first, with a codec. The one every device must support is SBC; on my test track it used
+about 330 kilobits a second, under a quarter.
+
+THE RADIO
+Classic Bluetooth hops between 79 channels, up to 1,600 times a second, and shares them with Wi-Fi. In my
+simulation, a busy Wi-Fi network made 17% of tries fail. Adaptive hopping skips the busy channels: about 1%.
+
+CODECS
+Your phone and headphones agree on a codec. SBC is the baseline; Apple's devices prefer AAC; many Android phones
+also offer aptX (about 350 kilobits a second) or LDAC (up to 990). More data can sound better, but it's harder to
+send without gaps.
+
+THE BUFFER
+Lost packets, from Wi-Fi or your own body, get sent again, so the earbuds keep a little music in reserve: a buffer.
+In two minutes of my simulation, a 50 millisecond buffer glitched 30 times; 200 milliseconds, 3 times; 300, never.
+That reserve is the main reason Bluetooth lags.
+
+LIP SYNC AND WHAT COMES NEXT
+Real earbuds are often a couple of hundred milliseconds behind. For videos, the headphones can report that delay,
+and the phone holds the picture back to match; a game can't hold back your button presses. Bluetooth's next
+generation, LE Audio, brings a new codec called LC3, which the Bluetooth SIG says beats SBC even at half the bit
+rate, and Auracast, which lets one phone or TV stream to any number of earbuds nearby.
+
+FOR BETTER SOUND
+Keep your phone close, pick a better codec if your phone offers one, and use your earbuds' game mode for games.
+
+The data rates were measured on my own synthetic test track with ffmpeg's codec encoders (ffmpeg's AAC encoder,
+not Apple's). The radio, Wi-Fi, body-blocking and buffer numbers come from a simulation with settings I chose, not
+from measurements of real earbuds, and nothing in it is any company's code. The 170–370 ms delay range on screen is
+from two published tests (RTINGS and SoundGuys). The phone, earbuds and channels on screen are drawn.
+
+Narration is an AI voice (Kokoro af_bella, Rohan V.'s persistent choice for the series); script and decisions by Rohan V.
+
+Sources: Bluetooth SIG (technology overview; LE Audio announcement, 2020; LE Audio specifications, 2022);
+Rohde & Schwarz application note 1C108; Wikipedia, SBC and aptX; Qualcomm aptX pages; Sony, LDAC; Apple via
+MacRumors (2021); SoundGuys (2021) and RTINGS on latency; Android Open Source Project on delay reporting.
+
+Made with Brutalist, HyperFrames and three.js for Humanitarians AI · Lyrical Literacy.
+
+#Bluetooth #WirelessEarbuds #HowItWorks #AudioTech #HumanitariansAI

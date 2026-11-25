@@ -1,41 +1,60 @@
 # Storyboard — Same Number, Two Ways
 
-_Fellow: Asavari (Ash) Shejwal · Mycroft — SEC Filings Financial Metrics Agent · 2026-08-14 · 16:9 + 9:16_
+_Fellow: Asavari (Ash) Shejwal · Mycroft (SEC Agent) · 2026-08-14 · 16:9 + 9:16 · 4K (3840×2160)_
 
-Brutalist explainer, framework-first (PROOF standard). One visual per beat; automated narration.
+Official Brutalist beat-sheet format (renders via brutalist.art / kokoro voice `af_kore`).
+Beat two is the executive summary ("why this matters"), per review.
 
-## Beat 1 — TRUSTWORTHY DATA · AI ACCOUNTABILITY
+## Beat 1 — GREETING
 
-**On screen:** SEC Filings Financial Metrics Agent
+**On screen:** This is Humanitarians.
 
-**Narration:** Can you trust a number an AI hands you? It's a simple question, and the honest answer is more uncomfortable than most people expect. Because a number can look completely normal — correctly formatted, in a believable range, the kind of figure you would paste into a report without a second thought — and still be wrong. The checks we usually rely on will not catch it, because they only test whether the number is well formed, not whether it is true. In the next few minutes, I want to show you the one kind of check that does catch it, using a real bug from my own tool.
+**Narration:** This is Humanitarians.
 
-## Beat 2 — THE PROBLEM
+## Beat 2 — OPEN
 
-**On screen:** A plausible number is the dangerous kind.
+**On screen:** Can you trust a number an AI hands you?
 
-**Narration:** Let me show you exactly what I mean. This is a real revenue figure my tool first produced for Microsoft: fiscal year twenty twenty-five revenue, two hundred eleven point nine billion dollars. It passed every structural check I had. It is correctly formatted. It sits in a completely believable range for a company like Microsoft. If you saw it in a spreadsheet, nothing about it would make you pause. And yet it is wrong — off by two full years. The reason nothing flagged it is subtle but important. None of my checks had anything to compare it against. They could confirm the number was well formed. They could not confirm it was the right number.
+**Narration:** Can you trust a number an AI hands you? A number can look completely normal and still be wrong, and the usual checks won't catch it. Only one thing does.
 
-## Beat 3 — THE MECHANISM
+## Beat 3 — Why This Matters
 
-**On screen:** Rules catch the impossible. A cross-check catches the plausible.
+**On screen:** What is this video about, and why should I watch it?
 
-**Narration:** So how do you catch a wrong number that looks right? The tool I built trusts nothing by default, and it checks in two different ways, because there are two different kinds of wrong. The first kind is the impossible: a profit margin over one hundred percent, a balance sheet where assets do not equal liabilities plus equity. Deterministic rules catch those instantly, every single time, because they violate arithmetic. But the second kind is the plausible but wrong: a number that breaks no rule and still is not true. Rules cannot catch that, because it is internally consistent. The only thing that catches it is a comparison against a figure you did not derive from the same data. And underneath both, every value keeps a link back to the exact filing it came from, so any claim can be traced and checked by hand.
+**Narration:** Hi, I'm Asavari, a fellow at Humanitarians AI. This video is about how to trust a number an AI hands you. In a couple of minutes you'll learn a simple check that catches wrong numbers even when they look completely normal, using a real bug from a tool I built on SEC financial data. If you work with data or AI outputs and want to avoid confident mistakes, this is for you.
 
-## Beat 4 — WE TESTED IT
+## Beat 4 — THE PROBLEM
 
-**On screen:** Same number, two ways.
+**On screen:** FY2025 revenue = $211.9B
 
-**Narration:** Here is the moment it actually mattered, side by side. On the left, the first approach: group the data by the filing's own fiscal-year field. That gives two hundred eleven point nine billion for twenty twenty-five, and it passes. It is self-consistent, so it looks fine. On the right, the second approach: cross-check that same number against Microsoft's actually reported revenue, two hundred eighty-one point seven billion. Now the mismatch is obvious. The self-consistent version sailed through, because it was only ever compared against itself. Only the independent check, the one that used a source I did not derive from the same data, caught the error. And notice the receipt along the bottom. The correct figure carries its exact tag, its filing accession number, and a link to the document. That is what makes it verifiable, rather than just asserted.
+**Narration:** This is a real revenue figure my tool first produced for Microsoft. Correctly formatted, right range, passes every structural check. It's also wrong, by two years. Nothing flagged it, because nothing had anything to compare it against.
 
-## Beat 5 — THE LIMIT
+## Beat 5 — THE MECHANISM
 
-**On screen:** No rule replaces a known-good reference.
+**On screen:** Rules + cross-check
 
-**Narration:** Now, the honest limit, because a method you cannot break is just a slogan. A number can be correctly tagged, perfectly well formed, and still land on the wrong period. No amount of rules will fix that case. And here is the key reason why. The rules are computed from the same data, so they share the data's blind spot. They cannot see the error, because the error is baked into the very thing they are checking. The cross-check is the one test that does not share that blind spot, because it comes from outside the data. That is exactly why it is not optional.
+**Narration:** The tool trusts nothing by default and checks in two ways. Deterministic rules catch impossible values, a margin over a hundred percent, a balance sheet that doesn't balance. But a plausible wrong number sails through those. To catch it, you compare against a figure you did not derive from the same data. And every number keeps a link back to its filing.
 
-## Beat 6 — THE TAKEAWAY
+## Beat 6 — WE TESTED IT
 
-**On screen:** Trust the check you didn't derive from the data.
+**On screen:** Self-consistent PASS vs independent CAUGHT IT
 
-**Narration:** So here is what to take with you. The next time an AI hands you a number, any number, in any tool, run four quick checks. One: can you trace it back to its source? Two: is there a rule that would catch an impossible value? Three: can the system say, I don't know, when it is not sure, instead of guessing? And four, the one that matters most: did you check it against a source you did not derive from the same data? The first three are good hygiene. The fourth is the one that catches the dangerous errors. Fail it, and you are not verifying anything. You are just trusting a number because it happens to look clean. Thanks for watching.
+**Narration:** Here's the moment it mattered. Group the data by the filing's own year field and you get two hundred eleven point nine billion, and it looks fine. Cross-check it against Microsoft's actually reported revenue, two hundred eighty-one point seven billion, and the mismatch is obvious. The self-consistent version passed. Only the independent check caught it. And the correct figure carries its exact tag and filing link, so it's verifiable.
+
+## Beat 7 — THE LIMIT
+
+**On screen:** The honest limit
+
+**Narration:** The honest limit. A number can be correctly tagged, well formed, and still wrong. No stack of rules fixes that, because the rules share the data's blind spot. The cross-check is the one test that doesn't, because it comes from outside the data.
+
+## Beat 8 — The verdict
+
+**On screen:** Run this on any number an AI hands you
+
+**Narration:** So next time an AI hands you a number, run four checks. Can you trace it to its source? Is there a rule that catches the impossible? Can it say I don't know? And the one that matters most, did you check it against something you didn't derive from the same data? Fail that last one, and you're just trusting a number because it looks clean.
+
+## Beat 9 — OUTRO
+
+**On screen:** Same Number, Two Ways — outro card
+
+**Narration:** Same Number, Two Ways. From Humanitarians AI.

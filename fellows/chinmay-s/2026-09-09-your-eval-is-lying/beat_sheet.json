@@ -1,0 +1,855 @@
+{
+  "metadata": {
+    "title": "Your Eval Is Lying to You",
+    "slug": "hai-your-eval-is-lying",
+    "topic": "EVAL TEARDOWN",
+    "register": "Teardown",
+    "audience": "HAI",
+    "brand": "claude",
+    "voice": "HumanitariansAI",
+    "engine": "kokoro",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "voice_kokoro": "af_bella",
+    "channel": "humanitarians-ai",
+    "handle": "@HumanitariansAI",
+    "note": "Teardown of an LLM prompt-engineering + evaluation notebook whose harness reports 0.0 across the board. Three real bugs: the model was never called (MOCK_OUTPUT), the normalizer strips non-ASCII, and it preserves the full stop. Every on-screen metric is recomputed by build_beat_sheet.py using the notebook's own scoring functions — no figure is hand-typed. NO INDIVIDUAL IS NAMED. Bella (af_bella), Humanitarians AI. Never publishes. EXTENDED CUT: 26 beats (~6 min). Beats B16-B25 add the exception-swallow root cause, the twin-zero failure mode, metric selection, the latent extract_final_answer fallback, golden tests for the scorer, and the unvalidated Discussion claim. Five character-driven cartoon scenes (EvalCartoon.tsx) render in the Claude palette only — cartoon motion, no second hue.",
+    "tags": [
+      "LLM evaluation",
+      "prompt engineering",
+      "exact match",
+      "F1",
+      "chain-of-thought",
+      "eval harness",
+      "unicode normalization",
+      "Humanitarians AI"
+    ],
+    "build": {
+      "at": "2026-09-09T12:41:02",
+      "cut": "master",
+      "filled": 26,
+      "of": 26,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "A notebook that benchmarks prompt engineering, where every score is zero — this is Humanitarians AI. Today we take apart an evaluation harness that reports total failure, and cannot tell you whether the model or the measurement is the broken thing.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Audit the measurement.",
+            "topic": "EVAL TEARDOWN",
+            "segment": "Your Eval Is Lying to You",
+            "command": "Here is a notebook comparing baseline and chain-of-thought prompts on two datasets, scored with exact match and F1. Every number it reports is 0.0. Tell me whether the prompts failed, or the harness did — and show me exactly where.",
+            "runningText": "auditing the harness…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "the model was never called",
+              "the normalizer deletes accented characters",
+              "a correct answer with a full stop scores zero"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18.3,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SETUP",
+      "narration_text": "The design is reasonable. Two datasets — geography facts, and arithmetic word problems. Two prompts each: a plain baseline, and chain-of-thought. Score both with exact match and token F1, then compare.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "THE DESIGN",
+            "headline": "Two datasets. Two prompts. Two metrics.",
+            "kicker": "knowledge versus reasoning — a genuinely good comparison"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.8,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 13.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B24",
+      "act": "DATASETS",
+      "narration_text": "Two datasets, chosen deliberately. Geography capitals test stored knowledge — the model either memorised Ottawa or it did not. Arithmetic word problems test reasoning, where working step by step should actually change the outcome.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "THE DESIGN",
+            "headline": "Knowledge on one side. Reasoning on the other.",
+            "kicker": "the split is the whole experiment"
+          },
+          "rendered": {
+            "out": "media/B24.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.0,
+      "audio_file": "mp3/beat-B24.mp3",
+      "actual_duration_s": 15.53,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B24.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "PROMPTS",
+      "narration_text": "The prompt is the interface. Baseline asks for the answer in one or two words. Chain-of-thought asks the model to reason first and then commit, which the harness pulls out with a regex on the words final answer.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalPromptDiff",
+          "props": {},
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.9,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 13.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:EvalPromptDiff",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "PIPELINE",
+      "narration_text": "Every prediction walks the same four steps. Call the model. Extract the final answer. Normalize the text. Score it. Three of those four never touch the model at all.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalPipeline",
+          "props": {},
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 12.9,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 10.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:EvalPipeline",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "CHART",
+      "narration_text": "Here is what the notebook actually produced. Four bars. Exact match zero, F1 zero, every dataset, every prompt. No error, no warning. The chart rendered cleanly.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalZeroChart",
+          "props": {},
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 11.6,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 11.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:EvalZeroChart",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "ROOT-CAUSE",
+      "narration_text": "Here is the root cause. The import sits inside a try block, and the except catches every exception and prints nothing. No key, no client, no error on screen. The notebook quietly sets a flag, and every call after that returns the string MOCK OUTPUT.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalSilentCatch",
+          "props": {},
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17.2,
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 16.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B16.mp4",
+        "filled_by": "remotion:EvalSilentCatch",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "TWIN-ZERO",
+      "narration_text": "There is a second silent path. When a call fails, the function prints the error and returns an empty string. An empty string scores zero. A wrong answer scores zero. In the results table, an outage and a mistake are the same row.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalTwinZeros",
+          "props": {},
+          "rendered": {
+            "out": "media/B17.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.4,
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 15.47,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B17.mp4",
+        "filled_by": "remotion:EvalTwinZeros",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "MOCK",
+      "narration_text": "It is not a result. The OpenAI client never initialized, so every single call returned the literal string MOCK underscore OUTPUT. The harness scored a placeholder against the gold answers and dutifully reported perfect failure.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "THE FIRST BUG",
+            "headline": "The model was never called.",
+            "kicker": "every prediction was the string MOCK_OUTPUT"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15.6,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 15.08,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "LESSON",
+      "narration_text": "And that is the real problem, which is not in the metric. An evaluation that cannot separate a broken model from a broken pipeline is not measuring the model at all.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "WHAT IT MEANS",
+            "headline": "Zero is not a score. It is a symptom.",
+            "kicker": "the harness has no way to tell you which failed"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.8,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 10.24,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "NORMALIZER",
+      "narration_text": "Now the second bug. The normalizer lowercases, then deletes every character outside a small allow-list. Watch what that does to the capital of Brazil.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "EvalNormalizer",
+          "props": {},
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 10.7,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 9.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "remotion:EvalNormalizer",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "CONSEQUENCE",
+      "narration_text": "So the gold answer and the spelling a model actually emits can never match. Brasilia scores zero against Brasília — not because the model was wrong, but because the accent was deleted and the tokens stopped lining up.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "THE CONSEQUENCE",
+            "headline": "The gold answer is corrupted before comparison.",
+            "kicker": "a perfect answer, marked wrong by the scorer"
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.9,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 13.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "STAMP",
+      "narration_text": "Watch it happen. The capital of France is Paris — a correct answer, correctly spelled. The scorer normalises it, finds no token overlap with the gold, and stamps zero point zero on both metrics.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "illustrate",
+        "remotion": {
+          "pattern": "EvalGraderStamp",
+          "props": {},
+          "rendered": {
+            "out": "media/B18.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.0,
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 13.57,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B18.mp4",
+        "filled_by": "remotion:EvalGraderStamp",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "SCOREBOARD",
+      "narration_text": "Run the notebook's own scoring functions and the damage is visible. A fully correct sentence naming Paris scores zero on both metrics, because the allow-list keeps the full stop and paris-with-a-period never matches paris.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalScoreboard",
+          "props": {
+            "rows": [
+              {
+                "pred": "Paris",
+                "gold": "Paris",
+                "em": 1.0,
+                "f1": 1.0
+              },
+              {
+                "pred": "The capital of France is Paris.",
+                "gold": "Paris",
+                "em": 0.0,
+                "f1": 0.0
+              },
+              {
+                "pred": "Delhi",
+                "gold": "New Delhi",
+                "em": 0.0,
+                "f1": 0.67
+              },
+              {
+                "pred": "Brasilia",
+                "gold": "Brasília",
+                "em": 0.0,
+                "f1": 0.0
+              },
+              {
+                "pred": "Final answer: 7",
+                "gold": "7",
+                "em": 1.0,
+                "f1": 1.0
+              }
+            ],
+            "eyebrow": "computed by the notebook's own exact_match and f1_tokens",
+            "sparkLine": "Two of these five predictions are correct and scored zero."
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15.2,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 14.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "remotion:EvalScoreboard",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "F1",
+      "narration_text": "That last one stings, because F1 is supposed to be the forgiving metric. It measures token overlap, so Delhi against New Delhi earns nought point six seven — real partial credit. Punctuation defeats it anyway.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalTokenOverlap",
+          "props": {},
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15.6,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 14.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "remotion:EvalTokenOverlap",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "act": "METRIC-CHOICE",
+      "narration_text": "So which metric is right? Exact match suits constrained output, where you have told the model to return one word or valid JSON. F1 suits free text, where partial credit is meaningful. For arithmetic, neither is right — you want the parsed number compared as a number.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "CHOOSING A METRIC",
+            "headline": "The metric has to match the shape of the answer.",
+            "kicker": "exact match for constrained · F1 for free text · neither for arithmetic"
+          },
+          "rendered": {
+            "out": "media/B19.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17.9,
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 16.92,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B19.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "FIX",
+      "narration_text": "The fix is four lines. Fold unicode down to ASCII, and drop the full stop from the allow-list. Same predictions, same gold answers, same metrics — exact match moves from nought point six to one point zero.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalBeforeAfter",
+          "props": {
+            "before": 0.6,
+            "after": 1.0
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.5,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "remotion:EvalBeforeAfter",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "LATENT",
+      "narration_text": "Now the bug that has not fired yet. Extract final answer searches for the phrase final answer, and if it does not find it, returns the entire input string. That fallback is silent. Every word of the model's reasoning becomes the thing you score.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalRegexMiss",
+          "props": {},
+          "rendered": {
+            "out": "media/B20.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.8,
+      "audio_file": "mp3/beat-B20.mp3",
+      "actual_duration_s": 16.04,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B20.mp4",
+        "filled_by": "remotion:EvalRegexMiss",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "LATENT-WHY",
+      "narration_text": "It stayed hidden for one reason: the mock never wrote a sentence. The moment a real chain-of-thought prompt returns three lines of working without that exact phrase, the whole paragraph gets compared against the word Paris.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "WHY IT HID",
+            "headline": "A mock output is too well behaved to find your bugs.",
+            "kicker": "the fallback needs a real, messy answer to trigger"
+          },
+          "rendered": {
+            "out": "media/B21.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 13.7,
+      "audio_file": "mp3/beat-B21.mp3",
+      "actual_duration_s": 13.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B21.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "GOLDEN",
+      "narration_text": "The fix is not clever. Four assertions against the scorer itself, with answers you already know. Two of them fail immediately on the notebook as written. A scorer is code, and untested code does not become trustworthy by being short.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "EvalGoldenTest",
+          "props": {},
+          "rendered": {
+            "out": "media/B22.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15.3,
+      "audio_file": "mp3/beat-B22.mp3",
+      "actual_duration_s": 14.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B22.mp4",
+        "filled_by": "remotion:EvalGoldenTest",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "UNVALIDATED",
+      "narration_text": "Which brings us to the discussion section. It concludes that chain-of-thought helps reasoning more than knowledge. That may well be true — but this run produced no evidence for it either way. Every number behind that conclusion was zero, from a model that was never called.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "THE CONCLUSION",
+            "headline": "A plausible finding, with nothing underneath it.",
+            "kicker": "the claim may be correct — this notebook did not show it"
+          },
+          "rendered": {
+            "out": "media/B23.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 17.6,
+      "audio_file": "mp3/beat-B23.mp3",
+      "actual_duration_s": 15.94,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B23.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B25",
+      "act": "CONSTRAINT",
+      "narration_text": "The exercises get one thing exactly right. They suggest a constraint metric: does the answer parse as a pure integer? That is the correct instinct — check the shape of the output separately from its correctness. Most eval bugs are shape bugs.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "THE RIGHT INSTINCT",
+            "headline": "Check the shape before you check the answer.",
+            "kicker": "most eval bugs are shape bugs, not knowledge bugs"
+          },
+          "rendered": {
+            "out": "media/B25.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 16.0,
+      "audio_file": "mp3/beat-B25.mp3",
+      "actual_duration_s": 15.45,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B25.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "LESSON",
+      "narration_text": "Nothing about the model changed. Forty percent of that score was the harness marking correct answers wrong. Ship it as-is and you would have concluded your prompting was failing.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "IdxStatement",
+          "props": {
+            "eyebrow": "THE COST",
+            "headline": "You would have tuned the prompt to fix the scorer.",
+            "kicker": "and the prompt was never the problem"
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 12.9,
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 10.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B12.mp4",
+        "filled_by": "remotion:IdxStatement",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "VERDICT",
+      "narration_text": "So here is the teardown. The prompt engineering in this notebook is sound. The evaluation is what needed review — and evaluation is the part almost nobody reviews, because a number that renders looks exactly like a number that is true.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "stagger",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Your Eval Is Lying to You — one page",
+            "artifactHeading": "The teardown",
+            "artifactLines": [
+              "Bug 1 — the model was never called. The client failed to initialize, every prediction was the string MOCK_OUTPUT, and the harness reported 0.0 without a single warning.",
+              "Bug 2 — the normalizer strips non-ASCII, so \"Brasília\" becomes \"bras lia\" and can never match the spelling a model emits.",
+              "Bug 3 — the allow-list keeps the full stop, so a correct sentence ending in \"Paris.\" scores zero on exact match AND on F1.",
+              "The fix: fold unicode to ASCII, drop the period. Four lines. Exact match went from 0.60 to 1.00 on the same predictions.",
+              "The rule: test the scorer against the gold answers before you trust it to judge a model."
+            ]
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18.3,
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 14.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B13.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "HANDOFF",
+      "narration_text": "Your turn, and this one takes a minute. Feed your own eval harness the gold answers as if they were predictions. If it does not return a perfect one point zero, your metric is broken before your model ever gets a turn.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN",
+            "segment": "Score the gold against itself",
+            "command": "Take my evaluation harness and run it with the gold answers passed in as the predictions. Every score should be a perfect 1.0. Tell me every case where it is not, and why the normalizer or the metric is responsible.",
+            "runningText": "scoring gold against gold…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "a scorer that cannot score itself perfectly is broken",
+              "this catches normalizer bugs in about a minute"
+            ]
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 18.7,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 13.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B14.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-09-09T12:41:02"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "OUTRO",
+      "narration_text": "Your eval is lying to you. If a build log that audits its own measurements is worth your time, subscribe. Humanitarians AI.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Your Eval Is Lying to You",
+            "handle": "@HumanitariansAI"
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": "2026-09-09T00:00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 9.8,
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 8.53,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B15.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-09-09T12:41:02"
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[ok] real post-fix SQL block confirmed verbatim in crud.py (1 match)
+
+=== PRE-FIX (reconstructed: original urgency_score cutoffs) ===
+pre-fix (urgency_score cutoffs): {'critical': 32, 'high': 139, 'medium': 240, 'low': 0}
+
+=== POST-FIX (real, current SQL from crud.py on disk) ===
+post-fix (impact_level column): {'critical': 33, 'high': 98, 'medium': 280, 'low': 0}
+
+=== ASSERTIONS ===
+PASS -- pre.critical == 32
+PASS -- pre.high == 139
+PASS -- pre.medium == 240
+PASS -- pre.low == 0
+PASS -- post.critical == 33
+PASS -- post.high == 98
+PASS -- post.medium == 280
+PASS -- post.low == 0
+PASS -- total rows == 411
+PASS -- mismatches == 62
+PASS -- mismatch share == 15% (62/411)
+PASS -- old High overcount == 41 (139-98)
+PASS -- old High inflation ~= 30% (41 excess / 139 old-reported total, D1-VERIFICATION.md's own rounding of 29.5%)
+
+ALL ASSERTIONS PASSED: the real, current get_stats() SQL (post-fix) reproduces D1-VERIFICATION.md's own reported counts exactly (Critical 33 / High 98 / Medium 280 / Low 0), and the reconstructed pre-fix SQL reproduces the old, disagreeing counts exactly (Critical 32 / High 139 / Medium 240 / Low 0) -- 62 of 411 rows (15%) land in a different tier between the two methods, with the old method overcounting High by 41 items (30% inflated), matching D1-VERIFICATION.md's live-DB table exactly.

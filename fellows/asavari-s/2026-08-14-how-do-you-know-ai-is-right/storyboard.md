@@ -1,35 +1,54 @@
 # Storyboard — How Do You Know an AI Is Right?
 
-_Fellow: Asavari (Ash) Shejwal · AI / STEM · 2026-08-14 · 16:9 + 9:16_
+_Fellow: Asavari (Ash) Shejwal · AI / STEM · 2026-08-14 · 16:9 + 9:16 · 4K (3840×2160)_
 
-Brutalist explainer, framework-first (PROOF standard). One visual per beat; automated narration.
+Official Brutalist beat-sheet format (renders via brutalist.art / kokoro voice `af_kore`).
+Beat two is the executive summary ("why this matters"), per review.
 
-## Beat 1 — AI ACCOUNTABILITY
+## Beat 1 — GREETING
 
-**On screen:** How Do You Know an AI Is Right?
+**On screen:** This is Humanitarians.
 
-**Narration:** Every AI demo looks impressive. That is exactly the problem. Looking good and being right are different things, and telling them apart is called evaluation. Here's the core move. You cannot know a model is right by admiring its output. You need something to compare it against, an answer key, and crucially, you have to write that key before you see the model's answer. Otherwise you'll just rationalize whatever it gave you.
+**Narration:** This is Humanitarians.
 
-## Beat 2 — THE PROBLEM
+## Beat 2 — OPEN
 
-**On screen:** Grading by vibes rewards confidence, not correctness.
+**On screen:** The demo looked great. Is it actually correct?
 
-**Narration:** Here's why vibes fail. When you judge an answer by reading it, you reward the things that are easy to fake. Fluency, confidence, official sounding citations. None of those are correctness. A model that has learned to sound thorough will pass your gut check while being wrong, and you'll approve it, because it pattern matches to good. Confidence is cheap to manufacture. Correctness is not.
+**Narration:** Every AI demo looks impressive. Looking good and being right are different things. You can't know a model is right by admiring its output.
 
-## Beat 3 — THE MECHANISM
+## Beat 3 — Why This Matters
 
-**On screen:** Write the key first. Let something independent grade.
+**On screen:** What is this video about, and why should I watch it?
 
-**Narration:** So here's the mechanism. First, write the answer key, the ground truth, before the model runs, so it can't be contaminated by what the model happens to say. Second, let something independent do the grading. The thing being tested cannot also be its own judge, or it will share its own blind spots. If a model checks its own work, it grades against its own assumptions and passes. An independent key, written first, catches the errors the model can't see in itself.
+**Narration:** Hi, I'm Asavari, a fellow at Humanitarians AI. This video is about evaluation, how you actually know an AI's answer is correct, not just convincing. You'll learn why a good demo isn't evidence, and what real evidence looks like. If you ever have to trust or approve an AI's output, this is for you.
 
-## Beat 4 — THE LIMIT
+## Beat 4 — THE PROBLEM
 
-**On screen:** A metric you can game is a metric you will game.
+**On screen:** fluent is not correct
 
-**Narration:** One important limit. An evaluation is only as good as its answer key. If the key is easy, or if you keep tuning the model against the same test until it passes, you get a great looking score that means nothing in the real world. The test set has to be honest. Held out, representative, and hard enough to actually distinguish right from wrong. A number you optimized directly against is not evidence. It's a mirror.
+**Narration:** When you judge an answer by reading it, you reward what's easy to fake, fluency, confidence, official-sounding citations. None of those are correctness. A model that learned to sound thorough passes your gut check while being wrong, and you approve it.
 
-## Beat 5 — THE TAKEAWAY
+## Beat 5 — THE MECHANISM
 
-**On screen:** Trust the score, not the show.
+**On screen:** no one grades their own work
 
-**Narration:** So the takeaway. Before you trust an AI system, look past the demo and ask for the evaluation. Is there an answer key, written before the model's output? Is the grader independent of the model? Could the test have been gamed? And would the result survive on data the model has never seen? A convincing demo is a show. A real evaluation is evidence. Ask for the evidence.
+**Narration:** Write the answer key, the ground truth, before the model runs, so it can't be contaminated. Then let something independent grade, the thing being tested can't be its own judge. If a model checks its own work, it grades against its own assumptions and passes. An independent key catches what it can't see in itself.
+
+## Beat 6 — THE LIMIT
+
+**On screen:** the key must be honest
+
+**Narration:** An evaluation is only as good as its answer key. If it's easy, or you keep tuning against the same test, you get a great-looking score that means nothing. The test set must be honest, held out, representative, and hard. A number you optimized directly against is not evidence, it's a mirror.
+
+## Beat 7 — The verdict
+
+**On screen:** A demo is a show; an evaluation is evidence
+
+**Narration:** Before you trust an AI system, look past the demo and ask for the evaluation. Is there an answer key written before the output? Is the grader independent? Could the test have been gamed? Would the result survive on unseen data? A demo is a show. An evaluation is evidence. Ask for the evidence.
+
+## Beat 8 — OUTRO
+
+**On screen:** How Do You Know an AI Is Right? — outro card
+
+**Narration:** How Do You Know an AI Is Right?. From Humanitarians AI.

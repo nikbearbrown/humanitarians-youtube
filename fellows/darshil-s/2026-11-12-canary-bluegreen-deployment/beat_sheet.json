@@ -1,0 +1,287 @@
+{
+  "metadata": {
+    "title": "Week 10 Technical Learnings — Deployment Strategy Fundamentals",
+    "slug": "canary-bluegreen-deployment-learning",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied 7-slide narration script (canary vs. blue-green deployment strategies, mapped onto Cloud Run's revision/traffic model), provided 2026-11-12. The supplied text had several garbled/cut-off fragments (mid-sentence corruption, likely a copy-paste glitch, same pattern as prior weeks' scripts) -- repaired to complete sentences preserving the evident intended meaning; every repair is logged verbatim in FACTCHECK.md. A STEM/learning-only week: no separate project-update video was supplied alongside this one.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "aspect": "16:9",
+    "description": "The theory behind canary and blue-green deployments: the shared problem both solve (a standard deploy exposes 100% of users instantly), how a canary gradually ramps traffic while monitoring, how blue-green validates a fully isolated second environment before an atomic cutover, why Cloud Run's immutable-revision-plus-traffic-percentage model makes both just two usage patterns of one primitive rather than separate features, how to choose between them, and why deployment strategy is risk management, not just automation.",
+    "note": "GitHub-dark skin for the five mechanics beats (GitHubCallChain diagrams, matching the supplied slide structure), Claude-cream skin for the INTRO bookend, the closing card, and the OUTRO. Narration text is the fellow-supplied script with garbled fragments repaired -- see FACTCHECK.md for the exact before/after of each repair.",
+    "total_estimated_duration_seconds": 260
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, slide 1 title card",
+      "narration_text": "This week's learning focus was the theory behind canary and blue-green deployments — two of the most common strategies for releasing software safely, and how they map directly onto Cloud Run's revision model.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "gcloud run services update-traffic medas-frontend-stage --to-revisions=LATEST=5,PREV=95 --region=us-east1",
+            "topic": "CANARY DEPLOYMENTS · BLUE-GREEN · CLOUD RUN REVISIONS · RISK MANAGEMENT",
+            "segment": "Week 10 Technical Learnings — Deployment Strategy Fundamentals",
+            "greeting": "Darshil Shah",
+            "runningText": "the shared problem → canary → blue-green → one primitive → choosing between them…",
+            "output": [
+              "this week: STEM/learning topic",
+              "canary and blue-green deployment theory",
+              "how both map onto Cloud Run's revision model"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-13T05:28:11.699763+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 11.93
+    },
+    {
+      "beat_id": "B01",
+      "act": "THE PROBLEM BOTH STRATEGIES SOLVE",
+      "role_note": "slide 2 -- all-at-once exposure vs. controlled exposure",
+      "narration_text": "The core problem both strategies address is the same: a standard deploy exposes 100% of users to a new version the instant it goes live, which means any issue is immediately a full-scale incident. Canary and blue-green deployments exist to reduce that exposure before it becomes a problem.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "All-at-once deploy",
+                "d": "100% exposure immediately — any issue is a full-scale incident"
+              },
+              {
+                "k": "Controlled exposure",
+                "d": "canary and blue-green both reduce that exposure first",
+                "hi": true
+              }
+            ],
+            "caption": "Same problem, two different answers — both reduce exposure before it becomes an incident."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-13T05:28:50.690589+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.24
+    },
+    {
+      "beat_id": "B02",
+      "act": "CANARY DEPLOYMENTS DEFINED",
+      "role_note": "slide 3 -- gradual traffic ramp, monitored at each step",
+      "narration_text": "A canary deployment releases a new version to a small subset of users, then gradually increases that share while monitoring error rates and performance. The name comes from the idea of a canary in a coal mine — a small, early signal that something is wrong before it affects everyone.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "5% traffic",
+                "d": "a small subset — the early signal"
+              },
+              {
+                "k": "25% traffic",
+                "d": "share increases, still monitored",
+                "hi": true
+              },
+              {
+                "k": "100% traffic",
+                "d": "full rollout, only after each step validates clean"
+              }
+            ],
+            "caption": "A canary in a coal mine — a small, early signal before it affects everyone."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-13T05:29:29.133617+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.85
+    },
+    {
+      "beat_id": "B03",
+      "act": "BLUE-GREEN DEPLOYMENTS DEFINED",
+      "role_note": "slide 4 -- two full environments, atomic cutover",
+      "narration_text": "A blue-green deployment keeps two complete versions running simultaneously — the current version and the new one — and validates the new version in isolation before switching all traffic over in one atomic move. It trades gradual exposure for a cleaner, all-or-nothing cutover with a clear rollback point.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Blue (current)",
+                "d": "serving 100% of live traffic"
+              },
+              {
+                "k": "Green (new)",
+                "d": "validated in isolation — zero live traffic yet",
+                "hi": true
+              },
+              {
+                "k": "Atomic cutover",
+                "d": "all traffic switches to green at once"
+              }
+            ],
+            "caption": "Trades gradual exposure for a cleaner cutover with a clear rollback point."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-13T05:30:06.071955+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.68
+    },
+    {
+      "beat_id": "B04",
+      "act": "WHY CLOUD RUN MAKES BOTH EASY",
+      "role_note": "slide 5 -- one primitive, two usage patterns",
+      "narration_text": "What makes both strategies practical here is that Cloud Run already treats each deploy as an immutable revision with controllable traffic percentages. Canary and blue-green aren't separate features to build — they're just two different ways of using the same underlying primitive: multiple revisions existing at once, with traffic deliberately controlled between them.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Immutable revision",
+                "d": "Cloud Run's own deploy model, already in place"
+              },
+              {
+                "k": "+ controllable traffic %",
+                "d": "the one underlying primitive",
+                "hi": true
+              },
+              {
+                "k": "Canary & blue-green",
+                "d": "two usage patterns of it, not separate features"
+              }
+            ],
+            "caption": "Nothing new to build — both patterns are just different uses of one existing primitive."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T05:30:44.714667+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 19.29
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHOOSING BETWEEN THEM",
+      "role_note": "slide 6 -- which strategy fits which situation",
+      "narration_text": "Canary deployments are well-suited when you want real traffic to validate a change gradually and automatically limit the blast radius of a problem. Blue-green deployments are well-suited when you want a fully isolated validation before committing, with a single clean moment of cutover. Many teams use both, depending on the type of change.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Canary",
+                "d": "real traffic validates gradually, limits blast radius"
+              },
+              {
+                "k": "Blue-green",
+                "d": "fully isolated validation, one clean cutover",
+                "hi": true
+              },
+              {
+                "k": "Many teams use both",
+                "d": "the choice depends on the type of change"
+              }
+            ],
+            "caption": "Not a competition — each fits a different kind of risk to manage."
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T05:31:22.539131+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 40,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 18.07
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLOSING",
+      "role_note": "slide 7 -- the closing line, Claude cream skin",
+      "narration_text": "The real takeaway is that these strategies aren't about automation for its own sake — they are deliberate risk management, and understanding the primitive underneath them is what makes it possible to apply either one, or design a new pattern entirely, when the situation calls for it.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Week 10 Technical Learnings — Deployment Strategy Fundamentals",
+            "artifactHeading": "Deployment strategy is risk management, not just automation.",
+            "artifactLines": [
+              "The shared problem: a standard deploy exposes 100% of users the instant it goes live.",
+              "Canary: a gradual traffic ramp, monitored at each step — an early signal before it affects everyone.",
+              "Blue-green: two full environments, validated in isolation, one atomic cutover.",
+              "Both are just two usage patterns of Cloud Run's one primitive — immutable revisions + traffic control.",
+              "Understanding that primitive is what lets you apply either one, or design a new pattern entirely."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T05:33:05.132433+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 15.36
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Deployment Strategy Fundamentals. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Week 10 Technical Learnings — Deployment Strategy Fundamentals",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T05:33:39.263955+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 3.65
+    }
+  ]
+}

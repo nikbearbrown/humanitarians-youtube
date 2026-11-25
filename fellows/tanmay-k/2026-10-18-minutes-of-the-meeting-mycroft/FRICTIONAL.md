@@ -3,7 +3,7 @@
 **Record provenance:** drafted 2026-10-17 with Claude from this folder's own records (`ANGLE.md`, `FACTCHECK.md`, `SCRIPT.md`,
 `PEDAGOGY.md`, the `PROOF-REVIEW*.md` files, the Short's equivalents) and from the Mycroft contribution's
 committed records (the recipe, `logs/RUN_LOG.md`, PR #70), and the working session, after the work was done rather than while it
-happened. **Awaiting Tanmay's review.** Every entry points at the record it comes from.
+happened. **Reviewed by Tanmay.** Every entry points at the record it comes from.
 
 ## 2026-10-17: A recipe nobody else was on
 

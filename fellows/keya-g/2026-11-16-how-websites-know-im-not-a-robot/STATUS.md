@@ -1,0 +1,19 @@
+# STATUS — 2026-11-16-how-websites-know-im-not-a-robot
+
+13/13 beats filled. Derived from beat_sheet.json — edit the sheet, not this file.
+
+| beat | status | fill method | who | slot | suggested prompt / search |
+|---|---|---|---|---|---|
+| B01 | ✅ filled | remotion | pipeline | `media/B01.mp4` |  |
+| B02 | ✅ filled | manim | pipeline | `manim/B02.mp4` |  |
+| B03 | ✅ filled | remotion | pipeline | `media/B03.mp4` |  |
+| B04 | ✅ filled | manim | pipeline | `manim/B04.mp4` |  |
+| B05 | ✅ filled | manim | pipeline | `manim/B05.mp4` |  |
+| B06 | ✅ filled | manim | pipeline | `manim/B06.mp4` |  |
+| B07 | ✅ filled | manim | pipeline | `manim/B07.mp4` |  |
+| B08 | ✅ filled | manim | pipeline | `manim/B08.mp4` |  |
+| B09 | ✅ filled | manim | pipeline | `manim/B09.mp4` |  |
+| B10 | ✅ filled | manim | pipeline | `manim/B10.mp4` |  |
+| BVDT | ✅ filled | remotion | pipeline | `media/BVDT.mp4` |  |
+| BHTF | ✅ filled | remotion | pipeline | `media/BHTF.mp4` |  |
+| BOUT | ✅ filled | remotion | pipeline | `media/BOUT.mp4` |  |

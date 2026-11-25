@@ -1,0 +1,326 @@
+{
+  "metadata": {
+    "slug": "2026-11-03-the-dashboard-that-disagreed-with-its-own-alerts",
+    "title": "The Dashboard That Disagreed With Its Own Alerts",
+    "date": "November 3, 2026",
+    "report_type": "weekly-work-report",
+    "fellow": "Sai Pranavi J.",
+    "fellow_folder": "pranavi-j",
+    "series": "Humanitarians AI Fellows — Weekly Work Report",
+    "channel": "@HumanitariansAI",
+    "audience": "Engineers building AI/data systems",
+    "persona": "hai",
+    "engine": "kokoro",
+    "voice": "af_bella",
+    "voice_kokoro": "af_bella",
+    "voice_policy": "Bella (af_bella) — persistent voice for this fellow's whole series. Unchanged for this episode.",
+    "voice_selection_basis": "Fellow-confirmed: matches @HumanitariansAI channel and hai/Pragmatist persona.",
+    "voice_approval": "CONFIRMED (carried over from prior episodes)",
+    "register": "Pragmatist",
+    "aspect": "16:9",
+    "builder": "work-report",
+    "runtime_target_s": 160,
+    "source_status": "Real Project 29 (mycroft) engineering fix, D1 on Regulatory_QA/backend/app/crud.py's get_stats() endpoint, closed 2026-11-03. Independently re-verified this session via a Python harness running the real, extracted SQL. See SOURCES.md and FACTCHECK.md.",
+    "render_state": "final-masters-built-both-aspects-gate-v-clean",
+    "gates": {
+      "plan": "APPROVED — 2026-11-03 (Gate P)",
+      "factcheck": "RESOLVED — 2026-11-03 (see FACTCHECK.md)",
+      "narration": "APPROVED — 2026-11-03, cleared for audio generation",
+      "audio_lock": "LOCKED — 2026-11-03, Kokoro af_bella, all 9 beats (B00 silent via ffmpeg anullsrc, B01-B08 generated via generate_audio_kokoro.py); measured total 144.78s",
+      "shopping_list": "N/A — all beats are self-contained Manim scenes (scenes.py); no pantry stills or Remotion assets needed",
+      "previz": "COMPLETE — 2026-11-03, 9/9 beats real Manim, both aspects (scenes.py landscape, vertical/scenes.py portrait), no slates",
+      "publish": "READY FOR REVIEW — 2026-11-03: both final masters built and GATE V clean (0 BLOCKER, 0 MAJOR each, personally frame-verified); landscape 3840x2160 144.958333s and vertical 2160x3840 144.958333s in deliverables/; publish is NOT authorized — requires fellow/PM explicit review and sign-off (see BUILD-LOG.md, README.md)"
+    },
+    "submission_format": "NEW toolkit spec (brutalist/docs/FELLOWS-SUBMISSION.md, effective 2026-09-07): deliverable naming ProjectName_VolunteerName.mp4 (no date/aspect suffix), separate landscape/vertical deliverable folders, full-length 4K 2160x3840 vertical companion via ./art vertical (not a Shorts-style cut).",
+    "lane_histogram": {
+      "body_beats": 9,
+      "vox": 0,
+      "vox_share": 0.0,
+      "manim": 9,
+      "remotion": 0,
+      "card": 0
+    },
+    "build": {
+      "at": "2026-11-03T15:04:50",
+      "cut": "review",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "TITLE",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "",
+      "audio_policy": "silence",
+      "new_visual_element": "Opening title card: the video title and @HumanitariansAI, silent (no narration), before the executive summary",
+      "estimated_duration_s": 4,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B00_TitleCard",
+          "module": "scenes.py"
+        },
+        "note": "Silent beat, real silent mp3 via ffmpeg anullsrc. audio_policy: silence set explicitly per build_safety.py's silent-required-audio gate.",
+        "duration_source": "silent-beat: fixed target, not measured narration"
+      },
+      "actual_duration_s": 4.1,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 4.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B00.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "EXEC-SUMMARY",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Hi, I'm Sai Pranavi J. This video is about a dashboard that counts alert severity one way, while the actual alert email counts it a completely different way, and nobody had ever checked whether those two numbers actually agreed.",
+      "new_visual_element": "Personal-intro card: name + one-line plain-language summary, spoken",
+      "estimated_duration_s": 18,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B01_ExecSummary",
+          "module": "scenes.py"
+        },
+        "note": "Same pattern as this fellow's other episodes' B01."
+      },
+      "actual_duration_s": 14.28,
+      "audio_file": "mp3/beat-B01.mp3",
+      "render_duration_s": 14.291666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B01.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "HOOK",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Every item in our regulatory pipeline gets two things: a raw urgency score from zero to ten, and a severity label that everything downstream trusts. The alert email reads that label. The dashboard ignores it completely and invents its own tiers from the raw score instead.",
+      "new_visual_element": "Two tiles side by side: what the dashboard's own stats say severity is, versus what the real alert email says, visually flagged as a mismatch",
+      "estimated_duration_s": 18,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B02_DashboardVsEmailHook",
+          "module": "scenes.py"
+        },
+        "note": "Real framing of the independently-derived, silently-drifting dashboard number, not illustrative."
+      },
+      "actual_duration_s": 17.95,
+      "audio_file": "mp3/beat-B02.mp3",
+      "render_duration_s": 17.958333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SETUP",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Here's the real query. get stats, in crud dot p y, used to bucket severity by urgency score: eight or above is Critical, six to seven is High, four to five is Medium, three or below is Low. But every other consumer in this system, the alert email, the feed list, the chat's own context, reads a completely different column: impact level. Two numbers, set together at first, that can drift apart.",
+      "new_visual_element": "The real pre-fix urgency_score-cutoff SQL, shown verbatim, next to the real impact_level column every other consumer already reads",
+      "estimated_duration_s": 27,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B03_OneQueryOneColumn",
+          "module": "scenes.py"
+        },
+        "note": "[Source: Regulatory_QA/backend/app/crud.py, get_stats(); D1-VERIFICATION.md] Verbatim pre-fix SQL lines, not paraphrased."
+      },
+      "actual_duration_s": 24.12,
+      "audio_file": "mp3/beat-B03.mp3",
+      "render_duration_s": 24.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "DISCOVERY-FIX",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "The fix is four lines. get stats now buckets by the exact same impact level column everything else already reads, instead of re-deriving its own answer from urgency score. Same structure, same response shape, the frontend needs no change. Just a different column.",
+      "new_visual_element": "The real diff from get_stats(): the four old urgency_score FILTER lines struck through, the four new impact_level FILTER lines added",
+      "estimated_duration_s": 20,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B04_FourLineDiff",
+          "module": "scenes.py"
+        },
+        "note": "[Source: D1-VERIFICATION.md, 'The fix'] Real diff, matches the committed fix exactly."
+      },
+      "actual_duration_s": 17.88,
+      "audio_file": "mp3/beat-B04.mp3",
+      "render_duration_s": 17.916666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "VERIFICATION",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "I ran both queries against the real distribution. The old method: thirty two Critical, one hundred thirty nine High, two hundred forty Medium, zero Low. The new method: thirty three Critical, ninety eight High, two hundred eighty Medium, zero Low. Sixty two of four hundred eleven rows, fifteen percent, land in a different tier. The old method alone overcounted High by forty one items, thirty percent inflated.",
+      "new_visual_element": "The real before/after table from this session's own harness run: old/new counts per tier, plus the 62/411 mismatch and the High overcount",
+      "estimated_duration_s": 30,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B05_HarnessTable",
+          "module": "scenes.py"
+        },
+        "note": "[Source: verification/verify_dashboard_stats_output.txt; D1-VERIFICATION.md] Real measured harness results from this session, matching D1-VERIFICATION.md's own live-DB table exactly."
+      },
+      "actual_duration_s": 24.55,
+      "audio_file": "mp3/beat-B05.mp3",
+      "render_duration_s": 24.583333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HONEST-LIMITS",
+      "content_type": "mechanism",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Two honest limits. First: only this one query changed. Total counts, source breakdown, recent activity, the route itself, the frontend, and how impact level is computed in the first place are all untouched. Second: I verified this unwindowed, against the full real table. The dashboard's actual seven and thirty day rolling windows weren't re-checked against live data, because this fixture is months stale and returns zero either way on that window. Not fixed, not hidden, flagged honestly.",
+      "new_visual_element": "2 honest-limit cards, side by side, full weight: what this fix does and doesn't touch, and the unwindowed-only verification caveat",
+      "estimated_duration_s": 32,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B06_HonestLimits",
+          "module": "scenes.py"
+        },
+        "note": "[Source: D1-VERIFICATION.md 'What's NOT touched'/'Verification'; RUN_LOG.md 2026-11-03 'Open issues'] Full weight, not softened."
+      },
+      "actual_duration_s": 29.11,
+      "audio_file": "mp3/beat-B06.mp3",
+      "render_duration_s": 29.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "TAKEAWAY",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "A dashboard that re-derives its own answer from a different number than everyone else isn't measuring the same thing. If two consumers are supposed to agree, they have to read the same column.",
+      "new_visual_element": "Statement card",
+      "estimated_duration_s": 13,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B07_Statement",
+          "module": "scenes.py"
+        },
+        "note": "Statement card matching the visual pattern of prior episodes' takeaway beat."
+      },
+      "actual_duration_s": 11.28,
+      "audio_file": "mp3/beat-B07.mp3",
+      "render_duration_s": 11.291666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "SIGN-OFF",
+      "content_type": "structure",
+      "engine": "kokoro",
+      "voice": "af_bella",
+      "narration_text": "Explained with Claude Code.",
+      "new_visual_element": "@HumanitariansAI — explained with Claude Code, in for Sai Pranavi J.",
+      "estimated_duration_s": 5,
+      "lane": "MANIM",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "build",
+        "manim": {
+          "scene": "B08_BrandOutro",
+          "module": "scenes.py"
+        },
+        "note": "Brand card matching prior episodes' B08."
+      },
+      "actual_duration_s": 1.51,
+      "audio_file": "mp3/beat-B08.mp3",
+      "render_duration_s": 1.5416666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-03T15:04:50"
+      }
+    }
+  ]
+}

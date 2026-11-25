@@ -90,3 +90,10 @@ inference tag was removed at my direction.
 **What I understand now.** 9:16 is a separate layout, not a crop, and a gate
 failure has to be read before it is fixed: some are the content, some are the
 check.
+
+## 2026-11-20 — links to the commits and pull requests
+
+Added during a check of this folder against `fellows/README.md`; earlier entries are unchanged.
+
+- Source: [`d7891147`](https://github.com/nikbearbrown/humanitarians-youtube/commit/d789114742d6b1ed1eced42ebd44a0e64ec0d18e) (“add two reels”) and [`48e86bf8`](https://github.com/nikbearbrown/humanitarians-youtube/commit/48e86bf8145a57dbbc028607565fd826469b0e89) (align paperwork with the final beat sheets), merged in [PR #229](https://github.com/nikbearbrown/humanitarians-youtube/pull/229).
+- This log: [`8ae5fbea`](https://github.com/nikbearbrown/humanitarians-youtube/commit/8ae5fbea2c6327312725580891bb8aed2648b522) (renewal summary and FRICTIONAL logs), merged in [PR #278](https://github.com/nikbearbrown/humanitarians-youtube/pull/278).

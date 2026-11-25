@@ -1,54 +1,53 @@
-# Maitri P.
+# Maitri Pasale. — Humanitarians AI Fellow
 
-**Role:** AI Software Engineer  
-**Project:** RL_Environment  
-**GitHub:** [@maitripasale](https://github.com/maitripasale)
+- **Role:** AI Software Engineer
+- **Project:** RL_Environment — Pi agent memory, then Policy Decompilation for Optimus
+- **Repository:** https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/maitri-p
+- **GitHub:** [@maitripasale](https://github.com/maitripasale)
+- **Supervisors:** Dev Shah, Dhruv Patel, Shilpa V G
+- **Agreement period:** 11 Sep — 31 Oct 2026
 
-## Work index
+## Research question
 
-### Week 1 (September 21)
+Can an AI agent carry **lessons from earlier sessions** into new ones, and does
+that memory make it work better in a way that is *measured* rather than assumed?
 
-- **STEM:** [Noise Cancellation](2026-10-23-noise-cancelling-headphones/README.md) — why noise-cancelling headphones make outside sound quieter at the ear.
-- **Progress:** [How Pi Works](2026-09-21-pi-week1-onboarding/README.md) — onboarding, Pi's tool loop, and where memory could fit.
+Pi starts every session from zero. This project gives it an external memory of
+lessons saved from practice runs, then compares fresh runs with and without
+those lessons on questions it has never seen. In Week 5 the work moved to a new
+track: Policy Decompilation, turning a small trained model's choices into
+readable rules.
 
-### Week 2 (September 28)
+## Project work
 
-- **STEM:** [How Agents Use Tools](2026-10-02-agents-use-tools/README.md) — tool calls, results, and the next decision.
-- **Progress:** [Memory Systems for Pi](2026-10-03-pi-agent-memory/README.md) — project scope, memory types, and evaluation approach.
+| Week | Work | Result | Evidence | Log |
+|---|---|---|---|---|
+| [21–27 Sep](./2026-09-21-pi-week1-onboarding/) | How Pi works | Mapped Pi's prompt → tool → result loop and where memory could fit; added a Jupyter tool so Pi can run Python. | [drive](https://drive.google.com/drive/folders/1mainiFrl4-LOSw0kgNHxgwPRx3mCKdC_) · [code](https://github.com/maitripasale/pi-memory-search/blob/main/extensions/jupyter-repl.ts) | [log](./2026-09-21-pi-week1-onboarding/FRICTIONAL.md) |
+| [28 Sep – 4 Oct](./2026-10-03-pi-agent-memory/) | Memory systems | Scoped two memory types — procedural (how to do it) and metacognitive (what went wrong) — and how to evaluate them. | [drive](https://drive.google.com/drive/folders/18lEGqobYIRiYHgXF4oMB68NmZFddJH3V) · [code](https://github.com/maitripasale/pi-memory-search/blob/main/search_research/memory.py) | [log](./2026-10-03-pi-agent-memory/FRICTIONAL.md) |
+| [5–11 Oct](./2026-10-09-pi-memory-pilot/) | Memory pilot | 3 practice → 6 unseen questions, four conditions. All answers correct; mean tool calls 6.00 / 4.33 / 5.00 / 6.83. Fixed a scoring bug across all conditions. | [drive](https://drive.google.com/drive/folders/1OIblBvPv67TWI_ix_2MRl98TlqTI9bzN) · [report](https://github.com/maitripasale/pi-memory-search/blob/main/search_research/MULTIHOP_EXPERIMENT.md) | [log](./2026-10-09-pi-memory-pilot/FRICTIONAL.md) |
+| [12–18 Oct](./2026-10-23-pi-memory-task-review/) | Task-level review | One hard task (12 calls, 2 errors → 3 calls with memory) drove most of the gain. Retrieving a lesson at the right time matters as much as storing it. | [drive](https://drive.google.com/drive/folders/1UO2dYgzjzEDvV-CASwsnMpC9BqfFAqqt) · [analysis](https://github.com/maitripasale/pi-memory-search/blob/main/search_research/WEEK3_ANALYSIS.md) | [log](./2026-10-23-pi-memory-task-review/FRICTIONAL.md) |
+| [19–25 Oct](./2026-10-23-policy-decompilation-scope/) | Policy Decompilation scope | Chose first measures: action agreement, task performance, rule simplicity. Scoping only — no model trained yet. | [drive](https://drive.google.com/drive/folders/1pJitpxHlOK22vwyq9DDNVPpdGVnMnJp3) | [log](./2026-10-23-policy-decompilation-scope/FRICTIONAL.md) |
 
-### Week 3 (October 5)
+**One repetition per condition** — the pilot numbers are early signals, not a proven improvement.
 
-- **STEM:** [DynamoDB Hot Partitions](2026-10-23-dynamodb-hot-partition/README.md) — why a table can throttle despite spare capacity.
-- **Progress:** [Pi Memory Pilot](2026-10-09-pi-memory-pilot/README.md) — first comparison across four memory conditions.
+## STEM Topics
 
-### Week 4 (October 12)
+| Week | Topic | Evidence | Log |
+|---|---|---|---|
+| [21–27 Sep](./2026-10-23-noise-cancelling-headphones/) | Noise cancellation | [drive](https://drive.google.com/drive/folders/1mainiFrl4-LOSw0kgNHxgwPRx3mCKdC_) | [log](./2026-10-23-noise-cancelling-headphones/FRICTIONAL.md) |
+| [28 Sep – 4 Oct](./2026-10-02-agents-use-tools/) | How agents use tools | [drive](https://drive.google.com/drive/folders/18lEGqobYIRiYHgXF4oMB68NmZFddJH3V) | [log](./2026-10-02-agents-use-tools/FRICTIONAL.md) |
+| [5–11 Oct](./2026-10-23-dynamodb-hot-partition/) | DynamoDB hot partitions | [drive](https://drive.google.com/drive/folders/1OIblBvPv67TWI_ix_2MRl98TlqTI9bzN) | [log](./2026-10-23-dynamodb-hot-partition/FRICTIONAL.md) |
+| [12–18 Oct](./2026-10-23-lambda-cold-start/) | AWS Lambda cold starts | [drive](https://drive.google.com/drive/folders/1UO2dYgzjzEDvV-CASwsnMpC9BqfFAqqt) | [log](./2026-10-23-lambda-cold-start/FRICTIONAL.md) |
+| [19–25 Oct](./2026-10-23-gps-how-it-works/) | How GPS works | [drive](https://drive.google.com/drive/folders/1pJitpxHlOK22vwyq9DDNVPpdGVnMnJp3) | [log](./2026-10-23-gps-how-it-works/FRICTIONAL.md) |
 
-- **STEM:** [AWS Lambda Cold Starts](2026-10-23-lambda-cold-start/README.md) — why the first request can be slower.
-- **Progress:** [Memory Task Review](2026-10-23-pi-memory-task-review/README.md) — task-by-task re-analysis of the pilot.
+## Next steps
 
-### Week 5 (October 19)
+- Set up a small, reproducible Policy Decompilation baseline — a trained model on CartPole.
+- Record the model's decisions across states and extract a first set of readable rules.
+- Compare the rules with the model on action agreement, task performance and simplicity; document where they fail.
+- Use the findings to define what this can explain about model behavior before applying it to Optimus.
 
-- **STEM:** [How GPS Knows Where You Are](2026-10-23-gps-how-it-works/README.md) — how a phone finds its position by listening to satellites.
-- **Progress:** [Policy Decompilation Scope](2026-10-23-policy-decompilation-scope/README.md) — the new research question and proposed first comparison.
+## Hours and renewal
 
-Each project folder contains its README (video details and SHA-256 hashes), landscape `beat_sheet.json` and native portrait `vertical/beat_sheet.json`, fact-check and shot list, and the custom scene code used to build it. Rendered videos are kept on Google Drive and linked from each project README. Narration is Kokoro `af_bella` (Bella), a synthetic voice disclosed in every video.
-
-## Hours
-
-| Week | Progress / workflow | Brutalist videos | Meetings | Documentation | Total |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Week 1 (Sep 21) | 15 | 4 | 0 | 1 | 20 |
-| Week 2 (Sep 28) | 12 | 5 | 0 | 3 | 20 |
-| Week 3 (Oct 5) | 14 | 2 | 1 | 3 | 20 |
-| Week 4 (Oct 12) | 15 | 2 | 1 | 2 | 20 |
-| Week 5 (Oct 19) | 13 | 4 | 1 | 2 | 20 |
-| **Total** | **69** | **17** | **3** | **11** | **100** |
-
-## Frictional logs
-
-Every work subfolder here carries its own `FRICTIONAL.md` — a dated record of the process
-behind that specific piece of work, kept beside the evidence it describes: what was tried
-and expected, where it resisted and what was done next, what Claude or another person
-contributed and what was accepted, changed or rejected, and what is now understood or
-still open. Append as you go; never rewrite an earlier entry. It is not graded and not a
-performance review. See <https://www.humanitarians.ai/fellows> for what an entry contains.
+- [Weekly hours](HOURS.md)
+- [Renewal request](./renewal-requests/2026-10-23-renewal-request.md)

@@ -1,0 +1,35 @@
+sklearn 1.9.1  numpy 2.5.4  SYNTHETIC applicants 20000  default rate 15.98%
+train 14000  test 6000  cutoff: deny if risk >= 30%
+test AUC  scorecard 0.836  boosted 0.836  (true rule 0.847)
+test denial rate at cutoff  scorecard 17.4%  boosted 16.2%
+scorecard weights per unit (log-odds): income -0.0097, dti +0.0770, missed +0.7707, history -0.0632, util +0.0255
+
+Applicant A {'income': 52.0, 'dti': 44.0, 'missed': 1.0, 'history': 4.0, 'util': 72.0}
+risk  true rule 40.1%  scorecard 53.2%  boosted 34.1%  (cutoff 30%)
+
+scorecard contributions = weight x (A - average)   [log-odds; + pushes toward deny]
+  income   A   52.0  avg  59.80  -> +0.076
+  dti      A   44.0  avg  33.41  -> +0.815
+  missed   A    1.0  avg   0.45  -> +0.425
+  history  A    4.0  avg  10.01  -> +0.379
+  util     A   72.0  avg  42.44  -> +0.755
+  top 3: ['dti', 'util', 'missed']
+
+check: scorecard Shapley vs weight x (A - background mean): max diff 6.66e-16
+boosted Shapley values (exact, 32 coalitions x 500 applicants = 16,000 model runs)   additivity error 0.0e+00
+  income   -> +0.054
+  dti      -> +0.196
+  missed   -> +0.598
+  history  -> +0.298
+  util     -> +0.448
+  top 3: ['missed', 'util', 'history']
+agreement: 2 of 3 reasons shared; same order: False
+boosted Shapley vs APPROVED applicants only: income +0.053, dti +0.570, missed +0.716, history +0.375, util +0.493  top 3: ['missed', 'dti', 'util']
+boosted retrained on another 70 % split: income +0.138, dti +0.516, missed +0.664, history +0.408, util +0.621  top 3: ['missed', 'util', 'dti']  risk 50.6%
+
+counterfactuals (one change at a time; card limit $10,000, monthly income $4,333)
+  scorecard utilisation 72% -> 33.5%  (pay cards down $3850)   |  DTI 44% -> 31.0%  (cut debt payments $563/month)
+  boosted   utilisation 72% -> 35.5%  (pay cards down $3650)   |  DTI 44% -> 42.5%  (cut debt payments $65/month)
+  both approve at utilisation 33.5% (pay down $3,850): scorecard 29.9%  boosted 28.7%
+
+wrote results.json

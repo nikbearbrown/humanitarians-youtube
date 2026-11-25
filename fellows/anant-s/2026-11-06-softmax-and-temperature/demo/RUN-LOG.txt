@@ -1,0 +1,33 @@
+python 3.12.13 numpy 2.5.5 on Windows-11-10.0.26300-SP0  seed=2
+
+1) 'The cat sat on the ___'  constructed logits: mat 3.2, floor 2.4, couch 1.9, bed 1.5, roof 0.3
+2) worked example, T=1
+   mat    z=3.2  e^z= 24.53  p= 51.0%
+   floor  z=2.4  e^z= 11.02  p= 22.9%
+   couch  z=1.9  e^z=  6.69  p= 13.9%
+   bed    z=1.5  e^z=  4.48  p=  9.3%
+   roof   z=0.3  e^z=  1.35  p=  2.8%
+   sum of e^z = 48.07
+3) temperature sweep (percent)
+   T=0.2  mat  98.0  floor   1.8  couch   0.1  bed   0.0  roof   0.0   effective choices 1.11
+   T=1.0  mat  51.0  floor  22.9  couch  13.9  bed   9.3  roof   2.8   effective choices 3.59
+   T=2.0  mat  35.0  floor  23.5  couch  18.3  bed  15.0  roof   8.2   effective choices 4.52
+   ranking preserved at every T: True;  shift-invariant: True
+4) the same 20 seeded rolls at each temperature
+   T=0.2  distinct=1  mat mat mat mat mat mat mat mat mat mat mat mat mat mat mat mat mat mat mat mat
+          counts {'mat': 20, 'floor': 0, 'couch': 0, 'bed': 0, 'roof': 0}
+   T=1.0  distinct=4  mat mat couch mat floor floor mat mat mat floor floor mat mat floor mat floor bed floor mat mat
+          counts {'mat': 11, 'floor': 7, 'couch': 1, 'bed': 1, 'roof': 0}
+   T=2.0  distinct=5  mat mat bed mat couch couch mat mat mat couch floor mat floor couch floor couch roof couch floor mat
+          counts {'mat': 8, 'floor': 4, 'couch': 6, 'bed': 1, 'roof': 1}
+5) 10,000 draws per temperature: observed vs predicted (percent)
+   T=0.2  obs [98.0, 1.8, 0.1, 0.0, 0.0]  pred [98.0, 1.8, 0.1, 0.0, 0.0]  max gap 0.02 pts (max 0.71 sigma)
+   T=1.0  obs [51.3, 22.2, 14.0, 9.9, 2.7]  pred [51.0, 22.9, 13.9, 9.3, 2.8]  max gap 0.76 pts (max 2.09 sigma)
+   T=2.0  obs [35.4, 22.9, 17.6, 15.6, 8.4]  pred [35.0, 23.5, 18.3, 15.0, 8.2]  max gap 0.67 pts (max 1.87 sigma)
+6) toward zero: share of 'mat'  T=1.0: 51.03%  T=0.5: 76.19%  T=0.2: 98.04%  T=0.1: 99.97%  T=0.05: 100.0%
+   greedy (T=0, argmax): 'mat' every run
+7) constructed wrong ranking: 'The capital of Australia is ___'  logits Sydney 2.5, Canberra 2.2, Melbourne 1.4, Perth 0.6
+   T=0.2  Sydney 81.5  Canberra 18.2  Melbourne 0.3  Perth 0.0   correct 18.2%
+   T=1.0  Sydney 45.0  Canberra 33.3  Melbourne 15.0  Perth 6.7   correct 33.3%
+   T=2.0  Sydney 35.4  Canberra 30.5  Melbourne 20.4  Perth 13.7   correct 30.5%
+   greedy pick: Sydney

@@ -1,0 +1,38 @@
+== paper constants ==
+GPT-3: 175B parameters, trained on 300B tokens
+InstructGPT prompts: SFT ~13,000  RM ~33,000  PPO ~31,000
+175B / 1.3B = 134.6x  (paper: '100x fewer parameters'; on screen 'more than 100x')
+
+== ranking K answers -> pairwise comparisons ==
+K = 4: 6 pairs
+K = 9: 36 pairs
+
+== B05: Bradley-Terry reward model, 3000 ranked sets of K=4 -> 18000 pairs ==
+learned weights: substance 0.99, flattery 1.02  (raters: 1.00, 1.00)
+held-out pairs (6000): reward model agrees with the raters 77.7 %
+learning curve (step, held-out agreement %): [(0, 50.0), (5, 77.4), (10, 77.6), (20, 77.8), (40, 77.7), (80, 77.7), (120, 77.7), (200, 77.7)]
+example set: rater order [1, 0, 3, 2]  reward-model scores [0.52, 0.31, -2.4, -1.06]
+
+== RL step over a pool of 20000 SFT answers (6.3 % people-pleasers) ==
+pi_ref: mean reward +0.05, mean substance -0.14
+beta   inf: KL  0.00 nats  reward +0.05  substance -0.14  people-pleasers   6.3 %
+beta     4: KL  0.07 nats  reward +0.59  substance +0.06  people-pleasers   8.1 %
+beta     2: KL  0.27 nats  reward +1.14  substance +0.23  people-pleasers  10.8 %
+beta   1.5: KL  0.50 nats  reward +1.52  substance +0.32  people-pleasers  13.3 %
+beta   1.2: KL  0.80 nats  reward +1.92  substance +0.38  people-pleasers  16.5 %
+beta   1.0: KL  1.18 nats  reward +2.34  substance +0.41  people-pleasers  20.5 %
+beta   0.8: KL  1.94 nats  reward +3.01  substance +0.38  people-pleasers  28.6 %
+beta   0.6: KL  3.56 nats  reward +4.13  substance +0.11  people-pleasers  46.1 %
+beta   0.5: KL  4.88 nats  reward +4.85  substance -0.20  people-pleasers  60.1 %
+beta   0.4: KL  6.31 nats  reward +5.50  substance -0.59  people-pleasers  74.9 %
+beta   0.3: KL  7.39 nats  reward +5.88  substance -0.92  people-pleasers  85.9 %
+beta   0.2: KL  8.05 nats  reward +6.05  substance -1.13  people-pleasers  92.6 %
+beta   0.1: KL  8.81 nats  reward +6.16  substance -1.30  people-pleasers  98.3 %
+beta  0.05: KL  9.19 nats  reward +6.19  substance -1.32  people-pleasers  99.9 %
+substance peaks at KL 1.18 (beta 1.0): +0.41; strongest push (beta 0.05): substance -1.32, reward +6.19
+
+== B06: leashed step (beta 1.0) ==
+mean reward +0.05 -> +2.34; KL 1.18 nats; substance -0.14 -> +0.41
+histogram edges [-4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
+before [1.6, 6.0, 15.5, 25.3, 26.0, 16.2, 6.7, 1.9, 0.3, 0.0, 0.0, 0.0]
+after  [0.0, 0.2, 1.2, 5.1, 13.8, 22.5, 24.5, 18.4, 8.3, 4.5, 1.5, 0.0]

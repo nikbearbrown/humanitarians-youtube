@@ -1,7 +1,7 @@
 # Tanmay K.
 
 **Role:** Financial Analyst  
-**Project:** _to be filled in_  
+**Project:** Mycroft  
 **GitHub:** [@Tanmay-Kulk](https://github.com/Tanmay-Kulk)
 
 Weekly work reports for the **Agentic AI in Financial Services** case-study
@@ -105,6 +105,14 @@ the standing choice, and `af_bella` is the one carried as history.
 | 2026-10-18 | [`2026-10-18-minutes-of-the-meeting-mycroft`](./2026-10-18-minutes-of-the-meeting-mycroft/) | Minutes of the Meeting — three simulators read one invented stock, a chair weighs them, an AI is handed the minutes, and the one place my own copy disagreed with the original |
 | 2026-10-25 | [`2026-10-25-color-never-hears-the-music-stem-video`](./2026-10-25-color-never-hears-the-music-stem-video/) | Color never hears the music — why a fast tune gets a yellow sky, and the feeling that sits between a sound and a color |
 | 2026-10-25 | [`2026-10-25-the-sum-behind-the-number-mycroft`](./2026-10-25-the-sum-behind-the-number-mycroft/) | The Sum Behind the Number — a stress-test percentage taken apart block by block, and my Python copy of the engine run beside the original |
+| 2026-11-01 | [`2026-11-01-the-rally-has-a-clock-stem-video`](./2026-11-01-the-rally-has-a-clock-stem-video/) | The Rally Has a Clock — when "no perfect defense" is true in Pong: one checkable ratio, and a ball that speeds up so every rally has a clock |
+| 2026-11-01 | [`2026-11-01-two-customers-one-run-mycroft`](./2026-11-01-two-customers-one-run-mycroft/) | Two Customers, One Run — one run's results written twice from the same facts, an agent log for the next program and a report for the person deciding, and the mistake found by reading both |
+| 2026-11-08 | [`2026-11-08-where-the-eighty-lives-stem-video`](./2026-11-08-where-the-eighty-lives-stem-video/) | Where the Eighty Lives — why a smaller model can run far slower: two tiny models with the same weights and the same arithmetic, timed against one dial, how much the chip can do at once |
+| 2026-11-08 | [`2026-11-08-ask-whether-never-what-mycroft`](./2026-11-08-ask-whether-never-what-mycroft/) | Ask Whether, Never What — checking a pipeline's keys without reading them: one source's row filled field by field, and a test that builds its own dummy keys |
+| 2026-11-15 | [`2026-11-15-reading-a-twentieth-of-a-pixel-stem-video`](./2026-11-15-reading-a-twentieth-of-a-pixel-stem-video/) | Reading a Twentieth of a Pixel — a galaxy's speed read to a twentieth of a pixel, and the price is photons: the error is the line's width over the square root of the photons counted |
+| 2026-11-15 | [`2026-11-15-what-draft-is-waiting-for-mycroft`](./2026-11-15-what-draft-is-waiting-for-mycroft/) | What Draft Is Waiting For — a status word is a claim: the five-rung ladder, the records behind a rung, and the record that aged while the status stayed put |
+| 2026-11-22 | [`2026-11-22-the-cell-dies-rich-stem-video`](./2026-11-22-the-cell-dies-rich-stem-video/) | The Cell Dies Rich — a coin cell can be most of the way full and still finished for the device it powers: a model with a resistance that climbs as the cell is used, and the charge stranded when a burst meets the reset line |
+| 2026-11-22 | [`2026-11-22-step-two-was-the-last-one-i-built-mycroft`](./2026-11-22-step-two-was-the-last-one-i-built-mycroft/) | Step Two Was the Last One I Built — two recipe sentences that stood in for unbuilt steps, one deliberately wrong file, and the two questions the stand-in never asked |
 
 ## Two lanes
 

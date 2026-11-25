@@ -21,6 +21,11 @@ build assets.
 | [`2026-10-09-ai-only-half-the-curve`](2026-10-09-ai-only-half-the-curve) | educational (STEM / AI) | The overfitting curve you were taught is the left half — past the interpolation threshold, test error spikes and then falls below the classical best |
 | [`2026-10-16-ai-the-tails-go-first`](2026-10-16-ai-the-tails-go-first) | educational (STEM / AI) | Train a model on its own output and the average stays fine while the rare cases vanish — permanently |
 | [`2026-10-16-ai-same-prompt-different-answer`](2026-10-16-ai-same-prompt-different-answer) | educational (STEM / AI) | The model draws rather than picks; temperature reshapes the distribution, and even temperature 0 is only as stable as the arithmetic |
+| [`2026-10-23-ai-it-was-still-learning`](2026-10-23-ai-it-was-still-learning) | educational (STEM / AI) | A network can memorise its training set thousands of steps before it learns the rule — and every held-out signal says failure in between |
+| [`2026-10-30-ai-both-sides-passed`](2026-10-30-ai-both-sides-passed) | educational (STEM / AI) | A record can be valid leaving one service and valid entering the next, and still mean something different at each end |
+| [`2026-11-06-ai-significant-on-tuesday`](2026-11-06-ai-significant-on-tuesday) | educational (STEM / AI) | Checking an A/B test until it reads significant turns a 5% error rate into 25% — and every test stopped early overstates the effect by construction |
+| [`2026-11-13-ai-every-group-the-other-way`](2026-11-13-ai-every-group-the-other-way) | educational (STEM / AI) | A total and every group inside it can point in opposite directions, and every one of those numbers is correct |
+| [`2026-11-20-ai-it-tested-clean`](2026-11-20-ai-it-tested-clean) | educational (STEM / AI) | A model can be correct, untouched and converged, and still collapse in production because one feature is computed differently at serving than at training |
 
 **Video files are not in this repo.** They are delivered separately. Everything
 here is the record of how they were built and why each claim in them holds.
@@ -35,9 +40,6 @@ Each work subfolder contains:
 - `FACTCHECK.md` · `SOURCES.md` — every claim with its verdict and source,
   including what was deliberately cut as unsourceable.
 - `SHOTLIST.md` · `PROMPTS.md` — the typed work order.
-- `INTAKE.md` — weekly-work folders only: the assignment and what was
-  actually done that week, recorded before the video was authored. It is
-  the primary source the factcheck rows point at.
 - `STATUS.md` · `ToDo.md` — build ledger.
 - `qc/` — GATE V reports plus frame evidence from the finished files.
 

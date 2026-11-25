@@ -1,0 +1,194 @@
+{
+  "setup": {
+    "synthetic": true,
+    "seed": 42,
+    "n_applicants": 20000,
+    "features": [
+      "income",
+      "dti",
+      "missed",
+      "history",
+      "util"
+    ],
+    "feature_names": {
+      "income": "income",
+      "dti": "debt-to-income",
+      "missed": "missed payments",
+      "history": "credit history length",
+      "util": "card utilisation"
+    },
+    "units": {
+      "income": "$k/yr",
+      "dti": "%",
+      "missed": "in 2 yrs",
+      "history": "yrs",
+      "util": "%"
+    },
+    "reason_text": {
+      "income": "income too low for the loan",
+      "dti": "debt payments too high for income",
+      "missed": "recent missed payments",
+      "history": "short credit history",
+      "util": "card balances near their limits"
+    },
+    "default_rate": 0.15985,
+    "train": 14000,
+    "test": 6000,
+    "cutoff": 0.3,
+    "cutoff_note": "illustrative assumption, not from any lender",
+    "n_background": 500,
+    "card_limit": 10000,
+    "protected_attributes": "none generated or used",
+    "sklearn_version": "1.9.1",
+    "numpy_version": "2.5.4",
+    "average_applicant": {
+      "income": 59.79969312439919,
+      "dti": 33.40647507279726,
+      "missed": 0.44821428571428573,
+      "history": 10.007753943950148,
+      "util": 42.437170835930694
+    }
+  },
+  "models": {
+    "scorecard": {
+      "type": "LogisticRegression on standardised features",
+      "weights_per_unit": {
+        "income": -0.009692824694715035,
+        "dti": 0.07697273265265508,
+        "missed": 0.7706786270112133,
+        "history": -0.0631674805445699,
+        "util": 0.02554438243574082
+      },
+      "weights_per_sd": {
+        "income": -0.24359889162688206,
+        "dti": 1.2471701587583446,
+        "missed": 0.5178255572859845,
+        "history": -0.3954526231718218,
+        "util": 0.5197045974980717
+      },
+      "intercept_at_average": -2.32167907275908,
+      "avg_applicant_risk": 0.08934335386566125,
+      "test_auc": 0.835829203658261,
+      "test_denial_rate": 0.17433333333333334
+    },
+    "boosted": {
+      "type": "HistGradientBoostingClassifier(max_iter=300, lr=0.05, max_leaf_nodes=15, min_samples_leaf=40)",
+      "test_auc": 0.8362122979472393,
+      "test_denial_rate": 0.16183333333333333
+    },
+    "true_rule_test_auc": 0.8465922501183722
+  },
+  "applicant_a": {
+    "values": {
+      "income": 52.0,
+      "dti": 44.0,
+      "missed": 1.0,
+      "history": 4.0,
+      "util": 72.0
+    },
+    "risk_true_rule": 0.4006472278841825,
+    "risk_scorecard": 0.5322658238438408,
+    "risk_boosted": 0.3410414708640029,
+    "denied_scorecard": true,
+    "denied_boosted": true
+  },
+  "reasons": {
+    "scorecard": {
+      "contrib": {
+        "income": 0.07560105812737554,
+        "dti": 0.8154125620708141,
+        "missed": 0.42524945669011593,
+        "history": 0.379494680371034,
+        "util": 0.7551642140494584
+      },
+      "top3": [
+        "dti",
+        "util",
+        "missed"
+      ],
+      "method": "weight x (A - average applicant), exact, 5 multiplications"
+    },
+    "scorecard_shapley_check_max_diff": 6.661338147750939e-16,
+    "boosted": {
+      "contrib": {
+        "income": 0.05426791360471698,
+        "dti": 0.1957877612308651,
+        "missed": 0.5978639777402954,
+        "history": 0.2983525538011229,
+        "util": 0.4479886197853616
+      },
+      "top3": [
+        "missed",
+        "util",
+        "history"
+      ],
+      "base_logodds": -2.252917343367877,
+      "full_logodds": -0.6586565172055148,
+      "additivity_error": 0.0,
+      "model_runs": 16000,
+      "method": "exact interventional Shapley, 32 coalitions x 500 background applicants"
+    },
+    "boosted_vs_approved_background": {
+      "contrib": {
+        "income": 0.05295245295579685,
+        "dti": 0.569992692939155,
+        "missed": 0.7161858812318528,
+        "history": 0.37476907839926554,
+        "util": 0.49326049464663824
+      },
+      "top3": [
+        "missed",
+        "dti",
+        "util"
+      ]
+    },
+    "boosted_retrained_other_split": {
+      "contrib": {
+        "income": 0.13762191808951485,
+        "dti": 0.5161814141918296,
+        "missed": 0.6638058387862558,
+        "history": 0.4076805875361804,
+        "util": 0.6207771648357924
+      },
+      "top3": [
+        "missed",
+        "util",
+        "dti"
+      ]
+    },
+    "agreement": {
+      "shared": [
+        "util",
+        "missed"
+      ],
+      "n_shared": 2,
+      "same_order": false
+    }
+  },
+  "counterfactual": {
+    "scorecard": {
+      "util": 33.5,
+      "dti": 31.0
+    },
+    "boosted": {
+      "util": 35.5,
+      "dti": 42.5
+    },
+    "util_dollars": {
+      "scorecard": 3850,
+      "boosted": 3650
+    },
+    "dti_dollars_per_month": {
+      "scorecard": 563,
+      "boosted": 65
+    },
+    "both_approve_util": 33.5,
+    "both_approve_paydown": 3850,
+    "risk_after": {
+      "scorecard": 0.2985492404304225,
+      "boosted": 0.28673589001049776
+    },
+    "monthly_income": 4333.333333333333
+  },
+  "runtime_s": 1.94
+}

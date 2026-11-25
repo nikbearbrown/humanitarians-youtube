@@ -1,0 +1,294 @@
+{
+ "schema_version": 1,
+ "document": {
+  "path": "GDD.md",
+  "sha256": "1ecc175148f354392914143bb5160af5d26c2ec7490c1c47e29aefa8d5a807d9",
+  "version": "v0.1 agent draft, unapproved",
+  "build_id": "54ad5ab3eab7d97e341b1ff7fc6f5aef0549e4819a46b9a0c7b2e4d0cdf9f550"
+ },
+ "sections": [
+  {
+   "heading": "Status vocabulary",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "1. Metadata",
+   "beat_ids": [
+    "B02"
+   ]
+  },
+  {
+   "heading": "2. Vision",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "3. Pillars (PROPOSED)",
+   "beat_ids": [
+    "B03"
+   ]
+  },
+  {
+   "heading": "4. Core loop (IMPLEMENTED, OBSERVED)",
+   "beat_ids": [
+    "B04"
+   ]
+  },
+  {
+   "heading": "5. Player-experience goals (PROPOSED, all PENDING a human playtest)",
+   "beat_ids": [
+    "B05"
+   ]
+  },
+  {
+   "heading": "6. Mechanics",
+   "beat_ids": [
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12",
+    "B13",
+    "B14",
+    "B15",
+    "B16",
+    "B17",
+    "B18",
+    "B19",
+    "B20"
+   ]
+  },
+  {
+   "heading": "7. World (AUTHORED)",
+   "beat_ids": [
+    "B21"
+   ]
+  },
+  {
+   "heading": "8. Art and audio",
+   "beat_ids": [
+    "B21"
+   ]
+  },
+  {
+   "heading": "9. UI (IMPLEMENTED)",
+   "beat_ids": [
+    "B22"
+   ]
+  },
+  {
+   "heading": "10. Out of scope",
+   "beat_ids": [
+    "B22"
+   ]
+  },
+  {
+   "heading": "11. Technical",
+   "beat_ids": [
+    "B22"
+   ]
+  },
+  {
+   "heading": "12. Risks and known defects",
+   "beat_ids": [
+    "B23",
+    "B24"
+   ]
+  },
+  {
+   "heading": "13. Acceptance tests (OBSERVED)",
+   "beat_ids": [
+    "B25"
+   ]
+  },
+  {
+   "heading": "14. Provenance",
+   "beat_ids": [
+    "B25"
+   ]
+  },
+  {
+   "heading": "15. Open questions (PENDING)",
+   "beat_ids": [
+    "B25"
+   ]
+  }
+ ],
+ "excerpts": [
+  {
+   "beat_id": "B02",
+   "start_line": 8,
+   "end_line": 8,
+   "text": "- No human has signed off any section, and nobody has playtested the game by hand."
+  },
+  {
+   "beat_id": "B03",
+   "start_line": 37,
+   "end_line": 37,
+   "text": "**PROPOSED vision statement:** *A night shift in a container yard: climb the stacks, fight your way past the yard bots, and take down the Forewoman who runs it.*"
+  },
+  {
+   "beat_id": "B05",
+   "start_line": 61,
+   "end_line": 64,
+   "text": "| PX-01 | A first-time player finds the ledge grab in level 1 without dying in the pit | Count pit falls in level 1 over 5 new players |\n| PX-02 | The wall-jump shaft in level 2 is learnable within three tries | Time in the shaft over 5 new players |\n| PX-03 | Players discover the takedown from the hint in level 4 | Count takedowns over 10 runs |\n| PX-04 | The Forewoman feels like a fight, not a wall | Compare K.O.s per level |"
+  },
+  {
+   "beat_id": "B06",
+   "start_line": 70,
+   "end_line": 70,
+   "text": "- **IMPLEMENTED** (`fighter.gd`): walk 1.65 m/s (the walking clip's stride), run 5.2 m/s, gravity 22 m/s². Run with Shift, or double-tap a direction within 0.18 s (`DOUBLE_TAP`, timed on the wall clock)."
+  },
+  {
+   "beat_id": "B08",
+   "start_line": 74,
+   "end_line": 74,
+   "text": "- **IMPLEMENTED:** jump speed 9.6 m/s (apex about 2.1 m, so a 2 m step can be jumped onto; 3–4 m walls need the ledge grab); a running jump at 9.8 m/s clears a 3-wide gap. Letting go of jump early cuts the climb. A ledge at hand height is grabbed; up climbs, down lets go. Holding into a wall while falling caps the fall at 2.2 m/s; jump kicks off. A fall higher than 3.2 m rolls on landing."
+  },
+  {
+   "beat_id": "B10",
+   "start_line": 83,
+   "end_line": 88,
+   "text": "| Jab → cross → kick | attack ×3 | 0.34 → 0.34 → 0.5 / 8 → 8 → 12 |\n| Uppercut | up + attack | 1.0 / 20 |\n| Flying kick | run + attack | 1.0 / 22 |\n| Dragon punch | run + up + attack | 1.0 / 20 |\n| Hammer | down + attack (9 s cooldown) | 9.0 / 40, unblockable, a ground shock |\n| Axe | attack while holding it | 1.0 / 30 |"
+  },
+  {
+   "beat_id": "B12",
+   "start_line": 92,
+   "end_line": 92,
+   "text": "- **IMPLEMENTED** (`weapon.gd`): attack while standing on the axe picks it up; run + attack throws it (it flies straight, spinning); down + attack puts it down. The hammer appears in the hand for `hammer_down` and recharges in 9 s."
+  },
+  {
+   "beat_id": "B14",
+   "start_line": 100,
+   "end_line": 100,
+   "text": "- **IMPLEMENTED** (`spike_trap.gd`): the plate fires 0.4 s after something steps on it, kills whoever is still on it with the spike-death clip, retracts after 1.5 s and reloads after 1 s."
+  },
+  {
+   "beat_id": "B16",
+   "start_line": 105,
+   "end_line": 105,
+   "text": "- **AUTHORED:** bots start unaware (for takedowns) and notice the player in front of them, right behind them, or when the player runs close or fights nearby. Amy blocks and combos; runner bots flying-kick. Sophie, the Forewoman, has 12 HP, blocks often, shrugs off light hits and swings the hammer too."
+  },
+  {
+   "beat_id": "B18",
+   "start_line": 111,
+   "end_line": 116,
+   "text": "| 1 | Clock In | walk, run, jump, the first ledge, the first bots, a spike plate |\n| 2 | Stacks | container stacks and a wall-jump shaft; Amy on the roof |\n| 3 | Axe to Grind | two axes, bots on the catwalks, throw from a distance |\n| 4 | Spike Alley | spike plates, a 1 m tunnel to slide through, a bot with its back turned |\n| 5 | Hangar Brawl | a crowd of 14, and the hammer |\n| 6 | The Forewoman | the boss fight |"
+  },
+  {
+   "beat_id": "B19",
+   "start_line": 123,
+   "end_line": 126,
+   "text": "  - Main menu: New game, Continue (furthest level), Select level (with best times), Change fighter, How to play, Options, Credits, Exit.\n  - Character select: hover and click, or arrow keys; Play or Enter.\n  - Pause (Esc, P or Start): Resume, Restart level (R), Options, Quit to menu.\n  - Options: volumes, fullscreen, quality, show hints. Progress and best times save to `night_yard.cfg`."
+  },
+  {
+   "beat_id": "B21",
+   "start_line": 130,
+   "end_line": 132,
+   "text": "- A container yard at night on a 1 m side-view grid: concrete, containers scaled to their map rectangles, catwalks, crates.\n- Behind the lane: fence, container stacks, hangars, tanks, pipes, trees, lamp posts and fire barrels, placed from a seed.\n- A 2.5D cutaway fades out blocks between the camera and the player, for the slide tunnel and overhangs."
+  },
+  {
+   "beat_id": "B22",
+   "start_line": 155,
+   "end_line": 157,
+   "text": "- 3 autoloads: `Kit`, `Audio` and `GameState`.\n- One `CharacterBody3D` class (`fighter.gd`) for the player and every bot, with the same eight input flags (`move_left/right/up/down`, `jump`, `attack`, `block`, `turbo`). The player's flags come from `Input`; a bot's come from its brain (`ai.gd`).\n- Every level scene is one node running `level.gd` with a `level_id`; the level, its bots and pickups are built from `levels.gd`."
+  },
+  {
+   "beat_id": "B23",
+   "start_line": 164,
+   "end_line": 164,
+   "text": "| R-01 | **After Options in the pause menu, the pause key stops pausing.** `hud.gd` hides the options container on Back but leaves the `OptionsPanel` inside it visible, and `options_panel.gd:52-55` checks its own `visible`, not `is_visible_in_tree()`. Every later Esc, P or Start is taken by the hidden panel: the game keeps running and the pause panel reappears over it. Observed in the `defeat` capture. |"
+  },
+  {
+   "beat_id": "B25",
+   "start_line": 172,
+   "end_line": 173,
+   "text": "\n- `_tools/playtest.tscn`: plays all six levels with the real player physics; PASS in 418 simulated seconds (`playtest.log`). It attaches the AI brain to the player (`player.brain`), sets `level.autopilot` (which turns off the hit-stop) and checks each level's signature move."
+  }
+ ],
+ "evidence": [
+  {
+   "path": "capture/campaign.mp4",
+   "sha256": "d67e69cb41e86d48587da1306986c33330546fe4bc1ef5f1bb6662543e4f1c32",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 60 with every second frame saved (30 fps of game time), native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"campaign\"; input log capture/campaign-inputs.jsonl"
+  },
+  {
+   "path": "capture/defeat.mp4",
+   "sha256": "1cbc975b80a764b292704becda3a433c8c0c4dbfc2574e97fdd493875a4d7f51",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 60 with every second frame saved (30 fps of game time), native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"defeat\"; input log capture/defeat-inputs.jsonl"
+  },
+  {
+   "path": "capture/extras.mp4",
+   "sha256": "837fc147990ef5d0938f172d39ab72d5906a2015e46a7ecb8e4d2ce7694c8055",
+   "method": "scripted-input capture of the real main scene; engine viewport saved per frame at --fixed-fps 60 with every second frame saved (30 fps of game time), native 3840x2160 (see CAPTURE.md)",
+   "supports": "gameplay clips cut from take \"extras\"; input log capture/extras-inputs.jsonl"
+  },
+  {
+   "path": "media/B04.mp4",
+   "sha256": "42313e4d205504e962b0eba6d14433f73e6cdc7b08e88a3a76a2af1b6bbdb12d",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 700, \"source_frames\": 70, \"factor\": 1, \"output_frames\": 70}, {\"kind\": \"play\", \"source_start_frame\": 940, \"source_frames\": 60, \"factor\": 1, \"output_frames\": 60}, {\"kind\": \"play\", \"source_start_frame\": 1180, \"source_frames\": 130, \"factor\": 1, \"output_frames\": 130}, {\"kind\": \"play\", \"source_start_frame\": 1600, \"source_frames\": 70, \"factor\": 1, \"output_frames\": 70}, {\"kind\": \"play\", \"source_start_frame\": 1890, \"source_frames\": 140, \"factor\": 1, \"output_frames\": 140}]",
+   "supports": "B04: shown gameplay (4. Core loop (IMPLEMENTED, OBSERVED))"
+  },
+  {
+   "path": "media/B07.mp4",
+   "sha256": "3437cd918bfec9999e9ad151ac293317961d68a9d39b2d8c3e25018e86ac230a",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 785, \"source_frames\": 175, \"factor\": 1, \"output_frames\": 175}]",
+   "supports": "B07: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B09.mp4",
+   "sha256": "3e9d4edda7767cd839cba582a914b98a0cb3a7a1e48271b3922ecfbacadae20b",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 2690, \"source_frames\": 176, \"factor\": 1, \"output_frames\": 176}]",
+   "supports": "B09: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B11.mp4",
+   "sha256": "563f5efd78b5395b6776731fd87af39e372a7132265d3da51daa5f2c32b818a7",
+   "method": "exact-frame cut of take \"extras\": [{\"kind\": \"play\", \"source_start_frame\": 790, \"source_frames\": 230, \"factor\": 1, \"output_frames\": 230}]",
+   "supports": "B11: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B13.mp4",
+   "sha256": "1fb8998e50247dd13c867bd8b5ffdcc961784cdb3c99f2fe8fd37bdc53040abf",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 3960, \"source_frames\": 128, \"factor\": 1, \"output_frames\": 128}]",
+   "supports": "B13: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B15.mp4",
+   "sha256": "65ab7120ad32210f73146a16bc268a18dbe40ea1c51e826459436d7811ed8036",
+   "method": "exact-frame cut of take \"defeat\": [{\"kind\": \"play\", \"source_start_frame\": 1560, \"source_frames\": 200, \"factor\": 1, \"output_frames\": 200}]",
+   "supports": "B15: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B17.mp4",
+   "sha256": "d9e8b224bae14e38904d01adeb2012ca8c96e1b49ab75140d11706bd599def9b",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 12560, \"source_frames\": 140, \"factor\": 1, \"output_frames\": 140}, {\"kind\": \"play\", \"source_start_frame\": 13880, \"source_frames\": 110, \"factor\": 1, \"output_frames\": 110}]",
+   "supports": "B17: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B20.mp4",
+   "sha256": "228bad3e18b4117985d21ea64669d253e6e94291183d20ad1cab3f2c5a40064b",
+   "method": "exact-frame cut of take \"campaign\": [{\"kind\": \"play\", \"source_start_frame\": 430, \"source_frames\": 270, \"factor\": 1, \"output_frames\": 270}]",
+   "supports": "B20: shown gameplay (6. Mechanics)"
+  },
+  {
+   "path": "media/B24.mp4",
+   "sha256": "d7ca3d75c6410860e670de10516cc00593c55e34703c33ae8c835d55408a2763",
+   "method": "exact-frame cut of take \"defeat\": [{\"kind\": \"play\", \"source_start_frame\": 1965, \"source_frames\": 300, \"factor\": 1, \"output_frames\": 300}]",
+   "supports": "B24: shown gameplay (12. Risks and known defects)"
+  },
+  {
+   "path": "evidence/GDD.md",
+   "sha256": "1ecc175148f354392914143bb5160af5d26c2ec7490c1c47e29aefa8d5a807d9",
+   "method": "byte copy of the source GDD at film build time",
+   "supports": "every excerpt"
+  }
+ ]
+}

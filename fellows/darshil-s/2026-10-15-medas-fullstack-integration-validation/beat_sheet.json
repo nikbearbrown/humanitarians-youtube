@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "title": "Full-Stack Validation — Frontend Meets Backend in Staging",
+    "slug": "medas-fullstack-integration-validation",
+    "narrator": "Darshil Shah",
+    "series": "MEDAS · Systems Integration",
+    "source": "Fellow-supplied 7-slide narration script (full-stack integration testing in staging: build-time config, CORS verification, root-cause triage, regression pass), provided 2026-10-15. The supplied text had several garbled/cut-off fragments (mid-sentence corruption, likely a copy-paste glitch) -- repaired to complete sentences preserving the evident intended meaning; every repair is logged verbatim in FACTCHECK.md. Continues medas-stage-environment-provisioning through medas-stage-hardening-observability.",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style": "cli",
+    "tool": "github",
+    "aspect": "16:9",
+    "description": "Full integration testing between the staging frontend and backend: build-time environment-specific configuration that unambiguously points the staging build at the staging backend, verifying the CORS cross-origin boundary between the two separately-deployed Cloud Run services, methodically tracing a browser-visible CORS error to its true root cause rather than its surface symptom, and a full regression pass across core user flows against the live staging backend -- closing on the difference between deployed services and a verified working system.",
+    "note": "GitHub-dark skin for the four validation-mechanics beats (GitHubCallChain diagrams, matching the supplied slide structure), Claude-cream skin for the INTRO bookend, the outcome/closing cards, and the OUTRO. Narration text is the fellow-supplied script with garbled fragments repaired -- see FACTCHECK.md for the exact before/after of each repair.",
+    "total_estimated_duration_seconds": 260
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "role_note": "COLD OPEN LAW -- Claude cream skin, slide 1 title card",
+      "narration_text": "With staging infrastructure and observability both in place, this week moved to full integration testing — validating that the frontend and backend work correctly together end-to-end in a real staging environment, not in isolation.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "curl -I https://medas-frontend-stage-<hash>-ue.a.run.app",
+            "topic": "BUILD-TIME CONFIG · CORS · ROOT-CAUSE TRIAGE · REGRESSION TESTING",
+            "segment": "Full-Stack Validation — Frontend Meets Backend in Staging",
+            "greeting": "Darshil Shah",
+            "runningText": "config → CORS → symptom vs root cause → full regression pass…",
+            "output": [
+              "repo: TayyarH/medas-aggregation-frontend",
+              "frontend + backend validated together, not independently",
+              "end-to-end, in a real staging environment"
+            ],
+            "folderLabel": "Darshil Shah"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-13T03:29:23.420958+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 13.42
+    },
+    {
+      "beat_id": "B01",
+      "act": "ENVIRONMENT-AWARE CONFIGURATION",
+      "role_note": "slide 2 -- build-time API_URL, unambiguous per-environment builds",
+      "narration_text": "The staging frontend is built with its own environment-specific configuration, pointing it explicitly at the staging backend rather than development or production. Because this is resolved at build time, each environment's build is sealed and unambiguous about which backend it talks to — eliminating an entire class of 'wrong environment' issues before the app ever runs.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Build-time API_URL variable",
+                "d": "resolved once, at build time — not read at runtime"
+              },
+              {
+                "k": "Baked into the build",
+                "d": "sealed, unambiguous about which backend it talks to",
+                "hi": true
+              },
+              {
+                "k": "Points at the staging backend",
+                "d": "never dev's or production's, by construction"
+              }
+            ],
+            "caption": "Eliminates an entire class of 'wrong environment' issues before the app ever runs."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-13T03:30:09.841485+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.97
+    },
+    {
+      "beat_id": "B02",
+      "act": "CROSS-ORIGIN VERIFICATION",
+      "role_note": "slide 3 -- CORS boundary between frontend and backend origins",
+      "narration_text": "Since the frontend and backend are deployed as separate Cloud Run services with different origins, every request between them crosses an origin boundary — which browsers enforce through CORS, Cross-Origin Resource Sharing. This week included verifying that boundary is configured correctly: that the staging backend explicitly allows requests from the staging frontend's origin, so legitimate traffic flows freely while the boundary itself stays intentional and controlled, not just wide open.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Browser (frontend origin)",
+                "d": "makes a request to a different origin"
+              },
+              {
+                "k": "Request crosses origin boundary",
+                "d": "enforced by the browser's own CORS policy"
+              },
+              {
+                "k": "Backend (different origin)",
+                "d": "must explicitly allow the frontend's origin",
+                "hi": true
+              },
+              {
+                "k": "CORS policy check",
+                "d": "intentional and controlled, not wide open"
+              }
+            ],
+            "caption": "Legitimate traffic flows freely -- but only because the boundary was explicitly configured, not left open."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-13T03:31:00.980035+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 55,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 28.45
+    },
+    {
+      "beat_id": "B03",
+      "act": "DISTINGUISHING SYMPTOMS FROM ROOT CAUSE",
+      "role_note": "slide 4 -- a CORS error in the browser isn't always a CORS problem",
+      "narration_text": "Part of this validation involved tracing issues to their true root cause rather than their surface symptom — a request failure can appear in the browser as a CORS error even when the underlying cause is somewhere else entirely, like the target service not being ready yet. Methodically checking each layer — network response, service health, and policy configuration — is what makes sure you fix the right problem the first time.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Browser console error",
+                "d": "shows 'CORS error' — the visible symptom"
+              },
+              {
+                "k": "Traced through the network layer",
+                "d": "response code, timing, service health",
+                "hi": true
+              },
+              {
+                "k": "Actual origin service",
+                "d": "e.g. not ready yet — the real root cause"
+              }
+            ],
+            "caption": "Fix the right problem the first time -- not the first thing the browser happened to name."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-13T03:31:54.459178+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 21.4
+    },
+    {
+      "beat_id": "B04",
+      "act": "FULL REGRESSION PASS",
+      "role_note": "slide 5 -- core flows validated against the live staging backend",
+      "narration_text": "With the connection verified, I ran a full regression pass across the application's core flows against the live staging backend — login, data retrieval, and the primary user journeys — confirming the frontend and backend function together as a complete system, not just as independently healthy services.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "GitHubCallChain",
+          "props": {
+            "nodes": [
+              {
+                "k": "Auth flow",
+                "d": "login against the live staging backend — pass"
+              },
+              {
+                "k": "Data fetches",
+                "d": "retrieval against the live staging backend — pass",
+                "hi": true
+              },
+              {
+                "k": "Core user journeys",
+                "d": "primary flows, end-to-end — pass"
+              }
+            ],
+            "caption": "A complete system, not just two independently healthy services."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-13T03:32:47.495196+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 45,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.11
+    },
+    {
+      "beat_id": "B05",
+      "act": "OUTCOME",
+      "role_note": "slide 6 -- the verdict card, Claude cream skin",
+      "narration_text": "By the end of this week, staging wasn't just deployed — it was proven as one working, connected application, with its cross-origin security boundary explicitly validated rather than assumed.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Full-Stack Validation — Frontend Meets Backend in Staging",
+            "artifactHeading": "Staging: Fully Integrated and Verified",
+            "artifactLines": [
+              "Configured: each environment's build is sealed to its own backend, resolved at build time.",
+              "Verified: the CORS boundary between frontend and backend origins is explicit, not wide open.",
+              "Triaged: a browser-visible CORS error traced to its true root cause, not its surface symptom.",
+              "Regression-tested: auth, data fetches, and core user journeys all pass against the live backend.",
+              "The result: one working, connected application — not two independently healthy services."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-13T03:35:10.083334+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 30,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 11.09
+    },
+    {
+      "beat_id": "B06",
+      "act": "CLOSING",
+      "role_note": "slide 7 -- the closing line, Claude cream skin",
+      "narration_text": "This integration pass is what turns two independently deployed services into one truly connected application — and it's the same validation discipline that production will rely on next.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Full-Stack Validation — Frontend Meets Backend in Staging",
+            "artifactHeading": "A service that deploys isn't the same as a system that works together.",
+            "artifactLines": [
+              "Two independently deployed services become one truly connected application only through a pass like this one — the same validation discipline production will rely on next."
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-13T03:37:30.776111+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 15,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 10.97
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "role_note": "OUTRO LAW -- title restate, Claude cream skin",
+      "narration_text": "Full-Stack Validation. This is Darshil.",
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Full-Stack Validation — Frontend Meets Backend in Staging",
+            "handle": "Darshil Shah",
+            "subline": "Systems Integration"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": "2026-11-13T03:38:08.720003+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 3.11
+    }
+  ]
+}

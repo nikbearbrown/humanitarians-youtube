@@ -18,7 +18,11 @@ reports I wrote at the time). From 28 Sep each week also has its own file in
 | 5–9 Oct | Last week's two videos; How Shazam Finds a Song and How AI Music Generators Turn Text Into Audio | 20 |
 | 12–16 Oct | Homes of Hope English + Hindi proof of concept; How Apps Find a Song's Tempo; the progress update | 20 |
 | 19–23 Oct | How Apps Find a Song's Key and How Noise-Cancelling Headphones Work | 20 |
-| **Total** | | **234** |
+| 26–30 Oct | How AI Voices Read a Script and How Auto-Captions Find Each Word (built Sun 1 Nov) | 20 |
+| 2–6 Nov | How Spotify Picks Songs and How Google Maps Works (built Mon 9 Nov) | 20 |
+| 9–13 Nov | How Netflix Streams and How Spatial Audio Works (built Mon 9 – Tue 10 Nov) | 20 |
+| 16–20 Nov | How Auto-Tune Works and How Bluetooth Audio Works (built Thu 19 – Fri 20 Nov) | 20 |
+| **Total** | | **314** |
 
 Hours include video research and production, reviewing Brutalist videos, Lyrical
 Literacy meetings and coordination, and tool testing. Evidence for each week (videos,

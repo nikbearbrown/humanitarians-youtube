@@ -508,3 +508,87 @@ import {TblBluf916, TblSide916, TblTable916, TblInterview916, TblWalk916, TblTru
 <Composition id="TblLimits916" component={TblLimits916}
         durationInFrames={400} fps={30} width={1080} height={1920}
         defaultProps={{data: {slideMeta: '', title: '', claims: {heading: '', items: []}, refusals: {heading: '', items: []}, provenance: '', falsifier: ''}}} />
+
+      {/* ── PQ-BEGIN yatra-paid-to-be-quoted — Pq* scenes, each registered at 1920×1080 and as <id>916 at 1080×1920. durationInFrames = MEASURED Kokoro length × 30fps. Figure scenes REQUIRE `source`. ── */}
+      <Composition id="PqBluf" component={PqBluf as any}
+        durationInFrames={413} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqBluf916" component={PqBluf as any}
+        durationInFrames={413} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqShift" component={PqShift as any}
+        durationInFrames={359} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqShift916" component={PqShift as any}
+        durationInFrames={359} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqService" component={PqService as any}
+        durationInFrames={517} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqService916" component={PqService as any}
+        durationInFrames={517} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqLicense" component={PqLicense as any}
+        durationInFrames={545} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqLicense916" component={PqLicense as any}
+        durationInFrames={545} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqOverviews" component={PqOverviews as any}
+        durationInFrames={443} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqOverviews916" component={PqOverviews as any}
+        durationInFrames={443} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqStack" component={PqStack as any}
+        durationInFrames={511} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqStack916" component={PqStack as any}
+        durationInFrames={511} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqLimits" component={PqLimits as any}
+        durationInFrames={469} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="PqLimits916" component={PqLimits as any}
+        durationInFrames={469} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      {/* ── PQ-END ── */}
+
+      {/* ── FT-BEGIN yatra-film-the-impossible — Ft* scenes, each registered at 1920×1080 and as <id>916 at 1080×1920. durationInFrames = MEASURED Kokoro length × 30fps. No numeric props exist. ── */}
+      <Composition id="FtBluf" component={FtBluf as any}
+        durationInFrames={358} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtBluf916" component={FtBluf as any}
+        durationInFrames={358} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtAnatomy" component={FtAnatomy as any}
+        durationInFrames={337} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtAnatomy916" component={FtAnatomy as any}
+        durationInFrames={337} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtScenes" component={FtScenes as any}
+        durationInFrames={551} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtScenes916" component={FtScenes as any}
+        durationInFrames={551} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtTracker" component={FtTracker as any}
+        durationInFrames={382} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtTracker916" component={FtTracker as any}
+        durationInFrames={382} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtShift" component={FtShift as any}
+        durationInFrames={504} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtShift916" component={FtShift as any}
+        durationInFrames={504} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtLimits" component={FtLimits as any}
+        durationInFrames={399} fps={30} width={1920} height={1080}
+        defaultProps={{data: {} as any}} />
+      <Composition id="FtLimits916" component={FtLimits as any}
+        durationInFrames={399} fps={30} width={1080} height={1920}
+        defaultProps={{data: {} as any}} />
+      {/* ── FT-END ── */}

@@ -1,0 +1,5 @@
+# Frictional Log — 2026-09-24
+
+**Learnings:** Five transferable security principles behind the week's hardening work — principle of least privilege, defense in depth (no single control trusted alone), supply-chain/shift-left scanning (scan what you ship, not just what you wrote), network segmentation independent of IAM, and observability (a control's failure only matters if it's visible).
+
+**Implemented work:** Hardened the `stage` environment on top of the already-working pipeline: added a required reviewer and a deployment-branch policy (restricted to the `stage` branch) to the GitHub `stage` Environment's protection rules; removed `allUsers` from `medas-frontend-stage`'s Cloud Run invoker binding and replaced it with a scoped tester group; confirmed Artifact Registry vulnerability scanning is active for the stage registry; changed Cloud Run ingress for `medas-frontend-stage` from public to internal; and set up a log-based Cloud Monitoring alert watching the stage service's 5xx error rate.

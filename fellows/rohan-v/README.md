@@ -20,7 +20,7 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 - [Renewal request](./RENEWAL.md) (sent 2026-09-28, approved) · [renewal index](./renewal-requests/README.md)
 - [Weekly hours](./weekly-hours/README.md): one file per week · [summary table](./HOURS.md)
 - [Research and project plan](./research-plan.md), with status
-- Latest week: [2026-10-23](#week-of-2026-10-23)
+- Latest week: [2026-11-20](#week-of-2026-11-20)
 
 ## How this folder is built
 
@@ -31,6 +31,51 @@ Lyrical Literacy (November), then an editing pipeline (by mid-December).
 Rebuild with [brutalist.art](https://github.com/nikbearbrown/brutalist.art). Renders (narration, beat clips and the 4K masters) go to Google Drive, one dated folder per week, and each work folder's README links its own. Anything used to *build* a video (captures, pantry stills, sfx, evidence data) is committed beside it, per the [fellows README](../README.md).
 
 Every master is 4K: `./art final <reel>` (3840×2160) and `./art final <reel>/vertical --height 3840` (2160×3840).
+
+## Week of 2026-11-20
+
+Two audio explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a program I wrote and
+measured, with clips to hear in each video. Both are built in HyperFrames with three.js scenes. Built Thu 19 – Fri 20 Nov.
+Masters in Drive, [`2026-11-20/`](https://drive.google.com/drive/folders/1GSgbVehCPoqnUpLeGhc6vR30pFa2JPpL) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-16-weekly-hours.md).
+
+- [How Auto-Tune Works](./2026-11-20-how-auto-tune-works/): finding the pitch, how far off a singer is, retune speed, shifting a note without a chipmunk voice, and three takes to hear, measured on a synthetic singer with my own detector and corrector (`AutoTune_RohanV.mp4`)
+- [How Bluetooth Audio Works](./2026-11-20-how-bluetooth-audio-works/): squeezing CD audio to a quarter, hopping around Wi-Fi, codecs, the buffer that makes it lag, lip sync and LE Audio, measured with real codecs and a simulated radio link, with a dropout to hear (`BluetoothAudio_RohanV.mp4`)
+
+## Week of 2026-11-13
+
+Two explainers, one on streaming and one on audio, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built
+on a program I wrote and measured. Both are built in HyperFrames with three.js scenes (3D stages drawn frame by
+frame), the series' first use of three.js. Built Mon 9 – Tue 10 Nov.
+Masters in Drive, [`2026-11-13/`](https://drive.google.com/drive/folders/1-uAjo4J-IYMqy1g1zPEVzG7pNngYFUbn) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-09-weekly-hours.md).
+
+- [How Netflix Streams](./2026-11-13-how-netflix-streams/): the quality ladder, the VMAF score, a ladder per title, the player choosing chunk by chunk, and servers inside your provider, each measured on real encodes and a simulated player (`NetflixStreaming_RohanV.mp4`)
+- [How Spatial Audio Works](./2026-11-13-how-spatial-audio-works/): the timing gap between your ears, your head's shadow, front-or-behind, filters for every direction, head tracking and ear scans, measured on a textbook head model, with a binaural clip to hear on headphones (`SpatialAudio_RohanV.mp4`)
+
+## Week of 2026-11-06
+
+Two tech explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a simulation I wrote and
+measured. The Google Maps video is the series' first built in HyperFrames, in a night-mode look. Built Mon 9 Nov.
+Masters in Drive, [`2026-11-06/`](https://drive.google.com/drive/folders/1B6U2I7MnL4-X35Q-RXDuGdnMHd0Is2f4) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-11-02-weekly-hours.md).
+
+- [How Spotify Picks Songs](./2026-11-06-how-spotify-picks-songs/): taste numbers from plays and skips, the genres they find on their own, the lean toward hits and cold start, on a recommender I built and tested on a made-up service (`SpotifyRecs_RohanV.mp4`)
+- [How Google Maps Works](./2026-11-06-how-google-maps-works/): GPS, routing, live traffic, arrival times, popular times and bus crowding, each simulated and measured on a city I built (`GoogleMaps_RohanV.mp4`)
+
+## Week of 2026-10-30
+
+Two STEM explainers, both 16:9 (3840×2160) and native 9:16 (2160×3840), each built on a program I wrote and
+measured on this series' own narrator voice and caption model, with listening clips. Built Sun 1 Nov. Masters
+in Drive, [`2026-10-30/`](https://drive.google.com/drive/folders/1_qj0XWilWw5mLy8kPWws-jyWFEGN7BOv) (`landscape/`, `vertical/`), named per
+[FELLOWS-SUBMISSION](https://github.com/nikbearbrown/brutalist.art/blob/main/docs/FELLOWS-SUBMISSION.md).
+Hours: [20](./weekly-hours/2026-10-26-weekly-hours.md).
+
+- [How AI Voices Read a Script](./2026-10-30-how-ai-voices-read-a-script/): text clean-up, letters to sounds, and where our narrator misreads (heteronyms, prices, names), tested on its own G2P (`AIVoices_RohanV.mp4`)
+- [How Auto-Captions Find Each Word](./2026-10-30-how-auto-captions-find-each-word/): the spectrogram, word timing and the noise cliff, on Whisper tested with sentences whose true word times are known (`AutoCaptions_RohanV.mp4`)
 
 ## Week of 2026-10-23
 
