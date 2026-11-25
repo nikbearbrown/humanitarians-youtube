@@ -4,7 +4,7 @@
 - **Role:** SWE · GitHub [@keyagoswami017](https://github.com/keyagoswami017)
 - **Current agreement:** 13 Oct 2026 — 30 Nov 2026
 - **Reporting period:** 13 Oct 2026 — 22 Nov 2026 (Weeks 1–6); Week 7 (23–30 Nov) in progress
-- **Requested renewal:** 01 Dec 2026 — 31 Dec 2026
+- **Requested renewal:** 01 Dec 2026 — 28 Feb 2027
 - **Project Manager:** Sanjana Rao
 
 ## Executive summary
@@ -64,7 +64,8 @@ On OPT. Current Fellowship Dates were from 13th Oct,2026 through 30th Nov,2026. 
 
 1. **Week 7 explainer (due 30 Nov):** why a "like" count looks different on two phones (replication and eventual consistency), plus the Week 7 progress video.
 2. **Week 8 explainer (by 4 Dec):** how concert ticket sites hold millions of fans in a virtual waiting room, plus the Week 8 progress video.
-3. **Weeks 9–12 (by 11, 18, 23 and 31 Dec):** one STEM/AI explainer and one progress video each week, in 16:9 and 9:16, with topics chosen the same way as before (personal interest plus a STEM/AI mechanism, checked against other fellows' topics).
+3. **Weeks 9–20 (7 Dec 2026 – 28 Feb 2027):** one STEM/AI explainer and one progress video each week, in 16:9 and 9:16, due by each week's Friday, with topics chosen the same way as before (personal interest plus a STEM/AI mechanism, checked against other fellows' topics).
+4. **End-of-period review (by 28 Feb 2027):** an updated report with the hours and evidence index for every week of the renewal period.
 
 Reporting stays the same: two videos a week in 16:9 and 9:16, a Frictional log per video folder, and hours in HOURS.md.
 
