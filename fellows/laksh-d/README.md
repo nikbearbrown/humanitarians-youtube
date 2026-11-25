@@ -43,3 +43,7 @@ Narration voice: Kokoro `af_bella`, kept for the whole series.
 ## Hours
 
 - [Weekly hours](HOURS.md)
+
+## Renewal requests
+
+- [25 Nov 2026: renewal for 1 Dec 2026 to 28 Feb 2027](renewal-requests/2026-11-25-renewal-request.md)
