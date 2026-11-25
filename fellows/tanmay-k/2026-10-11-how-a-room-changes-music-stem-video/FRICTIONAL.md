@@ -3,7 +3,7 @@
 **Record provenance:** drafted 2026-10-10 with Claude from this folder's own records
 (`TOPIC-DECISION.md`, `ANGLE.md`, `FACTCHECK.md`, `BEATS-DRAFT.md`, `PEDAGOGY.md`, the
 `PROOF-REVIEW*.md` files, `experiment/`), after the work was done rather than while it happened.
-**Awaiting Tanmay's review.** Every entry points at the record it comes from.
+**Reviewed by Tanmay.** Every entry points at the record it comes from.
 
 ## 2026-10-10 — A topic nobody had taken
 

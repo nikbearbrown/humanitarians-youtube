@@ -1,0 +1,268 @@
+[
+ [
+  "B00",
+  0.985,
+  "Ola, this is Liam in for Bear. This film is about one small piece of the attention formula, why the scores are divided by the square root of the vector length. Longer vectors make wider scores, and wide scores make the softmax pick a single winner. Dividing by the square root keeps the spread the same at any length. The trap is calling it a detail.",
+  [
+   [
+    "hola",
+    "ola"
+   ]
+  ]
+ ],
+ [
+  "B01",
+  1.0,
+  "Why should you care every attention layer scores words against each other and scores that run too wide break it nearly all the weight lands on one word the softmax passes back almost no learning signal one short division keeps attention a weighted average instead of a vote",
+  []
+ ],
+ [
+  "B02",
+  0.971,
+  "The question this film is really asking, why does attention divide by the square root of the vector length, not why it divides at all, why that number, and not when you could simply pick?",
+  [
+   [
+    "one",
+    "when"
+   ]
+  ]
+ ],
+ [
+  "B03",
+  1.0,
+  "Three terms before we start. A dot product multiplies two vectors entry by entry and adds the results into one number. Softmax turns a list of scores into weights that add up to one. Variance measures how spread out numbers are around their average.",
+  []
+ ],
+ [
+  "B10",
+  0.867,
+  "One word asks a question of six others. Each gets a score and Softmax turns the scores into weights. With short vectors, the weights look sensible. Now keep the recipe and make the vectors 512 numbers long. One key takes 99.6%.",
+  [
+   [
+    "five hundred and twelve",
+    "512"
+   ],
+   [
+    "ninety nine point six percent",
+    "99 6"
+   ]
+  ]
+ ],
+ [
+  "B11",
+  0.776,
+  "Look at the scores themselves. At four numbers per vector they huddle near zero. At 16 they spread. At 64 whiter. At 512 they run for dozens of units. On average the biggest weight climbs from 57% to 96%.",
+  [
+   [
+    "sixteen",
+    "16"
+   ],
+   [
+    "sixty four wider",
+    "64 whiter"
+   ],
+   [
+    "five hundred and twelve",
+    "512"
+   ],
+   [
+    "fifty seven percent",
+    "57"
+   ],
+   [
+    "ninety six",
+    "96"
+   ]
+  ]
+ ],
+ [
+  "B12",
+  0.851,
+  "Why does a winner take all Softmax matter? Training needs slope, where the curve is flat, nudging a score changes nothing. A rough measure of that slope, the biggest p times 1 minus p, falls from about 0.2 to under 0.03.",
+  [
+   [
+    "our",
+    "a"
+   ],
+   [
+    "one",
+    "1"
+   ],
+   [
+    "point two",
+    "0 2"
+   ],
+   [
+    "point oh three",
+    "0 03"
+   ]
+  ]
+ ],
+ [
+  "B13",
+  0.84,
+  "The obvious patch divide every score by 10. Around 64 it looks fine, but at 4 the bars go nearly flat. At 2048 one winner takes most of the weight again. A fixed number fits one vector length.",
+  [
+   [
+    "ten",
+    "10"
+   ],
+   [
+    "sixty four",
+    "64"
+   ],
+   [
+    "four",
+    "4"
+   ],
+   [
+    "two thousand and forty eight",
+    "2048"
+   ]
+  ]
+ ],
+ [
+  "B14",
+  0.84,
+  "Stop watching the bars watch the width of the cloud of scores instead, length 4 the width is 2, 16, 4, 64, 8. Every time the length quadruples the width doubles, before it moves commit what should we divide by.",
+  [
+   [
+    "four",
+    "4"
+   ],
+   [
+    "two sixteen four sixty four eight",
+    "2 16 4 64 8"
+   ]
+  ]
+ ],
+ [
+  "B15",
+  0.857,
+  "Divide by the square root and the wide cloud folds back to the width that had it for. The bars recover.",
+  [
+   [
+    "",
+    "that had"
+   ],
+   [
+    "had at four",
+    "for"
+   ]
+  ]
+ ],
+ [
+  "B16",
+  0.955,
+  "Now the idea deserves a name. Each score is a sum of d products. Each product has variance 1. The variances of independent terms add, so the score has variance d, divide by the square root of d, and the variance is 1 again.",
+  [
+   [
+    "one",
+    "1"
+   ],
+   [
+    "one",
+    "1"
+   ]
+  ]
+ ],
+ [
+  "B17",
+  0.846,
+  "Read it as a claim. The left side is how wide the score cloud is squared. The equal sign says exactly D when the entries are independent with variance 1. Q and K are random. D is a fixed count. Check at 512. Measured variance about 513 divided 1.",
+  [
+   [
+    "equals",
+    "equal"
+   ],
+   [
+    "one",
+    "1"
+   ],
+   [
+    "five hundred and twelve",
+    "512"
+   ],
+   [
+    "five hundred and thirteen",
+    "513"
+   ],
+   [
+    "one",
+    "1"
+   ]
+  ]
+ ],
+ [
+  "B18",
+  0.706,
+  "Back to the six keys at 512. Raw one key held 99.6%. Scaled the weight spread from 3% to 36. Attention is a weighted average again, not a vote.",
+  [
+   [
+    "five hundred and twelve",
+    "512"
+   ],
+   [
+    "ninety nine point six percent",
+    "99 6"
+   ],
+   [
+    "weights",
+    "weight"
+   ],
+   [
+    "three percent",
+    "3"
+   ],
+   [
+    "thirty six",
+    "36"
+   ]
+  ]
+ ],
+ [
+  "BVDT",
+  0.981,
+  "Let's recap with clawed dot products of longer vectors spread wider. Wide scores saturate the softmax and a saturated softmax passes back almost no signal. A fixed divisor fits one length only. For random vectors, the spread grows as the square root of the length, so dividing by it holds the spread constant.",
+  [
+   [
+    "claude",
+    "clawed"
+   ]
+  ]
+ ],
+ [
+  "BHTF",
+  0.967,
+  "Your turn pastes this into claud. Write a short Python script that draws random queries and keys with variance 4 instead of 1, computes the variance of their dot products at vector length 64, and checks whether dividing by the square root of 64 still gives variance 1. Predict the number before you run it, then say what divisor would fix it. Look for two things. Did you commit to a number before running it, and is the divisor you named the one that brings the variance back to 1?",
+  [
+   [
+    "paste",
+    "pastes"
+   ],
+   [
+    "claude",
+    "claud"
+   ],
+   [
+    "one",
+    "1"
+   ]
+  ]
+ ],
+ [
+  "BOUT",
+  0.818,
+  "Y-attention divides by the square root at Nick Bear Brown.",
+  [
+   [
+    "why",
+    "y"
+   ],
+   [
+    "nik",
+    "nick"
+   ]
+  ]
+ ]
+]

@@ -1,0 +1,994 @@
+{
+  "metadata": {
+    "slug": "tldr-attention-scaling-vertical",
+    "title": "Why Attention Divides By The Square Root",
+    "topic": "TL;DR · MACHINE LEARNING",
+    "skill": "tldr",
+    "style_preset": "tldr",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "learn_canvas": "cream",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "9:16",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "audience": "a smart reader who has heard of Transformers and wants to know why one small division is in the formula",
+    "source_doc": "SOURCES.md",
+    "sections": [
+      {
+        "n": 1,
+        "title": "Why Divide By The Square Root",
+        "key_case": "one query scored against six keys at vector length 4 versus 512"
+      }
+    ],
+    "greeting_language": "Spanish (Hola)",
+    "typography": {
+      "serif": "Tiempos/EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "outro_policy": "OUTRO-LOCK §Voice: spoken title + 'At Nik Bear Brown', 1.0 s silent tail, no jingle.",
+    "bookloop_policy": "The film teaches the idea standalone; the source paper is credited in SOURCES.md and in the verdict, not narrated as a lesson reference.",
+    "math_route": "MathText SVG (typeset_math.py); Manim MathTex unavailable (no dvisvgm)",
+    "tags": [
+      "attention",
+      "transformer",
+      "softmax",
+      "scaling",
+      "3Blue1Brown style",
+      "Claude",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-11-23T23:53:32",
+      "cut": "master",
+      "filled": 16,
+      "of": 16,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeTldrWhat916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "BOUT: palette=claude but the outro is 'ClaudeTitleOutro916' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    },
+    "fit": "pad",
+    "kind": "vertical",
+    "reformat": "full-length; native portrait graphics; preserve source framing",
+    "derived_from": "tldr-attention-scaling",
+    "dropped_beats": [],
+    "total_estimated_duration_seconds": 220.71,
+    "short_validation": {
+      "status": "blocked",
+      "errors": [
+        "B10: native portrait scene",
+        "B11: native portrait scene",
+        "B12: native portrait scene",
+        "B13: native portrait scene",
+        "B14: native portrait scene",
+        "B15: native portrait scene",
+        "B16: native portrait scene",
+        "B17: native portrait scene",
+        "B18: native portrait scene"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "tldr · what",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Hola. This is Liam, in for Bear. This film is about one small piece of the attention formula: why the scores are divided by the square root of the vector length. Longer vectors make wider scores, and wide scores make the softmax pick a single winner. Dividing by the square root keeps the spread the same at any length. The trap is calling it a detail.",
+      "estimated_duration_s": 24,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "'TL;DR.' wordmark lands; 'Hola, Liam' + topic"
+          },
+          {
+            "at": 0.06,
+            "event": "the question writes on, word by word"
+          },
+          {
+            "at": 0.3,
+            "event": "line 1 lands, terracotta numeral"
+          },
+          {
+            "at": 0.55,
+            "event": "line 2 lands; line 1 settles"
+          },
+          {
+            "at": 0.78,
+            "event": "line 3 lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTldrWhat916",
+          "props": {
+            "eyebrow": "TL;DR",
+            "greeting": "Hola, Liam",
+            "topic": "",
+            "question": "Why divide attention scores by the square root of the length?",
+            "lines": [
+              "Longer vectors make wider scores.",
+              "Wide scores make softmax pick one winner.",
+              "Divide by the square root to hold the spread."
+            ],
+            "cues": [
+              0.9,
+              5.25,
+              9.38,
+              13.51
+            ],
+            "durationSeconds": 18.01,
+            "folderLabel": "",
+            "heading": "What This Is About"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-24T03:48:09.433134+00:00"
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TL;DR card one — lines land on the spoken clauses by design; waives only underfill."
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 18.01,
+      "render_duration_s": 18.041666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeTldrWhat916",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "tldr · why",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Why should you care? Every attention layer scores words against each other, and scores that run too wide break it. Nearly all the weight lands on one word. The softmax passes back almost no learning signal. One short division keeps attention a weighted average instead of a vote.",
+      "estimated_duration_s": 20,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "page turn: same header, heading 'Why You Should Care'"
+          },
+          {
+            "at": 0.08,
+            "event": "the stake writes on"
+          },
+          {
+            "at": 0.4,
+            "event": "dash 1 lands"
+          },
+          {
+            "at": 0.6,
+            "event": "dash 2 lands"
+          },
+          {
+            "at": 0.78,
+            "event": "dash 3 lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTldrWhy916",
+          "props": {
+            "eyebrow": "TL;DR",
+            "heading": "Why You Should Care",
+            "topic": "",
+            "lead": "Scores that run too wide break attention.",
+            "lines": [
+              "Nearly all weight lands on one word.",
+              "Softmax passes back almost no signal.",
+              "One division keeps a weighted average."
+            ],
+            "cues": [
+              0.74,
+              5.2,
+              8.17,
+              10.77
+            ],
+            "durationSeconds": 14.85,
+            "folderLabel": ""
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-24T03:48:50.743441+00:00"
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TL;DR card two — text lands on cues by design."
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 14.85,
+      "render_duration_s": 14.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:ClaudeTldrWhy916",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "the question",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "The question this film is really asking: why does attention divide by the square root of the vector length? Not why it divides at all. Why that number, and not one you could simply pick.",
+      "estimated_duration_s": 13,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types the naive question"
+          },
+          {
+            "at": 0.4,
+            "event": "backspaces 'a number you could pick by hand' → 'the square root of the vector length' on the spoken correction"
+          },
+          {
+            "at": 0.85,
+            "event": "caret holds on the corrected question"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter916",
+          "props": {
+            "text": "Why divide scores by\na number you pick by hand?",
+            "triggerWords": "a number you pick by hand",
+            "replacementWords": "the square root of length",
+            "fontSize": 80,
+            "charMs": 26,
+            "hesitateBetween": 8,
+            "hesitateWithin": 1,
+            "mistakeRate": 5,
+            "jitter": 20,
+            "seed": "tldr-attention-scaling",
+            "banner": ""
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-24T04:04:20.676848+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the naive question and replaces the phrase that makes it the wrong question, on the spoken word.",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 9.62,
+      "render_duration_s": 9.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter916",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Three terms before we start. A dot product multiplies two vectors entry by entry and adds the results into one number. Softmax turns a list of scores into weights that add up to one. Variance measures how spread out numbers are around their average.",
+      "estimated_duration_s": 17,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "row 1 'dot product' lands, terracotta"
+          },
+          {
+            "at": 0.45,
+            "event": "row 2 'softmax' lands; row 1 settles"
+          },
+          {
+            "at": 0.75,
+            "event": "row 3 'variance' lands; row 2 settles"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions916",
+          "props": {
+            "title": "Terms In This Film",
+            "terms": [
+              {
+                "term": "dot product",
+                "meaning": "multiply entry by entry, then add"
+              },
+              {
+                "term": "softmax",
+                "meaning": "scores to weights that sum to one"
+              },
+              {
+                "term": "variance",
+                "meaning": "how spread out numbers are"
+              }
+            ],
+            "durationSeconds": 13.97,
+            "folderLabel": ""
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-24T03:50:18.822570+00:00"
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: prerequisites only; the film earns 'scaling' and the square root itself."
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 13.97,
+      "render_duration_s": 14.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:ClaudeDefinitions916",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "learn 1",
+      "section": 1,
+      "role": "HOOK",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "Same recipe, longer vectors: why does one key take everything?",
+        "action": "Show 6 key bars at length 4, then at length 512.",
+        "observation": "Sensible weights at 4; one bar at 99.6% at 512.",
+        "inference": "Something about vector length breaks the softmax.",
+        "next_question": "What is changing as the vectors get longer?"
+      },
+      "narration_text": "One word asks a question of six others. Each gets a score, and softmax turns the scores into weights. With short vectors, the weights look sensible. Now keep the recipe and make the vectors five hundred and twelve numbers long. One key takes ninety-nine point six percent.",
+      "estimated_duration_s": 19,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Six bars (keys) with weights from the seeded run; a length readout sweeps 4 → 512 and the bars snap to one-hot.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "six bars at length 4 (0.022 0.054 0.042 0.469 0.105 0.309)"
+          },
+          {
+            "at": 0.45,
+            "event": "length readout sweeps to 512 on 'five hundred and twelve'"
+          },
+          {
+            "at": 0.85,
+            "event": "bars collapse to one tall bar, '99.6%' lands"
+          }
+        ],
+        "manim": {
+          "class": "B10_SixBars"
+        }
+      },
+      "motion_claim": "The bars snapping to one winner as the length counter climbs is the claim; the same six bars return in B18.",
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 14.68,
+      "render_duration_s": 14.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "learn 1",
+      "section": 1,
+      "role": "INSTANCE",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "Is it the spread of the scores?",
+        "action": "Sweep the length 4, 16, 64, 512 and plot the six scores as dots on a line.",
+        "observation": "The dots spread wider each step; the average largest weight climbs 0.574 → 0.961.",
+        "inference": "Wider scores, more one-sided softmax.",
+        "next_question": "Why does one-sided matter?"
+      },
+      "narration_text": "Look at the scores themselves. At four numbers per vector they huddle near zero. At sixteen they spread. At sixty-four, wider. At five hundred and twelve, they run for dozens of units. On average, the biggest weight climbs from fifty-seven percent to ninety-six.",
+      "estimated_duration_s": 19,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Number line with six dots (seeded instance); a length readout steps through four values; a counter shows the average largest weight.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "dots at length 4 huddle near zero"
+          },
+          {
+            "at": 0.35,
+            "event": "length steps to 16, 64: dots spread"
+          },
+          {
+            "at": 0.65,
+            "event": "length 512: dots span about −17 to 41"
+          },
+          {
+            "at": 0.85,
+            "event": "counter reads 0.574 → 0.961"
+          }
+        ],
+        "manim": {
+          "class": "B11_ScoresSpread"
+        }
+      },
+      "motion_claim": "The dots spreading as length steps up is the claim.",
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.06,
+      "render_duration_s": 14.083333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "learn 1",
+      "section": 1,
+      "role": "INSTANCE",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "What does a one-sided softmax cost?",
+        "action": "Draw the softmax curve; park the scores on it at each length; read the slope.",
+        "observation": "Wide scores sit on the flat ends; slope falls 0.203 → 0.0276.",
+        "inference": "A saturated softmax passes back almost nothing.",
+        "next_question": "Can a simple fix cure it?"
+      },
+      "narration_text": "Why does a winner-take-all softmax matter? Training needs slope. Where the curve is flat, nudging a score changes nothing. Our rough measure of that slope, the biggest p times one minus p, falls from about point two to under point oh three.",
+      "estimated_duration_s": 17,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Softmax curve with dots parked at length 4, then 512 on its flat ends; a slope readout labelled 'our measure'.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "softmax curve draws"
+          },
+          {
+            "at": 0.4,
+            "event": "length-4 dots sit on the steep middle; slope reads 0.203"
+          },
+          {
+            "at": 0.7,
+            "event": "length-512 dots slide onto the flat ends; slope reads 0.028"
+          }
+        ],
+        "manim": {
+          "class": "B12_FlatEnds"
+        }
+      },
+      "motion_claim": "The dots sliding off the slope onto the flat ends is the claim.",
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 12.86,
+      "render_duration_s": 12.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B12.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "learn 1",
+      "section": 1,
+      "role": "NAIVE",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "Can we just divide by a constant?",
+        "action": "Apply a fixed divisor of 10 at lengths 4, 64, 2048.",
+        "observation": "Largest weight 0.209, 0.368, 0.809 — flat, fine, collapsed.",
+        "inference": "A constant fits one length only.",
+        "next_question": "What divisor tracks the length?"
+      },
+      "narration_text": "The obvious patch: divide every score by ten. Around sixty-four it looks fine. But at four, the bars go nearly flat. At two thousand and forty-eight, one winner takes most of the weight again. A fixed number fits one vector length.",
+      "estimated_duration_s": 17,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three panels of six bars (lengths 4, 64, 2048) after dividing by 10, with the uniform line at 0.167.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "length 4 panel: bars nearly flat, 0.209"
+          },
+          {
+            "at": 0.45,
+            "event": "length 64 panel: reasonable, 0.368"
+          },
+          {
+            "at": 0.75,
+            "event": "length 2048 panel: one bar tall again, 0.809"
+          }
+        ],
+        "manim": {
+          "class": "B13_FixedTen"
+        }
+      },
+      "motion_claim": "The same fix landing flat, fine, then collapsed across three lengths is the claim.",
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 12.82,
+      "render_duration_s": 12.833333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B13.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "learn 1",
+      "section": 1,
+      "role": "SHIFT",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "How does the spread depend on the length?",
+        "action": "Plot the width (standard deviation) against length; hold for the prediction.",
+        "observation": "Widths 2, 4, 8, 16, 22.6, 45.3 fall on a square-root curve.",
+        "inference": "The width grows as the square root of the length.",
+        "next_question": "What happens if we divide by that width?"
+      },
+      "narration_text": "Stop watching the bars. Watch the width of the cloud of scores instead. Length four, the width is two. Sixteen, four. Sixty-four, eight. Every time the length quadruples, the width doubles. Before it moves, commit: what should we divide by?",
+      "estimated_duration_s": 20,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Plot of score-cloud width versus length with six measured points landing on a square-root curve; a HOLD on 'commit'.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "axes: length vs width"
+          },
+          {
+            "at": 0.4,
+            "event": "points land at 4,16,64: 2, 4, 8 on the spoken values"
+          },
+          {
+            "at": 0.65,
+            "event": "points at 256, 512, 2048 land; the curve draws through all"
+          },
+          {
+            "at": 0.85,
+            "event": "HOLD — nothing moves on 'commit'"
+          }
+        ],
+        "manim": {
+          "class": "B14_WidthVsLength"
+        }
+      },
+      "motion_claim": "The points landing on the curve and then the held frame is the predict-before-reveal beat.",
+      "predict": true,
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 13.06,
+      "render_duration_s": 13.083333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B14.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "learn 1",
+      "section": 1,
+      "role": "TRANSFORM",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "What happens when we divide by the width?",
+        "action": "Scale the length-512 dot cloud by 1/√512 in place; bars beneath morph.",
+        "observation": "Cloud width becomes 1; bars go from one-hot to a healthy spread.",
+        "inference": "Dividing by the square root makes the spread the same at every length.",
+        "next_question": "Why exactly the square root?"
+      },
+      "narration_text": "Divide by the square root, and the wide cloud folds back to the width it had at four. The bars recover.",
+      "estimated_duration_s": 12,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The length-512 dots shrink in place onto a width-1 band (same dots, same labels); the six bars beneath morph from one-hot to [0.027 0.356 0.278 0.085 0.103 0.151].",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "wide cloud and one-hot bars on stage"
+          },
+          {
+            "at": 0.35,
+            "event": "cloud shrinks by 1/√512, dots keep identity"
+          },
+          {
+            "at": 0.65,
+            "event": "bars morph to the healthy spread"
+          }
+        ],
+        "manim": {
+          "class": "B15_Fold"
+        }
+      },
+      "motion_claim": "One continuous morph of the same dots and bars: the section's single aha.",
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 6.14,
+      "render_duration_s": 6.166666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B15.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "learn 1",
+      "section": 1,
+      "role": "ABSTRACTION",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "Why is the width exactly the square root of the length?",
+        "action": "Write the sum of d products; add their variances; divide.",
+        "observation": "Var(q·k) = d_k, then Var(q·k / √d_k) = 1.",
+        "inference": "The square root is what turns variance d back into 1.",
+        "next_question": "What does each symbol stand for?"
+      },
+      "narration_text": "Now the idea deserves a name. Each score is a sum of d products. Each product has variance one. The variances of independent terms add, so the score has variance d. Divide by the square root of d, and the variance is one again.",
+      "estimated_duration_s": 19,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The width band from B15 turns into the equation: Var(q·k)=d_k, then the divided form; both typeset as MathText SVG, revealed one line at a time.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "'sum of d products' writes under the cloud"
+          },
+          {
+            "at": 0.45,
+            "event": "Var(q·k) = d_k lands"
+          },
+          {
+            "at": 0.75,
+            "event": "Var(q·k/√d_k) = 1 lands"
+          }
+        ],
+        "manim": {
+          "class": "B16_NameIt"
+        }
+      },
+      "motion_claim": "The equation arrives as the name for the band just watched.",
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 13.18,
+      "render_duration_s": 13.208333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B16.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "learn 1",
+      "section": 1,
+      "role": "TANGENT",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "What does each symbol mean?",
+        "action": "Five-zone tangent: left side as a sentence, the sign as a claim, Role glossary, worked check at 512.",
+        "observation": "Measured variance 512.65 → 1.00 after dividing.",
+        "inference": "The relation holds under its stated assumption.",
+        "next_question": "Does it fix our original six bars?"
+      },
+      "narration_text": "Read it as a claim. The left side is how wide the score cloud is, squared. The equals sign says: exactly d, when the entries are independent with variance one. Q and k are random; d is a fixed count. Check at five hundred and twelve: measured variance, about five hundred and thirteen; divided, one.",
+      "estimated_duration_s": 24,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Split stage: equation persists on the main side; side band writes the sentence, the claim, the Role glossary (q, k random variables; d a fixed count) and the d=512 check.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "left-side sentence writes"
+          },
+          {
+            "at": 0.35,
+            "event": "'=' read as a claim: 'exactly d, under independence'"
+          },
+          {
+            "at": 0.6,
+            "event": "Role glossary rows land, spotlight moving"
+          },
+          {
+            "at": 0.85,
+            "event": "check: 512.65 → 1.00"
+          }
+        ],
+        "manim": {
+          "class": "B17_ReadIt"
+        }
+      },
+      "motion_claim": "The spotlight walking through symbols and the measured check carry the tangent.",
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 15.87,
+      "render_duration_s": 15.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B17.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "learn 1",
+      "section": 1,
+      "role": "PAYOFF",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "learn": {
+        "question": "Did it fix the original six bars?",
+        "action": "Return the hook's six bars; show raw beside scaled.",
+        "observation": "Raw [0, 0.996, 0.004, 0, 0, 0]; scaled [0.027 0.356 0.278 0.085 0.103 0.151].",
+        "inference": "Scaling restores a weighted average.",
+        "next_question": ""
+      },
+      "narration_text": "Back to the six keys at five hundred and twelve. Raw, one key held ninety-nine point six percent. Scaled, the weights spread, from three percent to thirty-six. Attention is a weighted average again, not a vote.",
+      "estimated_duration_s": 17,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The same six bars as B10: raw one-hot beside the scaled spread, same objects, same labels.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the hook's six bars return (raw)"
+          },
+          {
+            "at": 0.5,
+            "event": "scaled bars grow beside them"
+          },
+          {
+            "at": 0.85,
+            "event": "'weighted average' label lands"
+          }
+        ],
+        "manim": {
+          "class": "B18_SixBarsBack"
+        }
+      },
+      "motion_claim": "The hook's own bars returning resolved closes the loop.",
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 12.03,
+      "render_duration_s": 12.041666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B18.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. Dot products of longer vectors spread wider. Wide scores saturate the softmax, and a saturated softmax passes back almost no signal. A fixed divisor fits one length only. For random vectors the spread grows as the square root of the length, so dividing by it holds the spread constant.",
+      "estimated_duration_s": 26,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.2,
+            "event": "four verdict lines land in narration order"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact916",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Why Attention Divides By The Square Root",
+            "artifactLines": [
+              "Dot products of longer vectors spread wider.",
+              "Wide scores saturate the softmax and starve learning.",
+              "A fixed divisor fits one length only.",
+              "Dividing by the square root holds the spread constant."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": "2026-11-24T03:38:54.282963+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 17.69,
+      "render_duration_s": 17.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact916",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude: Write a short Python script that draws random queries and keys with variance 4 instead of 1, computes the variance of their dot products at vector length 64, and checks whether dividing by the square root of 64 still gives variance 1. Predict the number before you run it, then say what divisor would fix it. Look for two things: did you commit to a number before running it, and is the divisor you named the one that brings the variance back to one.",
+      "estimated_duration_s": 40,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens — 'Your turn.'"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.78,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "ATTENTION · YOUR TURN",
+            "segment": "What If The Entries Are Bigger?",
+            "command": "Write a short Python script that draws random queries and keys with variance 4 instead of 1, computes the variance of their dot products at vector length 64, and checks whether dividing by the square root of 64 still gives variance 1. Predict the number before you run it, then say what divisor would fix it.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: you committed to a number before running the script.",
+              "Check: the divisor you named brings the variance back to 1."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Fable 5",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-24T03:39:38.140762+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 27.37,
+      "render_duration_s": 27.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-11-23T23:53:32"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Why Attention Divides By The Square Root. At Nik Bear Brown.",
+      "estimated_duration_s": 6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; slug-seeded mascot; Liam reads the title then 'At Nik Bear Brown'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "Why Attention Divides By The Square Root",
+            "slug": "tldr-attention-scaling",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-11-24T04:48:33.733864+00:00"
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "hold_note": "spoken outro + 1.0 s silent tail (apad); no jingle (OUTRO-LOCK §Voice)",
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 4.64,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro916",
+        "at": "2026-11-23T23:53:32"
+      },
+      "render_duration_s": 4.666666666666667
+    }
+  ]
+}

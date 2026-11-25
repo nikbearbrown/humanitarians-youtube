@@ -1,0 +1,468 @@
+{
+ "python": "3.12.13",
+ "numpy": "2.5.5",
+ "platform": "Windows-11-10.0.26300-SP0",
+ "script_sha256": "ef0b674237a9a11b3df5fb50f5eed3e1ba0f1805fcd71458ea9139e9d66226be",
+ "inputs_sha256": "caf5a186dd1c63996296b980b26b664a86fcdb6d948a4dc66d31920a25d1c073",
+ "seed": null,
+ "randomness": "none (fully deterministic)",
+ "method": {
+  "chunking": "one chunk per line",
+  "embedding": "TF-IDF, idf = ln((1+N)/(1+df)) + 1, L2-normalised",
+  "similarity": "cosine (dot product of unit vectors)",
+  "top_k": 2,
+  "answer": "stand-in reader, regex copy from rank-1 chunk; no LLM"
+ },
+ "docs": {
+  "returns.txt": [
+   "Laptops can be returned within 30 days of purchase.",
+   "Bring the receipt and the charger to the service desk."
+  ],
+  "shipping.txt": [
+   "Orders ship within two business days.",
+   "Tracking numbers arrive by email."
+  ],
+  "warranty.txt": [
+   "Every laptop has a one year warranty.",
+   "The warranty covers parts and repairs, but not water damage."
+  ]
+ },
+ "stale": {
+  "faq-2019.txt": [
+   "FAQ: How long do I have to return a laptop? 14 days."
+  ]
+ },
+ "film": {
+  "question": "How long do I have to return a laptop?",
+  "n_docs": 3,
+  "n_chunks": 6,
+  "dims": 29,
+  "A_top": {
+   "id": "returns#1",
+   "score": 0.5774,
+   "text": "Laptops can be returned within 30 days of purchase."
+  },
+  "A_second": {
+   "id": "warranty#1",
+   "score": 0.2494,
+   "text": "Every laptop has a one year warranty."
+  },
+  "A_answer": "30 days",
+  "B_top": {
+   "id": "faq-2019#1",
+   "score": 0.6833,
+   "text": "FAQ: How long do I have to return a laptop? 14 days."
+  },
+  "B_second": {
+   "id": "returns#1",
+   "score": 0.3846,
+   "text": "Laptops can be returned within 30 days of purchase."
+  },
+  "B_answer": "14 days",
+  "A_right_score": 0.5774,
+  "B_right_score": 0.3846,
+  "B_stale_score": 0.6833
+ },
+ "runs": {
+  "A": {
+   "label": "A_handbook",
+   "n_docs": 3,
+   "n_chunks": 6,
+   "dims": 29,
+   "vocab": [
+    "30",
+    "arrive",
+    "bring",
+    "business",
+    "charger",
+    "cover",
+    "damage",
+    "day",
+    "desk",
+    "email",
+    "every",
+    "laptop",
+    "not",
+    "number",
+    "one",
+    "order",
+    "part",
+    "purchase",
+    "receipt",
+    "repair",
+    "return",
+    "service",
+    "ship",
+    "tracking",
+    "two",
+    "warranty",
+    "water",
+    "within",
+    "year"
+   ],
+   "question_tokens": [
+    "long",
+    "return",
+    "laptop"
+   ],
+   "question_unknown": [
+    "long"
+   ],
+   "question_nonzero": 2,
+   "ranking": [
+    {
+     "rank": 1,
+     "id": "returns#1",
+     "doc": "returns.txt",
+     "text": "Laptops can be returned within 30 days of purchase.",
+     "score": 0.5774
+    },
+    {
+     "rank": 2,
+     "id": "warranty#1",
+     "doc": "warranty.txt",
+     "text": "Every laptop has a one year warranty.",
+     "score": 0.2494
+    },
+    {
+     "rank": 3,
+     "id": "returns#2",
+     "doc": "returns.txt",
+     "text": "Bring the receipt and the charger to the service desk.",
+     "score": 0.0
+    },
+    {
+     "rank": 4,
+     "id": "shipping#1",
+     "doc": "shipping.txt",
+     "text": "Orders ship within two business days.",
+     "score": 0.0
+    },
+    {
+     "rank": 5,
+     "id": "shipping#2",
+     "doc": "shipping.txt",
+     "text": "Tracking numbers arrive by email.",
+     "score": 0.0
+    },
+    {
+     "rank": 6,
+     "id": "warranty#2",
+     "doc": "warranty.txt",
+     "text": "The warranty covers parts and repairs, but not water damage.",
+     "score": 0.0
+    }
+   ],
+   "top_k": 2,
+   "prompt": "Answer using only the notes below. If they don't say, say you don't know.\n\nNotes:\n[1] Laptops can be returned within 30 days of purchase. (returns.txt)\n[2] Every laptop has a one year warranty. (warranty.txt)\n\nQuestion: How long do I have to return a laptop?",
+   "answer": {
+    "answer": "30 days",
+    "cites": "returns#1",
+    "method": "stand-in reader: regex copy from the rank-1 chunk (no LLM)"
+   },
+   "chunks": [
+    {
+     "id": "returns#1",
+     "doc": "returns.txt",
+     "text": "Laptops can be returned within 30 days of purchase."
+    },
+    {
+     "id": "returns#2",
+     "doc": "returns.txt",
+     "text": "Bring the receipt and the charger to the service desk."
+    },
+    {
+     "id": "shipping#1",
+     "doc": "shipping.txt",
+     "text": "Orders ship within two business days."
+    },
+    {
+     "id": "shipping#2",
+     "doc": "shipping.txt",
+     "text": "Tracking numbers arrive by email."
+    },
+    {
+     "id": "warranty#1",
+     "doc": "warranty.txt",
+     "text": "Every laptop has a one year warranty."
+    },
+    {
+     "id": "warranty#2",
+     "doc": "warranty.txt",
+     "text": "The warranty covers parts and repairs, but not water damage."
+    }
+   ]
+  },
+  "B": {
+   "label": "B_plus_stale_faq",
+   "n_docs": 4,
+   "n_chunks": 7,
+   "dims": 32,
+   "vocab": [
+    "14",
+    "30",
+    "arrive",
+    "bring",
+    "business",
+    "charger",
+    "cover",
+    "damage",
+    "day",
+    "desk",
+    "email",
+    "every",
+    "faq",
+    "laptop",
+    "long",
+    "not",
+    "number",
+    "one",
+    "order",
+    "part",
+    "purchase",
+    "receipt",
+    "repair",
+    "return",
+    "service",
+    "ship",
+    "tracking",
+    "two",
+    "warranty",
+    "water",
+    "within",
+    "year"
+   ],
+   "question_tokens": [
+    "long",
+    "return",
+    "laptop"
+   ],
+   "question_unknown": [],
+   "question_nonzero": 3,
+   "ranking": [
+    {
+     "rank": 1,
+     "id": "faq-2019#1",
+     "doc": "faq-2019.txt",
+     "text": "FAQ: How long do I have to return a laptop? 14 days.",
+     "score": 0.6833
+    },
+    {
+     "rank": 2,
+     "id": "returns#1",
+     "doc": "returns.txt",
+     "text": "Laptops can be returned within 30 days of purchase.",
+     "score": 0.3846
+    },
+    {
+     "rank": 3,
+     "id": "warranty#1",
+     "doc": "warranty.txt",
+     "text": "Every laptop has a one year warranty.",
+     "score": 0.166
+    },
+    {
+     "rank": 4,
+     "id": "returns#2",
+     "doc": "returns.txt",
+     "text": "Bring the receipt and the charger to the service desk.",
+     "score": 0.0
+    },
+    {
+     "rank": 5,
+     "id": "shipping#1",
+     "doc": "shipping.txt",
+     "text": "Orders ship within two business days.",
+     "score": 0.0
+    },
+    {
+     "rank": 6,
+     "id": "shipping#2",
+     "doc": "shipping.txt",
+     "text": "Tracking numbers arrive by email.",
+     "score": 0.0
+    },
+    {
+     "rank": 7,
+     "id": "warranty#2",
+     "doc": "warranty.txt",
+     "text": "The warranty covers parts and repairs, but not water damage.",
+     "score": 0.0
+    }
+   ],
+   "top_k": 2,
+   "prompt": "Answer using only the notes below. If they don't say, say you don't know.\n\nNotes:\n[1] FAQ: How long do I have to return a laptop? 14 days. (faq-2019.txt)\n[2] Laptops can be returned within 30 days of purchase. (returns.txt)\n\nQuestion: How long do I have to return a laptop?",
+   "answer": {
+    "answer": "14 days",
+    "cites": "faq-2019#1",
+    "method": "stand-in reader: regex copy from the rank-1 chunk (no LLM)"
+   },
+   "chunks": [
+    {
+     "id": "returns#1",
+     "doc": "returns.txt",
+     "text": "Laptops can be returned within 30 days of purchase."
+    },
+    {
+     "id": "returns#2",
+     "doc": "returns.txt",
+     "text": "Bring the receipt and the charger to the service desk."
+    },
+    {
+     "id": "shipping#1",
+     "doc": "shipping.txt",
+     "text": "Orders ship within two business days."
+    },
+    {
+     "id": "shipping#2",
+     "doc": "shipping.txt",
+     "text": "Tracking numbers arrive by email."
+    },
+    {
+     "id": "warranty#1",
+     "doc": "warranty.txt",
+     "text": "Every laptop has a one year warranty."
+    },
+    {
+     "id": "warranty#2",
+     "doc": "warranty.txt",
+     "text": "The warranty covers parts and repairs, but not water damage."
+    },
+    {
+     "id": "faq-2019#1",
+     "doc": "faq-2019.txt",
+     "text": "FAQ: How long do I have to return a laptop? 14 days."
+    }
+   ]
+  },
+  "C": {
+   "label": "C_stale_removed",
+   "n_docs": 3,
+   "n_chunks": 6,
+   "dims": 29,
+   "vocab": [
+    "30",
+    "arrive",
+    "bring",
+    "business",
+    "charger",
+    "cover",
+    "damage",
+    "day",
+    "desk",
+    "email",
+    "every",
+    "laptop",
+    "not",
+    "number",
+    "one",
+    "order",
+    "part",
+    "purchase",
+    "receipt",
+    "repair",
+    "return",
+    "service",
+    "ship",
+    "tracking",
+    "two",
+    "warranty",
+    "water",
+    "within",
+    "year"
+   ],
+   "question_tokens": [
+    "long",
+    "return",
+    "laptop"
+   ],
+   "question_unknown": [
+    "long"
+   ],
+   "question_nonzero": 2,
+   "ranking": [
+    {
+     "rank": 1,
+     "id": "returns#1",
+     "doc": "returns.txt",
+     "text": "Laptops can be returned within 30 days of purchase.",
+     "score": 0.5774
+    },
+    {
+     "rank": 2,
+     "id": "warranty#1",
+     "doc": "warranty.txt",
+     "text": "Every laptop has a one year warranty.",
+     "score": 0.2494
+    },
+    {
+     "rank": 3,
+     "id": "returns#2",
+     "doc": "returns.txt",
+     "text": "Bring the receipt and the charger to the service desk.",
+     "score": 0.0
+    },
+    {
+     "rank": 4,
+     "id": "shipping#1",
+     "doc": "shipping.txt",
+     "text": "Orders ship within two business days.",
+     "score": 0.0
+    },
+    {
+     "rank": 5,
+     "id": "shipping#2",
+     "doc": "shipping.txt",
+     "text": "Tracking numbers arrive by email.",
+     "score": 0.0
+    },
+    {
+     "rank": 6,
+     "id": "warranty#2",
+     "doc": "warranty.txt",
+     "text": "The warranty covers parts and repairs, but not water damage.",
+     "score": 0.0
+    }
+   ],
+   "top_k": 2,
+   "prompt": "Answer using only the notes below. If they don't say, say you don't know.\n\nNotes:\n[1] Laptops can be returned within 30 days of purchase. (returns.txt)\n[2] Every laptop has a one year warranty. (warranty.txt)\n\nQuestion: How long do I have to return a laptop?",
+   "answer": {
+    "answer": "30 days",
+    "cites": "returns#1",
+    "method": "stand-in reader: regex copy from the rank-1 chunk (no LLM)"
+   },
+   "chunks": [
+    {
+     "id": "returns#1",
+     "doc": "returns.txt",
+     "text": "Laptops can be returned within 30 days of purchase."
+    },
+    {
+     "id": "returns#2",
+     "doc": "returns.txt",
+     "text": "Bring the receipt and the charger to the service desk."
+    },
+    {
+     "id": "shipping#1",
+     "doc": "shipping.txt",
+     "text": "Orders ship within two business days."
+    },
+    {
+     "id": "shipping#2",
+     "doc": "shipping.txt",
+     "text": "Tracking numbers arrive by email."
+    },
+    {
+     "id": "warranty#1",
+     "doc": "warranty.txt",
+     "text": "Every laptop has a one year warranty."
+    },
+    {
+     "id": "warranty#2",
+     "doc": "warranty.txt",
+     "text": "The warranty covers parts and repairs, but not water damage."
+    }
+   ]
+  }
+ }
+}

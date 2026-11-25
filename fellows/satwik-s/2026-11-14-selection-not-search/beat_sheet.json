@@ -1,0 +1,506 @@
+{
+ "metadata": {
+  "title": "Selection, Not Search",
+  "slug": "selection-not-search",
+  "topic": "STAGE 4B · THE MATCHER",
+  "register": "Pragmatist / skeptical-explainer (PROOF)",
+  "audience": "HAI",
+  "brand": "claude-hai",
+  "persona": "Satwik (Humanitarians AI)",
+  "voice": "af_bella",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "body_palette": "humanitarians",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Hello, fellows",
+  "folderLabel": "@HumanitariansAI",
+  "channel_title": "@HumanitariansAI",
+  "in_for_bear": false,
+  "typography": {
+   "serif": "EB Garamond",
+   "sans": "Montserrat",
+   "mono": "system mono"
+  },
+  "source": "sources/ (weekly_report_2026-11-14.md, matching_selection.md, matching_signal_ablation.md, matching_signal_ablation.json, matching_signal_ablation.png). Verified only; figures reconciled against the JSON (see FACT-CHECK.md). Isolates Stage 4b (no sequencing). Draft section metadata; measures the mechanism, not approved content; no learning-outcome claim.",
+  "playlist": "Humanitarians AI — Method Explainers",
+  "duration_target_s": [
+   210,
+   260
+  ],
+  "authors": "Satwik Reddy Sripathi, Jash Shah, Evin Gultepe, Srinivas Sridhar, Nik Bear Brown (Northeastern University)",
+  "sign_off": "This is Satwik for Humanitarians AI.",
+  "palette_note": "FIDELITY claude skin on UI beats (B00/B09); humanitarians tokens on body beats (B01-B08). PROOF: framework-first (B01 two arms + B02 two signals before any number). CRIMSON = similarity-only/rejected, TEAL = selection/shared vocabulary, SLATE = role structure/scale, GOLD = the 'similarity is not relevance' finding, SAGE = robust across K. B08 = falsifiability.",
+  "voice_note": "Kokoro af_bella. Run under PYTHONUTF8=1; .venv python for kokoro. RENDER: temp on D: (TMPDIR/TEMP/TMP=d:/_remotion_tmp). ART_REMOTION_SCALE=2; FREE RAM FIRST + concurrency 1 under low RAM to beat the 25s Chrome connect timeout; top up with --only BXX. ASSEMBLY: concat FILTER for BOTH video and audio. Verify VIDEO stream duration + volumedetect ~ -21 dB.",
+  "gate_note": "GATE P signed (NARRATION-GATE-P.md + PEDAGOGY.md VERDICT: PASS). Fact-check signed (FACT-CHECK.md). actual_duration_s (audio) is the master clock; durationInFrames = round(actual_duration_s * 30).",
+  "claims_guardrails": [
+   "No source, no verdict: every figure traces to sources/ and is verified against matching_signal_ablation.json (FACT-CHECK.md).",
+   "The challenge: isn't matching just semantic search? The fair test is an ablation: rank by similarity and see if you get the same sections the matcher selects.",
+   "Setup: two arms, same project, same embeddings. Retrieval = top-K by similarity. Selection = include a section only if it shares a specific project term, and label it by role. Only difference: the selection signal. Isolates Stage 4b (no sequencing).",
+   "Two signals: similarity (paraphrase-tolerant, imprecise - topical nearness) vs shared controlled vocabulary (precise). Relevance to THIS project is a vocabulary property, not a distance property.",
+   "Similarity is not relevance (headline, K=20): of the top-20 most similar sections, 17/20 (85%) for LNP-siRNA and 12/20 (60%) for photothermal share NO specific project vocabulary.",
+   "Robust across K: sweep (K: no-vocab fraction) LNP 10:0.9, 20:0.85, 30:0.833; photothermal 10:0.8, 20:0.6, 30:0.567. The pattern holds at every K.",
+   "Selection produces structure: the matcher selects 32 (LNP) and 26 (photothermal) sections, each labelled by role. LNP roles: core platform 7, supporting method 8, foundational background 12, optional extension 5. Photothermal roles: core platform 1, supporting method 8, foundational background 12, optional extension 5.",
+   "The weights do not decide the structure: role is category membership (which metadata category overlapped), not a tuned threshold; the signal weights only order sections WITHIN a role.",
+   "The exclusion log is the evidence: 864 (LNP) and 559 (photothermal) exclusions logged, of which 109 and 63 are 'high similarity, no shared vocabulary' (e.g. CH28-S02-SS02 / CH28-S01) - exactly what a top-k search would return, set aside with a recorded reason.",
+   "HONEST BOUNDARY: general-domain embedder (all-MiniLM-L6-v2) - a biomedical model reorders 'similar', not the structural result. Faculty-review DRAFT metadata; measures the mechanism, not approved content. Two standing projects (robust across K, not a many-project benchmark). No learning-outcome claim. Isolates Stage 4b - no sequencing."
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "hook / ASK",
+   "palette": "claude",
+   "narration_text": "Hello, fellows. The headline design claim of this whole project is that building a reading roadmap is a selection problem, not a retrieval problem. And the fair challenge to that is: isn't matching just semantic search? If you embed every section and take the ones most similar to the student's project, don't you get the same reading list the matcher chooses? This week I ran that exact test at the matcher, isolating the matching stage, no sequencing involved, and measured what a pure similarity search would actually return.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B00.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "the ask: is matching just semantic search? the fair test is an ablation - rank by similarity and see if you get the matcher's sections",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hello, fellows",
+      "topic": "STAGE 4B · THE MATCHER",
+      "segment": "Selection, Not Search",
+      "command": "The design claim is that a reading roadmap is a selection problem, not a retrieval problem. The fair challenge: isn't matching just semantic search? Rank sections by similarity, take the top ones - don't you get the same list the matcher selects? So this week I ran the ablation at the matcher (Stage 4b, no sequencing) and measured what a pure similarity search would return.",
+      "runningText": "running the matching-signal ablation…",
+      "output": [
+       "Two arms, same project, same embeddings - the only difference is the selection signal.",
+       "Of the top-20 most similar sections, 85% / 60% share NO specific project vocabulary.",
+       "The matcher selects 32 / 26 as a role-labelled structure, and logs 109 / 63 high-similarity rejects."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 29.87
+  },
+  {
+   "beat_id": "B01",
+   "act": "the setup (two arms)",
+   "palette": "humanitarians",
+   "narration_text": "The test is an ablation: same student project, same embeddings, two arms. The retrieval arm is pure search: take the top-K sections by similarity, and that's your list. The selection arm is the real matcher: it includes a section only if it shares a specific project term with the student's parsed project, and it labels each one by role. The only difference between the two is that selection signal. So whatever changes, selection caused. And this isolates the matching stage, there's no sequencing in here at all.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 29,
+   "audio_file": "mp3/beat-B01.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "two arms, same project + embeddings: retrieval (top-k by similarity) vs selection (shares a project term + role label); only difference is the selection signal",
+    "remotion": {
+     "pattern": "W16TwoArms",
+     "props": {
+      "sparkLine": "Same project, same embeddings - two arms.",
+      "arms": [
+       {
+        "name": "RETRIEVAL",
+        "gloss": "search",
+        "q": "top-K sections by similarity, ordered by similarity - a pure ranked list",
+        "accent": "crimson"
+       },
+       {
+        "name": "SELECTION",
+        "gloss": "the matcher",
+        "q": "include a section only if it shares a specific project term, and label it by role",
+        "accent": "teal"
+       }
+      ],
+      "rule": "The only difference is the selection signal - so whatever changes, selection caused."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 30.27
+  },
+  {
+   "beat_id": "B02",
+   "act": "the two signals",
+   "palette": "humanitarians",
+   "narration_text": "The two arms rest on two different signals. Similarity is a distance in embedding space. It's paraphrase-tolerant, which is good, but it's imprecise: it measures topical nearness, how much two passages are about the same area, not whether a section is actually relevant to this student's work. Shared vocabulary is the precise signal: does the section share a specific controlled-vocabulary term with the project? Because relevance to this project is a vocabulary property, not a distance property.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 29,
+   "audio_file": "mp3/beat-B02.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "two signals: similarity (paraphrase-tolerant, imprecise - topical nearness) vs shared vocabulary (precise - relevance)",
+    "remotion": {
+     "pattern": "W16TwoSignals",
+     "props": {
+      "sparkLine": "Two signals - one is topical, one is relevant.",
+      "cards": [
+       {
+        "name": "SIMILARITY",
+        "gloss": "imprecise",
+        "q": "paraphrase-tolerant distance in embedding space - topical nearness, not task relevance",
+        "accent": "crimson"
+       },
+       {
+        "name": "SHARED VOCABULARY",
+        "gloss": "precise",
+        "q": "the section shares a specific controlled-vocabulary term with the project",
+        "accent": "teal"
+       }
+      ],
+      "rule": "Relevance to THIS project is a vocabulary property - not a distance property."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 28.78
+  },
+  {
+   "beat_id": "B03",
+   "act": "similarity is not relevance (the figure)",
+   "palette": "humanitarians",
+   "narration_text": "So here's the headline. Take the twenty most similar sections to each project, the exact list a pure search would hand you. For the LNP-siRNA project, seventeen of those twenty, eighty-five percent, share no specific project vocabulary at all. For the photothermal project, twelve of twenty, sixty percent. In other words, a similarity search would fill most of the roadmap with sections that are topically near but not actually about this student's work. Similarity found them. Relevance rejects them.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 29,
+   "audio_file": "mp3/beat-B03.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the figure: of top-20 most similar, 85% (17/20) LNP / 60% (12/20) photothermal share NO project vocabulary (tall crimson bars)",
+    "remotion": {
+     "pattern": "W16SimNotRel",
+     "props": {
+      "sparkLine": "Similarity is not relevance.",
+      "bars": [
+       {
+        "name": "LNP-siRNA",
+        "pct": 85,
+        "frac": "17 / 20"
+       },
+       {
+        "name": "photothermal",
+        "pct": 60,
+        "frac": "12 / 20"
+       }
+      ],
+      "caption": "of the top-20 most similar sections, share NO specific project vocabulary",
+      "note": "a pure similarity search would fill the roadmap with topically-near but irrelevant reading"
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 29.53
+  },
+  {
+   "beat_id": "B04",
+   "act": "it's robust (K-sweep)",
+   "palette": "humanitarians",
+   "narration_text": "And this isn't an artifact of where I set the cutoff. I swept K across ten, twenty, and thirty. For LNP-siRNA, the share of top-K sections with no project vocabulary is ninety percent, eighty-five, and eighty-three. For photothermal, eighty, sixty, and fifty-seven. At every single cutoff, the majority of the most-similar sections are not relevant. The effect is the signal, not the setting.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "audio_file": "mp3/beat-B04.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "K-sweep table (K=10/20/30): no-vocab fraction LNP 90/85/83%, photothermal 80/60/57%",
+    "remotion": {
+     "pattern": "W16RobustK",
+     "props": {
+      "sparkLine": "Not cherry-picked - swept across K.",
+      "cols": [
+       "K = 10",
+       "K = 20",
+       "K = 30"
+      ],
+      "rows": [
+       {
+        "label": "LNP-siRNA",
+        "vals": [
+         "90%",
+         "85%",
+         "83%"
+        ],
+        "accent": "crimson"
+       },
+       {
+        "label": "photothermal",
+        "vals": [
+         "80%",
+         "60%",
+         "57%"
+        ],
+        "accent": "crimson"
+       }
+      ],
+      "subnote": "share of the top-K most similar sections with no specific project vocabulary",
+      "note": "the pattern holds at every K - the effect is the signal, not the setting"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 24.66
+  },
+  {
+   "beat_id": "B05",
+   "act": "selection produces structure",
+   "palette": "humanitarians",
+   "narration_text": "Now what does selection produce instead of a ranked list? Structure. For LNP-siRNA, the matcher selects thirty-two sections, and each one carries a role: seven as the core platform, eight as supporting method, twelve as foundational background, and five as optional extension. For photothermal, twenty-six sections, with a different shape: just one core platform section, eight supporting method, twelve foundational, five optional. A plain similarity ranking can't produce that. The role comes from which metadata category actually overlapped.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 31,
+   "audio_file": "mp3/beat-B05.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "selection produces structure: LNP 32 (core 7/method 8/background 12/optional 5), photothermal 26 (core 1/method 8/background 12/optional 5)",
+    "remotion": {
+     "pattern": "W16Structure",
+     "props": {
+      "sparkLine": "Selection produces structure, not a list.",
+      "projects": [
+       {
+        "name": "LNP-siRNA",
+        "total": "32",
+        "roles": [
+         {
+          "k": "core platform",
+          "v": "7"
+         },
+         {
+          "k": "supporting method",
+          "v": "8"
+         },
+         {
+          "k": "foundational background",
+          "v": "12"
+         },
+         {
+          "k": "optional extension",
+          "v": "5"
+         }
+        ]
+       },
+       {
+        "name": "photothermal",
+        "total": "26",
+        "roles": [
+         {
+          "k": "core platform",
+          "v": "1"
+         },
+         {
+          "k": "supporting method",
+          "v": "8"
+         },
+         {
+          "k": "foundational background",
+          "v": "12"
+         },
+         {
+          "k": "optional extension",
+          "v": "5"
+         }
+        ]
+       }
+      ],
+      "note": "each section labelled by which metadata category overlapped - similarity alone cannot produce that"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 32.45
+  },
+  {
+   "beat_id": "B06",
+   "act": "the weights do not decide the structure",
+   "palette": "humanitarians",
+   "narration_text": "And I want to be precise about one thing, because it's a fair objection. You might think the role assignment is just a tuned threshold, that I picked weights to get a nice-looking structure. It isn't. The role is category membership: a section is core platform or foundational background because of which metadata category it shares with the project, full stop. The signal weights only order sections within a role. Change the weights, and the ordering inside each role shifts, but the structure, the roles themselves, stays exactly where it is.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "audio_file": "mp3/beat-B06.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "weights don't decide structure: role = category membership (structural, not tuned); weights only order within a role",
+    "remotion": {
+     "pattern": "W16Weights",
+     "props": {
+      "sparkLine": "The weights do not decide the structure.",
+      "cards": [
+       {
+        "name": "ROLE = STRUCTURE",
+        "gloss": "not tuned",
+        "q": "which metadata category overlapped decides the role - category membership, not a threshold",
+        "accent": "slate"
+       },
+       {
+        "name": "WEIGHTS = ORDER",
+        "gloss": "within a role",
+        "q": "the signal weights only order sections inside a role - they never change the structure",
+        "accent": "teal"
+       }
+      ],
+      "rule": "Change the weights and the ordering shifts - the role structure stays put."
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 29.93
+  },
+  {
+   "beat_id": "B07",
+   "act": "the exclusion log is the evidence",
+   "palette": "humanitarians",
+   "narration_text": "But the cleanest proof that this system selects rather than retrieves is the list of what it threw away. The matcher logs every rejection. For LNP-siRNA, eight hundred sixty-four sections excluded; for photothermal, five hundred fifty-nine. And within those, the ones that matter most: a hundred and nine sections for LNP, sixty-three for photothermal, that were high similarity but shared no project vocabulary. Those are precisely the sections a top-K search would have returned, and the matcher set each one aside with a recorded reason.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B07.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "exclusion log: 864/559 total excluded; 109/63 'high similarity, no shared vocabulary' (e.g. CH28-S02-SS02 / CH28-S01)",
+    "remotion": {
+     "pattern": "W16Exclusion",
+     "props": {
+      "sparkLine": "The exclusion log is the evidence.",
+      "projects": [
+       {
+        "name": "LNP-siRNA",
+        "excluded": "864",
+        "highSim": "109",
+        "example": "CH28-S02-SS02"
+       },
+       {
+        "name": "photothermal",
+        "excluded": "559",
+        "highSim": "63",
+        "example": "CH28-S01"
+       }
+      ],
+      "highSimLabel": "high similarity, no shared vocabulary",
+      "note": "exactly what a top-k search would return - set aside, with a recorded reason"
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 33.11
+  },
+  {
+   "beat_id": "B08",
+   "act": "the honest boundary",
+   "palette": "humanitarians",
+   "narration_text": "What's honest about it. This is measured and reproducible from one script, swept over K, and it isolates the matching stage, there's no sequencing mixed in. The embedder is a general-domain model, so a biomedical one would reorder which sections count as similar, but it wouldn't change the structural result: relevance is still a vocabulary property. The section metadata is faculty-review drafts, so this measures the mechanism, not approved content. It's two standing projects, robust across K but not a many-project benchmark. And it makes no learning-outcome claim.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 31,
+   "audio_file": "mp3/beat-B08.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "honest boundary: measured + swept (isolates Stage 4b; reject log is a result) vs the limits (general embedder; draft metadata; no learning claim)",
+    "remotion": {
+     "pattern": "W16Boundary",
+     "props": {
+      "sparkLine": "Measured and reproducible - and here are the limits.",
+      "done": [
+       {
+        "k": "measured + swept",
+        "v": "two arms, K in {10,20,30}, isolates Stage 4b - no sequencing involved"
+       },
+       {
+        "k": "the reject log is a result",
+        "v": "what a top-k search would return, set aside with a recorded reason"
+       }
+      ],
+      "draft": [
+       {
+        "k": "general-domain embedder",
+        "v": "a biomedical model reorders “similar”, not the structural result"
+       },
+       {
+        "k": "draft metadata",
+        "v": "faculty-review sections - measures the mechanism, not approved content"
+       }
+      ],
+      "stamp": "MEASURES THE MECHANISM - NOT APPROVED CONTENT · NO LEARNING CLAIM"
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 34.86
+  },
+  {
+   "beat_id": "B09",
+   "act": "outro / CTA",
+   "palette": "claude",
+   "narration_text": "Selection, not search. And the cleanest proof that a system selects rather than retrieves isn't the list it returns, it's the list of what it rejected, and why. This is Satwik for Humanitarians AI.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B09.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "title restate + handle + sign-off",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Selection, Not Search",
+      "handle": "@HumanitariansAI",
+      "subline": "This is Satwik for Humanitarians AI."
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": "2026-11-14T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 12.67
+  }
+ ]
+}

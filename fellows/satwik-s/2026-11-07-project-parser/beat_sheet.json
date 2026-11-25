@@ -1,0 +1,519 @@
+{
+ "metadata": {
+  "title": "Reading the Student",
+  "slug": "reading-the-student",
+  "topic": "STAGE 4A · THE PROJECT PARSER",
+  "register": "Pragmatist / skeptical-explainer (PROOF)",
+  "audience": "HAI",
+  "brand": "claude-hai",
+  "persona": "Satwik (Humanitarians AI)",
+  "voice": "af_bella",
+  "engine": "kokoro",
+  "voice_kokoro": "af_bella",
+  "palette": "claude",
+  "body_palette": "humanitarians",
+  "style_preset": "claude",
+  "ground": "#FAF9F5",
+  "greeting": "Hello, fellows",
+  "folderLabel": "@HumanitariansAI",
+  "channel_title": "@HumanitariansAI",
+  "in_for_bear": false,
+  "typography": {
+   "serif": "EB Garamond",
+   "sans": "Montserrat",
+   "mono": "system mono"
+  },
+  "source": "sources/ (weekly_report_2026-11-07.md, project_parser_upgrade.md, project_parse_quality.md, project_parse_quality.json, project_parse_gold.json, projects/). Verified only; figures reconciled against the JSON (see FACT-CHECK.md). Rule-based backend is the measured result; the LLM backend is code-complete but NOT measured here; no learning-outcome claim.",
+  "playlist": "Humanitarians AI — Method Explainers",
+  "duration_target_s": [
+   210,
+   260
+  ],
+  "authors": "Satwik Reddy Sripathi, Jash Shah, Evin Gultepe, Srinivas Sridhar, Nik Bear Brown (Northeastern University)",
+  "sign_off": "This is Satwik for Humanitarians AI.",
+  "palette_note": "FIDELITY claude skin on UI beats (B00/B09); humanitarians tokens on body beats (B01-B08). PROOF: framework-first (B01 two guarantees + B02 two backends + B03 the test before any number). CRIMSON = recall misses/paraphrase gap, TEAL = never-guessed/precision, SLATE = fields/scale, GOLD = the recall-ceiling finding, SAGE = the LLM fix. B08 = falsifiability.",
+  "voice_note": "Kokoro af_bella. Run under PYTHONUTF8=1; .venv python for kokoro. RENDER: temp on D: (TMPDIR/TEMP/TMP=d:/_remotion_tmp). ART_REMOTION_SCALE=2; FREE RAM FIRST + concurrency 1 under low RAM to beat the 25s Chrome connect timeout; top up with --only BXX. ASSEMBLY: concat FILTER for BOTH video and audio. Verify VIDEO stream duration + volumedetect ~ -21 dB.",
+  "gate_note": "GATE P signed (NARRATION-GATE-P.md + PEDAGOGY.md VERDICT: PASS). Fact-check signed (FACT-CHECK.md). actual_duration_s (audio) is the master clock; durationInFrames = round(actual_duration_s * 30).",
+  "claims_guardrails": [
+   "No source, no verdict: every figure traces to sources/ and is verified against project_parse_quality.json (FACT-CHECK.md).",
+   "The challenge: the system has to read the student first - a free-text paragraph in, structured fields out; misread it and every later stage inherits the mistake.",
+   "Two guarantees: never guess (an empty field beats a wrong one) and never miss (recognize the idea in the student's own words). Fields use the same controlled vocabulary as the textbook metadata.",
+   "Two backends, one interface: rule-based keyword extraction (offline default) and an optional LLM constrained to strict JSON over the controlled vocabulary, auto-fallback when no local model is reachable.",
+   "The test: a hand-annotated gold standard over 6 projects; per-field precision, recall, F1, plus a never-guessed audit - named before any result.",
+   "Concrete fields solved: materials (8/8), techniques (16/16), assays (6/6), disease contexts (16/16) all at precision and recall 1.0.",
+   "Recall ceiling: concepts recall 0.69 (0.692), mechanisms recall 0.71 (0.714). All 8 misses are paraphrase (e.g. 'new blood vessels' for angiogenesis, 'spread to the bone' for metastasis, 'stop responding to the drug' for drug resistance).",
+   "Never-guessed audit: 0 invented terms, 67/67 terms surface-grounded, 4 fields correctly left empty; overall precision 0.97, recall 0.89, F1 0.93.",
+   "Precision slips are polysemy, not invention: the only 2 false positives are 'cell cycle regulation' (from surface 'cell cycle' in CAR-T) and 'tissue organization' (from surface 'tissue' in photothermal). NOTE: the README's beat-8 prose named 'checkpoint'/'tissue'; the actual false positives in project_parse_quality.json are 'cell cycle regulation'/'tissue organization' - corrected here (FACT-CHECK.md).",
+   "The fix + honest boundary: the LLM backend maps paraphrase onto the canonical term with vocabulary membership as the hallucination guard. It is code-complete but NOT measured here (no local model), so the rule-based numbers are the result and the LLM gain is a prediction. No learning-outcome claim."
+  ]
+ },
+ "beats": [
+  {
+   "beat_id": "B00",
+   "act": "hook / ASK",
+   "palette": "claude",
+   "narration_text": "Hello, fellows. Before this system can recommend a single reading, it has to read the student. A student types a free-text description of their research project, and the parser has to turn that paragraph into structured fields, in the exact same vocabulary the textbook is tagged with. If that reading is wrong, every stage downstream inherits the mistake. Until this week, that parser was fifty-eight lines of keyword matching with no measurement at all. So this week I gave it a gold standard, scored it, and found where it breaks.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "audio_file": "mp3/beat-B00.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "the ask: read the student first - free text in, structured fields out; measure the reading before trusting it",
+    "remotion": {
+     "pattern": "ClaudeComposerAsk",
+     "props": {
+      "greeting": "Hello, fellows",
+      "topic": "STAGE 4A · THE PROJECT PARSER",
+      "segment": "Reading the Student",
+      "command": "Before the system recommends a reading, it has to read the student: a free-text project description in, structured fields out, in the same vocabulary as the textbook. Misread it and every later stage inherits the mistake. The parser was 58 lines of keyword matching with no measurement. So this week: give it a gold standard, score it, and find where it breaks.",
+      "runningText": "scoring the project parser against a gold standard…",
+      "output": [
+       "Two guarantees: never guess (empty beats wrong), never miss (read the idea, not just the word).",
+       "Concrete fields solved at 1.0; abstract fields hit a paraphrase recall ceiling (0.69 / 0.71).",
+       "Never-guessed audit: 0 invented terms, 67/67 grounded, overall precision 0.97."
+      ],
+      "folderLabel": "@HumanitariansAI",
+      "modelLabel": "Opus 4.8",
+      "effortLabel": "High"
+     },
+     "rendered": {
+      "out": "media/B00.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 30.7
+  },
+  {
+   "beat_id": "B01",
+   "act": "the setup (two guarantees)",
+   "palette": "humanitarians",
+   "narration_text": "Two guarantees, before any number. The first is never guess: an empty field is better than a wrong one, so the parser refuses to invent a term it cannot support in the text. The second is never miss: it should recognize the idea even when the student describes it in their own words, not just the textbook's. And the fields it fills use the exact same controlled vocabulary as the section metadata, which is what makes matching possible at all.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 27,
+   "audio_file": "mp3/beat-B01.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "two guarantees: never guess (precision) / never miss (recall) + the shared-vocabulary note",
+    "remotion": {
+     "pattern": "W15Guarantees",
+     "props": {
+      "sparkLine": "Two guarantees before any number.",
+      "cards": [
+       {
+        "name": "NEVER GUESS",
+        "gloss": "precision",
+        "q": "an empty field beats a wrong one - the parser refuses to invent a term it cannot support",
+        "accent": "teal"
+       },
+       {
+        "name": "NEVER MISS",
+        "gloss": "recall",
+        "q": "recognize the idea even in the student's own words, not only the textbook's",
+        "accent": "gold"
+       }
+      ],
+      "rule": "The fields use the same vocabulary as the textbook - which is what makes matching possible."
+     },
+     "rendered": {
+      "out": "media/B01.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 25.64
+  },
+  {
+   "beat_id": "B02",
+   "act": "two backends, one interface",
+   "palette": "humanitarians",
+   "narration_text": "I built it as one interface with two backends, the same config-driven pattern as the embedding layer. The default is a rule-based extractor: keyword matching over the controlled vocabulary, fully offline, no model required. The second is an optional LLM backend, constrained to emit strict JSON over that same vocabulary, with an automatic fallback when no local model is reachable. You swap between them by config. The fix lives behind the same interface, not a rewrite.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "audio_file": "mp3/beat-B02.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "two backends one interface: rule-based (default, offline) / LLM (optional, strict JSON, auto-fallback)",
+    "remotion": {
+     "pattern": "W15Backends",
+     "props": {
+      "sparkLine": "Two backends, one interface.",
+      "cards": [
+       {
+        "name": "RULE-BASED",
+        "gloss": "default · offline",
+        "q": "keyword extraction over the controlled vocabulary - fully offline, no model needed",
+        "accent": "slate"
+       },
+       {
+        "name": "LLM BACKEND",
+        "gloss": "optional",
+        "q": "strict JSON over the same vocabulary, with auto-fallback when no local model is reachable",
+        "accent": "sage"
+       }
+      ],
+      "rule": "Swap by config, like the embedder - the fix lives behind the same interface."
+     },
+     "rendered": {
+      "out": "media/B02.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 29.44
+  },
+  {
+   "beat_id": "B03",
+   "act": "the test (gold standard + metrics)",
+   "palette": "humanitarians",
+   "narration_text": "To measure the reading, I hand-annotated a gold standard over six projects: the two standing demos, plus CAR-T leukemia, polymeric chemotherapy, iron-oxide MRI, and CRISPR. Then I scored the parser against it with three numbers and an audit, named before I looked at any result. Precision: did it guess? Recall: did it miss? F1: the balance. And a never-guessed audit: how many terms it invented, how many were grounded, how many fields it correctly left empty.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 29,
+   "audio_file": "mp3/beat-B03.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the test: 6-project hand-annotated gold standard + the metrics named (precision, recall, F1, never-guessed audit)",
+    "remotion": {
+     "pattern": "W15TheTest",
+     "props": {
+      "sparkLine": "A gold standard - named before any result.",
+      "goldTitle": "THE GOLD STANDARD",
+      "goldSub": "6 projects · hand-annotated",
+      "projects": [
+       "LNP-siRNA",
+       "photothermal",
+       "CAR-T leukemia",
+       "polymeric chemo",
+       "iron-oxide MRI",
+       "CRISPR"
+      ],
+      "metricsTitle": "WHAT I MEASURED",
+      "metrics": [
+       {
+        "k": "precision",
+        "v": "did it guess? (fraction of extracted terms that are correct)"
+       },
+       {
+        "k": "recall",
+        "v": "did it miss? (fraction of gold terms it found)"
+       },
+       {
+        "k": "F1",
+        "v": "the balance of the two"
+       },
+       {
+        "k": "never-guessed audit",
+        "v": "invented terms, grounding, fields left empty"
+       }
+      ]
+     },
+     "rendered": {
+      "out": "media/B03.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 27.09
+  },
+  {
+   "beat_id": "B04",
+   "act": "concrete fields are solved",
+   "palette": "humanitarians",
+   "narration_text": "Here is the first result. The concrete fields are solved. Materials, techniques, assays, and disease contexts all score precision and recall of one point zero, a perfect read. Sixteen of sixteen techniques, sixteen of sixteen disease contexts, eight of eight materials, six of six assays. Students name these things plainly, and the lexicon catches every one.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 24,
+   "audio_file": "mp3/beat-B04.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "concrete fields at 1.0/1.0: materials 8/8, techniques 16/16, assays 6/6, disease 16/16",
+    "remotion": {
+     "pattern": "W15Concrete",
+     "props": {
+      "sparkLine": "Concrete fields are solved.",
+      "fields": [
+       {
+        "name": "materials",
+        "tp": "8 / 8"
+       },
+       {
+        "name": "techniques",
+        "tp": "16 / 16"
+       },
+       {
+        "name": "assays",
+        "tp": "6 / 6"
+       },
+       {
+        "name": "disease contexts",
+        "tp": "16 / 16"
+       }
+      ],
+      "big": "1.0",
+      "bigLabel": "precision & recall",
+      "note": "students name these plainly - the lexicon catches them all"
+     },
+     "rendered": {
+      "out": "media/B04.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 22.87
+  },
+  {
+   "beat_id": "B05",
+   "act": "the recall ceiling (the figure)",
+   "palette": "humanitarians",
+   "narration_text": "But the abstract fields hit a ceiling. Concepts recall zero point six nine, mechanisms zero point seven one. And every single one of the eight misses is paraphrase. The student wrote new blood vessels, and meant angiogenesis. They wrote spread to the bone, and meant metastasis. They wrote stop responding to the drug, and meant drug resistance. The idea is right there in the text. The textbook's word just isn't. That's the gap a keyword matcher cannot cross.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 30,
+   "audio_file": "mp3/beat-B05.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the figure: per-field recall - concrete bars at 1.0 (teal), abstract short (crimson, concepts 0.69/mechanisms 0.71) + paraphrase chips",
+    "remotion": {
+     "pattern": "W15RecallCeiling",
+     "props": {
+      "sparkLine": "The recall ceiling is paraphrase.",
+      "bars": [
+       {
+        "name": "materials",
+        "recall": 1.0,
+        "kind": "concrete"
+       },
+       {
+        "name": "techniques",
+        "recall": 1.0,
+        "kind": "concrete"
+       },
+       {
+        "name": "assays",
+        "recall": 1.0,
+        "kind": "concrete"
+       },
+       {
+        "name": "disease",
+        "recall": 1.0,
+        "kind": "concrete"
+       },
+       {
+        "name": "concepts",
+        "recall": 0.69,
+        "kind": "abstract"
+       },
+       {
+        "name": "mechanisms",
+        "recall": 0.71,
+        "kind": "abstract"
+       }
+      ],
+      "examples": [
+       {
+        "said": "“new blood vessels”",
+        "meant": "angiogenesis"
+       },
+       {
+        "said": "“spread to the bone”",
+        "meant": "metastasis"
+       },
+       {
+        "said": "“stop responding to the drug”",
+        "meant": "drug resistance"
+       }
+      ],
+      "note": "all 8 misses are paraphrase - the idea is right, the textbook word is absent"
+     },
+     "rendered": {
+      "out": "media/B05.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 26.84
+  },
+  {
+   "beat_id": "B06",
+   "act": "never-guessed holds",
+   "palette": "humanitarians",
+   "narration_text": "Now, the guarantee that matters most. Did the parser ever make something up to fill a gap? No. The never-guessed audit: zero invented terms, every one of the sixty-seven extracted terms grounded in the source text, and four fields correctly left empty rather than guessed. Overall precision across everything is zero point nine seven. When the parser doesn't know, it says nothing. That's the behavior you want feeding the rest of the pipeline.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 28,
+   "audio_file": "mp3/beat-B06.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "never-guessed audit: 0 invented, 67/67 grounded, 4 empty + big overall precision 0.97",
+    "remotion": {
+     "pattern": "W15NeverGuessed",
+     "props": {
+      "sparkLine": "Never-guessed holds.",
+      "stats": [
+       {
+        "v": "0",
+        "k": "invented terms",
+        "accent": "teal"
+       },
+       {
+        "v": "67 / 67",
+        "k": "grounded in the text",
+        "accent": "teal"
+       },
+       {
+        "v": "4",
+        "k": "fields correctly left empty",
+        "accent": "slate"
+       }
+      ],
+      "big": {
+       "v": "0.97",
+       "k": "overall precision"
+      },
+      "note": "the parser refuses to make things up - an empty field beats a wrong one"
+     },
+     "rendered": {
+      "out": "media/B06.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 25.9
+  },
+  {
+   "beat_id": "B07",
+   "act": "the precision slips are polysemy",
+   "palette": "humanitarians",
+   "narration_text": "And the two precision slips that do exist aren't the parser inventing things. They're polysemy. It produced cell cycle regulation, because the CAR-T text contains the words cell cycle, even though the real mechanism there is immune. And it produced tissue organization, because the photothermal text says tissue, meaning tumor tissue, not the biology concept. Two false positives in sixty-seven terms, both from a word that means two different things. A backend that reads meaning, not surface, avoids both.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 29,
+   "audio_file": "mp3/beat-B07.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the 2 precision slips are polysemy: 'cell cycle regulation' (from 'cell cycle'), 'tissue organization' (from 'tissue')",
+    "remotion": {
+     "pattern": "W15Polysemy",
+     "props": {
+      "sparkLine": "The two slips are polysemy, not invention.",
+      "slips": [
+       {
+        "term": "cell cycle regulation",
+        "surface": "“cell cycle”",
+        "why": "the CAR-T text names an immune mechanism, not cell-cycle control"
+       },
+       {
+        "term": "tissue organization",
+        "surface": "“tissue”",
+        "why": "the photothermal text means tumor tissue, not the biology concept"
+       }
+      ],
+      "note": "only 2 false positives in 67 terms - a backend that reads meaning avoids both"
+     },
+     "rendered": {
+      "out": "media/B07.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 30.81
+  },
+  {
+   "beat_id": "B08",
+   "act": "the fix + the honest boundary",
+   "palette": "humanitarians",
+   "narration_text": "So the fix is built, and here is what's honest about it. The LLM backend is designed to close exactly this gap: it maps a paraphrase onto the canonical term, and because it can only emit terms that are in the controlled vocabulary, that membership is the guard against hallucination. But I need to be clear: it is code-complete, not measured here. There's no local model in this environment, so the numbers you just saw are the rule-based backend, and the LLM gain is a prediction, not a result. The gold standard is six projects annotated by one author. And this makes no learning-outcome claim.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 32,
+   "audio_file": "mp3/beat-B08.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "illustrate",
+    "new_visual_element": "the fix (LLM maps paraphrase; vocab membership = guard) vs the limits (not measured here; result is rule-based; no learning claim)",
+    "remotion": {
+     "pattern": "W15ParserBoundary",
+     "props": {
+      "sparkLine": "The fix is built - and here is what is honest.",
+      "fix": [
+       {
+        "k": "LLM maps paraphrase",
+        "v": "canonical term from the idea - “new blood vessels” → angiogenesis"
+       },
+       {
+        "k": "vocabulary membership",
+        "v": "the fixed label set is the anti-hallucination guard"
+       }
+      ],
+      "limits": [
+       {
+        "k": "not measured here",
+        "v": "LLM backend is code-complete; no local model in this environment"
+       },
+       {
+        "k": "the result is rule-based",
+        "v": "six projects, one annotator - exposes the ceiling, not a benchmark"
+       }
+      ],
+      "stamp": "RULE-BASED NUMBERS ARE THE RESULT · LLM GAIN IS A PREDICTION · NO LEARNING CLAIM"
+     },
+     "rendered": {
+      "out": "media/B08.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 35.97
+  },
+  {
+   "beat_id": "B09",
+   "act": "outro / CTA",
+   "palette": "claude",
+   "narration_text": "Structured intent, without guessing. The way to trust a parser that feeds everything downstream isn't to assume it reads well, it's to build a gold standard and audit what it refuses to fill. This is Satwik for Humanitarians AI.",
+   "voice": "af_bella",
+   "engine": "kokoro",
+   "estimated_duration_s": 12,
+   "audio_file": "mp3/beat-B09.mp3",
+   "shot": {
+    "type": "REMOTION",
+    "source": "remotion",
+    "motion": "type-on",
+    "new_visual_element": "title restate + handle + sign-off",
+    "remotion": {
+     "pattern": "ClaudeTitleOutro",
+     "props": {
+      "title": "Reading the Student",
+      "handle": "@HumanitariansAI",
+      "subline": "This is Satwik for Humanitarians AI."
+     },
+     "rendered": {
+      "out": "media/B09.mp4",
+      "at": "2026-11-07T12:00:00Z"
+     }
+    }
+   },
+   "actual_duration_s": 14.76
+  }
+ ]
+}

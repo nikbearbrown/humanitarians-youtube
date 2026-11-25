@@ -1,0 +1,301 @@
+{
+  "metadata": {
+    "title": "How an AI Sells a Big Order",
+    "slug": "ai-sells-a-big-order-short",
+    "skill": "ai-explainer",
+    "kind_note": "weekly STEM explainer (AI in finance)",
+    "creator": "Boopesh M.",
+    "fellow": "Boopesh M.",
+    "brand": "claude-hai",
+    "channel": "claude-hai",
+    "channel_title": "",
+    "topic": "Irreducibly Human",
+    "audience": "HAI",
+    "register": "Plain",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "voice_policy": "persistent-fellow-selected",
+    "palette": "claude",
+    "pronounce": {
+      "Kokoro": "kˈoʊkəɹoʊ"
+    },
+    "date": "2026-11-22",
+    "source": [
+      "code/execution_rl.py -> code/results.json + code/run.log (numpy only, seeds 20261122 train / 7 held-out; SYNTHETIC market, run twice, identical)",
+      "Almgren R, Chriss N. Optimal Execution of Portfolio Transactions. Author version dated December 2000 (read in full: sections 1.1-2.3, eqs. 1-20); published Journal of Risk 3(2), 2000/2001 (journal volume/pages seen only in search listings).",
+      "Nevmyvaka Y, Feng Y, Kearns M. Reinforcement Learning for Optimized Trade Execution. ICML 2006 (NOT READ: author page blocked from this machine; cited as further reading only, nothing quoted)."
+    ],
+    "visual_policy": "Every chart and number is drawn from code/results.json at render time. 'Synthetic market' is said in the narration and shown on every data beat. No logos except the HAI mark on the outro; no person icons.",
+    "library_check": "./art scenes --check: ClaudeComposerAsk, ClaudeComposerAsk916, BrutalistHesitantWriter all RENDERABLE. Body beats are custom Manim (sell schedule bars, price fan, state table, cost bars) drawn from results.json.",
+    "aspect_ratio": "9:16",
+    "resolution": "2160x3840",
+    "kind": "short",
+    "derived_from": "ai-sells-a-big-order",
+    "reformat": "native portrait: its own beat sheet and scenes, never a crop",
+    "short_validation": {
+      "status": "ready",
+      "errors": []
+    },
+    "approvals": {
+      "voice": {
+        "status": "approved",
+        "reviewer_type": "human",
+        "reviewed_by": "Boopesh M.",
+        "reviewed_at": "2026-11-23T19:23:15+00:00",
+        "subject_sha256": "9fbee75cc6f2e9898f416028987763bde5975fea9179425289a870171991c85e",
+        "note": "Boopesh M. approved Kokoro am_onyx as narrator for this week's videos in chat on 2026-11-23, answering the voice question with \"Yes, approve am_onyx\" (first approved 2026-10-24: \"I approve am_onyx as my narrator voice.\")"
+      }
+    },
+    "total_estimated_duration_seconds": 46.12,
+    "build": {
+      "at": "2026-11-23T20:05:20",
+      "cut": "master",
+      "filled": 6,
+      "of": 6,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B90: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "Hi, I am Boopesh M., and this video is about how an AI sells a big order. This is an AI voice reading my script.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "lane": "bookend",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the ask types into the portrait composer"
+          },
+          {
+            "at": 0.5,
+            "event": "three result lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "topic": "Irreducibly Human",
+            "segment": "How an AI Sells a Big Order",
+            "folderLabel": "@HumanitariansAI",
+            "modelLabel": "Claude",
+            "greeting": "Hi, Boopesh",
+            "command": "How should an AI sell 10,000 shares without moving the price against it?",
+            "runningText": "simulating a synthetic market…",
+            "output": [
+              "all at once: the price drops under you",
+              "equal slices: the price can drift away",
+              "learned schedule: sell more early, then taper"
+            ],
+            "durationSeconds": 7.42
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-23T19:34:24.396581+00:00"
+          }
+        }
+      },
+      "estimated_duration_s": 10.4,
+      "actual_duration_s": 7.42,
+      "audio_file": "mp3/beat-B00.mp3",
+      "render_duration_s": 7.458333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk916",
+        "at": "2026-11-23T20:05:20"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "THE PROBLEM",
+      "narration_text": "Sell ten thousand shares at once, and you push the price down. In my synthetic market, that costs one hundred basis points. Sell in equal slices instead, and the price can drift while you wait.",
+      "visual_intent": "Portrait: a tall accent bar 'all at once' with cost 100 bps; below, ten equal teal bars with a fan of simulated price paths drifting.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "at once",
+            "event": "the one tall bar lands; price $50.00 -> $49.50"
+          },
+          {
+            "at": "equal slices",
+            "event": "ten small bars; the price paths fan out"
+          }
+        ],
+        "manim": {
+          "scene_class": "B20_Problem",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 14.3,
+      "actual_duration_s": 10.97,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 11.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B20.mp4",
+        "filled_by": "manim:B20_Problem",
+        "at": "2026-11-23T20:05:20"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "WHAT IT LEARNED",
+      "narration_text": "So a Q-learning agent practiced forty million times on simulated days. It learned to sell more early, then taper off, close to the Almgren and Chriss formula.",
+      "visual_intent": "Portrait: learned schedule as ten teal bars, Almgren-Chriss closed form as accent dots, the one formula above.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "practiced",
+            "event": "counter to 40,000,000"
+          },
+          {
+            "at": "sell more early",
+            "event": "bars grow, tapering"
+          },
+          {
+            "at": "Almgren and Chriss",
+            "event": "dots drop onto the bars"
+          }
+        ],
+        "manim": {
+          "scene_class": "B30_Schedule",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 11.2,
+      "actual_duration_s": 9.58,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 9.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B30.mp4",
+        "filled_by": "manim:B30_Schedule",
+        "at": "2026-11-23T20:05:20"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "THE TEST",
+      "narration_text": "On twenty thousand new days, it averaged about thirteen basis points, and its bad days stayed lower than equal slices.",
+      "visual_intent": "Portrait: three cost rows (average bar + bad-day tick); the agent's bad-day number in accent.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "averaged",
+            "event": "three rows fill"
+          },
+          {
+            "at": "bad days",
+            "event": "bad-day ticks: 65 vs 54 (accent)"
+          }
+        ],
+        "manim": {
+          "scene_class": "B40_Costs",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 8.5,
+      "actual_duration_s": 7.15,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 7.166666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B40.mp4",
+        "filled_by": "manim:B40_Costs",
+        "at": "2026-11-23T20:05:20"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "TAKEAWAY",
+      "narration_text": "The trade-off is impact versus risk. And remember, this is a synthetic market, not a real one.",
+      "visual_intent": "Dark portrait takeaway: 'impact vs risk' balance, 'synthetic market' caveat card.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": "impact versus risk",
+            "event": "the balance settles"
+          },
+          {
+            "at": "synthetic market",
+            "event": "caveat card lights"
+          }
+        ],
+        "manim": {
+          "scene_class": "B50_Takeaway",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 7.3,
+      "actual_duration_s": 6.1,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 6.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B50.mp4",
+        "filled_by": "manim:B50_Takeaway",
+        "at": "2026-11-23T20:05:20"
+      }
+    },
+    {
+      "beat_id": "B90",
+      "act": "OUTRO",
+      "narration_text": "How an AI Sells a Big Order. Subscribe to Humanitarians AI.",
+      "visual_intent": "Portrait Manim outro: title, SUBSCRIBE pill, HAI mark + @HumanitariansAI, credits.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "manim",
+        "lane": "manim",
+        "motion": "illustrate",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "title and HAI mark land"
+          },
+          {
+            "at": "Subscribe",
+            "event": "SUBSCRIBE pill presses"
+          }
+        ],
+        "manim": {
+          "scene_class": "B90_Outro",
+          "file": "scenes.py"
+        }
+      },
+      "estimated_duration_s": 5.0,
+      "actual_duration_s": 4.9,
+      "audio_file": "mp3/beat-B90.mp3",
+      "render_duration_s": 4.916666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B90.mp4",
+        "filled_by": "manim:B90_Outro",
+        "at": "2026-11-23T20:05:20"
+      }
+    }
+  ]
+}

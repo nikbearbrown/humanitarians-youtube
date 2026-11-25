@@ -86,3 +86,10 @@ avoid stating or implying any result about returns.
 
 **Sign-off.** Pedagogy gate: reviewed and approved by me, with eight known
 weaknesses accepted. Both 4K masters passed GATE T and strict GATE V.
+
+## 2026-11-20 — links to the commits and pull requests
+
+Added during a check of this folder against `fellows/README.md`; earlier entries are unchanged.
+
+- Source and this log: [`75f168ea`](https://github.com/nikbearbrown/humanitarians-youtube/commit/75f168ea75e22efa619b16d9e2743f6c674d33f6) (add insider-trades reel), merged in [PR #386](https://github.com/nikbearbrown/humanitarians-youtube/pull/386).
+- Data: the Mycroft `insider-signals/` audit files at [`fed487c2`](https://github.com/GomathySelvamuthiah/mycroft/commit/fed487c28b47daaf3330a4fa2890e3fce6362d54) on my fork, part of [PR #86](https://github.com/nikbearbrown/mycroft/pull/86) (open), where the module's work continues.
