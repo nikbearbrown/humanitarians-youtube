@@ -61,9 +61,9 @@ Full weekly breakdown: [HOURS.md](https://github.com/Aniruddhachitte26/humanitar
 
 | Week / dates | Actual hours | Video links | Log and work evidence |
 |---|---|---|---|
-| Week 1 · Nov 4 – Nov 11, 2026 | 21 | Progress Video (link to be added) | [Week 1 in HOURS.md](https://github.com/Aniruddhachitte26/humanitarians-youtube/blob/patch-1/fellows/aniruddha-c/HOURS.md#week-1--nov-4--nov-11-2026): onboarding, program guidelines, background research |
-| Week 2 · Nov 12 – Nov 18, 2026 | 23 | Progress Video (link to be added) | [Week 2 in HOURS.md](https://github.com/Aniruddhachitte26/humanitarians-youtube/blob/patch-1/fellows/aniruddha-c/HOURS.md#week-2--nov-12--nov-18-2026) · [Work log](https://github.com/Nenyax-AI/team-work/blob/main/projects/causal-science/intervene-to-debug/WORK_PROGRESS.md#2026-11-14-to-2026-11-20-aniruddha-chitte) |
-| Week 3 · Nov 19 – Nov 25, 2026 | 26 | Progress Video (link to be added) | [Week 3 in HOURS.md](https://github.com/Aniruddhachitte26/humanitarians-youtube/blob/patch-1/fellows/aniruddha-c/HOURS.md#week-3--nov-19--nov-25-2026) · [PR #29](https://github.com/Nenyax-AI/team-work/pull/29) · [PR #30](https://github.com/Nenyax-AI/team-work/pull/30) · [PR #33](https://github.com/Nenyax-AI/team-work/pull/33) |
+| Week 1 · Nov 4 – Nov 11, 2026 | 21 | [Week 1 explainer video](https://drive.google.com/file/d/1tgy-UkSkHna_axOX_RmjclLPoX6nmNaE/view?usp=sharing) | [Week 1 in HOURS.md](https://github.com/Aniruddhachitte26/humanitarians-youtube/blob/patch-1/fellows/aniruddha-c/HOURS.md#week-1--nov-4--nov-11-2026): onboarding, program guidelines, background research |
+| Week 2 · Nov 12 – Nov 18, 2026 | 23 | [Week 2 explainer video](https://drive.google.com/file/d/1OUeY3OAgJcQ5Y72yTfvIFELiOX8mDZJo/view?usp=sharing) | [Week 2 in HOURS.md](https://github.com/Aniruddhachitte26/humanitarians-youtube/blob/patch-1/fellows/aniruddha-c/HOURS.md#week-2--nov-12--nov-18-2026) · [Work log](https://github.com/Nenyax-AI/team-work/blob/main/projects/causal-science/intervene-to-debug/WORK_PROGRESS.md#2026-11-14-to-2026-11-20-aniruddha-chitte) |
+| Week 3 · Nov 19 – Nov 25, 2026 | 26 | [Week 3 explainer video](https://drive.google.com/file/d/1Yyj6ViYm6AfTT2sHJxdx3F1IDYqRfUxe/view?usp=sharing) | [Week 3 in HOURS.md](https://github.com/Aniruddhachitte26/humanitarians-youtube/blob/patch-1/fellows/aniruddha-c/HOURS.md#week-3--nov-19--nov-25-2026) · [PR #29](https://github.com/Nenyax-AI/team-work/pull/29) · [PR #30](https://github.com/Nenyax-AI/team-work/pull/30) · [PR #33](https://github.com/Nenyax-AI/team-work/pull/33) |
 | **Total** | **70** | | |
 
 ## Hours status
@@ -87,5 +87,4 @@ This project applies my MS in Computer Software Engineering (Northeastern Univer
 
 ## Outstanding issues
 
-- This renewal request is sent on November 25, later than the 7-day deadline. My project was approved on November 21, and I prioritized producing working evidence before submitting.
-- Weekly progress video links will be added to this report.
+- Week 1 (Nov 4 – Nov 11) has no dated work log; its work is described in HOURS.md.
