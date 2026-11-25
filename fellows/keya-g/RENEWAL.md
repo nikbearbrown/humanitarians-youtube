@@ -54,7 +54,7 @@ Weeks 1–6 are merged upstream: Weeks 1–5 in [pull request #327](https://gith
 ## Degree relevance and supervision
 
 - **Degree relevance:** MS in Software Engineering Systems: the work applies software engineering practice (version control, automated quality gates, reproducible builds, code review via pull requests) and explains system design and AI topics such as real-time collaboration and eventual consistency.
-- **Supervisor / reviewer:** Sanjana Rao · review evidence: "PM review pending"
+- **Supervisor / reviewer:** Sanjana Rao (PM) approved my videos by email on 25 Nov 2026; they are in review for upload to the Humanitarians AI YouTube channel.
 
 ## Authorization
 
@@ -72,4 +72,4 @@ Reporting stays the same: two videos a week in 16:9 and 9:16, a Frictional log p
 ## Outstanding issues
 
 - Hours are recorded weekly, not as daily timestamped entries; from the next period I will add dated entries to each Frictional log and HOURS.md.
-- PM review and the YouTube 4K processing check are pending for all videos.
+- PM approval received (25 Nov 2026). YouTube upload and the 4K processing check are pending with the review team; YouTube links will be added here once the videos are live.
