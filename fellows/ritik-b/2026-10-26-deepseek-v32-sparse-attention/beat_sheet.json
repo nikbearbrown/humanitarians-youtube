@@ -1,0 +1,424 @@
+{
+  "metadata": {
+    "topic": "Computational Skepticism",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "voice": "HumanitariansAI",
+    "folderLabel": "@HumanitariansAI",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "crop",
+    "playlist": "Fellows Research",
+    "series": "Open-model architecture teardowns (weekly)",
+    "title": "DeepSeek-V3.2, Sparse Enough?",
+    "slug": "deepseek-v32-sparse-attention",
+    "greeting": "Aloha, Ritik",
+    "greeting_note": "hello lexicon: Hawaiian (rotating off Spanish 'Hola' from 2026-10-19-granite4-mamba-hybrid). Persona is the presenter named in B01 (Ritik); channel is @HumanitariansAI. Wagwan is Bear's alone and never applies here.",
+    "color_semantics": "Claude fidelity skin throughout. Terracotta marks exactly one thing per beat: the indexer row (B02), the main-attention bar (B03), the indexer row (B04), the verdict's key line. Everything else is warm ink on cream.",
+    "note": "Toolkit-only re-cut of the week's teardown: every beat uses an existing pattern with a registered 916 twin (ClaudeComposerAsk, ReelExecSummary, ReelFramework, BlipLadder, ClaudeVerdictArtifact, ClaudeTitleOutro), so it builds with no new scene code. The original draft's ClaudeScienceLayerStack and ClaudeCodeBeat beats (no 9:16 twin) were rewritten as ReelFramework / BlipLadder. Claude UI at B00 (ask), B05 (verdict), B06 (handoff), B07 (outro). Every number on screen carries its source in the same frame; computed figures are labelled as computed. 9:16 twin is emitted mechanically from the same beat list.",
+    "tags": [
+      "DeepSeek-V3.2",
+      "DeepSeek Sparse Attention",
+      "lightning indexer",
+      "sparse attention",
+      "long context",
+      "FP8",
+      "Humanitarians AI"
+    ],
+    "sources": [
+      {
+        "label": "deepseek-ai/DeepSeek-V3.2-Exp model card + config.json",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Exp"
+      },
+      {
+        "label": "DeepSeek-V3.2-Exp technical report (repository)",
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3.2-Exp"
+      }
+    ],
+    "companion_reel": "deepseek-v32-sparse-attention-916",
+    "build": {
+      "at": "2026-11-25T19:54:25",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration": "DeepSeek V3 point two lets each token look at just two thousand forty-eight earlier tokens. Who picks them, and what stays quadratic?",
+      "narration_text": "DeepSeek-V3.2-Exp: (1) explain the lightning indexer and top-2,048 selection, (2) count the query–key pairs main attention skips at 131,072 tokens, (3) tell me which part of the cost is still quadratic — from config.json and the release report.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Aloha, Ritik",
+            "topic": "Computational Skepticism",
+            "segment": "Sparse Attention",
+            "command": "DeepSeek-V3.2-Exp: (1) explain the lightning indexer and top-2,048 selection, (2) count the query–key pairs main attention skips at 131,072 tokens, (3) tell me which part of the cost is still quadratic — from config.json and the release report.",
+            "runningText": "reading the V3.2-Exp report, config.json…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "INDEX  64 small heads score every earlier token",
+              "SELECT top 2,048 → full latent attention",
+              "STILL  the indexer itself is quadratic"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7.9,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 8.23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SUMMARY",
+      "narration": "Same model as DeepSeek V3, with one change: decide where to look before looking. The indexer, the count, and what stays quadratic.",
+      "narration_text": "Same model as DeepSeek V3, with one change: decide where to look before looking. The indexer, the count, and what stays quadratic.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelExecSummary",
+          "props": {
+            "spark": "What this is, and why.",
+            "eyebrow": "HUMANITARIANS AI · OPEN-MODEL TEARDOWNS",
+            "title": "DeepSeek-V3.2, Sparse Enough?",
+            "presenter": "with Ritik",
+            "thesis": [
+              "Same 671B / 37B base as V3, continued from V3.1-Terminus. One change:",
+              "a cheap indexer decides where each token looks before attention runs."
+            ],
+            "roadmap": [
+              {
+                "label": "The indexer",
+                "body": "64 small FP8 heads score every earlier token."
+              },
+              {
+                "label": "The count",
+                "body": "32x fewer main-attention pairs at 131,072 tokens."
+              },
+              {
+                "label": "Still quadratic",
+                "body": "The indexer itself still touches every pair."
+              }
+            ],
+            "source": "DeepSeek-V3.2-Exp report · config.json",
+            "durationS": 8.0
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7.9,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 8.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "narration": "Each layer now attends in two passes. A lightning indexer, sixty-four small heads, scores every earlier token. Only the top two thousand forty-eight reach the real attention.",
+      "narration_text": "Each layer now attends in two passes. A lightning indexer, sixty-four small heads, scores every earlier token. Only the top two thousand forty-eight reach the real attention.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework",
+          "props": {
+            "spark": "A cheap pass, then an expensive one.",
+            "heading": "DeepSeek Sparse Attention, per layer",
+            "moves": [
+              {
+                "label": "INDEX",
+                "detail": "64 heads × 128 dims, in FP8, score every earlier token.",
+                "receipt": "index_n_heads 64"
+              },
+              {
+                "label": "SELECT",
+                "detail": "Keep the 2,048 highest-scoring tokens for each query.",
+                "receipt": "index_topk 2048"
+              },
+              {
+                "label": "ATTEND",
+                "detail": "Multi-head latent attention runs over only those 2,048.",
+                "receipt": "MLA"
+              },
+              {
+                "label": "UNCHANGED",
+                "detail": "Everything else is V3: 256 + 1 experts, 61 layers.",
+                "receipt": "config.json"
+              }
+            ],
+            "accentIndex": 0,
+            "keepNote": "Row 1 is the new part. Main attention only ever sees what the indexer keeps.",
+            "source": "config.json: index_n_heads 64 · index_head_dim 128 · index_topk 2048 · DeepSeek-V3.2-Exp report",
+            "durationS": 10.75
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.6,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 10.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "WORKED-EXAMPLE",
+      "narration": "Count at a hundred thirty-one thousand tokens. Dense attention scores about eight point six billion query key pairs. Sparse main attention, two hundred sixty-eight million: thirty-two times fewer. But the indexer still scores all eight point six billion.",
+      "narration_text": "Count at a hundred thirty-one thousand tokens. Dense attention scores about eight point six billion query key pairs. Sparse main attention, two hundred sixty-eight million: thirty-two times fewer. But the indexer still scores all eight point six billion.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "BlipLadder",
+          "props": {
+            "spark": "Count the pairs.",
+            "heading": "Query–key pairs at 131,072 tokens",
+            "bars": [
+              {
+                "label": "Dense attention",
+                "sub": "L² / 2 ≈ 8.6B pairs",
+                "value": 8.6
+              },
+              {
+                "label": "DSA indexer",
+                "sub": "every pair, cheaply (FP8)",
+                "value": 8.6
+              },
+              {
+                "label": "DSA main attention",
+                "sub": "L × 2,048 ≈ 268M pairs",
+                "value": 0.3,
+                "accent": true
+              }
+            ],
+            "refValue": 8.6,
+            "floor": 0,
+            "ceil": 9,
+            "axisNote": "billions of pairs",
+            "exception": "Main attention: 32x fewer pairs. The indexer still scores all ≈ 8.6B — cheaper per pair, not fewer pairs.",
+            "source": "Computed: 131,072² / 2 and 131,072 × 2,048 · index_topk 2048 from config.json",
+            "durationS": 14.31
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 13.3,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 14.31,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "EDGE-CASE",
+      "narration": "So what's still quadratic? The indexer: cheaper per pair, not fewer pairs. And selection is a hard cut. A token it misses, main attention never sees. DeepSeek reports quality on par with its last model.",
+      "narration_text": "So what's still quadratic? The indexer: cheaper per pair, not fewer pairs. And selection is a hard cut. A token it misses, main attention never sees. DeepSeek reports quality on par with its last model.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework",
+          "props": {
+            "spark": "Cheaper per pair, not fewer pairs.",
+            "heading": "What's still quadratic",
+            "moves": [
+              {
+                "label": "INDEXER",
+                "detail": "Scores every earlier token: lighter heads and FP8, but still O(L²).",
+                "receipt": "report"
+              },
+              {
+                "label": "HARD CUT",
+                "detail": "A token the indexer misses is invisible to main attention.",
+                "receipt": "top-2,048"
+              },
+              {
+                "label": "QUALITY",
+                "detail": "On par with V3.1-Terminus, per DeepSeek; the release is labelled experimental.",
+                "receipt": "report"
+              }
+            ],
+            "accentIndex": 0,
+            "keepNote": "Sparse main attention, dense index. Row 2 is the risk worth testing.",
+            "source": "DeepSeek-V3.2-Exp report · config.json",
+            "durationS": 11.65
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12.3,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 11.65,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "VERDICT",
+      "narration": "Sparse enough? For the expensive part, yes. But the indexer keeps a quadratic core, and a missed token is simply gone.",
+      "narration_text": "Sparse enough? For the expensive part, yes. But the indexer keeps a quadratic core, and a missed token is simply gone.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict — DeepSeek-V3.2-Exp",
+            "artifactHeading": "What the design earns",
+            "artifactLines": [
+              "Mechanism: a 64-head FP8 indexer picks 2,048 tokens per query; MLA attends only to those.",
+              "Count: 32x fewer main-attention pairs at 131K tokens.",
+              "Still quadratic: the indexer — cheaper per pair, not fewer pairs.",
+              "Risk: a missed token is invisible to main attention."
+            ],
+            "sourceNote": "DeepSeek-AI, DeepSeek-V3.2-Exp report · config.json"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7.6,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 7.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HANDOFF",
+      "narration": "Your turn. Hide two facts far apart in long documents, then three. If the sparse model falls behind its dense sibling, the indexer is dropping them.",
+      "narration_text": "Build 20 long documents (~100K tokens) where the answer depends on two facts placed far apart. Ask a sparse-attention model and a dense model of the same family. Report accuracy for both. Then repeat with three facts. Does sparse selection drop the second or third fact?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Computational Skepticism",
+            "segment": "Stress The Indexer",
+            "command": "Build 20 long documents (~100K tokens) where the answer depends on two facts placed far apart. Ask a sparse-attention model and a dense model of the same family. Report accuracy for both. Then repeat with three facts. Does sparse selection drop the second or third fact?",
+            "runningText": "your move…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "GOOD   matches the dense model",
+              "FLAG   multi-fact accuracy falls"
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.3,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 8.81,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration": "Look cheaply everywhere. Look properly at a few.",
+      "narration_text": "DeepSeek-V3.2, Sparse Enough? Count Each Pass.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "DeepSeek-V3.2, Sparse Enough? Count Each Pass.",
+            "handle": "@HumanitariansAI",
+            "subline": "Computational Skepticism"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 3.5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 3.11,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:54:25"
+      }
+    }
+  ]
+}

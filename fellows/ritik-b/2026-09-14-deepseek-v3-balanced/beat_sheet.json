@@ -1,0 +1,437 @@
+{
+  "metadata": {
+    "topic": "Computational Skepticism",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "voice": "HumanitariansAI",
+    "folderLabel": "@HumanitariansAI",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "crop",
+    "playlist": "Fellows Research",
+    "series": "Open-model architecture teardowns (weekly)",
+    "title": "DeepSeek-V3, Balanced Without a Penalty?",
+    "slug": "deepseek-v3-balanced",
+    "greeting": "Jambo, Ritik",
+    "greeting_note": "hello lexicon: Swahili (rotating off Italian 'Ciao' from 2026-09-07-blip2-frozen). Persona is the presenter named in B01 (Ritik); channel is @HumanitariansAI. Wagwan is Bear's alone and never applies here.",
+    "color_semantics": "Claude fidelity skin throughout. Terracotta marks exactly one thing per beat: the accented row, the accented bar, or the verdict's key line. Everything else is warm ink on cream.",
+    "note": "Short re-cut of the teardown, toolkit-only: every beat uses an existing brutalist.art pattern with a registered 916 twin (ClaudeComposerAsk, ReelExecSummary, ReelFramework, BlipLadder, ClaudeVerdictArtifact, ClaudeTitleOutro), so it builds with no new scene code. The earlier draft's ClaudeScienceLayerStack / ClaudeCodeBeat / ClaudeWindow beats were rewritten as ReelFramework rows and a BlipLadder, because those patterns have no 9:16 twin (or underfill it). Every number on screen carries its source in the same frame; worked arithmetic is computed from the cited config.json and labelled as such. 9:16 twin emitted mechanically from the same beat list.",
+    "tags": [
+      "DeepSeek-V3",
+      "mixture of experts",
+      "load balancing",
+      "multi-head latent attention",
+      "KV cache",
+      "multi-token prediction",
+      "open weights",
+      "Humanitarians AI"
+    ],
+    "sources": [
+      {
+        "label": "DeepSeek-AI — DeepSeek-V3 Technical Report, arXiv:2412.19437",
+        "url": "https://arxiv.org/abs/2412.19437"
+      },
+      {
+        "label": "deepseek-ai/DeepSeek-V3 config.json",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3"
+      }
+    ],
+    "companion_reel": "deepseek-v3-balanced-916",
+    "build": {
+      "at": "2026-11-25T19:44:23",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration": "DeepSeek V3 has six hundred seventy-one billion parameters, but uses thirty-seven billion per token. How does it keep its experts balanced without a penalty?",
+      "narration_text": "DeepSeek-V3: (1) show me how a token picks 8 of 256 experts, (2) explain how it balances expert load without a big auxiliary loss, (3) tell me what multi-head latent attention saves in the KV cache — with numbers from config.json.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Jambo, Ritik",
+            "topic": "Computational Skepticism",
+            "segment": "DeepSeek-V3 Teardown",
+            "command": "DeepSeek-V3: (1) show me how a token picks 8 of 256 experts, (2) explain how it balances expert load without a big auxiliary loss, (3) tell me what multi-head latent attention saves in the KV cache — with numbers from config.json.",
+            "runningText": "reading arXiv:2412.19437, config.json…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "ROUTE   sigmoid score → top-8 of 256 + 1 shared",
+              "BALANCE per-expert bias, nudged each step",
+              "CACHE   576 values / token / layer (MLA)"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.6,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 9.88,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SUMMARY",
+      "narration": "One idea: balance the experts with a bias, not a penalty. The routing, the bias, the memory, and then the catch.",
+      "narration_text": "One idea: balance the experts with a bias, not a penalty. The routing, the bias, the memory, and then the catch.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelExecSummary",
+          "props": {
+            "spark": "What this is, and why.",
+            "eyebrow": "HUMANITARIANS AI · OPEN-MODEL TEARDOWNS",
+            "title": "DeepSeek-V3, Balanced Without a Penalty?",
+            "presenter": "with Ritik",
+            "thesis": [
+              "671B parameters, 37B per token. A per-expert bias steers which experts",
+              "get picked — so balancing no longer leans on a big loss term."
+            ],
+            "roadmap": [
+              {
+                "label": "The routing",
+                "body": "1 shared + 8 of 256 routed experts per token."
+              },
+              {
+                "label": "The bias",
+                "body": "It picks the experts. It never weighs them."
+              },
+              {
+                "label": "The catch",
+                "body": "A tiny balance loss stays; all 671B still sit in memory."
+              }
+            ],
+            "source": "DeepSeek-V3 Technical Report — arXiv:2412.19437",
+            "durationS": 6.55
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7.6,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 6.55,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "narration": "Three dense layers, then fifty-eight expert layers. Each token visits one shared expert, and eight of two hundred fifty-six routed ones. Thirty-seven billion, of six hundred seventy-one.",
+      "narration_text": "Three dense layers, then fifty-eight expert layers. Each token visits one shared expert, and eight of two hundred fifty-six routed ones. Thirty-seven billion, of six hundred seventy-one.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework",
+          "props": {
+            "spark": "61 layers, two kinds.",
+            "heading": "Where the experts live",
+            "moves": [
+              {
+                "label": "DENSE",
+                "detail": "Layers 1–3: ordinary feed-forward, width 18,432.",
+                "receipt": "first_k_dense_replace 3"
+              },
+              {
+                "label": "EXPERTS",
+                "detail": "Layers 4–61: 1 shared + 8 of 256 routed experts, width 2,048.",
+                "receipt": "n_routed_experts 256"
+              },
+              {
+                "label": "ATTENTION",
+                "detail": "Every layer: multi-head latent attention, 128 heads.",
+                "receipt": "num_attention_heads 128"
+              },
+              {
+                "label": "MTP",
+                "detail": "After layer 61: one multi-token-prediction module.",
+                "receipt": "num_nextn_predict_layers 1"
+              }
+            ],
+            "accentIndex": 1,
+            "keepNote": "37B of 671B per token — but only if the router spreads tokens across all 256.",
+            "source": "deepseek-ai/DeepSeek-V3 config.json · 671B / 37B: abstract, arXiv:2412.19437",
+            "durationS": 10.97
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.6,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 10.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MECHANISM",
+      "narration": "The trick: every expert gets a bias. It's added only when picking the top eight, never to the gate weights. After each step, overloaded experts get their bias lowered, idle ones raised. No loss term fights the real objective.",
+      "narration_text": "The trick: every expert gets a bias. It's added only when picking the top eight, never to the gate weights. After each step, overloaded experts get their bias lowered, idle ones raised. No loss term fights the real objective.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework",
+          "props": {
+            "spark": "The bias picks. It never weighs.",
+            "heading": "Auxiliary-loss-free balancing",
+            "moves": [
+              {
+                "label": "SCORE",
+                "detail": "Sigmoid affinity of the token to each of 256 experts.",
+                "receipt": "§2.1.2"
+              },
+              {
+                "label": "PICK",
+                "detail": "Top-8 of score + bias: the bias decides who is picked.",
+                "receipt": "§2.1.2"
+              },
+              {
+                "label": "WEIGH",
+                "detail": "Gate weights come from the raw scores — no bias.",
+                "receipt": "§2.1.2"
+              },
+              {
+                "label": "NUDGE",
+                "detail": "End of each step: overloaded → bias − γ, idle → bias + γ.",
+                "receipt": "§2.1.2"
+              }
+            ],
+            "accentIndex": 1,
+            "keepNote": "Balance is steered through selection, so no balance loss pulls against the language-modelling loss.",
+            "source": "DeepSeek-V3 Technical Report — arXiv:2412.19437 §2.1.2, eq. 16",
+            "durationS": 13.12
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 13.6,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 13.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "WORKED-EXAMPLE",
+      "narration": "Now memory. Standard attention here would cache about forty-one thousand numbers per token, per layer. Latent attention caches five hundred seventy-six. Seventy-one times smaller.",
+      "narration_text": "Now memory. Standard attention here would cache about forty-one thousand numbers per token, per layer. Latent attention caches five hundred seventy-six. Seventy-one times smaller.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "BlipLadder",
+          "props": {
+            "spark": "Cache the latent, not the heads.",
+            "heading": "KV cache per token, per layer",
+            "bars": [
+              {
+                "label": "Standard MHA",
+                "sub": "128 heads × (192 K + 128 V)",
+                "value": 40.96
+              },
+              {
+                "label": "MLA",
+                "sub": "512 latent + 64 RoPE key",
+                "value": 0.576,
+                "accent": true
+              }
+            ],
+            "refValue": 40.96,
+            "floor": 0,
+            "ceil": 42,
+            "axisNote": "thousands of values",
+            "exception": "40,960 ÷ 576 ≈ 71x. Across 61 layers at BF16: 576 × 61 × 2 bytes ≈ 70 KB per token.",
+            "source": "Computed from deepseek-ai/DeepSeek-V3 config.json (kv_lora_rank 512, qk_rope_head_dim 64) · arXiv:2412.19437 §2.1.1",
+            "durationS": 10.56
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.6,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 10.56,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "EDGE-CASE",
+      "narration": "Two caveats. A tiny balance loss stays on as a backstop, so it's mostly penalty-free, not completely. And all six hundred seventy-one billion weights still have to sit in memory.",
+      "narration_text": "Two caveats. A tiny balance loss stays on as a backstop, so it's mostly penalty-free, not completely. And all six hundred seventy-one billion weights still have to sit in memory.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework",
+          "props": {
+            "spark": "Mostly, not completely.",
+            "heading": "What the headline leaves out",
+            "moves": [
+              {
+                "label": "BACKSTOP",
+                "detail": "A sequence-wise balance loss stays on, with an extremely small weight.",
+                "receipt": "§2.1.2"
+              },
+              {
+                "label": "MEMORY",
+                "detail": "37B active is compute per token; all 671B weights are still stored.",
+                "receipt": "abstract"
+              },
+              {
+                "label": "MTP",
+                "detail": "It mainly densifies training; speculative decoding with it is optional.",
+                "receipt": "§2.2"
+              }
+            ],
+            "accentIndex": 0,
+            "keepNote": "Auxiliary-loss-free is the main mechanism, not the whole story.",
+            "source": "DeepSeek-V3 Technical Report — arXiv:2412.19437 — abstract, §2.1.2, §2.2",
+            "durationS": 10.43
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10.6,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 10.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration": "The verdict. The bias steers selection and leaves the gate weights clean. The memory win is real, and checkable from the config. But sparse compute is not sparse memory.",
+      "narration_text": "The verdict. The bias steers selection and leaves the gate weights clean. The memory win is real, and checkable from the config. But sparse compute is not sparse memory.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict — DeepSeek-V3",
+            "artifactHeading": "What the design earns",
+            "artifactLines": [
+              "Routing: 1 shared + 8 of 256 experts → 37B of 671B per token.",
+              "Balance: a per-expert bias steers selection; gate weights are untouched.",
+              "Memory: MLA caches 576 values per token per layer — ~71x under MHA at these dims.",
+              "Caveat: mostly penalty-free, not completely; sparse compute is not sparse memory."
+            ],
+            "sourceNote": "DeepSeek-AI, arXiv:2412.19437 · deepseek-ai/DeepSeek-V3 config.json"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10.3,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 9.66,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration": "Balanced by a bias. Mostly.",
+      "narration_text": "DeepSeek-V3, Balanced Without a Penalty?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "DeepSeek-V3, Balanced Without a Penalty?",
+            "handle": "@HumanitariansAI",
+            "subline": "Computational Skepticism"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 3.5,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 2.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T19:44:23"
+      }
+    }
+  ]
+}

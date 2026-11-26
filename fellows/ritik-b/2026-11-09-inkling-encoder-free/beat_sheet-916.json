@@ -1,0 +1,685 @@
+{
+  "metadata": {
+    "topic": "Computational Skepticism",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "voice": "HumanitariansAI",
+    "folderLabel": "@HumanitariansAI",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "playlist": "Fellows Research",
+    "series": "Open-model architecture teardowns (weekly)",
+    "title": "Inkling, Encoder-Free at Scale?",
+    "slug": "inkling-encoder-free-916",
+    "greeting": "Dia duit, Ritik",
+    "greeting_note": "hello lexicon: Irish (rotating off Māori 'Kia ora' from 2026-11-02-ouro-looped-lm). Persona is the presenter greeted in B00 (Ritik); channel is @HumanitariansAI. Wagwan is Bear's alone and never applies here.",
+    "companion_reel": "inkling-encoder-free",
+    "color_semantics": "Claude fidelity skin throughout. Terracotta marks exactly one thing per beat: the load-bearing step of the audit (B01), the global layers (B02), the position row (B03), the image lane (B04), Inkling's real KV cache (B05), the weights bar (B06), the trust row (B07), the lab's own rank caveat (B08). Everything else is warm ink on cream.",
+    "note": "PORTRAIT TWIN of inkling-encoder-free — NOT a derived Short and NOT a crop. Same beats, same narration, same props; the only differences are slug, aspect_ratio, companion_reel and the 916 pattern suffix, emitted mechanically by author_weekly_sheets.py so the two cuts cannot drift. Share the landscape reel's mp3/ so actual_duration_s matches exactly.",
+    "tags": [
+      "Inkling",
+      "Thinking Machines",
+      "mixture of experts",
+      "sliding window attention",
+      "relative position bias",
+      "encoder-free multimodal",
+      "dMel",
+      "KV cache",
+      "open weights",
+      "Humanitarians AI"
+    ],
+    "sources": [
+      {
+        "label": "Thinking Machines — Introducing Inkling (Jul 15, 2026)",
+        "url": "https://thinkingmachines.ai/news/introducing-inkling/"
+      },
+      {
+        "label": "Inkling model card + config.json",
+        "url": "https://huggingface.co/thinkingmachines/Inkling"
+      },
+      {
+        "label": "Inkling config.json",
+        "url": "https://huggingface.co/thinkingmachines/Inkling/blob/main/config.json"
+      },
+      {
+        "label": "Inkling model.safetensors.index.json (weight map, total_size)",
+        "url": "https://huggingface.co/thinkingmachines/Inkling/blob/main/model.safetensors.index.json"
+      }
+    ],
+    "build": {
+      "at": "2026-11-25T22:08:51",
+      "cut": "master",
+      "filled": 12,
+      "of": 12,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B11: palette=claude but the outro is 'ClaudeTitleOutro916' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration": "Inkling: nine hundred seventy-five billion parameters, images and audio in, no separate encoder. Big claims. Which of them can I actually check?",
+      "narration_text": "Inkling: (1) read config.json and map all 66 layers, (2) compute what its attention costs at 1M tokens, (3) mark every architecture claim verified, ambiguous or trust — with the receipt for each.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Dia duit, Ritik",
+            "topic": "Computational Skepticism",
+            "segment": "Inkling Teardown",
+            "command": "Inkling: (1) read config.json and map all 66 layers, (2) compute what its attention costs at 1M tokens, (3) mark every architecture claim verified, ambiguous or trust — with the receipt for each.",
+            "runningText": "reading config.json, model.safetensors.index.json…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "CLAIMS   975B · image + audio · no encoder",
+              "READ     66 layers · 55 local + 11 global",
+              "COMPUTE  KV cache at 1,048,576 tokens",
+              "CHECK    claim → receipt → verdict"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7.9,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 8.55,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "FRAMEWORK",
+      "narration": "Here's the method, for any open model. One, read the config. Two, compute the cost. Three, check each claim against a receipt. Four, ask what would break it.",
+      "narration_text": "Here's the method, for any open model. One, read the config. Two, compute the cost. Three, check each claim against a receipt. Four, ask what would break it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "A method, not a tour.",
+            "heading": "The audit — four steps, any open model",
+            "moves": [
+              {
+                "label": "READ",
+                "detail": "Every number starts in config.json, not in the announcement.",
+                "receipt": "config.json"
+              },
+              {
+                "label": "COMPUTE",
+                "detail": "Turn the config into a cost — memory, in bytes.",
+                "receipt": "arithmetic"
+              },
+              {
+                "label": "CHECK",
+                "detail": "Mark each claim verified, ambiguous or trust, by its receipt.",
+                "receipt": "one receipt per claim"
+              },
+              {
+                "label": "BREAK",
+                "detail": "Name the result that would prove a claim wrong. Look for it.",
+                "receipt": "the lab's caveats"
+              }
+            ],
+            "accentIndex": 2,
+            "keepNote": "Step 3 is the verdict. Steps 1 and 2 are how you earn it.",
+            "source": "Computational Skepticism method · applied below to thinkingmachines/Inkling",
+            "durationS": 8.28
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.9,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 8.28,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "READ",
+      "narration": "Step one, read. Of sixty-six layers, fifty-five slide over a five hundred twelve token window; every sixth is global. After two dense layers, each token runs six of two hundred fifty-six experts, plus two shared.",
+      "narration_text": "Step one, read. Of sixty-six layers, fifty-five slide over a five hundred twelve token window; every sixth is global. After two dense layers, each token runs six of two hundred fifty-six experts, plus two shared.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "BlipLadder916",
+          "props": {
+            "spark": "Step 1 — read the config.",
+            "heading": "66 layers, counted two ways",
+            "bars": [
+              {
+                "label": "Attention · local",
+                "sub": "sliding 512-token window",
+                "value": 55
+              },
+              {
+                "label": "Attention · global",
+                "sub": "every 6th layer: 6, 12 … 66",
+                "value": 11,
+                "accent": true
+              },
+              {
+                "label": "Feed-forward · dense",
+                "sub": "layers 1–2 (weight map)",
+                "value": 2
+              },
+              {
+                "label": "Feed-forward · experts",
+                "sub": "6 of 256 routed + 2 shared",
+                "value": 64
+              }
+            ],
+            "refValue": 66,
+            "floor": 0,
+            "ceil": 66,
+            "axisNote": "layers, of 66 — attention and feed-forward are two views of one stack",
+            "exception": "One global layer in six. That ratio sets the memory bill in step 2.",
+            "source": "thinkingmachines/Inkling config.json: local_layer_ids · sliding_window_size 512 · n_routed_experts 256 · num_experts_per_tok 6 · n_shared_experts 2 · model.safetensors.index.json",
+            "durationS": 12.71
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12.3,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 12.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "READ",
+      "narration": "Local layers keep sixteen key value heads, global just eight. No rotary embedding: a learned relative position bias instead, plus short convolutions. Remember that position claim.",
+      "narration_text": "Local layers keep sixteen key value heads, global just eight. No rotary embedding: a learned relative position bias instead, plus short convolutions. Remember that position claim.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "Step 1 — read the config.",
+            "heading": "How attention is wired",
+            "moves": [
+              {
+                "label": "LOCAL",
+                "detail": "64 query heads · 16 key-value heads · 512-token window.",
+                "receipt": "swa_num_key_value_heads 16"
+              },
+              {
+                "label": "GLOBAL",
+                "detail": "64 query heads · 8 key-value heads · the whole context.",
+                "receipt": "num_key_value_heads 8"
+              },
+              {
+                "label": "POSITION",
+                "detail": "A learned relative-position bias — no RoPE anywhere.",
+                "receipt": "d_rel 16 · rel_extent 1024"
+              },
+              {
+                "label": "CONV",
+                "detail": "Short convolutions, kernel 4, on K/V and residual branches.",
+                "receipt": "sconv_kernel_size 4"
+              }
+            ],
+            "accentIndex": 2,
+            "keepNote": "Row 3 is a design claim, not just a setting. Step 3 checks its evidence.",
+            "source": "thinkingmachines/Inkling config.json · Thinking Machines, Introducing Inkling (Jul 15, 2026)",
+            "durationS": 11.2
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.3,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 11.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "READ",
+      "narration": "Images enter as forty-pixel patches through a four-layer network; audio, as a discrete mel spectrogram. Both join the text stream. No separate encoder: the decoder perceives.",
+      "narration_text": "Images enter as forty-pixel patches through a four-layer network; audio, as a discrete mel spectrogram. Both join the text stream. No separate encoder: the decoder perceives.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "Step 1 — read the config.",
+            "heading": "No separate encoder",
+            "moves": [
+              {
+                "label": "IMAGE",
+                "detail": "40×40-pixel patches → a 4-layer hMLP → the decoder.",
+                "receipt": "vision_config: hmlp"
+              },
+              {
+                "label": "AUDIO",
+                "detail": "16 kHz audio → dMel, 80 mel bins × 16 levels → the decoder.",
+                "receipt": "audio_config: dmel"
+              },
+              {
+                "label": "TEXT",
+                "detail": "Tokens from a 201,024-entry vocabulary → the decoder.",
+                "receipt": "vocab_size 201024"
+              },
+              {
+                "label": "STREAM",
+                "detail": "All three share one 6,144-wide stream through 66 layers.",
+                "receipt": "decoder_dmodel 6144"
+              }
+            ],
+            "accentIndex": 0,
+            "keepNote": "Checkable: a 4-layer patch MLP and dMel tokens — no separate vision transformer or audio encoder.",
+            "source": "thinkingmachines/Inkling config.json: vision_config · audio_config · model card (WAV at 16 kHz)",
+            "durationS": 10.75
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.3,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 10.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "COMPUTE",
+      "narration": "Step two, compute. One global layer: eight heads, times one twenty-eight dimensions, times two for keys and values, times two bytes, times a million tokens. Four point three gigabytes. All sixty-six global: two eighty-three. Inkling's eleven: forty-seven.",
+      "narration_text": "Step two, compute. One global layer: eight heads, times one twenty-eight dimensions, times two for keys and values, times two bytes, times a million tokens. Four point three gigabytes. All sixty-six global: two eighty-three. Inkling's eleven: forty-seven.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "Step 2 — compute the cost.",
+            "heading": "KV cache at 1,048,576 tokens, BF16",
+            "moves": [
+              {
+                "label": "ONE LAYER",
+                "detail": "8 KV heads × 128 dims × 2 (K, V) × 2 bytes × 1,048,576 = 4.29 GB",
+                "receipt": "num_key_value_heads 8"
+              },
+              {
+                "label": "ALL GLOBAL",
+                "detail": "66 layers × 4.29 GB = 283 GB — the cost without the 5:1 split.",
+                "receipt": "hypothetical"
+              },
+              {
+                "label": "INKLING",
+                "detail": "11 global layers × 4.29 GB = 47 GB.",
+                "receipt": "local_layer_ids"
+              },
+              {
+                "label": "LOCAL",
+                "detail": "55 layers × 16 heads × 128 × 2 × 2 B × 512 tokens = 0.23 GB.",
+                "receipt": "sliding_window_size 512"
+              }
+            ],
+            "accentIndex": 2,
+            "keepNote": "Six-fold smaller, straight from the config. Computed — before any serving overhead.",
+            "source": "Computed from thinkingmachines/Inkling config.json: num_key_value_heads 8 · head_dim 128 · swa_num_key_value_heads 16 · model_max_length 1048576",
+            "durationS": 14.21
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12.9,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "FRICTION",
+      "narration": "Now the tension. The cache drops from two eighty-three to forty-seven. But each token reads eighty-two gigabytes of weights, and the checkpoint is one point nine terabytes: every expert must stay in memory. Sparse compute isn't sparse memory.",
+      "narration_text": "Now the tension. The cache drops from two eighty-three to forty-seven. But each token reads eighty-two gigabytes of weights, and the checkpoint is one point nine terabytes: every expert must stay in memory. Sparse compute isn't sparse memory.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "BlipLadder916",
+          "props": {
+            "spark": "Cheap to run, not cheap to hold.",
+            "heading": "What has to fit in memory — GB",
+            "bars": [
+              {
+                "label": "KV cache, all global",
+                "sub": "hypothetical · 1M tokens",
+                "value": 283.5
+              },
+              {
+                "label": "KV cache, Inkling",
+                "sub": "11 global layers · 1M tokens",
+                "value": 47.2
+              },
+              {
+                "label": "Weights one token uses",
+                "sub": "41B active × 2 bytes",
+                "value": 82.0
+              },
+              {
+                "label": "All weights",
+                "sub": "the checkpoint · ≈ 1.9 TB",
+                "value": 1904.6,
+                "accent": true
+              }
+            ],
+            "refValue": 1904.6,
+            "floor": 0,
+            "ceil": 2000,
+            "axisNote": "GB",
+            "exception": "The attention saving trims the small bars. Every expert still has to be resident.",
+            "source": "model.safetensors.index.json total_size 1,904,604,285,204 bytes · 41B active (model card) · 283, 47 and 82 GB computed",
+            "durationS": 13.21
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 13.3,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 13.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "CHECK",
+      "narration": "Step three, check. Layer pattern and encoder-free inputs: verified in the config. Parameter count: ambiguous. At two bytes each, the checkpoint holds about nine fifty-two billion. Relative position beating rope: no ablation published. Trust.",
+      "narration_text": "Step three, check. Layer pattern and encoder-free inputs: verified in the config. Parameter count: ambiguous. At two bytes each, the checkpoint holds about nine fifty-two billion. Relative position beating rope: no ablation published. Trust.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "Step 3 — check each claim.",
+            "heading": "Claims vs receipts",
+            "moves": [
+              {
+                "label": "VERIFIED",
+                "detail": "5:1 local/global attention with a 512-token window.",
+                "receipt": "config.json"
+              },
+              {
+                "label": "VERIFIED",
+                "detail": "Encoder-free image and audio input.",
+                "receipt": "vision_config · audio_config"
+              },
+              {
+                "label": "AMBIGUOUS",
+                "detail": "975B stated · checkpoint 1.905 TB ÷ 2 bytes ≈ 952B.",
+                "receipt": "index total_size"
+              },
+              {
+                "label": "TRUST",
+                "detail": "Relative position “performs better” than RoPE.",
+                "receipt": "lab statement · no ablation"
+              }
+            ],
+            "accentIndex": 3,
+            "keepNote": "Ambiguous isn't wrong — precision or counting could explain the gap. The config can't settle it.",
+            "source": "Thinking Machines, Introducing Inkling (Jul 15, 2026) · model card · config.json · model.safetensors.index.json",
+            "durationS": 13.89
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 11.9,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 13.89,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "BREAK",
+      "narration": "Step four, what would break it? Swap each image for noise. If the answers hold, the decoder isn't perceiving. The lab flags soft spots too: not the strongest model, contaminated solutions scored zero, forecasting on another checkpoint.",
+      "narration_text": "Step four, what would break it? Swap each image for noise. If the answers hold, the decoder isn't perceiving. The lab flags soft spots too: not the strongest model, contaminated solutions scored zero, forecasting on another checkpoint.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "Step 4 — what would break it?",
+            "heading": "Break tests, and what the lab flags",
+            "moves": [
+              {
+                "label": "TEST",
+                "detail": "Swap each image or clip for noise. If answers hold, it isn't perceiving.",
+                "receipt": "your run"
+              },
+              {
+                "label": "RANK",
+                "detail": "“Not the strongest overall model available today, open or closed.”",
+                "receipt": "announcement"
+              },
+              {
+                "label": "LEAKAGE",
+                "detail": "Some Terminal Bench 2.1 solutions were contaminated → scored 0.",
+                "receipt": "announcement, footnote"
+              },
+              {
+                "label": "CHECKPOINT",
+                "detail": "Forecasting scores come from a different checkpoint than released.",
+                "receipt": "announcement"
+              }
+            ],
+            "accentIndex": 0,
+            "keepNote": "Row 1 is a result that would break “the decoder perceives”. The lab's flags show where else to aim.",
+            "source": "Thinking Machines, Introducing Inkling (Jul 15, 2026) · test design: input-ablation (noise swap)",
+            "durationS": 13.18
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12.9,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 13.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "VERDICT",
+      "narration": "Verdict. Encoder-free at scale: real. The cache cut: real, but the weights still need nearly two terabytes. The position claim: unproven. Open weights, not open data.",
+      "narration_text": "Verdict. Encoder-free at scale: real. The cache cut: real, but the weights still need nearly two terabytes. The position claim: unproven. Open weights, not open data.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact916",
+          "props": {
+            "artifactTitle": "Verdict — Inkling",
+            "artifactHeading": "Claims, scored",
+            "artifactLines": [
+              "Verified: 5:1 local/global attention and encoder-free inputs, in config.json.",
+              "Computed: 47 GB of KV cache at 1M tokens vs 283 GB all-global — beside 1.9 TB of weights.",
+              "Ambiguous: 975B stated; the BF16 checkpoint implies about 952B.",
+              "Trust: relative position over RoPE (no ablation); weights Apache 2.0, training data not released."
+            ],
+            "sourceNote": "config.json · model.safetensors.index.json · model card · Thinking Machines, Jul 15 2026"
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.3,
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 9.73,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "HANDOFF",
+      "narration": "Your turn. Run the four steps on any open model. Good: every number traces to a config field. Flag anything you marked verified without a receipt.",
+      "narration_text": "Pick any open model on Hugging Face. From config.json alone: (1) count its local vs global attention layers, (2) compute its KV cache at maximum context, (3) take three claims from its announcement and mark each verified, ambiguous or trust — naming the config field or receipt for each.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Computational Skepticism",
+            "segment": "Audit Any Open Model",
+            "command": "Pick any open model on Hugging Face. From config.json alone: (1) count its local vs global attention layers, (2) compute its KV cache at maximum context, (3) take three claims from its announcement and mark each verified, ambiguous or trust — naming the config field or receipt for each.",
+            "runningText": "your move…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "GOOD   every number traces to a config field",
+              "FLAG   'verified' with no receipt"
+            ]
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.3,
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 8.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "OUTRO",
+      "narration": "Read the config before you trust the claim.",
+      "narration_text": "Inkling, Encoder-Free at Scale? Read the Config.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "Inkling, Encoder-Free at Scale? Read the Config.",
+            "handle": "@HumanitariansAI",
+            "subline": "Computational Skepticism"
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 3.5,
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 2.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T22:08:51"
+      }
+    }
+  ]
+}

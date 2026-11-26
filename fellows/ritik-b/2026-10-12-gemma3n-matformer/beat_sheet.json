@@ -1,0 +1,438 @@
+{
+  "metadata": {
+    "topic": "Computational Skepticism",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "voice": "HumanitariansAI",
+    "folderLabel": "@HumanitariansAI",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "crop",
+    "playlist": "Fellows Research",
+    "series": "Open-model architecture teardowns (weekly)",
+    "title": "Gemma 3n, Four Billion or Eight?",
+    "slug": "gemma3n-matformer",
+    "greeting": "Vanakkam, Ritik",
+    "greeting_note": "hello lexicon: Tamil (rotating off Korean 'Annyeong' from 2026-10-05-qwen3-next-deltanet). Persona is the presenter named in B01 (Ritik); channel is @HumanitariansAI. Wagwan is Bear's alone and never applies here.",
+    "color_semantics": "Claude fidelity skin throughout. Terracotta marks exactly one thing per beat: the accented row, the accented bar, or the verdict's key line. Everything else is warm ink on cream.",
+    "note": "Re-cut of the drafted teardown to 8 beats on patterns that all have registered 9:16 twins (ClaudeComposerAsk, ReelExecSummary, ReelFramework, BlipLadder, ClaudeVerdictArtifact, ClaudeTitleOutro): the draft's ClaudeScienceLayerStack / ClaudeCodeBeat / ClaudeWindow beats were rewritten as ReelFramework and BlipLadder, so both cuts build with no new scene code. Every number on screen carries its source in the same frame; worked-example arithmetic is computed from the cited config.json and labelled as computed. 9:16 twin emitted mechanically from the same beat list.",
+    "tags": [
+      "Gemma 3n",
+      "MatFormer",
+      "per-layer embeddings",
+      "on-device AI",
+      "nested models",
+      "effective parameters",
+      "Humanitarians AI"
+    ],
+    "sources": [
+      {
+        "label": "Google — Gemma 3n model overview",
+        "url": "https://ai.google.dev/gemma/docs/gemma-3n"
+      },
+      {
+        "label": "gemma-3n-E4B-it / E2B-it config.json (read via the unsloth mirrors)",
+        "url": "https://huggingface.co/unsloth/gemma-3n-E4B-it"
+      },
+      {
+        "label": "gemma-3n-E4B-it / E2B-it model.safetensors.index.json — total_parameters",
+        "url": "https://huggingface.co/unsloth/gemma-3n-E2B-it"
+      }
+    ],
+    "companion_reel": "gemma3n-matformer-916",
+    "build": {
+      "at": "2026-11-25T20:25:05",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration": "Google calls this model E4B: effectively four billion parameters. Its weights add up to about eight. Where did the other four go?",
+      "narration_text": "Gemma 3n E4B: (1) explain how the E2B model is nested inside E4B, (2) show me how per-layer embeddings move parameters off the accelerator, (3) compute the size of the per-layer embedding table from config.json.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Vanakkam, Ritik",
+            "topic": "Computational Skepticism",
+            "segment": "Gemma 3n Teardown",
+            "command": "Gemma 3n E4B: (1) explain how the E2B model is nested inside E4B, (2) show me how per-layer embeddings move parameters off the accelerator, (3) compute the size of the per-layer embedding table from config.json.",
+            "runningText": "reading the Gemma 3n docs, config.json…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "NEST      E2B = 30 of 35 layers · half-width FFN",
+              "PLE       262,144 × 35 × 256 ≈ 2.35B params",
+              "EFFECTIVE ≈ what must sit in accelerator memory"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7.9,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 7.98,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SUMMARY",
+      "narration": "A smaller model nested inside a bigger one, plus a lookup table that can live off the accelerator. The nesting, the table, the label.",
+      "narration_text": "A smaller model nested inside a bigger one, plus a lookup table that can live off the accelerator. The nesting, the table, the label.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelExecSummary",
+          "props": {
+            "spark": "What this is, and why.",
+            "eyebrow": "HUMANITARIANS AI · OPEN-MODEL TEARDOWNS",
+            "title": "Gemma 3n, Four Billion or Eight?",
+            "presenter": "with Ritik",
+            "thesis": [
+              "Gemma 3n E4B nests a smaller E2B model inside its own weights, and keeps",
+              "2.35B per-layer embedding parameters where they can be cached off the accelerator."
+            ],
+            "roadmap": [
+              {
+                "label": "The nesting",
+                "body": "E2B is 30 of E4B's 35 layers, at half the FFN width."
+              },
+              {
+                "label": "The table",
+                "body": "Per-layer embeddings: 262,144 × 35 × 256 ≈ 2.35B."
+              },
+              {
+                "label": "The label",
+                "body": "'E4B' is a memory load, not a parameter count."
+              }
+            ],
+            "source": "Google, Gemma 3n docs · gemma-3n-E4B-it / E2B-it config.json",
+            "durationS": 7.85
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.6,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 7.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "narration": "This is MatFormer, a Matryoshka transformer. The E2B model lives inside E4B: thirty of thirty-five layers, half the feed-forward width. Train once, extract either.",
+      "narration_text": "This is MatFormer, a Matryoshka transformer. The E2B model lives inside E4B: thirty of thirty-five layers, half the feed-forward width. Train once, extract either.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework",
+          "props": {
+            "spark": "Two models, one set of weights.",
+            "heading": "MatFormer — E2B lives inside E4B",
+            "moves": [
+              {
+                "label": "E4B",
+                "detail": "35 layers · feed-forward width 16,384.",
+                "receipt": "num_hidden_layers 35"
+              },
+              {
+                "label": "E2B",
+                "detail": "30 layers · feed-forward width 8,192 — a subset of E4B's own weights.",
+                "receipt": "intermediate_size 8192"
+              },
+              {
+                "label": "ATTENTION",
+                "detail": "Both: 4 sliding-window layers (512 tokens) to every 1 global layer.",
+                "receipt": "sliding_window 512"
+              },
+              {
+                "label": "INPUTS",
+                "detail": "Text, plus a MobileNet-V5 vision encoder and an audio encoder.",
+                "receipt": "Gemma 3n docs"
+              }
+            ],
+            "accentIndex": 1,
+            "keepNote": "Row 2 is the trick: the small model isn't a second model — it is part of the big one.",
+            "source": "config.json, E4B vs E2B: num_hidden_layers 35 vs 30 · intermediate_size 16384 vs 8192 · Google, Gemma 3n docs (MatFormer)",
+            "durationS": 10.79
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8.6,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 10.79,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MECHANISM",
+      "narration": "Second trick: per-layer embeddings. Each of the thirty-five layers gets its own small vector per token. Those are lookups, not matrix multiplies, so they can be cached off the accelerator.",
+      "narration_text": "Second trick: per-layer embeddings. Each of the thirty-five layers gets its own small vector per token. Those are lookups, not matrix multiplies, so they can be cached off the accelerator.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework",
+          "props": {
+            "spark": "Lookups, not matmuls.",
+            "heading": "Per-layer embeddings (PLE)",
+            "moves": [
+              {
+                "label": "INPUT",
+                "detail": "One 2,048-number embedding per token, at the input — as usual.",
+                "receipt": "hidden_size 2048"
+              },
+              {
+                "label": "PER LAYER",
+                "detail": "Each of the 35 layers also gets its own 256-number vector for that token.",
+                "receipt": "per_layer_input 256"
+              },
+              {
+                "label": "LOOKUP",
+                "detail": "Table rows, not matrix multiplies: they can be cached on CPU or fast storage.",
+                "receipt": "PLE caching"
+              },
+              {
+                "label": "SIZE",
+                "detail": "262,144 × 35 × 256 = 2,348,810,240 ≈ 2.35B parameters.",
+                "receipt": "computed"
+              }
+            ],
+            "accentIndex": 2,
+            "keepNote": "Row 3 is why it matters: a lookup can wait in slower memory until its layer runs.",
+            "source": "gemma-3n-E4B-it config.json: vocab_size_per_layer_input 262144 · hidden_size_per_layer_input 256 · Google, Gemma 3n docs (PLE caching)",
+            "durationS": 10.9
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10.6,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 10.9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "WORKED-EXAMPLE",
+      "narration": "Now the label. E4B ships eight point four billion parameters. Two point three five billion of them are that lookup table. And Google's own figure for E2B: over five billion loaded, one point nine one effective.",
+      "narration_text": "Now the label. E4B ships eight point four billion parameters. Two point three five billion of them are that lookup table. And Google's own figure for E2B: over five billion loaded, one point nine one effective.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "BlipLadder",
+          "props": {
+            "spark": "Moved, not deleted.",
+            "heading": "Parameters — billions",
+            "bars": [
+              {
+                "label": "E4B · on disk",
+                "sub": "all weights",
+                "value": 8.387
+              },
+              {
+                "label": "E4B · PLE table",
+                "sub": "262,144 × 35 × 256",
+                "value": 2.349
+              },
+              {
+                "label": "E2B · loaded",
+                "sub": "standard execution",
+                "value": 5.977
+              },
+              {
+                "label": "E2B · effective",
+                "sub": "PLE caching + skipping",
+                "value": 1.91,
+                "accent": true
+              }
+            ],
+            "refValue": 4.0,
+            "floor": 0,
+            "ceil": 9,
+            "axisNote": "billions of parameters",
+            "exception": "The dashed line is the 4 in “E4B”. Effective means memory load — all 8.4B still ship, and still run.",
+            "source": "safetensors index totals: E4B 8,387,373,392 · E2B 5,976,833,472 · E2B 1.91B: Gemma 3n docs, Fig. 1",
+            "durationS": 12.78
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12.6,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 12.78,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "VERDICT",
+      "narration": "Verdict: the nesting is real, and a big slice of the weights can live off the accelerator. But effective four billion is a memory budget, not a parameter count.",
+      "narration_text": "Verdict: the nesting is real, and a big slice of the weights can live off the accelerator. But effective four billion is a memory budget, not a parameter count.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict — Gemma 3n",
+            "artifactHeading": "What the design earns",
+            "artifactLines": [
+              "Nesting: E2B is a 30-layer, half-width subset of E4B's weights (MatFormer).",
+              "PLE: ~2.35B of E4B's 8.39B parameters are per-layer lookups that can be cached off the accelerator.",
+              "Effective: a memory load — Google's E2B figure is 1.91B effective, of over 5B loaded.",
+              "Read 'E' numbers as memory budgets, not parameter counts."
+            ],
+            "sourceNote": "Google, Gemma 3n docs · gemma-3n-E4B-it / E2B-it config.json + safetensors index"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10.3,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 8.96,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "HANDOFF",
+      "narration": "Your turn. Run E4B next to a plain four billion model on one laptop. Record accelerator memory, CPU memory, and speed. Did the memory just move?",
+      "narration_text": "Run Gemma 3n E4B and a plain 4B model on the same laptop. Record peak accelerator memory, peak CPU memory and tokens per second for a 2,000-token prompt. Then compare accuracy on 50 questions. Is 'effective 4B' a fair label on memory, speed and quality?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Computational Skepticism",
+            "segment": "Measure Effective",
+            "command": "Run Gemma 3n E4B and a plain 4B model on the same laptop. Record peak accelerator memory, peak CPU memory and tokens per second for a 2,000-token prompt. Then compare accuracy on 50 questions. Is 'effective 4B' a fair label on memory, speed and quality?",
+            "runningText": "your move…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "GOOD   4B-like memory · quality holds",
+              "FLAG   the memory just moved to CPU"
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.3,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 9.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration": "Four billion, or eight? Both. That was Gemma three n.",
+      "narration_text": "Gemma 3n: Four Billion Parameters, or Eight?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Gemma 3n: Four Billion Parameters, or Eight?",
+            "handle": "@HumanitariansAI",
+            "subline": "Computational Skepticism"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 3.9,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 3.56,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:25:05"
+      }
+    }
+  ]
+}

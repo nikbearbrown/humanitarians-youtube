@@ -1,33 +1,42 @@
 # Ritik B.
 
 **Role:** AI Engineer  
-**Project:** _to be filled in_  
+**Project:** Brutalist  
 **GitHub:** [@RITIK-12](https://github.com/RITIK-12)
 
-Humanitarians AI fellow. Video projects live in one dated lowercase-kebab
-folder per episode, `YYYY-MM-DD-slug/`, with `beat_sheet.json` and a README.
+- **PM:** [Sanjana R.](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/sanjana-r)
+- **Drive (videos):** [all weeks](https://drive.google.com/drive/folders/10mqQD0Wpyuyfb69Phjb688r3z6HRXQbM)
+- **Kokoro voice:** `am_onyx` — declared in every beat sheet as `voice_kokoro`
+- **Reporting period covered here:** 1 Sep – 25 Nov 2026
 
-## Voice
+## What this folder is
 
-Kokoro **`am_onyx`**, selected for the whole series and recorded as
-`metadata.voice_kokoro` in every beat sheet. The male-coded name suggestion
-(`am_*`) and the fellow's own choice agree here. Changing it later is an
-explicit documented re-voice decision, not a per-episode default.
+Research on open-source AI model architectures, two Brutalist videos a week: an explainer on one model and a progress
+update on that week's work. One folder per week, named for the week's Monday. Beat sheets and logs live here; rendered
+videos live in Drive, linked per week below.
 
-## Projects
+## Weekly work
 
-- [2026-09-06 — Visual Question Answering, Blind?](./2026-09-06-vqa-blind/) — how a
-  transformer answers a question about an image, and the blind test that says whether it
-  looked. Two 4K masters from one beat sheet (16:9 and 9:16). Built, fact-checked, not
-  published.
-- [2026-08-05 — Gemma 4, Unified?](./2026-08-05-gemma4-unified/) — encoder-free
-  multimodal architecture teardown. Master built, fact-checked, not published.
+| Week | Work | Videos | Evidence | Log |
+|---|---|---|---|---|
+| [1 · 1–6 Sep](./2026-09-01-vqa-blind/) | *Visual Question Answering, Blind?* · *BLIP: Noisier Data, Better Model?* + progress update | [VQA](https://drive.google.com/file/d/19V1yMTKUtog9wWaolpt37Zkc9ICEi2cX/view) · [BLIP](https://drive.google.com/file/d/1AZkOKLTFap72ZaAnfy6XXkRXrT0OaK8c/view) · [progress](https://drive.google.com/file/d/1G1hHYKPGg9lDShFYfrRwa65a0eQsWxMj/view) | [drive](https://drive.google.com/drive/folders/1z6lccgi98DIMRt8PRrG_yLp2aMCRbbkI) · [blip-bootstrap](./2026-09-01-vqa-blind/beat_sheet-blip-bootstrap.json) · [week1-progress](./2026-09-01-vqa-blind/beat_sheet-week1-progress.json) · [beat sheet](./2026-09-01-vqa-blind/beat_sheet.json) | [log](./2026-09-01-vqa-blind/FRICTIONAL.md) |
+| [2 · 7–13 Sep](./2026-09-07-blip2-frozen/) | *BLIP-2, How Much Can You Freeze?* + progress update | [BLIP-2](https://drive.google.com/file/d/1lDngIFeZlZUq1cu9UXBUlBPIt4fXL_2m/view) · [progress](https://drive.google.com/file/d/1ca-1iCnwY_edAiayc6BO3cM8IyQu7NES/view) | [drive](https://drive.google.com/drive/folders/1HgfvcEfiMQsseclRC0IRKsPz3mhLSr3Q) · [week2-progress](./2026-09-07-blip2-frozen/beat_sheet-week2-progress.json) · [beat sheet](./2026-09-07-blip2-frozen/beat_sheet.json) | [log](./2026-09-07-blip2-frozen/FRICTIONAL.md) |
+| [3 · 14–20 Sep](./2026-09-14-deepseek-v3-balanced/) | *DeepSeek-V3, Balanced Without a Penalty?* + progress update | [DeepSeek-V3](https://drive.google.com/file/d/106n74jeVgE88DgCrpvmPwjkoJbDhbiYf/view) · [progress](https://drive.google.com/file/d/1jdGN60D3HjI8CPCwr3lDqmjra5AY5T0Z/view) | [drive](https://drive.google.com/drive/folders/1cOWFvb5Sp71YTf6lmAda-l4UvjDaNcpY) · [week3-progress](./2026-09-14-deepseek-v3-balanced/beat_sheet-week3-progress.json) · [beat sheet](./2026-09-14-deepseek-v3-balanced/beat_sheet.json) | [log](./2026-09-14-deepseek-v3-balanced/FRICTIONAL.md) |
+| [4 · 21–27 Sep](./2026-09-21-gpt-oss-attention-sinks/) | *gpt-oss, Paying Attention to Nothing?* + progress update | [gpt-oss](https://drive.google.com/file/d/1oXFTqgWIqeHm6_wSq51TBweFYGb4ESkl/view) · [progress](https://drive.google.com/file/d/1FWzFuXup1o193CtYY6ly_eCPAQJwVZOI/view) | [drive](https://drive.google.com/drive/folders/1-Q27pUe3Y_h7mFadxur2p64oe6vtXCMS) · [week4-progress](./2026-09-21-gpt-oss-attention-sinks/beat_sheet-week4-progress.json) · [beat sheet](./2026-09-21-gpt-oss-attention-sinks/beat_sheet.json) | [log](./2026-09-21-gpt-oss-attention-sinks/FRICTIONAL.md) |
+| [5 · 28 Sep – 4 Oct](./2026-09-28-llama4-scout-irope/) | *Llama 4, Ten Million Tokens?* + progress update | [Llama 4](https://drive.google.com/file/d/12fnd2sgry17IVL7BSzihOUYolIrs_olJ/view) · [progress](https://drive.google.com/file/d/1Hu8U1A8GMs46QfDu2Qi3Gj_L0UB8Jq2b/view) | [drive](https://drive.google.com/drive/folders/1t9QTtXT1hx8UknPAqlR-bsTP9iHrFjhn) · [week5-progress](./2026-09-28-llama4-scout-irope/beat_sheet-week5-progress.json) · [beat sheet](./2026-09-28-llama4-scout-irope/beat_sheet.json) | [log](./2026-09-28-llama4-scout-irope/FRICTIONAL.md) |
+| [6 · 5–11 Oct](./2026-10-05-qwen3-next-deltanet/) | *Qwen3-Next, Attention Optional?* + progress update | [Qwen3-Next](https://drive.google.com/file/d/1_6PASUqL2PReeNowLO2LA6053S3bjs6f/view) · [progress](https://drive.google.com/file/d/1-T4-hwaqwXvXrCtel4CoKyO0_QTlFQDJ/view) | [drive](https://drive.google.com/drive/folders/1Y_D4HKVjMWsomtMubuqaGB3pLRYGM2xN) · [week6-progress](./2026-10-05-qwen3-next-deltanet/beat_sheet-week6-progress.json) · [beat sheet](./2026-10-05-qwen3-next-deltanet/beat_sheet.json) | [log](./2026-10-05-qwen3-next-deltanet/FRICTIONAL.md) |
+| [7 · 12–18 Oct](./2026-10-12-gemma3n-matformer/) | *Gemma 3n, Four Billion or Eight?* + progress update | [Gemma 3n](https://drive.google.com/file/d/1ecxen2e4xvbiZo83H5xzRbLQ7neofgjC/view) · [progress](https://drive.google.com/file/d/1qnJwJuX7-7GkQggGNiNLEkrPqT3gpA0x/view) | [drive](https://drive.google.com/drive/folders/19OEA4Rq92KwY8oivXpPTLwonjZM-EHN-) · [week7-progress](./2026-10-12-gemma3n-matformer/beat_sheet-week7-progress.json) · [beat sheet](./2026-10-12-gemma3n-matformer/beat_sheet.json) | [log](./2026-10-12-gemma3n-matformer/FRICTIONAL.md) |
+| [8 · 19–25 Oct](./2026-10-19-granite4-mamba-hybrid/) | *Granite 4.0, Mostly Mamba?* + progress update | [Granite 4.0](https://drive.google.com/file/d/1fYeWFmFMB0kxK_cx2s8JeArL1uGAByhP/view) · [progress](https://drive.google.com/file/d/1lbDOFUorgvt8Ass1yJjSBAsF9eaQK_CA/view) | [drive](https://drive.google.com/drive/folders/12UzYZ_Dp8NeglV976cLZSNhoB0ChSlev) · [week8-progress](./2026-10-19-granite4-mamba-hybrid/beat_sheet-week8-progress.json) · [beat sheet](./2026-10-19-granite4-mamba-hybrid/beat_sheet.json) | [log](./2026-10-19-granite4-mamba-hybrid/FRICTIONAL.md) |
+| [9 · 26 Oct – 1 Nov](./2026-10-26-deepseek-v32-sparse-attention/) | *DeepSeek-V3.2, Sparse Enough?* + progress update | [DeepSeek-V3.2](https://drive.google.com/file/d/1cDOqNkpBt_bPW6HNqd3gqOcuW1L0xDPr/view) · [progress](https://drive.google.com/file/d/103LBoK9lYGsmQa_6alrbZvcO6n8U_00Q/view) | [drive](https://drive.google.com/drive/folders/1N1m-Spy9HwwUVAQ14GLXoPm39exTaI_5) · [week9-progress](./2026-10-26-deepseek-v32-sparse-attention/beat_sheet-week9-progress.json) · [beat sheet](./2026-10-26-deepseek-v32-sparse-attention/beat_sheet.json) | [log](./2026-10-26-deepseek-v32-sparse-attention/FRICTIONAL.md) |
+| [10 · 2–8 Nov](./2026-11-02-ouro-looped-lm/) | *Ouro, Smarter by Repeating?* + progress update | [Ouro](https://drive.google.com/file/d/1nEsEcptbolj3M_1NaD8sblE6fU1ACdxe/view) · [progress](https://drive.google.com/file/d/1JmD6r4JrgCwFjj84PWHtbaRTRsiBnK0d/view) | [drive](https://drive.google.com/drive/folders/1Fa67gfOGe_vHo2kwCknyB94G_AaiW2Gp) · [week10-progress](./2026-11-02-ouro-looped-lm/beat_sheet-week10-progress.json) · [beat sheet](./2026-11-02-ouro-looped-lm/beat_sheet.json) | [log](./2026-11-02-ouro-looped-lm/FRICTIONAL.md) |
+| [11 · 9–15 Nov](./2026-11-09-inkling-encoder-free/) | *Inkling, Encoder-Free at Scale?* + progress update | [Inkling](https://drive.google.com/file/d/1bCWA92UmQoMY3BFcxz0qiN3Ieh85s-_x/view) · [progress](https://drive.google.com/file/d/1r903O2hmjfupwFAMyCCh6cjS9-o3_5xL/view) | [drive](https://drive.google.com/drive/folders/1c8hxVS0R-qhJEUFRM9zDUmq_cnREACwY) · [week11-progress](./2026-11-09-inkling-encoder-free/beat_sheet-week11-progress.json) · [beat sheet](./2026-11-09-inkling-encoder-free/beat_sheet.json) | [log](./2026-11-09-inkling-encoder-free/FRICTIONAL.md) |
+| [12 · 16–22 Nov](./2026-11-16-inkling2-small-diff/) | *Inkling 2 Small, What Changed?* + progress update | [Inkling 2 Small](https://drive.google.com/file/d/1iUqjp5Zr3d9qihruaI0kmUo9SeVotkpo/view) · [progress](https://drive.google.com/file/d/1sJs0p8JcvJc-YmXKfu1glUItC3KRPpUO/view) | [drive](https://drive.google.com/drive/folders/146iDKkhE1lglwBKHsAdWV1KXPqIA8YEs) · [week12-progress](./2026-11-16-inkling2-small-diff/beat_sheet-week12-progress.json) · [beat sheet](./2026-11-16-inkling2-small-diff/beat_sheet.json) | [log](./2026-11-16-inkling2-small-diff/FRICTIONAL.md) |
+| [13 · 23–25 Nov](./2026-11-23-inkling2-mini-looped/) | *Inkling 2 Mini, Looped Is Better?* + progress update | [Inkling 2 Mini](https://drive.google.com/file/d/1N6uIPn9NCNa_1ZSzIrA1yzXO36-L6Ra5/view) · [progress](https://drive.google.com/file/d/1KEdkx06w4Vo8wOw6EMS3jlhwGDCfw6fj/view) | [drive](https://drive.google.com/drive/folders/1S0WCSURLLkt3CQSEAgo6E0FK_PUwCUD2) · [week13-progress](./2026-11-23-inkling2-mini-looped/beat_sheet-week13-progress.json) · [beat sheet](./2026-11-23-inkling2-mini-looped/beat_sheet.json) | [log](./2026-11-23-inkling2-mini-looped/FRICTIONAL.md) |
 
-## Frictional log
+Each week folder has its own Frictional log (`FRICTIONAL.md`): dated entries, appended, never rewritten — linked in
+the Log column. See <https://www.humanitarians.ai/fellows>.
 
-Every work subfolder here carries its own `FRICTIONAL.md` — a dated record of the process
-behind that specific piece of work, kept beside the evidence it describes: what was tried
-and expected, where it resisted and what was done next, what Claude or another person
-contributed and what was accepted, changed or rejected, and what is now understood or
-still open. Append as you go; never rewrite an earlier entry. It is not graded and not a
-performance review. See <https://www.humanitarians.ai/fellows> for what an entry contains.
+## Hours and renewal
+
+- [Weekly hours](./Hours.md)
+- [Renewal request](./Renewal.md)

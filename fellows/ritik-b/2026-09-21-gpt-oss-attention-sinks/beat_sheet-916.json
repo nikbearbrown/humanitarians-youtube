@@ -1,0 +1,446 @@
+{
+  "metadata": {
+    "topic": "Computational Skepticism",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude",
+    "voice": "HumanitariansAI",
+    "folderLabel": "@HumanitariansAI",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "9:16",
+    "fit": "crop",
+    "playlist": "Fellows Research",
+    "series": "Open-model architecture teardowns (weekly)",
+    "title": "gpt-oss, Paying Attention to Nothing?",
+    "slug": "gpt-oss-attention-sinks-916",
+    "greeting": "Konnichiwa, Ritik",
+    "greeting_note": "hello lexicon: Japanese (rotating off Swahili 'Jambo' from 2026-09-14-deepseek-v3-balanced). Persona is the presenter named in B01 (Ritik); channel is @HumanitariansAI. Wagwan is Bear's alone and never applies here.",
+    "color_semantics": "Claude fidelity skin throughout. Terracotta marks exactly one thing per beat: the accented row, the accented bar, or the verdict's key line. Everything else is warm ink on cream.",
+    "note": "PORTRAIT TWIN of gpt-oss-attention-sinks — NOT a derived Short and NOT a crop. Same beats, same narration, same props; the only differences are slug, aspect_ratio, companion_reel and the 916 pattern suffix, emitted mechanically by author_weekly_sheets.py so the two cuts cannot drift. Share the landscape reel's mp3/ so actual_duration_s matches exactly.",
+    "tags": [
+      "gpt-oss",
+      "OpenAI",
+      "attention sinks",
+      "sliding window attention",
+      "grouped-query attention",
+      "MXFP4",
+      "mixture of experts",
+      "KV cache",
+      "Humanitarians AI"
+    ],
+    "sources": [
+      {
+        "label": "OpenAI — gpt-oss-120b & gpt-oss-20b Model Card, arXiv:2508.10925",
+        "url": "https://arxiv.org/abs/2508.10925"
+      },
+      {
+        "label": "openai/gpt-oss-120b config.json",
+        "url": "https://huggingface.co/openai/gpt-oss-120b"
+      }
+    ],
+    "companion_reel": "gpt-oss-attention-sinks",
+    "build": {
+      "at": "2026-11-25T20:16:03",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeComposerAsk916' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "B07: palette=claude but the outro is 'ClaudeTitleOutro916' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration": "OpenAI's open-weight model gives every attention head a way to look at nothing at all. Why does that matter, and what do the sliding windows save?",
+      "narration_text": "gpt-oss-120b: (1) explain the learned attention sink in each head, (2) show me the sliding-window vs full attention layout, (3) compute what that layout saves in KV cache at 131,072 tokens — from config.json.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk916",
+          "props": {
+            "greeting": "Konnichiwa, Ritik",
+            "topic": "Computational Skepticism",
+            "segment": "gpt-oss Teardown",
+            "command": "gpt-oss-120b: (1) explain the learned attention sink in each head, (2) show me the sliding-window vs full attention layout, (3) compute what that layout saves in KV cache at 131,072 tokens — from config.json.",
+            "runningText": "reading arXiv:2508.10925, config.json…",
+            "placeholder": "Type / for skills",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "SINK   one learned logit per head in the softmax",
+              "LAYOUT 18 sliding (128) · 18 full, alternating",
+              "CACHE  only full layers grow with context"
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.3,
+      "actual_duration_s": 8.66,
+      "audio_file": "mp3/beat-B00.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "SUMMARY",
+      "narration": "One idea: let a head opt out. The layer layout, the sink, the memory math, and what we can't check.",
+      "narration_text": "One idea: let a head opt out. The layer layout, the sink, the memory math, and what we can't check.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelExecSummary916",
+          "props": {
+            "spark": "What this is, and why.",
+            "eyebrow": "HUMANITARIANS AI · OPEN-MODEL TEARDOWNS",
+            "title": "gpt-oss, Paying Attention to Nothing?",
+            "presenter": "with Ritik",
+            "thesis": [
+              "117B parameters, 5.1B active per token. One learned number per head lets",
+              "attention go nowhere — and half the layers only look 128 tokens back."
+            ],
+            "roadmap": [
+              {
+                "label": "The layout",
+                "body": "18 sliding-window layers and 18 full, alternating."
+              },
+              {
+                "label": "The sink",
+                "body": "A learned logit per head, in the softmax denominator."
+              },
+              {
+                "label": "The limits",
+                "body": "Open weights, closed recipe — measure the sink yourself."
+              }
+            ],
+            "source": "OpenAI — gpt-oss-120b & gpt-oss-20b Model Card, arXiv:2508.10925 §2.2 · openai/gpt-oss-120b config.json",
+            "durationS": 5.87
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 7.3,
+      "actual_duration_s": 5.87,
+      "audio_file": "mp3/beat-B01.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "MECHANISM",
+      "narration": "The thirty-six layers alternate. Half see only the last hundred twenty-eight tokens; half see the whole context. Each token also visits four of a hundred twenty-eight experts.",
+      "narration_text": "The thirty-six layers alternate. Half see only the last hundred twenty-eight tokens; half see the whole context. Each token also visits four of a hundred twenty-eight experts.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "36 layers, alternating.",
+            "heading": "Short window, full window",
+            "moves": [
+              {
+                "label": "SLIDING",
+                "detail": "Layers 1, 3, 5 … 35: each token sees the last 128.",
+                "receipt": "sliding_window 128"
+              },
+              {
+                "label": "FULL",
+                "detail": "Layers 2, 4, 6 … 36: each token sees everything before it.",
+                "receipt": "layer_types"
+              },
+              {
+                "label": "GQA",
+                "detail": "64 query heads share 8 key-value heads.",
+                "receipt": "num_key_value_heads 8"
+              },
+              {
+                "label": "EXPERTS",
+                "detail": "Mixture of experts: 4 of 128 experts per token.",
+                "receipt": "experts_per_token 4"
+              }
+            ],
+            "accentIndex": 0,
+            "keepNote": "Only the 18 full layers grow with context — that is where the memory goes.",
+            "source": "openai/gpt-oss-120b config.json · OpenAI — gpt-oss-120b & gpt-oss-20b Model Card, arXiv:2508.10925 §2.2",
+            "durationS": 10.07
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.6,
+      "actual_duration_s": 10.07,
+      "audio_file": "mp3/beat-B02.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "MECHANISM",
+      "narration": "Normal attention must spend all its weight: the weights sum to one. gpt-oss adds one learned number per head to the softmax denominator. When nothing matters, the sink soaks up the weight.",
+      "narration_text": "Normal attention must spend all its weight: the weights sum to one. gpt-oss adds one learned number per head to the softmax denominator. When nothing matters, the sink soaks up the weight.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "A place to put attention you don't need.",
+            "heading": "Softmax with a sink",
+            "moves": [
+              {
+                "label": "SOFTMAX",
+                "detail": "Ordinary attention: weights over real tokens always sum to 1.",
+                "receipt": "§2.2"
+              },
+              {
+                "label": "SINK",
+                "detail": "One learned logit per head joins the softmax denominator.",
+                "receipt": "§2.2"
+              },
+              {
+                "label": "EFFECT",
+                "detail": "Weights over real tokens can now sum to less than 1.",
+                "receipt": "§2.2"
+              },
+              {
+                "label": "OPT OUT",
+                "detail": "Nothing relevant? The sink takes the mass; the head attends to almost nothing.",
+                "receipt": "§2.2"
+              }
+            ],
+            "accentIndex": 1,
+            "keepNote": "Per the model card, it lets a head pay no attention to any token.",
+            "source": "OpenAI — gpt-oss-120b & gpt-oss-20b Model Card, arXiv:2508.10925 §2.2 — “a learned bias in the denominator of the softmax”",
+            "durationS": 10.67
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 11.3,
+      "actual_duration_s": 10.67,
+      "audio_file": "mp3/beat-B03.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "WORKED-EXAMPLE",
+      "narration": "Now memory, at a hundred thirty-one thousand tokens. The eighteen full layers cache about four point eight gigabytes; the sliding layers barely register. All full would double it.",
+      "narration_text": "Now memory, at a hundred thirty-one thousand tokens. The eighteen full layers cache about four point eight gigabytes; the sliding layers barely register. All full would double it.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "BlipLadder916",
+          "props": {
+            "spark": "Half the layers, half the cache.",
+            "heading": "KV cache at 131,072 tokens",
+            "bars": [
+              {
+                "label": "All 36 full",
+                "sub": "hypothetical",
+                "value": 9.66
+              },
+              {
+                "label": "18 full layers",
+                "sub": "the real layout",
+                "value": 4.83,
+                "accent": true
+              },
+              {
+                "label": "18 sliding layers",
+                "sub": "capped at 128 tokens · ≈ 4.7 MB",
+                "value": 0.0047
+              }
+            ],
+            "refValue": 4.83,
+            "floor": 0,
+            "ceil": 10,
+            "axisNote": "GB, BF16 cache",
+            "exception": "Per full layer, per token: 8 KV heads × 64 dims × 2 (K, V) × 2 bytes = 2,048 bytes.",
+            "source": "Computed from openai/gpt-oss-120b config.json (num_key_value_heads 8, head_dim 64, sliding_window 128) · BF16 cache assumed",
+            "durationS": 9.96
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.9,
+      "actual_duration_s": 9.96,
+      "audio_file": "mp3/beat-B04.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "EDGE-CASE",
+      "narration": "Two limits. The weights are open; the training data isn't, so we see the design, not the recipe. And what each head learns to ignore isn't documented. You'd have to measure it yourself.",
+      "narration_text": "Two limits. The weights are open; the training data isn't, so we see the design, not the recipe. And what each head learns to ignore isn't documented. You'd have to measure it yourself.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ReelFramework916",
+          "props": {
+            "spark": "Design open. Recipe closed.",
+            "heading": "What the weights can't tell us",
+            "moves": [
+              {
+                "label": "DATA",
+                "detail": "Weights and model card are released; the training data is not.",
+                "receipt": "§2.4"
+              },
+              {
+                "label": "SINK",
+                "detail": "One learned scalar per head; what each head ignores isn't documented.",
+                "receipt": "§2.2"
+              },
+              {
+                "label": "MXFP4",
+                "detail": "MoE weights at 4.25 bits per parameter let 120b fit one 80 GB GPU.",
+                "receipt": "§2.1"
+              }
+            ],
+            "accentIndex": 0,
+            "keepNote": "You can verify the layout from config.json. You cannot verify the recipe.",
+            "source": "OpenAI — gpt-oss-120b & gpt-oss-20b Model Card, arXiv:2508.10925 §2.1, §2.2, §2.4 · config.json quantization_config",
+            "durationS": 10.11
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 11.6,
+      "actual_duration_s": 10.11,
+      "audio_file": "mp3/beat-B05.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "VERDICT",
+      "narration": "The verdict. The sink is a small change with a clear purpose: permission to do nothing. The alternating layout halves the cache. The training recipe stays closed.",
+      "narration_text": "The verdict. The sink is a small change with a clear purpose: permission to do nothing. The alternating layout halves the cache. The training recipe stays closed.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact916",
+          "props": {
+            "artifactTitle": "Verdict — gpt-oss-120b",
+            "artifactHeading": "What the design earns",
+            "artifactLines": [
+              "Sink: one learned logit per head lets attention over real tokens sum to less than one.",
+              "Layout: 18 sliding (128-token) + 18 full layers, alternating.",
+              "Memory: only full layers grow with context — ~4.8 GB at 131K vs ~9.7 GB all-full.",
+              "Limit: open weights, not open data; per-head sink behaviour is unmeasured here."
+            ],
+            "sourceNote": "OpenAI, arXiv:2508.10925 · openai/gpt-oss-120b config.json"
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 9.6,
+      "actual_duration_s": 9.02,
+      "audio_file": "mp3/beat-B06.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "OUTRO",
+      "narration": "Permission to attend to nothing.",
+      "narration_text": "gpt-oss, Paying Attention to Nothing? By Design.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "reveal",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro916",
+          "props": {
+            "title": "gpt-oss, Paying Attention to Nothing? By Design.",
+            "handle": "@HumanitariansAI",
+            "subline": "Computational Skepticism"
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 3.5,
+      "actual_duration_s": 2.39,
+      "audio_file": "mp3/beat-B07.mp3",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-25T20:16:03"
+      }
+    }
+  ]
+}
