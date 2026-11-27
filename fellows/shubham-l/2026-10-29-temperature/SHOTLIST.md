@@ -1,0 +1,13 @@
+# SHOTLIST — What Temperature Does to an AI's Answer (landscape 3840×2160; vertical via ./art vertical)
+
+| Beat | Composition | Motion | What happens on screen |
+|---|---|---|---|
+| B00 | `ClaudeComposerAsk` | type-on | composer fades in; greeting 'Hola, Shubham' types; the ask types into the composer; three result lines land: the ask answered |
+| B01 | `BrutalistHesitantWriter` | type-on | writer types the first framing; 'the AI smarter.' flashes terracotta and is deleted; 'the AI bolder.' types in |
+| B02 | `FellowFlow` | reveal | eyebrow + title land; stages light one by one, in narration order; footer line lands |
+| B03 | `FellowBars` | reveal | title lands; each measured bar grows to its value in turn; the number counts up |
+| B04 | `FellowBars` | reveal | title lands; each measured bar grows to its value in turn; the number counts up |
+| B05 | `FellowCompare` | reveal | eyebrow + title land; left column fills item by item; right column fills; verdict line lands |
+| B06 | `FellowPoints` | reveal | verdict heading lands; verdict lines land one at a time |
+| B07 | `ClaudeComposerAsk` | type-on | greeting 'Your turn.' types; the paste-ready prompt types in |
+| B08 | `FellowOutro` | hold | Humanitarians AI mark lands full-size; title restates, terracotta period; @HumanitariansAI handle lands |
