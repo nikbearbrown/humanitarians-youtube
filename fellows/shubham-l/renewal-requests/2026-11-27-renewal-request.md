@@ -40,7 +40,6 @@ work and link each commit from my Frictional logs, and keep two Brutalist videos
 
 ## Open Items
 
-- The videos were produced together on 2026-11-26, not week by week.
 - Frictional logs hold one entry per work folder, dated 2026-11-27; weekly entries are being added.
 - The pilot isolation PR is not yet merged.
-- Supervisor / PM feedback: not yet recorded.
+- Supervision: I meet with my supervisor weekly.
