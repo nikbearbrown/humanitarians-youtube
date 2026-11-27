@@ -50,6 +50,8 @@ All videos: [Google Drive folder](https://drive.google.com/drive/folders/1evtv1v
 | 8–14 Nov | Weekly recap: foundation search | Recap | [folder](./2026-11-11-weekly-recap-foundation-search/) | [log](./2026-11-11-weekly-recap-foundation-search/FRICTIONAL.md) |
 | 8–14 Nov | Real Art, New Light | Topic | [folder](./2026-11-12-real-art-new-light/) | [log](./2026-11-12-real-art-new-light/FRICTIONAL.md) |
 | 8–14 Nov | Weekly recap: real art | Recap | [folder](./2026-11-13-weekly-recap-real-art/) | [log](./2026-11-13-weekly-recap-real-art/FRICTIONAL.md) |
+| 15–20 Nov | We Ask the AI Now | Topic | [folder](./2026-11-19-we-ask-the-ai-now/) | [log](./2026-11-19-we-ask-the-ai-now/FRICTIONAL.md) |
+| 15–20 Nov | Weekly recap: we ask the AI | Recap | [folder](./2026-11-20-weekly-recap-we-ask/) | [log](./2026-11-20-weekly-recap-we-ask/FRICTIONAL.md) |
 
 ## Next steps
 
