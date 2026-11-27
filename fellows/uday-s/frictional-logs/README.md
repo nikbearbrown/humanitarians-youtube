@@ -29,6 +29,7 @@ These cover the six steps of `market-sentiment-analysis-part-1` in
 | 2026-11-05 | [Rebase and TODO drift](./2026-11-05-rebase-todos-drift.md) | same branch |
 | 2026-11-13 | [Making the map cover the repo](./2026-11-13-map-covers-repo.md) | `b425b19`, on `chore/map-covers-repo` |
 | 2026-11-18 | [The YAML batch that never ran](./2026-11-18-yaml-batch-never-ran.md) | `08b92d3`, on `fix/conformance-multidoc-yaml` |
+| 2026-11-27 | [Promoting the scenario agent](./2026-11-27-promote-scenario-agent.md) | `20795b2`, on `chore/promote-scenariostresstestingagent` |
 
 ## Where the video work's logs are
 
