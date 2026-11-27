@@ -2,7 +2,7 @@
 
 **Team:** Agents & Jobs · **Project Manager:** Tanmay Sangam · **Previous project:** Mycroft (SEC Filings Financial Metrics Agent)
 
-_Target dates are proposals for the requested period (2026-11-01 – 2026-11-30), to confirm with my Project Manager._
+_Target dates are proposals for the requested period (2026-11-19 – 2026-11-29), to confirm with my Project Manager._
 
 ## Deliverables
 
@@ -10,8 +10,8 @@ _Target dates are proposals for the requested period (2026-11-01 – 2026-11-30)
 |---|---|---|---|
 | 1 | Weekly record every week: dated hours, one STEM/AI video, one progress-update video, a Frictional log entry in every folder touched | `weekly-hours/README.md` row + two video folders per week | Every Wednesday (weekly update to my PM) |
 | 2 | Onboard to Agents & Jobs and confirm my first assigned task and its repository | First dated work folder + log entry | 2026-11-25 |
-| 3 | First code contribution to the Agents & Jobs repository, committed as I work | A pull request in that repository | 2026-11-30 |
-| 4 | Hand off the SEC agent cleanly: respond to review on Mycroft PR #13 and document the open Walmart total-liabilities gap in the PR | PR #13 comments / commits | 2026-11-30 |
+| 3 | First code contribution to the Agents & Jobs repository, committed as I work | A pull request in that repository | 2026-11-29 |
+| 4 | Hand off the SEC agent cleanly: respond to review on Mycroft PR #13 and document the open Walmart total-liabilities gap in the PR | PR #13 comments / commits | 2026-11-29 |
 
 ## Research question carried over from the SEC work
 
