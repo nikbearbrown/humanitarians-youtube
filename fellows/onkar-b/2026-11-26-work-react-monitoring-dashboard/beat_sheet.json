@@ -1,0 +1,621 @@
+{
+  "metadata": {
+    "slug": "claude-gatekeeper-react-dashboard",
+    "title": "Nothing In It Is Real Yet",
+    "topic": "Provenance Gatekeeper",
+    "purpose": "Provenance Gatekeeper Development Log, Week 13 — Phase 3 opens with a decoupled React dashboard for compliance reviewers: why it replaces the Week 5 template dashboard, the three operational layers, the mock telemetry contract it runs on, and why a provenance tool displaying invented numbers has to say so out loud.",
+    "skill": "ai-explainer",
+    "channel": "claude-gatekeeper",
+    "persona": "Onkar",
+    "folderLabel": "@HumanitariansAI",
+    "greeting": "Namaste, Onkar",
+    "greeting_note": "hello lexicon: Hindi, one word. Wagwan rule is Bear-only and does not apply to this channel.",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude-liam",
+    "clock": "narration",
+    "audience": "Humanitarians AI fellows following the Provenance Gatekeeper build",
+    "playlist": "Provenance Gatekeeper Development Log",
+    "source": "Week 13: Building the React Monitoring Dashboard — 5-scene script, supplied 2026-11-26.",
+    "aspect": "16:9",
+    "runtime_target": "2:45",
+    "dual_render": "16:9 master + 9:16 companion. Every pattern has a registered <Pattern>916 variant. ZERO new components. Built straight to ./art final — no review cut, so no beat chip or timecode is ever drawn and GATE V runs on both aspects.",
+    "color_semantics": "Claude FIDELITY skin — cream #FAF9F5 / stage #F2F0E9, warm ink #3D3929, terracotta #D97757 as the ONE accent. The script describes a DARK-MODE dashboard; it renders here in the Claude skin as labelled wireframe panels. Intent preserved, not the hex values — the same ruling made for this series' palette in Week 2.",
+    "channel_note": "Narrated in the FIRST PERSON by Onkar Bhujbal. Kokoro am_onyx is a synthetic read of Onkar's own script, not a clone of his voice.",
+    "series_note": "OVERLAP: Week 5 (claude-gatekeeper-dashboard-stress, 'Expose The Ledger') already built a dashboard over this same ledger and already argued human fatigue, closing on 'a ledger nobody opens is a ledger nobody has.' This reel does NOT repeat that argument. It justifies the second dashboard on two grounds the script itself gives — decoupling from FastAPI, and a non-engineer audience — and spends its added beat on what is genuinely new and uncomfortable: the thing is wired to mock data.",
+    "authoring_note": "ThreeStageBand spark lines ≤18 chars and readyLine/failLine ≤40 so both aspects share copy. Pattern order avoids consecutive repeats: Ask, Writer, Compare, Band, Code, Band, Code, Ask, Outro.",
+    "tags": [
+      "React",
+      "Vite",
+      "dashboard",
+      "human-in-the-loop",
+      "compliance",
+      "mock data",
+      "FastAPI",
+      "Provenance Gatekeeper",
+      "Humanitarians AI",
+      "Onkar Bhujbal"
+    ],
+    "build": {
+      "at": "2026-11-26T20:11:58",
+      "cut": "master",
+      "filled": 9,
+      "of": 9,
+      "slates": [],
+      "skin_warnings": [
+        "BOUT: palette=claude but the outro is 'HaiTitleOutro' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "SCENE 1 — HOOK",
+      "lane": "bookend",
+      "estimated_duration_s": 27,
+      "narration_text": "Hi, I am Onkar Bhujbal. Over twelve weeks this thing has grown a vector store, token authentication, an alert pipeline, a Redis cache and Prometheus telemetry. And the person who most needs to trust it — a compliance officer — cannot read any of it. Raw JSON and PromQL are not an interface for them. This week opens Phase three: a React monitoring dashboard built for the human who has to sign off.",
+      "new_visual_element": "Cold open — the reader the stack forgot",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "ClaudeComposerAsk: greeting 'Namaste, Onkar'; the question types itself in"
+          },
+          {
+            "at": 0.48,
+            "event": "send arms terracotta; running indicator reads 'checking who can read this…'"
+          },
+          {
+            "at": 0.66,
+            "event": "output lands — the audience the twelve weeks did not serve"
+          },
+          {
+            "at": 0.85,
+            "event": "the last line names it: BUILT FOR ENGINEERS ONLY"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Namaste, Onkar",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Nothing In It Is Real Yet",
+            "command": "A compliance officer has to sign off on what this system blocked last quarter. What do I hand them today?",
+            "runningText": "checking who can read this…",
+            "folderLabel": "@HumanitariansAI",
+            "output": [
+              "available: raw JSON, PromQL, a SQLite file",
+              "readable by a non-engineer: none of it",
+              "BUILT FOR ENGINEERS ONLY."
+            ]
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-27T00:51:16.326093+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 21.06,
+      "render_duration_s": 21.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF — executive summary",
+      "lane": "bookend",
+      "estimated_duration_s": 13,
+      "lead_silence_s": 0.8,
+      "narration_text": "This week I built the interface before I built the data behind it. That is a legitimate order to work in — but it means everything you are about to see on screen is invented, and I would rather say that early than let a screenshot travel without it.",
+      "new_visual_element": "Hesitant-writer overview (EXECUTIVE-SUMMARY LAW)",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "0.8s of empty page before the first keystroke"
+          },
+          {
+            "at": 0.15,
+            "event": "line 1 types: 'The dashboard is live.'"
+          },
+          {
+            "at": 0.55,
+            "event": "'live' goes terracotta, deletes, retypes as 'drawn'"
+          },
+          {
+            "at": 0.85,
+            "event": "corrected overview holds through the cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "The dashboard is live.\nThe numbers in it are not.",
+            "triggerWords": "live",
+            "replacementWords": "drawn",
+            "seed": "react-dashboard-2026-11-26",
+            "fontSize": 90,
+            "charMs": 32,
+            "mistakeRate": 6,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "align": "left",
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#F2F0E9"
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-27T00:53:17.198474+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Both readings are true sentences: 'The dashboard is live.' and, corrected, 'The dashboard is drawn.' The correction is the honest one and the second line holds for either.",
+      "actual_duration_s": 13.27,
+      "render_duration_s": 13.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SCENE 2 — WHY A SECOND DASHBOARD",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "Fair question: I built a dashboard in Week five. That one was an H.T.M.L. template served by FastAPI — welded to the inference service, so every styling change redeployed the verifier. This time the frontend is a separate React and Vite app that talks to the backend over H.T.T.P. and knows nothing else about it.",
+      "new_visual_element": "Welded, versus merely connected",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "left panel lands: the Week 5 template route"
+          },
+          {
+            "at": 0.28,
+            "event": "on 'welded to the inference service', the coupled route highlights terracotta IN PLACE"
+          },
+          {
+            "at": 0.38,
+            "event": "note lands beneath: a CSS change redeploys the verifier"
+          },
+          {
+            "at": 0.52,
+            "event": "right panel reveals the decoupled scaffold"
+          },
+          {
+            "at": 0.74,
+            "event": "ink stamp lands: DECOUPLED"
+          }
+        ],
+        "remotion": {
+          "pattern": "GuardrailCompare",
+          "props": {
+            "sparkLine": "Week 5 had a dashboard too.",
+            "leftLabel": "WEEK 5 — TEMPLATE",
+            "leftText": "@app.get(\"/dashboard\")\ndef page():\n    return render(\"ledger.html\")\n\n# styling lives inside the\n# service that does inference",
+            "leftHot": "return render(\"ledger.html\")",
+            "hotNote": "a CSS change means redeploying the verification engine",
+            "rightLabel": "WEEK 13 — DECOUPLED",
+            "code": "npm create vite@latest dashboard \\\n  -- --template react\n\ndashboard/\n  App.jsx\n  App.css\n  data/mockTelemetry.js\n\n# talks to FastAPI over HTTP.\n# knows nothing else about it.",
+            "stampText": "DECOUPLED",
+            "stampBlocked": false,
+            "stampSub": "the interface can change without restarting the inference engine"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": "2026-11-27T00:55:37.385812+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The script does not mention the Week 5 dashboard. Naming it is an editorial addition — a second dashboard over the same ledger needs a reason, and the script supplies two (decoupling, non-engineer audience). Ignoring the first one would look like the series forgot it.",
+      "actual_duration_s": 18.13,
+      "render_duration_s": 18.166666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "remotion:GuardrailCompare",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SCENE 3 — THE THREE LAYERS",
+      "lane": "remotion",
+      "estimated_duration_s": 25,
+      "narration_text": "The layout is three operational layers. Across the top, K.P.I. cards — claims evaluated, hallucinations blocked, cache hit rate, average latency. Beneath that, an infrastructure strip showing all five containers, so a reviewer can tell at a glance whether they are looking at a quiet day or a dead pipeline — which, as I said last week, render identically. And filling the rest of the screen, the intercepted payload ledger.",
+      "new_visual_element": "Top to bottom, in the order a reviewer reads",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the reviewer's attention token enters the band"
+          },
+          {
+            "at": 0.2,
+            "event": "panel 01 KPI CARDS lights"
+          },
+          {
+            "at": 0.45,
+            "event": "connector draws; panel 02 INFRA STRIP lights"
+          },
+          {
+            "at": 0.7,
+            "event": "panel 03 THE LEDGER lights"
+          },
+          {
+            "at": 0.86,
+            "event": "mono line lands: glance, then confirm, then inspect"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "How a reviewer reads.",
+            "payloadLabel": "attention",
+            "readyLine": "glance · confirm · inspect",
+            "stages": [
+              {
+                "index": "01",
+                "name": "KPI CARDS",
+                "detail": "evaluated · blocked · hit rate · latency"
+              },
+              {
+                "index": "02",
+                "name": "INFRA STRIP",
+                "detail": "five containers — quiet day or dead pipeline"
+              },
+              {
+                "index": "03",
+                "name": "THE LEDGER",
+                "detail": "the intercepted payloads themselves"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-27T00:57:40.287094+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "The 'quiet day or dead pipeline' line deliberately calls back to Week 12's falsifiability beat, where a flat line and a dead exporter were shown to render identically. The infra strip is the UI answer to that problem.",
+      "actual_duration_s": 21.74,
+      "render_duration_s": 21.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "SCENE 4 — THE LEDGER AND ITS CONTRACT",
+      "lane": "remotion",
+      "estimated_duration_s": 26,
+      "narration_text": "The centrepiece is the intercepted hallucination ledger. A reviewer filters by variance type and sees the fabricated claim beside the ChromaDB ground truth — the one layout that makes a judgement possible. Underneath is a strict mock telemetry contract: the exact shape next week's authenticated endpoints must return, so the swap is a data source change, not a rewrite.",
+      "new_visual_element": "The shape the real endpoint has to match",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the row shape reveals — claim beside ground truth"
+          },
+          {
+            "at": 0.58,
+            "event": "the filter keys reveal"
+          },
+          {
+            "at": 0.8,
+            "event": "the closing note lands: next week this import changes, nothing else"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "data/mockTelemetry.js",
+            "code": "export const intercepted = [\n  {\n    id: \"claim_0412\",\n    variance: \"magnitude\",\n    claimed: \"Q3 variance: $4.5M\",\n    truth:   \"Q3 variance: $450K\",\n    source:  \"ledger_2026Q3.csv:118\",\n    blockedAt: \"2026-11-24T03:04:11Z\",\n  },\n];\n\n// Next week: this import becomes a\n// fetch(). The shape does not change.",
+            "sparkLine": "Design the contract, then fill it."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-27T00:59:01.328606+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "honesty_note": "Every value in this object is fabricated for the mock. That is the point of B05. The row shape reflects what the ledger would need to carry for a reviewer to adjudicate a claim.",
+      "actual_duration_s": 20.05,
+      "render_duration_s": 20.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "SCENE 4b — FALSIFIABILITY (added)",
+      "lane": "remotion",
+      "estimated_duration_s": 30,
+      "narration_text": "Now the part I want to be careful about. Everything on this dashboard is invented — the blocked counts, the cache hit rate, the claims in the ledger. I wrote them. And a dashboard is a format that confers authority: four figures in cards, a green row of containers, and it reads as a report whether or not anything behind it is connected. For a system built to catch fabricated numbers, shipping an interface full of fabricated numbers is the exact failure mode wearing my own design. So until it is bound to live endpoints it carries a banner, and a screenshot of it is not evidence.",
+      "new_visual_element": "The interface that looks like a report",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "panel 01 IT RENDERS lights; the token enters"
+          },
+          {
+            "at": 0.42,
+            "event": "connector draws; on 'I wrote them', panel 02 takes the terracotta wash and ✕"
+          },
+          {
+            "at": 0.6,
+            "event": "the token STOPS — nothing behind it is connected"
+          },
+          {
+            "at": 0.72,
+            "event": "panel 03 shows what a reader concludes anyway"
+          },
+          {
+            "at": 0.82,
+            "event": "mono line lands: banner it · never screenshot it as proof"
+          }
+        ],
+        "remotion": {
+          "pattern": "ThreeStageBand",
+          "props": {
+            "sparkLine": "I wrote these numbers.",
+            "payloadLabel": "a KPI card",
+            "failIndex": 1,
+            "failLine": "banner it · never cite it as evidence",
+            "readyLine": "glance · confirm · inspect",
+            "stages": [
+              {
+                "index": "01",
+                "name": "IT RENDERS",
+                "detail": "cards, a healthy strip, a filled ledger"
+              },
+              {
+                "index": "02",
+                "name": "IT IS CONNECTED",
+                "detail": "to a JavaScript file I typed by hand"
+              },
+              {
+                "index": "03",
+                "name": "READS AS A REPORT",
+                "detail": "the format confers authority by itself"
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-27T01:01:08.340297+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "BEAT ADDED, and it is the reel's reason to exist. The script mentions the mock contract once, in Scene 4, framed as forward planning. Building the contract first IS good practice and the reel says so — but a provenance tool rendering invented figures in an authoritative format is the project's own failure mode pointed at itself, and that deserves to be said out loud rather than discovered by a viewer who screenshots it.",
+      "actual_duration_s": 31.99,
+      "render_duration_s": 32.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B05.mp4",
+        "filled_by": "remotion:ThreeStageBand",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "SCENE 5 — SCAFFOLDED TASK",
+      "lane": "remotion",
+      "estimated_duration_s": 18,
+      "narration_text": "So design the interface for the human reviewer — great backend architecture is worth nothing if the person accountable cannot see what it caught. And while your data is mocked, make the interface admit it, in a way nobody can crop out.",
+      "new_visual_element": "The banner the viewer writes",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "remotion",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "code card opens on a hard cut; traffic-light dot arms terracotta"
+          },
+          {
+            "at": 0.2,
+            "event": "the guard reveals — the banner is tied to the data source, not a flag"
+          },
+          {
+            "at": 0.58,
+            "event": "the TASK line lands: design for the human reviewer"
+          },
+          {
+            "at": 0.78,
+            "event": "the last note lands — why it cannot be cropped"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "App.jsx",
+            "code": "const live = source === \"api\";\n\nreturn (\n  <>\n    {!live && <MockBanner />}\n    <Dashboard data={data} live={live} />\n  </>\n);\n\n// TASK: design for the human reviewer.\n\n// Tie the banner to the DATA SOURCE,\n// not to a build flag someone forgets.",
+            "sparkLine": "Make it admit what it is."
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-27T01:02:27.701591+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "authoring_note": "Deriving the banner from the data source rather than an environment flag is the reel's addition — a flag is exactly the thing that gets left wrong in a demo build.",
+      "actual_duration_s": 13.23,
+      "render_duration_s": 13.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "remotion:ClaudeCodeBeat",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "HANDOFF — your turn",
+      "lane": "bookend",
+      "estimated_duration_s": 22,
+      "narration_text": "Here is the prompt worth running against your own interface. Ask a model which numbers on your dashboard a reader would assume are live, and which of those could currently be stale, cached, mocked or partially loaded without the interface showing any difference. Every one it finds is a place your U.I. is making a promise your data is not keeping.",
+      "new_visual_element": "Handoff — the viewer's prompt, read aloud",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "composer reframes; greeting reads 'Your turn.'"
+          },
+          {
+            "at": 0.15,
+            "event": "prompt types in as the voice reads it verbatim"
+          },
+          {
+            "at": 0.7,
+            "event": "running indicator reads 'paste this into Claude…'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "Provenance Gatekeeper",
+            "segment": "Nothing In It Is Real Yet",
+            "command": "Here is my dashboard component. Which values would a reader assume are live — and which could be stale, cached, mocked or half-loaded without the UI looking any different?",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@HumanitariansAI",
+            "output": []
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-11-27T01:05:25.814531+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 17.69,
+      "render_duration_s": 17.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-26T20:11:58"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "SCENE 5 — CLOSE",
+      "lane": "bookend",
+      "estimated_duration_s": 11,
+      "narration_text": "Design for the human reviewer — and until the data is real, make the interface say so. Onkar Bhujbal, for Humanitarians AI.",
+      "new_visual_element": "Title-restate outro — @HumanitariansAI",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "lane": "bookend",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Humanitarians AI mark fades up, full size"
+          },
+          {
+            "at": 0.2,
+            "event": "title restates in poster serif with the terracotta period"
+          },
+          {
+            "at": 0.5,
+            "event": "rule draws; @HumanitariansAI lands beneath"
+          },
+          {
+            "at": 0.68,
+            "event": "credit line lands on the spoken sign-off; hard cut"
+          }
+        ],
+        "remotion": {
+          "pattern": "HaiTitleOutro",
+          "props": {
+            "title": "Nothing In It Is Real Yet",
+            "handle": "@HumanitariansAI",
+            "credit": "Onkar Bhujbal · Provenance Gatekeeper Dev Log · Week 13",
+            "logoFile": "logo-outro/humanitarians/humanitarians-logo-1.svg"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-11-27T01:06:27.735128+00:00"
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "actual_duration_s": 8.02,
+      "render_duration_s": 8.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BOUT.mp4",
+        "filled_by": "remotion:HaiTitleOutro",
+        "at": "2026-11-26T20:11:58"
+      }
+    }
+  ]
+}
