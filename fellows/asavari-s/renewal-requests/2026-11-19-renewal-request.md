@@ -1,7 +1,7 @@
 # Renewal Request — Asavari S.
 
 **Request date:** 2026-11-19 · **Team:** Agents & Jobs (PM: Tanmay Sangam); previously Mycroft
-**Current agreement:** 2026-08-01 – 2026-10-31 (ended) · **Requested period:** 2026-11-19 – 2026-11-29 (start date set by HR; agreements are not backdated)
+**Current agreement:** 2026-08-01 – 2026-10-31 (ended) · **Requested period:** 2026-11-01 – 2026-11-29, requested as an exception. HR's standard start date is 2026-11-19, and agreements are not normally backdated. If no exception is possible: 2026-11-19 – 2026-11-29.
 **Reporting period:** 2026-07-08 (first week) – 2026-11-22
 
 ## Executive Summary
@@ -55,7 +55,7 @@ I'm requesting renewal to continue on the Agents & Jobs team. During this period
 
 - Video viewing links: every video has a public direct link (16:9) in its folder README. The 9:16 versions are linked for four videos so far; the rest are still to be uploaded.
 - Hours after Jul 24 are self-reported. Several of those weeks have no repository evidence (listed in the weekly index).
-- **This request was late.** My agreement ended 2026-10-31. HR set the new agreement to start on 2026-11-19, because agreements are not backdated, so 2026-11-01 – 2026-11-18 is not covered by an agreement.
+- **This request was late.** My agreement ended 2026-10-31, and HR's standard start date for the new one is 2026-11-19, so 2026-11-01 – 2026-11-18 is not covered by an agreement. I kept working on the project during those weeks, so I've asked HR whether an exception is possible. If it isn't, the new agreement starts 2026-11-19.
 - YouTube links: I don't have access to the YouTube channel. The videos have been shared with my Project Manager, Tanmay Sangam, for approval, and each folder's README has a public Google Drive link.
 - Progress-update videos before 2026-11-16: none
 - Weeks with no repository evidence: listed in the weekly index
@@ -63,6 +63,6 @@ I'm requesting renewal to continue on the Agents & Jobs team. During this period
 ## Submission Email
 
 **To:** hr@humanitarians.ai; bear@humanitarians.ai · **CC:** Tanmay Sangam
-**Subject:** Fellowship renewal — Asavari Shejwal — Agents & Jobs — November 19 to November 29
+**Subject:** Fellowship renewal — Asavari Shejwal — Agents & Jobs — November 2026
 
-Please review [my Markdown renewal report](https://github.com/nikbearbrown/humanitarians-youtube/blob/add-asavari-videos/fellows/asavari-s/renewal-requests/2026-11-19-renewal-request.md). It summarizes the work, each week's hours, direct evidence, and outstanding items. My agreement ended October 31, 2026. I'm requesting November 19 (the start date HR set) to November 29, 2026.
+Please review [my Markdown renewal report](https://github.com/nikbearbrown/humanitarians-youtube/blob/add-asavari-videos/fellows/asavari-s/renewal-requests/2026-11-19-renewal-request.md). It summarizes the work, each week's hours, direct evidence, and outstanding items. My agreement ended October 31, 2026. I'm requesting November 1 to November 29, 2026, as an exception. If an exception isn't possible, I'm requesting November 19 to November 29, 2026.
