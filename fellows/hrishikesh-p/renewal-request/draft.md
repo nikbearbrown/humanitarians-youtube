@@ -3,7 +3,7 @@
 
 **Request:** Please renew my fellowship from **October 1, 2026** through **October 31, 2026**. My current agreement ends **September 30, 2026**. This summary covers the reporting period **August 22, 2026 to October 30, 2026**.
 
-For the latest documented work, see the [Week 12 frictional log](../2026-11-20-RamanEffect/FRICTIONAL.md).
+For the latest documented work, see the [Week 13 frictional log](../2026-11-27-RamanEffect/FRICTIONAL.md).
 
 ## Completed
 
@@ -18,10 +18,11 @@ For the latest documented work, see the [Week 12 frictional log](../2026-11-20-R
 - **Studied recursive agent harnessing for open-world tasks.** Reviewed HARNESS² task-level and harnessing-level recursion, contrastive Propose-Probe-Compose updates, reusable experience libraries, and benchmark improvements across code, web, office, professional-deliverable, and legal-agent tasks. Evidence: [Week 10 frictional log](../2026-11-06%20-%20RamanEffect/FRICTIONAL.md) and the linked videos.
 - **Explained latent world models with JEPA.** Compared I-JEPA and V-JEPA with pixel-reconstruction and vision-language models, covering latent prediction, EMA target encoders, stop-gradient training, masking, and results on ImageNet, CLEVR, and video benchmarks. Evidence: [Week 11 frictional log](../2026-11-13%20-%20RamanEffect/FRICTIONAL.md) and the linked videos.
 - **Summarized Raman spectroscopy in life sciences.** Reviewed how inelastic laser scattering enables label-free, non-destructive biomedical analysis across molecular diagnostics, protein folding, and in vivo oncology. Evidence: [Week 12 frictional log](../2026-11-20-RamanEffect/FRICTIONAL.md) and the linked 16:9 and 9:16 videos.
+- **Ablated residual shortcuts and downsampling in bacterial Raman classifiers.** Compared the 6-layer Plain CNN and 17-layer 1D ResNet with four single-factor controls, isolating residual shortcuts and downsampling through 18 canonical runs. The study found that residual shortcuts improve deep ResNets but hurt the shallow CNN, while downsampling choice is statistically secondary. Evidence: [Week 13 frictional log](../2026-11-27-RamanEffect/FRICTIONAL.md), [Week 13 commit](https://github.com/hspgit/RAMAN-Effect/commit/2278251cf9ef8973edc6db9fe34e777353f75c28), and the linked 16:9 and 9:16 videos.
 
 ## Hours Status
 
-20 hours recorded for each documented week, for a total of **240 hours across twelve documented weeks**.
+20 hours recorded for each documented week, for a total of **260 hours across thirteen documented weeks**.
 
 ## Degree Relevance and Supervision
 
@@ -55,3 +56,4 @@ Proposed deliverable: document a reproducible comparison of the CNN, ResNet, Tra
 | Week 10: November 6, 2026 | 20 | [16:9](https://drive.google.com/file/d/1FuHXb5F76U08jhcEM8od00z1rfNBvmts/view?usp=sharing) · [9:16](https://drive.google.com/file/d/1VBUZb-NMxAoKXNZ0ztnmC0PI_OpbApAM/view?usp=sharing) | [Dated log](../2026-11-06%20-%20RamanEffect/FRICTIONAL.md) |
 | Week 11: November 13, 2026 | 20 | [16:9](https://drive.google.com/file/d/1KHqXXd_NWYdyKv5M6wlIne93B7nCBzjb/view?usp=sharing) · [9:16](https://drive.google.com/file/d/1BP96FAxCyYqGO2cVel5huAODRSPpo4IM/view?usp=sharing) | [Dated log](../2026-11-13%20-%20RamanEffect/FRICTIONAL.md) |
 | Week 12: November 20, 2026 | 20 | [16:9](https://drive.google.com/file/d/1AmiL71d6H3SQVy98p6bFxSdtdNXjrRmT/view?usp=sharing) · [9:16](https://drive.google.com/file/d/1dONPbcAdXwca5uA8HwA8kdWbl3foViuG/view?usp=sharing) | [Dated log](../2026-11-20-RamanEffect/FRICTIONAL.md) |
+| Week 13: November 27, 2026 | 20 | [16:9](https://drive.google.com/file/d/1uNN2vWuHy8nNSy7S_QxzXGjLJ7RA698H/view?usp=sharing) · [9:16](https://drive.google.com/file/d/1bSmvaRyTY73gheAMUxgqcVh3bgr2LTeo/view?usp=sharing) | [Dated log](../2026-11-27-RamanEffect/FRICTIONAL.md) · [Week 13 commit](https://github.com/hspgit/RAMAN-Effect/commit/2278251cf9ef8973edc6db9fe34e777353f75c28) |
