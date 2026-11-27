@@ -56,7 +56,7 @@ I'm requesting renewal to continue on the Agents & Jobs team. During this period
 - Video viewing links: every video has a public direct link (16:9) in its folder README. The 9:16 versions are linked for four videos so far; the rest are still to be uploaded.
 - Hours after Jul 24 are self-reported. Several of those weeks have no repository evidence (listed in the weekly index).
 - **This request was late.** My agreement ended 2026-10-31. HR set the new agreement to start on 2026-11-19, because agreements are not backdated, so 2026-11-01 – 2026-11-18 is not covered by an agreement.
-- YouTube links: to be added once my Project Manager pre-approves the videos. Drive links are in each folder's README.
+- YouTube links: I don't have access to the YouTube channel. The videos have been shared with my Project Manager, Tanmay Sangam, for approval, and each folder's README has a public Google Drive link.
 - Progress-update videos before 2026-11-16: none
 - Weeks with no repository evidence: listed in the weekly index
 
