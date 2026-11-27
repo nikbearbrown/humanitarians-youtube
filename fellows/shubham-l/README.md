@@ -6,6 +6,10 @@
 
 Renders: [Google Drive](https://drive.google.com/drive/folders/1wGT_paFqo03H4KRqjkETQ5ESL5Rw_ELP). Agreement period: 2026-10-08 to 2026-11-30. Narration voice for the series: Liam (Kokoro `am_onyx`).
 
+## Renewal
+
+- [2026-11-27 renewal request (2026-12-01 to 2027-02-28)](renewal-requests/2026-11-27-renewal-request.md)
+
 ## What's in this folder
 
 12 work folders, one per video: seven weekly progress updates on Medhavy and five STEM / AI explainers.
