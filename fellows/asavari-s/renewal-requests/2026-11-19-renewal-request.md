@@ -55,7 +55,7 @@ I'm requesting renewal to continue on the Agents & Jobs team. During this period
 
 - Video viewing links: every video has a public direct link (16:9) in its folder README. The 9:16 versions are linked for four videos so far; the rest are still to be uploaded.
 - Hours after Jul 24 are self-reported. Several of those weeks have no repository evidence (listed in the weekly index).
-- **Agreement gap.** My agreement ended 2026-10-31. I sent a renewal request around 2026-11-01. In response, my previously completed agreement was signed rather than a renewal being issued, so no agreement covered 2026-11-01 – 2026-11-18. HR's standard start date for the new agreement is 2026-11-19. I kept working on the project during those weeks, so I've asked HR whether the new agreement can start on 2026-11-01. If it can't, it starts 2026-11-19.
+- **Agreement gap.** My agreement ended 2026-10-31. I sent a renewal request on 2026-11-01. In response, my previously completed agreement was signed rather than a renewal being issued, so no agreement covered 2026-11-01 – 2026-11-18. HR's standard start date for the new agreement is 2026-11-19. I kept working on the project during those weeks, so I've asked HR whether the new agreement can start on 2026-11-01. If it can't, it starts 2026-11-19.
 - YouTube links: I don't have access to the YouTube channel. The videos have been shared with my Project Manager, Tanmay Sangam, for approval, and each folder's README has a public Google Drive link.
 - Progress-update videos before 2026-11-16: none
 - Weeks with no repository evidence: listed in the weekly index
@@ -65,4 +65,4 @@ I'm requesting renewal to continue on the Agents & Jobs team. During this period
 **To:** hr@humanitarians.ai; bear@humanitarians.ai · **CC:** Tanmay Sangam
 **Subject:** Fellowship renewal — Asavari Shejwal — Agents & Jobs — November 2026
 
-Please review [my Markdown renewal report](https://github.com/nikbearbrown/humanitarians-youtube/blob/add-asavari-videos/fellows/asavari-s/renewal-requests/2026-11-19-renewal-request.md). It summarizes the work, each week's hours, direct evidence, and outstanding items. My agreement ended October 31, 2026. I sent a renewal request around November 1, but my previously completed agreement was signed instead of a renewal being issued. I'm requesting November 1 to November 29, 2026. If that isn't possible, I'm requesting November 19 to November 29, 2026.
+Please review [my Markdown renewal report](https://github.com/nikbearbrown/humanitarians-youtube/blob/add-asavari-videos/fellows/asavari-s/renewal-requests/2026-11-19-renewal-request.md). It summarizes the work, each week's hours, direct evidence, and outstanding items. My agreement ended October 31, 2026. I sent a renewal request on November 1, but my previously completed agreement was signed instead of a renewal being issued. I'm requesting November 1 to November 29, 2026. If that isn't possible, I'm requesting November 19 to November 29, 2026.
