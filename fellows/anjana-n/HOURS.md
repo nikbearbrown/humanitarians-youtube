@@ -2,7 +2,7 @@
 
 ECIS (Earnings Call Intelligence Signals) is a financial intelligence system that transforms raw earnings call transcripts into structured, confidence-scored guidance signals, and then holds itself accountable by grading every prediction against real market outcomes.
 
-**Period:** June 29 – November 14, 2026 (Weeks 1–20)
+**Period:** June 29 – November 28, 2026 (Weeks 1–22)
 
 **Project:** [Mycroft — ECIS](https://github.com/nikbearbrown/mycroft/tree/main/projects/ecis)
 
@@ -30,6 +30,8 @@ ECIS (Earnings Call Intelligence Signals) is a financial intelligence system tha
 | 18 | Oct 25 – Oct 31 | 32.5 | [2026-10-30-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-10-30-weekly-work-progress) |
 | 19 | Nov 1 – Nov 7 | 30.75 | [2026-11-06-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-06-weekly-work-progress) |
 | 20 | Nov 8 – Nov 14 | 34.5 | [2026-11-13-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-13-weekly-work-progress) |
-| **Total** | | **612.25** | |
+| 21 | Nov 15 – Nov 21 | 32 | [2026-11-20-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-20-weekly-work-progress) |
+| 22 | Nov 22 – Nov 28 | 29.75 | [2026-11-27-weekly-work-progress](https://github.com/nikbearbrown/humanitarians-youtube/tree/main/fellows/anjana-n/2026-11-27-weekly-work-progress) |
+| **Total** | | **674.0** | |
 
 ---
