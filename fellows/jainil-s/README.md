@@ -26,6 +26,7 @@ build assets.
 | [`2026-11-06-ai-significant-on-tuesday`](2026-11-06-ai-significant-on-tuesday) | educational (STEM / AI) | Checking an A/B test until it reads significant turns a 5% error rate into 25% — and every test stopped early overstates the effect by construction |
 | [`2026-11-13-ai-every-group-the-other-way`](2026-11-13-ai-every-group-the-other-way) | educational (STEM / AI) | A total and every group inside it can point in opposite directions, and every one of those numbers is correct |
 | [`2026-11-20-ai-it-tested-clean`](2026-11-20-ai-it-tested-clean) | educational (STEM / AI) | A model can be correct, untouched and converged, and still collapse in production because one feature is computed differently at serving than at training |
+| [`2026-11-27-ai-confidently-out-of-date`](2026-11-27-ai-confidently-out-of-date) | educational (STEM / AI) | A stale retrieval index does not fail loudly — a word whose meaning moved returns confident results from the wrong neighbourhood at a similarity score that barely drops |
 
 **Video files are not in this repo.** They are delivered separately. Everything
 here is the record of how they were built and why each claim in them holds.
