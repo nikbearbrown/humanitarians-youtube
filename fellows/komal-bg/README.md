@@ -8,7 +8,10 @@ Weekly-report series: **`af_bella` (Bella)**.
 
 These Claude-branded explainer cuts use **`am_onyx` (Liam, in for Komal)**,
 recorded in each episode `beat_sheet.json`. That is a documented creator-cut
-choice, not a silent per-episode default.
+choice, not a silent per-episode default. Speak Liam as one word (Lee, never
+Lay-um) via `brutalist.art/runtime/pronunciation/liam.json` on every future
+cut — captions keep `Liam`; do not add `metadata.pronounce`. Sentence-initial
+`Title. Liam` is rewritten on the voice path to `this is Liam`.
 
 Channel chip on these cuts: `Komal`. House channel: `@HumanitariansAI`.
 
@@ -40,6 +43,8 @@ Channel chip on these cuts: `Komal`. House channel: `@HumanitariansAI`.
 - [2026-11-06 Madison Weekly — Nov 6.](./2026-11-06-madison-weekly/)
 - [2026-11-13 The Same Question.](./2026-11-13-same-question/)
 - [2026-11-20 Madison Weekly — Nov 20.](./2026-11-20-madison-weekly/)
+- [2026-11-27 The Loud Quiet.](./2026-11-27-loud-quiet/)
+- [2026-11-27 Madison Weekly — Nov 27.](./2026-11-27-madison-weekly/)
 
 ## Frictional log
 
